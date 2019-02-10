@@ -4,4 +4,4 @@ order: 3
 domid: markdown-example
 ---
 
-React est flexible et fournis divers moyens d'utiliser d'autres bibliothèques ou frameworks. Cet exemple utilise **remarkable**, une bibliothèque tiers pour gérer le format Markdown, qui permet de convertir le contenue de la balise `<textarea>` en temps réel.
+React est flexible et fournit divers moyens de l’intégrer avec d'autres bibliothèques ou frameworks. Cet exemple utilise **remarkable**, une bibliothèque tierce pour gérer le format Markdown, afin de convertir le contenu de la balise `<textarea>` en temps réel.
