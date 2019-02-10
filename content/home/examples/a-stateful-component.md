@@ -1,5 +1,5 @@
 ---
-title: Un composant dynamique
+title: Un composant à état
 order: 1
 domid: timer-example
 ---

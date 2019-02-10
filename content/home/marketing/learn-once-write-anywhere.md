@@ -1,5 +1,5 @@
 ---
-title: Apprendre une fois pour toutes
+title: Utilisable partout
 order: 2
 ---
 
