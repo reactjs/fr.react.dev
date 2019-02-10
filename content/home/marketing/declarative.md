@@ -3,6 +3,6 @@ title: Déclaratif
 order: 0
 ---
 
-React rend la création d'interfaces graphiques plaisante. Définissez simplement les vues des différents états de vos applications et React s'occupera de mettre à jour et de rendre les composants qui en ont besoin en fonction de vos données.
+Grâce à React, il est facile de créer des interfaces utilisateurs interactives. Définissez des vues simples pour chaque état de votre application, et lorsque vos données changeront, React mettra à jour, de façon optimale, juste les composants qui en auront besoin.
 
 Le vues déclaratives rendent votre code plus prédictif et plus facile a corriger.
