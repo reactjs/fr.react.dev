@@ -1,5 +1,5 @@
 ---
-title: A base de composants
+title: À base de composants
 order: 1
 ---
 
