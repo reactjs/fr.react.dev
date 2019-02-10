@@ -11,7 +11,7 @@ module.exports = {
     title: 'React: Une bibliothèque JavaScript pour créer des interfaces utilisateurs',
     siteUrl: 'https://reactjs.org',
     rssFeedTitle: 'React',
-    rssFeedDescription: 'Une bibliothèque JavaScript pour créer des interfaces graphiques',
+    rssFeedDescription: 'Une bibliothèque JavaScript pour créer des interfaces utilisateurs',
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorYaml',
