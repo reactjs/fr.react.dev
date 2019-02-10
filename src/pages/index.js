@@ -312,7 +312,7 @@ Home.propTypes = {
 
 function renderExamplePlaceholder(containerId) {
   ReactDOM.render(
-    <h4>Chargement de l'exemple de code...</h4>,
+    <h4>Chargement de l'exemple de code…</h4>,
     document.getElementById(containerId),
   );
 }
