@@ -18,7 +18,7 @@ next: state-and-lifecycle.html
 
 Les composants vous permettent de découper l'interface utilisateur en éléments indépendants et réutilisables, vous permettant ainsi de considérer chaque élément de manière isolée. Cette page fournit une introduction au concept de composants. Vous trouverez une [référence détaillée de l'API des composants ici](/docs/react-component.html).
 
-Conceptuellement, les composants sont comme des fonctions JavaScript. Ils acceptent des entrées arbitraires (appelées "props") et renvoient des éléments React décrivant ce qui doit apparaître à l'écran.
+Conceptuellement, les composants sont comme des fonctions JavaScript. Ils acceptent des entrées quelconques (appelées « props ») et renvoient des éléments React décrivant ce qui doit apparaître à l'écran.
 
 ## Fonctions composants et composants à base de classe {#function-and-class-components}
 
