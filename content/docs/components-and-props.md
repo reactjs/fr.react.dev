@@ -245,7 +245,7 @@ function sum(a, b) {
 }
 ```
 
-Ces fonctions sont dites ["pure"](https://fr.wikipedia.org/wiki/Fonction_pure) parce qu'ils ne tentent pas de modifier leurs entrées et retournent toujours le même résultat pour leurs entrées respectives.
+Ces fonctions sont dites [« pures »](https://fr.wikipedia.org/wiki/Fonction_pure) parce qu'elles ne tentent pas de modifier leurs entrées et retournent toujours le même résultat pour les mêmes entrées.
 
 En revanche, cette fonction est impure car elle change sa propre entrée:
 
