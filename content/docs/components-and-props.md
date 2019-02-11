@@ -22,7 +22,7 @@ Conceptuellement, les composants sont comme des fonctions JavaScript. Ils accept
 
 ## Fonctions Composants et Composants à Base de Classes {#function-and-class-components}
 
-Le moyen le plus simple de définir un composant consiste à écrire une fonction JavaScript:
+Le moyen le plus simple de définir un composant consiste à écrire une fonction JavaScript :
 
 ```js
 function Welcome(props) {
