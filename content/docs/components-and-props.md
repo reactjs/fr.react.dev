@@ -42,7 +42,7 @@ class Welcome extends React.Component {
 }
 ```
 
-Les deux composants ci-dessus sont équivalents d'un point de vue React.
+Les deux composants ci-dessus sont équivalents du point de vue de React.
 
 Les classes possèdent quelques fonctionnalités supplémentaires dont nous discuterons dans les [sections suivantes](/docs/state-and-lifecycle.html). En attendant, nous utiliserons les fonctions composants pour leur forme concise.
 
