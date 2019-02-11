@@ -20,7 +20,7 @@ Les composants vous permettent de découper l'interface utilisateur en élément
 
 Conceptuellement, les composants sont comme des fonctions JavaScript. Ils acceptent des entrées quelconques (appelées « props ») et renvoient des éléments React décrivant ce qui doit apparaître à l'écran.
 
-## Fonctions composants et composants à base de classe {#function-and-class-components}
+## Fonctions Composants et Composants à Base de Classes {#function-and-class-components}
 
 Le moyen le plus simple de définir un composant consiste à écrire une fonction JavaScript:
 
