@@ -32,7 +32,7 @@ function Welcome(props) {
 
 Cette fonction est un composant React valide car elle accepte un seul argument « props » (qui signifie « propriétés ») contenant des données, et renvoie un élément React. Nous appelons de tels composants des « fonctions composants », car ce sont littéralement des fonctions JavaScript.
 
-Vous pouvez également utiliser une [classe ES6](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes) pour définir un composant:
+Vous pouvez également utiliser une [classe ES6](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes) pour définir un composant :
 
 ```js
 class Welcome extends React.Component {
