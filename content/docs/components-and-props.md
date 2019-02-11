@@ -44,9 +44,9 @@ class Welcome extends React.Component {
 
 Les deux composants ci-dessus sont équivalents du point de vue de React.
 
-Les classes possèdent quelques fonctionnalités supplémentaires dont nous discuterons dans les [sections suivantes](/docs/state-and-lifecycle.html). En attendant, nous utiliserons les fonctions composants pour leur forme concise.
+Les classes possèdent quelques fonctionnalités supplémentaires dont nous discuterons dans les [prochaines sections](/docs/state-and-lifecycle.html). En attendant, nous utiliserons les fonctions composants pour leur concision.
 
-## Rendu d'un Component {#rendering-a-component}
+## Produire le rendu d'un Component {#rendering-a-component}
 
 Jusqu’ici, nous avons uniquement rencontré des éléments React qui représentent des balises DOM :
 
@@ -60,7 +60,7 @@ Cependant, ces éléments peuvent également représenter des composants défini
 const element = <Welcome name="Sara" />;
 ```
 
-Lorsque React trouve un élément représentant un composant défini par l'utilisateur, il transmet les attributs JSX à ce composant sous la forme d'un objet unique. Nous appelons cet objet "props".
+Lorsque React rencontre un élément représentant un composant défini par l'utilisateur, il transmet les attributs JSX à ce composant sous la forme d'un objet unique. Nous appelons cet objet « props ».
 
 Par exemple, ce code affiche "Bonjour, Sara" sur la page:
 
@@ -83,19 +83,19 @@ Récapitulons ce qui se passe dans cet exemple:
 1. On appelle `ReactDOM.render()` avec l'élément `<Welcome name="Sara" />`.
 2. React appelle le composant `Welcome` avec comme props `{name: 'Sara'}`.
 3. Notre composant `Welcome` retourne un élément `<h1>Bonjour, Sara</h1>` pour résultat.
-4. Le DOM React met à jour efficacement le DOM de manière à correspondre à `<h1>Bonjour, Sara</h1>`.
+4. React DOM met à jour efficacement le DOM pour correspondre à `<h1>Bonjour, Sara</h1>`.
 
 >**Note:** Commencez toujours vos noms de composants par une majuscule.
 >
->React concidère les composants commençant par des lettres minuscules comme des balises DOM. Par exemple, `<div />` représente une balise HTML div, mais `<Welcome />` représente un composant et nécessite `Welcome` pour appartenir aux contexte d'exécution.
+>React considère les composants commençant par des lettres minuscules comme des balises DOM. Par exemple, `<div />` représente une balise HTML div, mais `<Welcome />` représente un composant, et exige que l’identifiant `Welcome` existe dans la portée courante.
 >
->Vous pouvez en apprendre plus sur le raisonnement qui se cache derrière cette convention [ici.](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized)
+>Vous pouvez en apprendre plus sur le raisonnement qui sous-tend cette convention [ici.](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized)
 
-## Composition de Componsants {#composing-components}
+## Composition de Composants {#composing-components}
 
-Les composants peuvent faire référence à d'autres composants dans leur sortie. Ça nous permet d'utiliser la même abstraction de composant pour n'importe quel niveau de détail. Un bouton, un formulaire, une boîte de dialogue, un écran: dans React, ils sont généralement tous exprimées par des composants.
+Les composants peuvent faire référence à d'autres composants dans leur sortie. Ça nous permet d'utiliser la même abstraction de composants pour n'importe quel niveau de détail. Un bouton, un formulaire, une boîte de dialogue, un écran: dans React, ils sont généralement tous exprimés par des composants.
 
-Par exemple, nous pouvons créer un composant `App` qui fait un rendu mutliple du composant ` Welcome`:
+Par exemple, nous pouvons créer un composant `App` qui utilise plusieurs fois ` Welcome` :
 
 ```js{8-10}
 function Welcome(props) {
@@ -120,13 +120,13 @@ ReactDOM.render(
 
 [**Essayer sur CodePen**](codepen://components-and-props/composing-components)
 
-En règle générale, les nouvelles applications React n'ont un seul composant `App` en haut de leur hiérarchie.  Cependant, si vous intégrez React à une application existante, vous pouvez commencer par un petit composant comme `Button` et vous diriger progressivement vers le haut de la hiérarchie.
+En règle générale, les nouvelles applications React ont un seul composant `App` à la racine.  En revanche, si vous intégrez React à une application existante, vous pouvez commencer tout en bas par un petit composant comme `Button` et remonter progressivement la hiérarchie des vues.
 
 ## Extraire des Composants {#extracting-components}
 
 N'ayez pas peur de scinder des composants en composants plus petits.
 
-Prennons par exemple ce composent `Comment`:
+Prennons par exemple ce composant `Comment`:
 
 ```js
 function Comment(props) {
@@ -171,7 +171,7 @@ function Avatar(props) {
 }
 ```
 
-Le composant `Avatar` n'a pas besoin de savoir qu'il est rendu dans un composant ` Comment`. C'est pourquoi nous avons donné à ses props un nom plus générique: `user` plutôt que` author`.
+Le composant `Avatar` n'a pas besoin de savoir qu'il figure dans un composant `Comment`. C'est pourquoi nous avons donné à sa prop un nom plus générique : `user` plutôt que `author`.
 
 Nous vous recommandons de nommer les props du point de vue du composant plutôt que de celui du contexte dans lequel il est utilisé.
 
@@ -198,7 +198,7 @@ function Comment(props) {
 }
 ```
 
-Ensuite, nous allons extraire un composant `UserInfo` qui effectue le rendu du composant `Avatar` à côté du nom de l'utilisateur:
+Ensuite, nous allons extraire un composant `UserInfo` qui affiche un `Avatar` à côté du nom de l'utilisateur :
 
 ```js{3-8}
 function UserInfo(props) {
@@ -213,7 +213,7 @@ function UserInfo(props) {
 }
 ```
 
-Ce qui nous permet de simplifer encore plus `Comment`:
+Ce qui nous permet de simplifier encore davantage `Comment`:
 
 ```js{4}
 function Comment(props) {
@@ -233,7 +233,7 @@ function Comment(props) {
 
 [**Essayer sur CodePen**](codepen://components-and-props/extracting-components-continued)
 
-Au début, extraire des composants peut vous sembler fastidieux, mais disposer d'une palette de composants réutilisables s'avère rentable sur des applications de plus grande taille. En règle générale, si une partie de votre interface utilisateur est utilisée plusieurs fois (`Button`,` Panel`, `Avatar`) ou si elle est suffisamment complexe en elle-même (` App`, `FeedStory`, 'Comment` ), c’est un bon candidat pour être un composant réutilisable.
+Au début, extraire des composants peut vous sembler fastidieux, mais disposer d'une palette de composants réutilisables s'avère rentable sur des applications de plus grande taille. En règle générale, si une partie de votre interface utilisateur est utilisée plusieurs fois (`Button`, `Panel`, `Avatar`) ou si elle est suffisamment complexe en elle-même (`App`, `FeedStory`, `Comment`), c’est un bon candidat pour un composant réutilisable.
 
 ## Les Props en Lecture Seule {#props-are-read-only}
 
@@ -247,7 +247,7 @@ function sum(a, b) {
 
 Ces fonctions sont dites [« pures »](https://fr.wikipedia.org/wiki/Fonction_pure) parce qu'elles ne tentent pas de modifier leurs entrées et retournent toujours le même résultat pour les mêmes entrées.
 
-En revanche, cette fonction est impure car elle change sa propre entrée:
+En revanche, cette fonction est impure car elle modifie sa propre entrée:
 
 ```js
 function withdraw(account, amount) {
@@ -255,8 +255,8 @@ function withdraw(account, amount) {
 }
 ```
 
-React est assez flexible mais possède une règle stricte:
+React est plutôt flexible mais applique une règle stricte :
 
-**Tous les composants React doivent agir comme des fonctions pures vis-à-vis de leurs proprs.**
+**Tous les composants React doivent agir comme des fonctions pures vis-à-vis de leurs props.**
 
-Bien entendu, les interfaces utilisateur des applications sont dynamiques et évoluent dans le temps. Dans la [section suivante](/docs/state-and-lifecycle.html), nous introduirons un nouveau concept "d'état" (State). Le State permet aux composants React de modifier leur sortie au fil du temps aux regards des actions de l'utilisateur, des réponses réseau et à tout autre chose, mais toujours sans enfreindre cette règle.
+Bien entendu, les interfaces utilisateurs des applications sont dynamiques et évoluent dans le temps. Dans la [section suivante](/docs/state-and-lifecycle.html), nous présenterons un nouveau concept « d'état local ». L’état local permet aux composants React de modifier leur sortie au fil du temps en fonction des actions de l'utilisateur, des réponses réseau et de n’importe quoi d’autre, mais sans enfreindre cette règle.
