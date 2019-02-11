@@ -36,7 +36,7 @@ Dans cette section, nous allons apprendre à faire un composant `Clock` vraiment
 Nous commençons par isoler l'apparence de l'horloge :
 
 ```js{3-6,12}
-function Horloge(props) {
+function Clock(props) {
   return (
     <div>
       <h1>Bonjour, monde !</h1>
@@ -47,7 +47,7 @@ function Horloge(props) {
 
 function tick() {
   ReactDOM.render(
-    <Horloge date={new Date()} />,
+    <Clock date={new Date()} />,
     document.getElementById('root')
   );
 }
@@ -57,13 +57,13 @@ setInterval(tick, 1000);
 
 [**Essayer sur CodePen**](http://codepen.io/gaearon/pen/dpdoYR?editors=0010)
 
-Cependant, il manque une contrainte cruciale : le fait que l'`Horloge` mette en place le minuteur et mette à jour son interface utilisateur devrait être un détail d'implémentation de l'`Horloge`.
+Cependant, il manque une contrainte cruciale : le fait que la `Clock` mette en place le minuteur et mette à jour son interface utilisateur devrait être un détail d'implémentation de la `Clock`.
 
-Idéalement, on veut écrire ceci une seule fois et avoir l'`Horloge` se mettre à jour elle-même :
+Idéalement, on veut écrire ceci une seule fois et avoir la `Clock` se mettre à jour elle-même :
 
 ```js{2}
 ReactDOM.render(
-  <Horloge />,
+  <Clock />,
   document.getElementById('root')
 );
 ```
@@ -76,7 +76,7 @@ Nous avons [mentionné auparavant](/docs/components-and-props.html#functional-an
 
 ## Convertir une Fonction en Classe {#converting-a-function-to-a-class}
 
-Vous pouvez convertir un composant fonctionnel comme `Horloge` en une classe en cinq étapes :
+Vous pouvez convertir un composant fonctionnel comme `Clock` en une classe en cinq étapes :
 
 1. Créez une [classe ES6](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes), avec le même nom, qui étend `React.Component`.
 
@@ -89,7 +89,7 @@ Vous pouvez convertir un composant fonctionnel comme `Horloge` en une classe en 
 5. Supprimez la déclaration désormais vide de la fonction.
 
 ```js
-class Horloge extends React.Component {
+class Clock extends React.Component {
   render() {
     return (
       <div>
@@ -103,7 +103,7 @@ class Horloge extends React.Component {
 
 [**Essayer sur CodePen**](http://codepen.io/gaearon/pen/zKRGpo?editors=0010)
 
-Le composant `Horloge` est maintenant défini comme une classe au lieu d'une fonction.
+Le composant `Clock` est maintenant défini comme une classe au lieu d'une fonction.
 
 La méthode `render` sera appelée à chaque fois qu'une mise à jour a lieu, mais tant que l'on exploite le rendu de `<Clock />` dans le même nœud DOM, une seule instance de la classe `clock` sera utilisée. Cela nous permet d'utiliser des fonctionnalités supplémentaires telles que l'état local et les méthodes de cycle de vie.
 
@@ -114,7 +114,7 @@ Nous allons déplacer la `date` des props vers l'état en trois étapes :
 1) Remplacez `this.props.date` avec `this.state.date` dans la méthode `render()` :
 
 ```js{6}
-class Horloge extends React.Component {
+class Clock extends React.Component {
   render() {
     return (
       <div>
@@ -129,7 +129,7 @@ class Horloge extends React.Component {
 2) Ajoutez [un constructeur de classe](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes#Constructeur) qui initialise `this.state`:
 
 ```js{4}
-class Horloge extends React.Component {
+class Clock extends React.Component {
   constructor(props) {
     super(props);
     this.state = {date: new Date()};
@@ -157,11 +157,11 @@ Notez que l'on passe `props` au constructeur de base :
 
 Les composants à base de classe devraient toujours appeler le constructeur de base avec `props`.
 
-3) Supprimez la prop `date` de l'élément `<Horloge />` :
+3) Supprimez la prop `date` de l'élément `<Clock />` :
 
 ```js{2}
 ReactDOM.render(
-  <Horloge />,
+  <Clock />,
   document.getElementById('root')
 );
 ```
@@ -171,7 +171,7 @@ Nous rajouterons plus tard le code du minuteur dans le composant lui-même.
 Le résultat ressemble à ceci :
 
 ```js{2-5,11,18}
-class Horloge extends React.Component {
+class Clock extends React.Component {
   constructor(props) {
     super(props);
     this.state = {date: new Date()};
@@ -188,14 +188,14 @@ class Horloge extends React.Component {
 }
 
 ReactDOM.render(
-  <Horloge />,
+  <Clock />,
   document.getElementById('root')
 );
 ```
 
 [**Essayer sur CodePen**](http://codepen.io/gaearon/pen/KgQpJd?editors=0010)
 
-Ensuite, nous allons faire en sorte que le composant `Horloge` mette en place son propre minuteur et se mette à jour toutes les secondes.
+Ensuite, nous allons faire en sorte que le composant `Clock` mette en place son propre minuteur et se mette à jour toutes les secondes.
 
 ## Ajouter des Méthodes de Cycle de Vie à une Classe {#adding-lifecycle-methods-to-a-class}
 
@@ -208,7 +208,7 @@ Nous voulons également [nettoyer le minuteur](https://developer.mozilla.org/fr/
 Nous pouvons déclarer des méthodes spéciales sur un composant à base de classe pour exécuter du code quand un composant est monté et démonté :
 
 ```js{7-9,11-13}
-class Horloge extends React.Component {
+class Clock extends React.Component {
   constructor(props) {
     super(props);
     this.state = {date: new Date()};
@@ -258,12 +258,12 @@ Nous allons détruire le minuteur dans la méthode de cycle de vie `componentWil
   }
 ```
 
-Enfin, nous allons implémenter une méthode appelée `tick()` que le composant `Horloge` va exécuter toutes les secondes.
+Enfin, nous allons implémenter une méthode appelée `tick()` que le composant `Clock` va exécuter toutes les secondes.
 
 Elle utilisera `this.setState()` pour planifier une mise à jour de l'état local du composant :
 
 ```js{18-22}
-class Horloge extends React.Component {
+class Clock extends React.Component {
   constructor(props) {
     super(props);
     this.state = {date: new Date()};
@@ -297,7 +297,7 @@ class Horloge extends React.Component {
 }
 
 ReactDOM.render(
-  <Horloge />,
+  <Clock />,
   document.getElementById('root')
 );
 ```
@@ -308,39 +308,39 @@ Maintenant l'horloge se met à jour toutes les secondes.
 
 Récapitulons ce qui se passe et l'ordre dans lequel les méthodes sont invoquées :
 
-1) Quand `<Horloge />` est passé à `ReactDOM.render()`, React appelle le constructeur du composant `Horloge`. Puisque `Horloge` a besoin d'afficher l'heure actuelle, il initialise `this.state` avec un objet contenant l'heure actuelle. Nous mettrons cet état à jour par la suite.
+1) Quand `<Clock />` est passé à `ReactDOM.render()`, React appelle le constructeur du composant `Clock`. Puisque `Clock` a besoin d'afficher l'heure actuelle, il initialise `this.state` avec un objet contenant l'heure actuelle. Nous mettrons cet état à jour par la suite.
 
-2) React appelle ensuite la méthode `render()` du composant `Horloge`. C'est comme cela que React découvre ce qu'il faut afficher à l'écran. React met ensuite à jour le DOM pour correspondre à la sortir de la méthode `render()` du composant `Horloge`.
+2) React appelle ensuite la méthode `render()` du composant `Clock`. C'est comme cela que React découvre ce qu'il faut afficher à l'écran. React met ensuite à jour le DOM pour correspondre à la sortir de la méthode `render()` du composant `Clock`.
 
-3) Quand la sortie de l'`Horloge` est insérée dans le DOM, React appelle la méthode de cycle de vie `componentDidMount()`. À l'intérieur, le composant `Horloge` demande au navigateur de mettre en place un minuteur pour appeler la méthode `tick()` du composant une fois par seconde.
+3) Quand la sortie de la `Clock` est insérée dans le DOM, React appelle la méthode de cycle de vie `componentDidMount()`. À l'intérieur, le composant `Clock` demande au navigateur de mettre en place un minuteur pour appeler la méthode `tick()` du composant une fois par seconde.
 
-4) Chaque seconde, le navigateur appelle la méthode `tick()`. À l'intérieur, le composant `Horloge` planifie une mise à jour de l'interface utilisateur en appelant `setState()` avec un objet contenant l'heure actuelle. Grâce à l'appel à `setState()`, React sait que l'état a changé, et invoque à nouveau la méthode `render()` pour savoir ce qui devrait être affiché à l'écran. Cette fois, la valeur de `this.state.date` dans la méthode `render()` est différente, la sortie devrait donc inclure l'heure mise à jour. React met à jour le DOM en accord avec cela.
+4) Chaque seconde, le navigateur appelle la méthode `tick()`. À l'intérieur, le composant `Clock` planifie une mise à jour de l'interface utilisateur en appelant `setState()` avec un objet contenant l'heure actuelle. Grâce à l'appel à `setState()`, React sait que l'état a changé, et invoque à nouveau la méthode `render()` pour savoir ce qui devrait être affiché à l'écran. Cette fois, la valeur de `this.state.date` dans la méthode `render()` est différente, la sortie devrait donc inclure l'heure mise à jour. React met à jour le DOM en accord avec cela.
 
-5) Si le composant `Horloge` finit par être retiré du DOM, React appellera la méthode de cycle de vie `componentWillUnmount()` pour que le minuteur soit arrêté.
+5) Si le composant `Clock` finit par être retiré du DOM, React appellera la méthode de cycle de vie `componentWillUnmount()` pour que le minuteur soit arrêté.
 
 ## Utiliser L'État Local Correctement {#using-state-correctly}
 
 Il y'a trois choses que vous devriez savoir à propos de `setState()`.
 
-### Ne Modifiez Pas L'État Directement {#do-not-modify-state-directly}
+### Ne Modifiez Pas l'État Directement {#do-not-modify-state-directly}
 
 Par exemple, ceci ne re-rendra pas un composant :
 
 ```js
 // Erroné
-this.state.commentaire = 'Bonjour';
+this.state.comment = 'Bonjour';
 ```
 
 À la place, utilisez `setState()` :
 
 ```js
 // Correct
-this.setState({commentaire: 'Bonjour'});
+this.setState({comment: 'Bonjour'});
 ```
 
 Le seul endroit où vous pouvez affecter `this.state`, c’est le constructeur.
 
-### Les Mises À Jour De L'État Peuvent Être Asynchrones {#state-updates-may-be-asynchronous}
+### Les Mises à Jour de l'État Peuvent Être Asynchrones {#state-updates-may-be-asynchronous}
 
 React peut grouper plusieurs appels à `setState()` en une seule mise à jour pour des raisons de performance.
 
@@ -349,9 +349,9 @@ Comme `this.props` et `this.state` peuvent être mises à jour de façon async
 Par exemple, ce code peut échouer pour mettre à jour un compteur :
 
 ```js
-// Mauvais
+// Erroné
 this.setState({
-  compteur: this.state.compteur + this.props.increment,
+  counter: this.state.counter + this.props.increment,
 });
 ```
 
@@ -360,7 +360,7 @@ Pour remédier à ce problème, utilisez la seconde forme de `setState()` qui a
 ```js
 // Correct
 this.setState((state, props) => ({
-  compteur: state.compteur + props.increment
+  counter: state.counter + props.increment
 }));
 ```
 
@@ -370,12 +370,12 @@ Nous avons utilisé une [fonction fléchée](https://developer.mozilla.org/fr/do
 // Correct
 this.setState(function(state, props) {
   return {
-    compteur: state.compteur + props.increment
+    counter: state.counter + props.increment
   };
 });
 ```
 
-### Les Mises À Jour De L'État Sont Fusionnées {#state-updates-are-merged}
+### Les Mises à Jour de l'État Sont Fusionnées {#state-updates-are-merged}
 
 Quand vous invoquez `setState()`, React fusionne les objets que vous donnez avec l'état actuel.
 
@@ -385,8 +385,8 @@ Par exemple, votre état peut contenir plusieurs variables indépendantes :
   constructor(props) {
     super(props);
     this.state = {
-      publications: [],
-      commentaires: []
+      posts: [],
+      comments: []
     };
   }
 ```
@@ -395,15 +395,15 @@ Ensuite, vous pouvez les mettre à jour indépendamment avec des appels séparé
 
 ```js{4,10}
   componentDidMount() {
-    recupererPublications().then(reponse => {
+    fetchPosts().then(response => {
       this.setState({
-        publications: reponse.publications
+        posts: response.posts
       });
     });
 
-    recupererCommentaires().then(reponse => {
+    fetchComments().then(response => {
       this.setState({
-        commentaires: reponse.commentaires
+        comments: response.comments
       });
     });
   }
@@ -411,7 +411,7 @@ Ensuite, vous pouvez les mettre à jour indépendamment avec des appels séparé
 
 La fusion n'est pas profonde, donc `this.setState({comments})` laisse `this.state.posts` intacte, mais remplace complètement `this.state.comments`.
 
-## Les données descendent {#the-data-flows-down}
+## Les Données Descendent {#the-data-flows-down}
 
 Ni parent ni enfant ne peuvent savoir si un certain composant est à état ou non, et ne devraient pas se soucier de savoir s'il est défini par une fonction ou une classe.
 
@@ -426,13 +426,13 @@ Un composant peut choisir de passer son état à ses enfants via des props :
 Cela marche également avec des composants définis par l'utilisateur :
 
 ```js
-<DateFormatee date={this.state.date} />
+<FormattedDate date={this.state.date} />
 ```
 
-Le composant `DateFormatee` reçoit la `date` dans ses props et ne sait pas si elle vient de l'état de l'`Horloge`, des props de l'`Horloge`, ou a été tapée à la main :
+Le composant `FormattedDate` reçoit la `date` dans ses props et ne sait pas si elle vient de l'état de l'`Horloge`, des props de l'`Horloge`, ou a été tapée à la main :
 
 ```js
-function DateFormatee(props) {
+function FormattedDate(props) {
   return <h2>Il est {props.date.toLocaleTimeString()}.</h2>;
 }
 ```
@@ -441,7 +441,7 @@ function DateFormatee(props) {
 
 On appelle souvent cela un flux de données « du haut vers le bas » ou « unidirectionnel ». Un état local est toujours possédé par un composant spécifique, et toute donnée ou interface utilisateur dérivée de cet état ne peut affecter que les composants « en-dessous » de celui-ci dans l'arbre de composants.
 
-Si vous imaginez un arbre de composants comme une cascade de props, chaque état de composant est une source d'eau supplémentaire qui rejoint la cascade à un point arbitraire, mais qui coule également vers le bas.
+Si vous imaginez un arbre de composants comme une cascade de props, chaque état de composant est une source d'eau supplémentaire qui rejoint la cascade à un point quelconque, mais qui coule également vers le bas.
 
 Pour démontrer que tous les composants sont réellement isolés, nous pouvons créer un composant `App` qui affiche trois `<Clock>`s :
 
@@ -449,9 +449,9 @@ Pour démontrer que tous les composants sont réellement isolés, nous pouvons c
 function Application() {
   return (
     <div>
-      <Horloge />
-      <Horloge />
-      <Horloge />
+      <Clock />
+      <Clock />
+      <Clock />
     </div>
   );
 }
@@ -464,6 +464,6 @@ ReactDOM.render(
 
 [**Essayer sur CodePen**](http://codepen.io/gaearon/pen/vXdGmd?editors=0010)
 
-Chaque `Horloge` met en place son propre minuteur et se met à jour indépendamment.
+Chaque `Clock` met en place son propre minuteur et se met à jour indépendamment.
 
 Dans une application React, le fait qu'un composant soit à état ou non est considéré comme un détail d'implémentation du composant qui peut varier avec le temps. Vous pouvez utiliser des composants sans état à l'intérieur de composants à état, et vice-versa.
