@@ -48,7 +48,7 @@ Les classes possèdent quelques fonctionnalités supplémentaires dont nous disc
 
 ## Rendu d'un Component {#rendering-a-component}
 
-Jusque là, nous avons uniquement rencontré des éléments React sous forme de balise DOM:
+Jusqu’ici, nous avons uniquement rencontré des éléments React qui représentent des balises DOM :
 
 ```js
 const element = <div />;
