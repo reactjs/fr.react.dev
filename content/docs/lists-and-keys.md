@@ -8,7 +8,7 @@ next: forms.html
 
 Tout d'abord, voyons comment transformer des listes en JavaScript.
 
-Avec le code suivant, on utilise la méthode [`map()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/map) pour prendre un tableau de nombres et doubler leurs valeurs. On assigne le nouveau tableau retourné par `map()` à une variable `doubled` et on l'affiche à la console :
+Dans le code suivant, on utilise la méthode [`map()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/map) pour prendre un tableau de nombres et doubler leurs valeurs. On affecte le nouveau tableau retourné par `map()` à une variable `doubled` et on l'affiche dans la console :
 
 ```javascript{2}
 const numbers = [1, 2, 3, 4, 5];
@@ -34,7 +34,7 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-On inclue l'intégralité du tableau `listItems` dans un élément `<ul>`, et [on l'affiche dans le DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom).
+On inclut l'intégralité du tableau `listItems` dans un élément `<ul>`, et [on l'affiche dans le DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom) :
 
 ```javascript{2}
 ReactDOM.render(
@@ -49,9 +49,9 @@ Ce code affiche une liste à puces de nombres entre 1 et 5.
 
 ### Composant Basique de Liste {#basic-list-component}
 
-Généralement, on souhaite rendre une liste dans un [composant](/docs/components-and-props.html).
+Généralement, on souhaite afficher une liste au sein d’un [composant](/docs/components-and-props.html).
 
-On peut changer le dernier exemple pour le mettre dans un composant qui accepte un tableau de nombres et fait le rendu d'une liste non ordonnée d'éléments.
+On peut transformer l’exemple précédent pour en faire un composant qui accepte un tableau de nombres et produit une liste non ordonnée d'éléments.
 
 ```javascript{3-5,7,13}
 function NumberList(props) {
@@ -71,9 +71,9 @@ ReactDOM.render(
 );
 ```
 
-En exécutant ce code, vous obtiendrez une alerte disant qu'une clé devrait être fournie pour les éléments d'une liste. Une « clé » (« key » en anglais, NdT), est un attribut spécial sous forme de chaîne de caractères que vous devez inclure quand vous créez une liste d'éléments. Nous discuterons de pourquoi c'est important dans la section suivante.
+En exécutant ce code, vous obtiendrez un avertissement disant qu'une clé devrait être fournie pour les éléments d'une liste. Une « clé » *(key, NdT)*, est un attribut spécial que vous devez inclure quand vous créez une liste d'éléments. Nous verrons pourquoi c'est important dans la prochaine section.
 
-Assignons une `key` aux éléments de notre liste dans `numbers.map()` afin de réparer le problème de clés manquantes.
+Assignons une `key` aux éléments de notre liste dans `numbers.map()` afin de corriger  le problème de clés manquantes.
 
 ```javascript{4}
 function NumberList(props) {
@@ -99,7 +99,7 @@ ReactDOM.render(
 
 ## Les clés {#keys}
 
-Les clés aident React à identifier quels éléments d'une liste ont changé, ont été ajoutés ou supprimés. Vous devez donner une clé à chaque élément dans un tableau afin de donner aux éléments une identité stable :
+Les clés aident React à identifier quels éléments d'une liste ont changé, ont été ajoutés ou supprimés. Vous devez donner une clé à chaque élément dans un tableau afin d’apporter aux éléments une identité stable :
 
 ```js{3}
 const numbers = [1, 2, 3, 4, 5];
@@ -121,28 +121,28 @@ const todoItems = todos.map((todo) =>
 );
 ```
 
-Quand vous n'avez pas d'ID stable pour les éléments rendus, vous pouvez utiliser l'index de l'élément en dernier recours :
+Quand vous n'avez pas d'ID stable pour les éléments affichés, vous pouvez utiliser l'index de l'élément en dernier recours :
 
 ```js{2,3}
 const todoItems = todos.map((todo, index) =>
-  // Faites uniquement ceci si les éléments n'ont pas d'ID stable
+  // Ne faites ceci que si les éléments n'ont pas d'ID stable
   <li key={index}>
     {todo.text}
   </li>
 );
 ```
 
-Nous ne recommandons pas d'utiliser l'index comme clé si l'ordre des éléments change. Cela peut avoir un effet négatif sur les performances, et peut causer des problèmes avec l'état du composant. Vous pouvez lire l'article de Robin Pokorny pour une [explication en profondeur de l'impact négatif de l'utilisation de l'index comme clé](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318) (en anglais). Si vous choisissez de ne pas donner explicitement de clé aux éléments d'une liste, React utilisera les index par défaut.
+Nous vous recommandons de ne pas utiliser l'index comme clé si l'ordre des éléments est susceptible de changer. Ça peut avoir un effet négatif sur les performances, et causer des problèmes avec l'état du composant. Vous pouvez lire l'article de Robin Pokorny pour une [explication en profondeur de l'impact négatif de l'utilisation de l'index comme clé](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318) (en anglais). Si vous choisissez de ne pas donner explicitement de clé aux éléments d'une liste, React utilisera l’index par défaut.
 
-Voici une [explication en profondeur de la raison pour laquelle les clés sont nécessaires](/docs/reconciliation.html#recursing-on-children) si vous voulez en apprendre plus.
+Si vous voulez en apprendre davantage, consultez cette [explication en profondeur de la raison pour laquelle les clés sont nécessaires](/docs/reconciliation.html#recursing-on-children).
 
 ### Extraire des Composants Avec des Clés {#extracting-components-with-keys}
 
 Les clés n'ont une signification que dans le contexte du tableau qui les entoure.
 
-Par exemple, si on [extrait](/docs/components-and-props.html#extracting-components) un composant `ListItem`, on doit garder la clé sur l'élément `<ListItem />` dans le tableau, et non pas sur l'élément `<li>` dans le composant `ListItem` lui-même.
+Par exemple, si on [extrait](/docs/components-and-props.html#extracting-components) un composant `ListItem`, on doit garder la clé sur l'élément `<ListItem />` dans le tableau, et non sur l'élément `<li>` dans le composant `ListItem` lui-même.
 
-**Exemple : Utilisation des clés erroné**
+**Exemple : Utilisation erronée des clés**
 
 ```javascript{4,5,14,15}
 function ListItem(props) {
@@ -206,9 +206,9 @@ ReactDOM.render(
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
 
-Une règle à garder en tête est que chaque élément à l'intérieur d'un appel à `map()` a besoin d'une clé.
+Gardez en tête cette règle simple : chaque élément à l'intérieur d'un appel à `map()` a besoin d'une clé.
 
-### Les Clés Doivent Uniquement Être Uniques Parmi Leurs Voisins {#keys-must-only-be-unique-among-siblings}
+### Les Clés n’ont Besoin d’Être Uniques qu’au Sein de la Liste {#keys-must-only-be-unique-among-siblings}
 
 Les clés utilisées dans un tableau doivent être uniques parmi leurs voisins. Cependant, elles n'ont pas besoin d'être globalement uniques. On peut utiliser les mêmes clés dans des tableaux différents :
 
@@ -250,7 +250,7 @@ ReactDOM.render(
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
 
-Les clés servent d'indicateur à React mais ne sont pas passées à vos composants. Si vous avez besoin de la même valeur à l'intérieur de votre composant, passez-le dans une prop avec un nom différent :
+Les clés servent d'indicateur à React mais ne sont pas passées à vos composants. Si vous avez besoin de la même valeur dans de votre composant, passez-la dans une prop avec un nom différent :
 
 ```js{3,4}
 const content = posts.map((post) =>
@@ -261,11 +261,11 @@ const content = posts.map((post) =>
 );
 ```
 
-Avec l'exemple ci-dessus, le composant `Post` peut accéder à `props.id`, mais pas à `props.key`.
+Dans l'exemple ci-dessus, le composant `Post` peut accéder à `props.id`, mais pas à `props.key`.
 
 ### Intégrer map() dans du JSX {#embedding-map-in-jsx}
 
-Dans l'exemple précédent, nous avons déclaré séparément la variable `listItems` et l'avons inclue dans le JSX :
+Dans les exemples précédents, nous déclarions séparément la variable `listItems` pour ensuite l’inclure dans le JSX :
 
 ```js{3-6}
 function NumberList(props) {
@@ -282,7 +282,7 @@ function NumberList(props) {
 }
 ```
 
-JSX autorise [d'intégrer des expressions](/docs/introducing-jsx.html#embedding-expressions-in-jsx) entre accolades. Nous pouvons donc utiliser `map()` dans notre code JSX :
+JSX permet [d'intégrer des expressions quelconques](/docs/introducing-jsx.html#embedding-expressions-in-jsx) entre accolades. Nous pouvons donc utiliser `map()` directement dans notre code JSX :
 
 ```js{5-8}
 function NumberList(props) {
@@ -300,4 +300,4 @@ function NumberList(props) {
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
 
-Ça donne un code plus lisible, mais ce style peut être utilisé de façon excessive. Comme JavaScript, c'est vous qui décidez quand ça vaut le coup d'extraire l'expression dans une variable pour plus de lisibilité. Gardez en tête que si le corps de `map()` est trop grand, il pourait être temps d'[extraire un composant](/docs/components-and-props.html#extracting-components).
+Ça rend parfois le code plus lisible, mais il faut éviter d’en abuser. Comme avec JavaScript, c'est vous qui décidez quand ça vaut le coup d'extraire l'expression dans une variable pour plus de lisibilité. Gardez en tête que si le corps de `map()` est trop profond ou trop riche, c’est sans doute le signe qu’il faudrait [extraire un composant](/docs/components-and-props.html#extracting-components).
