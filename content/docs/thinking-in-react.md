@@ -49,7 +49,7 @@ Vous verrez ici que nous avons cinq composants dans notre application. Nous avon
   4. **`ProductCategoryRow` (turquoise):** affiche un titre pour chaque *catégorie*
   5. **`ProductRow` (rouge):** affiche une ligne pour chaque *produit*
 
-Si vous regardez `ProductTable`, vous verrez que l'en-tête du tableau (contenant les titres "Name" et "Price") n'est pas son propre composant. C'est une question de préférence, et il y a des arguments à faire valoir dans les deux cas. Pour cet exemple, nous l'avons laissé comme faisant partie de `ProductTable` car il fait partie du rendu de la *collection de données* qui est la responsabilité de `ProductTable`. Cependant, si cet en-tête devient complexe (c.à-d. si nous devions ajouter des moyens de trier), il serait certainement logique d'en faire son propre composant `ProductTableHeader`.
+Si vous regardez `ProductTable`, vous verrez que l'en-tête du tableau (contenant les titres « Name » et « Price ») n'est pas son propre composant. C'est une question de préférence, et il y a des arguments à faire valoir dans les deux cas. Pour cet exemple, nous l'avons laissé comme faisant partie de `ProductTable` car il fait partie du rendu de la *collection de données* qui est la responsabilité de `ProductTable`. Cependant, si cet en-tête devient complexe (c.à-d. si nous devions ajouter des moyens de trier), il serait certainement logique d'en faire son propre composant `ProductTableHeader`.
 
 Maintenant que nous avons identifié les composants dans notre maquette, organisons-les en une hiérarchie. C'est facile à faire. Les composants qui apparaissent dans un autre composant de la maquette doivent apparaître comme un enfant dans cette hiérarchie :
 
@@ -76,9 +76,9 @@ Il suffit de se reporter à la [documentation de React](/docs/) si vous avez bes
 
 ### Un bref intermède : Props vs État {#a-brief-interlude-props-vs-state}
 
-Il existe deux types de "modèles" de données avec React : les props et l'état.
+Il existe deux types de « modèles » de données avec React : les props et l'état.
 
-There are two types of "model" data in React: props and state. Il est important de comprendre la distinction entre les deux ; parcourez [la documentions officiel de React](/docs/interactivity-and-dynamic-uis.html) si vous n'êtes pas sûr de la différence.
+There are two types of « model » data in React: props and state. Il est important de comprendre la distinction entre les deux ; parcourez [la documentions officiel de React](/docs/interactivity-and-dynamic-uis.html) si vous n'êtes pas sûr de la différence.
 
 ## Step 3: Identify The Minimal (but complete) Representation Of UI State {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
