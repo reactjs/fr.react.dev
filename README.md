@@ -60,12 +60,7 @@ This repo is meant to provide French translation for the [reactjs.org](https://r
 
 ## Translation
 
-<<<<<<< HEAD
-If you are interesting in translating `reactjs.org`, in another language please see the current translation efforts at [isreactreadyyet.com](https://www.isreactreadyyet.com).
-=======
-If you are interesting in translating `reactjs.org`, please see the current translation efforts at [isreacttranslatedyet.com](https://www.isreacttranslatedyet.com/).
->>>>>>> 6dea652a709af39e90a88be45f0f45849ab29d17
-
+If you are interested in translating `reactjs.org`, please see the current translation efforts at [isreacttranslatedyet.com](https://www.isreacttranslatedyet.com/).
 
 If your language does not have a translation and you would like to create one, please follow the instructions at [reactjs.org Translations](https://github.com/reactjs/reactjs.org-translation#translating-reactjsorg).
 
