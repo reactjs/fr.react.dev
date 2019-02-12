@@ -8,13 +8,13 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
-React est, à notre avis, la meilleur façon de créer de large et rapide applications Web avec JavaScript. Cela a très bien fonctionné pour nous à Facebook et Instagram.
+React est, à notre avis, la meilleur façon de créer de large et rapide applications Web avec JavaScript. Ça c'est très bien adapté pour nous à Facebook et Instagram.
 
 L'un des nombreux points forts de React est la façon dont il vous fait penser aux applications au fur et à mesure que vous les créez. Dans ce document, nous vous guiderons dans l'élaboration d'un tableaux de données de produit recherchable avec React.
 
-## Commençons avec une simulation {#start-with-a-mock}
+## Commençons avec une Maquette {#start-with-a-mock}
 
-Imaginez que nous avons déjà une API JSON et une maquette de notre designer. La simulation ressemble à ceci :
+Imaginez que nous avons déjà une API JSON et une maquette de notre designer. La maquette ressemble à ceci :
 
 ![Maquette](../images/blog/thinking-in-react-mock.png)
 
