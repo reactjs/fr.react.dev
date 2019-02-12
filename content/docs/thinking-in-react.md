@@ -37,7 +37,7 @@ La première chose que vous voudrez faire est de dessiner des cases autour de ch
 
 Mais comment savez-vous ce qui devrait être son propre composant ? Utilisez simplement les mêmes techniques que celles pour décider si vous devez créer une nouvelle fonction ou un nouvel objet. L'une de ces techniques est le [principe de responsabilité unique](https://en.wikipedia.org/wiki/Single_responsibility_principle), c'est-à-dire qu'un composant ne devrait idéalement faire qu'une seule chose. S'il finit par grandir, il devrait être décomposé en sous-composants plus petits.
 
-Comme vous affichez souvent un modèle de données JSON à un utilisateur, vous constaterez que si votre modèle a été construit correctement, votre interface utilisateur (et donc la structure de vos composants) correspondra joliment. En effet, l'interface utilisateur et les modèles de données tendent à adhérer à la même *architecture d'information*, ce qui signifie que le travail de séparation de votre interface utilisateur en composants est souvent trivial. Il suffit de décomposer en composants qui représentent exactement un élément de votre modèle de données.
+Comme vous affichez souvent un modèle de données JSON à un utilisateur, vous constaterez que si votre modèle a été correctement construit, votre interface utilisateur (et donc la structure de vos composants) correspondra joliment. En effet, l'interface utilisateur et les modèles de données tendent à adhérer à la même *architecture d'information*, ce qui signifie que le travail de séparation de votre interface utilisateur en composants est souvent trivial. Il suffit de décomposer en composants qui représentent exactement un élément de votre modèle de données.
 
 ![Schéma des composants](../images/blog/thinking-in-react-components.png)
 
@@ -49,9 +49,9 @@ Vous verrez ici que nous avons cinq composants dans notre application. Nous avon
   4. **`ProductCategoryRow` (turquoise):** affiche un titre pour chaque *catégorie*
   5. **`ProductRow` (rouge):** affiche une ligne pour chaque *produit*
 
-Si vous regardez `ProductTable`, vous verrez qye l'en-tête du tableau (contenant les titres "Name" et "Price") n'est pas son propre composant. C'est une question de préférence, et il y a des arguments à faire valoir dans les deux cas. Pour cet exemple, nous l'avons laissé comme faisant partie de `ProductTable` car il fait partie du rendu de la *collection de données* qui est la responsabilité de `ProductTable`. Cependant, si cet en-tête devient complexe (c.à-d. si nous devions ajouter des moyens de trier), il serait certainement logique d'en faire son propre composant `ProductTableHeader`.
+Si vous regardez `ProductTable`, vous verrez que l'en-tête du tableau (contenant les titres "Name" et "Price") n'est pas son propre composant. C'est une question de préférence, et il y a des arguments à faire valoir dans les deux cas. Pour cet exemple, nous l'avons laissé comme faisant partie de `ProductTable` car il fait partie du rendu de la *collection de données* qui est la responsabilité de `ProductTable`. Cependant, si cet en-tête devient complexe (c.à-d. si nous devions ajouter des moyens de trier), il serait certainement logique d'en faire son propre composant `ProductTableHeader`.
 
-Maintenant que nous avons identifié les composants dans notre simulation, organisons-les en une hiérarchie. C'est facile à faire. Les composants qui apparaissent dans un autre composant de la simulation doivent apparaître comme un enfant dans la hiérarchie :
+Maintenant que nous avons identifié les composants dans notre maquette, organisons-les en une hiérarchie. C'est facile à faire. Les composants qui apparaissent dans un autre composant de la maquette doivent apparaître comme un enfant dans cette hiérarchie :
 
   * `FilterableProductTable`
     * `SearchBar`
