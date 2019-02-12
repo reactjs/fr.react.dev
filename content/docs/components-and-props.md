@@ -158,7 +158,7 @@ Il accepte `author` (un objet),` text` (une chaîne de caractères) et `date` (u
 
 Les différentes imbrications rendent la modification de ce composant fastidieuse, et il est également compliqué de de réutiliser des parties individuelles de celui-ci. Essayons donc d'extraire quelques composants.
 
-Tout d'abord, nous allons extraire `Avatar`:
+Pour commencer, nous allons extraire `Avatar`:
 
 ```js{3-6}
 function Avatar(props) {
@@ -175,7 +175,7 @@ Le composant `Avatar` n'a pas besoin de savoir qu'il figure dans un composant `C
 
 Nous vous recommandons de nommer les props du point de vue du composant plutôt que de celui du contexte dans lequel il est utilisé.
 
-On peut maintenant un peu simplifier `Comment`:
+On peut maintenant simplifier un poil `Comment` :
 
 ```js{5}
 function Comment(props) {
@@ -235,7 +235,7 @@ function Comment(props) {
 
 Au début, extraire des composants peut vous sembler fastidieux, mais disposer d'une palette de composants réutilisables s'avère rentable sur des applications de plus grande taille. En règle générale, si une partie de votre interface utilisateur est utilisée plusieurs fois (`Button`, `Panel`, `Avatar`) ou si elle est suffisamment complexe en elle-même (`App`, `FeedStory`, `Comment`), c’est un bon candidat pour un composant réutilisable.
 
-## Les Props en Lecture Seule {#props-are-read-only}
+## Les Props Sont en Lecture Seule {#props-are-read-only}
 
 Que vous déclariez un composant [sous forme de fonction ou de classe](#function-and-class-components), il ne doit jamais modifier ses propres props. Considérons cette fonction `sum`:
 
