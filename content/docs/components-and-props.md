@@ -54,7 +54,7 @@ Jusqu’ici, nous avons uniquement rencontré des éléments React qui représen
 const element = <div />;
 ```
 
-Cependant, ces éléments peuvent également représenter des composants définis par l’utilisateur :
+Cependant, ces éléments peuvent également représenter des composants définis par l’utilisateur :
 
 ```js
 const element = <Welcome name="Sara" />;
@@ -62,7 +62,7 @@ const element = <Welcome name="Sara" />;
 
 Lorsque React rencontre un élément représentant un composant défini par l’utilisateur, il transmet les attributs JSX à ce composant sous la forme d’un objet unique. Nous appelons cet objet « props ».
 
-Par exemple, ce code affiche « Bonjour, Sara » sur la page :
+Par exemple, ce code affiche « Bonjour, Sara » sur la page :
 
 ```js{1,5}
 function Welcome(props) {
@@ -78,7 +78,7 @@ ReactDOM.render(
 
 [**Essayer sur CodePen**](codepen://components-and-props/rendering-a-component)
 
-Récapitulons ce qui se passe dans cet exemple :
+Récapitulons ce qui se passe dans cet exemple :
 
 1. On appelle `ReactDOM.render()` avec l’élément `<Welcome name="Sara" />`.
 2. React appelle le composant `Welcome` avec comme props `{name: 'Sara'}`.
@@ -93,7 +93,7 @@ Récapitulons ce qui se passe dans cet exemple :
 
 ## Composition de Composants {#composing-components}
 
-Les composants peuvent faire référence à d’autres composants dans leur sortie. Ça nous permet d’utiliser la même abstraction de composants pour n’importe quel niveau de détail. Un bouton, un formulaire, une boîte de dialogue, un écran : dans React, ils sont généralement tous exprimés par des composants.
+Les composants peuvent faire référence à d’autres composants dans leur sortie. Ça nous permet d’utiliser la même abstraction de composants pour n’importe quel niveau de détail. Un bouton, un formulaire, une boîte de dialogue, un écran : dans React, ils sont généralement tous exprimés par des composants.
 
 Par exemple, nous pouvons créer un composant `App` qui utilise plusieurs fois ` Welcome` :
 
@@ -126,7 +126,7 @@ En règle générale, les nouvelles applications React ont un seul composant `Ap
 
 N’ayez pas peur de scinder des composants en composants plus petits.
 
-Prennons par exemple ce composant `Comment` :
+Prennons par exemple ce composant `Comment` :
 
 ```js
 function Comment(props) {
@@ -158,7 +158,7 @@ Il accepte `author` (un objet),` text` (une chaîne de caractères) et `date` (u
 
 Les nombreuses imbrications au sein du composant le rendent difficile à maintenir, et nous empêchent d’en réutiliser des parties individuelles. Essayons donc d'en extraire quelques composants.
 
-Pour commencer, nous allons extraire `Avatar` :
+Pour commencer, nous allons extraire `Avatar` :
 
 ```js{3-6}
 function Avatar(props) {
@@ -213,7 +213,7 @@ function UserInfo(props) {
 }
 ```
 
-Ce qui nous permet de simplifier encore davantage `Comment` :
+Ce qui nous permet de simplifier encore davantage `Comment` :
 
 ```js{4}
 function Comment(props) {
@@ -237,8 +237,8 @@ Au début, extraire des composants peut vous sembler fastidieux, mais disposer d
 
 ## Les Props Sont en Lecture Seule {#props-are-read-only}
 
-Que vous déclariez un composant [sous forme de fonction ou de classe](#function-and-class-components), il ne doit jamais modifier ses propres props. Considérons cette fonction `sum` :
-
+Que vous déclariez un composant [sous forme de fonction ou de classe](#function-and-class-components), il ne doit jamais modifier ses propres props. Considérons cette fonction `sum` :
+ 
 ```js
 function sum(a, b) {
   return a + b;
@@ -247,7 +247,7 @@ function sum(a, b) {
 
 Ces fonctions sont dites [« pures »](https://fr.wikipedia.org/wiki/Fonction_pure) parce qu’elles ne tentent pas de modifier leurs entrées et retournent toujours le même résultat pour les mêmes entrées.
 
-En revanche, cette fonction est impure car elle modifie sa propre entrée :
+En revanche, cette fonction est impure car elle modifie sa propre entrée :
 
 ```js
 function withdraw(account, amount) {
