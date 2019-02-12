@@ -62,7 +62,7 @@ Prenons l’exemple de l’horloge :
 
 ## React Met à Jour Seulement ce Qui Est Nécessaire {#react-only-updates-whats-necessary}
 
-Le DOM React compare un élement et ses enfants avec la version précédente, et applique uniquement les mises à jour nécessaires au DOM pour que celui-ci reflète bien l’état voulu.
+Le DOM React compare un élément et ses enfants avec la version précédente, et applique uniquement les mises à jour nécessaires au DOM pour que celui-ci reflète bien l’état voulu.
 
 Vous pouvez vérifier ce comportement en inspectant le [dernier example](codepen://rendering-elements/update-rendered-element) avec les outils de développement du navigateur :
 
