@@ -89,7 +89,7 @@ Récapitulons ce qui se passe dans cet exemple:
 >
 >React considère les composants commençant par des lettres minuscules comme des balises DOM. Par exemple, `<div />` représente une balise HTML div, mais `<Welcome />` représente un composant, et exige que l’identifiant `Welcome` existe dans la portée courante.
 >
->Pour en en apprendre davantage sur le raisonnement qui sous-tend cette convention, lisez donc [JS en Profondeur](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
+>Pour en en apprendre davantage sur le raisonnement qui sous-tend cette convention, lisez donc [JSX en Profondeur](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
 
 ## Composition de Composants {#composing-components}
 
