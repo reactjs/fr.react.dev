@@ -16,7 +16,7 @@ L'un des nombreux points forts de React est la façon dont il vous fait penser a
 
 Imaginez que nous avons déjà une API JSON et une maquette de notre designer. La simulation ressemble à ceci :
 
-![Mockup](../images/blog/thinking-in-react-mock.png)
+![Maquette](../images/blog/thinking-in-react-mock.png)
 
 Notre API JSON renvoie des données qui ressemblent à ceci :
 
