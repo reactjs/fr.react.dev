@@ -59,24 +59,26 @@ Maintenant que nous avons identifié les composants dans notre maquette, organis
       * `ProductCategoryRow`
       * `ProductRow`
 
-## Step 2: Build A Static Version in React {#step-2-build-a-static-version-in-react}
+## Etape 2 : Construire une Version Statique avec React {#step-2-build-a-static-version-in-react}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> on <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Voir le Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> sur <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-Now that you have your component hierarchy, it's time to implement your app. The easiest way is to build a version that takes your data model and renders the UI but has no interactivity. It's best to decouple these processes because building a static version requires a lot of typing and no thinking, and adding interactivity requires a lot of thinking and not a lot of typing. We'll see why.
+Maintenant que vous avez votre hiérarchie de composants, il est temps d'implémenter votre application. La façon la plus simple est de construire une version qui prend votre model de données et fait le rendu de l'interface utilisateur mais sans aucune interactivité. Il est préférable de découpler ces processus car la construction d'une version statique nécessite beaucoup de dactylographie et aucune réflexion, et ajouter de l'interactivité demande beaucoup de réflexion et peu de dactylographie. On verra pourquoi.
 
-To build a static version of your app that renders your data model, you'll want to build components that reuse other components and pass data using *props*. *props* are a way of passing data from parent to child. If you're familiar with the concept of *state*, **don't use state at all** to build this static version. State is reserved only for interactivity, that is, data that changes over time. Since this is a static version of the app, you don't need it.
+Pour créer une version statique de votre application qui fera le rendu de votre modèle de données, vous devrez créer des composants qui réutilisent d'autres composants et transmettent les données en utilisant les *props*. Les *props* sont un moyen de transmettre des données d'un parent à un enfant. Si vous êtes familier avec le concept d'*état*, **n'utilisez pas d'état du tout** pour construire cette version statique. L'état est reservé à l'interactivité, c'est-à-dire aux données qui évoluent dans le temps. Comme il s'agit d'une version statique de l'application, vous n'en avez pas besoin.
 
-You can build top-down or bottom-up. That is, you can either start with building the components higher up in the hierarchy (i.e. starting with `FilterableProductTable`) or with the ones lower in it (`ProductRow`). In simpler examples, it's usually easier to go top-down, and on larger projects, it's easier to go bottom-up and write tests as you build.
+Vous pouvez construire de haut en bas ou de bas en haut. En d'autres termes, vous pouvez aussi bien commencer par construire les composants les plus haut dans la hiérarchie (c-à.d. en commençant par `FilterableProductTable`), que par ceux les plus bas (`ProductRow`). Dans des exemples plus simples, il est généralement plus facile d'aller de haut en bas, et sur des projets plus importants, il est plus facile d'aller de bas en haut et d'écrire les tests à mesures que vous conçevez.
 
-At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `ReactDOM.render()` again, the UI will be updated. It's easy to see how your UI is updated and where to make changes since there's nothing complicated going on. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
+À la fin de cette étape, vous disposerez d'une bibliothèque de composants réutilisable qui feront le rendu de votre modèle de données. Les composants n'auront que des méthodes `render()` puisque c'est une version statique de l'application. Le composant au sommet de la hiérarchie (`FilterableProductTable`) prendra votre modèle de données en tant que prop. Si vous apportez un changement à votre modèle de données et appelez `ReactDOM.render()` à nouveau, l'interface utilisateur sera mis à jour. Il est facile de voir comment votre interface utilisateur est mis à jour et où y apporter des modifications, car il n'y a rien de compliqué. **Le flux de données unidirectionnel** de React (également appelé *liaison unidirectionnelle*) permet de maintenir la modularité et la rapidité de l'ensemble.
 
-Simply refer to the [React docs](/docs/) if you need help executing this step.
+Il suffit de se reporter à la [documentation de React](/docs/) si vous avez besoin d'aide pour exécuter cette étape.
 
-### A Brief Interlude: Props vs State {#a-brief-interlude-props-vs-state}
+### Un bref intermède : Props vs État {#a-brief-interlude-props-vs-state}
 
-There are two types of "model" data in React: props and state. It's important to understand the distinction between the two; skim [the official React docs](/docs/interactivity-and-dynamic-uis.html) if you aren't sure what the difference is.
+Il existe deux types de "modèles" de données avec React : les props et l'état.
+
+There are two types of "model" data in React: props and state. Il est important de comprendre la distinction entre les deux ; parcourez [la documentions officiel de React](/docs/interactivity-and-dynamic-uis.html) si vous n'êtes pas sûr de la différence.
 
 ## Step 3: Identify The Minimal (but complete) Representation Of UI State {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
