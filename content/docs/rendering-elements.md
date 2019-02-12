@@ -16,7 +16,7 @@ Un élément retranscrit ce que vous voulez voir à l’écran :
 const element = <h1>Bonjour, monde</h1>;
 ```
 
-Contrairement aux élements DOM d’un navigateur, les éléments React sont de simples objets peu coûteux à créer. Le DOM React se charge de mettre à jour le DOM afin qu’il corresponde aux éléments React.
+Contrairement aux éléments DOM d’un navigateur, les éléments React sont de simples objets peu coûteux à créer. Le DOM React se charge de mettre à jour le DOM afin qu’il corresponde aux éléments React.
 
 >**Note :**
 >
@@ -33,6 +33,8 @@ Disons qu’il y ait une `<div>` quelque part dans votre fichier HTML :
 Nous l’appelons nœud DOM « racine » car tout ce qu’il contient sera géré par le DOM React.
 
 Les applications dévéloppées uniquement avec React ont généralement un seul nœud DOM racine. Si vous intégrez React dans une application existante, vous pouvez avoir autant de nœuds DOM racines isolés que vous le souhaitez.
+
+Pour faire le rendu d’un élément React dans le nœud DOM racine, indiquez-les à la méthode `ReactDOM.render()` :
 
 `embed:rendering-elements/render-an-element.js`
 
