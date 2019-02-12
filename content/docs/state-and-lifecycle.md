@@ -59,7 +59,7 @@ setInterval(tick, 1000);
 
 Cependant, il manque une contrainte cruciale : le fait que la `Clock` mette en place le minuteur et mette à jour son interface utilisateur devrait être un détail d'implémentation de la `Clock`.
 
-Idéalement, on veut écrire ceci une seule fois et avoir la `Clock` se mettre à jour elle-même :
+Idéalement, on veut écrire ceci une seule fois et voir la `Clock` se mettre à jour elle-même :
 
 ```js{2}
 ReactDOM.render(
@@ -68,7 +68,7 @@ ReactDOM.render(
 );
 ```
 
-Pour implémenter cela, on a besoin d'ajouter un « état local » au composant `Horloge`.
+Pour implémenter ça, on a besoin d'ajouter un « état local » au composant `Horloge`.
 
 L'état local est similaire aux props, mais il est privé et complètement contrôlé par le composant.
 
@@ -105,7 +105,7 @@ class Clock extends React.Component {
 
 Le composant `Clock` est maintenant défini comme une classe au lieu d'une fonction.
 
-La méthode `render` sera appelée à chaque fois qu'une mise à jour a lieu, mais tant que l'on exploite le rendu de `<Clock />` dans le même nœud DOM, une seule instance de la classe `clock` sera utilisée. Cela nous permet d'utiliser des fonctionnalités supplémentaires telles que l'état local et les méthodes de cycle de vie.
+La méthode `render` sera appelée à chaque fois qu'une mise à jour aura lieu, mais tant que l'on exploite le rendu de `<Clock />` dans le même nœud DOM, une seule instance de la classe `clock` sera utilisée. Cela nous permet d'utiliser des fonctionnalités supplémentaires telles que l'état local et les méthodes de cycle de vie.
 
 ## Ajouter un État Local à une Classe {#adding-local-state-to-a-class}
 
@@ -201,7 +201,7 @@ Ensuite, nous allons faire en sorte que le composant `Clock` mette en place son
 
 Dans des applications avec de nombreux composants, il est très important de libérer les ressources utilisées par les composants quand ils sont détruits.
 
-Nous voulons [mettre en place un minuteur](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setInterval) quand une `Horloge` apparaît dans le DOM pour la première fois. Le terme React pour cela est « montage ».
+Nous voulons [mettre en place un minuteur](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setInterval) quand une `Horloge` apparaît dans le DOM pour la première fois. Le terme React « montage » désigne cette phase.
 
 Nous voulons également [nettoyer le minuteur](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/clearInterval) quand le DOM produit par l'`Horloge` est supprimé. En React, on parle de « démontage ».
 
@@ -310,11 +310,11 @@ Récapitulons ce qui se passe et l'ordre dans lequel les méthodes sont invoqué
 
 1) Quand `<Clock />` est passé à `ReactDOM.render()`, React appelle le constructeur du composant `Clock`. Puisque `Clock` a besoin d'afficher l'heure actuelle, il initialise `this.state` avec un objet contenant l'heure actuelle. Nous mettrons cet état à jour par la suite.
 
-2) React appelle ensuite la méthode `render()` du composant `Clock`. C'est comme cela que React découvre ce qu'il faut afficher à l'écran. React met ensuite à jour le DOM pour correspondre à la sortir de la méthode `render()` du composant `Clock`.
+2) React appelle ensuite la méthode `render()` du composant `Clock`. C'est comme cela que React découvre ce qu'il faut afficher à l'écran. React met ensuite à jour le DOM pour correspondre à la sortie de la méthode `render()` du composant `Clock`.
 
-3) Quand la sortie de la `Clock` est insérée dans le DOM, React appelle la méthode de cycle de vie `componentDidMount()`. À l'intérieur, le composant `Clock` demande au navigateur de mettre en place un minuteur pour appeler la méthode `tick()` du composant une fois par seconde.
+3) Quand la sortie de la `Clock` est insérée dans le DOM, React appelle la méthode de cycle de vie `componentDidMount()`. À l'intérieur, le composant `Clock` demande au navigateur de mettre en place un minuteur pour appeler la méthode `tick()` du composant une fois par seconde.
 
-4) Chaque seconde, le navigateur appelle la méthode `tick()`. À l'intérieur, le composant `Clock` planifie une mise à jour de l'interface utilisateur en appelant `setState()` avec un objet contenant l'heure actuelle. Grâce à l'appel à `setState()`, React sait que l'état a changé, et invoque à nouveau la méthode `render()` pour savoir ce qui devrait être affiché à l'écran. Cette fois, la valeur de `this.state.date` dans la méthode `render()` est différente, la sortie devrait donc inclure l'heure mise à jour. React met à jour le DOM en accord avec cela.
+4) Chaque seconde, le navigateur appelle la méthode `tick()`. À l'intérieur, le composant `Clock` planifie une mise à jour de l'interface utilisateur en appelant `setState()` avec un objet contenant l'heure actuelle. Grâce à l'appel à `setState()`, React sait que l'état a changé, et invoque à nouveau la méthode `render()` pour savoir ce qui devrait être affiché à l'écran. Cette fois, la valeur de `this.state.date` dans la méthode `render()` est différente, la sortie devrait donc inclure l'heure mise à jour. React met à jour le DOM en accord avec cela.
 
 5) Si le composant `Clock` finit par être retiré du DOM, React appellera la méthode de cycle de vie `componentWillUnmount()` pour que le minuteur soit arrêté.
 
@@ -324,7 +324,7 @@ Il y'a trois choses que vous devriez savoir à propos de `setState()`.
 
 ### Ne Modifiez Pas l'État Directement {#do-not-modify-state-directly}
 
-Par exemple, ceci ne re-rendra pas un composant :
+Par exemple, ceci ne déclenchera pas un rafraîchissement du composant :
 
 ```js
 // Erroné
@@ -342,7 +342,7 @@ Le seul endroit où vous pouvez affecter `this.state`, c’est le constructeur.
 
 ### Les Mises à Jour de l'État Peuvent Être Asynchrones {#state-updates-may-be-asynchronous}
 
-React peut grouper plusieurs appels à `setState()` en une seule mise à jour pour des raisons de performance.
+React peut grouper plusieurs appels à `setState()` en une seule mise à jour pour des raisons de performance.
 
 Comme `this.props` et `this.state` peuvent être mises à jour de façon asynchrone, vous ne devez pas vous baser sur leurs valeurs pour calculer le prochain état.
 
@@ -355,7 +355,7 @@ this.setState({
 });
 ```
 
-Pour remédier à ce problème, utilisez la seconde forme de `setState()` qui accepte une fonction à la place d'un objet. Cette fonction recevra l'état précédent comme premier argument et les props au moment de la mise à jour comme second argument :
+Pour remédier à ce problème, utilisez la seconde forme de `setState()` qui accepte une fonction à la place d'un objet. Cette fonction recevra l'état précédent comme premier argument et les props au moment de la mise à jour comme second argument :
 
 ```js
 // Correct
@@ -364,7 +364,7 @@ this.setState((state, props) => ({
 }));
 ```
 
-Nous avons utilisé une [fonction fléchée](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fl%C3%A9ch%C3%A9es) ci-dessus, mais une fonction normale fonctionne également :
+Nous avons utilisé une [fonction fléchée](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fl%C3%A9ch%C3%A9es) ci-dessus, mais une fonction normale marche aussi :
 
 ```js
 // Correct
@@ -377,7 +377,7 @@ this.setState(function(state, props) {
 
 ### Les Mises à Jour de l'État Sont Fusionnées {#state-updates-are-merged}
 
-Quand vous invoquez `setState()`, React fusionne les objets que vous donnez avec l'état actuel.
+Quand vous invoquez `setState()`, React fusionne les objets que vous donnez avec l'état actuel.
 
 Par exemple, votre état peut contenir plusieurs variables indépendantes :
 
@@ -391,7 +391,7 @@ Par exemple, votre état peut contenir plusieurs variables indépendantes :
   }
 ```
 
-Ensuite, vous pouvez les mettre à jour indépendamment avec des appels séparés à `setState()` :
+Ensuite, vous pouvez les mettre à jour indépendamment avec des appels séparés à `setState()` :
 
 ```js{4,10}
   componentDidMount() {
@@ -409,7 +409,7 @@ Ensuite, vous pouvez les mettre à jour indépendamment avec des appels séparé
   }
 ```
 
-La fusion n'est pas profonde, donc `this.setState({comments})` laisse `this.state.posts` intacte, mais remplace complètement `this.state.comments`.
+La fusion n'est pas profonde, donc `this.setState({comments})` laisse `this.state.posts` intacte, mais remplace complètement `this.state.comments`.
 
 ## Les Données Descendent {#the-data-flows-down}
 
@@ -429,7 +429,7 @@ Cela marche également avec des composants définis par l'utilisateur :
 <FormattedDate date={this.state.date} />
 ```
 
-Le composant `FormattedDate` reçoit la `date` dans ses props et ne sait pas si elle vient de l'état de l'`Horloge`, des props de l'`Horloge`, ou a été tapée à la main :
+Le composant `FormattedDate` reçoit la `date` dans ses props et ne sait pas si elle vient de l'état de la `Clock`, des props de la `Clock`, ou a été tapée à la main :
 
 ```js
 function FormattedDate(props) {
