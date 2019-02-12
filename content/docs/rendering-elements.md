@@ -72,4 +72,4 @@ Vous pouvez vérifier ce comportement en inspectant le [dernier exemple](codepen
 
 Même si nous créons chaque seconde un élément décrivant l’arborescence complète de l’interface utilisateur, seul le nœud texte dont le contenu a été modifié est mis à jour par le DOM React.
 
-L'expérience nous montre que réfléchir à quoi devrait ressembler une interface utilisateur à un moment donné plutôt que de réfléchir à comment elle devrait évoluer permet d’éliminer tout un ensemble de bugs.
+L’expérience nous montre que réfléchir à quoi devrait ressembler une interface utilisateur à un moment donné plutôt que de réfléchir à comment elle devrait évoluer permet d’éliminer tout un ensemble de bugs.
