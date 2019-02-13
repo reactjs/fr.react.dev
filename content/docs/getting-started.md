@@ -76,11 +76,11 @@ Si vous avez une formation de designer, [ces ressources](http://reactfordesigner
 
 La documentation de React suppose une certaine familiarité avec la programmation en langage JavaScript. Pas besoin d'être un expert, mais il est plus difficile d'apprendre à la fois React et JavaScript.
 
-Nous vous recommandons de parcourir [cet aperçu JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) pour vérifier votre niveau de connaissance. Cela vous prendra entre 30 minutes et une heure, mais vous vous sentirez plus confiant pour apprendre React.
+Nous vous recommandons de parcourir [cet aperçu JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript/Une_r%C3%A9introduction_%C3%A0_JavaScript) pour vérifier votre niveau de connaissance. Cela vous prendra entre 30 minutes et une heure, mais vous vous sentirez plus confiant pour apprendre React.
 
 >_Tip_
 >
->Chaque fois que vous êtes dérouté par quelque chose en JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) et [javascript.info](http://javascript.info/) sont d'excellents sites pour vérifier. Il y a aussi [des forums de soutien communautaire](/community/support.html) où vous pouvez demander de l'aide.
+>Chaque fois que vous êtes dérouté par quelque chose en JavaScript, [MDN](https://developer.mozilla.org/fr/docs/Web/JavaScript) et [javascript.info](http://javascript.info/) sont d'excellents sites pour vérifier. Il y a aussi [des forums de soutien communautaire](/community/support.html) où vous pouvez demander de l'aide.
 
 ### Tutoriel pratique {#practical-tutorial}
 
