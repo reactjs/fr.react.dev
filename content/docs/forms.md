@@ -25,11 +25,11 @@ Ce formulaire a le comportement classique d'un formulaire HTML et redirige sur u
 
 ## Composants contrôlés {#controlled-components}
 
-En HTML, les éléments de formulaire tels que `<input>`, `<textarea>`, et `<select>` maintiennent généralement leur propre état et se mettent à jour par rapport aux saisies utilisateur. En React, l'état modifiable est généralement stocké dans la propriété `state` des composants et mis à jour uniquement avec [`setState()`](/docs/react-component.html#setstate).
+En HTML, les éléments de formulaire tels que `<input>`, `<textarea>`, et `<select>` maintiennent généralement leur propre état et se mettent à jour par rapport aux saisies de l’utilisateur. En React, l'état modifiable est généralement stocké dans la propriété `state` des composants et mis à jour uniquement avec [`setState()`](/docs/react-component.html#setstate).
 
-On peut combiner ces deux concepts en utilisant l'état local React comme « source unique de vérité ». Ainsi le composant React qui affiche le formulaire contrôle aussi son comportement par rapport aux saisies de l’utilisateur. Un champ de formulaire dont l'état est contrôlé de cette façon par React est appelé un « composant contrôlé ».
+On peut combiner ces deux concepts en utilisant l'état local React comme « source unique de vérité ». Ainsi le composant React qui affiche le formulaire contrôle aussi son comportement par rapport aux saisies de l’utilisateur. Un champ de formulaire dont l'état est contrôlé de cette façon par React est appelé un « composant contrôlé ».
 
-Par exemple, en reprenant l'ancien exemple pour afficher le nom lors de la soumission, on peut écrire le formulaire sous forme de composant contrôlé :
+Par exemple, en reprenant le code ci-dessus pour afficher le nom lors de la soumission, on peut écrire le formulaire sous forme de composant contrôlé :
 
 ```javascript{4,10-12,24}
 class NameForm extends React.Component {
@@ -46,7 +46,7 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Le nom a été soumis : ' + this.state.value);
+    alert('Le nom a été soumis : ' + this.state.value);
     event.preventDefault();
   }
 
@@ -66,7 +66,7 @@ class NameForm extends React.Component {
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
 
-À présent que l'attribut `value` est défini sur notre élément de formulaire, la valeur affichée sera toujours `this.state.value`, faisant ainsi de l'état local React la source de vérité. Puisque `handleChange` est déclenché a chaque frappe pour mettre a jour l'état local React, la valeur affichée restera mise à jour au fil de la saisie.
+À présent que l'attribut `value` est défini sur notre élément de formulaire, la valeur affichée sera toujours `this.state.value`, faisant ainsi de l'état local React la source de vérité. Puisque `handleChange` est déclenché à chaque frappe pour mettre à jour l'état local React, la valeur affichée restera mise à jour au fil de la saisie.
 
 Dans un composant contrôlé, chaque changement de l'état aura une fonction gestionnaire associée. Ça permet de modifier ou valider facilement, à la volée, les saisies de l’utilisateur. Par exemple, si nous voulions forcer les noms en majuscules, on pourrait écrire `handleChange` de la manière suivante :
 
@@ -105,7 +105,7 @@ class EssayForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Un essai a été envoyé : ' + this.state.value);
+    alert('Un essai a été envoyé : ' + this.state.value);
     event.preventDefault();
   }
 
@@ -127,7 +127,7 @@ Remarquez que `this.state.value` est initialisé dans le constructeur, permettan
 
 ## La balise `select` {#the-select-tag}
 
-En HTML, `<select>` créé une liste déroulante. Par exemple, ce HTML crée une liste déroulante de fruits.
+En HTML, `<select>` crée une liste déroulante. Par exemple, ce HTML crée une liste déroulante de parfums.
 
 ```html
 <select>
@@ -155,7 +155,7 @@ class FlavorForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Votre parfum favori est : ' + this.state.value);
+    alert('Votre parfum favori est : ' + this.state.value);
     event.preventDefault();
   }
 
@@ -163,7 +163,7 @@ class FlavorForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Choisissez votre parfum favori :
+          Choisissez votre parfum favori :
           <select value={this.state.value} onChange={this.handleChange}>
             <option value="grapefruit">Pamplemousse</option>
             <option value="lime">Citron vert</option>
@@ -220,7 +220,7 @@ class Reservation extends React.Component {
 
   handleInputChange(event) {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
@@ -232,7 +232,7 @@ class Reservation extends React.Component {
     return (
       <form>
         <label>
-          Participe :
+          Participe :
           <input
             name="isGoing"
             type="checkbox"
@@ -241,7 +241,7 @@ class Reservation extends React.Component {
         </label>
         <br />
         <label>
-          Nombre d'invités :
+          Nombre d'invités :
           <input
             name="numberOfGuests"
             type="number"
@@ -295,4 +295,4 @@ Il est parfois fastidieux d'utiliser les composants contrôlés, car il vous fau
 
 ## Solutions clé en main {#fully-fledged-solutions}
 
-Si vous cherchez une solution complète gérant la validation, l’historique des champs visités, et la gestion de soumission de formulaire, [Formik](https://jaredpalmer.com/formik) fait partie des choix populaires. Ceci dit, il est repose sur les mêmes principes de composants contrôlés et de gestion d'état local—alors ne faites pas l’impasse dessus.
+Si vous cherchez une solution complète gérant la validation, l’historique des champs visités, et la gestion de soumission de formulaire, [Formik](https://jaredpalmer.com/formik) fait partie des choix populaires. Ceci dit, il repose sur les mêmes principes de composants contrôlés et de gestion d'état local—alors ne faites pas l’impasse dessus.
