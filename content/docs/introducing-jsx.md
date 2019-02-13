@@ -28,7 +28,7 @@ React ne [nécessite pas](/docs/react-without-jsx.html) l'utilisation de JSX pou
 
 Nous pouvons enfin commencer !
 
-### Imbriqué des Expressions en JSX {#embedding-expressions-in-jsx}
+### Utiliser des expressions dans JSX {#embedding-expressions-in-jsx}
 
 Dans l'exemple suivant, nous déclarons une variable appelée `name` et nous l'utilisons ensuite dans du JSX en l'encadrant avec des accolades :
 
