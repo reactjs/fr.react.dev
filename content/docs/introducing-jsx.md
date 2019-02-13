@@ -143,7 +143,7 @@ Par défaut, React DOM [échappe](http://stackoverflow.com/questions/7381974/whi
 
 ### JSX représente des objets {#jsx-represents-objects}
 
-Babel compile JSX vers des appels `React.createElement()`.
+Babel compile JSX vers des appels à `React.createElement()`.
 
 Ces deux exemples sont identiques :
 
