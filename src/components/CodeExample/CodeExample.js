@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-
 import {colors, media} from 'theme';
+
 import CodeEditor from '../CodeEditor/CodeEditor';
+import PropTypes from 'prop-types';
 
 class CodeExample extends Component {
   render() {
@@ -61,7 +61,7 @@ class CodeExample extends Component {
         {loaded ? (
           <CodeEditor code={code} containerNodeID={containerNodeID} />
         ) : (
-          <h4>Loading code example...</h4>
+          <h4>Chargement de l’exemple de code…</h4>
         )}
       </div>
     );

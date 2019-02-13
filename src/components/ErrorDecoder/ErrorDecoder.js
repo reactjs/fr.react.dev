@@ -5,9 +5,8 @@
  * @flow
  */
 
-import React from 'react';
-
 import type {Node} from 'react';
+import React from 'react';
 
 function replaceArgs(msg: string, argList: Array<string>): string {
   let argIdx = 0;
@@ -69,8 +68,9 @@ function ErrorResult(props: {|code: ?string, msg: string|}) {
   if (!code) {
     return (
       <p>
-        When you encounter an error, you'll receive a link to this page for that
-        specific error and we'll show you the full error text.
+        Quand vous rencontrez une erreur, vous recevrez un lien vers cette page
+        pour cette erreur précise, et nous vous montrerons le texte complet de
+        l’erreur.
       </p>
     );
   }
@@ -78,7 +78,7 @@ function ErrorResult(props: {|code: ?string, msg: string|}) {
   return (
     <div>
       <p>
-        <b>The full text of the error you just encountered is:</b>
+        <b>Le texte complet de l’erreur que vous venez de rencontrer est :</b>
       </p>
       <code>
         <b>{urlify(errorMsg)}</b>
