@@ -8,9 +8,9 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
-React est, à notre avis, la meilleur façon de créer de large et rapide applications Web avec JavaScript. Ça c'est très bien adapté pour nous à Facebook et Instagram.
+React est, à notre avis, la meilleur façon de créer de large et rapide applications Web avec JavaScript. Il s'est très bien adapté pour nous à Facebook et Instagram.
 
-L'un des nombreux points forts de React est la façon dont il vous fait penser aux applications au fur et à mesure que vous les créez. Dans ce document, nous vous guiderons dans l'élaboration d'un tableaux de données de produit recherchable avec React.
+L'un des nombreux points forts de React est la façon dont il vous fait penser aux applications lorsque vous les créez. Dans ce document, nous vous guiderons dans l'élaboration d'un tableaux de données de produit recherchable avec React.
 
 ## Commençons avec une maquette {#start-with-a-mock}
 
@@ -35,7 +35,7 @@ Notre API JSON renvoie des données qui ressemblent à ceci :
 
 La première chose que vous voudrez faire est de dessiner des cases autour de chaque composants (et sous-composants) sur la maquette et de leur donner à toutes un nom. Si vous travaillez avec un designer, il se peut qu'il l'ait déjà fait, alors allez lui parler ! Leurs noms de calques Photoshop peuvent devenir les noms de vos composants React !
 
-Mais comment savez-vous ce qui devrait être son propre composant ? Utilisez simplement les mêmes techniques que celles pour décider si vous devez créer une nouvelle fonction ou un nouvel objet. L'une de ces techniques est le [principe de responsabilité unique](https://en.wikipedia.org/wiki/Single_responsibility_principle), c'est-à-dire qu'un composant ne devrait idéalement faire qu'une seule chose. S'il finit par grandir, il devrait être décomposé en sous-composants plus petits.
+Mais comment savez-vous ce qui devrait être son propre composant ? Utilisez simplement les mêmes techniques que celles pour décider si vous devez créer une nouvelle fonction ou un nouvel objet. L'une de ces techniques est le [principe de responsabilité unique](https://en.wikipedia.org/wiki/Single_responsibility_principle), c'est-à-dire qu'un composant ne devrait idéalement faire qu'une seule chose. S'il finit par s'agrandir, il devrait être décomposé en sous-composants plus petits.
 
 Comme vous affichez souvent un modèle de données JSON à un utilisateur, vous constaterez que si votre modèle a été correctement construit, votre interface utilisateur (et donc la structure de vos composants) correspondra joliment. En effet, l'interface utilisateur et les modèles de données tendent à adhérer à la même *architecture d'information*, ce qui signifie que le travail de séparation de votre interface utilisateur en composants est souvent trivial. Il suffit de décomposer en composants qui représentent exactement un élément de votre modèle de données.
 
@@ -64,7 +64,7 @@ Maintenant que nous avons identifié les composants dans notre maquette, organis
 <p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Voir le Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> sur <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-Maintenant que vous avez votre hiérarchie de composants, il est temps d'implémenter votre application. La façon la plus simple est de construire une version qui prend votre model de données et fait le rendu de l'interface utilisateur mais sans aucune interactivité. Il est préférable de découpler ces processus car la construction d'une version statique nécessite beaucoup de dactylographie et aucune réflexion, et ajouter de l'interactivité demande beaucoup de réflexion et peu de dactylographie. On verra pourquoi.
+Maintenant que vous avez votre hiérarchie de composants, il est temps d'implémenter votre application. La façon la plus simple est de construire une version qui prend votre model de données et fait le rendu de l'interface utilisateur mais sans aucune interactivité. Il est préférable de découpler ces processus car la construction d'une version statique nécessite beaucoup d'écriture et aucune réflexion, et ajouter de l'interactivité demande beaucoup de réflexion et peu d'écriture. Nous verrons pourquoi.
 
 Pour créer une version statique de votre application qui fera le rendu de votre modèle de données, vous devrez créer des composants qui réutilisent d'autres composants et transmettent les données en utilisant les *props*. Les *props* sont un moyen de transmettre des données d'un parent à un enfant. Si vous êtes familier avec le concept d'*état*, **n'utilisez pas d'état du tout** pour construire cette version statique. L'état est reservé à l'interactivité, c'est-à-dire aux données qui évoluent dans le temps. Comme il s'agit d'une version statique de l'application, vous n'en avez pas besoin.
 
@@ -76,17 +76,15 @@ Il suffit de se reporter à la [documentation de React](/docs/) si vous avez bes
 
 ### Un bref intermède : Props vs État {#a-brief-interlude-props-vs-state}
 
-Il existe deux types de « modèles » de données avec React : les props et l'état.
-
-There are two types of « model » data in React: props and state. Il est important de comprendre la distinction entre les deux ; parcourez [la documentions officiel de React](/docs/interactivity-and-dynamic-uis.html) si vous n'êtes pas sûr de la différence.
+Il existe deux types de « modèles » de données avec React : les props et l'état. Il est important de comprendre la distinction entre les deux ; parcourez [la documentions officiel de React](/docs/interactivity-and-dynamic-uis.html) si vous n'êtes pas sûr de la différence.
 
 ## Étape 3 : Déterminer l'état de l'interface utilisateur de façon minimale (mais complète) {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
-Pour rendre votre interface utilisateur interactive, vous devez être capable de déclencher des modifications à votre modèle de données. React vous facilte la tâche avec l'**état**.
+Pour rendre votre interface utilisateur interactive, vous devez être capable de déclencher des modifications à votre modèle de données. React vous facilite la tâche avec l'**état**.
 
-Afin de correctement construire votre application, vous devez d'abord penser à l'ensemble minimal d'état modifiable dont votre application a besoin. La clé, ici, est : [*Ne vous Répétez Pas*](https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas) *(Don’t Repeat Yourself en anglais, aussi désigné par l’acronyme DRY, NdT)*. Déterminez la représentation minimal de l'état dont votre application à besoin et calculez le reste à la demande. Par exemple, si vous construisez une liste de tâche, gardez simplement un tableau des différentes tâches ; ne gardez pas de variable d'état pour le compteur. Au lieu de cela, lorsque vous voulez calculez le nombre de tâches, prenez simplement la longueur du tableau contenant les tâches.
+Afin de correctement construire votre application, vous devez d'abord penser à l'ensemble minimal d'état modifiable dont votre application a besoin. La clé, ici, est : [*Ne vous Répétez Pas*](https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas) *(Don’t Repeat Yourself en anglais, aussi désigné par l’acronyme DRY, NdT)*. Déterminez la représentation minimal de l'état dont votre application a besoin et calculez le reste à la demande. Par exemple, si vous construisez une liste de tâche, gardez simplement un tableau des différentes tâches ; ne gardez pas de variable d'état pour le compteur. Au lieu de cela, lorsque vous voulez calculez le nombre de tâches, prenez simplement la longueur du tableau contenant les tâches.
 
-Pensez à toutes les données de notre application. Les voici :
+Pensez à toutes les différentes données de notre application. On a :
 
   * La liste des produits
   * Le texte de recherche saisi par l'utilisateur
@@ -112,7 +110,7 @@ Au final, notre état est :
 
 Nous avons identifié l'ensemble minimal de l'état de notre application. Maintenant, nous devons identifier quel composant peux modifier, ou *possède*, cet état.
 
-Souvenez-vous: React est un flux de données unidirectionnel dans la hiérarchie des composants. Il n'est peut être pas immédiatement clair de savoir quel composant devrait posséder quel état . **C'est souvent la partie la plus difficile à comprendre pour les novices,** alors suivez ces étapes pour le découvrir :
+Souvenez-vous : React est un flux de données unidirectionnel dans la hiérarchie des composants. Il n'est peut être pas immédiatement clair de savoir quel composant devrait posséder quel état . **C'est souvent la partie la plus difficile à comprendre pour les novices,** alors suivez ces étapes pour le découvrir :
 
 Pour chaque état de votre application :
 
@@ -127,7 +125,7 @@ Utilisons cette stratégie pour notre application :
   * Le composant parent commun est `FilterableProductTable`.
   * Conceptuellement, il est logique que le texte du filtre et la valeur de la case à cocher soient dans `FilterableProductTable`
 
-Parfait, nous avons donc décidé que `FilterableProductTable` possèdera notre état. Tout d'abord, ajoutez une propriété d'instance `this.state = {filterText: '', inStockOnly: false}` dans le `constructeur` de `FilterableProductTable` pour refléter l'état initial de votre application. Ensuite, passez `filterText` et `inStockOnly` à `ProductTable` et `SearchBar` en tant que prop. Enfin, utilisez ces props pour filtrer les lignes dans `ProductTable`et définissez les valeurs des champs du formulaire dans `SearchBar`.
+Parfait, nous avons donc décidé que `FilterableProductTable` possèdera notre état. Tout d'abord, ajoutez une propriété d'instance `this.state = {filterText: '', inStockOnly: false}` dans le `constructeur` de `FilterableProductTable` pour refléter l'état initial de votre application. Ensuite, passez `filterText` et `inStockOnly` à `ProductTable` et `SearchBar` en tant que prop. Enfin, utilisez ces props pour filtrer les lignes dans `ProductTable` et définissez les valeurs des champs du formulaire dans `SearchBar`.
 
 Vous pouvez commencer à voir comment votre application se comportera : initialisez `filterText` à `"ball"` et rafraîchissez votre application. Vous verrez que la table de données est correctement mis à jour.
 
