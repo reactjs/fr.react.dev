@@ -18,7 +18,7 @@ Cette drôle de syntaxe n'est ni une chaîne de caractères ni du HTML.
 
 JSX produit des « éléments » React. Nous verrons comment les retranscrire dans le DOM dans la [prochaine section](/docs/rendering-elements.html). Dans la suite de ce document, nous verrons les bases de JSX dont vous aurez besoin pour bien démarrer.
 
-### Pourquoi le JSX ? {#why-jsx}
+### Pourquoi JSX ? {#why-jsx}
 
 React embrasse le fait que la logique de rendu est intrinsèquement couplée à la logique de l'interface utilisateur : comment les événements sont-ils gérés, comment l'état évolue t-il dans le temps, et comment la donnée est-elle préparée pour l'affichage.
 
