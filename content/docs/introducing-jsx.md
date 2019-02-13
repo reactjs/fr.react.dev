@@ -163,7 +163,7 @@ const element = React.createElement(
 );
 ```
 
-`React.createElement()` effectue quelques controls pour vous aider à écrire un code sans bug mais essentiellement il crée un semblant d'objet qui ressemble à ceci :
+`React.createElement()` effectue quelques vérifications pour vous aider à écrire un code sans bug, mais pour l'essentiel il crée un objet qui ressemble à ceci :
 
 ```js
 // Note: this structure is simplified
