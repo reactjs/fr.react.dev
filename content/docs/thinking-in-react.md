@@ -131,20 +131,20 @@ Parfait, nous avons donc décidé que `FilterableProductTable` possèdera notre 
 
 Vous pouvez commencer à voir comment votre application se comportera : initialisez `filterText` à `"ball"` et rafraîchissez votre application. Vous verrez que la table de données est correctement mis à jour.
 
-## Step 5: Add Inverse Data Flow {#step-5-add-inverse-data-flow}
+## Étape 5 : Ajouter un flux de données inversé {#step-5-add-inverse-data-flow}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> on <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">Voir le Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> sur <a href="http://codepen.io">CodePen</a>.</p>
 
-So far, we've built an app that renders correctly as a function of props and state flowing down the hierarchy. Now it's time to support data flowing the other way: the form components deep in the hierarchy need to update the state in `FilterableProductTable`.
+Jusqu'à présent, nous avons construit une application qui fait son rendu correctement en fonction des props et de l'état qui descend dans la hiérarchie. Maintenant il est temps de supporter la circulation des données dans l'autre sens : le composant formulaire situé en bas de la hiérarchie a besoin de mettre à jour l'état dans `FilterableProductTable`.
 
-React makes this data flow explicit to make it easy to understand how your program works, but it does require a little more typing than traditional two-way data binding.
+React rend ce flux de données explicite pour faciliter la compréhension du fonctionnement de votre programme, mais cela demande un peu plus d'écriture que la liaison de données bidirectionnelle traditionnelle.
 
-If you try to type or check the box in the current version of the example, you'll see that React ignores your input. This is intentional, as we've set the `value` prop of the `input` to always be equal to the `state` passed in from `FilterableProductTable`.
+Si vous essayez d'écrire ou de cocher la case dans la version actuelle de l'exemple, vous verrez que React ne tient pas compte de vos entrées. C'est intentionnel, car nous avons définit l'attribut `value` de l'élément `input` pour être toujours égal à l'`état` passé depuis `FilterableProductTable`.
 
-Let's think about what we want to happen. We want to make sure that whenever the user changes the form, we update the state to reflect the user input. Since components should only update their own state, `FilterableProductTable` will pass callbacks to `SearchBar` that will fire whenever the state should be updated. We can use the `onChange` event on the inputs to be notified of it. The callbacks passed by `FilterableProductTable` will call `setState()`, and the app will be updated.
+Réfléchissons à ce que nous voulons qu'il se passe. Nous voulons nous assurer que chaque fois que l'utilisateur met à jour le formulaire, nous mettons à jour l'état pour refléter l'entrée de l'utilisateur. Puisque les composants ne doivent mettre à jour que leur propre état, `FilterableProductTable` passera une fonction de rappel à `SearchBar` qui se déclenchera chaque fois que l'état doit être mis à jour. Nous pouvons utiliser l'évenement `onChange` sur les entrées dont on veut être notifié. Les fonctions de rappel passés par `FilterableProductTable` appelleront `setState()`, et l'application sera mise à jour.
 
-Though this sounds complex, it's really just a few lines of code. And it's really explicit how your data is flowing throughout the app.
+Bien que cela semble complexe, c'est juste quelques lignes de code. Et la façon dont vos données circulent dans l'application est vraiment clair.
 
-## And That's It {#and-thats-it}
+## Et c'est tout {#and-thats-it}
 
-Hopefully, this gives you an idea of how to think about building components and applications with React. While it may be a little more typing than you're used to, remember that code is read far more than it's written, and it's extremely easy to read this modular, explicit code. As you start to build large libraries of components, you'll appreciate this explicitness and modularity, and with code reuse, your lines of code will start to shrink. :)
+Avec un peu de chance, cela vous donnera une idée de la façon de penser la construction de vos composants et applications React. Bien que cela demande peut-être plus d'écriture que vous n'en avez l'habitude, rappelez-vous que le code est beaucoup plus lu qu'écrit, et qu'il est êtremement facile de lire ce code modulaire et explicite. Au fur et à mesure que vous commencerez à écrire de plus grande bilbliothèques de composants, vous apprécierez cette clareté et modularité, et avec la réutilisation du code, vos lignes de codes commenceront à se réduire. :)
