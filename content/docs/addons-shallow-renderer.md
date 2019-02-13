@@ -1,41 +1,41 @@
 ---
 id: shallow-renderer
-title: Shallow Renderer
+title: Rendu superficiel
 permalink: docs/shallow-renderer.html
 layout: docs
 category: Reference
 ---
 
-**Importing**
+**Importation**
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
-var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 with npm
+var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 avec npm
 ```
 
-## Overview {#overview}
+## Vue d'ensemble {#overview}
 
-When writing unit tests for React, shallow rendering can be helpful. Shallow rendering lets you render a component "one level deep" and assert facts about what its render method returns, without worrying about the behavior of child components, which are not instantiated or rendered. This does not require a DOM.
+Quand on ecrit des tests unitaires pour React, le rendu superficiel peut être utile. Le rendu superficiel vous permet de faire le rendu d'un composant "à un seul niveau de profondeur" afin vérifier des faits sur le retour de la fonction de rendu, sans se préoccuper des composants enfants, qui ne sont ni instanciés ni rendu. Cela ne nécessite donc pas de DOM.
 
-For example, if you have the following component:
+Si vous avez par exemple le composant suivant:
 
 ```javascript
 function MyComponent() {
   return (
     <div>
-      <span className="heading">Title</span>
+      <span className="heading">Titre</span>
       <Subcomponent foo="bar" />
     </div>
   );
 }
 ```
 
-Then you can assert:
+Vous pouvez alors vérifier les faits comme suit:
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-// in your test:
+// dans votre test:
 const renderer = new ShallowRenderer();
 renderer.render(<MyComponent />);
 const result = renderer.getRenderOutput();
@@ -47,13 +47,13 @@ expect(result.props.children).toEqual([
 ]);
 ```
 
-Shallow testing currently has some limitations, namely not supporting refs.
+Le rendu superficiel connait cependant quelques limites, notamment l'absence de support des refs.
 
 > Note:
 >
-> We also recommend checking out Enzyme's [Shallow Rendering API](http://airbnb.io/enzyme/docs/api/shallow.html). It provides a nicer higher-level API over the same functionality.
+> Nous vous recommendons de voir l'API du rendu superficiel de Enzyme's [Shallow Rendering API](http://airbnb.io/enzyme/docs/api/shallow.html). Il propose une meilleure API de haut niveau pour les même fonctionnalités.
 
-## Reference {#reference}
+## Réference {#reference}
 
 ### `shallowRenderer.render()` {#shallowrendererrender}
 
