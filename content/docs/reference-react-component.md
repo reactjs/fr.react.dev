@@ -15,7 +15,7 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-Cette page fournit une référence API détaillée pour la définition de composants React à base de classes.  Elle suppose que vous êtes à l’aise avec les concepts fondamentaux de React, tels que les [Composants et Props](/docs/components-and-props.html), ainsi que l’[État et Cycle de vie](/docs/state-and-lifecycle.html).  Si ce n’est pas le cas, lisez ces pages avant de continuer.
+Cette page fournit une référence détaillée de l'API pour la définition de composants React à base de classes.  Elle suppose que vous êtes à l’aise avec les concepts fondamentaux de React, tels que les [Composants et Props](/docs/components-and-props.html), ainsi que l’[État et Cycle de vie](/docs/state-and-lifecycle.html).  Si ce n’est pas le cas, lisez ces pages avant de continuer.
 
 ## Vue d’ensemble {#overview}
 
