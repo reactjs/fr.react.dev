@@ -8,9 +8,9 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
-React est, à notre avis, la meilleur façon de créer de large et rapide applications Web avec JavaScript. Il s'est très bien adapté pour nous à Facebook et Instagram.
+React est, à notre avis, la meilleure façon de créer de large et rapide applications Web avec JavaScript. Il s'est très bien adapté pour nous à Facebook et Instagram.
 
-L'un des nombreux points forts de React est la façon dont il vous fait penser aux applications lorsque vous les créez. Dans ce document, nous vous guiderons dans l'élaboration d'un tableaux de données de produit recherchable avec React.
+L'un des nombreux points forts de React est la façon dont il vous fait penser aux applications lorsque vous les créez. Dans ce document, nous vous guiderons dans l'élaboration d'un tableau de données de produit recherchable avec React.
 
 ## Commençons avec une maquette {#start-with-a-mock}
 
@@ -33,7 +33,7 @@ Notre API JSON renvoie des données qui ressemblent à ceci :
 
 ## Étape 1 : Décomposer l'interface utilisateur en une hiérarchie de composants {#step-1-break-the-ui-into-a-component-hierarchy}
 
-La première chose que vous voudrez faire est de dessiner des cases autour de chaque composants (et sous-composants) sur la maquette et de leur donner à toutes un nom. Si vous travaillez avec un designer, il se peut qu'il l'ait déjà fait, alors allez lui parler ! Leurs noms de calques Photoshop peuvent devenir les noms de vos composants React !
+La première chose que vous voudrez faire est de dessiner des cases autour de chaque composant (et sous-composant) sur la maquette et de leur donner à toutes un nom. Si vous travaillez avec un designer, il se peut qu'il l'ait déjà fait, alors allez lui parler ! Leurs noms de calques Photoshop peuvent devenir les noms de vos composants React !
 
 Mais comment savez-vous ce qui devrait être son propre composant ? Utilisez simplement les mêmes techniques que celles pour décider si vous devez créer une nouvelle fonction ou un nouvel objet. L'une de ces techniques est le [principe de responsabilité unique](https://en.wikipedia.org/wiki/Single_responsibility_principle), c'est-à-dire qu'un composant ne devrait idéalement faire qu'une seule chose. S'il finit par s'agrandir, il devrait être décomposé en sous-composants plus petits.
 
@@ -41,7 +41,7 @@ Comme vous affichez souvent un modèle de données JSON à un utilisateur, vous 
 
 ![Schéma des composants](../images/blog/thinking-in-react-components.png)
 
-Vous verrez ici que nous avons cinq composants dans notre application. Nous avons mis en italique les données que chaque composants représente.
+Vous verrez ici que nous avons cinq composants dans notre application. Nous avons mis en italique les données que chaque composant représente.
 
   1. **`FilterableProductTable` (orange):** contient l'intégralité de l'exemple
   2. **`SearchBar` (bleu):** reçoit toutes les *données saisies par l'utilisateur*
@@ -64,7 +64,7 @@ Maintenant que nous avons identifié les composants dans notre maquette, organis
 <p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Voir le Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> sur <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-Maintenant que vous avez votre hiérarchie de composants, il est temps d'implémenter votre application. La façon la plus simple est de construire une version qui prend votre model de données et fait le rendu de l'interface utilisateur mais sans aucune interactivité. Il est préférable de découpler ces processus car la construction d'une version statique nécessite beaucoup d'écriture et aucune réflexion, et ajouter de l'interactivité demande beaucoup de réflexion et peu d'écriture. Nous verrons pourquoi.
+Maintenant que vous avez votre hiérarchie de composants, il est temps d'implémenter votre application. La façon la plus simple est de construire une version qui prend votre modèle de données et fait le rendu de l'interface utilisateur mais sans aucune interactivité. Il est préférable de découpler ces processus car la construction d'une version statique nécessite beaucoup d'écriture et aucune réflexion, et ajouter de l'interactivité demande beaucoup de réflexion et peu d'écriture. Nous verrons pourquoi.
 
 Pour créer une version statique de votre application qui fera le rendu de votre modèle de données, vous devrez créer des composants qui réutilisent d'autres composants et transmettent les données en utilisant les *props*. Les *props* sont un moyen de transmettre des données d'un parent à un enfant. Si vous êtes familier avec le concept d'*état*, **n'utilisez pas d'état du tout** pour construire cette version statique. L'état est reservé à l'interactivité, c'est-à-dire aux données qui évoluent dans le temps. Comme il s'agit d'une version statique de l'application, vous n'en avez pas besoin.
 
