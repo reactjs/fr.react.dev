@@ -28,7 +28,7 @@ Cette page est un aperçu de la documentation React et de ses ressources associ�
 - [Apprendre React](#learn-react)
 - [Rester informé](#staying-informed)
 - [Documentation versionnée](#versioned-documentation)
-- [Quelque chose de manquant?](#something-missing)
+- [Quelque chose de manquant ?](#something-missing)
 
 ## Essayer React {#try-react}
 
@@ -66,7 +66,7 @@ La [page d'accueil React](/) contient quelques petits exemples React avec un éd
 
 ### React pour les débutants {#react-for-beginners}
 
-Si vous pensez que la documentation React va plus vite que prévu, consultez [cet aperçu de React de Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). Il présente les concepts React les plus importants de manière détaillée et conviviale pour les débutants. Une fois que vous avez terminé, essayez à nouveau la documentation!
+Si vous pensez que la documentation React va plus vite que prévu, consultez [cet aperçu de React de Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). Il présente les concepts React les plus importants de manière détaillée et conviviale pour les débutants. Une fois que vous avez terminé, essayez à nouveau la documentation !
 
 ### React pour les designers {#react-for-designers}
 
@@ -92,7 +92,7 @@ Si vous préférez **apprendre les concepts étape par étape** notre [guide des
 
 ### Penser en React {#thinking-in-react}
 
-De nombreux utilisateurs de React attribuent crédit à la lecture [Thinking in React](/docs/thinking-in-react.html) comme le moment où React a "cliqué" pour eux. C'est probablement le plus ancien guide _pas à pas_ de React, mais il est tout aussi pertinent.
+De nombreux utilisateurs de React attribuent crédit à la lecture [Thinking in React](/docs/thinking-in-react.html) comme le moment où React a « cliqué » pour eux. C'est probablement le plus ancien guide _pas à pas_ de React, mais il est tout aussi pertinent.
 
 ### Cours recommandés {#recommended-courses}
 
@@ -122,6 +122,6 @@ Chaque publication de React ne mérite pas son propre article de blog,mais vous 
 
 Cette documentation reflète toujours la dernière version stable de React. Depuis React 16, vous pouvez trouver les anciennes versions de la documentation [sur une page séparée](/versions). Notez que la documentation des versions antérieures est _prise en photo_ au moment de la publication et n'est pas mise à jour en permanence.
 
-## Quelque chose de manquant? {#something-missing}
+## Quelque chose de manquant ? {#something-missing}
 
 Si quelque chose manque dans la documentation ou si vous avez trouvé une partie déroutante, veuillez [créer une issue pour la repo de documentation](https://github.com/reactjs/reactjs.org/issues/new) avec vos suggestions d'amélioration, ou tweetez le [compte @reactjs](https://twitter.com/reactjs). Nous adorons avoir de vos nouvelles !
