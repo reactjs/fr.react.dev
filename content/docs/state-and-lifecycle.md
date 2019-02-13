@@ -74,7 +74,7 @@ L'état local est similaire aux props, mais il est privé et complètement contr
 
 Nous avons [mentionné auparavant](/docs/components-and-props.html#functional-and-class-components) qu'un composant défini avec une classe a des fonctionnalités supplémentaires. L'état local, c’est exactement ça : une fonctionnalité uniquement disponible dans les classes.
 
-## Convertir une Fonction en Classe {#converting-a-function-to-a-class}
+## Convertir une fonction en classe {#converting-a-function-to-a-class}
 
 Vous pouvez convertir un composant fonctionnel comme `Clock` en une classe en cinq étapes :
 
@@ -107,7 +107,7 @@ Le composant `Clock` est maintenant défini comme une classe au lieu d'une fonct
 
 La méthode `render` sera appelée à chaque fois qu'une mise à jour aura lieu, mais tant que l'on exploite le rendu de `<Clock />` dans le même nœud DOM, une seule instance de la classe `clock` sera utilisée. Cela nous permet d'utiliser des fonctionnalités supplémentaires telles que l'état local et les méthodes de cycle de vie.
 
-## Ajouter un État Local à une Classe {#adding-local-state-to-a-class}
+## Ajouter un état local à une classe {#adding-local-state-to-a-class}
 
 Nous allons déplacer la `date` des props vers l'état en trois étapes :
 
@@ -197,7 +197,7 @@ ReactDOM.render(
 
 Ensuite, nous allons faire en sorte que le composant `Clock` mette en place son propre minuteur et se mette à jour toutes les secondes.
 
-## Ajouter des Méthodes de Cycle de Vie à une Classe {#adding-lifecycle-methods-to-a-class}
+## Ajouter des méthodes de cycle de vie à une classe {#adding-lifecycle-methods-to-a-class}
 
 Dans des applications avec de nombreux composants, il est très important de libérer les ressources utilisées par les composants quand ils sont détruits.
 
@@ -318,11 +318,11 @@ Récapitulons ce qui se passe et l'ordre dans lequel les méthodes sont invoqué
 
 5) Si le composant `Clock` finit par être retiré du DOM, React appellera la méthode de cycle de vie `componentWillUnmount()` pour que le minuteur soit arrêté.
 
-## Utiliser L'État Local Correctement {#using-state-correctly}
+## Utiliser l'état local correctement {#using-state-correctly}
 
 Il y'a trois choses que vous devriez savoir à propos de `setState()`.
 
-### Ne Modifiez Pas l'État Directement {#do-not-modify-state-directly}
+### Ne modifiez pas l'état directement {#do-not-modify-state-directly}
 
 Par exemple, ceci ne déclenchera pas un rafraîchissement du composant :
 
@@ -340,7 +340,7 @@ this.setState({comment: 'Bonjour'});
 
 Le seul endroit où vous pouvez affecter `this.state`, c’est le constructeur.
 
-### Les Mises à Jour de l'État Peuvent Être Asynchrones {#state-updates-may-be-asynchronous}
+### Les mises à jour de l'état peuvent être asynchrones {#state-updates-may-be-asynchronous}
 
 React peut grouper plusieurs appels à `setState()` en une seule mise à jour pour des raisons de performance.
 
@@ -375,7 +375,7 @@ this.setState(function(state, props) {
 });
 ```
 
-### Les Mises à Jour de l'État Sont Fusionnées {#state-updates-are-merged}
+### Les mises à jour de l'état sont fusionnées {#state-updates-are-merged}
 
 Quand vous invoquez `setState()`, React fusionne les objets que vous donnez avec l'état actuel.
 
@@ -411,7 +411,7 @@ Ensuite, vous pouvez les mettre à jour indépendamment avec des appels séparé
 
 La fusion n'est pas profonde, donc `this.setState({comments})` laisse `this.state.posts` intacte, mais remplace complètement `this.state.comments`.
 
-## Les Données Descendent {#the-data-flows-down}
+## Les données descendent {#the-data-flows-down}
 
 Ni parent ni enfant ne peuvent savoir si un certain composant est à état ou non, et ne devraient pas se soucier de savoir s'il est défini par une fonction ou une classe.
 
