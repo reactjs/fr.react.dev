@@ -59,7 +59,7 @@ Maintenant que nous avons identifié les composants dans notre maquette, organis
       * `ProductCategoryRow`
       * `ProductRow`
 
-## Etape 2 : Construire une Version Statique avec React {#step-2-build-a-static-version-in-react}
+## Étape 2 : Construire une Version Statique avec React {#step-2-build-a-static-version-in-react}
 
 <p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Voir le Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> sur <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
@@ -106,30 +106,30 @@ Au final, notre état est :
   * Le texte de recherche saisi par l'utilisateur
   * La valeur de la case à cocher
 
-## Step 4: Identify Where Your State Should Live {#step-4-identify-where-your-state-should-live}
+## Étape 4 : Identifier où votre état doit vivre {#step-4-identify-where-your-state-should-live}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> on <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Voir le Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> sur <a href="http://codepen.io">CodePen</a>.</p>
 
-OK, so we've identified what the minimal set of app state is. Next, we need to identify which component mutates, or *owns*, this state.
+Nous avons identifié l'ensemble minimal de l'état de notre application. Maintenant, nous devons identifier quel composant peux modifier, ou *possède*, cet état.
 
-Remember: React is all about one-way data flow down the component hierarchy. It may not be immediately clear which component should own what state. **This is often the most challenging part for newcomers to understand,** so follow these steps to figure it out:
+Souvenez-vous: React est un flux de données unidirectionnel dans la hiérarchie des composants. Il n'est peut être pas immédiatement clair de savoir quel composant devrait posséder quel état . **C'est souvent la partie la plus difficile à comprendre pour les novices,** alors suivez ces étapes pour le découvrir :
 
-For each piece of state in your application:
+Pour chaque état de votre application :
 
-  * Identify every component that renders something based on that state.
-  * Find a common owner component (a single component above all the components that need the state in the hierarchy).
-  * Either the common owner or another component higher up in the hierarchy should own the state.
-  * If you can't find a component where it makes sense to own the state, create a new component simply for holding the state and add it somewhere in the hierarchy above the common owner component.
+  * Identifiez chaque composant qui fait le rendu de quelque chose basé sur cet état.
+  * Trouvez un composant parent commun (un seul composant au-dessus de tous les composants qui ont besoin de l'état dans la hiérarchie).
+  * Le composant parent commun ou un autre composant situé plus haut dans la hiérarchie devrait posséder l'état.
+  * Si vous ne trouvez pas de composant logique pour posséder l'état, créez un nouveau composant pour contenir cet état et ajoutez le quelque part dans la hiérarchie au-dessus du composant parent commun.
 
-Let's run through this strategy for our application:
+Utilisons cette stratégie pour notre application :
 
-  * `ProductTable` needs to filter the product list based on state and `SearchBar` needs to display the search text and checked state.
-  * The common owner component is `FilterableProductTable`.
-  * It conceptually makes sense for the filter text and checked value to live in `FilterableProductTable`
+  * `ProductTable` doit filtrer la liste des produits en fonctions de l'état et `SearchBar` doit afficher l'état du texte de recherche et de la case à cocher.
+  * Le composant parent commun est `FilterableProductTable`.
+  * Conceptuellement, il est logique que le texte du filtre et la valeur de la case à cocher soient dans `FilterableProductTable`
 
-Cool, so we've decided that our state lives in `FilterableProductTable`. First, add an instance property `this.state = {filterText: '', inStockOnly: false}` to `FilterableProductTable`'s `constructor` to reflect the initial state of your application. Then, pass `filterText` and `inStockOnly` to `ProductTable` and `SearchBar` as a prop. Finally, use these props to filter the rows in `ProductTable` and set the values of the form fields in `SearchBar`.
+Parfait, nous avons donc décidé que `FilterableProductTable` possèdera notre état. Tout d'abord, ajoutez une propriété d'instance `this.state = {filterText: '', inStockOnly: false}` dans le `constructeur` de `FilterableProductTable` pour refléter l'état initial de votre application. Ensuite, passez `filterText` et `inStockOnly` à `ProductTable` et `SearchBar` en tant que prop. Enfin, utilisez ces props pour filtrer les lignes dans `ProductTable`et définissez les valeurs des champs du formulaire dans `SearchBar`.
 
-You can start seeing how your application will behave: set `filterText` to `"ball"` and refresh your app. You'll see that the data table is updated correctly.
+Vous pouvez commencer à voir comment votre application se comportera : initialisez `filterText` à `"ball"` et rafraîchissez votre application. Vous verrez que la table de données est correctement mis à jour.
 
 ## Step 5: Add Inverse Data Flow {#step-5-add-inverse-data-flow}
 
