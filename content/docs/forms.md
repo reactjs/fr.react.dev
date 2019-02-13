@@ -131,10 +131,10 @@ En HTML, `<select>` créé une liste déroulante. Par exemple, ce HTML crée une
 
 ```html
 <select>
-  <option value="pamplemousse">Pamplemousse</option>
-  <option value="citron">Citron</option>
-  <option selected value="noixcoco">Noix de coco</option>
-  <option value="mangue">Mangue</option>
+  <option value="grapefruit">Pamplemousse</option>
+  <option value="lime">Citron vert</option>
+  <option selected value="coconut">Noix de coco</option>
+  <option value="mango">Mangue</option>
 </select>
 ```
 
@@ -144,7 +144,7 @@ Notez que l'option Noix de coco est sélectionnée au départ, grâce à l'attri
 class FlavorForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: 'Noix de coco'};
+    this.state = {value: 'coconut'};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -165,10 +165,10 @@ class FlavorForm extends React.Component {
         <label>
           Choisissez votre parfum favori :
           <select value={this.state.value} onChange={this.handleChange}>
-            <option value="pamplemousse">Pamplemousse</option>
-            <option value="citron">Citron</option>
-            <option selected value="noixcoco">Noix de coco</option>
-            <option value="mangue">Mangue</option>
+            <option value="grapefruit">Pamplemousse</option>
+            <option value="lime">Citron vert</option>
+            <option selected value="coconut">Noix de coco</option>
+            <option value="mango">Mangue</option>
           </select>
         </label>
         <input type="submit" value="Envoyer" />
