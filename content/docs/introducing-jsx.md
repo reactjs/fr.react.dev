@@ -6,19 +6,19 @@ prev: hello-world.html
 next: rendering-elements.html
 ---
 
-Observez cette déclaration de variable :
+Observez cette déclaration de variable :
 
 ```js
-const element = <h1>Bonjour, monde !</h1>;
+const element = <h1>Bonjour, monde !</h1>;
 ```
 
-Cette drôle de syntaxe n'est ni une chaîne de caractères ni du HTML. 
- 
+Cette drôle de syntaxe n'est ni une chaîne de caractères ni du HTML.
+
 Ça s'appelle du JSX, et c'est une extension syntaxique de JavaScript. Nous recommandons de l'utiliser avec React afin de décrire à quoi devrait ressembler l'interface utilisateur (UI). JSX vous fait sûrement penser à un langage de balisage, mais il recèle toute la puissance de JavaScript.
 
 JSX produit des « éléments » React. Nous verrons comment les retranscrire dans le DOM dans la [prochaine section](/docs/rendering-elements.html). Dans la suite de ce document, nous verrons les bases de JSX dont vous aurez besoin pour bien démarrer.
 
-### Pourquoi JSX ? {#why-jsx}
+### Pourquoi JSX ? {#why-jsx}
 
 Le fonctionnement d’une UI conditionnera toujours les logiques de rendu, de la gestion des événements à la préparation des données pour l'affichage, en passant par l'évolution de l'état au fil du temps. React a choisi d'assumer pleinement cet état de fait.
 
@@ -58,7 +58,7 @@ const user = {
 
 const element = (
   <h1>
-    Bonjour, {formatName(user)} !
+    Bonjour, {formatName(user)} !
   </h1>
 );
 
@@ -74,14 +74,14 @@ On découple le JSX en plusieurs lignes pour une meilleure lisibilité. Par la m
 
 ### JSX n’est rien d’autre qu’une expression {#jsx-is-an-expression-too}
 
-Après la compilation, les expressions JSX deviennent de simples appels de fonctions JavaScripts, dont l'évaluation renvoie des objets JavaScript.
+Après la compilation, les expressions JSX deviennent de simples appels de fonctions JavaScript, dont l'évaluation renvoie des objets JavaScript.
 
-Ça signifie que vous pouvez utiliser JSX à l'intérieur d'instructions `if` ou de boucles `for`, l'affecter à des variables, l'accepter en tant qu'argument, et le renvoyer depuis des fonctions :
+Ça signifie que vous pouvez utiliser JSX à l'intérieur d'instructions `if` ou de boucles `for`, l'affecter à des variables, l'accepter en tant qu'argument, et le renvoyer depuis des fonctions :
 
 ```js{3,5}
 function getGreeting(user) {
   if (user) {
-    return <h1>Bonjour, {formatName(user)} !</h1>;
+    return <h1>Bonjour, {formatName(user)} !</h1>;
   }
   return <h1>Bonjour, Belle Inconnue.</h1>;
 }
@@ -89,7 +89,7 @@ function getGreeting(user) {
 
 ### Spécifier des attributs en JSX {#specifying-attributes-with-jsx}
 
-Vous pouvez utiliser des guillemets pour spécifier des littéraux chaînes de caractères dans les attributs :
+Vous pouvez utiliser des guillemets pour spécifier des littéraux chaînes de caractères dans les attributs :
 
 ```js
 const element = <div tabIndex="0"></div>;
@@ -103,7 +103,7 @@ const element = <img src={user.avatarUrl}></img>;
 
 Ne mettez pas de guillemets autour des accolades quand vous utilisez une expression JavaScript dans un attribut. Vous pouvez utiliser soit des guillemets (pour des valeurs textuelles) soit des accolades (pour des expressions), mais pas les deux à la fois pour un même attribut.
 
->**Attention :**
+>**Attention :**
 >
 >Dans la mesure où JSX est plus proche de JavaScript que de HTML, React DOM utilise la casse `camelCase` comme convention de nommage des propriétés, au lieu des noms d’attributs HTML.
 >
@@ -117,12 +117,12 @@ Si une balise est vide, vous pouvez la fermer immédiatement avec `/>`, comme en
 const element = <img src={user.avatarUrl} />;
 ```
 
-Les balises JSX peuvent contenir des enfants :
+Les balises JSX peuvent contenir des enfants :
 
 ```js
 const element = (
   <div>
-    <h1>Bonjour !</h1>
+    <h1>Bonjour !</h1>
     <h2>Content de te voir ici.</h2>
   </div>
 );
@@ -130,7 +130,7 @@ const element = (
 
 ### JSX empêche les attaques d’injection {#jsx-prevents-injection-attacks}
 
-Vous ne risquez rien en utilisant une saisie utilisateur dans JSX :
+Vous ne risquez rien en utilisant une saisie utilisateur dans JSX :
 
 ```js
 const title = response.potentiallyMaliciousInput;
@@ -145,12 +145,12 @@ Par défaut, React DOM [échappe](http://stackoverflow.com/questions/7381974/whi
 
 Babel compile JSX vers des appels à `React.createElement()`.
 
-Ces deux exemples sont identiques :
+Ces deux exemples sont identiques :
 
 ```js
 const element = (
   <h1 className="greeting">
-    Bonjour, monde !
+    Bonjour, monde !
   </h1>
 );
 ```
@@ -159,19 +159,19 @@ const element = (
 const element = React.createElement(
   'h1',
   {className: 'greeting'},
-  'Bonjour, monde !'
+  'Bonjour, monde !'
 );
 ```
 
-`React.createElement()` effectue quelques vérifications pour vous aider à écrire un code sans bug, mais pour l'essentiel il crée un objet qui ressemble à ceci :
+`React.createElement()` effectue quelques vérifications pour vous aider à écrire un code sans bug, mais pour l'essentiel il crée un objet qui ressemble à ceci :
 
 ```js
-// Note: this structure is simplified
+// Remarque : cette structure est simplifiée
 const element = {
   type: 'h1',
   props: {
     className: 'greeting',
-    children: 'Bonjour, monde !'
+    children: 'Bonjour, monde !'
   }
 };
 ```
@@ -180,6 +180,6 @@ Ces objets sont appelés des « éléments React ». Vous pouvez les considér
 
 Nous explorerons la retranscription des éléments React dans le DOM dans la prochaine section.
 
->**Astuce :**
+>**Astuce :**
 >
 >Nous recommandons d'utiliser la [définition de langage « Babel »](http://babeljs.io/docs/editors) dans votre éditeur préféré, afin que les codes ES6 et JSX soient correctement colorisés. Ce site utilise le thème de couleurs [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/), qui est compatible avec ce mode syntaxique.
