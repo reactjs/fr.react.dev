@@ -22,7 +22,7 @@ Contrairement aux éléments DOM d’un navigateur, les éléments React sont de
 >
 >On pourrait confondre les éléments avec un concept plus largement connu de « composants ». Nous présenterons les composants dans la [prochaine section](/docs/components-and-props.html). Les éléments représentant la base des composants, nous vous encourageons à bien lire cette section avant d’aller plus loin.
 
-## Rendre un Élément dans le DOM {#rendering-an-element-into-the-dom}
+## Afficher un élément dans le DOM {#rendering-an-element-into-the-dom}
 
 Disons qu’il y ait une balise `<div>` quelque part dans votre fichier HTML :
 
@@ -42,7 +42,7 @@ Pour faire le rendu d’un élément React dans le nœud DOM racine, indiquez-l
 
 Cet exemple de code affichera « Bonjour, monde » sur la page.
 
-## Mettre à Jour un Élément Rendu {#updating-the-rendered-element}
+## Mettre à jour un élément rendu {#updating-the-rendered-element}
 
 Les éléments React sont [immuables](https://fr.wikipedia.org/wiki/Objet_immuable). Une fois votre élément créé, vous ne pouvez plus modifier ses enfants ou ses attributs. Un élément est comme une image d’un film à un instant T : il représente l’interface utilisateur à un point précis dans le temps.
 
@@ -62,7 +62,7 @@ Prenons l’exemple de cette horloge :
 >
 >Nous vous conseillons de lire les sujets dans l’ordre car ils sont dépendants les uns des autres.
 
-## React Met à Jour Seulement ce Qui Est Nécessaire {#react-only-updates-whats-necessary}
+## React met à jour seulement ce qui est nécessaire {#react-only-updates-whats-necessary}
 
 Le DOM React compare un élément et ses enfants avec la version précédente, et applique uniquement les mises à jour nécessaires au DOM pour que celui-ci reflète bien l’état voulu.
 
@@ -72,4 +72,4 @@ Vous pouvez vérifier ce comportement en inspectant le [dernier exemple](codepen
 
 Même si nous créons chaque seconde un élément décrivant l’arborescence complète de l’interface utilisateur, seul le nœud texte dont le contenu a été modifié est mis à jour par le DOM React.
 
-L’expérience nous montre que réfléchir à quoi devrait ressembler une interface utilisateur à un moment donné plutôt que de réfléchir à comment elle devrait évoluer permet d’éliminer tout un ensemble de bugs.
+L’expérience nous montre que réfléchir à quoi devrait ressembler une interface utilisateur à un moment donné plutôt que de réfléchir à comment elle devrait évoluer permet d’éliminer toute une catégorie de bugs.
