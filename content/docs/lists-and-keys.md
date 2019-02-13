@@ -16,7 +16,7 @@ const doubled = numbers.map((number) => number * 2);
 console.log(doubled);
 ```
 
-Ce code affiche `[2, 4, 6, 8, 10]` à la console.
+Ce code affiche `[2, 4, 6, 8, 10]` dans la console.
 
 Avec React, transformer un tableau en une liste d'[éléments](/docs/rendering-elements.html) est presque identique.
 
@@ -24,8 +24,7 @@ Avec React, transformer un tableau en une liste d'[éléments](/docs/rendering-e
 
 On peut construire des collections d'éléments et [les inclure dans du JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) en utilisant les accolades `{}`.
 
-Ci-dessous, on itère sur le tableau de nombres en utilisant la méthode JavaScript [`map()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/map). On retourne un élément `<li>` pour chaque entrée du tableau.
-Enfin, on assigne le tableau d'éléments résultant à `listItems` :
+Ci-dessous, on itère sur le tableau de nombres en utilisant la méthode JavaScript [`map()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/map). On retourne un élément `<li>` pour chaque entrée du tableau. Enfin, on assigne le tableau d'éléments résultant à `listItems` :
 
 ```javascript{2-4}
 const numbers = [1, 2, 3, 4, 5];
