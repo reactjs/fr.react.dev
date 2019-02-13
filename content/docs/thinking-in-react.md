@@ -80,31 +80,31 @@ Il existe deux types de « modèles » de données avec React : les props et 
 
 There are two types of « model » data in React: props and state. Il est important de comprendre la distinction entre les deux ; parcourez [la documentions officiel de React](/docs/interactivity-and-dynamic-uis.html) si vous n'êtes pas sûr de la différence.
 
-## Step 3: Identify The Minimal (but complete) Representation Of UI State {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
+## Étape 3 : Déterminer l'état de l'interface utilisateur de façon minimale (mais complète) {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
-To make your UI interactive, you need to be able to trigger changes to your underlying data model. React makes this easy with **state**.
+Pour rendre votre interface utilisateur interactive, vous devez être capable de déclencher des modifications à votre modèle de données. React vous facilte la tâche avec l'**état**.
 
-To build your app correctly, you first need to think of the minimal set of mutable state that your app needs. The key here is [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Figure out the absolute minimal representation of the state your application needs and compute everything else you need on-demand. For example, if you're building a TODO list, just keep an array of the TODO items around; don't keep a separate state variable for the count. Instead, when you want to render the TODO count, simply take the length of the TODO items array.
+Afin de correctement construire votre application, vous devez d'abord penser à l'ensemble minimal d'état modifiable dont votre application a besoin. La clé, ici, est : [*Ne vous Répétez Pas*](https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas) *(Don’t Repeat Yourself en anglais, aussi désigné par l’acronyme DRY, NdT)*. Déterminez la représentation minimal de l'état dont votre application à besoin et calculez le reste à la demande. Par exemple, si vous construisez une liste de tâche, gardez simplement un tableau des différentes tâches ; ne gardez pas de variable d'état pour le compteur. Au lieu de cela, lorsque vous voulez calculez le nombre de tâches, prenez simplement la longueur du tableau contenant les tâches.
 
-Think of all of the pieces of data in our example application. We have:
+Pensez à toutes les données de notre application. Les voici :
 
-  * The original list of products
-  * The search text the user has entered
-  * The value of the checkbox
-  * The filtered list of products
+  * La liste des produits
+  * Le texte de recherche saisi par l'utilisateur
+  * La valeur de la case à cocher
+  * La liste filtrée des produits
 
-Let's go through each one and figure out which one is state. Simply ask three questions about each piece of data:
+Passons en revue chacun d'entre elle et déterminons laquelle est un état. Posez vous simplement ces trois questions sur chaque donnée :
 
-  1. Is it passed in from a parent via props? If so, it probably isn't state.
-  2. Does it remain unchanged over time? If so, it probably isn't state.
-  3. Can you compute it based on any other state or props in your component? If so, it isn't state.
+  1. Est-elle passée depuis un parent par l'intermédiaire des props ? Si oui, ce n'est probablement pas un état.
+  2. Est-ce qu'elle ne change pas dans le temps ? Si oui, ce n'est probablement pas un état.
+  3. Pouvez vous la calculer en vous basant sur un autre état ou props de votre composant ? Si oui, ce n'est probablement pas un état.
 
-The original list of products is passed in as props, so that's not state. The search text and the checkbox seem to be state since they change over time and can't be computed from anything. And finally, the filtered list of products isn't state because it can be computed by combining the original list of products with the search text and value of the checkbox.
+La liste des produits est passée en tant que props, ce n'est donc pas un état. Le texte de recherche et la case à cocher semblent être des états car ils changent avec le temps et ne peuvent être calculé à partir d'un autre état ou prop. Enfin, la liste filtré des produits n'est pas un état car elle peut être calculé en combinant la liste originale des produits avec le texte de recherche et la valeur de la case à cocher.
 
-So finally, our state is:
+Au final, notre état est :
 
-  * The search text the user has entered
-  * The value of the checkbox
+  * Le texte de recherche saisi par l'utilisateur
+  * La valeur de la case à cocher
 
 ## Step 4: Identify Where Your State Should Live {#step-4-identify-where-your-state-should-live}
 
