@@ -141,7 +141,7 @@ const element = <h1>{title}</h1>;
 
 Par défaut, React DOM [échappe](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) toutes les valeurs intégrées dans JSX avant de les rendre. Cela assure que vous ne pouvez jamais injecter quoi que ce soit d'autre que ce vous avez explicitement écrit dans votre application. Tout est converti en chaîne de caractères avant d'être rendu. Celle contribute a la prevention des attaques de type [XSS (cross-site-scripting)](https://fr.wikipedia.org/wiki/Cross-site_scripting).
 
-### JSX Représente des Objets {#jsx-represents-objects}
+### JSX représente des objets {#jsx-represents-objects}
 
 Babel compile JSX vers des appels `React.createElement()`.
 
