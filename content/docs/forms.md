@@ -9,7 +9,7 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
-Les formulaires HTML fonctionnent un peu différemment des autres éléments du DOM en React car ils possèdent naturellement un état interne. Par exemple, ce formulaire en HTML qui accepte seulement un nom :
+Les formulaires HTML fonctionnent un peu différemment des autres éléments du DOM en React car ils possèdent naturellement un état interne. Par exemple, ce formulaire en HTML qui accepte juste un nom :
 
 ```html
 <form>
@@ -21,15 +21,15 @@ Les formulaires HTML fonctionnent un peu différemment des autres éléments du 
 </form>
 ```
 
-Ce formulaire a le comportement classique d'un formulaire HTML et redirige sur une nouvelle page quand l'utilisateur le soumet. Si vous souhaitez ce comportement en React, cela fonctionne déjà. Cependant dans la plupart des cas, il est pratique de gérer la soumission avec une fonction JavaScript qui accède aux données soumises par l'utilisateur. La manière classique de faire est d'utiliser les composants contrôlés.
+Ce formulaire a le comportement classique d'un formulaire HTML et redirige sur une nouvelle page quand l'utilisateur le soumet. Si vous souhaitez ce comportement en React, vous n’avez rien à faire. Cependant, dans la plupart des cas, vous voudrez pouvoir gérer la soumission avec une fonction JavaScript, qui accède aux données saisies par l'utilisateur. La manière classique de faire ça consiste à utiliser les « composants contrôlés ».
 
-## Composants Controlés {#controlled-components}
+## Composants contrôlés {#controlled-components}
 
-En HTML, les éléments de formulaire tels que `<input>`, `<textarea>`, et `<select>` maintiennent généralement leur propre état et se mettent à jour par rapport aux entrées utilisateur. En React, l'état modifiable est généralement sauvegardé dans la propriété `state` des composants et seulement mis à jour avec [`setState()`](/docs/react-component.html#setstate).
+En HTML, les éléments de formulaire tels que `<input>`, `<textarea>`, et `<select>` maintiennent généralement leur propre état et se mettent à jour par rapport aux saisies utilisateur. En React, l'état modifiable est généralement stocké dans la propriété `state` des composants et mis à jour uniquement avec [`setState()`](/docs/react-component.html#setstate).
 
-On peut combiner ces deux concepts en utilisant l'état React comme "source unique de vérité". Ainsi le composant React qui rend le formulaire contrôle aussi son comportement par rapport aux entrées utilisateur. Un élément `input` dont l'état est contrôlé par React est appelé un « composant contrôlé ».
+On peut combiner ces deux concepts en utilisant l'état local React comme « source unique de vérité ». Ainsi le composant React qui affiche le formulaire contrôle aussi son comportement par rapport aux saisies de l’utilisateur. Un champ de formulaire dont l'état est contrôlé de cette façon par React est appelé un « composant contrôlé ».
 
-Par exemple, en reprenant l'ancien exemple pour afficher le nom lors de la soumission, on peut écrire le formulaire en composant connecté :
+Par exemple, en reprenant l'ancien exemple pour afficher le nom lors de la soumission, on peut écrire le formulaire sous forme de composant contrôlé :
 
 ```javascript{4,10-12,24}
 class NameForm extends React.Component {
@@ -66,9 +66,9 @@ class NameForm extends React.Component {
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
 
-Maintenant que l'attribut `value` est utilisé sur notre élément de formulaire, la valeur affichée sera toujours `this.state.value`, plaçant ainsi l'état React comme source unique de vérité. Puisque `handleChange` est lancé a chaque entrée pour mettre a jour l'état React, la valeur affichée sera mise à jour en conséquence en même temps que l'utilisateur écrit.
+À présent que l'attribut `value` est défini sur notre élément de formulaire, la valeur affichée sera toujours `this.state.value`, faisant ainsi de l'état local React la source de vérité. Puisque `handleChange` est déclenché a chaque frappe pour mettre a jour l'état local React, la valeur affichée restera mise à jour au fil de la saisie.
 
-Avec un composant contrôlé, chaque changement de l'état aura une fonction associée. Ça permet de modifier ou valider une entrée utilisateur en temps réel. Par exemple, si l'on veut forcer que les noms soient écris en majuscule, on peut écrire `handleChange`de la manière suivante :
+Dans un composant contrôlé, chaque changement de l'état aura une fonction gestionnaire associée. Ça permet de modifier ou valider facilement, à la volée, les saisies de l’utilisateur. Par exemple, si nous voulions forcer les noms en majuscules, on pourrait écrire `handleChange` de la manière suivante :
 
 ```javascript{2}
 handleChange(event) {
@@ -76,24 +76,24 @@ handleChange(event) {
 }
 ```
 
-## La balise Textarea {#the-textarea-tag}
+## La balise `textarea` {#the-textarea-tag}
 
 En HTML, une balise `<textarea>` définit son texte via ses enfants :
 
 ```html
 <textarea>
-  Bonjour, c'est du texte dans un textarea
+  Bonjour, voici du texte dans une zone de texte
 </textarea>
 ```
 
-En React, un `<textarea>` utilise l'attribut `value` à la place. Du coup, un formulaire utilisant un `<textarea>` peut être écrit d'une manière similaire a un formulaire avec un seul élément `<input>`.
+En React, un `<textarea>` utilise à la place l'attribut `value`. Du coup, un formulaire utilisant un `<textarea>` peut être écrit d'une manière très similaire à un formulaire avec un élément `<input>` mono-ligne.
 
 ```javascript{4-6,12-14,26}
 class EssayForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'Écrivez un essai à propos de votre élément du DOM favoris'
+      value: 'Écrivez un essai à propos de votre élément du DOM préféré'
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -125,9 +125,9 @@ class EssayForm extends React.Component {
 
 Remarquez que `this.state.value` est initialisé dans le constructeur, permettant que le textarea démarre avec du texte à l'intérieur.
 
-## La balise Select {#the-select-tag}
+## La balise `select` {#the-select-tag}
 
-En HTML, `<select>` créé une liste déroulante. Par exemple, ce HTML créé une liste déroulante de fruits.
+En HTML, `<select>` créé une liste déroulante. Par exemple, ce HTML crée une liste déroulante de fruits.
 
 ```html
 <select>
@@ -138,7 +138,7 @@ En HTML, `<select>` créé une liste déroulante. Par exemple, ce HTML créé un
 </select>
 ```
 
-Notez que l'option Noix de coco est sélectionnée au départ, grâce à l'attribut `selected`. React, au lieu d'utiliser l'attribut `selected`, utilise un attribut `value` à la racine de la balise `select`. Ceci est plus approprié dans un composant contrôlé car vous avez seulement à mettre à jour à un seul endroit. Par exemple :
+Notez que l'option Noix de coco est sélectionnée au départ, grâce à l'attribut `selected`. React, au lieu d'utiliser l'attribut `selected`, utilise un attribut `value` sur la balise racine `select`. C’est plus pratique dans un composant contrôlé car vous n’avez qu’un seul endroit à mettre à jour. Par exemple :
 
 ```javascript{4,10-12,24}
 class FlavorForm extends React.Component {
@@ -155,7 +155,7 @@ class FlavorForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Votre fruit favoris est : ' + this.state.value);
+    alert('Votre parfum favori est : ' + this.state.value);
     event.preventDefault();
   }
 
@@ -163,7 +163,7 @@ class FlavorForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Choisissez votre fruit favoris :
+          Choisissez votre parfum favori :
           <select value={this.state.value} onChange={this.handleChange}>
             <option value="pamplemousse">Pamplemousse</option>
             <option value="citron">Citron</option>
@@ -180,7 +180,7 @@ class FlavorForm extends React.Component {
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
 
-Globalement, ça permet aux balises `<input type="text">`, `<textarea>`, et `<select>` de fonctionner de manière similaire - ils acceptent tous un attribut `value` que vous pouvez utiliser pour implémenter un composant contrôlé.
+Au final, ça permet aux balises `<input type="text">`, `<textarea>`, et `<select>` de fonctionner de manière très similaire—elles acceptent toutes un attribut `value` que vous pouvez utiliser pour implémenter un composant contrôlé.
 
 > Note
 >
@@ -190,19 +190,19 @@ Globalement, ça permet aux balises `<input type="text">`, `<textarea>`, et `<se
 ><select multiple={true} value={['B', 'C']}>
 >```
 
-## La balise input file {#the-file-input-tag}
+## La balise `input type="file"` {#the-file-input-tag}
 
-En HTML, un `<input type="file">` permet à un utilisateur de sélectionner un ou plusieurs fichiers depuis son appareil et de les uploader vers un serveur via un formulaire ou grâce à du code JavaScript via [l'API File](https://developer.mozilla.org/fr/docs/Web/API/File/Using_files_from_web_applications).
+En HTML, un `<input type="file">` permet à l’utilisateur de sélectionner un ou plusieurs fichiers depuis son appareil et de les téléverser vers un serveur ou de les manipuler en JavaScript grâce à [l'API File](https://developer.mozilla.org/fr/docs/Web/API/File/Using_files_from_web_applications).
 
 ```html
 <input type="file" />
 ```
 
-Sa valeur étant en lecture seulement, c'est un composant **non-contrôlé** en React. Ceci est expliqué en détail avec d'autres cas de composants non contrôlés [plus tard dans la documentation](/docs/uncontrolled-components.html#the-file-input-tag).
+Sa valeur étant en lecture seule, c'est un composant **non-contrôlé** en React. Ce cas de figure et le sujet des composants non-contrôlés en général sera détaillé [plus tard dans la documentation](/docs/uncontrolled-components.html#the-file-input-tag).
 
-## Gérer plusieurs entrées {#handling-multiple-inputs}
+## Gérer plusieurs saisies {#handling-multiple-inputs}
 
-Quand vous souhaitez gérer plusieurs balises input contrôlés, vous pouvez ajouter un attribut `name` a chaque éléments et laisser la fonction de traitement choisir quoi faire en fonction de la valeur de `event.target.name`.
+Quand vous souhaitez gérer plusieurs champs contrôlés, vous pouvez ajouter un attribut `name` à chaque champ et laisser la fonction gestionnaire choisir quoi faire en fonction de la valeur de `event.target.name`.
 
 Par exemple :
 
@@ -256,7 +256,7 @@ class Reservation extends React.Component {
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
 
-Notez l'utilisation de la syntaxe des [propriétés calculés](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Op%C3%A9rateurs/Initialisateur_objet#Noms_de_propri%C3%A9t%C3%A9s_calcul%C3%A9s) pour mettre à jour la valeur de l'état correspondant au nom de l'input.
+Notez l'utilisation de la syntaxe des [propriétés calculés](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Op%C3%A9rateurs/Initialisateur_objet#Noms_de_propri%C3%A9t%C3%A9s_calcul%C3%A9s) pour mettre à jour la valeur de l'état correspondant au nom du champ.
 
 ```js{2}
 this.setState({
@@ -264,7 +264,7 @@ this.setState({
 });
 ```
 
-Est équivalent à ce code ES5 :
+C’est équivalent à ce code ES5 :
 
 ```js{2}
 var partialState = {};
@@ -272,13 +272,13 @@ partialState[name] = value;
 this.setState(partialState);
 ```
 
-De plus il suffit seulement de l'appeler avec les données modifiées car `setState()` combine automatiquement les données partiel dans l'état courant.
+Qui plus est, comme `setState()` fusionne automatiquement un état partiel dans l'état local courant, il nous a suffi de l'appeler avec les parties modifiées.
 
-## Valeur nulle des input controllés {#controlled-input-null-value}
+## Valeur nulle des champs contrôlés {#controlled-input-null-value}
 
-Définir la prop value sur un [composant contrôlé](/docs/forms.html#controlled-components) empêche l'utilisateur de changer le champ input sauf si le choisissez. Si vous spécifiez une `value` et le champ input est toujours éditable, alors `value` doit être accidentellement `undefined` ou `null`.
+Définir la prop `value` sur un [composant contrôlé](/docs/forms.html#controlled-components) empêche l'utilisateur de changer la saisie sauf si le permettez. Si vous spécifiez une `value` mais que le champ reste modifiable, alors `value` doit s’être accidentellement retrouvée à `undefined` ou `null`.
 
-Le code suivant montre ce cas. (Le champ input est verrouillé au démarrage mais devient éditable après un court délai.)
+Le code suivant illustre ce cas de figure. (Le champ est verrouillé au démarrage mais devient modifiable après un court délai.)
 
 ```javascript
 ReactDOM.render(<input value="Salut" />, mountNode);
@@ -291,8 +291,8 @@ setTimeout(function() {
 
 ## Alternatives aux composants contrôlés {#alternatives-to-controlled-components}
 
-Il est parfois compliqué d'utiliser les composants contrôlés, car il faut écrire un gestionnaire d'évènement pour chaque possibilité de changement de données et envoyer ces derniers dans l'état via un composant React. Ça peut devenir ennuyeux lors de la conversion d'un projet en React, ou l'intégration d'une application React dans une bibliothèque non-React. Dans ces situations, il est intéressant de connaitre les [composants non-contrôlés](/docs/uncontrolled-components.html), une technique alternative pour implémenter les inputs de formulaire.
+Il est parfois fastidieux d'utiliser les composants contrôlés, car il vous faut écrire un gestionnaire d'événement pour chaque possibilité de changement des données, et gérer toute modification des saisies via un composant React. Ça peut devenir particulièrement irritant lors de la conversion d'un projet en React, ou l'intégration d'une application React avec une bibliothèque non-React. Dans ces situations, il est intéressant de connaître les [composants non-contrôlés](/docs/uncontrolled-components.html), une technique alternative pour implémenter les formulaires de saisie.
 
-## Solution complète {#fully-fledged-solutions}
+## Solutions clé en main {#fully-fledged-solutions}
 
-Si vous cherchez une solution complète avec la validation, historique des champs visités, et gestion de soumission de formulaire, [Formik](https://jaredpalmer.com/formik) est un des choix populaires. Cependant, il est construit sur les mêmes principes que les composants contrôlés et la gestion de l'état - ne négligez pas leur apprentissage.
+Si vous cherchez une solution complète gérant la validation, l’historique des champs visités, et la gestion de soumission de formulaire, [Formik](https://jaredpalmer.com/formik) fait partie des choix populaires. Ceci dit, il est repose sur les mêmes principes de composants contrôlés et de gestion d'état local—alors ne faites pas l’impasse dessus.
