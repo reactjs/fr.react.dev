@@ -50,7 +50,7 @@ Ce code affiche une liste à puces de nombres entre 1 et 5.
 
 Généralement, on souhaite afficher une liste au sein d’un [composant](/docs/components-and-props.html).
 
-On peut transformer l’exemple précédent pour en faire un composant qui accepte un tableau de nombres et produit une liste non ordonnée d'éléments.
+On peut transformer l’exemple précédent pour en faire un composant qui accepte un tableau de nombres et produit une liste d'éléments.
 
 ```javascript{3-5,7,13}
 function NumberList(props) {
