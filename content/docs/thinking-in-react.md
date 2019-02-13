@@ -121,13 +121,13 @@ Pour chaque état de votre application :
 
 Utilisons cette stratégie pour notre application :
 
-  * `ProductTable` doit filtrer la liste des produits en fonctions de l'état et `SearchBar` doit afficher l'état du texte de recherche et de la case à cocher.
+  * `ProductTable` doit filtrer la liste des produits en fonction de l'état et `SearchBar` doit afficher l'état du texte de recherche et de la case à cocher.
   * Le composant parent commun est `FilterableProductTable`.
   * Conceptuellement, il est logique que le texte du filtre et la valeur de la case à cocher soient dans `FilterableProductTable`
 
 Parfait, nous avons donc décidé que `FilterableProductTable` possèdera notre état. Tout d'abord, ajoutez une propriété d'instance `this.state = {filterText: '', inStockOnly: false}` dans le `constructeur` de `FilterableProductTable` pour refléter l'état initial de votre application. Ensuite, passez `filterText` et `inStockOnly` à `ProductTable` et `SearchBar` en tant que prop. Enfin, utilisez ces props pour filtrer les lignes dans `ProductTable` et définissez les valeurs des champs du formulaire dans `SearchBar`.
 
-Vous pouvez commencer à voir comment votre application se comportera : initialisez `filterText` à `"ball"` et rafraîchissez votre application. Vous verrez que la table de données est correctement mis à jour.
+Vous pouvez commencer à voir comment votre application se comportera : initialisez `filterText` à `"ball"` et rafraîchissez votre application. Vous verrez que la table de données est correctement mise à jour.
 
 ## Étape 5 : Ajouter un flux de données inversé {#step-5-add-inverse-data-flow}
 
@@ -139,10 +139,10 @@ React rend ce flux de données explicite pour faciliter la compréhension du fon
 
 Si vous essayez d'écrire ou de cocher la case dans la version actuelle de l'exemple, vous verrez que React ne tient pas compte de vos entrées. C'est intentionnel, car nous avons définit l'attribut `value` de l'élément `input` pour être toujours égal à l'`état` passé depuis `FilterableProductTable`.
 
-Réfléchissons à ce que nous voulons qu'il se passe. Nous voulons nous assurer que chaque fois que l'utilisateur met à jour le formulaire, nous mettons à jour l'état pour refléter l'entrée de l'utilisateur. Puisque les composants ne doivent mettre à jour que leur propre état, `FilterableProductTable` passera une fonction de rappel à `SearchBar` qui se déclenchera chaque fois que l'état doit être mis à jour. Nous pouvons utiliser l'évenement `onChange` sur les entrées dont on veut être notifié. Les fonctions de rappel passés par `FilterableProductTable` appelleront `setState()`, et l'application sera mise à jour.
+Réfléchissons à ce que nous voulons qu'il se passe. Nous voulons nous assurer que chaque fois que l'utilisateur met à jour le formulaire, nous mettons à jour l'état pour refléter l'entrée de l'utilisateur. Puisque les composants ne doivent mettre à jour que leur propre état, `FilterableProductTable` passera une fonction de rappel à `SearchBar` qui se déclenchera chaque fois que l'état doit être mis à jour. Nous pouvons utiliser l'évenement `onChange` sur les entrées dont on veut être notifié. Les fonctions de rappel passées par `FilterableProductTable` appelleront `setState()`, et l'application sera mise à jour.
 
 Bien que cela semble complexe, c'est juste quelques lignes de code. Et la façon dont vos données circulent dans l'application est vraiment clair.
 
 ## Et c'est tout {#and-thats-it}
 
-Avec un peu de chance, cela vous donnera une idée de la façon de penser la construction de vos composants et applications React. Bien que cela demande peut-être plus d'écriture que vous n'en avez l'habitude, rappelez-vous que le code est beaucoup plus lu qu'écrit, et qu'il est êtremement facile de lire ce code modulaire et explicite. Au fur et à mesure que vous commencerez à écrire de plus grande bilbliothèques de composants, vous apprécierez cette clareté et modularité, et avec la réutilisation du code, vos lignes de codes commenceront à se réduire. :)
+Avec un peu de chance, cela vous donnera une idée de la façon de penser la construction de vos composants et applications React. Bien que cela demande peut-être plus d'écriture que vous n'en avez l'habitude, rappelez-vous que le code est beaucoup plus lu qu'écrit, et qu'il est extrêmement facile de lire ce code modulaire et explicite. Au fur et à mesure que vous commencerez à écrire de plus grande bilbliothèques de composants, vous apprécierez cette clarté et modularité, et avec la réutilisation du code, vos lignes de codes commenceront à se réduire. :)
