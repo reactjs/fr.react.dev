@@ -58,7 +58,11 @@ This repo is meant to provide French translation for the [reactjs.org](https://r
 1. If possible, include screenshots of visual changes. A Netlify build will also be automatically created once you make your PR so other people can see your change.
 
 
+<<<<<<< HEAD
 ## Translation
+=======
+If you are interested in translating `reactjs.org`, please see the current translation efforts at [isreacttranslatedyet.com](https://www.isreacttranslatedyet.com/).
+>>>>>>> f767be60c2efd49115b24c4dc6a17d666e4bc263
 
 If you are interested in translating `reactjs.org`, please see the current translation efforts at [isreacttranslatedyet.com](https://www.isreacttranslatedyet.com/).
 
