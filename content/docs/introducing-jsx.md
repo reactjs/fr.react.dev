@@ -24,13 +24,13 @@ Le fonctionnement d’une UI conditionnera toujours les logiques de rendu, de la
 
 Au lieu de séparer artificiellement les *technologies* en mettant le balisage et la logique dans des fichiers séparés, React [sépare les *préoccupations*](https://fr.wikipedia.org/wiki/S%C3%A9paration_des_pr%C3%A9occupations) via des unités faiblement couplées appelées « composants », qui contiennent les deux. Nous reviendrons sur les composants dans une [prochaine section](/docs/components-and-props.html), mais si l'idée d’injecter des balises dans du JS vous met mal à l’aise, [cette présentation](https://www.youtube.com/watch?v=x7cQ3mrcKaY) vous fera peut-être changer d'avis.
 
-React ne [nécessite pas](/docs/react-without-jsx.html) l'utilisation de JSX pour fonctionner, mais la plupart des gens le considère comme une aide visuel quand ils manipulent l'interface utilisateur dans le code JavaScript. Cela permet aussi à React de montrer des messages d'erreurs et d'avertissements plus utiles.
+React [ne vous oblige pas](/docs/react-without-jsx.html) à utiliser JSX, mais la plupart des gens y trouvent une aide visuelle quand ils manipulent l'interface utilisateur dans le code JavaScript. Ça permet aussi à React de produire des messages d'erreurs et d'avertissements plus utiles.
 
-Nous pouvons enfin commencer !
+Ceci étant posé, commençons !
 
 ### Utiliser des expressions dans JSX {#embedding-expressions-in-jsx}
 
-Dans l'exemple suivant, nous déclarons une variable appelée `name` et nous l'utilisons ensuite dans du JSX en l'encadrant avec des accolades :
+Dans l'exemple suivant, nous déclarons une variable appelée `name` et nous l'utilisons ensuite dans JSX en l'encadrant avec des accolades :
 
 ```js{1,2}
 const name = 'Clarisse Agbegnenou';
@@ -42,7 +42,7 @@ ReactDOM.render(
 );
 ```
 
-Vous pouvez utiliser n'importe quelle [expression JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_et_Op%C3%A9rateurs#Expressions) valide dans des accolades en JSX. Par exemple, `2 + 2`, `user.firstName`, or `formatName(user)` sont toutes des expressions JavaScript valides.
+Vous pouvez utiliser n'importe quelle [expression JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_et_Op%C3%A9rateurs#Expressions) valide dans des accolades en JSX. Par exemple, `2 + 2`, `user.firstName`, ou `formatName(user)` sont toutes des expressions JavaScript valides.
 
 Dans l'exemple suivant, on intègre le résultat de l'appel d'une fonction JavaScript, `formatName(user)`, dans un élément `<h1>`.
 
@@ -68,50 +68,50 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://introducing-jsx)
+**[Essayer sur CodePen](codepen://introducing-jsx)**
 
-On sépare le JSX sur plusieurs lignes pour une meilleure lecture. Par la même occasion, nous recommandons aussi de le mettre entre parenthèses afin d'éviter les pièges [d'insertion de point-virgule automatique](http://stackoverflow.com/q/2846283), notez que cette pratique n'est pas obligatoire.
+On découple le JSX en plusieurs lignes pour une meilleure lisibilité. Par la même occasion, nous recommandons également de le mettre entre parenthèses afin d'éviter les pièges [d'insertion de point-virgule automatique](http://stackoverflow.com/q/2846283), même si cette pratique n'est pas obligatoire.
 
-### JSX est aussi une expression {#jsx-is-an-expression-too}
+### JSX n’est rien d’autre qu’une expression {#jsx-is-an-expression-too}
 
-Après la compilation, les expressions JSX deviennent des appels de fonctions JavaScripts réguliers et sont évalués en tant qu'objet JavaScript.
+Après la compilation, les expressions JSX deviennent de simples appels de fonctions JavaScripts, dont l'évaluation renvoie des objets JavaScript.
 
-Cela signifie que vous pouvez utiliser JSX à l'intérieur d'instructions `if` ou de boucles `for`, l'assigner dans une variable, l'accepter en tant qu'argument, et le retourner depuis des fonctions :
+Ça signifie que vous pouvez utiliser JSX à l'intérieur d'instructions `if` ou de boucles `for`, l'affecter à des variables, l'accepter en tant qu'argument, et le renvoyer depuis des fonctions :
 
 ```js{3,5}
 function getGreeting(user) {
   if (user) {
     return <h1>Bonjour, {formatName(user)} !</h1>;
   }
-  return <h1>Bonjour, Inconnu.</h1>;
+  return <h1>Bonjour, Belle Inconnue.</h1>;
 }
 ```
 
-### Spécifier des Attributs avec JSX {#specifying-attributes-with-jsx}
+### Spécifier des attributs en JSX {#specifying-attributes-with-jsx}
 
-Vous pouvez utiliser des guillemets doubles pour spécifier des chaînes de caractères littérales en tant qu’attributs :
+Vous pouvez utiliser des guillemets pour spécifier des littéraux chaînes de caractères dans les attributs :
 
 ```js
 const element = <div tabIndex="0"></div>;
 ```
 
-Vous pouvez aussi utiliser des accolades pour intégrer une expression JavaScript dans un attribut :
+Vous pouvez aussi utiliser des accolades pour utiliser une expression JavaScript dans un attribut :
 
 ```js
 const element = <img src={user.avatarUrl}></img>;
 ```
 
-Ne mettez pas des guillemets doubles autour d'accolades quand vous intégrez une expression JavaScript dans un attribut. You devrez utiliser des guillemets doubles (for des valeurs de type chaîne de caractères) ou des accolades (pour des expressions), mais pas les deux dans le même attribut.
+Ne mettez pas de guillemets autour des accolades quand vous utilisez une expression JavaScript dans un attribut. Vous pouvez utiliser soit des guillemets (pour des valeurs textuelles) soit des accolades (pour des expressions), mais pas les deux à la fois pour un même attribut.
 
 >**Attention :**
 >
->Comme JSX est plus proche de JavaScript qu'il ne l'est du HTML, React DOM utilise le `camelCase` comme convention de nommage pour ses propriétés au lieu des noms des attributs HTML.
+>Dans la mesure où JSX est plus proche de JavaScript que de HTML, React DOM utilise la casse `camelCase` comme convention de nommage des propriétés, au lieu des noms d’attributs HTML.
 >
 >Par exemple, `class` devient [`className`](https://developer.mozilla.org/fr/docs/Web/API/Element/className) en JSX, et `tabindex` devient [`tabIndex`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/tabIndex).
 
 ### Spécifier des éléments enfants en JSX {#specifying-children-with-jsx}
 
-Si une balise est vide, vous pouvez le fermer immédiatement via `/>`, comment en XML :
+Si une balise est vide, vous pouvez la fermer immédiatement avec `/>`, comme en XML :
 
 ```js
 const element = <img src={user.avatarUrl} />;
@@ -128,18 +128,18 @@ const element = (
 );
 ```
 
-### JSX Empêchent les Attaques de type Injection {#jsx-prevents-injection-attacks}
+### JSX empêche les attaques d’injection {#jsx-prevents-injection-attacks}
 
-Vous ne risquez rien si vous intégré une entrée utilisateur en JSX :
+Vous ne risquez rien en utilisant une saisie utilisateur dans JSX :
 
 ```js
 const title = response.potentiallyMaliciousInput;
-// Cela est sûr :
+// Ceci est sans risque :
 const element = <h1>{title}</h1>;
 ```
 
 
-Par défaut, React DOM [échappe](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) toutes les valeurs intégrées dans JSX avant de les rendre. Cela assure que vous ne pouvez jamais injecter quoi que ce soit d'autre que ce vous avez explicitement écrit dans votre application. Tout est converti en chaîne de caractères avant d'être rendu. Celle contribute a la prevention des attaques de type [XSS (cross-site-scripting)](https://fr.wikipedia.org/wiki/Cross-site_scripting).
+Par défaut, React DOM [échappe](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) toutes les valeurs intégrées avec JSX avant d’en faire le rendu. Il garantit ainsi que vous ne risquez jamais d’injecter quoi que ce soit d'autre que ce vous avez explicitement écrit dans votre application. Tout est converti en chaîne de caractères avant de produire le rendu. Ça aide à éviter les attaques [XSS (cross-site-scripting)](https://fr.wikipedia.org/wiki/Cross-site_scripting).
 
 ### JSX représente des objets {#jsx-represents-objects}
 
