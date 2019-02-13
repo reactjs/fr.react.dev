@@ -20,7 +20,7 @@ JSX produit des « éléments » React. Nous verrons comment les retranscrire 
 
 ### Pourquoi JSX ? {#why-jsx}
 
-React embrasse le fait que la logique de rendu est intrinsèquement couplée à la logique de l'interface utilisateur : comment les événements sont-ils gérés, comment l'état évolue t-il dans le temps, et comment la donnée est-elle préparée pour l'affichage.
+Le fonctionnement d’une UI conditionnera toujours les logiques de rendu, de la gestion des événements à la préparation des données pour l'affichage, en passant par l'évolution de l'état au fil du temps. React a choisi d'assumer pleinement cet état de fait.
 
 Au lieu de séparer artificiellement les *technologies* en mettant le balisage et la logique dans des fichiers séparés, React [sépare les *préoccupations*](https://fr.wikipedia.org/wiki/S%C3%A9paration_des_pr%C3%A9occupations) via des unités faiblement couplées appelées des "composants" qui contiennent les deux. Nous reviendrons sur les composants dans une [prochaine section](/docs/components-and-props.html), si vous vous ne sentez pas convaincu avec l'idée de mixer des balises dans du JS, [cette présentation](https://www.youtube.com/watch?v=x7cQ3mrcKaY) pourra peut-être vous faire changer d'avis.
 
