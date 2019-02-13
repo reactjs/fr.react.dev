@@ -76,13 +76,13 @@ Il suffit de se reporter à la [documentation de React](/docs/) si vous avez bes
 
 ### Un bref intermède : Props vs État {#a-brief-interlude-props-vs-state}
 
-Il existe deux types de « modèles » de données avec React : les props et l'état. Il est important de comprendre la distinction entre les deux ; parcourez [la documentions officiel de React](/docs/interactivity-and-dynamic-uis.html) si vous n'êtes pas sûr de la différence.
+Il existe deux types de « modèles » de données avec React : les props et l'état. Il est important de comprendre la distinction entre les deux ; parcourez [la documentation officielle de React](/docs/interactivity-and-dynamic-uis.html) si vous n'êtes pas sûr de la différence.
 
 ## Étape 3 : Déterminer l'état de l'interface utilisateur de façon minimale (mais complète) {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
 Pour rendre votre interface utilisateur interactive, vous devez être capable de déclencher des modifications à votre modèle de données. React vous facilite la tâche avec l'**état**.
 
-Afin de correctement construire votre application, vous devez d'abord penser à l'ensemble minimal d'état modifiable dont votre application a besoin. La clé, ici, est : [*Ne vous Répétez Pas*](https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas) *(Don’t Repeat Yourself en anglais, aussi désigné par l’acronyme DRY, NdT)*. Déterminez la représentation minimal de l'état dont votre application a besoin et calculez le reste à la demande. Par exemple, si vous construisez une liste de tâche, gardez simplement un tableau des différentes tâches ; ne gardez pas de variable d'état pour le compteur. Au lieu de cela, lorsque vous voulez calculez le nombre de tâches, prenez simplement la longueur du tableau contenant les tâches.
+Afin de correctement construire votre application, vous devez d'abord penser à l'ensemble minimal d'état modifiable dont votre application a besoin. La clé, ici, est : [*Ne vous Répétez Pas*](https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas) *(Don’t Repeat Yourself en anglais, aussi désigné par l’acronyme DRY, NdT)*. Déterminez la représentation minimale de l'état dont votre application a besoin et calculez le reste à la demande. Par exemple, si vous construisez une liste de tâche, gardez simplement un tableau des différentes tâches ; ne gardez pas de variable d'état pour le compteur. Au lieu de cela, lorsque vous voulez calculer le nombre de tâches, prenez simplement la longueur du tableau contenant les tâches.
 
 Pensez à toutes les différentes données de notre application. On a :
 
