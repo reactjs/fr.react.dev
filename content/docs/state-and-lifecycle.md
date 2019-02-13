@@ -10,7 +10,7 @@ next: handling-events.html
 
 Cette page présente les concepts d'état local et de cycle de vie dans un composant React. Vous pouvez trouver [la référence d'API des composants ici](/docs/react-component.html).
 
-Prenons l'exemple de l'horloge dans [une des sections précédentes](/docs/rendering-elements.html#updating-the-rendered-element). Dans [Faire le rendu d'éléments](/docs/rendering-elements.html#rendering-an-element-into-the-dom), nous avons appris une seule façon de mettre à jour l'interface utilisateur (UI). On appelle `ReactDOM.render()` pour changer la sortie rendue :
+Prenons l'exemple de l'horloge dans [une des sections précédentes](/docs/rendering-elements.html#updating-the-rendered-element). Dans [Le rendu des éléments](/docs/rendering-elements.html#rendering-an-element-into-the-dom), nous avons appris une seule façon de mettre à jour l'interface utilisateur (UI). On appelle `ReactDOM.render()` pour changer la sortie rendue :
 
 ```js{8-11}
 function tick() {
