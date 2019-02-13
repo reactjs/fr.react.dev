@@ -15,7 +15,7 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-Cette page fournit une référence détaillée de l'API pour la définition de composants React à base de classes. Elle suppose que vous êtes à l’aise avec les concepts fondamentaux de React, tels que les [Composants et Props](/docs/components-and-props.html), ainsi que l’[État et Cycle de vie](/docs/state-and-lifecycle.html). Si ce n’est pas le cas, lisez ces pages avant de continuer.
+Cette page fournit une référence détaillée de l'API pour la définition de composants React à base de classes. Elle suppose que vous êtes à l’aise avec les concepts fondamentaux de React, tels que les [Composants et props](/docs/components-and-props.html), ainsi que l’[État et cycle de vie](/docs/state-and-lifecycle.html). Si ce n’est pas le cas, lisez ces pages avant de continuer.
 
 ## Aperçu de l’API {#overview}
 
@@ -559,7 +559,7 @@ this.setState((state) => {
 
 Pour explorer ce sujet plus en détail, vous pouvez consulter :
 
-* [Le guide État et Cycle de vie](/docs/state-and-lifecycle.html)
+* [Le guide État et cycle de vie](/docs/state-and-lifecycle.html)
 * [En profondeur : Quand et pourquoi les appels à `setState()` sont-ils regroupés ?](https://stackoverflow.com/a/48610973/458193) (en anglais)
 * [En profondeur : Pourquoi `this.state` ne déclenche-t-il pas une mise à jour immédiate ?](https://github.com/facebook/react/issues/11527#issuecomment-360199710) (en anglais)
 
@@ -615,7 +615,7 @@ Si `props.color` est définie à `null`,  elle restera à `null` :
 
 ### `displayName` {#displayname}
 
-La chaîne de caractères `displayName` est utilisée dans les messages de débogage. La plupart du temps, vous n’avez pas besoin de la définir explicitement parce qu’elle est déduite du nom de la fonction ou classe qui définit le composant. Mais on peut vouloir la définir lorsqu’on veut afficher un nom différent pour des raisons de débogage ou lorsqu’on crée un composant d’ordre supérieur : vous trouverez plus de détails dans [Enrober le Nom d’Affichage pour Faciliter le Débogage](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging).
+La chaîne de caractères `displayName` est utilisée dans les messages de débogage. La plupart du temps, vous n’avez pas besoin de la définir explicitement parce qu’elle est déduite du nom de la fonction ou classe qui définit le composant. Mais on peut vouloir la définir lorsqu’on veut afficher un nom différent pour des raisons de débogage ou lorsqu’on crée un composant d’ordre supérieur : vous trouverez plus de détails dans [Enrober le nom d’affichage pour faciliter le débogage](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging).
 
 * * *
 
@@ -623,7 +623,7 @@ La chaîne de caractères `displayName` est utilisée dans les messages de débo
 
 ### `props` {#props}
 
-`this.props` contient les props définies par l’appelant de ce composant. Consultez [Composants et Props](/docs/components-and-props.html) pour une introduction aux props.
+`this.props` contient les props définies par l’appelant de ce composant. Consultez [Composants et props](/docs/components-and-props.html) pour une introduction aux props.
 
 Cas particulier : `this.props.children` est spéciale, généralement définie par les balises enfants dans l’expression JSX plutôt que dans la balise du composant lui-même.
 
@@ -633,6 +633,6 @@ L’état local contient des données spécifiques à ce composant, qui sont sus
 
 Lorsqu’une valeur n’est utilisée ni par l’affichage ni par le flux de données (par exemple, un ID de minuteur), vous n’avez pas à la mettre dans l’état local. Ce genre de valeurs peuvent être stockées comme champs de l’instance de composant.
 
-Consultez [État et Cycle de vie](/docs/state-and-lifecycle.html) pour de plus amples informations sur l’état local.
+Consultez [État et cycle de vie](/docs/state-and-lifecycle.html) pour de plus amples informations sur l’état local.
 
 Ne modifiez jamais `this.state` directement, car appeler `setState()` par la suite risque d’écraser les modifications que vous auriez apportées. Traitez `this.state` comme s’il était immuable.
