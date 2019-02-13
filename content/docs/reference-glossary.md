@@ -1,51 +1,51 @@
 ---
 id: glossary
-title: Glossary of React Terms
+title: Glossaire des termes React
 layout: docs
 category: Reference
 permalink: docs/glossary.html
 
 ---
 
-## Single-page Application {#single-page-application}
+## *Single-page Application* {#single-page-application}
 
-A single-page application is an application that loads a single HTML page and all the necessary assets (such as JavaScript and CSS) required for the application to run. Any interactions with the page or subsequent pages do not require a round trip to the server which means the page is not reloaded.
+Une *single-page application* (SPA) est une application qui charge une unique page HTML et toutes les ressources nécessaires (telles que du JavaScript et des CSS) requises pour le fonctionnement de l’application.  Aucune interaction sur la page ou les pages ultérieures ne nécessitera un nouvel aller-retour avec le serveur, ce qui signifie que la page n’a pas besoin d’être rafraîchie.
 
-Though you may build a single-page application in React, it is not a requirement. React can also be used for enhancing small parts of existing websites with additional interactivity. Code written in React can coexist peacefully with markup rendered on the server by something like PHP, or with other client-side libraries. In fact, this is exactly how React is being used at Facebook.
+Même si vous pouvez construire une SPA avec React, ce n’est pas obligatoire.  React peut aussi être utilisé pour améliorer de petites parties de sites existants en leur apportant une interactivité supplémentaire.  Le code écrit en React cohabite paisiblement tant avec le balisage produit par le serveur, au moyen de technologies telles que PHP, qu’avec les autres bibliothèques côté client.  En fait, c’est exactement ainsi que React est utilisé chez Facebook.
 
-## ES6, ES2015, ES2016, etc {#es6-es2015-es2016-etc}
+## ES6, ES2015, ES2016, etc. {#es6-es2015-es2016-etc}
 
-These acronyms all refer to the most recent versions of the ECMAScript Language Specification standard, which the JavaScript language is an implementation of. The ES6 version (also known as ES2015) includes many additions to the previous versions such as: arrow functions, classes, template literals, `let` and `const` statements. You can learn more about specific versions [here](https://en.wikipedia.org/wiki/ECMAScript#Versions).
+Ces acronymes font référence aux versions les plus récentes du standard *ECMAScript Language Specification*, dont le langage JavaScript est une implémentation. La version ES6 (également connue sous le nom ES2015) apporte de nombreuses nouveautés par rapport aux versions précédentes, telles que : les fonctions fléchées, les classes, les gabarits de chaînes, les déclarations `let` et `const`…  Vous pouvez en apprendre plus sur des versions précises [ici](https://fr.wikipedia.org/wiki/ECMAScript#Versions).
 
-## Compilers {#compilers}
+## Compilateurs {#compilers}
 
-A JavaScript compiler takes JavaScript code, transforms it and returns JavaScript code in a different format. The most common use case is to take ES6 syntax and transform it into syntax that older browsers are capable of interpreting. [Babel](https://babeljs.io/) is the compiler most commonly used with React.
+Un compilateur JavaScript, souvent appelé *transpileur*, prend du code JavaScript, le transforme et renvoie un code JavaScript de format différent.  Le cas d’usage le plus courant consiste à prendre la syntaxe ES6 et à la transformer en une syntaxe que les navigateurs plus anciens sont capables d’interpréter. [Babel](https://babeljs.io/) est le compilateur le plus utilisé avec React.
 
-## Bundlers {#bundlers}
+## *Bundlers* {#bundlers}
 
-Bundlers take JavaScript and CSS code written as separate modules (often hundreds of them), and combine them together into a few files better optimized for the browsers. Some bundlers commonly used in React applications include [Webpack](https://webpack.js.org/) and [Browserify](http://browserify.org/).
+Les *bundlers* prennent du code JavaScript et CSS écrit sous forme de modules distincts (souvent par centaines), et les combine pour produire un petit nombre de fichiers plus optimisés pour les navigateurs.  Parmi les *bundlers* couramment utilisés pour les applications React, on trouve [Webpack](https://webpack.js.org/) et [Browserify](http://browserify.org/).
 
-## Package Managers {#package-managers}
+## Gestionnaires de paquets {#package-managers}
 
-Package managers are tools that allow you to manage dependencies in your project. [npm](https://www.npmjs.com/) and [Yarn](https://yarnpkg.com/) are two package managers commonly used in React applications. Both of them are clients for the same npm package registry.
+Les gestionnaires de paquets sont des outils qui vous permettent de gérer les dépendances de votre projet. [npm](https://www.npmjs.com/) et [Yarn](https://yarnpkg.com/) sont les deux gestionnaires de paquet couramment utilisés pour les applications React. Les deux travaillent en fait avec le même référentiel de modules, géré par npm.
 
 ## CDN {#cdn}
 
-CDN stands for Content Delivery Network. CDNs deliver cached, static content from a network of servers across the globe. 
+CDN est l’acronyme de *Content Delivery Network* *(réseau de distribution de contenu, NdT)*.   Les CDNs fournissent des contenus statiques mis en cache via un réseau de serveurs répartis dans le monde entier.
 
 ## JSX {#jsx}
 
-JSX is a syntax extension to JavaScript. It is similar to a template language, but it has full power of JavaScript. JSX gets compiled to `React.createElement()` calls which return plain JavaScript objects called "React elements". To get a basic introduction to JSX [see the docs here](/docs/introducing-jsx.html) and find a more in-depth tutorial on JSX [here](/docs/jsx-in-depth.html).
+JSX est une extension syntaxique de JavaScript.  C’est un peu comme un langage de gestion de gabarit utilisant du balisage, mais il tire parti de toute la puissance de JavaScript.  JSX est compilé en appels à `React.createElement()`, qui renvoient des objets JavaScript nus appelés « éléments React ».  Pour découvrir les bases de JSX [consultez cette page de doc](/docs/introducing-jsx.html), et pour l’explorer plus en profondeur vous avez [cette page-ci](/docs/jsx-in-depth.html).
 
-React DOM uses camelCase property naming convention instead of HTML attribute names. For example, `tabindex` becomes `tabIndex` in JSX. The attribute `class` is also written as `className` since `class` is a reserved word in JavaScript:
+React DOM utilise la casse `camelCase` comme convention de nommage des propriétés, au lieu des noms d’attributs HTML. Par exemple, l’attribut `class` devient `className`, dans la mesure où `class` est un mot réservé en JavaScript :
 
 ```js
-const name = 'Clementine';
+const name = 'Clémentine';
 ReactDOM.render(
-  <h1 className="hello">My name is {name}!</h1>,
+  <h1 className="hello">Je m’appelle {name} !</h1>,
   document.getElementById('root')
 );
-```  
+```
 
 ## [Elements](/docs/rendering-elements.html) {#elements}
 
@@ -77,7 +77,7 @@ class Welcome extends React.Component {
 }
 ```
 
-Components can be broken down into distinct pieces of functionality and used within other components. Components can return other components, arrays, strings and numbers. A good rule of thumb is that if a part of your UI is used several times (Button, Panel, Avatar), or is complex enough on its own (App, FeedStory, Comment), it is a good candidate to be a reusable component. Component names should also always start with a capital letter (`<Wrapper/>` **not** `<wrapper/>`). See [this documentation](/docs/components-and-props.html#rendering-a-component) for more information on rendering components. 
+Components can be broken down into distinct pieces of functionality and used within other components. Components can return other components, arrays, strings and numbers. A good rule of thumb is that if a part of your UI is used several times (Button, Panel, Avatar), or is complex enough on its own (App, FeedStory, Comment), it is a good candidate to be a reusable component. Component names should also always start with a capital letter (`<Wrapper/>` **not** `<wrapper/>`). See [this documentation](/docs/components-and-props.html#rendering-a-component) for more information on rendering components.
 
 ### [`props`](/docs/components-and-props.html) {#props}
 
@@ -132,7 +132,7 @@ Lifecycle methods are custom functionality that gets executed during the differe
 
  ## [Controlled](/docs/forms.html#controlled-components) vs. [Uncontrolled Components](/docs/uncontrolled-components.html)
 
-React has two different approaches to dealing with form inputs. 
+React has two different approaches to dealing with form inputs.
 
 An input form element whose value is controlled by React is called a *controlled component*. When a user enters data into a controlled component a change event handler is triggered and your code decides whether the input is valid (by re-rendering with the updated value). If you do not re-render then the form element will remain unchanged.
 
