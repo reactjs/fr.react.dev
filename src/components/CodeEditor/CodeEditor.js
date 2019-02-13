@@ -4,12 +4,13 @@
  * @emails react-core
  */
 
+import {LiveEditor, LiveProvider} from 'react-live';
 import React, {Component} from 'react';
+import {colors, media} from 'theme';
+
+import MetaTitle from 'templates/components/MetaTitle';
 import ReactDOM from 'react-dom';
 import Remarkable from 'remarkable';
-import {LiveEditor, LiveProvider} from 'react-live';
-import {colors, media} from 'theme';
-import MetaTitle from 'templates/components/MetaTitle';
 
 const compileES5 = (
   code, // eslint-disable-next-line no-undef
@@ -59,7 +60,9 @@ class CodeEditor extends Component {
           Babel n’a pas pu être chargé
           <br />
           <br />
-          Ça peut venir d’un bloqueur de publicités.  Si vous en utilisez un, vous voudrez sans doute ajouter fr.reactjs.org à sa liste blanche de sites pour que les exemples interactifs de code fonctionnent.  Si vous utilisez le navigateur Brave, vous voudrez sans doute ajuster vos réglages de bouclier.
+          Ça peut venir d’un bloqueur de publicités. Si vous en utilisez un,
+          vous voudrez sans doute ajouter fr.reactjs.org à sa liste blanche de
+          sites pour que les exemples interactifs de code fonctionnent.
         </span>
       );
     } else if (error != null) {
