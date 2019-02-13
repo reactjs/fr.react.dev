@@ -16,7 +16,7 @@ Cette drôle de syntaxe n'est ni une chaîne de caractères ni du HTML.
  
 Ça s'appelle du JSX, et c'est une extension syntaxique de JavaScript. Nous recommandons de l'utiliser avec React afin de décrire à quoi devrait ressembler l'interface utilisateur (UI). JSX vous fait sûrement penser à un langage de balisage, mais il recèle toute la puissance de JavaScript.
 
-JSX produit des "éléments" React. Nous explorerons comment les rendre dans le DOM dans la [prochaine section](/docs/rendering-elements.html). Ci-dessous vous pouvez trouver les bases en JSX à savoir afin de bien démarrer.
+JSX produit des « éléments » React. Nous verrons comment les retranscrire dans le DOM dans la [prochaine section](/docs/rendering-elements.html). Dans la suite de ce document, nous verrons les bases de JSX dont vous aurez besoin pour bien démarrer.
 
 ### Pourquoi le JSX ? {#why-jsx}
 
