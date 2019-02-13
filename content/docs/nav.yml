@@ -79,7 +79,7 @@
       title: Uncontrolled Components
     - id: web-components
       title: Web Components
-- title: Référence API
+- title: Référence de l'API
   items:
     - id: react-api
       title: React
