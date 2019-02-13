@@ -109,7 +109,7 @@ Ne mettez pas des guillemets doubles autour d'accolades quand vous intégrez une
 >
 >Par exemple, `class` devient [`className`](https://developer.mozilla.org/fr/docs/Web/API/Element/className) en JSX, et `tabindex` devient [`tabIndex`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/tabIndex).
 
-### Spécifier des Enfants avec JSX {#specifying-children-with-jsx}
+### Spécifier des éléments enfants en JSX {#specifying-children-with-jsx}
 
 Si une balise est vide, vous pouvez le fermer immédiatement via `/>`, comment en XML :
 
