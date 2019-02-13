@@ -14,7 +14,7 @@ const element = <h1>Bonjour, monde !</h1>;
 
 Cette drôle de syntaxe n'est ni une chaîne de caractères ni du HTML. 
  
-Cela s'appelle du JSX, c'est une extension syntaxique de JavaScript. Nous recommandons de l'utiliser avec React afin de décrire à quoi devrait ressembler l'interface utilisateur. JSX vous fait surement penser à un langage de balisage, mais il est accompagné de tout le pouvoir de JavaScript.
+Ça s'appelle du JSX, et c'est une extension syntaxique de JavaScript. Nous recommandons de l'utiliser avec React afin de décrire à quoi devrait ressembler l'interface utilisateur (UI). JSX vous fait sûrement penser à un langage de balisage, mais il recèle toute la puissance de JavaScript.
 
 JSX produit des "éléments" React. Nous explorerons comment les rendre dans le DOM dans la [prochaine section](/docs/rendering-elements.html). Ci-dessous vous pouvez trouver les bases en JSX à savoir afin de bien démarrer.
 
