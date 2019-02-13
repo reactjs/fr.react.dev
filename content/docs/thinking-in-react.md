@@ -12,7 +12,7 @@ React est, à notre avis, la meilleur façon de créer de large et rapide applic
 
 L'un des nombreux points forts de React est la façon dont il vous fait penser aux applications au fur et à mesure que vous les créez. Dans ce document, nous vous guiderons dans l'élaboration d'un tableaux de données de produit recherchable avec React.
 
-## Commençons avec une Maquette {#start-with-a-mock}
+## Commençons avec une maquette {#start-with-a-mock}
 
 Imaginez que nous avons déjà une API JSON et une maquette de notre designer. La maquette ressemble à ceci :
 
@@ -31,7 +31,7 @@ Notre API JSON renvoie des données qui ressemblent à ceci :
 ];
 ```
 
-## Étape 1 : Décomposer l'Interface Utilisateur en une Hiérarchie de Composants {#step-1-break-the-ui-into-a-component-hierarchy}
+## Étape 1 : Décomposer l'interface utilisateur en une hiérarchie de composants {#step-1-break-the-ui-into-a-component-hierarchy}
 
 La première chose que vous voudrez faire est de dessiner des cases autour de chaque composants (et sous-composants) dans la simulation et de leur donner à toutes un nom. Si vous travaillez avec un designer, il se peut qu'il l'ait déjà fait, alors allez lui parler ! Leurs noms de calques Photoshop peuvent devenir les noms de vos composants React !
 
@@ -59,7 +59,7 @@ Maintenant que nous avons identifié les composants dans notre maquette, organis
       * `ProductCategoryRow`
       * `ProductRow`
 
-## Étape 2 : Construire une Version Statique avec React {#step-2-build-a-static-version-in-react}
+## Étape 2 : Construire une version statique avec React {#step-2-build-a-static-version-in-react}
 
 <p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Voir le Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> sur <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
