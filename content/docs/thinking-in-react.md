@@ -33,7 +33,7 @@ Notre API JSON renvoie des données qui ressemblent à ceci :
 
 ## Étape 1 : Décomposer l'interface utilisateur en une hiérarchie de composants {#step-1-break-the-ui-into-a-component-hierarchy}
 
-La première chose que vous voudrez faire est de dessiner des cases autour de chaque composants (et sous-composants) dans la simulation et de leur donner à toutes un nom. Si vous travaillez avec un designer, il se peut qu'il l'ait déjà fait, alors allez lui parler ! Leurs noms de calques Photoshop peuvent devenir les noms de vos composants React !
+La première chose que vous voudrez faire est de dessiner des cases autour de chaque composants (et sous-composants) sur la maquette et de leur donner à toutes un nom. Si vous travaillez avec un designer, il se peut qu'il l'ait déjà fait, alors allez lui parler ! Leurs noms de calques Photoshop peuvent devenir les noms de vos composants React !
 
 Mais comment savez-vous ce qui devrait être son propre composant ? Utilisez simplement les mêmes techniques que celles pour décider si vous devez créer une nouvelle fonction ou un nouvel objet. L'une de ces techniques est le [principe de responsabilité unique](https://en.wikipedia.org/wiki/Single_responsibility_principle), c'est-à-dire qu'un composant ne devrait idéalement faire qu'une seule chose. S'il finit par grandir, il devrait être décomposé en sous-composants plus petits.
 
