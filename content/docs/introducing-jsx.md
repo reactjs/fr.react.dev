@@ -176,7 +176,7 @@ const element = {
 };
 ```
 
-Ces objets sont appelés des "éléments React". Vous pouvez les imaginer commes des descriptions de ce que vous voulez voir sur l'écran. React lit ces objets et les utilises pour construir le DOM et tenir à jour.
+Ces objets sont appelés des « éléments React ». Vous pouvez les considérer comme des descriptions de ce que vous voulez voir sur l'écran. React lit ces objets et les utilise pour construire le DOM et le tenir à jour.
 
 Nous explorons le rendu des éléments React vers le DOM dans la prochaine section.
 
