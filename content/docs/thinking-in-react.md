@@ -43,11 +43,11 @@ Comme vous affichez souvent un modèle de données JSON à un utilisateur, vous 
 
 Vous pouvez voir que nous avons cinq composants dans notre petite appli. Nous avons mis en italiques les données que chaque composant représente.
 
-  1. **`FilterableProductTable` (orange):** contient l'intégralité de l'exemple
-  2. **`SearchBar` (bleu):** reçoit toutes les *données saisies par l'utilisateur*
-  3. **`ProductTable` (vert):** affiche et filtre la *collection de données* en fonction des *données saisies par l'utilisateur*
-  4. **`ProductCategoryRow` (turquoise):** affiche un titre pour chaque *catégorie*
-  5. **`ProductRow` (rouge):** affiche une ligne pour chaque *produit*
+  1. **`FilterableProductTable` (orange) :** contient l'intégralité de l'exemple
+  2. **`SearchBar` (bleu) :** reçoit toutes les *données saisies par l'utilisateur*
+  3. **`ProductTable` (vert) :** affiche et filtre la *collection de données* en fonction des *données saisies par l'utilisateur*
+  4. **`ProductCategoryRow` (turquoise) :** affiche un titre pour chaque *catégorie*
+  5. **`ProductRow` (rouge) :** affiche une ligne pour chaque *produit*
 
 Si vous regardez `ProductTable`, vous verrez que l'en-tête du tableau (contenant les titres « Name » et « Price ») n'est pas son propre composant. C'est une question de préférence, et il y a des arguments à faire valoir dans les deux cas. Pour cet exemple, nous l'avons laissé comme faisant partie de `ProductTable` car il fait partie du rendu de la *collection de données* qui est la responsabilité de `ProductTable`. Cependant, si cet en-tête devient complexe (c.à-d. si nous devions ajouter des moyens de trier), il serait certainement logique d'en faire son propre composant `ProductTableHeader`.
 
