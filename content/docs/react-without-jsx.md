@@ -23,7 +23,7 @@ ReactDOM.render(
 );
 ```
 
-peut être compilé vers ce code qui n'utilise pas JSX:
+peut être compilé vers ce code qui n'utilise pas JSX :
 
 ```js
 class Hello extends React.Component {
