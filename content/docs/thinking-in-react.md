@@ -10,7 +10,7 @@ prev: composition-vs-inheritance.html
 
 React est, à notre avis, la meilleure façon de créer des applis web vastes et performantes en JavaScript. Il a très bien tenu le coup pour nous, à Facebook et Instagram.
 
-L'un des nombreux points forts de React est la façon dont il vous fait penser aux applications lorsque vous les créez. Dans ce document, nous vous guiderons dans l'élaboration d'un tableau de données de produit recherchable avec React.
+L'un des nombreux points forts de React, c’est la façon dont il vous fait penser aux applis pendant que vous les créez. Dans ce document, nous vous guiderons à travers l'élaboration avec React d'un tableau de données de produits proposant filtrage et recherche.
 
 ## Commençons par une maquette {#start-with-a-mock}
 
