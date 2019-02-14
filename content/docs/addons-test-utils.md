@@ -122,7 +122,7 @@ it('peut faire le rendu et mettre à jour un compteur', () => {
 });
 ```
 
-N'oubliez pas que l'émission d'événements DOM ne fonctionne que lorsque le conteneur DOM a été ajouté au`document`. Vous pouvez utiliser un assistant [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) afin de réduire le modèle de code.
+N'oubliez pas que l'émission d'événements DOM ne fonctionne que lorsque le conteneur DOM a été ajouté au `document`. Vous pouvez utiliser un assistant [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) afin de réduire le modèle de code.
 
 * * *
 
