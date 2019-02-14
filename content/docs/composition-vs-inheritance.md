@@ -84,7 +84,7 @@ Des éléments React tels que `<Contacts />` et `<Chat />` sont simplement des o
 
 ## Spécialisation {#specialization}
 
-Parfois, nous pensons nos composants comme étant des « cas particuliers » d'autres composants. Par exemple, nous pourrions dire que `WelcomeDialog` est un cas particulier de `Dialog`.
+Parfois, nous voyons nos composants comme des « cas particuliers » d'autres composants. Par exemple, nous pourrions dire que `WelcomeDialog` est un cas particulier de `Dialog`.
 
 Avec React, cela est également réalisable à l'aide de la composition, où un composant plus « spécialisé » fait le rendu d'un composant plus « générique » et le configure grâce aux props : 
 
