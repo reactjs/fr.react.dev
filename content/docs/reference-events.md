@@ -31,7 +31,7 @@ number timeStamp
 string type
 ```
 
-> Note:
+> Note :
 >
 > À partir de la version 0.14, retourner `false` depuis un gestionnaire d'événements ne stoppe plus la propagation de l'événement. À la place, il convient de déclencher manuellement `e.stopPropagation()` ou `e.preventDefault()` selon le cas.
 
@@ -60,7 +60,7 @@ function onClick(event) {
 }
 ```
 
-> Note:
+> Note :
 >
 > Si vous souhaitez accéder aux propriétés de l'événement de façon asynchrone, vous devez appeler la fonction `event.persist()` de l'événement, ce qui aura pour effet de supprimer l'événement synthétique du partage, et permettra l'utilisation de la référence à l'événement au sein de votre code.
 
