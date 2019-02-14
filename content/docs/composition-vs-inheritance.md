@@ -1,6 +1,6 @@
 ---
 id: composition-vs-inheritance
-title: Composition et Héritage
+title: Composition ou héritage ?
 permalink: docs/composition-vs-inheritance.html
 redirect_from:
   - "docs/multiple-components.html"
