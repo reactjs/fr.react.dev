@@ -135,7 +135,7 @@ mockComponent(
 )
 ```
 
-Passe un module de composant bouchonné à cette méhode afin de l'enrichir avec des méthodes utiles qui lui permettront d'être utilisé comme un composant React factice. Plutôt que de réaliser un rendu classique, le composant va simplement devenir un `<div>` (ou tout autre balise si `mockTagName` est renseigné) contenant les enfants qui lui sont fournis.
+Passe un module de composant bouchonné à cette méthode afin de l'enrichir avec des méthodes utiles qui lui permettront d'être utilisé comme un composant React factice. Plutôt que de réaliser un rendu classique, le composant va simplement devenir une balise `<div>` (ou tout autre balise si `mockTagName` est renseigné) contenant les enfants qui lui sont fournis.
 
 > Note:
 >
