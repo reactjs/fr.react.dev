@@ -74,7 +74,7 @@ Vous pouvez construire de haut en bas ou de bas en haut. En d'autres termes, vou
 
 Il suffit de se reporter à la [documentation de React](/docs/) si vous avez besoin d'aide pour exécuter cette étape.
 
-### Un bref intermède : Props vs État {#a-brief-interlude-props-vs-state}
+### Un bref intermède : Props ou État {#a-brief-interlude-props-vs-state}
 
 Il existe deux types de « modèles » de données avec React : les props et l'état. Il est important de comprendre la distinction entre les deux ; parcourez [la documentation officielle de React](/docs/interactivity-and-dynamic-uis.html) si vous n'êtes pas sûr de la différence.
 
