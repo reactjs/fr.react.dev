@@ -12,7 +12,7 @@ React fournit un puissant modèle de composition, aussi nous recommandons d'util
 
 Dans cette section, nous examinerons quelques situations pour lesquelles les débutants en React ont tendance à opter pour l'héritage, et montrerons comment les résoudre à l'aide de la composition.
 
-## Confinement {#containment}
+## Délégation de contenu {#containment}
 
 Certains composants ne connaissent pas leurs enfants en avance. Cela est particulièrement courant pour des composants comme `Sidebar` ou `Dialog` qui représentent des blocs génériques.
 
