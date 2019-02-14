@@ -28,13 +28,13 @@ L'attribut `checked` est accepté par les composants `<input>` de type `checkbox
 
 ### className {#classname}
 
-Utilisez l'attribut `className` pour spécifier une class CSS. Ça vaut pour tous les élèments DOM et SVG tels que `<div>`, `<a>`, et les autres.
+Utilisez l'attribut `className` pour spécifier une class CSS. Ça vaut pour tous les éléments DOM et SVG tels que `<div>`, `<a>`, et les autres.
 
 Si vous utilisez React avec les Web Components (ce qui est rare), utilisez l'attribut `class` à la place.
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
-`dangerouslySetInnerHTML` et l'équivalent React de `innerHTML` dans le DOM des navigateurs. En règle générale, définir le HTML directment depuis le code est risqué car il est trop facile d'exposer vos utilisateurs à une attaque de type [cross-site scripting (XSS)](https://fr.wikipedia.org/wiki/Cross-site_scripting). C'est pourquoi vous pouvez définir le HTML directement depuis React, mais vous devez taper `dangerouslySetInnerHTML` et passer un objet avec une clef `__html`, pour vous souvenir que c'est dangereux. Par exemple :
+`dangerouslySetInnerHTML` et l'équivalent React de `innerHTML` dans le DOM des navigateurs. En règle générale, définir le HTML directement depuis le code est risqué car il est trop facile d'exposer vos utilisateurs à une attaque de type [cross-site scripting (XSS)](https://fr.wikipedia.org/wiki/Cross-site_scripting). C'est pourquoi vous pouvez définir le HTML directement depuis React, mais vous devez taper `dangerouslySetInnerHTML` et passer un objet avec une clef `__html`, pour vous souvenir que c'est dangereux. Par exemple :
 
 ```js
 function createMarkup() {
@@ -48,11 +48,11 @@ function MyComponent() {
 
 ### htmlFor {#htmlfor}
 
-Comme `for` est un mot résérvé en JavaScript, les élèments React utilisent `htmlFor` à la place.
+Comme `for` est un mot réservé en JavaScript, les éléments React utilisent `htmlFor` à la place.
 
 ### onChange {#onchange}
 
-L'évènement `onChange` se comporte comme on s'y attend: à chaque fois qu'un champ de formulaire change, cet évènement est déclenché. Nous utilisons délibérément un comportement différent de celui des navigateurs car le nom `onChange` est un faux-ami et React s'appuie sur cet évènement pour traiter les entrées utilisateur en temps réel.
+L'évènement `onChange` se comporte comme on s'y attend : à chaque fois qu'un champ de formulaire change, cet évènement est déclenché. Nous utilisons délibérément un comportement différent de celui des navigateurs car le nom `onChange` est un faux-ami et React s'appuie sur cet évènement pour traiter les entrées utilisateur en temps réel.
 
 ### selected {#selected}
 
@@ -62,7 +62,7 @@ L'attribut `selected` est accepté par les composants `<option>`. Vous pouvez l'
 
 >Note
 >
->Certains examples dans la documentation utilisent `style` par soucis de commodité, mais **utiliser l'attribut `style` comme méthode principale pour styler les élèments est généralement déconseillé.** Dans la plupart des cas, [`className`](#classname) devrait être utilisé pour référencer une classe définie dans une feuille de style CSS externe. `style` est plus fréquemment utilisé dans les applications React pour ajouter des styles calculés dynamiquement au moment du rendu. Voir également [FAQ: Styles et CSS](/docs/faq-styling.html).
+>Certains examples dans la documentation utilisent `style` par soucis de commodité, mais **utiliser l'attribut `style` comme méthode principale pour styler les éléments est généralement déconseillé.** Dans la plupart des cas, [`className`](#classname) devrait être utilisé pour référencer une classe définie dans une feuille de style CSS externe. `style` est plus fréquemment utilisé dans les applications React pour ajouter des styles calculés dynamiquement au moment du rendu. Voir également [FAQ: Styles et CSS](/docs/faq-styling.html).
 
 L'attribut `style` accepte un objet JavaScript avec des propriétés en camelCase plutôt qu'une chaîne de caractères CSS. C'est conforme à la propriété JavaScript `style`, plus performant, et prévient des failles de sécurité XSS. Par exemple :
 
@@ -76,8 +76,6 @@ function HelloWorldComponent() {
   return <div style={divStyle}>Bonjour le monde !</div>;
 }
 ```
-
-Note that styles are not autoprefixed. To support older browsers, you need to supply corresponding style properties:
 
 Notez que ces styles ne sont pas automatiquement préfixés. Pour supporter les navigateurs plus anciens vous devez fournir les propriétés de styles correspondantes :
 
@@ -97,12 +95,12 @@ Les clefs de style sont en camelCase pour être consistent avec la façon d'acc�
 React ajoute automatiquement le suffixe « px » à certaines propriétés numériques de style en-ligne. Si vous voulez une autre unité que « px », spécifiez la valeur en chaîne de caractères avec l'unité désirée. Par exemple :
 
 ```js
-// Style résultat: '10px'
+// Style résultat : '10px'
 <div style={{ height: 10 }}>
   Bonjour le monde !
 </div>
 
-// Style résultat: '10%'
+// Style résultat : '10%'
 <div style={{ height: '10%' }}>
   Bonjour le monde !
 </div>
@@ -112,7 +110,7 @@ Toutes les propriétés de style ne sont pas systématiquement converties en pix
 
 ### suppressContentEditableWarning {#suppresscontenteditablewarning}
 
-Normalement un avertissement apparaît lorsqu'un élèment avec des enfants est également marqué comme `contentEditable` car ça ne fonctionnera pas. Cet attribut supprime cet avertissement. Ne l'utilisez pas à moins de développer une librairie comme [Draft.js](https://facebook.github.io/draft-js/) qui gère `contentEditable` manuellement.
+Normalement un avertissement apparaît lorsqu'un élément avec des enfants est également marqué comme `contentEditable` car ça ne fonctionnera pas. Cet attribut supprime cet avertissement. Ne l'utilisez pas à moins de développer une librairie comme [Draft.js](https://facebook.github.io/draft-js/) qui gère `contentEditable` manuellement.
 
 ### suppressHydrationWarning {#suppresshydrationwarning}
 
@@ -156,7 +154,7 @@ sizes span spellCheck src srcDoc srcLang srcSet start step style summary
 tabIndex target title type useMap value width wmode wrap
 ```
 
-De même, tous les attributs SVG sont intègralement supportés :
+De même, tous les attributs SVG sont intégralement supportés :
 
 ```
 accentHeight accumulate additive alignmentBaseline allowReorder alphabetic
