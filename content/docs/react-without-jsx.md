@@ -38,7 +38,7 @@ ReactDOM.render(
 );
 ```
 
-Si vous voulez voir plus d'exemples de code JSX converti en JavaScript simple, vous pouvez essayer [le complilateur Babel en ligne](babel://jsx-simple-example).
+Si vous voulez voir plus d'exemples de code JSX converti en JavaScript simple, vous pouvez essayer [le compilateur Babel en ligne](babel://jsx-simple-example).
 
 Le composant peut soit être une chaîne de caractères, soit une sous-classe de `React.Component`, soit une fonction simple pour les composants sans état.
 
