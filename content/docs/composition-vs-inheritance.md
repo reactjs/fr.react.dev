@@ -14,7 +14,7 @@ Dans cette section, nous examinerons quelques situations pour lesquelles les dé
 
 ## Délégation de contenu {#containment}
 
-Certains composants ne connaissent pas leurs enfants en avance. Cela est particulièrement courant pour des composants comme `Sidebar` ou `Dialog` qui représentent des blocs génériques.
+Certains composants ne connaissent pas leurs enfants à l’avance. C’est particulièrement courant pour des composants comme `Sidebar` ou `Dialog`, qui représentent des blocs génériques.
 
 Nous recommandons que de tels composants utilisent la prop spéciale `children` pour passer directement les éléments enfants à leur sortie:
 
