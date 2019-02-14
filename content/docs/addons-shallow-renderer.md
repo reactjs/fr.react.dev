@@ -63,6 +63,6 @@ Vous pouvez voir le shallowRenderer comme "l'endroit" où se fait le rendu du co
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
-Après avoir apellé `shallowRenderer.render()`, vous pouvez utiliser `shallowRenderer.getRenderOutput()` pour récupérer la sortie du superficiel.
+Après avoir appelé `shallowRenderer.render()`, vous pouvez utiliser `shallowRenderer.getRenderOutput()` pour récupérer la sortie du superficiel.
 
 Vous pouvez alors vérifier des faits sur cette sortie.
