@@ -6,15 +6,15 @@ next: hooks-effect.html
 prev: hooks-overview.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+Les *Hooks* sont la grande nouveauté de React 16.8. Ils permettent d'utiliser le state et d'autres fonctionnalités React sans avoir à écrire une classe.
 
-The [previous page](/docs/hooks-intro.html) introduced Hooks with this example:
+La [page précédente](/docs/hooks-intro.html) introduit les Hooks avec cet exemple:
 
 ```js{4-5}
 import React, { useState } from 'react';
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
+  // Déclare une nouvelle variable state, que l'on va appeler "count"
   const [count, setCount] = useState(0);
 
   return (
@@ -28,11 +28,11 @@ function Example() {
 }
 ```
 
-We'll start learning about Hooks by comparing this code to an equivalent class example.
+Comparons ce code avec un exemple équivalent utilisant une classe pour commencer à comprendre comment fonctionnent les Hooks.
 
 ## Equivalent Class Example {#equivalent-class-example}
 
-If you used classes in React before, this code should look familiar:
+Si vous avez déjà utilisé les classes en React, ce code devrait vous être familier:
 
 ```js
 class Example extends React.Component {
@@ -46,9 +46,9 @@ class Example extends React.Component {
   render() {
     return (
       <div>
-        <p>You clicked {this.state.count} times</p>
+        <p>Vous avez cliqué {this.state.count} fois</p>
         <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-          Click me
+          Cliquez moi
         </button>
       </div>
     );
@@ -56,15 +56,15 @@ class Example extends React.Component {
 }
 ```
 
-The state starts as `{ count: 0 }`, and we increment `state.count` when the user clicks a button by calling `this.setState()`. We'll use snippets from this class throughout the page.
+Le state commence à `{ count: 0 }`, et nous incrémenterons `state.count` en appelant `this.setState()` lorsque l'utilisateur clique sur le bouton. Dans la suite de cette page, nous utiliserons des snippets de cette classe.
 
 >Note
 >
->You might be wondering why we're using a counter here instead of a more realistic example. This is to help us focus on the API while we're still making our first steps with Hooks.
+>Vous vous demandez peut-être pourquoi nous utilisons un compteur plutôt qu'un exemple plus réaliste. Cela nous permet simplement de nous concentrer sur l'API pendant que nous faisons nos premiers pas avec les Hooks.
 
 ## Hooks and Function Components {#hooks-and-function-components}
 
-As a reminder, function components in React look like this:
+Pour rappel, les fonctions composants dans React peuvent ressembler à ceci :
 
 ```js
 const Example = (props) => {
@@ -73,7 +73,7 @@ const Example = (props) => {
 }
 ```
 
-or this:
+ou cela :
 
 ```js
 function Example(props) {
@@ -82,13 +82,13 @@ function Example(props) {
 }
 ```
 
-You might have previously known these as "stateless components". We're now introducing the ability to use React state from these, so we prefer the name "function components".
+Vous les connaissiez peut-être sous le nom de "composants sans state". Comme nous allons maintenant introduire la possibilité d'utiliser le state React depuis ces composants, nous préférerons utiliser le terme "fonctions composants".
 
-Hooks **don't** work inside classes. But you can use them instead of writing classes.
+Les Hooks **ne fonctionnent pas** dans les classes. Mais vous pouvez les utiliser pour éviter d'écrire des classes.
 
 ## What's a Hook? {#whats-a-hook}
 
-Our new example starts by importing the `useState` Hook from React:
+Pour notre nouvel exemple, commençons par importer le Hook `useState` de React:
 
 ```js{1}
 import React, { useState } from 'react';
@@ -98,13 +98,13 @@ function Example() {
 }
 ```
 
-**What is a Hook?** A Hook is a special function that lets you "hook into" React features. For example, `useState` is a Hook that lets you add React state to function components. We'll learn other Hooks later.
+**Qu'est-ce qu'un Hook?** Un Hook est une fonction qui permet de se "brancher" (*"hook into" en anglais*, NdT) à des fonctionnalités React. Par exemple, `useState` est un Hook qui permet d'ajouter le state React à des fonctions composants. Nous en apprendrons plus sur les Hooks par la suite.
 
-**When would I use a Hook?** If you write a function component and realize you need to add some state to it, previously you had to convert it to a class. Now you can use a Hook inside the existing function component. We're going to do that right now!
+**Quand utiliser un Hook?** Auparavant, si vous écriviez une fonction composant et que vous réalisiez que vous aviez besoin d'un state à l'intérieur, il fallait le convertir en classe. Maintenant, vous pouvez utiliser un Hook à l'intérieur de votre fonction composant. Et c'est justement ce que nous allons faire !
 
 >Note:
 >
->There are some special rules about where you can and can't use Hooks within a component. We'll learn them in [Rules of Hooks](/docs/hooks-rules.html).
+>Des règles spécifiques existent pour savoir quand utiliser ou ne pas utiliser les Hooks dans un composant. Nous les découvrirons dans les [Règles des Hooks](/docs/hooks-rules.html).
 
 ## Declaring a State Variable {#declaring-a-state-variable}
 
