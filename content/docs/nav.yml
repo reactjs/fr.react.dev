@@ -32,7 +32,7 @@
     - id: lifting-state-up
       title: Lifting State Up
     - id: composition-vs-inheritance
-      title: Composition et Héritage
+      title: Composition ou héritage ?
     - id: thinking-in-react
       title: Thinking In React
 - title: Advanced Guides
