@@ -10,8 +10,8 @@ redirect_from:
 
 La gestion des événements des éléments dans React est très similaire à celle des éléments dans le DOM. Cependant il y a quelques différences de syntaxe :
 
-* Les événements de React sont nommées en "camelCase" au lieu de "lowercase".
-* Grâce à JSX on passe une fonction au gestionnaire d'événement au lieu d'une simple chaine de caractères.
+* Les événements de React sont nommés en "camelCase" au lieu de "lowercase".
+* Grâce à JSX on passe une fonction au gestionnaire d'événement au lieu d'une simple chaîne de caractères.
 
 Par exemple, l'écriture en HTML:
 
@@ -29,7 +29,7 @@ est sensiblement différente dans React:
 </button>
 ```
 
-Le fait de ne pas pouvoir retourner la valeur `false` afin d'éviter le comportement par défaut en React est une autre difference. Vous devrez alors appeler explicitement `preventDefault`. Par exemple en HTML, afin d'éviter le comportement par défaut lors de l'ouverture de lien, vous devez écrire:
+Le fait de ne pas pouvoir retourner la valeur `false` afin d'éviter le comportement par défaut en React est une autre différence. Vous devrez alors appeler explicitement `preventDefault`. Par exemple en HTML, afin d'éviter le comportement par défaut lors de l'ouverture de lien, vous devez écrire:
 
 ```html
 <a href="#" onclick="console.log('Le lien a été cliqué.'); return false">
@@ -54,9 +54,9 @@ function ActionLink() {
 }
 ```
 
-Ici, `e` est un événement synthétique. React definit cette événement synthétique d'après les [specifications W3C](https://www.w3.org/TR/DOM-Level-3-Events/), ainsi vous n'avez pas besoin de vous préoccupez de la compatibilité entre les navigateurs. Pour allez plus loin regardez la page [`SyntheticEvent`](/docs/events.html) de la documentation.
+Ici, `e` est un événement synthétique. React definit cet événement synthétique d'après les [specifications W3C](https://www.w3.org/TR/DOM-Level-3-Events/), ainsi vous n'avez pas besoin de vous préoccuper de la compatibilité entre les navigateurs. Pour allez plus loin regardez la page [`SyntheticEvent`](/docs/events.html) de la documentation.
 
-Lorsque vous utilisez React, vous n'avez généralement pas besoins d'appeler la méthode `addEventListener` pour ajouter des écouteurs d'événements (Event Listener, NdT) à un élément du DOM après que celui-ci soit créé. À la place, on fournit l'écouteur lorsque que l'élément est initiallement rendu.
+Lorsque vous utilisez React, vous n'avez généralement pas besoin d'appeler la méthode `addEventListener` pour ajouter des écouteurs d'événements (Event Listener, NdT) à un élément du DOM après que celui-ci soit créé. À la place, on fournit l'écouteur lorsque que l'élément est initialement rendu.
 
 Lorsque vous definissez un composant en utilisant les [classes ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), il est d'usage que le gestionnaire d'événement soit une méthode de la classe. Par exemple, le composant `Toggle` rend un bouton qui permet à l'utilisateur de basculer l'état de "ON" à "OFF".
 
@@ -97,12 +97,12 @@ En JSX, vous devez être prudent avec l'utilisation de `this` dans les fonctions
 
 Ce n'est pas un comportement spécifique à React, cela fait en effet partie du [fonctionnement général des fonctions en JavaScript](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). En général, si vous faites références à une méthode sans `()`, par exemple `onClick={this.handleClick}`, vous devriez utiliser une liaison de données.
 
-Si vous ne souhaitez pas utiliser `bind`, vous avez alors deux solutions. Si vous avez l'habitude d'utiliser la [syntaxe des champs de classes](https://babeljs.io/docs/plugins/transform-class-properties/), qui sont à l'état experimental, vous pourriez alors les utiliser pour faire la liaison avec les fonctions de rappels.
+Si vous ne souhaitez pas utiliser `bind`, vous avez alors deux solutions. Si vous avez l'habitude d'utiliser la [syntaxe des champs de classes](https://babeljs.io/docs/plugins/transform-class-properties/), qui sont à l'état expérimental, vous pourriez alors les utiliser pour faire la liaison avec les fonctions de rappels.
 
 ```js{2-6}
 class LoggingButton extends React.Component {
   // Cette syntaxe nous assure que `this` est bien lié avec la méthode handleClick.
-  // Attention: cette syntaxe est encore à l'état *experimental*.
+  // Attention: cette syntaxe est encore à l'état *expérimental*.
   handleClick = () => {
     console.log('Voici:', this);
   }
@@ -117,7 +117,7 @@ class LoggingButton extends React.Component {
 }
 ```
 
-Cette syntaxe est activé par défaut dans [Create React App](https://github.com/facebookincubator/create-react-app).
+Cette syntaxe est activée par défaut dans [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Si vous n'utilisez pas la syntaxe des variables de classe, vous pouvez utiliser les [fonctions fléchées](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) dans la fonction de rappel.
 
@@ -138,11 +138,11 @@ class LoggingButton extends React.Component {
 }
 ```
 
-Cependant cette syntaxe pose un problème car elle créer une nouvelle fonction de rappel à chaque rendu de `LoggingButton`. Dans la plupart des cas c'est correct. Néanmoins, si la fonction de rappel est passée comme une prop à un composant inférieur, le composant peut produire un rendu supplémentaire. Nous recommandons donc la plupart du temps, l'utilisation de liaison de données dans le constructeur ou l'utilisation d'une variable de classe afin d'eviter des problèmes de performances.
+Cependant cette syntaxe pose un problème car elle créait une nouvelle fonction de rappel à chaque rendu de `LoggingButton`. Dans la plupart des cas c'est correct. Néanmoins, si la fonction de rappel est passée comme une prop à un composant inférieur, le composant peut produire un rendu supplémentaire. Nous recommandons donc, la plupart du temps, l'utilisation de liaison de données dans le constructeur ou l'utilisation d'une variable de classe afin d'eviter des problèmes de performances.
 
 ## Passage d'arguments à un gestionnaire d'événements {#passing-arguments-to-event-handlers}
 
-A l'interieur d'une boucle, il est courant de passer un paramètre supplementaire à un gestionnaire d'événement. Par exemple, si `id` represente la ligne selectionnée, les deux solutions suivantes fonctionnent:
+A l'interieur d'une boucle, il est courant de passer un paramètre supplémentaire à un gestionnaire d'événement. Par exemple, si `id` represente la ligne selectionnée, les deux solutions suivantes fonctionnent:
 
 ```js
 <button onClick={(e) => this.deleteRow(id, e)}>Supprimer la ligne</button>
