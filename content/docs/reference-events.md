@@ -10,7 +10,7 @@ Ce guide de référence documente le wrapper `SyntheticEvent` qui fait partie du
 
 ## Vue d'ensemble {#overview}
 
-Votre gestionnaire d'événement va recevoir des instances de `SyntheticEvent`, un wrapper inter-navigateurs autour de l'événement natif du navigateur. Il dispose de la même interface que l'événement natif du navigateur, ce qui inclut `stopPropagation()` et `preventDefault()`, à ceci près que les événements fonctionnent de façon identique sur tous les navigateurs.
+Votre gestionnaire d'événement va recevoir des instances de `SyntheticEvent`, un wrapper inter-navigateur autour de l'événement natif du navigateur. Il dispose de la même interface que l'événement natif du navigateur, ce qui inclut `stopPropagation()` et `preventDefault()`, à ceci près que les événements fonctionnent de façon identique sur tous les navigateurs.
 
 Si, pour n'importe quelle raison, vous avez besoin de l'événement sous-jacent du navigateur, alors vous pouvez utiliser l'attribut `nativeEvent` pour le récupérer. Tous les objets `SyntheticEvent` disposent des attributs suivants :
 
@@ -33,17 +33,17 @@ string type
 
 > Note:
 >
-> À partir de la version 0.14, retourner `false` depuis un gestionnaire d'événements ne stoppe plus la propagation de l'événement. Á la place, il convient de déclencher manuellement `e.stopPropagation()` ou `e.preventDefault()` selon le cas.
+> À partir de la version 0.14, retourner `false` depuis un gestionnaire d'événements ne stoppe plus la propagation de l'événement. À la place, il convient de déclencher manuellement `e.stopPropagation()` ou `e.preventDefault()` selon le cas.
 
 ### Partage d'événement {#event-pooling}
 
-`SyntheticEvent` est partagé. Cela signifie que l'objet `SyntheticEvent` sera réutilisé, et que toutes ses propriétés remises à `null` une fois que la fonction de rappel de l'événement aura été invoquée.
+`SyntheticEvent` est partagé. Cela signifie que l'objet `SyntheticEvent` sera réutilisé, et que toutes ses propriétés seront remises à `null` une fois que la fonction de rappel de l'événement aura été invoquée.
 Cela s'explique pour des raisons de performances.
-Ainsi, il n'est pas possible d'accéder à l'événement d'une façon asynchrone.
+Ainsi, vous ne pouvez pas accéder à l'événement d'une façon asynchrone.
 
 ```javascript
 function onClick(event) {
-  console.log(event); // => object null.
+  console.log(event); // => objet null.
   console.log(event.type); // => "click"
   const eventType = event.type; // => "click"
 
@@ -81,7 +81,7 @@ Les gestionnaires d'événements ci-dessous sont déclenchés par un événement
 - [Événements d'interaction tactile](#touch-events)
 - [Événements visuels](#ui-events)
 - [Événements de roulette](#wheel-events)
-- [Événements média](#media-events)
+- [Événements de média](#media-events)
 - [Événements d'image](#image-events)
 - [Événements d'animation](#animation-events)
 - [Événements de transition](#transition-events)
@@ -149,7 +149,7 @@ boolean shiftKey
 number which
 ```
 
-La propriété `key` peut prendre n'importe quelle valeur documentée dans la [spécification des événements DOM niveau 3](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
+La propriété `key` peut prendre n'importe quelle valeur documentée dans la [spécification des événements DOM de niveau 3](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
 
 * * *
 
@@ -161,7 +161,7 @@ Noms des événements :
 onFocus onBlur
 ```
 
-Ces événements de focus fonctionnent sur tous les éléments du DOM de React, et pas seulement sur les éléments de formulaire.
+Ces événements de focus fonctionnent sur tous les éléments du DOM de React, et pas uniquement sur les éléments de formulaire.
 
 Propriétés :
 
@@ -179,7 +179,7 @@ Noms des événements :
 onChange onInput onInvalid onSubmit
 ```
 
-Pour plus d'information sur l'événement onChange, se référencer à la documentation sur [les formulaires](/docs/forms.html).
+Pour plus d'informations sur l'événement onChange, consultez la documentation sur [les formulaires](/docs/forms.html).
 
 * * *
 
@@ -193,7 +193,7 @@ onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
 onMouseMove onMouseOut onMouseOver onMouseUp
 ```
 
-Les événements `onMouseEnter` et `onMouseLeave` se propagent de l'élément qui vient d'être quitté par la souris à celui sur lequel la souris arrive plutôt qu'une propagation classique, et n'ont pas de phase de capture.
+Les événements `onMouseEnter` et `onMouseLeave` se propagent de l'élément qui vient d'être quitté par la souris à celui sur lequel la souris arrive au lieu d'une propagation classique et n'ont pas de phase de capture.
 
 Propriétés :
 
@@ -225,7 +225,7 @@ onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
 onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 ```
 
-Les événements `onPointerEnter` et `onPointerLeave` se propagent de l'élément qui vient d'être quitté par le pointeur à celui sur lequel le pointeur arrive plutôt qu'une propagation classique, et n'ont pas de phase de capture.
+Les événements `onPointerEnter` et `onPointerLeave` se propagent de l'élément qui vient d'être quitté par le pointeur à celui sur lequel le pointeur arrive au lieu d'une propagation classique et n'ont pas de phase de capture.
 
 Propriétés :
 
@@ -244,9 +244,9 @@ string pointerType
 boolean isPrimary
 ```
 
-Une remarque concernant le support inter-navigateurs :
+Une remarque concernant le support inter-navigateur :
 
-Les événements de pointeur ne sont pas encore supportés par tous les navigateurs (au moment de l'écriture de cet article, les navigateurs qui les supportent sont : Chrome, Firefox, Edge, et Internet Explorer). React n'offre volontairement pas de polyfill pour les autres navigateurs dans la mesure où un polyfill conforme aux standards impliquerait une augmentation significative de la taille du paquet `react-dom`.
+Les événements de pointeur ne sont pas encore supportés par tous les navigateurs (au moment de l'écriture de cet article, les navigateurs qui les supportent comprennent Chrome, Firefox, Edge, et Internet Explorer). React n'offre volontairement pas de polyfill pour les autres navigateurs dans la mesure où un polyfill conforme aux standards impliquerait une augmentation significative de la taille du paquet de `react-dom`.
 
 Si votre application nécessite les événements de pointeur, nous recommandons d'ajouter un polyfill tiers pour les supporter.
 
@@ -321,7 +321,7 @@ number deltaZ
 
 * * *
 
-### Événements média {#media-events}
+### Événements de média {#media-events}
 
 Noms des événements :
 
