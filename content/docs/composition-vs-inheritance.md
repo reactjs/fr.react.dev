@@ -10,7 +10,7 @@ next: thinking-in-react.html
 
 React fournit un puissant modèle de composition, aussi nous recommandons d'utiliser la composition plutôt que l'héritage pour réutiliser du code entre les composants.
 
-Dans cette section, nous examinerons quelques problèmes où les développeurs débutant React tendent souvent d'utiliser l'héritage et montrerons comment les résoudre à l'aide de la composition.
+Dans cette section, nous examinerons quelques situations pour lesquelles les débutants en React ont tendance à opter pour l'héritage, et montrerons comment les résoudre à l'aide de la composition.
 
 ## Confinement {#containment}
 
