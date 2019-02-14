@@ -8,7 +8,7 @@ prev: lifting-state-up.html
 next: thinking-in-react.html
 ---
 
-React propose un puissant modèle de composition et nous recommandons d'utiliser la composition plutôt que l'héritage afin de réutiliser du code entre les composants.
+React fournit un puissant modèle de composition, aussi nous recommandons d'utiliser la composition plutôt que l'héritage pour réutiliser du code entre les composants.
 
 Dans cette section, nous examinerons quelques problèmes où les développeurs débutant React tendent souvent d'utiliser l'héritage et montrerons comment les résoudre à l'aide de la composition.
 
