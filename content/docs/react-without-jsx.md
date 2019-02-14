@@ -42,7 +42,7 @@ Si vous voulez voir plus d'exemples de code JSX converti en JavaScript simple, v
 
 Le composant peut soit être une chaîne de caractères, soit une sous-classe de `React.Component`, soit une fonction simple pour les composants sans état.
 
-Si vous n'avez pas envie de taper `React.createElement` à chaque fois, vous pouvez à la place créer un raccourci:
+Si vous n'avez pas envie de taper `React.createElement` à chaque fois, vous pouvez à la place créer un raccourci :
 
 ```js
 const e = React.createElement;
