@@ -167,6 +167,6 @@ class SignUpDialog extends React.Component {
 
 À Facebook, nous utilisons React avec des milliers de composants et nous n'avons pas encore trouvé de cas où nous aurions recommandé de créer des hiérarchies d'héritages de composants.
 
-Les props et la composition vous donnent toute la flexibilité dont vous avez besoin pour personnaliser l'apparence d'un composant et son comportement de manière explicite et sûre. Rappelez vous que les composants acceptent tous types props, cela inclut des valeurs primitives, des éléments React ou bien des fonctions.
+Les props et la composition vous donnent toute la flexibilité dont vous avez besoin pour personnaliser l'apparence  et le comportement d'un composant de manière explicite et sûre. Souvenez-vous qu’un composant peut accepter tout type de props, y compris des valeurs primitives, des éléments React et des fonctions.
 
 Si vous souhaitez réutiliser des fonctionnalités sans rapport à l'interface utilisateur entre les composants, nous vous suggérons de les extraire dans un module Javascript séparé. Les composants pourront alors importer cette fonction, cet objet ou cette classe sans avoir à l'étendre.
