@@ -20,7 +20,7 @@ Cette page décrit quelques boîtes à outils populaires qui facilitent les tâc
 
 Les chaînes d'outils recommandées sur cette page **ne nécessitent aucune configuration pour démarrer**.
 
-## Vous n'avez probablement pas besoin de chaînes d'outils {#you-might-not-need-a-toolchain}
+## Vous n'avez peut-être pas besoin d’une boîte à outils {#you-might-not-need-a-toolchain}
 
 Si vous ne rencontrez pas les problèmes décrits ci-dessus ou si vous n'êtes pas encore à l'aise avec l'utilisation d'outils JavaScript, envisagez [d'ajouter React comme une simple balise `<script>` sur une page HTML](/docs/add-react-to-a-website.html), éventuellement [avec du JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx).
 
