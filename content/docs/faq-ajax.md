@@ -1,24 +1,24 @@
 ---
 id: faq-ajax
-title: AJAX and APIs
+title: AJAX et APIs
 permalink: docs/faq-ajax.html
 layout: docs
 category: FAQ
 ---
 
-### How can I make an AJAX call? {#how-can-i-make-an-ajax-call}
+### Comment faire un appel AJAX ? {#how-can-i-make-an-ajax-call}
 
-You can use any AJAX library you like with React. Some popular ones are [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), and the browser built-in [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+Vous pouvez utiliser toutes les librairies AJAX que vous aimez avec React. Parmi les plus populaires, on trouve [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), et le navigateur intégré [window.fetch](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API).
 
-### Where in the component lifecycle should I make an AJAX call? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
+### Où dois-je faire mon appel AJAX dans le cycle de vie du composant ? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
-You should populate data with AJAX calls in the [`componentDidMount`](/docs/react-component.html#mounting) lifecycle method. This is so you can use `setState` to update your component when the data is retrieved.
+Vous devez peupler les données via des appels AJAX dans la méthode [`componentDidMount`](/docs/react-component.html#mounting) du cycle de vie. De cette façon, vous pourrez ensuite utiliser `setState` pour mettre à jour votre composant lorsque les données seront récupérées.
 
-### Example: Using AJAX results to set local state {#example-using-ajax-results-to-set-local-state}
+### Exemple : utiliser des résultats AJAX pour initialiser un état local {#example-using-ajax-results-to-set-local-state}
 
-The component below demonstrates how to make an AJAX call in `componentDidMount` to populate local component state. 
+Le composant ci-dessous montre comment faire un appel AJAX dans `componentDidMount` pour peupler l'état local d'un composant. 
 
-The example API returns a JSON object like this:
+Dans l'exemple, l'API retourne un objet JSON avec la structure suivante :
 
 ```
 {
@@ -50,9 +50,9 @@ class MyComponent extends React.Component {
             items: result.items
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
+        // Note: Ici, il est important de traiter les erreurs
+        // au lieu d'utiliser un bloc catch(), pour ne pas laisser passer
+        // des exceptions provenant d'un vrai bug du composant.
         (error) => {
           this.setState({
             isLoaded: true,
