@@ -28,7 +28,7 @@ Dans ce guide, nous examinerons les éléments constituants les applications Rea
 
 >Astuce
 >
->Ce guide est destiné aux personnes qui préfèrent **apprendre étape par étape**. Si vous préférez apprendre par la pratique, allez voir notre [tutoriel pratique](/tutorial/tutorial.html). Vous trouverez peut-être ce guide et le tutoriel complémentaire.
+>Ce guide est destiné aux personnes qui préfèrent **apprendre étape par étape**. Si vous préférez apprendre par la pratique, allez voir notre [tutoriel](/tutorial/tutorial.html). Vous trouverez peut-être que les deux sont complémentaires.
 
 Ceci est le premier chapitre d'un guide étape par étape à propos des concepts principaux de React. Vous pouvez trouver une liste des chapitres dans la barre latérale de navigation. Si vous lisez ceci depuis un appareil mobile, vous pouvez accéder à la navigation en appuyant sur le bouton situé dans le coin en bas à droite de votre écran.
 
