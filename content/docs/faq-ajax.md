@@ -12,7 +12,7 @@ Vous pouvez utiliser n’importe quelle bibliothèque AJAX de votre choix avec R
 
 ### Où dois-je faire mon appel AJAX dans le cycle de vie du composant ? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
-Vous devez peupler les données via des appels AJAX dans la méthode [`componentDidMount`](/docs/react-component.html#mounting) du cycle de vie. De cette façon, vous pourrez ensuite utiliser `setState` pour mettre à jour votre composant lorsque les données seront récupérées.
+Vous devriez obtenir vos données via des appels AJAX dans la méthode de cycle de vie [`componentDidMount`](/docs/react-component.html#mounting). De cette façon, vous pourrez y utiliser `setState` pour mettre à jour votre composant lorsque les données seront récupérées.
 
 ### Exemple : utiliser des résultats AJAX pour initialiser un état local {#example-using-ajax-results-to-set-local-state}
 
