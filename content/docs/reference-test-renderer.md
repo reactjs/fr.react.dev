@@ -13,11 +13,11 @@ import TestRenderer from 'react-test-renderer'; // ES6
 const TestRenderer = require('react-test-renderer'); // ES5 avec npm
 ```
 
-## Vue d'ensemble {#overview}
+## Aperçu {#overview}
 
-Ce paquet vous donne accès à un moteur de rendu _(Dans la suite de cet article, pour des raisons de concision, nous emploierons le terme générique anglais renderer sans italiques, NdT)_ qui peut être utilisé pour faire un rendu d'objets JavaScript purs sans dépendre du DOM ou d'un environnement mobile natif.
+Ce paquet fournit un moteur de rendu _(dans la suite de cet article, pour des raisons de concision, nous emploierons le terme générique anglais renderer sans italiques, NdT)_ capable de produire un rendu de composants React sous forme d'objets JavaScript nus, sans dépendre du DOM ou d'un environnement mobile natif.
 
-Fondamentalement, ce paquet rend facile la création d'un instantané de la hiérarchie rendue par un renderer React DOM ou React Native du point de vue de cette plateforme (similaire à un arbre DOM) sans utiliser un navigateur ou [jsdom](https://github.com/tmpvar/jsdom).
+Fondamentalement, ce paquet facilite la création d'un instantané de la hiérarchie produite par un renderer React DOM ou React Native (similaire à un arbre DOM) sans recourir à un navigateur ou à [jsdom](https://github.com/tmpvar/jsdom).
 
 Exemple:
 
@@ -38,9 +38,9 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-Vous pouvez utiliser la fonctionnalité de test par instantanés de Jest pour sauvegarder automatiquement une copie de l'arbre JSON dans un fichier et vérifier dans vos tests qu'il n'a pas changé: [Apprenez en plus ici](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
+Vous pouvez utiliser la fonctionnalité de test par instantanés *(snapshot testing, NdT)* de Jest pour sauvegarder automatiquement une copie de l'arbre JSON obtenu dans un fichier, puis vérifier dans vos tests qu'il n'a pas changé : [vous trouverez plus de détails ici](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
 
-Vous pouvez également explorer le résultat pour trouver des nœuds spécifiques et vérifier des attentes à leur propos.
+Vous pouvez également explorer le résultat pour trouver des nœuds spécifiques et vérifier vos attentes les concernant.
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -56,7 +56,7 @@ function MyComponent() {
 
 function SubComponent() {
   return (
-    <p className="sub">SousComposant</p>
+    <p className="sub">Sous-Composant</p>
   );
 }
 
@@ -64,14 +64,14 @@ const testRenderer = TestRenderer.create(<MyComponent />);
 const testInstance = testRenderer.root;
 
 expect(testInstance.findByType(SubComponent).props.foo).toBe('bar');
-expect(testInstance.findByProps({className: "sub"}).children).toEqual(['SousComposant']);
+expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sous-Composant']);
 ```
 
 ### TestRenderer {#testrenderer}
 
 * [`TestRenderer.create()`](#testrenderercreate)
 
-### Instance de TestRenderer {#testrenderer-instance}
+### Instance de `TestRenderer` {#testrenderer-instance}
 
 * [`testRenderer.toJSON()`](#testrenderertojson)
 * [`testRenderer.toTree()`](#testrenderertotree)
@@ -94,7 +94,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['SousComp
 * [`testInstance.parent`](#testinstanceparent)
 * [`testInstance.children`](#testinstancechildren)
 
-## Référence {#reference}
+## Référence de l'API {#reference}
 
 ### `TestRenderer.create()` {#testrenderercreate}
 
@@ -102,7 +102,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['SousComp
 TestRenderer.create(element, options);
 ```
 
-Crée une instance de `TestRenderer` avec l'élement React passé en paramètre. Le vrai DOM n'est pas utilisé mais cela crée toujours un rendu de l'arbre des composants dans la mémoire pour pouvoir vérifier des attentes à son propos. L'instance retournée possède les méthodes et propriétés suivantes.
+Crée une instance de `TestRenderer` avec l'élément React passé en argument. Ça n’utilise pas un véritable DOM, mais ça ne l’empêche pas de produire l'arbre intégral des composants en mémoire pour pouvoir vérifier vos attentes dessus. L'instance renvoyée possède les méthodes et propriétés suivantes.
 
 ### `testRenderer.toJSON()` {#testrenderertojson}
 
@@ -110,7 +110,7 @@ Crée une instance de `TestRenderer` avec l'élement React passé en paramètre.
 testRenderer.toJSON()
 ```
 
-Retourne un objet représentant l'arbre rendu. Cette arbre contient uniquement les nœuds spécifiques à la plateforme comme `<div>` ou `<View>` ainsi que leur props mais ne contient aucun composant écrit par l'utilisateur. Cette méthode est pratique pour le [test par instantanés](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
+Renvoie un objet représentant l'arbre obtenu. Cette arbre contient uniquement les nœuds spécifiques à la plateforme comme `<div>` ou `<View>` avec leur props mais ne contient aucun composant écrit par l'utilisateur. C’est pratique pour le [test par instantanés](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
 
 ### `testRenderer.toTree()` {#testrenderertotree}
 
@@ -118,7 +118,7 @@ Retourne un objet représentant l'arbre rendu. Cette arbre contient uniquement l
 testRenderer.toTree()
 ```
 
-Retourne un objet représentant l'arbre rendu. Contrairement à `toJSON()` la représentation y est plus détaillée et contient les composants écrits par l'utilisateur. Vous n'aurez probablement pas besoin de cette méthode à moins que vous écriviez votre propre bibliothèque de vérification d'attentes construite au dessus du renderer de test.
+Renvoie un objet représentant l'arbre obtenu. Contrairement à `toJSON()` la représentation y est plus détaillée et contient les composants écrits par l'utilisateur. Vous n'aurez probablement pas besoin de cette méthode à moins que vous n’écriviez votre propre bibliothèque de vérification d'attentes construite au-dessus du renderer de test.
 
 ### `testRenderer.update()` {#testrendererupdate}
 
@@ -126,7 +126,7 @@ Retourne un objet représentant l'arbre rendu. Contrairement à `toJSON()` la re
 testRenderer.update(element)
 ```
 
-Rends de nouveau l'arbre en mémoire avec un nouvel élément racine. Cela simule une mise à jour de l'arbre React à la racine. Si le nouvel élément possède le même type ainsi que la même clé que l'élément précédent, l'arbre sera mis à jour, sinon, un nouvel arbre sera re-monté.
+Effectue à nouveau le rendu de l'arbre en mémoire, avec un nouvel élément racine. Ça simule une mise à jour de l'arbre React à la racine. Si le nouvel élément a le même type et la même clé que l'élément précédent, l'arbre sera mis à jour ; dans le cas contraire, un nouvel arbre sera re-monté.
 
 ### `testRenderer.unmount()` {#testrendererunmount}
 
@@ -134,7 +134,7 @@ Rends de nouveau l'arbre en mémoire avec un nouvel élément racine. Cela simul
 testRenderer.unmount()
 ```
 
-Démonte l'arbre en meémoire, déclenchant les évenements de cycle de vie appropriés.
+Démonte l'arbre en mémoire, en déclenchant les événements de cycle de vie appropriés.
 
 ### `testRenderer.getInstance()` {#testrenderergetinstance}
 
@@ -142,7 +142,7 @@ Démonte l'arbre en meémoire, déclenchant les évenements de cycle de vie appr
 testRenderer.getInstance()
 ```
 
-Retourne l'instance correspondant à l'élément racine si il est disponible. Cela ne fonctionnera pas si l'élément racine est une fonction composant car elle n'ont pas d'instance.
+Renvoie l'instance correspondant à l'élément racine, s’il est disponible. Ça ne marchera pas si l'élément racine est une fonction composant car celles-ci n'ont pas d'instance.
 
 ### `testRenderer.root` {#testrendererroot}
 
@@ -150,7 +150,7 @@ Retourne l'instance correspondant à l'élément racine si il est disponible. Ce
 testRenderer.root
 ```
 
-Retourne l'objet «instance de test» racine qui est utile pour faire des vérifications d'attentes à propos de nœuds spécifiques dans l'arbre. Vous pouvez l'utiliser pour trouver d'autres «instances de test» plus profondément dans l'arbre.
+Renvoie l'objet « instance de test » racine, qui est utile pour faire des vérifications d'attentes à propos de nœuds spécifiques dans l'arbre. Vous pouvez l'utiliser pour trouver d'autres « instances de test » présentes plus profond dans l'arbre.
 
 ### `testInstance.find()` {#testinstancefind}
 
@@ -158,7 +158,7 @@ Retourne l'objet «instance de test» racine qui est utile pour faire des vérif
 testInstance.find(test)
 ```
 
-Trouve une unique «instance de test» descendante pour laquelle `test(testInstance)` retourne `true`. Si `test(testInstance)` ne retourne pas `true` pour exactement une «instance de test», une erreur sera renvoyée.
+Trouve une unique « instance de test » descendante pour laquelle `test(testInstance)` renvoie `true`. Si `test(testInstance)` ne renvoie pas `true` pour exactement une « instance de test », une erreur est levée.
 
 ### `testInstance.findByType()` {#testinstancefindbytype}
 
@@ -166,7 +166,7 @@ Trouve une unique «instance de test» descendante pour laquelle `test(testInsta
 testInstance.findByType(type)
 ```
 
-Trouve une unique «instance de test» avec le `type` donné. Si il n'y a pas exactement une seule «instance de test» avec le `type` donné, une erreur sera renvoyée.
+Trouve une unique « instance de test » avec le `type` donné. Si il n'y a pas exactement une « instance de test » avec le `type` donné, une erreur est levée.
 
 ### `testInstance.findByProps()` {#testinstancefindbyprops}
 
@@ -174,7 +174,7 @@ Trouve une unique «instance de test» avec le `type` donné. Si il n'y a pas ex
 testInstance.findByProps(props)
 ```
 
-Trouve une unique «instance de test» avec les `props` données. Si il n'y a pas exactement une seule «instance de test» avec les `props` données, une erreur sera renvoyée.
+Trouve une unique « instance de test » avec les `props` données. Si il n'y a pas exactement une « instance de test » avec les `props` données, une erreur est levée.
 
 ### `testInstance.findAll()` {#testinstancefindall}
 
@@ -182,7 +182,7 @@ Trouve une unique «instance de test» avec les `props` données. Si il n'y a pa
 testInstance.findAll(test)
 ```
 
-Trouve toutes les «instances de test» descendantes pour lesquelles `test(testInstance)` retourne `true`.
+Trouve toutes les « instances de test » descendantes pour lesquelles `test(testInstance)` renvoie `true`.
 
 ### `testInstance.findAllByType()` {#testinstancefindallbytype}
 
@@ -190,7 +190,7 @@ Trouve toutes les «instances de test» descendantes pour lesquelles `test(testI
 testInstance.findAllByType(type)
 ```
 
-Trouve toutes les «instances de test» avec le `type` donné.
+Trouve toutes les « instances de test » descendantes avec le `type` donné.
 
 ### `testInstance.findAllByProps()` {#testinstancefindallbyprops}
 
@@ -198,7 +198,7 @@ Trouve toutes les «instances de test» avec le `type` donné.
 testInstance.findAllByProps(props)
 ```
 
-Trouve toutes les «instances de test» descendantes avec les `props` données.
+Trouve toutes les « instances de test » descendantes avec les `props` données.
 
 ### `testInstance.instance` {#testinstanceinstance}
 
@@ -206,7 +206,7 @@ Trouve toutes les «instances de test» descendantes avec les `props` données.
 testInstance.instance
 ```
 
-L'instance de composant correspondant à cette «instance de test». Cela n'est disponible que pour les composants à base de classe sachant que les fonctions composant n'ont pas d'instances. Cette instance de composant corresponds à la valeur de `this` au sein du composant donné.
+L'instance de composant correspondant à cette « instance de test ». Ça n'est disponible que pour les composants à base de classe, vu que les fonctions composants n'ont pas d'instances. Ça correspond à la valeur de `this` au sein du composant donné.
 
 ### `testInstance.type` {#testinstancetype}
 
@@ -214,7 +214,7 @@ L'instance de composant correspondant à cette «instance de test». Cela n'est 
 testInstance.type
 ```
 
-Le type de composant correspondant à cette «instance de test». Par exemple, un composant `<Button />` possède un type `Button`.
+Le type de composant correspondant à cette « instance de test ». Par exemple, un composant `<Button />` a pour type `Button`.
 
 ### `testInstance.props` {#testinstanceprops}
 
@@ -222,7 +222,7 @@ Le type de composant correspondant à cette «instance de test». Par exemple, u
 testInstance.props
 ```
 
-Les props correspondant à cette «instance de test». Par exemple, un composant `<Button size="small" />` possède les props suivantes: `{size: 'small'}`.
+Les props correspondant à cette « instance de test ». Par exemple, un composant `<Button size="small" />` a comme props `{size: 'small'}`.
 
 ### `testInstance.parent` {#testinstanceparent}
 
@@ -230,7 +230,7 @@ Les props correspondant à cette «instance de test». Par exemple, un composant
 testInstance.parent
 ```
 
-L'«instance de test» parente de cette «instance de test».
+L'« instance de test » parente de cette « instance de test ».
 
 ### `testInstance.children` {#testinstancechildren}
 
@@ -238,11 +238,11 @@ L'«instance de test» parente de cette «instance de test».
 testInstance.children
 ```
 
-Les «instances de test» enfant de cette «instance de test».
+Les « instances de test » enfants de cette « instance de test ».
 
 ## Idées {#ideas}
 
-Vous pouvez passer la fonction `createNodeMock` à `TestRenderer.create` comme option pour créer des imitations  personalisées de refs.
+Vous pouvez passer la fonction `createNodeMock` à `TestRenderer.create` comme option pour créer des simulations  personnalisées de refs.
 `createNodeMock` accepte l'élément courant et doit retourner une imitation de ref.
 C'est utile quand vous testez un composant qui utilise des refs.
 
