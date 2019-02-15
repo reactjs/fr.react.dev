@@ -37,7 +37,7 @@ Autre différence importante : en React, on ne peut pas renvoyer `false` pour e
 </a>
 ```
 
-En React, cela pourrait être:
+En React, ça pourrait être :
 
 ```js{2-5,8}
 function ActionLink() {
