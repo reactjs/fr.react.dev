@@ -12,7 +12,7 @@ Utilisez une boîte à outils intégrée pour la meilleure expérience utilisate
 
 Cette page décrit quelques boîtes à outils populaires qui facilitent les tâches telles que :
 
-* Mise à l'échelle avec de nombreux fichiers et composants.
+* La montée à l'échelle avec de nombreux fichiers et composants.
 * Utilisation de bibliothèques tierces depuis npm.
 * Détection précoce des erreurs courantes.
 * Édition en direct du CSS et du JS en développement.
