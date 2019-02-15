@@ -6,10 +6,9 @@ redirect_from:
   - "docs/webcomponents.html"
 ---
 
-React et [les Composants Web](https://developer.mozilla.org/fr/docs/Web/Web_Components) sont conçus pour résoudre des problèmes différents. Les Composants Web offrent une encapsulation forte pour des composants réutilisables, tandis que React fournit une bibliothèque déclarative 
-qui permet au DOM de rester synchronisé avec vos données. Les deux objectifs sont complémentaires. En tant que développeur, vous être libre d'utiliser React dans vos Composants Web, ou bien d'utiliser des Composants Web dans React, ou encore les deux à la fois.
+React et [les Composants Web](https://developer.mozilla.org/fr/docs/Web/Web_Components) sont conçus pour résoudre des problèmes différents. Les Composants Web offrent une encapsulation forte pour des composants réutilisables, tandis que React fournit une bibliothèque déclarative qui permet au DOM de rester synchronisé avec vos données. Les deux objectifs sont complémentaires. En tant que développeur, vous être libre d'utiliser React dans vos Composants Web, ou bien d'utiliser des Composants Web dans React, ou encore les deux à la fois.
 
-La plupart des personnes qui utilisent React n'utilisent pas les Composants Web, mais vous voudrez peut-être le faire, particulièrement si vous utilisez des composants d'interface utilisateur tiers écrits à l'aide de Composants Web.
+La plupart des personnes qui utilisent React n'utilisent pas les Composants Web, mais vous voudrez peut-être le faire, en particulier si vous utilisez des composants d'interface utilisateur tiers écrits à l'aide de Composants Web.
 
 ## Utiliser des Composants Web dans React {#using-web-components-in-react}
 
@@ -25,7 +24,7 @@ class HelloMessage extends React.Component {
 >
 > Les Composants Web exposent souvent une API impérative. Par exemple, un Composant Web `video` peut exposer les fonctions `play()` et `pause()`. Pour accéder à l'API impérative d'un Composant Web, vous devez utiliser une référence pour interagir directement avec le nœud du DOM. Si vous utilisez des Composants Web tiers, la meilleure solution consiste à écrire un composant React qui se comporte comme un wrapper pour votre Composant Web.
 >
-> Les événements émis par un Composant Web peuvent ne pas être propagés correctement à travers un arbre de rendu de React.
+> Les événements émis par un Composant Web peuvent ne se propager correctement à travers un arbre de rendu de React.
 > Vous devrez attacher manuellement les gestionnaires d'événements afin de gérer ces événements au sein de vos composants React.
 
 Une confusion courante est que les Composants Web utilisent « class » au lieu de « className ».
