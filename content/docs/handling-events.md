@@ -140,7 +140,7 @@ class LoggingButton extends React.Component {
 
 Cette syntaxe n’est toutefois pas sans défauts, car elle crée une nouvelle fonction de rappel à chaque affichage de `LoggingButton`. Dans la plupart des cas ce n’est pas gênant. Néanmoins, si cette fonction était passée comme  prop à des composants plus bas dans l’arbre, ces composants risquent de faire des ré-affichages superflus. Nous recommandons donc, en règle générale, de lier ces méthodes dans le constructeur ou d’utiliser un champ de classe afin d'éviter ce genre de  problèmes de performances.
 
-## Passage d'arguments à un gestionnaire d'événements {#passing-arguments-to-event-handlers}
+## Passer des arguments à un gestionnaire d'événements {#passing-arguments-to-event-handlers}
 
 A l'interieur d'une boucle, il est courant de passer un paramètre supplémentaire à un gestionnaire d'événement. Par exemple, si `id` represente la ligne selectionnée, les deux solutions suivantes fonctionnent:
 
