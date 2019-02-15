@@ -18,7 +18,7 @@ Vous devez peupler les données via des appels AJAX dans la méthode [`component
 
 Le composant ci-dessous montre comment faire un appel AJAX dans `componentDidMount` pour peupler l'état local d'un composant. 
 
-Dans l'exemple, l'API retourne un objet JSON avec la structure suivante :
+Dans l'exemple, l'API renvoie un objet JSON avec la structure suivante :
 
 ```
 {
