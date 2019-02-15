@@ -149,6 +149,6 @@ A l'interieur d'une boucle, il est courant de passer un paramètre supplémentai
 <button onClick={this.deleteRow.bind(this, id)}>Supprimer la ligne</button>
 ```
 
-Les lignes précédentes sont équivalentes et utilisent respectivement les [fonctions fléchées](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) et [`Function.prototype.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind).
+Les lignes précédentes sont équivalentes et utilisent respectivement les [fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fléchées) et [`Function.prototype.bind`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Function/bind).
 
 Dans les deux cas, l'argument `e` represente l'évènement React qui sera passé en second paramètre après l'ID. Avec une fonction fléchée, nous devons passer l'argument explicitement, alors qu'avec `bind` tous les arguments sont automatiquement transmis.
