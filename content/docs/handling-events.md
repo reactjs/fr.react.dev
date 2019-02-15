@@ -13,7 +13,7 @@ La gestion des événements pour les éléments React est très similaire à cel
 * Les événements de React sont nommés en « casseCamel » plutôt qu’en minuscules.
 * En JSX on passe une fonction comme gestionnaire d'événement plutôt qu’une chaîne de caractères.
 
-Par exemple, l'écriture en HTML:
+Par exemple, le HTML suivant :
 
 ```html
 <button onclick="activateLasers()">
