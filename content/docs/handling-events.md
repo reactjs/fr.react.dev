@@ -56,7 +56,7 @@ function ActionLink() {
 
 Ici, `e` est un événement synthétique. React definit cet événement synthétique d'après les [specifications W3C](https://www.w3.org/TR/DOM-Level-3-Events/), ainsi vous n'avez pas besoin de vous préoccuper de la compatibilité entre les navigateurs. Pour allez plus loin regardez la page [`SyntheticEvent`](/docs/events.html) de la documentation.
 
-Lorsque vous utilisez React, vous n'avez généralement pas besoin d'appeler la méthode `addEventListener` pour ajouter des écouteurs d'événements (Event Listener, NdT) à un élément du DOM après que celui-ci soit créé. À la place, on fournit l'écouteur lorsque que l'élément est initialement rendu.
+Lorsque vous utilisez React, vous n'avez généralement pas besoin d'appeler la méthode `addEventListener` pour ajouter des écouteurs d'événements *(event listeners, NdT)* à un élément du DOM après que celui-ci est créé. À la place, on fournit l'écouteur lors du rendu initial de l'élément.
 
 Lorsque vous definissez un composant en utilisant les [classes ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), il est d'usage que le gestionnaire d'événement soit une méthode de la classe. Par exemple, le composant `Toggle` rend un bouton qui permet à l'utilisateur de basculer l'état de "ON" à "OFF".
 
