@@ -16,11 +16,11 @@ Considérons ces deux composants :
 
 ```js
 function UserGreeting(props) {
-  return <h1>Welcome back!</h1>;
+  return <h1>Bienvenue!</h1>;
 }
 
 function GuestGreeting(props) {
-  return <h1>Please sign up.</h1>;
+  return <h1>Veuillez vous inscrire.</h1>;
 }
 ```
 
@@ -48,7 +48,7 @@ Cet exemple affiche un message différent suivant la valeur de la propriété `i
 
 ### Variables d'éléments {#element-variables}
 
-Vous pouvez utiliser des varibles pour stocker des éléments. Cela peut vous aider à rendre de façon conditonnelle une partie du composant pendant que le reste ne change pas.
+Vous pouvez utiliser des variables pour stocker des éléments. Cela peut vous aider à rendre de façon conditonnelle une partie du composant pendant que le reste ne change pas.
 
 Considérons ces deux nouveaux composants représentant les boutons de Logout et Login :
 
@@ -71,7 +71,7 @@ function LogoutButton(props) {
 ```
 
 
-Dans l'exemple ci-dessous, nous allons créer un [composant stateful](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) appelé `LoginControl`.
+Dans l'exemple ci-dessous, nous allons créer un [composant à état](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) appelé `LoginControl`.
 
 Il va afficher `<LoginButton />` ou `<LogoutButton />` suivant son état actuel. Il va aussi afficher `<Greeting />` depuis l'exemple précédent :
 
@@ -119,11 +119,11 @@ ReactDOM.render(
 
 [**Essayer sur  CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
 
-Déclarer une variable et utiliser une déclaration en `if` est une bonne façon de rendre un composant conditionnellement, parfois vous voudriez utiliser une syntax plus courte. Nous allons voir, ci-dessous, plusieurs façons d'utiliser les conditions inlines de JSX.
+Déclarer une variable et utiliser une déclaration en `if` est une bonne façon de rendre un composant conditionnellement, parfois vous voudriez utiliser une syntaxe plus courte. Nous allons voir, ci-dessous, plusieurs façons d'utiliser les conditions inlines de JSX.
 
 ### Inline If avec l'opérateur logique && {#inline-if-with-logical--operator}
 
-Vous pouvez [intégrer des expressions dans JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) en les enveloppant dans des accolades. Cela inclue l'opérateur Javascript logique `&&`. Il peut être pratique pour inclure conditionnellement un élément :
+Vous pouvez [intégrer des expressions dans JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) en les enveloppant dans des accolades. Cela inclut l'opérateur Javascript logique `&&`. Il peut être pratique pour inclure conditionnellement un élément :
 
 ```js{6-10}
 function Mailbox(props) {
@@ -149,7 +149,7 @@ ReactDOM.render(
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
 
-Cela fonctionne parce qu'en JavaScript, `true && expression` est toujours évalué à `expression`, et `false && expression` est toujours évalué à `false`.
+Ça fonctionne parce qu'en JavaScript, `true && expression` est toujours évalué à `expression`, et `false && expression` est toujours évalué à `false`.
 
 De plus, si la condition est `true`, l'élément juste après `&&` va être rendu. Si c'est `false`, React va l'ignorer et le passer.
 
@@ -157,7 +157,7 @@ De plus, si la condition est `true`, l'élément juste après `&&` va être rend
 
 Une autre méthode pour le rendu contionnel d'éléments inline est d'utiliser l'opérateur conditionnel Javascript [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
 
-Dans l'exemple ci-dessous, on l'utilise pour rendre contionnellement un bloc de texte.
+Dans l'exemple ci-dessous, on l'utilise pour rendre conditionnellement un bloc de texte.
 
 ```javascript{5}
 render() {
@@ -187,11 +187,11 @@ render() {
 }
 ```
 
-Tout comme en Javascript, c'est à vous de choisir un style approprié suivant ce que vous et votre équipe considérés plus facilement lisable. Rappelez vous aussi que lorsque les conditions deviennent trop complexes, il peut être le bon moment pour penser à [extraire un composant](/docs/components-and-props.html#extracting-components).
+Tout comme en Javascript, c'est à vous de choisir un style approprié suivant ce que vous et votre équipe considérez comme plus facilement compréhensible. Rappelez vous aussi que lorsque les conditions deviennent trop complexes, c'est peut être le bon moment pour penser à [extraire un composant](/docs/components-and-props.html#extracting-components).
 
-### Empécher un Composant de se rendre {#preventing-component-from-rendering}
+### Empêcher qu'un Composant soit rendu {#preventing-component-from-rendering}
 
-Dans de rare cas, vous voulez qu'un composant soit capable de se masquer même si il est rendu par un autre composant. Pour ce faire, il suffit de retourner `null` à la place de son rendu.
+Dans de rare cas, vous voulez qu'un composant soit capable de se masquer même s'il est rendu par un autre composant. Pour ce faire, il suffit de retourner `null` à la place de son rendu.
 
 Dans l'exemple ci-dessous, `<WarningBanner />` est rendu suivant la valeur de la propriété appelée `warn`. Si la valeur de la propriété est `false`, alors le composant n'est pas rendu :
 
