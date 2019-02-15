@@ -8,7 +8,7 @@ category: FAQ
 
 ### Comment faire un appel AJAX ? {#how-can-i-make-an-ajax-call}
 
-Vous pouvez utiliser toutes les librairies AJAX que vous aimez avec React. Parmi les plus populaires, on trouve [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), et le navigateur intégré [window.fetch](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API).
+Vous pouvez utiliser toutes les librairies AJAX que vous aimez avec React. Parmi les plus populaires, on trouve [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), et le standard [window.fetch](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API) intégré au navigateur.
 
 ### Où dois-je faire mon appel AJAX dans le cycle de vie du composant ? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
@@ -50,9 +50,9 @@ class MyComponent extends React.Component {
             items: result.items
           });
         },
-        // Note: Ici, il est important de traiter les erreurs
+        // Note: il est important de traiter les erreurs ici
         // au lieu d'utiliser un bloc catch(), pour ne pas laisser passer
-        // des exceptions provenant d'un vrai bug du composant.
+        // des exceptions provenant de réels bugs du composant.
         (error) => {
           this.setState({
             isLoaded: true,
