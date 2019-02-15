@@ -102,7 +102,7 @@ Si vous ne souhaitez pas utiliser `bind`, vous avez alors deux solutions. Si vou
 ```js{2-6}
 class LoggingButton extends React.Component {
   // Cette syntaxe nous assure que `this` est bien lié avec la méthode handleClick.
-  // Attention: cette syntaxe est encore à l'état *expérimental*.
+  // Attention : cette syntaxe est encore *expérimentale*.
   handleClick = () => {
     console.log('this vaut :', this);
   }
