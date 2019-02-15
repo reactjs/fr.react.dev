@@ -65,9 +65,9 @@ class MyComponent extends React.Component {
   render() {
     const { error, isLoaded, items } = this.state;
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <div>Erreur : {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <div>Chargement…</div>;
     } else {
       return (
         <ul>
