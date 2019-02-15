@@ -15,7 +15,7 @@ ReactDOM.render(
 );
 ```
 
-Il affiche un titre de section mentionnant « Bonjour, monde ! » sur la page.
+Il affiche un titre qui dit « Bonjour, monde ! » sur la page.
 
 [](codepen://hello-world)
 
