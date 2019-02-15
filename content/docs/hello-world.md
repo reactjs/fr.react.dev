@@ -17,7 +17,7 @@ ReactDOM.render(
 
 Il affiche un titre qui dit « Bonjour, monde ! » sur la page.
 
-[](codepen://hello-world)
+**[Essayer sur CodePen](codepen://hello-world)**
 
 Cliquez sur le lien ci-dessus pour ouvrir un éditeur en ligne. Vous êtes libres de faire quelques changements et de voir comment ils affectent l'affichage. La plupart des pages de ce guide auront des exemples modifiables comme celui-ci.
 
