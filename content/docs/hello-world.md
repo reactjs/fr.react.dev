@@ -34,7 +34,7 @@ Ceci est le premier chapitre d'un guide étape par étape à propos des concepts
 
 Chacun des chapitres de ce guide sont construits sur les connaissances introduites dans les chapitres précédents. **Vous pouvez apprendre la plupart des éléments de React en lisant les chapitres du guide « Concepts Principaux » dans l'ordre où ils apparaissent dans la barre latérale.** Par exemple, [« Introduction à JSX »](/docs/introducing-jsx.html) est le chapitre suivant.
 
-## Niveau de connaissance requis {#knowledge-level-assumptions}
+## Niveau de connaissance supposé {#knowledge-level-assumptions}
 
 React est une bibliothèque JavaScript, donc nous supposerons que vous ayez une compréhension basique du langage JavaScript. **Si vous ne vous sentez pas à l'aise, nous vous recommandons de [passer par un tutoriel JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) pour vérifier votre niveau de connaissance** et vous permettre de suivre ce guide sans être perdu. Il vous prendra entre 30 minutes et une heure environ, mais au moins vous n'aurez pas le sentiment d'apprendre React et JavaScript en même temps.
 
