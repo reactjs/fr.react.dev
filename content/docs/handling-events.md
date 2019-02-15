@@ -1,6 +1,6 @@
 ---
 id: handling-events
-title: Gestion des événements
+title: Gérer les événements
 permalink: docs/handling-events.html
 prev: state-and-lifecycle.html
 next: conditional-rendering.html
