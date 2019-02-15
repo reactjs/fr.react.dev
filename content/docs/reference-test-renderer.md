@@ -19,7 +19,7 @@ Ce paquet fournit un moteur de rendu _(dans la suite de cet article, pour des ra
 
 Fondamentalement, ce paquet facilite la création d'un instantané de la hiérarchie produite par un renderer React DOM ou React Native (similaire à un arbre DOM) sans recourir à un navigateur ou à [jsdom](https://github.com/tmpvar/jsdom).
 
-Exemple:
+Exemple :
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
