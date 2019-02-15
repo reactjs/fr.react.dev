@@ -89,6 +89,6 @@ Une chaîne d'outils de construction en JavaScript comprend généralement :
 
 * Un **compilateur** tel que [Babel](http://babeljs.io/). Il vous permet d'écrire du JavaScript moderne qui fonctionnera quand même dans les navigateurs les plus anciens.
 
-Si vous préférez configurer votre propre chaîne d'outils JavaScript à partir de rien, [consultez ce guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) qui re-crée certaines des fonctionnalités de Create React App.
+Si vous préférez configurer votre propre chaîne d'outils JavaScript à partir de zéro, [jetez un œil à ce guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) qui re-crée certaines des fonctionnalités de Create React App.
 
 N'oubliez pas de vous assurer que votre chaîne d'outils personnalisée [est correctement configurée pour la production](/docs/optimizing-performance.html#use-the-production-build).
