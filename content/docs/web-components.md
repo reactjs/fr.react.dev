@@ -6,7 +6,7 @@ redirect_from:
   - "docs/webcomponents.html"
 ---
 
-React et [les Web Components](https://developer.mozilla.org/fr/docs/Web/Web_Components) sont conçus pour résoudre des problèmes différents. Les Web Components offrent une encapsulation forte pour des composants réutilisables, tandis que React fournit une bibliothèque déclarative qui permet au DOM de rester synchronisé avec vos données. Les deux objectifs sont complémentaires. En tant que développeur, vous être libre d'utiliser React dans vos Web Components, ou bien d'utiliser des Web Components dans React, ou encore les deux à la fois.
+React et [les Web Components](https://developer.mozilla.org/fr/docs/Web/Web_Components) sont conçus pour résoudre des problèmes différents. Les Web Components offrent une encapsulation forte pour des composants réutilisables, tandis que React fournit une bibliothèque déclarative qui permet au DOM de rester synchronisé avec vos données. Les deux objectifs sont complémentaires. En tant que développeur·se, vous être libre d'utiliser React dans vos Web Components, ou bien d'utiliser des Web Components dans React, ou encore les deux à la fois.
 
 La plupart des utilisateurs de React n'utilisent pas les Web Components, mais vous voudrez peut-être le faire, en particulier si vous utilisez des composants tiers d'interface utilisateur (UI) écrits à l'aide de Web Components.
 
@@ -15,7 +15,7 @@ La plupart des utilisateurs de React n'utilisent pas les Web Components, mais vo
 ```javascript
 class HelloMessage extends React.Component {
   render() {
-    return <div>Bonjour <x-search>{this.props.name}</x-search> !</div>;
+    return <div>Bonjour <x-search>{this.props.name}</x-search> !</div>;
   }
 }
 ```
