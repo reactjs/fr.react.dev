@@ -1,6 +1,6 @@
 ---
 id: hello-world
-title: Bonjour monde
+title: Bonjour, monde !
 permalink: docs/hello-world.html
 prev: cdn-links.html
 next: introducing-jsx.html
