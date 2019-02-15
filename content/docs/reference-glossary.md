@@ -7,7 +7,7 @@ permalink: docs/glossary.html
 
 ---
 
-## *Single-page Application* {#single-page-application}
+## Single-page Application {#single-page-application}
 
 Une *single-page application* (SPA) est une application qui charge une unique page HTML et toutes les ressources nécessaires (telles que du JavaScript et des CSS) requises pour le fonctionnement de l’application.  Aucune interaction sur la page ou les pages ultérieures ne nécessitera un nouvel aller-retour avec le serveur, ce qui signifie que la page n’a pas besoin d’être rafraîchie.
 
@@ -21,7 +21,7 @@ Ces acronymes font référence aux versions les plus récentes du standard *ECMA
 
 Un compilateur JavaScript, souvent appelé *transpileur*, prend du code JavaScript, le transforme et renvoie un code JavaScript de format différent.  Le cas d’usage le plus courant consiste à prendre la syntaxe ES6 et à la transformer en une syntaxe que les navigateurs plus anciens sont capables d’interpréter. [Babel](https://babeljs.io/) est le compilateur le plus utilisé avec React.
 
-## *Bundlers* {#bundlers}
+## Bundlers {#bundlers}
 
 Les *bundlers* prennent du code JavaScript et CSS écrit sous forme de modules distincts (souvent par centaines), et les combine pour produire un petit nombre de fichiers plus optimisés pour les navigateurs.  Parmi les *bundlers* couramment utilisés pour les applications React, on trouve [Webpack](https://webpack.js.org/) et [Browserify](http://browserify.org/).
 
@@ -31,7 +31,7 @@ Les gestionnaires de paquets sont des outils qui vous permettent de gérer les d
 
 ## CDN {#cdn}
 
-CDN est l’acronyme de *Content Delivery Network* *(réseau de distribution de contenu, NdT)*.   Les CDNs fournissent des contenus statiques mis en cache via un réseau de serveurs répartis dans le monde entier.
+CDN est l’acronyme de *Content Delivery Network* *(réseau de distribution de contenu, NdT)*.   Les CDN fournissent des contenus statiques mis en cache via un réseau de serveurs répartis dans le monde entier.
 
 ## JSX {#jsx}
 
@@ -47,60 +47,60 @@ ReactDOM.render(
 );
 ```
 
-## [Elements](/docs/rendering-elements.html) {#elements}
+## [Éléments](/docs/rendering-elements.html) {#elements}
 
-React elements are the building blocks of React applications. One might confuse elements with a more widely known concept of "components". An element describes what you want to see on the screen. React elements are immutable.
+Les éléments React sont les blocs élémentaires de construction d’applications React. On les confond parfois avec le concept plus répandu de « composants ». Un élément décrit ce que vous voulez voir à l’écran.  Les éléments React sont immuables.
 
 ```js
-const element = <h1>Hello, world</h1>;
+const element = <h1>Bonjour, monde</h1>;
 ```
 
-Typically, elements are not used directly, but get returned from components.
+Habituellement, les éléments ne sont pas utilisés directement, mais renvoyés par les composants.
 
-## [Components](/docs/components-and-props.html) {#components}
+## [Composants](/docs/components-and-props.html) {#components}
 
-React components are small, reusable pieces of code that return a React element to be rendered to the page. The simplest version of React component is a plain JavaScript function that returns a React element:
+Les composants React sont de petits morceaux de code réutilisables qui renvoient un élément React à afficher dans la page.  Dans sa forme la plus simple, un composant React est une bête fonction JavaScript qui renvoie un élément React :
 
 ```js
 function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
+  return <h1>Bonjour, {props.name}</h1>;
 }
 ```
 
-Components can also be ES6 classes:
+Les composants peuvent aussi être basés sur une classe ES6 :
 
 ```js
 class Welcome extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Bonjour, {this.props.name}</h1>;
   }
 }
 ```
 
-Components can be broken down into distinct pieces of functionality and used within other components. Components can return other components, arrays, strings and numbers. A good rule of thumb is that if a part of your UI is used several times (Button, Panel, Avatar), or is complex enough on its own (App, FeedStory, Comment), it is a good candidate to be a reusable component. Component names should also always start with a capital letter (`<Wrapper/>` **not** `<wrapper/>`). See [this documentation](/docs/components-and-props.html#rendering-a-component) for more information on rendering components.
+Les composants peuvent être scindés en blocs fonctionnels distincts, et utilisés dans d’autres composants.  Les composants peuvent renvoyer d’autres composants, des tableaux, des chaînes de caractères et des nombres.  Pour décider si une partie de l’UI ferait un bon candidat pour un composant réutilisable, il suffit de se demander si elle apparaît plusieurs fois (`Button`, `Panel`, `Avatar`), ou si elle est suffisamment complexe en elle-même (`App`, `FeedStory`, `Comment`).  Les noms de composants devraient toujours démarrer par une majuscule (`<Wrapper/>` **pas** `<wrapper/>`). Consultez [cette documentation](/docs/components-and-props.html#rendering-a-component) pour de plus amples informations sur le rendu des composants.
 
 ### [`props`](/docs/components-and-props.html) {#props}
 
-`props` are inputs to a React component. They are data passed down from a parent component to a child component.
+Les `props` sont les entrées d’un composant React.  Elles sont passées d’un composant parent à un composant enfant.
 
-Remember that `props` are readonly. They should not be modified in any way:
+Gardez à l’esprit que les `props` sont en lecture seule.  Elles ne doivent jamais être modifiées :
 
 ```js
-// Wrong!
+// Erroné !
 props.number = 42;
 ```
 
-If you need to modify some value in response to user input or a network response, use `state` instead.
+Si vous avez besoin de modifier une valeur en réaction à une saisie utilisateur ou à une réponse réseau, utilisez plutôt `state`.
 
 ### `props.children` {#propschildren}
 
-`props.children` is available on every component. It contains the content between the opening and closing tags of a component. For example:
+`props.children` est disponible dans chaque composant. Elle référence le contenu présent entre les balises ouvrante et fermante du composant.  Par exemple :
 
 ```js
-<Welcome>Hello world!</Welcome>
+<Welcome>Bonjour monde !</Welcome>
 ```
 
-The string `Hello world!` is available in `props.children` in the `Welcome` component:
+Le texte `Bonjour monde !` est présent dans la `props.children` du composant `Welcome` :
 
 ```js
 function Welcome(props) {
@@ -108,7 +108,7 @@ function Welcome(props) {
 }
 ```
 
-For components defined as classes, use `this.props.children`:
+Pour les composants définis par des classes, on utilise `this.props.children` :
 
 ```js
 class Welcome extends React.Component {
@@ -120,47 +120,49 @@ class Welcome extends React.Component {
 
 ### [`state`](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) {#state}
 
-A component needs `state` when some data associated with it changes over time. For example, a `Checkbox` component might need `isChecked` in its state, and a `NewsFeed` component might want to keep track of `fetchedPosts` in its state.
+Un composant a besoin d’un `state` lorsque des données qui lui sont associées évoluent dans le temps.  Par exemple, un composant `Checkbox` pourrait avoir besoin d’une donnée d’état local `isChecked`, et un composant `NewsFeed` pourrait vouloir suivre la progression de `fetchedPosts` dans son état local.
 
-The most important difference between `state` and `props` is that `props` are passed from a parent component, but `state` is managed by the component itself. A component cannot change its `props`, but it can change its `state`. To do so, it must call `this.setState()`. Only components defined as classes can have state.
+La principale différence entre `state` et `props`, c’est que les `props` sont passées depuis le composant parent, alors que `state` est géré en interne par le composant lui-même.  Un composant ne peut pas changer ses `props`, mais il peut changer son `state`.  Pour cela, il doit appeler `this.setState()`.  Seuls les composants définis par des classes peuvent avoir un état.
 
-For each particular piece of changing data, there should be just one component that "owns" it in its state. Don't try to synchronize states of two different components. Instead, [lift it up](/docs/lifting-state-up.html) to their closest shared ancestor, and pass it down as props to both of them.
+<!-- FIXME: THIS IS NO LONGER TRUE (HOOKS) -->
 
-## [Lifecycle Methods](/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class) {#lifecycle-methods}
+Pour chaque petite donnée qui va changer, un seul composant devrait la « posséder » dans son état local.  N’essayez pas de synchroniser les états de plusieurs composants.  Préférez [le faire remonter](/docs/lifting-state-up.html) dans leur plus proche ancêtre commun, et faire redescendre l’info via les props aux composants concernés.
 
-Lifecycle methods are custom functionality that gets executed during the different phases of a component. There are methods available when the component gets created and inserted into the DOM ([mounting](/docs/react-component.html#mounting)), when the component updates, and when the component gets unmounted or removed from the DOM.
+## [Méthodes de cycle de vie](/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class) {#lifecycle-methods}
 
- ## [Controlled](/docs/forms.html#controlled-components) vs. [Uncontrolled Components](/docs/uncontrolled-components.html)
+Les méthodes de cycle de vie permettent d’implémenter des traitements personnalisés lors des différentes phases d’un composant.  Il en existe pour les phases de création et d’insertion dans le DOM ([montage](/docs/react-component.html#mounting)), de mise à jour du composant, et lorsque le composant est démonté et retiré du DOM.
 
-React has two different approaches to dealing with form inputs.
+ ## [Composants contrôlés](/docs/forms.html#controlled-components) ou [non-contrôlés](/docs/uncontrolled-components.html)
 
-An input form element whose value is controlled by React is called a *controlled component*. When a user enters data into a controlled component a change event handler is triggered and your code decides whether the input is valid (by re-rendering with the updated value). If you do not re-render then the form element will remain unchanged.
+React a deux approches pour la gestion des saisies de formulaire.
 
-An *uncontrolled component* works like form elements do outside of React. When a user inputs data into a form field (an input box, dropdown, etc) the updated information is reflected without React needing to do anything. However, this also means that you can't force the field to have a certain value.
+Un champ de formulaire dont la valeur est contrôlée par React est appelé un *composant contrôlé*.  Quand un utilisateur saisit des données dans un composant contrôlé, un gestionnaire d’événements de modification est déclenché dans votre code, qui décide si la saisie est valide (en ré-affichant le composant avec la valeur mise à jour).  Si vous ne ré-affichez pas le champ, sa valeur reste inchangée.
 
-In most cases you should use controlled components.
+Un *composant non-contrôlé* fonctionne comme les champs habituels non gérés par React.  Quand un utilisateur saisit des données dans un champ de formulaire (une zone de texte, une liste déroulante, etc.) l’information mise à jour est reflétée sans que React ait quoi que ce soit à faire.  En revanche, cela signifie aussi que vous ne pouvez pas, à la volée, contraindre ou formater les données saisies.
 
-## [Keys](/docs/lists-and-keys.html) {#keys}
+Dans la plupart des cas, vous devriez utiliser des champs contrôlés.
 
-A "key" is a special string attribute you need to include when creating arrays of elements. Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside an array to give the elements a stable identity.
+## [Clés](/docs/lists-and-keys.html) {#keys}
 
-Keys only need to be unique among sibling elements in the same array. They don't need to be unique across the whole application or even a single component.
+Une « clé » *(key)* est un attribut spécial que vous devez ajouter quand vous créez des tableaux d’éléments.  Les clés aident React à identifier quels éléments ont changé, ont été ajoutés ou retirés.  Les clés sont à placer sur les éléments du tableau pour leur donner une identité stable.
 
-Don't pass something like `Math.random()` to keys. It is important that keys have a "stable identity" across re-renders so that React can determine when items are added, removed, or re-ordered. Ideally, keys should correspond to unique and stable identifiers coming from your data, such as `post.id`.
+Les clés doivent être uniques au sein du tableau, mais n’ont pas besoin de l’être pour toute l’application, ou même au sein du composant.
+
+N’utilisez pas quelque chose comme `Math.random()` pour vos clés.  Il est critique que les clés aient une « identité stable » d’un rendu à l’autre, pour que React puisse détecter les ajouts, suppressions ou ré-ordonnancements.  Dans l’idéal, les clés devraient correspondre à des identifiants stables issus de vos données, comme `post.id`.
 
 ## [Refs](/docs/refs-and-the-dom.html) {#refs}
 
-React supports a special attribute that you can attach to any component. The `ref` attribute can be an object created by [`React.createRef()` function](/docs/react-api.html#reactcreateref) or a callback function, or a string (in legacy API). When the `ref` attribute is a callback function, the function receives the underlying DOM element or class instance (depending on the type of element) as its argument. This allows you to have direct access to the DOM element or component instance.
+React propose un attribut spécial que vous pouvez utiliser pour n’importe quel composant.  L’attribut `ref` peut être soit un objet créé par la [fonction `React.createRef()`](/docs/react-api.html#reactcreateref), soit une fonction de rappel, soit encore une chaîne (mais cette dernière forme est dépréciée). Quand l’attribut `ref` est une fonction de rappel, celle-ci reçoit comme argument l’élément du DOM ou l’instance de classe sous-jacents (suivant le type de l’élément).  Ça vous permet d’obtenir un accès direct à l’élément du DOM ou à l’instance du composant.
 
-Use refs sparingly. If you find yourself often using refs to "make things happen" in your app, consider getting more familiar with [top-down data flow](/docs/lifting-state-up.html).
+N’abusez pas des refs.  Si vous vous retrouvez à souvent recourir à des refs pour « faire que ça marche », vous avez probablement besoin de réviser le [flux de données unidirectionnel](/docs/lifting-state-up.html) de React.
 
-## [Events](/docs/handling-events.html) {#events}
+## [Événements](/docs/handling-events.html) {#events}
 
-Handling events with React elements has some syntactic differences:
+La gestion des événements dans React présente quelques différences de syntaxe dans le balisage :
 
-* React event handlers are named using camelCase, rather than lowercase.
-* With JSX you pass a function as the event handler, rather than a string.
+* Les gestionnaires d’événements React sont nommés en `casseCamel`, plutôt qu’en minuscules.
+* En JSX, on passe une fonction comme gestionnaire, pas une chaîne de caractères.
 
-## [Reconciliation](/docs/reconciliation.html) {#reconciliation}
+## [Réconciliation](/docs/reconciliation.html) {#reconciliation}
 
-When a component's props or state change, React decides whether an actual DOM update is necessary by comparing the newly returned element with the previously rendered one. When they are not equal, React will update the DOM. This process is called "reconciliation".
+Quand les props ou l’état local d’un composant changent, React détermine si une mise à jour effective du DOM est nécessaire en comparant les éléments fraîchement renvoyés et ceux de la passe précédente.  Lorsqu’ils ne sont pas égaux, React met à jour le DOM.  Ce processus est appelé « réconciliation ».
