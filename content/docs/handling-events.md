@@ -124,7 +124,7 @@ Si vous n'utilisez pas la syntaxe des variables de classe, vous pouvez utiliser 
 ```js{7-9}
 class LoggingButton extends React.Component {
   handleClick() {
-    console.log('Voici:', this);
+    console.log('this vaut :', this);
   }
 
   render() {
