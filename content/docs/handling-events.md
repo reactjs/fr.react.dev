@@ -10,7 +10,7 @@ redirect_from:
 
 La gestion des événements pour les éléments React est très similaire à celle des éléments du DOM. Il y a tout de même quelques différences de syntaxe :
 
-* Les événements de React sont nommés en « casseCamel » plutôt qu’en minuscules.
+* Les événements de React sont nommés en `camelCase` plutôt qu’en minuscules.
 * En JSX on passe une fonction comme gestionnaire d'événement plutôt qu’une chaîne de caractères.
 
 Par exemple, le HTML suivant :
