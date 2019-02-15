@@ -85,7 +85,7 @@ Une chaîne d'outils de construction en JavaScript comprend généralement :
 
 * Un **gestionnaire de paquets**, tel que [Yarn](https://yarnpkg.com/) ou [npm](https://www.npmjs.com/). Il vous permet de tirer parti d'un vaste écosystème de paquets tiers, et de les installer ou les mettre à jour facilement.
 
-* Un **empaqueteur**, tel que [webpack](https://webpack.js.org/) ou [Parcel](https://parceljs.org/). Il vous permet d'écrire du code modulaire et de le regrouper en petits paquets permettant d'optimiser le temps de chargement.
+* Un **_bundler_**, tel que [webpack](https://webpack.js.org/) ou [Parcel](https://parceljs.org/). Il vous permet d'écrire du code modulaire et de le regrouper en petits paquets permettant d'optimiser le temps de chargement.
 
 * Un **compilateur** tel que [Babel](http://babeljs.io/). Il vous permet d'écrire du JavaScript moderne qui continuera à fonctionner dans les navigateurs les plus anciens.
 
