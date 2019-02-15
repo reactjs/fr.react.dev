@@ -8,7 +8,7 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
-La gestion des événements des éléments dans React est très similaire à celle des éléments dans le DOM. Cependant il y a quelques différences de syntaxe :
+La gestion des événements pour les éléments React est très similaire à celle des éléments du DOM. Il y a tout de même quelques différences de syntaxe :
 
 * Les événements de React sont nommés en "camelCase" au lieu de "lowercase".
 * Grâce à JSX on passe une fonction au gestionnaire d'événement au lieu d'une simple chaîne de caractères.
