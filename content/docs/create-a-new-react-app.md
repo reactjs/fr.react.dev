@@ -24,7 +24,7 @@ Les chaînes d'outils recommandées sur cette page **ne nécessitent aucune conf
 
 Si vous ne rencontrez pas les problèmes décrits ci-dessus ou si vous n'êtes pas encore à l'aise avec l'utilisation d'outils JavaScript, envisagez [d'ajouter React comme une simple balise `<script>` sur une page HTML](/docs/add-react-to-a-website.html), éventuellement [avec du JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx).
 
-C'est également **la façon la plus simple d'intégrer React au sein d'un site web existant**. Vous pourrez toujours étendre votre chaîne d'outils si vous trouvez cela utile !
+C'est également **la façon la plus simple d'intégrer React au sein d'un site web existant**. Vous pourrez toujours étendre votre outillage si ça vous semble utile !
 
 ## Chaînes d'outils recommandées {#recommended-toolchains}
 
