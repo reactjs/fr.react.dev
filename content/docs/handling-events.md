@@ -93,7 +93,7 @@ ReactDOM.render(
 
 [**Essayer dans CodePen**](http://codepen.io/gaearon/pen/xEmzGg?editors=0010)
 
-En JSX, vous devez être prudent avec l'utilisation de `this` dans les fonctions de rappels. En JavaScript, les méthodes de classes ne sont pas [liées](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind) par défaut (Dans la suite de l'article, pour des raisons de concision, nous utiliserons le terme générique anglais bind, NdT). Si vous oubliez de bind `this.handleClick` et si vous l'utilisez dans `onClick`, `this` sera `undefined` quand la fonction sera appelée.
+En JSX, vous devez être prudent·e avec l'utilisation de `this` dans les fonctions de rappel. En JavaScript, les méthodes de classes ne sont pas [liées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Function/bind) par défaut. Si vous oubliez de lier `this.handleClick` et l'utilisez dans `onClick`, `this` sera `undefined` quand la fonction sera appelée.
 
 Ce n'est pas un comportement spécifique à React, cela fait en effet partie du [fonctionnement général des fonctions en JavaScript](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). En général, si vous faites références à une méthode sans `()`, par exemple `onClick={this.handleClick}`, vous devriez utiliser une liaison de données.
 
