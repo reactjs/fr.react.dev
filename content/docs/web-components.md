@@ -8,7 +8,7 @@ redirect_from:
 
 React et [les Web Components](https://developer.mozilla.org/fr/docs/Web/Web_Components) sont conçus pour résoudre des problèmes différents. Les Web Components offrent une encapsulation forte pour des composants réutilisables, tandis que React fournit une bibliothèque déclarative qui permet au DOM de rester synchronisé avec vos données. Les deux objectifs sont complémentaires. En tant que développeur, vous être libre d'utiliser React dans vos Web Components, ou bien d'utiliser des Web Components dans React, ou encore les deux à la fois.
 
-La plupart utilisateurs de React n'utilisent pas les Web Components, mais vous voudrez peut-être le faire, en particulier si vous utilisez des composants tiers d'interface utilisateur (UI) écrits à l'aide de Web Components.
+La plupart des utilisateurs de React n'utilisent pas les Web Components, mais vous voudrez peut-être le faire, en particulier si vous utilisez des composants tiers d'interface utilisateur (UI) écrits à l'aide de Web Components.
 
 ## Utiliser des Web Components dans React {#using-web-components-in-react}
 
@@ -27,7 +27,7 @@ class HelloMessage extends React.Component {
 > Les événements émis par un Web Component peuvent ne pas se propager correctement à travers un arbre de composants de React.
 > Vous devrez attacher manuellement les gestionnaires d'événements afin de gérer ces événements au sein de vos composants React.
 
-Une source habituelle de confusion réside dans l’utilisation par les Composants Web de `class` au lieu de `className`.
+Une source habituelle de confusion réside dans l’utilisation par les Web Components de `class` au lieu de `className`.
 
 ```javascript
 function BrickFlipbox() {
