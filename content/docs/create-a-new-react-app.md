@@ -13,12 +13,12 @@ Utilisez une boîte à outils intégrée pour la meilleure expérience utilisate
 Cette page décrit quelques boîtes à outils populaires qui facilitent les tâches telles que :
 
 * La montée à l'échelle avec de nombreux fichiers et composants.
-* Utilisation de bibliothèques tierces depuis npm.
-* Détection précoce des erreurs courantes.
+* L'tilisation de bibliothèques tierces depuis npm.
+* La détection précoce des erreurs courantes.
 * L’édition à la volée du CSS et du JS en développement.
-* Optimisation pour la production.
+* L'optimisation pour la production.
 
-Les chaînes d'outils recommandées sur cette page **ne nécessitent aucune configuration pour démarrer**.
+Les boîtes à outils recommandées sur cette page **ne nécessitent aucune configuration pour démarrer**.
 
 ## Vous n'avez peut-être pas besoin d’une boîte à outils {#you-might-not-need-a-toolchain}
 
@@ -26,14 +26,14 @@ Si vous ne rencontrez pas les problèmes décrits ci-dessus ou si vous n'êtes p
 
 C'est également **la façon la plus simple d'intégrer React au sein d'un site web existant**. Vous pourrez toujours étendre votre outillage si ça vous semble utile !
 
-## Chaînes d'outils recommandées {#recommended-toolchains}
+## Boîtes à outils recommandées {#recommended-toolchains}
 
 L'équipe React recommande en premier lieu ces solutions :
 
 - Si vous **apprenez React** ou **créez une nouvelle [application web monopage](/docs/glossary.html#single-page-application)**, alors utilisez [Create React App](#create-react-app).
 - Si vous construisez un **site web rendu côté serveur avec Node.js**, essayez [Next.js](#nextjs).
 - Si vous construisez un **site web statique orienté contenu**, essayez [Gatsby](#gatsby).
-- Si vous construisez une **bibliothèque de composants** ou une **intégration avec du code déjà existant**, essayez [des chaînes d'outils plus flexibles](#more-flexible-toolchains).
+- Si vous construisez une **bibliothèque de composants** ou une **intégration avec du code déjà existant**, essayez [des boîtes à outils plus flexibles](#more-flexible-toolchains).
 
 ### Create React App {#create-react-app}
 
@@ -67,9 +67,9 @@ Apprenez Next.js grâce à [son guide officiel](https://nextjs.org/learn/).
 
 Apprenez Gatsby grâce à [son guide officiel](https://www.gatsbyjs.org/docs/) et à une [collection de kits de démarrage](https://www.gatsbyjs.org/docs/gatsby-starters/).
 
-### Chaînes d'outils plus flexibles {#more-flexible-toolchains}
+### Boîtes à outils plus flexibles {#more-flexible-toolchains}
 
-Les chaînes d'outils suivantes offrent plus de flexibilité et de choix. Nous les recommandons pour les utilisateurs expérimentés :
+Les boîtes à outils suivantes offrent plus de flexibilité et de choix. Nous les recommandons pour les utilisateurs expérimentés :
 
 - **[Neutrino](https://neutrinojs.org/)** combine la puissance de [webpack](https://webpack.js.org/) avec la simplicité des préréglages. Il inclut un préréglage pour les [applications React](https://neutrinojs.org/packages/react/) et les [composants React](https://neutrinojs.org/packages/react-components/).
 
@@ -79,9 +79,9 @@ Les chaînes d'outils suivantes offrent plus de flexibilité et de choix. Nous l
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** est un framework de rendu côté serveur qui ne requiert aucune configuration, mais offre plus de flexibilité que Next.js.
 
-## Créer une chaîne d'outils à partir de zéro {#creating-a-toolchain-from-scratch}
+## Créer une boîte à outils à partir de zéro {#creating-a-toolchain-from-scratch}
 
-Une chaîne d'outils de construction en JavaScript comprend généralement :
+Une boîte à outils de construction en JavaScript comprend généralement :
 
 * Un **gestionnaire de paquets**, tel que [Yarn](https://yarnpkg.com/) ou [npm](https://www.npmjs.com/). Il vous permet de tirer parti d'un vaste écosystème de paquets tiers, et de les installer ou les mettre à jour facilement.
 
@@ -89,6 +89,6 @@ Une chaîne d'outils de construction en JavaScript comprend généralement :
 
 * Un **compilateur** tel que [Babel](http://babeljs.io/). Il vous permet d'écrire du JavaScript moderne qui fonctionnera quand même dans les navigateurs les plus anciens.
 
-Si vous préférez configurer votre propre chaîne d'outils JavaScript à partir de zéro, [jetez un œil à ce guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) qui re-crée certaines des fonctionnalités de Create React App.
+Si vous préférez configurer votre propre boîte à outils JavaScript à partir de zéro, [jetez un œil à ce guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) qui re-crée certaines des fonctionnalités de Create React App.
 
 Pensez à vous assurer que votre outillage personnalisé [est correctement configuré pour la production](/docs/optimizing-performance.html#use-the-production-build).
