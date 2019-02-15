@@ -119,7 +119,7 @@ class LoggingButton extends React.Component {
 
 Cette syntaxe est activée par défaut dans [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Si vous n'utilisez pas la syntaxe des variables de classe, vous pouvez utiliser les [fonctions fléchées](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) dans la fonction de rappel.
+Si vous n'utilisez pas la syntaxe des champs de classe, vous pouvez utiliser les [fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fléchées) pour les fonctions de rappel.
 
 ```js{7-9}
 class LoggingButton extends React.Component {
