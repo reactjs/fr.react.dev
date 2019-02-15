@@ -104,7 +104,7 @@ class LoggingButton extends React.Component {
   // Cette syntaxe nous assure que `this` est bien lié avec la méthode handleClick.
   // Attention: cette syntaxe est encore à l'état *expérimental*.
   handleClick = () => {
-    console.log('Voici:', this);
+    console.log('this vaut :', this);
   }
 
   render() {
