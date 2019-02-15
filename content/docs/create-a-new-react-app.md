@@ -8,7 +8,7 @@ prev: add-react-to-a-website.html
 next: cdn-links.html
 ---
 
-Utilisez une chaîne d'outils intégrée pour la meilleure expérience utilisateur et développeur possible.
+Utilisez une boîte à outils intégrée pour la meilleure expérience utilisateur et développeur possible.
 
 Cette page décrit quelques chaînes d'outils populaires qui facilitent les tâches telles que :
 
