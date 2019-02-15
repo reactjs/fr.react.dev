@@ -268,7 +268,7 @@ TestRenderer.create(
   {
     createNodeMock: (element) => {
       if (element.type === 'input') {
-        // mock a focus function
+        // simule une fonction focus
         return {
           focus: () => {
             focused = true;
