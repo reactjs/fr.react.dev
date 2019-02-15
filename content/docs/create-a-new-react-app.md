@@ -91,4 +91,4 @@ Une chaîne d'outils de construction en JavaScript comprend généralement :
 
 Si vous préférez configurer votre propre chaîne d'outils JavaScript à partir de zéro, [jetez un œil à ce guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) qui re-crée certaines des fonctionnalités de Create React App.
 
-N'oubliez pas de vous assurer que votre chaîne d'outils personnalisée [est correctement configurée pour la production](/docs/optimizing-performance.html#use-the-production-build).
+Pensez à vous assurer que votre outillage personnalisé [est correctement configuré pour la production](/docs/optimizing-performance.html#use-the-production-build).
