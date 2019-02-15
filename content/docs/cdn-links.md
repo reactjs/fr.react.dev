@@ -22,7 +22,7 @@ Les versions ci-dessus ne doivent être utilisées qu'à des fins de développem
 
 Pour charger une version spécifique de `react` et `react-dom`, il suffit de remplacer le `16` par la version souhaitée.
 
-### Pourquoi l'attribut `crossorigin` est-il présent ? {#why-the-crossorigin-attribute}
+### Pourquoi utiliser l'attribut `crossorigin` ? {#why-the-crossorigin-attribute}
 
 Si vous chargez React depuis un CDN, nous vous recommandons de conserver l'attribut [`crossorigin`](https://developer.mozilla.org/fr/docs/Web/HTML/Reglages_des_attributs_CORS) :
 
