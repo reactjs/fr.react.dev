@@ -38,12 +38,11 @@ React a été conçu dès le départ pour une adoption progressive, et **vous po
 
 Si vous souhaitez tester React, vous pouvez utiliser un terrain de jeu en ligne. Essayez um modèle _Hello World_ sur [CodePen](codepen://hello-world) ou [CodeSandbox](https://codesandbox.io/s/new).
 
-Si vous
 Si vous préférez utiliser votre propre éditeur de texte, vous pouvez aussi [télécharger ce ficher HTML](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), l'éditer et l'ouvrir à partir du système de fichiers local dans votre navigateur. Il effectue une lente transformation du code d'exécution donc nous vous recommandons de ne l'utiliser que pour des démonstrations simples.
 
 ### Ajouter React à un site Web {#add-react-to-a-website}
 
-Vous pouvez [ajouter React à une page HTML en une minute](/docs/add-react-to-a-website.html). Vous pouvez ensuite étendre progressivement sa présence ou la limiter à quelques _widgets_ dynamiques.
+Vous pouvez [ajouter React à une page HTML en une minute](/docs/add-react-to-a-website.html) et ensuite étendre progressivement sa présence ou la limiter à quelques _widgets_ dynamiques.
 
 ### Créer une nouvelle application React {#create-a-new-react-app}
 
@@ -78,7 +77,7 @@ La documentation de React suppose une certaine familiarité avec la programmatio
 
 Nous vous recommandons de parcourir [cet aperçu JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript/Une_r%C3%A9introduction_%C3%A0_JavaScript) pour vérifier votre niveau de connaissance. Cela vous prendra entre 30 minutes et une heure, mais vous vous sentirez plus confiant pour apprendre React.
 
->_Tip_
+>Conseil
 >
 >Chaque fois que vous êtes dérouté par quelque chose en JavaScript, [MDN](https://developer.mozilla.org/fr/docs/Web/JavaScript) et [javascript.info](http://javascript.info/) sont d'excellents sites pour vérifier. Il y a aussi [des forums de soutien communautaire](/community/support.html) où vous pouvez demander de l'aide.
 
