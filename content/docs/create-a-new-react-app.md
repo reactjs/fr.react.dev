@@ -81,7 +81,7 @@ Les chaînes d'outils suivantes offrent plus de flexibilité et de choix. Nous l
 
 ## Créer une chaîne d'outils à partir de rien {#creating-a-toolchain-from-scratch}
 
-Une chaîne d'outils de construction en JavaScript consiste généralement en :
+Une chaîne d'outils de construction en JavaScript comprend généralement :
 
 * Un **gestionnaire de paquets**, tel que [Yarn](https://yarnpkg.com/) ou [npm](https://www.npmjs.com/). Il vous permet de tirer parti d'un vaste écosystème de paquets tiers, et de les installer ou les mettre à jour facilement.
 
