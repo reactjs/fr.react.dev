@@ -32,14 +32,14 @@ L'équipe React recommande en premier lieu ces solutions :
 
 - Si vous **apprenez React** ou **créez une nouvelle [application web monopage](/docs/glossary.html#single-page-application)**, alors utilisez [Create React App](#create-react-app).
 - Si vous construisez un **site web rendu côté serveur avec Node.js**, essayez [Next.js](#nextjs).
-- Si vous construisez un **site web statique orienté sur le contenu**, essayez [Gatsby](#gatsby).
+- Si vous construisez un **site web statique orienté contenu**, essayez [Gatsby](#gatsby).
 - Si vous construisez une **bibliothèque de composants** ou une **intégration avec du code déjà existant**, essayez [des chaînes d'outils plus flexibles](#more-flexible-toolchains).
 
 ### Create React App {#create-react-app}
 
 [Create React App](http://github.com/facebookincubator/create-react-app) est un environnement confortable pour **apprendre React**, et constitue la meilleure option pour démarrer **une nouvelle [application web monopage](/docs/glossary.html#single-page-application)** en React.
 
-Il configure votre environnement de développement de façon à vous permettre d'utiliser les dernières fonctionnalités de JavaScript, propose une bonne expérience développeur et optimise votre application pour la production. Vous aurez besoin de Node >= 6 et npm >= 5.2 sur votre machine. Pour créer un projet, exécutez :
+Il configure votre environnement de développement de façon à vous permettre d'utiliser les dernières fonctionnalités de JavaScript, propose une expérience développeur agréable et optimise votre application pour la production. Vous aurez besoin de Node >= 6 et de npm >= 5.2 sur votre machine. Pour créer un projet, exécutez :
 
 ```bash
 npx create-react-app mon-app
@@ -47,17 +47,17 @@ cd mon-app
 npm start
 ```
 
->Note
+> Remaque :
 >
->`npx` sur la première ligne n'est pas une faute de frappe -- c'est un [exécuteur de paquets qui est inclut dans npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
+> `npx` sur la première ligne n'est pas une faute de frappe -- c'est un [exécuteur de paquets qui est inclus dans npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
 
-Create React App ne prend pas en charge la logique côté serveur ni les bases de données ; il crée simplement une chaîne de construction pour la partie frontale, de telle façon que vous pouvez utiliser n'importe quel serveur de votre choix. Sous le capot, it utilise [Babel](http://babeljs.io/) et [webpack](https://webpack.js.org/), mais vous n'avez pas besoin de connaître ces outils.
+Create React App ne prend pas en charge la logique côté serveur ni les bases de données ; il crée simplement une chaîne de construction pour la partie frontale, de sorte que vous pouvez utiliser le serveur de votre choix. Sous le capot, it utilise [Babel](http://babeljs.io/) et [webpack](https://webpack.js.org/), mais vous n'avez pas besoin de connaître ces outils.
 
-Lorsque vous êtes prêt à déployer en production, exécuter `npm run build` créera une version optimisée de votre application dans le répertoire `build`. Vous pouvez en apprendre davantage sur Create React App [depuis son README](https://github.com/facebookincubator/create-react-app#create-react-app-) et son [guide utilisateur](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents).
+Lorsque vous êtes prêt·e à déployer en production, exécutez `npm run build` pour créer une version optimisée de votre application dans le répertoire `build`. Vous pouvez en apprendre davantage sur Create React App [dans son README](https://github.com/facebookincubator/create-react-app#create-react-app-) et son [guide utilisateur](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents).
 
 ### Next.js {#nextjs}
 
-[Next.js](https://nextjs.org/) est un framework populaire et léger pour les **applications statiques rendues côté serveur** construites avec React. Il inclut des solutions prêtes à l'emploi pour le **style et le routage**, et suppose que vous utilisez [Node.js](https://nodejs.org/) comme environnement de serveur.
+[Next.js](https://nextjs.org/) est un framework populaire et léger pour les **applications statiques rendues côté serveur** construites avec React. Il fournit des solutions prêtes à l'emploi pour **les styles et le routage**, et suppose que vous utilisez [Node.js](https://nodejs.org/) comme environnement serveur.
 
 Apprenez Next.js grâce à [son guide officiel](https://nextjs.org/learn/).
 
@@ -73,13 +73,13 @@ Les chaînes d'outils suivantes offrent plus de flexibilité et de choix. Nous l
 
 - **[Neutrino](https://neutrinojs.org/)** combine la puissance de [webpack](https://webpack.js.org/) avec la simplicité des préréglages. Il inclut un préréglage pour les [applications React](https://neutrinojs.org/packages/react/) et les [composants React](https://neutrinojs.org/packages/react-components/).
 
-- **[nwb](https://github.com/insin/nwb)** est particulièrement utile pour [publier des composants React pour npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). Il [peut également être utilisé](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) pour créer des applications React.
+- **[nwb](https://github.com/insin/nwb)** est particulièrement utile pour [publier des composants React sur npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). Il [peut également être utilisé](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) pour créer des applications React.
 
-- **[Parcel](https://parceljs.org/)** est un empaqueteur d'applications web rapide et sans configuration qui [fonctionne avec React](https://parceljs.org/recipes.html#react).
+- **[Parcel](https://parceljs.org/)** est un *bundler* d'applications web rapide et sans configuration qui [fonctionne avec React](https://parceljs.org/recipes.html#react).
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** est un framework de rendu côté serveur qui ne requiert aucune configuration, mais offre plus de flexibilité que Next.js.
 
-## Créer une chaîne d'outils à partir de rien {#creating-a-toolchain-from-scratch}
+## Créer une chaîne d'outils à partir de zéro {#creating-a-toolchain-from-scratch}
 
 Une chaîne d'outils de construction en JavaScript comprend généralement :
 
