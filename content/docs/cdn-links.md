@@ -34,4 +34,4 @@ Nous vous conseillons également de vérifier que le CDN que vous utilisez défi
 
 ![Access-Control-Allow-Origin: *](../images/docs/cdn-cors-header.png)
 
-Cela offre une meilleure [expérience de la gestion des erreurs](/blog/2017/07/26/error-handling-in-react-16.html) avec React 16 et des versions ultérieures.
+Cela améliore l’[expérience de gestion des erreurs](/blog/2017/07/26/error-handling-in-react-16.html) avec React 16 et des versions ultérieures.
