@@ -97,7 +97,7 @@ En JSX, vous devez être prudent·e avec l'utilisation de `this` dans les foncti
 
 Ce n'est pas un comportement spécifique à React, cela fait en effet partie du [fonctionnement général des fonctions en JavaScript](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). En général, si vous faites références à une méthode sans `()`, par exemple `onClick={this.handleClick}`, vous devriez utiliser une liaison de données.
 
-Si vous ne souhaitez pas utiliser `bind`, vous avez alors deux solutions. Si vous avez l'habitude d'utiliser la [syntaxe des champs de classes](https://babeljs.io/docs/plugins/transform-class-properties/), qui sont à l'état expérimental, vous pourriez alors les utiliser pour faire la liaison avec les fonctions de rappels.
+Si vous ne souhaitez pas utiliser `bind`, vous avez deux alternatives possibles. Si vous avez l'habitude d'utiliser la [syntaxe des champs de classes](https://babeljs.io/docs/plugins/transform-class-properties/), qui sont encore expérimentales, vous pourriez l’utiliser pour lier les fonctions de rappel :
 
 ```js{2-6}
 class LoggingButton extends React.Component {
