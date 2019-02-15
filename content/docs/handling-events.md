@@ -138,7 +138,7 @@ class LoggingButton extends React.Component {
 }
 ```
 
-Cependant cette syntaxe pose un problème car elle créait une nouvelle fonction de rappel à chaque rendu de `LoggingButton`. Dans la plupart des cas c'est correct. Néanmoins, si la fonction de rappel est passée comme une prop à un composant inférieur, le composant peut produire un rendu supplémentaire. Nous recommandons donc, la plupart du temps, l'utilisation de liaison de données dans le constructeur ou l'utilisation d'une variable de classe afin d'eviter des problèmes de performances.
+Cette syntaxe n’est toutefois pas sans défauts, car elle crée une nouvelle fonction de rappel à chaque affichage de `LoggingButton`. Dans la plupart des cas ce n’est pas gênant. Néanmoins, si cette fonction était passée comme  prop à des composants plus bas dans l’arbre, ces composants risquent de faire des ré-affichages superflus. Nous recommandons donc, en règle générale, de lier ces méthodes dans le constructeur ou d’utiliser un champ de classe afin d'éviter ce genre de  problèmes de performances.
 
 ## Passage d'arguments à un gestionnaire d'événements {#passing-arguments-to-event-handlers}
 
