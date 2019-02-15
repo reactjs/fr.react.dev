@@ -22,7 +22,7 @@
     - id: state-and-lifecycle
       title: État et cycle de vie
     - id: handling-events
-      title: Handling Events
+      title: Gérer les événements
     - id: conditional-rendering
       title: Conditional Rendering
     - id: lists-and-keys
