@@ -10,7 +10,7 @@ next: cdn-links.html
 
 Utilisez une boîte à outils intégrée pour la meilleure expérience utilisateur et développeur possible.
 
-Cette page décrit quelques chaînes d'outils populaires qui facilitent les tâches telles que :
+Cette page décrit quelques boîtes à outils populaires qui facilitent les tâches telles que :
 
 * Mise à l'échelle avec de nombreux fichiers et composants.
 * Utilisation de bibliothèques tierces depuis npm.
