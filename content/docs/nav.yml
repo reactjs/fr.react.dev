@@ -7,7 +7,7 @@
     - id: create-a-new-react-app
       title: Create a New React App
     - id: cdn-links
-      title: CDN Links
+      title: Liens CDN
 - title: Fondamentaux
   isOrdered: true
   items:
