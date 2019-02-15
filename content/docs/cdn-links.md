@@ -30,7 +30,7 @@ Si vous chargez React depuis un CDN, nous vous recommandons de conserver l'attri
 <script crossorigin src="..."></script>
 ```
 
-Nous recommandons de vérifier que le CDN que vous utilisez définit l'entête HTTP `Access-Control-Allow-Origin: *` :
+Nous vous conseillons également de vérifier que le CDN que vous utilisez définit bien l'en-tête HTTP `Access-Control-Allow-Origin: *` :
 
 ![Access-Control-Allow-Origin: *](../images/docs/cdn-cors-header.png)
 
