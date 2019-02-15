@@ -142,7 +142,7 @@ Cette syntaxe n’est toutefois pas sans défauts, car elle crée une nouvelle f
 
 ## Passer des arguments à un gestionnaire d'événements {#passing-arguments-to-event-handlers}
 
-A l'interieur d'une boucle, il est courant de passer un paramètre supplémentaire à un gestionnaire d'événement. Par exemple, si `id` represente la ligne selectionnée, les deux solutions suivantes fonctionnent:
+Au sein d'une boucle, il est courant de vouloir passer un argument supplémentaire à un gestionnaire d'événements. Par exemple, si `id` représente la ligne sélectionnée, on peut faire au choix :
 
 ```js
 <button onClick={(e) => this.deleteRow(id, e)}>Supprimer la ligne</button>
