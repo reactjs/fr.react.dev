@@ -29,7 +29,7 @@ est légèrement différent avec React:
 </button>
 ```
 
-Le fait de ne pas pouvoir retourner la valeur `false` afin d'éviter le comportement par défaut en React est une autre différence. Vous devrez alors appeler explicitement `preventDefault`. Par exemple en HTML, afin d'éviter le comportement par défaut lors de l'ouverture de lien, vous devez écrire:
+Autre différence importante : en React, on ne peut pas renvoyer `false` pour empêcher le comportement par défaut. Vous devez appeler explicitement `preventDefault`. Par exemple, en HTML, pour annuler le comportement par défaut des liens qui consiste à ouvrir une nouvelle page, vous pourriez écrire :
 
 ```html
 <a href="#" onclick="console.log('Le lien a été cliqué.'); return false">
