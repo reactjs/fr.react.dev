@@ -16,7 +16,7 @@ Vous devriez obtenir vos données via des appels AJAX dans la méthode de cycle 
 
 ### Exemple : utiliser des résultats AJAX pour initialiser un état local {#example-using-ajax-results-to-set-local-state}
 
-Le composant ci-dessous montre comment faire un appel AJAX dans `componentDidMount` pour peupler l'état local d'un composant. 
+Le composant ci-dessous montre comment faire un appel AJAX dans `componentDidMount` pour peupler l'état local d'un composant.
 
 Dans l'exemple, l'API renvoie un objet JSON avec la structure suivante :
 
@@ -25,7 +25,7 @@ Dans l'exemple, l'API renvoie un objet JSON avec la structure suivante :
   "items": [
     { "id": 1, "name": "Apples",  "price": "$2" },
     { "id": 2, "name": "Peaches", "price": "$5" }
-  ] 
+  ]
 }
 ```
 
@@ -50,7 +50,7 @@ class MyComponent extends React.Component {
             items: result.items
           });
         },
-        // Note: il est important de traiter les erreurs ici
+        // Remarque : il est important de traiter les erreurs ici
         // au lieu d'utiliser un bloc catch(), pour ne pas passer à la trappe
         // des exceptions provenant de réels bugs du composant.
         (error) => {
