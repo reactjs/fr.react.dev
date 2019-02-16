@@ -32,7 +32,7 @@ Dans ce guide, nous examinerons les blocs qui constituent une application React�
 
 Ceci est le premier chapitre d'un guide étape par étape à propos des concepts principaux de React. Vous pouvez trouver une liste des chapitres dans la barre latérale de navigation. Si vous lisez ceci depuis un appareil mobile, vous pouvez accéder à la navigation en appuyant sur le bouton situé dans le coin en bas à droite de votre écran.
 
-Chacun des chapitres de ce guide s'appuie sur les connaissances introduites dans les chapitres précédents. **Vous pouvez apprendre l’essentiel de React en lisant les chapitres du guide « Fondamentaux » dans l'ordre où ils apparaissent dans la barre latérale.** Par exemple, [« Introduction à JSX »](/docs/introducing-jsx.html) est le chapitre suivant.
+Chacun des chapitres de ce guide s'appuie sur les connaissances introduites dans les chapitres précédents. **Vous pouvez apprendre l’essentiel de React en lisant les chapitres du guide « Fondamentaux » dans l'ordre où ils apparaissent dans la barre latérale.** Par exemple, le prochain chapitre s’intitule [« Introduction à JSX »](/docs/introducing-jsx.html).
 
 ## Niveau de connaissance supposé {#knowledge-level-assumptions}
 
