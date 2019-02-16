@@ -45,6 +45,6 @@ React est une bibliothèque JavaScript, donc nous supposerons que vous avez une 
 
 ## Commençons ! {#lets-get-started}
 
-Continuez de défiler, vous devrez trouver le lien vers le [chapitre suivant de ce guide](/docs/introducing-jsx.html) juste avant le pied de page.
+Continuez à défiler pour atteindre le lien vers le [prochain chapitre de ce guide](/docs/introducing-jsx.html) juste avant le pied de page.
 
 
