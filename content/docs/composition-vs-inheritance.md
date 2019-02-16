@@ -141,7 +141,7 @@ class SignUpDialog extends React.Component {
   render() {
     return (
       <Dialog title="Programme d'exploration de Mars"
-              message="Comment devrions-nous s'adresser à vous ?">
+              message="Comment devrions-nous nous adresser à vous ?">
         <input value={this.state.login}
                onChange={this.handleChange} />
         <button onClick={this.handleSignUp}>
