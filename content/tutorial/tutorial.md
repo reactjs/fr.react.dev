@@ -16,7 +16,7 @@ Ce tutoriel ne suppose aucune connaissance préalable de React.
 
 ## Avant de commencer le tutoriel {#before-we-start-the-tutorial}
 
-Nous construirons un petit jeu au cours de ce tutoriel. **Vous pourriez être tenté·e de l'ignorer parce que vous ne développez pas de jeu -- mais faites l'essai.** Les techniques que vous apprendrez dans le tutoriel sont fondamentales pour construire n'importe quelle application React, et les acquérir vous permettra une profonde connaissance de React.
+Nous construirons un petit jeu au cours de ce tutoriel. **Vous pourriez être tenté·e de l'ignorer parce que vous ne développez pas de jeu -- mais faites l'essai.** Les techniques que vous apprendrez dans le tutoriel sont fondamentales pour construire n'importe quelle application React, et les acquérir vous permettra d'acquérir une profonde connaissance de React.
 
 >Astuce
 >
@@ -31,7 +31,7 @@ Le tutoriel est divisé en plusieurs parties :
 
 Il n'est pas nécessaire de terminer toutes les parties d'une seule traite pour retirer toute la valeur de ce tutoriel. Essayez d'aller jusqu'où vous pourrez, même s'il s'agit d'une ou deux parties.
 
-Vous pouvez vous contentez de copier et coller les portions de code durant votre parcours du tutoriel, cependant nous vous recommandons de le taper vous-même. Cela vous aidera à mieux retenir et à avoir une meilleure compréhension.
+Vous pouvez vous contentez de copier et coller les portions de code durant votre parcours du tutoriel, cependant nous vous recommandons de le taper vous-même. Cela vous aidera à mieux retenir et à développer une meilleure compréhension.
 
 ### Qu'est-ce que nous développerons ? {#what-are-we-building}
 
@@ -84,7 +84,7 @@ npx create-react-app my-app
 
 > Note :
 >
->**Ne supprimer pas le dossier `src`, seulement les fichiers qu'il contient.** Nous remplacerons les fichiers sources initiaux par des exemples pour ce projet à la prochaine étape.
+>**Ne supprimez pas le dossier `src`, seulement les fichiers qu'il contient.** Nous remplacerons les fichiers sources initiaux par des exemples pour ce projet à la prochaine étape.
 
 ```bash
 cd my-app
@@ -100,11 +100,11 @@ del *
 cd ..
 ```
 
-4. Ajouter un fichier nommé `index.css` dans le dossier`src/` avec [ce code CSS](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
+4. Ajoutez un fichier nommé `index.css` dans le dossier`src/` avec [ce code CSS](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
 
-5. Ajouter un fichier nommé `index.js` dans le dossier`src/` avec [ce code JS](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
+5. Ajoutez un fichier nommé `index.js` dans le dossier`src/` avec [ce code JS](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
 
-6. Ajouter ces trois lignes au tout début du fichier `index.js` dans le dossier`src/` 
+6. Ajoutez ces trois lignes au tout début du fichier `index.js` dans le dossier`src/` 
 
 ```js
 import React from 'react';
@@ -155,7 +155,7 @@ Nous verrons plus tard les drôles de balises qui rappellent les balises XML. No
 
 Ici, ShoppingList est un **composant React basé sur une classe**, ou **Composant React**. Un composant prend des paramètres, appelées `props` (abbréviation de "propriété"), et renvoie une hiérarchie de vues à afficher via la méthode `render`.
 
-La méthode `render` renvoie une *<description>* de ce que vous voulez afficher sur l'écran. React prend cette description et affiche le résultat. En particulier, `render` renvoie un **élément React**, qui est une description sommaire de ce qui doit être rendu. La plupart des développeurs React utilisent une syntaxe spéciale appelé « JSX » qui rend ces structures faciles à écrire. La syntaxe `<div />`  est remplacée lors de la compilation par `React.createElement('div')`. L'exemple ci-dessus est l'équivalent de ceci :
+La méthode `render` renvoie une *<description>* de ce que vous voulez afficher à l'écran. React prend cette description et affiche le résultat. En particulier, `render` renvoie un **élément React**, qui est une description sommaire de ce qui doit être rendu. La plupart des développeurs React utilisent une syntaxe spéciale appelé « JSX » qui rend ces structures faciles à écrire. La syntaxe `<div />`  est remplacée lors de la compilation par `React.createElement('div')`. L'exemple ci-dessus est l'équivalent de ceci :
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
