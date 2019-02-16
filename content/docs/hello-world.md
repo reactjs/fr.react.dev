@@ -24,7 +24,7 @@ Cliquez sur le lien ci-dessus pour ouvrir un éditeur en ligne. Vous êtes libre
 
 ## Comment lire ce guide {#how-to-read-this-guide}
 
-Dans ce guide, nous examinerons les éléments constituants les applications React : éléments et composants. Une fois maîtrisé, vous pourrez créer des applications complexes à partir de petites pièces réutilisables.
+Dans ce guide, nous examinerons les blocs constituants les applications React : éléments et composants. Une fois maîtrisé, vous pourrez créer des applications complexes à partir de petites pièces réutilisables.
 
 >Astuce
 >
@@ -32,7 +32,7 @@ Dans ce guide, nous examinerons les éléments constituants les applications Rea
 
 Ceci est le premier chapitre d'un guide étape par étape à propos des concepts principaux de React. Vous pouvez trouver une liste des chapitres dans la barre latérale de navigation. Si vous lisez ceci depuis un appareil mobile, vous pouvez accéder à la navigation en appuyant sur le bouton situé dans le coin en bas à droite de votre écran.
 
-Chacun des chapitres de ce guide sont construits sur les connaissances introduites dans les chapitres précédents. **Vous pouvez apprendre la plupart des éléments de React en lisant les chapitres du guide « Concepts Principaux » dans l'ordre où ils apparaissent dans la barre latérale.** Par exemple, [« Introduction à JSX »](/docs/introducing-jsx.html) est le chapitre suivant.
+Chacun des chapitres de ce guide s'appuie sur les connaissances introduites dans les chapitres précédents. **Vous pouvez apprendre l’essentiel de React en lisant les chapitres du guide « Concepts Principaux » dans l'ordre où ils apparaissent dans la barre latérale.** Par exemple, [« Introduction à JSX »](/docs/introducing-jsx.html) est le chapitre suivant.
 
 ## Niveau de connaissance supposé {#knowledge-level-assumptions}
 
