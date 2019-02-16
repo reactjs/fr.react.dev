@@ -47,7 +47,7 @@ function WelcomeDialog() {
 
 **[Essayer sur CodePen](https://codepen.io/gaearon/pen/ozqNOV?editors=0010)**
 
-Tout ce qui se trouve dans la balise JSX `<FancyBorder>` est passée comme prop `children` au composant `FancyBorder`. Puisque `FancyBorder` fait le rendu de `{props.children}` dans une balise `<div>`, les éléments passés apparaissent dans la sortie finale.
+Tout ce qui se trouve dans la balise JSX `<FancyBorder>` est passé comme prop `children` au composant `FancyBorder`. Puisque `FancyBorder` utilise `{props.children}` dans une balise `<div>`, les éléments passés apparaissent dans la sortie finale.
 
 Bien que cela soit moins courant, vous aurez parfois besoin de plusieurs « trous » dans un composant. Dans ces cas-là, vous pouvez créer votre propre convention au lieu d'utiliser `children` :
 
