@@ -28,7 +28,7 @@ function FancyBorder(props) {
 }
 ```
 
-Cela permet aux autres composants de leur passer des quelconques enfants en imbriquant le JSX.
+Ça permet aux autres composants de leur passer des enfants quelconques en imbriquant le JSX :
 
 ```js{4-9}
 function WelcomeDialog() {
