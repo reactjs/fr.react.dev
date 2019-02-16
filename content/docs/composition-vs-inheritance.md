@@ -86,7 +86,7 @@ Des éléments React tels que `<Contacts />` et `<Chat />` sont simplement des o
 
 Parfois, nous voyons nos composants comme des « cas particuliers » d'autres composants. Par exemple, nous pourrions dire que `WelcomeDialog` est un cas particulier de `Dialog`.
 
-Avec React, cela est également réalisable à l'aide de la composition, où un composant plus « spécialisé » fait le rendu d'un composant plus « générique » et le configure grâce aux props : 
+Avec React, on réalise aussi ça avec la composition ; un composant plus « spécialisé » utilise un composant plus « générique » et le configure grâce aux props : 
 
 ```js{5,8,16-18}
 function Dialog(props) {
