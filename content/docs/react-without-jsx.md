@@ -8,7 +8,7 @@ Vous n'êtes pas obligé·e d'employer JSX pour utiliser React. React sans JSX v
 
 Chaque élément JSX n'est rien de plus que du sucre syntaxique pour `React.createElement(component, props, ...children)`. Par conséquent, tout ce que vous pouvez faire avec JSX peut aussi être réalisé en Javascript brut.
 
-Par exemple, ce code écrit avec JSX:
+Prenons par exemple ce code écrit avec JSX :
 
 ```js
 class Hello extends React.Component {
