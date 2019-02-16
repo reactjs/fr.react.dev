@@ -80,7 +80,7 @@ function App() {
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
 
-Des éléments React tels que `<Contacts />` et `<Chat />` sont simplement des objets, vous pouvez leur passer n'importe quelles autres données en props. Cette approche peut vous rappeler la notion de « slots » présente dans d'autres bibliothèques mais il n'y a aucune limitations dans ce que vous pouvez passer en props avec React.
+Des éléments React tels que `<Contacts />` et `<Chat />` sont simplement des objets, vous pouvez les passer comme props au même titre que n'importe quelle autre donnée. Cette approche peut vous rappeler la notion de “slots” présente dans d'autres bibliothèques, mais il n'y a aucune limitation à ce que vous pouvez passer en props avec React.
 
 ## Spécialisation {#specialization}
 
