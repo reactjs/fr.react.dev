@@ -54,4 +54,4 @@ ReactDOM.render(
 ```
 Si vous utilisez un tel raccourci pour `React.createElement`, utiliser React sans JSX devient presque aussi pratique.
 
-De plus, vous pouvez vous référer à des projets tels que [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) ou [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) qui proposent une syntaxe encore plus concise.
+Dans le même esprit, vous pouvez aller regarder des projets tels que [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) ou [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers), qui proposent une syntaxe encore plus concise.
