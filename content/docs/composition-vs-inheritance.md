@@ -16,7 +16,7 @@ Dans cette section, nous examinerons quelques situations pour lesquelles les dé
 
 Certains composants ne connaissent pas leurs enfants à l’avance. C’est particulièrement courant pour des composants comme `Sidebar` ou `Dialog`, qui représentent des blocs génériques.
 
-Nous recommandons que de tels composants utilisent la prop spéciale `children` pour passer directement les éléments enfants à leur sortie:
+Pour de tels composants, nous vous conseillons d’utiliser la prop spéciale `children`, pour passer directement les éléments enfants dans votre sortie :
 
 ```js{4}
 function FancyBorder(props) {
