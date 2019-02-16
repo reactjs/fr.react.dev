@@ -24,7 +24,7 @@ Cliquez sur le lien ci-dessus pour ouvrir un éditeur en ligne. Vous êtes libre
 
 ## Comment lire ce guide {#how-to-read-this-guide}
 
-Dans ce guide, nous examinerons les blocs constituants les applications React : éléments et composants. Une fois maîtrisé, vous pourrez créer des applications complexes à partir de petites pièces réutilisables.
+Dans ce guide, nous examinerons les blocs qui constituent une application React : éléments et composants. Une fois maîtrisé, vous pourrez créer des applications complexes à partir de petites pièces réutilisables.
 
 >Astuce
 >
