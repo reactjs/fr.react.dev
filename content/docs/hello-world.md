@@ -36,7 +36,7 @@ Chacun des chapitres de ce guide s'appuie sur les connaissances introduites dans
 
 ## Niveau de connaissance supposé {#knowledge-level-assumptions}
 
-React est une bibliothèque JavaScript, donc nous supposerons que vous ayez une compréhension basique du langage JavaScript. **Si vous ne vous sentez pas à l'aise, nous vous recommandons de [passer par un tutoriel JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) pour vérifier votre niveau de connaissance** et vous permettre de suivre ce guide sans être perdu. Il vous prendra entre 30 minutes et une heure environ, mais au moins vous n'aurez pas le sentiment d'apprendre React et JavaScript en même temps.
+React est une bibliothèque JavaScript, donc nous supposerons que vous avez une compréhension décente du langage JavaScript. **Si vous ne vous sentez pas à l'aise, nous vous recommandons de [passer par un tutoriel JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) pour vérifier votre niveau de connaissance** et vous permettre de suivre ce guide sans être perdu. Il vous prendra entre 30 minutes et une heure environ, mais au moins vous n'aurez pas le sentiment d'apprendre React et JavaScript en même temps.
 
 >Note
 >
