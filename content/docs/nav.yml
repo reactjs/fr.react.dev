@@ -76,7 +76,7 @@
     - id: typechecking-with-proptypes
       title: Typechecking With PropTypes
     - id: uncontrolled-components
-      title: Uncontrolled Components
+      title: Composants non-contrôlés
     - id: web-components
       title: Web Components
 - title: Référence de l'API
