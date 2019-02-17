@@ -12,7 +12,7 @@ Non ! Pour en apprendre plus, consultez ["React sans JSX"](/docs/react-without-
 
 ### Ai-je besoin d'utiliser ES6 (+) avec React ? {#do-i-need-to-use-es6--with-react}
 
-Non! Pour en apprendre plus, consultez ["React sans ES6"](/docs/react-without-es6.html).
+Non ! Pour en apprendre plus, consultez ["React sans ES6"](/docs/react-without-es6.html).
 
 ### Comment écrire des commentaires en JSX ? {#how-can-i-write-comments-in-jsx}
 
