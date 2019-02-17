@@ -1,32 +1,32 @@
 ---
 id: accessibility
-title: Accessibility
+title: Accessibilité
 permalink: docs/accessibility.html
 ---
 
-## Why Accessibility? {#why-accessibility}
+## Pourquoi l'accessibilité ? {#why-accessibility}
 
-Web accessibility (also referred to as [**a11y**](https://en.wiktionary.org/wiki/a11y)) is the design and creation of websites that can be used by everyone. Accessibility support is necessary to allow assistive technology to interpret web pages.
+L'accessibilité du web (aussi référencée sous la contraction [**a11y**](https://fr.wiktionary.org/wiki/a11y)) concerne le design et la création de sites web qui peuvent être utilisés par tout le monde. Le support de l'accessibilité est nécessaire pour permettre aux technologies d'assistance d'interpréter les pages web. 
 
-React fully supports building accessible websites, often by using standard HTML techniques.
+React prend totalement en charge la création de sites web accessibles, en s'appuyant souvent sur des techniques HTML standard.
 
-## Standards and Guidelines {#standards-and-guidelines}
+## Standards et lignes directrices {#standards-and-guidelines}
 
 ### WCAG {#wcag}
 
-The [Web Content Accessibility Guidelines](https://www.w3.org/WAI/intro/wcag) provides guidelines for creating accessible web sites.
+Les [instructions du *Web Content Accessibility*](https://www.w3.org/WAI/intro/wcag) proposent les lignes directrices pour créer des sites web accessibles.
 
-The following WCAG checklists provide an overview:
+La liste du WCAG ci-dessous fournissent un aperçu :
 
-- [WCAG checklist from Wuhcag](https://www.wuhcag.com/wcag-checklist/)
-- [WCAG checklist from WebAIM](http://webaim.org/standards/wcag/checklist)
-- [Checklist from The A11Y Project](http://a11yproject.com/checklist.html)
+- [La liste de contrôle WCAG de Wuhcag](https://www.wuhcag.com/wcag-checklist/).
+- [La liste de contrôle WCAG de WebAIM](http://webaim.org/standards/wcag/checklist).
+- [La liste de contrôle de *The A11Y Project*](http://a11yproject.com/checklist.html).
 
 ### WAI-ARIA {#wai-aria}
 
-The [Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) document contains techniques for building fully accessible JavaScript widgets.
+Le document sur [l'initiative d'accessibilité du Web - *Accessible Rich Internet Applications*](https://www.w3.org/WAI/intro/aria) contient les techniques nécessaires à la création de *widgets* JavaScript complètement accessibles.
 
-Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most DOM properties and attributes in React are camelCased, these attributes should be hyphen-cased (also known as kebab-case, lisp-case, etc) as they are in plain HTML:
+Remarquez que tous les attributs HTML `aria-*` sont entièrement supportés dans le JSX. Là où la plupart des propriétés DOM en React utilisent le format « camelCase », ces attributs doivent utiliser la casse par tirets (« *hyphen-case* », aussi appelée « *kebab-case* », « *lisp-case* », etc.), comme ils le sont en HTML simple :
 
 ```javascript{3,4}
 <input
@@ -39,16 +39,17 @@ Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most 
 />
 ```
 
-## Semantic HTML {#semantic-html}
-Semantic HTML is the foundation of accessibility in a web application. Using the various HTML elements to reinforce the meaning of information
+## HTML sémantique {#semantic-html}
+
+Le HTML sémantique est la base de l'accessibilité dans une application web. L'utilisation des différents éléments HTML pour renforcer la signification de l'information de nos sites web offre généralement de l'accessibilité à peu de frais.
 in our websites will often give us accessibility for free.
 
-- [MDN HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+- [La référence des éléments HTML sur MDN](https://developer.mozilla.org/fr/docs/Web/HTML/Element)
 
-Sometimes we break HTML semantics when we add `<div>` elements to our JSX to make our React code work, especially when working with lists (`<ol>`, `<ul>` and `<dl>`) and the HTML `<table>`.
-In these cases we should rather use [React Fragments](/docs/fragments.html) to group together multiple elements.
+Il nous arrive de casser la sémantique HTML en ajoutant des balises `<div>` dans notre JSX afin de faire fonctionner notre code React, en particulier lorsque l'on travaille avec des listes (`<ol>`, `<ul>` et `<dl>`) ou la table HTML `<table>`.
+Dans ces cas-là, nous devrions plutôt utiliser les [fragments React](/docs/fragments.html) pour regrouper de multiples éléments.
 
-For example,
+Par exemple,
 
 ```javascript{1,5,8}
 import React, { Fragment } from 'react';
@@ -73,14 +74,14 @@ function Glossary(props) {
 }
 ```
 
-You can map a collection of items to an array of fragments as you would any other type of element as well:
+Vous pouvez représenter une liste d'éléments en un tableau de fragments, comme vous pourriez également le faire pour tout autre type d'élément :
 
 ```javascript{6,9}
 function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Fragments should also have a `key` prop when mapping collections
+        // Les fragments doivent aussi disposer de la propriété `key` lors de l'itération sur les listes
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -91,7 +92,7 @@ function Glossary(props) {
 }
 ```
 
-When you don't need any props on the Fragment tag you can use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
+Lorsque vous n'avez besoin d'aucune propriété sur les balises fragments, vous pouvez utiliser la [syntaxe courte](/docs/fragments.html#short-syntax), lorsque votre outillage le supporte :
 
 ```javascript{3,6}
 function ListItem({ item }) {
@@ -104,83 +105,83 @@ function ListItem({ item }) {
 }
 ```
 
-For more info, see [the Fragments documentation](/docs/fragments.html).
+Pour plus d'information, consultez [la documentation sur les fragments](/docs/fragments.html).
 
-## Accessible Forms {#accessible-forms}
+## Formulaires accessibles {#accessible-forms}
 
-### Labeling {#labeling}
-Every HTML form control, such as `<input>` and `<textarea>`, needs to be labeled accessibly. We need to provide descriptive labels that are also exposed to screen readers.
+### L'étiquetage {#labeling}
 
-The following resources show us how to do this:
+Tous les contrôles de formulaire HTML, tels que `<input>` et `<textarea>`, doivent être étiquetés de manière accessible. Nous devons fournir des étiquettes descriptives, qui sont également exposées aux lecteurs d'écran.
 
-- [The W3C shows us how to label elements](https://www.w3.org/WAI/tutorials/forms/labels/)
-- [WebAIM shows us how to label elements](http://webaim.org/techniques/forms/controls)
-- [The Paciello Group explains accessible names](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
+Les ressources ci-dessous nous montrent comme procéder :
 
-Although these standard HTML practices can be directly used in React, note that the `for` attribute is written as `htmlFor` in JSX:
+- [Le W3C nous montre comme étiqueter les éléments](https://www.w3.org/WAI/tutorials/forms/labels/)
+- [Le WebAIM nous montre comme étiqueter les éléments](http://webaim.org/techniques/forms/controls)
+- [Le groupe Paciello explique ce qu'est un nom accessible](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
+
+Bien que ces pratiques HTML standard soient directement utilisables dans React, il faut noter que l'attribut `for` est écrit `htmlFor` en JSX :
 
 ```javascript{1}
-<label htmlFor="namedInput">Name:</label>
+<label htmlFor="namedInput">Nom :</label>
 <input id="namedInput" type="text" name="name"/>
 ```
 
-### Notifying the user of errors {#notifying-the-user-of-errors}
+### Notifier des erreurs à l'utilisateur {#notifying-the-user-of-errors}
 
-Error situations need to be understood by all users. The following link shows us how to expose error texts to screen readers as well:
+Les situations d'erreur doivent être comprises par tous les utilisateurs. Les liens ci-dessous montrent comme exposer les textes d'erreur aux lecteurs d'écran :
 
-- [The W3C demonstrates user notifications](https://www.w3.org/WAI/tutorials/forms/notifications/)
-- [WebAIM looks at form validation](http://webaim.org/techniques/formvalidation/)
+- [Le W3C présente les notifications utilisateurs](https://www.w3.org/WAI/tutorials/forms/notifications/)
+- [Le WebAIM se penche sur les validations de formulaire](http://webaim.org/techniques/formvalidation/)
 
-## Focus Control {#focus-control}
+## Contrôle du focus {#focus-control}
 
-Ensure that your web application can be fully operated with the keyboard only:
+Assurez-vous que votre application web peut être complètement utilisable avec la seule utilisation du clavier :
 
-- [WebAIM talks about keyboard accessibility](http://webaim.org/techniques/keyboard/)
+- [Le WebAIM parle de l'accessibilité depuis le clavier](http://webaim.org/techniques/keyboard/)
 
-### Keyboard focus and focus outline {#keyboard-focus-and-focus-outline}
+### Focus par le clavier et mise en contour de focus {#keyboard-focus-and-focus-outline}
 
-Keyboard focus refers to the current element in the DOM that is selected to accept input from the keyboard. We see it everywhere as a focus outline similar to that shown in the following image:
+Le focus par le clavier fait référence à l'élément courant dans le DOM qui est sélectionné pour accepter les saisies du clavier. Nous le voyons partout comme une mise en contour telle que cela est montré sur l'image ci-dessous :
 
-<img src="../images/docs/keyboard-focus.png" alt="Blue keyboard focus outline around a selected link." />
+<img src="../images/docs/keyboard-focus.png" alt="Le contour bleu du focus clavier autour d'un lien sélectionné" />
 
-Only ever use CSS that removes this outline, for example by setting `outline: 0`, if you are replacing it with another focus outline implementation.
+N'utilisez le CSS qui retire ce contour, par exemple en définissant `outline: 0`, uniquement si vous le remplacez par une autre implémentation de contour de focus.
 
-### Mechanisms to skip to desired content {#mechanisms-to-skip-to-desired-content}
+### Mécanismes pour sauter au contenu désiré {#mechanisms-to-skip-to-desired-content}
 
-Provide a mechanism to allow users to skip past navigation sections in your application as this assists and speeds up keyboard navigation.
+Fournissez un mécanisme permettant aux utilisateurs de sauter les sections de navigation précédentes de votre application, car cela facilite et accélère la navigation au clavier.
 
-Skiplinks or Skip Navigation Links are hidden navigation links that only become visible when keyboard users interact with the page. They are very easy to implement with
-internal page anchors and some styling:
+Les liens de passage (*Skiplinks*) ou lien de navigation de passage sont des liens de navigation cachés qui ne sont visibles que lorsque l'utilisateur interagit au clavier avec la page. Ils sont très faciles à mettre en œuvre avec les ancres de pages internes et un peu de style :
 
-- [WebAIM - Skip Navigation Links](http://webaim.org/techniques/skipnav/)
+- [WebAIM - Liens de navigation de passage](http://webaim.org/techniques/skipnav/)
 
-Also use landmark elements and roles, such as `<main>` and `<aside>`, to demarcate page regions as assistive technology allow the user to quickly navigate to these sections.
 
-Read more about the use of these elements to enhance accessibility here:
+Utilisez également les éléments et rôles de repérage, tels que `<main>` et `<aside>`, afin de délimiter les régions de la page, car les technologies d'assistance permettent à l'utilisateur de naviguer rapidement vers ces sections.
 
-- [Accessible Landmarks](http://www.scottohara.me/blog/2018/03/03/landmarks.html)
+Pour en savoir plus sur l'utilisation de ces éléments améliorant l'accessibilité, rendez-vous sur :
 
-### Programmatically managing focus {#programmatically-managing-focus}
+- [Repères d'accessibilité](http://www.scottohara.me/blog/2018/03/03/landmarks.html)
 
-Our React applications continuously modify the HTML DOM during runtime, sometimes leading to keyboard focus being lost or set to an unexpected element. In order to repair this,
-we need to programmatically nudge the keyboard focus in the right direction. For example, by resetting keyboard focus to a button that opened a modal window after that modal window is closed.
+### Gérer le focus programmatiquement {#programmatically-managing-focus}
 
-MDN Web Docs takes a look at this and describes how we can build [keyboard-navigable JavaScript widgets](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
+Nos applications React modifient en continu le DOM HTML au cours de l'exécution, ce qui entraîne parfois la perte du focus du clavier ou le positionne surun élément inattendu. Afin de réparer cela, nous devons déplacer le focus claiver programmatiquement dans la bonne direction. Par exemple, en redonnant le focus clavier à un bouton ouvrant une fenêtre modale, lorsque cette dernière se ferme.
 
-To set focus in React, we can use [Refs to DOM elements](/docs/refs-and-the-dom.html).
+La documentation web de MDN donne un aperçu à cela, et décrit comment nous pouvons construire [des widgets JavaScript permettant la navigation au clavier](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
 
-Using this, we first create a ref to an element in the JSX of a component class:
+Afin de définir le focus en React, nous pouvons utiliser les [références (*Ref*) aux éléments du DOM](/docs/refs-and-the-dom.html).
+
+En utilisant cela, nous créons d'abord une référence à un élément du JSX de la classe composant :
 
 ```javascript{4-5,8-9,13}
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
-    // Create a ref to store the textInput DOM element
+    // Création d'une référence pour conserver l'élément textInput du DOM
     this.textInput = React.createRef();
   }
   render() {
-  // Use the `ref` callback to store a reference to the text input DOM
-  // element in an instance field (for example, this.textInput).
+    // Utilisez la fonction de rappel `ref` pour stocker la référence de l'élément DOM
+    // du champ texte dans une variable d'instance (par exemple, this.textInput).
     return (
       <input
         type="text"
@@ -191,12 +192,13 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-Then we can focus it elsewhere in our component when needed:
+Nous pouvons dès lors lui donner le focus depuis n'importe où dans notre composant en cas de besoin :
 
  ```javascript
  focus() {
-   // Explicitly focus the text input using the raw DOM API
-   // Note: we're accessing "current" to get the DOM node
+   // Donner explicitement le focus au champ de saisie en
+   // utilisant l'API du DOM.
+   // Remarque : nous utilisons "current" pour accéder au nœud du DOM.
    this.textInput.current.focus();
  }
  ```
