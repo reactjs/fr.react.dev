@@ -134,4 +134,4 @@ React ne saurait quoi retourner lors du second appel au Hook `useState`. React s
 
 ## Prochaines étapes {#next-steps}
 
-Enfin, nous sommes prêt pour apprendre à [écrire nos propres Hooks](/docs/hooks-custom.html) ! Les Hooks personnalisés vous permettent de combiner les Hooks fournis par React dans vos propres abstractions et réutiliser la logique à états commune à vos différents composants.
+Enfin, nous sommes prêt à apprendre à [écrire nos propres Hooks](/docs/hooks-custom.html) ! Les Hooks personnalisés vous permettent de combiner les Hooks fournis par React dans vos propres abstractions et réutiliser la logique à états commune à vos différents composants.
