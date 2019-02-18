@@ -63,6 +63,6 @@ Vous pouvez voir le shallowRenderer comme « l'endroit » où se fait le rendu
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
-Après avoir appelé `shallowRenderer.render()`, vous pouvez utiliser `shallowRenderer.getRenderOutput()` pour récupérer la sortie du superficiel.
+Après avoir appelé `shallowRenderer.render()`, vous pouvez utiliser `shallowRenderer.getRenderOutput()` pour récupérer le rendu superficiel obtenu.
 
 Vous pouvez alors vérifier la qualité du résultat attendu.
