@@ -51,7 +51,7 @@ Le rendu superficiel connait cependant quelques limites, notamment l'absence de 
 
 > Note:
 >
-> Nous vous recommandons de voir l'API du rendu superficiel de Enzyme [Shallow Rendering API](http://airbnb.io/enzyme/docs/api/shallow.html). Il propose une meilleure API de haut niveau pour les même fonctionnalités.
+> Nous vous recommandons de regarder [l'API du rendu superficiel (en)](http://airbnb.io/enzyme/docs/api/shallow.html) d'Enzyme. Elle propose une meilleure API de haut niveau pour les même fonctionnalités.
 
 ## Réference {#reference}
 
