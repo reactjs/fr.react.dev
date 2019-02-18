@@ -35,7 +35,7 @@ Vous pouvez alors faire les vérifications suivantes :
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-// dans votre test:
+// dans votre test :
 const renderer = new ShallowRenderer();
 renderer.render(<MyComponent />);
 const result = renderer.getRenderOutput();
