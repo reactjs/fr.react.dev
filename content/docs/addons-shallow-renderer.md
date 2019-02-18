@@ -30,7 +30,7 @@ function MyComponent() {
 }
 ```
 
-Vous pouvez alors vérifier les faits comme suit:
+Vous pouvez alors faire les vérifications suivantes :
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow';
