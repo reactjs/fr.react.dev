@@ -36,7 +36,7 @@ React a été conçu dès le départ pour une adoption progressive, et **vous po
 
 ### Terrains de jeu en ligne {#online-playgrounds}
 
-Si vous souhaitez tester React, vous pouvez utiliser un terrain de jeu en ligne. Essayez um modèle _Hello World_ sur [CodePen](codepen://hello-world) ou [CodeSandbox](https://codesandbox.io/s/new).
+Si vous souhaitez tester React, vous pouvez utiliser un terrain de jeu en ligne. Essayez un modèle _Hello World_ sur [CodePen](codepen://hello-world) ou [CodeSandbox](https://codesandbox.io/s/new).
 
 Si vous préférez utiliser votre propre éditeur de texte, vous pouvez aussi [télécharger ce ficher HTML](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), l'éditer et l'ouvrir à partir du système de fichiers local dans votre navigateur. Il effectue une lente transformation du code d'exécution donc nous vous recommandons de ne l'utiliser que pour des démonstrations simples.
 
@@ -46,18 +46,18 @@ Vous pouvez [ajouter React à une page HTML en une minute](/docs/add-react-to-a-
 
 ### Créer une nouvelle application React {#create-a-new-react-app}
 
-Lorsque vous démarrez un projet React, [une simple page HTML avec des balises de script](/docs/add-react-to-a-website.html) peux encore être la meilleure option. Cela ne prend qu'une minute à mettre en place !
+Lorsque vous démarrez un projet React, [une simple page HTML avec des balises de script](/docs/add-react-to-a-website.html) peut encore être la meilleure option. Cela ne prend qu'une minute à mettre en place !
 
 Au fur et à mesure que votre application se développe, vous voudrez peut-être envisager une configuration plus intégrée. Il y a [plusieurs chaînes d'outils JavaScript](/docs/create-a-new-react-app.html) que nous recommandons pour des applications plus importantes. Chacune d'entre elles peut fonctionner avec peu ou pas de configuration et vous permet de tirer pleinement parti du riche écosystème de React.
 
 ## Apprendre React {#learn-react}
 
-Les gens arrivent sur React d'horizons différents et avec différents styles d'apprentissage. Que vous préfériez une approche plus théorique ou pratique, nous espérons que cette section vous sera utile.
+Les gens arrivent sur React d'horizons différents et avec différents styles d'apprentissage. Que vous préfériez une approche plus théorique ou pratique, nous espérons que vous trouverez cette section utile.
 
 * Si vous préférez **apprendre en faisant**, commencez par notre [tutoriel pratique](/tutorial/tutorial.html).
 * Si vous préférez **apprendre les concepts étape par étape**, commencez par notre [guide des concepts principaux](/docs/hello-world.html).
 
-Comme toute technologie inconnue, React a une certaine courbe d'apprentissage. Avec de la pratique et un peu de patience, vous comprendrez en un rien de temps !
+Comme toute technologie inconnue, React a une certaine courbe d'apprentissage. Avec de la pratique et un peu de patience, vous maîtriserez le sujet.
 
 ### Premiers exemples {#first-examples}
 
@@ -83,7 +83,7 @@ Nous vous recommandons de parcourir [cet aperçu JavaScript](https://developer.m
 
 ### Tutoriel pratique {#practical-tutorial}
 
-Si vous préférez **apprendre par la pratique**, consultez notre [tutoriel pratique](/tutorial/tutorial.html). Dans ce tutoriel, nous construisons un jeu de morpions avec React. Vous pourriez être tenté de passer parce que vous n'aimez pas de jeux - mais donnez-lui une chance. Les techniques que vous apprendrez dans le tutoriel sont fondamentales pour créer *toute* application React et sa maîtrise vous donnera une compréhension beaucoup plus profonde.
+Si vous préférez **apprendre par la pratique**, consultez notre [tutoriel pratique](/tutorial/tutorial.html). Dans ce tutoriel, nous construisons un jeu de morpions avec React. Vous pourriez être tenté de passer parce que vous n'aimez pas concevoir de jeux - mais donnez-lui une chance. Les techniques que vous apprendrez dans le tutoriel sont fondamentales pour créer *toute* application React et sa maîtrise vous donnera une compréhension beaucoup plus profonde.
 
 ### Guide étape par étape {#step-by-step-guide}
 
@@ -95,11 +95,11 @@ De nombreux utilisateurs de React attribuent crédit à la lecture [Thinking in 
 
 ### Cours recommandés {#recommended-courses}
 
-Parfois, les livres et cours vidéo de tiers sont plus utiles que la documentation officielle. Nous maintenons [une liste de ressources communément recommandées](/community/courses.html), dont certains sont gratuits.
+Parfois, les livres et cours vidéo de tiers sont plus utiles que la documentation officielle. Nous maintenons [une liste de ressources communément recommandées](/community/courses.html), dont certaines sont gratuites.
 
 ### Concepts avancés {#advanced-concepts}
 
-Une fois que vous êtes à l'aise avec les [concepts principaux](#main-concepts) et un peu testé React, vous pourriez être intéressé par des sujets plus avancés. Cette section présente les puissantes, mais moins utilisées, fonctionnalités de React, telles que [context](/docs/context.html) et [refs](/docs/refs-and-the-dom.html).
+Une fois que vous êtes à l'aise avec les [concepts principaux](#main-concepts) et que vous aurez testé React, vous pourriez être intéressé par des sujets plus avancés. Cette section présente les fonctionnalités puissantes, mais moins utilisées, de React, telles que [context](/docs/context.html) et [refs](/docs/refs-and-the-dom.html).
 
 ### Référence API {#api-reference}
 
@@ -115,7 +115,7 @@ Le [blog React](/blog/) est la source officielle des mises à jour de l'équipe 
 
 Vous pouvez également suivre le [compte @reactjs](https://twitter.com/reactjs) sur Twitter, mais rien d’essentiel ne vous échappera si vous ne lisez que le blog.
 
-Chaque publication de React ne mérite pas son propre article de blog,mais vous pouvez trouver un _changelog_ détaillé pour chaque version [dans le fichier `CHANGELOG.md` sur la repo React](https://github.com/facebook/react/blob/master/CHANGELOG.md), ainsi que sur la page des [communiqués](https://github.com/facebook/react).
+Chaque publication de React ne mérite pas son propre article de blog, mais vous pouvez trouver un _changelog_ détaillé pour chaque version [dans le fichier `CHANGELOG.md` sur la repo React](https://github.com/facebook/react/blob/master/CHANGELOG.md), ainsi que sur la page des [communiqués](https://github.com/facebook/react).
 
 ## Documentation versionnée {#versioned-documentation}
 
