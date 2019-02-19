@@ -14,9 +14,9 @@ React prend totalement en charge la création de sites web accessibles, en s'app
 
 ### WCAG {#wcag}
 
-Les [instructions du *Web Content Accessibility*](https://www.w3.org/WAI/intro/wcag) proposent les lignes directrices pour créer des sites web accessibles.
+Les [directives pour l'accessibilité au contenu web (*Web Content Accessibility Guidelines*)](https://www.w3.org/WAI/intro/wcag) proposent les lignes directrices pour créer des sites web accessibles.
 
-La liste du WCAG ci-dessous fournissent un aperçu :
+Les listes de contrôle du WCAG ci-dessous en fournissent un aperçu :
 
 - [La liste de contrôle WCAG de Wuhcag](https://www.wuhcag.com/wcag-checklist/).
 - [La liste de contrôle WCAG de WebAIM](http://webaim.org/standards/wcag/checklist).
@@ -24,9 +24,9 @@ La liste du WCAG ci-dessous fournissent un aperçu :
 
 ### WAI-ARIA {#wai-aria}
 
-Le document sur [l'initiative d'accessibilité du Web - *Accessible Rich Internet Applications*](https://www.w3.org/WAI/intro/aria) contient les techniques nécessaires à la création de *widgets* JavaScript complètement accessibles.
+Le document sur [l'initiative d'accessibilité du Web - *Accessible Rich Internet Applications*](https://www.w3.org/WAI/intro/aria) contient les techniques nécessaires à la création de widgets JavaScript complètement accessibles.
 
-Remarquez que tous les attributs HTML `aria-*` sont entièrement supportés dans le JSX. Là où la plupart des propriétés DOM en React utilisent le format « camelCase », ces attributs doivent utiliser la casse par tirets (« *hyphen-case* », aussi appelée « *kebab-case* », « *lisp-case* », etc.), comme ils le sont en HTML simple :
+Remarquez que tous les attributs HTML `aria-*` sont supportés dans le JSX. Là où la plupart des propriétés DOM en React utilisent le format « *camelCase* », ces attributs doivent utiliser la casse par tirets (« *hyphen-case* », aussi appelée « *kebab-case* », « *lisp-case* », etc.), comme ils le sont en HTML simple :
 
 ```javascript{3,4}
 <input
@@ -42,11 +42,10 @@ Remarquez que tous les attributs HTML `aria-*` sont entièrement supportés dans
 ## HTML sémantique {#semantic-html}
 
 Le HTML sémantique est la base de l'accessibilité dans une application web. L'utilisation des différents éléments HTML pour renforcer la signification de l'information de nos sites web offre généralement de l'accessibilité à peu de frais.
-in our websites will often give us accessibility for free.
 
 - [La référence des éléments HTML sur MDN](https://developer.mozilla.org/fr/docs/Web/HTML/Element).
 
-Il nous arrive de casser la sémantique HTML en ajoutant des balises `<div>` dans notre JSX afin de faire fonctionner notre code React, en particulier lorsque l'on travaille avec des listes (`<ol>`, `<ul>` et `<dl>`) ou la table HTML `<table>`.
+Il nous arrive de casser la sémantique HTML en ajoutant des balises `<div>` dans notre JSX afin de faire fonctionner notre code React, en particulier lorsque l'on travaille avec des listes (`<ol>`, `<ul>` et `<dl>`) ou le tableau HTML `<table>`.
 Dans ces cas-là, nous devrions plutôt utiliser les [fragments React](/docs/fragments.html) pour regrouper de multiples éléments.
 
 Par exemple,
@@ -74,14 +73,14 @@ function Glossary(props) {
 }
 ```
 
-Vous pouvez représenter une liste d'éléments en un tableau de fragments, comme vous pourriez également le faire pour tout autre type d'élément :
+Vous pouvez représenter une liste d'éléments en un tableau de fragments, comme vous le feriez avec tout autre type d'élément :
 
 ```javascript{6,9}
 function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Les fragments doivent aussi disposer de la propriété `key` lors de l'itération sur les listes
+        // Les fragments doivent aussi disposer de la propriété `key` lors de l'itération sur les listes.
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -92,7 +91,7 @@ function Glossary(props) {
 }
 ```
 
-Lorsque vous n'avez besoin d'aucune propriété sur les balises fragments, vous pouvez utiliser la [syntaxe courte](/docs/fragments.html#short-syntax), lorsque votre outillage le supporte :
+Lorsque vous n'avez pas besoin de définir de propriété sur la balise fragment, vous pouvez utiliser la [syntaxe courte](/docs/fragments.html#short-syntax), lorsque votre outillage le supporte :
 
 ```javascript{3,6}
 function ListItem({ item }) {
@@ -130,26 +129,26 @@ Bien que ces pratiques HTML standard soient directement utilisables dans React, 
 
 Les situations d'erreur doivent être comprises par tous les utilisateurs. Les liens ci-dessous montrent comme exposer les textes d'erreur aux lecteurs d'écran :
 
-- [Le W3C présente les notifications utilisateurs](https://www.w3.org/WAI/tutorials/forms/notifications/).
-- [Le WebAIM se penche sur les validations de formulaire](http://webaim.org/techniques/formvalidation/).
+- [Le W3C présente les notifications utilisateur](https://www.w3.org/WAI/tutorials/forms/notifications/).
+- [Le WebAIM se penche sur la validation de formulaire](http://webaim.org/techniques/formvalidation/).
 
 ## Contrôle du focus {#focus-control}
 
-Assurez-vous que votre application web peut être complètement utilisable avec la seule utilisation du clavier :
+Assurez-vous que votre application web peut être complètement utilisable avec le clavier seul :
 
 - [Le WebAIM parle de l'accessibilité depuis le clavier](http://webaim.org/techniques/keyboard/).
 
-### Focus par le clavier et mise en contour de focus {#keyboard-focus-and-focus-outline}
+### Focus par le clavier et contour de focus {#keyboard-focus-and-focus-outline}
 
-Le focus par le clavier fait référence à l'élément courant dans le DOM qui est sélectionné pour accepter les saisies du clavier. Nous le voyons partout comme une mise en contour telle que cela est montré sur l'image ci-dessous :
+Le focus par le clavier fait référence à l'élément courant dans le DOM qui est sélectionné pour accepter les saisies au clavier. Nous le voyons partout comme un contour tel que cela est montré sur l'image ci-dessous :
 
 <img src="../images/docs/keyboard-focus.png" alt="Le contour bleu du focus clavier autour d'un lien sélectionné" />
 
-N'utilisez le CSS qui retire ce contour, par exemple en définissant `outline: 0`, uniquement si vous le remplacez par une autre implémentation de contour de focus.
+N'utilisez que le CSS qui retire ce contour, par exemple en définissant `outline: 0`, si vous le remplacez par une autre implémentation de contour de focus.
 
 ### Mécanismes pour sauter au contenu désiré {#mechanisms-to-skip-to-desired-content}
 
-Fournissez un mécanisme permettant aux utilisateurs de sauter les sections de navigation précédentes de votre application, car cela facilite et accélère la navigation au clavier.
+Fournissez un mécanisme permettant aux utilisateurs de sauter les sections antérieures de navigation sur votre application, car cela facilite et accélère la navigation au clavier.
 
 Les liens de passage (*Skiplinks*) ou lien de navigation de passage sont des liens de navigation cachés qui ne sont visibles que lorsque l'utilisateur interagit au clavier avec la page. Ils sont très faciles à mettre en œuvre avec les ancres de pages internes et un peu de style :
 
@@ -163,24 +162,24 @@ Pour en savoir plus sur l'utilisation de ces éléments améliorant l'accessibil
 
 ### Gérer le focus programmatiquement {#programmatically-managing-focus}
 
-Nos applications React modifient en continu le DOM HTML au cours de l'exécution, ce qui entraîne parfois la perte du focus du clavier ou le positionne surun élément inattendu. Afin de réparer cela, nous devons déplacer le focus claiver programmatiquement dans la bonne direction. Par exemple, en redonnant le focus clavier à un bouton ouvrant une fenêtre modale, lorsque cette dernière se ferme.
+Nos applications React modifient en continu le DOM HTML au cours de l'exécution, ce qui entraîne parfois la perte du focus du clavier ou le positionne sur un élément inattendu. Pour corriger cela, nous devons déplacer le focus clavier programmatiquement dans la bonne direction. En redonnant par exemple le focus clavier à un bouton ouvrant une fenêtre modale, lorsque cette dernière se ferme.
 
-La documentation web de MDN donne un aperçu à cela, et décrit comment nous pouvons construire [des widgets JavaScript permettant la navigation au clavier](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
+La documentation web de MDN donne un aperçu de cela, et décrit comment nous pouvons construire [des widgets JavaScript permettant la navigation au clavier](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
 
 Afin de définir le focus en React, nous pouvons utiliser les [références (*Ref*) aux éléments du DOM](/docs/refs-and-the-dom.html).
 
-En utilisant cela, nous créons d'abord une référence à un élément du JSX de la classe composant :
+En utilisant cela, nous créons d'abord une référence à un élément du JSX de la classe du composant :
 
 ```javascript{4-5,8-9,13}
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
-    // Création d'une référence pour conserver l'élément textInput du DOM
+    // Créez une référence pour conserver l'élément textInput du DOM.
     this.textInput = React.createRef();
   }
   render() {
     // Utilisez la fonction de rappel `ref` pour stocker la référence de l'élément DOM
-    // du champ texte dans une variable d'instance (par exemple, this.textInput).
+    // du champ texte dans une variable d'instance (par exemple this.textInput).
     return (
       <input
         type="text"
@@ -191,11 +190,11 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-Nous pouvons dès lors lui donner le focus depuis n'importe où dans notre composant en cas de besoin :
+Ensuite, nous pouvons lui donner le focus depuis n'importe où dans notre composant en cas de besoin :
 
  ```javascript
  focus() {
-   // Donner explicitement le focus au champ de saisie en utilisant l'API du DOM.
+   // Donnez explicitement le focus au champ de saisie en utilisant l'API du DOM.
    // Remarque : nous utilisons "current" pour accéder au nœud du DOM.
    this.textInput.current.focus();
  }
@@ -228,23 +227,23 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
-Lors de l'utilisation d'un *HOC* pour étendre des composants, il est recommandé de [transmettre la référence](/docs/forwarding-refs.html) to l'élément d'encapsulation en utilisant la fonction `forwardRef` de React. Si un *HOC* tiers n'implémente par le transfert de référence, le modèle ci-dessus peut être utilisé comme solution de secours.
+Lors de l'utilisation d'un *HOC* pour étendre des composants, il est recommandé de [transmettre la référence](/docs/forwarding-refs.html) de l'élément d'encapsulation en utilisant la fonction `forwardRef` de React. Si un *HOC* tiers n'implémente par le transfert de référence, le modèle ci-dessus peut être utilisé comme solution de secours.
 
-Un excellent exemple de la gestion du focus est le [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). Il s'agit de l'un des rares exemples d'une fenêtre modale complètement accessible. Non seulement il définit le focus initial sur le bouton d'annulation (empêchant l'utilisateur du clavier d'activer accidentellement l'action de succès), restreint le focus clavier à l'intérieur de la fenêtre modale, mais réinitialise le focus sur l'élément qui a originellement déclenché la fenêtre modale.
+Un excellent exemple de la gestion du focus est le composant [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). Il s'agit de l'un des rares exemples d'une fenêtre modale complètement accessible. Non seulement il définit le focus initial sur le bouton d'annulation (empêchant l'utilisateur du clavier d'activer accidentellement l'action de succès), il restreint le focus clavier à l'intérieur de la fenêtre modale, et il réinitialise enfin le focus sur l'élément qui a originellement déclenché la fenêtre modale.
 
 > Remarque :
 >
-> Bien qu'il s'agisse d'une caractéristique d'accessibilité très importante, c'est également une technique qui doit être utilisée à bon escient. Utilisez-la pour réparer le comportement du focus clavier lorsqu'il est perturbé, et non pour essayer d'anticiper la manière dont les utilisateurs souhaitent utiliser les applications.
+> Bien qu'il s'agisse d'une caractéristique d'accessibilité très importante, c'est également une technique qui doit être utilisée à bon escient. Utilisez-la pour corriger le comportement du focus clavier lorsqu'il est perturbé, et non pour essayer d'anticiper la manière dont les utilisateurs souhaitent utiliser les applications.
 
 ## Événements de souris et de pointeur {#mouse-and-pointer-events}
 
 Assurez-vous que toutes les fonctionnalités exposées via un événement de souris ou de pointeur sont également accessibles avec le clavier seul. Ne dépendre que du pointeur peut aboutir à de nombreuses situations où les utilisateurs de clavier ne pourront pas utiliser votre application.
 
-Pour illustrer cela, examinons un exemple prolifique où l'accessibilité est cassée par les événements de clics. Il s'agit du modèle de clic extérieur dans lequel un utilisateur peut désactiver un *popover* en cliquant à l'extérieur de l'élément.
+Pour illustrer cela, examinons un exemple prolifique où l'accessibilité est cassée par les événements de clics. Il s'agit du modèle de clic extérieur dans lequel un utilisateur peut désactiver un menu déroulant en cliquant à l'extérieur de l'élément.
 
-<img src="../images/docs/outerclick-with-mouse.gif" alt="Un bouton à bascule ouvrant une liste déroulante implémenté par le modèle du clic externe et déclenché par la souris montrant que l'action de fermeture fonctionne." />
+<img src="../images/docs/outerclick-with-mouse.gif" alt="Un bouton ouvrant une liste déroulante implémenté par le modèle du clic externe et déclenché par la souris montrant que l'action de fermeture fonctionne." />
 
-Cela est généralement implémenté en attachant l'événement `click` à l'objet `window` qui ferme le *popover* :
+Cela est généralement développé en attachant l'événement `click` à l'objet `window` qui ferme le menu déroulant :
 
 ```javascript{12-14,26-30}
 class OuterClickExample extends React.Component {
@@ -295,9 +294,9 @@ constructor(props) {
 }
 ```
 
-Cela peut fonctionner pour les utilisateurs disposant de dispositifs de pointage, tels qu'une souris, mais le fait de n'utiliser que le clavier seul entraîne des dysfonctionnements lors de la tabulation sur l'élément suivant, car l'objet `window` ne reçoit jamais d'événement `click`. Cela peut entraîner une fonctionnalité masquée qui empêche les utilisateurs d'utiliser votre application.
+Cela peut fonctionner pour les utilisateurs ayant des dispositifs de pointage, tels qu'une souris, mais le fait de n'utiliser que le clavier entraîne des dysfonctionnements lors de la tabulation sur l'élément suivant, car l'objet `window` ne reçoit jamais d'événement `click`. Cela peut entraîner une fonctionnalité cachée qui empêche les utilisateurs d'utiliser votre application.
 
-<img src="../images/docs/outerclick-with-keyboard.gif" alt="Un bouton à bascule ouvrant une liste déroulante implémenté par le modèle du clic externe et déclenché par le clavier montrant que le popover ne se ferme pas au blur et qu'il masque d'autre éléments de l'écran." />
+<img src="../images/docs/outerclick-with-keyboard.gif" alt="Un bouton ouvrant une liste déroulante implémenté par le modèle du clic externe et déclenché par le clavier montrant que le menu déroulant ne se ferme pas à la perte de focus et qu'il masque d'autre éléments de l'écran." />
 
 La même fonctionnalité peut être obtenue en utilisant les gestionnaires d'événements appropriés, tels que `onBlur` et `onFocus` :
 
@@ -320,10 +319,10 @@ class BlurExample extends React.Component {
     }));
   }
 
-  // Nous fermons le popover au prochain tick en utilisant setTimeout.
-  // Cela est nécessaire car nous devons d'abord vérifier si un
-  // autre enfant de l'élément a reçu le focus lorsque l'élément
-  // `blur` se déclenche avant le nouvel événement de focus.
+  // Nous fermons le menu déroulant au prochain tick en utilisant setTimeout.
+  // C'est nécessaire car nous devons d'abord vérifier si un
+  // autre enfant de l'élément a reçu le focus lorsque l'événement
+  // `blur` se déclenche préalablement au nouvel événement de focus.
   onBlurHandler() {
     this.timeOutId = setTimeout(() => {
       this.setState({
@@ -332,7 +331,7 @@ class BlurExample extends React.Component {
     });
   }
 
-  // Si un enfant reçoit le focus, alors on ne ferme pas le popover.
+  // Si un enfant reçoit le focus, alors on ne ferme pas le menu déroulant.
   onFocusHandler() {
     clearTimeout(this.timeOutId);
   }
@@ -361,20 +360,20 @@ class BlurExample extends React.Component {
 }
 ```
 
-Ce code expose la fonctionnalité aussi bien aux utilisateurs de dispositifs de pointage qu'aux utilisateurs de clavier. Remarquez également les propriétés ajoutées `aria-*` afin de supporter les lecteurs d'écran. Par souci de simplicité, les événements clavier permettant l'interaction avec les options du popover via les touches de direction n'ont pas été implémentés.
+Ce code expose la fonctionnalité aussi bien aux utilisateurs de dispositifs de pointage qu'aux utilisateurs de clavier. Remarquez également les propriétés ajoutées `aria-*` afin de supporter les lecteurs d'écran. Par souci de simplicité, les événements clavier permettant l'interaction avec les options du menu déroulant via les touches de direction n'ont pas été développés.
 
 <img src="../images/docs/blur-popover-close.gif" alt="Une liste déroulante se fermant correctement pour les utilisateurs de souris et de clavier." />
 
-C'est un exemple des nombreux cas où, le fait de ne dépendre que des événements de souris et de pointeur casse les fonctionnalités pour les utilisateurs de clavier. Toujours tester avec le clavier mettra immédiatement en évidence les problèmes qui peuvent ensuite être résolus grâce à l'aide des gestionnaires d'événement clavier.
+C'est un exemple des nombreux cas où le fait de ne dépendre que des événements de souris et de pointeur casse les fonctionnalités pour les utilisateurs de clavier. Toujours tester avec le clavier mettra immédiatement en évidence les problèmes qui peuvent ensuite être résolus à l'aide des gestionnaires d'événement clavier.
 
 ## Widgets plus complexes {#more-complex-widgets}
 
-Une expérience utilisateur plus complexe ne doit pas signifier une expérience moins accessible. Alors que l'accessibilité est plus facile à réaliser en codant le plus près possible du HTML, même les widgets les plus complexes peuvent être codés de manière accessible.
+Une expérience utilisateur plus complexe ne doit pas signifier une expérience moins accessible. Alors que l'accessibilité est plus facile à réaliser en codant au plus près du HTML, même les widgets les plus complexes peuvent être codés de manière accessible.
 
 Nous avons besoin ici de connaître les [rôles ARIA](https://www.w3.org/TR/wai-aria/#roles), ainsi que les [états et propriétés ARIA](https://www.w3.org/TR/wai-aria/#states_and_properties).
 Ce sont des boîtes à outils pleines d'attributs HTML pris en charge dans le JSX et qui nous permettent de construire des composants React entièrement accessibles et hautement fonctionnels.
 
-Chaque type de widget à son modèle de design spécifique et devrait fonctionner de la même manière avec les utilisateurs et avec les agents :
+Chaque type de widget a son modèle de design spécifique et devrait fonctionner de la même manière avec les utilisateurs et les agents utilisateurs :
 
 - [Pratique de création WAI-ARIA - Modèles de design et widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex) (*WIA* signifie *Web Accessibility Initiative* - NdT).
 - [Heydon Pickering - Exemples ARIA](http://heydonworks.com/practical_aria_examples/).
@@ -402,33 +401,33 @@ Assurez-vous que tous les textes lisibles sur votre site web ont un contraste de
 
 - [WCAG - Comprendre l'exigence du contraste de couleur](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html).
 - [Tout sur le contraste de couleur et pourquoi vous devez le repenser](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/).
-- [A11yProject - Qu'est-ce qu'un contraste de couleur ?](http://a11yproject.com/posts/what-is-color-contrast/).
+- [A11yProject - Qu'est-ce qu'un contraste de couleur ?](http://a11yproject.com/posts/what-is-color-contrast/)
 
-Il peut être fastidieux de calculer manuellement les combinaisons de couleurs appropriées pour toutes les situations de votre site web, aussi vous est-il possible de [calculer toute une palette de couleurs accessible avec Colorable](http://jxnblk.com/colorable/).
+Il peut être fastidieux de calculer manuellement les combinaisons de couleurs appropriées pour toutes les situations sur votre site web, aussi vous est-il possible de [calculer une palette entière de couleurs accessible avec Colorable](http://jxnblk.com/colorable/).
 
-Les outils aXe et WAVE mentionnés ci-dessous incluent également des tests de contraste de couleur et signlent les erreurs de contraste.
+Les outils aXe et WAVE mentionnés ci-dessous incluent également des tests de contraste de couleur et signalent les erreurs de contraste.
 
 Si vous souhaitez étendre vos capacités de test de contraste, vous pouvez utiliser ces outils :
 
-- [WebAIM - Vérification de contraste de couleur](http://webaim.org/resources/contrastchecker/)
-- [The Paciello Group - Analyseur de contraste de couleur](https://www.paciellogroup.com/resources/contrastanalyser/)
+- [WebAIM - Vérification de contraste de couleur](http://webaim.org/resources/contrastchecker/).
+- [The Paciello Group - Analyseur de contraste de couleur](https://www.paciellogroup.com/resources/contrastanalyser/).
 
 ## Développement et outils de test {#development-and-testing-tools}
 
-Il existe de nombreux outils pour nous pouvons utiliser pour nous assister durant la création d'applications web accessibles.
+Il existe de nombreux outils que nous pouvons utiliser pour nous assister durant la création d'applications web accessibles.
 
 ### Le clavier {#the-keyboard}
 
-De loin la plus simple mais aussi l'une des plus importante vérification à faire est de tester si l'ensemble de votre site web peut être accessible et utilisables avec le clavier seul. Procédez ainsi :
+De loin la vérification plus simple, mais aussi l'une des plus importantes, consiste à tester si l'ensemble de votre site web est accessible et utilisable avec le clavier seul. Procédez ainsi :
 
 1. Débranchez votre souris.
-1. Utilisez `Tab` et `Shift+Tab` pour naviguer.
-1. Utilisez `Enter` pour activer des éléments.
+1. Utilisez `Tab` et `Shift + Tab` pour naviguer.
+1. Utilisez `Entrée` pour activer des éléments.
 1. Le cas échéant, utilisez les touches de direction du clavier pour interagir avec certains éléments, tels que les menus et les menus déroulants.
 
 ### Assistance au développement {#development-assistance}
 
-Nous pouvons tester certaines fonctionnalités d'accessibilités directement dans notre code JSX. Souvent des contrôles intellisense sont déjà présents dans les IDE pour prenant en charge les rôles, états et propriétés ARIA. Nous avons également accès à l'outil suivant :
+Nous pouvons tester certaines fonctionnalités d'accessibilités directement dans notre code JSX. Souvent des contrôles intellisense sont déjà présents dans les IDE pour prendre en charge les rôles, états et propriétés ARIA. Nous avons également accès à l'outil suivant :
 
 #### eslint-plugin-jsx-a11y {#eslint-plugin-jsx-a11y}
 
@@ -449,11 +448,11 @@ Il existe un certain nombres d'outils pouvant exécuter des audits d'accessibili
 
 #### aXe, aXe-core et react-axe {#axe-axe-core-and-react-axe}
 
-Deque Systems offre [aXe-core](https://github.com/dequelabs/axe-core) pour automatiser les tests d'accessibilité de bout en bout de vos applications. Ce module comprend des intégrations pour Selenium.
+Deque Systems propose [aXe-core](https://github.com/dequelabs/axe-core) pour automatiser les tests d'accessibilité de bout en bout de vos applications. Ce module comprend des intégrations pour Selenium.
 
 [Le moteur d'accessibilité](https://www.deque.com/products/axe/) ou aXe, est une extension du navigateur d'inspection de l'accessibilité construite sur `aXe-core`.
 
-Vous pouvez aussi utiliser le module [react-axe](https://github.com/dylanb/react-axe) pour signaler directement ces résultats d'accessibilité dans la console during le développement et le déboguage.
+Vous pouvez aussi utiliser le module [react-axe](https://github.com/dylanb/react-axe) pour signaler directement ces résultats d'accessibilité dans la console durant le développement et le déboguage.
 
 #### WebAIM WAVE {#webaim-wave}
 
@@ -461,7 +460,7 @@ L'[outil Web Accessibility Evaluation](http://wave.webaim.org/extension/) est un
 
 #### Inspecteurs d'accessibilité et arbre d'accessibilité {#accessibility-inspectors-and-the-accessibility-tree}
 
-[L'arbre d'accessibilité](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) est un sous-ensemble de l'arbre DOM qui contient des objects accessibles pour chaque élément du DOM devant être exposé aux technologies d'assistance, telles que les lecteurs d'écrans.
+[L'arbre d'accessibilité](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) est un sous-ensemble de l'arbre DOM qui contient des objets d'accessibilité pour chaque élément du DOM devant être exposé aux technologies d'assistance, telles que les lecteurs d'écrans.
 
 Sur certains navigateurs, nous pouvons facilement consulter les informations d'accessibilité pour chaque élément de l'arbre d'accessibilité :
 
@@ -488,7 +487,7 @@ Reportez-vous aux guides suivants pour savoir comment utiliser au mieux NVDA :
 
 #### VoiceOver dans Safari {#voiceover-in-safari}
 
-VoiceOver est un lecteur d'écrans intégrer dans les dispositifs d'Apple.
+VoiceOver est un lecteur d'écran intégré dans les appareils d'Apple.
 
 Reportez-vous aux guides suivants pour savoir comment activer et utiliser VoiceOver :
 
@@ -503,15 +502,15 @@ Reportez-vous aux guides suivants pour savoir comment activer et utiliser VoiceO
 Reportez-vous aux guides suivants pour utiliser au mieux JAWS :
 
 - [WebAIM - Utiliser JAWS pour évaluer l'accessibilité web](http://webaim.org/articles/jaws/).
-- [Deque - Raccourcis clavier pour JAWS](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts)
+- [Deque - Raccourcis clavier pour JAWS](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts).
 
 ### Autres lecteurs d'écran {#other-screen-readers}
 
 #### ChromeVox dans Google Chrome {#chromevox-in-google-chrome}
 
-[ChromeVox](http://www.chromevox.com/) est un lecteur d'écran intégré aux Chromebooks et est disponible [en tant qu'extension](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=fr) à Google Chrome.
+[ChromeVox](http://www.chromevox.com/) est un lecteur d'écran intégré aux Chromebooks et est disponible [en tant qu'extension](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=fr) pour Google Chrome.
 
 Reportez-vous aux guides suivants pour utiliser au mieux ChromeVox :
 
-- [Aide de Google Chromebook - Utiliser le lecteur d'écran intégré](https://support.google.com/chromebook/answer/7031755?hl=en)
-- [Références des raccourcis clavier pour ChromeVox Classic](http://www.chromevox.com/keyboard_shortcuts.html)
+- [Aide de Google Chromebook - Utiliser le lecteur d'écran intégré](https://support.google.com/chromebook/answer/7031755?hl=fr).
+- [Références des raccourcis clavier pour ChromeVox Classic](http://www.chromevox.com/keyboard_shortcuts.html).
