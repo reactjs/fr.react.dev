@@ -8,19 +8,19 @@ category: FAQ
 
 ### Que fait `setState` ? {#what-does-setstate-do}
 
-`setState()` programmes la mise à jour de l'objet `state` du composant. Quand l'état change, le composant répond en refaisant le rendu du composant.
+`setState()` programme la mise à jour de l'objet `state` du composant. Quand l'état change, le composant répond en refaisant le rendu.
 
-### Quelle différence entre `state` et `props` ? {#what-is-the-difference-between-state-and-props}
+### Qu'elle est la différence entre `state` et `props` ? {#what-is-the-difference-between-state-and-props}
 
 [`props`](/docs/components-and-props.html) (diminutif de "propriétés") et [`state`](/docs/state-and-lifecycle.html) sont tous les deux de purs objets JavaScript. Alors qu'ils contiennent tous deux des informations qui influencent le résultat du rendu, ils possèdent une différence majeure : `props` est passé *au* composant (à la manière des paramètres d'une fonction) quand `state` est géré *dans* le composant (comme le sont les variables déclarées à l'intérieur d'une fonction).
 
-Ci-dessous quelques ressources utiles pour en apprendre plus sur quand utiliser `props` au lieu de `state`:
+Ci-dessous quelques ressources utiles pour en apprendre plus à propos de quand utiliser `props` au lieu de `state`:
 * [Props vs State](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
 * [ReactJS : Props vs. State](http://lucybain.com/blog/2016/react-state-vs-pros/)
 
 ### Pourquoi `setState` me retourne une mauvaise valeur ? {#why-is-setstate-giving-me-the-wrong-value}
 
-Dans React, In React, `this.props` et `this.state` représente l'un et l'autre les valeurs rendues, i.e. ce qui se trouve actuellement à l'écran.
+Dans React, `this.props` et `this.state` représente l'un et l'autre les valeurs rendues, i.e. ce qui se trouve actuellement à l'écran.
 
 Les appels à `setState` sont asynchrones - ne comptez pas sur `this.state` pour refléter la nouvelle valeur immédiatement après avoir appelé `setState`. Passez une fonction de mise à jour à la place d'un objet si vous devez calculer des valeurs en fonction de l'état actuel (voir ci-dessous pour plus de détails).
 
@@ -37,10 +37,10 @@ handleSomething() {
   this.incrementCount();
   this.incrementCount();
   this.incrementCount();
-  // Losrque React refait le rendu du composant, `this.state.count` est à 1, pourtant, on espère avoir 3.
+  // Lorsque React refait le rendu du composant, `this.state.count` est à 1, pourtant, on espère avoir 3.
 
   // C'est parce la fonction `incrementCount()` ci-dessus lit `this.state.count`,
-  // mais React ne met pas à jour`this.state.count` tant que le composant n'a pas refait le rendu.
+  // mais React ne met pas à jour `this.state.count` tant que le composant n'a pas refait le rendu.
   // Donc `incrementCount()` finit par lire `this.state.count` à 0 à chaque fois et le définit à 1.
 
   // La correctif est décrite ci-dessous !
