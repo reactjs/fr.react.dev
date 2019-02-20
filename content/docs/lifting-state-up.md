@@ -203,7 +203,7 @@ Maintenant, quand le composant `TemperatureInput` veut mettre à jour la tempér
 >
 >Il n'y a pas de sens particulier aux noms des props `temperature` et `onTemperatureChange`. On aurait pu les appeler comme on voulait, comme `value` et `onChange`, qui est une convention de nommage.
 
-Le prop `onTemperatureChange` sera fournie dans les props par le composant parent `Calculator`, comme la prop `temperature`. Il s'occupera du changement en modifiant son état local, provocant un nouveau rendu des deux entrées avec les nouvelles valeurs. Nous allons nous pencher sur l'implémentation du nouveau composant `Calculator` très bientôt.
+Le prop `onTemperatureChange` sera fourni dans les props par le composant parent `Calculator`, comme la prop `temperature`. Il s'occupera du changement en modifiant son état local, provocant un nouveau rendu des deux entrées avec les nouvelles valeurs. Nous allons nous pencher sur l'implémentation du nouveau composant `Calculator` très bientôt.
 
 Avant de regarder les changements du composant `Calculator`, récapitulons nos changements au composant `TemperatureInput`. Nous en avons supprimé l'état local, et au lieu de lire `this.state.temperature`, on lit `this.props.temperature`. Au lieu d'appeler `this.setState()` quand on veut faire un changement, on appelle `this.props.onTemperatureChange()`, qui est fourni par le `Calculator` :
 
