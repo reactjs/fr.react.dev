@@ -1,18 +1,18 @@
 ---
 id: faq-structure
-title: File Structure
+title: Structure de fichier
 permalink: docs/faq-structure.html
 layout: docs
 category: FAQ
 ---
 
-### Is there a recommended way to structure React projects? {#is-there-a-recommended-way-to-structure-react-projects}
+### Existe-t-il un moyen recommandé de structurer les projets React? {#is-there-a-recommended-way-to-structure-react-projects}
 
-React doesn't have opinions on how you put files into folders. That said there are a few common approaches popular in the ecosystem you may want to consider.
+React n'a pas d'opinion sur la manière dont vous ordonnez vos fichiers à l'intérieur de vos dossiers. Cela dit, vous voudrez certainement envisager l'une des quelques approches populaires dans l'écosystème.
 
-#### Grouping by features or routes {#grouping-by-features-or-routes}
+#### Grouper par fonctionnalités ou par routes {#grouping-by-features-or-routes}
 
-One common way to structure projects is locate CSS, JS, and tests together inside folders grouped by feature or route.
+Une façon courante de structurer des projets consiste à localiser le CSS, le JS et les tests ensemble dans des dossiers groupés par fonction ou par route.
 
 ```
 common/
@@ -35,11 +35,11 @@ profile/
   ProfileAPI.js
 ```
 
-The definition of a "feature" is not universal, and it is up to you to choose the granularity. If you can't come up with a list of top-level folders, you can ask the users of your product what major parts it consists of, and use their mental model as a blueprint.
+La définition d'une "fonctionnalité" n'est pas universelle, et c'est à vous d'en définir la granularité. Si vous ne parvenez pas à créer une liste des dossiers de niveau supérieur, vous pouvez demander aux utilisateurs du produit qu'elles en sont les parties principales, en quoi elle consistent, et utiliser leurs modèles mentaux comme base.
 
-#### Grouping by file type {#grouping-by-file-type}
+#### Grouper par type de fichier {#grouping-by-file-type}
 
-Another popular way to structure projects is to group similar files together, for example:
+Une autre manière répandue de structurer les projets est de grouper les fichiers similaires ensemble, par exemple:
 
 ```
 api/
@@ -59,16 +59,16 @@ components/
   ProfileHeader.css
 ```
 
-Some people also prefer to go further, and separate components into different folders depending on their role in the application. For example, [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) is a design methodology built on this principle. Remember that it's often more productive to treat such methodologies as helpful examples rather than strict rules to follow.
+Certaines personnes préfèrent également aller plus loin et séparer les composants dans des dossiers différents en fonction de leur rôle dans l'application. Par exemple, la [conception atomique](http://bradfrost.com/blog/post/atomic-web-design/) est une méthode de conception reposant sur ce principe. N'oubliez pas qu'il est souvent plus productif de traiter de telles méthodologies comme des exemples utiles plutôt que comme des règles strictes à suivre.
 
-#### Avoid too much nesting {#avoid-too-much-nesting}
+#### Évitez trop d'imbrication {#avoid-too-much-nesting}
 
-There are many pain points associated with deep directory nesting in JavaScript projects. It becomes harder to write relative imports between them, or to update those imports when the files are moved. Unless you have a very compelling reason to use a deep folder structure, consider limiting yourself to a maximum of three or four nested folders within a single project. Of course, this is only a recommendation, and it may not be relevant to your project.
+De nombreux points douloureux sont associés à l'imbrication profonde de répertoires dans des projets JavaScript. Il devient plus difficile d'écrire des importations relatives entre eux ou de mettre à jour ces importations lorsque les fichiers sont déplacés. À moins d'une raison très convaincante d’utiliser une structure de dossiers complexe, limitez-vous à un maximum de trois ou quatre imbrications de dossier dans un même projet. Bien entendu, il ne s’agit que d’une recommandation, qui n'est peut être pas pertinente pour votre projet.
 
-#### Don't overthink it {#dont-overthink-it}
+#### N'y réfléchissez pas trop {#dont-overthink-it}
 
-If you're just starting a project, [don't spend more than five minutes](https://en.wikipedia.org/wiki/Analysis_paralysis) on choosing a file structure. Pick any of the above approaches (or come up with your own) and start writing code! You'll likely want to rethink it anyway after you've written some real code.
+Si vous démarrez tout juste un projet, [n'y passez pas plus de cinq minutes](https://en.wikipedia.org/wiki/Analysis_paralysis) pour choisir une structure de fichier. Choisissez l'une des approches ci-dessus (ou prenez la votre) et commencez à écrire votre code ! Vous serez surement amener à le repenser dans tous les cas une fois que vous aurez produit du vrai code.
 
-If you feel completely stuck, start by keeping all files in a single folder. Eventually it will grow large enough that you will want to separate some files from the rest. By that time you'll have enough knowledge to tell which files you edit together most often. In general, it is a good idea to keep files that often change together close to each other. This principle is called "colocation".
+Si vous vous sentez complètement bloqué, commencez par garder tous les fichiers dans un seul dossier. Si votre application devient suffisamment large, vous aurez envie de séparer certains fichiers du reste. À ce moment-là, vous aurez une meilleure idée de quels fichiers vous éditez ensemble le plus souvent. En général, il est judicieux de conserver des fichiers qui changent souvent les uns à côté des autres. Ce principe s'appelle "colocation".
 
-As projects grow larger, they often use a mix of both of the above approaches in practice. So choosing the "right" one in the beginning isn't very important.
+À mesure que les projets prennent de l'ampleur, on utilise souvent un mélange des deux approches ci-dessus. Donc, choisir le "bon" au début n’est pas très important.
