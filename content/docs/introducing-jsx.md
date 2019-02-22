@@ -70,7 +70,11 @@ ReactDOM.render(
 
 **[Essayer sur CodePen](codepen://introducing-jsx)**
 
+<<<<<<< HEAD
 On découple le JSX en plusieurs lignes pour une meilleure lisibilité. Par la même occasion, nous recommandons également de le mettre entre parenthèses afin d'éviter les pièges [d'insertion de point-virgule automatique](http://stackoverflow.com/q/2846283), même si cette pratique n'est pas obligatoire.
+=======
+We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](https://stackoverflow.com/q/2846283).
+>>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 ### JSX n’est rien d’autre qu’une expression {#jsx-is-an-expression-too}
 
@@ -138,6 +142,10 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
+<<<<<<< HEAD
+=======
+By default, React DOM [escapes](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that's not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) attacks.
+>>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 Par défaut, React DOM [échappe](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) toutes les valeurs intégrées avec JSX avant d’en faire le rendu. Il garantit ainsi que vous ne risquez jamais d’injecter quoi que ce soit d'autre que ce vous avez explicitement écrit dans votre application. Tout est converti en chaîne de caractères avant de produire le rendu. Ça aide à éviter les attaques [XSS (cross-site-scripting)](https://fr.wikipedia.org/wiki/Cross-site_scripting).
 
@@ -182,4 +190,8 @@ Nous explorerons la retranscription des éléments React dans le DOM dans la pro
 
 >**Astuce :**
 >
+<<<<<<< HEAD
 >Nous recommandons d'utiliser la [définition de langage « Babel »](http://babeljs.io/docs/editors) dans votre éditeur préféré, afin que les codes ES6 et JSX soient correctement colorisés. Ce site utilise le thème de couleurs [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/), qui est compatible avec ce mode syntaxique.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) color scheme which is compatible with it.
+>>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a

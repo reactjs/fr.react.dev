@@ -92,7 +92,11 @@ ReactDOM.render(
 );
 ```
 
+<<<<<<< HEAD
 [**Essayer dans CodePen**](http://codepen.io/gaearon/pen/xEmzGg?editors=0010)
+=======
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)
+>>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 En JSX, vous devez être prudent·e avec l'utilisation de `this` dans les fonctions de rappel. En JavaScript, les méthodes de classes ne sont pas [liées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Function/bind) par défaut. Si vous oubliez de lier `this.handleClick` et l'utilisez dans `onClick`, `this` sera `undefined` quand la fonction sera appelée.
 
