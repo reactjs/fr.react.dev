@@ -6,13 +6,13 @@ layout: docs
 category: FAQ
 ---
 
-### Existe-t-il un moyen recommandé de structurer les projets React ? {#is-there-a-recommended-way-to-structure-react-projects}
+### Y-a-t-il une manière à privilégier pour structurer les projets React ? {#is-there-a-recommended-way-to-structure-react-projects}
 
-React n'a pas d'opinion sur la manière dont vous ordonnez vos fichiers à l'intérieur de vos dossiers. Cela dit, vous voudrez certainement envisager l'une des quelques approches populaires dans l'écosystème.
+React n'a pas d'opinion sur la manière dont vous ordonnez vos fichiers à l'intérieur de vos dossiers. Ceci dit, vous souhaiterez certainement envisager l'une des quelques approches populaires de l'écosystème.
 
 #### Grouper par fonctionnalités ou par routes {#grouping-by-features-or-routes}
 
-Une façon courante de structurer des projets consiste à localiser le CSS, le JS et les tests ensemble dans des dossiers groupés par fonction ou par route.
+Une façon courante de structurer les projets consiste à placer le CSS, le JS et les tests ensemble dans des dossiers groupés par fonction ou par route.
 
 ```
 common/
