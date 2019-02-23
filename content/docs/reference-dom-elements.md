@@ -24,7 +24,7 @@ Un certain nombre d'attributs qui diffèrent entre React et HTML :
 
 ### checked {#checked}
 
-L'attribut `checked` est accepté par les composants `<input>` de type `checkbox` ou `radio`. Vous pouvez l'utiliser pour définir si un composant est coché ou non. C'est utile pour concevoir des composants contrôlés. L'équivalent non-contrôlé est `defaultChecked`, qui défini l'état coché ou non du composant uniquement lorsqu'il est monté pour la première fois.
+L'attribut `checked` est accepté par les composants `<input>` de type `checkbox` ou `radio`. Vous pouvez l'utiliser pour définir si un composant est coché ou non. C'est utile pour concevoir des composants contrôlés. L'équivalent non-contrôlé est `defaultChecked`, qui définit l'état coché ou non du composant uniquement lorsqu'il est monté pour la première fois.
 
 ### className {#classname}
 
@@ -90,7 +90,7 @@ function ComponentWithTransition() {
 }
 ```
 
-Les clefs de style sont en camelCase pour être consistent avec la façon d'accéder aux propriétés des noeuds du DOM en JS (e.g. `node.style.backgroundImage`). Les préfixes vendeur [autres que `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) doivent commencer avec une lettre majuscule. C'est pour ça que `WebkitTransition` a un « W » majuscule.
+Les clefs de style sont en camelCase pour être cohérantes avec la façon d'accéder aux propriétés des noeuds du DOM en JS (e.g. `node.style.backgroundImage`). Les préfixes vendeur [autres que `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) doivent commencer avec une lettre majuscule. C'est pour ça que `WebkitTransition` a un « W » majuscule.
 
 React ajoute automatiquement le suffixe « px » à certaines propriétés numériques de style en-ligne. Si vous voulez une autre unité que « px », spécifiez la valeur en chaîne de caractères avec l'unité désirée. Par exemple :
 
