@@ -10,9 +10,9 @@ Les *Hooks* sont arrivés avec React 16.8. Ils vous permettent d'utiliser un ét
 
 Les Hooks sont des fonctions JavaScript, mais vous devez suivre deux règles lorsque vous les utilisez. Nous mettons à votre disposition un [plugin linter](https://www.npmjs.com/package/eslint-plugin-react-hooks) pour vérifier ces règles automatiquement :
 
-### Appelez les Hooks uniquement en premier lieu {#only-call-hooks-at-the-top-level}
+### Appelez les Hooks uniquement au premier niveau {#only-call-hooks-at-the-top-level}
 
-**N'appelez pas de Hooks à l'intérieur de boucles, conditions ou de fonctions imbriquées.** À la place, utilisez seulement les Hooks en premier lieu dans votre fonction React. En suivant cette règle, vous assurez que les Hooks sont appelés dans le même ordre à chaque fois que le composant est rendu. C'est ce qui permet à React de garantir le bon état des Hooks entre plusieurs appels de `useState` et `useEffect`. (Si vous êtes curieux, nous expliquerons cela en détails [ci-dessous](#explanation).)
+**N'appelez pas de Hooks à l'intérieur de boucles, conditions ou de fonctions imbriquées.** À la place, utilisez seulement les Hooks au premier niveau de votre fonction React. En suivant cette règle, vous assurez que les Hooks sont appelés dans le même ordre à chaque fois que le composant est rendu. C'est ce qui permet à React de garantir le bon état des Hooks entre plusieurs appels de `useState` et `useEffect`. (Si vous êtes curieux, nous expliquerons cela en détails [ci-dessous](#explanation).)
 
 ### Appelez les Hooks uniquement depuis des fonctions React {#only-call-hooks-from-react-functions}
 
@@ -119,7 +119,7 @@ useEffect(updateTitle)     // 🔴 3 (mais était 4). Échoue lors du remplaceme
 
 React ne saurait quoi retourner lors du second appel au Hook `useState`. React s'attend à ce que le second appel à un Hook dans ce composant corresponde à l'effet `persistForm`, comme lors du rendu précédent, mais ce n'est plus le cas. A partir de là, chaque nouvel appel à un Hook suivant celui que nous avons passé, sera aussi décalé de un, provocant ainsi des bugs.
 
-**C'est pourquoi les Hooks doivent être appelé en premier lieu dans vos composants.** Si vous voulez exécuter un effet de manière conditionelle, vous pouvez mettre cette condition *à l'intérieur* de votre Hook :
+**C'est pourquoi les Hooks doivent être appelé au premier niveau de vos composants.** Si vous voulez exécuter un effet de manière conditionelle, vous pouvez mettre cette condition *à l'intérieur* de votre Hook :
 
 ```js
   useEffect(function persistForm() {
