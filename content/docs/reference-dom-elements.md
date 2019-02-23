@@ -34,7 +34,7 @@ Si vous utilisez React avec les Web Components (ce qui est rare), utilisez l'att
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
-`dangerouslySetInnerHTML` et l'équivalent React de `innerHTML` dans le DOM des navigateurs. En règle générale, définir le HTML directement depuis le code est risqué car il est trop facile d'exposer vos utilisateurs à une attaque de type [cross-site scripting (XSS)](https://fr.wikipedia.org/wiki/Cross-site_scripting). C'est pourquoi vous pouvez définir le HTML directement depuis React, mais vous devez taper `dangerouslySetInnerHTML` et passer un objet avec une clef `__html`, pour vous souvenir que c'est dangereux. Par exemple :
+`dangerouslySetInnerHTML` est l'équivalent React de `innerHTML` dans le DOM des navigateurs. En règle générale, définir le HTML directement depuis le code est risqué car il est trop facile d'exposer vos utilisateurs à une attaque de type [cross-site scripting (XSS)](https://fr.wikipedia.org/wiki/Cross-site_scripting). C'est pourquoi vous pouvez définir le HTML directement depuis React, mais vous devez taper `dangerouslySetInnerHTML` et passer un objet avec une clef `__html`, pour vous souvenir que c'est dangereux. Par exemple :
 
 ```js
 function createMarkup() {
@@ -73,7 +73,7 @@ const divStyle = {
 };
 
 function HelloWorldComponent() {
-  return <div style={divStyle}>Bonjour le monde !</div>;
+  return <div style={divStyle}>Bonjour, monde !</div>;
 }
 ```
 
@@ -97,16 +97,16 @@ React ajoute automatiquement le suffixe « px » à certaines propriétés numé
 ```js
 // Style résultat : '10px'
 <div style={{ height: 10 }}>
-  Bonjour le monde !
+  Bonjour, monde !
 </div>
 
 // Style résultat : '10%'
 <div style={{ height: '10%' }}>
-  Bonjour le monde !
+  Bonjour, monde !
 </div>
 ```
 
-Toutes les propriétés de style ne sont pas systématiquement converties en pixels pour autant. Certaines restent sans unité (e.g. `zoom`, `order`, `flex`). La liste complètes des propriétés sans unité peut-être consultée [ici](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
+Toutes les propriétés de style ne sont pas systématiquement converties en pixels pour autant. Certaines restent sans unité (e.g. `zoom`, `order`, `flex`). La liste complète des propriétés sans unité peut-être consultée [ici](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
 
 ### suppressContentEditableWarning {#suppresscontenteditablewarning}
 
@@ -114,22 +114,22 @@ Normalement un avertissement apparaît lorsqu'un élément avec des enfants est 
 
 ### suppressHydrationWarning {#suppresshydrationwarning}
 
-Si vous utilisez le rendu côté serveur de React, normalement un avertissement apparaît lorsque le serveur et le client ont un contenu rendu différent. Cependant, dans certains cas rares, il est très difficile voir impossible de garantir un contenu identique. Par exemple s'il est prévu que des dates ou heures diffèrent entre le serveur et le client.
+Si vous utilisez le rendu côté serveur de React, normalement un avertissement apparaît lorsque le serveur et le client ont un contenu rendu différent. Cependant, dans certains cas rares, il est très difficile, voir impossible, de garantir un contenu identique. Par exemple s'il est prévu que des timestamps diffèrent entre le serveur et le client.
 
 Si vous définissez `suppressHydrationWarning` à `true`, React ne vous avertira pas des différences dans les attributs et le contenu de cet élèment. Ça ne fonctionne que pour un niveau de profondeur, et est prévu comme une échappatoire. N'en abusez pas. Vous pouvez en apprendre plus au sujet de la phase d'hydratation dans la [`documentation de ReactDOM.hydrate()`](/docs/react-dom.html#hydrate).
 
 ### value {#value}
 
-L'attribut `value` est accepté par les composants `<input>` et `<textarea>`. Vous pouvez l'utiliser pour définir la valeur d'un composant. C'est utile pour concevoir des composants contrôlés. `defaultValue` est l'équivalent non-contrôle, qui défini la valeur du composant uniquement lorsqu'il est monté pour la première fois.
+L'attribut `value` est accepté par les composants `<input>` et `<textarea>`. Vous pouvez l'utiliser pour définir la valeur d'un composant. C'est utile pour concevoir des composants contrôlés. `defaultValue` est l'équivalent non-contrôlé, qui définit la valeur du composant uniquement lorsqu'il est monté pour la première fois.
 
 ## Tous les attributs HTML supportés {#all-supported-html-attributes}
 
 Depuis React 16, tous les attributs standards ou [personnalisés](/blog/2017/09/08/dom-attributes-in-react-16.html) sont entièrement supportés.
 
-React a toujours fourni une API orientée JavaScript au DOM. Étant donné que les composants React acceptent de même les props personnalisées et celles liées au DOM, React utilise la convention `camelCase` tout comme les APIs DOM :
+React a toujours fourni une API orientée JavaScript au DOM. Étant donné que les composants React acceptent les props personnalisées et celles liées au DOM, React utilise la convention `camelCase` tout comme les APIs DOM :
 
 ```js
-<div tabIndex="-1" />      // Tout comme l'API DOM node.tabIndex l'API DOM
+<div tabIndex="-1" />      // Tout comme l'API DOM node.tabIndex
 <div className="Button" /> // Tout comme l'API DOM node.className
 <input readOnly={true} />  // Tout comme l'API DOM node.readOnly
 ```
