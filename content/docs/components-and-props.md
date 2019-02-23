@@ -20,7 +20,7 @@ Les composants vous permettent de découper l’interface utilisateur en éléme
 
 Conceptuellement, les composants sont comme des fonctions JavaScript. Ils acceptent des entrées quelconques (appelées « props ») et renvoient des éléments React décrivant ce qui doit apparaître à l’écran.
 
-## Fonctions Composants et Composants à Base de Classes {#function-and-class-components}
+## Fonctions composants et composants à base de classes {#function-and-class-components}
 
 Le moyen le plus simple de définir un composant consiste à écrire une fonction JavaScript :
 
@@ -46,7 +46,7 @@ Les deux composants ci-dessus sont équivalents du point de vue de React.
 
 Les classes possèdent quelques fonctionnalités supplémentaires dont nous discuterons dans les [prochaines sections](/docs/state-and-lifecycle.html). En attendant, nous utiliserons les fonctions composants pour leur concision.
 
-## Produire le rendu d’un Component {#rendering-a-component}
+## Produire le rendu d’un composant {#rendering-a-component}
 
 Jusqu’ici, nous n’avons rencontré que des éléments React représentant des balises DOM :
 
@@ -89,9 +89,9 @@ Récapitulons ce qui se passe dans cet exemple :
 >
 >React considère les composants commençant par des lettres minuscules comme des balises DOM. Par exemple, `<div />` représente une balise HTML div, mais `<Welcome />` représente un composant, et exige que l’identifiant `Welcome` existe dans la portée courante.
 >
->Pour en en apprendre davantage sur le raisonnement qui sous-tend cette convention, lisez donc [JSX en Profondeur](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
+>Pour en en apprendre davantage sur le raisonnement qui sous-tend cette convention, lisez donc [JSX en profondeur](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
 
-## Composition de Composants {#composing-components}
+## Composition de composants {#composing-components}
 
 Les composants peuvent faire référence à d’autres composants dans leur sortie. Ça nous permet d’utiliser la même abstraction de composants pour n’importe quel niveau de détail. Un bouton, un formulaire, une boîte de dialogue, un écran : dans React, ils sont généralement tous exprimés par des composants.
 
@@ -122,7 +122,7 @@ ReactDOM.render(
 
 En règle générale, les nouvelles applications React ont un seul composant `App` à la racine.  En revanche, si vous intégrez React à une application existante, vous pouvez commencer tout en bas par un petit composant comme `Button` et remonter progressivement la hiérarchie des vues.
 
-## Extraire des Composants {#extracting-components}
+## Extraire des composants {#extracting-components}
 
 N’ayez pas peur de scinder des composants en composants plus petits.
 
@@ -235,7 +235,7 @@ function Comment(props) {
 
 Au début, extraire des composants peut vous sembler fastidieux, mais disposer d’une palette de composants réutilisables s’avère rentable sur des applications de plus grande taille. En règle générale, si une partie de votre interface utilisateur est utilisée plusieurs fois (`Button`, `Panel`, `Avatar`) ou si elle est suffisamment complexe en elle-même (`App`, `FeedStory`, `Comment`), c’est un bon candidat pour un composant réutilisable.
 
-## Les Props Sont en Lecture Seule {#props-are-read-only}
+## Les props sont en lecture seule {#props-are-read-only}
 
 Que vous déclariez un composant [sous forme de fonction ou de classe](#function-and-class-components), il ne doit jamais modifier ses propres props. Considérons cette fonction `sum` :
  
