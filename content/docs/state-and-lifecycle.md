@@ -29,11 +29,7 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-<<<<<<< HEAD
-[**Essayer sur CodePen**](http://codepen.io/gaearon/pen/gwoJZk?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/gwoJZk?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[**Essayer sur CodePen**](https://codepen.io/gaearon/pen/gwoJZk?editors=0010)
 
 Dans cette section, nous allons apprendre à faire un composant `Clock` vraiment réutilisable et isolé. Il mettra en place son propre minuteur et se mettra à jour tout seul à chaque seconde.
 
@@ -59,11 +55,7 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-<<<<<<< HEAD
-[**Essayer sur CodePen**](http://codepen.io/gaearon/pen/dpdoYR?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/dpdoYR?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[**Essayer sur CodePen**](https://codepen.io/gaearon/pen/dpdoYR?editors=0010)
 
 Cependant, il manque une contrainte cruciale : le fait que la `Clock` mette en place le minuteur et mette à jour son interface utilisateur devrait être un détail d'implémentation de la `Clock`.
 
@@ -109,11 +101,7 @@ class Clock extends React.Component {
 }
 ```
 
-<<<<<<< HEAD
-[**Essayer sur CodePen**](http://codepen.io/gaearon/pen/zKRGpo?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/zKRGpo?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[**Essayer sur CodePen**](https://codepen.io/gaearon/pen/zKRGpo?editors=0010)
 
 Le composant `Clock` est maintenant défini comme une classe au lieu d'une fonction.
 
@@ -205,11 +193,7 @@ ReactDOM.render(
 );
 ```
 
-<<<<<<< HEAD
-[**Essayer sur CodePen**](http://codepen.io/gaearon/pen/KgQpJd?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/KgQpJd?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[**Essayer sur CodePen**](https://codepen.io/gaearon/pen/KgQpJd?editors=0010)
 
 Ensuite, nous allons faire en sorte que le composant `Clock` mette en place son propre minuteur et se mette à jour toutes les secondes.
 
@@ -318,11 +302,7 @@ ReactDOM.render(
 );
 ```
 
-<<<<<<< HEAD
-[**Essayer sur CodePen**](http://codepen.io/gaearon/pen/amqdNA?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[**Essayer sur CodePen**](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
 
 Maintenant l'horloge se met à jour toutes les secondes.
 
@@ -457,11 +437,7 @@ function FormattedDate(props) {
 }
 ```
 
-<<<<<<< HEAD
-[**Essayer sur CodePen**](http://codepen.io/gaearon/pen/zKRqNB?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/zKRqNB?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[**Essayer sur CodePen**](https://codepen.io/gaearon/pen/zKRqNB?editors=0010)
 
 On appelle souvent cela un flux de données « du haut vers le bas » ou « unidirectionnel ». Un état local est toujours possédé par un composant spécifique, et toute donnée ou interface utilisateur dérivée de cet état ne peut affecter que les composants « en-dessous » de celui-ci dans l'arbre de composants.
 
@@ -486,11 +462,7 @@ ReactDOM.render(
 );
 ```
 
-<<<<<<< HEAD
-[**Essayer sur CodePen**](http://codepen.io/gaearon/pen/vXdGmd?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/vXdGmd?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[**Essayer sur CodePen**](https://codepen.io/gaearon/pen/vXdGmd?editors=0010)
 
 Chaque `Clock` met en place son propre minuteur et se met à jour indépendamment.
 
