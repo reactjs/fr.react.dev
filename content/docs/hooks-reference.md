@@ -405,7 +405,7 @@ Dans certains cas, formatter une valeur à montrer peut être une opération co�
 
 Pour cette raison, `useDebugValue` accepte une fonction de formattage comme deuxième paramètre optionnel. Cette fonction est appelée uniquement si les Hooks sont inspectés. Elle reçoit la valeur de débogage comme paramètre et devrait renvoyer une valeur d'affichage formattée.
 
-Par example, un Hook customisé qui renvoie une valeur `Date` pourrait éviter d'appeler inutilement la fonction `toDateString` en fournissant le formatteur suivant :
+Par exemple, un Hook customisé qui renvoie une valeur `Date` pourrait éviter d'appeler inutilement la fonction `toDateString` en fournissant le formatteur suivant :
 
 ```js
 useDebugValue(date, date => date.toDateString());
