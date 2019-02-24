@@ -26,7 +26,7 @@ Dans ce guide, nous verrons pourquoi les composants d'ordre supérieurs sont uti
 
 Les composants React constituent le moyen le plus primaire de réutiliser du code. Cependant, vous remarquerez que les composants classiques ne conviennent pas à tous les modèles.
 
-Imaginez par exemple un composant `CommentList` qui se connecte à une source externe de données pour faire le rendu d'une liste de commentaires&nbsp;:
+Imaginez que vous ayez créé un composant `CommentList` qui écoute une source externe de données pour faire le rendu d'une liste de commentaires&nbsp;:
 
 ```js
 class CommentList extends React.Component {
@@ -34,23 +34,23 @@ class CommentList extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
-      // "DataSource" is some global data source
+      // "DataSource" est une source de données quelconque
       comments: DataSource.getComments()
     };
   }
 
   componentDidMount() {
-    // Subscribe to changes
+    // Crée un écouteur d'événement
     DataSource.addChangeListener(this.handleChange);
   }
 
   componentWillUnmount() {
-    // Clean up listener
+    // Nettoie l'écouteur d'événement
     DataSource.removeChangeListener(this.handleChange);
   }
 
   handleChange() {
-    // Update component state whenever the data source changes
+    // Met à jour l'état local quand la source de données est modifiée
     this.setState({
       comments: DataSource.getComments()
     });
@@ -68,7 +68,7 @@ class CommentList extends React.Component {
 }
 ```
 
-Later, you write a component for subscribing to a single blog post, which follows a similar pattern:
+Ensuite, vous créez un composant qui gère les événements pour un unique article, et dont la structure est similaire à la précédente&nbsp;:
 
 ```js
 class BlogPost extends React.Component {
