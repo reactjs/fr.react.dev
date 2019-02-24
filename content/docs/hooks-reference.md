@@ -47,7 +47,7 @@ Au cours des rendus suivants, la première valeur renvoyée par `useState` sera 
 
 #### Mises à jour fonctionnelles {#functional-updates}
 
-Si le nouvel état local est déduit de l'état local précédent, vous pouvez passer une fonction à `setState`. Cette fonction recevra la valeur précédente de l'état local et renverra une nouvelle valur de l'état local. Voici un exemple d'un composant compteur qui utilise les deux formes de `setState`:
+Si le nouvel état local est déduit de l'état local précédent, vous pouvez passer une fonction à `setState`. Cette fonction recevra la valeur précédente de l'état local et renverra une nouvelle valeur de l'état local. Voici un exemple d'un composant compteur qui utilise les deux formes de `setState`:
 
 ```js
 function Counter({initialCount}) {
