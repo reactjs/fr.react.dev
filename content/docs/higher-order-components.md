@@ -9,8 +9,7 @@ Un composant d'ordre supérieur (HOC) est une technique avancée de React qui pe
 Concrètement, **un composant d'ordre supérieur est une fonction qui accepte un composant et renvoie un nouveau composant.**
 
 ```js
-const ComposantAmeliore = composantdOrdreSuperieur(ComposantInterne);
-// const EnhancedComponent = higherOrderComponent(WrappedComponent);
+const EnhancedComponent = higherOrderComponent(WrappedComponent);
 ```
 
 Là où un composant transforme des props en interface utilisateur, un composant d'ordre supérieur transforme un composant en un autre composant.
