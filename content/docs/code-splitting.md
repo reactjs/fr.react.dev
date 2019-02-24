@@ -1,6 +1,6 @@
 ---
 id: code-splitting
-title: Fractionnement de code
+title: Séparation du code
 permalink: docs/code-splitting.html
 ---
 
@@ -44,17 +44,17 @@ Si vous utilisez [Create React App](https://github.com/facebookincubator/create-
 
 Si ce n'est pas le cas, vous devrez configurer la génération de votre bundle vous-même. Consultez les guides [d'installation](https://webpack.js.org/guides/installation/) et de [démarrage](https://webpack.js.org/guides/getting-started/) de la documentation de Webpack comme exemples.
 
-## Le fractionnement de code {#code-splitting}
+## La séparation du code {#code-splitting}
 
-Créer des bundles est génial, mais au fur et à mesure que votre application grandit, votre bundle va grandir aussi. En particulier si vous intégrez des bibliothèques tierces. Vous devez garder un œil sur le code que vous intégrez dans votre bundle pour éviter de le rendre si lourd que le chargement de votre application prendra beaucoup de temps.
+Créer des bundles est génial, mais au fur et à mesure que votre application grandit, votre bundle va grossir aussi. En particulier si vous intégrez des bibliothèques tierces. Vous devez garder un œil sur le code que vous intégrez dans votre bundle pour éviter de le rendre si lourd que le chargement de votre application prendra beaucoup de temps.
 
-Pour éviter de vous retrouver avec un bundle trop volumineux, il est bon d'anticiper les problèmes et de commencer à fractionner votre bundle. Le [fractionnement de code](https://webpack.js.org/guides/code-splitting/) est une fonctionnalité supportée par les outils de génération de bundles tels que Webpack ou Browserify (*via* [factor-bundle](https://github.com/browserify/factor-bundle)) qui permet de créer plusieurs bundles pouvant être chargés dynamiquement au moment de l'exécution.
+Pour éviter de vous retrouver avec un bundle trop volumineux, il est bon d'anticiper les problèmes et de commencer à fractionner votre bundle. La [séparation du code](https://webpack.js.org/guides/code-splitting/) est une fonctionnalité supportée par les outils de génération de bundles tels que Webpack ou Browserify (via [factor-bundle](https://github.com/browserify/factor-bundle)) qui permet de créer plusieurs bundles pouvant être chargés dynamiquement au moment de l'exécution.
 
 Fractionner votre application peut vous aider à charger à la demande (*lazy-load*) les éléments qui sont nécessaires pour l'utilisateur à un moment donné, ce qui peut améliorer grandement les performances de votre application. Bien que vous n'ayez pas réduit la quantité de code de votre application, vous évitez de charger du code dont l'utilisateur n'aura peut-être jamais besoin, et réduit la quantité de code nécessaire au chargement initial.
 
 ## `import()` {#import}
 
-La meilleure façon d'introduire le fractionnement de code dans votre application est par la syntaxe dynamique `import()`.
+La meilleure façon d'introduire la séparation du code dans votre application est par la syntaxe dynamique `import()`.
 
 **Avant :**
 
@@ -76,9 +76,9 @@ import("./math").then(math => {
 >
 > La syntaxe dynamique `import()` est une [proposition](https://github.com/tc39/proposal-dynamic-import) ECMAScript (JavaScript) qui ne fait pas partie du standard du langage. Il devrait être accepté dans un avenir proche.
 
-Lorsque Webpack rencontre cette syntaxe, il démarre automatiquement le fractionnement du code de votre application. Si vous utilisez Create React App, cela est déjà configuré pour vous et vous pouvez [l'utiliser](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting) immédiatement. Il est également pris en charge par [Next.js](https://github.com/zeit/next.js/#dynamic-import).
+Lorsque Webpack rencontre cette syntaxe, il démarre automatiquement la séparation du code de votre application. Si vous utilisez Create React App, cela est déjà configuré pour vous et vous pouvez [l'utiliser](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting) immédiatement. Il est également pris en charge par [Next.js](https://github.com/zeit/next.js/#dynamic-import).
 
-Si vous configurez Webpack vous-même, vous voudrez sans doute lire le [guide sur le fractionnement de code](https://webpack.js.org/guides/code-splitting/) de Webpack. Votre configuration Webpack devrait vaguement ressembler [à cela](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
+Si vous configurez Webpack vous-même, vous voudrez sans doute lire le [guide sur la séparation du code](https://webpack.js.org/guides/code-splitting/) de Webpack. Votre configuration Webpack devrait vaguement ressembler [à cela](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
 Lorsque vous utilisez [Babel](http://babeljs.io/), vous devrez vous assurer que Babel peut analyser la syntaxe dynamique d'import sans la transformer. Pour cela, vous aurez besoin de l'extension [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
 
@@ -183,13 +183,13 @@ const MyComponent = () => (
 );
 ```
 
-## Fractionnement de code basé sur les routes {#route-based-code-splitting}
+## Séparation du code basé sur les routes {#route-based-code-splitting}
 
-Décider où introduire le fractionnement de code dans votre application peut être délicat. Vous voulez être sûr de choisir les endroits qui fractionnent les bundles de manière uniforme, sans perturber l'expérience utilisateur.
+Décider où introduire la séparation du code dans votre application peut être délicat. Vous voulez être sûr de choisir les endroits qui fractionnent les bundles de manière uniforme, sans perturber l'expérience utilisateur.
 
 Un bon endroit pour commencer est au niveau des routes. La plupart des gens sur le web sont habitués aux transitions entre les pages qui prennent du temps à charger. Vous aurez également tendance à refaire le rendu de la page entière d'une traite, de sorte qu'il est peu probable que vos utilisateurs interagissent avec d'autres éléments de la page en même temps.
 
-Voici un exemple de configuration de fractionnement de code basé sur les routes à intégrer dans votre application en utilisant des bibliothèques telles que [React Router](https://reacttraining.com/react-router/) avec `React.lazy`.
+Voici un exemple de configuration de séparation du code basé sur les routes, à intégrer dans votre application en utilisant des bibliothèques telles que [React Router](https://reacttraining.com/react-router/) avec `React.lazy`.
 
 ```js
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -212,7 +212,7 @@ const App = () => (
 
 ## Exports nommés {#named-exports}
 
-`React.lazy` ne supporte actuellement que les exports par défaut. Si le module que vous souhaitez importer utilise des exports nommés, vous pouvez créer un module intermédiaire qui les réexportera par défaut. Cela garantit que le *treeshaking* ([procédé permettant de supprimer le code mort](https://developer.mozilla.org/fr/docs/Glossaire/Tree_shaking) — NdT) continue de fonctionner et que vous n'intégrez pas de composants inutilisés.
+`React.lazy` ne supporte actuellement que les exports par défaut. Si le module que vous souhaitez importer utilise des exports nommés, vous pouvez créer un module intermédiaire qui les réexportera par défaut. Cela garantit que le *tree shaking* ([procédé permettant de supprimer le code mort](https://developer.mozilla.org/fr/docs/Glossaire/Tree_shaking) — NdT) continue de fonctionner et que vous n'intégrez pas de composants inutilisés.
 
 ```js
 // ManyComponents.js
