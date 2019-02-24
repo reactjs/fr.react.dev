@@ -5,16 +5,16 @@
  * @flow
  */
 
+import {colors, fonts, media} from 'theme';
+
 import Container from 'components/Container';
+import DocSearch from './DocSearch';
+import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import HeaderLink from './HeaderLink';
 import {Link} from 'gatsby';
 import React from 'react';
-import {colors, fonts, media} from 'theme';
-import {version} from 'site-constants';
-import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
-import DocSearch from './DocSearch';
-
 import logoSvg from 'icons/logo.svg';
+import {version} from 'site-constants';
 
 const Header = ({location}: {location: Location}) => (
   <header
@@ -120,12 +120,12 @@ const Header = ({location}: {location: Location}) => (
           />
           <HeaderLink
             isActive={location.pathname.includes('/tutorial/')}
-            title="Tutorial"
+            title="Tutoriel"
             to="/tutorial/tutorial.html"
           />
           <HeaderLink
             isActive={location.pathname.includes('/community/')}
-            title="Community"
+            title="Communauté"
             to="/community/support.html"
           />
           <HeaderLink

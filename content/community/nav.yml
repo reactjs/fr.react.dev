@@ -1,42 +1,42 @@
-- title: Community Resources
+- title: Ressources communautaires
   items:
     - id: support
       title: Support
     - id: courses
-      title: Courses
+      title: Cours
     - id: examples
-      title: Examples
+      title: Exemples
     - id: meetups
       title: Meetups
     - id: conferences
-      title: Conferences
+      title: Conférences
     - id: articles
       title: Articles
     - id: podcasts
       title: Podcasts
     - id: videos
-      title: Videos
+      title: Vidéos
     - id: external-resources
-      title: External Resources
-- title: Tools
+      title: Ressources externes
+- title: Outils
   items:
     - id: debugging-tools
-      title: Debugging
+      title: Débogage
     - id: component-workbenches
       title: Component Workbenches
     - id: jsx-integrations
-      title: JSX Integrations
+      title: Intégrations JSX
     - id: starter-kits
-      title: Starter Kits
+      title: Kits de démarrage
     - id: routing
-      title: Routing
+      title: Routage
     - id: model-management
-      title: Model Management
+      title: Gestion de modèles
     - id: data-fetching
-      title: Data Fetching
+      title: Chargement de données
     - id: testing
-      title: Testing
+      title: Tests
     - id: ui-components
-      title: UI Components
+      title: Composants UI
     - id: misc
-      title: Miscellaneous
+      title: Divers

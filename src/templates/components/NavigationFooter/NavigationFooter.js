@@ -4,12 +4,13 @@
  * @emails react-core
  */
 
+import {colors, fonts, media} from 'theme';
+
 import Container from 'components/Container';
 import Flex from 'components/Flex';
 import {Link} from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors, fonts, media} from 'theme';
 
 const NavigationFooter = ({next, prev, location}) => {
   return (
@@ -40,7 +41,7 @@ const NavigationFooter = ({next, prev, location}) => {
           <Flex basis="50%" type="li">
             {prev && (
               <div>
-                <SecondaryLabel>Previous article</SecondaryLabel>
+                <SecondaryLabel>Article précédent</SecondaryLabel>
                 <div
                   css={{
                     paddingTop: 10,
@@ -61,7 +62,7 @@ const NavigationFooter = ({next, prev, location}) => {
                 textAlign: 'right',
               }}>
               <div>
-                <SecondaryLabel>Next article</SecondaryLabel>
+                <SecondaryLabel>Prochain article</SecondaryLabel>
                 <div
                   css={{
                     paddingTop: 10,
