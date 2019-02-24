@@ -182,7 +182,7 @@ Alternative à [`useState`](#usestate). Accepte un réducteur de type `(state, a
 
 `useReducer` est souvent à préférer à `useState` quand vous avez une logique d'état local complexe qui comprend plusieurs sous-valeurs, ou quand l'état suivant dépend de l'état précédent. `useReducer` vous permet aussi d'optimiser les performances pour des composants qui déclenchent des mises à jours profondes puisque [vous pouvez fournir `dispatch` à la place de fonctions de rappel](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
 
-Voice l'exemple du composant compteur du paragraphe [`useState`](#usestate) ré-écrit avec un réducteur :
+Voici l'exemple du composant compteur du paragraphe [`useState`](#usestate) ré-écrit avec un réducteur :
 
 ```js
 const initialState = {count: 0};
