@@ -13,21 +13,21 @@ const ComposantAmeliore = composantdOrdreSuperieur(ComposantInterne);
 // const EnhancedComponent = higherOrderComponent(WrappedComponent);
 ```
 
-Whereas a component transforms props into UI, a higher-order component transforms a component into another component.
+Là où un composant transforme des props en interface utilisateur, un composant d'ordre supérieur transforme un composant en un autre composant.
 
-HOCs are common in third-party React libraries, such as Redux's [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) and Relay's [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html).
+Les HOC sont courants dans des bibliothèques tierces de React, comme [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) dans Redux et [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) dans Relay.
 
-In this document, we'll discuss why higher-order components are useful, and how to write your own.
+Dans ce guide, nous verrons pourquoi les composants d'ordre supérieurs sont utiles, et comment créer le vôtre.
 
-## Use HOCs For Cross-Cutting Concerns {#use-hocs-for-cross-cutting-concerns}
+## Utiliser les HOC pour les préoccupations transversales {#use-hocs-for-cross-cutting-concerns}
 
 > **Note**
 >
-> We previously recommended mixins as a way to handle cross-cutting concerns. We've since realized that mixins create more trouble than they are worth. [Read more](/blog/2016/07/13/mixins-considered-harmful.html) about why we've moved away from mixins and how you can transition your existing components.
+> Nous recommandions dans le passé d'employer des mixins pour gérer les préoccupations transversales. Depuis, nous nous sommes rendus compte que les mixins créent plus de problèmes qu'ils n'en résolvent. [Lisez-en plus](/blog/2016/07/13/mixins-considered-harmful.html) sur pourquoi nous avons renoncé aux mixins, et comment vous pouvez faire de même pour vos composants existants.
 
-Components are the primary unit of code reuse in React. However, you'll find that some patterns aren't a straightforward fit for traditional components.
+Les composants React constituent le moyen le plus primaire de réutiliser du code. Cependant, vous remarquerez que les composants classiques ne conviennent pas à tous les modèles.
 
-For example, say you have a `CommentList` component that subscribes to an external data source to render a list of comments:
+Imaginez par exemple un composant `CommentList` qui se connecte à une source externe de données pour faire le rendu d'une liste de commentaires&nbsp;:
 
 ```js
 class CommentList extends React.Component {
