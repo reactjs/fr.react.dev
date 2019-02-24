@@ -10,7 +10,7 @@ Ce guide de référence documente le wrapper `SyntheticEvent` qui fait partie du
 
 ## Vue d'ensemble {#overview}
 
-Votre gestionnaire d'événement va recevoir des instances de `SyntheticEvent`, un wrapper inter-navigateur autour de l'événement natif du navigateur. Il dispose de la même interface que l'événement natif du navigateur, ce qui inclut `stopPropagation()` et `preventDefault()`, à ceci près que les événements fonctionnent de façon identique sur tous les navigateurs.
+Vos gestionnaires d'événements vont recevoir des instances de `SyntheticEvent`, un wrapper inter-navigateur autour de l'événement natif du navigateur. Il dispose de la même interface que l'événement natif du navigateur, ce qui inclut `stopPropagation()` et `preventDefault()`, à ceci près que les événements fonctionnent de façon identique sur tous les navigateurs.
 
 Si, pour n'importe quelle raison, vous avez besoin de l'événement sous-jacent du navigateur, alors vous pouvez utiliser l'attribut `nativeEvent` pour le récupérer. Tous les objets `SyntheticEvent` disposent des attributs suivants :
 
@@ -72,15 +72,15 @@ Les gestionnaires d'événements ci-dessous sont déclenchés par un événement
 
 - [Événements de presse-papiers](#clipboard-events)
 - [Événements de composition](#composition-events)
-- [Événements de clavier](#keyboard-events)
+- [Événements du clavier](#keyboard-events)
 - [Événements de focus](#focus-events)
-- [Événements de formulaire](#form-events)
-- [Événements de souris](#mouse-events)
-- [Événements de pointeur](#pointer-events)
+- [Événements du formulaire](#form-events)
+- [Événements de la souris](#mouse-events)
+- [Événements du pointeur](#pointer-events)
 - [Événements de sélection](#selection-events)
 - [Événements d'interaction tactile](#touch-events)
 - [Événements visuels](#ui-events)
-- [Événements de roulette](#wheel-events)
+- [Événements de la molette](#wheel-events)
 - [Événements de média](#media-events)
 - [Événements d'image](#image-events)
 - [Événements d'animation](#animation-events)
@@ -124,7 +124,7 @@ string data
 
 * * *
 
-### Événements de clavier {#keyboard-events}
+### Événements du clavier {#keyboard-events}
 
 Noms des événements :
 
@@ -161,7 +161,7 @@ Noms des événements :
 onFocus onBlur
 ```
 
-Ces événements de focus fonctionnent sur tous les éléments du DOM de React, et pas uniquement sur les éléments de formulaire.
+Ces événements de focus fonctionnent sur tous les éléments du DOM de React, et pas uniquement sur les éléments du formulaire.
 
 Propriétés :
 
@@ -171,7 +171,7 @@ DOMEventTarget relatedTarget
 
 * * *
 
-### Événements de formulaire {#form-events}
+### Événements du formulaire {#form-events}
 
 Noms des événements :
 
@@ -183,7 +183,7 @@ Pour plus d'informations sur l'événement onChange, consultez la documentation 
 
 * * *
 
-### Événements de souris {#mouse-events}
+### Événements de la souris {#mouse-events}
 
 Noms des événements :
 
@@ -216,7 +216,7 @@ boolean shiftKey
 
 * * *
 
-### Événements de pointeur {#pointer-events}
+### Événements du pointeur {#pointer-events}
 
 Noms des événements :
 
@@ -229,7 +229,7 @@ Les événements `onPointerEnter` et `onPointerLeave` se propagent de l'élémen
 
 Propriétés :
 
-Comme défini par la [spécification W3](https://www.w3.org/TR/pointerevents/), les événements de pointeur doivent étendre les [événements de souris](#mouse-events) avec les propriétés suivantes :
+Comme défini par la [spécification W3](https://www.w3.org/TR/pointerevents/), les événements du pointeur doivent étendre les [événements de la souris](#mouse-events) avec les propriétés suivantes :
 
 ```javascript
 number pointerId
@@ -246,9 +246,9 @@ boolean isPrimary
 
 Une remarque concernant le support inter-navigateur :
 
-Les événements de pointeur ne sont pas encore supportés par tous les navigateurs (au moment de l'écriture de cet article, les navigateurs qui les supportent comprennent Chrome, Firefox, Edge, et Internet Explorer). React n'offre volontairement pas de polyfill pour les autres navigateurs dans la mesure où un polyfill conforme aux standards impliquerait une augmentation significative de la taille du paquet de `react-dom`.
+Les événements du pointeur ne sont pas encore supportés par tous les navigateurs (au moment de l'écriture de cet article, les navigateurs qui les supportent comprennent Chrome, Firefox, Edge, et Internet Explorer). React n'offre volontairement pas de polyfill pour les autres navigateurs dans la mesure où un polyfill conforme aux standards impliquerait une augmentation significative de la taille du paquet de `react-dom`.
 
-Si votre application nécessite les événements de pointeur, nous recommandons d'ajouter un polyfill tiers pour les supporter.
+Si votre application nécessite les événements du pointeur, nous recommandons d'ajouter un polyfill tiers pour les supporter.
 
 * * *
 
@@ -302,7 +302,7 @@ DOMAbstractView view
 
 * * *
 
-### Événements de roulette {#wheel-events}
+### Événements de la molette {#wheel-events}
 
 Noms des événements :
 
