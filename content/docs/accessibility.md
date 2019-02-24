@@ -14,7 +14,7 @@ React prend totalement en charge la création de sites web accessibles, en s'app
 
 ### WCAG {#wcag}
 
-Les [directives pour l'accessibilité au contenu web (*Web Content Accessibility Guidelines*)](https://www.w3.org/WAI/intro/wcag) proposent les lignes directrices pour créer des sites web accessibles.
+Les [directives pour l'accessibilité au contenu web (*Web Content Accessibility Guidelines*, ou *WCAG*)](https://www.w3.org/WAI/intro/wcag) proposent les lignes directrices pour créer des sites web accessibles.
 
 Les listes de contrôle du WCAG ci-dessous en fournissent un aperçu :
 
@@ -112,10 +112,10 @@ Pour plus d'information, consultez [la documentation sur les fragments](/docs/fr
 
 Tous les contrôles de formulaire HTML, tels que `<input>` et `<textarea>`, doivent être étiquetés de manière accessible. Nous devons fournir des étiquettes descriptives, qui sont également exposées aux lecteurs d'écran.
 
-Les ressources ci-dessous nous montrent comme procéder :
+Les ressources ci-dessous nous montrent comment procéder :
 
-- [Le W3C nous montre comme étiqueter les éléments](https://www.w3.org/WAI/tutorials/forms/labels/).
-- [Le WebAIM nous montre comme étiqueter les éléments](http://webaim.org/techniques/forms/controls).
+- [Le W3C nous montre comment étiqueter les éléments](https://www.w3.org/WAI/tutorials/forms/labels/).
+- [Le WebAIM nous montre comment étiqueter les éléments](http://webaim.org/techniques/forms/controls).
 - [Le groupe Paciello explique ce qu'est un nom accessible](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/).
 
 Bien que ces pratiques HTML standard soient directement utilisables dans React, il faut noter que l'attribut `for` est écrit `htmlFor` en JSX :
@@ -364,7 +364,7 @@ Ce code expose la fonctionnalité aussi bien aux utilisateurs de dispositifs de 
 
 <img src="../images/docs/blur-popover-close.gif" alt="Une liste déroulante se fermant correctement pour les utilisateurs de souris et de clavier." />
 
-C'est un exemple des nombreux cas où le fait de ne dépendre que des événements de souris et de pointeur casse les fonctionnalités pour les utilisateurs de clavier. Toujours tester avec le clavier mettra immédiatement en évidence les problèmes qui peuvent ensuite être résolus à l'aide des gestionnaires d'événement clavier.
+C'est un exemple des nombreux cas où le fait de ne dépendre que des événements de souris et de pointeur casse les fonctionnalités pour les utilisateurs de clavier. Toujours tester avec le clavier mettra immédiatement en évidence les problèmes qui peuvent ensuite être résolus à l'aide des gestionnaires d'événements clavier.
 
 ## Widgets plus complexes {#more-complex-widgets}
 
@@ -395,22 +395,22 @@ Définissez la balise `<title>` du document pour décrire correctement le conten
 
 Nous pouvons le définir dans React en utilisant le [composant React Document Title](https://github.com/gaearon/react-document-title).
 
-### Contraste de couleur {#color-contrast}
+### Contraste des couleurs {#color-contrast}
 
-Assurez-vous que tous les textes lisibles sur votre site web ont un contraste de couleur suffisant pour rester lisibles de manière optimale par les utilisateurs malvoyants :
+Assurez-vous que tous les textes lisibles sur votre site web ont un contraste des couleurs suffisant pour rester lisibles de manière optimale par les utilisateurs malvoyants :
 
-- [WCAG - Comprendre l'exigence du contraste de couleur](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html).
-- [Tout sur le contraste de couleur et pourquoi vous devez le repenser](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/).
-- [A11yProject - Qu'est-ce qu'un contraste de couleur ?](http://a11yproject.com/posts/what-is-color-contrast/)
+- [WCAG - Comprendre l'exigence du contraste des couleurs](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html).
+- [Tout sur le contraste des couleurs et pourquoi vous devez le repenser](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/).
+- [A11yProject - Qu'est-ce qu'un contraste des couleurs ?](http://a11yproject.com/posts/what-is-color-contrast/)
 
 Il peut être fastidieux de calculer manuellement les combinaisons de couleurs appropriées pour toutes les situations sur votre site web, aussi vous est-il possible de [calculer une palette entière de couleurs accessible avec Colorable](http://jxnblk.com/colorable/).
 
-Les outils aXe et WAVE mentionnés ci-dessous incluent également des tests de contraste de couleur et signalent les erreurs de contraste.
+Les outils aXe et WAVE mentionnés ci-dessous incluent également des tests de contraste des couleurs et signalent les erreurs de contraste.
 
 Si vous souhaitez étendre vos capacités de test de contraste, vous pouvez utiliser ces outils :
 
-- [WebAIM - Vérification de contraste de couleur](http://webaim.org/resources/contrastchecker/).
-- [The Paciello Group - Analyseur de contraste de couleur](https://www.paciellogroup.com/resources/contrastanalyser/).
+- [WebAIM - Vérification de contraste des couleurs](http://webaim.org/resources/contrastchecker/).
+- [The Paciello Group - Analyseur de contraste des couleurs](https://www.paciellogroup.com/resources/contrastanalyser/).
 
 ## Développement et outils de test {#development-and-testing-tools}
 
@@ -418,7 +418,7 @@ Il existe de nombreux outils que nous pouvons utiliser pour nous assister durant
 
 ### Le clavier {#the-keyboard}
 
-De loin la vérification plus simple, mais aussi l'une des plus importantes, consiste à tester si l'ensemble de votre site web est accessible et utilisable avec le clavier seul. Procédez ainsi :
+De loin la vérification la plus simple, mais aussi l'une des plus importantes, consiste à tester si l'ensemble de votre site web est accessible et utilisable avec le clavier seul. Procédez ainsi :
 
 1. Débranchez votre souris.
 1. Utilisez `Tab` et `Shift + Tab` pour naviguer.
