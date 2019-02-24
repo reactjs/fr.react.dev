@@ -397,7 +397,7 @@ function useFriendStatus(friendID) {
 
 > Conseil
 >
-> Nous ne conseillons pas l'ajout de valeurs de débogage pour chaque Hook customisé. C'est surout utile pour les Hooks customisés provenant de bibliothèques partagées.
+> Nous ne conseillons pas l'ajout de valeurs de débogage pour chaque Hook customisé. C'est surtout utile pour les Hooks customisés provenant de bibliothèques partagées.
 
 #### Différer le formattage des valeurs de débogage {#defer-formatting-debug-values}
 
