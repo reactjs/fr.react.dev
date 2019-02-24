@@ -50,7 +50,7 @@
     - id: fragments
       title: Fragments
     - id: higher-order-components
-      title: Composants d'Ordre Supérieur
+      title: Composants d'ordre supérieur
     - id: integrating-with-other-libraries
       title: Integrating with Other Libraries
     - id: jsx-in-depth

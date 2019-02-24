@@ -1,6 +1,6 @@
 ---
 id: higher-order-components
-title: Composants d'Ordre Supérieur
+title: Composants d'ordre supérieur
 permalink: docs/higher-order-components.html
 ---
 
