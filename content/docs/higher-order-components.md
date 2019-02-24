@@ -1,15 +1,16 @@
 ---
 id: higher-order-components
-title: Higher-Order Components
+title: Composants d'Ordre Supérieurs
 permalink: docs/higher-order-components.html
 ---
 
-A higher-order component (HOC) is an advanced technique in React for reusing component logic. HOCs are not part of the React API, per se. They are a pattern that emerges from React's compositional nature.
+Un composant d'ordre supérieur (HOC) est une technique avancée de React qui permet de réutiliser la logique de composants. Les HOC ne font pas partie de l'API de React en soi, mais émergent de la nature compositionnelle de React.
 
-Concretely, **a higher-order component is a function that takes a component and returns a new component.**
+Concrètement, **un composant d'ordre supérieur est une fonction qui accepte un composant et renvoie un nouveau composant.**
 
 ```js
-const EnhancedComponent = higherOrderComponent(WrappedComponent);
+const ComposantAmeliore = composantdOrdreSuperieur(ComposantInterne);
+// const EnhancedComponent = higherOrderComponent(WrappedComponent);
 ```
 
 Whereas a component transforms props into UI, a higher-order component transforms a component into another component.
