@@ -110,7 +110,7 @@ Crée une instance de `TestRenderer` avec l'élément React passé en argument. 
 testRenderer.toJSON()
 ```
 
-Renvoie un objet représentant l'arbre obtenu. Cette arbre contient uniquement les nœuds spécifiques à la plateforme comme `<div>` ou `<View>` avec leur props mais ne contient aucun composant écrit par l'utilisateur. C’est pratique pour le [test par instantanés](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
+Renvoie un objet représentant l'arbre obtenu. Cet arbre contient uniquement les nœuds spécifiques à la plateforme comme `<div>` ou `<View>` avec leur props mais ne contient aucun composant écrit par l'utilisateur. C’est pratique pour le [test par instantanés](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
 
 ### `testRenderer.toTree()` {#testrenderertotree}
 
