@@ -5,37 +5,37 @@
     - id: add-react-to-a-website
       title: Add React to a Website
     - id: create-a-new-react-app
-      title: Create a New React App
+      title: Créer une nouvelle appli React
     - id: cdn-links
-      title: CDN Links
-- title: Main Concepts
+      title: Liens CDN
+- title: Fondamentaux
   isOrdered: true
   items:
     - id: hello-world
-      title: Hello World
+      title: Bonjour, monde !
     - id: introducing-jsx
-      title: Introducing JSX
+      title: Introduction à JSX
     - id: rendering-elements
-      title: Rendering Elements
+      title: Le rendu des éléments
     - id: components-and-props
-      title: Components and Props
+      title: Composants et props
     - id: state-and-lifecycle
-      title: State and Lifecycle
+      title: État et cycle de vie
     - id: handling-events
-      title: Handling Events
+      title: Gérer les événements
     - id: conditional-rendering
       title: Conditional Rendering
     - id: lists-and-keys
-      title: Lists and Keys
+      title: Listes et clés
     - id: forms
-      title: Forms
+      title: Formulaires
     - id: lifting-state-up
       title: Lifting State Up
     - id: composition-vs-inheritance
-      title: Composition vs Inheritance
+      title: Composition ou héritage ?
     - id: thinking-in-react
-      title: Thinking In React
-- title: Advanced Guides
+      title: Penser en React
+- title: Guides avancés
   items:
     - id: accessibility
       title: Accessibility
@@ -62,7 +62,7 @@
     - id: react-without-es6
       title: React Without ES6
     - id: react-without-jsx
-      title: React Without JSX
+      title: React sans JSX
     - id: reconciliation
       title: Reconciliation
     - id: refs-and-the-dom
@@ -79,7 +79,7 @@
       title: Uncontrolled Components
     - id: web-components
       title: Web Components
-- title: API Reference
+- title: Référence de l'API
   items:
     - id: react-api
       title: React
@@ -99,12 +99,12 @@
     - id: shallow-renderer
       title: Shallow Renderer
     - id: test-renderer
-      title: Test Renderer
+      title: Moteur de rendu de test
     - id: javascript-environment-requirements
       title: JS Environment Requirements
     - id: glossary
-      title: Glossary
-- title: Hooks (New)
+      title: Glossaire
+- title: Hooks (Nouveau)
   isOrdered: true
   items:
       - id: hooks-intro
@@ -123,7 +123,7 @@
         title: Hooks API Reference
       - id: hooks-faq
         title: Hooks FAQ
-- title: Contributing
+- title: Contribuer
   items:
   - id: how-to-contribute
     title: How to Contribute
@@ -136,7 +136,7 @@
 - title: FAQ
   items:
     - id: faq-ajax
-      title: AJAX and APIs
+      title: AJAX et les API
     - id: faq-build
       title: Babel, JSX, and Build Steps
     - id: faq-functions
