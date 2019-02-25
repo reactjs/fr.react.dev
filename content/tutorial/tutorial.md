@@ -1,6 +1,6 @@
 ---
 id: tutorial
-title: "Tutoriel: Intro à React"
+title: "Tutoriel: Introduction à React"
 layout: tutorial
 sectionid: tutorial
 permalink: tutorial/tutorial.html
@@ -16,7 +16,7 @@ Ce tutoriel ne suppose aucune connaissance préalable de React.
 
 ## Avant de commencer le tutoriel {#before-we-start-the-tutorial}
 
-Nous construirons un petit jeu au cours de ce tutoriel. **Vous pourriez être tenté·e de l'ignorer parce que vous ne développez pas de jeu -- mais faites l'essai.** Les techniques que vous apprendrez dans le tutoriel sont fondamentales pour construire n'importe quelle application React, et les acquérir vous permettra d'acquérir une profonde connaissance de React.
+Nous construirons un petit jeu au cours de ce tutoriel. **Vous pourriez être tenté·e de l'ignorer parce que vous ne développez pas de jeu -- mais faites l'essai.** Les techniques que vous apprendrez dans le tutoriel sont fondamentales pour construire n'importe quelle application React, et les acquérir vous permettra d'avoir une profonde connaissance de React.
 
 >Astuce
 >
@@ -25,7 +25,7 @@ Nous construirons un petit jeu au cours de ce tutoriel. **Vous pourriez être te
 Le tutoriel est divisé en plusieurs parties :
 
 * [Préparation du tutoriel](#setup-for-the-tutorial) vous donnera **un point de départ** afin de suivre le tutoriel.
-* [Vue d'ensemble](#overview) vous apprendra **les fondamentaux** de React: les composants, les props, et l'état (state).
+* [Vue d'ensemble](#overview) vous apprendra **les fondamentaux** de React: les composants, les props, et l'état.
 * [Finir le jeu](#completing-the-game) vous apprendra **les techniques communément utilisées** dans les développements avec React.
 * [Ajouter le voyage dans le temps](#adding-time-travel) vous permettra **d'approfondir votre compréhension** des points forts de React.
 
@@ -155,12 +155,12 @@ Nous verrons plus tard les drôles de balises qui rappellent les balises XML. No
 
 Ici, ShoppingList est un **composant React basé sur une classe**, ou **Composant React**. Un composant prend des paramètres, appelées `props` (abbréviation de "propriété"), et renvoie une hiérarchie de vues à afficher via la méthode `render`.
 
-La méthode `render` renvoie une *<description>* de ce que vous voulez afficher à l'écran. React prend cette description et affiche le résultat. En particulier, `render` renvoie un **élément React**, qui est une description sommaire de ce qui doit être rendu. La plupart des développeurs React utilisent une syntaxe spéciale appelé « JSX » qui rend ces structures faciles à écrire. La syntaxe `<div />`  est remplacée lors de la compilation par `React.createElement('div')`. L'exemple ci-dessus est l'équivalent de ceci :
+La méthode `render` renvoie une *description> de ce que vous voulez afficher à l'écran. React prend cette description et affiche le résultat. En particulier, `render` renvoie un **élément React**, qui est une description sommaire de ce qui doit être rendu. La plupart des développeurs React utilisent une syntaxe spéciale appelé « JSX » qui rend ces structures faciles à écrire. La syntaxe `<div />`  est remplacée lors de la compilation par `React.createElement('div')`. L'exemple ci-dessus est l'équivalent de ceci :
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
-  React.createElement('h1', /* ... enfants (children) de h1 ... */),
-  React.createElement('ul', /* ... enfants (children) de ul ... */)
+  React.createElement('h1', /* ... enfants de h1 ... */),
+  React.createElement('ul', /* ... enfants de ul ... */)
 );
 ```
 
