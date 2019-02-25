@@ -32,7 +32,7 @@ Cette page est un aperçu de la documentation React et de ses ressources associ�
 
 ## Essayer React {#try-react}
 
-React a été conçu dès le départ pour une adoption progressive, et **vous pouvez utiliser le minimum ou autant de React que nécessaire.** Que vous souhaitiez avoir un aperçu de React, ajouter de l'interactivité à une simple page HTML ou démarrer une application complexe utilisant React, les liens de cette section vous aideront à démarrer.
+React a été conçu dès le départ pour une adoption progressive, et **vous pouvez utiliser React à minima ou autant que nécessaire.** Que vous souhaitiez avoir un aperçu de React, ajouter de l'interactivité à une simple page HTML ou démarrer une application React complète, les liens de cette section vous aideront à bien démarrer.
 
 ### Terrains de jeu en ligne {#online-playgrounds}
 
