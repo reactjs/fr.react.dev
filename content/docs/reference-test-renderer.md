@@ -1,6 +1,6 @@
 ---
 id: test-renderer
-title: Moteur de Rendu de Test
+title: Moteur de rendu de test
 permalink: docs/test-renderer.html
 layout: docs
 category: Reference
