@@ -111,7 +111,7 @@ Le [glossaire](/docs/glossary.html) contient un aperçu des termes les plus cour
 
 ## Rester informé {#staying-informed}
 
-Le [blog React](/blog/) est la source officielle des mises à jour de l'équipe de React. Tout ce qui est important, y compris les notes de publication ou les avis d'obsolescence, y sera affiché en priorité.
+Le [blog React](/blog/) est la source officielle pour se tenir informé des mises à jour de l'équipe de React. Tout ce qui est important, y compris les notes de publication ou les avis d'obsolescence, y sera publié en priorité.
 
 Vous pouvez également suivre le [compte @reactjs](https://twitter.com/reactjs) sur Twitter, mais rien d’essentiel ne vous échappera si vous ne lisez que le blog.
 
