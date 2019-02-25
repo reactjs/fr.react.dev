@@ -61,7 +61,7 @@ Comme toute technologie inconnue, React a une certaine courbe d'apprentissage. A
 
 ### Premiers exemples {#first-examples}
 
-La [page d'accueil React](/) contient quelques petits exemples React avec un éditeur en direct. Même si vous ne connaissez pas encore React, essayez de changer leur code et voyez comment cela affecte le résultat.
+La [page d'accueil React](/) contient quelques petits exemples React que vous pouvez modifier directement en ligne. Même si vous ne connaissez pas encore React, essayez de changer le code de ces exemples et voyez comment cela affecte le résultat.
 
 ### React pour les débutants {#react-for-beginners}
 
