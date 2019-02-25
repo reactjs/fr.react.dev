@@ -24,7 +24,7 @@ Nous construirons un petit jeu au cours de ce tutoriel. **Vous pourriez être te
 
 Le tutoriel est divisé en plusieurs parties :
 
-* [Préparation du tutoriel](#setup-for-the-tutorial) vous donnera **un point de départ** afin de suivre le tutoriel.
+* [Installation pour le tutoriel](#setup-for-the-tutorial) vous donnera **un point de départ** afin de suivre le tutoriel.
 * [Vue d'ensemble](#overview) vous apprendra **les fondamentaux** de React: les composants, les props, et l'état.
 * [Finir le jeu](#completing-the-game) vous apprendra **les techniques communément utilisées** dans les développements avec React.
 * [Ajouter le voyage dans le temps](#adding-time-travel) vous permettra **d'approfondir votre compréhension** des points forts de React.
@@ -49,7 +49,7 @@ Nous supposerons que vous avez une certaine familiarité avec HTML et JavaScript
 
 Si vous avez besoin de réviser JavaScript, nous vous recommandons [ce guide](https://developer.mozilla.org/fr/docs/Web/JavaScript/Une_r%C3%A9introduction_%C3%A0_JavaScript). À noter que nous utilisons aussi des fonctionnalités de ES6 (une version récente de JavaScript). Dans ce tutoriel, nous utilisons les instructions suivantes : [fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fl%C3%A9ch%C3%A9es), les [classes](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Instructions/let), et [`const`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Instructions/const). Vous pouvez utiliser [Babel REPL](babel://es5-syntax-example) pour voir comment cela est transpilé en ES5.
 
-## Installation pour Tutoriel {#setup-for-the-tutorial}
+## Installation pour le tutoriel {#setup-for-the-tutorial}
 
 Il y a deux façons de suivre ce tutoriel : vous pouvez écrire le code dans votre navigateur, ou bien installer un environnement de développement sur votre ordinateur.
 
