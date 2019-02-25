@@ -99,7 +99,7 @@
     - id: shallow-renderer
       title: Shallow Renderer
     - id: test-renderer
-      title: Test Renderer
+      title: Moteur de rendu de test
     - id: javascript-environment-requirements
       title: JS Environment Requirements
     - id: glossary
