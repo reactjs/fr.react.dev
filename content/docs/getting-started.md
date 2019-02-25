@@ -55,7 +55,7 @@ Au fur et à mesure que votre application se développe, vous voudrez peut-être
 Les gens arrivent sur React d'horizons différents et avec différents styles d'apprentissage. Que vous préfériez une approche plus théorique ou pratique, nous espérons que vous trouverez cette section utile.
 
 * Si vous préférez **apprendre en faisant**, commencez par notre [tutoriel pratique](/tutorial/tutorial.html).
-* Si vous préférez **apprendre les concepts étape par étape**, commencez par notre [guide des concepts principaux](/docs/hello-world.html).
+* Si vous préférez **apprendre les concepts étape par étape**, commencez par notre [guide des principaux concepts](/docs/hello-world.html).
 
 Comme toute technologie inconnue, React a une certaine courbe d'apprentissage. Avec de la pratique et un peu de patience, vous maîtriserez le sujet.
 
