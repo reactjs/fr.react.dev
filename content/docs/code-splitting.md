@@ -160,9 +160,9 @@ function MyComponent() {
 }
 ```
 
-### Limites d'erreur {#error-boundaries}
+### Périmètre d'erreur {#error-boundaries}
 
-Si le chargement de l'autre module échoue (par exemple à cause d'une défaillance réseau), une erreur sera générée. Vous pouvez gérer ces erreurs pour donner une expérience utilisateur agréable et gérer la récupération avec [les limites d'erreur (*Error Boundaries*)](/docs/error-boundaries.html). Une fois que vous avez créé votre limite d'erreur, vous pouvez l'utiliser n'importe où au-dessus de vos composants chargés à la demande pour afficher un état d'erreur lors d'une défaillance réseau.
+Si le chargement de l'autre module échoue (par exemple à cause d'une défaillance réseau), une erreur sera générée. Vous pouvez gérer ces erreurs pour donner une expérience utilisateur agréable et gérer la récupération avec [les périmètres d'erreurs (*Error Boundaries*)](/docs/error-boundaries.html). Une fois que vous avez créé votre périmètre d'erreur, vous pouvez l'utiliser n'importe où au-dessus de vos composants chargés à la demande pour afficher un état d'erreur lors d'une défaillance réseau.
 
 ```js
 import MyErrorBoundary from './MyErrorBoundary';
