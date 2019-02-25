@@ -100,7 +100,7 @@ Si vous n'utilisez pas Create React App, vous pouvez ajouter [cette extension](h
 
 > Remarque :
 >
-> Les noms des composants affichés dans la trace d'appels dépendent de la propriété [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name). Si vous devez prendre en charge des navigateurs ou des dispositifs plus anciens qui ne proposent pas cela naturellement (par exemple IE 11), vous pourrez envisager d'inclure le polyfill [`Function.name`](https://github.com/JamesMGreene/Function.name) dans votre application. Vous pourrez également définir explicitement la propriété [`displayName`](/docs/react-component.html#displayname) sur tous vos composants.
+> Les noms des composants affichés dans la trace d'appels dépendent de la propriété [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name). Si vous devez prendre en charge des navigateurs ou des dispositifs plus anciens qui ne proposent pas cela naturellement (par exemple IE 11), vous pourrez envisager d'inclure le polyfill [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name) dans votre application. Vous pourrez également définir explicitement la propriété [`displayName`](/docs/react-component.html#displayname) sur tous vos composants.
 
 
 ## Et pourquoi pas try / catch ? {#how-about-trycatch}
