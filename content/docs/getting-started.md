@@ -28,7 +28,7 @@ Cette page est un aperçu de la documentation React et de ses ressources associ�
 - [Apprendre React](#learn-react)
 - [Rester informé](#staying-informed)
 - [Documentation versionnée](#versioned-documentation)
-- [Quelque chose de manquant ?](#something-missing)
+- [Quelque chose manque ?](#something-missing)
 
 ## Essayer React {#try-react}
 
