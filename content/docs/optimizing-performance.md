@@ -1,93 +1,93 @@
 ---
 id: optimizing-performance
-title: Optimizing Performance
+title: Optimiser les performances
 permalink: docs/optimizing-performance.html
 redirect_from:
   - "docs/advanced-performance.html"
 ---
 
-Internally, React uses several clever techniques to minimize the number of costly DOM operations required to update the UI. For many applications, using React will lead to a fast user interface without doing much work to specifically optimize for performance. Nevertheless, there are several ways you can speed up your React application.
+En interne, React fait appel à différentes techniques intelligentes pour minimiser le nombre d'opérations coûteuses sur le DOM requises pour améliorer l'interface utilisateur. Pour de nombreuses applications, utiliser React va aboutir à une interface utilisateur rapide sans avoir beaucoup de travail à fournir pour optimiser les performances. Néanmoins, il existe plusieurs façons d'accélérer votre application React.
 
-## Use the Production Build {#use-the-production-build}
+## Utiliser la génération de production {#use-the-production-build}
 
-If you're benchmarking or experiencing performance problems in your React apps, make sure you're testing with the minified production build.
+Si vous mesurez ou rencontrez des problèmes de performances dans vos application React, assurez-vous que vous testez bien la version minifiée de production.
 
-By default, React includes many helpful warnings. These warnings are very useful in development. However, they make React larger and slower so you should make sure to use the production version when you deploy the app.
+Par défaut, React intègre de nombreux avertissements utiles. Ces avertissements sont très utiles lors du développement. Toutefois, ils rendent React plus gros et plus lent, vous devez donc vous assurer que vous utilisez bien une version de production lorsque vous déployez l'application.
 
-If you aren't sure whether your build process is set up correctly, you can check it by installing [React Developer Tools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi). If you visit a site with React in production mode, the icon will have a dark background:
+Si vous n'êtes pas sûr que votre processus de construction est correctement configuré, vous pouvez le vérifier en installant [les outils de React Developer pour Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi). Si vous visitez un site avec React en production, l'icône aura un fond sombre :
 
-<img src="../images/docs/devtools-prod.png" style="max-width:100%" alt="React DevTools on a website with production version of React">
+<img src="../images/docs/devtools-prod.png" style="max-width:100%" alt="React DevTools sur un site web en production avec React">
 
-If you visit a site with React in development mode, the icon will have a red background:
+Si vous visitez un site avec React en phase de développement, l'icône aura un fond rouge :
 
-<img src="../images/docs/devtools-dev.png" style="max-width:100%" alt="React DevTools on a website with development version of React">
+<img src="../images/docs/devtools-dev.png" style="max-width:100%" alt="React DevTools sur un site web en développement avec React">
 
-It is expected that you use the development mode when working on your app, and the production mode when deploying your app to the users.
+Il est attendu que vous utilisiez le mode développement lorsque vous travaillez sur votre application, et en mode production quand vous la déployez pour vos utilisateurs.
 
-You can find instructions for building your app for production below.
+Vous trouverez ci-dessous les instructions pour construire votre application pour la production.
 
 ### Create React App {#create-react-app}
 
-If your project is built with [Create React App](https://github.com/facebookincubator/create-react-app), run:
+Si votre projet est construit avec [Create React App](https://github.com/facebookincubator/create-react-app), exécutez :
 
 ```
 npm run build
 ```
 
-This will create a production build of your app in the `build/` folder of your project.
+Cela générera votre application pour la production dans le répertoire `build/` de votre projet.
 
-Remember that this is only necessary before deploying to production. For normal development, use `npm start`.
+Rappelez-vous que cela n'est nécessaire qu'avant de déployer en production. Lors du développement, utilisez `npm start`.
 
-### Single-File Builds {#single-file-builds}
+### Génération d'un fichier unique {#single-file-builds}
 
-We offer production-ready versions of React and React DOM as single files:
+Nous mettons à disposition des versions de React et de React DOM prêts pour la production sous la forme d'un fichier unique :
 
 ```html
 <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 ```
 
-Remember that only React files ending with `.production.min.js` are suitable for production.
+Rappelez-vous que seuls les fichiers React finissant par `.production.min.js` sont adaptés à la production.
 
 ### Brunch {#brunch}
 
-For the most efficient Brunch production build, install the [`uglify-js-brunch`](https://github.com/brunch/uglify-js-brunch) plugin:
+Pour obtenir la version de production la plus efficace avec Brunch, installez l'extension [`uglify-js-brunch`](https://github.com/brunch/uglify-js-brunch) :
 
 ```
-# If you use npm
+# Si vous utilisez npm :
 npm install --save-dev uglify-js-brunch
 
-# If you use Yarn
+# Si vous utilisez Yarn :
 yarn add --dev uglify-js-brunch
 ```
 
-Then, to create a production build, add the `-p` flag to the `build` command:
+Ensuite, pour créer la version de production, ajoutez l'argument `-p` à la commande `build` :
 
 ```
 brunch build -p
 ```
 
-Remember that you only need to do this for production builds. You shouldn't pass the `-p` flag or apply this plugin in development, because it will hide useful React warnings and make the builds much slower.
+N'oubliez pas que cela n'est requis que pour la génération du paquet de production. Vous ne devez pas utiliser l'argument `-p` ni l'extension lors des phases de développement, car cela cachera les avertissements utiles de React et ralentira notablement la construction de l'application.
 
 ### Browserify {#browserify}
 
-For the most efficient Browserify production build, install a few plugins:
+Pour obtenir la version de production la plus efficace avec Browserify, installez quelques extensions :
 
 ```
-# If you use npm
+# Si vous utilisez npm :
 npm install --save-dev envify uglify-js uglifyify 
 
-# If you use Yarn
+# Si vous utilisez Yarn :
 yarn add --dev envify uglify-js uglifyify 
 ```
 
-To create a production build, make sure that you add these transforms **(the order matters)**:
+Pour créer la version de production, assurez-vous d'ajouter ces transformations **(l'ordre a son importance)** :
 
-* The [`envify`](https://github.com/hughsk/envify) transform ensures the right build environment is set. Make it global (`-g`).
-* The [`uglifyify`](https://github.com/hughsk/uglifyify) transform removes development imports. Make it global too (`-g`).
-* Finally, the resulting bundle is piped to [`uglify-js`](https://github.com/mishoo/UglifyJS2) for mangling ([read why](https://github.com/hughsk/uglifyify#motivationusage)).
+* La transformation [`envify`](https://github.com/hughsk/envify) s'assure que l'environnement est correctement défini. Définissez-le globalement (`-g`).
+* La transformation [`uglifyify`](https://github.com/hughsk/uglifyify) supprime les imports de développement. Définissez-le également au niveau global (`-g`).
+* Enfin, le *bundle* qui en résulte est transmis à [`uglify-js`](https://github.com/mishoo/UglifyJS2) pour être obfusqué ([vous pouvez lire ici les raisons](https://github.com/hughsk/uglifyify#motivationusage)).
 
-For example:
+Par exemple :
 
 ```
 browserify ./index.js \
@@ -96,30 +96,30 @@ browserify ./index.js \
   | uglifyjs --compress --mangle > ./bundle.js
 ```
 
->**Note:**
+> **Remarque :**
 >
->The package name is `uglify-js`, but the binary it provides is called `uglifyjs`.<br>
->This is not a typo.
+> Le paquet est nommé `uglify-js`, mais le binaire fourni est appelé `uglifyjs`.<br>
+> Ce n'est pas une faute de frappe.
 
-Remember that you only need to do this for production builds. You shouldn't apply these plugins in development because they will hide useful React warnings, and make the builds much slower.
+Rappelez-vous que vous n'avez à faire cela que pour la version de production. Vous ne devez pas appliquer ces extensions en développement, car cela masquera des avertissements utiles de React, grossira et ralentira la construction.
 
 ### Rollup {#rollup}
 
-For the most efficient Rollup production build, install a few plugins:
+Pour obtenir la version de production la plus efficace avec Rollup, installez quelques extensions :
 
 ```
-# If you use npm
+# Si vous utilisez npm :
 npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
 
-# If you use Yarn
+# Si vous utilisez Yarn :
 yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
 ```
 
-To create a production build, make sure that you add these plugins **(the order matters)**:
+Pour créer la version de production, assurez-vous d'ajouter ces transformations **(l'ordre a son importance)** :
 
-* The [`replace`](https://github.com/rollup/rollup-plugin-replace) plugin ensures the right build environment is set.
-* The [`commonjs`](https://github.com/rollup/rollup-plugin-commonjs) plugin provides support for CommonJS in Rollup.
-* The [`uglify`](https://github.com/TrySound/rollup-plugin-uglify) plugin compresses and mangles the final bundle.
+* L'extension [`replace`](https://github.com/rollup/rollup-plugin-replace) s'assure que l'environnement est correctement configuré.
+* L'extension [`commonjs`](https://github.com/rollup/rollup-plugin-commonjs) prend en charge CommonJS au sein de Rollup.
+* L'extension [`uglify`](https://github.com/TrySound/rollup-plugin-uglify) réalise la compression et obfusquera le paquet final.
 
 ```js
 plugins: [
@@ -133,18 +133,18 @@ plugins: [
 ]
 ```
 
-For a complete setup example [see this gist](https://gist.github.com/Rich-Harris/cb14f4bc0670c47d00d191565be36bf0).
+Pour une configuration complète, [vous pouvez consulter ce gist](https://gist.github.com/Rich-Harris/cb14f4bc0670c47d00d191565be36bf0).
 
-Remember that you only need to do this for production builds. You shouldn't apply the `uglify` plugin or the `replace` plugin with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
+Rappelez-vous que vous n'avez à faire cela que pour la version de production. Vous ne devez pas utiliser les extensions `uglify` ou `replace` avec une valeur `'production'` en développement, car cela masquera des avertissements utiles de React, grossira et ralentira la construction.
 
 ### webpack {#webpack}
 
->**Note:**
+> **Remarque :**
 >
->If you're using Create React App, please follow [the instructions above](#create-react-app).<br>
->This section is only relevant if you configure webpack directly.
+> Si vous utilisez Create React App, merci de suivre [les instructions ci-dessus](#create-react-app).<br>
+> Cette section n'est utile que si vous configurez vous-même webpack.
 
-For the most efficient webpack production build, make sure to include these plugins in your production configuration:
+Pour obtenir la version de production la plus efficace avec webpack, assurez-vous d'inclure ces extensions dans votre configuration de production :
 
 ```js
 new webpack.DefinePlugin({
@@ -153,23 +153,23 @@ new webpack.DefinePlugin({
 new webpack.optimize.UglifyJsPlugin()
 ```
 
-You can learn more about this in [webpack documentation](https://webpack.js.org/guides/production-build/).
+Vous pouvez en apprendre plus sur le sujet en consultant la [documentation webpack](https://webpack.js.org/guides/production-build/).
 
-Remember that you only need to do this for production builds. You shouldn't apply `UglifyJsPlugin` or `DefinePlugin` with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
+Rappelez-vous que vous n'avez à faire cela que pour la version de production. Vous ne devez pas utiliser `UglifyJsPlugin` ou `DefinePlugin` with `'production'` avec une valeur `'production'` en développement, car cela masquera des avertissements utiles de React et ralentira la construction.
 
-## Profiling Components with the Chrome Performance Tab {#profiling-components-with-the-chrome-performance-tab}
+## Profilage des composants avec l'onglet performances de Chrome {#profiling-components-with-the-chrome-performance-tab}
 
-In the **development** mode, you can visualize how components mount, update, and unmount, using the performance tools in supported browsers. For example:
+En mode de **développement**, vous pouvez voir comment les composants sont montés, mis à jour et démonter en utilisant les outils de performances dans les navigateurs qui les prennent en charge. Par exemple :
 
-<center><img src="../images/blog/react-perf-chrome-timeline.png" style="max-width:100%" alt="React components in Chrome timeline" /></center>
+<center><img src="../images/blog/react-perf-chrome-timeline.png" style="max-width:100%" alt="Des components React dans la frise chronologie de Chrome" /></center>
 
-To do this in Chrome:
+Pour réaliser cela dans Chrome :
 
-1. Temporarily **disable all Chrome extensions, especially React DevTools**. They can significantly skew the results!
+1. **Désactiver temporairement tous les extensions de Chrome, en particulier React DevTools**. Ils peuvent considérablement biaiser les résutats !
 
-2. Make sure you're running the application in the development mode.
+2. Assurez-vous d'utiliser l'application en mode de développement.
 
-3. Open the Chrome DevTools **[Performance](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)** tab and press **Record**.
+3. Ouvrez l'onglet **[Performances](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)** dans les DevTools de Chrome tab and press **Record**.
 
 4. Perform the actions you want to profile. Don't record more than 20 seconds or Chrome might hang.
 
