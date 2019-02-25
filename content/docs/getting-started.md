@@ -38,7 +38,7 @@ React a été conçu dès le départ pour une adoption progressive, et **vous po
 
 Si vous souhaitez tester React, vous pouvez utiliser un terrain de jeu en ligne. Essayez un modèle _Hello World_ sur [CodePen](codepen://hello-world) ou [CodeSandbox](https://codesandbox.io/s/new).
 
-Si vous préférez utiliser votre propre éditeur de texte, vous pouvez aussi [télécharger ce ficher HTML](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), l'éditer et l'ouvrir à partir du système de fichiers local dans votre navigateur. Il effectue une lente transformation du code d'exécution donc nous vous recommandons de ne l'utiliser que pour des démonstrations simples.
+Si vous préférez utiliser votre propre éditeur de texte, vous pouvez aussi [télécharger ce ficher HTML](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), l'éditer et l'ouvrir à partir du système de fichiers local dans votre navigateur. Il utilise un code qui sera transformé à la volé lors de l’exécution, ce qui est particulièrement lent. Pour cette raison, nous vous recommandons de ne l'utiliser que pour des démonstrations simples.
 
 ### Ajouter React à un site Web {#add-react-to-a-website}
 
