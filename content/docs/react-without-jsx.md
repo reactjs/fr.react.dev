@@ -13,12 +13,12 @@ Prenons par exemple ce code écrit avec JSX :
 ```js
 class Hello extends React.Component {
   render() {
-    return <div>Hello {this.props.toWhat}</div>;
+    return <div>Bonjour {this.props.toWhat}</div>;
   }
 }
 
 ReactDOM.render(
-  <Hello toWhat="World" />,
+  <Hello toWhat="monde" />,
   document.getElementById('root')
 );
 ```
@@ -28,12 +28,12 @@ Il peut être compilé vers ce code qui n'utilise pas JSX :
 ```js
 class Hello extends React.Component {
   render() {
-    return React.createElement('div', null, `Hello ${this.props.toWhat}`);
+    return React.createElement('div', null, `Bonjour ${this.props.toWhat}`);
   }
 }
 
 ReactDOM.render(
-  React.createElement(Hello, {toWhat: 'World'}, null),
+  React.createElement(Hello, {toWhat: 'monde'}, null),
   document.getElementById('root')
 );
 ```
@@ -48,7 +48,7 @@ Si vous n'avez pas envie de taper `React.createElement` à chaque fois, vous pou
 const e = React.createElement;
 
 ReactDOM.render(
-  e('div', null, 'Hello World'),
+  e('div', null, 'Bonjour, monde'),
   document.getElementById('root')
 );
 ```
