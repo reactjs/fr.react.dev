@@ -123,4 +123,4 @@ Cette documentation reflète toujours la dernière version stable de React. Depu
 
 ## Quelque chose manque ? {#something-missing}
 
-Si quelque chose manque dans la documentation ou si vous avez trouvé une partie déroutante, veuillez [créer une issue pour la repo de documentation](https://github.com/reactjs/reactjs.org/issues/new) avec vos suggestions d'amélioration, ou tweetez le [compte @reactjs](https://twitter.com/reactjs). Nous adorons avoir de vos nouvelles !
+Si quelque chose manque dans la documentation ou si vous en trouvez une partie déroutante, veuillez [créer une issue sur le dépot de la documentation](https://github.com/reactjs/reactjs.org/issues/new) (en anglais) avec vos suggestions d'amélioration, ou tweetez en mentionnant le [compte @reactjs](https://twitter.com/reactjs). Nous adorons avoir de vos nouvelles !
