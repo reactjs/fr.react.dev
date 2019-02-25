@@ -1,6 +1,6 @@
 ---
 id: error-boundaries
-title: Limiteur d'erreurs
+title: Limiteurs d'erreurs
 permalink: docs/error-boundaries.html
 ---
 
