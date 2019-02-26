@@ -41,9 +41,9 @@ handleSomething() {
 
   // C'est parce la fonction `incrementCount()` ci-dessus lit `this.state.count`,
   // mais React ne met pas à jour `this.state.count` tant que le composant n'a pas refait le rendu.
-  // Donc `incrementCount()` finit par lire `this.state.count` à 0 à chaque fois et le définit à 1.
+  // Donc `incrementCount()` lit `this.state.count`, qui est égal à 0 à chaque fois, et le définit à 1.
 
-  // La correctif est décrite ci-dessous !
+  // Le correctif est décrit ci-dessous !
 }
 ```
 
@@ -82,7 +82,7 @@ handleSomething() {
 
 Actuellement, `setState` est asynchrone à l'intérieur des gestionnaires d'événements.
 
-Cela assure, par exemple, que si le `Parent` et l'`Enfant` appellent tous les deux `setState` pendant un événement clic, l'`Enfant` ne refait pas le rendu deux fois. Au lieu de ça, React "efface" les mises à jour de l'état à la fin de l'événement du navigateur. Le résultat se traduit par une amélioration significative des performances pour les grandes applications.
+Cela assure, par exemple, que si le `Parent` et l'`Enfant` appellent tous les deux `setState` lors d'un clic, l'`Enfant` ne refait pas le rendu deux fois. Au lieu de ça, React "efface" les mises à jour de l'état à la fin de l'événement du navigateur. Le résultat se traduit par une amélioration significative des performances pour les applications de grande ampleur.
 
 Il s'agit d'un détail de l'implémentation donc évitez de vous appuyer dessus. Dans des versions futures, React groupera les mises à jour par défaut dans de plus en plus de cas de figure.
 
