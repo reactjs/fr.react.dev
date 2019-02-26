@@ -130,7 +130,7 @@ function toFahrenheit(celsius) {
 }
 ```
 
-Ces deux fonctions convertissent des nombres. Écrivons une autre fonction qui prend en argument une chaîne de caractères de `temperature` et une fonction de conversion, et qui renvoie une chaîne de caractères. Nous utiliserons cette fonction pour calculer la valeur d'un champ en fonction de l'autre.
+Ces deux fonctions convertissent des nombres. Écrivons une autre fonction qui renverra une chaîne de caractères et prend en argument une chaîne de caractères `temperature` et une fonction de conversion, et qui renvoie une chaîne de caractères. Nous utiliserons cette nouvelle fonction pour calculer la valeur d'un champ en fonction de l'autre.
 
 Elle retourne une chaîne de caractères vide pour une `temperature` incorrecte, et arrondit la valeur de retour à trois décimales :
 
@@ -188,24 +188,24 @@ D'abord, on remplace `this.state.temperature` par `this.props.temperature` dans 
 
 On sait que [les props sont en lecture seule](/docs/components-and-props.html#props-are-read-only). Quand la `temperature` était dans l'état local, le composant `TemperatureInput` pouvait simplement appeler `this.setState()` pour la changer. Cependant, maintenant que `temperature` vient du parent par une prop, le composant `TemperatureInput` n'a pas de contrôle dessus.
 
-Avec React, on gère généralement ça en rendant le composant « contrôlé ». Comme un élément DOM `<input>` qui accepte des props `value` et `onChange`, notre `TemperatureInput` accepte `temperature` et `onTemperatureChange` dans les props depuis son parent, `Calculator`.
+Avec React, on gère généralement ça en rendant le composant « contrôlé ». Comme un élément DOM `<input>` qui accepte des props `value` et `onChange`, notre `TemperatureInput` accepte `temperature` et `onTemperatureChange` dans les props depuis son parent `Calculator`.
 
 Maintenant, quand le composant `TemperatureInput` veut mettre à jour la température, il appelle `this.props.onTemperatureChange`.
 
 ```js{3}
   handleChange(e) {
-    // Avant: this.setState({temperature: e.target.value});
+    // Avant : this.setState({temperature: e.target.value});
     this.props.onTemperatureChange(e.target.value);
     // ...
 ```
 
 >Remarque :
 >
->Il n'y a pas de sens particulier aux noms des props `temperature` et `onTemperatureChange`. On aurait pu les appeler comme on voulait, comme `value` et `onChange`, qui est une convention de nommage.
+>Il n'y a pas de sens particulier aux noms des props `temperature` et `onTemperatureChange`. On aurait pu les appeler n'importe comment, comme `value` et `onChange` qui sont des conventions de nommage habituelles.
 
-Le prop `onTemperatureChange` sera fourni dans les props par le composant parent `Calculator`, comme la prop `temperature`. Il s'occupera du changement en modifiant son état local, provocant un nouveau rendu des deux entrées avec les nouvelles valeurs. Nous allons nous pencher sur l'implémentation du nouveau composant `Calculator` très bientôt.
+La prop `onTemperatureChange` sera fournie dans les props par le composant parent `Calculator`, avec la prop `temperature`. Elle s'occupera du changement en modifiant son propre état local, provocant un nouveau rendu des deux entrées avec les nouvelles valeurs. Nous allons nous pencher sur l'implémentation du nouveau composant `Calculator` très bientôt.
 
-Avant de regarder les changements du composant `Calculator`, récapitulons nos changements au composant `TemperatureInput`. Nous en avons supprimé l'état local, et au lieu de lire `this.state.temperature`, on lit `this.props.temperature`. Au lieu d'appeler `this.setState()` quand on veut faire un changement, on appelle `this.props.onTemperatureChange()`, qui est fourni par le composant `Calculator` :
+Avant de regarder les changements du composant `Calculator`, récapitulons nos changements au composant `TemperatureInput`. Nous avons supprimé son état local, et au lieu d'accéder à `this.state.temperature`, on accède à `this.props.temperature`. Au lieu d'appeler `this.setState()` quand on veut faire un changement, on appelle `this.props.onTemperatureChange()`, qui est fourni par le composant `Calculator` :
 
 ```js{8,12}
 class TemperatureInput extends React.Component {
@@ -301,7 +301,7 @@ class Calculator extends React.Component {
 
 [**Essayez sur CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
 
-Maintenant, quelle que soit l'entrée que vous modifiez, `this.state.temperature` et `this.state.scale` dans le composant `Calculator` seront mis à jour. L'une des deux entrées reçoit la valeur telle quelle, et l'autre est toujours recalculée à partir de l'état.
+Maintenant, quelle que soit l'entrée que vous modifiez, `this.state.temperature` et `this.state.scale` seront mis à jour dans le composant `Calculator`. L'une des deux entrées reçoit la valeur telle quelle, et l'autre est toujours recalculée à partir de l'état.
 
 Récapitulons ce qui se passe quand on modifie une entrée :
 
