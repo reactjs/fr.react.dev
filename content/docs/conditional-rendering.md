@@ -10,9 +10,9 @@ redirect_from:
 
 En React, vous pouvez concevoir des composants distincts qui encapsulent le comportement voulu. Vous pouvez alors n’afficher que certains d'entre eux, suivant l'état de votre application.
 
-L’affichage conditionnel en React fonctionne de la même façon que les conditions en Javascript. On utilise l'instruction Javascript [`if`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Instructions/if...else) ou l’[opérateur ternaire](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Opérateurs/L_opérateur_conditionnel) pour créer des éléments représentant l'état courant, et on laisse React mettre à jour l'UI pour qu’elle corresponde.
+L’affichage conditionnel en React fonctionne de la même façon que les conditions en Javascript. On utilise l'instruction Javascript [`if`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Instructions/if...else) ou l’[opérateur ternaire](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Opérateurs/L_opérateur_conditionnel) pour créer des éléments représentant l'état courant, et on laisse React mettre à jour l'interface utilisateur (UI) pour qu’elle corresponde.
 
-Considérons ces deux composants :
+Considérons ces deux composants :
 
 ```js
 function UserGreeting(props) {
@@ -24,7 +24,7 @@ function GuestGreeting(props) {
 }
 ```
 
-Nous allons créer un composant `Greeting` qui affiche un de ces deux composants, selon qu’un utilisateur est connecté ou non :
+Nous allons créer un composant `Greeting` qui affiche un de ces deux composants, selon qu’un utilisateur est connecté ou non :
 
 ```javascript{3-7,11,12}
 function Greeting(props) {
@@ -36,7 +36,7 @@ function Greeting(props) {
 }
 
 ReactDOM.render(
-  // Try changing to isLoggedIn={true}:
+  // Essayez de changer ça vers isLoggedIn={true} :
   <Greeting isLoggedIn={false} />,
   document.getElementById('root')
 );
@@ -44,19 +44,19 @@ ReactDOM.render(
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
 
-Cet exemple affiche un message différent suivant la valeur de la prop `isLoggedIn`.
+Cet exemple affiche un message différent selon la valeur de la prop `isLoggedIn`.
 
 ### Variables d'éléments {#element-variables}
 
 Vous pouvez stocker les éléments dans des variables. Ça vous aide à afficher de façon conditionnelle une partie du composant tandis que le reste ne change pas.
 
-Prenons ces deux nouveaux composants représentant les boutons de Déconnexion et de Connexion :
+Prenons ces deux nouveaux composants, qui représentent les boutons de Déconnexion et de Connexion :
 
 ```js
 function LoginButton(props) {
   return (
     <button onClick={props.onClick}>
-      Login
+      Connexion
     </button>
   );
 }
@@ -64,7 +64,7 @@ function LoginButton(props) {
 function LogoutButton(props) {
   return (
     <button onClick={props.onClick}>
-      Logout
+      Déconnexion
     </button>
   );
 }
@@ -123,17 +123,17 @@ Même si déclarer une variable et utiliser une instruction `if` reste une bonne
 
 ### Condition à la volée avec l'opérateur logique `&&` {#inline-if-with-logical--operator}
 
-Vous pouvez [utiliser n’importe quelle expression dans du JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) en les enveloppant dans des accolades. Ça vaut aussi pour l'opérateur logique Javascript `&&`. Il peut être pratique pour inclure conditionnellement un élément :
+Vous pouvez [utiliser n’importe quelle expression dans du JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) en l’enveloppant dans des accolades. Ça vaut aussi pour l'opérateur logique Javascript `&&`. Il peut être pratique pour inclure conditionnellement un élément :
 
 ```js{6-10}
 function Mailbox(props) {
   const unreadMessages = props.unreadMessages;
   return (
     <div>
-      <h1>Hello!</h1>
+      <h1>Bonjour !</h1>
       {unreadMessages.length > 0 &&
         <h2>
-          You have {unreadMessages.length} unread messages.
+          Vous avez {unreadMessages.length} message(s) non-lu(s).
         </h2>
       }
     </div>
@@ -151,11 +151,11 @@ ReactDOM.render(
 
 Ça fonctionne parce qu'en JavaScript, `true && expression` est toujours évalué à `expression`, et `false && expression` est toujours évalué à `false`.
 
-Du coup, si la condition est `true`, l'élément juste après `&&` sera affiché. Si c'est `false`, React va l'ignorer et le sauter.
+Du coup, si la condition vaut `true`, l'élément juste après `&&` sera affiché. Si elle vaut `false`, React va l'ignorer et le sauter.
 
 ### Alternative à la volée avec opérateur ternaire {#inline-if-else-with-conditional-operator}
 
-Une autre méthode pour l’affichage conditionnel à la volée d'éléments consiste à utiliser l'opérateur ternaire Javascript [`condition ? true : false`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Opérateurs/L_opérateur_conditionnel).
+Une autre méthode pour l’affichage conditionnel à la volée d'éléments consiste à utiliser l'opérateur ternaire Javascript [`condition ? trueValue : falseValue`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Opérateurs/L_opérateur_conditionnel).
 
 Dans l'exemple ci-dessous, on l'utilise pour afficher conditionnellement un bloc de texte.
 
@@ -164,7 +164,7 @@ render() {
   const isLoggedIn = this.state.isLoggedIn;
   return (
     <div>
-      The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
+      L’utilisateur <b>{isLoggedIn ? 'est actuellement' : 'n’est pas'}</b> connecté.
     </div>
   );
 }
@@ -193,7 +193,7 @@ Tout comme en Javascript, c'est à vous de choisir un style approprié selon les
 
 Dans de rares cas, vous voudrez peut-être qu'un composant se masque alors même qu'il figure dans le rendu d’un autre composant. Pour ce faire, il suffit de renvoyer `null` au lieu de son affichage habituel.
 
-Dans l'exemple ci-dessous, `<WarningBanner />` s’affichera en fonction de la valeur de la prop `warn`. Si la valeur est `false`, le composant ne s’affiche pas :
+Dans l'exemple ci-dessous, `<WarningBanner />` s’affichera en fonction de la valeur de la prop `warn`. Si la valeur est `false`, le composant ne s’affiche pas :
 
 ```javascript{2-4,29}
 function WarningBanner(props) {
@@ -203,7 +203,7 @@ function WarningBanner(props) {
 
   return (
     <div className="warning">
-      Warning!
+      Attention !
     </div>
   );
 }
@@ -226,7 +226,7 @@ class Page extends React.Component {
       <div>
         <WarningBanner warn={this.state.showWarning} />
         <button onClick={this.handleToggleClick}>
-          {this.state.showWarning ? 'Hide' : 'Show'}
+          {this.state.showWarning ? 'Masquer' : 'Afficher'}
         </button>
       </div>
     );
