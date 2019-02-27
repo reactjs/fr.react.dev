@@ -13,7 +13,7 @@ Plusieurs composants ont souvent besoin de refléter les mêmes données dynamiq
 
 Dans cette section, nous allons créer un calculateur de température qui détermine si l'eau bout à une température donnée.
 
-Commençons par un composant appelé `BoilingVerdict`. Il accepte une prop `celsius` pour la température, et il affiche si elle est suffisante pour faire bouillir l'eau :
+Commençons par un composant appelé `BoilingVerdict`. Il accepte une prop `celsius` pour la température, et il affiche si elle est suffisante pour faire bouillir l'eau :
 
 ```js{3,5}
 function BoilingVerdict(props) {
@@ -62,7 +62,7 @@ class Calculator extends React.Component {
 
 Il nous faut à présent proposer, en sus d'une saisie en Celsius, une saisie en Fahrenheit, les deux devant rester synchronisées.
 
-On peut commencer par extraire un composant `TemperatureInput` du code de `Calculator`. Ajoutons-y une prop `scale` qui pourra être soit `"c"`, soit `"f"` :
+On peut commencer par extraire un composant `TemperatureInput` du code de `Calculator`. Ajoutons-y une prop `scale` qui pourra être soit `"c"`, soit `"f"` :
 
 ```js{1-4,19,22}
 const scaleNames = {
@@ -95,7 +95,7 @@ class TemperatureInput extends React.Component {
 }
 ```
 
-On peut à présent changer le composant `Calculator` pour afficher deux entrées de température :
+Nous pouvons désormais modifier le composant `Calculator` pour afficher deux saisies de température :
 
 ```js{5,6}
 class Calculator extends React.Component {
@@ -118,7 +118,7 @@ Qui plus est, nous ne pouvons pas afficher le `BoilingVerdict` depuis `Calculato
 
 ## Écrire des fonctions de conversion {#writing-conversion-functions}
 
-D'abord, écrivons deux fonctions pour convertir de Celsius à Fahrenheit et réciproquement :
+D'abord, écrivons deux fonctions pour convertir de Celsius à Fahrenheit et réciproquement :
 
 ```js
 function toCelsius(fahrenheit) {
@@ -130,9 +130,9 @@ function toFahrenheit(celsius) {
 }
 ```
 
-Ces deux fonctions convertissent des nombres. Écrivons une autre fonction qui renverra une chaîne de caractères et prend en argument une chaîne de caractères `temperature` et une fonction de conversion, et qui renvoie une chaîne de caractères. Nous utiliserons cette nouvelle fonction pour calculer la valeur d'un champ en fonction de l'autre.
+Ces deux fonctions convertissent des nombres. Écrivons une autre fonction qui prend en arguments une chaîne de caractères `temperature` et une fonction de conversion, et qui renvoie une chaîne. Nous utiliserons cette nouvelle fonction pour calculer la valeur d'un champ en fonction de l'autre.
 
-Elle renvoie une chaîne vide pour une `temperature` incorrecte, et arrondit la valeur de retour à trois décimales :
+Elle renvoie une chaîne vide pour une `temperature` incorrecte, et arrondit la valeur de retour à trois décimales :
 
 ```js
 function tryConvert(temperature, convert) {
@@ -150,7 +150,7 @@ Par exemple, `tryConvert('abc', toCelsius)` renvoie une chaîne vide, et `tryCon
 
 ## Faire remonter l'état {#lifting-state-up}
 
-Pour l'instant, les deux éléments `TemperatureInput` conservent leur propre état local indépendamment l’un de l'autre :
+Pour l'instant, les deux éléments `TemperatureInput` conservent leur propre état local indépendamment l’un de l'autre :
 
 ```js{5,9,13}
 class TemperatureInput extends React.Component {
@@ -177,18 +177,18 @@ Si le composant `Calculator` est responsable de l'état partagé, il devient la 
 
 Voyons comment ça marche étape par étape.
 
-D'abord, on remplace `this.state.temperature` par `this.props.temperature` dans le composant `TemperatureInput`. Maintenant, imaginons que `this.props.temperature` existe déjà, bien qu'on va devoir le passer depuis `Calculator` plus tard :
+D'abord, remplaçons `this.state.temperature` par `this.props.temperature` dans le composant `TemperatureInput`. Pour le moment, faisons comme si `this.props.temperature` existait déjà, même si nous allons devoir la passer depuis `Calculator` plus tard :
 
 ```js{3}
   render() {
-    // Avant : const temperature = this.state.temperature;
+    // Avant : const temperature = this.state.temperature;
     const temperature = this.props.temperature;
     // ...
 ```
 
 On sait que [les props sont en lecture seule](/docs/components-and-props.html#props-are-read-only). Quand la `temperature` était dans l'état local, le composant `TemperatureInput` pouvait simplement appeler `this.setState()` pour la changer. Cependant, maintenant que `temperature` vient du parent par une prop, le composant `TemperatureInput` n'a pas le contrôle dessus.
 
-Avec React, on gère généralement ça en rendant le composant « contrôlé ». Comme un élément DOM `<input>` qui accepte des props `value` et `onChange`, notre `TemperatureInput` accepte `temperature` et `onTemperatureChange` dans les props depuis son parent `Calculator`.
+Avec React, on gère généralement ça en rendant le composant « contrôlé ». Tout comme un élément DOM `<input>` accepte des props `value` et `onChange`, notre `TemperatureInput` peut accepter des props `temperature` et `onTemperatureChange` fournies par son parent `Calculator`.
 
 Maintenant, quand le composant `TemperatureInput` veut mettre à jour la température, il appelle `this.props.onTemperatureChange` :
 
@@ -199,13 +199,13 @@ Maintenant, quand le composant `TemperatureInput` veut mettre à jour la tempér
     // ...
 ```
 
->Remarque :
+>Remarque :
 >
->Il n'y a pas de sens particulier aux noms des props `temperature` et `onTemperatureChange`. On aurait pu les appeler n'importe comment, comme `value` et `onChange` qui sont des conventions de nommage habituelles.
+>Les noms de props `temperature` et `onTemperatureChange` n’ont pas de sens particulier. On aurait pu les appeler n’importe comment, par exemple `value` et `onChange`, qui constituent une convention de nommage répandue.
 
-La prop `onTemperatureChange` sera fournie dans les props par le composant parent `Calculator`, avec la prop `temperature`. Elle s'occupera du changement en modifiant son propre état local, provocant un nouveau rendu des deux entrées avec les nouvelles valeurs. Nous allons nous pencher sur l'implémentation du nouveau composant `Calculator` très bientôt.
+La prop `onTemperatureChange` sera fournie par le composant parent `Calculator`, tout comme la prop `temperature`. Elle s'occupera du changement en modifiant son propre état local, entraînant un nouvel affichage des deux champs avec leurs nouvelles valeurs. Nous allons nous pencher très bientôt sur l'implémentation du nouveau composant `Calculator`.
 
-Avant de regarder les changements du composant `Calculator`, récapitulons nos changements au composant `TemperatureInput`. Nous avons supprimé son état local, et au lieu d'accéder à `this.state.temperature`, on accède à `this.props.temperature`. Au lieu d'appeler `this.setState()` quand on veut faire un changement, on appelle `this.props.onTemperatureChange()`, qui est fourni par le composant `Calculator` :
+Avant de modifier le composant `Calculator`, récapitulons les modifications apportées au composant `TemperatureInput`. Nous en avons retiré l'état local, et nous lisons désormais `this.props.temperature` au lieu de `this.state.temperature`. Plutôt que d'appeler `this.setState()` quand on veut faire un changement, on appelle désormais `this.props.onTemperatureChange()`, qui est fournie par le `Calculator` :
 
 ```js{8,12}
 class TemperatureInput extends React.Component {
@@ -301,7 +301,7 @@ class Calculator extends React.Component {
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
 
-Maintenant, quelle que soit l'entrée que vous modifiez, `this.state.temperature` et `this.state.scale` seront mis à jour dans le composant `Calculator`. L'une des deux entrées reçoit la valeur telle quelle, et l'autre est toujours recalculée à partir de l'état.
+Désormais, quel que soit le champ que vous modifiez, `this.state.temperature` et `this.state.scale` seront mis à jour au sein du composant `Calculator`. L'un des deux champ recevra la valeur telle quelle, et l'autre valeur de champ sera toujours recalculée à partir de la valeur modifiée.
 
 Récapitulons ce qui se passe quand on change la valeur d’un champ :
 
@@ -310,7 +310,7 @@ Récapitulons ce qui se passe quand on change la valeur d’un champ :
 * Au dernier affichage en date, le composant `Calculator` a passé la méthode `handleCelsiusChange` de `Calculator` comme prop `onTemperatureChange` du `TemperatureInput`  en Celsius, et la méthode `handleFahrenheitChange` de `Calculator` comme prop `onTemperatureChange` du `TemperatureInput` en Fahrenheit. L’une ou l’autre de ces méthodes de `Calculator` sera ainsi appelée en fonction du champ modifié.
 * Dans ces méthodes, le composant `Calculator` demande à React de le rafraîchir en appelant `this.setState()` avec la nouvelle valeur du champ et l'unité du champ modifié.
 * React appelle la méthode `render` du composant `Calculator` afin de savoir à quoi devrait ressembler son UI. Les valeurs des deux champs sont recalculées en fonction de la température actuelle et de l'unité active. La conversion de température est faite ici.
-* React appelle les méthodes `render` des deux composants `TemperatureInput` avec leurs nouvelles props, spécifiées par le `Calculator`. React sait alors à quoi devrait ressembler leurs UI.
+* React appelle les méthodes `render` des deux composants `TemperatureInput` avec leurs nouvelles props, spécifiées par le `Calculator`. React sait alors à quoi devraient ressembler leurs UI.
 * React appelle la méthode `render` du composant `BoilingVerdict`, en lui passant la température en Celsius dans les props.
 * React DOM met à jour le DOM avec le verdict d'ébullition, et retranscrit les valeurs de champs souhaitées. Le champ que nous venons de modifier reçoit sa valeur actuelle, et l'autre champ est mis à jour avec la température convertie.
 
