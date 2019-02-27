@@ -9,15 +9,14 @@ import Container from 'components/Container';
 import Flex from 'components/Flex';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';
+import type {Node} from 'types';
 import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
-import findSectionForPath from 'utils/findSectionForPath';
-import toCommaSeparatedList from 'utils/toCommaSeparatedList';
-import {sharedStyles} from 'theme';
 import createOgUrl from 'utils/createOgUrl';
-
-import type {Node} from 'types';
+import findSectionForPath from 'utils/findSectionForPath';
+import {sharedStyles} from 'theme';
+import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 
 type Props = {
   authors: Array<string>,
@@ -115,7 +114,7 @@ const MarkdownPage = ({
                       href={`https://github.com/reactjs/reactjs.org/tree/master/${
                         markdownRemark.fields.path
                       }`}>
-                      Edit this page
+                      Modifier cette page
                     </a>
                   </div>
                 )}
