@@ -26,13 +26,13 @@ Les composant React vous permettent de séparer une UI (_User Interface_: Interf
 
 Si vous n'utilisez pas les classes ES6, vous pouvez utiliser le module `create-react-class` à la place. Lisez [Utiliser React sans ES6](/docs/react-without-es6.html) pour plus de détails.
 
-Un composant React peut aussi être définie via une fonction que l'on va encapsuler :
+Un composant React peut aussi être défini via une fonction que l'on va encapsuler :
 
 - [`React.memo`](#reactmemo)
 
 ### Créer des éléments React {#creating-react-elements}
 
-Nous vous recommandons d'[utiliser JSX](/docs/introducing-jsx.html) pour définir à quoi ressemblera votre UI. Tous les éléments JSX ne sont que du sucre syntaxique par dessus des appels à [`React.createElement()`](#createelement). Si vous utilisez JSX, vous ne devriez pas avoir besoin d'appeler les méthodes suivantes :
+Nous vous recommandons d'[utiliser JSX](/docs/introducing-jsx.html) pour définir à quoi ressemblera votre UI. Tous les éléments JSX ne sont que du sucre syntaxique qui cache des appels à [`React.createElement()`](#createelement). Si vous utilisez JSX, vous ne devriez pas avoir besoin d'appeler les méthodes suivantes :
 
 - [`createElement()`](#createelement)
 - [`createFactory()`](#createfactory)
@@ -49,7 +49,7 @@ Lisez [Utiliser React sans JSX](/docs/react-without-jsx.html) pour plus de déta
 
 ### Fragments {#fragments}
 
-`React` fournis également un composant spécial pour rendre plusieurs éléments sans avoir à les enrober avec un autre élément.
+`React` fournis également un composant spécial pour réaliser le rendu de plusieurs éléments sans avoir à les envelopper avec un autre élément.
 
 - [`React.Fragment`](#reactfragment)
 
@@ -60,7 +60,7 @@ Lisez [Utiliser React sans JSX](/docs/react-without-jsx.html) pour plus de déta
 
 ### Suspense {#suspense}
 
-Le *Suspense* permet aux composants « d'attendre » quelque chose avant d'être rendu. Aujourd'hui, le *Suspense* ne supporte qu'un seul cas d'usage : [Le chargement dynamique de composants avec `React.lazy`](/docs/code-splitting.html#reactlazy). Dans le future, il supportera d'autres cas d'usages tel que le chargement de données distantes.
+Le *Suspense* permet aux composants « d'attendre » quelque chose avant d'être rendu. Aujourd'hui, le *Suspense* ne supporte qu'un seul cas d'usage : [Le chargement dynamique de composants avec `React.lazy`](/docs/code-splitting.html#reactlazy). Dans le future, il permettre de gérer d'autres cas d'usages tel que le chargement de données distantes.
 
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
@@ -106,14 +106,14 @@ Rendez-vous sur [la page de référence de l'API `React.Component`](/docs/react-
 
 `React.PureComponent` est similaire à [`React.Component`](#reactcomponent). La seul différence est que [`React.Component`](#reactcomponent) n'implémente pas la méthode [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) là où `React.PureComponent` en implémente une version qui réalise une comparaison de surface de l'état et des propriétés.
 
-Si la fonction `render()` d'un de vos composants React produit un rendu identique pour le même état ou les même propriétés, utiliser `React.PureComponent` devrait améliorer les performances dans certains cas.
+Si la fonction `render()` d'un de vos composants React produit un rendu identique pour le même état ou les même propriétés, l'utilisation de `React.PureComponent` devrait améliorer les performances dans certains cas.
 
 
-> Remarque
+> Remarque :
 >
 > La méthode `shouldComponentUpdate()` de `React.PureComponent` réalise une simple comparaison de surface. Avec des données complexes, elle peut produire des faux positifs si la structure de données subit des changements profond. Ne créez des composants avec `PureComponent` que si vous avez des états ou des props simples, le cas échéant utilisez [`forceUpdate()`](/docs/react-component.html#forceupdate) si vous savez que vos données ont profondément changées. Vous pouvez aussi envisager d'utiliser des [objets immuables](https://facebook.github.io/immutable-js/) pour simplifier la comparaison rapide de données imbriquées.
 >
-> De plus, la méthode `shouldComponentUpdate()` de `React.PureComponent` ignore la mise à jour des propriétés de tout l'arbre des composants enfants. Assurez vous que tout les composants enfants sont également "pure".
+> De plus, la méthode `shouldComponentUpdate()` de `React.PureComponent` ignore la mise à jour des propriétés de tout l'arbre des composants enfants. Assurez vous donc que tout les composants enfants sont également "pure".
 
 * * *
 
@@ -137,7 +137,7 @@ function MyComponent(props) {
 }
 function areEqual(prevProps, nextProps) {
   /*
-  Renvoie vrai si utiliser l'objet nextProps à la fonction de rendu
+  Renvoie vrai si passer l'objet nextProps à la fonction de rendu
   produira le même résultat que de lui passer l'objet prevProps.
   Renvoie faux si ce n'est pas le cas.
   */
@@ -145,9 +145,9 @@ function areEqual(prevProps, nextProps) {
 export default React.memo(MyComponent, areEqual);
 ```
 
-Cette méthode n'est qu'un outil d'**[optimisation de performance](/docs/optimizing-performance.html)**. Ne vous y fiez pas pour “empêcher” un rendu car cela peut causer des bugs.
+Cette méthode n'est qu'un outil d'**[optimisation des performances](/docs/optimizing-performance.html)**. Ne vous y fiez pas pour « empêcher » un rendu car cela peut causer des bugs.
 
-> Remarque
+> Remarque :
 >
 > Contrairement à la méthode [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) des compostants créer à l'aide de classes, la fonction `areEqual` renvoie `true` si les props sont égales et `false` si ce n'est pas le cas. C'est donc l'inverse de `shouldComponentUpdate`.
 
@@ -163,7 +163,7 @@ React.createElement(
 )
 ```
 
-Cette méthode Créée et renvoie un nouvel [element React](/docs/rendering-elements.html) du type choisie. L'argument `type` peut être au choix : une chaine représentant un nom de balise (tel que `'div'` ou `'span'`), un type de [composant React](/docs/components-and-props.html) (une classe ou une fonction), ou bien un objet de type [fragment React](#reactfragment).
+Cette méthode Créée et renvoie un nouvel [élément React](/docs/rendering-elements.html) du type choisie. L'argument `type` peut être au choix : une chaine représentant un nom de balise (tel que `'div'` ou `'span'`), un type de [composant React](/docs/components-and-props.html) (une classe ou une fonction), ou bien un objet de type [fragment React](#reactfragment).
 
 Tout code écrit avec [JSX](/docs/introducing-jsx.html) sera convertis de manière à utiliser `React.createElement()`. Normalement vous ne devriez pas appeler `React.createElement()` si vous utilisez JSX. Lisez [React sans JSX](/docs/react-without-jsx.html) pour en savoir plus.
 
@@ -179,7 +179,7 @@ React.cloneElement(
 )
 ```
 
-Cette méthode clone et renvoie un nouvel element en utilisant `element` comme point de départ. L'élément obtenu aura les props de l'élément originel sur lesquelles ont aura effectué une fusion de surface des nouvelles props. Les nouveaux elements enfants replaceront les anciens. les `key` et `ref` issues de l'élément originel seront préservées.
+Cette méthode clone et renvoie un nouvel élément en utilisant `element` comme point de départ. L'élément obtenu aura les props de l'élément originel sur lesquelles ont aura effectué une fusion de surface des nouvelles props. Les nouveaux éléments enfants (`children`) replaceront les anciens. les `key` et `ref` issues de l'élément originel seront préservées.
 
 `React.cloneElement()` est quasiment équivalent à :
 
@@ -187,7 +187,7 @@ Cette méthode clone et renvoie un nouvel element en utilisant `element` comme p
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-Cependant elle préserve les `ref`. Concrètement, ça signifie que si vous avez un element enfant avec une `ref` qui lui est attaché, vous ne le volerez pas accidentellement à son ancêtre. Vous aurez la même `ref` attaché à un nouvel élément.
+Cependant elle préserve les `ref`. Concrètement, ça signifie que si vous avez un élément enfant avec une `ref` qui lui est attaché, vous ne le volerez pas accidentellement à son ancêtre. Vous aurez la même `ref` attaché à un nouvel élément.
 
 Cette API a été introduite pour remplacer la méthode dépréciée `React.addons.cloneWithProps()`.
 
@@ -201,7 +201,7 @@ React.createFactory(type)
 
 Cette méthode renvoie une fonction qui produit des éléments React d'un type donné. Tout comme [`React.createElement()`](#createElement), l'argument `type` peut être au choix : une chaine représentant un nom de balise (tel que `'div'` ou `'span'`), un type de [composant React](/docs/components-and-props.html) (une classe ou une fonction), ou bien un objet de type [fragment React](#reactfragment).
 
-Cette fonction d'aide est historique et nous vous encourageons à plutôt utiliser JSX ou directement `React.createElement()`.
+Cette fonction d'aide est historique et nous vous encourageons plutôt à utiliser JSX ou directement `React.createElement()`.
 
 Normalement vous ne devriez pas appeler `React.createFactory()` si vous utilisez JSX. Lisez [React sans JSX](/docs/react-without-jsx.html) pour en savoir plus.
 
@@ -229,7 +229,7 @@ React.Children.map(children, function[(thisArg)])
 
 Cette méthode exécute une fonction sur chacun des enfants direct contenu dans `children` avec `this` défini pour être `thisArg`. Si `children` est un tableau, il sera parcouru et la fonction sera appelée sur chacun des enfants contenu dans ce tableau. Si `children` est `null` ou `undefined`, elle renverra `null` ou `undefined` plutôt qu'un tableau.
 
-> Remarque
+> Remarque :
 >
 > Si `children` est un `Fragment` il sera traité comme un unique enfant et ne sera pas parcouru.
 
@@ -267,7 +267,7 @@ Cette méthode vérifie que `children` n'a qu'un seul enfant (un élément React
 React.Children.toArray(children)
 ```
 
-Cette méthode renvoie la structure de donnée opaque de `children` sous la forme d'un tableau linéarisé ou chaque enfant se voie assigné une `key`. C'est utile si vous voulez manipuler une collection d'enfant dans votre méthode de rendu, en particulier si vous voulez réorganiser ou réduire `this.props.children` avant de le passer à d'autres élements.
+Cette méthode renvoie la structure de donnée opaque de `children` sous la forme d'un tableau linéarisé ou chaque enfant se voie assigné une `key`. C'est utile si vous voulez manipuler une collection d'enfants dans votre méthode de rendu, en particulier si vous voulez réorganiser ou réduire `this.props.children` avant de le passer à d'autres éléments.
 
 > Remarque :
 >
@@ -356,6 +356,6 @@ Tout est détaillé dans [la documentation sur l'organisation du code](/docs/cod
 
 Bien que ce ne soit pas le cas pour le moment, nous prévoyons d'étendre les capacités de `Suspense` pour qu'il puisse gérer d'autre scénarios tel que le chargement de données. Vous pourrez en savoir plus en jetant un coup d'œil à [notre feuille de route](/blog/2018/11/27/react-16-roadmap.html).
 
->Remarque :
+> Remarque :
 >
->`React.lazy()` et `<React.Suspense>` ne sont pas encore supportés par `ReactDOMServer`. C'est une limitation connue qui devrait être résolu dans le futur.
+> `React.lazy()` et `<React.Suspense>` ne sont pas encore supportés par `ReactDOMServer`. C'est une limitation connue qui devrait être résolu dans le futur.
