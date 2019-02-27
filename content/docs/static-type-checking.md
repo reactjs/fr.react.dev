@@ -1,44 +1,43 @@
 ---
 id: static-type-checking
-title: Static Type Checking
+title: La validation de types statique
 permalink: docs/static-type-checking.html
 prev: typechecking-with-proptypes.html
 next: refs-and-the-dom.html
 ---
 
-Static type checkers like [Flow](https://flow.org/) and [TypeScript](https://www.typescriptlang.org/) identify certain types of problems before you even run your code. They can also improve developer workflow by adding features like auto-completion. For this reason, we recommend using Flow or TypeScript instead of `PropTypes` for larger code bases.
+Les systèmes de typage statique tels que [Flow](https://flow.org/) et [TypeScript](https://www.typescriptlang.org/) parviennent à identifier certains types de problèmes avant même de lancer votre code. Ils peuvent aussi améliorer le processus de travail du développeur en y ajoutant des fonctionalités telles que l'autocomplétion. C'est pourquoi nous recommendons l'usage de Flow ou TypeScript au lieu des `PropTypes` pour les grandes bases de code source.
 
 ## Flow {#flow}
 
-[Flow](https://flow.org/) is a static type checker for your JavaScript code. It is developed at Facebook and is often used with React. It lets you annotate the variables, functions, and React components with a special type syntax, and catch mistakes early. You can read an [introduction to Flow](https://flow.org/en/docs/getting-started/) to learn its basics.
+[Flow](https://flow.org/) est un système de typage statique pour votre code JavaScript. Il est développé à Facebook et est souvent utilisé avec React. Il permet d'annoter les variables, fonctions et composants React avec une syntaxe spéciale de typage, et de déceler les erreurs tôt. Vous pouvez lire [cette introduction à Flow](https://flow.org/en/docs/getting-started/) pour en apprendre les bases.
 
-To use Flow, you need to:
+Pour utiliser Flow, vous devrez :
+* Ajouter Flow comme dépendence à votre projet.
+* Vous assurer que la syntaxe Flow soie bien enlevée du code, une fois compilé.
+* Ajouter les notations de typage et lancer Flow pour les vérifier.
 
-* Add Flow to your project as a dependency.
-* Ensure that Flow syntax is stripped from the compiled code.
-* Add type annotations and run Flow to check them.
+Nous alons vous expliquer ces étapes en détail ci-dessous.
 
-We will explain these steps below in detail.
+### Ajouter Flow à un projet {#adding-flow-to-a-project}
 
-### Adding Flow to a Project {#adding-flow-to-a-project}
+Premièrement, naviguez vers le dossier de votre projet dans le terminal. Vous allez devoir exécuter la commande suivante :
 
-First, navigate to your project directory in the terminal. You will need to run the following command:
-
-If you use [Yarn](https://yarnpkg.com/), run:
+Si vous utilisez [Yarn](https://yarnpkg.com/), exécutez :
 
 ```bash
 yarn add --dev flow-bin
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+Si vous utilisez [npm](https://www.npmjs.com/), exécutez :
 
 ```bash
 npm install --save-dev flow-bin
 ```
 
-This command installs the latest version of Flow into your project.
+Cette commande installe la dernière version de Flow dans votre projet.
 
-Now, add `flow` to the `"scripts"` section of your `package.json` to be able to use this from the terminal:
+Maintenant, ajoutez `flow` à la section `"scripts"` de votre `package.json` afin de pouvoir l'utiliser dans votre terminal.
 
 ```js{4}
 {
@@ -51,53 +50,53 @@ Now, add `flow` to the `"scripts"` section of your `package.json` to be able to 
 }
 ```
 
-Finally, run one of the following commands:
+Enfin, exécutez l'une des commandes suivantes :
 
-If you use [Yarn](https://yarnpkg.com/), run:
+Si vous utilisez [Yarn](https://yarnpkg.com/), exécutez :
 
 ```bash
 yarn run flow init
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+Si vous utilisez [npm](https://www.npmjs.com/), exécutez :
 
 ```bash
 npm run flow init
 ```
 
-This command will create a Flow configuration file that you will need to commit.
+Cette commande va créer un fichier de configuration Flow qu'il va falloir ajouter en commit.
 
-### Stripping Flow Syntax from the Compiled Code {#stripping-flow-syntax-from-the-compiled-code}
+### Enlever la syntaxe Flow du code compilé {#stripping-flow-syntax-from-the-compiled-code}
 
-Flow extends the JavaScript language with a special syntax for type annotations. However, browsers aren't aware of this syntax, so we need to make sure it doesn't end up in the compiled JavaScript bundle that is sent to the browser.
+Flow est une extension du langage JavaScript avec une syntaxe spéciale pour les annotations de type. Cependant les navigateurs ne connaissent pas cette syntaxe. Nous devons donc nous assurer qu'elle ne finisse pas dans le bundle de JavaScript compilé qui sera envoyé au navigateur.
 
-The exact way to do this depends on the tools you use to compile JavaScript.
+Le procédé exact pour y arriver dépend des outils que vous utilisez pour compiler le JavaScript.
 
 #### Create React App {#create-react-app}
 
-If your project was set up using [Create React App](https://github.com/facebookincubator/create-react-app), congratulations! The Flow annotations are already being stripped by default so you don't need to do anything else in this step.
+Si vous avez utilisé [Create React App](https://github.com/facebookincubator/create-react-app) pour initialiser votre projet, félicitations ! Les annotations Flow sont déjà enlevées par défaut, donc vous n'avez rien à faire de plus pour cette étape.
 
 #### Babel {#babel}
 
 >Note:
 >
->These instructions are *not* for Create React App users. Even though Create React App uses Babel under the hood, it is already configured to understand Flow. Only follow this step if you *don't* use Create React App.
+>Ces instructions ne sont pas dédiées aux utilisateurs de Create React App. Bien que Create React App utilise Babel sous le capot, il est déjà configuré pour comprendre Flow. Ne suivez cette étape que si vous n'utilisez *pas* Create React App.
 
-If you manually configured Babel for your project, you will need to install a special preset for Flow.
+Si vous avez configuré Babel manuellement pour votre projet, il vous faudra un preset spécial pour Flow.
 
-If you use Yarn, run:
+Si vous utilisez Yarn, exécutez :
 
 ```bash
 yarn add --dev babel-preset-flow
 ```
 
-If you use npm, run:
+Si vous utilisez npm, exécutez :
 
 ```bash
 npm install --save-dev babel-preset-flow
 ```
 
-Then add the `flow` preset to your [Babel configuration](https://babeljs.io/docs/usage/babelrc/). For example, if you configure Babel through `.babelrc` file, it could look like this:
+Ensuite, ajoutez le preset `flow` à votre [configuration Babel](https://babeljs.io/docs/usage/babelrc/). Par exemple, si vous configurez Babel avec le ficher `.babelrc`, cela pourrait ressembler à ça :
 
 ```js{3}
 {
@@ -108,101 +107,103 @@ Then add the `flow` preset to your [Babel configuration](https://babeljs.io/docs
 }
 ```
 
-This will let you use the Flow syntax in your code.
+De cette façon, vous pourrez utiliser la syntaxe Flow dans votre code.
 
 >Note:
 >
->Flow does not require the `react` preset, but they are often used together. Flow itself understands JSX syntax out of the box.
+>Il n'est pas nécessaire d'avoir le preset `react` afin d'utiliser Flow, mais ils sont souvent utilisés ensemble. Flow comprend la syntaxe JSX par défaut.
 
+#### Autres configurations de build {#other-build-setups}
 #### Other Build Setups {#other-build-setups}
 
-If you don't use either Create React App or Babel, you can use [flow-remove-types](https://github.com/flowtype/flow-remove-types) to strip the type annotations.
+Si vous n'utilisez ni Create React App, ni Babel, vous pouvez utiliser [flow-remove-types](https://github.com/flowtype/flow-remove-types) pour enlever les annotations de type.
 
-### Running Flow {#running-flow}
+### Exeécuter Flow {#running-flow}
 
-If you followed the instructions above, you should be able to run Flow for the first time.
+Si vous avez bien suivi les instructions ci-dessus, vous devriez être prêt·e à exécuter Flow pour la première fois.
 
 ```bash
 yarn flow
 ```
 
-If you use npm, run:
+Si vous utilisez npm, exécutez :
 
 ```bash
 npm run flow
 ```
 
-You should see a message like:
+Vous devriez voir apparaître un message tel que celui-ci :
 
 ```
 No errors!
 ✨  Done in 0.17s.
 ```
 
-### Adding Flow Type Annotations {#adding-flow-type-annotations}
+### Ajouter Flow aux annotations de type {#adding-flow-type-annotations}
 
-By default, Flow only checks the files that include this annotation:
+Par défaut, Flow ne vérifie que les fichiers qui comprennent cette annotation :
 
 ```js
 // @flow
 ```
 
-Typically it is placed at the top of a file. Try adding it to some files in your project and run `yarn flow` or `npm run flow` to see if Flow already found any issues.
+Elle est habituellement placée au début du document. Essayez de l'ajouter à quelques fichiers dans votre projet, et exécutez `yarn flow` ou `npm run flow` pour voir si Flow a déjà découvert des problèmes.
 
+Il existe aussi [une option](https://flow.org/en/docs/config/options/#toc-all-boolean) pour forcer Flow à vérifier *tous* les fichiers, même sans l'annotation. Ça peut être trop pour des projets préexistants, mais raisonnable pour un nouveau projet si vous souhaitez le typer avec Flow de facçon intégrale.
 There is also [an option](https://flow.org/en/docs/config/options/#toc-all-boolean) to force Flow to check *all* files regardless of the annotation. This can be too noisy for existing projects, but is reasonable for a new project if you want to fully type it with Flow.
 
-Now you're all set! We recommend to check out the following resources to learn more about Flow:
+Vous êtes paré ! Nous vous recommendons d'aller voir les ressources suivantes pour en apprendre davantage sur Flow:
 
-* [Flow Documentation: Type Annotations](https://flow.org/en/docs/types/)
-* [Flow Documentation: Editors](https://flow.org/en/docs/editors/)
-* [Flow Documentation: React](https://flow.org/en/docs/react/)
-* [Linting in Flow](https://medium.com/flow-type/linting-in-flow-7709d7a7e969)
+* [Documentation Flow : Les annotations de type](https://flow.org/en/docs/types/)
+* [Documentation Flow : Editeurs](https://flow.org/en/docs/editors/)
+* [Documentation Flow : React](https://flow.org/en/docs/react/)
+* [Le linting avec Flow](https://medium.com/flow-type/linting-in-flow-7709d7a7e969)
 
 ## TypeScript {#typescript}
 
-[TypeScript](https://www.typescriptlang.org/) is a programming language developed by Microsoft. It is a typed superset of JavaScript, and includes its own compiler. Being a typed language, TypeScript can catch errors and bugs at build time, long before your app goes live. You can learn more about using TypeScript with React [here](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
+[TypeScript](https://www.typescriptlang.org/) un langage de programmation dévloppé par Microsoft. C'est un sur-ensemble typé de JavaScript, et il inclut son propre compileur. Étant un langage typé, TypeScript peut attraper les erreurs et bugs lors de la compilation, bien avant que l'application ne soie mise en ligne. Vous trouverez plus d'informations au sujet de l'utilisation de TypeScript avec React [ici](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
 
-To use TypeScript, you need to:
-* Add TypeScript as a dependency to your project
-* Configure the TypeScript compiler options
-* Use the right file extensions
-* Add definitions for libraries you use
+Pour utiliser TypeScript, vous devez :
+* Ajouter la deépendance TypeScript à votre projet
+* Configurer les options du compileur TypeScript
+* Utiliser les extenstions de fichier correctes
+* Ajouter les définitions de type pour les librairies que vous utilisez
 
-Let's go over these in detail.
+Voyons cela plus en détail.
 
-### Using TypeScript with Create React App {#using-typescript-with-create-react-app}
+### Utiliser TypeScript avec Create React App {#using-typescript-with-create-react-app}
 
-Create React App supports TypeScript out of the box.
+Create React App supporte TypeScript clés en main.
 
-To create a **new project** with TypeScript support, run:
+Pour créer un **nouveau projet** avec le support TypeScript, exécutez :
 
 ```bash
 npx create-react-app my-app --typescript
 ```
 
-You can also add it to an **existing Create React App project**, [as documented here](https://facebook.github.io/create-react-app/docs/adding-typescript).
+Vous pouvez aussi l'ajouter à **un projet Create React App déjà existant**, [comme documenté ici](https://facebook.github.io/create-react-app/docs/adding-typescript).
 
 >Note:
 >
->If you use Create React App, you can **skip the rest of this page**. It describes the manual setup which doesn't apply to Create React App users.
+>Si vous utilisez Create React App, vous pouvez **passer le reste de cette page**. Elle décrit l'installation manuelle qui ne s'applique pas aux utilisateurs de Create React App.
 
 
-### Adding TypeScript to a Project {#adding-typescript-to-a-project}
-It all begins with running one command in your terminal.
+### Ajouter TypeScript à un projet {#adding-typescript-to-a-project}
+On commence par exécuter une commande dans votre terminal.
 
-If you use [Yarn](https://yarnpkg.com/), run:
+Si vous utilisez [Yarn](https://yarnpkg.com/), exécutez :
 
 ```bash
 yarn add --dev typescript
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+Si vous utilisez [npm](https://www.npmjs.com/), exécutez :
 
 ```bash
 npm install --save-dev typescript
 ```
 
-Congrats! You've installed the latest version of TypeScript into your project. Installing TypeScript gives us access to the `tsc` command. Before configuration, let's add `tsc` to the "scripts" section in our `package.json`:
+Félicitations ! Vous venez d'installer la dernière version de TypeScript dans votre projet. L'installation de TypeScript rend disponible la commande `tsc`. Avant configuration, ajoutons `tsc` à la section `"scripts"` de notre `package.json` :
 
 ```js{4}
 {
@@ -215,27 +216,27 @@ Congrats! You've installed the latest version of TypeScript into your project. I
 }
 ```
 
-### Configuring the TypeScript Compiler {#configuring-the-typescript-compiler}
-The compiler is of no help to us until we tell it what to do. In TypeScript, these rules are defined in a special file called `tsconfig.json`. To generate this file:
+### Configurer le compileur TypeScript {#configuring-the-typescript-compiler}
+Le compileur est inutile tant qu'on ne lui a pas dit quoi faire. En TypeScript, ces régles sont définies dans un fichier spécial appelé `tsconfig.json`. Pour générer ce fichier :
 
-If you use [Yarn](https://yarnpkg.com/), run:
+Si vous utilisez [Yarn](https://yarnpkg.com/), exécutez :
 
 ```bash
 yarn run tsc --init
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+Si vous utilisez [npm](https://www.npmjs.com/), exécutez :
 
 ```bash
 npx tsc --init
 ```
 
-Looking at the now generated `tsconfig.json`, you can see that there are many options you can use to configure the compiler. For a detailed description of all the options, check [here](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
+Allons voir `tsconfig.json` qui vient d'être généré, vous voyez les nombreuses options que l'on peut utiliser pour configurer le compileur. Pour une explication détaillée des options, voyez [cette page](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
 
-Of the many options, we'll look at `rootDir` and `outDir`. In its true fashion, the compiler will take in typescript files and generate javascript files. However we don't want to get confused with our source files and the generated output.
+Parmi les nombreuses options, nous allons regarder `rootDir` et `outDir`. Conformément à son rôle, le compileur accepte les fichiers typescript et génère des fichiers javascript. Cela dit, nous ne voudrions pas confondre les fichiers source avec le résultat généré.
 
-We'll address this in two steps:
-* Firstly, let's arrange our project structure like this. We'll place all our source code in the `src` directory.
+Nous allons régler ça en deux étapes :
+* Premièrement, réorganisons notre projet. Nous allons placer tout notre code source dans le dossier `src`.
 
 ```
 ├── package.json
@@ -244,7 +245,7 @@ We'll address this in two steps:
 └── tsconfig.json
 ```
 
-* Next, we'll tell the compiler where our source code is and where the output should go.
+* Ensuite, nous allons dire au compileur où se trouve notre code et où placer le résultat.
 
 ```js{6,7}
 // tsconfig.json
@@ -272,11 +273,13 @@ In React, you most likely write your components in a `.js` file. In TypeScript w
 
 If you followed the instructions above, you should be able to run TypeScript for the first time.
 
+Si vous utilisez Yarn, exécutez :
+
 ```bash
 yarn build
 ```
 
-If you use npm, run:
+Si vous utilisez npm, exécutez :
 
 ```bash
 npm run build
