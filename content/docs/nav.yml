@@ -30,7 +30,7 @@
     - id: forms
       title: Forms
     - id: lifting-state-up
-      title: Faire Remonter l'État
+      title: Faire remonter l'état
     - id: composition-vs-inheritance
       title: Composition vs Inheritance
     - id: thinking-in-react
