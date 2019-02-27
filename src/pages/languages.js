@@ -5,13 +5,13 @@
  * @flow
  */
 
-import Layout from 'components/Layout';
-import Container from 'components/Container';
-import Header from 'components/Header';
-import TitleAndMetaTags from 'components/TitleAndMetaTags';
-import React from 'react';
 import {media, sharedStyles} from 'theme';
 
+import Container from 'components/Container';
+import Header from 'components/Header';
+import Layout from 'components/Layout';
+import React from 'react';
+import TitleAndMetaTags from 'components/TitleAndMetaTags';
 // $FlowFixMe This is a valid path
 import languages from '../../content/languages.yml';
 
@@ -46,29 +46,29 @@ const Languages = ({location}: Props) => (
     <Container>
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
-          <Header>Languages</Header>
-          <TitleAndMetaTags title="React - Languages" />
+          <Header>Langues</Header>
+          <TitleAndMetaTags title="React - Langues" />
 
           <div css={sharedStyles.markdown}>
             <p>
-              The React documentation is available in the following languages:
+              La documentation React est disponible dans les langues suivantes :
             </p>
 
             <LanguagesGrid languages={complete} />
 
-            <h2>In Progress</h2>
+            <h2>En cours</h2>
             <LanguagesGrid languages={partial} />
 
-            <h2>Needs Contributors</h2>
+            <h2>Ayant besoin de contributeurs·rices</h2>
             <LanguagesGrid languages={incomplete} />
 
             <p>
-              Don't see your language above?{' '}
+              Vous ne voyez pas votre langue dans la liste ?{' '}
               <a
                 href="https://github.com/reactjs/reactjs.org-translation#reactjsorg-translation"
                 target="_blank"
                 rel="noopener">
-                Let us know
+                Dites-le-nous
               </a>
               .
             </p>
@@ -149,7 +149,7 @@ const Language = ({code, name, status, translatedName}) => {
           href={`https://github.com/reactjs/${prefix}reactjs.org/`}
           target="_blank"
           rel="noopener">
-          Contribute
+          Contribuer
         </a>
       </div>
     </li>
