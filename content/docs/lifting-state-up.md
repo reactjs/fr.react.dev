@@ -1,6 +1,6 @@
 ---
 id: lifting-state-up
-title: Remonter l'état
+title: Faire remonter l'état
 permalink: docs/lifting-state-up.html
 prev: forms.html
 next: composition-vs-inheritance.html
@@ -9,11 +9,11 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
-Plusieurs composants ont souvent besoin de refléter les mêmes données dynamiques. Nous recommandons de remonter l'état dans l'ancêtre commun le plus proche. Voyons comment ça marche.
+Plusieurs composants ont souvent besoin de refléter les mêmes données dynamiques. Nous conseillons de faire remonter l'état partagé dans leur ancêtre commun le plus proche. Voyons comment ça marche.
 
 Dans cette section, nous allons créer un calculateur de température qui détermine si l'eau bout à une température donnée.
 
-Commençons avec un composant appelé `BoilingVerdict`. Il accepte une prop `celsius` contenant la température, et il affiche si c'est suffisant pour faire bouillir de l'eau :
+Commençons par un composant appelé `BoilingVerdict`. Il accepte une prop `celsius` pour la température, et il affiche si elle est suffisante pour faire bouillir l'eau :
 
 ```js{3,5}
 function BoilingVerdict(props) {
@@ -24,9 +24,9 @@ function BoilingVerdict(props) {
 }
 ```
 
-Ensuite, nous allons créer un composant appelé `Calculator`. Il affiche un `<input>` qui permet d'entrer une température et de garder sa valeur dans `this.state.temperature`.
+Ensuite, nous allons créer un composant appelé `Calculator`. Il affiche un `<input>` qui permet de saisir une température et de conserver sa valeur dans `this.state.temperature`.
 
-De plus, il affiche le `BoilingVerdict` pour la température entrée.
+Par ailleurs, il affiche le `BoilingVerdict` pour la température saisie.
 
 ```js{5,9,13,17-21}
 class Calculator extends React.Component {
@@ -44,7 +44,7 @@ class Calculator extends React.Component {
     const temperature = this.state.temperature;
     return (
       <fieldset>
-        <legend>Entrez la température en Celsius:</legend>
+        <legend>Saisissez la température en Celsius :</legend>
         <input
           value={temperature}
           onChange={this.handleChange} />
@@ -56,13 +56,13 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Essayez sur CodePen**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
+[**Essayer sur CodePen**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
 
-## Ajouter une Deuxième Entrée {#adding-a-second-input}
+## Ajouter un deuxième champ {#adding-a-second-input}
 
-Notre nouvelle contrainte est que, en plus d'une entrée en Celsius, on peut fournir une entrée en Fahrenheit, et synchroniser les deux valeurs.
+Il nous faut à présent proposer, en sus d'une saisie en Celsius, une saisie en Fahrenheit, les deux devant rester synchronisées.
 
-On peut commencer par extraire un composant `TemperatureInput` du code de `Calculator`. Ajoutons une prop `scale` qui peut être soit `"c"`, soit `"f"` :
+On peut commencer par extraire un composant `TemperatureInput` du code de `Calculator`. Ajoutons-y une prop `scale` qui pourra être soit `"c"`, soit `"f"` :
 
 ```js{1-4,19,22}
 const scaleNames = {
@@ -86,7 +86,7 @@ class TemperatureInput extends React.Component {
     const scale = this.props.scale;
     return (
       <fieldset>
-        <legend>Entrez la température en {scaleNames[scale]} :</legend>
+        <legend>Saisissez la température en {scaleNames[scale]} :</legend>
         <input value={temperature}
                onChange={this.handleChange} />
       </fieldset>
@@ -110,15 +110,15 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Essayez sur CodePen**](https://codepen.io/gaearon/pen/jGBryx?editors=0010)
+[**Essayer sur CodePen**](https://codepen.io/gaearon/pen/jGBryx?editors=0010)
 
-Nous avons maintenant deux entrées, mais quand vous saisissez la température dans une des deux, l'autre ne se met pas à jour. Nous avons besoin de les garder synchronisés.
+Nous avons maintenant deux champs de saisie, mais lorsque vous saisissez la température dans un des deux, l'autre ne se met pas à jour. Nous avons besoin de les garder synchronisés.
 
-De plus, nous ne pouvons pas afficher `BoilingVerdict` depuis `Calculator`. Le composant `Calculator` n'a pas accès à la température entrée car elle est cachée dans `TemperatureInput`.
+Qui plus est, nous ne pouvons pas afficher le `BoilingVerdict` depuis `Calculator`. Le composant `Calculator` n'a pas accès à la température saisie, car elle est cachée dans le `TemperatureInput`.
 
-## Écrire une Fonction de Conversion {#writing-conversion-functions}
+## Écrire des fonctions de conversion {#writing-conversion-functions}
 
-D'abord, écrivons deux fonctions pour convertir de Celsius à Fahrenheit et vice-versa :
+D'abord, écrivons deux fonctions pour convertir de Celsius à Fahrenheit et réciproquement :
 
 ```js
 function toCelsius(fahrenheit) {
@@ -132,7 +132,7 @@ function toFahrenheit(celsius) {
 
 Ces deux fonctions convertissent des nombres. Écrivons une autre fonction qui renverra une chaîne de caractères et prend en argument une chaîne de caractères `temperature` et une fonction de conversion, et qui renvoie une chaîne de caractères. Nous utiliserons cette nouvelle fonction pour calculer la valeur d'un champ en fonction de l'autre.
 
-Elle retourne une chaîne de caractères vide pour une `temperature` incorrecte, et arrondit la valeur de retour à trois décimales :
+Elle renvoie une chaîne vide pour une `temperature` incorrecte, et arrondit la valeur de retour à trois décimales :
 
 ```js
 function tryConvert(temperature, convert) {
@@ -146,11 +146,11 @@ function tryConvert(temperature, convert) {
 }
 ```
 
-Par exemple, `tryConvert('abc', toCelsius)` retourne une chaîne de caractères vide, et `tryConvert('10.22', toFahrenheit)` retourne `'50.396'`.
+Par exemple, `tryConvert('abc', toCelsius)` renvoie une chaîne vide, et `tryConvert('10.22', toFahrenheit)` renvoie `'50.396'`.
 
-## Remonter l'État {#lifting-state-up}
+## Faire remonter l'état {#lifting-state-up}
 
-Pour l'instant, les deux éléments `TemperatureInput` gardent leur propre état local indépendamment de l'autre :
+Pour l'instant, les deux éléments `TemperatureInput` conservent leur propre état local indépendamment l’un de l'autre :
 
 ```js{5,9,13}
 class TemperatureInput extends React.Component {
@@ -169,11 +169,11 @@ class TemperatureInput extends React.Component {
     // ...
 ```
 
-Cependant, nous voulons que les deux entrées soient synchronisées. Quand on met à jour l'entrée en Celsius, celle en Fahrenheit doit refléter la température convertie, et vice-versa.
+Cependant, nous voulons que les deux champs soient synchronisés. Lorsqu’on modifie le champ en Celsius, celui en Fahrenheit doit refléter la température convertie, et réciproquement.
 
-Avec React, partager l'état est possible en le déplaçant dans le plus proche ancêtre commun. On appelle ça « remonter l'état ». Nous allons supprimer l'état local de `TemperatureInput` et le déplacer dans le composant `Calculator`.
+Avec React, partager l'état est possible en le déplaçant dans le plus proche ancêtre commun. On appelle ça « faire remonter l'état ». Nous allons supprimer l'état local de `TemperatureInput` et le déplacer dans le composant `Calculator`.
 
-Si le composant `Calculator` gère l'état, il devient la « source de vérité » pour la température des deux entrées. Il peut leur donner leur valeur afin qu'ils soient synchronisés. Comme les props des deux composants `TemperatureInput` viennent du même composant parent `Calculator`, les deux entrées seront toujours synchronisées.
+Si le composant `Calculator` est responsable de l'état partagé, il devient la « source de vérité » pour la température des deux champs. Il peut leur fournir des valeurs qui soient cohérentes l’une avec l’autre. Comme les props des deux composants `TemperatureInput` viennent du même composant parent `Calculator`, les deux champs seront toujours synchronisés.
 
 Voyons comment ça marche étape par étape.
 
@@ -186,11 +186,11 @@ D'abord, on remplace `this.state.temperature` par `this.props.temperature` dans 
     // ...
 ```
 
-On sait que [les props sont en lecture seule](/docs/components-and-props.html#props-are-read-only). Quand la `temperature` était dans l'état local, le composant `TemperatureInput` pouvait simplement appeler `this.setState()` pour la changer. Cependant, maintenant que `temperature` vient du parent par une prop, le composant `TemperatureInput` n'a pas de contrôle dessus.
+On sait que [les props sont en lecture seule](/docs/components-and-props.html#props-are-read-only). Quand la `temperature` était dans l'état local, le composant `TemperatureInput` pouvait simplement appeler `this.setState()` pour la changer. Cependant, maintenant que `temperature` vient du parent par une prop, le composant `TemperatureInput` n'a pas le contrôle dessus.
 
 Avec React, on gère généralement ça en rendant le composant « contrôlé ». Comme un élément DOM `<input>` qui accepte des props `value` et `onChange`, notre `TemperatureInput` accepte `temperature` et `onTemperatureChange` dans les props depuis son parent `Calculator`.
 
-Maintenant, quand le composant `TemperatureInput` veut mettre à jour la température, il appelle `this.props.onTemperatureChange`.
+Maintenant, quand le composant `TemperatureInput` veut mettre à jour la température, il appelle `this.props.onTemperatureChange` :
 
 ```js{3}
   handleChange(e) {
@@ -223,7 +223,7 @@ class TemperatureInput extends React.Component {
     const scale = this.props.scale;
     return (
       <fieldset>
-        <legend>Entrez la température en {scaleNames[scale]} :</legend>
+        <legend>Saisissez la température en {scaleNames[scale]} :</legend>
         <input value={temperature}
                onChange={this.handleChange} />
       </fieldset>
@@ -232,11 +232,11 @@ class TemperatureInput extends React.Component {
 }
 ```
 
-Revenons maintenant sur notre composant `Calculator`.
+Intéressons-nous maintenant au composant `Calculator`.
 
-Nous allons stocker la valeur courante de `temperature` et de `scale` dans son état local. C'est l'état que nous avons « remonté » depuis les entrées, et il servira de « source de vérité » pour les deux entrées. C'est la représentation minimale des données dont nous avons besoin afin d'afficher les deux entrées.
+Nous allons stocker la valeur courante de `temperature` et de `scale` dans son état local. C'est l'état que nous avons « remonté » depuis les champs, et il servira de « source de vérité » pour eux deux. C'est la représentation minimale des données dont nous avons besoin afin d'afficher les deux champs.
 
-Par exemple, si on entre 37 dans l'entrée en Celsius, l'état du composant `Calculator` sera :
+Par exemple, si on saisit 37 dans le champ en Celsius, l'état local du composant `Calculator` sera :
 
 ```js
 {
@@ -245,7 +245,7 @@ Par exemple, si on entre 37 dans l'entrée en Celsius, l'état du composant `Cal
 }
 ```
 
-Si plus tard on change le champ Fahrenheit à 212, l'état du composant `Calculator` sera :
+Si plus tard on change le champ Fahrenheit à 212, l'état local du composant `Calculator` sera :
 
 ```js
 {
@@ -254,9 +254,9 @@ Si plus tard on change le champ Fahrenheit à 212, l'état du composant `Calcula
 }
 ```
 
-On pourrait avoir stocké la valeur des deux entrées, mais ce n'est pas nécessaire. Stocker uniquement la valeur la plus récente et son unité est suffisant. On peut inférer la valeur de l'autre entrée à partir des valeurs de `temperature` et de `scale` stockées.
+On pourrait avoir stocké les valeurs des deux champs, mais en fait ce n'est pas nécessaire. Stocker uniquement la valeur la plus récente et son unité s’avère suffisant. On peut déduire la valeur de l'autre champ rien qu’à partir des valeurs de `temperature` et de `scale` stockées.
 
-Les entrées restent synchronisées car leurs valeurs sont calculées depuis le même état :
+Les champs restent synchronisés car leurs valeurs sont calculées depuis le même état :
 
 ```js{6,10,14,18-21,27-28,31-32,34}
 class Calculator extends React.Component {
@@ -299,32 +299,32 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Essayez sur CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
+[**Essayer sur CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
 
 Maintenant, quelle que soit l'entrée que vous modifiez, `this.state.temperature` et `this.state.scale` seront mis à jour dans le composant `Calculator`. L'une des deux entrées reçoit la valeur telle quelle, et l'autre est toujours recalculée à partir de l'état.
 
-Récapitulons ce qui se passe quand on modifie une entrée :
+Récapitulons ce qui se passe quand on change la valeur d’un champ :
 
 * React appelle la fonction spécifiée dans l'attribut `onChange` de l'élément DOM `<input>`. Dans notre cas, c'est la méthode `handleChange` du composant `TemperatureInput`.
 * La méthode `handleChange` du composant `TemperatureInput` appelle `this.props.onTemperatureChange()` avec la nouvelle valeur. Ses props, notamment `onTemperatureChange`, ont été fournies par son composant parent, `Calculator`.
-* Lors du rendu précédent, le composant `Calculator` a spécifié que le prop `onTemperatureChange` du `TemperatureInput` en Celsius est la méthode `handleCelsiusChange` de `Calculator`, et la prop `onTemperatureChange` du `TemperatureInput` en Fahrenheit est la méthode `handleFahrenheitChange` de `Calculator`. Ces deux méthodes de `Calculator` sont ainsi appelées en fonction de l'entrée modifiée.
-* Dans ces méthodes, le composant `Calculator` demande à React de se rafraîchir en appelant `this.setState()` avec la nouvelle valeur de l'entrée et l'unité de l'entrée modifiée.
-* React appelle la méthode `render` du composant `Calculator` afin de savoir comment afficher son interface utilisateur. La valeur des deux entrées est recalculée en fonction de la température et de l'unité actuelles. La conversion de température est faite ici.
-* React appelle la méthode `render` des deux composants `TemperatureInput` avec leurs nouvelles props spécifiées par le `Calculator`. React sait alors comment afficher leur interface utilisateur.
+* Au dernier affichage en date, le composant `Calculator` a passé la méthode `handleCelsiusChange` de `Calculator` comme prop `onTemperatureChange` du `TemperatureInput`  en Celsius, et la méthode `handleFahrenheitChange` de `Calculator` comme prop `onTemperatureChange` du `TemperatureInput` en Fahrenheit. L’une ou l’autre de ces méthodes de `Calculator` sera ainsi appelée en fonction du champ modifié.
+* Dans ces méthodes, le composant `Calculator` demande à React de le rafraîchir en appelant `this.setState()` avec la nouvelle valeur du champ et l'unité du champ modifié.
+* React appelle la méthode `render` du composant `Calculator` afin de savoir à quoi devrait ressembler son UI. Les valeurs des deux champs sont recalculées en fonction de la température actuelle et de l'unité active. La conversion de température est faite ici.
+* React appelle les méthodes `render` des deux composants `TemperatureInput` avec leurs nouvelles props, spécifiées par le `Calculator`. React sait alors à quoi devrait ressembler leurs UI.
 * React appelle la méthode `render` du composant `BoilingVerdict`, en lui passant la température en Celsius dans les props.
-* React DOM met à jour le DOM avec le résultat correspondant à la valeur d'entrée souhaitée. L'entrée que nous venons de modifier reçoit la valeur actuelle, et l'autre entrée est mis à jour avec la température convertie.
+* React DOM met à jour le DOM avec le verdict d'ébullition, et retranscrit les valeurs de champs souhaitées. Le champ que nous venons de modifier reçoit sa valeur actuelle, et l'autre champ est mis à jour avec la température convertie.
 
-Chaque mise à jour suit ces étapes pour que les entrées restent synchronisées.
+Chaque mise à jour suit ces mêmes étapes, ainsi les champs restent synchronisés.
 
-## Leçons apprises {#lessons-learned}
+## Ce qu’il faut retenir {#lessons-learned}
 
-Il ne doit y avoir qu'une seule « source de vérité » pour toute donnée qui change dans une application React. En générale, on donne un état aux composants qui en ont besoin pour s'afficher. Ensuite, si d'autres composants en ont également besoin, vous pouvez remonter l'état (*lift it up* NdT) à l'ancêtre commun le plus proche. Au lieu d'essayer de synchroniser des états entre différents composants, vous devriez vous baser sur des données qui se propagent [du haut vers le bas](/docs/state-and-lifecycle.html#the-data-flows-down).
+Il ne doit y avoir qu'une seule « source de vérité » pour toute donnée qui change dans une application React. En général, l’état est d’abord ajouté au composant qui en a besoin pour s'afficher. Ensuite, si d'autres composants en ont également besoin, vous pouvez faire remonter l'état dans l'ancêtre commun le plus proche. Au lieu d'essayer de synchroniser les états de différents composants, vous devriez vous baser sur des données qui se propagent [du haut vers le bas](/docs/state-and-lifecycle.html#the-data-flows-down).
 
-Remonter l'état implique d'écrire plus de code générique (*boilerplate code*, NdT) par opposition à une liaison bidirectionnel, mais ça demande moins de travail pour trouver et isoler les bugs. Puisque tout état « vit » dans un composant et que seul ce composant peut le changer, les possibilités de bugs sont grandement réduites. De plus, vous pouvez implémenter n'importe quelle logique supplémentaire pour rejeter ou transformer la saisie des utilisateurs.
+Faire remonter l'état implique d'écrire plus de code générique *(boilerplate code, NdT)* qu’avec une liaison de données bidirectionnelle, mais le jeu en vaut la chandelle, car ça demande moins de travail pour trouver et isoler les bugs. Puisque tout état « vit » dans un composant et que seul ce composant peut le changer, la surface d’impact des bugs est grandement réduite. Qui plus est, vous pouvez implémenter n'importe quelle logique personnalisée pour rejeter ou transformer les saisies des utilisateurs.
 
-Si quelque chose peut être dérivé des props ou de l'état, cette chose ne devrait probablement pas être dans l'état. Par exemple, plutôt que de stocker à la fois `celsiusValue` et `fahrenheitValue`, on stock uniquement la dernière `temperature` modifiée et son unité `scale`. La valeur de l'autre entrée peut toujours être calculée dans la méthode `render()` à partir de la valeur de l'autre entrée. Ça nous permet de nettoyer ou arrondir la valeur des autres champs sans perdre de précision sur la valeur entrée par l'utilisateur.
+Si quelque chose peut être dérivé des props ou de l'état, cette chose ne devrait probablement pas figurer dans l'état. Par exemple, plutôt que de stocker à la fois `celsiusValue` et `fahrenheitValue`, on stocke uniquement la dernière `temperature` modifiée et son unité `scale`. La valeur de l'autre champ peut toujours être calculée dans la méthode `render()` à partir de la valeur de ces données. Ça nous permet de vider ou d’arrondir la valeur de l’autre champ sans perdre la valeur saisie par l'utilisateur.
 
-Quand vous voyez quelque chose qui ne va pas dans l'interface utilisateur, vous pouvez utiliser les [outils de développement React](https://github.com/facebook/react-devtools) pour inspecter les props et vous déplacer dans l'arborescence des composants jusqu'à trouver le composant responsable de la mise à jour de l'état. Ça vous permet de remonter à la source des bugs :
+Quand vous voyez quelque chose qui ne va pas dans l'UI, vous pouvez utiliser les [outils de développement React](https://github.com/facebook/react-devtools) pour examiner les props et remonter dans l'arborescence des composants jusqu'à trouver le composant responsable de la mise à jour de l'état. Ça vous permet de remonter à la source des bugs :
 
 <img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
 
