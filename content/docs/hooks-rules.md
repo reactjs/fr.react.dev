@@ -130,7 +130,7 @@ React ne saurait pas quoi renvoyer lors du second appel au Hook `useState`. Reac
   });
 ```
 
-**Notez que vous ne devez pas vous inquiéter de ce problème si vous utilisez [la règle de lint fournie](https://www.npmjs.com/package/eslint-plugin-react-hooks).** Mais maintenant vous savez *pourquoi* les Hooks fonctionnent de cette manière et quels problèmes prévient la règle.
+**Remarquez que vous n’avez pas à vous inquiéter de ça si vous utilisez [la règle de lint fournie](https://www.npmjs.com/package/eslint-plugin-react-hooks).** Mais maintenant, vous savez *pourquoi* les Hooks fonctionnent de cette manière et quels problèmes la règle évite.
 
 ## Prochaines étapes {#next-steps}
 
