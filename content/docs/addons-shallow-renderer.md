@@ -42,7 +42,7 @@ const result = renderer.getRenderOutput();
 
 expect(result.type).toBe('div');
 expect(result.props.children).toEqual([
-  <span className="heading">Title</span>,
+  <span className="heading">Titre</span>,
   <Subcomponent foo="bar" />
 ]);
 ```
