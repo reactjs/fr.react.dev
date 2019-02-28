@@ -95,7 +95,7 @@
     - id: events
       title: SyntheticEvent
     - id: test-utils
-      title: Test Utilities
+      title: Utilitaires de test
     - id: shallow-renderer
       title: Shallow Renderer
     - id: test-renderer
