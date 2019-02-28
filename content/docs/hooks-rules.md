@@ -10,7 +10,7 @@ Les *Hooks* sont arrivés avec React 16.8. Ils vous permettent de bénéficier d
 
 Les Hooks sont des fonctions JavaScript, mais vous devez suivre deux règles lorsque vous les utilisez. Nous mettons à votre disposition un [plugin de *linter*](https://www.npmjs.com/package/eslint-plugin-react-hooks) pour vérifier ces règles automatiquement :
 
-### Appelez les Hooks uniquement au premier niveau {#only-call-hooks-at-the-top-level}
+### Appelez les Hooks uniquement au niveau racine {#only-call-hooks-at-the-top-level}
 
 **N'appelez pas de Hooks à l'intérieur de boucles, conditions ou de fonctions imbriquées.** À la place, utilisez seulement les Hooks au premier niveau de votre fonction React. En suivant cette règle, vous assurez que les Hooks sont appelés dans le même ordre à chaque fois que le composant est rendu. C'est ce qui permet à React de garantir le bon état des Hooks entre plusieurs appels de `useState` et `useEffect`. (Si vous êtes curieux, nous expliquerons cela en détails [ci-dessous](#explanation).)
 
