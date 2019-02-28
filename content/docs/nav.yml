@@ -101,7 +101,7 @@
     - id: test-renderer
       title: Moteur de rendu de test
     - id: javascript-environment-requirements
-      title: JS Environment Requirements
+      title: Pré-requis pour l'environnement JS
     - id: glossary
       title: Glossaire
 - title: Hooks (Nouveau)
