@@ -1,23 +1,23 @@
 ---
 id: faq-internals
-title: Virtual DOM and Internals
+title: Le DOM Virtuel et son intérieur
 permalink: docs/faq-internals.html
 layout: docs
 category: FAQ
 ---
 
-### What is the Virtual DOM? {#what-is-the-virtual-dom}
+### Qu'est-ce que le Virtual DOM ? {#what-is-the-virtual-dom}
 
-The virtual DOM (VDOM) is a programming concept where an ideal, or "virtual", representation of a UI is kept in memory and synced with the "real" DOM by a library such as ReactDOM. This process is called [reconciliation](/docs/reconciliation.html).
+Le Virtual DOM (VDOM) ou DOM virtuel est un concept en programmation où la représentation idéale, ou "virtuelle" de l'interface utilisateur est stockée en mémoire et synchronisé  le DOM "" á l'aide d'une bibliothèque comme . Ce processus est appelé [réconciliation](/docs/reconciliation.html).
 
-This approach enables the declarative API of React: You tell React what state you want the UI to be in, and it makes sure the DOM matches that state. This abstracts out the attribute manipulation, event handling, and manual DOM updating that you would otherwise have to use to build your app.
+Cette approche active l'API déclarative de React: Vous dites a React quel état l'interface utilisateur doit avoir, lui fait en sorte que le DOM corresponde a cet état. Ceci facilite la manipulation d'attributs, gestion d’événements et la mise á jour manuelle du DOM que vous aurez été obligés de faire pour construire votre application.
 
-Since "virtual DOM" is more of a pattern than a specific technology, people sometimes say it to mean different things. In React world, the term "virtual DOM" is usually associated with [React elements](/docs/rendering-elements.html) since they are the objects representing the user interface. React, however, also uses internal objects called "fibers" to hold additional information about the component tree. They may also be considered a part of "virtual DOM" implementation in React.
+Puisque le "DOM virtuel" est plus un pattern qu'une technologie, les développeurs lui donnent quelques fois une des significations différentes. Dans le monde de React, le terme "DOM virtuel" est généralement associé aux [éléments React](/docs/rendering-elements.html) vu que que ce sont des objets qui représentent l'interface utilisateur. Cependant, React, utilise aussi des objet internes appelés "fibers" pour retenir des informations supplémentaires sur l'arbre de composants. Ils peuvent aussi êtres considères comme une partie de l'implémentation du "DOM virtuel".
 
-### Is the Shadow DOM the same as the Virtual DOM? {#is-the-shadow-dom-the-same-as-the-virtual-dom}
+### Est-ce que le Shadow DOM est pareil que le Virtual DOM?{#is-the-shadow-dom-the-same-as-the-virtual-dom}
 
-No, they are different. The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in web components. The virtual DOM is a concept implemented by libraries in JavaScript on top of browser APIs.
+Non, ils sont différents. le Shadow DOM est une technologie du navigateur web conçue au départ pour limiter la portée des variable et le CSS aux composants. le Virtual DOM est un concept implémenté par des bibliothèques en Javascript comme surcouche aux APIs du navigateur web.
 
-### What is "React Fiber"? {#what-is-react-fiber}
+### C'est quoi "React Fiber"? {#what-is-react-fiber}
 
-Fiber is the new reconciliation engine in React 16. Its main goal is to enable incremental rendering of the virtual DOM. [Read more](https://github.com/acdlite/react-fiber-architecture).
+Fiber est le nouveau moteur de réconciliation en React 16. Son but principal est de permettre le rendu incrémentale du virtual DOM.
