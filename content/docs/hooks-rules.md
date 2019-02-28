@@ -123,7 +123,7 @@ React ne saurait pas quoi renvoyer lors du second appel au Hook `useState`. Reac
 
 ```js
   useEffect(function persistForm() {
-    // 👍 Nous ne brisons plus la première règle
+    // 👍 Nous n’enfreignons plus la première règle
     if (name !== '') {
       localStorage.setItem('formData', name);
     }
