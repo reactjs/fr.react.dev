@@ -1,18 +1,18 @@
 ---
 id: events
-title: Événement synthétique
+title: SyntheticEvent
 permalink: docs/events.html
 layout: docs
 category: Reference
 ---
 
-Ce guide de référence documente le wrapper `SyntheticEvent` qui fait partie du système d'événements de React. Consultez le guide sur la [gestion d'événements](/docs/handling-events.html) pour en savoir plus.
+Ce guide de référence documente l’enrobage `SyntheticEvent` qui fait partie du système d'événements de React. Consultez le guide sur la [gestion d'événements](/docs/handling-events.html) pour en savoir plus.
 
-## Vue d'ensemble {#overview}
+## Aperçu {#overview}
 
-Vos gestionnaires d'événements vont recevoir des instances de `SyntheticEvent`, un wrapper inter-navigateur autour de l'événement natif du navigateur. Il dispose de la même interface que l'événement natif du navigateur, ce qui inclut `stopPropagation()` et `preventDefault()`, à ceci près que les événements fonctionnent de façon identique sur tous les navigateurs.
+Vos gestionnaires d'événements recevront des instances de `SyntheticEvent`, un enrobage compatible tous navigateurs autour de l'événement natif du navigateur. Il fournit la même interface que l'événement natif du navigateur, avec notamment `stopPropagation()` et `preventDefault()`, à ceci près que ces événements fonctionnent de façon identique sur tous les navigateurs.
 
-Si, pour n'importe quelle raison, vous avez besoin de l'événement sous-jacent du navigateur, alors vous pouvez utiliser l'attribut `nativeEvent` pour le récupérer. Tous les objets `SyntheticEvent` disposent des attributs suivants :
+Si pour une raison ou une autre, vous avez besoin de l'événement sous-jacent du navigateur, utilisez l'attribut `nativeEvent` pour le récupérer. Tous les objets `SyntheticEvent` disposent des attributs suivants :
 
 ```javascript
 boolean bubbles
@@ -31,19 +31,19 @@ number timeStamp
 string type
 ```
 
-> Note :
+> Remarque :
 >
-> À partir de la version 0.14, retourner `false` depuis un gestionnaire d'événements ne stoppe plus la propagation de l'événement. À la place, il convient de déclencher manuellement `e.stopPropagation()` ou `e.preventDefault()` selon le cas.
+> Depuis la version 0.14, renvoyer `false` depuis un gestionnaire d'événements n’interrompt plus la propagation de l'événement. Pour ce faire, appelez explicitement `e.stopPropagation()` ou `e.preventDefault()`, selon le besoin.
 
-### Partage d'événement {#event-pooling}
+### Recyclage des événements {#event-pooling}
 
-`SyntheticEvent` est partagé. Cela signifie que l'objet `SyntheticEvent` sera réutilisé, et que toutes ses propriétés seront remises à `null` une fois que la fonction de rappel de l'événement aura été invoquée.
-Cela s'explique pour des raisons de performances.
-Ainsi, vous ne pouvez pas accéder à l'événement d'une façon asynchrone.
+Les objets `SyntheticEvent` sont recyclés. En d’autres termes, tout objet `SyntheticEvent` sera réutilisé et ses propriétés seront remises à `null` une fois que la fonction de rappel de l'événement aura été invoquée.
+React fait cela pour améliorer les performances.
+Par conséquent, vous ne pouvez pas accéder à l'événement de façon asynchrone.
 
 ```javascript
 function onClick(event) {
-  console.log(event); // => objet null.
+  console.log(event); // => objet nullifié.
   console.log(event.type); // => "click"
   const eventType = event.type; // => "click"
 
@@ -60,21 +60,21 @@ function onClick(event) {
 }
 ```
 
-> Note :
+> Remarque :
 >
-> Si vous souhaitez accéder aux propriétés de l'événement de façon asynchrone, vous devez appeler la fonction `event.persist()` de l'événement, ce qui aura pour effet de supprimer l'événement synthétique du partage, et permettra l'utilisation de la référence à l'événement au sein de votre code.
+> Si vous souhaitez accéder aux propriétés de l'événement de façon asynchrone, vous devez appeler la méthode `event.persist()` de l'événement, ce qui le retirera du système de recyclage, et permettra à votre code de conserver sans problème des références sur l’événement.
 
-## Événements supportés {#supported-events}
+## Événements pris en charge {#supported-events}
 
-React normalise les événements de façon à ce qu'ils conservent des propriétés cohérentes entre les différents navigateurs.
+React normalise les événements pour qu’ils aient les mêmes propriétés dans tous les navigateurs.
 
-Les gestionnaires d'événements ci-dessous sont déclenchés par un événement durant la phase de propagation. Pour enregister un gestionnaire d'événement pour la phase de capture, il convient d'ajouter `Capture` à la fin du nom de l'événement ; par exemple, vous utiliserez `onClickCapture` à la place de `onClick` pour gérer l'événement de clic durant la phase de capture.
+Les gestionnaires d'événements ci-dessous sont déclenchés par un événement durant la phase de propagation. Pour inscrire un gestionnaire d'événements pour la phase de capture, ajoutez le suffixe `Capture` au nom de l'événement ; par exemple, vous utiliserez `onClickCapture` plutôt que `onClick` pour gérer l'événement de clic durant la phase de capture.
 
 - [Événements de presse-papiers](#clipboard-events)
 - [Événements de composition](#composition-events)
 - [Événements du clavier](#keyboard-events)
 - [Événements de focus](#focus-events)
-- [Événements du formulaire](#form-events)
+- [Événements de formulaires](#form-events)
 - [Événements de la souris](#mouse-events)
 - [Événements du pointeur](#pointer-events)
 - [Événements de sélection](#selection-events)
@@ -82,16 +82,16 @@ Les gestionnaires d'événements ci-dessous sont déclenchés par un événement
 - [Événements visuels](#ui-events)
 - [Événements de la molette](#wheel-events)
 - [Événements de média](#media-events)
-- [Événements d'image](#image-events)
+- [Événements d'images](#image-events)
 - [Événements d'animation](#animation-events)
 - [Événements de transition](#transition-events)
 - [Autres événements](#other-events)
 
 * * *
 
-## Référence {#reference}
+## Référence de l'API {#reference}
 
-### Événement de presse-papiers {#clipboard-events}
+### Événements de presse-papiers {#clipboard-events}
 
 Noms des événements :
 
@@ -171,7 +171,7 @@ DOMEventTarget relatedTarget
 
 * * *
 
-### Événements du formulaire {#form-events}
+### Événements de formulaires {#form-events}
 
 Noms des événements :
 
@@ -193,7 +193,7 @@ onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
 onMouseMove onMouseOut onMouseOver onMouseUp
 ```
 
-Les événements `onMouseEnter` et `onMouseLeave` se propagent de l'élément qui vient d'être quitté par la souris à celui sur lequel la souris arrive au lieu d'une propagation classique et n'ont pas de phase de capture.
+Les événements `onMouseEnter` et `onMouseLeave` se propagent de l'élément qui vient d'être quitté par la souris à celui sur lequel la souris arrive (au lieu d'une propagation classique) et n'ont pas de phase de capture.
 
 Propriétés :
 
@@ -225,11 +225,11 @@ onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
 onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 ```
 
-Les événements `onPointerEnter` et `onPointerLeave` se propagent de l'élément qui vient d'être quitté par le pointeur à celui sur lequel le pointeur arrive au lieu d'une propagation classique et n'ont pas de phase de capture.
+Les événements `onPointerEnter` et `onPointerLeave` se propagent de l'élément qui vient d'être quitté par le pointeur à celui sur lequel le pointeur arrive (au lieu d'une propagation classique) et n'ont pas de phase de capture.
 
 Propriétés :
 
-Comme défini par la [spécification W3](https://www.w3.org/TR/pointerevents/), les événements du pointeur doivent étendre les [événements de la souris](#mouse-events) avec les propriétés suivantes :
+Comme défini par la [spécification W3](https://www.w3.org/TR/pointerevents/), les événements du pointeur étendent les [événements de la souris](#mouse-events) avec les propriétés suivantes :
 
 ```javascript
 number pointerId
@@ -246,9 +246,9 @@ boolean isPrimary
 
 Une remarque concernant le support inter-navigateur :
 
-Les événements du pointeur ne sont pas encore supportés par tous les navigateurs (au moment de l'écriture de cet article, les navigateurs qui les supportent comprennent Chrome, Firefox, Edge, et Internet Explorer). React n'offre volontairement pas de polyfill pour les autres navigateurs dans la mesure où un polyfill conforme aux standards impliquerait une augmentation significative de la taille du paquet de `react-dom`.
+Les événements du pointeur ne sont pas encore pris en charge par tous les navigateurs (au moment de l'écriture de cet article, les navigateurs qui les prennent en charge comprennent Chrome, Firefox, Edge, et Internet Explorer). React ne fournit volontairement pas de *polyfill* pour les autres navigateurs, dans la mesure où un polyfill conforme au standard augmenterait significativement la taille du module `react-dom`.
 
-Si votre application nécessite les événements du pointeur, nous recommandons d'ajouter un polyfill tiers pour les supporter.
+Si votre application nécessite les événements du pointeur, nous vous conseillons d'ajouter un polyfill tiers pour les prendre en charge.
 
 * * *
 
@@ -334,7 +334,7 @@ onTimeUpdate onVolumeChange onWaiting
 
 * * *
 
-### Événements d'image {#image-events}
+### Événements d'images {#image-events}
 
 Noms des événements :
 
