@@ -10,7 +10,7 @@ Ce guide de référence documente l’enrobage `SyntheticEvent` qui fait partie 
 
 ## Aperçu {#overview}
 
-Vos gestionnaires d'événements recevront des instances de `SyntheticEvent`, un enrobage compatible tous navigateurs autour de l'événement natif du navigateur. Il fournit la même interface que l'événement natif du navigateur, avec notamment `stopPropagation()` et `preventDefault()`, à ceci près que ces événements fonctionnent de façon identique sur tous les navigateurs.
+Vos gestionnaires d'événements recevront des instances de `SyntheticEvent`, un enrobage compatible tous navigateurs autour de l'événement natif du navigateur. Il fournit la même interface que l'événement natif, comprenant notamment `stopPropagation()` et `preventDefault()`, à ceci près que ces événements fonctionnent de façon identique sur tous les navigateurs.
 
 Si pour une raison ou une autre, vous avez besoin de l'événement sous-jacent du navigateur, utilisez l'attribut `nativeEvent` pour le récupérer. Tous les objets `SyntheticEvent` disposent des attributs suivants :
 
@@ -38,8 +38,8 @@ string type
 ### Recyclage des événements {#event-pooling}
 
 Les objets `SyntheticEvent` sont recyclés. En d’autres termes, tout objet `SyntheticEvent` sera réutilisé et ses propriétés seront remises à `null` une fois que la fonction de rappel de l'événement aura été invoquée.
-React fait cela pour améliorer les performances.
-Par conséquent, vous ne pouvez pas accéder à l'événement de façon asynchrone.
+React agit ainsi pour améliorer les performances.
+Par consé­quent, vous ne pouvez pas accéder à l'événement de façon asynchrone.
 
 ```javascript
 function onClick(event) {
@@ -62,7 +62,7 @@ function onClick(event) {
 
 > Remarque :
 >
-> Si vous souhaitez accéder aux propriétés de l'événement de façon asynchrone, vous devez appeler la méthode `event.persist()` de l'événement, ce qui le retirera du système de recyclage, et permettra à votre code de conserver sans problème des références sur l’événement.
+> Si vous souhaitez accéder aux propriétés de l'événement de façon asynchrone, vous devez appeler sa méthode `event.persist()`, ce qui le retirera du système de recyclage, et permettra à votre code de conserver sans problème des références sur l’événement.
 
 ## Événements pris en charge {#supported-events}
 
@@ -244,7 +244,7 @@ string pointerType
 boolean isPrimary
 ```
 
-Une remarque concernant le support inter-navigateur :
+Une remarque concernant la prise en charge tous navigateurs :
 
 Les événements du pointeur ne sont pas encore pris en charge par tous les navigateurs (au moment de l'écriture de cet article, les navigateurs qui les prennent en charge comprennent Chrome, Firefox, Edge, et Internet Explorer). React ne fournit volontairement pas de *polyfill* pour les autres navigateurs, dans la mesure où un polyfill conforme au standard augmenterait significativement la taille du module `react-dom`.
 
