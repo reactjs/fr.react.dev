@@ -117,7 +117,7 @@ useState('Poppins')        // 🔴 2 (mais était 3). Échoue lors de la lecture
 useEffect(updateTitle)     // 🔴 3 (mais était 4). Échoue lors du remplacement de l'effet
 ```
 
-React ne saurait quoi retourner lors du second appel au Hook `useState`. React s'attend à ce que le second appel à un Hook dans ce composant corresponde à l'effet `persistForm`, comme lors du rendu précédent, mais ce n'est plus le cas. A partir de là, chaque nouvel appel à un Hook suivant celui que nous avons passé, sera aussi décalé de un, provocant ainsi des bugs.
+React ne saurait pas quoi renvoyer lors du second appel au Hook `useState`. React s'attendait à ce que le second appel à un Hook dans ce composant corresponde à l'effet `persistForm`, comme lors de l’affichage précédent, mais ce n'est plus le cas. A partir de là, chaque appel à un Hook ultérieur à celui que nous avons sauté sera aussi décalé de un, provoquant des bugs.
 
 **C'est pourquoi les Hooks doivent être appelé au premier niveau de vos composants.** Si vous voulez exécuter un effet de manière conditionelle, vous pouvez mettre cette condition *à l'intérieur* de votre Hook :
 
