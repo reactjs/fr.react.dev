@@ -1,6 +1,6 @@
 ---
 id: add-react-to-a-website
-title: Ajouter React à votre site web
+title: Ajouter React à un site web
 permalink: docs/add-react-to-a-website.html
 redirect_from:
   - "docs/add-react-to-an-existing-app.html"
@@ -12,7 +12,7 @@ Utiliser React en fonction de vos besoins
 
 Depuis sa création, React s'adapte en fonction de vos besoins, ainsi vous pouvez l'utiliser autant que vous le souhaitez, ou simplement ajouter un peu d'interactivité à une page existante. Les composants React sont une bonne solution pour faire ça.
 
-La majorité des sites web ne sont pas, et n'ont pas besoin d'être, des applications web monopage (en anglais Single Page Application ou plus simplement SPA, NdT). Sans outils ou même de configurations supplémentaires, mais avec simplement quelques lignes de code, vous pouvez essayer React dans une petite partie de votre site web. Vous pourrez par la suite ajouter des composants supplémentaires ou garder React dans quelques éléments dynamiques.
+La majorité des sites web ne sont pas, et n'ont pas besoin d'être, des applications web monopage (en anglais Single Page Application ou plus simplement SPA, NdT). Sans outils ou configurations supplémentaires, mais avec simplement quelques lignes de code, vous pouvez essayer React dans une petite partie de votre site web. Vous pourrez par la suite ajouter des composants supplémentaires ou garder React dans quelques éléments dynamiques.
 
 ---
 
@@ -43,7 +43,7 @@ L'attribut `id` de votre `<div>`, qui est unique, va vous permettre de manipuler
 
 >Astuce
 >
->Vous pouvez placer une `<div>` qui sert de « conteneur », où vous le souhaitez dans la balise `<body>`. Vous pouvez, par ailleurs, avoir autant de conteneurs indépendants que vous le souhaitez dans la même page. React remplacera le contenu existant de ces conteneurs, ils sont donc la plupart du temps vides.
+>Vous pouvez placer une `<div>` qui sert de « conteneur », où vous le souhaitez dans la balise `<body>`. Vous pouvez, par ailleurs, avoir autant de conteneurs DOM indépendants que vous le souhaitez dans la même page. React remplacera le contenu existant de ces conteneurs, ils sont donc la plupart du temps vides.
 
 ### Étape 2 : Ajouter les balises « Script » {#step-2-add-the-script-tags}
 
@@ -108,7 +108,7 @@ Généralement, on souhaite afficher des composants React à plusieurs endroits 
 >
 >Lorsque les éléments de React doivent être isolés les uns des autres, cette solution est souvent utilisée. Il est cependant plus facile d'utiliser le principe de [composition de composants](/docs/components-and-props.html#composing-components) à la place dans votre code React.
 
-### Astuce : Minifié votre JavaScript en production {#tip-minify-javascript-for-production}
+### Astuce : Minifier votre JavaScript en production {#tip-minify-javascript-for-production}
 
 Avant de déployer votre site web en production, il faut garder à l'esprit qu'un JavaScript non minifié risque de ralentir significativement le chargement de la page pour vos utilisateurs.
 
@@ -147,7 +147,7 @@ return (
 );
 ```
 
-Les deux extraits de code précèdents sont en effet équivalent. Cependant même si la syntaxe **JSX est [complètement optionnelle](/docs/react-without-jsx.html)**, la plupart des développeurs React trouvent cela très pratique pour l'affichage (avec React ou même avec d'autres bibliothèques).
+Les deux extraits de code précédents sont en effet équivalent. Cependant même si la syntaxe **JSX est [complètement optionnelle](/docs/react-without-jsx.html)**, la plupart des développeurs React trouvent cela très pratique pour l'affichage (avec React ou même avec d'autres bibliothèques).
 
 Vous pouvez tester JSX en utilisant un [convertisseur en ligne](https://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2%2Cstage-3&prettier=true&targets=Node-6.12&version=6.26.0&envVersion=).
 
@@ -165,7 +165,7 @@ Cette approche est pratique pour se former ou pour de simples démonstrations. C
 
 ### Ajouter JSX à votre projet {#add-jsx-to-a-project}
 
-L'ajout de JSX à votre projet ne nécessite pas d'outils compliqués comme un gestionnaire de dépendances ou un serveur de développement. Cela ressemble plus **à l'ajout de préprocesseur CSS**. Le seul outil indispensable est [Node.js](https://nodejs.org/) qui doit être installé sur votre ordinateur.
+L'ajout de JSX à votre projet ne nécessite pas d'outils compliqués comme un gestionnaire de dépendances ou un serveur de développement. Cela ressemble plus **à l'ajout d'un préprocesseur CSS**. Le seul outil indispensable est [Node.js](https://nodejs.org/) qui doit être installé sur votre ordinateur.
 
 Déplacez-vous sur votre projet à l'aide de votre terminal et copiez/collez ces deux commandes :
 
@@ -188,7 +188,7 @@ npx babel --watch src --out-dir . --presets react-app/prod
 
 >Remarque
 >
->`npx` n'est pas une faute de frappe, il s'agit d'un [un outil de lancement de package (« package runner tool » dans la langue de Shakespeare, NdT) qui accompagne npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
+>`npx` n'est pas une faute de frappe, il s'agit d'un [outil de lancement de package (« package runner tool » dans la langue de Shakespeare, NdT) qui accompagne npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
 >
 >Si le message d'erreur « You have mistakenly installed the `babel` package » apparait, vous avez surement dû rater [l'étape précédente](#add-jsx-to-a-project). Dans le même dossier, recommencez l'opération et essayer de nouveau.
 
