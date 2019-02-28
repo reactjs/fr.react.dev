@@ -15,7 +15,7 @@ var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 avec npm
 
 ## Aperçu {#overview}
 
-Quand on écrit des tests unitaires pour React, le rendu superficiel peut être utile. Le rendu superficiel vous permet de réaliser le rendu d'un composant « à un seul niveau de profondeur » afin de pouvoir vérifier ce que renvoie sa fonction re rendu, sans vous préoccuper des composants enfants, qui ne sont pas sollicités. Ça ne nécessite donc pas de DOM.
+Quand on écrit des tests unitaires pour React, le rendu superficiel peut être utile. Le rendu superficiel vous permet de réaliser le rendu d'un composant « à un seul niveau de profondeur » afin de pouvoir vérifier ce que renvoie sa fonction de rendu, sans vous préoccuper des composants enfants, qui ne sont pas sollicités. Ça ne nécessite donc pas de DOM.
 
 Par exemple, si vous avez le composant suivant :
 
@@ -59,7 +59,7 @@ Le rendu superficiel a pour le moment quelques limites, notamment l'absence de p
 
 Vous pouvez voir le `shallowRenderer` comme un « endroit » dans lequel faire le rendu du composant que vous testez, et depuis lequel vous pouvez extraire la sortie que ce composant produit.
 
-`shallowRenderer.render()` est similaire à [`ReactDOM.render()`](/docs/react-dom.html#render), à ceci près qu'il n'a pas besoin du DOM et n’effectue le rendu qu’à un seul niveau de profondeur. Ça signifie que vous pouvez tester des composants indépendamment de l'implémentation de leurs enfants.
+`shallowRenderer.render()` est similaire à [`ReactDOM.render()`](/docs/react-dom.html#render), à ceci près qu'elle n'a pas besoin du DOM et n’effectue le rendu qu’à un seul niveau de profondeur. Ça signifie que vous pouvez tester des composants indépendamment de l'implémentation de leurs enfants.
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
