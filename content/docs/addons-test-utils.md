@@ -19,7 +19,7 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 avec npm
 
 > Remarque :
 >
-> Nous vous conseillons d’utiliser [`react-testing-library`](https://git.io/react-testing-library). Cette bibliothèque est conçue pour permettre et encourager l'écriture de tests qui utilisent vos composants à la manière des utilisateurs finaux.
+> Nous vous conseillons d’utiliser [`react-testing-library`](https://git.io/react-testing-library). Cette bibliothèque est conçue pour encourager l'écriture de tests utilisant vos composants de façon similaire aux utilisateurs finaux.
 >
 > Par ailleurs, Airbnb propose un utilitaire de test appelé [Enzyme](http://airbnb.io/enzyme/), qui permet de facilement exprimer des assertions, manipuler vos composants React et en explorer le résultat.
 
@@ -135,11 +135,11 @@ mockComponent(
 )
 ```
 
-Cette méthode prend un module de composant simulé et lui ajoute des méthodes utiles pour lui permettre d'être utilisé comme un composant React factice. Plutôt que de réaliser un rendu classique, le composant va simplement devenir une balise `<div>` (ou tout autre balise si `mockTagName` est renseigné) contenant les enfants qui lui sont fournis.
+Cette méthode prend un module de composant simulé et lui ajoute des méthodes utiles pour lui permettre d'être utilisé comme un composant React factice. Plutôt que de réaliser un rendu classique, le composant va simplement devenir une balise `<div>` (ou toute autre balise si `mockTagName` est renseigné) contenant les enfants qui lui sont fournis.
 
 > Remarque :
 >
-> `mockComponent()` est une API obsolète. Nous recommandons plutôt l'usage du [rendu superficiel](docs/shallow-renderer.html) ou de [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
+> `mockComponent()` est une API obsolète. Nous recommandons plutôt l'usage du [rendu superficiel](/docs/shallow-renderer.html) ou de [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
 
 * * *
 
@@ -208,7 +208,7 @@ findAllInRenderedTree(
 )
 ```
 
-Parcourt tous les composants présents dans `tree` en ne retenant que les composants pour lesquels `test(component)` renvoie `true`. Ce n'est guère utile en soi, mais cela sert de base à d'autres utilitaires de test.
+Parcourt tous les composants présents dans `tree` en ne retenant que les composants pour lesquels `test(component)` renvoie `true`. Ce n'est guère utile en soi, mais ça sert de base à d'autres utilitaires de test.
 
 * * *
 
@@ -234,7 +234,7 @@ findRenderedDOMComponentWithClass(
 )
 ```
 
-Fonctionne comme [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass), mais cette méthode s'attend à ne trouver qu'un seul résultat qu'elle renverra. Si elle trouve un nombre d'éléments différent de un, elle lèvera une exception .
+Fonctionne comme [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass), mais cette méthode s'attend à ne trouver qu'un seul résultat, qu'elle renverra. Si elle trouve un nombre d'éléments différent de un, elle lèvera une exception .
 
 * * *
 
@@ -260,7 +260,7 @@ findRenderedDOMComponentWithTag(
 )
 ```
 
-Fonctionne comme [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag), mais cette méthode s'attend à ne trouver qu'un seul résultat qu'elle renverra. Si elle trouve un nombre d'éléments différent de un, elle lèvera une exception.
+Fonctionne comme [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag), mais cette méthode s'attend à ne trouver qu'un seul résultat, qu'elle renverra. Si elle trouve un nombre d'éléments différent de un, elle lèvera une exception.
 
 * * *
 
@@ -286,7 +286,7 @@ findRenderedComponentWithType(
 )
 ```
 
-Fonctionne comme [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype), mais cette méthode s'attend à ne trouver qu'un seul résultat qu'elle renverra. Si elle trouve un nombre d'éléments différent de un, elle lèvera une exception.
+Fonctionne comme [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype), mais cette méthode s'attend à ne trouver qu'un seul résultat, qu'elle renverra. Si elle trouve un nombre d'éléments différent de un, elle lèvera une exception.
 
 ***
 
