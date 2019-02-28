@@ -1,6 +1,6 @@
 ---
 id: shallow-renderer
-title: Rendu superficiel
+title: Moteur de rendu superficiel
 permalink: docs/shallow-renderer.html
 layout: docs
 category: Reference
@@ -13,9 +13,9 @@ import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
 var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 avec npm
 ```
 
-## Vue d'ensemble {#overview}
+## Aperçu {#overview}
 
-Quand on écrit des tests unitaires pour React, le rendu superficiel peut être utile. Le rendu superficiel vous permet de réaliser le rendu d'un composant « à un seul niveau de profondeur » afin de pouvoir vérifier la qualité de ce que renvoie la fonction de rendu, sans se préoccuper des composants enfants, qui ne sont ni instanciés ni rendu. Cela ne nécessite donc pas de DOM.
+Quand on écrit des tests unitaires pour React, le rendu superficiel peut être utile. Le rendu superficiel vous permet de réaliser le rendu d'un composant « à un seul niveau de profondeur » afin de pouvoir vérifier ce que renvoie sa fonction re rendu, sans vous préoccuper des composants enfants, qui ne sont pas sollicités. Ça ne nécessite donc pas de DOM.
 
 Par exemple, si vous avez le composant suivant :
 
@@ -47,22 +47,22 @@ expect(result.props.children).toEqual([
 ]);
 ```
 
-Le rendu superficiel connait cependant quelques limites, notamment l'absence de support des refs.
+Le rendu superficiel a pour le moment quelques limites, notamment l'absence de prise en charge des refs.
 
 > Note:
 >
-> Nous vous conseillons par ailleurs de regarder [l'API de rendu superficiel](http://airbnb.io/enzyme/docs/api/shallow.html) (en anglais) d'Enzyme. Elle propose une meilleure API de haut niveau pour les même fonctionnalités.
+> Nous vous conseillons par ailleurs de regarder [l'API de rendu superficiel](http://airbnb.io/enzyme/docs/api/shallow.html) (en anglais) d'Enzyme. Elle propose une meilleure API de haut niveau pour ce type de fonctionnalité.
 
-## Référence {#reference}
+## Référence de l'API {#reference}
 
 ### `shallowRenderer.render()` {#shallowrendererrender}
 
-Vous pouvez voir le shallowRenderer comme « l'endroit » où se fait le rendu du composant que vous testez et d'où vous pouvez extraire la sortie d'un composant.
+Vous pouvez voir le `shallowRenderer` comme un « endroit » dans lequel faire le rendu du composant que vous testez, et depuis lequel vous pouvez extraire la sortie que ce composant produit.
 
-`shallowRenderer.render()` est comparable à [`ReactDOM.render()`](/docs/react-dom.html#render) sauf qu'il n'a pas besoin du DOM et effectue le rendu à un seul niveau de profondeur. Ça signifie que vous pouvez tester des composants indépendamment de l'implémentation de leurs enfants.
+`shallowRenderer.render()` est similaire à [`ReactDOM.render()`](/docs/react-dom.html#render), à ceci près qu'il n'a pas besoin du DOM et n’effectue le rendu qu’à un seul niveau de profondeur. Ça signifie que vous pouvez tester des composants indépendamment de l'implémentation de leurs enfants.
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
 Après avoir appelé `shallowRenderer.render()`, vous pouvez utiliser `shallowRenderer.getRenderOutput()` pour récupérer le rendu superficiel obtenu.
 
-Vous pouvez alors vérifier la qualité du résultat attendu.
+Vous pouvez alors vérifier ce que vous souhaitez sur le résultat attendu.
