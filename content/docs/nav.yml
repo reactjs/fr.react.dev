@@ -12,7 +12,7 @@
   isOrdered: true
   items:
     - id: hello-world
-      title: Hello World
+      title: Bonjour, monde !
     - id: introducing-jsx
       title: Introduction à JSX
     - id: rendering-elements
@@ -24,13 +24,13 @@
     - id: handling-events
       title: Gérer les événements
     - id: conditional-rendering
-      title: Conditional Rendering
+      title: Affichage conditionnel
     - id: lists-and-keys
       title: Listes et clés
     - id: forms
       title: Formulaires
     - id: lifting-state-up
-      title: Lifting State Up
+      title: Faire remonter l'état
     - id: composition-vs-inheritance
       title: Composition ou héritage ?
     - id: thinking-in-react
@@ -62,7 +62,7 @@
     - id: react-without-es6
       title: React Without ES6
     - id: react-without-jsx
-      title: React Without JSX
+      title: React sans JSX
     - id: reconciliation
       title: Reconciliation
     - id: refs-and-the-dom
@@ -91,17 +91,17 @@
     - id: react-dom-server
       title: ReactDOMServer
     - id: dom-elements
-      title: DOM Elements
+      title: Éléments DOM
     - id: events
       title: SyntheticEvent
     - id: test-utils
-      title: Test Utilities
+      title: Utilitaires de test
     - id: shallow-renderer
-      title: Shallow Renderer
+      title: Moteur de rendu superficiel
     - id: test-renderer
-      title: Test Renderer
+      title: Moteur de rendu de test
     - id: javascript-environment-requirements
-      title: JS Environment Requirements
+      title: Pré-requis pour l'environnement JS
     - id: glossary
       title: Glossaire
 - title: Hooks (Nouveau)
@@ -116,7 +116,7 @@
       - id: hooks-effect
         title: Using the Effect Hook
       - id: hooks-rules
-        title: Rules of Hooks
+        title: Les règles des Hooks
       - id: hooks-custom
         title: Building Your Own Hooks
       - id: hooks-reference
