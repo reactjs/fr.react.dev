@@ -17,7 +17,7 @@ var ReactDOMServer = require('react-dom/server');
 
 ## Aperçu {#overview}
 
-Les méthodes suivantes peuvent être utilisées aussi bien dans des environnements navigateurs et serveurs :
+Les méthodes suivantes peuvent être utilisées aussi bien dans des environnements navigateurs que serveurs :
 
 - [`renderToString()`](#rendertostring)
 - [`renderToStaticMarkup()`](#rendertostaticmarkup)
@@ -37,7 +37,7 @@ Les méthodes suivantes dépendent d’un module (`stream`) **disponible uniquem
 ReactDOMServer.renderToString(element)
 ```
 
-Produit le HTML initial d’un élément React, sous forme d’une chaîne de caractères. Vous pouvez utiliser cette méthode pour générer du HTML coté serveur et le renvoyer en réponse à la requête initiale, afin d’accélérer le chargement des pages et de permettre aux moteurs de recherche d’analyser vos pages dans une optique de référencement naturel *(SEO, NdT)*.
+Produit le HTML initial d’un élément React, sous forme d’une chaîne de caractères. Vous pouvez utiliser cette méthode pour générer du HTML côté serveur et le renvoyer en réponse à la requête initiale, afin d’accélérer le chargement des pages et de permettre aux moteurs de recherche d’analyser vos pages dans une optique de référencement naturel *(SEO, NdT)*.
 
 Si vous appelez [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) sur un nœud dont le balisage a déjà été généré par le serveur, React le conservera et se contentera d’y attacher les gestionnaires d’événements, ce qui vous permettra d’avoir une expérience de chargement initial des plus performantes.
 
@@ -61,7 +61,7 @@ N’utilisez pas cette méthode si vous envisagez d’utiliser React côté clie
 ReactDOMServer.renderToNodeStream(element)
 ```
 
-Produit le HTML initial d’un élément React. Renvoie un [flux en lecture](https://nodejs.org/api/stream.html#stream_readable_streams) (`Readable`) qui génère une chaîne de caractères HTML. La sortie HTML de ce flux est identique à ce que [`ReactDOMServer.renderToString`](#rendertostring) renverrait.  Vous pouvez utiliser cette méthode pour générer du HTML coté serveur et le renvoyer en réponse à la requête initiale, afin d’accélérer le chargement des pages et de permettre aux moteurs de recherche d’analyser vos pages dans une optique de référencement naturel.
+Produit le HTML initial d’un élément React. Renvoie un [flux en lecture](https://nodejs.org/api/stream.html#stream_readable_streams) (`Readable`) qui génère une chaîne de caractères HTML. La sortie HTML de ce flux est identique à ce que [`ReactDOMServer.renderToString`](#rendertostring) renverrait.  Vous pouvez utiliser cette méthode pour générer du HTML côté serveur et le renvoyer en réponse à la requête initiale, afin d’accélérer le chargement des pages et de permettre aux moteurs de recherche d’analyser vos pages dans une optique de référencement naturel.
 
 Si vous appelez [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) sur un nœud dont le balisage a déjà été généré par le serveur, React le conservera et se contentera d’y attacher les gestionnaires d’événements, ce qui vous permettra d’avoir une expérience de chargement initial des plus performantes.
 
