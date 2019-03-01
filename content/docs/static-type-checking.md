@@ -153,7 +153,7 @@ Il existe aussi [une option](https://flow.org/en/docs/config/options/#toc-all-bo
 Vous êtes paré ! Nous vous recommendons d'aller voir les ressources suivantes pour en apprendre davantage sur Flow:
 
 * [Documentation Flow : Les annotations de type](https://flow.org/en/docs/types/)
-* [Documentation Flow : Editeurs](https://flow.org/en/docs/editors/)
+* [Documentation Flow : Editeurs de code](https://flow.org/en/docs/editors/)
 * [Documentation Flow : React](https://flow.org/en/docs/react/)
 * [Le linting avec Flow](https://medium.com/flow-type/linting-in-flow-7709d7a7e969)
 
@@ -287,13 +287,13 @@ Si aucun message ne s'affiche, ça veut dire que tout a bien fonctionné.
 
 
 ### Définitions de types {#type-definitions}
-Afin de pouvoir montrer les erreurs et indications des autres modules, le compilateur a besoin de fichiers de déclaration. Un fichier de déclaration contient toutes les informations sur les types d'une librairie. Ça nous permet d'utiliser des bibliothèques javascript telles que celles que l'on trouve sur npm dans notre projet.
+Afin de pouvoir montrer les erreurs et indications des autres modules, le compilateur a besoin de fichiers de déclaration. Un fichier de déclaration contient toutes les informations sur les types d'une bibliothèque. Ça nous permet d'utiliser des bibliothèques javascript telles que celles que l'on trouve sur npm dans notre projet.
 
-Les deux principales façons d'obtenir les déclarations de types d'une librairie sont les suivantes :
+Les deux principales façons d'obtenir les déclarations de types d'une bibliothèque sont les suivantes :
 
-__Comprise__ - La librairie comprend déjà un fichier de déclaration. Ça nous arrange, il nous suffira d'installer la librairie et nous pourrons l'utiliser sans tarder. Pour vérifier qu'une librairie contient les types, cherchez un fichier `index.d.ts` dans le projet. Certaines bibliothèques l'annoncent dans leur `package.json` sous le champs `typings` ou `types`.
+__Inclue__ - La bibliothèque comprend déjà un fichier de déclaration. Ça nous arrange, il nous suffira d'installer la bibliothèque et nous pourrons l'utiliser sans tarder. Pour vérifier qu'une bibliothèque contient les types, cherchez un fichier `index.d.ts` dans le projet. Certaines bibliothèques l'annoncent dans leur `package.json` sous le champ `typings` ou `types`.
 
-__[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)__ - DefinitelyTyped est un énorme dépôt de déclarations pour les bibliothèques qui n'ont pas de fichier de déclaration. Les déclarations sont faites par la foule/crowd-sourcées et gérées par Microsoft et les contributeurs open source. React par exemple n'a pas de fichier de déclaration. On peut l'obtenir sur DefinitelyTyped. Pour y arrivez, exécutez cette commande dans votre terminal.
+__[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)__ - DefinitelyTyped est un énorme dépôt de déclarations pour les bibliothèques qui n'ont pas de fichier de déclaration. Les déclarations sont faites par la foule et gérées par Microsoft et les contributeurs open source. React par exemple n'a pas de fichier de déclaration. On peut l'obtenir sur DefinitelyTyped. Pour y arriver, exécutez cette commande dans votre terminal.
 
 ```bash
 # yarn
@@ -315,22 +315,22 @@ declare module 'querystring' {
 
 Vous êtes maintenant prêt à écrire du code ! Nous vous recommendons de vérifier les ressources suivantes pour en apprendre davantage sur TypeScript:
 
-* [TypeScript Documentation: Basic Types](https://www.typescriptlang.org/docs/handbook/basic-types.html)
-* [TypeScript Documentation: Migrating from Javascript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
-* [TypeScript Documentation: React and Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
+* [Documentation TypeScript : les types de base](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+* [Documentation TypeScript : migrer à partir de Javascript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
+* [Documentation TypeScript : React et Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
 
 ## Reason {#reason}
 
-[Reason](https://reasonml.github.io/) n'est pas un nouveau langage, c'est une nouvelle syntaxe et boîte d'outils supportées par le langage reconnu [OCaml](https://ocaml.org/). Reason donne à OCaml une syntaxe familiaire faite pour les développeurs JavaScript, et fonctionne avec les outils de workflow existants que nous connaissons déjà tels que NPM/Yarn.
+[Reason](https://reasonml.github.io/) n'est pas un nouveau langage, c'est une nouvelle syntaxe et boîte d'outils supportées par le langage reconnu [OCaml](https://ocaml.org/). Reason donne à OCaml une syntaxe qui semblera familiaire aux développeurs JavaScript, et fonctionne avec les outils de workflow existants que nous connaissons déjà tels que NPM et Yarn.
 
-Reason est développé chez Facebook et est utilisé pour certains de leurs produits tels que Messenger. Il est encore relativement expérimental mais il a des intégrations React dédiées (bindings??)  [dedicated React bindings](https://reasonml.github.io/reason-react/) maintenues par Facebook et une [communauté dynamique](https://reasonml.github.io/docs/en/community.html).
+Reason est développé chez Facebook et est utilisé pour certains de leurs produits tels que Messenger. Il est encore relativement expérimental mais il a des [intégrations React dédiées](https://reasonml.github.io/reason-react/) maintenues par Facebook et une [communauté dynamique](https://reasonml.github.io/docs/en/community.html).
 
 ## Kotlin {#kotlin}
 
-[Kotlin](https://kotlinlang.org/) est un langage au typage statique développé par JetBrains. Ses plateformes cibles sont entre autres JVM, Android, LLVM et [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html). 
+[Kotlin](https://kotlinlang.org/) est un langage au typage statique développé par JetBrains. Ses plateformes cibles sont entre autres JVM, Android, LLVM et [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html).
 
-JetBrains développe et maintient certains outils spécialement pour la communauté React : [React bindings](https://github.com/JetBrains/kotlin-wrappers) ainsi que [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app). Ce dernier est conçu pour vous aider à commencer à construire des applis React avec Kotlin sans configuration de build (?).
+JetBrains développe et maintient certains outils spécialement pour la communauté React : [React bindings](https://github.com/JetBrains/kotlin-wrappers) ainsi que [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app). Ce dernier est conçu pour vous aider à commencer à construire des applis React avec Kotlin sans configuration de build.
 
 ## Autres langages {#other-languages}
 
-Notez qu'il existe d'autres langages au typage statique qui se compilent en JavaScript et sont donc compatibles avec React. Par exemple, [F#/Fable](https://fable.io/) avec [elmish-react](https://elmish.github.io/react). Allez voir leurs site respectifs pour plus d'information et n'hésitez pas à ajouter d'autres langages au typage statique qui fonctionnent avec React à cette page !
+Notez qu'il existe d'autres langages au typage statique qui se compilent en JavaScript et sont donc compatibles avec React. Par exemple, [F#/Fable](https://fable.io/) avec [elmish-react](https://elmish.github.io/react). Allez voir leurs site respectifs pour plus d'information et n'hésitez pas à ajouter d'autres langages au typage statique fonctionnant avec React à cette page !
