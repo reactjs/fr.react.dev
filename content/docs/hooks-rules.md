@@ -8,15 +8,15 @@ prev: hooks-effect.html
 
 Les *Hooks* sont arrivés avec React 16.8. Ils vous permettent de bénéficier d’un état local et d'autres fonctionnalités de React sans avoir à écrire une classe.
 
-Les Hooks sont des fonctions JavaScript, mais vous devez suivre deux règles lorsque vous les utilisez. Nous mettons à votre disposition un [plugin de *linter*](https://www.npmjs.com/package/eslint-plugin-react-hooks) pour vérifier ces règles automatiquement :
+Les Hooks sont des fonctions JavaScript, mais vous devez suivre deux règles lorsque vous les utilisez. Nous mettons à votre disposition un [plugin de *linter*](https://www.npmjs.com/package/eslint-plugin-react-hooks) pour vérifier ces règles automatiquement :
 
 ### Appelez les Hooks uniquement au niveau racine {#only-call-hooks-at-the-top-level}
 
-**N'appelez pas de Hooks à l'intérieur de boucles, de code conditionnel ou de fonctions imbriquées.** Au lieu de ça, utilisez seulement les Hooks au niveau racine de votre fonction React. En suivant cette règle, vous garantissez que les Hooks sont appelés dans le même ordre à chaque fois affichage du composant. C'est ce qui permet à React de garantir le bon état des Hooks entre plusieurs appels à `useState` et `useEffect`. (Si vous êtes curieux·se, nous expliquerons ça en détail [ci-dessous](#explanation).)
+**N'appelez pas de Hooks à l'intérieur de boucles, de code conditionnel ou de fonctions imbriquées.** Au lieu de ça, utilisez seulement les Hooks au niveau racine de votre fonction React. En suivant cette règle, vous garantissez que les Hooks sont appelés dans le même ordre à chaque affichage du composant. C'est ce qui permet à React de garantir le bon état des Hooks entre plusieurs appels à `useState` et `useEffect`. (Si vous êtes curieux·se, nous expliquerons ça en détail [plus bas](#explanation).)
 
 ### Appelez les Hooks uniquement depuis des fonctions React {#only-call-hooks-from-react-functions}
 
-**N'appelez pas les Hooks depuis des fonctions JavaScript classiques.** Vous pouvez en revanche :
+**N'appelez pas les Hooks depuis des fonctions JavaScript classiques.** Vous pouvez en revanche :
 
 * ✅ Appeler les Hooks depuis des fonctions composants React.
 * ✅ Appeler les Hooks depuis des Hooks personnalisés (nous aborderons le sujet [dans la prochaine page](/docs/hooks-custom.html)).
@@ -25,7 +25,7 @@ En suivant cette règle, vous garantissez que toute la logique d’état d’un 
 
 ## Plugin ESLint {#eslint-plugin}
 
-Nous avons publié un plugin ESLint appelé [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) qui assure le respect de ces deux règles. Vous pouvez ajouter ce plugin à votre projet si vous souhaitez l'utiliser :
+Nous avons publié un plugin ESLint appelé [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) qui assure le respect de ces deux règles. Vous pouvez ajouter ce plugin à votre projet si vous souhaitez l'utiliser :
 
 ```bash
 npm install eslint-plugin-react-hooks
@@ -51,7 +51,7 @@ npm install eslint-plugin-react-hooks
 
 ## Explications {#explanation}
 
-Comme nous l'avons [appris plus tôt](/docs/hooks-state.html#tip-using-multiple-state-variables), nous pouvons utiliser plusieurs Hooks *State* ou *Effect* au sein d'un même composant :
+Comme nous l'avons [appris plus tôt](/docs/hooks-state.html#tip-using-multiple-state-variables), nous pouvons utiliser plusieurs Hooks *State* ou *Effect* au sein d'un même composant :
 
 ```js
 function Form() {
@@ -108,16 +108,16 @@ Tant que l'ordre d'appel aux Hooks est le même d’un affichage à l’autre, R
   }
 ```
 
-La condition `name !== ''` est vraie au premier affichage, donc nous exécutons ce Hook. Cependant, lors du prochain affichage l'utilisateur risque de vider le formulaire, ce qui invalidera la condition. À présent que nous sautons ce Hook lors de l’affichage, l'ordre d'appel aux Hooks devient différent :
+La condition `name !== ''` est vraie au premier affichage, donc nous exécutons ce Hook. Cependant, lors du prochain affichage l'utilisateur risque de vider le formulaire, ce qui invalidera la condition. À présent que nous sautons ce Hook lors de l’affichage, l'ordre d'appel aux Hooks devient différent :
 
 ```js
 useState('Mary')           // 1. Lit la variable d'état name (l'argument est ignoré)
-// useEffect(persistForm)  // 🔴 Ce Hook n'a pas été appelé !
-useState('Poppins')        // 🔴 2 (mais était 3). Échoue lors de la lecture de la variable d'état surname
-useEffect(updateTitle)     // 🔴 3 (mais était 4). Échoue lors du remplacement de l'effet
+// useEffect(persistForm)  // 🔴 Ce Hook n'a pas été appelé !
+useState('Poppins')        // 🔴 2. (mais était 3). Échoue à lire la variable d'état surname
+useEffect(updateTitle)     // 🔴 3. (mais était 4). Échoue à remplacer de l'effet
 ```
 
-React ne saurait pas quoi renvoyer lors du second appel au Hook `useState`. React s'attendait à ce que le second appel à un Hook dans ce composant corresponde à l'effet `persistForm`, comme lors de l’affichage précédent, mais ce n'est plus le cas. A partir de là, chaque appel à un Hook ultérieur à celui que nous avons sauté sera aussi décalé de un, provoquant des bugs.
+React ne saurait pas quoi renvoyer lors du second appel au Hook `useState`. React s'attendait à ce que le deuxième appel à un Hook dans ce composant corresponde à l'effet `persistForm`, comme lors de l’affichage précédent, mais ce n'est plus le cas. A partir de là, chaque appel à un Hook ultérieur à celui que nous avons sauté sera aussi décalé de un, provoquant des bugs.
 
 **C'est pourquoi les Hooks doivent être appelés au niveau racine de vos composants.** Si vous voulez exécuter un effet de manière conditionnelle, vous pouvez mettre cette condition *à l'intérieur* de votre Hook :
 
@@ -130,7 +130,7 @@ React ne saurait pas quoi renvoyer lors du second appel au Hook `useState`. Reac
   });
 ```
 
-**Remarquez que vous n’avez pas à vous inquiéter de ça si vous utilisez [la règle de lint fournie](https://www.npmjs.com/package/eslint-plugin-react-hooks).** Mais maintenant, vous savez *pourquoi* les Hooks fonctionnent de cette manière et quels problèmes la règle évite.
+**Remarquez que vous n’avez pas à vous inquiéter de ça si vous utilisez [le plugin de *linter* fourni](https://www.npmjs.com/package/eslint-plugin-react-hooks).** Mais maintenant, vous savez *pourquoi* les Hooks fonctionnent de cette manière et quels problèmes ces règles évitent.
 
 ## Prochaines étapes {#next-steps}
 
