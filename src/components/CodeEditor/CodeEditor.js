@@ -4,12 +4,13 @@
  * @emails react-core
  */
 
+import {LiveEditor, LiveProvider} from 'react-live';
 import React, {Component} from 'react';
+import {colors, media} from 'theme';
+
+import MetaTitle from 'templates/components/MetaTitle';
 import ReactDOM from 'react-dom';
 import Remarkable from 'remarkable';
-import {LiveEditor, LiveProvider} from 'react-live';
-import {colors, media} from 'theme';
-import MetaTitle from 'templates/components/MetaTitle';
 
 const compileES5 = (
   code, // eslint-disable-next-line no-undef
@@ -43,7 +44,7 @@ class CodeEditor extends Component {
   }
 
   render() {
-    const {children, containerNodeID} = this.props;
+    const {containerNodeID} = this.props;
     const {
       compiledES6,
       code,
@@ -56,12 +57,12 @@ class CodeEditor extends Component {
     if (showBabelErrorMessage) {
       errorMessage = (
         <span>
-          Babel could not be loaded.
+          Babel n’a pas pu être chargé
           <br />
           <br />
-          This can be caused by an ad blocker. If you're using one, consider
-          adding reactjs.org to the whitelist so the live code examples will
-          work.
+          Ça peut venir d’un bloqueur de publicités. Si vous en utilisez un,
+          vous voudrez sans doute ajouter fr.reactjs.org à sa liste blanche de
+          sites pour que les exemples interactifs de code fonctionnent.
         </span>
       );
     } else if (error != null) {

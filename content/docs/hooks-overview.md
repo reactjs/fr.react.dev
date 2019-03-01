@@ -16,7 +16,7 @@ Les Hooks sont [rétro-compatibles](/docs/hooks-intro.html#no-breaking-changes).
 
 **↑↑↑ Chaque section se termine par un panneau jaune comme ceui ci.** Ils pointent vers une documentation détaillée.
 
-## 📌 Hook  d'état {#-state-hook}
+## 📌 Hook à état {#state-hook}
 
 Cet exemple affiche un compteur. Quand vous cliquez sur le bouton, la valeur augmente :
 
@@ -68,7 +68,7 @@ React fournit quelques Hooks pré-construit comme `useState`. Vous pouvez aussi 
 >
 >Vous pouvez en apprendre plus sur le Hook d'état sur la page dédiée : [Utiliser le Hook d'état](/docs/hooks-state.html).
 
-## ⚡️ Hook Effect {#️-effect-hook}
+## ⚡️ Hook à Effect {#️effect-hook}
 
 Vous avez surement déjà réalisé une récupération de données, des souscriptions ou des modifications manuelles sur le DOM depuis un composant React. Nous appelons ces opérations effets de bord (ou effets pour faire court) parce qu'elles peuvent affecter d'autres composants et ne peuvent pas se produire pendant l'affichage.
 
@@ -159,7 +159,7 @@ Les Hooks vous permettent d'organiser les effets de bord dans un composant dont 
 >
 >Vous pouvez en apprendre plus sur `useEffect` sur la page dédiée : [Utiliser le Hook Effect](/docs/hooks-effect.html).
 
-## ✌️ Règles des Hooks {#️-rules-of-hooks}
+## ✌️ Règles des Hooks {#️rules-of-hooks}
 
 Les Hooks sont des fonctions JavaScript, mais ils imposent deux règles additionnelles :
 
@@ -172,7 +172,7 @@ Nous fournissons un [linter plugin](https://www.npmjs.com/package/eslint-plugin-
 >
 >Vous pouvez en apprendre plus sur ces règles sur la page dédiée : [Règle des Hooks](/docs/hooks-rules.html).
 
-## 💡 Construire ses propres Hooks {#-building-your-own-hooks}
+## 💡 Construire ses propres Hooks {#building-your-own-hooks}
 
 Parfois, on veut réutiliser la même logique à état entre les composants. Traditionnellement, il existe deux solutions pour ce problème : [composant d'ordre supérieur](/docs/higher-order-components.html) et [props de rendu](/docs/render-props.html). Les Hooks personnalisés vous permettent de traiter ce problèmes, sans ajouter de plus de composants dans l'arborescence.
 
@@ -239,7 +239,7 @@ Vous pouvez écrire des Hooks personnalisé qui gèrent un ensemble de cas d'uti
 >
 >Vous pouvez en apprendre plus sur les Hooks personnalisés sur une page dédiée : [Construire ses propres Hooks](/docs/hooks-custom.html).
 
-## 🔌 Autres Hooks {#-other-hooks}
+## 🔌 Autres Hooks {#other-hooks}
 
 Il y a quelques type de Hooks beaucoup moins utilisé que vous pourriez trouver utiles. Par exemple, [`useContext`](/docs/hooks-reference.html#usecontext) vous permet de souscrire au context de React sans introduire d'imbrication :
 
