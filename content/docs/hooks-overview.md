@@ -14,7 +14,7 @@ Les Hooks sont [rétro-compatibles](/docs/hooks-intro.html#no-breaking-changes).
 >
 >Lisez la page [Motivation](/docs/hooks-intro.html#motivation) pour apprendre pourquoi nous avons ajouté les Hooks à React.
 
-**↑↑↑ Chaque section se termine par un panneau jaune comme ceui ci.** Ils pointent vers une documentation détaillée.
+**↑↑↑ Chaque section se termine par un panneau jaune comme celui ci.** Ils pointent vers une documentation détaillée.
 
 ## 📌 Hook à état {#state-hook}
 
@@ -38,7 +38,7 @@ function Example() {
 }
 ```
 
-Ici, `useState` est un *Hook* (nous verrons ce que ça veut dire dans quelques instant). Il est invoqué à l'intérieur d'un composant fonctionnel afin d'y ajouter un état local. React va préserver cet état durant les différents affichage. `useState` retourne une pair: la valeur de l'état *actuel* et une fonction qui vous permet de le mettre à jour. Vous pouvez appeler cette fonction depuis un gestionaire d'événement où depuis ailleur. C'est similaire à `this.setState` dans une classe, à l'exeption qu'il ne merge ensemble pas l'ancien et le nouvel état. (Nous allons vous montrer un exemple permettant de comparer `useState` et `this.state` dans [Utiliser le Hook d'état](/docs/hooks-state.html).)
+Ici, `useState` est un *Hook* (nous verrons ce que ça veut dire dans quelques instant). Il est invoqué à l'intérieur d'un composant fonctionnel afin d'y ajouter un état local. React va préserver cet état durant les différents affichage. `useState` retourne une pair: la valeur de l'état *actuel* et une fonction qui vous permet de le mettre à jour. Vous pouvez appeler cette fonction depuis un gestionnaire d'événement où depuis ailleur. C'est similaire à `this.setState` dans une classe, à l'exception qu'il ne merge ensemble pas l'ancien et le nouvel état. (Nous allons vous montrer un exemple permettant de comparer `useState` et `this.state` dans [Utiliser le Hook d'état](/docs/hooks-state.html).)
 
 Le seul argument de `useState` est l'état initial. Dans l'exemple précédent, c'est `0` puisque notre compteur débute de zéro. Il faut noter que contrairement à `this.state`, l'état n'est pas nécessairement un objet -- même s'il peut l'être si vous le voulez. L'argument de l'état initial est utilisé seulement pendant le premier affichage.
 
@@ -99,9 +99,9 @@ function Example() {
 }
 ```
 
-Lors vous appelez `useEffect`, vous dites à React de lancer votre fonction d'« effet » après les changements sur le DOM. Les effets sont déclarés dans le composant et ont donc accès aux props et à l'état. Par défaut, React exécute les effets après chaque rendu -- *incluant* le premier affichage. (Nous aborderons pls en détails la comparaison aux cycles de vie des classes dans [Utiliser le Hook d'effet](/docs/hooks-effect.html).)
+Lors vous appelez `useEffect`, vous dites à React de lancer votre fonction d'« effet » après les changements sur le DOM. Les effets sont déclarés dans le composant et ont donc accès aux props et à l'état. Par défaut, React exécute les effets après chaque rendu -- *incluant* le premier affichage. (Nous aborderons plus en détails la comparaison aux cycles de vie des classes dans [Utiliser le Hook d'effet](/docs/hooks-effect.html).)
 
-Les effets peuvent aussi préciser comment les « nettoyer » en retournant une fonction. Par exemple, ce composant utilise un effet pour souscrire au status de connexion d'un ami, et nettoie en annulant la souscription :
+Les effets peuvent aussi préciser comment les « nettoyer » en retournant une fonction. Par exemple, ce composant utilise un effet pour souscrire au statut de connexion d'un ami, et nettoie en annulant la souscription :
 
 ```js{10-16}
 import React, { useState, useEffect } from 'react';
@@ -153,7 +153,7 @@ function FriendStatusWithCounter(props) {
   // ...
 ```
 
-Les Hooks vous permettent d'organiser les effets de bord dans un composant dont différentes fonctionnalités sont reliées (tel que ajouter et supprimer une souscription), plutot que de forcer une séparation basée sur les méthodes du cycle de vie.
+Les Hooks vous permettent d'organiser les effets de bord dans un composant dont différentes fonctionnalités sont reliées (tel que ajouter et supprimer une souscription), plutôt que de forcer une séparation basée sur les méthodes du cycle de vie.
 
 >Explication détaillée
 >
@@ -176,9 +176,9 @@ Nous fournissons un [linter plugin](https://www.npmjs.com/package/eslint-plugin-
 
 Parfois, on veut réutiliser la même logique à état entre les composants. Traditionnellement, il existe deux solutions pour ce problème : [composant d'ordre supérieur](/docs/higher-order-components.html) et [props de rendu](/docs/render-props.html). Les Hooks personnalisés vous permettent de traiter ce problèmes, sans ajouter de plus de composants dans l'arborescence.
 
-Un peu plus tôt sur cette page, nous avons introduit un composant`FriendStatus` qui appelle les Hooks `useState` et `useEffect` pour souscrire à l'état du status  subscribe to a friend's online status. Let's say we also want to reuse this subscription logic in another component.
+Un peu plus tôt sur cette page, nous avons introduit un composant`FriendStatus` qui appelle les Hooks `useState` et `useEffect` pour souscrire à l'état du statut de connection d'un ami. Disons que l'on veut réutiliser cette logique de souscription dans un autre composant.
 
-Tout d'abord, nous allons extraire la logic dans un Hook personnalisé appelé `useFriendStatus` :
+Tout d'abord, nous allons extraire la logique dans un Hook personnalisé appelé `useFriendStatus` :
 
 ```js{3}
 import React, { useState, useEffect } from 'react';
@@ -229,11 +229,11 @@ function FriendListItem(props) {
 }
 ```
 
-L'état des ces composants est complètement indépendent. Les Hooks sont une solution pour réutiliser une *logique d'état*, et pas l'état lui-même. En fait, chaque *appel* à un Hook a un état complètement isolé -- vous pouvez même utiliser deux fois le même Hook personnalisé dans un seul composant.
+L'état des ces composants est complètement indépendant. Les Hooks sont une solution pour réutiliser une *logique d'état*, et pas l'état lui-même. En fait, chaque *appel* à un Hook à un état complètement isolé -- vous pouvez même utiliser deux fois le même Hook personnalisé dans un seul composant.
 
 Les Hooks personnalisés sont plus une convention qu'une fonctionnalité. Si le nom d'une fonction commence par `use` et appelle un autre Hook, nous appelons ça un Hook personnalisé. La convention de nommage `useSomething` permet à notre linter de trouver des bugs dans un code utilisant les Hooks.
 
-Vous pouvez écrire des Hooks personnalisé qui gèrent un ensemble de cas d'utilisation tels que la gestion des formulaires, les animations, la souscription déclaraive, les timers et probablement d'autres auquels nous n'avons pas pensé. Nous sommes ravi de voir les cas d'utilisation des Hooks qui vont être trouvé par la communauté React.
+Vous pouvez écrire des Hooks personnalisé qui gèrent un ensemble de cas d'utilisation tels que la gestion des formulaires, les animations, la souscription déclarative, les timers et probablement d'autres auxquels nous n'avons pas pensé. Nous sommes ravi de voir les cas d'utilisation des Hooks qui vont être trouvé par la communauté React.
 
 >Explication détaillée
 >
@@ -265,7 +265,7 @@ function Todos() {
 
 ## Prochaines étapes {#next-steps}
 
-Phew, ce fut rapide! Si jamais quelque chose n'est pas clair ou que vous voullez en savoir plus, vous pouvez continuer à lire les prochaines pages, en débutant avec la documentation du [Hook d'état](/docs/hooks-state.html).
+Phew, ce fut rapide! Si jamais quelque chose n'est pas clair ou que vous voulez en savoir plus, vous pouvez continuer à lire les prochaines pages, en débutant avec la documentation du [Hook d'état](/docs/hooks-state.html).
 
 Vous pouvez aussi regarder la page de [référence de l'API des Hooks](/docs/hooks-reference.html) et de [FAQ des Hooks](/docs/hooks-faq.html).
 
