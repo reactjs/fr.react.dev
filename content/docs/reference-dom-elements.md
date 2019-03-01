@@ -30,7 +30,7 @@ L'attribut `checked` est accepté par les composants `<input>` de type `checkbox
 
 Utilisez l'attribut `className` pour spécifier une classe CSS. Ça vaut pour tous les éléments DOM et SVG tels que `<div>`, `<a>`, et les autres.
 
-Si vous utilisez React avec les Web Components (ce qui est rare), utilisez l'attribut `class` à la place.
+Si vous utilisez React avec les Web Components (ce qui est rare), utilisez plutôt l'attribut `class`.
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
@@ -48,11 +48,11 @@ function MyComponent() {
 
 ### htmlFor {#htmlfor}
 
-Puisque `for` est un mot réservé en JavaScript, les éléments React utilisent `htmlFor` à la place.
+Puisque `for` est un mot réservé en JavaScript, les éléments React utilisent plutôt `htmlFor`.
 
 ### onChange {#onchange}
 
-L'événement `onChange` se comporte comme on s'y attend : à chaque fois qu'un champ de formulaire change, cet événement est déclenché. Nous utilisons délibérément un comportement différent de celui des navigateurs car le nom `onChange` est un faux-ami et React s'appuie sur cet événement pour traiter les saisies utilisateur en temps réel.
+L'événement `onChange` se comporte comme on s'y attend : à chaque fois qu'un champ de formulaire change, cet événement est déclenché. Nous utilisons délibérément un comportement différent de celui des navigateurs car le nom `onChange` est un faux-ami et React s'appuie sur cet événement pour traiter les saisies utilisateurs en temps réel.
 
 ### selected {#selected}
 
@@ -62,7 +62,7 @@ L'attribut `selected` est accepté par les composants `<option>`. Vous pouvez l'
 
 >Remarque
 >
->Certains examples dans la documentation utilisent `style` par souci de commodité, mais **utiliser l'attribut `style` comme méthode principale pour styler les éléments est généralement déconseillé.** Dans la plupart des cas, vous devriez plutôt utiliser [`className`](#classname) pour référencer des classes définies dans une feuille de style CSS externe. Dans les applications React, on utilise plus fréquemment `style` pour ajouter des styles calculés dynamiquement au moment de l‘affichage. Voir également [FAQ : styles et CSS](/docs/faq-styling.html).
+>Certains exemples dans la documentation utilisent `style` par souci de commodité, mais **utiliser l'attribut `style` comme méthode principale pour styler les éléments est généralement déconseillé.** Dans la plupart des cas, vous devriez plutôt utiliser [`className`](#classname) pour référencer des classes définies dans une feuille de style CSS externe. Dans les applications React, on utilise plus fréquemment `style` pour ajouter des styles calculés dynamiquement au moment de l‘affichage. Voir également [FAQ : styles et CSS](/docs/faq-styling.html).
 
 L'attribut `style` accepte un objet JavaScript avec des propriétés en `camelCase` plutôt qu'une chaîne de caractères CSS. C'est conforme à la propriété JavaScript `style`, plus performant, et évite des failles de sécurité XSS. Par exemple :
 
@@ -73,11 +73,11 @@ const divStyle = {
 };
 
 function HelloWorldComponent() {
-  return <div style={divStyle}>Bonjour, monde !</div>;
+  return <div style={divStyle}>Bonjour, monde !</div>;
 }
 ```
 
-Notez que ces styles ne sont pas automatiquement préfixés. Pour prendre en charge les navigateurs plus anciens vous devez fournir les propriétés de styles correspondantes :
+Notez que ces styles ne sont pas automatiquement préfixés. Pour prendre en charge les navigateurs plus anciens vous devez fournir les propriétés de styles correspondantes :
 
 ```js
 const divStyle = {
@@ -92,17 +92,17 @@ function ComponentWithTransition() {
 
 Les clés de style sont en `camelCase` pour être cohérentes avec les propriétés des nœuds du DOM (ex. `node.style.backgroundImage`). Les préfixes fournisseurs [hormis `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) doivent commencer avec une lettre majuscule. C'est pour ça que `WebkitTransition` a un « W » majuscule.
 
-React ajoute automatiquement le suffixe « px » à certaines propriétés numériques de style. Si vous voulez une autre unité que « px », spécifiez la valeur sous forme de chaîne de caractères avec l'unité désirée. Par exemple :
+React ajoute automatiquement le suffixe « px » à certaines propriétés numériques de style. Si vous voulez une autre unité que « px », spécifiez la valeur sous forme de chaîne de caractères avec l'unité désirée. Par exemple :
 
 ```js
-// Style résultat : '10px'
+// Style résultat : '10px'
 <div style={{ height: 10 }}>
-  Bonjour, monde !
+  Bonjour, monde !
 </div>
 
-// Style résultat : '10%'
+// Style résultat : '10%'
 <div style={{ height: '10%' }}>
-  Bonjour, monde !
+  Bonjour, monde !
 </div>
 ```
 
@@ -126,7 +126,7 @@ L'attribut `value` est accepté par les composants `<input>` et `<textarea>`. Vo
 
 Depuis React 16, tous les attributs standards ou [personnalisés](/blog/2017/09/08/dom-attributes-in-react-16.html) sont pleinement pris en charge.
 
-React a toujours fourni une API de gestion du DOM pensée pour JavaScript. Étant donné que les composants React acceptent autant les props personnalisées que celles liées au DOM, React utilise la convention `camelCase` tout comme les API DOM :
+React a toujours fourni une API de gestion du DOM pensée pour JavaScript. Étant donné que les composants React acceptent autant les props personnalisées que celles liées au DOM, React utilise la convention `camelCase` tout comme les API DOM :
 
 ```js
 <div tabIndex="-1" />      // Tout comme l'API DOM node.tabIndex
