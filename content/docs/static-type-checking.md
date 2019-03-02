@@ -10,11 +10,11 @@ Les systèmes de typage statique tels que [Flow](https://flow.org/) et [TypeScri
 
 ## Flow {#flow}
 
-[Flow](https://flow.org/) est un système de typage statique pour votre code JavaScript. Il est développé à Facebook et est souvent utilisé avec React. Il permet d'annoter les variables, fonctions et composants React avec une syntaxe spéciale de typage, et de déceler les erreurs tôt. Vous pouvez lire [cette introduction à Flow](https://flow.org/en/docs/getting-started/) pour en apprendre les bases.
+[Flow](https://flow.org/) est un système de typage statique pour votre code JavaScript. Il est développé à Facebook et est souvent utilisé avec React. Il permet d'annoter les variables, fonctions et composants React avec une syntaxe spéciale de typage, et de déceler préventivement les erreurs. Vous pouvez lire [cette introduction à Flow](https://flow.org/en/docs/getting-started/) pour en apprendre les bases.
 
 Pour utiliser Flow, vous devrez :
 * Ajouter Flow comme dépendence à votre projet.
-* Vous assurer que la syntaxe Flow soie bien enlevée du code, une fois compilé.
+* Vous assurer que la syntaxe Flow soit bien enlevée du code, une fois compilée.
 * Ajouter les notations de typage et lancer Flow pour les vérifier.
 
 Nous alons vous expliquer ces étapes en détail ci-dessous.
@@ -37,7 +37,7 @@ npm install --save-dev flow-bin
 
 Cette commande installe la dernière version de Flow dans votre projet.
 
-Maintenant, ajoutez `flow` à la section `"scripts"` de votre `package.json` afin de pouvoir l'utiliser dans votre terminal.
+Maintenant, ajoutez `flow` à la section `"scripts"` de votre `package.json` afin de pouvoir l'utiliser dans votre terminal :
 
 ```js{4}
 {
@@ -64,7 +64,7 @@ Si vous utilisez [npm](https://www.npmjs.com/) :
 npm run flow init
 ```
 
-Cette commande va créer un fichier de configuration Flow qu'il va falloir ajouter en commit.
+Cette commande va créer un fichier de configuration Flow qu'il va falloir ajouter avec un commit.
 
 ### Enlever la syntaxe Flow du code compilé {#stripping-flow-syntax-from-the-compiled-code}
 
@@ -96,7 +96,7 @@ Si vous utilisez npm, exécutez :
 npm install --save-dev babel-preset-flow
 ```
 
-Ensuite, ajoutez le preset `flow` à votre [configuration Babel](https://babeljs.io/docs/usage/babelrc/). Par exemple, si vous configurez Babel avec le ficher `.babelrc`, cela pourrait ressembler à ça :
+Ensuite, ajoutez le preset `flow` à votre [configuration Babel](https://babeljs.io/docs/usage/babelrc/). Par exemple, si vous configurez Babel avec le ficher `.babelrc`, cela pourrait ressembler à :
 
 ```js{3}
 {
@@ -159,7 +159,7 @@ Vous êtes paré ! Nous vous recommendons d'aller voir les ressources suivantes 
 
 ## TypeScript {#typescript}
 
-[TypeScript](https://www.typescriptlang.org/) un langage de programmation dévloppé par Microsoft. C'est un sur-ensemble typé de JavaScript, et il inclut son propre compilateur. Étant un langage typé, TypeScript peut trouver les erreurs et bugs lors de la compilation, bien avant que l'application ne soie mise en ligne. Vous trouverez plus d'informations au sujet de l'utilisation de TypeScript avec React [ici](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
+[TypeScript](https://www.typescriptlang.org/) est un langage de programmation développé par Microsoft. C'est un sur-ensemble typé de JavaScript, et il inclut son propre compilateur. Étant un langage typé, TypeScript peut trouver les erreurs et bugs lors de la compilation, bien avant que l'application ne soit mise en ligne. Vous trouverez plus d'informations au sujet de l'utilisation de TypeScript avec React [ici](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
 
 Pour utiliser TypeScript, vous devez :
 * Ajouter la dépendance TypeScript à votre projet
@@ -173,7 +173,7 @@ Voyons cela plus en détail.
 
 Create React App supporte TypeScript clés en main.
 
-Pour créer un **nouveau projet** avec le support TypeScript, exécutez :
+Pour créer un **nouveau projet** avec le support de TypeScript, exécutez :
 
 ```bash
 npx create-react-app my-app --typescript
@@ -181,7 +181,7 @@ npx create-react-app my-app --typescript
 
 Vous pouvez aussi l'ajouter à **un projet Create React App déjà existant**, [comme documenté ici](https://facebook.github.io/create-react-app/docs/adding-typescript).
 
->Note:
+>Remarque :
 >
 >Si vous utilisez Create React App, vous pouvez **passer le reste de cette page**. Elle décrit l'installation manuelle qui ne s'applique pas aux utilisateurs de Create React App.
 
@@ -263,7 +263,7 @@ Génial ! Maintenant, quand on exécute notre script, le compilateur va envoyer 
 De façon générale, vous n'aurez pas besoin d'enregistrer le javascript généré dans votre système de contrôle de version, alors veillez à bien l'ajouer à `.gitignore`.
 
 ### Extensions de fichiers {#file-extensions}
-Avec React, vous écrivez probablement vous composants dans un fichier `.js`. En TypeScript, il existe deux extensions de fichier :
+Avec React, vous écrivez probablement vos composants dans un fichier `.js`. En TypeScript, il existe deux extensions de fichier :
 
 `.ts` est l'extension par défaut, tandis que `.tsx` est une extension spéciale pour les fichiers qui contiennent du `JSX`.
 
@@ -287,13 +287,13 @@ Si aucun message ne s'affiche, ça veut dire que tout a bien fonctionné.
 
 
 ### Définitions de types {#type-definitions}
-Afin de pouvoir montrer les erreurs et indications des autres modules, le compilateur a besoin de fichiers de déclaration. Un fichier de déclaration contient toutes les informations sur les types d'une bibliothèque. Ça nous permet d'utiliser des bibliothèques javascript telles que celles que l'on trouve sur npm dans notre projet.
+Afin de pouvoir montrer les erreurs et indications des autres modules, le compilateur a besoin de fichiers de déclarations. Un fichier de déclarations contient toutes les informations sur les types d'une bibliothèque. Ça nous permet d'utiliser des bibliothèques javascript telles que celles que l'on trouve sur npm dans notre projet.
 
 Les deux principales façons d'obtenir les déclarations de types d'une bibliothèque sont les suivantes :
 
-__Inclue__ - La bibliothèque comprend déjà un fichier de déclaration. Ça nous arrange, il nous suffira d'installer la bibliothèque et nous pourrons l'utiliser sans tarder. Pour vérifier qu'une bibliothèque contient les types, cherchez un fichier `index.d.ts` dans le projet. Certaines bibliothèques l'annoncent dans leur `package.json` sous le champ `typings` ou `types`.
+__Inclue__ - La bibliothèque comprend déjà un fichier de déclarations. Ça nous arrange, il nous suffira d'installer la bibliothèque et nous pourrons l'utiliser sans tarder. Pour vérifier qu'une bibliothèque contient les types, cherchez un fichier `index.d.ts` dans le projet. Certaines bibliothèques l'annoncent dans leur `package.json` sous le champ `typings` ou `types`.
 
-__[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)__ - DefinitelyTyped est un énorme dépôt de déclarations pour les bibliothèques qui n'ont pas de fichier de déclaration. Les déclarations sont faites par la foule et gérées par Microsoft et les contributeurs open source. React par exemple n'a pas de fichier de déclaration. On peut l'obtenir sur DefinitelyTyped. Pour y arriver, exécutez cette commande dans votre terminal.
+__[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)__ - DefinitelyTyped est un énorme dépôt de déclarations pour les bibliothèques qui n'ont pas de fichier de déclarations. Les déclarations sont faites par la tout le mode et gérées par Microsoft et les contributeurs open source. React par exemple n'a pas de fichier de déclarations. On peut l'obtenir sur DefinitelyTyped. Pour y arriver, exécutez cette commande dans votre terminal.
 
 ```bash
 # yarn
@@ -304,7 +304,7 @@ npm i --save-dev @types/react
 ```
 
 __Déclarations locales__
-Parfois, un module que vous souhaitez utiliser ne contient pas de déclarations et n'est pas non plus disponible sur DefinitelyTyped. Dans ce cas, on peut créer un fichier de déclaration local. Créez un fichier `declarations.d.ts` à la base de votre dossier. Une déclaration simple pourrait ressembler à ceci :
+Parfois, un module que vous souhaitez utiliser ne contient pas de déclarations et n'est pas non plus disponible sur DefinitelyTyped. Dans ce cas, on peut créer un fichier de déclarations local. Créez un fichier `declarations.d.ts` à la base de votre dossier. Une déclaration simple pourrait ressembler à ceci :
 
 ```typescript
 declare module 'querystring' {
@@ -316,20 +316,20 @@ declare module 'querystring' {
 Vous êtes maintenant prêt à écrire du code ! Nous vous recommendons de vérifier les ressources suivantes pour en apprendre davantage sur TypeScript:
 
 * [Documentation TypeScript : les types de base](https://www.typescriptlang.org/docs/handbook/basic-types.html)
-* [Documentation TypeScript : migrer à partir de Javascript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
+* [Documentation TypeScript : migrer à partir de JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
 * [Documentation TypeScript : React et Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
 
 ## Reason {#reason}
 
 [Reason](https://reasonml.github.io/) n'est pas un nouveau langage, c'est une nouvelle syntaxe et boîte d'outils supportées par le langage reconnu [OCaml](https://ocaml.org/). Reason donne à OCaml une syntaxe qui semblera familiaire aux développeurs JavaScript, et fonctionne avec les outils de workflow existants que nous connaissons déjà tels que NPM et Yarn.
 
-Reason est développé chez Facebook et est utilisé pour certains de leurs produits tels que Messenger. Il est encore relativement expérimental mais il a des [intégrations React dédiées](https://reasonml.github.io/reason-react/) maintenues par Facebook et une [communauté dynamique](https://reasonml.github.io/docs/en/community.html).
+Reason est développé chez Facebook et est utilisée pour certains de leurs produits tels que Messenger. Elle est encore relativement expérimentale mais elle a des [intégrations React dédiées](https://reasonml.github.io/reason-react/) maintenues par Facebook et une [communauté dynamique](https://reasonml.github.io/docs/en/community.html).
 
 ## Kotlin {#kotlin}
 
-[Kotlin](https://kotlinlang.org/) est un langage au typage statique développé par JetBrains. Ses plateformes cibles sont entre autres JVM, Android, LLVM et [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html).
+[Kotlin](https://kotlinlang.org/) est un langage au typage statique développé par JetBrains. Ses plateformes cibles sont entre autres la JVM, Android, LLVM et [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html).
 
-JetBrains développe et maintient certains outils spécialement pour la communauté React : [React bindings](https://github.com/JetBrains/kotlin-wrappers) ainsi que [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app). Ce dernier est conçu pour vous aider à commencer à construire des applis React avec Kotlin sans configuration de build.
+JetBrains développe et maintient certains outils spécialement pour la communauté React : [React bindings](https://github.com/JetBrains/kotlin-wrappers) ainsi que [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app). Ce dernier est conçu pour vous aider à commencer à construire des applications React avec Kotlin sans configuration de build.
 
 ## Autres langages {#other-languages}
 
