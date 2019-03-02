@@ -1,9 +1,9 @@
 - title: Installation
   items:
     - id: getting-started
-      title: Getting Started
+      title: Bien démarrer
     - id: add-react-to-a-website
-      title: Add React to a Website
+      title: Ajouter React à un site web
     - id: create-a-new-react-app
       title: Créer une nouvelle appli React
     - id: cdn-links
@@ -38,45 +38,45 @@
 - title: Guides avancés
   items:
     - id: accessibility
-      title: Accessibility
+      title: Accessibilité
     - id: code-splitting
-      title: Code-Splitting
+      title: Découpage dynamique de code
     - id: context
-      title: Context
+      title: Contexte
     - id: error-boundaries
-      title: Error Boundaries
+      title: Périmètres d’erreurs
     - id: forwarding-refs
-      title: Forwarding Refs
+      title: Transfert de refs
     - id: fragments
       title: Fragments
     - id: higher-order-components
-      title: Higher-Order Components
+      title: Composants d’ordre supérieur
     - id: integrating-with-other-libraries
-      title: Integrating with Other Libraries
+      title: Intégration avec d’autres bibliothèques
     - id: jsx-in-depth
-      title: JSX In Depth
+      title: JSX dans le détail
     - id: optimizing-performance
-      title: Optimizing Performance
+      title: Optimiser les performances
     - id: portals
-      title: Portals
+      title: Portails
     - id: react-without-es6
-      title: React Without ES6
+      title: React sans ES6
     - id: react-without-jsx
       title: React sans JSX
     - id: reconciliation
-      title: Reconciliation
+      title: Réconciliation
     - id: refs-and-the-dom
-      title: Refs and the DOM
+      title: Les refs et le DOM
     - id: render-props
-      title: Render Props
+      title: Render props
     - id: static-type-checking
-      title: Static Type Checking
+      title: Validation statique de types
     - id: strict-mode
-      title: Strict Mode
+      title: Mode strict
     - id: typechecking-with-proptypes
-      title: Typechecking With PropTypes
+      title: Validation de types avec PropTypes
     - id: uncontrolled-components
-      title: Uncontrolled Components
+      title: Composants non-contrôlés
     - id: web-components
       title: Web Components
 - title: Référence de l'API
@@ -108,46 +108,46 @@
   isOrdered: true
   items:
       - id: hooks-intro
-        title: Introducing Hooks
+        title: Introduction aux Hooks
       - id: hooks-overview
-        title: Hooks at a Glance
+        title: Aperçu des Hooks
       - id: hooks-state
-        title: Using the State Hook
+        title: Utiliser le Hook d’état
       - id: hooks-effect
-        title: Using the Effect Hook
+        title: Utiliser un Hook d’effet
       - id: hooks-rules
         title: Les règles des Hooks
       - id: hooks-custom
-        title: Building Your Own Hooks
+        title: Construire vos propres Hooks
       - id: hooks-reference
-        title: Hooks API Reference
+        title: Référence de l'API des Hooks
       - id: hooks-faq
-        title: Hooks FAQ
+        title: FAQ des Hooks
 - title: Contribuer
   items:
   - id: how-to-contribute
-    title: How to Contribute
+    title: Comment contribuer
   - id: codebase-overview
-    title: Codebase Overview
+    title: Aperçu de la base de code
   - id: implementation-notes
-    title: Implementation Notes
+    title: Notes d’implémentation
   - id: design-principles
-    title: Design Principles
+    title: Principes de conception
 - title: FAQ
   items:
     - id: faq-ajax
       title: AJAX et les API
     - id: faq-build
-      title: Babel, JSX, and Build Steps
+      title: Babel, JSX, et étapes de construction
     - id: faq-functions
-      title: Passing Functions to Components
+      title: Passer des fonctions à des composants
     - id: faq-state
-      title: Component State
+      title: État local de composant
     - id: faq-styling
-      title: Styling and CSS
+      title: Styles et CSS
     - id: faq-structure
-      title: File Structure
+      title: Structure de fichier
     - id: faq-versioning
-      title: Versioning Policy
+      title: Politique de versions
     - id: faq-internals
-      title: Virtual DOM and Internals
+      title: DOM virtuel et autres détails
