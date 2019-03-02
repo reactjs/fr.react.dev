@@ -45,9 +45,9 @@ Notez que nous avons défini à la fois `componentDidMount` et ` componentWillUn
 
 Pour un exemple plus concret de ces concepts, écrivons un container minimal pour le plugin [Chosen](https://harvesthq.github.io/chosen/), qui augmente les inputs `<select>`.
 
->**Note:**
+>**Note :**
 >
->Ce n’est pas parce que c’est possible que c’est la meilleure approche pour les applications React. Nous vous encourageons à utiliser les composants React lorsque vous le pouvez. Les composants React sont plus faciles à réutiliser dans les applications React et permettent souvent de mieux contrôler leur comportement et leur apparence.
+>Ça n’est pas parce que c’est possible qu'il s'agît de la meilleure approche pour les applications React. Nous vous encourageons à utiliser les composants React lorsque vous le pouvez. Les composants React sont plus faciles à réutiliser dans les applications React et permettent souvent de mieux contrôler leur comportement et leur apparence.
 
 Tout d'abord, regardons ce que Chosen fait au DOM.
 
@@ -85,7 +85,7 @@ class Chosen extends React.Component {
 }
 ```
 
-Remarquez comment nous avons encapsulé `<select>` dans un `<div>` supplémentaire. Cela est nécessaire car Chosen ajoutera un autre élément DOM juste après le noeud `<select>` que nous lui avons transmis. Cependant, en ce qui concerne React, `<div>` n'a toujours qu'un seul enfant. C'est de cette manière que nous nous assurons que les mises à jour React n'entrerons pas en conflit avec le nœud DOM supplémentaire ajouté par Chosen. Si vous modifiez le DOM en dehors du flux React, il est important que vous vous assuriez que React n'ait aucune raison de toucher à ces nœud du DOM.
+Remarquez comment nous avons encapsulé `<select>` dans un `<div>` supplémentaire. Cela est nécessaire car Chosen ajoutera un autre élément DOM juste après le noeud `<select>` que nous lui avons transmis. Cependant, en ce qui concerne React, `<div>` n'a toujours qu'un seul enfant. C'est de cette manière que nous nous assurons que les mises à jour React n'entrerons pas en conflit avec le nœud DOM supplémentaire ajouté par Chosen. Si vous modifiez le DOM en dehors du flux React, il est important que vous vous assuriez que React n'ait aucune raison de toucher à ces nœuds du DOM.
 
 Ensuite, nous allons implémenter les méthodes de cycle de vie. Nous devons initialiser Chosen avec la référence du nœud `<select>` dans `componentDidMount`, et la décomposer dans `componentWillUnmount`:
 
@@ -227,7 +227,7 @@ ReactDOM.render(
 );
 ```
 
-À partir de là, vous pouvez intégrer plus de logique dans le composant et commencer à adopter des pratiques React plus courantes. Par exemple, dans les composants, il est préférable de ne pas compter sur les ID car un même composant peut être rendu plusieurs fois. À la place, nous utiliserons le [système d’événements React](/docs/handling-events.html) et enregistrerons le gestionnaire de clics directement sur l’élément React `<bouton>`:
+À partir de là, vous pouvez intégrer plus de logique dans le composant et commencer à adopter des pratiques React plus courantes. Par exemple, dans les composants, il est préférable de ne pas compter sur les ID, car un même composant peut être rendu plusieurs fois. À la place, nous utiliserons le [système d’événements React](/docs/handling-events.html) et enregistrerons le gestionnaire de clics directement sur l’élément React `<bouton>`:
 
 ```js{2,6,9}
 function Button(props) {
@@ -249,7 +249,7 @@ ReactDOM.render(
 
 [**Essayez dans CodePen**](http://codepen.io/gaearon/pen/RVKbvW?editors=1010)
 
-Vous pouvez avoir autant de composants isolés que vous le souhaitez et utiliser `ReactDOM.render()` pour les restituer dans différents conteneurs DOM. Au fur et à mesure que vous convertissez une partie de votre application en React, vous pourrez les combiner en composants plus volumineux et déplacer une partie de appels à la hiérarchie `ReactDOM.render()`.
+Vous pouvez avoir autant de composants isolés que vous le souhaitez et utiliser `ReactDOM.render()` pour les restituer dans différents conteneurs DOM. Au fur et à mesure que vous convertissez une partie de votre application en React, vous pourrez les combiner en composants plus volumineux et déplacer une partie des appels à la hiérarchie `ReactDOM.render()`.
 
 ### Encapsuler React dans une vue Backbone {#embedding-react-in-a-backbone-view}
 
@@ -285,7 +285,7 @@ Lorsqu'un composant est supprimé *depuis* une arborescence React, le nettoyage 
 
 Bien qu’il soit généralement recommandé d’utiliser un flux de données unidirectionnel tel que [l'état de React](/docs/lifting-state-up.html), [Flux](http://facebook.github.io/flux/) ou [Redux](http://redux.js.org/), les composants de React peuvent utiliser une couche de modèle provenant d’autres frameworks et bibliothèques.
 
-### Uitliser les modèles Backbone dans les composants React {#using-backbone-models-in-react-components}
+### Utiliser les modèles Backbone dans les composants React {#using-backbone-models-in-react-components}
 
 Le moyen le plus simple de consommer des modèles et des collections [Backbone](http://backbonejs.org/) à partir d'un composant React consiste à écouter les divers événements de modification et à forcer manuellement une mise à jour.
 
@@ -351,15 +351,15 @@ class List extends React.Component {
 
 ### Extraction de données à partir des modèles Backbone {#extracting-data-from-backbone-models}
 
-L'approche ci-dessus nécessite que vos composants React soient conscients des modèles et des collections Backbone. Si vous envisagez par la suite de migrer vers une autre solution de gestion de données, vous voudrez peut-être concentrer les connaissances sur Backbone dans le moins de parties possible du code.
+L'approche ci-dessus nécessite que vos composants React soient conscients des modèles et des collections Backbone. Si vous envisagez par la suite de migrer vers une autre solution de gestion de données, vous voudrez peut-être concentrer les connaissances sur Backbone dans le moins de parties possibles du code.
 
 Une solution à ce problème consiste à extraire les attributs du modèle sous forme de données simples à chaque modification, et à conserver cette logique dans un seul endroit. Ce qui suit est [un composant d'ordre supérieur](/docs/higher-order-components.html) qui extrait tous les attributs d'un modèle Backbone en état, en passant les données au composant encapsulé.
 
 De cette façon, seul le composant d'ordre supérieur doit connaître les composants internes du modèle Backbone, et la plupart des composants de l'application peuvent rester agnostiques de Backbone.
 
-Dans l'exemple ci-dessous, nous allons copier les attributs du modèle pour former l'état initial. Nous nous abonnons à l'événement `change` (et nous nous en désabonnons lors du démontage), et lorsque cela se produit, nous mettons à jour l'état avec les attributs actuels du modèle. Enfin, nous nous assurons que si la propriété `modèle` elle-même change, nous n’oublions pas de nous désabonner de l’ancien modèle et de nous abonner au nouveau.
+Dans l'exemple, ci-dessous, nous allons copier les attributs du modèle pour former l'état initial. Nous nous abonnons à l'événement `change` (et nous nous en désabonnons lors du démontage), et lorsque cela se produit, nous mettons à jour l'état avec les attributs actuels du modèle. Enfin, nous nous assurons que si la propriété `modèle` elle-même change, nous n’oublions pas de nous désabonner de l’ancien modèle et de nous abonner au nouveau.
 
-Notez que cet exemple n'est pas exhaustif en ce qui concerne l'utilisation de Backbone, mais il devrait vous donner une idée de la manière générique de l'aborder:
+Notez que cet exemple n'est pas exhaustif en ce qui concerne l'utilisation de Backbone, mais il devrait vous donner une idée de la manière générique de l'aborder :
 
 ```js{1,5,10,14,16,17,22,26,32}
 function connectToBackboneModel(WrappedComponent) {
@@ -399,7 +399,7 @@ function connectToBackboneModel(WrappedComponent) {
 }
 ```
 
-Pour montrer comment l'utiliser, connectons un composant `NameInput` React à un modèle Backbone et mettons à jour son attribut `firstName` chaque fois que l'entrée change:
+Pour montrer comment l'utiliser, connectons un composant `NameInput` React à un modèle Backbone et mettons à jour son attribut `firstName` chaque fois que l'entrée change :
 
 ```js{4,6,11,15,19-21}
 function NameInput(props) {
