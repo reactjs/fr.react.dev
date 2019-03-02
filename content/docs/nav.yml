@@ -70,7 +70,7 @@
     - id: render-props
       title: Render Props
     - id: static-type-checking
-      title: Static Type Checking
+      title: La validation de types statique
     - id: strict-mode
       title: Strict Mode
     - id: typechecking-with-proptypes

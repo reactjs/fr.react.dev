@@ -80,17 +80,17 @@ Si vous avez utilisé [Create React App](https://github.com/facebookincubator/cr
 
 >Note:
 >
->Ces instructions ne sont pas dédiées aux utilisateurs de Create React App. Bien que Create React App utilise Babel sous le capot, il est déjà configuré pour comprendre Flow. Ne suivez cette étape que si vous n'utilisez *pas* Create React App.
+>Ces instructions ne sont pas dédiées aux utilisateurs de Create React App. Bien que Create React App utilise Babel en interne, il est déjà configuré pour comprendre Flow. Ne suivez cette étape que si vous n'utilisez *pas* Create React App.
 
 Si vous avez configuré Babel manuellement pour votre projet, il vous faudra un preset spécial pour Flow.
 
-Si vous utilisez Yarn, exécutez :
+Si vous utilisez [Yarn](https://yarnpkg.com/), exécutez :
 
 ```bash
 yarn add --dev babel-preset-flow
 ```
 
-Si vous utilisez npm, exécutez :
+Si vous utilisez [npm](https://www.npmjs.com/), exécutez :
 
 ```bash
 npm install --save-dev babel-preset-flow
@@ -121,11 +121,13 @@ Si vous n'utilisez ni Create React App, ni Babel, vous pouvez utiliser [flow-rem
 
 Si vous avez bien suivi les instructions ci-dessus, vous devriez être prêt·e à exécuter Flow pour la première fois.
 
+Si vous utilisez [Yarn](https://yarnpkg.com/), exécutez :
+
 ```bash
 yarn flow
 ```
 
-Si vous utilisez npm, exécutez :
+Si vous utilisez [npm](https://www.npmjs.com/), exécutez :
 
 ```bash
 npm run flow
@@ -171,7 +173,7 @@ Voyons cela plus en détail.
 
 ### Utiliser TypeScript avec Create React App {#using-typescript-with-create-react-app}
 
-Create React App supporte TypeScript clés en main.
+Create React App supporte TypeScript nativement.
 
 Pour créer un **nouveau projet** avec le support de TypeScript, exécutez :
 
@@ -271,13 +273,13 @@ Avec React, vous écrivez probablement vos composants dans un fichier `.js`. En 
 
 Si vous avez bien suivi les instructions ci-dessus, vous devriez pouvoir exécuter TypeScript pour la première fois.
 
-Si vous utilisez Yarn, exécutez :
+Si vous utilisez [Yarn](https://yarnpkg.com/), exécutez :
 
 ```bash
 yarn build
 ```
 
-Si vous utilisez npm, exécutez :
+Si vous utilisez [npm](https://www.npmjs.com/), exécutez :
 
 ```bash
 npm run build
@@ -316,7 +318,7 @@ declare module 'querystring' {
 Vous êtes maintenant prêt à écrire du code ! Nous vous recommendons de vérifier les ressources suivantes pour en apprendre davantage sur TypeScript:
 
 * [Documentation TypeScript : les types de base](https://www.typescriptlang.org/docs/handbook/basic-types.html)
-* [Documentation TypeScript : migrer à partir de JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
+* [Documentation TypeScript : migrer depuis JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
 * [Documentation TypeScript : React et Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
 
 ## Reason {#reason}
