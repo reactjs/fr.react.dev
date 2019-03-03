@@ -57,7 +57,7 @@ Il y a deux façons de suivre ce tutoriel : vous pouvez soit écrire le code da
 
 C’est la façon la plus rapide de démarrer !
 
-Tout d’abord, ouvrez ce **[code de départ](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** dans un nouvel onlet.  L’onglet devrait alors afficher un plateau de jeu de morpion vide, et du code React.  Nous modifierons celui-ci au fil de ce tutoriel.
+Tout d’abord, ouvrez ce **[code de départ](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** dans un nouvel onglet.  L’onglet devrait alors afficher un plateau de jeu de morpion vide, et du code React.  Nous modifierons celui-ci au fil de ce tutoriel.
 
 Vous pouvez maintenant sauter la seconde option de mise en place, et aller directement à la section [Aperçu](#overview) pour faire un premier survol de React.
 
@@ -166,7 +166,7 @@ return React.createElement('div', {className: 'shopping-list'},
 
 [Voir la version compilée complète.](babel://tutorial-expanded-version)
 
-Si vous êtes curieux·se, `createElement()` est décrite en détail dans la [référence de l’API](/docs/react-api.html#createelement), mais nous ne l’utiliserons pas dans ce tutoriel.  On préfèrera utiliser plutôt JSX.
+Si vous êtes curieux·se, `createElement()` est décrite en détail dans la [référence de l’API](/docs/react-api.html#createelement), mais nous ne l’utiliserons pas dans ce tutoriel.  On préférera utiliser plutôt JSX.
 
 JSX conserve toute la puissance de JavaScript.  Vous pouvez mettre *n’importe quelle* expression JavaScript entre accolades dans du JSX.  Chaque élément React est un objet JavaScript que vous pouvez stocker dans une variable ou passer de main en main dans votre programme.
 
@@ -176,7 +176,7 @@ Le composant `ShoppingList` ci-dessus n’exploite que des composants prédéfin
 
 Si vous comptez suivre le tutoriel **dans votre navigateur**, ouvrez ce code dans un nouvel onglet : **[code de démarrage](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**.  Si vous avez choisi de travailler **localement**, ouvrez plutôt `src/index.js` dans votre dossier projet (vous avez déjà manipulé ce fichier pendant la [mise en place](#setup-option-2-local-development-environment)).
 
-Ce code de démarrage constitue la base de ce que nous allons construire.  Nous avons fourni de la mise en forme CSS afin que vous puissiez vous concentrer sur l’apprentissage de React et la programmation du jeu de morpion.
+Ce code de démarrage constitue la base de ce que nous allons construire.  Nous avons fourni la mise en forme CSS afin que vous puissiez vous concentrer sur l’apprentissage de React et la programmation du jeu de morpion.
 
 En examinant le code, vous remarquerez que nous avons trois composants React :
 
@@ -246,7 +246,7 @@ Désormais, si nous cliquons sur un `Square`, nous devrions obtenir une alerte d
 
 >Remarque
 >
->Pour économiser de la frappe et éviter des [aspects déroutants de `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), nous utiliserons désormais la [syntaxe des fonctions fléchées]([FIXME](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fléchées)) pour les gestionnaires d’événements :
+>Pour économiser de la frappe et éviter des [aspects déroutants de `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), nous utiliserons désormais la [syntaxe des fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fléchées) pour les gestionnaires d’événements :
 >
 >```javascript{4}
 >class Square extends React.Component {
