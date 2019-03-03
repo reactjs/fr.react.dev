@@ -8,9 +8,9 @@ permalink: warnings/dont-call-proptypes.html
 >
 > `React.PropTypes` a été déplacé dans un paquet différent depuis React v15.5. Merci d'utiliser [la bibliothèque `prop-types` à la place](https://www.npmjs.com/package/prop-types).
 >
->Nous fournissons [un scripte codemod](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) pour automatiser la conversion.
+>Nous fournissons [un script codemod](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) pour automatiser la conversion.
 
-Dans une future version majeure de React, le code implémentant les fonctions de validation PropType sera supprimé en production. Une fois que cela se produit, tout code appelant ces fonctions manuellement (qui n'est pas supprimé en production) génèrera une erreur.
+Dans une future version majeure de React, le code implémentant les fonctions de validation PropType sera supprimé en production. Une fois que cela se produit, tout code appelant ces fonctions manuellement (qui n'est pas supprimé en production) générera une erreur.
 
 ### Déclarer des PropTypes est toujours correct {#declaring-proptypes-is-still-fine}
 
@@ -22,11 +22,11 @@ Button.propTypes = {
 };
 ```
 
-Rien ne channge ici.
+Rien ne change ici.
 
 ### N'appelez pas PropTypes directement {#dont-call-proptypes-directly}
 
-L'utilisation de PropTypes autrement que par l'annotation de composants React avec eux n'est plus soutenu :
+L'utilisation de PropTypes autrement que par l'annotation de composants React n'est plus soutenu :
 
 ```javascript
 var apiShape = PropTypes.shape({
@@ -55,7 +55,7 @@ Button.propTypes = {
 }
 ```
 
-Dans ce cas, `ThirdPartyPropTypes.deprecated` est un container appelant` PropTypes.bool`. Ce modèle en soi est correct, mais déclenche un faux positif car React pense que vous appelez directement PropTypes. La section suivante explique comment résoudre ce problème pour une bibliothèque implémentant quelque chose similaire à `ThirdPartyPropTypes`. Si ce n'est pas une bibliothèque que vous avez écrite, vous pouvez créer un problème à ce sujet.
+Dans ce cas, `ThirdPartyPropTypes.deprecated` est un container appelant `PropTypes.bool`. Ce modèle en soi est correct, mais déclenche un faux positif, car React pense que vous appelez directement PropTypes. La section suivante explique comment résoudre ce problème pour une bibliothèque implémentant quelque chose similaire à `ThirdPartyPropTypes`. Si ce n'est pas une bibliothèque que vous avez écrite, vous pouvez créer un problème à ce sujet.
 
 ### Correction du faux positif dans les PropTypes tiers {#fixing-the-false-positive-in-third-party-proptypes}
 
@@ -83,7 +83,7 @@ Afin de corriger le faux positif, assurez-vous de transmettre **tous** les argum
 
 ```javascript
 export default function deprecated(propType, explanation) {
-  return function validate(props, propName, componentName, ...rest) { // Note ...rest here
+  return function validate(props, propName, componentName, ...rest) { // Notez ...rest ici
     if (props[propName] != null) {
       const message = `"${propName}" property of "${componentName}" has been deprecated.\n${explanation}`;
       if (!warned[message]) {
@@ -92,7 +92,7 @@ export default function deprecated(propType, explanation) {
       }
     }
 
-    return propType(props, propName, componentName, ...rest); // and here
+    return propType(props, propName, componentName, ...rest); // et ici
   };
 }
 ```
