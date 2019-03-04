@@ -952,7 +952,7 @@ Mettons maintenant à jour la méthode `render` du composant `Game` pour qu’el
   }
 ```
 
-Dans la mesure où c’est désormais le composant `Game` qui affiche l’état du jeu, nous pouvons retirer le code correspondant de la méthode `render` du `Board`.  Après ce *refactoring*, cette méthode devrait ressembler à ça :
+Dans la mesure où c’est désormais le composant `Game` qui affiche l’état du jeu, nous pouvons retirer le code correspondant de la méthode `render` du `Board`.  Après cette refactorisation, la méthode devrait ressembler à ça :
 
 ```js{1-4}
   render() {
@@ -1170,9 +1170,9 @@ Ensuite, définissons la méthode `jumpTo` dans `Game` pour qu’elle mette à j
 
 Nous allons maintenant apporter quelques modifications à la méthode `handleClick` de `Game`, qui est déclenchée quand on clique sur une case.
 
-L’état `stepNumber` que nous avons ajouté reflète le tour actuellement affiché.  Après qu’un nouveau tour est joué, nous devons mettre à jour `stepNumber` en ajoutant `stepNumber: history.length` au sein de l’argument de `this.setState`.  Ainsi, on est sûrs de ne pas rester bloqués sur le tour affiché après qu’on a choisi une case.
+L’état `stepNumber` que nous avons ajouté reflète le tour actuellement affiché.  Après qu’un nouveau tour est joué, nous devons mettre à jour `stepNumber` en ajoutant `stepNumber: history.length` au sein de l’argument de `this.setState`.  Ainsi, on est sûrs de ne pas rester bloqués sur le tour affiché après avoir choisi une case.
 
-Nous devrons aussi remplacer la lecture de `this.state.history` par `this.state.history.slice(0, this.state.stepNumber + 1)`.  Ainsi, nous sommes certains que si nous « revenons dans le passé » puis jouons un nouveau tour à partir de ce point, nous retirerons de l’historique toute la partie « future » que ce nouveau coup invalidait.
+Nous devrons aussi remplacer la lecture de `this.state.history` par `this.state.history.slice(0, this.state.stepNumber + 1)`.  Ainsi, nous sommes certains que si nous « revenons dans le passé » puis jouons un nouveau tour à partir de ce point, nous retirerons de l’historique toute la partie « future » que ce nouveau coup invaliderait.
 
 ```javascript{2,13}
   handleClick(i) {
