@@ -6,41 +6,41 @@ redirect_from:
   - "docs/webcomponents.html"
 ---
 
-React and [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) are built to solve different problems.  Web Components provide strong encapsulation for reusable components, while React provides a declarative library that keeps the DOM in sync with your data. The two goals are complementary. As a developer, you are free to use React in your Web Components, or to use Web Components in React, or both.
+React et [les Web Components](https://developer.mozilla.org/fr/docs/Web/Web_Components) sont conçus pour résoudre des problèmes différents. Les Web Components offrent une encapsulation forte pour des composants réutilisables, tandis que React fournit une bibliothèque déclarative qui permet au DOM de rester synchronisé avec vos données. Les deux objectifs sont complémentaires. En tant que développeur·se, vous être libre d'utiliser React dans vos Web Components, ou bien d'utiliser des Web Components dans React, ou encore les deux à la fois.
 
-Most people who use React don't use Web Components, but you may want to, especially if you are using third-party UI components that are written using Web Components.
+La plupart des utilisateurs de React n'utilisent pas les Web Components, mais vous voudrez peut-être le faire, en particulier si vous utilisez des composants tiers d'interface utilisateur (UI) écrits à l'aide de Web Components.
 
-## Using Web Components in React {#using-web-components-in-react}
+## Utiliser des Web Components dans React {#using-web-components-in-react}
 
 ```javascript
 class HelloMessage extends React.Component {
   render() {
-    return <div>Hello <x-search>{this.props.name}</x-search>!</div>;
+    return <div>Bonjour <x-search>{this.props.name}</x-search> !</div>;
   }
 }
 ```
 
-> Note:
+> Remarque :
 >
-> Web Components often expose an imperative API. For instance, a `video` Web Component might expose `play()` and `pause()` functions. To access the imperative APIs of a Web Component, you will need to use a ref to interact with the DOM node directly. If you are using third-party Web Components, the best solution is to write a React component that behaves as a wrapper for your Web Component.
+> Les Web Components exposent souvent une API impérative. Par exemple, un Web Component `video` peut exposer les fonctions `play()` et `pause()`. Pour accéder à l'API impérative d'un Web Component, vous devez utiliser une référence pour interagir directement avec le nœud du DOM. Si vous utilisez des Web Components tiers, la meilleure solution consiste à écrire un composant React qui se comporte comme un enrobage pour votre Web Component.
 >
-> Events emitted by a Web Component may not properly propagate through a React render tree.
-> You will need to manually attach event handlers to handle these events within your React components.
+> Les événements émis par un Web Component peuvent ne pas se propager correctement à travers un arbre de composants de React.
+> Vous devrez attacher manuellement les gestionnaires d'événements afin de gérer ces événements au sein de vos composants React.
 
-One common confusion is that Web Components use "class" instead of "className".
+Une source habituelle de confusion réside dans l’utilisation par les Web Components de `class` au lieu de `className`.
 
 ```javascript
 function BrickFlipbox() {
   return (
     <brick-flipbox class="demo">
-      <div>front</div>
-      <div>back</div>
+      <div>Face</div>
+      <div>Arrière</div>
     </brick-flipbox>
   );
 }
 ```
 
-## Using React in your Web Components {#using-react-in-your-web-components}
+## Utiliser React dans vos Web Components {#using-react-in-your-web-components}
 
 ```javascript
 class XSearch extends HTMLElement {
@@ -56,7 +56,7 @@ class XSearch extends HTMLElement {
 customElements.define('x-search', XSearch);
 ```
 
->Note:
+> Remarque :
 >
->This code **will not** work if you transform classes with Babel. See [this issue](https://github.com/w3c/webcomponents/issues/587) for the discussion.
->Include the [custom-elements-es5-adapter](https://github.com/webcomponents/webcomponentsjs#custom-elements-es5-adapterjs) before you load your web components to fix this issue.
+> Ce code **ne fonctionnera pas** si vous transformez vos classes avec Babel. Consultez la discussion à ce sujet sur [ce ticket](https://github.com/w3c/webcomponents/issues/587).
+> Intégrez l'adaptateur [custom-elements-es5-adapter](https://github.com/webcomponents/webcomponentsjs#custom-elements-es5-adapterjs) préalablement au chargement de vos Web Components afin de résoudre ce problème.
