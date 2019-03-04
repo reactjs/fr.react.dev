@@ -1,68 +1,68 @@
 ---
 id: shallow-renderer
-title: Shallow Renderer
+title: Moteur de rendu superficiel
 permalink: docs/shallow-renderer.html
 layout: docs
 category: Reference
 ---
 
-**Importing**
+**Importation**
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
-var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 with npm
+var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 avec npm
 ```
 
-## Overview {#overview}
+## Aperçu {#overview}
 
-When writing unit tests for React, shallow rendering can be helpful. Shallow rendering lets you render a component "one level deep" and assert facts about what its render method returns, without worrying about the behavior of child components, which are not instantiated or rendered. This does not require a DOM.
+Quand on écrit des tests unitaires pour React, le rendu superficiel peut être utile. Le rendu superficiel vous permet de réaliser le rendu d'un composant « à un seul niveau de profondeur » afin de pouvoir vérifier ce que renvoie sa fonction de rendu, sans vous préoccuper des composants enfants, qui ne sont pas sollicités. Ça ne nécessite donc pas de DOM.
 
-For example, if you have the following component:
+Par exemple, si vous avez le composant suivant :
 
 ```javascript
 function MyComponent() {
   return (
     <div>
-      <span className="heading">Title</span>
+      <span className="heading">Titre</span>
       <Subcomponent foo="bar" />
     </div>
   );
 }
 ```
 
-Then you can assert:
+Vous pouvez alors faire les vérifications suivantes :
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-// in your test:
+// dans votre test :
 const renderer = new ShallowRenderer();
 renderer.render(<MyComponent />);
 const result = renderer.getRenderOutput();
 
 expect(result.type).toBe('div');
 expect(result.props.children).toEqual([
-  <span className="heading">Title</span>,
+  <span className="heading">Titre</span>,
   <Subcomponent foo="bar" />
 ]);
 ```
 
-Shallow testing currently has some limitations, namely not supporting refs.
+Le rendu superficiel a pour le moment quelques limites, notamment l'absence de prise en charge des refs.
 
 > Note:
 >
-> We also recommend checking out Enzyme's [Shallow Rendering API](https://airbnb.io/enzyme/docs/api/shallow.html). It provides a nicer higher-level API over the same functionality.
+> Nous vous conseillons par ailleurs de regarder [l'API de rendu superficiel](http://airbnb.io/enzyme/docs/api/shallow.html) (en anglais) d'Enzyme. Elle propose une meilleure API de haut niveau pour ce type de fonctionnalité.
 
-## Reference {#reference}
+## Référence de l'API {#reference}
 
 ### `shallowRenderer.render()` {#shallowrendererrender}
 
-You can think of the shallowRenderer as a "place" to render the component you're testing, and from which you can extract the component's output.
+Vous pouvez voir le `shallowRenderer` comme un « endroit » dans lequel faire le rendu du composant que vous testez, et depuis lequel vous pouvez extraire la sortie que ce composant produit.
 
-`shallowRenderer.render()` is similar to [`ReactDOM.render()`](/docs/react-dom.html#render) but it doesn't require DOM and only renders a single level deep. This means you can test components isolated from how their children are implemented.
+`shallowRenderer.render()` est similaire à [`ReactDOM.render()`](/docs/react-dom.html#render), à ceci près qu'elle n'a pas besoin du DOM et n’effectue le rendu qu’à un seul niveau de profondeur. Ça signifie que vous pouvez tester des composants indépendamment de l'implémentation de leurs enfants.
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
-After `shallowRenderer.render()` has been called, you can use `shallowRenderer.getRenderOutput()` to get the shallowly rendered output.
+Après avoir appelé `shallowRenderer.render()`, vous pouvez utiliser `shallowRenderer.getRenderOutput()` pour récupérer le rendu superficiel obtenu.
 
-You can then begin to assert facts about the output.
+Vous pouvez alors vérifier ce que vous souhaitez sur le résultat attendu.
