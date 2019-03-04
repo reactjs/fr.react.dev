@@ -575,7 +575,7 @@ Le résultat final est le même, mais en refusant de muter (ou d’altérer les 
 
 #### Des fonctionnalités complexes deviennent simples {#complex-features-become-simple}
 
-L’immutabilité facilite considérablement l’implémentation de fonctionnalités complexes.  Plus tard dans ce tutoriel, nous implémenterons une fonctions de « voyage dans le temps », qui nous permet de consulter l’historique de la partie de morpion et de « revenir » à des tours précédents de notre choix.  Cette fonctionnalité n’est pas spécifique aux jeux—la capacité à annuler et refaire certaines actions est un besoin récurrent dans les applications.  Éviter les mutations directes nous permet de conserver intactes les versions précédentes de l’historique, pour les réutiliser par la suite.
+L’immutabilité facilite considérablement l’implémentation de fonctionnalités complexes.  Plus tard dans ce tutoriel, nous implémenterons une fonction de « voyage dans le temps », qui nous permet de consulter l’historique de la partie de morpion et de « revenir » à des tours précédents de notre choix.  Cette fonctionnalité n’est pas spécifique aux jeux—la capacité à annuler et refaire certaines actions est un besoin récurrent dans les applications.  Éviter les mutations directes nous permet de conserver intactes les versions précédentes de l’historique, pour les réutiliser par la suite.
 
 #### Détecter les modifications {#detecting-changes}
 
