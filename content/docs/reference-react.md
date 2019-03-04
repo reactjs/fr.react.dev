@@ -24,9 +24,9 @@ Les composants React vous permettent de découper une interface utilisateur *(UI
  - [`React.Component`](#reactcomponent)
  - [`React.PureComponent`](#reactpurecomponent)
 
-Si vous n'utilisez pas les classes ES6, vous pouvez utiliser le module `create-react-class` à la place. Lisez [Utiliser React sans ES6](/docs/react-without-es6.html) pour plus de détails.
+Si vous n'utilisez pas les classes ES6, vous pouvez utiliser le module `create-react-class` à la place. Lisez [React sans ES6](/docs/react-without-es6.html) pour plus de détails.
 
-Un composant React peut aussi être défini via une fonction que l'on pourra choisir d’enrober :
+Un composant React peut aussi être défini via une fonction que l'on pourra choisir d’enrober avec `React.memo` :
 
 - [`React.memo`](#reactmemo)
 
@@ -37,7 +37,7 @@ Nous vous recommandons d'[utiliser JSX](/docs/introducing-jsx.html) pour défini
 - [`createElement()`](#createelement)
 - [`createFactory()`](#createfactory)
 
-Lisez [Utiliser React sans JSX](/docs/react-without-jsx.html) pour plus de détails.
+Lisez [React sans JSX](/docs/react-without-jsx.html) pour plus de détails.
 
 ### Transformer des éléments {#transforming-elements}
 
