@@ -36,8 +36,7 @@ function FriendStatus(props) {
 }
 ```
 
-Disons maintenant que notre application chat posséde aussi une liste de contact et que nous souhaitons afficher les noms des utilisateurs en ligne en vert.
-Nous pouvons copier et coller une logique smilaire à celle ci-dessus dans notre composant `FriendListItem` mais ça ne serait pas idéal.
+Disons maintenant que notre application chat posséde aussi une liste de contact et que nous souhaitons afficher les noms des utilisateurs en ligne en vert. Nous pouvons copier et coller une logique smilaire à celle ci-dessus dans notre composant `FriendListItem` mais ça ne serait pas idéal.
 
 ```js{4-15}
 import React, { useState, useEffect } from 'react';
@@ -64,7 +63,7 @@ function FriendListItem(props) {
 }
 ```
 
-Nous aimerions plutôt partager cette logique entre `FriendStatus` et `FriendListItem`
+Nous aimerions plutôt partager cette logique entre `FriendStatus` et `FriendListItem`.
 
 Traditionnellement en React, nous avions deux manières populaires de partager une logique d'état entre des composants : les [render props](/docs/render-props.html) et les [composants d'ordre supérieur](/docs/higher-order-components.html). Nous allons voir comment les Hooks peuvent résoudre la majeure partie de ces problèmes sans vous obliger à ajouter plus de composants dans l'arbre.
 
@@ -95,11 +94,11 @@ function useFriendStatus(friendID) {
 }
 ```
 
-There's nothing new inside of it -- the logic is copied from the components above. Just like in a component, make sure to only call other Hooks unconditionally at the top level of your custom Hook.
+Il n'y a rien de nouveau à l'intérieur -- la logique provient des composants au dessus. De la même manière que dans un composant, assurez-vous d'appeler les autres Hooks sans conditions au niveau racine de votre Hook personnalisé.
 
-Unlike a React component, a custom Hook doesn't need to have a specific signature. We can decide what it takes as arguments, and what, if anything, it should return. In other words, it's just like a normal function. Its name should always start with `use` so that you can tell at a glance that the [rules of Hooks](/docs/hooks-rules.html) apply to it.
+Contrairement à un composant React, un Hook personnalisé n'a pas besoin d'une signature particulière. Nous pouvons décider s'il a besoin d'accepter des arguments et ce qu'il doit renvoyer. En d'autres termes, c'est une simple fonction. Son nom doit toujours commencer par `use` pour qu'au premier coup d'oeil vous sachiez que les [règles des Hooks](/docs/hooks-rules.html) s'appliquent.
 
-The purpose of our `useFriendStatus` Hook is to subscribe us to a friend's status. This is why it takes `friendID` as an argument, and returns whether this friend is online:
+L'objectif de notre Hook `useFriendStatus` est de nous inscrire au statut d'un ami. C'est pourquoi il accepte `friendID` en argument et il nous renvoie si notre ami est en ligne :
 
 ```js
 function useFriendStatus(friendID) {
@@ -111,22 +110,22 @@ function useFriendStatus(friendID) {
 }
 ```
 
-Now let's see how we can use our custom Hook.
+Voyons voir comment nous pouvons utiliser notre Hook personnalisé.
 
-## Using a Custom Hook {#using-a-custom-hook}
+## Utiliser un Hook personnalisé {#using-a-custom-hook}
 
-In the beginning, our stated goal was to remove the duplicated logic from the `FriendStatus` and `FriendListItem` components. Both of them want to know whether a friend is online.
+Au commencement, notre but était de supprime la logique dupliquée entre les composants `FriendStatus` et `FriendListItem`. Les deux veulent savoir si un ami est en ligne.
 
-Now that we've extracted this logic to a `useFriendStatus` hook, we can *just use it:*
+Maintenant que nous avons extrait cette logique dans un hook `useFriendStatus`, nous pouvons *simplement l'utiliser :*
 
 ```js{2}
 function FriendStatus(props) {
   const isOnline = useFriendStatus(props.friend.id);
 
   if (isOnline === null) {
-    return 'Loading...';
+    return 'Chargement...';
   }
-  return isOnline ? 'Online' : 'Offline';
+  return isOnline ? 'Hors-ligne' : 'En ligne';
 }
 ```
 
@@ -142,19 +141,19 @@ function FriendListItem(props) {
 }
 ```
 
-**Is this code equivalent to the original examples?** Yes, it works in exactly the same way. If you look closely, you'll notice we didn't make any changes to the behavior. All we did was to extract some common code between two functions into a separate function. **Custom Hooks are a convention that naturally follows from the design of Hooks, rather than a React feature.**
+**Ce code est-il équivalent aux exemples originaux ?** Oui, il fonctionne exactement de la même manière. Si vous regardez de plus près, vous remarquerez que nous n'avons réalisé aucun changement de comportement. Tout ce que nous avons fait est de déplacer du code commun à deux fonction dans une fonction séparée. **Les Hooks personnalisés sont une convention qui découle naturellement du principe des Hooks, plus qu'une fonctionnalité React.**
 
-**Do I have to name my custom Hooks starting with “`use`”?** Please do. This convention is very important. Without it, we wouldn't be able to automatically check for violations of [rules of Hooks](/docs/hooks-rules.html) because we couldn't tell if a certain function contains calls to Hooks inside of it.
+**Dois-je nommer mes Hooks personnalisés en commençant par "`use`" ?** Oui, s'il vous plaît. Cette convention est très importante. Sans elle, nous ne seriont pas capable de vérifier automatiquement les violations des [règles des Hooks](/docs/hooks-rules.html) car nous ne pourrions dire si une fonction contient des appels aux Hooks.
 
-**Do two components using the same Hook share state?** No. Custom Hooks are a mechanism to reuse *stateful logic* (such as setting up a subscription and remembering the current value), but every time you use a custom Hook, all state and effects inside of it are fully isolated.
+**Est-ce que deux composants utilisant le même Hook partage le même état?** Non. Les Hooks personnalisés sont un mécanisme de réutiliser d'une *logique d'état* (comme la mise en place d'une souscription et la mémorisation d'une valeur courante), mais chaque fois que l'on utilise un Hook personnalisé, tout état ou effet à l'intérieur est complétement isolé.
 
-**How does a custom Hook get isolated state?** Each *call* to a Hook gets isolated state. Because we call `useFriendStatus` directly, from React's point of view our component just calls `useState` and `useEffect`. And as we [learned](/docs/hooks-state.html#tip-using-multiple-state-variables) [earlier](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns), we can call `useState` and `useEffect` many times in one component, and they will be completely independent.
+**Comment l'état d'un Hook personnalisé est-il isolé?** Chaque *appel* à un Hook se voit attribuer un état isolé. Parce que nous appelons `useFriendStatus` directement, d'un point de vue React, notre composant appelle simplement `useState` et `useEffect`. Et comme nous l'avons [appris](/docs/hooks-state.html#tip-using-multiple-state-variables) [précédemment](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns), nous pouvons appeler `useState` et `useEffect` plusieurs fois dans un composant et il seront complétement indépendant.
 
-### Tip: Pass Information Between Hooks {#tip-pass-information-between-hooks}
+### Astuce: Passer de l'Information Entre les Hooks {#tip-pass-information-between-hooks}
 
-Since Hooks are functions, we can pass information between them.
+Comme les Hooks sont des fonctions, nous pouvons passer de l'information entre elles.
 
-To illustrate this, we'll use another component from our hypothetical chat example. This is a chat message recipient picker that displays whether the currently selected friend is online:
+Pour illustrer cela, nous allons utiliser un autre composant de notre hypothétique exemple de chat. Ceci est une liste de destinataire qui affiche si l'ami sélectionné est en ligne ou non :
 
 ```js{8-9,13}
 const friendList = [
@@ -185,43 +184,43 @@ function ChatRecipientPicker() {
 }
 ```
 
-We keep the currently chosen friend ID in the `recipientID` state variable, and update it if the user chooses a different friend in the `<select>` picker.
+Nous gardons l'ID de l'ami choisi dans la variable d'état `recipientID`, et nous la mettons à jour si l'utilisateur choisi un ami différent dans le `<select>` de la liste.
 
-Because the `useState` Hook call gives us the latest value of the `recipientID` state variable, we can pass it to our custom `useFriendStatus` Hook as an argument:
+Parce que l'appel au Hook `useState` nous renvoie la dernière valeur de la variable d'état `recipientID`, nous pouvons la passer en argument à notre Hook personnalisés `useFriendStatus` :
 
 ```js
   const [recipientID, setRecipientID] = useState(1);
   const isRecipientOnline = useFriendStatus(recipientID);
 ```
 
-This lets us know whether the *currently selected* friend is online. If we pick a different friend and update the `recipientID` state variable, our `useFriendStatus` Hook will unsubscribe from the previously selected friend, and subscribe to the status of the newly selected one.
+Cela nous permet de savoir si l'ami *actuellement sélectionné* est en ligne ou non. Si nous choisissons un ami différent et mettons à jour la variable d'état `recipientID`, notre Hook `useFriendStatus` va se désinscrire de l'ami précédemment sélectionné et s'inscrire au statut du nouveau sélectionné.
 
 ## `useYourImagination()` {#useyourimagination}
 
-Custom Hooks offer the flexibility of sharing logic that wasn't possible in React components before. You can write custom Hooks that cover a wide range of use cases like form handling, animation, declarative subscriptions, timers, and probably many more we haven't considered. What's more, you can build Hooks that are just as easy to use as React's built-in features.
+Les Hooks personnalisés vous offre la souplesse de partage de la logique qui n'état pas possible avant avec les composants React. Vous pouvez écrire des Hooks personnalisés qui couvrent un large panel de cas d'utilisation comme la gestion des formulaires, des animations, des inscriptions déclaratives, des minuteurs et bien plus. De plus, vous pouvez construire des Hooks qui sont aussi simple à utiliser que des fonctionnalités intégrées à React.
 
-Try to resist adding abstraction too early. Now that function components can do more, it's likely that the average function component in your codebase will become longer. This is normal -- don't feel like you *have to* immediately split it into Hooks. But we also encourage you to start spotting cases where a custom Hook could hide complex logic behind a simple interface, or help untangle a messy component.
+Essayez de résister d'abstraire trop tôt. Maintenant que nos fonctions composants peuvent faire plus, il est probable que la moyenne de fonction composant dans votre base de code grossise. C'est normal -- ne vous sentez pas *obligé* de les séparer en Hooks. Mais nous vous encourageons à commencer à chercher des cas où un Hook personnalisé pourrait caché une logique complexe derrière une simple interface, ou aider à démêler un composant compliqué.
 
-For example, maybe you have a complex component that contains a lot of local state that is managed in an ad-hoc way. `useState` doesn't make centralizing the update logic any easier so might you prefer to write it as a [Redux](https://redux.js.org/) reducer:
+Par exemple, peut-être que vous avez un composant compliqué qui contient beaucoup d'état local géré d'une manière ad-hoc. `useState` ne permet pas de simplifier la centralisation d'une logique de mise à jour. Dans ce cas vous pourriez préférer l'écriture d'un reducer [Redux](https://redux.js.org/) :
 
 ```js
 function todosReducer(state, action) {
   switch (action.type) {
-    case 'add':
+    case 'ajouter':
       return [...state, {
         text: action.text,
         completed: false
       }];
-    // ... other actions ...
+    // ... autres actions ...
     default:
       return state;
   }
 }
 ```
 
-Reducers are very convenient to test in isolation, and scale to express complex update logic. You can further break them apart into smaller reducers if necessary. However, you might also enjoy the benefits of using React local state, or might not want to install another library.
+Les reducers sont très pratiques pour tester en isolation et s'adapte à l'expression de logique de mise à jour complexe. Plus tard, si besoin vous pouvez les séparer dans des reducers plus petit. Cependant, vous pourriez aussi bénéficier de l'utilisation de l'état local de React, ou vous pourriez ne pas vouloir installer une autre bibliothèque.
 
-So what if we could write a `useReducer` Hook that lets us manage the *local* state of our component with a reducer? A simplified version of it might look like this:
+Et si nous pouvions écrire un Hook `useReducer` qui nous permettrait de gérer l'état *local*  de notre composant avec un reducer ? Une version simplifiée pourrait ressembler à ceci :
 
 ```js
 function useReducer(reducer, initialState) {
@@ -236,18 +235,18 @@ function useReducer(reducer, initialState) {
 }
 ```
 
-Now we could use it in our component, and let the reducer drive its state management:
+Maintenant que nous pouvons l'utiliser dans un composant et que le reducer commande sa gestion d'état :
 
 ```js{2}
 function Todos() {
   const [todos, dispatch] = useReducer(todosReducer, []);
 
   function handleAddClick(text) {
-    dispatch({ type: 'add', text });
+    dispatch({ type: 'ajouter', text });
   }
 
   // ...
 }
 ```
 
-The need to manage local state with a reducer in a complex component is common enough that we've built the `useReducer` Hook right into React. You'll find it together with other built-in Hooks in the [Hooks API reference](/docs/hooks-reference.html).
+Le besion de gestion d'un état local avec un reducer dans un composant complexe est assez commun, donc nous avons directement intégré le Hook `useReducer` dans React. Vous le trouverez avec d'autres Hooks intégrés dans la [référence de l'API des Hooks](/docs/hooks-reference.html).
