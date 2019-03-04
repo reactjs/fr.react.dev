@@ -1,6 +1,6 @@
 ---
 id: hooks-custom
-title: Building Your Own Hooks
+title: Construire vos propres Hooks
 permalink: docs/hooks-custom.html
 next: hooks-reference.html
 prev: hooks-rules.html
@@ -8,9 +8,9 @@ prev: hooks-rules.html
 
 *Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
 
-Building your own Hooks lets you extract component logic into reusable functions.
+Construire vos propres Hooks vous permet d'extraire la logique d'un composant sous forme de fonctions réutilisables.
 
-When we were learning about [using the Effect Hook](/docs/hooks-effect.html#example-using-hooks-1), we saw this component from a chat application that displays a message indicating whether a friend is online or offline:
+Lorsque nous apprenions à utiliser [les effets](/docs/hooks-effect.html#example-using-hooks-1), nous avons vu ce composant afficher un message dans l'application chat indiquant si un ami est en ligne ou hors-ligne.
 
 ```js{4-15}
 import React, { useState, useEffect } from 'react';
@@ -30,13 +30,14 @@ function FriendStatus(props) {
   });
 
   if (isOnline === null) {
-    return 'Loading...';
+    return 'Chargement...';
   }
-  return isOnline ? 'Online' : 'Offline';
+  return isOnline ? 'En ligne' : 'Hors-ligne';
 }
 ```
 
-Now let's say that our chat application also has a contact list, and we want to render names of online users with a green color. We could copy and paste similar logic above into our `FriendListItem` component but it wouldn't be ideal:
+Disons maintenant que notre application chat posséde aussi une liste de contact et que nous souhaitons afficher les noms des utilisateurs en ligne en vert.
+Nous pouvons copier et coller une logique smilaire à celle ci-dessus dans notre composant `FriendListItem` mais ça ne serait pas idéal.
 
 ```js{4-15}
 import React, { useState, useEffect } from 'react';
@@ -63,15 +64,15 @@ function FriendListItem(props) {
 }
 ```
 
-Instead, we'd like to share this logic between `FriendStatus` and `FriendListItem`.
+Nous aimerions plutôt partager cette logique entre `FriendStatus` et `FriendListItem`
 
-Traditionally in React, we've had two popular ways to share stateful logic between components: [render props](/docs/render-props.html) and [higher-order components](/docs/higher-order-components.html). We will now look at how Hooks solve many of the same problems without forcing you to add more components to the tree.
+Traditionnellement en React, nous avions deux manières populaires de partager une logique d'état entre des composants : les [render props](/docs/render-props.html) et les [composants d'ordre supérieur](/docs/higher-order-components.html). Nous allons voir comment les Hooks peuvent résoudre la majeure partie de ces problèmes sans vous obliger à ajouter plus de composants dans l'arbre.
 
-## Extracting a Custom Hook {#extracting-a-custom-hook}
+## Extraire un Hook personnalisé {#extracting-a-custom-hook}
 
-When we want to share logic between two JavaScript functions, we extract it to a third function. Both components and Hooks are functions, so this works for them too!
+Lorsque nous souhaitons partager de la logique entre deux fonctions JavaScript, nous la déplaçons dans une troisième fonction. Les composants et les Hooks sont des fonctions, ça fonctionne donc aussi pour elles !
 
-**A custom Hook is a JavaScript function whose name starts with "`use`" and that may call other Hooks.** For example, `useFriendStatus` below is our first custom Hook:
+**Un Hook personnalisé est une fonction JavaScript dont le nom commence par "`use`" et qui peut appeler d'autres Hooks.** Par exemple, `useFriendStatus` ci-dessous est notre premier Hook personnalisé :
 
 ```js{3}
 import React, { useState, useEffect } from 'react';
