@@ -36,7 +36,7 @@ var apiShape = PropTypes.shape({
   statusCode: PropTypes.number.isRequired
 }).isRequired;
 
-// N'est plus soutenu !
+// N'est plus accepté !
 var error = apiShape(json, 'response');
 ```
 
