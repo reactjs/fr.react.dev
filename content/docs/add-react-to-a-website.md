@@ -47,7 +47,7 @@ L'attribut `id` de votre `<div>`, qui est unique, va vous permettre de manipuler
 
 ### Étape 2 : ajouter les balises de script {#step-2-add-the-script-tags}
 
-Ensuite, ajouter trois balises `<script>` à votre page HTML juste avant la fermeture de la balise `</body>` :
+Ensuite, ajoutez trois balises `<script>` à votre page HTML, juste avant la fermeture de la balise `</body>` :
 
 ```html{5,6,9}
   <!-- ... autres contenus HTML ... -->
