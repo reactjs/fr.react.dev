@@ -81,7 +81,7 @@ export default function deprecated(propType, explanation) {
 }
 ```
 
-Afin de corriger le faux positif, assurez-vous de transmettre **tous** les arguments au PropType encapsulé. Chose facile à faire avec la notation ES6 `... rest`:
+Afin de corriger le faux positif, assurez-vous de transmettre **tous** les arguments au PropType enrobé. C’est facile à faire avec la notation ES6 `...rest` :
 
 ```javascript
 export default function deprecated(propType, explanation) {
