@@ -17,7 +17,7 @@ La majorité des sites web ne sont pas, et n'ont pas besoin d'être, des applica
 ---
 
 - [Ajouter React en une minute](#add-react-in-one-minute)
-- [Optionnel : Essayer React avec JSX](#optional-try-react-with-jsx) (aucun paquet nécessaire!)
+- [Optionnel : Essayer React avec JSX](#optional-try-react-with-jsx) (aucun _bundler_ nécessaire !)
 
 ## Ajouter React en une minute {#add-react-in-one-minute}
 
