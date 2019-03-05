@@ -14,7 +14,7 @@ N’appelez pas les PropTypes
 
 Dans une future version majeure de React, le code implémentant les fonctions de validation PropType sera supprimé en production. Une fois que cela se produit, tout code appelant ces fonctions manuellement (qui n'est pas supprimé en production) générera une erreur.
 
-### Déclarer des PropTypes est toujours correct {#declaring-proptypes-is-still-fine}
+### Déclarer des PropTypes reste une bonne idée {#declaring-proptypes-is-still-fine}
 
 L'utilisation normale de PropTypes est toujours prise en charge :
 
