@@ -10,7 +10,7 @@ next: create-a-new-react-app.html
 
 Utiliser React en fonction de vos besoins
 
-Depuis sa création, React s'adapte en fonction de vos besoins, ainsi vous pouvez l'utiliser autant que vous le souhaitez, ou simplement ajouter un peu d'interactivité à une page existante. Les composants React sont une bonne solution pour faire ça.
+React a été conçu dès le départ pour une adoption progressive, et **vous pouvez utiliser React _a minima_ ou autant que nécessaire.** Peut-être souhaitez-vous simplement ajouter un peu d'interactivité à une page existante. Les composants React sont une bonne solution pour ça.
 
 La majorité des sites web ne sont pas, et n'ont pas besoin d'être, des applications web monopage (en anglais Single Page Application ou plus simplement SPA, NdT). Sans outils ou configurations supplémentaires, mais avec simplement quelques lignes de code, vous pouvez essayer React dans une petite partie de votre site web. Vous pourrez par la suite ajouter des composants supplémentaires ou garder React dans quelques éléments dynamiques.
 
