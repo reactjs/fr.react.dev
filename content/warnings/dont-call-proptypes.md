@@ -4,7 +4,9 @@ layout: single
 permalink: warnings/dont-call-proptypes.html
 ---
 
-> Note :
+N’appelez pas les PropTypes
+
+> Remarque
 >
 > `React.PropTypes` a été déplacé dans un paquet différent depuis React v15.5. Merci d'utiliser [la bibliothèque `prop-types` à la place](https://www.npmjs.com/package/prop-types).
 >
