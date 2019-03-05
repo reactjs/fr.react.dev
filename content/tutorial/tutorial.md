@@ -31,8 +31,6 @@ Le tutoriel est découpé en plusieurs sections :
 
 Il n’est pas nécessaire de compléter toutes les sections d’un coup pour tirer le meilleur parti de ce tutoriel.  Essayez d’aller aussi loin que vous le pouvez—même si ce n’est qu’une ou deux sections.
 
-Vous pouvez tout à fait copier-coller le code au fil du tutoriel, mais nous vous conseillons de le taper vous-même.  Cela vous aidera à développer une mémoire musculaire et une meilleure compréhension.
-
 ### Que construisons-nous ? {#what-are-we-building}
 
 Dans ce tutoriel, nous allons voir comment construire un jeu de morpion interactif avec React.
@@ -190,6 +188,8 @@ Le composant `Square` affiche un unique `<button>` et le `Board` affiche 9 cases
 
 Histoire de tester la température de l’eau, essayons de passer des données de notre composant `Board` à notre composant `Square`.
 
+Vous pouvez tout à fait copier-coller le code au fil du tutoriel, mais nous vous conseillons de le taper vous-même.  Cela vous aidera à développer une mémoire musculaire et une meilleure compréhension.
+
 Dans la méthode `renderSquare` de `Board`, modifiez le code pour passer une prop appelée `value` au `Square` :
 
 ```js{3}
@@ -242,7 +242,7 @@ class Square extends React.Component {
 }
 ```
 
-Désormais, si nous cliquons sur un `Square`, nous devrions obtenir une alerte dans notre navigateur.
+Désormais, si vous cliquez sur un `Square`, vous devriez obtenir une alerte dans votre navigateur.
 
 >Remarque
 >
@@ -260,7 +260,7 @@ Désormais, si nous cliquons sur un `Square`, nous devrions obtenir une alerte d
 >}
 >```
 >
->Remarquez que dans `onClick={() => alert('click')}`, nous passons *une fonction* à la prop `onClick`.  Elle ne se déclenche que suite à un clic.  Une erreur courante consiste à oublier le `() =>` de départ, pour écrire seulement `onClick={alert('click')}` : l’alerte se déclencherait alors immédiatement, à chaque affichage.
+>Remarquez que dans `onClick={() => alert('click')}`, nous passons *une fonction* à la prop `onClick`.  React ne l’appellera que suite à un clic.  Une erreur courante consiste à oublier le `() =>` de départ, pour écrire seulement `onClick={alert('click')}` : l’alerte se déclencherait alors immédiatement, à chaque affichage.
 
 Pour l’étape suivante, nous voulons que le composant `Square` « se souvienne » qu'on lui a cliqué dessus, et se remplisse alors avec la marque « X ».  Afin qu’ils puissent « se souvenir » de choses, les composants utilisent **l’état local**.
 
@@ -294,7 +294,7 @@ class Square extends React.Component {
 Nous pouvons maintenant modifier la méthode `render` de `Square` pour afficher la valeur de l’état courant lorsqu’on clique dessus :
 
 * Remplacez `this.props.value` par `this.state.value` dans la balise `<button>`.
-* Remplacez le gestionnaire d’événements `() => alert()` par `() => this.setState({value: 'X'})`.
+* Remplacez le gestionnaire d’événements `onClick={...}` par `onClick={() => this.setState({value: 'X'})}`.
 * Mettez les props `className` et `onClick` sur des lignes distinctes pour une meilleure lisibilité.
 
 Une fois ces changements effectués, la balise `<button>` renvoyée par la méthode `render` de `Square` devrait ressembler à ceci :
@@ -356,7 +356,9 @@ On pourrait penser que `Board` n’a qu’à demander à chaque `Square` quel es
 
 **Pour récupérer les données d’enfants multiples, ou pour permettre à deux composants enfants de communiquer entre eux, il vous faut plutôt déclarer leur état partagé dans le composant parent.  Ce composant parent peut alors leur repasser cet état au travers des props ; ainsi, les composants enfants sont synchronisés entre eux et avec le composant parent.**
 
-Il est courant de faire remonter l’état vers le composant parent lorsqu’on refactorise des composants React—profitons de cette opportunité pour essayer.  Nous allons ajouter un constructeur au `Board` et définir son état initial à raison d’un tableau de 9 `null`s, qui correspondent aux 9 cases :
+Il est courant de faire remonter l’état vers le composant parent lorsqu’on refactorise des composants React—profitons de cette opportunité pour essayer.
+
+Ajoutez un constructeur au `Board` et définissez son état initial à raison d’un tableau de 9 `null`s, qui correspondent aux 9 cases :
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -370,32 +372,6 @@ class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
   }
-
-  render() {
-    const status = 'Prochain joueur : X';
-
-    return (
-      <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
-    );
-  }
-}
 ```
 
 Lorsque nous remplirons le plateau par la suite, il ressemblera à ceci :
@@ -432,7 +408,7 @@ Chaque `Square` reçoit désormais une prop `value` qui vaudra `'X'`, `'O'`, ou 
 
 Ensuite, il nous faut changer la façon de réagir aux clics sur un `Square`.  C’est désormais le composant `Board` qui maintient l’information de remplissage des cases.  Nous devons donc trouver un moyen pour que `Square` mette à jour l’état local de `Board`.  Dans la mesure où l’état local est considéré privé, réservé au composant qui le définit, nous ne pouvons pas mettre cet état à jour directement depuis `Square`.
 
-Pour préserver la confidentialité de l’état local de `Board`, nous allons passer une fonction de `Board` au `Square`.  Celle-ci sera appelée par `Square` en réponse aux clics.  Modifions la méthode `renderSquare` de `Board` en conséquence :
+Au lieu de ça, nous allons passer une fonction de `Board` au `Square`, qui sera appelée par `Square` en réponse aux clics.  Modifions la méthode `renderSquare` de `Board` en conséquence :
 
 ```javascript{5}
   renderSquare(i) {
@@ -478,11 +454,11 @@ Quand on clique sur un `Square`, la fonction `onClick` fournie par le `Board` es
 2. Quand on cliquera sur le bouton, React appellera le gestionnaire d’événements `onClick` défini dans la méthode `render()` de `Square`.
 3. Ce gestionnaire d’événements appelle `this.props.onClick()`.  La prop `onClick` de `Square` a été spécifiée par le `Board`.
 4. Puisque le `Board` a passé `onClick={() => this.handleClick(i)}` à `Square`, ce dernier appelle en fait `this.handleClick(i)` (dans le contexte de `Board`) lors du clic.
-5. Nous n’avons pas encore défini la méthode `handleClick()`, du coup notre code plante.
+5. Nous n’avons pas encore défini la méthode `handleClick()`, du coup notre code plante. Si vous cliquez sur une case à ce stade, vous devriez voir un écran rouge d’erreur qui dit quelque chose comme *“this.handleClick is not a function”*.
 
 >Remarque
 >
->L’attribut `onClick` de l’élément DOM `<button>` a un sens particulier pour React, car il s’agit ici d’un composant « natif ».  Pour les composants personnalisés tels que `Square`, vous avez toute latitude dans le nommage des props.  On aurait pu nommer autrement la prop `onClick` de `Square` ou la méthode `handleClick` de `Board`.  Cependant, en React, une convention répandue consiste à utiliser des noms `on[Event]` pour les props qui représentent des événements, et `handle[Event]` pour les méthodes qui gèrent ces événements.
+>L’attribut `onClick` de l’élément DOM `<button>` a un sens particulier pour React, car il s’agit ici d’un composant « natif ».  Pour les composants personnalisés tels que `Square`, vous avez toute latitude dans le nommage des props.  On aurait pu nommer autrement la prop `onClick` de `Square` ou la méthode `handleClick` de `Board`, le code marcherait toujours.  En React, une convention répandue consiste à utiliser des noms `on[Event]` pour les props qui représentent des événements, et `handle[Event]` pour les méthodes qui gèrent ces événements.
 
 Lorsque nous cliquons sur un `Square`, nous devrions obtenir une erreur parce que nous n’avons pas encore défini `handleClick`.  Nous allons donc l’ajouter dans la classe `Board` :
 
@@ -539,7 +515,7 @@ class Board extends React.Component {
 
 **[Voir le code complet à ce stade](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
-Avec ces ajustements, nous pouvons à nouveau cliquer sur les cases pour les remplir.  Mais maintenant, l’état est stocké dans le composant `Board` au lieu des composants `Square` individuels.  Quand l’état du `Board` change, les composants `Square` sont automatiquement rafraîchis.  Conserver l’état de l’ensemble des cases dans le composant `Board` lui permettra plus tard de déterminer un vainqueur.
+Avec ces ajustements, nous pouvons à nouveau cliquer sur les cases pour les remplir, comme avant.  Mais maintenant, l’état est stocké dans le composant `Board` au lieu des composants `Square` individuels.  Quand l’état du `Board` change, les composants `Square` sont automatiquement rafraîchis.  Conserver l’état de l’ensemble des cases dans le composant `Board` lui permettra plus tard de déterminer un vainqueur.
 
 Dans la mesure où les composants `Square` ne maintiennent plus d’état, ils reçoivent leurs valeurs du composant `Board` et l’informent lorsqu’on clique sur eux.  En termes React, les composants `Square` sont des **composants contrôlés**.  Le `Board` dispose d’un contrôle complet sur eux.
 
@@ -583,7 +559,7 @@ Détecter les modifications d’objets mutables est une tâche difficile, car il
 
 En revanche, il est facile de détecter la modification d’objet immuables : si la référence sur l’objet immuable dont on dispose diffère de la précédente, alors l’objet a changé.
 
-#### Déterminer quand déclencher un rendu dans React {#determining-when-to-re-render-in-react}
+#### Déterminer quand déclencher un nouveau rendu dans React {#determining-when-to-re-render-in-react}
 
 Le principal avantage de l’immutabilité pour React, c’est qu’elle permet la construction de _composants purs_.  Des données immuables facilitent la détection des modifications, ce qui à son tour permet de déterminer qu’un composant doit être rafraîchi.
 
@@ -613,7 +589,7 @@ Nous avons changé `this.props` en `props` pour ses deux occurrences.
 
 >Remarque
 >
->En modifiant `Square` pour en faire une fonction composant, nous avons aussi abrégé `onClick={() => this.props.onClick()}` en `onClick={props.onClick}` (remarquez l’absence des parenthèses d’appel des *deux* côtés).  Dans une classe, nous utilisions une fonction fléchée afin d’accéder à la bonne valeur de `this`, mais dans une fonction composant nous n’avons pas à nous soucier de `this`.
+>En modifiant `Square` pour en faire une fonction composant, nous avons aussi abrégé `onClick={() => this.props.onClick()}` en `onClick={props.onClick}` (remarquez l’absence des parenthèses d’appel des *deux* côtés).
 
 ### Jouer tour à tour {#taking-turns}
 
@@ -645,7 +621,9 @@ Chaque fois qu’un joueur interviendra, `xIsNext` (un booléen) sera basculé a
   }
 ```
 
-Grâce à cette modification, les « X » et les « O » alternent désormais.  Modifions aussi le texte de « statut » dans le `render` du `Board` pour qu’il affiche quel joueur a le prochain tour :
+Grâce à cette modification, les « X » et les « O » alternent désormais.  Essayez !
+
+Modifions aussi le texte de « statut » dans le `render` du `Board` pour qu’il affiche quel joueur a le prochain tour :
 
 ```javascript{2}
   render() {
@@ -716,7 +694,7 @@ class Board extends React.Component {
 
 ### Déclarer un vainqueur {#declaring-a-winner}
 
-À présent que nous affichons à qui est le prochain tour, nous devrions aussi indiquer si la partie est gagnée, ou s’il n’y a plus de tours à jouer.  Nous pouvons déterminer un vainqueur en ajoutant cette fonction utilitaire à la fin du fichier :
+À présent que nous affichons à qui est le prochain tour, nous devrions aussi indiquer si la partie est gagnée, ou s’il n’y a plus de coups à jouer.  Copiez cette fonction utilitaire et collez-la à la fin du fichier :
 
 ```javascript
 function calculateWinner(squares) {
@@ -739,6 +717,8 @@ function calculateWinner(squares) {
   return null;
 }
 ```
+
+À partir d’un tableau de 9 cases, cette fonction vérifiera si on a un gagnant et renverra `'X'`, `'O'` ou `null` suivant le cas.
 
 Nous appellerons `calculateWinner(squares)` dans la méthode `render` du `Board`, pour vérifier si un joueur a gagné.  Si c’est le cas, nous afficherons un texte du style « X a gagné » ou « O a gagné ».  Remplaçons la déclaration de `status` dans la méthode `render` de `Board` par ce code :
 
