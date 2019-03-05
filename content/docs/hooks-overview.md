@@ -31,7 +31,7 @@ function Example() {
     <div>
       <p>Vous avez cliqué {count} fois</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Cliquez ici
       </button>
     </div>
   );
@@ -60,7 +60,7 @@ La syntaxe de la [déstructuration positionnelle](https://developer.mozilla.org/
 
 #### Mais qu'est ce qu'un Hook ? {#but-what-is-a-hook}
 
-Les Hooks sont des fonctions qui permettent de « se brancher » sur la gestion d’état local et cycle de vie de React depuis des fonctions composants. Les Hooks ne fonctionnent pas dans des classes : ils vous permettent d'utiliser React sans classes. (Nous [ne recommandons pas](/docs/hooks-intro.html#gradual-adoption-strategy) la réécriture de vos composants existants du jour au lendemain, mais vous pouvez si vous le souhaitez commencer à utiliser les Hooks dans vos nouveaux composants.)
+Les Hooks sont des fonctions qui permettent de « se brancher » sur la gestion d’état local et de cycle de vie de React depuis des fonctions composants. Les Hooks ne fonctionnent pas dans des classes : ils vous permettent d'utiliser React sans classes. (Nous [ne recommandons pas](/docs/hooks-intro.html#gradual-adoption-strategy) de ré-écrire vos composants existants du jour au lendemain, mais vous pouvez si vous le souhaitez commencer à utiliser les Hooks dans vos nouveaux composants.)
 
 React fournit quelques Hooks prédéfinis comme `useState`. Vous pouvez aussi créer vos propres Hooks pour réutiliser un comportement à état dans différents composants. Dans un premier temps, nous allons aborder les Hooks prédéfinis.
 
@@ -68,7 +68,7 @@ React fournit quelques Hooks prédéfinis comme `useState`. Vous pouvez aussi cr
 >
 >Vous pouvez en apprendre davantage sur le Hook d'état sur la page dédiée : [Utiliser le Hook d'état](/docs/hooks-state.html).
 
-## ⚡️ Hook d’effet {#️effect-hook}
+## ⚡️ Hook d’effet {#effect-hook}
 
 Vous avez surement déjà réalisé une récupération de données distantes, des abonnements ou des modifications manuelles sur le DOM depuis un composant React. Nous appelons ces opérations « effets de bord » (ou effets pour faire court) parce qu'elles peuvent affecter d'autres composants et ne peuvent être réalisées pendant l'affichage.
 
@@ -90,7 +90,7 @@ function Example() {
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>Vous avez cliqué {count} fois</p>
       <button onClick={() => setCount(count + 1)}>
         Cliquez ici
       </button>
@@ -99,7 +99,7 @@ function Example() {
 }
 ```
 
-Lors vous appelez `useEffect`, vous dites à React de lancer votre fonction d'« effet » après qu’il a mis à jour le DOM. Les effets étant déclarés au sein du composant, ils ont accès à ses props et son état. Par défaut, React exécute les effets après chaque affichage—*y compris* le premier. (Nous aborderons plus en détails la comparaison au cycle de vie des classes dans [Utiliser le Hook d'effet](/docs/hooks-effect.html).)
+Lorsque vous appelez `useEffect`, vous dites à React de lancer votre fonction d'« effet » après qu’il a mis à jour le DOM. Les effets étant déclarés au sein du composant, ils ont accès à ses props et son état. Par défaut, React exécute les effets après chaque affichage, *y compris* le premier. (Nous aborderons plus en détails la comparaison avec le cycle de vie des classes dans [Utiliser le Hook d'effet](/docs/hooks-effect.html).)
 
 Les effets peuvent aussi préciser comment les « nettoyer » en renvoyant une fonction. Par exemple, ce composant utilise un effet pour s’abonner au statut de connexion d'un ami, et se nettoie en résiliant l’abonnement :
 
@@ -159,7 +159,7 @@ Les Hooks vous permettent d'organiser les effets de bord dans un composant en ra
 >
 >Vous pouvez en apprendre davantage sur `useEffect` sur la page dédiée : [Utiliser le Hook d’effet](/docs/hooks-effect.html).
 
-## ✌️ Règles des Hooks {#️rules-of-hooks}
+## ✌️ Règles des Hooks {#rules-of-hooks}
 
 Les Hooks sont des fonctions JavaScript, mais ils imposent deux règles supplémentaires :
 
@@ -231,7 +231,7 @@ function FriendListItem(props) {
 
 Les états locaux de ces composants sont complètement indépendants. Les Hooks permettent de réutiliser la *logique à état*, et non l'état lui-même. En fait, chaque *appel* à un Hook a un état complètement isolé ; vous pouvez même utiliser deux fois le même Hook personnalisé dans un même composant.
 
-Les Hooks personnalisés sont plus une convention qu'une fonctionnalité. Si le nom d'une fonction commence par `use` et qu'appelle un autre Hook, nous dirons que c’est un Hook personnalisé. La convention de nommage `useSomething` permet à notre plugin ESLint de détecter les bugs dans un code utilisant les Hooks.
+Les Hooks personnalisés sont plus une convention qu'une fonctionnalité. Si le nom d'une fonction commence par `use` et qu'elle appelle un autre Hook, nous dirons que c’est un Hook personnalisé. La convention de nommage `useSomething` permet à notre plugin ESLint de détecter les bugs dans un code utilisant les Hooks.
 
 Vous pouvez écrire des Hooks personnalisés pour gérer un large éventail de cas d'usage tels que la gestion des formulaires, les animations, les abonnements déclaratifs, les horloges et probablement de nombreux autres auxquels nous n'avons pas pensé. Nous avons hâte de voir quels Hooks personnalisés la communauté React va inventer.
 
@@ -261,7 +261,7 @@ function Todos() {
 
 >Explication détaillée
 >
->Vous pouvez en apprendre davantage sur les Hooks prédéfinis sur une page dédiée : [référence de l'API des Hooks](/docs/hooks-reference.html).
+>Vous pouvez en apprendre davantage sur les Hooks prédéfinis sur une page dédiée : [Référence de l'API des Hooks](/docs/hooks-reference.html).
 
 ## Prochaines étapes {#next-steps}
 
