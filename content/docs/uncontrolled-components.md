@@ -41,7 +41,7 @@ class NameForm extends React.Component {
 
 Puisqu'un composant non-contrôlé garde la source de vérité dans le DOM, il est parfois plus simple d'y intégrer du code React et non-React. Le code peut être également légèrement plus concis si vous souhaitez être rapide et sale. Autrement, vous devriez utiliser les composants contrôlés.
 
-S'il n'est toujours pas clair quel type de composant doit être utilisé pour une situation particulière, [cet article sur les entrées contrôlées ou non-contrôlées](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/) peut vous être utile.
+Si dans une situation donnée il n'est pas toujours évident de savoir quel type de composant doit être utilisé, [cet article sur les entrées contrôlées ou non-contrôlées](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/) peut vous être utile.
 
 ### Valeurs par défaut {#default-values}
 
