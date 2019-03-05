@@ -43,7 +43,7 @@ L'attribut `id` de votre `<div>`, qui est unique, va vous permettre de manipuler
 
 >Astuce
 >
->Vous pouvez placer une `<div>` qui sert de « conteneur », où vous le souhaitez dans la balise `<body>`. Vous pouvez, par ailleurs, avoir autant de conteneurs DOM indépendants que vous le souhaitez dans la même page. React remplacera le contenu existant de ces conteneurs, ils sont donc la plupart du temps vides.
+>Vous pouvez placer une telle `<div>` « conteneur » **où vous le souhaitez** dans la balise `<body>`. Vous pouvez d’ailleurs avoir autant de conteneurs DOM indépendants que vous le souhaitez dans la même page. Il sont généralement vides, car React remplacera leur contenu existant de toutes façons.
 
 ### Étape 2 : Ajouter les balises « Script » {#step-2-add-the-script-tags}
 
