@@ -35,7 +35,7 @@ profile/
   ProfileAPI.js
 ```
 
-La définition d'une "fonctionnalité" n'est pas universelle, et c'est à vous d'en définir la granularité. Si vous ne parvenez pas à créer une liste des dossiers de niveau supérieur, vous pouvez demander aux utilisateurs du produit qu'elles en sont les parties principales, en quoi elles consistent, et utiliser leurs modèles mentaux comme base.
+La définition d'une "fonctionnalité" n'est pas universelle, et c'est à vous d'en définir la granularité. Si vous ne parvenez pas à créer une liste des dossiers de niveau supérieur, vous pouvez demander aux utilisateurs de votre produit quelles en sont ses principales pièces et utiliser leur modèle mental comme base.
 
 #### Grouper par type de fichier {#grouping-by-file-type}
 
