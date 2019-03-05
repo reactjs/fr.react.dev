@@ -1,6 +1,6 @@
 ---
 id: getting-started
-title: Getting Started
+title: Bien démarrer
 permalink: docs/getting-started.html
 next: add-react-to-a-website.html
 redirect_from:
@@ -18,109 +18,109 @@ redirect_from:
   - "docs/environments.html"
 ---
 
-This page is an overview of the React documentation and related resources.
+Cette page est un aperçu de la documentation React et des ressources associées.
 
-**React** is a JavaScript library for building user interfaces. Learn what React is all about on [our homepage](/) or [in the tutorial](/tutorial/tutorial.html).
+**React** est une bibliothèque JavaScript pour la construction d'interfaces utilisateur (UI). Pour découvrir à quoi sert React, allez sur [notre page d'accueil](/) ou [dans le tutoriel](/tutorial/tutorial.html).
 
 ---
 
-- [Try React](#try-react)
-- [Learn React](#learn-react)
-- [Staying Informed](#staying-informed)
-- [Versioned Documentation](#versioned-documentation)
-- [Something Missing?](#something-missing)
+- [Essayer React](#try-react)
+- [Apprendre React](#learn-react)
+- [Se tenir au courant](#staying-informed)
+- [Documentation versionnée](#versioned-documentation)
+- [Quelque chose vous manque ?](#something-missing)
 
-## Try React {#try-react}
+## Essayer React {#try-react}
 
-React has been designed from the start for gradual adoption, and **you can use as little or as much React as you need.** Whether you want to get a taste of React, add some interactivity to a simple HTML page, or start a complex React-powered app, the links in this section will help you get started.
+React a été conçu dès le départ pour une adoption progressive, et **vous pouvez utiliser React _a minima_ ou autant que nécessaire.** Que vous souhaitiez avoir un aperçu de React, ajouter de l'interactivité à une simple page HTML ou démarrer une application React complète, les liens de cette section vous aideront à bien démarrer.
 
-### Online Playgrounds {#online-playgrounds}
+### Terrains de jeu en ligne {#online-playgrounds}
 
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world) or [CodeSandbox](https://codesandbox.io/s/new).
+Si vous souhaitez tester React, vous pouvez utiliser un terrain de jeu en ligne. Essayez un modèle _Hello World_ sur [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new) ou [Glitch](https://glitch.com/edit/#!/remix/starter-react-template).
 
-If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
+Si vous préférez utiliser votre propre éditeur de texte, vous pouvez aussi [télécharger ce ficher HTML](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), l'éditer et l'ouvrir à partir du système de fichiers local dans votre navigateur. Il transforme le code à la volée lors de l’exécution, ce qui est particulièrement lent. Pour cette raison, nous vous recommandons de ne l'utiliser que pour des démos simples.
 
-### Add React to a Website {#add-react-to-a-website}
+### Ajouter React à un site Web {#add-react-to-a-website}
 
-You can [add React to an HTML page in one minute](/docs/add-react-to-a-website.html). You can then either gradually expand its presence, or keep it contained to a few dynamic widgets.
+Vous pouvez [ajouter React à une page HTML en une minute](/docs/add-react-to-a-website.html) et ensuite étendre progressivement sa présence ou la limiter à quelques éléments d’interface dynamiques.
 
-### Create a New React App {#create-a-new-react-app}
+### Créer une nouvelle application React {#create-a-new-react-app}
 
-When starting a React project, [a simple HTML page with script tags](/docs/add-react-to-a-website.html) might still be the best option. It only takes a minute to set up!
+Lorsque vous démarrez un projet React, [une simple page HTML avec des balises de script](/docs/add-react-to-a-website.html) reste peut-être la meilleure option. Ça ne prend qu'une minute à mettre en place !
 
-As your application grows, you might want to consider a more integrated setup. There are [several JavaScript toolchains](/docs/create-a-new-react-app.html) we recommend for larger applications. Each of them can work with little to no configuration and lets you take full advantage of the rich React ecosystem.
+Au fur et à mesure que votre application grandit, vous voudrez peut-être envisager une configuration plus intégrée. Il y a [plusieurs boîtes à outils JavaScript](/docs/create-a-new-react-app.html) que nous conseillons pour des applications plus importantes. Chacune d'entre elles peut fonctionner avec peu ou pas de configuration et vous permet de tirer pleinement parti du riche écosystème de React.
 
-## Learn React {#learn-react}
+## Apprendre React {#learn-react}
 
-People come to React from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a practical approach, we hope you'll find this section helpful.
+Les gens qui découvrent React viennent d'horizons et de styles d'apprentissage variés. Que vous préfériez une approche plutôt théorique ou pratique, nous espérons que vous trouverez cette section utile.
 
-* If you prefer to **learn by doing**, start with our [practical tutorial](/tutorial/tutorial.html).
-* If you prefer to **learn concepts step by step**, start with our [guide to main concepts](/docs/hello-world.html).
+* Si vous préférez **apprendre en faisant**, commencez par notre [tutoriel](/tutorial/tutorial.html).
+* Si vous préférez **apprendre les concepts étape par étape**, commencez par notre [guide des fondamentaux](/docs/hello-world.html).
 
-Like any unfamiliar technology, React does have a learning curve. With practice and some patience, you *will* get the hang of it.
+Comme toute technologie que vous ne connaissez pas encore, React a une certaine courbe d'apprentissage. Avec de la pratique et un peu de patience, vous *arriverez* à le maîtriser.
 
-### First Examples {#first-examples}
+### Premiers exemples {#first-examples}
 
-The [React homepage](/) contains a few small React examples with a live editor. Even if you don't know anything about React yet, try changing their code and see how it affects the result.
+La [page d'accueil de React](/) contient quelques petits exemples React que vous pouvez modifier directement en ligne. Même si vous ne connaissez rien encore à React, essayez de changer le code de ces exemples et voyez comment cela affecte le résultat.
 
-### React for Beginners {#react-for-beginners}
+### React pour les débutant·e·s {#react-for-beginners}
 
-If you feel that the React documentation goes at a faster pace than you're comfortable with, check out [this overview of React by Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). It introduces the most important React concepts in a detailed, beginner-friendly way. Once you're done, give the documentation another try!
+Si vous trouvez que la documentation React va un peu trop vite pour vous, consultez [cet aperçu de React par Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). Il présente les concepts les plus importants de React de façon détaillée et conviviale pour les débutant·e·s. Une fois que vous avez terminé, essayez à nouveau la documentation !
 
-### React for Designers {#react-for-designers}
+### React pour les designers {#react-for-designers}
 
-If you're coming from a design background, [these resources](https://reactfordesigners.com/) are a great place to get started.
+Si vous avez plutôt une expérience de designer, [ces ressources](http://reactfordesigners.com/) sont un excellent moyen de commencer.
 
-### JavaScript Resources {#javascript-resources}
+### Ressources JavaScript {#javascript-resources}
 
-The React documentation assumes some familiarity with programming in the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time.
+La documentation de React suppose une certaine habitude de la programmation en langage JavaScript. Pas besoin d'être un·e expert·e, mais il est plus difficile d'apprendre à la fois React et JavaScript.
 
-We recommend going through [this JavaScript overview](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will take you between 30 minutes and an hour but you will feel more confident learning React.
+Nous vous recommandons de parcourir [cet aperçu JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript/Une_r%C3%A9introduction_%C3%A0_JavaScript) pour vérifier votre niveau de connaissances. Ça vous prendra entre 30 minutes et une heure, mais vous vous sentirez plus en confiance pour apprendre React.
 
->Tip
+>Astuce
 >
->Whenever you get confused by something in JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [javascript.info](https://javascript.info/) are great websites to check. There are also [community support forums](/community/support.html) where you can ask for help.
+>Chaque fois que quelque chose en JavaScript vous semble déroutant, [MDN](https://developer.mozilla.org/fr/docs/Web/JavaScript) et [javascript.info](http://javascript.info/) sont d'excellents sites pour vérifier. On trouve aussi [des forums de soutien communautaire](/community/support.html) dans lesquels vous pouvez demander de l'aide.
 
-### Practical Tutorial {#practical-tutorial}
+### Tutoriel pratique {#practical-tutorial}
 
-If you prefer to **learn by doing,** check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
+Si vous préférez **apprendre par la pratique**, allez voir notre [tutoriel pratique](/tutorial/tutorial.html). Dans ce tutoriel, nous construisons un jeu de morpion en React. Vous pourriez être tenté·e de l’ignorer sous prétexte que vous ne construisez pas de jeux—mais donnez-lui sa chance.  Les techniques que vous apprendrez dans ce tutoriel sont fondamentales pour la construction de n’importe quel type d’appli React, et les maîtriser vous apportera une compréhension profonde de React.
 
-### Step-by-Step Guide {#step-by-step-guide}
+### Guide étape par étape {#step-by-step-guide}
 
-If you prefer to **learn concepts step by step,** our [guide to main concepts](/docs/hello-world.html) is the best place to start. Every next chapter in it builds on the knowledge introduced in the previous chapters so you won't miss anything as you go along.
+Si vous préférez **apprendre les concepts étape par étape** notre [guide des fondamentaux](/docs/hello-world.html) est le meilleur endroit pour commencer. Chaque chapitre s’appuie sur les connaissances introduites dans les précédents, afin que vous ne manquiez de rien pour avancer.
 
-### Thinking in React {#thinking-in-react}
+### Penser en React {#thinking-in-react}
 
-Many React users credit reading [Thinking in React](/docs/thinking-in-react.html) as the moment React finally "clicked" for them. It's probably the oldest React walkthrough but it's still just as relevant.
+De nombreux utilisateurs de React estiment que c’est en lisant [Penser en React](/docs/thinking-in-react.html) que React a enfin « cliqué » pour eux. C'est probablement le plus ancien guide pas-à-pas sur React, mais il est toujours aussi pertinent.
 
-### Recommended Courses {#recommended-courses}
+### Cours recommandés {#recommended-courses}
 
-Sometimes people find third-party books and video courses more helpful than the official documentation. We maintain [a list of commonly recommended resources](/community/courses.html), some of which are free.
+Parfois les gens préféreront des livres et cours vidéo créés par des tiers à la documentation officielle. Nous maintenons [une liste de ressources fréquemment recommandées](/community/courses.html), dont certaines sont gratuites.
 
-### Advanced Concepts {#advanced-concepts}
+### Guides avancés {#advanced-concepts}
 
-Once you're comfortable with the [main concepts](#main-concepts) and played with React a little bit, you might be interested in more advanced topics. This section will introduce you to the powerful, but less commonly used React features like [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
+Une fois que vous serez à l'aise avec les [fondamentaux](#main-concepts) et que vous aurez joué un peu avec React, vous pourriez être intéressé·e par des sujets plus avancés. Cette section présente les fonctionnalités puissantes, mais moins utilisées, de React, telles que le [contexte](/docs/context.html) et les [refs](/docs/refs-and-the-dom.html).
 
-### API Reference {#api-reference}
+### Référence de l’API {#api-reference}
 
-This documentation section is useful when you want to learn more details about a particular React API. For example, [`React.Component` API reference](/docs/react-component.html) can provide you with details on how `setState()` works, and what different lifecycle methods are useful for.
+Cette section de la documentation est utile lorsque vous souhaitez en savoir plus sur une API React spécifique. Par exemple, [la référence de l’API `React.Component`](/docs/react-component.html) peut vous fournir des détails sur le fonctionnement de `setState()`, et sur les utilités respectives des différentes méthodes de cycle de vie.
 
-### Glossary and FAQ {#glossary-and-faq}
+### Glossaire et FAQ {#glossary-and-faq}
 
-The [glossary](/docs/glossary.html) contains an overview of the most common terms you'll see in the React documentation. There is also a FAQ section dedicated to short questions and answers about common topics, including [making AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), and [file structure](/docs/faq-structure.html).
+Le [glossaire](/docs/glossary.html) contient un aperçu des termes les plus couramment employés dans la documentation de React. Il y a également une section FAQ dédiée aux questions et réponses courtes sur des sujets fréquents, tels que [faire des requêtes AJAX](/docs/faq-ajax.html), [gérer l’état local des composants](/docs/faq-state.html), et [la structure de fichiers](/docs/faq-structure.html).
 
-## Staying Informed {#staying-informed}
+## Se tenir au courant {#staying-informed}
 
-The [React blog](/blog/) is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted there first.
+Le [blog React](/blog/) est la source officielle des mises à jour, par l'équipe de React. Tout ce qui est important, y compris les notes de publication ou les avis de dépréciation, y est publié en priorité.
 
-You can also follow the [@reactjs account](https://twitter.com/reactjs) on Twitter, but you won't miss anything essential if you only read the blog.
+Vous pouvez également suivre le [compte @reactjs](https://twitter.com/reactjs) sur Twitter, mais rien d’essentiel ne vous échappera si vous ne lisez que le blog.
 
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release [in the `CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react) page.
+Toutes les versions de React ne méritent pas leur propre article de blog, mais vous pouvez trouver un _changelog_ détaillé pour chaque version [dans le fichier `CHANGELOG.md` du dépôt React](https://github.com/facebook/react/blob/master/CHANGELOG.md), ainsi que sur la page des [_Releases_](https://github.com/facebook/react).
 
-## Versioned Documentation {#versioned-documentation}
+## Documentation versionnée {#versioned-documentation}
 
-This documentation always reflects the latest stable version of React. Since React 16, you can find older versions of the documentation [on a separate page](/versions). Note that documentation for past versions is snapshotted at the time of the release, and isn't being continuously updated.
+Cette documentation reflète toujours la dernière version stable de React. Depuis React 16, vous pouvez trouver les anciennes versions de la documentation [sur une page séparée](/versions). Notez que la documentation des versions antérieures est figée au moment de la publication et n'est plus mise à jour par la suite.
 
-## Something Missing? {#something-missing}
+## Quelque chose vous manque ? {#something-missing}
 
-If something is missing in the documentation or if you found some part confusing, please [file an issue for the documentation repository](https://github.com/reactjs/reactjs.org/issues/new) with your suggestions for improvement, or tweet at the [@reactjs account](https://twitter.com/reactjs). We love hearing from you!
+Si quelque chose manque dans la documentation ou si vous en trouvez une partie déroutante, veuillez [créer une _issue_ sur le dépôt de la documentation](https://github.com/reactjs/fr.reactjs.org/issues/new) avec vos suggestions d'amélioration, ou tweetez en mentionnant le [compte @reactjs](https://twitter.com/reactjs). Nous adorons avoir de vos nouvelles !

@@ -76,7 +76,7 @@ import("./math").then(math => {
 >
 > La syntaxe dynamique `import()` est une [proposition](https://github.com/tc39/proposal-dynamic-import) ECMAScript (JavaScript) qui ne fait pas partie du standard du langage. Il devrait être accepté dans un avenir proche.
 
-Lorsque Webpack rencontre cette syntaxe, il démarre automatiquement la séparation du code de votre application. Si vous utilisez Create React App, cela est déjà configuré pour vous et vous pouvez [l'utiliser](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting) immédiatement. Il est également pris en charge par [Next.js](https://github.com/zeit/next.js/#dynamic-import).
+Lorsque Webpack rencontre cette syntaxe, il démarre automatiquement la découpe du code de votre application. Si vous utilisez Create React App, c’est déjà configuré pour vous et vous pouvez [l’utiliser](https://facebook.github.io/create-react-app/docs/code-splitting) immédiatement. C’est également pris en charge de base par [Next.js](https://github.com/zeit/next.js/#dynamic-import).
 
 Si vous configurez Webpack vous-même, vous voudrez sans doute lire le [guide sur la séparation du code](https://webpack.js.org/guides/code-splitting/) de Webpack. Votre configuration Webpack devrait vaguement ressembler [à cela](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
