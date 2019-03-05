@@ -147,7 +147,7 @@ function FriendListItem(props) {
 
 **Est-ce que deux composants utilisant le même Hook partagent le même état?** Non. Les Hooks personnalisés sont un mécanisme de réutilisation de *logique d'état* (comme la mise en place d'une souscription et la mémorisation d'une valeur courante), mais chaque fois que l'on utilise un Hook personnalisé, tout état ou effet à l'intérieur est complétement isolé.
 
-**Comment l'état d'un Hook personnalisé est-il isolé?** Chaque *appel* à un Hook se voit attribuer un état isolé. Parce que nous appelons `useFriendStatus` directement, d'un point de vue React, notre composant appelle simplement `useState` et `useEffect`. Et comme nous l'avons [appris](/docs/hooks-state.html#tip-using-multiple-state-variables) [précédemment](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns), nous pouvons appeler `useState` et `useEffect` plusieurs fois dans un composant et ils seront complétement indépendant.
+**Comment l'état d'un Hook personnalisé est-il isolé?** Chaque *appel* à un Hook se voit attribuer un état isolé. Parce que nous appelons `useFriendStatus` directement, d'un point de vue React notre composant appelle simplement `useState` et `useEffect`. Et comme nous l'avons [appris](/docs/hooks-state.html#tip-using-multiple-state-variables) [précédemment](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns), nous pouvons appeler `useState` et `useEffect` plusieurs fois dans un composant et ils seront complétement indépendant.
 
 ### Astuce: Passer de l'Information Entre les Hooks {#tip-pass-information-between-hooks}
 
