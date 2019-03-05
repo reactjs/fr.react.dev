@@ -69,6 +69,6 @@ De nombreux points douloureux sont associés à l'imbrication profonde de réper
 
 Si vous démarrez tout juste un projet, [n'y passez pas plus de cinq minutes](https://en.wikipedia.org/wiki/Analysis_paralysis) pour choisir une structure de fichier. Choisissez l'une des approches ci-dessus (ou prenez la votre) et commencez à écrire votre code ! Vous serez sûrement amener à le repenser dans tous les cas une fois que vous aurez produit du vrai code.
 
-Si vous vous sentez complètement bloqué, commencez par garder tous les fichiers dans un seul dossier. Si votre application devient suffisamment large, vous aurez envie de séparer certains fichiers du reste. À ce moment-là, vous aurez une meilleure idée de quels fichiers, vous éditez ensemble le plus souvent. En général, il est judicieux de conserver des fichiers qui changent souvent les uns à côté des autres. Ce principe s'appelle "colocation".
+Si vous vous sentez complètement bloqué, commencez par garder tous les fichiers dans un seul dossier. Si votre application se met à grossir, vous aurez envie de séparer certains fichiers du reste. À ce moment-là, vous aurez une bonne idée des fichiers que vous éditez ensemble régulièrement. En général, il est judicieux de conserver des fichiers qui changent souvent les uns à côté des autres. Ce principe s'appelle "colocation".
 
 À mesure que les projets prennent de l'ampleur, on utilise souvent un mélange des deux approches ci-dessus. Donc, choisir le "bon" au début n’est pas très important.
