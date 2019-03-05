@@ -273,8 +273,8 @@ Découvrez les raisons de préférer séparer vos variables d'état [dans la FAQ
 
 ## Prochaines étapes {#next-steps}
 
-Dans cet article, vous avez appris à utiliser un des Hooks fournis par React, appelé `useState`. Nous nous y référons parfois par le terme « Hook State ». Il nous permet d'ajouter un état local dans une fonction composant React–ce qui est une première !
+Dans cette section, vous avez appris à utiliser un des Hooks fournis par React, appelé `useState`. Nous y ferons parfois référence sous le terme « Hook d'état ». Il nous permet d'ajouter un état local à des fonctions composants React–ce qui est une première !
 
-Nous en savons également appris un peu plus sur la nature des Hooks. Les Hooks sont des fonctions qui nous permettent de « nous brancher » sur des fonctionnalités React depuis des fonctions composants. Leur noms commencent toujours par `use`, et il y a encore beaucoup de Hooks que nous n'avons pas encore vus !
+Nous en avons également appris un peu plus sur la nature des Hooks. Les Hooks sont des fonctions qui nous permettent de « nous brancher » sur des fonctionnalités React depuis des fonctions composants. Leur noms commencent toujours par `use`, et il y a encore beaucoup de Hooks que nous n'avons pas encore vus !
 
 **Continuons maintenant en [découvrant le prochain Hook : `useEffect`.](/docs/hooks-effect.html)** Il vous permet de déclencher des effets de bord dans les composants, et est similaire aux méthodes de cycle de vie dans les classes.
