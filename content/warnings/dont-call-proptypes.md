@@ -46,7 +46,7 @@ Si vous ne corrigez pas l'avertissement, ce code plantera en production avec Rea
 
 ### Si vous n'appelez pas directement PropTypes mais recevez toujours l'avertissement {#if-you-dont-call-proptypes-directly-but-still-get-the-warning}
 
-Inspectez la trace de pile générée par l'avertissement. Vous trouverez la définition de composant responsable de l'appel direct PropTypes. Le problème est probablement dû à des PropTypes tiers qui enveloppent les PropTypes de React, par exemple :
+Inspectez la pile d’appels générée par l'avertissement. Vous y trouverez la définition de composant responsable de l'appel direct à PropTypes. Le problème est probablement dû à des PropTypes tiers qui enrobent ceux de React, par exemple :
 
 ```js
 Button.propTypes = {
