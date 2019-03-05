@@ -39,7 +39,7 @@ handleSomething() {
   this.incrementCount();
   // Lorsque React refait le rendu du composant, `this.state.count` est à 1, pourtant, on espère avoir 3.
 
-  // C'est parce la fonction `incrementCount()` ci-dessus lit `this.state.count`,
+  // C'est parce que la fonction `incrementCount()` ci-dessus lit `this.state.count`,
   // mais React ne met pas à jour `this.state.count` tant que le composant n'a pas refait le rendu.
   // Donc `incrementCount()` lit `this.state.count`, qui est égal à 0 à chaque fois, et le définit à 1.
 
