@@ -85,7 +85,7 @@ Afin de corriger le faux positif, assurez-vous de transmettre **tous** les argum
 
 ```javascript
 export default function deprecated(propType, explanation) {
-  return function validate(props, propName, componentName, ...rest) { // Notez ...rest ici
+  return function validate(props, propName, componentName, ...rest) { // Remarquez le ...rest ici
     if (props[propName] != null) {
       const message = `"${propName}" property of "${componentName}" has been deprecated.\n${explanation}`;
       if (!warned[message]) {
