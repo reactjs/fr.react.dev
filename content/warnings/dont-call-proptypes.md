@@ -12,7 +12,7 @@ N’appelez pas les PropTypes
 >
 >Nous fournissons [un script codemod](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) pour automatiser la conversion.
 
-Dans une future version majeure de React, le code implémentant les fonctions de validation PropType sera supprimé en production. Une fois que cela se produit, tout code appelant ces fonctions manuellement (qui n'est pas supprimé en production) générera une erreur.
+Dans une future version majeure de React, le code implémentant les fonctions de validation de PropType sera supprimé en production. Quand ça arrivera, tout code appelant ces fonctions manuellement (si ce code n'est pas supprimé en production) lèvera une erreur.
 
 ### Déclarer des PropTypes reste une bonne idée {#declaring-proptypes-is-still-fine}
 
