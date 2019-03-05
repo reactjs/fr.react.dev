@@ -59,7 +59,7 @@ Button.propTypes = {
 
 Dans ce cas, `ThirdPartyPropTypes.deprecated` est un enrobage qui appelle `PropTypes.bool`. Ce modèle n’a rien de mauvais en soi, mais il déclenche un faux positif car React pense que vous appelez directement PropTypes. La section suivante explique comment résoudre ce problème pour une bibliothèque implémentant quelque chose de similaire à `ThirdPartyPropTypes`. Si ce n'est pas une bibliothèque que vous avez écrite, vous pouvez déposer une *issue* sur son dépôt public.
 
-### Correction du faux positif dans les PropTypes tiers {#fixing-the-false-positive-in-third-party-proptypes}
+### Corriger le faux positif des PropTypes tiers {#fixing-the-false-positive-in-third-party-proptypes}
 
 Si vous êtes l'auteur·e d'une bibliothèque PropTypes tierce et que vous laissez vos utilisateurs enrober les PropTypes React existants, ils risquent de voir apparaître cet avertissement provenant de votre bibliothèque. C’est dû au fait que React ne voit pas le dernier argument « secret » qu'il [passe](https://github.com/facebook/react/pull/7132) pour détecter les appels manuels à PropTypes.
 
