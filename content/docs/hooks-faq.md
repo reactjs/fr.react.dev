@@ -215,7 +215,7 @@ Il existe quelques autres heuristiques, et elles changeront peut-être avec le t
 
 Oui ! Le Hook [`useRef()`](/docs/hooks-reference.html#useref) n'est pas seulement pour les refs au DOM. L'objet "ref" est un conteneur générique dont la propriété `current` est modifiable et peut contenir n'importe quelle valeur, de la même façon qu'une propriété d'instance dans une classe.
 
-You can write to it from inside `useEffect`:
+Vous pouvez y assigner une valeur depuis `useEffect` :
 
 ```js{2,8}
 function Timer() {
@@ -235,7 +235,7 @@ function Timer() {
 }
 ```
 
-If we just wanted to set an interval, we wouldn't need the ref (`id` could be local to the effect), but it's useful if we want to clear the interval from an event handler:
+Si nous avions juste voulu définir un interval, nous n'aurions pas eu besoin de la ref (`id` pouvait rester local à l'effet) mais ça peut être utile si nous voulons réinitialiser l'interval depuis un gestionnaire d’événement.
 
 ```js{3}
   // ...
@@ -245,11 +245,11 @@ If we just wanted to set an interval, we wouldn't need the ref (`id` could be lo
   // ...
 ```
 
-Conceptually, you can think of refs as similar to instance variables in a class. Unless you're doing [lazy initialization](#how-to-create-expensive-objects-lazily), avoid setting refs during rendering -- this can lead to surprising behavior. Instead, typically you want to modify refs in event handlers and effects.
+Conceptuellement, vous pouvez vous représenter les refs comme des variables d'instance de classe. Sauf si vous faîtes de l'[initialisation paresseuse](#how-to-create-expensive-objects-lazily), évitez de définir des refs pendant le rendu -- ça peut mener à un comportement hasardeux. Au lieu de ça, vous préférerez modifier les refs dans des gestionnaires d'événements et des effets.
 
-### Should I use one or many state variables? {#should-i-use-one-or-many-state-variables}
+### Dois-je utiliser une ou plusieurs variables d'état local ? {#should-i-use-one-or-many-state-variables}
 
-If you're coming from classes, you might be tempted to always call `useState()` once and put all state into a single object. You can do it if you'd like. Here is an example of a component that follows the mouse movement. We keep its position and size in the local state:
+Si vous êtes familiers avec les classes, vous serez peut-être tentés de toujours appeler `useState()` et mettre tout l'état local dans un unique objet. Vous pouvez le faire si vous le souhaitez. Voici un exemple d'un composant qui traque le mouvement de la souris. Nous gardons sa position et sa taille dans l'état local :
 
 ```js
 function Box() {
