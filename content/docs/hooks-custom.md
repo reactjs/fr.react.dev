@@ -141,7 +141,7 @@ function FriendListItem(props) {
 }
 ```
 
-**Ce code est-il équivalent aux exemples originaux ?** Oui, il fonctionne exactement de la même manière. Si vous regardez de plus près, vous remarquerez que nous n'avons réalisé aucun changement de comportement. Tout ce que nous avons fait est de déplacer du code commun à deux fonction dans une fonction séparée. **Les Hooks personnalisés sont une convention qui découle naturellement du principe des Hooks, plus qu'une fonctionnalité React.**
+**Ce code est-il équivalent aux exemples originaux ?** Oui, il fonctionne exactement de la même manière. Si vous regardez de plus près, vous remarquerez que nous n'avons réalisé aucun changement de comportement. Tout ce que nous avons fait est de déplacer du code commun à deux fonctions dans une fonction séparée. **Les Hooks personnalisés sont une convention qui découle naturellement du principe des Hooks, plus qu'une fonctionnalité React.**
 
 **Dois-je nommer mes Hooks personnalisés en commençant par "`use`" ?** Oui, s'il vous plaît. Cette convention est très importante. Sans elle, nous ne serions pas capable de vérifier automatiquement les violations des [règles des Hooks](/docs/hooks-rules.html) car nous ne pourrions dire si une fonction contient des appels aux Hooks.
 
