@@ -197,7 +197,7 @@ Cela nous permet de savoir si l'ami *actuellement sélectionné* est en ligne. S
 
 ## `useYourImagination()` {#useyourimagination}
 
-Les Hooks personnalisés vous offre la souplesse de partager de la logique, ce qui n'était pas possible avant avec les composants React. Vous pouvez écrire des Hooks personnalisés qui couvrent un large panel de cas d'utilisation comme la gestion des formulaires, des animations, des inscriptions déclaratives, des minuteurs et bien plus. De plus, vous pouvez construire des Hooks qui sont aussi simple à utiliser que des fonctionnalités intégrées à React.
+Les Hooks personnalisés vous offre la souplesse de partager de la logique, ce qui n'était pas possible avant avec les composants React. Vous pouvez écrire des Hooks personnalisés qui couvrent un large panel de cas d'utilisation comme la gestion des formulaires, des animations, des inscriptions déclaratives, des minuteurs et bien plus. De plus, vous pouvez construire des Hooks qui sont aussi simple à utiliser que des fonctionnalités de React.
 
 Essayez de résister d'abstraire trop tôt. Maintenant que nos fonctions composants peuvent faire plus, il est probable que la moyenne de fonction composant dans votre base de code grossisse. C'est normal -- ne vous sentez pas *obligé* de les séparer en Hooks. Mais nous vous encourageons à commencer à chercher des cas où un Hook personnalisé pourrait cacher une logique complexe derrière une simple interface, ou aider à démêler un composant compliqué.
 
