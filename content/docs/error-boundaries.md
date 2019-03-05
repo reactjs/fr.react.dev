@@ -4,7 +4,7 @@ title: Périmètres d'erreurs
 permalink: docs/error-boundaries.html
 ---
 
-Auparavant, les erreurs JavaScript au sein des composants avaient l'habitude de corrompre l'état interne de React, et de causer des [erreurs](https://github.com/facebook/react/issues/4026) [assez](https://github.com/facebook/react/issues/6895) [incompréhensibles](https://github.com/facebook/react/issues/8579) lors des rendus suivants. Ces erreurs étaient toujours causées par une erreur antérieure dans le code applicatif, et React ne proposait alors aucun moyen de les gérer correctement dans les composants, et n'était pas capable de se rétablir.
+Auparavant, les erreurs JavaScript au sein des composants avaient l'habitude de corrompre l'état interne de React, et de causer des [erreurs](https://github.com/facebook/react/issues/4026) [assez](https://github.com/facebook/react/issues/6895) [incompréhensibles](https://github.com/facebook/react/issues/8579) lors des rendus suivants. Ces erreurs étaient toujours causées par une erreur antérieure dans le code applicatif et comme React ne proposait alors aucun moyen de les gérer correctement dans les composants, il n'avait pas la possibilité de se rétablir.
 
 ## L'arrivée des périmètres d'erreurs {#introducing-error-boundaries}
 
@@ -36,7 +36,7 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    // Vous pouvez aussi tracer l'erreur au sein d'un service de rapport.
+    // Vous pouvez aussi enregistrer l'erreur au sein d'un service de rapport.
     logErrorToMyService(error, info);
   }
 
@@ -65,25 +65,25 @@ Remarquez que **les périmètres d'erreurs ne détectent que les erreurs présen
 
 ## Démonstration {#live-demo}
 
-Jetez un œil sur [cet exemple de déclaration et d'usage d'un périmètre d'erreur](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) avec [React 16](/blog/2017/09/26/react-v16.0.html).
+Jetez un coup d'œil sur [cet exemple de déclaration et d'usage d'un périmètre d'erreur](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) avec [React 16](/blog/2017/09/26/react-v16.0.html).
 
 
 ## Où placer les Error Boundaries ? {#where-to-place-error-boundaries}
 
-La granularité des périmètres d'erreurs est à votre discrétion. Vous pouvez envelopper les composants de routage haut-niveau pour afficher un message du type « Quelque chose s'est mal passé » à l'utilisateur, à l'image de ce qui est souvent fait par les frameworks côté serveur. Vous pouvez aussi envelopper chaque widget avec un périmètre d'erreur afin de les empêcher d'impacter le reste l'application.
+La granularité des périmètres d'erreurs est à votre discrétion. Vous pouvez envelopper les composants de routage haut-niveau pour afficher un message du type « Quelque chose s'est mal passé » à l'utilisateur, à l'image de ce qui est souvent fait par les frameworks côté serveur. Vous pouvez aussi envelopper chaque widget avec un périmètre d'erreur afin de les empêcher d'impacter le reste de l'application.
 
 
 ## Nouveau comportement pour les erreurs non attrapées {#new-behavior-for-uncaught-errors}
 
 Ce changement a un impact important. **À compter de React 16, les erreurs qui ne sont pas interceptées par un périmètre d'erreur entraîneront le démontage de l'intégralité de l'arbre des composants**.
 
-Cette décision a été débattue, mais selon notre expérience, laisser une interface corrompue en place est bien pire que de la supprimer complètement. Par exemple, dans un produit tel que Messenger, laisser une interface dégradée visible peut amener l'utilisateur à envoyer un message à la mauvaise personne. De la même façon, pour une application de paiement, afficher un mauvais montant est bien pire que de ne rien afficher du tout.
+Cette décision a été débattue, mais d'expérience nous avons remarqué qu'il est bien pire de laisser en place une interface corrompue que de la supprimer complètement. Par exemple, dans un produit tel que Messenger, laisser une interface dégradée visible peut amener l'utilisateur à envoyer un message à la mauvaise personne. De la même façon, pour une application de paiement, afficher un mauvais montant est bien pire que de ne rien afficher du tout.
 
 Cette modification signifie que lorsque vous migrez vers React 16, vous découvrirez probablement des plantages dans votre application qui étaient alors passés inaperçus. L'ajout de périmètres d'erreurs permet d'offrir une meilleure expérience utilisateurs en cas de problème.
 
 Par exemple, Facebook Messanger enveloppe le contenu de la barre latérale, du panneau d'information, du journal de conversation, ainsi que de la saisie du message dans des périmètres d'erreurs dinstincts. Si l'un des composants de ces zones d'interface fait défaut, les autres continueront de fonctionner normalement.
 
-Nous vous encourageons également à utiliser des services de rapport d'erreurs JavaScript (ou à construire le vôtre) afin de mieux connaître les exceptions non gérées dès qu'elles apparaissent en production, et ainsi de les corriger.
+Nous vous encourageons également à utiliser des services de rapport d'erreurs JavaScript (ou à construire le vôtre) afin de mieux connaître les exceptions non gérées dès qu'elles apparaissent en production, et donc de pouvoir les corriger.
 
 
 ## Trace d'appels des composants {#component-stack-traces}
@@ -92,7 +92,7 @@ React 16 affiche dans la console toutes les erreurs qui apparaissent durant le r
 
 <img src="../images/docs/error-boundaries-stack-trace.png" style="max-width:100%" alt="Une erreur interceptée par un périmètre d'erreur">
 
-Vous pouvez également voir les noms des fichiers et les lignes dans la trace d'appels du composant. C'est le fonctionnement par défaut dans les projets créés avec [Create React App](https://github.com/facebookincubator/create-react-app) :
+Vous pouvez également voir les noms des fichiers et les lignes dans la trace d'appels du composant. C'est le fonctionnement par défaut pour les projets créés avec [Create React App](https://github.com/facebookincubator/create-react-app) :
 
 <img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="Une erreur interceptée par un périmètre d'erreur avec les numéros de lignes">
 
@@ -100,7 +100,7 @@ Si vous n'utilisez pas Create React App, vous pouvez ajouter [cette extension](h
 
 > Remarque :
 >
-> Les noms des composants affichés dans la trace d'appels dépendent de la propriété [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name). Si vous devez prendre en charge des navigateurs ou des dispositifs plus anciens qui ne proposent pas cela naturellement (par exemple IE 11), vous pourrez envisager d'inclure le polyfill [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name) dans votre application. Vous pourrez également définir explicitement la propriété [`displayName`](/docs/react-component.html#displayname) sur tous vos composants.
+> Les noms des composants affichés dans la trace d'appels dépendent de la propriété [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name). Si vous devez prendre en charge des navigateurs ou des dispositifs plus anciens qui ne proposent pas ça nativement (par exemple IE 11), vous pourrez envisager d'inclure le polyfill [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name) dans votre application. A titre d'alternative, vous pouvez également définir explicitement la propriété [`displayName`](/docs/react-component.html#displayname) sur tous vos composants.
 
 
 ## Et pourquoi pas try / catch ? {#how-about-trycatch}
@@ -121,13 +121,13 @@ Cependant, les composants React sont déclaratifs et spécifient *ce qui* doit �
 <Button />
 ```
 
-Les périmètres d'erreurs conservent la nature déclarative de React, et se comportent comme prévu. Par exemple, même si une erreur survient lors de la méthode `componentDidUpdate` causée par un `setState` quelque part dans l'arbre des composants, alors elle se propagera correctement à son périmètre d'erreur le plus proche.
+Les périmètres d'erreurs conservent la nature déclarative de React, et se comportent comme on s'y attend. Par exemple, même si une erreur survient lors de l'appel à la méthode `componentDidUpdate` causée par un `setState` quelque part dans l'arbre des composants, alors elle se propagera correctement vers son périmètre d'erreur le plus proche.
 
 ## Et à propos des gestionnaires d'événement ? {#how-about-event-handlers}
 
 Les périmètres d'erreurs n'interceptent **pas** les erreurs qui surviennent au sein des gestionnaires d'événements.
 
-React n'a pas besoin de périmètres d'erreurs pour récupérer des erreurs dans les gestionnaires d'événements. Contrairement aux méthodes de rendu ou du cycle de vie, les gestionnaires d'événements ne se produisent pas pendant le rendu. Ainsi, si cela arrive, React saura tout de même quoi afficher à l'écran.
+React n'a pas besoin de périmètres d'erreurs pour récupérer des erreurs dans les gestionnaires d'événements. Contrairement aux méthodes de rendu ou du cycle de vie, les gestionnaires d'événements ne sont pas appelés pendant le rendu. Ainsi, si cela arrive, React saura tout de même quoi afficher à l'écran.
 
 Si vous avez besoin d'intercepter une erreur au sein d'un gestionnaire d'événement, il suffit d'utiliser une instruction JavaScript classique `try` / `catch` :
 
