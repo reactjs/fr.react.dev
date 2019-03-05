@@ -63,7 +63,7 @@ Dans ce cas, `ThirdPartyPropTypes.deprecated` est un container appelant `PropTyp
 
 Si vous êtes l'auteur·e d'une bibliothèque PropTypes tierce et que vous laissez vos utilisateurs enrober les PropTypes React existants, ils risquent de voir apparaître cet avertissement provenant de votre bibliothèque. C’est dû au fait que React ne voit pas le dernier argument « secret » qu'il [passe](https://github.com/facebook/react/pull/7132) pour détecter les appels manuels à PropTypes.
 
-Voici comment y remédier. Nous utiliserons `deprecated` à partir de  [react-bootstrap/react-prop-types](https://github.com/react-bootstrap/react-prop-types/blob/0d1cd3a49a93e513325e3258b28a82ce7d38e690/src/deprecated.js) comme exemple. L'implémentation actuelle ne transmet que les arguments `props`, `propName`, et `componentName` :
+Voici comment y remédier. Nous utiliserons le `deprecated` de  [react-bootstrap/react-prop-types](https://github.com/react-bootstrap/react-prop-types/blob/0d1cd3a49a93e513325e3258b28a82ce7d38e690/src/deprecated.js) comme exemple. L'implémentation actuelle ne transmet que les arguments `props`, `propName`, et `componentName` :
 
 ```javascript
 export default function deprecated(propType, explanation) {
