@@ -16,7 +16,7 @@ Dans une future version majeure de React, le code implémentant les fonctions de
 
 ### Déclarer des PropTypes reste une bonne idée {#declaring-proptypes-is-still-fine}
 
-L'utilisation normale de PropTypes est toujours prise en charge :
+L'utilisation normale de PropTypes reste prise en charge :
 
 ```javascript
 Button.propTypes = {
