@@ -8,7 +8,7 @@ category: FAQ
 
 ### Y-a-t-il une manière à privilégier pour structurer les projets React ? {#is-there-a-recommended-way-to-structure-react-projects}
 
-React n'a pas d'opinion sur la manière dont vous ordonnez vos fichiers à l'intérieur de vos dossiers. Ceci dit, vous souhaiterez certainement envisager l'une des quelques approches populaires de l'écosystème.
+React n'a pas d'opinion sur la manière dont vous ordonnez vos fichiers à l'intérieur de vos dossiers. Ceci dit, vous souhaiterez certainement envisager l'une des approches populaires de l'écosystème.
 
 #### Grouper par fonctionnalités ou par routes {#grouping-by-features-or-routes}
 
