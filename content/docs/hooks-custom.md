@@ -10,7 +10,7 @@ prev: hooks-rules.html
 
 Construire vos propres Hooks vous permet d'extraire la logique d'un composant sous forme de fonctions réutilisables.
 
-Lorsque nous apprenions à utiliser [les effets](/docs/hooks-effect.html#example-using-hooks-1), nous avons vu ce composant afficher un message dans l'application chat indiquant si un ami est en ligne ou hors-ligne.
+Lorsque nous apprenions à utiliser [les effets](/docs/hooks-effect.html#example-using-hooks-1), nous avons vu ce composant d'une application de chat qui affiche un message lorsqu'un ami est en ligne ou hors-ligne.
 
 ```js{4-15}
 import React, { useState, useEffect } from 'react';
@@ -36,7 +36,7 @@ function FriendStatus(props) {
 }
 ```
 
-Disons maintenant que notre application chat posséde aussi une liste de contact et que nous souhaitons afficher les noms des utilisateurs en ligne en vert. Nous pouvons copier et coller une logique smilaire à celle ci-dessus dans notre composant `FriendListItem` mais ça ne serait pas idéal.
+Disons maintenant que notre application de chat posséde aussi une liste de contact et que nous souhaitons afficher les noms des utilisateurs en ligne en vert. Nous pouvons copier et coller une logique smilaire à celle ci-dessus dans notre composant `FriendListItem` mais ça ne serait pas idéal :
 
 ```js{4-15}
 import React, { useState, useEffect } from 'react';
@@ -65,11 +65,11 @@ function FriendListItem(props) {
 
 Nous aimerions plutôt partager cette logique entre `FriendStatus` et `FriendListItem`.
 
-Traditionnellement en React, nous avions deux manières populaires de partager une logique d'état entre des composants : les [render props](/docs/render-props.html) et les [composants d'ordre supérieur](/docs/higher-order-components.html). Nous allons voir comment les Hooks peuvent résoudre la majeure partie de ces problèmes sans vous obliger à ajouter plus de composants dans l'arbre.
+Traditionnellement en React, nous avions deux manières populaires de partager une logique d'état entre des composants : les [render props](/docs/render-props.html) et les [composants d'ordre supérieur](/docs/higher-order-components.html). Nous allons voir comment les Hooks règlent la majeure partie de ces problèmes sans vous obliger à ajouter plus de composants dans l'arbre.
 
 ## Extraire un Hook personnalisé {#extracting-a-custom-hook}
 
-Lorsque nous souhaitons partager de la logique entre deux fonctions JavaScript, nous la déplaçons dans une troisième fonction. Les composants et les Hooks sont des fonctions, ça fonctionne donc aussi pour elles !
+Lorsque nous souhaitons partager de la logique entre deux fonctions JavaScript, nous la séparons dans une troisième fonction. Les composants et les Hooks sont des fonctions, ça fonctionne donc aussi pour elles !
 
 **Un Hook personnalisé est une fonction JavaScript dont le nom commence par "`use`" et qui peut appeler d'autres Hooks.** Par exemple, `useFriendStatus` ci-dessous est notre premier Hook personnalisé :
 
@@ -114,7 +114,7 @@ Voyons voir comment nous pouvons utiliser notre Hook personnalisé.
 
 ## Utiliser un Hook personnalisé {#using-a-custom-hook}
 
-Au commencement, notre but était de supprime la logique dupliquée entre les composants `FriendStatus` et `FriendListItem`. Les deux veulent savoir si un ami est en ligne.
+Au commencement, notre but était de supprimer la logique dupliquée entre les composants `FriendStatus` et `FriendListItem`. Les deux veulent savoir si un ami est en ligne.
 
 Maintenant que nous avons extrait cette logique dans un hook `useFriendStatus`, nous pouvons *simplement l'utiliser :*
 
@@ -143,17 +143,17 @@ function FriendListItem(props) {
 
 **Ce code est-il équivalent aux exemples originaux ?** Oui, il fonctionne exactement de la même manière. Si vous regardez de plus près, vous remarquerez que nous n'avons réalisé aucun changement de comportement. Tout ce que nous avons fait est de déplacer du code commun à deux fonction dans une fonction séparée. **Les Hooks personnalisés sont une convention qui découle naturellement du principe des Hooks, plus qu'une fonctionnalité React.**
 
-**Dois-je nommer mes Hooks personnalisés en commençant par "`use`" ?** Oui, s'il vous plaît. Cette convention est très importante. Sans elle, nous ne seriont pas capable de vérifier automatiquement les violations des [règles des Hooks](/docs/hooks-rules.html) car nous ne pourrions dire si une fonction contient des appels aux Hooks.
+**Dois-je nommer mes Hooks personnalisés en commençant par "`use`" ?** Oui, s'il vous plaît. Cette convention est très importante. Sans elle, nous ne serions pas capable de vérifier automatiquement les violations des [règles des Hooks](/docs/hooks-rules.html) car nous ne pourrions dire si une fonction contient des appels aux Hooks.
 
-**Est-ce que deux composants utilisant le même Hook partage le même état?** Non. Les Hooks personnalisés sont un mécanisme de réutiliser d'une *logique d'état* (comme la mise en place d'une souscription et la mémorisation d'une valeur courante), mais chaque fois que l'on utilise un Hook personnalisé, tout état ou effet à l'intérieur est complétement isolé.
+**Est-ce que deux composants utilisant le même Hook partagent le même état?** Non. Les Hooks personnalisés sont un mécanisme de réutilisation de *logique d'état* (comme la mise en place d'une souscription et la mémorisation d'une valeur courante), mais chaque fois que l'on utilise un Hook personnalisé, tout état ou effet à l'intérieur est complétement isolé.
 
-**Comment l'état d'un Hook personnalisé est-il isolé?** Chaque *appel* à un Hook se voit attribuer un état isolé. Parce que nous appelons `useFriendStatus` directement, d'un point de vue React, notre composant appelle simplement `useState` et `useEffect`. Et comme nous l'avons [appris](/docs/hooks-state.html#tip-using-multiple-state-variables) [précédemment](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns), nous pouvons appeler `useState` et `useEffect` plusieurs fois dans un composant et il seront complétement indépendant.
+**Comment l'état d'un Hook personnalisé est-il isolé?** Chaque *appel* à un Hook se voit attribuer un état isolé. Parce que nous appelons `useFriendStatus` directement, d'un point de vue React, notre composant appelle simplement `useState` et `useEffect`. Et comme nous l'avons [appris](/docs/hooks-state.html#tip-using-multiple-state-variables) [précédemment](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns), nous pouvons appeler `useState` et `useEffect` plusieurs fois dans un composant et ils seront complétement indépendant.
 
 ### Astuce: Passer de l'Information Entre les Hooks {#tip-pass-information-between-hooks}
 
 Comme les Hooks sont des fonctions, nous pouvons passer de l'information entre elles.
 
-Pour illustrer cela, nous allons utiliser un autre composant de notre hypothétique exemple de chat. Ceci est une liste de destinataire qui affiche si l'ami sélectionné est en ligne ou non :
+Pour illustrer cela, nous allons utiliser un autre composant de notre hypothétique exemple de chat. Ceci est une liste de destinataire qui affiche si l'ami sélectionné est en ligne :
 
 ```js{8-9,13}
 const friendList = [
@@ -193,15 +193,15 @@ Parce que l'appel au Hook `useState` nous renvoie la dernière valeur de la vari
   const isRecipientOnline = useFriendStatus(recipientID);
 ```
 
-Cela nous permet de savoir si l'ami *actuellement sélectionné* est en ligne ou non. Si nous choisissons un ami différent et mettons à jour la variable d'état `recipientID`, notre Hook `useFriendStatus` va se désinscrire de l'ami précédemment sélectionné et s'inscrire au statut du nouveau sélectionné.
+Cela nous permet de savoir si l'ami *actuellement sélectionné* est en ligne. Si nous choisissons un ami différent et mettons à jour la variable d'état `recipientID`, notre Hook `useFriendStatus` va se désinscrire de l'ami précédemment sélectionné et s'inscrire au statut du nouveau sélectionné.
 
 ## `useYourImagination()` {#useyourimagination}
 
-Les Hooks personnalisés vous offre la souplesse de partage de la logique qui n'état pas possible avant avec les composants React. Vous pouvez écrire des Hooks personnalisés qui couvrent un large panel de cas d'utilisation comme la gestion des formulaires, des animations, des inscriptions déclaratives, des minuteurs et bien plus. De plus, vous pouvez construire des Hooks qui sont aussi simple à utiliser que des fonctionnalités intégrées à React.
+Les Hooks personnalisés vous offre la souplesse de partager de la logique, ce qui n'était pas possible avant avec les composants React. Vous pouvez écrire des Hooks personnalisés qui couvrent un large panel de cas d'utilisation comme la gestion des formulaires, des animations, des inscriptions déclaratives, des minuteurs et bien plus. De plus, vous pouvez construire des Hooks qui sont aussi simple à utiliser que des fonctionnalités intégrées à React.
 
-Essayez de résister d'abstraire trop tôt. Maintenant que nos fonctions composants peuvent faire plus, il est probable que la moyenne de fonction composant dans votre base de code grossise. C'est normal -- ne vous sentez pas *obligé* de les séparer en Hooks. Mais nous vous encourageons à commencer à chercher des cas où un Hook personnalisé pourrait caché une logique complexe derrière une simple interface, ou aider à démêler un composant compliqué.
+Essayez de résister d'abstraire trop tôt. Maintenant que nos fonctions composants peuvent faire plus, il est probable que la moyenne de fonction composant dans votre base de code grossisse. C'est normal -- ne vous sentez pas *obligé* de les séparer en Hooks. Mais nous vous encourageons à commencer à chercher des cas où un Hook personnalisé pourrait cacher une logique complexe derrière une simple interface, ou aider à démêler un composant compliqué.
 
-Par exemple, peut-être que vous avez un composant compliqué qui contient beaucoup d'état local géré d'une manière ad-hoc. `useState` ne permet pas de simplifier la centralisation d'une logique de mise à jour. Dans ce cas vous pourriez préférer l'écriture d'un reducer [Redux](https://redux.js.org/) :
+Par exemple, peut-être que vous avez un composant complexe qui contient beaucoup d'état local géré de manière ad-hoc. `useState` ne permet pas de simplifier la centralisation de la logique de mise à jour. Dans ce cas vous pourriez préférer l'écriture d'un reducer [Redux](https://redux.js.org/) :
 
 ```js
 function todosReducer(state, action) {
@@ -218,7 +218,7 @@ function todosReducer(state, action) {
 }
 ```
 
-Les reducers sont très pratiques pour tester en isolation et s'adapte à l'expression de logique de mise à jour complexe. Plus tard, si besoin vous pouvez les séparer dans des reducers plus petit. Cependant, vous pourriez aussi bénéficier de l'utilisation de l'état local de React, ou vous pourriez ne pas vouloir installer une autre bibliothèque.
+Les reducers sont très pratiques pour tester en isolation et sont adaptés à l'expression de logique de mise à jour complexe. Plus tard, si besoin vous pouvez les séparer dans des reducers plus petit. Cependant, vous pourriez aussi bénéficier de l'utilisation de l'état local de React, ou vous pourriez ne pas vouloir installer une autre bibliothèque.
 
 Et si nous pouvions écrire un Hook `useReducer` qui nous permettrait de gérer l'état *local*  de notre composant avec un reducer ? Une version simplifiée pourrait ressembler à ceci :
 
@@ -235,7 +235,7 @@ function useReducer(reducer, initialState) {
 }
 ```
 
-Maintenant que nous pouvons l'utiliser dans un composant et que le reducer commande sa gestion d'état :
+Nous pouvons maintenant l'utiliser dans un composant et laisser le reducer commander sa gestion d'état :
 
 ```js{2}
 function Todos() {
@@ -249,4 +249,4 @@ function Todos() {
 }
 ```
 
-Le besion de gestion d'un état local avec un reducer dans un composant complexe est assez commun, donc nous avons directement intégré le Hook `useReducer` dans React. Vous le trouverez avec d'autres Hooks intégrés dans la [référence de l'API des Hooks](/docs/hooks-reference.html).
+Le besion de gérer un état local avec un reducer dans un composant complexe est assez commun, nous avons donc intégré le Hook `useReducer` directement dans React. Vous le trouverez ainsi que d'autres Hooks dans la [référence de l'API des Hooks](/docs/hooks-reference.html).
