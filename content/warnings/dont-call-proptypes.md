@@ -8,7 +8,7 @@ N’appelez pas les PropTypes
 
 > Remarque
 >
-> `React.PropTypes` a été déplacé dans un paquet différent depuis React v15.5. Merci d'utiliser [la bibliothèque `prop-types` à la place](https://www.npmjs.com/package/prop-types).
+> `React.PropTypes` a été déplacé dans un paquet dédié depuis React v15.5. Merci d'utiliser désormais [la bibliothèque `prop-types`](https://www.npmjs.com/package/prop-types).
 >
 >Nous fournissons [un script codemod](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) pour automatiser la conversion.
 
