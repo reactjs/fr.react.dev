@@ -22,7 +22,7 @@ Ci-dessous quelques ressources utiles pour en apprendre plus à propos de quand 
 
 Dans React, `this.props` et `this.state` représente l'un et l'autre les valeurs rendues, i.e. ce qui se trouve actuellement à l'écran.
 
-Les appels à `setState` sont asynchrones - ne comptez pas sur `this.state` pour refléter la nouvelle valeur immédiatement après avoir appelé `setState`. Passez une fonction de mise à jour à la place d'un objet si vous devez calculer des valeurs en fonction de l'état actuel (voir ci-dessous pour plus de détails).
+Les appels à `setState` sont asynchrones—ne comptez pas sur `this.state` pour refléter la nouvelle valeur immédiatement après avoir appelé `setState`. Passez une fonction de mise à jour à la place d'un objet si vous devez calculer des valeurs en fonction de l'état actuel (voir ci-dessous pour plus de détails).
 
 Exemple de code qui ne se comporte *pas* comme attendu :
 
