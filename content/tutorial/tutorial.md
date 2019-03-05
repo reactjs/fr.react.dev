@@ -35,11 +35,11 @@ Vous pouvez tout à fait copier-coller le code au fil du tutoriel, mais nous vou
 
 ### Que construisons-nous ? {#what-are-we-building}
 
-Dans ce tutoriel, nous allons voir comment construire un jeu interactif de morpion avec React.
+Dans ce tutoriel, nous allons voir comment construire un jeu de morpion interactif avec React.
 
 Vous pouvez voir ce que ça va donner ici : **[résultat final](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. Si le code vous semble obscur, ou si vous n’êtes pas à l’aise avec la syntaxe du code, ne vous inquiétez pas !  C’est justement l’objectif de ce tutoriel de vous aider à comprendre React et sa syntaxe.
 
-Nous vous conseillons de jeter un œil à ce jeu de morpion avant de continuer ce tutoriel.  Une des fonctionnalités que vous remarquerez, c’est qu’il affiche une liste numérotée sur la droite du plateau de jeu.  Cette liste vous fournit un historique des tours de jeu, et elle est mise à jour au fil de l’eau.
+Nous vous conseillons de jeter un coup d'œil à ce jeu de morpion avant de continuer ce tutoriel.  Une des fonctionnalités que vous remarquerez, c’est qu’il affiche une liste numérotée sur la droite du plateau de jeu.  Cette liste vous fournit un historique des tours de jeu, et elle est mise à jour au fil de l’eau.
 
 Vous pouvez refermer le jeu de morpion une fois que vous en avez bien fait le tour.  Nous commencerons par un gabarit plus simple pour ce tutoriel.  Notre prochaine étape consiste à mettre le nécessaire en place, sur votre machine, pour que vous puissiez commencer à construire le jeu.
 
@@ -120,7 +120,7 @@ Nous vous conseillons de suivre [ces instructions](https://babeljs.io/docs/edito
 
 ### À l’aide, je suis bloqué·e ! {#help-im-stuck}
 
-Si vous vous retrouvez bloqué·e, jetez un œil aux [ressources communautaires de support](/community/support.html). [Le chat Reactiflux](https://discord.gg/0ZcbPKXt5bZjGY5n), notamment, est super utile pour obtenir de l’aide rapidement. Si vous ne recevez pas de réponse, ou si elle ne vous débloque pas, merci de nous le signaler par une *issue* dans GitHub, et nous ferons de notre mieux pour vous aider.
+Si vous vous retrouvez bloqué·e, jetez un coup d'œil aux [ressources communautaires de support](/community/support.html). [Le chat Reactiflux](https://discord.gg/0ZcbPKXt5bZjGY5n), notamment, est super utile pour obtenir de l’aide rapidement. Si vous ne recevez pas de réponse, ou si elle ne vous débloque pas, merci de nous le signaler par une *issue* dans GitHub, et nous ferons de notre mieux pour vous aider.
 
 ## Aperçu {#overview}
 
@@ -166,7 +166,7 @@ return React.createElement('div', {className: 'shopping-list'},
 
 [Voir la version compilée complète.](babel://tutorial-expanded-version)
 
-Si vous êtes curieux·se, `createElement()` est décrite en détail dans la [référence de l’API](/docs/react-api.html#createelement), mais nous ne l’utiliserons pas dans ce tutoriel.  On préférera utiliser plutôt JSX.
+Si vous êtes curieux·se, `createElement()` est décrite en détail dans la [référence de l’API](/docs/react-api.html#createelement), mais nous ne l’utiliserons pas dans ce tutoriel.  On préférera plutôt utiliser JSX.
 
 JSX conserve toute la puissance de JavaScript.  Vous pouvez mettre *n’importe quelle* expression JavaScript entre accolades dans du JSX.  Chaque élément React est un objet JavaScript que vous pouvez stocker dans une variable ou passer de main en main dans votre programme.
 
@@ -246,7 +246,7 @@ Désormais, si nous cliquons sur un `Square`, nous devrions obtenir une alerte d
 
 >Remarque
 >
->Pour économiser de la frappe et éviter des [aspects déroutants de `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), nous utiliserons désormais la [syntaxe des fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fléchées) pour les gestionnaires d’événements :
+>Pour économiser de la frappe et éviter certains [aspects déroutants de `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), nous utiliserons désormais la [syntaxe des fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fléchées) pour les gestionnaires d’événements :
 >
 >```javascript{4}
 >class Square extends React.Component {
@@ -262,9 +262,9 @@ Désormais, si nous cliquons sur un `Square`, nous devrions obtenir une alerte d
 >
 >Remarquez que dans `onClick={() => alert('click')}`, nous passons *une fonction* à la prop `onClick`.  Elle ne se déclenche que suite à un clic.  Une erreur courante consiste à oublier le `() =>` de départ, pour écrire seulement `onClick={alert('click')}` : l’alerte se déclencherait alors immédiatement, à chaque affichage.
 
-Pour l’étape suivante, nous voulons que le composant `Square` « se souvienne » qu’il a été cliqué, et se remplisse alors avec la marque « X ».  Afin qu’ils puissent « se souvenir » de choses, les composants utilisent **l’état local**.
+Pour l’étape suivante, nous voulons que le composant `Square` « se souvienne » qu'on lui a cliqué dessus, et se remplisse alors avec la marque « X ».  Afin qu’ils puissent « se souvenir » de choses, les composants utilisent **l’état local**.
 
-Les composants React peuvent définir un état local en définissant `this.state` dans leurs constructeurs. `this.state` est considéré comme une donnée privée du composant React qui le définit.  Stockons donc la valeur courante du `Square` dans `this.state`, et changeons-la quand la case est cliquée.
+Les composants React peuvent définir un état local en définissant `this.state` dans leurs constructeurs. `this.state` est considéré comme une donnée privée du composant React qui le définit.  Stockons donc la valeur courante du `Square` dans `this.state`, et changeons-la quand on clique sur la case.
 
 Dans un premier temps, nous allons ajouter un constructeur à la classe pour initialiser l’état local :
 
@@ -291,7 +291,7 @@ class Square extends React.Component {
 >
 >Dans les [classes JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes), vous devez toujours appeler `super` quand vous définissez le constructeur d’une sous-classe.  Tous les composants React à base de classes qui ont leur propre `constructor` devraient le faire démarrer par un appel à `super(props)`.
 
-Nous pouvons maintenant modifier la méthode `render` de `Square` pour afficher la valeur de l’état courant lorsqu’elle est cliquée :
+Nous pouvons maintenant modifier la méthode `render` de `Square` pour afficher la valeur de l’état courant lorsqu’on clique dessus :
 
 * Remplacez `this.props.value` par `this.state.value` dans la balise `<button>`.
 * Remplacez le gestionnaire d’événements `() => alert()` par `() => this.setState({value: 'X'})`.
@@ -416,7 +416,7 @@ La méthode `renderSquare` du `Board` ressemble actuellement à ça :
   }
 ```
 
-Au début, nous [passions la prop `value`](#passing-data-through-props) depuis le `Board` pour afficher des nombres de 0 à 8 dans chaque `Square`.  Lors d’une autre étape précédente, nous avions remplacé les nombres par des marques « X » [définies par l’état local de chaque `Square`](#making-an-interactive-component).  C’est pourquoi `Square` ignore complètement, à ce stade, la prop `value` qui lui est passée par le `Board`.
+Au début, nous [passions la prop `value`](#passing-data-through-props) depuis le `Board` pour afficher des nombres de 0 à 8 dans chaque `Square`.  Lors d’une étape ultérieure, nous avions remplacé les nombres par des marques « X » [définies par l’état local de chaque `Square`](#making-an-interactive-component).  C’est pourquoi `Square` ignore complètement, à ce stade, la prop `value` qui lui est passée par le `Board`.
 
 Nous allons recommencer à utiliser le mécanisme de passage de props.  Commençons par modifier le `Board` afin qu’il indique à chaque `Square` sa valeur actuelle (`'X'`, `'O'` ou `null`).  Nous avons déjà défini le tableau `squares` dans le constructeur de `Board`, il ne nous reste qu’à modifier sa méthode `renderSquare` pour qu’elle y lise l’information :
 
@@ -472,10 +472,10 @@ class Square extends React.Component {
 }
 ```
 
-Quand un `Square` est cliqué, la fonction `onClick` fournie par le `Board` est appelée.  Voici un rappel de ce que nous avons fait pour cela :
+Quand on clique sur un `Square`, la fonction `onClick` fournie par le `Board` est appelée.  Voici un rappel de ce que nous avons fait pour cela :
 
 1. La prop `onClick` du composant DOM natif `<button>` indique à React de mettre en place un gestionnaire d’événements pour les clics.
-2. Quand le bouton sera cliqué, React appellera le gestionnaire d’événements `onClick` défini dans la méthode `render()` de `Square`.
+2. Quand on cliquera sur le bouton, React appellera le gestionnaire d’événements `onClick` défini dans la méthode `render()` de `Square`.
 3. Ce gestionnaire d’événements appelle `this.props.onClick()`.  La prop `onClick` de `Square` a été spécifiée par le `Board`.
 4. Puisque le `Board` a passé `onClick={() => this.handleClick(i)}` à `Square`, ce dernier appelle en fait `this.handleClick(i)` (dans le contexte de `Board`) lors du clic.
 5. Nous n’avons pas encore défini la méthode `handleClick()`, du coup notre code plante.
@@ -541,7 +541,7 @@ class Board extends React.Component {
 
 Avec ces ajustements, nous pouvons à nouveau cliquer sur les cases pour les remplir.  Mais maintenant, l’état est stocké dans le composant `Board` au lieu des composants `Square` individuels.  Quand l’état du `Board` change, les composants `Square` sont automatiquement rafraîchis.  Conserver l’état de l’ensemble des cases dans le composant `Board` lui permettra plus tard de déterminer un vainqueur.
 
-Dans la mesure où les composants `Square` ne maintiennent plus d’état, ils reçoivent leurs valeurs du composant `Board` et l’informent lorsqu’ils sont cliqués.  En termes React, les composants `Square` sont des **composants contrôlés**.  Le `Board` dispose d’un contrôle complet sur eux.
+Dans la mesure où les composants `Square` ne maintiennent plus d’état, ils reçoivent leurs valeurs du composant `Board` et l’informent lorsqu’on clique sur eux.  En termes React, les composants `Square` sont des **composants contrôlés**.  Le `Board` dispose d’un contrôle complet sur eux.
 
 Remarquez que dans `handleClick`, nous appelons `.slice()` pour créer une copie du tableau `squares` à modifier, plutôt que de modifier le tableau existant.  Nous expliquerons pourquoi cette copie est nécessaire dans la prochaine section.
 
@@ -756,7 +756,7 @@ Nous appellerons `calculateWinner(squares)` dans la méthode `render` du `Board`
       // Le reste n’a pas changé
 ```
 
-Nous pouvons maintenant modifier la méthode `handleClick` de `Board` pour court-circuiter en ignorant le clic si quelqu’un a déjà gagné la partie, ou si la case est déjà remplie :
+Nous pouvons maintenant modifier la méthode `handleClick` de `Board` pour la court-circuiter en ignorant le clic si quelqu’un a déjà gagné la partie, ou si la case est déjà remplie :
 
 ```javascript{3-5}
   handleClick(i) {
@@ -778,7 +778,7 @@ Bravo ! Vous avez maintenant un jeu de morpion opérationnel.  Et vous venez d�
 
 ## Ajouter du voyage dans le temps {#adding-time-travel}
 
-À titre de bonus, faisons en sorte de permettre le « retour dans le passé » vers des tours précédents du jeu.
+À titre de bonus, faisons en sorte de pouvoir « revenir dans le passé » vers des tours de jeu précédents.
 
 ### Stocker un historique des mouvements {#storing-a-history-of-moves}
 
@@ -1220,9 +1220,9 @@ Félicitations ! Vous avez créé un jeu de morpion qui :
 
 Beau boulot !  Nous espérons que vous avez maintenant le sentiment de comprendre correctement comment fonctionne React.
 
-Jetez un œil au résultat final ici : **[résultat final](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
+Jetez un coup d'œil au résultat final ici : **[résultat final](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
 
-Si vous avez encore du temps ou souhaitez pratiquer vos nouvelles compétences React, voici quelques idées d’améliorations que vous pourriez faire à ce jeu de morpion, listées par ordre croissant de difficulté :
+Si vous avez encore du temps ou si vous souhaitez pratiquer vos nouvelles compétences React, voici quelques idées d’améliorations que vous pourriez apporter à ce jeu de morpion, listées par ordre croissant de difficulté :
 
 1. Afficher l’emplacement de chaque coup dans l’historique de tours, au format `(colonne, ligne)`.
 2. Mettre le tour affiché en gras dans l’historique.
@@ -1231,4 +1231,4 @@ Si vous avez encore du temps ou souhaitez pratiquer vos nouvelles compétences R
 5. Quand quelqu’un gagne, mettre en exergue les trois cases qui ont permis la victoire.
 6. Quand personne ne gagne, afficher un message indiquant le match nul.
 
-Au travers de ce tutoriel, nous avons touché à de nombreux concepts de React tels que les éléments, composants, props, et l’état local.  Pour de plus amples explications sur ces sujets, jetez un œil au [reste de la documentation](/docs/hello-world.html).  Pour en apprendre davantage sur la définition de composants, vous pouvez consulter la [référence de l’API `React.Component`](/docs/react-component.html).
+Au travers de ce tutoriel, nous avons touché à de nombreux concepts de React tels que les éléments, les composants, les props, et l’état local.  Pour de plus amples explications sur ces sujets, jetez un coup d'œil au [reste de la documentation](/docs/hello-world.html).  Pour en apprendre davantage sur la définition de composants, vous pouvez consulter la [référence de l’API `React.Component`](/docs/react-component.html).
