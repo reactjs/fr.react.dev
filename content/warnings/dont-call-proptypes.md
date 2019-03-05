@@ -57,7 +57,7 @@ Button.propTypes = {
 }
 ```
 
-Dans ce cas, `ThirdPartyPropTypes.deprecated` est un container appelant `PropTypes.bool`. Ce modèle en soi est correct, mais déclenche un faux positif, car React pense que vous appelez directement PropTypes. La section suivante explique comment résoudre ce problème pour une bibliothèque implémentant quelque chose similaire à `ThirdPartyPropTypes`. Si ce n'est pas une bibliothèque que vous avez écrite, vous pouvez créer un problème à ce sujet.
+Dans ce cas, `ThirdPartyPropTypes.deprecated` est un enrobage qui appelle `PropTypes.bool`. Ce modèle n’a rien de mauvais en soi, mais il déclenche un faux positif car React pense que vous appelez directement PropTypes. La section suivante explique comment résoudre ce problème pour une bibliothèque implémentant quelque chose de similaire à `ThirdPartyPropTypes`. Si ce n'est pas une bibliothèque que vous avez écrite, vous pouvez déposer une *issue* sur son dépôt public.
 
 ### Correction du faux positif dans les PropTypes tiers {#fixing-the-false-positive-in-third-party-proptypes}
 
