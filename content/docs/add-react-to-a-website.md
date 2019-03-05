@@ -27,7 +27,7 @@ Il n'y a pas besoin d'outils compliqués ou d'installations à faire : **pour s
 
 Optionnel : [Télécharger l'exemple complet (2KB zippé)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
 
-### Étape 1 : Ajouter un conteneur DOM à votre HTML {#step-1-add-a-dom-container-to-the-html}
+### Étape 1 : ajouter un conteneur DOM à votre HTML {#step-1-add-a-dom-container-to-the-html}
 
 Premièrement, ouvrez la page HTML que vous souhaitez éditer. Ajouter une balise `<div>` vide afin de définir ce que vous souhaitez afficher avec React. Par exemple :
 
