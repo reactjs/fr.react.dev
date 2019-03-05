@@ -23,7 +23,7 @@ La majorité des sites web ne sont pas, et n'ont pas besoin d'être, des applica
 
 Dans cette partie, nous allons montrer comment ajouter un composant React à une page HTML existante. Vous pouvez suivre les étapes avec votre propre site web ou avec une page HTML vide pour vous entrainer.
 
-Il n'y a pas besoin d'outils compliqués ou d'installations requises, **pour suivre cette section, vous avez juste besoin d'une connexion à internet et d'une minute de votre temps.**
+Il n'y a pas besoin d'outils compliqués ou d'installations à faire : **pour suivre cette section, vous avez juste besoin d'une connexion à internet et d'une minute de votre temps.**
 
 Optionnel : [Télécharger l'exemple complet (2KB zippé)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
 
