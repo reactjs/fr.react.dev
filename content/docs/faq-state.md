@@ -55,7 +55,7 @@ Passez une fonction au lieu d'un objet à `setState` pour vous assurer que l'app
 
 ### Qu'elle est la différence entre passer un objet ou une fonction dans `setState` ? {#what-is-the-difference-between-passing-an-object-or-a-function-in-setstate}
 
-Passer une fonction de mise à jour vous permet d'accéder à la valeur de l'état actuel à l'intérieur de la fonction de mise à jour. Comme les appels `setState` sont groupés en lot, cela vous permet d'enchaîner les mises à jour et de vous assurer qu'elles se réalisent les unes par-dessus les autres au lieu d'entrer en conflit :
+Passer une fonction de mise à jour vous permet d'accéder à la valeur de l'état actuel à l'intérieur de la fonction de mise à jour. Comme les appels `setState` sont groupés en lot, cela vous permet d'enchaîner les mises à jour et de vous assurer qu'elles se réalisent les unes après les autres au lieu d'entrer en conflit :
 
 ```jsx
 incrementCount() {
