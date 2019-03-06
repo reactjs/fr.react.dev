@@ -42,7 +42,7 @@
 - name: français
   translated_name: Français
   code: fr
-  status: 1
+  status: 2
 - name: Gujarati
   translated_name: ગુજરાતી
   code: gu
@@ -123,7 +123,14 @@
   translated_name: සිංහල
   code: si
   status: 0
+<<<<<<< HEAD
 - name: tamil
+=======
+- name: Swedish
+  translated_name: Svenska
+  code: sv
+- name: Tamil
+>>>>>>> b50fe64c1e88489022eddf2cfff0995778827f84
   translated_name: தமிழ்
   code: ta
   status: 0
