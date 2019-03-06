@@ -36,7 +36,7 @@ function FriendStatus(props) {
 }
 ```
 
-Disons maintenant que notre application de chat possède aussi une liste de contacts et que nous souhaitons afficher en vert les noms des utilisateurs qui sont en ligne. Nous pourrions copier et coller une logique similaire à celle ci-dessus dans notre composant `FriendListItem` mais ça ne serait pas idéal :
+Disons maintenant que notre application de chat possède aussi une liste de contacts et que nous souhaitons afficher en vert les noms des utilisateurs qui sont en ligne. Nous pourrions copier et coller une logique similaire à celle ci-dessus dans notre composant `FriendListItem` mais ça ne serait pas idéal :
 
 ```js{4-15}
 import React, { useState, useEffect } from 'react';
@@ -65,13 +65,13 @@ function FriendListItem(props) {
 
 Nous aimerions plutôt partager cette logique entre `FriendStatus` et `FriendListItem`.
 
-Traditionnellement en React, nous avions deux manières répandues de partager une logique d'état entre des composants : les [props de rendu](/docs/render-props.html) et les [composants d'ordre supérieur](/docs/higher-order-components.html). Nous allons voir comment les Hooks règlent la majeure partie de ces problèmes sans vous obliger à ajouter des composants dans l'arbre.
+Traditionnellement en React, nous avions deux manières répandues de partager une logique d'état entre des composants : les [props de rendu](/docs/render-props.html) et les [composants d'ordre supérieur](/docs/higher-order-components.html). Nous allons voir comment les Hooks règlent la majeure partie de ces problèmes sans vous obliger à ajouter des composants dans l'arbre.
 
 ## Extraire un Hook personnalisé {#extracting-a-custom-hook}
 
-Lorsque nous souhaitons partager de la logique entre deux fonctions JavaScript, nous l'extrayons dans une troisième fonction. Les composants et les Hooks sont des fonctions, ça fonctionne donc aussi pour eux !
+Lorsque nous souhaitons partager de la logique entre deux fonctions JavaScript, nous l'extrayons dans une troisième fonction. Les composants et les Hooks sont des fonctions, ça fonctionne donc aussi pour eux !
 
-**Un Hook personnalisé est une fonction JavaScript dont le nom commence par "`use`" et qui peut appeler d'autres Hooks.** Par exemple, `useFriendStatus` ci-dessous est notre premier Hook personnalisé :
+**Un Hook personnalisé est une fonction JavaScript dont le nom commence par "`use`" et qui peut appeler d'autres Hooks.** Par exemple, `useFriendStatus` ci-dessous est notre premier Hook personnalisé :
 
 ```js{3}
 import React, { useState, useEffect } from 'react';
@@ -116,7 +116,7 @@ Voyons maintenant comment nous pouvons utiliser notre Hook personnalisé.
 
 À la base, notre but était de supprimer la logique dupliquée entre les composants `FriendStatus` et `FriendListItem`. Les deux veulent savoir si un ami est en ligne.
 
-Maintenant que nous avons extrait cette logique dans un hook `useFriendStatus`, nous pouvons *simplement l'utiliser :*
+Maintenant que nous avons extrait cette logique dans un hook `useFriendStatus`, nous pouvons *simplement l'utiliser :*
 
 ```js{2}
 function FriendStatus(props) {
@@ -141,19 +141,19 @@ function FriendListItem(props) {
 }
 ```
 
-**Ce code est-il équivalent aux exemples de départ ?** Oui, il fonctionne exactement de la même manière. Si vous regardez de plus près, vous remarquerez que nous n'avons en rien changé le comportement. Tout ce que nous avons fait, c’est déplacer du code commun à deux fonctions dans une fonction séparée. **Les Hooks personnalisés sont une convention qui découle naturellement du principe des Hooks, plutôt qu'une véritable fonctionnalité de React.**
+**Ce code est-il équivalent aux exemples de départ ?** Oui, il fonctionne exactement de la même manière. Si vous regardez de plus près, vous remarquerez que nous n'avons en rien changé le comportement. Tout ce que nous avons fait, c’est déplacer du code commun à deux fonctions dans une fonction séparée. **Les Hooks personnalisés sont une convention qui découle naturellement du principe des Hooks, plutôt qu'une véritable fonctionnalité de React.**
 
-**Dois-je nommer mes Hooks personnalisés en commençant par "`use`" ?** Oui, s'il vous plaît. Cette convention est très importante. Sans elle, nous ne pourrions pas vérifier automatiquement les violations des [règles des Hooks](/docs/hooks-rules.html) car nous ne pourrions être sûrs qu’une fonction contient des appels à des Hooks.
+**Dois-je nommer mes Hooks personnalisés en commençant par "`use`" ?** Oui, s'il vous plaît. Cette convention est très importante. Sans elle, nous ne pourrions pas vérifier automatiquement les violations des [règles des Hooks](/docs/hooks-rules.html) car nous ne pourrions être sûrs qu’une fonction contient des appels à des Hooks.
 
 **Est-ce que deux composants utilisant le même Hook partagent le même état ?** Non. Les Hooks personnalisés sont un mécanisme de réutilisation de *logique à état* (comme la mise en place d'un abonnement et la mémorisation de sa valeur courante), mais chaque fois qu'on utilise un Hook personnalisé, tous les états et effets qu’il utilise sont totalement isolés.
 
 **Comment l'état d'un Hook personnalisé est-il isolé ?** Chaque *appel* à un Hook se voit attribuer un état isolé. Comme nous appelons `useFriendStatus` directement, du point de vue de React notre composant appelle simplement `useState` et `useEffect`. Et comme nous l'avons [appris](/docs/hooks-state.html#tip-using-multiple-state-variables) [précédemment](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns), nous pouvons appeler `useState` et `useEffect` plusieurs fois dans un composant et ils seront complètement indépendants.
 
-### Astuce: passer de l'Information entre les Hooks {#tip-pass-information-between-hooks}
+### Astuce: passer de l'information entre les Hooks {#tip-pass-information-between-hooks}
 
 Comme les Hooks sont des fonctions, nous pouvons passer de l'information entre eux.
 
-Pour illustrer ça, nous allons utiliser un autre composant de notre hypothétique exemple de chat. Voici un sélecteur de destinataire de message qui affiche si l'ami sélectionné est en ligne :
+Pour illustrer ça, nous allons utiliser un autre composant de notre hypothétique exemple de chat. Voici un sélecteur de destinataire de message qui affiche si l'ami sélectionné est en ligne :
 
 ```js{8-9,13}
 const friendList = [
@@ -186,7 +186,7 @@ function ChatRecipientPicker() {
 
 Nous gardons l'ID de l'ami sélectionné dans la variable d'état `recipientID`, et nous la mettons à jour si l'utilisateur sélectionne un ami différent dans le `<select>` de la liste.
 
-Puisque l'appel au Hook `useState` nous renvoie la dernière valeur de la variable d'état `recipientID`, nous pouvons la passer en argument à notre Hook personnalisé `useFriendStatus` :
+Puisque l'appel au Hook `useState` nous renvoie la dernière valeur de la variable d'état `recipientID`, nous pouvons la passer en argument à notre Hook personnalisé `useFriendStatus` :
 
 ```js
   const [recipientID, setRecipientID] = useState(1);
@@ -199,9 +199,9 @@ Nous pouvons ainsi savoir si l'ami *actuellement sélectionné* est en ligne. Si
 
 Les Hooks personnalisés offrent une souplesse de partage de logique qui n'était pas possible avec les composants React auparavant. Vous pouvez écrire des Hooks personnalisés qui couvrent un large éventail de cas d'usage tels que la gestion de formulaires, les animations, les abonnements déclaratifs, les horloges et probablement de nombreux autres auxquels nous n'avons pas pensé. Qui plus est, vous pouvez construire des Hooks qui sont aussi simples à utiliser que les fonctionnalités fournies par React.
 
-Essayez de résister à la tentation de faire des extractions prématurées de Hooks. À présent que les fonctions composants peuvent en faire plus, il est probable que les fonctions composants de votre base de code grossissent, en moyenne. C'est normal : ne vous sentez pas *obligé·e* d’en extraire des Hooks. Ceci dit, nous vous encourageons tout de même à commencer à repérer des cas où un Hook personnalisé pourrait masquer une logique complexe derrière une interface simple, ou aider à démêler un composant dont le code est incompréhensible.
+Essayez de résister à la tentation de faire des extractions prématurées de Hooks. À présent que les fonctions composants peuvent en faire plus, il est probable que les fonctions composants de votre base de code grossissent, en moyenne. C'est normal : ne vous sentez pas *obligé·e* d’en extraire des Hooks. Ceci dit, nous vous encourageons tout de même à commencer à repérer des cas où un Hook personnalisé pourrait masquer une logique complexe derrière une interface simple, ou aider à démêler un composant dont le code est incompréhensible.
 
-Par exemple, peut-être avez-vous un composant complexe qui contient beaucoup d'états locaux gérés de manière *ad hoc*. `useState` ne facilite pas la centralisation de la logique de mise à jour, du coup vous préféreriez peut-être la ré-écrire sous forme de réducteur [Redux](https://redux.js.org/) :
+Par exemple, peut-être avez-vous un composant complexe qui contient beaucoup d'états locaux gérés de manière *ad hoc*. `useState` ne facilite pas la centralisation de la logique de mise à jour, du coup vous préféreriez peut-être la ré-écrire sous forme de réducteur [Redux](https://redux.js.org/) :
 
 ```js
 function todosReducer(state, action) {
