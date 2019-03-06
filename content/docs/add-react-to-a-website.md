@@ -52,12 +52,12 @@ Ensuite, ajoutez trois balises `<script>` à votre page HTML, juste avant la fer
 ```html{5,6,9}
   <!-- ... autres contenus HTML ... -->
 
-  <!-- Chargez React. -->
+  <!-- Charge React. -->
   <!-- Remarque : pour le déploiement, remplacez "development.js" par "production.min.js". -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
-  <!-- Chargez votre composant React. -->
+  <!-- Charge notre composant React. -->
   <script src="like_button.js"></script>
 
 </body>
@@ -167,7 +167,7 @@ Cette approche est acceptable pour se former ou réaliser des démos simples. Ce
 
 L'ajout de JSX à votre projet ne nécessite pas d'outils compliqués comme un _bundler_ ou un serveur de développement. Cela ressemble plus **à l'ajout d'un préprocesseur CSS**. Le seul outil indispensable est [Node.js](https://nodejs.org/fr/), qui doit être installé sur votre ordinateur.
 
-Déplacez-vous sur votre projet à l'aide de votre terminal et copiez/collez ces deux commandes :
+Dans un terminal (invite de commande), déplacez-vous dans le dossier de votre projet, et copiez-collez ces deux commandes :
 
 1. **Étape 1 :** exécutez `npm init -y` (si ça ne fonctionne pas, [voici un correctif](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
 2. **Étape 2 :** exécutez `npm install babel-cli@6 babel-preset-react-app@3`
@@ -188,14 +188,14 @@ npx babel --watch src --out-dir . --presets react-app/prod
 
 >Remarque
 >
->`npx` n'est pas une faute de frappe, il s'agit d'un [outil de lancement de package (« package runner tool » dans la langue de Shakespeare, NdT) qui accompagne npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
+>`npx` n'est pas une faute de frappe, il s'agit d'un [outil d’exécution de paquet fourni avec npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) *(”package runner tool”, NdT)*.
 >
 >Si le message d'erreur *”You have mistakenly installed the `babel` package”* apparaît, vous avez peut-être loupé [l'étape précédente](#add-jsx-to-a-project). Dans le même dossier, recommencez l'opération et essayez de nouveau.
 
-Cette commande lance un observateur automatisé de votre JSX donc n'attendez pas que cela se termine.
+Cette commande surveille votre JSX en continu, inutile donc d’attendre qu’elle se termine.
 
-Dorénavant, si à partir de **[code de démarrage JSX](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, vous créez un fichier nommé `src/like_button.js`, l'observateur va lancer un préprocesseur afin de créer un fichier `like_button.js` avec du code JavaScript utilisable par le navigateur. Ce fichier obtenu sera recréé à chaque modification de votre fichier JSX original.
+Dorénavant, si à partir du **[code de démarrage JSX](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, vous créez un fichier nommé `src/like_button.js`, le préprocesseur va produire un fichier traduit `like_button.js`, avec du code JavaScript exploitable par le navigateur. Ce fichier sera mis à jour à chaque modification de votre fichier JSX original.
 
-Avec ce principe, vous aurez la possibilité d'utiliser des syntaxes modernes de JavaScript comme les classes, sans vous soucier de la compatibilité avec d'anciens navigateurs. L'outil que nous venons de décrire se nomme Babel, vous pouvez en savoir plus sur ce dernier en allant sur [sa documentation](https://babeljs.io/docs/en/babel-cli/).
+Et en bonus, ça vous permet aussi d’utiliser des syntaxes JavaScript modernes comme les classes, sans vous soucier de la compatibilité avec d'anciens navigateurs. L'outil que nous venons d’utiliser se nomme Babel, et vous pouvez en savoir plus sur lui en allant sur [sa documentation](https://babeljs.io/docs/en/babel-cli/).
 
 Si vous vous sentez à l'aise avec les outils de compilation et souhaitez en apprendre plus, la [partie suivante](/docs/create-a-new-react-app.html) décrit les outils les plus populaires et les plus accessibles de la chaine de compilation. Si ce n'est pas le cas, les balises décrites précédemment fonctionneront à merveille !
