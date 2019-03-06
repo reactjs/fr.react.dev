@@ -10,7 +10,7 @@ Auparavant, les erreurs JavaScript au sein des composants avaient l'habitude de 
 
 Une erreur JavaScript au sein de la partie UI ne devrait pas casser l'ensemble de l'application. Pour résoudre ce problème pour les utilisateurs de React, React 16 a introduit un nouveau concept appelé « *Error Boundary* » (nous utiliserons le terme de « Périmètre d'erreur » par la suite — NdT).
 
-Les périmètres d'erreurs sont des composants React qui **interceptent les erreurs JavaScript n'importe où au sein de leur arbre de composants enfants, trace ces erreurs, et affiche une interface de secours** à la place du composants en erreur. Les périmètres d'erreurs interceptent les erreurs durant le rendu, dans les méthodes du cycle de vie, ainsi que dans les constructeurs dans toute leur arborescence.
+Les périmètres d'erreurs sont des composants React qui **interceptent les erreurs JavaScript n'importe où au sein de leur arbre de composants enfants, enregistre ces erreurs, et affiche une interface de secours** à la place de l'arbre de composants en erreur. Les périmètres d'erreurs interceptent les erreurs durant le rendu, dans les méthodes du cycle de vie, ainsi que dans les constructeurs de tous les éléments de leur arborescence.
 
 > Remarque :
 >
@@ -21,7 +21,7 @@ Les périmètres d'erreurs sont des composants React qui **interceptent les erre
 > * Le code généré côté serveur.
 > * Les erreurs lancées dans le composant du périmètre d'erreur lui-même (plutôt qu'au sein de ses enfants).
 
-Une classe de composants devient un périmètre d'erreur s'il définit l'une (ou les deux) des méthodes du cycle de vie [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) ou [`componentDidCatch()`](/docs/react-component.html#componentdidcatch). Utilisez `static getDerivedStateFromError()` pour faire le rendu de l'UI de secours lorsqu'une erreur a été lancée. Utilisez `componentDidCatch()` pour tracer l'information relative à l'erreur.
+Une classe de composants devient un périmètre d'erreur s'il définit l'une (ou les deux) des méthodes du cycle de vie [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) ou [`componentDidCatch()`](/docs/react-component.html#componentdidcatch). Utilisez `static getDerivedStateFromError()` pour faire le rendu de l'UI de secours lorsqu'une erreur a été lancée. Utilisez `componentDidCatch()` pour enregistrer les informations relatives à l'erreur.
 
 ```js{7-10,12-15,18-21}
 class ErrorBoundary extends React.Component {
@@ -59,9 +59,9 @@ Vous pouvez alors l'utiliser comme un composant classique :
 </ErrorBoundary>
 ```
 
-Les périmètres d'erreurs fonctionnent comme un bloc JavaScript `catch {}`, mais pour des composants. Seules des classes de composants peuvent être des périmètres d'erreurs. En pratique, vous voudrez généralement définir un seul composant périmètre d'erreur et l'utiliser dans votre application.
+Les périmètres d'erreurs fonctionnent comme un bloc JavaScript `catch {}`, mais pour des composants. Seuls les composants à base de classe peuvent être des périmètres d'erreurs. En pratique, vous voudrez généralement définir un seul composant périmètre d'erreur pour l'utiliser partout dans votre application.
 
-Remarquez que **les périmètres d'erreurs ne détectent que les erreurs présentes en dessous d'eux dans l'arbre des composants**. Un périmètre d'erreur ne peut intercepter une erreur sur lui-même. Si un périmètre d'erreur échoue à faire le rendu du message d'erreur, l'erreur se propagera alors au périmètre d'erreur le plus proche. Cela est également similaire à la façon dont le bloc `catch {}` fonctionne en JavaScript.
+Remarquez que **les périmètres d'erreurs ne détectent que les erreurs présentes en dessous d'eux dans l'arbre des composants**. Un périmètre d'erreur ne peut intercepter une erreur sur lui-même. Si un périmètre d'erreur échoue à faire le rendu du message d'erreur, l'erreur se propagera alors au périmètre d'erreur suivant le plus proche. Là aussi, c'est similaire à la façon dont le bloc `catch {}` fonctionne en JavaScript.
 
 ## Démonstration {#live-demo}
 
