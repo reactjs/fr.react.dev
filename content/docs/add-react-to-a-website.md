@@ -12,7 +12,7 @@ Utiliser React en fonction de vos besoins
 
 React a été conçu dès le départ pour une adoption progressive, et **vous pouvez utiliser React _a minima_ ou autant que nécessaire.** Peut-être souhaitez-vous simplement ajouter un peu d'interactivité à une page existante. Les composants React sont une bonne solution pour ça.
 
-La majorité des sites web ne sont pas, et n'ont pas besoin d'être, des applications web monopage (en anglais Single Page Application ou plus simplement SPA, NdT). Sans outils ou configurations supplémentaires, mais avec simplement quelques lignes de code, vous pouvez essayer React dans une petite partie de votre site web. Vous pourrez par la suite ajouter des composants supplémentaires ou garder React dans quelques éléments dynamiques.
+La majorité des sites web ne sont pas, et n'ont pas besoin d'être, des applications web monopages *(Single-Page Application ou plus simplement SPA, NdT)*. **Avec juste quelques lignes de code et sans outillage particulier**, vous pouvez essayer React sur une petite partie de votre site web. Vous pourrez par la suite ajouter des composants supplémentaires ou limiter React à quelques éléments dynamiques.
 
 ---
 
@@ -147,7 +147,7 @@ return (
 );
 ```
 
-Les deux extraits de code précédents sont en effet équivalent. Cependant même si la syntaxe **JSX est [complètement optionnelle](/docs/react-without-jsx.html)**, la plupart des développeurs React trouvent cela très pratique pour l'affichage (avec React ou même avec d'autres bibliothèques).
+Ces deux extraits de code sont équivalents. Même si la syntaxe **JSX est [complètement optionnelle](/docs/react-without-jsx.html)**, la plupart des développeur·euse·s React la trouvent très pratique pour écrire du code  (avec React ou même avec d'autres bibliothèques).
 
 Vous pouvez tester JSX en utilisant un [convertisseur en ligne](https://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2%2Cstage-3&prettier=true&targets=Node-6.12&version=6.26.0&envVersion=).
 
