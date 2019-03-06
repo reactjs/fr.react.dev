@@ -10,7 +10,7 @@ Si vous voyez cet avertissement, c’est en général dû à une des raisons sui
 
 1. Utilisez-vous `{...this.props}` ou `cloneElement(element, this.props)` ?  Votre composant transfère ses props directement à un élément enfant (voir [la doc les props](docs/components-and-props.html)).  Quand vous transférez des props à un composant enfant, assurez-vous de ne pas lui refiler par mégarde des props qui n’auraient dû être interprétées que par le composant parent.
 2. Vous utilisez un attribut DOM non-standard sur un nœud DOM natif, peut-être pour représenter des données personnalisées.  Si vous essayez d’associer des données perso à un élément DOM standard, utilisez plutôt un attribut de données perso tel que décrit [dans le MDN](https://developer.mozilla.org/fr/docs/Apprendre/HTML/Comment/Utiliser_attributs_donnes).
-3. React ne reconnaît pas encore l’attribut que vous avez spécifié.  Ça va sûrement être corrigé dans une future version de React.  Néanmoins, React supprime pour le moment tous les attributs qu’il ne connaît pas, aussi les spécifier dans votre appli React ne les exploitera pas pour autant.
+3. React ne reconnaît pas encore l’attribut que vous avez spécifié.  Ça va sûrement être corrigé dans une future version de React.  Néanmoins, React supprime pour le moment tous les attributs qu’il ne connaît pas, en conséquence même si vous spécifiez de tels attributs, React ne les exploitera pas.
 4. Vous utilisez un composant React sans avoir mis la première lettre en majuscule.  React l’interprète alors comme une balise DOM parce que [la transformation de JSX utilise une convention de casse pour distinguer entre composants personnalisés et balises DOM](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
 
 ---
