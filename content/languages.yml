@@ -123,14 +123,10 @@
   translated_name: සිංහල
   code: si
   status: 0
-<<<<<<< HEAD
-- name: tamil
-=======
-- name: Swedish
+- name: suédois
   translated_name: Svenska
   code: sv
-- name: Tamil
->>>>>>> b50fe64c1e88489022eddf2cfff0995778827f84
+- name: tamil
   translated_name: தமிழ்
   code: ta
   status: 0
