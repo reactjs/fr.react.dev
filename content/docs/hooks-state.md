@@ -82,7 +82,7 @@ function Example(props) {
 }
 ```
 
-Vous les connaissiez peut-être sous le nom de « composants sans état ». Comme nous avons maintenant la possibilité d'utiliser l'état local React dans ces composants, nous préférerons le terme « fonctions composants ».
+Vous les connaissiez peut-être sous le nom de « composants sans état » *(Stateless (Functional) Components ou SFC, NdT)*. Comme nous avons maintenant la possibilité d'utiliser l'état local React dans ces composants, nous préférerons le terme « fonctions composants ».
 
 Les Hooks **ne fonctionnent pas** dans les classes. Mais vous pouvez les utiliser pour éviter d'écrire des classes.
 
@@ -130,9 +130,9 @@ function Example() {
   const [count, setCount] = useState(0);
 ```
 
-**Appeler `useState`, qu'est-ce que ça fait ?** Cela déclare une « variable d'état ». Notre variable est appelée `count` mais nous aurions pu l'appeler n'importe comment, par exemple `banane`. C'est un moyen de « préserver » des valeurs entre différents appels de fonctions. `useState` est une nouvelle façon d'utiliser exactement les mêmes possibilités qu'offre `this.state` dans une classe. Normalement, les variables « disparaissent » quand la fonction s'achève mais les variables d'état sont préservées par React.
+**Appeler `useState`, qu'est-ce que ça fait ?** Ça déclare une « variable d'état ». Notre variable est appelée `count` mais nous aurions pu l'appeler n'importe comment, par exemple `banane`. C'est un moyen de « préserver » des valeurs entre différents appels de fonctions. `useState` est une nouvelle façon d'utiliser exactement les mêmes possibilités qu'offre `this.state` dans une classe. Normalement, les variables « disparaissent » quand la fonction s'achève mais les variables d'état sont préservées par React.
 
-**Qu'est-ce qu'on passe à `useState` comme argument ?** Le seul argument à passer au Hook `useState()` est l'état initial. Contrairement à ce qui se passe dans les classes, l'état local n'est pas obligatoirement un objet. Il peut s’agir d’un nombre ou d’une chaîne de caractères si ça nous suffit. Dans notre exemple, nous voulons simplement un nombre traduisant le nombre de fois qu'un utilisateur a cliqué sur le bouton, nous passerons donc `0` comme état initial pour notre variable. (Si nous voulions stocker deux valeurs différentes dans l'état, nous appellerions `useState()` deux fois.)
+**Qu'est-ce qu'on passe à `useState` comme argument ?** Le seul argument à passer au Hook `useState()` est l'état initial. Contrairement à ce qui se passe dans les classes, l'état local n'est pas obligatoirement un objet. Il peut s’agir d’un nombre ou d’une chaîne de caractères si ça nous suffit. Dans notre exemple, nous voulons simplement le nombre de fois qu'un utilisateur a cliqué sur le bouton, nous passerons donc `0` comme état initial pour notre variable. (Si nous voulions stocker deux valeurs différentes dans l'état, nous appellerions `useState()` deux fois.)
 
 **Que renvoie `useState` ?** Elle renvoie une paire de valeurs : l'état actuel et une fonction pour le modifier. C'est pourquoi nous écrivons `const [count, setCount] = useState()`. C'est semblable à `this.state.count` et `this.setState` dans une classe, mais ici nous les récupérons en même temps. Si vous n'êtes pas à l’aise avec la syntaxe que nous avons employée, nous y reviendrons [en bas de cette page](/docs/hooks-state.html#tip-what-do-square-brackets-mean).
 
@@ -152,7 +152,7 @@ Nous déclarons une variable d‘état appelée `count`, et l'initialisons à `0
 >
 >Vous vous demandez peut-être pourquoi `useState` n'est pas plutôt appelée `createState` ?
 >
->En fait, « create » ne serait pas tout à fait correct puisque l'état n’est créé qu’au premier affichage de notre composant. Les fois suivantes, `useState` nous renvoie l'état actuel. Autrement, ce ne serait pas un état du tout ! Il y a aussi une raison pour laquelle les noms des Hooks commencent *toujours* par `use`. Nous découvrirons laquelle plus tard dans les [Règles des Hooks](/docs/hooks-rules.html).
+>En fait, *“create”* ne serait pas tout à fait correct puisque l'état n’est créé qu’au premier affichage de notre composant. Les fois suivantes, `useState` nous renvoie l'état actuel. Autrement, ce ne serait pas un état du tout ! Il y a aussi une raison pour laquelle les noms des Hooks commencent *toujours* par `use`. Nous découvrirons laquelle plus tard dans les [Règles des Hooks](/docs/hooks-rules.html).
 
 ## Lire l'état {#reading-state}
 
@@ -212,7 +212,7 @@ Il est maintenant temps de **récapituler ce que nous avons appris ligne par lig
 14:  }
 ```
 
-* **Ligne 1 :** nous importons le Hook `useState` depuis React. Il nous permet d'utiliser un état local dans une fonction composant. 
+* **Ligne 1 :** nous importons le Hook `useState` depuis React. Il nous permet d'utiliser un état local dans une fonction composant.
 * **Ligne 4 :** dans le composant `Example`, nous déclarons une nouvelle variable d'état en appelant le Hook `useState`. Il renvoie une paire de valeurs que nous pouvons nommer à notre guise. Ici, nous appelons notre variable `count` puisqu'elle contient le nombre de clics sur le bouton. Nous l'initialisons à zéro en passant `0` comme seul argument à `useState`. Le second élément renvoyé est une fonction. Elle nous permet de modifier la variable `count`, nous l'appellerons donc `setCount`.
 * **Ligne 9 :** quand l'utilisateur clique, nous appelons `setCount` avec une nouvelle valeur. React rafraîchira le composant `Example` et lui passera la nouvelle valeur de `count`.
 
@@ -273,8 +273,8 @@ Découvrez les raisons de préférer séparer vos variables d'état [dans la FAQ
 
 ## Prochaines étapes {#next-steps}
 
-Dans cette section, vous avez appris à utiliser un des Hooks fournis par React, appelé `useState`. Nous y ferons parfois référence sous le terme « Hook d'état ». Il nous permet d'ajouter un état local à des fonctions composants React–ce qui est une première !
+Dans cette section, vous avez appris à utiliser un des Hooks fournis par React, appelé `useState`. Nous y ferons parfois référence sous le terme « Hook d'état ». Il nous permet d'ajouter un état local à des fonctions composants React—ce qui est une première !
 
 Nous en avons également appris un peu plus sur la nature des Hooks. Les Hooks sont des fonctions qui nous permettent de « nous brancher » sur des fonctionnalités React depuis des fonctions composants. Leur noms commencent toujours par `use`, et il y a encore beaucoup de Hooks que nous n'avons pas encore vus !
 
-**Continuons maintenant en [découvrant le prochain Hook : `useEffect`.](/docs/hooks-effect.html)** Il vous permet de déclencher des effets de bord dans les composants, et est similaire aux méthodes de cycle de vie dans les classes.
+**Continuons maintenant en [découvrant le prochain Hook : `useEffect`.](/docs/hooks-effect.html)** Il vous permet de déclencher des effets de bord dans les composants, ce qui est similaire aux méthodes de cycle de vie dans les classes.
