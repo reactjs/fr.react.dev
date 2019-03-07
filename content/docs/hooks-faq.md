@@ -38,16 +38,15 @@ Cette page contient les réponses aux questions les plus fréquemment posées à
   * [Comment puis-je implémenter getDerivedStateFromProps ?](#how-do-i-implement-getderivedstatefromprops)
   * [Existe-t-il un équivalent à forceUpdate ?](#is-there-something-like-forceupdate)
   * [Puis-je créer une ref vers une fonction composant ?](#can-i-make-a-ref-to-a-function-component)
-  * [What does const [thing, setThing] = useState() mean?](#what-does-const-thing-setthing--usestate-mean)
   * [Que signifie const [thing, setThing] = useState() ?](#what-does-const-thing-setthing--usestate-mean)
-* **[Performance Optimizations](#performance-optimizations)**
+* **[Optimisations de performance](#performance-optimizations)**
   * [Puis-je sauter un effet lors de mises à jour ?](#can-i-skip-an-effect-on-updates)
-  * [Comment puis-je implémenter shouldComponentUpdate?](#how-do-i-implement-shouldcomponentupdate)
+  * [Comment puis-je implémenter shouldComponentUpdate ?](#how-do-i-implement-shouldcomponentupdate)
   * [Comment mémoïser les calculs ?](#how-to-memoize-calculations)
   * [Comment créer des objets lourds sans trop de travail ?](#how-to-create-expensive-objects-lazily)
   * [Les Hooks sont-ils lents à cause de la création de fonctions dans le rendu ?](#are-hooks-slow-because-of-creating-functions-in-render)
   * [Comment éviter de transmettre des fonctions de rappel ?](#how-to-avoid-passing-callbacks-down)
-  * [Comment lire une valeur changeant fréquemment depuis useCallback ?](#how-to-read-an-often-changing-value-from-usecallback)
+  * [Comment lire une valeur changeant fréquemment avec useCallback ?](#how-to-read-an-often-changing-value-from-usecallback)
 * **[Sous le capot](#under-the-hood)**
   * [Comment React associe-t-il les appels de Hook avec les composants ?](#how-does-react-associate-hook-calls-with-components)
   * [Quelles sont les idées à l'origine des Hooks ?](#what-is-the-prior-art-for-hooks)
@@ -258,27 +257,27 @@ function Box() {
 }
 ```
 
-Now let's say we want to write some logic that changes `left` and `top` when the user moves their mouse. Note how we have to merge these fields into the previous state object manually:
+Maintenant, disons que nous voulons écrire un bout de code pour modifier `left` et `top` quand l'utilisateur bouge la souris. Notez comment nous devons fusionner ces champs dans l'état local précédent manuellement :
 
 ```js{4,5}
   // ...
   useEffect(() => {
     function handleWindowMouseMove(e) {
-      // Spreading "...state" ensures we don't "lose" width and height
+      // La déstructuration de "...state" permet de s'assure que l'on ne "perd" pas width et height
       setState(state => ({ ...state, left: e.pageX, top: e.pageY }));
     }
-    // Note: this implementation is a bit simplified
+    // Notez : cette implémentation est un peu simplifiée
     window.addEventListener('mousemove', handleWindowMouseMove);
     return () => window.removeEventListener('mousemove', handleWindowMouseMove);
   }, []);
   // ...
 ```
 
-This is because when we update a state variable, we *replace* its value. This is different from `this.setState` in a class, which *merges* the updated fields into the object.
+Ceci est dû au fait que lorsque nous mettons à jour une variable de l'état local, nous *remplaçons* sa valeur. À la différence de `this.setState` dans une classe, qui *fusionne* les champs mis à jour dans l'objet.
 
-If you miss automatic merging, you can write a custom `useLegacyState` Hook that merges object state updates. However, instead **we recommend to split state into multiple state variables based on which values tend to change together.**
+Si la fusion automatique vous manque, vous pouvez écrire un Hook personnalisé `useLgacyState` qui fusionne les mises à jour de l'état local. Cependant, au lieu de ça **nous recommandons de séparer l'état local en de multiple variables d'état en se basant sur celles qui ont tendance à changer de valeur ensemble**.
 
-For example, we could split our component state into `position` and `size` objects, and always replace the `position` with no need for merging:
+Par exemple, nous pouvons séparer l'état local de notre composant en deux objets `position` et `size`, et toujours remplacer la `position` sans avoir besoin de fusionner :
 
 ```js{2,7}
 function Box() {
@@ -292,7 +291,7 @@ function Box() {
     // ...
 ```
 
-Separating independent state variables also has another benefit. It makes it easy to later extract some related logic into a custom Hook, for example:
+Séparer les variables d'état indépendantes a également un autre intérêt. Il devient alors facile d'extraire une partie de la logique dans un Hook personnalisé, par exemple :
 
 ```js{2,7}
 function Box() {
@@ -310,17 +309,17 @@ function useWindowPosition() {
 }
 ```
 
-Note how we were able to move the `useState` call for the `position` state variable and the related effect into a custom Hook without changing their code. If all state was in a single object, extracting it would be more difficult.
+Notez comment nous avons pu déplacer l'appel à `useState` pour la variable d'état local `position` et l'effet associé dans un Hook personnalisé sans rien changer au code. Si tout l'état local était un unique objet, l'extraire aurait été plus difficile.
 
-Both putting all state in a single `useState` call, and having a `useState` call per each field can work. Components tend to be most readable when you find a balance between these two extremes, and group related state into a few independent state variables. If the state logic becomes complex, we recommend [managing it with a reducer](/docs/hooks-reference.html#usereducer) or a custom Hook.
+Les deux méthodes, mettre tout l'état local dans un simple appel à `useState` et avoir un appel à `useState` par champ, sont possibles. La lisibilité des composants dépendra de la balance que vous trouverez entre ces deux extrêmes, et le regroupement de l'état local associé en quelques variables d'état indépendantes. Si la logique de l'état local devient trop complexe, nous recommandons de la [gérer avec un réducteur](/docs/hooks-reference.html#usereducer) ou un Hook personnalisé.
 
-### Can I run an effect only on updates? {#can-i-run-an-effect-only-on-updates}
+### Puis-je exécuter un effet seulement lors des mises à jour ? {#can-i-run-an-effect-only-on-updates}
 
-This is a rare use case. If you need it, you can [use a mutable ref](#is-there-something-like-instance-variables) to manually store a boolean value corresponding to whether you are on the first or a subsequent render, then check that flag in your effect. (If you find yourself doing this often, you could create a custom Hook for it.)
+C'est un cas d'utilisation assez rare. Si vous en avez besoin, vous pouvez [utiliser une ref modifiable](#is-there-something-like-instance-variables) pour stocker manuellement un booléen indiquant si vous êtes sur le premier rendu ou un rendu postérieur, et vérifier ensuite ce drapeau dans votre effet. (Si vous vous trouvez à agir de la sorte régulièrement, vous pouvez sans doute créer un Hook personnalisé pour ça.)
 
-### How to get the previous props or state? {#how-to-get-the-previous-props-or-state}
+### Comment récupérer les props ou l'état local précédent(s) ? {#how-to-get-the-previous-props-or-state}
 
-Currently, you can do it manually [with a ref](#is-there-something-like-instance-variables):
+Actuellement, vous pouvez le faire manuellement [avec une ref](#is-there-something-like-instance-variables) :
 
 ```js{6,8}
 function Counter() {
@@ -336,7 +335,7 @@ function Counter() {
 }
 ```
 
-This might be a bit convoluted but you can extract it into a custom Hook:
+Cela peut sembler un peu trop complexifier les choses mais vous pouvez l'extraire dans un Hook personnalisé :
 
 ```js{3,7}
 function Counter() {
@@ -354,7 +353,7 @@ function usePrevious(value) {
 }
 ```
 
-Note how this would work for props, state, or any other calculated value.
+Notez que ceci peut fonctionner pour les props, l'état local, et toute autre valeur calculée.
 
 ```js{5}
 function Counter() {
@@ -365,15 +364,16 @@ function Counter() {
   // ...
 ```
 
-It's possible that in the future React will provide a `usePrevious` Hook out of the box since it's a relatively common use case.
+Il est possible que dans le futur React fournisse un Hook `usePrevious` prêt à l'emploi, comme c'est un cas d'usage assez commun.
 
-See also [the recommended pattern for derived state](#how-do-i-implement-getderivedstatefromprops).
+Voir aussi [le pattern recommandé pour un état local dérivé](#how-do-i-implement-getderivedstatefromprops).
 
-### How do I implement `getDerivedStateFromProps`? {#how-do-i-implement-getderivedstatefromprops}
+### Comment puis-je implémenter getDerivedStateFromProps ? {#how-do-i-implement-getderivedstatefromprops}
 
-While you probably [don't need it](/blog/2018/06/07/you-probably-dont-need-derived-state.html), in rare cases that you do (such as implementing a `<Transition>` component), you can update the state right during rendering. React will re-run the component with updated state immediately after exiting the first render so it wouldn't be expensive.
+Même si vous n'en avez probablement [pas besoin](/blog/2018/06/07/you-probably-dont-need-derived-state.html), dans de rares cas (comme implémenter un composant `<Transition>`) vous pouvez mettre à jour l'état local en plein rendu. React va ré-évaluer le composant avec l'état local mis à jour immédiatement après être sorti du premier rendu afin que 
+ça ne soit pas trop couteux.
 
-Here, we store the previous value of the `row` prop in a state variable so that we can compare:
+Ici, nous stockons la valeur précédente de la prop `row` dans une variable de l'état local afin que nous puissions les comparer :
 
 ```js
 function ScrollView({row}) {
@@ -381,22 +381,22 @@ function ScrollView({row}) {
   let [prevRow, setPrevRow] = useState(null);
 
   if (row !== prevRow) {
-    // Row changed since last render. Update isScrollingDown.
+    // Row a changé depuis le dernier rendu. Met à jour isScrollingDown.
     setIsScrollingDown(prevRow !== null && row > prevRow);
     setPrevRow(row);
   }
 
-  return `Scrolling down: ${isScrollingDown}`;
+  return `On défile vers le bas: ${isScrollingDown}`;
 }
 ```
 
-This might look strange at first, but an update during rendering is exactly what `getDerivedStateFromProps` has always been like conceptually.
+Ça peut sembler étrange à première vue, mais une mise à jour pendant le rendu est exactement ce pourquoi a été conçu `getDerivedStateFromProps`.
 
-### Is there something like forceUpdate? {#is-there-something-like-forceupdate}
+### Existe-t-il un équivalent à forceUpdate ? {#is-there-something-like-forceupdate}
 
-Both `useState` and `useReducer` Hooks [bail out of updates](/docs/hooks-reference.html#bailing-out-of-a-state-update) if the next value is the same as the previous one. Mutating state in place and calling `setState` will not cause a re-render.
+Les deux Hooks `useState` et `useReducer` [refoulent les mises à jour](/docs/hooks-reference.html#bailing-out-of-a-state-update) si la valeur suivante est la même que la valeur précédente. Modifier l'état local en place et appeler `setState` ne causera pas de nouveau rendu.
 
-Normally, you shouldn't mutate local state in React. However, as an escape hatch, you can use an incrementing counter to force a re-render even if the state has not changed:
+Généralement, vous ne devez pas modifier l'état local en React. Cependant, si vous cherchez une astuce, vous pouvez un compteur incrémental pour forcer un re-rendu même si l'état local n'a pas changé :
 
 ```js
   const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
@@ -406,59 +406,59 @@ Normally, you shouldn't mutate local state in React. However, as an escape hatch
   }
 ```
 
-Try to avoid this pattern if possible.
+Éviter d'utiliser ce pattern autant que possible.
 
-### Can I make a ref to a function component? {#can-i-make-a-ref-to-a-function-component}
+### Puis-je créer une ref vers une fonction composant ? {#can-i-make-a-ref-to-a-function-component}
 
-While you shouldn't need this often, you may expose some imperative methods to a parent component with the [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) Hook.
+Bien que vous ne devriez pas en avoir besoin souvent, vous pouvez exposer quelques méthodes impératives à un composant parent avec le Hook [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle).
 
-### What does `const [thing, setThing] = useState()` mean? {#what-does-const-thing-setthing--usestate-mean}
+### Que signifie const [thing, setThing] = useState() ? {#what-does-const-thing-setthing--usestate-mean}
 
 If you're not familiar with this syntax, check out the [explanation](/docs/hooks-state.html#tip-what-do-square-brackets-mean) in the State Hook documentation.
 
+Si vous n'êtes pas familier avec cette syntaxe, allez voir l'[explication](/docs/hooks-state.html#tip-what-do-square-brackets-mean) dans la documentation du Hook de l'état local
 
-## Performance Optimizations {#performance-optimizations}
+## Optimisations de performance {#performance-optimizations}
 
-### Can I skip an effect on updates? {#can-i-skip-an-effect-on-updates}
+### Puis-je sauter un effet lors de mises à jour ? {#can-i-skip-an-effect-on-updates}
 
-Yes. See [conditionally firing an effect](/docs/hooks-reference.html#conditionally-firing-an-effect). Note that forgetting to handle updates often [introduces bugs](/docs/hooks-effect.html#explanation-why-effects-run-on-each-update), which is why this isn't the default behavior.
+Oui. Reportez-vous au [déclenchement conditionnel d'un effet](/docs/hooks-reference.html#conditionally-firing-an-effect). Notez qu'oublier de gérer des mises à jour est souvent [source de bugs](/docs/hooks-effect.html#explanation-why-effects-run-on-each-update), ce qui explique pourquoi ce n'est pas le comportement par défaut.
 
-### How do I implement `shouldComponentUpdate`? {#how-do-i-implement-shouldcomponentupdate}
+### Comment puis-je implémenter shouldComponentUpdate ? {#how-do-i-implement-shouldcomponentupdate}
 
-You can wrap a function component with `React.memo` to shallowly compare its props:
+Vous pouvez enrober une fonction composant avec `React.memo` pour comparer superficiellement ses props :
 
 ```js
 const Button = React.memo((props) => {
-  // your component
+  // votre composant
 });
 ```
 
-It's not a Hook because it doesn't compose like Hooks do. `React.memo` is equivalent to `PureComponent`, but it only compares props. (You can also add a second argument to specify a custom comparison function that takes the old and new props. If it returns true, the update is skipped.)
+Ce n'est pas un Hook car il n'est pas composé de la même manière. `React.memo` est équivalent à `PureComponent`, mais ne compare que les props. (Vous pouvez aussi ajouter un second argument pour spécifier une fonction de comparaison personnalisée qui prendra en arguments les anciennes et nouvelles props. Si elle retourne true, la mise à jour est évitée.)
 
-`React.memo` doesn't compare state because there is no single state object to compare. But you can make children pure too, or even [optimize individual children with `useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations).
+`React.memo` ne compare pas l'état local car il n'y a aucun objet d'état local à comparer. Mais vous pouvez rendre les descendants purs également, ou même [optimiser les descendants séparément avec `useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations).
 
+### Comment mémoïser les calculs ? {#how-to-memoize-calculations}
 
-### How to memoize calculations? {#how-to-memoize-calculations}
-
-The [`useMemo`](/docs/hooks-reference.html#usememo) Hook lets you cache calculations between multiple renders by "remembering" the previous computation:
+Le Hook [`useMemo`](/docs/hooks-reference.html#usememo) vous permet de cacher les calculs entre plusieurs rendus en "se remémorant" le dernier calcul.
 
 ```js
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
-This code calls `computeExpensiveValue(a, b)`. But if the inputs `[a, b]` haven't changed since the last value, `useMemo` skips calling it a second time and simply reuses the last value it returned.
+Ce code appelle `computeExpensiveValue(a, b)`. Mais si les arguments `[a, b]` n'ont pas changé depuis le dernier calcul, `useMemo` saute le second appel et réutilise la dernière valeur retournée.
 
-Remember that the function passed to `useMemo` runs during rendering. Don't do anything there that you wouldn't normally do while rendering. For example, side effects belong in `useEffect`, not `useMemo`.
+Rappelez-vous que la fonction passée à `useMemo` s'exécute pendant le rendu. Ne faîtes rien ici que vous ne feriez normalement pendant le rendu. Par exemple, les effets de bord sont du ressort de `useEffect`, pas `useMemo`.
 
-**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance. (For rare cases when a value must *never* be recomputed, you can [lazily initialize](#how-to-create-expensive-objects-lazily) a ref.)
+**Vous pouvez vous appuyer sur `useMemo` pour les optimisations de performance, mais pas comme garantie sémantique.** Dans le futur, React peut très bien choisir d'"oublier" certaines valeurs préalablement mémoïsées et les recalculer lors du rendu suivant, i.e. pour libérer de la mémoire pour les composants hors écran. Écrivez votre code de façon à ce qu'il fonctionne toujours sans `useMemo` - et ajoutez-le ensuite pour optimiser les performances. (Pour de rares cas où une valeur ne doit *jamais* être recalculée, vous pouvez utiliser [initialiser paresseusement](#how-to-create-expensive-objects-lazily) une ref.)
 
-Conveniently, `useMemo` also lets you skip an expensive re-render of a child:
+Par commodité, `useMemo` vous permet aussi d'éviter le re-rendu trop lourd d'un enfant :
 
 ```js
 function Parent({ a, b }) {
-  // Only re-rendered if `a` changes:
+  // Ne fait le re-rendu que si `a` change:
   const child1 = useMemo(() => <Child1 a={a} />, [a]);
-  // Only re-rendered if `b` changes:
+  // Ne fait le re-rendu que si `b` change:
   const child2 = useMemo(() => <Child2 b={b} />, [b]);
   return (
     <>
@@ -469,51 +469,51 @@ function Parent({ a, b }) {
 }
 ```
 
-Note that this approach won't work in a loop because Hook calls [can't](/docs/hooks-rules.html) be placed inside loops. But you can extract a separate component for the list item, and call `useMemo` there.
+Notez que cette approche ne fonctionne pas dans une boucle car les appels aux Hooks [ne peuvent](/docs/hooks-rules.html) être placé dans des boucles. Mais vous pouvez extraire la liste dans un composant à part, et appeler `useMemo` depuis celui-ci.
 
-### How to create expensive objects lazily? {#how-to-create-expensive-objects-lazily}
+### Comment créer des objets lourds sans trop de travail ? {#how-to-create-expensive-objects-lazily}
 
-`useMemo` lets you [memoize an expensive calculation](#how-to-memoize-calculations) if the inputs are the same. However, it only serves as a hint, and doesn't *guarantee* the computation won't re-run. But sometimes you need to be sure an object is only created once.
+`useMemo` vous permet de [mémoïser un calcul coûteux](#how-to-memoize-calculations) si les arguments sont les mêmes. Cependant, il n'est là que pour aider, et ne *garantit* pas que le calcul ne se refera pas. Mais parfois vous devez vous assurer qu'un objet n'est créé qu'une seule fois.
 
-**The first common use case is when creating the initial state is expensive:**
+**Le principal cas d'utilisation est lorsque la création de l'état initial est coûteux :**
 
 ```js
 function Table(props) {
-  // ⚠️ createRows() is called on every render
+  // ⚠️ createRows() est appelé lors de chaque rendu
   const [rows, setRows] = useState(createRows(props.count));
   // ...
 }
 ```
 
-To avoid re-creating the ignored initial state, we can pass a **function** to `useState`:
+Pour éviter de recréer l'état initial ignoré, nous pouvons passer une **fonction** à `useState` :
 
 ```js
 function Table(props) {
-  // ✅ createRows() is only called once
+  // ✅ createRows() n'est appelé qu'une seule fois
   const [rows, setRows] = useState(() => createRows(props.count));
   // ...
 }
 ```
 
-React will only call this function during the first render. See the [`useState` API reference](/docs/hooks-reference.html#usestate).
+React n'appelera cette fonction que lors du premier rendu. Voir l'[API de référence de `useState`](/docs/hooks-reference.html#usestate).
 
-**You might also occasionally want to avoid re-creating the `useRef()` initial value.** For example, maybe you want to ensure some imperative class instance only gets created once:
+**Vous pouvez aussi vouloir occasionnellement éviter de recréer la valeur initiale de `useRef()`.** Par exemple, vous voulez peut-être vous assurer qu'une instance de classe majeure n'est créée qu'une seule fois :
 
 ```js
 function Image(props) {
-  // ⚠️ IntersectionObserver is created on every render
+  // ⚠️ IntersectionObserver est créé à chaque rendu
   const ref = useRef(new IntersectionObserver(onIntersect));
   // ...
 }
 ```
 
-`useRef` **does not** accept a special function overload like `useState`. Instead, you can write your own function that creates and sets it lazily:
+`useRef` **n'accepte pas** de surcharge de fonction spécial comme `useState`. Au lieu de ça, vous pouvez écrire votre propre fonction qui la créer et la définit paresseusement : 
 
 ```js
 function Image(props) {
   const ref = useRef(null);
 
-  // ✅ IntersectionObserver is created lazily once
+  // ✅ IntersectionObserver est créé paresseusement une seule fois
   function getObserver() {
     let observer = ref.current;
     if (observer !== null) {
@@ -524,50 +524,49 @@ function Image(props) {
     return newObserver;
   }
 
-  // When you need it, call getObserver()
+  // Quand vous en avez besoin, appelez getObserver()
   // ...
 }
 ```
 
-This avoids creating an expensive object until it's truly needed for the first time. If you use Flow or TypeScript, you can also give `getObserver()` a non-nullable type for convenience.
+Ça permet d'éviter de recréer un objet lourd tant que ce n'est pas nécessaire. Si vous utilisez Flow ou TypeScript, vous pouvez aussi donner à `getObserver()` un type non nul pour plus de commodités.
 
+### [Les Hooks sont-ils lents à cause de la création de fonctions dans le rendu ? {#are-hooks-slow-because-of-creating-functions-in-render}
 
-### Are Hooks slow because of creating functions in render? {#are-hooks-slow-because-of-creating-functions-in-render}
+Non. Dans les navigateurs modernes, les performances brutes des fermetures lexicales comparées à celles des classes ne diffèrent pas énormément, sauf lors des scénarios extrêmes.
 
-No. In modern browsers, the raw performance of closures compared to classes doesn't differ significantly except in extreme scenarios.
+Par ailleurs, considerez que la conception de Hooks est plus rentable pour deux raisons :
 
-In addition, consider that the design of Hooks is more efficient in a couple ways:
+* Les Hooks permettent d'éviter une grande partie de l'investissement requis par les classes, comme le coût de la création d'instances de classe et la liaison des gestionnaires d'événements dans le constructeur.
 
-* Hooks avoid a lot of the overhead that classes require, like the cost of creating class instances and binding event handlers in the constructor.
+* **Le code idiomatique utilisant des Hooks n'a pas besoin d'une aussi grande imbrication de composants** comme cela prevaut dans des projets utilisants des composants d'ordre supérieur, des props de rendu, et des contextes. Avec des arborescences plus petites, React a moins de travail à faire.
 
-* **Idiomatic code using Hooks doesn't need the deep component tree nesting** that is prevalent in codebases that use higher-order components, render props, and context. With smaller component trees, React has less work to do.
+Traditionnellement, les problématiques de performance autour des fonctions en ligne en React sont liés au fait que le passage de nouvelles fonctions de rappel à chaque rendu brise les optimisations de `shouldComponentUpdate` dans les composants enfants. Les Hooks abordent ce problème sous trois angles.
 
-Traditionally, performance concerns around inline functions in React have been related to how passing new callbacks on each render breaks `shouldComponentUpdate` optimizations in child components. Hooks approach this problem from three sides.
-
-* The [`useCallback`](/docs/hooks-reference.html#usecallback) Hook lets you keep the same callback reference between re-renders so that `shouldComponentUpdate` continues to work:
+* Le Hook [`useCallback`](/docs/hooks-reference.html#usecallback) vous permettent d'utiliser la référence à la même fonction de rappel entre les re-rendus afin que `shouldComponentUpdate` puisse continuer de fonctionner :
 
     ```js{2}
-    // Will not change unless `a` or `b` changes
+    // Ne changera pas sauf si `a` ou `b` change
     const memoizedCallback = useCallback(() => {
       doSomething(a, b);
     }, [a, b]);
     ```
 
-* The [`useMemo` Hook](/docs/hooks-faq.html#how-to-memoize-calculations) makes it easier to control when individual children update, reducing the need for pure components.
+* Le [Hook `useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations) permet de contrôler plus facilement les mises à jour des enfants, réduisant le besoin de en composants purs.
 
-* Finally, the `useReducer` Hook reduces the need to pass callbacks deeply, as explained below.
+* Enfin, le Hook `useReducer` réduit le besoin de passer des fonctions de rappel en profondeur, comme expliqué ci-dessous.
 
-### How to avoid passing callbacks down? {#how-to-avoid-passing-callbacks-down}
+### Comment éviter de transmettre des fonctions de rappel ? {#how-to-avoid-passing-callbacks-down}
 
-We've found that most people don't enjoy manually passing callbacks through every level of a component tree. Even though it is more explicit, it can feel like a lot of "plumbing".
+Nous nous sommes aperçus que la majorité des gens n'aime pas passer des fonctions de rappel au travers de chaque niveau de l'arborescence. Même si c'est plus explicite, ça peut ressembler à de la "plomberie".
 
-In large component trees, an alternative we recommend is to pass down a `dispatch` function from [`useReducer`](/docs/hooks-reference.html#usereducer) via context:
+Dans de grosses abrorescences de composants, l'alternative que nous recommandons est de transmettre une fonction `dispatch` depuis [`useReducer`](/docs/hooks-reference.html#usereducer) via le contexte :
 
 ```js{4,5}
 const TodosDispatch = React.createContext(null);
 
 function TodosApp() {
-  // Note: `dispatch` won't change between re-renders
+  // Notez : `dispatch` ne va pas changer entre les re-rendus
   const [todos, dispatch] = useReducer(todosReducer);
 
   return (
@@ -578,36 +577,36 @@ function TodosApp() {
 }
 ```
 
-Any child in the tree inside `TodosApp` can use the `dispatch` function to pass actions up to `TodosApp`:
+Chaque enfant de l'arborescence dans `TodosApp` peut utiliser la fonction `dispatch` pour remonter des actions à `TodosApp` :
 
 ```js{2,3}
 function DeepChild(props) {
-  // If we want to perform an action, we can get dispatch from context.
+  // Si nous voulons exécuter une action, nous pouvons récupérer dispatch depuis le contexte.
   const dispatch = useContext(TodosDispatch);
 
   function handleClick() {
-    dispatch({ type: 'add', text: 'hello' });
+    dispatch({ type: 'add', text: 'salut' });
   }
 
   return (
-    <button onClick={handleClick}>Add todo</button>
+    <button onClick={handleClick}>Ajouter une tâche</button>
   );
 }
 ```
 
-This is both more convenient from the maintenance perspective (no need to keep forwarding callbacks), and avoids the callback problem altogether. Passing `dispatch` down like this is the recommended pattern for deep updates.
+C'est à la fois plus pratique d'un point de vue maintenance (pas besoin de continuer à passer des fonctions de rappel), et règle aussi le problème de fonction de rappel en même temps. Transmettre `dispatch` de cette façon est le pattern à suivre pour les mises à jour en profondeur.
 
-Note that you can still choose whether to pass the application *state* down as props (more explicit) or as context (more convenient for very deep updates). If you use context to pass down the state too, use two different context types -- the `dispatch` context never changes, so components that read it don't need to rerender unless they also need the application state.
+Notez que vous pouvez toujours choisir de transmettre l'*état* de l'application comme props (plsu explicite) ou comme contexte (plus pratique pour les mises à jour très profondes). Si vous utilisez le contexte pour transmettre l'état local également, utilisez deux types de contexte différents -- le contexte `dispatch` ne change jamais, dont les composants qui l'utilisent n'ont pas besoin de refaire de rendu à moins qu'ils aient aussi besoin de l'état de l'application.
 
-### How to read an often-changing value from `useCallback`? {#how-to-read-an-often-changing-value-from-usecallback}
+### Comment lire une valeur changeant fréquemment avec `useCallback` ? {#how-to-read-an-often-changing-value-from-usecallback}
 
 >Note
 >
->We recommend to [pass `dispatch` down in context](#how-to-avoid-passing-callbacks-down) rather than individual callbacks in props. The approach below is only mentioned here for completeness and as an escape hatch.
+>Nous recommandons de [transmettre `dispatch` dans le contexte](#how-to-avoid-passing-callbacks-down) plutôt que des fonctions de rappel individuelles dans les props. L'approche ci-dessous n'est mentionnée que pour des raisons d'exhaustivité et comme solution de secours.
 >
->Also note that this pattern might cause problems in the [concurrent mode](/blog/2018/03/27/update-on-async-rendering.html). We plan to provide more ergonomic alternatives in the future, but the safest solution right now is to always invalidate the callback if some value it depends on changes.
+>Notez aussi que ce pattern peut être à l'origine de problèmes dans le [mode concurrent](/blog/2018/03/27/update-on-async-rendering.html). Nous prévoyons de proposer des alternatives plus ergonomiques dans le futur, mais la solution la plus sûre pour l'instant est de toujours invalider la fonction de rappel si certaines valeurs dont elle dépend changent.
 
-In some rare cases you might need to memoize a callback with [`useCallback`](/docs/hooks-reference.html#usecallback) but the memoization doesn't work very well because the inner function has to be re-created too often. If the function you're memoizing is an event handler and isn't used during rendering, you can use [ref as an instance variable](#is-there-something-like-instance-variables), and save the last committed value into it manually:
+Dans de rares cas vous pourriez avoir besoin de mémoïser une fonction de rappel avec [`useCallback`](/docs/hooks-reference.html#usecallback) mais la mémoïsation ne fonctionne pas très bien parce que la fonction interne a besoin d'être recréer trop souvent. Si la fonction que vous mémoïsez est un gestionnaire d'événement et n'est pas utilisée pendant le rendu, vous pouvez utiliser une [ref comme variable d'instance](#is-there-something-like-instance-variables), et y stocker la dernière valeur retournée manuellement :
 
 ```js{6,10}
 function Form() {
@@ -615,13 +614,13 @@ function Form() {
   const textRef = useRef();
 
   useLayoutEffect(() => {
-    textRef.current = text; // Write it to the ref
+    textRef.current = text; // Écriture dans la ref
   });
 
   const handleSubmit = useCallback(() => {
-    const currentText = textRef.current; // Read it from the ref
+    const currentText = textRef.current; // Lecture depuis la ref
     alert(currentText);
-  }, [textRef]); // Don't recreate handleSubmit like [text] would do
+  }, [textRef]); // Ne recréer pas handleSubmit comme [text] le ferait
 
   return (
     <>
@@ -632,12 +631,13 @@ function Form() {
 }
 ```
 
-This is a rather convoluted pattern but it shows that you can do this escape hatch optimization if you need it. It's more bearable if you extract it to a custom Hook:
+C'est un pattern un peu confusant mais cela montre que vous pouvez faire cette optimisation si vous en avez besoin en dernier ressort. Il est plus noble de l'extraire dans un Hook personnalisé :
+
 
 ```js{4,16}
 function Form() {
   const [text, updateText] = useState('');
-  // Will be memoized even if `text` changes:
+  // Sera mémoïsé même si `text` change :
   const handleSubmit = useEventCallback(() => {
     alert(text);
   }, [text]);
@@ -652,7 +652,7 @@ function Form() {
 
 function useEventCallback(fn, dependencies) {
   const ref = useRef(() => {
-    throw new Error('Cannot call an event handler while rendering.');
+    throw new Error('Ne peut pas appeler un gestionnaire d\'événement pendant le rendu');
   });
 
   useLayoutEffect(() => {
@@ -666,27 +666,29 @@ function useEventCallback(fn, dependencies) {
 }
 ```
 
-In either case, we **don't recommend this pattern** and only show it here for completeness. Instead, it is preferable to [avoid passing callbacks deep down](#how-to-avoid-passing-callbacks-down).
+Dans les deux cas, nous **ne recommandons pas ce pattern** et ne le mettons en évidence ici que dans un souci d'exhaustivité. Au lieu de ça, il est préférable d'[éviter de transmettre des fonctions de rappel en profondeur](#how-to-avoid-passing-callbacks-down).
 
 
-## Under the Hood {#under-the-hood}
+## Sous le capot {#under-the-hood}
 
-### How does React associate Hook calls with components? {#how-does-react-associate-hook-calls-with-components}
+### Quelles sont les idées à l'origine des Hooks ? {#how-does-react-associate-hook-calls-with-components}
 
-React keeps track of the currently rendering component. Thanks to the [Rules of Hooks](/docs/hooks-rules.html), we know that Hooks are only called from React components (or custom Hooks -- which are also only called from React components).
+React garde une trace du composant en cours de rendu. Grâce aux [Règles des Hooks](/docs/hooks-rules.html), nous savons que les Hooks sont uniquement appelés depuis des composants React (ou des Hooks personnalisés -- qui sont aussi uniquement appelés depuis des composants React).
 
-There is an internal list of "memory cells" associated with each component. They're just JavaScript objects where we can put some data. When you call a Hook like `useState()`, it reads the current cell (or initializes it during the first render), and then moves the pointer to the next one. This is how multiple `useState()` calls each get independent local state.
+Il existe une liste interne de "cellules mémoire" associées à chaque composant. Seuls des objets JavaScript peuvent contenir des données. Quand vous appelez un Hook tel que `useState()`, il lit la cellule courante (ou l'initialise pendant le premier rendu), et déplace alors le pointeur au prochain. C'est ainsi que de multiples appels à `useState()` peuvent avoir chacun un état local indépendant.
 
-### What is the prior art for Hooks? {#what-is-the-prior-art-for-hooks}
+### Quelles sont les idées à l'origine des Hooks ? {#what-is-the-prior-art-for-hooks}
 
-Hooks synthesize ideas from several different sources:
+Les Hooks synthétisent des idées de plusieurs sources différentes :
 
-* Our old experiments with functional APIs in the [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) repository.
-* React community's experiments with render prop APIs, including [Ryan Florence](https://github.com/ryanflorence)'s [Reactions Component](https://github.com/reactions/component).
-* [Dominic Gannaway](https://github.com/trueadm)'s [`adopt` keyword](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) proposal as a sugar syntax for render props.
+* Nos précédents essais avec des APIs fonctionnelles dans le repo [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State).
+* Les essaie de la communauté React avec les APIs de props de rendu, y compris le [composant Reaction](https://github.com/reactions/component) de [Ryan Florence](https://github.com/ryanflorence).
+* La proposition de [mot-clé `adopt`](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) de [Dominic Gannaway](https://github.com/trueadm) comme syntaxe plus douce pour les props de rendu.
 * State variables and state cells in [DisplayScript](http://displayscript.org/introduction.html).
+* Les variables d'état et les cellules à état en DisplayScript](http://displayscript.org/introduction.html).
 * [Reducer components](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html) in ReasonReact.
-* [Subscriptions](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html) in Rx.
-* [Algebraic effects](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting) in Multicore OCaml.
+* Les [composants réducteurs](https://reasonml.github.io/reason-react/docs/fr/state-actions-reducer.html) de ReasonReact.
+* Les [souscriptions](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html) de Rx.
+* Les [effets algébriques](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting) de OCaml Multicore.
 
-[Sebastian Markbåge](https://github.com/sebmarkbage) came up with the original design for Hooks, later refined by [Andrew Clark](https://github.com/acdlite), [Sophie Alpert](https://github.com/sophiebits), [Dominic Gannaway](https://github.com/trueadm), and other members of the React team.
+[Sebastian Markbåge](https://github.com/sebmarkbage) a proposé la première conception des Hooks, plus tard peaufinée par [Andrew Clark](https://github.com/acdlite), [Sophie Alpert](https://github.com/sophiebits), [Dominic Gannaway](https://github.com/trueadm), et d'autres membres de l'équipe React.
