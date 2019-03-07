@@ -48,6 +48,3 @@ Nous fournissons des versions alpha de React afin de tester les nouvelles foncti
 Cette politique se veut pragmatique: nous ne voulons certainement pas vous causer de maux de tête. Si nous remplacions la version majeure par tous ces changements, nous finirions par publier de nouvelles versions majeures, ce qui causerait plus de problèmes à la communauté. Cela signifierait également que nous ne pouvons pas progresser dans l'amélioration de React aussi rapidement que nous le souhaiterions.
 
 Cela dit, si nous nous attendons à ce qu’un changement sur cette liste cause de gros problèmes dans la communauté, nous ferons tout notre possible pour fournir un chemin de migration graduel.
-
-
-
