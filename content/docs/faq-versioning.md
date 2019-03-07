@@ -42,7 +42,6 @@ En général, nous *ne* supprimons *pas* le numéro de version majeur pour les m
 * **Avertissements de développement.** Depuis que celles-ci n'affectent pas le comportement de production, nous pouvons ajouter de nouveaux avertissements ou modifier les avertissements existants entre les versions majeures. En fait, c’est ce qui nous permet, d’être averti de manière fiable, des changements à venir. In fact, this is what allows us to reliably warn about upcoming breaking changes.
 * **API commençant par `unstable_`.** Celles-ci sont fournies en tant que fonctionnalités expérimentales  et nous ne sommes pas encore sûrs des API dont nous avons confiance. En les publiant avec un préfixe `unstable_`, nous pouvons itérer plus rapidement et obtenir une API stable plus rapidement.
 * **Versions alpha et canary de React.** 
-480/5000
 Nous fournissons des versions alpha de React afin de tester les nouvelles fonctionnalités à un stade précoce, mais nous avons besoin de la souplesse nécessaire pour apporter des modifications en fonction de ce que nous avons appris au cours de la période alpha. Si vous utilisez ces versions, notez que les API peuvent changer avant la version stable.
 * **API non documentées et structures de données internes.** Si vous accédez à des noms de propriété internes tels que `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` ou` __reactInternalInstance $ uk43rzhitjg`, il n'y a aucune garantie. Tu es seul.
 
