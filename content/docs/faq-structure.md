@@ -63,7 +63,7 @@ Certaines personnes préfèrent également aller plus loin et séparer les compo
 
 #### Évitez trop d'imbrication {#avoid-too-much-nesting}
 
-De nombreux points douloureux sont associés à l'imbrication profonde de répertoires dans des projets JavaScript. Il devient plus difficile d'écrire des importations relatives entre eux ou de mettre à jour ces importations lorsque les fichiers sont déplacés. À moins d'une raison très convaincante d’utiliser une structure de dossiers complexe, limitez-vous à un maximum de trois ou quatre imbrications de dossier dans un même projet. Bien entendu, il ne s’agit que d’une recommandation, qui n'est peut-être pas pertinente pour votre projet.
+De nombreux points de souffrance sont associés à l'imbrication excessive de répertoires dans les projets JavaScript. Il devient plus difficile d'écrire des importations relatives entre eux ou de mettre à jour ces importations lorsque les fichiers sont déplacés. À moins d'avoir une excellente raison d’utiliser une structure de dossiers complexe, limitez-vous à un maximum de trois ou quatre imbrications de dossier dans un même projet. Bien entendu, il ne s’agit que d’une recommandation, qui n'est peut-être pas pertinente pour votre projet.
 
 #### N'y réfléchissez pas trop {#dont-overthink-it}
 
