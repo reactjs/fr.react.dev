@@ -170,7 +170,7 @@ Quand le fournisseur met la valeur à jour, ce Hook va déclencher un nouveau re
 
 ## Hooks supplémentaires {#additional-hooks}
 
-Les Hooks suivant sont ou bien des variantes des Hooks basiques des paragraphes précédents, ou sont seulement nécessaires dans des cas particuliers. Ne vous souciez pas de les apprendre dès le départ.
+Les Hooks suivant sont soit des variantes des Hooks basiques des paragraphes précédents, soit seulement nécessaires pour des cas à la marge spécifiques. Ne vous sentez pas obligé·e de les apprendre dès le départ.
 
 ### `useReducer` {#usereducer}
 
