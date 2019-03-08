@@ -8,7 +8,7 @@ next: hooks-faq.html
 
 Les *Hooks* sont une nouveauté de React 16.8. Ils permettent de bénéficier d’un état local et d'autres fonctionnalités de React sans avoir à écrire de classes.
 
-Cette page décrit les API des Hooks prédéfinis de React.
+Cette page décrit l’API des Hooks prédéfinis de React.
 
 Si les Hooks sont nouveaux pour vous, vous voudrez peut-être consulter [l’aperçu](/docs/hooks-overview.html) en premier. Vous trouverez peut-être aussi des informations utiles dans [la foire aux questions](/docs/hooks-faq.html).
 
@@ -35,7 +35,7 @@ const [state, setState] = useState(initialState);
 
 Renvoie une valeur d'état local et une fonction pour la mettre à jour.
 
-Pendant le rendu initial, l'état local (`state`) renvoie la même valeur que celle passée en premier argument (`initialState`).
+Pendant le rendu initial, l'état local (`state`) a la même valeur que celle passée en premier argument (`initialState`).
 
 La fonction `setState` permet de mettre à jour l'état local. Elle accepte une nouvelle valeur d'état local et planifie un nouveau rendu du composant.
 
@@ -47,7 +47,7 @@ Au cours des rendus suivants, la première valeur renvoyée par `useState` sera 
 
 #### Mises à jour fonctionnelles {#functional-updates}
 
-Si le nouvel état local est déduit de l'état local précédent, vous pouvez passer une fonction à `setState`. Cette fonction recevra la valeur précédente de l'état local et renverra une nouvelle valeur de l'état local. Voici un exemple d'un composant compteur qui utilise les deux formes de `setState`:
+Si le nouvel état local est déduit de l'état local précédent, vous pouvez passer une fonction à `setState`. Cette fonction recevra la valeur précédente de l'état local et renverra une nouvelle valeur de l'état local. Voici un exemple d'un composant compteur qui utilise les deux formes de `setState` :
 
 ```js
 function Counter({initialCount}) {
@@ -63,7 +63,7 @@ function Counter({initialCount}) {
 }
 ```
 
-Les boutons « + » et « - » utilisent la forme fonctionnelle, puisque la nouvelle valeur est calculée à partir de la valeur précédente. Le bouton « Réinitialiser » utilise quant à lui la forme normale puisqu'il remet toujours le total à une valeur fixe.
+Les boutons « + » et « - » utilisent la forme fonctionnelle, puisque la nouvelle valeur est calculée à partir de la valeur précédente. Le bouton « Réinitialiser » utilise quant à lui la forme normale puisqu'il remet toujours le total à une valeur fixe.
 
 > Remarque
 >
@@ -80,7 +80,7 @@ Les boutons « + » et « - » utilisent la forme fonctionnelle, puisque la 
 
 #### État local initial paresseux {#lazy-initial-state}
 
-Le rendu initial utilise l'argument `initialState` comme état local. Au cours des rendus suivants, il est ignoré. Si l'état local initial est le résultat d'un calcul coûteux, vous pouvez plutôt fournir une fonction qui sera executée seulement au cours du rendu initial:
+Le rendu initial utilise l'argument `initialState` comme état local. Au cours des rendus suivants, il est ignoré. Si l'état local initial est le résultat d'un calcul coûteux, vous pouvez plutôt fournir une fonction qui sera executée seulement au cours du rendu initial :
 
 ```js
 const [state, setState] = useState(() => {
@@ -99,7 +99,7 @@ Si vous mettez à jour un Hook d'état avec la même valeur que son état actuel
 useEffect(didUpdate);
 ```
 
-Accepte une fonction qui contient du code impératif, pouvant éventuellement produire des effets. 
+Accepte une fonction qui contient du code impératif, pouvant éventuellement produire des effets.
 
 L'utilisation de mutations, abonnements, horloges, messages de journalisation, et autres effets de bord n'est pas autorisée au sein du corps principal d'une fonction composant (qu'on appelle la _phase de rendu_ de React). Autrement ça pourrait entraîner des bugs déconcertants et des incohérences dans l'interface utilisateur (UI).
 
@@ -120,7 +120,7 @@ useEffect(() => {
   };
 });
 ```
-La fonction de nettoyage est exécutée avant que le composant ne soit retiré de l'UI pour éviter les fuites de mémoire. Par ailleurs, si un composant s’affiche plusieurs fois (comme c'est typiquement le cas), **l'effet de bord précédent est nettoyé avant l'exécution du prochain effet de bord**. Dans notre exemple, ça veut dire qu'un nouvel abonnement est créé à chaque mise à jour. Pour éviter d'exécuter un effet de bord à chaque mise à jour, voyez le paragraphe suivant.
+La fonction de nettoyage est exécutée avant que le composant ne soit retiré de l'UI pour éviter les fuites de mémoire. Par ailleurs, si un composant s’affiche plusieurs fois (comme c'est typiquement le cas), **l'effet de bord précédent est nettoyé avant l'exécution du prochain effet de bord**. Dans notre exemple, ça veut dire qu'un nouvel abonnement est créé à chaque mise à jour. Pour éviter d'exécuter un effet de bord à chaque mise à jour, voyez la section sur l’exécution conditionnelle un peu plus loin.
 
 #### Moment d'exécution des effets de bord {#timing-of-effects}
 
@@ -136,7 +136,7 @@ Le comportement par défaut des effets de bord consiste à exécuter l'effet apr
 
 Cependant, ça pourrait être exagéré dans certains cas, comme dans l'exemple avec l'abonnement dans la section précédente. On n’a pas besoin d’un nouvel abonnement à chaque mise à jour, mais seulement si la prop `source` a changé.
 
-Pour mettre ça en œuvre, fournissez un deuxième argument à `useEffect` qui consiste en un tableau de valeurs dont l'effet dépend. Notre exemple mis à jour ressemble maintenant à ça :
+Pour mettre ça en œuvre, fournissez un deuxième argument à `useEffect` qui consiste en un tableau de valeurs dont l'effet dépend. Notre exemple mis à jour ressemble maintenant à ça :
 
 ```js
 useEffect(
@@ -152,11 +152,11 @@ useEffect(
 
 L'abonnement sera maintenant recréé uniquement quand `props.source` change.
 
-Fournir un tableau vide `[]` d'entrées indique à React que votre effet ne dépend d'aucune valeur du composant, du coup l'effet ne s'exécuterait que lors du montage et ne se nettoierait qu’au démontage ; il ne s'exécuterait pas lors des mises à jour.
+Fournir un tableau vide `[]` d'entrées indique à React que votre effet ne dépend d'aucune valeur du composant, du coup l'effet ne s'exécuterait que lors du montage et ne se nettoierait qu’au démontage ; il ne s'exécuterait pas lors des mises à jour.
 
 > Remarque
 >
-> Le tableau d'entrées n'est pas fourni comme argument à la fonction d'effet. Conceptuellement cependant, c'est en quelque sorte ce qui se passe : chaque valeur référencée dans la fonction d'effet devrait aussi apparaître dans le tableau d'entrées. À l'avenir, un compilateur suffisamment avancé pourrait créer ce tableau automatiquement. 
+> Le tableau d'entrées n'est pas fourni comme argument à la fonction d'effet. Conceptuellement cependant, c'est en quelque sorte ce qui se passe : chaque valeur référencée dans la fonction d'effet devrait aussi apparaître dans le tableau d'entrées. À l'avenir, un compilateur suffisamment avancé pourrait créer ce tableau automatiquement.
 
 ### `useContext` {#usecontext}
 
@@ -170,7 +170,7 @@ Quand le fournisseur met la valeur à jour, ce Hook va déclencher un nouveau re
 
 ## Hooks supplémentaires {#additional-hooks}
 
-Les Hooks suivant sont soit des variantes des Hooks basiques des paragraphes précédents, soit seulement nécessaires pour des cas à la marge spécifiques. Ne vous sentez pas obligé·e de les apprendre dès le départ.
+Les Hooks qui suivent sont soit des variantes des Hooks basiques des sections précédentes, soit seulement nécessaires pour des cas à la marge spécifiques. Ne vous sentez pas obligé·e de les apprendre dès le départ.
 
 ### `useReducer` {#usereducer}
 
@@ -182,7 +182,7 @@ Alternative à [`useState`](#usestate). Accepte un réducteur de type `(state, a
 
 `useReducer` est souvent préférable à `useState` quand vous avez une logique d'état local complexe qui comprend plusieurs sous-valeurs, ou quand l'état suivant dépend de l'état précédent. `useReducer` vous permet aussi d'optimiser les performances pour des composants qui déclenchent des mises à jours profondes puisque [vous pouvez fournir `dispatch` à la place de fonctions de rappel](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
 
-Voici l'exemple du composant compteur du paragraphe [`useState`](#usestate) ré-écrit avec un réducteur :
+Voici l'exemple du composant compteur du paragraphe [`useState`](#usestate) ré-écrit avec un réducteur :
 
 ```js
 const initialState = {count: 0};
@@ -212,7 +212,7 @@ function Counter({initialState}) {
 
 #### Préciser l'état local initial {#specifying-the-initial-state}
 
-Il existe deux manières différentes d'initialiser l'état de `useReducer`. Vous pouvez choisir l'une ou l'autre suivant le cas. La manière la plus simple consiste à fournir l'état initial comme deuxième argument :
+Il existe deux manières différentes d'initialiser l'état de `useReducer`. Vous pouvez choisir l'une ou l'autre suivant le cas. La manière la plus simple consiste à fournir l'état initial comme deuxième argument :
 
 ```js{3}
   const [state, dispatch] = useReducer(
@@ -229,7 +229,7 @@ Il existe deux manières différentes d'initialiser l'état de `useReducer`. Vou
 
 Vous pouvez aussi créer l'état local initial paresseusement. Pour ce faire, vous pouvez fournir une fonction `init` comme troisième argument. L'état initial sera alors égal à `init(initialArg)`.
 
-Ça vous permet d'extraire la logique pour calculer l'état local initial hors du réducteur. C'est aussi pratique pour réinitialiser l'état local en réponse à une action ultérieure :
+Ça vous permet d'extraire la logique pour calculer l'état local initial hors du réducteur. C'est aussi pratique pour réinitialiser l'état local en réponse à une action ultérieure :
 
 ```js{1-3,11-12,19,24}
 function init(initialCount) {
@@ -289,7 +289,7 @@ Fournissez une fonction de rappel et un tableau d'entrées. `useCallback` renver
 
 > Remarque
 >
-> Le tableau d'entrées n'est pas fourni comme argument à la fonction de rappel. Conceptuellement cependant, c'est en quelque sorte ce qui se passe : chaque valeur référencée dans la fonction de rappel devrait aussi apparaître dans le tableau d'entrées. À l’avenir, un compilateur suffisamment avancé pourrait créer ce tableau automatiquement.
+> Le tableau d'entrées n'est pas fourni comme argument à la fonction de rappel. Conceptuellement cependant, c'est en quelque sorte ce qui se passe : chaque valeur référencée dans la fonction de rappel devrait aussi apparaître dans le tableau d'entrées. À l’avenir, un compilateur suffisamment avancé pourrait créer ce tableau automatiquement.
 
 ### `useMemo` {#usememo}
 
@@ -299,17 +299,17 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 Renvoie une valeur [mémoïsée](https://fr.wikipedia.org/wiki/M%C3%A9mo%C3%AFsation)
 
-Fournissez une fonction de « création » et un tableau d'entrées. `useMemo` recalculera la valeur mémoïsée seulement si une des entrées a changé. Cette optimisation permet d'éviter des calculs coûteux à chaque rendu.
+Fournissez une fonction de « création » et un tableau d'entrées. `useMemo` recalculera la valeur mémoïsée seulement si une des entrées a changé. Cette optimisation permet d'éviter des calculs coûteux à chaque rendu.
 
 Rappelez-vous que la fonction fournie à `useMemo` s'exécute pendant le rendu. N’y faites rien que vous ne feriez pas normalement pendant un rendu. Par exemple, les effets de bord doivent passer par `useEffect`, et non `useMemo`.
 
 Si vous ne fournissez aucun tableau, une nouvelle valeur sera calculée quand une nouvelle fonction sera fournie comme premier argument. (Avec une fonction définie à la volée, ce sera donc à chaque rendu.)
 
-**Vous pouvez vous appuyer sur `useMemo` comme un moyen d'optimiser les performances, mais pas comme une garantie sémantique.** À l'avenir, React pourrait choisir « d'oublier » certaines valeurs précédemment mémoïsées et de les recalculer au rendu suivant, par exemple pour libérer la mémoire exploitée par des composants présents hors de l'écran. Écrivez votre code de façon à ce qu'il fonctionne sans `useMemo` et ajoutez-le ensuite pour optimiser les performances.
+**Vous pouvez vous appuyer sur `useMemo` comme un moyen d'optimiser les performances, mais pas comme une garantie sémantique.** À l'avenir, React pourrait choisir « d'oublier » certaines valeurs précédemment mémoïsées et de les recalculer au rendu suivant, par exemple pour libérer la mémoire exploitée par des composants présents hors de l'écran. Écrivez votre code de façon à ce qu'il fonctionne sans `useMemo` et ajoutez-le ensuite pour optimiser les performances.
 
 > Remarque
 >
-> Le tableau d'entrées n'est pas fourni comme argument à la fonction. Conceptuellement cependant, c'est en quelque sorte ce qui se passe : chaque valeur référencée dans la fonction devrait aussi apparaître dans le tableau d'entrées. À l'avenir, un compilateur suffisamment avancé pourrait créer ce tableau automatiquement.
+> Le tableau d'entrées n'est pas fourni comme argument à la fonction. Conceptuellement cependant, c'est en quelque sorte ce qui se passe : chaque valeur référencée dans la fonction devrait aussi apparaître dans le tableau d'entrées. À l'avenir, un compilateur suffisamment avancé pourrait créer ce tableau automatiquement.
 
 ### `useRef` {#useref}
 
@@ -317,9 +317,9 @@ Si vous ne fournissez aucun tableau, une nouvelle valeur sera calculée quand un
 const refContainer = useRef(initialValue);
 ```
 
-`useRef` renvoie un objet ref modifiable dont la propriété `.current` est initialisée avec l'argument fourni (`initialValue`). L'objet renvoyé persistera pendant toute la durée de vie composant.
+`useRef` renvoie un objet ref modifiable dont la propriété `current` est initialisée avec l'argument fourni (`initialValue`). L'objet renvoyé persistera pendant toute la durée de vie composant.
 
-Un cas d’usage courant consiste à accéder à un enfant de manière impérative :
+Un cas d’usage courant consiste à accéder à un enfant de manière impérative :
 
 ```js
 function TextInputWithFocusButton() {
@@ -345,7 +345,7 @@ Remarquez que `useRef()` est utile au-delà du seul attribut `ref`. C'est [prati
 useImperativeHandle(ref, createHandle, [inputs])
 ```
 
-`useImperativeHandle` personnalise l'instance qui est exposée au composant parent lors de l'utilisation de `ref`. Comme toujours, il vaut mieux s'abstenir d'utiliser du code impératif manipulant des refs dans la plupart des cas. `useImperativeHandle` est conçu pour être utilisé en conjonction avec `forwardRef`:
+`useImperativeHandle` personnalise l'instance qui est exposée au composant parent lors de l'utilisation de `ref`. Comme toujours, il vaut mieux s'abstenir d'utiliser du code impératif manipulant des refs dans la plupart des cas. `useImperativeHandle` est conçu pour être utilisé en conjonction avec `forwardRef` :
 
 ```js
 function FancyInput(props, ref) {
