@@ -140,7 +140,7 @@ Quand ce n'est pas le cas, vous pouvez ajouter une nouvelle propriété d'identi
 
 En dernier recours, vous pouvez utiliser l'index de l'élément dans un tableau comme clé. Cela fonctionne correctement si les éléments ne sont jamais réordonnés, dans le cas contraire ce serait assez lent.
 
-Les tris peuvent également causer des problèmes avec les états des composants quand les index sont utilisés comme des clés. Les instances des composants sont mises à jour et réutilisées en fonction de leur clé. Si la clé est un index, déplacer un élément changera sa clé. En conséquence, l'état des composants utilisés pour des saisies non contrôlées peut se mélanger et se mettre à jour de manière inattendue.
+Les tris peuvent également causer des problèmes avec les états des composants quand les index sont utilisés comme des clés. Les instances des composants sont mises à jour et réutilisées en fonction de leur clé. Si la clé est un index, déplacer un élément changera sa clé. En conséquence, l'état des composants utilisés pour des saisies non contrôlées peut s'emmêler et se mettre à jour de manière inattendue.
 
 [Voici](codepen://reconciliation/index-used-as-key) un exemple sur CodePen des problèmes qui peuvent être causés en utilisant des index comme clés. [Voilà](codepen://reconciliation/no-index-used-as-key) une version mise à jour du même exemple montrant comment, en évitant d'utiliser les index comme clé, on résoudra ces problèmes de réarrangement, de tri et d'ajout préalable.
 
