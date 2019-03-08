@@ -112,7 +112,7 @@ Généralement, on souhaite afficher des composants React à plusieurs endroits 
 
 Avant de déployer votre site web en production, gardez à l'esprit qu'un JavaScript non-minifié risque de ralentir significativement le chargement de la page pour vos utilisateurs.
 
-Lorsque vous aurez minifié vos scripts d'application ainsi que référencé la version adaptée de React (soit `production.min.js`), vous serez alors prêt pour une mise en production :
+Si vous minifiez déjà vos scripts applicatifs et si vous vous assurez de référencer les versions de React dont les noms se terminent en `production.min.js`, **votre site sera prêt pour la production** :
 
 ```js
 <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
