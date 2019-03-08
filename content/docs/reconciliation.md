@@ -10,14 +10,14 @@ React fournit une API déclarative afin que vous n'ayez pas à vous soucier de s
 
 Quand vous utilisez React, à un moment donné, vous pouvez utiliser la fonction `render()` pour créer un arbre d'éléments React. Lors de l'état suivant, ou de la mise à jour des propriétés, cette fonction `render()` renverra un arbre différent d'éléments React. React doit alors détérminer comment mettre à jour efficacement l'interface utilisateur pour qu'elle corresponde à l'arbre le plus récent.
 
-Il existe des solutions génériques à ce problème algorithmique consistant à générer le nombre minimal d'opérations pour transformer un arbre en un autre. Néanmoins, [les algorithmes à la point de l'état de l'art](http://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf) ont une complexité de l'odre de O(n<sup>3</sup>) où n est le nombre d'éléments dans l'arbre.
+Il existe des solutions génériques à ce problème algorithmique consistant à générer le nombre minimal d'opérations pour transformer un arbre en un autre. Néanmoins, [les algorithmes à la point de l'état de l'art](http://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf) ont une complexité de l'ordre de O(n<sup>3</sup>) où n est le nombre d'éléments dans l'arbre.
 
 Si nous utilisions cela dans React, l'affichage de 1000 éléments nécessiterait environ un milliard d'opérations. Cela est beaucoup trop coûteux. React implémente plutôt un algorithme heuristique en O(n) basé sur deux hypothèses :
 
 1. Deux éléments de types différents produiront des arbres différents.
 2. Le développeur peut indiquer quels éléments peuvent être stables sur différents rendus grâce à la propriété `key`.
 
-En pratique, ces hypothèses sont valables pour presque tous les cas d'usage.
+En pratique, ces hypothèses sont valables dans presque tous les cas.
 
 ## L'algorithme de comparaison {#the-diffing-algorithm}
 
@@ -138,20 +138,20 @@ En pratique, trouver une clé n'est généralement pas difficile. L'élément qu
 
 Quand ce n'est pas le cas, vous pouvez ajouter une nouvelle propriété d'identification à votre modèle, ou hacher certaines parties de votre contenu pour générer une clé. La clé doit être unique parmi ses autres éléments frères, pas nécessairement au niveau global.
 
-En dernier recours, vous pouvez utiliser l'index de l'élément dans un tableau comme clé. Cela fonctionne correctement si les éléments ne sont jamais réordonnés, un tri serait plutôt lent.
+En dernier recours, vous pouvez utiliser l'index de l'élément dans un tableau comme clé. Cela fonctionne correctement si les éléments ne sont jamais réordonnés, dans le cas contraire ce serait assez lent.
 
 Les tris peuvent également causer des problèmes avec les états des composants quand les index sont utilisés comme des clés. Les instances des composants sont mises à jour et réutilisées en fonction de leur clé. Si la clé est un index, déplacer un élément changera sa clé. En conséquence, l'état des composants utilisés pour des saisies non contrôlées peut se mélanger et se mettre à jour de manière inattendue.
 
-[Voici](codepen://reconciliation/index-used-as-key) un exemple sur CodePen des problèmes qui peuvent être causés en utilisant des index comme clés. [Voilà](codepen://reconciliation/no-index-used-as-key) une version mise à jour du même exemple montrant comment le fait de ne pas utiliser les index comme clé résoudra ces problèmes de réarrangement, de tri et d'ajout préalable.
+[Voici](codepen://reconciliation/index-used-as-key) un exemple sur CodePen des problèmes qui peuvent être causés en utilisant des index comme clés. [Voilà](codepen://reconciliation/no-index-used-as-key) une version mise à jour du même exemple montrant comment, en évitant d'utiliser les index comme clé, on résoudra ces problèmes de réarrangement, de tri et d'ajout préalable.
 
 ## Compromis {#tradeoffs}
 
-Il est important de garder à l'esprit que l'algorithme de réconciliation est un détail d'implémentation. React pourrait refaire le rendu de l'ensemble de l'arbre à chaque action ; le résultat final serait le même. Pour être clair, refaire le rendu dans ce contexte signifie appeler `render` sur tous les composants, cela ne signifie pas que React les démontera et remontera. Il n'appliquera que les différences selon les règles énoncées dans les chapitres précédents.
+Il est important de se souvenir que l'algorithme de réconciliation est un détail d'implémentation. React pourrait refaire le rendu de l'ensemble de l'arbre à chaque action ; le résultat final serait le même. Pour être clair, refaire le rendu dans ce contexte signifie appeler `render` sur tous les composants, cela ne signifie pas que React les démontera et remontera. Il n'appliquera que les différences selon les règles énoncées dans les chapitres précédents.
 
-Nous affinons régulièrement les heuristiques afin de rendre plus rapides les cas d'utilisation courants. Dans l'implémentation actuelle, vous pouvez exprimer le fait qu'un sous-arbre a été déplacé parmi ses frères, mais vous ne pouvez pas dire qu'il a été déplacé ailleurs. L'algorithme va refaire le rendu de l'ensemble du sous-arbre.
+Nous affinons régulièrement les heuristiques afin d'accélérer les cas d'utilisation courants. Dans l'implémentation actuelle, vous pouvez exprimer le fait qu'un sous-arbre a été déplacé parmi ses frères, mais vous ne pouvez pas dire qu'il a été déplacé ailleurs. L'algorithme va refaire le rendu de l'ensemble du sous-arbre.
 
-Du fait que React se repose sur des heuristiques, les performances en pâtiront si les hypothèses derrière elles ne sont pas satisfaites.
+Puisque React se repose sur des heuristiques, les performances en pâtiront si les hypothèses derrière celles-ci ne sont pas satisfaites.
 
-1. L'algorithme n'essaiera pas de faire correspondre les sous-arbres de types de composants différents. Si vous êtes amenés à alterner entre deux types de composants au rendu très similaire, vous devriez peut-être en faire un type unique. En pratique, nous ne considérons pas cela comme un problème.
+1. L'algorithme n'essaiera pas de faire correspondre des sous-arbres de types de composants différents. Si vous êtes amenés à alterner entre deux types de composants au rendu très similaire, vous devriez peut-être en faire un type unique. En pratique, nous ne considérons pas cela comme un problème.
 
 2. Les clés doivent être stables, prévisibles et uniques. Des clés instables (comme celles produites par `Math.random()`) engendreront la recréation de nombreuses instances de composants et de nœuds DOM, ce qui peut entraîner une dégradation des performances et une perte d'état dans les composants enfants.
