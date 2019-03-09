@@ -4,9 +4,9 @@ title: Props de rendu
 permalink: docs/render-props.html
 ---
 
-Le terme ["prop de rendu"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) fait référence à une technique qui consiste à partager du code entre des composants React en utilisant une propriété dont la valeur est une fonction.
+Le terme [« prop de rendu »](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) (_render prop_ en anglais, NdT) fait référence à une technique qui consiste à partager du code entre des composants React en utilisant une propriété dont la valeur est une fonction.
 
-Un composant avec une propriété render prend une fonction qui renvoie un élément React et l'appelle au lieu d'implémenter sa propre logique de rendu.
+Un composant avec une prop de rendu prend une fonction qui renvoie un élément React et l'appelle au lieu d'implémenter sa propre logique de rendu.
 
 ```jsx
 <DataProvider render={data => (
@@ -20,7 +20,7 @@ Dans cet article, nous vous exposerons pourquoi les props de rendu sont pratique
 
 ## Utiliser les props de rendu pour des questions transversales {#use-render-props-for-cross-cutting-concerns}
 
-Les composants sont l'unité de base de réutilisation du code dans React, mais il n'est pas toujours évident de partager l'état ou le comportement contenu dans un composant à d'autres composants qui auraient besoin de ce même état.
+Les composants sont l'unité de base de réutilisation du code dans React, mais il n'est pas toujours évident de partager l'état ou le comportement contenu dans un composant avec d'autres composants qui auraient besoin de ce même état.
 
 Par exemple, le composant suivant traque la position de la souris dans une application web :
 
@@ -52,7 +52,7 @@ class MouseTracker extends React.Component {
 
 Lorsque le curseur se déplace sur l'écran, le composant affiche ses coordonnées (x,y) dans un `<p>`.
 
-La question qui se pose maintenant est : Comment pouvons-nous réutiliser ce comportement dans un autre composant ?En d'autres mots, si un autre composant a besoin de connaître la position du curseur, pouvons-nous encapsuler ce comportement pour pouvoir facilement le partager avec ce composant ?
+La question qui se pose maintenant est : Comment pouvons-nous réutiliser ce comportement dans un autre composant ? En d'autres termes, si un autre composant a besoin de connaître la position du curseur, pouvons-nous encapsuler ce comportement pour pouvoir facilement le partager avec ce composant ?
 
 Puisque les composants sont l'unité de réutilisation de code dans React, essayons de refactoriser un peu le code pour pouvoir utiliser un composant `<Mouse>` qui encapsule le comportement dont nous avons besoin ailleurs.
 
@@ -99,7 +99,7 @@ Le composant `<Mouse>` encapsule maintenant tous les comportements associés à 
 
 Par exemple, supposons que nous avons un composant `<Cat>` qui rend une image de chat chassant une souris sur l'écran. Nous pourrions utiliser une propriété `<Cat mouse={{ x, y }}>` pour transmettre au composant les coordonnées de la souris pour qu'il sache où positionner l'image sur l'écran.
 
-En première tentative, vous essayeriez peut-être de rendre `<Cat>` *dans la méthode `render` de `<Mouse>`*, comme ceci :
+Au premier essai, vous tenteriez peut-être de rendre `<Cat>` *dans la méthode `render` de `<Mouse>`*, comme ceci :
 
 ```js
 class Cat extends React.Component {
@@ -153,9 +153,9 @@ class MouseTracker extends React.Component {
 }
 ```
 
-Cette approche fonctionnera dans notre cas d'utilisation, mais nous n'avons pas atteint notre objectif de vraiment encapsuler le comportement de façon réutilisable. En effet, chaque fois que nous aurons besoin de la position de la souris pour un cas d'utilisation différent, nous devrons créer un nouveau composant (i.e. pour ainsi dire un autre `<MouseWithCat>`) that renders something specifically for that use case.
+Cette approche fonctionnera dans notre cas particulier, mais nous n'avons pas atteint notre objectif qui consiste à vraiment encapsuler le comportement de façon réutilisable. En effet, chaque fois que nous aurons besoin de la position de la souris pour un cas d'utilisation différent, nous devrons créer un nouveau composant (i.e. pour ainsi dire un autre `<MouseWithCat>`) spécifique à ce cas.
 
-C'est là que la propriété render entre en scène : au lieu d'écrire en dur un composant `<Cat>` dans un composant `<Mouse>`, et changer la valeur de sortie rendue, nous pouvons fournir `<Mouse>` avec une propriété qui est une fonction qui permet de déterminer dynamiquement ce qui doit être rendu, c'est-à-dire une render prop.
+C'est là que la prop de rendu entre en scène : au lieu d'écrire en dur un composant `<Cat>` dans un composant `<Mouse>`, et changer la valeur de sortie rendue, nous pouvons créer `<Mouse>` avec une propriété qui prendra une fonction qui permet de déterminer dynamiquement ce qui doit être rendu—une prop de rendu.
 
 ```js
 class Cat extends React.Component {
@@ -237,7 +237,7 @@ Utiliser une prop de rendu rend donc possible l'utilisation des deux méthodes.
 
 ## Utiliser d'autres propriétés que `render` {#using-props-other-than-render}
 
-Il est important de se rappeler que *ce n'est pas parce que la méthode s'appelle "props de rendu" qu'il est obligatoire d'utiliser une propriété appelée `render` pour utiliser cette méthode*. En fait, [*n'importe quelle* propriété qui est utilisée par un composant pour savoir quoi renvoyer est techniquement une "prop de rendu" ](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce).
+Il est important de se rappeler que *ce n'est pas parce que la méthode s'appelle « props de rendu » qu'il est obligatoire d'utiliser une propriété appelée `render` pour utiliser cette méthode*. En fait, [*n'importe quelle* propriété qui est utilisée par un composant pour savoir quoi renvoyer est techniquement une « prop de rendu » ](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce).
 
 Même si les exemples ci-dessus utilise `render`, nous pourrions tout aussi simplement utiliser la propriété `children` !
 
