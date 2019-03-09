@@ -18,9 +18,9 @@ Les [directives pour l'accessibilité au contenu web](https://www.w3.org/WAI/int
 
 Les listes de contrôle du WCAG ci-dessous en fournissent un aperçu :
 
-- [La liste de contrôle WCAG de Wuhcag](https://www.wuhcag.com/wcag-checklist/).
-- [La liste de contrôle WCAG de WebAIM](http://webaim.org/standards/wcag/checklist).
-- [La liste de contrôle de *The A11Y Project*](http://a11yproject.com/checklist.html).
+- [La liste de contrôle WCAG de Wuhcag](https://www.wuhcag.com/wcag-checklist/) (en anglais).
+- [La liste de contrôle WCAG de WebAIM](http://webaim.org/standards/wcag/checklist) (lien en anglais, une traduction est disponible [ici](https://anysurfer.be/fr/en-pratique/sites-web/checklist-wcag-2-1-de-webaim)).
+- [La liste de contrôle de *The A11Y Project*](http://a11yproject.com/checklist.html) (en anglais).
 
 ### WAI-ARIA {#wai-aria}
 
@@ -114,9 +114,9 @@ Tous les champs de formulaire HTML, tels que `<input>` et `<textarea>`, doivent 
 
 Les ressources ci-dessous nous montrent comment procéder :
 
-- [Le W3C nous montre comment étiqueter les éléments](https://www.w3.org/WAI/tutorials/forms/labels/).
-- [Le WebAIM nous montre comment étiqueter les éléments](http://webaim.org/techniques/forms/controls).
-- [Le groupe Paciello explique ce qu'est un nom accessible](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/).
+- [Le W3C nous montre comment étiqueter les éléments](https://www.w3.org/WAI/tutorials/forms/labels/) (en anglais).
+- [Le WebAIM nous montre comment étiqueter les éléments](http://webaim.org/techniques/forms/controls) (en anglais).
+- [Le groupe Paciello explique ce qu'est un nom accessible](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/) (en anglais).
 
 Bien que ces pratiques HTML standard soient directement utilisables dans React, il faut noter que l'attribut `for` est écrit `htmlFor` en JSX :
 
@@ -129,14 +129,14 @@ Bien que ces pratiques HTML standard soient directement utilisables dans React, 
 
 Les situations d'erreur doivent être comprises par tous les utilisateurs. Les liens ci-dessous montrent comment exposer les textes d'erreur aux lecteurs d'écran :
 
-- [Le W3C présente les notifications utilisateur](https://www.w3.org/WAI/tutorials/forms/notifications/).
-- [Le WebAIM se penche sur la validation de formulaire](http://webaim.org/techniques/formvalidation/).
+- [Le W3C présente les notifications utilisateur](https://www.w3.org/WAI/tutorials/forms/notifications/) (en anglais).
+- [Le WebAIM se penche sur la validation de formulaire](http://webaim.org/techniques/formvalidation/) (en anglais).
 
 ## Contrôle du focus {#focus-control}
 
 Assurez-vous que votre application web peut être complètement utilisable avec le clavier seul :
 
-- [Le WebAIM parle de l'accessibilité depuis le clavier](http://webaim.org/techniques/keyboard/).
+- [Le WebAIM parle de l'accessibilité depuis le clavier](http://webaim.org/techniques/keyboard/) (en anglais).
 
 ### Focus clavier et contour de focus {#keyboard-focus-and-focus-outline}
 
@@ -152,13 +152,13 @@ Fournissez un mécanisme permettant aux utilisateurs de sauter les sections de n
 
 Les liens d’évitement *(skiplinks, NdT)* sont des liens de navigation cachés qui ne sont visibles que lorsque l'utilisateur interagit au clavier avec la page. Ils sont très faciles à mettre en œuvre avec les ancres de pages internes et un peu de style :
 
-- [WebAIM - Liens de navigation de passage](http://webaim.org/techniques/skipnav/).
+- [WebAIM - Liens de navigation de passage](http://webaim.org/techniques/skipnav/) (en anglais).
 
 Utilisez également les éléments et rôles de repérage, tels que `<main>` et `<aside>`, afin de délimiter les régions de la page, car les technologies d'assistance permettent à l'utilisateur de naviguer rapidement vers ces sections.
 
 Pour en savoir plus sur l'utilisation de ces éléments pour améliorer l'accessibilité, rendez-vous sur :
 
-- [Repères d'accessibilité](http://www.scottohara.me/blog/2018/03/03/landmarks.html).
+- [Repères d'accessibilité](http://www.scottohara.me/blog/2018/03/03/landmarks.html) (en anglais).
 
 ### Gérer le focus programmatiquement {#programmatically-managing-focus}
 
@@ -370,14 +370,14 @@ C'est un exemple des nombreux cas où le fait de ne dépendre que des événemen
 
 Une expérience utilisateur plus complexe ne doit pas signifier une expérience moins accessible. Alors que l'accessibilité est plus facile à réaliser en codant au plus près du HTML, même les éléments d'interface les plus complexes peuvent être codés de manière accessible.
 
-Nous avons besoin ici de connaître les [rôles ARIA](https://www.w3.org/TR/wai-aria/#roles), ainsi que les [états et propriétés ARIA](https://www.w3.org/TR/wai-aria/#states_and_properties).
+Nous avons besoin ici de connaître les [rôles ARIA](https://www.w3.org/TR/wai-aria/#roles), ainsi que les [états et propriétés ARIA](https://www.w3.org/TR/wai-aria/#states_and_properties) (liens en anglais).
 Ce sont des boîtes à outils pleines d'attributs HTML pris en charge par JSX et qui nous permettent de construire des composants React pleinement accessibles et hautement fonctionnels.
 
 Chaque type d'élément d'interface a son modèle de conception spécifique et devrait fonctionner de la même manière avec les utilisateurs et les agents utilisateurs (notamment les navigateurs) :
 
-- [Pratiques de création WAI-ARIA - Modèles de conception et éléments d’interface](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
-- [Heydon Pickering - Exemples ARIA](http://heydonworks.com/practical_aria_examples/).
-- [Composants inclusifs](https://inclusive-components.design/).
+- [Pratiques de création WAI-ARIA - Modèles de conception et éléments d’interface](https://www.w3.org/TR/wai-aria-practices/#aria_ex) (en anglais).
+- [Heydon Pickering - Exemples ARIA](http://heydonworks.com/practical_aria_examples/) (en anglais).
+- [Composants inclusifs](https://inclusive-components.design/) (en anglais).
 
 ## Autres points à considérer {#other-points-for-consideration}
 
@@ -385,13 +385,13 @@ Chaque type d'élément d'interface a son modèle de conception spécifique et d
 
 Indiquez la langue des pages de texte de façon à ce que les logiciels de lecture d'écran puissent sélectionner les paramètres de voix appropriés :
 
-- [WebAIM - Langue du document](http://webaim.org/techniques/screenreader/#language).
+- [WebAIM - Langue du document](http://webaim.org/techniques/screenreader/#language) (en anglais).
 
 ### Définir le titre du document {#setting-the-document-title}
 
 Définissez la balise `<title>` du document pour décrire correctement le contenu de la page courante, afin de garantir que l'utilisateur soit au courant du contexte de la page en cours :
 
-- [WCAG - Comprendre l'exigence du titre du document](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html).
+- [WCAG - Comprendre l'exigence du titre du document](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html) (en anglais).
 
 Nous pouvons le définir dans React en utilisant le [composant React Document Title](https://github.com/gaearon/react-document-title).
 
@@ -399,18 +399,18 @@ Nous pouvons le définir dans React en utilisant le [composant React Document Ti
 
 Assurez-vous que tous les textes lisibles sur votre site web ont un contraste des couleurs suffisant pour rester lisibles de manière optimale par les utilisateurs malvoyants :
 
-- [WCAG - Comprendre l'exigence du contraste des couleurs](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html).
-- [Tout savoir sur le contraste des couleurs et pourquoi vous devriez le repenser](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/).
-- [A11yProject - Qu'est-ce que le contraste des couleurs ?](http://a11yproject.com/posts/what-is-color-contrast/)
+- [WCAG - Comprendre l'exigence du contraste des couleurs](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) (en anglais).
+- [Tout savoir sur le contraste des couleurs et pourquoi vous devriez le repenser](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/) (en anglais).
+- [A11yProject - Qu'est-ce que le contraste des couleurs ?](http://a11yproject.com/posts/what-is-color-contrast/) (en anglais).
 
-Il peut être fastidieux de calculer manuellement les combinaisons de couleurs appropriées pour toutes les situations sur votre site web, aussi vous est-il possible de [calculer une palette entière de couleurs accessible avec Colorable](http://jxnblk.com/colorable/).
+Il peut être fastidieux de calculer manuellement les combinaisons de couleurs appropriées pour toutes les situations sur votre site web, aussi vous est-il possible de [calculer une palette entière de couleurs accessible avec Colorable](http://jxnblk.com/colorable/) (en anglais).
 
 Les outils aXe et WAVE mentionnés ci-dessous incluent également des tests de contraste des couleurs et signalent les erreurs de contraste.
 
 Si vous souhaitez étendre vos capacités de test de contraste, vous pouvez utiliser ces outils :
 
-- [WebAIM - Vérification de contraste des couleurs](http://webaim.org/resources/contrastchecker/).
-- [The Paciello Group - Analyseur de contraste des couleurs](https://www.paciellogroup.com/resources/contrastanalyser/).
+- [WebAIM - Vérification de contraste des couleurs](http://webaim.org/resources/contrastchecker/) (en anglais).
+- [The Paciello Group - Analyseur de contraste des couleurs](https://www.paciellogroup.com/resources/contrastanalyser/) (en anglais).
 
 ## Outils de développement et de test {#development-and-testing-tools}
 
@@ -450,23 +450,23 @@ Il existe un certain nombre d'outils pour exécuter des audits d'accessibilité 
 
 Deque Systems propose [aXe-core](https://github.com/dequelabs/axe-core) pour automatiser les tests d'accessibilité de bout en bout de vos applications. Ce module comprend des intégrations pour Selenium.
 
-[*The Accessibility Engine*](https://www.deque.com/products/axe/) ou aXe, est une extension du navigateur qui fournit un inspecteur d'accessibilité en se basant sur `aXe-core`.
+[*The Accessibility Engine*](https://www.deque.com/products/axe/) (en anglais) ou aXe, est une extension du navigateur qui fournit un inspecteur d'accessibilité en se basant sur `aXe-core`.
 
 Vous pouvez aussi utiliser le module [react-axe](https://github.com/dylanb/react-axe) pour signaler directement ces résultats d'accessibilité dans la console durant le développement et le débogage.
 
 #### WebAIM WAVE {#webaim-wave}
 
-L'[outil Web Accessibility Evaluation](http://wave.webaim.org/extension/) est une autre extension du navigateur pour l'accessibilité.
+L'[outil Web Accessibility Evaluation](http://wave.webaim.org/extension/) (en anglais) est une autre extension du navigateur pour l'accessibilité.
 
 #### Inspecteurs d'accessibilité et arbre d'accessibilité {#accessibility-inspectors-and-the-accessibility-tree}
 
-[L'arbre d'accessibilité](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) est un sous-ensemble de l'arbre DOM qui contient des objets d'accessibilité pour chaque élément du DOM devant être exposé aux technologies d'assistance, telles que les lecteurs d'écrans.
+[L'arbre d'accessibilité](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) (en anglais) est un sous-ensemble de l'arbre DOM qui contient des objets d'accessibilité pour chaque élément du DOM devant être exposé aux technologies d'assistance, telles que les lecteurs d'écrans.
 
 Sur certains navigateurs, nous pouvons facilement consulter les informations d'accessibilité pour chaque élément de l'arbre d'accessibilité :
 
-- [Utiliser l'inspecteur d'accessibilité de Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector).
-- [Activer l'inspecteur d'accessibilité de Chrome](https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a).
-- [Utiliser l'inspecteur d'accessibilité d'OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html).
+- [Utiliser l'inspecteur d'accessibilité de Firefox](https://developer.mozilla.org/fr/docs/Outils/Inspecteur_accessibilite).
+- [Activer l'inspecteur d'accessibilité de Chrome](https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a) (en anglais).
+- [Utiliser l'inspecteur d'accessibilité d'OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html) (en anglais).
 
 ### Lecteurs d'écran {#screen-readers}
 
@@ -478,12 +478,12 @@ Veuillez noter que les combinaisons navigateur / lecteur d'écran ont leur impor
 
 #### NVDA dans Firefox {#nvda-in-firefox}
 
-[*NonVisual Desktop Access*](https://www.nvaccess.org/) ou NVDA est un logiciel libre de lecteur d'écran qui est largement utilisé.
+[*NonVisual Desktop Access*](https://www.nvaccess.org/) (en anglais) ou NVDA est un logiciel libre de lecteur d'écran qui est largement utilisé.
 
 Reportez-vous aux guides suivants pour savoir comment utiliser au mieux NVDA :
 
-- [WebAIM - Utiliser NVDA pour évaluer l'accessibilité web](http://webaim.org/articles/nvda/).
-- [Deque - Raccourcis clavier NVDA](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts).
+- [WebAIM - Utiliser NVDA pour évaluer l'accessibilité web](http://webaim.org/articles/nvda/) (en anglais).
+- [Deque - Raccourcis clavier NVDA](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts) (en anglais).
 
 #### VoiceOver dans Safari {#voiceover-in-safari}
 
@@ -491,18 +491,18 @@ VoiceOver est un lecteur d'écran intégré dans les appareils d'Apple.
 
 Reportez-vous aux guides suivants pour savoir comment activer et utiliser VoiceOver :
 
-- [WebAIM - Utiliser VoiceOver pour évaluer l'accessibilité web](http://webaim.org/articles/voiceover/).
-- [Deque - Raccourcis clavier pour VoiceOver sur OS X](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts).
-- [Deque - Raccourcis pour VoiceOver sur iOS](https://dequeuniversity.com/screenreaders/voiceover-ios-shortcuts).
+- [WebAIM - Utiliser VoiceOver pour évaluer l'accessibilité web](http://webaim.org/articles/voiceover/) (en anglais).
+- [Deque - Raccourcis clavier pour VoiceOver sur OS X](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts) (en anglais).
+- [Deque - Raccourcis pour VoiceOver sur iOS](https://dequeuniversity.com/screenreaders/voiceover-ios-shortcuts) (en anglais).
 
 #### JAWS dans Internet Explorer {#jaws-in-internet-explorer}
 
-[*Job Access With Speech*](http://www.freedomscientific.com/Products/Blindness/JAWS) ou JAWS, est un lecteur d'écran très largement utilisé sur Windows.
+[*Job Access With Speech*](http://www.freedomscientific.com/Products/Blindness/JAWS) (en anglais) ou JAWS, est un lecteur d'écran très largement utilisé sur Windows.
 
 Reportez-vous aux guides suivants pour utiliser au mieux JAWS :
 
-- [WebAIM - Utiliser JAWS pour évaluer l'accessibilité web](http://webaim.org/articles/jaws/).
-- [Deque - Raccourcis clavier pour JAWS](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts).
+- [WebAIM - Utiliser JAWS pour évaluer l'accessibilité web](http://webaim.org/articles/jaws/) (en anglais).
+- [Deque - Raccourcis clavier pour JAWS](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts) (en anglais).
 
 ### Autres lecteurs d'écran {#other-screen-readers}
 
@@ -513,4 +513,4 @@ Reportez-vous aux guides suivants pour utiliser au mieux JAWS :
 Reportez-vous aux guides suivants pour utiliser au mieux ChromeVox :
 
 - [Aide de Google Chromebook - Utiliser le lecteur d'écran intégré](https://support.google.com/chromebook/answer/7031755?hl=fr).
-- [Référence des raccourcis clavier pour ChromeVox Classic](http://www.chromevox.com/keyboard_shortcuts.html).
+- [Référence des raccourcis clavier pour ChromeVox Classic](http://www.chromevox.com/keyboard_shortcuts.html) (en anglais).
