@@ -239,7 +239,7 @@ Le composant [react-aria-modal](https://github.com/davidtheclark/react-aria-moda
 
 Assurez-vous que toutes les fonctionnalités exposées via un événement de souris ou de pointeur sont également accessibles avec le clavier seul. Ne dépendre que du pointeur peut aboutir à de nombreuses situations où les utilisateurs de clavier ne pourront pas utiliser votre application.
 
-Pour illustrer cela, examinons un exemple prolifique où l'accessibilité est cassée par les événements de clics. Il s'agit du modèle de clic extérieur dans lequel un utilisateur peut désactiver un menu déroulant en cliquant à l'extérieur de l'élément.
+Pour illustrer cela, examinons un exemple prolifique où l'accessibilité est cassée par les événements de clics. Il s'agit du modèle de clic extérieur dans lequel un utilisateur peut désactiver une liste déroulant en cliquant à l'extérieur de l'élément.
 
 <img src="../images/docs/outerclick-with-mouse.gif" alt="Un bouton ouvrant une liste déroulante implémenté par le modèle du clic externe et déclenché par la souris montrant que l'action de fermeture fonctionne." />
 
