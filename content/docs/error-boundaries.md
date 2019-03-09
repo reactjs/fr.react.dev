@@ -8,7 +8,7 @@ Auparavant, les erreurs JavaScript au sein des composants avaient l'habitude de 
 
 ## L'arrivée des périmètres d'erreurs {#introducing-error-boundaries}
 
-Une erreur JavaScript au sein d’une partie de l'interface utilisateur (UI) ne devrait pas casser l'ensemble de l'application. Pour résoudre ce problème pour les utilisateurs de React, React 16 a introduit un nouveau concept appelé « Périmètres d’erreurs » *(Error Boundaries, NdT)*.
+Une erreur JavaScript au sein d’une partie de l'interface utilisateur (UI) ne devrait pas casser l'ensemble de l'application. Pour résoudre ce problème, React 16 a introduit un nouveau concept appelé « Périmètres d’erreurs » *(Error Boundaries, NdT)*.
 
 Les périmètres d'erreurs sont des composants React qui **interceptent les erreurs JavaScript n'importe où au sein de leur arbre de composants enfants, enregistrent ces erreurs, et affichent une UI de repli** à la place de l'arbre de composants qui a planté. Les périmètres d'erreurs interceptent les erreurs survenant au rendu, dans les méthodes de cycle de vie, ainsi que dans les constructeurs de tous les éléments de leur arborescence.
 
@@ -46,7 +46,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -70,14 +70,14 @@ Jetez un coup d'œil sur [cet exemple de déclaration et d'utilisation d'un pér
 
 ## Où placer les périmètres d'erreurs ? {#where-to-place-error-boundaries}
 
-La granularité des périmètres d'erreurs est à votre discrétion. Vous pourriez enrober les composants racines de routage pour afficher à l'utilisateur un message du type « Quelque chose s'est mal passé », à l'image de ce qui est souvent fait par les frameworks côté serveur. Vous pourriez aussi enrober des éléments d'interface précis avec un périmètre d'erreur afin de les empêcher de planter le reste de l'application.
+La granularité des périmètres d'erreurs est à votre discrétion. Vous pourriez enrober les composants racines de routage pour afficher à l'utilisateur un message du type « Quelque chose s'est mal passé », à l'image de ce qui est souvent fait par les frameworks côté serveur. Vous pourriez aussi enrober des éléments d'interface précis avec un périmètre d'erreur afin de les empêcher de planter le reste de l'application.
 
 
 ## Nouveau comportement pour les erreurs non-rattrapées {#new-behavior-for-uncaught-errors}
 
 Ce changement a un impact important. **À compter de React 16, les erreurs qui ne sont pas interceptées par un périmètre d'erreur entraîneront le démontage de l'intégralité de l'arbre des composants**.
 
-Cette décision a été débattue, mais d'expérience nous avons remarqué qu'il est bien pire de laisser en place une interface corrompue que de la supprimer complètement. Par exemple, dans un produit tel que Messenger, laisser une interface dégradée visible peut amener l'utilisateur à envoyer un message à la mauvaise personne. De la même façon, pour une application de paiement, afficher un mauvais montant est bien pire que de ne rien afficher du tout.
+Cette décision a été débattue, mais l'expérience nous a montré qu'il est bien pire de laisser en place une interface corrompue que de la supprimer complètement. Par exemple, dans un produit tel que Messenger, laisser visible une interface dégradée peut amener l'utilisateur à envoyer un message à la mauvaise personne. De la même façon, pour une application de paiement, afficher un mauvais montant est bien pire que de ne rien afficher du tout.
 
 Cette modification signifie que lorsque vous migrez vers React 16, vous découvrirez probablement des plantages dans votre application qui étaient jusque-là passés inaperçus. L'ajout de périmètres d'erreurs permet d'offrir une meilleure expérience utilisateur en cas de problème.
 
@@ -162,4 +162,4 @@ Remarquez que l'exemple ci-dessus illustre un comportement JavaScript classique 
 
 React 15 disposait d'une prise en charge très limitée des périmètres d'erreurs sous un nom de méthode différent : `unstable_handleError`. Cette méthode ne fonctionne plus, et vous devrez la remplacer par `componentDidCatch` dans votre code à partir de la première version bêta de React 16.
 
-Pour ce changement, nous fournissons un [codemod](https://github.com/reactjs/react-codemod#error-boundaries) pour migrer automatiquement votre code.
+Pour ce changement, nous fournissons un [codemod](https://github.com/reactjs/react-codemod#error-boundaries) qui vous permet de migrer automatiquement votre code.
