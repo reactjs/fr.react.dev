@@ -124,7 +124,7 @@ function MyComponent() {
 
 ### Suspense {#suspense}
 
-Si le module contenant le composant `OtherComponent` n'est pas encore chargé au moment du rendu de `MyComponent`, alors nous devons afficher un contenu de repli en attendant qu'il soit chargé — comme un indicateur de chargement. Cela se fait en utilisant le composant `Suspense`.
+Si le module contenant le composant `OtherComponent` n'est pas encore chargé au moment du rendu de `MyComponent`, alors nous devons afficher un contenu de repli en attendant qu'il soit chargé—comme un indicateur de chargement. Ça se fait en utilisant le composant `Suspense`.
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
