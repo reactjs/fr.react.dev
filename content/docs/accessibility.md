@@ -4,9 +4,9 @@ title: Accessibilité
 permalink: docs/accessibility.html
 ---
 
-## Pourquoi l'accessibilité ? {#why-accessibility}
+## Pourquoi l'accessibilité ? {#why-accessibility}
 
-L'accessibilité du web (aussi référencée sous la contraction [**a11y**](https://fr.wiktionary.org/wiki/a11y)) concerne le design et la création de sites web qui peuvent être utilisés par tout le monde. La prise en charge de l'accessibilité est nécessaire pour permettre aux technologies d'assistance d'interpréter les pages web. 
+L'accessibilité du web (aussi désignée par la contraction [**a11y**](https://fr.wiktionary.org/wiki/a11y)) concerne le design et la création de sites web qui peuvent être utilisés par tout le monde. La prise en charge de l'accessibilité est nécessaire pour permettre aux technologies d'assistance d'interpréter les pages web.
 
 React prend totalement en charge la création de sites web accessibles, en s'appuyant souvent sur des techniques HTML standard.
 
@@ -19,7 +19,7 @@ Les [directives pour l'accessibilité au contenu web](https://www.w3.org/WAI/int
 Les listes de contrôle du WCAG ci-dessous en fournissent un aperçu :
 
 - [La liste de contrôle WCAG de Wuhcag](https://www.wuhcag.com/wcag-checklist/) (en anglais).
-- [La liste de contrôle WCAG de WebAIM](http://webaim.org/standards/wcag/checklist) (lien en anglais, une traduction est disponible [ici](https://anysurfer.be/fr/en-pratique/sites-web/checklist-wcag-2-1-de-webaim)).
+- [La liste de contrôle WCAG de WebAIM](http://webaim.org/standards/wcag/checklist) (en anglais, une traduction est disponible [ici](https://anysurfer.be/fr/en-pratique/sites-web/checklist-wcag-2-1-de-webaim)).
 - [La liste de contrôle de *The A11Y Project*](http://a11yproject.com/checklist.html) (en anglais).
 
 ### WAI-ARIA {#wai-aria}
@@ -41,7 +41,7 @@ Remarquez que tous les attributs HTML `aria-*` sont autorisés dans JSX. Là où
 
 ## HTML sémantique {#semantic-html}
 
-Le HTML sémantique est la base de l'accessibilité dans une application web. L'utilisation des différents éléments HTML pour renforcer la signification de l'information de nos sites web offre généralement de l'accessibilité à peu de frais.
+Le HTML sémantique est la base de l'accessibilité dans une application web. L'utilisation des différents éléments HTML pour renforcer la signification de l'information de nos sites web améliore généralement l'accessibilité à peu de frais.
 
 - [La référence des éléments HTML sur MDN](https://developer.mozilla.org/fr/docs/Web/HTML/Element).
 
@@ -75,12 +75,13 @@ function Glossary(props) {
 
 Vous pouvez représenter une liste d'éléments comme un tableau de fragments, comme vous le feriez avec tout autre type d'élément :
 
-```javascript{6,9}
+```javascript{7,10}
 function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Les fragments doivent aussi disposer de la propriété `key` lors de l'itération sur les listes.
+        // Les fragments doivent aussi disposer de la propriété `key`
+        // lors de l'itération sur les listes.
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -91,7 +92,7 @@ function Glossary(props) {
 }
 ```
 
-Lorsque vous n'avez pas besoin de définir de propriété sur la balise fragment, vous pouvez utiliser la [syntaxe courte](/docs/fragments.html#short-syntax), si votre outillage le prend en charge :
+Lorsque vous n'avez pas besoin de définir de propriété sur la balise fragment, vous pouvez utiliser la [syntaxe courte](/docs/fragments.html#short-syntax), si votre outillage la prend en charge :
 
 ```javascript{3,6}
 function ListItem({ item }) {
@@ -152,17 +153,17 @@ Fournissez un mécanisme permettant aux utilisateurs de sauter les sections de n
 
 Les liens d’évitement *(skiplinks, NdT)* sont des liens de navigation cachés qui ne sont visibles que lorsque l'utilisateur interagit au clavier avec la page. Ils sont très faciles à mettre en œuvre avec les ancres de pages internes et un peu de style :
 
-- [WebAIM - Liens de navigation de passage](http://webaim.org/techniques/skipnav/) (en anglais).
+- [WebAIM - Liens d’évitement](http://webaim.org/techniques/skipnav/) (en anglais).
 
 Utilisez également les éléments et rôles de repérage, tels que `<main>` et `<aside>`, afin de délimiter les régions de la page, car les technologies d'assistance permettent à l'utilisateur de naviguer rapidement vers ces sections.
 
-Pour en savoir plus sur l'utilisation de ces éléments pour améliorer l'accessibilité, rendez-vous sur :
+Pour en apprendre davantage sur l'utilisation de ces éléments afin d’améliorer l'accessibilité, rendez-vous sur :
 
 - [Repères d'accessibilité](http://www.scottohara.me/blog/2018/03/03/landmarks.html) (en anglais).
 
 ### Gérer le focus programmatiquement {#programmatically-managing-focus}
 
-Nos applications React modifient en continu le DOM HTML au cours de l'exécution, ce qui entraîne parfois la perte du focus clavier ou le positionne sur un élément inattendu. Pour corriger ça, nous devons déplacer le focus clavier programmatiquement dans la bonne direction. En redonnant par exemple le focus clavier à un bouton qui ouvre une fenêtre modale, lorsque cette dernière se referme.
+Nos applications React modifient en continu le DOM HTML au cours de l'exécution, ce qui entraîne parfois la perte du focus clavier ou le positionne sur un élément inattendu. Pour corriger ça, nous devons déplacer le focus clavier programmatiquement dans la bonne direction. On peut par exemple redonner le focus clavier à un bouton qui ouvre une fenêtre modale, lorsque cette dernière se referme.
 
 La documentation web du MDN se penche sur ça et décrit comment nous pouvons construire [des éléments d’interface JavaScript permettant la navigation au clavier](https://developer.mozilla.org/fr/docs/Contrôles_DHTML_personnalisés_navigables_au_clavier).
 
@@ -227,7 +228,7 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
-Quand vous enrobez des composants à l’aide d’un composant d’ordre supérieur *(Higher-Order Component, ou HOC, NdT)*, il est recommandé de [transférer la référence](/docs/forwarding-refs.html) vers l’élément enrobé grâce à la fonction `forwardRef` de React. Si un HOC tiers n'implémente par le transfert de référence, le modèle ci-dessus peut être utilisé comme solution de secours.
+Quand vous enrobez des composants à l’aide d’un composant d’ordre supérieur *(Higher-Order Component, ou HOC, NdT)*, il est recommandé de [transférer la référence](/docs/forwarding-refs.html) vers l’élément enrobé grâce à la fonction `forwardRef` de React. Si un HOC tiers n'implémente pas le transfert de référence, le modèle ci-dessus peut être utilisé comme solution de secours.
 
 Le composant [react-aria-modal](https://github.com/davidtheclark/react-aria-modal) est un excellent exemple de la gestion du focus. Il s'agit de l'un des rares exemples de fenêtre modale complètement accessible. Non seulement il définit le focus initial sur le bouton d'annulation (empêchant l'utilisateur du clavier d'activer accidentellement l'action de succès), mais il restreint bien le focus clavier à l'intérieur de la fenêtre modale et il remet à terme le focus sur l'élément qui a originellement déclenché la fenêtre modale.
 
@@ -239,7 +240,7 @@ Le composant [react-aria-modal](https://github.com/davidtheclark/react-aria-moda
 
 Assurez-vous que toutes les fonctionnalités exposées via un événement de souris ou de pointeur sont également accessibles avec le clavier seul. Ne dépendre que du pointeur peut aboutir à de nombreuses situations où les utilisateurs de clavier ne pourront pas utiliser votre application.
 
-Pour illustrer cela, examinons un exemple prolifique où l'accessibilité est cassée par les événements de clics. Il s'agit du modèle de clic extérieur dans lequel un utilisateur peut désactiver une liste déroulante en cliquant à l'extérieur de l'élément.
+Pour illustrer ça, examinons un exemple courant où l'accessibilité est cassée par les événements de clics. Il s'agit du modèle de clic extérieur dans lequel un utilisateur peut désactiver une liste déroulante en cliquant à l'extérieur de l'élément.
 
 <img src="../images/docs/outerclick-with-mouse.gif" alt="Un bouton ouvrant une liste déroulante implémenté par le modèle du clic externe et déclenché par la souris montrant que l'action de fermeture fonctionne." />
 
@@ -338,7 +339,7 @@ class BlurExample extends React.Component {
 
   render() {
     // React nous aide en assurant la propagation des
-    //  événements `blur` et `focus` vers le parent.
+    // événements `blur` et `focus` vers le parent.
     return (
       <div onBlur={this.onBlurHandler}
            onFocus={this.onFocusHandler}>
@@ -373,7 +374,7 @@ Une expérience utilisateur plus complexe ne doit pas signifier une expérience 
 Nous avons besoin ici de connaître les [rôles ARIA](https://www.w3.org/TR/wai-aria/#roles), ainsi que les [états et propriétés ARIA](https://www.w3.org/TR/wai-aria/#states_and_properties) (liens en anglais).
 Ce sont des boîtes à outils pleines d'attributs HTML pris en charge par JSX et qui nous permettent de construire des composants React pleinement accessibles et hautement fonctionnels.
 
-Chaque type d'élément d'interface a son modèle de conception spécifique et devrait fonctionner de la même manière avec les utilisateurs et les agents utilisateurs (notamment les navigateurs) :
+Chaque type d'élément d'interface a son modèle de conception spécifique et devrait fonctionner de la même manière avec les utilisateurs et les agents utilisateurs (notamment les navigateurs et les lecteurs d’écran) :
 
 - [Pratiques de création WAI-ARIA - Modèles de conception et éléments d’interface](https://www.w3.org/TR/wai-aria-practices/#aria_ex) (en anglais).
 - [Heydon Pickering - Exemples ARIA](http://heydonworks.com/practical_aria_examples/) (en anglais).
@@ -389,7 +390,7 @@ Indiquez la langue des pages de texte de façon à ce que les logiciels de lectu
 
 ### Définir le titre du document {#setting-the-document-title}
 
-Définissez la balise `<title>` du document pour décrire correctement le contenu de la page courante, afin de garantir que l'utilisateur soit au courant du contexte de la page en cours :
+Définissez la balise `<title>` du document pour décrire correctement le contenu de la page courante, afin de garantir que l'utilisateur est au courant du contexte de la page en cours :
 
 - [WCAG - Comprendre l'exigence du titre du document](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html) (en anglais).
 
@@ -401,7 +402,7 @@ Assurez-vous que tous les textes lisibles sur votre site web ont un contraste de
 
 - [WCAG - Comprendre l'exigence du contraste des couleurs](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) (en anglais).
 - [Tout savoir sur le contraste des couleurs et pourquoi vous devriez le repenser](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/) (en anglais).
-- [A11yProject - Qu'est-ce que le contraste des couleurs ?](http://a11yproject.com/posts/what-is-color-contrast/) (en anglais).
+- [A11yProject - Qu'est-ce que le contraste des couleurs ?](http://a11yproject.com/posts/what-is-color-contrast/) (en anglais).
 
 Il peut être fastidieux de calculer manuellement les combinaisons de couleurs appropriées pour toutes les situations sur votre site web, aussi vous est-il possible de [calculer une palette entière de couleurs accessible avec Colorable](http://jxnblk.com/colorable/) (en anglais).
 
@@ -421,9 +422,9 @@ Il existe de nombreux outils que nous pouvons utiliser pour nous assister durant
 La vérification de loin la plus simple, mais aussi l'une des plus importantes, consiste à tester si l'ensemble de votre site web est accessible et utilisable avec le clavier seul. Procédez ainsi :
 
 1. Débranchez votre souris.
-1. Utilisez `Tab` et `Shift + Tab` pour naviguer.
-1. Utilisez `Entrée` pour activer des éléments.
-1. Le cas échéant, utilisez les touches de curseur du clavier pour interagir avec certains éléments, tels que les menus et les listes déroulantes.
+2. Utilisez `Tab` et `Shift + Tab` pour naviguer.
+3. Utilisez `Entrée` pour activer des éléments.
+4. Le cas échéant, utilisez les touches de curseur du clavier pour interagir avec certains éléments, tels que les menus et les listes déroulantes.
 
 ### Assistance au développement {#development-assistance}
 
