@@ -68,7 +68,7 @@ class CommentList extends React.Component {
 }
 ```
 
-Ensuite, vous créez un composant qui gère les événements pour un unique article, et dont la structure est similaire à la précédente&nbsp;:
+Ensuite, vous créez un composant `BlogPost` qui gère les événements pour un unique article, et dont la structure est similaire à la précédente&nbsp;:
 
 ```js
 class BlogPost extends React.Component {
@@ -100,15 +100,15 @@ class BlogPost extends React.Component {
 }
 ```
 
-`CommentList` and `BlogPost` aren't identical — they call different methods on `DataSource`, and they render different output. But much of their implementation is the same:
+`CommentList` et `BlogPost` ne sont pas identiques—ils appellent des méthodes différentes sur `DataSource`, et font différents rendus. Pourtant une grande partie de leur fonctionnement est la même:
 
-- On mount, add a change listener to `DataSource`.
-- Inside the listener, call `setState` whenever the data source changes.
-- On unmount, remove the change listener.
+- Au montage *(quand le composant entre dans la couche d'affichage, NdT)*, ils ajoutent un écouteur d'événement à `DataSource`.
+- Dans l'écouteur, ils appellent `setState` quand la source de données est modifiée.
+- Au démontage *(quand le composant sort de la couche d'affichage, NdT)*, ils enlèvent l'écouteur d'événement.
 
-You can imagine that in a large app, this same pattern of subscribing to `DataSource` and calling `setState` will occur over and over again. We want an abstraction that allows us to define this logic in a single place and share it across many components. This is where higher-order components excel.
+Vous imaginez bien que dans une appli importante, ce motif d'écoute de `DataSource` et d'appel à `setState` sera récurrent. Il nous faut une abstraction qui nous permette de définir cette logique à un seul endroit et de la partager parmi de nombreux composants. C'est là que les composants d'ordre supérieur entrent en jeu.
 
-We can write a function that creates components, like `CommentList` and `BlogPost`, that subscribe to `DataSource`. The function will accept as one of its arguments a child component that receives the subscribed data as a prop. Let's call the function `withSubscription`:
+Vous pouvez donc écrire une fonction pour créer des composants qui écoutent `DataSource`, comme `CommentList` et `BlogPost`. L'un des arguments qu'accepte la fonction est un composant enfant, qui recevra les données écoutées en props. Appelons cette fonction `withSubscription`:
 
 ```js
 const CommentListWithSubscription = withSubscription(
@@ -122,14 +122,14 @@ const BlogPostWithSubscription = withSubscription(
 );
 ```
 
-The first parameter is the wrapped component. The second parameter retrieves the data we're interested in, given a `DataSource` and the current props.
+Le premier paramètre est le composant enfant. Le second récupère les données qui nous intéressent, selon la `DataSource` et les props existantes.
 
-When `CommentListWithSubscription` and `BlogPostWithSubscription` are rendered, `CommentList` and `BlogPost` will be passed a `data` prop with the most current data retrieved from `DataSource`:
+Au moment où `CommentListWithSubscription` et `BlogPostWithSubscription` font leur rendu, `CommentList` et `BlogPost` reçoivent une prop `data` qui contient les données les plus récentes de `DataSource`:
 
 ```js
-// This function takes a component...
+// Cette fonction accepte un composant...
 function withSubscription(WrappedComponent, selectData) {
-  // ...and returns another component...
+  // ... et renvoie un autre composant...
   return class extends React.Component {
     constructor(props) {
       super(props);
@@ -140,7 +140,7 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     componentDidMount() {
-      // ... that takes care of the subscription...
+      // ... qui s'occupe d'écouter les événements...
       DataSource.addChangeListener(this.handleChange);
     }
 
@@ -155,21 +155,21 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     render() {
-      // ... and renders the wrapped component with the fresh data!
-      // Notice that we pass through any additional props
+      // ... et fait le rendu du composant enfant avec les données à jour!
+      // Notez qu'on passe aussi toute prop existante
       return <WrappedComponent data={this.state.data} {...this.props} />;
     }
   };
 }
 ```
 
-Note that a HOC doesn't modify the input component, nor does it use inheritance to copy its behavior. Rather, a HOC *composes* the original component by *wrapping* it in a container component. A HOC is a pure function with zero side-effects.
+Vous voyez qu'un HOC ne modifie pas le composant qu'on lui passe, ni ni n'hérite et ne copie son comportement. Un HOC *compose* le composant initial en l'*enveloppant* dans un composant conteneur. Il s'agit purement d'une fonction, sans effets secondaires.
 
-And that's it! The wrapped component receives all the props of the container, along with a new prop, `data`, which it uses to render its output. The HOC isn't concerned with how or why the data is used, and the wrapped component isn't concerned with where the data came from.
+Et voilà&nbsp;! Le composant enfant reçoit toutes les props du contenant ainsi qu'une nouvelle prop, `data`, qu'il emploie pour faire son rendu. Le HOC ne se préoccupe pas de comment ou pourquoi les données sont utilisées, et le composant enfant ne se préoccupe pas d'où les données viennent.
 
-Because `withSubscription` is a normal function, you can add as many or as few arguments as you like. For example, you may want to make the name of the `data` prop configurable, to further isolate the HOC from the wrapped component. Or you could accept an argument that configures `shouldComponentUpdate`, or one that configures the data source. These are all possible because the HOC has full control over how the component is defined.
+Puisque `withSubscription` est simplement une fonction, vous pouvez lui passer autant ou aussi peu d'arguments que vous voulez. Par exemple, vous pourriez rendre configurable le nom de la prop `data`, afin se séparer encore plus le HOC et son enfant. Ou alors, vous pourriez accepter un argument qui configure `shouldComponentUpdate`, ou un autre qui configure la source de données. Tout cela est possible parce que le HOC a un contrôle total sur la façon dont le composant est défini.
 
-Like components, the contract between `withSubscription` and the wrapped component is entirely props-based. This makes it easy to swap one HOC for a different one, as long as they provide the same props to the wrapped component. This may be useful if you change data-fetching libraries, for example.
+Comme pour les composants, le rapport entre `withSubscription` et le composant enfant se base sur les props. Cela facilite l'échange d'un HOC pour un autre, tant qu'ils fournissent les mêmes props au composant enfant. Cela peut être utile si vous changez de bibliothèque pour récupérer vos données, par exemple.
 
 ## Don't Mutate the Original Component. Use Composition. {#dont-mutate-the-original-component-use-composition}
 
