@@ -12,7 +12,7 @@ redirect_from:
 >
 >Nous fournissons [un script codemod](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes) pour automatiser cette transition.
 
-Au fur et à mesure que votre application grossit, vous pouvez détecter un grand nombre de bugs grâce à la validation de types. Dans certains cas, vous pouvez utiliser des extensions JavaScript comme [Flow](https://flow.org/) ou [TypeScript](https://www.typescriptlang.org/) pour valider les types de toute votre application. Mais même si vous ne les utilisez pas, React possède ses propres fonctionnalités de validation de types. Pour lancer la validation de types des propriétés d'un composant, vous pouvez ajouter la propriété spéciale `propTypes` :
+Au fur et à mesure que votre application grandit, vous pouvez détecter un grand nombre de bugs grâce à la validation de types. Dans certains cas, vous pouvez utiliser des extensions JavaScript comme [Flow](https://flow.org/) ou [TypeScript](https://www.typescriptlang.org/) pour valider les types de toute votre application. Mais même si vous ne les utilisez pas, React possède ses propres fonctionnalités de validation de types. Pour lancer la validation de types des propriétés d'un composant, vous pouvez ajouter la propriété spéciale `propTypes` :
 
 ```javascript
 import PropTypes from 'prop-types';
@@ -51,10 +51,10 @@ MyComponent.propTypes = {
   optionalSymbol: PropTypes.symbol,
 
   // Tout ce qui peut être rendu : des nombres, des chaînes de caractères,
-  // des élements ou des tableaux (ou fragments) contenant ces types.
+  // des éléments ou des tableaux (ou fragments) contenant ces types.
   optionalNode: PropTypes.node,
 
-  // Un élement React.
+  // Un élément React.
   optionalElement: PropTypes.element,
 
   // Vous pouvez aussi déclarer qu'une propriété est une instance d'une classe.
@@ -161,10 +161,10 @@ Greeting.defaultProps = {
   name: 'Étranger'
 };
 
-// Retourne « Bonjour, Étranger »:
+// Affiche « Bonjour, Étranger »:
 ReactDOM.render(
   <Greeting />,
-  document.getElementById('exemple')
+  document.getElementById('example')
 );
 ```
 
