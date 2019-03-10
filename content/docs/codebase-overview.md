@@ -183,44 +183,44 @@ Renderers are also located in [`packages/`](https://github.com/facebook/react/tr
 
 The only other officially supported renderer is [`react-art`](https://github.com/facebook/react/tree/master/packages/react-art). It used to be in a separate [GitHub repository](https://github.com/reactjs/react-art) but we moved it into the main source tree for now.
 
->**Note:**
+>**Remarque:**
 >
->Technically the [`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) is a very thin layer that teaches React to interact with React Native implementation. The real platform-specific code managing the native views lives in the [React Native repository](https://github.com/facebook/react-native) together with its components.
+>Techniquement, le [`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) est une couche très mince qui apprend à React à interagir avec la mise en oeuvre de React Native.  Le véritable code spécifique à la plate-forme, gérant les vues natives ainsi que ses composants, réside dans le [répertoire React Native](https://github.com/facebook/react-native).
 
-### Reconcilers {#reconcilers}
+### Réconciliateurs {#reconcilers}
 
-Even vastly different renderers like React DOM and React Native need to share a lot of logic. In particular, the [reconciliation](/docs/reconciliation.html) algorithm should be as similar as possible so that declarative rendering, custom components, state, lifecycle methods, and refs work consistently across platforms.
+Même des moteurs de rendu très différents comme React DOM et React Native doivent partager beaucoup de logique. En particulier, l'algorithme [réconciliation](/docs/reconciliation.html) doit être aussi similaire que possible afin que le rendu déclaratif, les composants personnalisés, l'état, les méthodes de cycle de vie et les références fonctionnent de manière cohérente sur toutes les plateformes.
 
-To solve this, different renderers share some code between them. We call this part of React a "reconciler". When an update such as `setState()` is scheduled, the reconciler calls `render()` on components in the tree and mounts, updates, or unmounts them.
+Pour résoudre ce problème, différents moteurs de rendu partagent du code entre eux. Nous appelons cette partie de React un "réconciliateur". Lorsqu'une mise à jour telle que `setState()` est planifiée, le réconciliateur appelle `render()` sur les composants de l'arborescence et les monte, les met à jour ou les supprime.
 
-Reconcilers are not packaged separately because they currently have no public API. Instead, they are exclusively used by renderers such as React DOM and React Native.
+Les réconciliateurs ne sont pas empaquetés séparément car ils ne disposent actuellement d'aucune API publique. Au lieu de cela, ils sont exclusivement utilisés par les moteurs de rendu tels que React DOM et React Native.
 
-### Stack Reconciler {#stack-reconciler}
+### Réconciliateur Stack {#stack-reconciler}
 
-The "stack" reconciler is the implementation powering React 15 and earlier. We have since stopped using it, but it is documented in detail in the [next section](/docs/implementation-notes.html).
+Le réconciliateur "stack" est l'implémentation qui alimente React 15 et les versions antérieures. Nous avons depuis cessé de l'utiliser, tout ceci est décrit en détail dans la [prochaine section](/docs/implementation-notes.html).
 
-### Fiber Reconciler {#fiber-reconciler}
+### Réconciliateur Fiber {#fiber-reconciler}
 
-The "fiber" reconciler is a new effort aiming to resolve the problems inherent in the stack reconciler and fix a few long-standing issues. It has been the default reconciler since React 16.
+Le réconciliateur "fiber" est un nouvel effort visant à résoudre les problèmes inhérents au réconciliateur de pile et à résoudre quelques problèmes de longue date. C’est le réconciliateur par défaut depuis React 16.
 
-Its main goals are:
+Ses objectifs principaux sont :
 
-* Ability to split interruptible work in chunks.
-* Ability to prioritize, rebase and reuse work in progress.
-* Ability to yield back and forth between parents and children to support layout in React.
-* Ability to return multiple elements from `render()`.
-* Better support for error boundaries.
+* Possibilité de diviser le travail arrêtable en morceaux.
+* Possibilité de hiérarchiser, de rebaser et de réutiliser des travaux en cours.
+* Possibilité de se répartir entre parents et enfants pour subvenir aux besoins du rendu dans React.
+* Possibilité de retourner plusieurs éléments de `render()`.
+* Meilleur support pour les limites d'erreur.
 
-You can read more about React Fiber Architecture [here](https://github.com/acdlite/react-fiber-architecture) and [here](https://medium.com/react-in-depth/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react-e1c04700ef6e). While it has shipped with React 16, the async features are not enabled by default yet.
+Vous pouvez en savoir plus sur l’architecture des Fiber React [ici](https://github.com/acdlite/react-fiber-architecture) et [ici](https://medium.com/react-in-depth/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react-e1c04700ef6e). Bien qu’elles soient livrées avec React 16, les fonctionnalités asynchrones ne sont pas encore activées par défaut.
 
-Its source code is located in [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
+Son code source est situé dans [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
 
-### Event System {#event-system}
+### Système d'événements {#event-system}
 
-React implements a synthetic event system which is agnostic of the renderers and works both with React DOM and React Native. Its source code is located in [`packages/events`](https://github.com/facebook/react/tree/master/packages/events).
+React implémente un système d'événements synthétiques agnostique des moteurs de rendu et fonctionne à la fois avec React DOM et React Native. Son code source se trouve dans [`packages/events`](https://github.com/facebook/react/tree/master/packages/events).
 
-There is a [video with a deep code dive into it](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 mins).
+Voici une [vidéo qui plonge en profondeur dans ce code](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 minutes).
 
-### What Next? {#what-next}
+### Et ensuite ? {#what-next}
 
-Read the [next section](/docs/implementation-notes.html) to learn about the pre-React 16 implementation of reconciler in more detail. We haven't documented the internals of the new reconciler yet.
+Lisez la [section suivante](/docs/implementation-notes.html) pour en savoir plus sur la mise en œuvre du réconciliateur avant React 16. Nous n'avons pas encore documenté les composants internes du nouveau réconciliateur.
