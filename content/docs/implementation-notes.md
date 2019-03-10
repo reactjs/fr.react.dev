@@ -1,6 +1,6 @@
 ---
 id: implementation-notes
-title: Implementation Notes
+title: Notes d’implémentation
 layout: contributing
 permalink: docs/implementation-notes.html
 prev: codebase-overview.html
@@ -9,93 +9,93 @@ redirect_from:
   - "contributing/implementation-notes.html"
 ---
 
-This section is a collection of implementation notes for the [stack reconciler](/docs/codebase-overview.html#stack-reconciler).
+Cette section est un ensemble de notes d'implémentation pour le [réconciliateur de pile](/docs/codebase-overview.html#stack-reconciler).
 
-It is very technical and assumes a strong understanding of React public API as well as how it's divided into core, renderers, and the reconciler. If you're not very familiar with the React codebase, read [the codebase overview](/docs/codebase-overview.html) first.
+C'est très technique et suppose une solide compréhension de l’API publique de React ainsi que de sa structure divisée en cœur, moteurs de rendu et réconciliateur. Si vous ne connaissez pas bien la base de code React, lisez d'abord l'[aperçu de la base de code](/docs/codebase-overview.html).
 
-It also assumes an understanding of the [differences between React components, their instances, and elements](/blog/2015/12/18/react-components-elements-and-instances.html).
+Cela suppose également de comprendre les [différences entre les composants React, leurs instances et leurs éléments](/blog/2015/12/18/react-components-elements-and-instances.html).
 
-The stack reconciler was used in React 15 and earlier. It is located at [src/renderers/shared/stack/reconciler](https://github.com/facebook/react/tree/15-stable/src/renderers/shared/stack/reconciler).
+Le réconciliateur de pile a été utilisé dans React 15 et les versions antérieures. Il se trouve dans [src/renderers/shared/stack/reconciler](https://github.com/facebook/react/tree/15-stable/src/renderers/shared/stack/reconciler).
 
-### Video: Building React from Scratch {#video-building-react-from-scratch}
+### Vidéo : construire React à partir de zéro {#video-building-react-from-scratch}
 
-[Paul O'Shannessy](https://twitter.com/zpao) gave a talk about [building React from scratch](https://www.youtube.com/watch?v=_MAD4Oly9yg) that largely inspired this document.
+[Paul O'Shannessy](https://twitter.com/zpao) a donné une conférence sur la [construction de React à partir de zéro](https://www.youtube.com/watch?v=_MAD4Oly9yg) qui a largement inspiré ce document.
 
-Both this document and his talk are simplifications of the real codebase so you might get a better understanding by getting familiar with both of them.
+Ce document et sa conférence sont des simplifications de la base de code actuelle, en vous familiarisant avec les deux, vous devriez mieux comprendre.
 
-### Overview {#overview}
+### Aperçu {#overview}
 
-The reconciler itself doesn't have a public API. [Renderers](/docs/codebase-overview.html#stack-renderers) like React DOM and React Native use it to efficiently update the user interface according to the React components written by the user.
+Le réconciliateur lui-même n’a pas d’API publique. Les [moteurs de rendu](/docs/codebase-overview.html#stack-renderers) comme React DOM et React Native l'utilisent pour mettre à jour efficacement l'interface utilisateur en fonction des composants React écrits par l'utilisateur.
 
-### Mounting as a Recursive Process {#mounting-as-a-recursive-process}
+### Montage en tant que processus récursif {#mounting-as-a-recursive-process}
 
-Let's consider the first time you mount a component:
+Intéressons-nous à la première fois que vous montez un composant :
 
 ```js
 ReactDOM.render(<App />, rootEl);
 ```
 
-React DOM will pass `<App />` along to the reconciler. Remember that `<App />` is a React element, that is, a description of *what* to render. You can think about it as a plain object:
+React DOM transmettra `<App />` au réconciliateur. Rappelez-vous que `<App />` est un élément de React, c’est-à-dire, une description de *quoi* rendre. Vous pouvez le considérer comme un objet simple :
 
 ```js
 console.log(<App />);
 // { type: App, props: {} }
 ```
 
-The reconciler will check if `App` is a class or a function.
+Le réconciliateur vérifiera si `App` est une classe ou une fonction.
 
-If `App` is a function, the reconciler will call `App(props)` to get the rendered element.
+Si `App` est une fonction, le réconciliateur appellera `App(props)` pour obtenir l'élément rendu.
 
-If `App` is a class, the reconciler will instantiate an `App` with `new App(props)`, call the `componentWillMount()` lifecycle method, and then will call the `render()` method to get the rendered element.
+Si `App` est une classe, le réconciliateur instanciera une `App` avec `new App(props)`, appellera la méthode `componentWillMount()` du cycle de vie, puis appellera la méthode `render()` pour obtenir l'élément rendu.
 
-Either way, the reconciler will learn the element `App` "rendered to".
+Dans les deux cas, le réconciliateur saura que l'élément `App` « fait le rendu à ».
 
-This process is recursive. `App` may render to a `<Greeting />`, `Greeting` may render to a `<Button />`, and so on. The reconciler will "drill down" through user-defined components recursively as it learns what each component renders to.
+Ce processus est récursif. `App` peut faire le rendu à `<Greeting />`, `Greeting` peut faire le rendu à `<Button />`, et ensuite de suite. Le réconciliateur « explorera » de manière récursive les composants définis par l'utilisateur, et saura ainsi à quoi chaque composant fait le rendu.
 
-You can imagine this process as a pseudocode:
+Vous pouvez imaginer ce processus comme un pseudo-code :
 
 ```js
 function isClass(type) {
-  // React.Component subclasses have this flag
+  // Les sous-classes de React.Component ont ce drapeau
   return (
     Boolean(type.prototype) &&
     Boolean(type.prototype.isReactComponent)
   );
 }
 
-// This function takes a React element (e.g. <App />)
-// and returns a DOM or Native node representing the mounted tree.
+// Cette fonction prend en paramètre un élément React (par exemple <App />)
+// et renvoie un DOM ou un nœud natif représentant l'arborescence montée.
 function mount(element) {
   var type = element.type;
   var props = element.props;
 
-  // We will determine the rendered element
-  // by either running the type as function
-  // or creating an instance and calling render().
+  // Nous déterminerons l'élément rendu
+  // soit en exécutant le type comme une fonction
+  // ou soit en créant une instance puis un appel de render().
   var renderedElement;
   if (isClass(type)) {
-    // Component class
+    // La classe du composant
     var publicInstance = new type(props);
-    // Set the props
+    // Initialiser les props
     publicInstance.props = props;
-    // Call the lifecycle if necessary
+    // Appeler le cycle de vie si besoin
     if (publicInstance.componentWillMount) {
       publicInstance.componentWillMount();
     }
-    // Get the rendered element by calling render()
+    // Obtenir l'élément rendu en appelant render()
     renderedElement = publicInstance.render();
   } else {
-    // Component function
+    // La fonction du composant
     renderedElement = type(props);
   }
 
-  // This process is recursive because a component may
-  // return an element with a type of another component.
+  // Ce processus est récursif parce qu'un composant peut
+  // renvoyer un élément avec le type d'un autre composant.
   return mount(renderedElement);
 
-  // Note: this implementation is incomplete and recurses infinitely!
-  // It only handles elements like <App /> or <Button />.
-  // It doesn't handle elements like <div /> or <p /> yet.
+  // Remarque : cette implémentation est incomplète et la récursivité est infinie !
+  // Ça gère uniquement les éléments comme <App /> ou <Button />.
+  // Ça ne gère pas pour l'instant les éléments comme <div /> ou <p />.
 }
 
 var rootEl = document.getElementById('root');
@@ -103,81 +103,81 @@ var node = mount(<App />);
 rootEl.appendChild(node);
 ```
 
->**Note:**
+>**Remarque :**
 >
->This really *is* a pseudo-code. It isn't similar to the real implementation. It will also cause a stack overflow because we haven't discussed when to stop the recursion.
+>Ceci *est* vraiment un pseudo-code. Il n’est pas similaire à l'implémentation actuelle. Il provoquera aussi un débordement de la pile car nous n’avons pas précisé l'arrêt de la récursivité.
 
-Let's recap a few key ideas in the example above:
+Récapitulons quelques idées clés dans l’exemple ci-dessus :
 
-* React elements are plain objects representing the component type (e.g. `App`) and the props.
-* User-defined components (e.g. `App`) can be classes or functions but they all "render to" elements.
-* "Mounting" is a recursive process that creates a DOM or Native tree given the top-level React element (e.g. `<App />`).
+* Les éléments React sont des objets simples représentant le type du composant (par exemple `App`) et les props.
+* Les composants définis par l'utilisateur (par exemple `App`) peuvent être des classes ou des fonctions mais toutes « font le rendu des » éléments.
+* Le « montage » est un processus récursif qui crée un DOM ou une arborescence native à partir de l'élément React de niveau supérieur (par exemple `<App />`).
 
-### Mounting Host Elements {#mounting-host-elements}
+### Montage d'éléments hôtes {#mounting-host-elements}
 
-This process would be useless if we didn't render something to the screen as a result.
+Ce processus serait inutile si le résultat n'affichait rien à l'écran.
 
-In addition to user-defined ("composite") components, React elements may also represent platform-specific ("host") components. For example, `Button` might return a `<div />` from its render method.
+En plus des composants définis par l'utilisateur (« composite »), les éléments React peuvent également représenter des composants pour des plateformes spécifiques (« hôte »). Par exemple, la méthode qui fait le rendu de `Button`, peut renvoyer un `<div />`.
 
-If element's `type` property is a string, we are dealing with a host element:
+Si la propriété `type` de l'élément est une chaîne de caractère, il s’agit d’un élément hôte :
 
 ```js
 console.log(<div />);
 // { type: 'div', props: {} }
 ```
 
-There is no user-defined code associated with host elements.
+Il n’y a aucun code défini par l’utilisateur associé aux éléments hôtes.
 
-When the reconciler encounters a host element, it lets the renderer take care of mounting it. For example, React DOM would create a DOM node.
+Lorsque le réconciliateur rencontre un élément hôte, il laisse au moteur de rendu la charge du montage. Par exemple, React DOM créerait un nœud DOM.
 
-If the host element has children, the reconciler recursively mounts them following the same algorithm as above. It doesn't matter whether children are host (like `<div><hr /></div>`), composite (like `<div><Button /></div>`), or both.
+Si l'élément hôte a des enfants, le réconciliateur les monte de manière récursive en suivant le même algorithme que celui décrit ci-dessus. Peu importe que les enfants soient hôtes (comme `<div><hr /></div>`), composites (comme `<div><Button /></div>`) ou les deux.
 
-The DOM nodes produced by the child components will be appended to the parent DOM node, and recursively, the complete DOM structure will be assembled.
+Les nœuds DOM produits par les composants enfants seront ajoutés au nœud DOM parent, et donc de manière récursive, l’ensemble de la structure DOM sera constituée.
 
->**Note:**
+>**Remarque :**
 >
->The reconciler itself is not tied to the DOM. The exact result of mounting (sometimes called "mount image" in the source code) depends on the renderer, and can be a DOM node (React DOM), a string (React DOM Server), or a number representing a native view (React Native).
+>Le réconciliateur lui-même n'est pas lié au DOM. Le résultat exact du montage (parfois appelé « mount image » dans le code source) dépend du moteur de rendu, et donc peut-être un nœud DOM (React DOM), une chaîne de caractère (React DOM Server) ou un nombre représentant une vue native (React Native).
 
-If we were to extend the code to handle host elements, it would look like this:
+Si nous devions étendre le code pour gérer des éléments de l’hôte, il ressemblerait à ceci :
 
 ```js
 function isClass(type) {
-  // React.Component subclasses have this flag
+  // Les sous-classes de React.Component ont ce drapeau
   return (
     Boolean(type.prototype) &&
     Boolean(type.prototype.isReactComponent)
   );
 }
 
-// This function only handles elements with a composite type.
-// For example, it handles <App /> and <Button />, but not a <div />.
+// Cette fonction gère uniquement les éléments avec un type composite.
+// Par exemple, il gère <App /> et <Button />, mais pas un <div />.
 function mountComposite(element) {
   var type = element.type;
   var props = element.props;
 
   var renderedElement;
   if (isClass(type)) {
-    // Component class
+    // La classe du composant
     var publicInstance = new type(props);
-    // Set the props
+    // Initialiser les props
     publicInstance.props = props;
-    // Call the lifecycle if necessary
+    // Appeler le cycle de vie si besoin
     if (publicInstance.componentWillMount) {
       publicInstance.componentWillMount();
     }
     renderedElement = publicInstance.render();
   } else if (typeof type === 'function') {
-    // Component function
+    // La fonction du composant
     renderedElement = type(props);
   }
 
-  // This is recursive but we'll eventually reach the bottom of recursion when
-  // the element is host (e.g. <div />) rather than composite (e.g. <App />):
+  // C'est récursif mais nous atteindrons finalement le bas de la récursion lorsque
+  // l'élément sera hôte (par exemple <div />) au lieu de composite (par exemple <App />) :
   return mount(renderedElement);
 }
 
-// This function only handles elements with a host type.
-// For example, it handles <div /> and <p /> but not an <App />.
+// Cette fonction gère uniquement les éléments avec un type hôte.
+// Par exemple, il gère <div /> et <p />, mais pas un <App />.
 function mountHost(element) {
   var type = element.type;
   var props = element.props;
@@ -187,9 +187,9 @@ function mountHost(element) {
   }
   children = children.filter(Boolean);
 
-  // This block of code shouldn't be in the reconciler.
-  // Different renderers might initialize nodes differently.
-  // For example, React Native would create iOS or Android views.
+  // Ce bloc de code ne devrait pas être dans le réconciliateur.
+  // Le différents moteurs de rendu peuvent initialiser les nœuds différemment.
+  // Par exemple, React Native créerait des vues iOS ou Android.
   var node = document.createElement(type);
   Object.keys(props).forEach(propName => {
     if (propName !== 'children') {
@@ -197,29 +197,29 @@ function mountHost(element) {
     }
   });
 
-  // Mount the children
+  // Monter les enfants
   children.forEach(childElement => {
-    // Children may be host (e.g. <div />) or composite (e.g. <Button />).
-    // We will also mount them recursively:
+    // L'enfant peut être un hôte (par exemple <div />) ou un composite (par exemple <Button />).
+    // Nous les monterons également de manière récursive :
     var childNode = mount(childElement);
 
-    // This line of code is also renderer-specific.
-    // It would be different depending on the renderer:
+    // Cette ligne de code est également spécifique au moteur de rendu.
+    // Ce serait différent en fonction du moteur de rendu :
     node.appendChild(childNode);
   });
 
-  // Return the DOM node as mount result.
-  // This is where the recursion ends.
+  // Renvoie le nœud DOM comme résultat de montage.
+  // C'est ici que se termine la récursion.
   return node;
 }
 
 function mount(element) {
   var type = element.type;
   if (typeof type === 'function') {
-    // User-defined components
+    // Composants définis par l'utilisateur
     return mountComposite(element);
   } else if (typeof type === 'string') {
-    // Platform-specific components
+    // Composants de plateformes spécifiques
     return mountHost(element);
   }
 }
@@ -229,7 +229,7 @@ var node = mount(<App />);
 rootEl.appendChild(node);
 ```
 
-This is working but still far from how the reconciler is really implemented. The key missing ingredient is support for updates.
+Cela fonctionne mais ça reste loin de la manière dont le réconciliateur est réellement implémenté. L’ingrédient clé manquant est la prise en charge des mises à jour.
 
 ### Introducing Internal Instances {#introducing-internal-instances}
 
@@ -253,10 +253,10 @@ Both classes have a constructor accepting the `element`, as well as a `mount()` 
 function instantiateComponent(element) {
   var type = element.type;
   if (typeof type === 'function') {
-    // User-defined components
+    // Composants définis par l'utilisateur
     return new CompositeComponent(element);
   } else if (typeof type === 'string') {
-    // Platform-specific components
+    // Composants de plateformes spécifiques
     return new DOMComponent(element);
   }  
 }
@@ -285,17 +285,17 @@ class CompositeComponent {
     var publicInstance;
     var renderedElement;
     if (isClass(type)) {
-      // Component class
+      // La classe du composant
       publicInstance = new type(props);
-      // Set the props
+      // Initialiser les props
       publicInstance.props = props;
-      // Call the lifecycle if necessary
+      // Appeler le cycle de vie si besoin
       if (publicInstance.componentWillMount) {
         publicInstance.componentWillMount();
       }
       renderedElement = publicInstance.render();
     } else if (typeof type === 'function') {
-      // Component function
+      // La fonction du composant
       publicInstance = null;
       renderedElement = type(props);
     }
@@ -577,8 +577,8 @@ class CompositeComponent {
     // Figure out what the next render() output is
     var nextRenderedElement;
     if (isClass(type)) {
-      // Component class
-      // Call the lifecycle if necessary
+      // La classe du composant
+      // Appeler le cycle de vie si besoin
       if (publicInstance.componentWillUpdate) {
         publicInstance.componentWillUpdate(nextProps);
       }
@@ -587,7 +587,7 @@ class CompositeComponent {
       // Re-render
       nextRenderedElement = publicInstance.render();
     } else if (typeof type === 'function') {
-      // Component function
+      // La fonction du composant
       nextRenderedElement = type(nextProps);
     }
 
