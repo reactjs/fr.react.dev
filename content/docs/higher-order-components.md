@@ -214,23 +214,21 @@ Ce HOC a la même fonctionnalité que la version effectuant une mutation, tout e
 
 Vous avez peut-être remarqué des ressemblances entre les HOC et le motif des **composants conteneurs**. Les composants conteneurs participent à la stratégie de séparer les responsabilités entre les préoccupations de haut et de bas niveau. Les conteneurs se préoccupent par exemple des souscriptions et de l'état global, et passent des props à d'autres composants qui se préoccupent par exemple de faire le rendu de l'interface utilisateur. Les HOC utilisent des conteneurs dans leur implémentation. Vous pouvez voir les HOC comme des définitions paramétrées de composants conteneurs.
 
-## Convention: Pass Unrelated Props Through to the Wrapped Component {#convention-pass-unrelated-props-through-to-the-wrapped-component}
+## Convention: transmettez les props sans rapport au composant enfant {#convention-pass-unrelated-props-through-to-the-wrapped-component}
 
-HOCs add features to a component. They shouldn't drastically alter its contract. It's expected that the component returned from a HOC has a similar interface to the wrapped component.
+Les HOC ajoutent des fonctionnalités à un composant. Ils ne devraient pas drastiquement modifier son contrat. On s'attend à ce que le composant renvoyé par un HOC aie une interface semblable au composant initial.
 
-HOCs should pass through props that are unrelated to its specific concern. Most HOCs contain a render method that looks something like this:
+Les HOC devraient transmettre les props sans rapport avec leurs propres préoccupations. La méthode de rendu de la plupart des HOC ressemble à ceci&nbsp;:
 
 ```js
 render() {
-  // Filter out extra props that are specific to this HOC and shouldn't be
-  // passed through
+  // Filtre les props supplémentaires propres à ce HOC qui ne devraient pas être trasmises
   const { extraProp, ...passThroughProps } = this.props;
 
-  // Inject props into the wrapped component. These are usually state values or
-  // instance methods.
+  // Injecte les props dans le composant enfant. Il s'agit en général de valeurs de l'état global ou de méthodes d'instance
   const injectedProp = someStateOrInstanceMethod;
 
-  // Pass props to wrapped component
+  // Transmet les props au composant enfant
   return (
     <WrappedComponent
       injectedProp={injectedProp}
@@ -240,7 +238,7 @@ render() {
 }
 ```
 
-This convention helps ensure that HOCs are as flexible and reusable as possible.
+Cette convention participe à garantir que les HOC soient aussi flexibles et réutilisables que possible.
 
 ## Convention: Maximizing Composability {#convention-maximizing-composability}
 
