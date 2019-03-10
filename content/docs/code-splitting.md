@@ -44,11 +44,11 @@ Si vous utilisez [Create React App](https://facebook.github.io/create-react-app/
 
 Si ce n'est pas le cas, vous devrez configurer vous-même la génération de votre bundle. Consultez les guides [d'installation](https://webpack.js.org/guides/installation/) et de [démarrage](https://webpack.js.org/guides/getting-started/) de Webpack.
 
-## Le découpage dynamique du code {#code-splitting}
+## Le découpage dynamique de code {#code-splitting}
 
 Les bundles c’est génial, mais au fur et à mesure que votre application grandit, votre bundle va grossir aussi. Surtout si vous intégrez de grosses bibliothèques tierces. Vous devez garder un œil sur le code que vous intégrez dans votre bundle pour éviter de le rendre si lourd que le chargement de votre application prendrait beaucoup de temps.
 
-Pour éviter de vous retrouver avec un bundle trop volumineux, il est bon d'anticiper les problèmes et de commencer à fractionner votre bundle. Le [découpage dynamique du code](https://webpack.js.org/guides/code-splitting/) est une fonctionnalité prise en charge par des empaqueteurs tels que Webpack ou Browserify (via [factor-bundle](https://github.com/browserify/factor-bundle)), qui permet de créer plusieurs bundles pouvant être chargés dynamiquement au moment de l'exécution.
+Pour éviter de vous retrouver avec un bundle trop volumineux, il est bon d'anticiper les problèmes et de commencer à fractionner votre bundle. Le [découpage dynamique de code](https://webpack.js.org/guides/code-splitting/) est une fonctionnalité prise en charge par des empaqueteurs tels que Webpack ou Browserify (via [factor-bundle](https://github.com/browserify/factor-bundle)), qui permet de créer plusieurs bundles pouvant être chargés dynamiquement au moment de l'exécution.
 
 Fractionner votre application peut vous aider à charger à la demande *(lazy-load, NdT)* les parties qui sont nécessaires pour l'utilisateur à un moment donné, ce qui peut améliorer considérablement les performances de votre application. Bien que vous n'ayez pas réduit la quantité de code de votre application, vous évitez de charger du code dont l'utilisateur n'aura peut-être jamais besoin, et réduisez la quantité de code nécessaire au chargement initial.
 
@@ -78,7 +78,7 @@ import("./math").then(math => {
 
 Lorsque Webpack rencontre cette syntaxe, il commence automatiquement à découper le code de votre application. Si vous utilisez Create React App, c’est déjà configuré pour vous et vous pouvez [l’utiliser](https://facebook.github.io/create-react-app/docs/code-splitting) immédiatement. C’est également pris en charge de base par [Next.js](https://github.com/zeit/next.js/#dynamic-import).
 
-Si vous configurez Webpack vous-même, vous voudrez sans doute lire le [guide sur le découpage dynamique du code](https://webpack.js.org/guides/code-splitting/) de Webpack. Votre configuration Webpack devrait vaguement ressembler [à ça](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
+Si vous configurez Webpack vous-même, vous voudrez sans doute lire le [guide sur le découpage dynamique de code](https://webpack.js.org/guides/code-splitting/) de Webpack. Votre configuration Webpack devrait vaguement ressembler [à ça](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
 Si vous utilisez [Babel](http://babeljs.io/), vous devrez vous assurer que Babel peut comprendre la syntaxe d'import dynamique mais ne la transforme pas. Pour cela, vous aurez besoin de l'extension [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
 
@@ -124,7 +124,7 @@ function MyComponent() {
 
 ### Suspense {#suspense}
 
-Si le module contenant le composant `OtherComponent` n'est pas encore chargé au moment du rendu de `MyComponent`, alors nous devons afficher un contenu de repli en attendant qu'il soit chargé—comme un indicateur de chargement. Ça se fait en utilisant le composant `Suspense`.
+Si le module contenant le composant `OtherComponent` n'est pas encore chargé au moment du rendu de `MyComponent`, alors nous devons afficher un contenu de repli en attendant que ce module soit chargé—comme un indicateur de chargement. Ça se fait en utilisant le composant `Suspense`.
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
@@ -185,7 +185,7 @@ const MyComponent = () => (
 
 ## Découpage dynamique de code basé sur les routes {#route-based-code-splitting}
 
-Décider où introduire un découpage dynamique code dans votre application peut s'avérer délicat. Vous voulez être sûr·e de choisir des endroits qui fractionnent les bundles de manière uniforme, sans perturber l'expérience utilisateur.
+Décider où introduire un découpage dynamique de code dans votre application peut s'avérer délicat. Vous voulez être sûr·e de choisir des endroits qui fractionnent les bundles de manière uniforme, sans perturber l'expérience utilisateur.
 
 Les routes sont un bon endroit pour commencer. La plupart des gens sont habitués sur le web à ce que les transitions entre les pages mettent du temps à charger. Vous aurez également tendance à ré-afficher la page entière d'un bloc, de sorte qu'il est peu probable que vos utilisateurs interagissent avec d'autres éléments de la page pendant ce temps-là.
 
