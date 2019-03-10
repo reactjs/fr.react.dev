@@ -1,6 +1,6 @@
 ---
 id: design-principles
-title: Design Principles
+title: Principes de conception
 layout: contributing
 permalink: docs/design-principles.html
 prev: implementation-notes.html
@@ -8,39 +8,39 @@ redirect_from:
   - "contributing/design-principles.html"
 ---
 
-We wrote this document so that you have a better idea of how we decide what React does and what React doesn't do, and what our development philosophy is like. While we are excited to see community contributions, we are not likely to choose a path that violates one or more of these principles.
+Nous avons écrit cet article afin que vous ayez une meilleure idée de la façon dont nous décidons ce que React fait et ne fait pas, et quelle est notre philosophie de développement. Bien que nous soyons enthousiasmés par les contributions de la communauté, il est peu probable que nous choisissions un chemin qui enfreint un ou plusieurs de ces principes.
 
->**Note:**
+> **Remarque**
 >
->This document assumes a strong understanding of React. It describes the design principles of *React itself*, not React components or applications.
+> Cet article requiert une solide compréhension de React. Il décrit les principes de designe de *React lui-même*, et non des composants ou des applications React.
 >
->For an introduction to React, check out [Thinking in React](/docs/thinking-in-react.html) instead.
+> Pour une introduction à React, consultez plutôt [Thinking in React](/docs/thinking-in-react.html).
 
 ### Composition {#composition}
 
-The key feature of React is composition of components. Components written by different people should work well together. It is important to us that you can add functionality to a component without causing rippling changes throughout the codebase.
+La caractéristique principale de React est la composition de composants. Les composants écrits par des personnes différentes doivent fonctionner correctement ensemble. Pour nous, il est important que vous puissiez ajouter des fonctionnalités à un composant sans impacter la base de code.
 
-For example, it should be possible to introduce some local state into a component without changing any of the components using it. Similarly, it should be possible to add some initialization and teardown code to any component when necessary.
+Par exemple, il devrait être possible d'introduire un état local dans un composant sans changer les composants qui l'utilisent. De même, il devrait être possible d’ajouter du code d'initialisation et de démontage à n'importe quel composant, lorsque c'est nécessaire.
 
-There is nothing "bad" about using state or lifecycle methods in components. Like any powerful feature, they should be used in moderation, but we have no intention to remove them. On the contrary, we think they are integral parts of what makes React useful. We might enable [more functional patterns](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) in the future, but both local state and lifecycle methods will be a part of that model.
+Il n'y a rien de « mauvais » à utiliser un état ou une méthode du cycle de vie dans des composants. Comme n'importe quelle fonctionnalité puissante, elles doivent être utilisées avec modération, mais nous n'avons aucune intention de les supprimer. Au contraire, nous pensons qu'ils font partie intégrante de ce qui rend React utile. Nous pourrions activer [davantage de modèles de conception fonctionnelle](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) (en anglais) à l'avenir, mais les méthodes d'état local et de cycle de vie feront partie de ce modèle.
 
-Components are often described as "just functions" but in our view they need to be more than that to be useful. In React, components describe any composable behavior, and this includes rendering, lifecycle, and state. Some external libraries like [Relay](https://facebook.github.io/relay/) augment components with other responsibilities such as describing data dependencies. It is possible that those ideas might make it back into React too in some form.
+Les composants sont souvent décrits comme de « simples fonctions » mais selon nous, ils doivent être bien plus que ça pour être utiles. Dans React, les composants décrivent tout comportement composable, notamment le rendu, le cycle de vie et l'état. Certaines bibliothèques externes telles que [Relay](https://facebook.github.io/relay/) ajoutent d'autres responsabilités aux composants comme la description des dépendances de données. Il est possible que ces idées reviennent dans React sous une forme ou une autre.
 
-### Common Abstraction {#common-abstraction}
+### Abstraction commune {#common-abstraction}
 
-In general we [resist adding features](https://www.youtube.com/watch?v=4anAwXYqLG8) that can be implemented in userland. We don't want to bloat your apps with useless library code. However, there are exceptions to this.
+En général, nous [refusons d’ajouter des fonctionnalités](https://www.youtube.com/watch?v=4anAwXYqLG8) (en anglais) pouvant être mises en œuvre dans le paysage des utilisateurs. Nous ne voulons pas surcharger vos applications avec du code inutile. Cependant, il y a des exceptions à ça.
 
-For example, if React didn't provide support for local state or lifecycle methods, people would create custom abstractions for them. When there are multiple abstractions competing, React can't enforce or take advantage of the properties of either of them. It has to work with the lowest common denominator.
+Par exemple, si React n'offrait pas de support pour l'état local ou les méthodes du cycle de vie, les utilisateurs créeraient leurs propres abstractions personnalisées pour ça. Quand plusieurs abstractions sont en concurrence, React ne peut ni forcer ni bénéficier des propriétés de l'une d'elles. Il doit fonctionner avec le plus petit dénominateur commun.
 
-This is why sometimes we add features to React itself. If we notice that many components implement a certain feature in incompatible or inefficient ways, we might prefer to bake it into React. We don't do it lightly. When we do it, it's because we are confident that raising the abstraction level benefits the whole ecosystem. State, lifecycle methods, cross-browser event normalization are good examples of this.
+C'est la raison pour laquelle nous ajoutons parfois des fonctionnalités directement à React. Si nous constatons que de nombreux composants implémentent une certaine fonctionnalité d'une façon incompatible ou peu efficace, nous préférerions peut-être l'intégrer à React. Nous ne le faisons pas à la légère. Lorsque nous le faisons, c’est parce que nous sommes convaincus qu'élever le niveau d’abstraction profite à l’ensemble de l’écosystème. L'état, les méthodes du cycle de vie, la normalisation des événements des navigateurs en sont de bons exemples.
 
-We always discuss such improvement proposals with the community. You can find some of those discussions by the ["big picture"](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"Type:+Big+Picture") label on the React issue tracker.
+Nous discutons toujours de telles propositions d'amélioration avec la communauté. Vous pouvez trouver certaines de ces discussions avec l'étiquette [« big picture »](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"Type:+Big+Picture") sur le suivi des problèmes de React.
 
 ### Escape Hatches {#escape-hatches}
 
-React is pragmatic. It is driven by the needs of the products written at Facebook. While it is influenced by some paradigms that are not yet fully mainstream such as functional programming, staying accessible to a wide range of developers with different skills and experience levels is an explicit goal of the project.
+React est pragmatique. Il est dicté par les besoins des produits écrits chez Facebook. Bien qu'il soit influencé par certains paradigmes qui ne sont pas tout à fait populaires comme la programmation fonctionnelle, l'accessibilité à un large panel de développeurs aux compétences et expériences variées est un objectif affiché du projet.
 
-If we want to deprecate a pattern that we don't like, it is our responsibility to consider all existing use cases for it and [educate the community about the alternatives](/blog/2016/07/13/mixins-considered-harmful.html) before we deprecate it. If some pattern that is useful for building apps is hard to express in a declarative way, we will [provide an imperative API](/docs/more-about-refs.html) for it. If we can't figure out a perfect API for something that we found necessary in many apps, we will [provide a temporary subpar working API](/docs/legacy-context.html) as long as it is possible to get rid of it later and it leaves the door open for future improvements.
+Si nous voulons déprécier un modèle que nous n'aimons pas, il est de notre responsabilité de considérer tous ses cas d'usage et d'[éduquer la communauté à propos des alternatives](/blog/2016/07/13/mixins-considered-harmful.html) avant de le déprécier. Si un modèle utile pour la création d'applications est difficile à exprimer de manière déclarative, nous lui [fournirons une API impérative](/docs/more-about-refs.html). Si nous ne parvenons pas à trouver l'API parfaite pour quelque chose que nous jugeons nécessaire dans de nombreuses applications, nous [fournissons une API temporaire de moindre qualité](/docs/legacy-context.html) dans la mesure où il est possible de s'en débarrasser ultérieurement et qu'elle laisse la porte ouverte à de futures améliorations.
 
 ### Stability {#stability}
 
