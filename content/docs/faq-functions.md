@@ -8,7 +8,7 @@ category: FAQ
 
 ### Comment passer un gestionnaire d'événement (comme onClick) à un composant ? {#how-do-i-pass-an-event-handler-like-onclick-to-a-component}
 
-On peut passer un gestionnaire d'événement et d'autres fonctions dans les props d'un composant enfant :
+On peut passer un gestionnaire d'événement et d'autres fonctions dans les props d'un composant :
 
 ```jsx
 <button onClick={this.handleClick}>
@@ -19,7 +19,6 @@ Si vous avez besoin d'accéder au composant parent dans le gestionnaire d'évén
 ### Comment associer une fonction à l'instance d'un composant ? {#how-do-i-bind-a-function-to-a-component-instance}
 
 Il y'a plusieurs façons de s'assurer que des fonctions ont accès aux attributs du composant comme `this.props` et `this.state`, qui dépendent de la syntaxe que vous utilisez.
-There are several ways to make sure functions have access to component attributes like `this.props` and `this.state`, depending on which syntax and build steps you are using.
 
 #### Associer la fonction dans le constructeur (ES2015) {#bind-in-constructor-es2015}
 
@@ -88,7 +87,7 @@ class Foo extends Component {
 
 ### Est-ce que c'est acceptable d'utiliser une fonction fléchée dans la méthode render ? {#is-it-ok-to-use-arrow-functions-in-render-methods}
 
-C'est généralement acceptable, et souvent la façon la plus facile de passer des paramètres à une fonction de rappel.
+C'est généralement acceptable, et c'est souvent la façon la plus facile de passer des paramètres à une fonction de rappel.
 
 Si vous avez des problèmes de performance, vous devez optimiser !
 
@@ -292,9 +291,9 @@ class Searchbox extends React.Component {
   }
 
   handleChange(e) {
-    // React pools events, so we read the value before debounce.
-    // Alternately we could call `event.persist()` and pass the entire event.
-    // For more info see reactjs.org/docs/events.html#event-pooling
+    // React regroupe les événements, on a donc besoin de lire la valeur avec le debouce
+    // Sinon, on peut appler `event.persist()` et passer l'intégralité de l'événement
+    // Pour plus d'information, allez voir fr.reactjs.org/docs/events.html#event-pooling
     this.emitChangeDebounced(e.target.value);
   }
 
