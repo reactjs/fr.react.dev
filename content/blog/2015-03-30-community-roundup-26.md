@@ -31,6 +31,7 @@ Spencer Ahrens and I had the great pleasure to talk about React Native on [The C
 
 <audio src="https://cdn.changelog.com/uploads/podcast/149/the-changelog-149.mp3" controls="controls" style="width: 100%"></audio>
 
+
 ## Hacker News {#hacker-news}
 
 Less than 24 hours after React Native was open sourced, Simarpreet Singh built an [Hacker News reader app from scratch](https://github.com/iSimar/HackerNews-React-Native). It's unbelievable how fast he was able to pull it off!
