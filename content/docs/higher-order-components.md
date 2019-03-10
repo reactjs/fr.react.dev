@@ -165,15 +165,15 @@ function withSubscription(WrappedComponent, selectData) {
 
 Vous voyez qu'un HOC ne modifie pas le composant qu'on lui passe, ni ni n'hérite et ne copie son comportement. Un HOC *compose* le composant initial en l'*enveloppant* dans un composant conteneur. Il s'agit purement d'une fonction, sans effets secondaires.
 
-Et voilà&nbsp;! Le composant enfant reçoit toutes les props du contenant ainsi qu'une nouvelle prop, `data`, qu'il emploie pour faire son rendu. Le HOC ne se préoccupe pas de comment ou pourquoi les données sont utilisées, et le composant enfant ne se préoccupe pas d'où les données viennent.
+Et voilà&nbsp;! Le composant enfant reçoit toutes les props du conteneur ainsi qu'une nouvelle prop, `data`, qu'il emploie pour faire son rendu. Le HOC ne se préoccupe pas de comment ou pourquoi les données sont utilisées, et le composant enfant ne se préoccupe pas d'où les données viennent.
 
 Puisque `withSubscription` est simplement une fonction, vous pouvez lui passer autant ou aussi peu d'arguments que vous voulez. Par exemple, vous pourriez rendre configurable le nom de la prop `data`, afin se séparer encore plus le HOC et son enfant. Ou alors, vous pourriez accepter un argument qui configure `shouldComponentUpdate`, ou un autre qui configure la source de données. Tout cela est possible parce que le HOC a un contrôle total sur la façon dont le composant est défini.
 
 Comme pour les composants, le rapport entre `withSubscription` et le composant enfant se base sur les props. Cela facilite l'échange d'un HOC pour un autre, tant qu'ils fournissent les mêmes props au composant enfant. Cela peut être utile si vous changez de bibliothèque pour récupérer vos données, par exemple.
 
-## Don't Mutate the Original Component. Use Composition. {#dont-mutate-the-original-component-use-composition}
+## Ne faites pas une mutation du composant initial. Faites une composition. {#dont-mutate-the-original-component-use-composition}
 
-Resist the temptation to modify a component's prototype (or otherwise mutate it) inside a HOC.
+Résistez à la tentation de modifier le prototype d'un composant (ou de faire une mutation) dans un HOC.
 
 ```js
 function logProps(InputComponent) {
@@ -181,20 +181,19 @@ function logProps(InputComponent) {
     console.log('Current props: ', this.props);
     console.log('Next props: ', nextProps);
   };
-  // The fact that we're returning the original input is a hint that it has
-  // been mutated.
+  // Le fait que le composant initial soit renvoyé est un signe qu'il a subi une mutation.
   return InputComponent;
 }
 
-// EnhancedComponent will log whenever props are received
+// EnhancedComponent fera un log à chaque fois qu'il reçoit des props
 const EnhancedComponent = logProps(InputComponent);
 ```
 
-There are a few problems with this. One is that the input component cannot be reused separately from the enhanced component. More crucially, if you apply another HOC to `EnhancedComponent` that *also* mutates `componentWillReceiveProps`, the first HOC's functionality will be overridden! This HOC also won't work with function components, which do not have lifecycle methods.
+Cela pose certains problèmes. Pour commencer, le composant initial ne peut pas être réutilisé sans le composant amélioré. Plus important encore, si vous appliquez un autre HOC sur `EnhancedComponent` qui fait *aussi* une mutation de `componentWillReceiveProps`, les fonctionnalités du premier HOC seront écrasées. Finalement, ce HOC ne fonctionnera pas avec des fonctions composants, qui n'ont pas de méthodes de cycle de vie.
 
-Mutating HOCs are a leaky abstraction—the consumer must know how they are implemented in order to avoid conflicts with other HOCs.
+La mutation de HOC est une abstraction peu fiable—le client doit savoir comment ils sont implémentés s'il veut éviter des conflits avec d'autres HOC.
 
-Instead of mutation, HOCs should use composition, by wrapping the input component in a container component:
+Plutôt que la mutation, les HOC devraient utiliser la composition, en enveloppant le composant initial dans un composant conteneur.
 
 ```js
 function logProps(WrappedComponent) {
@@ -204,16 +203,16 @@ function logProps(WrappedComponent) {
       console.log('Next props: ', nextProps);
     }
     render() {
-      // Wraps the input component in a container, without mutating it. Good!
+      // Enveloppe le composant initial dans un conteneur, sans faire de mutation. Mieux !
       return <WrappedComponent {...this.props} />;
     }
   }
 }
 ```
 
-This HOC has the same functionality as the mutating version while avoiding the potential for clashes. It works equally well with class and function components. And because it's a pure function, it's composable with other HOCs, or even with itself.
+Ce HOC a la même fonctionnalité que la version effectuant une mutation, tout en évitant le risque de confits. Il fonctionne tout aussi bien avec les composants à base de classe et les fonctions composants. Et, puisqu'il est tout simplement une fonction, il est compatible avec d'autres HOC et même avec lui-même.
 
-You may have noticed similarities between HOCs and a pattern called **container components**. Container components are part of a strategy of separating responsibility between high-level and low-level concerns. Containers manage things like subscriptions and state, and pass props to components that handle things like rendering UI. HOCs use containers as part of their implementation. You can think of HOCs as parameterized container component definitions.
+Vous avez peut-être remarqué des ressemblances entre les HOC et le motif des **composants conteneurs**. Les composants conteneurs participent à la stratégie de séparer les responsabilités entre les préoccupations de haut et de bas niveau. Les conteneurs se préoccupent par exemple des souscriptions et de l'état global, et passent des props à d'autres composants qui se préoccupent par exemple de faire le rendu de l'interface utilisateur. Les HOC utilisent des conteneurs dans leur implémentation. Vous pouvez voir les HOC comme des définitions paramétrées de composants conteneurs.
 
 ## Convention: Pass Unrelated Props Through to the Wrapped Component {#convention-pass-unrelated-props-through-to-the-wrapped-component}
 
