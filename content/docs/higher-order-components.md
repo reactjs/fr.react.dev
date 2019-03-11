@@ -20,7 +20,7 @@ Dans ce guide, nous verrons pourquoi les composants d'ordre supérieurs sont uti
 
 ## Utiliser les HOC pour les préoccupations transversales {#use-hocs-for-cross-cutting-concerns}
 
-> **Note**
+> **Remarque**
 >
 > Nous recommandions dans le passé d'employer des mixins pour gérer les préoccupations transversales. Depuis, nous nous sommes rendus compte que les mixins créent plus de problèmes qu'ils n'en résolvent. [Lisez-en plus](/blog/2016/07/13/mixins-considered-harmful.html) sur pourquoi nous avons renoncé aux mixins, et comment vous pouvez faire de même pour vos composants existants.
 
@@ -240,57 +240,57 @@ render() {
 
 Cette convention participe à garantir que les HOC soient aussi flexibles et réutilisables que possible.
 
-## Convention: Maximizing Composability {#convention-maximizing-composability}
+## Convention: maximiser la composabilité {#convention-maximizing-composability}
 
-Not all HOCs look the same. Sometimes they accept only a single argument, the wrapped component:
+Tous les HOC ne sont pas pareils. Dans certains cas ils n'acceptent qu'un seul argument, le composant enfant&nbsp;:
 
 ```js
 const NavbarWithRouter = withRouter(Navbar);
 ```
 
-Usually, HOCs accept additional arguments. In this example from Relay, a config object is used to specify a component's data dependencies:
+Mais en général, les HOC acceptent des arguments supplémentires. Dans cet exemple tiré de Relay, un objet de configuration `config` est transmis pour spécifier les dépendances d'un composant à des données&nbsp;:
 
 ```js
 const CommentWithRelay = Relay.createContainer(Comment, config);
 ```
 
-The most common signature for HOCs looks like this:
+La signature la plus commune des HOC ressemble à ceci&nbsp;:
 
 ```js
-// React Redux's `connect`
+// `connect` de React Redux
 const ConnectedComment = connect(commentSelector, commentActions)(CommentList);
 ```
 
-*What?!* If you break it apart, it's easier to see what's going on.
+*Pardon&nbsp;?!* Il est plus facile de voir ce qu'il se passe si on le sépare en plusieurs morceaux.
 
 ```js
-// connect is a function that returns another function
+// connect est une fonction qui renvoie une autre function
 const enhance = connect(commentListSelector, commentListActions);
-// The returned function is a HOC, which returns a component that is connected
-// to the Redux store
+// La fonction renvoyée est un HOC, qui renvoie un composant connecté au store Redux
 const ConnectedComment = enhance(CommentList);
 ```
-In other words, `connect` is a higher-order function that returns a higher-order component!
 
-This form may seem confusing or unnecessary, but it has a useful property. Single-argument HOCs like the one returned by the `connect` function have the signature `Component => Component`. Functions whose output type is the same as its input type are really easy to compose together.
+Autrement dit, `connect` est une fonction d'ordre supérieur qui renvoie un composant d'ordre supérieur&nbsp;!
+
+Cette structure peut sembler déroutante ou superflue, pourtant elle apporte une propriété utile. Les HOC n'acceptant qu'un argument comme celui que renvoie la fonction `connect` ont une signature `Composant => Composant`. Les fonctions dont le type de données est le même à la sortie qu'à l'entrée sont beaucoup plus facile à composer.
 
 ```js
-// Instead of doing this...
+// Plutôt que de faire ceci...
 const EnhancedComponent = withRouter(connect(commentSelector)(WrappedComponent))
 
-// ... you can use a function composition utility
-// compose(f, g, h) is the same as (...args) => f(g(h(...args)))
+// ... vous pouvez utiliser un utilitaire de composition de fonction
+// compose(f, g, h) est l'équivalent de (...args) => f(g(h(...args)))
 const enhance = compose(
-  // These are both single-argument HOCs
+  // Ceux-ci sont tous deux des HOC n'acceptant qu'un argument
   withRouter,
   connect(commentSelector)
 )
 const EnhancedComponent = enhance(WrappedComponent)
 ```
 
-(This same property also allows `connect` and other enhancer-style HOCs to be used as decorators, an experimental JavaScript proposal.)
+(C'est aussi cette propriété qui permet à `connect` et à d'autres HOC du même type d'être utilisés comme décorateurs, une proposition expérimentale JavaScript)
 
-The `compose` utility function is provided by many third-party libraries including lodash (as [`lodash.flowRight`](https://lodash.com/docs/#flowRight)), [Redux](https://redux.js.org/api/compose), and [Ramda](https://ramdajs.com/docs/#compose).
+La fonction utilitaire `compose` est offerte par de nombreuses bibliothèqes tierces, y compris lodash (nommée [`lodash.flowRight`](https://lodash.com/docs/#flowRight)), [Redux](https://redux.js.org/api/compose), et [Ramda](https://ramdajs.com/docs/#compose).
 
 ## Convention: Wrap the Display Name for Easy Debugging {#convention-wrap-the-display-name-for-easy-debugging}
 
