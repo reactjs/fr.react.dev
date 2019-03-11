@@ -1,6 +1,6 @@
 ---
 id: codebase-overview
-title: Codebase Overview
+title: Vue d'ensemble de la base de code
 layout: contributing
 permalink: docs/codebase-overview.html
 prev: how-to-contribute.html
@@ -9,54 +9,54 @@ redirect_from:
   - "contributing/codebase-overview.html"
 ---
 
-This section will give you an overview of the React codebase organization, its conventions, and the implementation.
+Cette section vous donne un aperçu de l’organisation de la base de code React, de ses conventions et de sa mise en oeuvre.
 
-If you want to [contribute to React](/docs/how-to-contribute.html) we hope that this guide will help you feel more comfortable making changes.
+Si vous souhaitez [contribuer à React](/docs/how-to-contribute.html) nous espérons que ce guide vous aidera à vous sentir plus à l'aise pour apporter des modifications.
 
-We don't necessarily recommend any of these conventions in React apps. Many of them exist for historical reasons and might change with time.
+Nous ne recommandons pas nécessairement l'une de ces conventions dans les applications React. Nombre d'entre elles existent pour des raisons historiques et pourraient évoluer avec le temps.
 
-### External Dependencies {#external-dependencies}
+### Dépendances externes {#external-dependencies}
 
-React has almost no external dependencies. Usually, a `require()` points to a file in React's own codebase. However, there are a few relatively rare exceptions.
+React n'a presque pas de dépendances externes. Habituellement, un `require()` pointe vers un fichier dans le propre code de React. Cependant, il existe quelques exceptions relativement rares.
 
-The [fbjs repository](https://github.com/facebook/fbjs) exists because React shares some small utilities with libraries like [Relay](https://github.com/facebook/relay), and we keep them in sync. We don't depend on equivalent small modules in the Node ecosystem because we want Facebook engineers to be able to make changes to them whenever necessary. None of the utilities inside fbjs are considered to be public API, and they are only intended for use by Facebook projects such as React.
+Le [répertoire fbjs](https://github.com/facebook/fbjs) existe car React partage quelques petits utilitaires avec des bibliothèques telles que [Relay] (https://github.com/facebook/relay) et nous les conservons synchroniser. Nous ne dépendons pas de petits modules équivalents dans l'écosystème Node, car nous souhaitons que les ingénieurs de Facebook puissent les modifier à tout moment. Aucun des utilitaires contenus dans fbjs n'est considéré comme une API publique et ils ne doivent être utilisés que par des projets Facebook tels que React.
 
-### Top-Level Folders {#top-level-folders}
+### Dossiers de premier niveau {#top-level-folders}
 
-After cloning the [React repository](https://github.com/facebook/react), you will see a few top-level folders in it:
+Après avoir cloné le [référentiel React] (https://github.com/facebook/react), vous verrez quelques dossiers de niveau supérieur:
 
-* [`packages`](https://github.com/facebook/react/tree/master/packages) contains metadata (such as `package.json`) and the source code (`src` subdirectory) for all packages in the React repository. **If your change is related to the code, the `src` subdirectory of each package is where you'll spend most of your time.**
-* [`fixtures`](https://github.com/facebook/react/tree/master/fixtures) contains a few small React test applications for contributors.
-* `build` is the build output of React. It is not in the repository but it will appear in your React clone after you [build it](/docs/how-to-contribute.html#development-workflow) for the first time.
+* [`packages`] (https://github.com/facebook/react/tree/master/packages) contient des métadonnées (telles que `package.json`) et le code source (sous-répertoire `src`) du répertoire React. **Si votre modification est liée au code, le sous-répertoire `src` de chaque paquet est l'endroit où vous passerez le plus clair de votre temps.**
+* [`fixtures`] (https://github.com/facebook/react/tree/master/fixtures) contient quelques petites applications de test React pour les contributeurs.
+* `build` est la sortie de construction de React. Il ne figure pas dans le référentiel, mais il apparaîtra dans votre clone de React après que vous [l'aurez construit](/docs/how-to-contribute.html#development-workflow) pour la première fois.
 
-The documentation is hosted [in a separate repository from React](https://github.com/reactjs/reactjs.org).
+La documentation est hébergée [dans un référentiel distinct de React] (https://github.com/reactjs/reactjs.org).
 
-There are a few other top-level folders but they are mostly used for the tooling and you likely won't ever encounter them when contributing.
+Il existe quelques autres dossiers de niveau supérieur, mais ils sont principalement utilisés pour les outils et vous ne les rencontrerez probablement jamais lorsque vous contribuez.
 
-### Colocated Tests {#colocated-tests}
+### Tests colocalisés {#colocated-tests}
 
-We don't have a top-level directory for unit tests. Instead, we put them into a directory called `__tests__` relative to the files that they test.
+Nous n'avons pas de répertoire de niveau supérieur pour les tests unitaires. Au lieu de cela, nous les plaçons dans un répertoire appelé `__tests__` en fonction des fichiers qu’ils testent.
 
-For example, a test for [`setInnerHTML.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/setInnerHTML.js) is located in [`__tests__/setInnerHTML-test.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/__tests__/setInnerHTML-test.js) right next to it.
+Par exemple, un test pour [`setInnerHTML.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/setInnerHTML.js) est placé, juste à côté, dans [`__tests__/setInnerHTML-test.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/__tests__/setInnerHTML-test.js).
 
-### Warnings and Invariants {#warnings-and-invariants}
+### Avertissements et invariants {#warnings-and-invariants}
 
-The React codebase uses the `warning` module to display warnings:
+La base de code de React utilise le module `warning` pour afficher les avertissements:
 
 ```js
 var warning = require('warning');
 
 warning(
   2 + 2 === 4,
-  'Math is not working today.'
+  'Les Mathématiques ne fonctionnent pas auourd\'hui.'
 );
 ```
 
-**The warning is shown when the `warning` condition is `false`.**
+**L'avertissement est affiché lorsque la condition `warning` est `false`.**
 
-One way to think about it is that the condition should reflect the normal situation rather than the exceptional one.
+Une façon de se le représenter est que la condition devrait refléter la situation normale plutôt que la situation exceptionnelle.
 
-It is a good idea to avoid spamming the console with duplicate warnings:
+C'est une bonne idée d'éviter de spammer la console avec des avertissements en double:
 
 ```js
 var warning = require('warning');
@@ -65,48 +65,48 @@ var didWarnAboutMath = false;
 if (!didWarnAboutMath) {
   warning(
     2 + 2 === 4,
-    'Math is not working today.'
+    'Les Mathématiques ne fonctionnent pas auourd\'hui.'
   );
   didWarnAboutMath = true;
 }
 ```
 
-Warnings are only enabled in development. In production, they are completely stripped out. If you need to forbid some code path from executing, use `invariant` module instead:
+Les avertissements ne sont activés que dans la phase de développement. En production, ils sont complètement occultés. Si vous avez besoin d'interdire l'exécution d'une partie de code, utilisez plutôt le module `invariant`:
 
 ```js
 var invariant = require('invariant');
 
 invariant(
   2 + 2 === 4,
-  'You shall not pass!'
+  'Vous ne passerez pas !'
 );
 ```
 
-**The invariant is thrown when the `invariant` condition is `false`.**
+**L'invariant est levé lorsque la condition `invariant` est` false`.**
 
-"Invariant" is just a way of saying "this condition always holds true". You can think about it as making an assertion.
+"Invariant" est juste une façon de dire "cette condition est toujours vraie". Vous pouvez voir ça comme une affirmation.
 
-It is important to keep development and production behavior similar, so `invariant` throws both in development and in production. The error messages are automatically replaced with error codes in production to avoid negatively affecting the byte size.
+Il est important de garder similaire les comportements de développement et de production, afin que les invariants se lancent à la fois en développement et en production. Les messages d'erreur sont automatiquement remplacés par des codes d'erreur en production afin d'éviter toutes incidences négatives sur la taille des octets.
 
-### Development and Production {#development-and-production}
+### Développement et production {#development-and-production}
 
-You can use `__DEV__` pseudo-global variable in the codebase to guard development-only blocks of code.
+Vous pouvez utiliser la variable pseudo-globale `__DEV__` dans la base de code pour protéger les blocs de code réservés au développement.
 
-It is inlined during the compile step, and turns into `process.env.NODE_ENV !== 'production'` checks in the CommonJS builds.
+Il est en ligne lors de la compilation et se transforme en contrôles `process.env.NODE_ENV! == 'production'` dans les versions CommonJS.
 
-For standalone builds, it becomes `true` in the unminified build, and gets completely stripped out with the `if` blocks it guards in the minified build.
+Pour les versions autonomes, il devient `true` dans la version non minisée et est complètement effacé ainsi que les blocs `if` qu'il protège dans la version minimisée.
 
 ```js
 if (__DEV__) {
-  // This code will only run in development.
+  // Ce code va uniquement s'appliquer pendant le développement.
 }
 ```
 
 ### Flow {#flow}
 
-We recently started introducing [Flow](https://flow.org/) checks to the codebase. Files marked with the `@flow` annotation in the license header comment are being typechecked.
+Nous avons récemment commencé à introduire des contrôles [Flow](https://flow.org/) dans la base de code. Les fichiers marqués avec l'annotation `@flow` dans le commentaire d'en-tête de licence sont en cours de vérification.
 
-We accept pull requests [adding Flow annotations to existing code](https://github.com/facebook/react/pull/7600/files). Flow annotations look like this:
+Nous acceptons les pull requests [ajoutant des annotations de Flow au code existant](https://github.com/facebook/react/pull/7600/files). Les annotations Flow ressemblent à cela:
 
 ```js
 ReactRef.detachRefs = function(
@@ -117,20 +117,20 @@ ReactRef.detachRefs = function(
 }
 ```
 
-When possible, new code should use Flow annotations.
-You can run `yarn flow` locally to check your code with Flow.
+Dans la mesure du possible, le nouveau code devrait utiliser les annotations Flow.
+Vous pouvez exécuter `yarn flow` localement pour vérifier votre code avec Flow.
 
-### Dynamic Injection {#dynamic-injection}
+### Injection dynamique {#dynamic-injection}
 
-React uses dynamic injection in some modules. While it is always explicit, it is still unfortunate because it hinders understanding of the code. The main reason it exists is because React originally only supported DOM as a target. React Native started as a React fork. We had to add dynamic injection to let React Native override some behaviors.
+React utilise l'injection dynamique dans certains modules. Bien que ce soit toujours explicite, cela reste malheureux car cela nuit à la compréhension du code. Cela s'explique principalement par le fait que React ne prenait initialement en charge que le DOM en tant que cible. React Native a commencé comme un fork de React. Nous avons dû ajouter une injection dynamique pour permettre à React Native de remplacer certains comportements.
 
-You may see modules declaring their dynamic dependencies like this:
+Vous pouvez voir des modules déclarer leurs dépendances dynamiques comme ceci:
 
 ```js
-// Dynamically injected
+// Injecté dynamiquement
 var textComponentClass = null;
 
-// Relies on dynamically injected value
+// Repose sur une valeur injectée dynamiquement
 function createInstanceForText(text) {
   return new textComponentClass(text);
 }
@@ -138,7 +138,7 @@ function createInstanceForText(text) {
 var ReactHostComponent = {
   createInstanceForText,
 
-  // Provides an opportunity for dynamic injection
+  // Fournit une opportunité d'injection dynamique
   injection: {
     injectTextComponentClass: function(componentClass) {
       textComponentClass = componentClass;
@@ -149,33 +149,33 @@ var ReactHostComponent = {
 module.exports = ReactHostComponent;
 ```
 
-The `injection` field is not handled specially in any way. But by convention, it means that this module wants to have some (presumably platform-specific) dependencies injected into it at runtime.
+Le champ `injection` n'est en aucun cas traité spécialement. Mais par convention, cela veut dire que ce module veut avoir certaines dépendances (supposément spécifiques à une plate-forme) qui lui sont injectées au moment de l'exécution.
 
-There are multiple injection points in the codebase. In the future, we intend to get rid of the dynamic injection mechanism and wire up all the pieces statically during the build.
+Il y a plusieurs points d'injection dans la base de code. À l’avenir, nous entendons nous débarrasser du mécanisme d’injection dynamique et raccorder toutes les pièces de manière statique pendant la construction.
 
-### Multiple Packages {#multiple-packages}
+### Plusieurs paquets {#multiple-packages}
 
-React is a [monorepo](https://danluu.com/monorepo/). Its repository contains multiple separate packages so that their changes can be coordinated together, and issues live in one place.
+React est un [monorepo] (https://danluu.com/monorepo/). Son référentiel contient plusieurs paquets distincts afin que leurs modifications puissent être coordonnées ensemble et que les problèmes vivent d'un même endroit.
 
-### React Core {#react-core}
+### Le noyau de React {#react-core}
 
-The "core" of React includes all the [top-level `React` APIs](/docs/top-level-api.html#react), for example:
+Le "noyau" de React inclut toutes les [API `React` de premiers niveaux](/docs/top-level-api.html#react), par exemple:
 
 * `React.createElement()`
 * `React.Component`
 * `React.Children`
 
-**React core only includes the APIs necessary to define components.** It does not include the [reconciliation](/docs/reconciliation.html) algorithm or any platform-specific code. It is used both by React DOM and React Native components.
+**Le noyau React n'inclut que les API nécessaires à la définition des composants.**  Il n'inclut pas l'algorithme [réconciliation](/docs/reconciliation.html) ni aucun code spécifique à la plate-forme. Il est utilisé à la fois par les composants React du DOM et React Native.
 
-The code for React core is located in [`packages/react`](https://github.com/facebook/react/tree/master/packages/react) in the source tree. It is available on npm as the [`react`](https://www.npmjs.com/package/react) package. The corresponding standalone browser build is called `react.js`, and it exports a global called `React`.
+Le code pour le noyau React se trouve dans [`packages/react`](https://github.com/facebook/react/tree/master/packages/react) dans l'arborescence source. Il est disponible sur npm sous la forme du paquet [`react`](https://www.npmjs.com/package/react). La version autonome compilée pour navigateur correspondante est appelée `react.js`, et exporte une variable globale appelée `React`.
 
 ### Renderers {#renderers}
 
-React was originally created for the DOM but it was later adapted to also support native platforms with [React Native](https://facebook.github.io/react-native/). This introduced the concept of "renderers" to React internals.
+React a été créé à l'origine pour le DOM, mais il a ensuite été adapté pour prendre également en charge les plates-formes natives avec [React Native](https://facebook.github.io/react-native/). Cela a introduit le concept de "renderers" aux fonctionnalités React.
 
-**Renderers manage how a React tree turns into the underlying platform calls.**
+**Renderers gèrent la transformation d'une arborescence React en appels de plate-forme sous-jacents.**
 
-Renderers are also located in [`packages/`](https://github.com/facebook/react/tree/master/packages/):
+Renderers sont aussi localisés dans [`packages/`](https://github.com/facebook/react/tree/master/packages/):
 
 * [React DOM Renderer](https://github.com/facebook/react/tree/master/packages/react-dom) renders React components to the DOM. It implements [top-level `ReactDOM` APIs](/docs/react-dom.html) and is available as [`react-dom`](https://www.npmjs.com/package/react-dom) npm package. It can also be used as standalone browser bundle called `react-dom.js` that exports a `ReactDOM` global.
 * [React Native Renderer](https://github.com/facebook/react/tree/master/packages/react-native-renderer) renders React components to native views. It is used internally by React Native.
