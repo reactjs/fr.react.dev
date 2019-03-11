@@ -319,7 +319,7 @@ L'utilisation de composants d'ordre supérieur comporte quelques risques qui ne 
 
 L'algorithme de différentiation de React (qu'on appelle réconcilation) utilise l'identité des composants pour déterminer s'il faut mettre à jour l'arborescence existante ou en monter une nouvelle. Si le composant renvoyé par `render` est identique (`===`) au composant du rendu précédent, React met à jour l'ancienne arborescence en la différenciant résursivement avec la nouvelle. S'ils ne sont pas identiques, l'ancienne arborescence est intégralement démontée.
 
-En général, vous ne devriez pas avoir à y penser. Mais dans le cadre des HOC, cela importe puisque cela signifie que vous ne pouvez pas utiliser un HOC au sein de la méthode de rendu d'un composant&nbsp;:
+En général, vous ne devriez pas avoir à y penser. Mais dans le cadre des HOC, cela importe puisque cela signifie que vous ne pouvez pas appliquer un HOC au sein de la méthode de rendu d'un composant&nbsp;:
 
 ```js
 render() {
@@ -333,9 +333,9 @@ render() {
 
 Il ne s'agit pas uniquement d'un problème de performance—remonter un composant signifie que l'état local de ce composant ainsi que celui de tous ses enfants sera perdu.
 
-Utilisez plutôt les HOC à l'extérieur de la définition d'un composant, afin de créer le composant final une seule fois. Son identité sera alors constante lors des rendus. C'est normalement ce que vous voulez, non&nbsp;?
+Appliquez plutôt les HOC à l'extérieur de la définition d'un composant, afin de créer le composant final une seule fois. Son identité sera alors constante lors des rendus. C'est normalement ce que vous voulez, non&nbsp;?
 
-Dans les rares cas où vous devriez utiliser un HOC de façon dynamique, vous pouvez le faire au sein des méthodes de cycle de vie d'un composant ou dans son contructeur.
+Dans les rares cas où vous devriez appliquer un HOC de façon dynamique, vous pouvez le faire au sein des méthodes de cycle de vie d'un composant ou dans son contructeur.
 
 ### Les méthodes statiques doivent être copiées {#static-methods-must-be-copied-over}
 
