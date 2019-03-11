@@ -240,7 +240,7 @@ render() {
 
 Cette convention participe à garantir que les HOC soient aussi flexibles et réutilisables que possible.
 
-## Convention: maximiser la composabilité {#convention-maximizing-composability}
+## Convention: maximisez la composabilité {#convention-maximizing-composability}
 
 Tous les HOC ne sont pas pareils. Dans certains cas ils n'acceptent qu'un seul argument, le composant enfant&nbsp;:
 
