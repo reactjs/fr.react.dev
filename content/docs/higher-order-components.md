@@ -171,7 +171,7 @@ Puisque `withSubscription` est simplement une fonction, vous pouvez lui passer a
 
 Comme pour les composants, le rapport entre `withSubscription` et le composant enfant se base sur les props. Cela facilite l'échange d'un HOC pour un autre, tant qu'ils fournissent les mêmes props au composant enfant. Cela peut être utile si vous changez de bibliothèque pour récupérer vos données, par exemple.
 
-## Ne faites pas une mutation du composant initial. Faites une composition. {#dont-mutate-the-original-component-use-composition}
+## Ne modifiez pas le composant initial. Composez-le. {#dont-mutate-the-original-component-use-composition}
 
 Résistez à la tentation de modifier le prototype d'un composant (ou de faire une mutation) dans un HOC.
 
