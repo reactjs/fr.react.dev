@@ -311,9 +311,9 @@ function getDisplayName(WrappedComponent) {
 ```
 
 
-## Caveats {#caveats}
+## Avertissements {#caveats}
 
-Higher-order components come with a few caveats that aren't immediately obvious if you're new to React.
+L'utilisation de composants d'ordre supérieur comporte quelques risques qui ne seront pas tout de suite évidents si vous débutez avec React.
 
 ### Don't Use HOCs Inside the render Method {#dont-use-hocs-inside-the-render-method}
 
