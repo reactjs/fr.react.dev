@@ -1,8 +1,8 @@
 function tick() {
   const element = (
     <div>
-      <h1>Hello, world!</h1>
-      <h2>It is {new Date().toLocaleTimeString()}.</h2>
+      <h1>Bonjour, monde !</h1>
+      <h2>Il est {new Date().toLocaleTimeString()}.</h2>
     </div>
   );
   // highlight-next-line
