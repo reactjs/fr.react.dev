@@ -337,34 +337,34 @@ Utilisez plutôt les HOC à l'extérieur de la définition d'un composant, afin 
 
 Dans les rares cas où vous devriez utiliser un HOC de façon dynamique, vous pouvez le faire au sein des méthodes de cycle de vie d'un composant ou dans son contructeur.
 
-### Static Methods Must Be Copied Over {#static-methods-must-be-copied-over}
+### Les méthodes statiques doivent être copiées {#static-methods-must-be-copied-over}
 
-Sometimes it's useful to define a static method on a React component. For example, Relay containers expose a static method `getFragment` to facilitate the composition of GraphQL fragments.
+Il est parfois utile de définir une méthode statique dans un composant React. Par exemple, les conteneurs Relay exposent une méthode statique `getFragment` pour simplifier la composition de fragments GraphQL.
 
-When you apply a HOC to a component, though, the original component is wrapped with a container component. That means the new component does not have any of the static methods of the original component.
+Cependant, quand vous appliquez un HOC à un composant, le composant initial est enveloppé par un composant conteneur. Cela signifie que le nouveau composant ne comporte aucune des méthodes statiques du composant initial.
 
 ```js
-// Define a static method
+// Définit une méthode statique
 WrappedComponent.staticMethod = function() {/*...*/}
-// Now apply a HOC
+// Applique un HOC
 const EnhancedComponent = enhance(WrappedComponent);
 
-// The enhanced component has no static method
+// Le composant amélioré n'a pas de méthode statique
 typeof EnhancedComponent.staticMethod === 'undefined' // true
 ```
 
-To solve this, you could copy the methods onto the container before returning it:
+Pour résoudre cela, vous pouvez copier les méthodes dans le conteneur avant de le renvoyer&nbsp;:
 
 ```js
 function enhance(WrappedComponent) {
   class Enhance extends React.Component {/*...*/}
-  // Must know exactly which method(s) to copy :(
+  // Doit connaître exactement quelles méthodes recopier :(
   Enhance.staticMethod = WrappedComponent.staticMethod;
   return Enhance;
 }
 ```
 
-However, this requires you to know exactly which methods need to be copied. You can use [hoist-non-react-statics](https://github.com/mridgway/hoist-non-react-statics) to automatically copy all non-React static methods:
+Par contre, cela exige que vous sachiez exactement quelles méthodes doivent être copiées. Vous pouvez autrement utiliser [hoist-non-react-statics](https://github.com/mridgway/hoist-non-react-statics) qui copie automatiquement toutes les méthodes statiques&nbsp;:
 
 ```js
 import hoistNonReactStatic from 'hoist-non-react-statics';
@@ -375,17 +375,17 @@ function enhance(WrappedComponent) {
 }
 ```
 
-Another possible solution is to export the static method separately from the component itself.
+Une autre solution est d'exporter les méthodes statiques séparées du composant lui-même.
 
 ```js
-// Instead of...
+// Plutôt que...
 MyComponent.someFunction = someFunction;
 export default MyComponent;
 
-// ...export the method separately...
+// ... exportez les méthodes séparées du composant...
 export { someFunction };
 
-// ...and in the consuming module, import both
+// ... et dans le module qui les utilise, importez les deux
 import MyComponent, { someFunction } from './MyComponent.js';
 ```
 
