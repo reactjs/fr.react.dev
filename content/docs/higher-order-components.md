@@ -315,27 +315,27 @@ function getDisplayName(WrappedComponent) {
 
 L'utilisation de composants d'ordre supérieur comporte quelques risques qui ne seront pas tout de suite évidents si vous débutez avec React.
 
-### Don't Use HOCs Inside the render Method {#dont-use-hocs-inside-the-render-method}
+### Pas de HOC à l'intérieur de la méthode de rendu {#dont-use-hocs-inside-the-render-method}
 
-React's diffing algorithm (called reconciliation) uses component identity to determine whether it should update the existing subtree or throw it away and mount a new one. If the component returned from `render` is identical (`===`) to the component from the previous render, React recursively updates the subtree by diffing it with the new one. If they're not equal, the previous subtree is unmounted completely.
+L'algorithme de différentiation de React (qu'on appelle réconcilation) utilise l'identité des composants pour déterminer s'il faut mettre à jour l'arborescence existante ou en monter une nouvelle. Si le composant renvoyé par `render` est identique (`===`) au composant du rendu précédent, React met à jour l'ancienne arborescence en la différenciant résursivement avec la nouvelle. S'ils ne sont pas identiques, l'ancienne arborescence est intégralement démontée.
 
-Normally, you shouldn't need to think about this. But it matters for HOCs because it means you can't apply a HOC to a component within the render method of a component:
+En général, vous ne devriez pas avoir à y penser. Mais dans le cadre des HOC, cela importe puisque cela signifie que vous ne pouvez pas utiliser un HOC au sein de la méthode de rendu d'un composant&nbsp;:
 
 ```js
 render() {
-  // A new version of EnhancedComponent is created on every render
+  // Une nouvelle version de EnhancedComponent est créée à chaque rendu
   // EnhancedComponent1 !== EnhancedComponent2
   const EnhancedComponent = enhance(MyComponent);
-  // That causes the entire subtree to unmount/remount each time!
+  // Cela cause le démontage et remontage de toute l'arborescence à chaque fois !
   return <EnhancedComponent />;
 }
 ```
 
-The problem here isn't just about performance — remounting a component causes the state of that component and all of its children to be lost.
+Il ne s'agit pas uniquement d'un problème de performance—remonter un composant signifie que l'état local de ce composant ainsi que celui de tous ses enfants sera perdu.
 
-Instead, apply HOCs outside the component definition so that the resulting component is created only once. Then, its identity will be consistent across renders. This is usually what you want, anyway.
+Utilisez plutôt les HOC à l'extérieur de la définition d'un composant, afin de créer le composant final une seule fois. Son identité sera alors constante lors des rendus. C'est normalement ce que vous voulez, non&nbsp;?
 
-In those rare cases where you need to apply a HOC dynamically, you can also do it inside a component's lifecycle methods or its constructor.
+Dans les rares cas où vous devriez utiliser un HOC de façon dynamique, vous pouvez le faire au sein des méthodes de cycle de vie d'un composant ou dans son contructeur.
 
 ### Static Methods Must Be Copied Over {#static-methods-must-be-copied-over}
 
