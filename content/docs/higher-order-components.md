@@ -292,11 +292,11 @@ const EnhancedComponent = enhance(WrappedComponent)
 
 La fonction utilitaire `compose` est offerte par de nombreuses bibliothèqes tierces, y compris lodash (nommée [`lodash.flowRight`](https://lodash.com/docs/#flowRight)), [Redux](https://redux.js.org/api/compose), et [Ramda](https://ramdajs.com/docs/#compose).
 
-## Convention: Wrap the Display Name for Easy Debugging {#convention-wrap-the-display-name-for-easy-debugging}
+## Convention: enveloppez le nom d'affichage pour faciliter le débogage {#convention-wrap-the-display-name-for-easy-debugging}
 
-The container components created by HOCs show up in the [React Developer Tools](https://github.com/facebook/react-devtools) like any other component. To ease debugging, choose a display name that communicates that it's the result of a HOC.
+Tout comme n'importe quel autre composant, les composants conteneurs créés par des HOC apparaîssent dans les [Outils de développement React](https://github.com/facebook/react-devtools). Pour faciliter votre débogage, donnez-leur un nom d'affichage qui signifie qu'ils ont été crées par des HOC.
 
-The most common technique is to wrap the display name of the wrapped component. So if your higher-order component is named `withSubscription`, and the wrapped component's display name is `CommentList`, use the display name `WithSubscription(CommentList)`:
+Le technique ls plus commune est d'envelopper le nom d'affichage du composant enfant. Par exemple, si votre composant d'ordre supérieur s'appelle `withSubscription`, et que le nom d'affichage du composant enfant est `CommentList`, utilisez le nom d'affichage `WithSubscription(CommentList)`&nbsp;:
 
 ```js
 function withSubscription(WrappedComponent) {
