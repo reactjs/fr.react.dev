@@ -389,8 +389,8 @@ export { someFunction };
 import MyComponent, { someFunction } from './MyComponent.js';
 ```
 
-### Refs Aren't Passed Through {#refs-arent-passed-through}
+### Ne transmettez pas les refs {#refs-arent-passed-through}
 
-While the convention for higher-order components is to pass through all props to the wrapped component, this does not work for refs. That's because `ref` is not really a prop — like `key`, it's handled specially by React. If you add a ref to an element whose component is the result of a HOC, the ref refers to an instance of the outermost container component, not the wrapped component.
+Bien que que la convention pour les composants d'ordre supérieur soit de transmettre toutes les props au composant enfant, elle ne s'applique pas aux refs. Une `ref` n'est en effet pas vraiment une prop—comme une `key`, React la traite de façon particulière. Si vous ajoutez une ref à un élément dont le composant résulte d'un HOC, la ref fait référence à une instance du composant conteneur le plus à l'extérieur, et non pas au composant enfant.
 
-The solution for this problem is to use the `React.forwardRef` API (introduced with React 16.3). [Learn more about it in the forwarding refs section](/docs/forwarding-refs.html).
+La solution à ce problème réside dans l'utilisation de l'API `React.forwardRef` (introduite dans React 16.3). [Apprenez-en plus dans la section sur la transmission des refs](/docs/forwarding-refs.html).
