@@ -186,7 +186,7 @@ class Mouse extends React.Component {
       <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
 
         {/*
-          Au lieu de fournir un représentation statique de ce qu’affiche <Mouse>,
+          Au lieu de fournir une représentation statique de ce qu’affiche <Mouse>,
           utilisez la prop `render` pour déterminer dynamiquement quoi afficher.
         */}
         {this.props.render(this.state)}
@@ -252,7 +252,7 @@ Et rappelez-vous, la propriété `children` n'a en fait pas besoin d'être nomm�
 ```js
 <Mouse>
   {mouse => (
-    <p>The mouse position is {mouse.x}, {mouse.y}</p>
+    <p>La position de la souris est {mouse.x}, {mouse.y}</p>
   )}
 </Mouse>
 ```
