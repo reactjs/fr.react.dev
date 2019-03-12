@@ -10,7 +10,7 @@ category: FAQ
 
 React n'a pas d'opinion sur la manière dont vous ordonnez vos fichiers à l'intérieur de vos dossiers. Ceci dit, vous souhaiterez peut-être envisager l'une des approches populaires de l'écosystème.
 
-#### Grouper par fonctionnalités ou par routes {#grouping-by-features-or-routes}
+#### Grouper par fonctionnalité ou par route {#grouping-by-features-or-routes}
 
 Une façon courante de structurer les projets consiste à placer le CSS, le JS et les tests ensemble dans des dossiers groupés par fonctionnalité ou par route.
 
@@ -39,7 +39,7 @@ La définition d'une « fonctionnalité » n'est pas universelle, et il vous a
 
 #### Grouper par type de fichier {#grouping-by-file-type}
 
-Une autre manière répandue de structurer les projets est de grouper les fichiers similaires ensemble, par exemple :
+Une autre manière répandue de structurer les projets consiste à grouper les fichiers similaires ensemble, par exemple :
 
 ```
 api/
@@ -69,6 +69,6 @@ L'imbrication excessive de répertoires dans les projets JavaScript est source d
 
 Si vous démarrez tout juste un projet, [ne passez pas plus de cinq minutes](https://fr.wikipedia.org/wiki/Paralysie_d%27analyse) à choisir une structure de fichiers. Choisissez l'une des approches ci-dessus (ou prenez la vôtre) et commencez à écrire votre code ! Vous serez sûrement amené·e à la repenser de toutes façons une fois que vous aurez produit du vrai code.
 
-Si vous vous sentez complètement bloqué·e, commencez par garder tous les fichiers dans un seul dossier. Si votre application se met à grossir, vous aurez envie de séparer certains fichiers du reste. À ce moment-là, vous aurez une bonne idée des fichiers que vous éditez ensemble régulièrement. En général, il est judicieux de conserver les uns à côté des autres des fichiers qui changent souvent ensemble. Ce principe s'appelle « colocation ».
+Si vous vous sentez complètement bloqué·e, commencez par garder tous les fichiers dans un seul dossier. Si votre application se met à grossir, vous aurez envie de séparer certains fichiers du reste. À ce moment-là, vous aurez une bonne idée des fichiers que vous éditez ensemble régulièrement. En général, il est judicieux de conserver en un même endroit des fichiers qui changent souvent ensemble. Ce principe s'appelle « colocation ».
 
 À mesure que les projets prennent de l'ampleur, on utilise souvent un mélange des deux approches ci-dessus. Du coup, choisir la « bonne » au début n’est pas si important.
