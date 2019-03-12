@@ -66,41 +66,44 @@ Vous trouverez les codemods que nous publions dans le dépôt [react-codemod](ht
 
 Nous accordons une grande importance à l'interopérabilité avec les systèmes existants et leur adoption progressive. Facebook a une importante base de code non-React. Son site web utilise à la fois un système de composant côté serveur appelé XHP, des bibliothèques d'interface utilisateur (*UI*) qui existaient avant React et React lui-même. Il est important pour nous que n'importe quelle équipe produit puisse [commencer à utiliser React pour une petite fonctionnalité](https://www.youtube.com/watch?v=BF58ZJ1ZQxY) (en anglais) plutôt que de réécrire leur code pour se baser dessus.
 
-C'est pour cela que React propose des solutions de contournement pour fonctionner avec des modèles mutables, et essaie de fonctionner correctement avec d'autres bibliothques d'UI. Vous pouvez enrôber une UI impérative déjà existante dans un composant déclaratif, et inversement. Ceci est crucial pour une adoption progressive.
+C'est pour cela que React propose des solutions de contournement pour fonctionner avec des modèles mutables, et essaie de fonctionner correctement avec d'autres bibliothèques d'UI. Vous pouvez enrôber une UI impérative déjà existante dans un composant déclaratif, et inversement. Ceci est crucial pour une adoption progressive.
 
-### Scheduling {#scheduling}
+### Planification {#scheduling}
 
-Even when your components are described as functions, when you use React you don't call them directly. Every component returns a [description of what needs to be rendered](/blog/2015/12/18/react-components-elements-and-instances.html#elements-describe-the-tree), and that description may include both user-written components like `<LikeButton>` and platform-specific components like `<div>`. It is up to React to "unroll" `<LikeButton>` at some point in the future and actually apply changes to the UI tree according to the render results of the components recursively.
+Même si vos composants sont décrits comme des fonctions, lorsque vous utilisez React, vous ne les appelez pas directement. Chaque composant renvoie une [description de ce qui doit être rendu](/blog/2015/12/18/react-components-elements-and-instances.html#elements-describe-the-tree), et cette description peut inclure à la fois des composants écrits par l'utilisateur comme `<LikeButton>` que des composants spécifiques à la plateforme tels que `<div>`. Il appartient à React de « dérouler » `<LikeButton>` XXX et d'appliquer les modifications apportées à l'arborescence de l'UI selon le rendu des composants de façon récursive.
+**TODO**
+It is up to React to "unroll" `<LikeButton>` at some point in the future and actually apply changes to the UI tree according to the render results of the components recursively.
 
-This is a subtle distinction but a powerful one. Since you don't call that component function but let React call it, it means React has the power to delay calling it if necessary. In its current implementation React walks the tree recursively and calls render functions of the whole updated tree during a single tick. However in the future it might start [delaying some updates to avoid dropping frames](https://github.com/facebook/react/issues/6170).
+C'est une distinction subtile mais puissante. Puisque vous n'appelez pas cette fonction de composant mais laisser React le faire, ça signifie que React peut différer son appel si nécessaire. Dans son implémentation actuelle, React parcourt l'arbre de façon récursive et appelle les fonctions de rendu de l'ensemble de l'arbre mis à jour au cours d'un seul tick. Cependant, à l'avenir, [certaines mises à jour pourraient être retardées pour éviter la perte de frames **TODO**](https://github.com/facebook/react/issues/617
+However in the future it might start [delaying some updates to avoid dropping frames](https://github.com/facebook/react/issues/6170).
 
-This is a common theme in React design. Some popular libraries implement the "push" approach where computations are performed when the new data is available. React, however, sticks to the "pull" approach where computations can be delayed until necessary.
+C'est un thème commun dans la conception de React. Certaiens bibliothèques populaires implémente l'approche du « *push* » dans laquelle les calculs sont exécutés lorsque les nouvelles données sont disponibles. React, quant à lui, s'en tient à l'approche « *pull* » où les calculs sont différents jusqu'au moment nécessaire.
 
-React is not a generic data processing library. It is a library for building user interfaces. We think that it is uniquely positioned in an app to know which computations are relevant right now and which are not.
+React n'est pas une bibliothèque de traitement des données générique. C'est une bibliothèque pour construire des interfaces utilisateur. Nous pensons qu'il est particulièrement bien placé dans une application pour savoir quels calculs sont pertinents à un moment précis et lesquels ne le sont pas.
 
-If something is offscreen, we can delay any logic related to it. If data is arriving faster than the frame rate, we can coalesce and batch updates. We can prioritize work coming from user interactions (such as an animation caused by a button click) over less important background work (such as rendering new content just loaded from the network) to avoid dropping frames.
+Si quelque chose est en dehors de l'écran, nous pouvons différer toute la logique qui lui est liée. Si les données arrivent plus vite que la fréquence des images, nous pouvons fusionner et regrouper les mises à jour. Nous pouvons prioriser le travail résultant des interactions utilisateur (telle qu'une animation engendrée par le clic d'un bouton) sur une tâche de fond de moindre importance (telle que le rendu d'un nouveau contenu fraîchement chargé depuis le réseau) afin d'éviter la perte d'image.
 
-To be clear, we are not taking advantage of this right now. However the freedom to do something like this is why we prefer to have control over scheduling, and why `setState()` is asynchronous. Conceptually, we think of it as "scheduling an update".
+Pour être clair, nous ne tirons pas avantage de ça pour l'instant. Cependant, c'est pour avoir la liberté de faire quelque chose comme ça que nous préférons avoir le contrôle de la planification et que `setState()` est asynchrone. Sur un plan conceptuel, nous voyons ça comme la « planification d'une mise à jour ».
 
-The control over scheduling would be harder for us to gain if we let the user directly compose views with a "push" based paradigm common in some variations of [Functional Reactive Programming](https://en.wikipedia.org/wiki/Functional_reactive_programming). We want to own the "glue" code.
+Le contrôle de la planification nous serait plus difficile si nous permettions à l'utilisateur de composer directement des vues avec le paradigme « push » commun à certaines variations de la [programmation fonctionnelle réactive](https://en.wikipedia.org/wiki/Functional_reactive_programming). Nous voulons garder le contrôle du code qui sert de « colle ».
 
-It is a key goal for React that the amount of the user code that executes before yielding back into React is minimal. This ensures that React retains the capability to schedule and split work in chunks according to what it knows about the UI.
+C'est un objectif clé pour React de miniser la quantité de code utilisateur qui s'exécute avant de laisser la main à React. Cela garantit que React conserve la possibilité de planifier et scinder le travail en morceaux en fonction de ce qu'il sait de l'UI.
 
-There is an internal joke in the team that React should have been called "Schedule" because React does not want to be fully "reactive".
+Il y a une blague en interne dans l'équipe selon laquelle React aurait dû s'appeler « *Schedule* » parce que React ne veut pas être totalement « réactif ».
 
-### Developer Experience {#developer-experience}
+### Expérience développeur {#developer-experience}
 
-Providing a good developer experience is important to us.
+Offrir une bonne expérience développeur est important pour nous.
 
-For example, we maintain [React DevTools](https://github.com/facebook/react-devtools) which let you inspect the React component tree in Chrome and Firefox. We have heard that it brings a big productivity boost both to the Facebook engineers and to the community.
+Par exemple, nous maintenons [React DevTools](https://github.com/facebook/react-devtools) qui vous permet d'inspecter l'arbre des composants React dans Chrome et Firefox. Nous avons entendu dire que ça apporte une forte augmentation de productivité aux ingénieur·e·s de Facebook et à la communauté.
 
-We also try to go an extra mile to provide helpful developer warnings. For example, React warns you in development if you nest tags in a way that the browser doesn't understand, or if you make a common typo in the API. Developer warnings and the related checks are the main reason why the development version of React is slower than the production version.
+Nous essayons également de faire un effort supplémentaire pour fournir des avertissements utiles aux développeurs. Par exemple, React vous avertit durant le développement si vous imbriquez des balises d'une façon que le navigateur ne comprend pas, ou si vous faites une faute de frappe commune dans l'API. Les avertissements aux développeurs et les vérifications associées sont la principale raison pour laquelle la version de développement de React est plus lente que celle de production.
 
-The usage patterns that we see internally at Facebook help us understand what the common mistakes are, and how to prevent them early. When we add new features, we try to anticipate the common mistakes and warn about them.
+Les modèles d'utilisation que nous voyons en interne chez Facebook nous aident à comprendre quelles sont les erreurs courantes et comment les prévenir rapidement. Lorsque nous ajoutons de nouvelles fonctionnalités, nous essayons d'anticiper les erreurs courantes et avertissons à leur sujet.
 
-We are always looking out for ways to improve the developer experience. We love to hear your suggestions and accept your contributions to make it even better.
+Nous cherchons toujours des moyens d'améliorer l'expérience développeur. Nous aimons écouter vos suggestions et acceptons vos contributions pour la rendre encore meilleure.
 
-### Debugging {#debugging}
+### Débogage {#debugging}
 
 When something goes wrong, it is important that you have breadcrumbs to trace the mistake to its source in the codebase. In React, props and state are those breadcrumbs.
 
