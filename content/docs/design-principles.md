@@ -42,31 +42,31 @@ React est pragmatique. Il est dicté par les besoins des produits écrits chez F
 
 Si nous voulons déprécier un modèle que nous n'aimons pas, il est de notre responsabilité de considérer tous ses cas d'usage et d'[éduquer la communauté à propos des alternatives](/blog/2016/07/13/mixins-considered-harmful.html) avant de le déprécier. Si un modèle utile pour la création d'applications est difficile à exprimer de manière déclarative, nous lui [fournirons une API impérative](/docs/more-about-refs.html). Si nous ne parvenons pas à trouver l'API parfaite pour quelque chose que nous jugeons nécessaire dans de nombreuses applications, nous [fournissons une API temporaire de moindre qualité](/docs/legacy-context.html) dans la mesure où il est possible de s'en débarrasser ultérieurement et qu'elle laisse la porte ouverte à de futures améliorations.
 
-### Stability {#stability}
+### Stabilité {#stability}
 
-We value API stability. At Facebook, we have more than 50 thousand components using React. Many other companies, including [Twitter](https://twitter.com/) and [Airbnb](https://www.airbnb.com/), are also heavy users of React. This is why we are usually reluctant to change public APIs or behavior.
+Nous accordons de l'importance à la stabilité de l'API. Chez Facebook, nous avons plus de 50 mille composants utilisant React. De nombreuses autres sociétés, telles que [Twitter](https://twitter.com/) et [Airbnb](https://www.airbnb.com/), sont également de grandes utilisatrices de React. C'est pour cela que nous sommes généralement réticents à changer les API ou les comportements publics.
 
-However we think stability in the sense of "nothing changes" is overrated. It quickly turns into stagnation. Instead, we prefer the stability in the sense of "It is heavily used in production, and when something changes, there is a clear (and preferably automated) migration path."
+Cependant, nous pensons que la stabilité au sens où « rien ne change » est surestimée. Cela se transforme vite en stagnation. Nous préférons plutôt la stabilité au sens « c'est fortement utilisé en production et lorsque quelque chose change, il existe un chemin de migration clair (et de préférence automatisé) ».
 
-When we deprecate a pattern, we study its internal usage at Facebook and add deprecation warnings. They let us assess the impact of the change. Sometimes we back out if we see that it is too early, and we need to think more strategically about getting the codebases to the point where they are ready for this change.
+Lorsque nous déprécions un modèle, nous étudions son utilisation interne chez Facebook et nous ajoutons des avertissements de dépréciation. Ils nous permettent de mesurer l'impact du changement. Parfois nous renonçons quand nous voyons qu'il est encore trop tôt, et nous réfléchissons de manière plus stratégique sur la façon de préparer les bases de code à ce changement.
 
-If we are confident that the change is not too disruptive and the migration strategy is viable for all use cases, we release the deprecation warning to the open source community. We are closely in touch with many users of React outside of Facebook, and we monitor popular open source projects and guide them in fixing those deprecations.
+Si nous sommes convaincus que le changement n'est pas trop disruptif et que la stratégie de migration est viable pour tous les cas d'usage, nous publions les avertissements de dépréciation à la communauté open source. Nous sommes en contact étroit avec de nombreux utilisateurs de React en dehors de Facebook, nous surveillons les projets open source populaires et les aidons à corriger ces dépréciations.
 
-Given the sheer size of the Facebook React codebase, successful internal migration is often a good indicator that other companies won't have problems either. Nevertheless sometimes people point out additional use cases we haven't thought of, and we add escape hatches for them or rethink our approach.
+Compte tenu de la taille même de la base de code React chez Facebook, la réussite de la migration en interne est généralement un bon indicateur du fait que les autres sociétés n'auront pas de problèmes non plus. Néanmoins, il arrive que des personnes nous signalent des cas d'usage auxquels nous n'avons pas pensé, et nous ajoutons alors des solutions de contournement pour eux ou repensons notre approche.
 
-We don't deprecate anything without a good reason. We recognize that sometimes deprecations warnings cause frustration but we add them because deprecations clean up the road for the improvements and new features that we and many people in the community consider valuable.
+Nous ne déprécions rien sans une bonne raison. Nous reconnaissons que les avertissements de dépréciation sont parfois frustrants, mais nous les ajoutons car les dépréciations permettent de préparer le terrain à des améliorations ou de nouvelles fonctionnalités que la communauté et nous-mêmes estimons utiles.
 
-For example, we added a [warning about unknown DOM props](/warnings/unknown-prop.html) in React 15.2.0. Many projects were affected by this. However fixing this warning is important so that we can introduce the support for [custom attributes](https://github.com/facebook/react/issues/140) to React. There is a reason like this behind every deprecation that we add.
+Par exemple, nous avons ajouté un [avertissement concernant les props DOM inconnues](/warnings/unknown-prop.html) dans React 15.2.0. De nombreux projets en furent impactés. Cependant, corriger cet avertissement est important pour pouvoir introduire la prise en charge des [attributs personnalisés](https://github.com/facebook/react/issues/140) dans React. Il y a une raison comme celle-ci derrière chaque dépréciation que nous ajoutons.
 
-When we add a deprecation warning, we keep it for the rest of the current major version, and [change the behavior in the next major version](/blog/2016/02/19/new-versioning-scheme.html). If there is a lot of repetitive manual work involved, we release a [codemod](https://www.youtube.com/watch?v=d0pOgY8__JM) script that automates most of the change. Codemods enable us to move forward without stagnation in a massive codebase, and we encourage you to use them as well.
+Lorsque nous ajoutons un avertissement de dépréciation, nous le conservons pour le reste de la version majeure, et nous [changeons le comportement lors de la version majeure suivante](/blog/2016/02/19/new-versioning-scheme.html). S'il y a beaucoup de travail manuel répétitif à la clé, nous publions un script [codemod](https://www.youtube.com/watch?v=d0pOgY8__JM) (en anglais) qui automatise la plus grande partie de ce changement. Les Codemods nous permettent d'avancer sans stagner sur une base de code importante, et nous vous encourageons à les utiliser également.
 
-You can find the codemods that we released in the [react-codemod](https://github.com/reactjs/react-codemod) repository.
+Vous trouverez les codemods que nous publions dans le dépôt [react-codemod](https://github.com/reactjs/react-codemod).
 
-### Interoperability {#interoperability}
+### Interopérabilité {#interoperability}
 
-We place high value in interoperability with existing systems and gradual adoption. Facebook has a massive non-React codebase. Its website uses a mix of a server-side component system called XHP, internal UI libraries that came before React, and React itself. It is important to us that any product team can [start using React for a small feature](https://www.youtube.com/watch?v=BF58ZJ1ZQxY) rather than rewrite their code to bet on it.
+Nous accordons une grande importance à l'interopérabilité avec les systèmes existants et leur adoption progressive. Facebook a une importante base de code non-React. Son site web utilise à la fois un système de composant côté serveur appelé XHP, des bibliothèques d'interface utilisateur (*UI*) qui existaient avant React et React lui-même. Il est important pour nous que n'importe quelle équipe produit puisse [commencer à utiliser React pour une petite fonctionnalité](https://www.youtube.com/watch?v=BF58ZJ1ZQxY) (en anglais) plutôt que de réécrire leur code pour se baser dessus.
 
-This is why React provides escape hatches to work with mutable models, and tries to work well together with other UI libraries. You can wrap an existing imperative UI into a declarative component, and vice versa. This is crucial for gradual adoption.
+C'est pour cela que React propose des solutions de contournement pour fonctionner avec des modèles mutables, et essaie de fonctionner correctement avec d'autres bibliothques d'UI. Vous pouvez enrôber une UI impérative déjà existante dans un composant déclaratif, et inversement. Ceci est crucial pour une adoption progressive.
 
 ### Scheduling {#scheduling}
 
