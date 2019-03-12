@@ -8,13 +8,13 @@ category: FAQ
 
 ### Que fait `setState` ? {#what-does-setstate-do}
 
-`setState()` planifie la mise à jour de l'objet `state` du composant. Quand l'état change, le composant répond en se rafraîchissant.
+`setState()` planifie la mise à jour de l'objet `state` du composant. Quand l'état local change, le composant répond en se rafraîchissant.
 
 ### Qu'elle est la différence entre `state` et `props` ? {#what-is-the-difference-between-state-and-props}
 
-[`props`](/docs/components-and-props.html) (diminutif de "propriétés") et [`state`](/docs/state-and-lifecycle.html) sont tous les deux des objets JavaScript bruts. Même s'ils contiennent tous les deux des informations qui influencent le résultat produit, ils présentent une différence majeure : `props` est passé *au* composant (à la manière des arguments d'une fonction) alors que `state` est géré *dans* le composant (comme le sont les variables déclarées à l'intérieur d'une fonction).
+[`props`](/docs/components-and-props.html) (diminutif de « propriétés ») et [`state`](/docs/state-and-lifecycle.html) sont tous les deux des objets JavaScript bruts. Même s'ils contiennent tous les deux des informations qui influencent le résultat produit, ils présentent une différence majeure : `props` est passé *au* composant (à la manière des arguments d'une fonction) tandis que `state` est géré *dans* le composant (comme le sont les variables déclarées à l'intérieur d'une fonction).
 
-Voici quelques ressources utiles pour mieux comprendre comment choisir entre `props` et `state` :
+Voici quelques ressources utiles pour mieux comprendre selon quels critères choisir entre `props` et `state` :
 * [Props vs State](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
 * [ReactJS: Props vs. State](https://lucybain.com/blog/2016/react-state-vs-pros/)
 
@@ -37,11 +37,13 @@ handleSomething() {
   this.incrementCount();
   this.incrementCount();
   this.incrementCount();
-  // Lorsque React rafraîchira le composant, `this.state.count` sera à 1, pourtant, on s'attendait à 3.
+  // Lorsque React rafraîchira le composant, `this.state.count` sera à 1,
+  // pourtant, on s'attendait à 3.
 
   // C'est parce que la fonction `incrementCount()` ci-dessus lit `this.state.count`,
   // mais React ne met pas à jour `this.state.count` tant que le composant n'est pas rafraîchi.
-  // Du coup `incrementCount()` lit `this.state.count` qui est égal à 0 à chaque fois, et le définit à 1.
+  // Du coup `incrementCount()` lit `this.state.count` qui est égal à 0 à chaque fois,
+  // et le définit à 1.
 
   // Le correctif est décrit ci-dessous !
 }
@@ -53,7 +55,7 @@ Voir ci-dessous pour savoir comment résoudre ce problème.
 
 Passez une fonction au lieu d'un objet à `setState` pour vous assurer que l'appel utilise toujours la version la plus récente de l'état (voir ci-dessous).
 
-### Quelle est la différence entre passer un objet ou une fonction dans `setState` ? {#what-is-the-difference-between-passing-an-object-or-a-function-in-setstate}
+### Quelle est la différence entre passer un objet ou une fonction à `setState` ? {#what-is-the-difference-between-passing-an-object-or-a-function-in-setstate}
 
 Passer une fonction de mise à jour vous permet d'accéder à la valeur à jour de l'état actuel au sein de cette fonction. Comme les appels `setState` sont groupés par lots, ça vous permet d'enchaîner les mises à jour et de vous assurer qu'elles sont effectuées les unes après les autres au lieu d'entrer en conflit :
 
@@ -99,7 +101,7 @@ Il y a deux raisons principales :
 
 Ce [commentaire GitHub](https://github.com/facebook/react/issues/11527#issuecomment-360199710) entre dans le détail d’exemples spécifiques.
 
-### Devrais-je utiliser une bibliothèque de gestion d'état comme Redux ou Mobx ? {#should-i-use-a-state-management-library-like-redux-or-mobx}
+### Devrais-je utiliser une bibliothèque de gestion d'état, comme par exemple Redux ou Mobx ? {#should-i-use-a-state-management-library-like-redux-or-mobx}
 
 [Peut-être.](https://redux.js.org/faq/general#when-should-i-use-redux)
 
