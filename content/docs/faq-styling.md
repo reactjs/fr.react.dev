@@ -30,7 +30,7 @@ render() {
 
 >Astuce
 >
->S'il vous arrive régulièrement d'écrire du code comme celui-ci, le module [classnames](https://www.npmjs.com/package/classnames#usage-with-reactjs) peut le simplifier.
+>S'il vous arrive régulièrement d'écrire du code comme celui-ci, le module [classnames](https://www.npmjs.com/package/classnames#usage-with-reactjs) peut vous aider à simplifier votre code.
 
 ### Puis-je utiliser des styles en ligne ? {#can-i-use-inline-styles}
 
@@ -44,8 +44,8 @@ Les classes CSS sont généralement plus performantes que les styles en ligne.
 
 "CSS-in-JS" fait référence à un modèle où les styles CSS sont créés en utilisant du JavaScript au lieu d'être définis dans des fichiers externes. Lisez la comparaison de plusieurs bibliothèques CSS-in-JS [ici](https://github.com/MicheleBertoli/css-in-js).
 
-_Remarquez bien que cette fonctionnalité ne fait pas partie de React : elle est fournie par des bibliothèques tierces._ React n'a pas d'opinion sur la manière dont les styles doivent être définis ; si vous avez un doute, une bonne manière de commencer consiste à définir vos styles dans des fichiers `*.css` séparés comme d'habitude et d'y faire référence en utilisant [`className`](/docs/dom-elements.html#classname).
+_Remarquez bien que cette fonctionnalité ne fait pas partie de React : elle est fournie par des bibliothèques tierces._ React n'a pas d'opinion sur la manière dont les styles doivent être définis ; si vous avez un doute, une bonne manière de commencer consiste à définir vos styles dans des fichiers `*.css` séparés comme d'habitude et à y faire référence en utilisant [`className`](/docs/dom-elements.html#classname).
 
 ### Puis-je faire des animations avec React ? {#can-i-do-animations-in-react}
 
-React peut être utilisé pour générer des animations. Voir, par exemple, [React Transition Group](https://reactcommunity.org/react-transition-group/) et [React Motion](https://github.com/chenglou/react-motion).
+React peut être utilisé pour générer des animations. Voyez par exemple [React Transition Group](https://reactcommunity.org/react-transition-group/) et [React Motion](https://github.com/chenglou/react-motion).
