@@ -59,7 +59,7 @@ Avant de continuer, notez que les hooks sont:
 
 Les Hooks résolvent une grande variété de problèmes apparemment non liés à React, que nous avons rencontrés pendant cinq ans au cours de la rédaction et de la maintenance de dizaines de milliers de composants. Que vous appreniez React, l'utilisiez quotidiennement ou préfériez une bibliothèque différente avec un modèle de composant similaire, vous pourriez reconnaître certains de ces problèmes.
 
-### It's hard to reuse stateful logic between components {#its-hard-to-reuse-stateful-logic-between-components}
+### Il est difficile de réutiliser la logique à état entre les composants {#its-hard-to-reuse-stateful-logic-between-components}
 
 React doesn't offer a way to "attach" reusable behavior to a component (for example, connecting it to a store). If you've worked with React for a while, you may be familiar with patterns like [render props](/docs/render-props.html) and [higher-order components](/docs/higher-order-components.html) that try to solve this. But these patterns require you to restructure your components when you use them, which can be cumbersome and make code harder to follow. If you look at a typical React application in React DevTools, you will likely find a "wrapper hell" of components surrounded by layers of providers, consumers, higher-order components, render props, and other abstractions. While we could [filter them out in DevTools](https://github.com/facebook/react-devtools/pull/503), this points to a deeper underlying problem: React needs a better primitive for sharing stateful logic.
 
@@ -85,26 +85,26 @@ Additionally, React has been out for about five years, and we want to make sure 
 
 To solve these problems, **Hooks let you use more of React's features without classes.** Conceptually, React components have always been closer to functions. Hooks embrace functions, but without sacrificing the practical spirit of React. Hooks provide access to imperative escape hatches and don't require you to learn complex functional or reactive programming techniques.
 
->Examples
+>Exemple
 >
->[Hooks at a Glance](/docs/hooks-overview.html) is a good place to start learning Hooks.
+>[les Hooks en un coup d'oeil](/docs/hooks-overview.html) est une bonne partie pour commener à apprendre les Hooks.
 
-## Gradual Adoption Strategy {#gradual-adoption-strategy}
+## Stratégie d'adoption progressive {#gradual-adoption-strategy}
 
->**TLDR: There are no plans to remove classes from React.**
+>**TLDR: Il n'y a aucune idée de supprimer les classes de React.**
 
-We know that React developers are focused on shipping products and don't have time to look into every new API that's being released. Hooks are very new, and it might be better to wait for more examples and tutorials before considering learning or adopting them.
+Nous savons que les developpeurs React sont focalisés sur la sortie de produits et n'ont pas assez de temps pour regarder à l'intérieur de chaque nouvelle API qui est publiée. Les Hooks sont nouveaux, et il sera sage d'attendre plusieurs exemples et tutoriels avant d'envisager de les apprendre ou de les adopter.
 
-We also understand that the bar for adding a new primitive to React is extremely high. For curious readers, we have prepared a [detailed RFC](https://github.com/reactjs/rfcs/pull/68) that dives into motivation with more details, and provides extra perspective on the specific design decisions and related prior art.
+Nous comprenons aussi que la barre pour ajouter une nouvelle primitive à React est extremement haute. Pour les lecteurs curieux, nous avons preparé un [RFC detaillé](https://github.com/reactjs/rfcs/pull/68) qui plonge au plus profond des motivations avec beaucoup plus de détails, et fournit une perspective supplémentaire sur les decisions de conception spécifique.
 
-**Crucially, Hooks work side-by-side with existing code so you can adopt them gradually.** There is no rush to migrate to Hooks. We recommend avoiding any "big rewrites", especially for existing, complex class components. It takes a bit of a mindshift to start "thinking in Hooks". In our experience, it's best to practice using Hooks in new and non-critical components first, and ensure that everybody on your team feels comfortable with them. After you give Hooks a try, please feel free to [send us feedback](https://github.com/facebook/react/issues/new), positive or negative.
+**Les Hooks fonctionnent cote à cote avec un code existant que vous pouvez adopter progressivement.** There is no rush to migrate to Hooks. Nous recommandons d'éviter les "grandes réecriture", spécialement pour les composants à base de classe complexe qui existent déja. It takes a bit of a mindshift to start "thinking in Hooks". Dans notre expérience, il est sage d'utiliser les Hooks Hooks dans de nouveaux composants et s'assurer que tout les personnes de l'équipe se sentent confortable avec. Après avoir essayer les Hooks, soyez iibre de [nous envoyer un feedback](https://github.com/facebook/react/issues/new), positif ou negatif.
 
-We intend for Hooks to cover all existing use cases for classes, but **we will keep supporting class components for the foreseeable future.** At Facebook, we have tens of thousands of components written as classes, and we have absolutely no plans to rewrite them. Instead, we are starting to use Hooks in the new code side by side with classes.
+Nos voulons que les Hooks couvrent tout les cas d'utilisation des classes, mais **nous garderons la prise en charge des composants à base de classe dans un avenir futur.** A Facebook, nous avons des dizaines de milliers de composants écrit avec les classes, et nous ne voulons pas les reécrire. Au lieu de ça, nous avons commencé à utiliser les Hooks dans le nouveau code à côté des classes.
 
-## Frequently Asked Questions {#frequently-asked-questions}
+## Questions fréquemment posées {#frequently-asked-questions}
 
-We've prepared a [Hooks FAQ page](/docs/hooks-faq.html) that answers the most common questions about Hooks.
+Nous avons preparé [Page FAQ des Hooks](/docs/hooks-faq.html) qui repondra aux questions plus commune en rapport avec les Hooks.
 
-## Next Steps {#next-steps}
+## Nouvelle étape {#next-steps}
 
-By the end of this page, you should have a rough idea of what problems Hooks are solving, but many details are probably unclear. Don't worry! **Let's now go to [the next page](/docs/hooks-overview.html) where we start learning about Hooks by example.**
+A la fin de cette page, vous devriez avoir une ideé plus claire sur les problèmes résolus par les Hooks, mais plusieurs détails ne sont probablement pas claire. Aucun soucis! **Allons-y maintenant à [la page suivante](/docs/hooks-overview.html) où nous commencons l'apprentissage des Hooks.**
