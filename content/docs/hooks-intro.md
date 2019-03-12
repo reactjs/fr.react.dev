@@ -1,39 +1,39 @@
 ---
 id: hooks-intro
-title: Introducing Hooks
+title: Introduction aux Hooks
 permalink: docs/hooks-intro.html
 next: hooks-overview.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Hooks* sont une nouvelle fonctionnalitée de React 16.8. Il vous permet d'utiliser l'état et autre fonctionnalitée de React sans écrire de classe.
 
 ```js{4,5}
 import React, { useState } from 'react';
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
+  // Declarer une nouvelle variable d'état, que nous appelerons "count"
   const [count, setCount] = useState(0);
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>Vous avez cliqué {count} fois</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Cliquez ici
       </button>
     </div>
   );
 }
 ```
 
-This new function `useState` is the first "Hook" we'll learn about, but this example is just a teaser. Don't worry if it doesn't make sense yet!
+Cette nouvelle fonction `useState` est le premier "Hook" que nous allons apprendre, mais cet exemple est juste un petit aperçu. Ne vous inquiétez pas si cela n'a pas encore de sens!
 
-**You can start learning Hooks [on the next page](/docs/hooks-overview.html).** On this page, we'll continue by explaining why we're adding Hooks to React and how they can help you write great applications.
+**Vous pouvez demarrer l'apprentissage du Hook [à la page suivante](/docs/hooks-overview.html).** A cette page, nous expliquerons pourquoi nous avons ajouté le Hook à React et comment il vous aidera à ecrire de grandes applications.
 
->Note
+>Remarque
 >
->React 16.8.0 is the first release to support Hooks. When upgrading, don't forget to update all packages, including React DOM. React Native will support Hooks in the next stable release.
+>Le Hook est pris en charge à partir de la version 16.8.0 de React. Lors de la mise à jour de React, n'oubliez pas de mettre à jour tout les paquets en incluant React DOM. React Native supportera le Hook dans sa prochaine version stable.
 
-## Video Introduction {#video-introduction}
+## Introduction de la Vidéo {#video-introduction}
 
 At React Conf 2018, Sophie Alpert and Dan Abramov introduced Hooks, followed by Ryan Florence demonstrating how to refactor an application to use them. Watch the video here:
 
