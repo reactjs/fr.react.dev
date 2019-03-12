@@ -5,7 +5,7 @@ permalink: docs/hooks-intro.html
 next: hooks-overview.html
 ---
 
-*Hooks* sont une nouvelle fonctionnalitée de React 16.8. Il vous permet d'utiliser l'état et autre fonctionnalitée de React sans écrire de classe.
+*Hooks* sont une nouvelle fonctionnalitée de React 16.8. Ils vous permet d'utiliser l'état et autre fonctionnalitée de React sans écrire de classe.
 
 ```js{4,5}
 import React, { useState } from 'react';
@@ -27,37 +27,37 @@ function Example() {
 
 Cette nouvelle fonction `useState` est le premier "Hook" que nous allons apprendre, mais cet exemple est juste un petit aperçu. Ne vous inquiétez pas si cela n'a pas encore de sens!
 
-**Vous pouvez demarrer l'apprentissage du Hook [à la page suivante](/docs/hooks-overview.html).** A cette page, nous expliquerons pourquoi nous avons ajouté le Hook à React et comment il vous aidera à ecrire de grandes applications.
+**Vous pouvez demarrer l'apprentissage des Hooks [à la page suivante](/docs/hooks-overview.html).** A cette page, nous expliquerons pourquoi nous avons ajouté les Hooks à React et comment ils vous aidera à ecrire de grandes applications.
 
 >Remarque
 >
->Le Hook est pris en charge à partir de la version 16.8.0 de React. Lors de la mise à jour de React, n'oubliez pas de mettre à jour tout les paquets en incluant React DOM. React Native supportera le Hook dans sa prochaine version stable.
+>Les Hooks sont pris en charge à partir de la version 16.8.0 de React. Lors de la mise à jour de React, n'oubliez pas de mettre à jour tout les paquets en incluant React DOM. React Native supportera les Hooks dans sa prochaine version stable.
 
 ## Introduction de la Vidéo {#video-introduction}
 
-At React Conf 2018, Sophie Alpert and Dan Abramov introduced Hooks, followed by Ryan Florence demonstrating how to refactor an application to use them. Watch the video here:
+A la React Conf 2018, Sophie Alpert et Dan Abramov introduisent les Hooks, suivi de Ryan Florence qui demontre comment refactoriser une application pour les utiliser. Regardez les vidéos ici:
 
 <br>
 
 <iframe width="650" height="366" src="//www.youtube.com/embed/dpw9EHDh2bM" frameborder="0" allowfullscreen></iframe>
 
-## No Breaking Changes {#no-breaking-changes}
+## Aucun changement majeur {#no-breaking-changes}
 
-Before we continue, note that Hooks are:
+Avant de continuer, notez que les hooks sont:
 
-* **Completely opt-in.** You can try Hooks in a few components without rewriting any existing code. But you don't have to learn or use Hooks right now if you don't want to.
-* **100% backwards-compatible.** Hooks don't contain any breaking changes.
-* **Available now.** Hooks are now available with the release of v16.8.0.
+* **Complètement opt-in.** Vous pouvez essayer les Hooks dans quelques composants sans réécrire le code existant. Mais vous ne devez pas apprendre ou utiliser les Hooks maintenant si vous ne voulez pas.
+* **100% rétro-compatible.** les Hooks ne contiennent aucun changement majeur.
+* **Disponible maintenant.** les Hooks sont disponible maintenant avec la version v16.8.0.
 
-**There are no plans to remove classes from React.** You can read more about the gradual adoption strategy for Hooks in the [bottom section](#gradual-adoption-strategy) of this page.
+**Aucun plan de supprimer les classes de React.** Vous pouvez en savoir plus sur la stratégie d'adoption des Hooks à la [section du bas](#gradual-adoption-strategy) de cette page.
 
-**Hooks don't replace your knowledge of React concepts.** Instead, Hooks provide a more direct API to the React concepts you already know: props, state, context, refs, and lifecycle. As we will show later, Hooks also offer a new powerful way to combine them.
+**Hooks ne remplacent pas votre connaissance et vos concpets de React.** les Hooks fournissent plutôt une API plus directe aux concepts React que vous connaissez déjà: props, état, contexte, refs et cycle de vie. Comme nous le verrons plus tard, les Hooks offrent également un nouveau moyen puissant de les combiner.
 
-**If you just want to start learning Hooks, feel free to [jump directly to the next page!](/docs/hooks-overview.html)** You can also keep reading this page to learn more about why we're adding Hooks, and how we're going to start using them without rewriting our applications.
+**Si vous voulez commencer à apprendre les Hooks, soyez libre [d'aller directement à la page suivante!](/docs/hooks-overview.html)** Vous pouvez également continuer à lire cette page pour en savoir plus sur les raisons pour lesquelles nous ajoutons les Hooks et sur la façon dont nous allons commencer à les utiliser sans réécrire nos applications.
 
 ## Motivation {#motivation}
 
-Hooks solve a wide variety of seemingly unconnected problems in React that we've encountered over five years of writing and maintaining tens of thousands of components. Whether you're learning React, use it daily, or even prefer a different library with a similar component model, you might recognize some of these problems.
+Les Hooks résolvent une grande variété de problèmes apparemment non liés à React, que nous avons rencontrés pendant cinq ans au cours de la rédaction et de la maintenance de dizaines de milliers de composants. Que vous appreniez React, l'utilisiez quotidiennement ou préfériez une bibliothèque différente avec un modèle de composant similaire, vous pourriez reconnaître certains de ces problèmes.
 
 ### It's hard to reuse stateful logic between components {#its-hard-to-reuse-stateful-logic-between-components}
 
