@@ -31,7 +31,7 @@ Plus d'un million de développeurs utilisent React, qui maintiennent collectivem
 
 ### Mises à niveau progressives grâce aux avertissements {#gradual-upgrades-via-warnings}
 
-Les versions de développement de React incluent de nombreux avertissements utiles. Dans la mesure du possible, nous ajoutons des avertissements en prévision de futurs changements radicaux. Ainsi, si votre application ne contient aucun avertissement sur la dernière version, elle sera compatible avec la prochaine version majeure. Cela vous permet de mettre à niveau vos applications composant par composant.
+Les versions de développement de React incluent de nombreux avertissements utiles. Dans la mesure du possible, nous ajoutons des avertissements en prévision de futurs changements radicaux. Ainsi, si votre application ne contient aucun avertissement sur la dernière version, elle sera compatible avec la prochaine version majeure. Ça vous permet de mettre à niveau vos applications composant par composant.
 
 Les avertissements de développement n'affecteront pas le comportement d'exécution de votre application. De cette façon, vous pouvez être sûr que votre application se comportera de la même façon entre les versions de développement et de production. La seule différence est que la version de production n'enregistrera pas les avertissements et qu'elle sera plus efficace. (Si vous remarquez le contraire, veuillez déposer un problème.)  
 
