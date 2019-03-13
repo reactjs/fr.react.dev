@@ -43,7 +43,7 @@ En général, nous *ne* supprimons *pas* le numéro de version majeur pour les m
 * **API commençant par `unstable_`.** Celles-ci sont fournies en tant que fonctionnalités expérimentales  et nous ne sommes pas encore satisfaits de leurs API. En les publiant avec un préfixe `unstable_`, nous pouvons itérer plus rapidement dessus et obtenir une API stable plus tôt.
 * **Versions alpha et canary de React.** 
 Nous fournissons des versions alpha de React afin de tester les nouvelles fonctionnalités à un stade précoce, mais nous avons besoin de la souplesse nécessaire pour apporter des modifications en fonction de ce que nous apprenons au cours de la période alpha. Si vous utilisez ces versions, notez que les API peuvent changer avant la version stable.
-* **API non documentées et structures de données internes.** Si vous accédez à des noms de propriété internes tels que `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` ou` __reactInternalInstance $ uk43rzhitjg`, il n'y a aucune garantie. Tu es seul.
+* **API non documentées et structures de données internes.** Si vous accédez à des noms de propriété internes tels que `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` ou` __reactInternalInstance $ uk43rzhitjg`, il n'y a aucune garantie. Débrouillez-vous.
 
 Cette politique se veut pragmatique: nous ne voulons certainement pas vous causer de maux de tête. Si nous remplacions la version majeure par tous ces changements, nous finirions par publier de nouvelles versions majeures, ce qui causerait plus de problèmes à la communauté. Cela signifierait également que nous ne pouvons pas progresser dans l'amélioration de React aussi rapidement que nous le souhaiterions.
 
