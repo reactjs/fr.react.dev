@@ -26,8 +26,17 @@
 - name: allemand
   translated_name: Deutsch
   code: de
+<<<<<<< HEAD
   status: 0
 - name: espagnol
+=======
+  status: 1
+- name: Greek
+  translated_name: Ελληνικά
+  code: el
+  status: 0
+- name: Spanish
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
   translated_name: Español
   code: es
   status: 2
@@ -50,8 +59,13 @@
 - name: hébreu
   translated_name: עברית
   code: he
+<<<<<<< HEAD
   status: 0
 - name: hindi
+=======
+  status: 1
+- name: Hindi
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
   translated_name: हिन्दी
   code: hi
   status: 0
@@ -78,8 +92,13 @@
 - name: coréen
   translated_name: 한국어
   code: ko
+<<<<<<< HEAD
   status: 0
 - name: kurde
+=======
+  status: 1
+- name: Kurdish
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
   translated_name: کوردی‎
   code: ku
   status: 0
@@ -102,12 +121,21 @@
 - name: polonais
   translated_name: Polski
   code: pl
+<<<<<<< HEAD
   status: 0
 - name: portugais (Brésil)
   translated_name: Português do Brasil
   code: pt-br
   status: 1
 - name: portugais (Portugal)
+=======
+  status: 1
+- name: Portuguese (Brazil)
+  translated_name: Português do Brasil
+  code: pt-br
+  status: 2
+- name: Portuguese (Portugal)
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
   translated_name: Português europeu
   code: pt-pt
   status: 0
@@ -118,8 +146,13 @@
 - name: russe
   translated_name: Русский
   code: ru
+<<<<<<< HEAD
   status: 1
 - name: cingalais
+=======
+  status: 2
+- name: Sinhala
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
   translated_name: සිංහල
   code: si
   status: 0
@@ -137,8 +170,13 @@
 - name: turc
   translated_name: Türkçe
   code: tr
+<<<<<<< HEAD
   status: 0
 - name: ukrainien
+=======
+  status: 1
+- name: Ukrainian
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
   translated_name: Українська
   code: uk
   status: 1

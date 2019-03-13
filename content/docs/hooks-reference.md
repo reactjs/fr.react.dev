@@ -45,7 +45,15 @@ setState(newState);
 
 Au cours des rendus suivants, la première valeur renvoyée par `useState` sera toujours celle de l'état local le plus récent, une fois les mises à jour effectuées.
 
+<<<<<<< HEAD
 #### Mises à jour fonctionnelles {#functional-updates}
+=======
+>Note
+>
+>React guarantees that `setState` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+
+#### Functional updates {#functional-updates}
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 Si le nouvel état local est déduit de l'état local précédent, vous pouvez passer une fonction à `setState`. Cette fonction recevra la valeur précédente de l'état local et renverra une nouvelle valeur de l'état local. Voici un exemple d'un composant compteur qui utilise les deux formes de `setState` :
 
@@ -134,7 +142,11 @@ Bien que `useEffect` soit différé jusqu'à ce que le navigateur ait terminé l
 
 Le comportement par défaut des effets de bord consiste à exécuter l'effet après chaque affichage. Ainsi, un effet est toujours recréé si une de ses entrées (les données dont il dépend) change.
 
+<<<<<<< HEAD
 Cependant, ça pourrait être exagéré dans certains cas, comme dans l'exemple avec l'abonnement dans la section précédente. On n’a pas besoin d’un nouvel abonnement à chaque mise à jour, mais seulement si la prop `source` a changé.
+=======
+The default behavior for effects is to fire the effect after every completed render. That way an effect is always recreated if one of its dependencies changes.
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 Pour mettre ça en œuvre, fournissez un deuxième argument à `useEffect` qui consiste en un tableau de valeurs dont l'effet dépend. Notre exemple mis à jour ressemble maintenant à ça :
 
@@ -152,11 +164,26 @@ useEffect(
 
 L'abonnement sera maintenant recréé uniquement quand `props.source` change.
 
+<<<<<<< HEAD
 Fournir un tableau vide `[]` d'entrées indique à React que votre effet ne dépend d'aucune valeur du composant, du coup l'effet ne s'exécuterait que lors du montage et ne se nettoierait qu’au démontage ; il ne s'exécuterait pas lors des mises à jour.
 
 > Remarque
 >
 > Le tableau d'entrées n'est pas fourni comme argument à la fonction d'effet. Conceptuellement cependant, c'est en quelque sorte ce qui se passe : chaque valeur référencée dans la fonction d'effet devrait aussi apparaître dans le tableau d'entrées. À l'avenir, un compilateur suffisamment avancé pourrait créer ce tableau automatiquement.
+=======
+>Note
+>
+>If you use this optimization, make sure the array includes **all values from the component scope (such as props and state) that change over time and that are used by the effect**. Otherwise, your code will reference stale values from previous renders. Learn more about [how to deal with functions](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) and what to do when the [array values change too often](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
+>
+>If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array (`[]`) as a second argument. This tells React that your effect doesn't depend on *any* values from props or state, so it never needs to re-run. This isn't handled as a special case -- it follows directly from how the dependencies array always works.
+>
+>If you pass an empty array (`[]`), the props and state as inside the effect will always have their initial values. While passing `[]` as the second argument is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, there are usually [better](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) to avoid re-running effects too often. Also, don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
+>
+>
+>We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+
+The array of dependencies is not passed as arguments to the effect function. Conceptually, though, that's what they represent: every value referenced inside the effect function should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 ### `useContext` {#usecontext}
 
@@ -210,7 +237,15 @@ function Counter({initialState}) {
 }
 ```
 
+<<<<<<< HEAD
 #### Préciser l'état local initial {#specifying-the-initial-state}
+=======
+>Note
+>
+>React guarantees that `dispatch` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+
+#### Specifying the initial state {#specifying-the-initial-state}
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 Il existe deux manières différentes d'initialiser l'état de `useReducer`. Vous pouvez choisir l'une ou l'autre suivant le cas. La manière la plus simple consiste à fournir l'état initial comme deuxième argument :
 
@@ -284,12 +319,24 @@ Renvoie une fonction de rappel [mémoïsée](https://fr.wikipedia.org/wiki/M%C3%
 
 Fournissez une fonction de rappel et un tableau d'entrées. `useCallback` renverra une version mémoïsée de la fonction de rappel qui changera uniquement si une des entrées a changé. C’est utile pour passer des fonctions de rappel à des composants enfants optimisés qui se basent sur une égalité référentielle pour éviter des rendus superflus (par exemple avec `shouldComponentUpdate`).
 
+<<<<<<< HEAD
 
 `useCallback(fn, inputs)` est équivalent à `useMemo(() => fn, inputs)`.
+=======
+Pass an inline callback and an array of dependencies. `useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. `shouldComponentUpdate`).
+
+`useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`.
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 > Remarque
 >
+<<<<<<< HEAD
 > Le tableau d'entrées n'est pas fourni comme argument à la fonction de rappel. Conceptuellement cependant, c'est en quelque sorte ce qui se passe : chaque valeur référencée dans la fonction de rappel devrait aussi apparaître dans le tableau d'entrées. À l’avenir, un compilateur suffisamment avancé pourrait créer ce tableau automatiquement.
+=======
+> The array of dependencies is not passed as arguments to the callback. Conceptually, though, that's what they represent: every value referenced inside the callback should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+>
+> We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 ### `useMemo` {#usememo}
 
@@ -299,7 +346,11 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 Renvoie une valeur [mémoïsée](https://fr.wikipedia.org/wiki/M%C3%A9mo%C3%AFsation)
 
+<<<<<<< HEAD
 Fournissez une fonction de « création » et un tableau d'entrées. `useMemo` recalculera la valeur mémoïsée seulement si une des entrées a changé. Cette optimisation permet d'éviter des calculs coûteux à chaque rendu.
+=======
+Pass a "create" function and an array of dependencies. `useMemo` will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 Rappelez-vous que la fonction fournie à `useMemo` s'exécute pendant le rendu. N’y faites rien que vous ne feriez pas normalement pendant un rendu. Par exemple, les effets de bord doivent passer par `useEffect`, et non `useMemo`.
 
@@ -309,7 +360,13 @@ Si vous ne fournissez aucun tableau, une nouvelle valeur sera calculée quand un
 
 > Remarque
 >
+<<<<<<< HEAD
 > Le tableau d'entrées n'est pas fourni comme argument à la fonction. Conceptuellement cependant, c'est en quelque sorte ce qui se passe : chaque valeur référencée dans la fonction devrait aussi apparaître dans le tableau d'entrées. À l'avenir, un compilateur suffisamment avancé pourrait créer ce tableau automatiquement.
+=======
+> The array of dependencies is not passed as arguments to the function. Conceptually, though, that's what they represent: every value referenced inside the function should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+>
+> We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 ### `useRef` {#useref}
 
@@ -342,7 +399,7 @@ Remarquez que `useRef()` est utile au-delà du seul attribut `ref`. C'est [prati
 ### `useImperativeHandle` {#useimperativehandle}
 
 ```js
-useImperativeHandle(ref, createHandle, [inputs])
+useImperativeHandle(ref, createHandle, [deps])
 ```
 
 `useImperativeHandle` personnalise l'instance qui est exposée au composant parent lors de l'utilisation de `ref`. Comme toujours, il vaut mieux s'abstenir d'utiliser du code impératif manipulant des refs dans la plupart des cas. `useImperativeHandle` est conçu pour être utilisé en conjonction avec `forwardRef` :
