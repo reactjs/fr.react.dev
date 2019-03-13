@@ -14,7 +14,7 @@ redirect_from:
 
 Au fur et à mesure que votre application grandit, vous pouvez détecter un grand nombre de bugs grâce à la validation de types. Dans certains cas, vous pouvez utiliser des extensions JavaScript comme [Flow](https://flow.org/) ou [TypeScript](https://www.typescriptlang.org/) pour valider les types de toute votre application. Mais même si vous ne les utilisez pas, React possède ses propres fonctionnalités de validation de types. Pour lancer la validation de types des props d'un composant, vous pouvez ajouter la propriété spéciale `propTypes` :
 
-```javascript
+```javascript{11-13}
 import PropTypes from 'prop-types';
 
 class Greeting extends React.Component {
@@ -50,8 +50,8 @@ MyComponent.propTypes = {
   optionalString: PropTypes.string,
   optionalSymbol: PropTypes.symbol,
 
-  // Tout ce qui peut apparaître dans le rendu : des nombres, des chaînes de caractères,
-  // des éléments ou des tableaux (ou fragments) contenant ces types.
+  // Tout ce qui peut apparaître dans le rendu : des nombres, des chaînes de
+  //  caractères, des éléments ou des tableaux (ou fragments) contenant ces types.
   optionalNode: PropTypes.node,
 
   // Un élément React.
@@ -92,8 +92,8 @@ MyComponent.propTypes = {
   // Cette prop est requise et peut être de n'importe quel type
   requiredAny: PropTypes.any.isRequired,
 
-  // Vous pouvez aussi spécifier un validateur personnalisé. Il devra
-  // renvoyer un objet Error si la validation échoue. N'utilisez pas de `console.warn`
+  // Vous pouvez aussi spécifier un validateur personnalisé. Il devra renvoyer
+  // un objet Error si la validation échoue. N'utilisez pas de `console.warn`
   // ou `throw`, car ça ne fonctionnera pas dans `oneOfType`.
   customProp: function(props, propName, componentName) {
     if (!/matchme/.test(props[propName])) {
@@ -106,16 +106,19 @@ MyComponent.propTypes = {
 
   // Vous pouvez aussi fournir un validateur personnalisé à `arrayOf` et `objectOf`.
   // Il faudra renvoyer un objet Error si la validation échoue. Le validateur
-  // sera appelé pour chaque clé du tableau ou de l'objet. Les deux premiers arguments
-  // du validateur sont le tableau ou l'objet lui-même, et la clé de la valeur actuelle.
-  customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, location, propFullName) {
-    if (!/matchme/.test(propValue[key])) {
-      return new Error(
-        'Invalid prop `' + propFullName + '` supplied to' +
-        ' `' + componentName + '`. Validation failed.'
-      );
+  // sera appelé pour chaque clé du tableau ou de l'objet. Les deux premiers
+  // arguments du validateur sont le tableau ou l'objet lui-même, et la clé
+  // de la valeur actuelle.
+  customArrayProp: PropTypes.arrayOf(
+    function(propValue, key, componentName, location, propFullName) {
+      if (!/matchme/.test(propValue[key])) {
+        return new Error(
+          'Invalid prop `' + propFullName + '` supplied to' +
+          ' `' + componentName + '`. Validation failed.'
+        );
+      }
     }
-  })
+  )
 };
 ```
 
@@ -158,10 +161,10 @@ class Greeting extends React.Component {
 
 // Spécifie les valeurs par défaut des props :
 Greeting.defaultProps = {
-  name: 'Bel Inconnu'
+  name: 'bel inconnu'
 };
 
-// Affiche « Bonjour, Bel Inconnu » :
+// Affiche « Bonjour, bel inconnu » :
 ReactDOM.render(
   <Greeting />,
   document.getElementById('example')
