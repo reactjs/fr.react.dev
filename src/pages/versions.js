@@ -5,13 +5,12 @@
  * @flow
  */
 
-import Layout from 'components/Layout';
 import Container from 'components/Container';
 import Header from 'components/Header';
-import TitleAndMetaTags from 'components/TitleAndMetaTags';
+import Layout from 'components/Layout';
 import React from 'react';
+import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import {sharedStyles} from 'theme';
-
 // $FlowFixMe This is a valid path
 import versions from '../../content/versions.yml';
 
@@ -24,24 +23,26 @@ const Versions = ({location}: Props) => (
     <Container>
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
-          <Header>React Versions</Header>
+          <Header>Versions de React</Header>
           <TitleAndMetaTags title="React - Versions" />
           <div css={sharedStyles.markdown}>
             <p>
-              A complete release history for React is available{' '}
+              Un historique complet des versions de React est disponible{' '}
               <a
                 href="https://github.com/facebook/react/releases"
                 target="_blank"
                 rel="noopener">
-                on GitHub
+                sur GitHub
               </a>
               .<br />
-              Documentation for recent releases can also be found below.
+              Les documentations pour les versions récentes sont disponibles
+              ci-dessous.
             </p>
             <p>
-              See our FAQ for information about{' '}
+              Consultez notre FAQ pour des informations sur{' '}
               <a href="/docs/faq-versioning.html">
-                our versioning policy and commitment to stability
+                notre politique de versions et notre engagement en matière de
+                stabilité
               </a>
               .
             </p>

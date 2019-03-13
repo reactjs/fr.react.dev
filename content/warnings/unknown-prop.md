@@ -1,39 +1,37 @@
 ---
-title: Unknown Prop Warning
+title: "Avertissement : unknown prop"
 layout: single
 permalink: warnings/unknown-prop.html
 ---
-The unknown-prop warning will fire if you attempt to render a DOM element with a prop that is not recognized by React as a legal DOM attribute/property. You should ensure that your DOM elements do not have spurious props floating around.
 
-There are a couple of likely reasons this warning could be appearing:
+Propriété inconnue.  Cet avertissement se déclenche si vous tentez d’afficher un élément DOM avec une prop qui n’est pas reconnue par React comme un attribut DOM légal.  Assurez-vous que vos éléments DOM n’ont pas de props suspectes qui traînent.
 
-1. Are you using `{...this.props}` or `cloneElement(element, this.props)`? Your component is transferring its own props directly to a child element (eg. [transferring props](/docs/transferring-props.html)). When transferring props to a child component, you should ensure that you are not accidentally forwarding props that were intended to be interpreted by the parent component.
+Si vous voyez cet avertissement, c’est en général dû à une des raisons suivantes :
 
-2. You are using a non-standard DOM attribute on a native DOM node, perhaps to represent custom data. If you are trying to attach custom data to a standard DOM element, consider using a custom data attribute as described [on MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes).
-
-3. React does not yet recognize the attribute you specified. This will likely be fixed in a future version of React. However, React currently strips all unknown attributes, so specifying them in your React app will not cause them to be rendered.
-
-4. You are using a React component without an upper case. React interprets it as a DOM tag because [React JSX transform uses the upper vs. lower case convention to distinguish between user-defined components and DOM tags](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
+1. Utilisez-vous `{...this.props}` ou `cloneElement(element, this.props)` ?  Votre composant transfère ses props directement à un élément enfant (voir [la doc les props](docs/components-and-props.html)).  Quand vous transférez des props à un composant enfant, assurez-vous de ne pas lui refiler par mégarde des props qui n’auraient dû être interprétées que par le composant parent.
+2. Vous utilisez un attribut DOM non-standard sur un nœud DOM natif, peut-être pour représenter des données personnalisées.  Si vous essayez d’associer des données perso à un élément DOM standard, utilisez plutôt un attribut de données perso tel que décrit [dans le MDN](https://developer.mozilla.org/fr/docs/Apprendre/HTML/Comment/Utiliser_attributs_donnes).
+3. React ne reconnaît pas encore l’attribut que vous avez spécifié.  Ça va sûrement être corrigé dans une future version de React.  Néanmoins, React supprime pour le moment tous les attributs qu’il ne connaît pas, en conséquence même si vous spécifiez de tels attributs, React ne les exploitera pas.
+4. Vous utilisez un composant React sans avoir mis la première lettre en majuscule.  React l’interprète alors comme une balise DOM parce que [la transformation de JSX utilise une convention de casse pour distinguer entre composants personnalisés et balises DOM](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
 
 ---
 
-To fix this, composite components should "consume" any prop that is intended for the composite component and not intended for the child component. Example:
+Pour corriger ça, les composants qui transfèrent des props devraient « consommer » toute prop qui leur est spécifiquement destinée et ne doit pas être transmise aux composants enfants.  Par exemple :
 
-**Bad:** Unexpected `layout` prop is forwarded to the `div` tag.
+**Erroné :** La prop inattendue `layout` est transmise à la balise `div`.
 
 ```js
 function MyDiv(props) {
   if (props.layout === 'horizontal') {
-    // BAD! Because you know for sure "layout" is not a prop that <div> understands.
+    // ERRONÉ ! Vous savez bien que la prop "layout" ne sera pas comprise par <div>.
     return <div {...props} style={getHorizontalStyle()} />
   } else {
-    // BAD! Because you know for sure "layout" is not a prop that <div> understands.
+    // ERRONÉ ! Vous savez bien que la prop "layout" ne sera pas comprise par <div>.
     return <div {...props} style={getVerticalStyle()} />
   }
 }
 ```
 
-**Good:** The spread operator can be used to pull variables off props, and put the remaining props into a variable.
+**Correct :** l’opérateur de _rest_ est utilisé pour retirer certaines props du lot général, et laisser les autres dans une nouvelle variable.
 
 ```js
 function MyDiv(props) {
@@ -46,7 +44,7 @@ function MyDiv(props) {
 }
 ```
 
-**Good:** You can also assign the props to a new object and delete the keys that you're using from the new object. Be sure not to delete the props from the original `this.props` object, since that object should be considered immutable.
+**Correct :** Vous pouvez aussi affecter les props à un nouvel objet et en retirer explicitement les clés que vous n’utilisez qu’au niveau racine.  Assruez-vous de ne pas supprimer ces props sur l’objet `this.props` original, car il doit pouvoir être considéré comme immuable.
 
 ```js
 function MyDiv(props) {

@@ -14,7 +14,7 @@ Un composant avec une prop de rendu prend une fonction qui renvoie un élément 
 )}/>
 ```
 
-Des bibliothèques telles que [React Router](https://reacttraining.com/react-router/web/api/Route/Route-render-methods) et [Downshift](https://github.com/paypal/downshift) utilisent ces props de rendu.
+Des bibliothèques telles que [React Router](https://reacttraining.com/react-router/web/api/Route/render-func) et [Downshift](https://github.com/paypal/downshift) utilisent ces props de rendu.
 
 Dans cette page, nous verrons en quoi les props de rendu sont pratiques, et comment écrire les vôtres.
 

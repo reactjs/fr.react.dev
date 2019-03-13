@@ -53,7 +53,7 @@ Afin de préparer un composant aux assertions, il suffit d’enrober le code qui
 Prenons l'exemple d'un composant `Counter` :
 
 ```js
-class App extends React.Component {
+class Counter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {count: 0};
