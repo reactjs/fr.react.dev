@@ -12,19 +12,23 @@ En interne, React fait appel à différentes techniques intelligentes pour minim
 
 Si vous mesurez ou rencontrez des problèmes de performances dans vos applications React, assurez-vous que vous testez bien la version minifiée de production.
 
-Par défaut, React intègre de nombreux avertissements utiles. Ces avertissements sont très utiles lors du développement. Toutefois, ils rendent React plus gros et plus lent, vous devez donc vous assurer que vous utilisez bien une version de production lorsque vous déployez l'application.
+Par défaut, React intègre de nombreux avertissements pratiques. Ces avertissements sont très utiles lors du développement. Toutefois, ils rendent React plus gros et plus lent, vous devez donc vous assurer que vous utilisez bien une version de production lorsque vous déployez l'application.
 
 Si vous n'êtes pas sûr·e que votre processus de construction est correctement configuré, vous pouvez le vérifier en installant [l'extension React Developer Tools pour Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=fr). Si vous visitez un site avec React en production, l'icône aura un fond sombre :
 
-<img src="../images/docs/devtools-prod.png" style="max-width:100%" alt="React DevTools sur un site web utilisant la version de production de React">
+<p>
+  <img src="../images/docs/devtools-prod.png" style="max-width:100%" alt="React DevTools sur un site web utilisant la version de production de React">
+</p>
 
 Si vous visitez un site avec React dans sa version de développement, l'icône aura un fond rouge :
 
-<img src="../images/docs/devtools-dev.png" style="max-width:100%" alt="React DevTools sur un site web utilisant la version de développement de React">
+<p>
+  <img src="../images/docs/devtools-dev.png" style="max-width:100%" alt="React DevTools sur un site web utilisant la version de développement de React">
+</p>
 
 L’idée, c'est que vous utilisiez le mode développement lorsque vous travaillez sur votre application, et le mode production lorsque vous la déployez pour vos utilisateurs.
 
-Vous trouverez ci-dessous les instructions pour construire votre application pour la production.
+Vous trouverez ci-dessous les instructions pour procéder à la construction de votre application pour la production.
 
 ### Create React App {#create-react-app}
 
@@ -75,10 +79,10 @@ Pour obtenir la version de production la plus efficace avec Browserify, installe
 
 ```
 # Si vous utilisez npm :
-npm install --save-dev envify uglify-js uglifyify 
+npm install --save-dev envify uglify-js uglifyify
 
 # Si vous utilisez Yarn :
-yarn add --dev envify uglify-js uglifyify 
+yarn add --dev envify uglify-js uglifyify
 ```
 
 Pour créer la version de production, assurez-vous d'ajouter ces transformations **(l'ordre a son importance)** :
@@ -96,7 +100,7 @@ browserify ./index.js \
   | uglifyjs --compress --mangle > ./bundle.js
 ```
 
-> **Remarque**
+> Remarque
 >
 > Le paquet est nommé `uglify-js`, mais le binaire fourni est appelé `uglifyjs`.<br>
 > Ce n'est pas une faute de frappe.
@@ -109,10 +113,10 @@ Pour obtenir la version de production la plus efficace avec Rollup, installez qu
 
 ```
 # Si vous utilisez npm :
-npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
+npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify
 
 # Si vous utilisez Yarn :
-yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
+yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify
 ```
 
 Pour créer la version de production, assurez-vous d'ajouter ces transformations **(l'ordre a son importance)** :
@@ -139,7 +143,7 @@ Rappelez-vous que vous n'avez à faire cela que pour la version de production. V
 
 ### webpack {#webpack}
 
-> **Remarque**
+> Remarque
 >
 > Si vous utilisez Create React App, merci de suivre [les instructions ci-dessus](#create-react-app).<br>
 > Cette section n'est utile que si vous configurez webpack vous-même.
@@ -165,7 +169,7 @@ En mode de **développement**, vous pouvez voir comment les composants sont mont
 
 Pour faire ça avec Chrome :
 
-1. **Désactivez temporairement tous les extensions de Chrome, en particulier React DevTools**. Elles peuvent considérablement impacter les résutats !
+1. **Désactivez temporairement toutes les extensions de Chrome, en particulier React DevTools**. Elles peuvent considérablement impacter les résutats !
 
 2. Assurez-vous d'utiliser l'application en mode de développement.
 
@@ -186,7 +190,7 @@ Pour le moment, Chrome, Edge et IE sont les seuls navigateurs prenant en charge 
 ## Profilage des composants avec le DevTools Profiler {#profiling-components-with-the-devtools-profiler}
 
 `react-dom` 16.5+ et `react-native` 0.57+ offrent des capacités de profilage avancées en mode de développement avec le Profiler de l'extension React DevTools.
-Vous trouvez un aperçu du *Profiler* sur le billet de blog [*"Introducing the React Profiler"*](/blog/2018/09/10/introducing-the-react-profiler.html).
+Vous trouverez un aperçu du *Profiler* sur le billet de blog [*"Introducing the React Profiler"*](/blog/2018/09/10/introducing-the-react-profiler.html).
 Une présentation vidéo du *Profiler* est également [disponible sur YouTube](https://www.youtube.com/watch?v=nySib7ipZdk).
 
 Si vous n'avez pas encore installé l'extension React DevTools, vous pourrez la trouver ici :
@@ -197,18 +201,18 @@ Si vous n'avez pas encore installé l'extension React DevTools, vous pourrez la 
 
 > Remarque
 >
-> Un paquet de profilage pour la production de `react-dom` existe aussi dans `react-dom/profiling`.
-> Pour en savoir plus sur l'utilisation de ce paquet, rendez-vous à l'adresse [fb.me/react-profiling](https://fb.me/react-profiling).
+> Un module de profilage pour la production de `react-dom` existe aussi dans `react-dom/profiling`.
+> Pour en savoir plus sur l'utilisation de ce module, rendez-vous à l'adresse [fb.me/react-profiling](https://fb.me/react-profiling).
 
 ## Virtualiser les listes longues {#virtualize-long-lists}
 
-Si votre application génère d'importantes listes de données (des centaines ou des milliers de lignes), nous vous conseillons d'utiliser la technique de « fenêtrage » *(windowing, NdT)*. Cette technique consiste à n'afficher à tout instant qu'un petit sous-ensemble des lignes, ce qui permet de diminuer considérablement le temps nécessaire au rendu des composants ainsi que le nombre de nœuds DOM créés.
+Si votre application génère d'importantes listes de données (des centaines ou des milliers de lignes), nous vous conseillons d'utiliser la technique de « fenêtrage » *(windowing, NdT)*. Cette technique consiste à n'afficher à tout instant qu'un petit sous-ensemble des lignes, ce qui permet de diminuer considérablement le temps nécessaire au rendu des composants ainsi que le nombre de nœuds DOM créés.
 
-[react-window](https://react-window.now.sh/) et [react-virtualized](https://bvaughn.github.io/react-virtualized/) sont des bibliothèques populaires de gestion du fenêtrage. Elles fournissent différents composants réutilisables pour afficher des listes, des grilles et des données tabulaires. Vous pouvez également créer votre propre composant, comme [l'a fait Twitter](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), si vous voulez quelque chose de plus adapté au cas d'usage spécifique de votre application.
+[react-window](https://react-window.now.sh/) et [react-virtualized](https://bvaughn.github.io/react-virtualized/) sont des bibliothèques populaires de gestion du fenêtrage. Elles fournissent différents composants réutilisables pour afficher des listes, des grilles et des données tabulaires. Vous pouvez également créer votre propre composant, comme [l'a fait Twitter](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), si vous voulez quelque chose de plus adapté à vos cas d'usage spécifiques.
 
 ## Éviter la réconciliation {#avoid-reconciliation}
 
-React construit et maintient une représentation interne de l’UI produite, représentation qui inclut les éléments React renvoyés par vos composants. Elle permet à React d'éviter la création de nœuds DOM superflus et l'accès excessif aux nœuds existants, dans la mesure où ces opérations sont plus lentes que sur des objets JavaScript. On y fait parfois référence en parlant de « DOM virtuel », mais ça fonctionne de la même façon avec React Native.
+React construit et maintient une représentation interne de l’UI produite, représentation qui inclut les éléments React renvoyés par vos composants. Elle permet à React d'éviter la création de nœuds DOM superflus et l'accès excessif aux nœuds existants, dans la mesure où ces opérations sont plus lentes que sur des objets JavaScript. On y fait parfois référence en parlant de « DOM virtuel », mais ça fonctionne de la même façon avec React Native.
 
 Quand les props ou l'état local d'un composant changent, React décide si une mise à jour du DOM est nécessaire en comparant l'élément renvoyé avec l'élément du rendu précédent. Quand ils ne sont pas égaux, React met à jour le DOM.
 
@@ -220,7 +224,7 @@ Vous pouvez visualiser ces rendus de mise à jour du DOM virtuel avec React DevT
 
 Dans la console de développement, choisissez l'option ***Highlight Updates*** dans l'onglet **React** :
 
-<center><img src="../images/blog/devtools-highlight-updates.png" style="max-width:100%; margin-top:10px;" alt="Comment activer l'option" /></center>
+<p><center><img src="../images/blog/devtools-highlight-updates.png" style="max-width:100%; margin-top:10px;" alt="Comment activer l'option" /></center></p>
 
 Interagissez avec votre page, et vous devriez voir des bordures colorées apparaître momentanément autour des composants dont le rendu est mis à jour. Ça vous permet de détecter les mises à jour inutiles. Vous pouvez en apprendre davantage sur cette fonctionnalité des React DevTools en lisant [ce billet du blog](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833) de [Ben Edelstein](https://blog.logrocket.com/@edelstein).
 
@@ -228,7 +232,7 @@ Prenons cet exemple :
 
 <center><img src="../images/blog/highlight-updates-example.gif" style="max-width:100%; margin-top:20px;" alt="Exemple de la fonctionnalité de mise en évidence des mises à jour avec React DevTools" /></center>
 
-Remarquez que lorsque l'on saisit une seconde tâche, la première clignote également à l'écran à chaque frappe. Ça signifie qu'elle est également rafraîchie par React avec son champ de saisie. On parle parfois de rendu « gâché ». Nous savons que c’est inutile car le contenu de la première tâche est inchangé, mais React l'ignore.
+Remarquez que lorsque l'on saisit une seconde tâche, la première clignote également à l'écran à chaque frappe. Ça signifie qu'elle est également rafraîchie par React avec son champ de saisie. On parle parfois de rendu « gâché ». Nous savons que c’est inutile car le contenu de la première tâche est inchangé, mais React l'ignore.
 
 Même si React ne met à jour que les nœuds DOM modifiés, refaire un rendu prend un certain temps. Dans la plupart des cas ce n'est pas un problème, mais si le ralentissement est perceptible, vous pouvez accélérer le processus en surchargeant la méthode `shouldComponentUpdate` du cycle de vie, qui est déclenchée avant le démarrage du processus de rafraîchissement. L'implémentation par défaut de cette méthode renvoie `true`, laissant ainsi React faire la mise à jour :
 
@@ -238,15 +242,15 @@ shouldComponentUpdate(nextProps, nextState) {
 }
 ```
 
-Si vous savez que dans certaines situations votre composant n'a pas besoin d'être mis à jour, vous pouvez plutôt renvoyer `false` depuis `shouldComponentUpdate` afin d'ignorer le processus de rendu, et donc l'appel à la méthode `render()` sur ce composant et ses enfants.
+Si vous savez que dans certaines situations votre composant n'a pas besoin d'être mis à jour, vous pouvez plutôt renvoyer `false` depuis `shouldComponentUpdate` afin de sauter le rendu, et donc l'appel à la méthode `render()` sur ce composant et ses enfants.
 
-Le plus souvent, plutôt que d'écrire manuellement `shouldComponentUpdate()`, vous pouvez hériter de [`React.PureComponent`](/docs/react-api.html#reactpurecomponent). CelaÇærevient à implémenter `shouldComponentUpdate()` avec une comparaison superficielle des propriétés et état actuels et précédents.
+Le plus souvent, plutôt que d'écrire manuellement `shouldComponentUpdate()`, vous pouvez plutôt choisir d’étendre [`React.PureComponent`](/docs/react-api.html#reactpurecomponent). Ça revient à implémenter `shouldComponentUpdate()` avec une comparaison superficielle des propriétés et état actuels et précédents.
 
 ## shouldComponentUpdate en action {#shouldcomponentupdate-in-action}
 
-Voici un sous-arbre de composants. Pour chacun, `SCU` indique ce que `shouldComponentUpdate` renvoie, et `vDOMEq` indique si les éléments React renvoyés étaient équivalents. Enfin, la couleur du cercle indique si le composant doit être réconcilié ou non.
+Voici un sous-arbre de composants. Pour chacun, `SCU` indique ce que `shouldComponentUpdate` renvoie, et `vDOMEq` indique si les éléments renvoyés étaient équivalents. Enfin, la couleur du cercle indique si le composant doit être réconcilié ou non.
 
-<figure><img src="../images/docs/should-component-update.png" style="max-width:100%" alt="Arbre des composants montrant l'utilisation de shouldComponentUpdate"/></figure>
+<p><figure><img src="../images/docs/should-component-update.png" style="max-width:100%" alt="Arbre des composants montrant l'utilisation de shouldComponentUpdate"/></figure></p>
 
 Puisque `shouldComponentUpdate` a renvoyé `false` pour le sous-arbre d'origine C2, React n'a pas tenté de faire le rendu de C2, et n'a pas invoqué non plus `shouldComponentUpdate` sur C4 et C5.
 
@@ -289,7 +293,7 @@ class CounterButton extends React.Component {
 }
 ```
 
-Dans ce code, `shouldComponentUpdate` vérifie simplement si `props.color` ou `state.count` ont changé. Dans le cas contraire, le composant n'est pas mis à jour. Si votre composant devient plus complexe, vous pourriez utiliser une approche similaire en procédant à une « comparaison superficielle » *(shallow comparison, NdT)* de tous les champs de `props` et `state` afin de déterminer si le composant doit être mis à jour. Ce modèle est suffisamment fréquent pour que React nous y aide : on hérite simplement de `React.PureComponent`. Ce code est donc une façon plus simple de réaliser la même chose :
+Dans ce code, `shouldComponentUpdate` vérifie simplement si `props.color` ou `state.count` ont changé. Dans le cas contraire, le composant n'est pas mis à jour. Si votre composant devient plus complexe, vous pourriez utiliser une approche similaire en procédant à une « comparaison superficielle » *(shallow comparison, NdT)* de tous les champs de `props` et `state` afin de déterminer si le composant doit être mis à jour. Ce modèle est suffisamment fréquent pour que React nous y aide : on hérite simplement de `React.PureComponent`. Ce code est donc une façon plus simple de réaliser la même chose :
 
 ```js
 class CounterButton extends React.PureComponent {
@@ -348,11 +352,11 @@ class WordAdder extends React.Component {
 }
 ```
 
-Le problème est que `PureComponent` va faire une comparaison référentielle entre l'ancienne et la nouvelle valeur de `this.props.words`. Dans la mesure où ce code modifie directement le tableau `words` dans la méthode `handleClick` de `WordAdder`, l’anciennes et la nouvelle valeurs de `this.props.words` sont considérées comme équivalentes (même objet en mémoire), bien que les mots dans le tableau aient été modifiés. Le composant `ListOfWords` ne sera pas mis à jour, même s'il devrait afficher de nouveaux mots.
+Le problème est que `PureComponent` va faire une comparaison référentielle entre l'ancienne et la nouvelle valeur de `this.props.words`. Dans la mesure où ce code modifie directement le tableau `words` dans la méthode `handleClick` de `WordAdder`, l’ancienne et la nouvelle valeurs de `this.props.words` sont considérées comme équivalentes (même objet en mémoire), bien que les mots dans le tableau aient été modifiés. Le composant `ListOfWords` ne sera pas mis à jour, même s'il devrait afficher de nouveaux mots.
 
 ## La puissance des données immuables {#the-power-of-not-mutating-data}
 
-La façon la plus simple d'éviter ce problème et d'éviter de modifier directement les valeurs que vous utilisez dans les props ou l’état local. Par exemple, la méthode `handleClick` au-dessus pourrait être réécrite en utilisant `concat` de cette façon :
+La façon la plus simple d'éviter ce problème consiste à éviter de modifier directement les valeurs que vous utilisez dans les props ou l’état local. Par exemple, la méthode `handleClick` au-dessus pourrait être réécrite en utilisant `concat` comme suit :
 
 ```javascript
 handleClick() {
@@ -409,7 +413,7 @@ L'utilisation d'[Immutable.js](https://github.com/facebook/immutable-js) est une
 * *Persistantes* : de nouvelles collections peuvent être créées à partir d'une ancienne collection et d'une mutation telle que `set`. La collection d'origine reste valide une fois la nouvelle collection créée.
 * *Partage structurel* : les nouvelles collections sont créées en utilisant au maximum la structure de la collection d'origine, réduisant la copie au minimum pour améliorer les performances.
 
-L'immutabilité rend le suivi des modifications peu coûteux. Un changement résultera toujours en un nouvel objet, nous n'avons alors qu'à vérifier si la référence de l'objet a changé. Par exemple, dans ce code JavaScript classique :
+L'immutabilité rend le suivi des modifications peu coûteux. Un changement résultera toujours en un nouvel objet, nous n'avons alors qu'à vérifier si la référence de l'objet a changé. Par exemple, prenons ce code JavaScript classique :
 
 ```javascript
 const x = { foo: 'bar' };
@@ -433,4 +437,4 @@ Dans ce cas, puisqu'une nouvelle référence est renvoyée quand on modifie `x`,
 
 Les deux autres bibliothèques qui facilitent l'utilisation des données immuables sont [seamless-immutable](https://github.com/rtfeldman/seamless-immutable) et [immutability-helper](https://github.com/kolodny/immutability-helper).
 
-Les structures de données immuables vous offrent un moyen peu coûteux de suivre les modifications apportées aux objets. C'est tout ce dont nous avons besoin pour implémenter `shouldComponentUpdate`. Ça peut souvent contribuer à une amélioration notable des performances.
+Les structures de données immuables vous offrent un moyen peu coûteux de suivre les modifications apportées aux objets. C'est tout ce dont nous avons besoin pour implémenter la méthode `shouldComponentUpdate`. Ça peut souvent contribuer à améliorer significativement les performances.
