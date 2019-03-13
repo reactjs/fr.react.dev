@@ -37,7 +37,7 @@ Les avertissements de développement n'affecteront pas le comportement d'exécut
 
 ### Qu'est ce qui constitue une rupture de compatibilité ? {#what-counts-as-a-breaking-change}
 
-En général, nous *ne* supprimons *pas* le numéro de version majeur pour les modifications apportées à:
+En général, nous *n’élevons pas* le numéro de version majeure pour les modifications apportées aux aspects suivants :
 
 * **Avertissements de développement.** Depuis que celles-ci n'affectent pas le comportement de production, nous pouvons ajouter de nouveaux avertissements ou modifier les avertissements existants entre les versions majeures. En fait, c’est ce qui nous permet, d’être averti de manière fiable, des changements à venir. In fact, this is what allows us to reliably warn about upcoming breaking changes.
 * **API commençant par `unstable_`.** Celles-ci sont fournies en tant que fonctionnalités expérimentales  et nous ne sommes pas encore satisfaits de leurs API. En les publiant avec un préfixe `unstable_`, nous pouvons itérer plus rapidement dessus et obtenir une API stable plus tôt.
