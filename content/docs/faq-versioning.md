@@ -20,7 +20,7 @@ Les versions majeures peuvent également contenir de nouvelles fonctionnalités,
 
 Personne n’aime perdre en compatibilité ascendante, nous essayons donc de minimiser le nombre de versions majeures ; par exemple, React 15 est sorti en avril 2016 et React 16 en septembre 2017 ; React 17 n'est pas prévu avant 2019. 
 
-Et cela, du fait que nous publions les nouvelles fonctionnalités dans des versions mineures. Celles-ci sont souvent plus intéressantes et convaincantes que les majeures, malgré leur nom modeste.
+Au lieu de ça, nous publions les nouvelles fonctionnalités dans des versions mineures. Celles-ci sont souvent plus intéressantes et motivantes que les majeures, malgré leur nom modeste.
 
 ### Sélection des versions stable {#commitment-to-stability}
 
