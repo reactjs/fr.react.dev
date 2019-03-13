@@ -16,7 +16,7 @@ React suit les principes de [gestion sémantique de version (semver)](https://se
 
 Les versions majeures peuvent également contenir de nouvelles fonctionnalités, et toute version peut inclure des corrections de bugs.  
 
-### Dernières modifications {#breaking-changes}
+### Ruptures de compatibilité ascendante {#breaking-changes}
 
 Les dernières modifications sont un inconvénient pour tout le monde. Nous essayons donc de réduire le nombre de versions majeures - par exemple, React 15 a été publié en avril 2016 et React 16 en septembre 2017; React 17 n'est pas prévu avant 2019. 
 
