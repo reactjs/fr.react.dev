@@ -4,15 +4,15 @@ title: Réconciliation
 permalink: docs/reconciliation.html
 ---
 
-React fournit une API déclarative afin que vous n'ayez pas à vous soucier de savoir ce qui change exactement lors de chaque mise à jour. Ça facilite grandement l'écriture d'applications, mais la manière dont React s’y prend n'est pas forcément évidente. Cet article explique les choix que nous avons faits dans l'algorithme de comparaison de façon à rendre prévisibles les mises à jour des composants tout en étant suffisamment rapides pour des applications à hautes performances.
+React fournit une API déclarative afin que vous n'ayez pas à vous soucier de savoir ce qui change exactement lors de chaque mise à jour. Ça facilite grandement l'écriture d'applications, mais la manière dont React s’y prend n'est pas forcément évidente. Cet article explique les choix que nous avons faits dans l'algorithme de comparaison de façon à rendre prévisibles les mises à jour des composants tout en restant suffisamment rapide pour des applications à hautes performances.
 
 ## Raisons {#motivation}
 
 Quand vous utilisez React, à chaque instant précis vous pouvez considérer que la fonction `render()` crée un arbre d'éléments React. Lors de la mise à jour suivante de l’état local ou des props, cette fonction `render()` renverra un arbre différent d'éléments React. React doit alors déterminer comment mettre efficacement à jour l'interface utilisateur (UI) pour qu'elle corresponde à l'arbre le plus récent.
 
-Il existe des solutions génériques à ce problème algorithmique consistant à générer le nombre minimal d'opérations pour transformer un arbre en un autre. Néanmoins, [les algorithmes à la pointe de l'état de l'art](http://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf) (en anglais) ont une complexité de l'ordre de O(n<sup>3</sup>) où n est le nombre d'éléments dans l'arbre.
+Il existe des solutions génériques à ce problème algorithmique consistant à générer le nombre minimal d'opérations pour transformer un arbre en un autre. Néanmoins, [les algorithmes à la pointe de l'état de l'art](http://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf) (en anglais) ont une complexité de l'ordre de _O(n<sup>3</sup>)_ où _n_ est le nombre d'éléments dans l'arbre.
 
-Si nous les utilisions dans React, l'affichage de 1 000 éléments nécessiterait environ un milliard d'opérations. C’est beaucoup trop coûteux. React implémente plutôt un algorithme heuristique en O(n) basé sur deux hypothèses :
+Si nous les utilisions dans React, l'affichage de 1 000 éléments nécessiterait environ un milliard d'opérations. C’est beaucoup trop coûteux. React implémente plutôt un algorithme heuristique en _O(n)_ basé sur deux hypothèses :
 
 1. Deux éléments de types différents produiront des arbres différents.
 2. Le développeur peut indiquer quels éléments peuvent être stables d’un rendu à l’autre grâce à la prop `key`.
@@ -55,7 +55,7 @@ Lors de la comparaison entre deux éléments DOM React de même type, React exam
 
 En comparant ces deux éléments, React sait qu'il ne faut modifier que le `className` du nœud DOM sous-jacent.
 
-Lors d'une mise à jour du `style`, React sait aussi ne mettre à jour que les propriétés qui ont changé. Par exemple :
+Lors d'une mise à jour du `style`, React là aussi sait ne mettre à jour que les propriétés qui ont changé. Par exemple :
 
 ```xml
 <div style={{color: 'red', fontWeight: 'bold'}} />
@@ -146,12 +146,11 @@ Les tris peuvent également causer des problèmes avec les états des composants
 
 ## Compromis {#tradeoffs}
 
-Rappelez-vous bien que l'algorithme de réconciliation est un détail d'implémentation. React pourrait rafraîchir  l'ensemble de l'application à chaque action ; le résultat final serait le même. Pour être clair, rafraîchir dans ce contexte signifie appeler `render` sur tous les composants, ça ne signifie pas que React les démontera et remontera. Il n'appliquera que les différences obtenues en suivant les règles énoncées dans les sections précédentes.
+Rappelez-vous bien que l'algorithme de réconciliation est un détail d'implémentation. React pourrait rafraîchir  l'ensemble de l'application à chaque action ; le résultat final serait le même. Pour être clair, rafraîchir dans ce contexte signifie appeler `render` sur tous les composants, ça ne signifie pas que React les démontera et remontera. Il n'appliquera que les différences obtenues en suivant les règles énoncées dans les sections précédentes.
 
 Nous affinons régulièrement les heuristiques afin d'accélérer les cas d'usage courants. Dans l'implémentation actuelle, vous pouvez exprimer le fait qu'un sous-arbre a été déplacé parmi ses frères, mais vous ne pouvez pas dire qu'il a été déplacé ailleurs. L'algorithme va refaire le rendu de l'ensemble du sous-arbre.
 
 Puisque React se repose sur des heuristiques, si les hypothèses derrière celles-ci s’avèrent erronées, ça réduira les performances.
 
-1. L'algorithme n'essaiera pas de faire correspondre des sous-arbres de types de composants différents. Si vous êtes amenés à alterner entre deux types de composants au rendu très similaire, vous devriez peut-être en faire un type unique. En pratique, nous ne considérons pas ça comme un problème.
-
+1. L'algorithme n'essaiera pas de faire correspondre des sous-arbres de types de composants différents. Si vous êtes amené·e à alterner entre deux types de composants au rendu très similaire, vous devriez peut-être en faire un type unique. En pratique, nous ne considérons pas ça comme un problème.
 2. Les clés doivent être stables, prévisibles et uniques. Des clés instables (comme celles produites par `Math.random()`) entraîneront la re-création superflue de nombreuses instances de composants et de nœuds DOM, ce qui peut dégrader les performances et perdre l'état local des composants enfants.
