@@ -39,7 +39,7 @@ Les avertissements de développement n'affecteront pas le comportement d'exécut
 
 En général, nous *n’élevons pas* le numéro de version majeure pour les modifications apportées aux aspects suivants :
 
-* **Avertissements de développement.** Depuis que celles-ci n'affectent pas le comportement de production, nous pouvons ajouter de nouveaux avertissements ou modifier les avertissements existants entre les versions majeures. En fait, c’est ce qui nous permet, d’être averti de manière fiable, des changements à venir. In fact, this is what allows us to reliably warn about upcoming breaking changes.
+* **Avertissements de développement.** Dans la mesure où ils n'affectent pas le comportement de production, nous nous réservons le droit d’ajouter de nouveaux avertissements ou de modifier les avertissements existants entre les versions majeures. En fait, c’est ce qui nous permet de vous avertir de manière fiable des changements à venir.
 * **API commençant par `unstable_`.** Celles-ci sont fournies en tant que fonctionnalités expérimentales  et nous ne sommes pas encore satisfaits de leurs API. En les publiant avec un préfixe `unstable_`, nous pouvons itérer plus rapidement dessus et obtenir une API stable plus tôt.
 * **Versions alpha et canary de React.** 
 Nous fournissons des versions alpha de React afin de tester les nouvelles fonctionnalités à un stade précoce, mais nous avons besoin de la souplesse nécessaire pour apporter des modifications en fonction de ce que nous apprenons au cours de la période alpha. Si vous utilisez ces versions, notez que les API peuvent changer avant la version stable.
