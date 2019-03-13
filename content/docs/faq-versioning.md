@@ -35,7 +35,7 @@ Les versions de développement de React incluent de nombreux avertissements util
 
 Les avertissements de développement n'affecteront pas le comportement d'exécution de votre application. De cette façon, vous pouvez être sûr·e que votre application se comportera de la même façon entre les versions de développement et de production. La seule différence, c’est que la version de production n'émettra pas les avertissements et qu'elle sera plus efficace. (Si vous remarquez le contraire, veuillez créer une *issue* dans le dépôt GitHub.)  
 
-### Qu'est ce qui est comptabilisé pour dernières modifications? {#what-counts-as-a-breaking-change}
+### Qu'est ce qui constitue une rupture de compatibilité ? {#what-counts-as-a-breaking-change}
 
 En général, nous *ne* supprimons *pas* le numéro de version majeur pour les modifications apportées à:
 
