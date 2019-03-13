@@ -1,59 +1,57 @@
 ---
 id: react-without-jsx
-title: React Without JSX
+title: React sans JSX
 permalink: docs/react-without-jsx.html
 ---
 
-JSX is not a requirement for using React. Using React without JSX is especially convenient when you don't want to set up compilation in your build environment.
+Vous n'êtes pas obligé·e d'employer JSX pour utiliser React. React sans JSX vous dispense de configurer votre environnement de travail pour gérer la compilation de votre code.
 
-Each JSX element is just syntactic sugar for calling `React.createElement(component, props, ...children)`. So, anything you can do with JSX can also be done with just plain JavaScript.
+Chaque élément JSX n'est rien de plus que du sucre syntaxique pour `React.createElement(component, props, ...children)`. Par conséquent, tout ce que vous pouvez faire avec JSX peut aussi être réalisé en Javascript brut.
 
-For example, this code written with JSX:
-
-```js
-class Hello extends React.Component {
-  render() {
-    return <div>Hello {this.props.toWhat}</div>;
-  }
-}
-
-ReactDOM.render(
-  <Hello toWhat="World" />,
-  document.getElementById('root')
-);
-```
-
-can be compiled to this code that does not use JSX:
+Prenons par exemple ce code écrit avec JSX :
 
 ```js
 class Hello extends React.Component {
   render() {
-    return React.createElement('div', null, `Hello ${this.props.toWhat}`);
+    return <div>Bonjour {this.props.toWhat}</div>;
   }
 }
 
 ReactDOM.render(
-  React.createElement(Hello, {toWhat: 'World'}, null),
+  <Hello toWhat="monde" />,
   document.getElementById('root')
 );
 ```
 
-If you're curious to see more examples of how JSX is converted to JavaScript, you can try out [the online Babel compiler](babel://jsx-simple-example).
+Il peut être compilé vers ce code qui n'utilise pas JSX :
 
-The component can either be provided as a string, or as a subclass of `React.Component`, or a plain function for stateless components.
+```js
+class Hello extends React.Component {
+  render() {
+    return React.createElement('div', null, `Bonjour ${this.props.toWhat}`);
+  }
+}
 
-If you get tired of typing `React.createElement` so much, one common pattern is to assign a shorthand:
+ReactDOM.render(
+  React.createElement(Hello, {toWhat: 'monde'}, null),
+  document.getElementById('root')
+);
+```
+
+Si vous voulez voir plus d'exemples de conversion de code JSX en JavaScript brut, vous pouvez essayer [le compilateur Babel en ligne](babel://jsx-simple-example).
+
+Le composant peut être soit une chaîne de caractères, soit une sous-classe de `React.Component`, soit une fonction simple pour les composants sans état.
+
+Si vous n'avez pas envie de taper `React.createElement` à chaque fois, vous pouvez à la place créer un raccourci :
 
 ```js
 const e = React.createElement;
 
 ReactDOM.render(
-  e('div', null, 'Hello World'),
+  e('div', null, 'Bonjour, monde'),
   document.getElementById('root')
 );
 ```
+Si vous utilisez un tel raccourci pour `React.createElement`, utiliser React sans JSX devient presque aussi pratique.
 
-If you use this shorthand form for `React.createElement`, it can be almost as convenient to use React without JSX.
-
-Alternatively, you can refer to community projects such as [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) and [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) which offer a terser syntax.
-
+Dans le même esprit, vous pouvez aller regarder des projets tels que [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) ou [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers), qui proposent une syntaxe encore plus concise.
