@@ -4,7 +4,7 @@ title: Props de rendu
 permalink: docs/render-props.html
 ---
 
-Le terme [« prop de rendu »](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) _(render prop, NdT)_ fait référence à une technique qui consiste à partager du code entre des composants React en utilisant une propriété dont la valeur est une fonction.
+Le terme [« prop de rendu »](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) _(render prop, NdT)_ fait référence à une technique qui consiste à partager du code entre des composants React en utilisant une prop dont la valeur est une fonction.
 
 Un composant avec une prop de rendu prend une fonction qui renvoie un élément React et l'appelle au lieu d'implémenter sa propre logique de rendu.
 
@@ -16,11 +16,11 @@ Un composant avec une prop de rendu prend une fonction qui renvoie un élément 
 
 Des bibliothèques telles que [React Router](https://reacttraining.com/react-router/web/api/Route/render-func) et [Downshift](https://github.com/paypal/downshift) utilisent ces props de rendu.
 
-Dans cette page, nous verrons en quoi les props de rendu sont pratiques, et comment écrire les vôtres.
+Dans cette page, nous verrons en quoi les props de rendu sont pratiques, et comment vous pouvez écrire les vôtres.
 
 ## Utiliser les props de rendu pour des questions transversales {#use-render-props-for-cross-cutting-concerns}
 
-Les composants sont l'unité de base de réutilisation du code dans React, mais il n'est pas toujours évident de partager l'état ou le comportement contenu dans un composant avec d'autres composants qui auraient besoin de ce même état.
+Les composants sont l'unité de base de réutilisation de code dans React, mais il n'est pas toujours évident de partager l'état ou le comportement contenu dans un composant avec d'autres composants qui auraient besoin de ce même état.
 
 Par exemple, le composant suivant piste la position de la souris dans une application web :
 
@@ -42,7 +42,7 @@ class MouseTracker extends React.Component {
   render() {
     return (
       <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
-        <h1>Déplacez votre souris sur l'écran !</h1>
+        <h1>Déplacez votre souris sur l’écran !</h1>
         <p>La position actuelle de la souris est ({this.state.x}, {this.state.y})</p>
       </div>
     );
@@ -50,9 +50,9 @@ class MouseTracker extends React.Component {
 }
 ```
 
-Lorsque le curseur se déplace sur l'écran, le composant affiche ses coordonnées (x,y) dans un `<p>`.
+Lorsque le curseur se déplace sur l’écran, le composant affiche ses coordonnées (x,y) dans un élément `<p>`.
 
-La question qui se pose maintenant est : comment pouvons-nous réutiliser ce comportement dans un autre composant ? En d'autres termes, si un autre composant a besoin de connaître la position du curseur, pouvons-nous encapsuler ce comportement pour pouvoir facilement le partager avec ce composant ?
+La question qui se pose maintenant est : comment pouvons-nous réutiliser ce comportement dans un autre composant ? En d'autres termes, si un autre composant a besoin de connaître la position du curseur, pouvons-nous encapsuler ce comportement pour pouvoir facilement le partager avec ce composant ?
 
 Puisque les composants sont l'unité de réutilisation de code dans React, essayons de refactoriser un peu le code pour pouvoir utiliser un composant `<Mouse>` qui encapsule le comportement dont nous avons besoin ailleurs.
 
@@ -87,7 +87,7 @@ class MouseTracker extends React.Component {
   render() {
     return (
       <div>
-        <h1>Déplacez votre souris sur l'écran !</h1>
+        <h1>Déplacez votre souris sur l’écran !</h1>
         <Mouse />
       </div>
     );
@@ -97,7 +97,7 @@ class MouseTracker extends React.Component {
 
 Le composant `<Mouse>` encapsule maintenant tous les comportements associés à l'écoute des événements `mousemove` et à la sauvegarde de la position (x, y) du curseur, mais il n'est pas encore tout à fait réutilisable.
 
-Par exemple, supposons que nous avons un composant `<Cat>` qui affiche une image de chat pourchassant une souris sur l'écran. Nous pourrions utiliser une prop `<Cat mouse={{ x, y }}>` pour transmettre au composant les coordonnées de la souris pour qu'il sache où positionner l'image sur l'écran.
+Par exemple, supposons que nous avons un composant `<Cat>` qui affiche une image de chat pourchassant une souris sur l’écran. Nous pourrions utiliser une prop `mouse`, comme dans `<Cat mouse={{ x, y }}>`, pour transmettre au composant les coordonnées de la souris pour qu'il sache où positionner l'image sur l’écran.
 
 Au premier essai, vous tenteriez peut-être d’afficher `<Cat>` *dans la méthode `render` de `<Mouse>`*, comme ceci :
 
@@ -132,7 +132,7 @@ class MouseWithCat extends React.Component {
         {/*
           Nous pourrions simplement remplacer le <p> par un <Cat> ici...
           mais nous devrions alors créer un composant séparé
-          <MouseWithSomethingElse> chaque fois que nous voudrions l'utiliser,
+          <MouseWithSomethingElse> chaque fois que nous voudrions l'utiliser.
           <MouseWithCat> n'est donc pas si réutilisable que ça pour le moment.
         */}
         <Cat mouse={this.state} />
@@ -145,7 +145,7 @@ class MouseTracker extends React.Component {
   render() {
     return (
       <div>
-        <h1>Déplacez votre souris sur l'écran !</h1>
+        <h1>Déplacez votre souris sur l’écran !</h1>
         <MouseWithCat />
       </div>
     );
@@ -199,7 +199,7 @@ class MouseTracker extends React.Component {
   render() {
     return (
       <div>
-        <h1>Déplacez votre souris sur l'écran !</h1>
+        <h1>Déplacez votre souris sur l’écran !</h1>
         <Mouse render={mouse => (
           <Cat mouse={mouse} />
         )}/>
@@ -269,11 +269,11 @@ Mouse.propTypes = {
 
 ## Limitations {#caveats}
 
-### Soyez prudents lors de l'utilisation de props de rendu avec React.PureComponent {#be-careful-when-using-render-props-with-reactpurecomponent}
+### Soyez prudent·e lors de l'utilisation de props de rendu avec React.PureComponent {#be-careful-when-using-render-props-with-reactpurecomponent}
 
-Utiliser une prop de rendu peut contrebalancer l'avantage apporté par l'utilisation de [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) si vous créez la fonction dans une méthode `render`. C’est dû au fait que la comparaison superficielle des propriétés renverra toujours `false` pour les nouvelles props, et que dans ce cas chaque `render` génèrera une nouvelle valeur pour la prop de rendu.
+Utiliser une prop de rendu peut contrebalancer l'avantage apporté par l'utilisation de [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) si vous créez la fonction dans une méthode `render`. C’est dû au fait que la comparaison superficielle des props renverra toujours `false` pour les nouvelles props, et que dans ce cas chaque `render` génèrera justement une nouvelle valeur pour la prop de rendu.
 
-Par exemple, en gardant l'exemple de notre composant `<Mouse>`, si `Mouse` étendait `React.PureComponent` au lieu de `React.Component`, notre exemple ressemblerait alors à ça :
+Pour revenir sur l'exemple de notre composant `<Mouse>`, si `Mouse` étendait `React.PureComponent` au lieu de `React.Component`, notre exemple ressemblerait à ça :
 
 ```js
 class Mouse extends React.PureComponent {
@@ -284,7 +284,7 @@ class MouseTracker extends React.Component {
   render() {
     return (
       <div>
-        <h1>Déplacez votre souris sur l'écran !</h1>
+        <h1>Déplacez votre souris sur l’écran !</h1>
 
         {/*
           Il ne faut pas faire ça ! La valeur de la prop `render`
@@ -305,8 +305,8 @@ Pour éviter ce problème; vous pouvez parfois définir la prop comme une métho
 
 ```js
 class MouseTracker extends React.Component {
-  // Définie comme une méthode d'instance, `this.renderTheCat` se réfèrera
-  // toujours à la *même* fonction quand nous l'utiliserons dans le rendu
+  // Définie comme une méthode d’instance, `this.renderTheCat` se réfèrera
+  // toujours à la *même* fonction quand nous l‘utiliserons dans le rendu.
   renderTheCat(mouse) {
     return <Cat mouse={mouse} />;
   }
@@ -314,7 +314,7 @@ class MouseTracker extends React.Component {
   render() {
     return (
       <div>
-        <h1>Déplacez votre souris sur l'écran !</h1>
+        <h1>Déplacez votre souris sur l’écran !</h1>
         <Mouse render={this.renderTheCat} />
       </div>
     );
@@ -322,4 +322,4 @@ class MouseTracker extends React.Component {
 }
 ```
 
-Dans les cas où vous ne pourrez pas définir la prop de manière statique (ex. parce qu’elle utilise des valeurs locales à `render`), `<Mouse>` devrait plutôt étendre `React.Component`.
+Dans les cas où vous ne pourriez pas définir la prop de manière statique (ex. parce qu’elle utilise des valeurs locales à `render`), `<Mouse>` devrait plutôt étendre `React.Component`.
