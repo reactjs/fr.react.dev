@@ -6,7 +6,7 @@ layout: docs
 category: FAQ
 ---
 
-React suit les principes de [sémantique de version (semver)](https://semver.org/lang/fr/).
+React suit les principes de [gestion sémantique de version (semver)](https://semver.org/lang/fr/).
 
 Cela signifie qu'avec un numéro de version de type **x.y.z**:
 
