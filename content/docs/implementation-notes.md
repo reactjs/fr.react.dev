@@ -48,9 +48,9 @@ Si `App` est une fonction, le réconciliateur appellera `App(props)` pour obteni
 
 Si `App` est une classe, le réconciliateur instanciera une `App` avec `new App(props)`, appellera la méthode `componentWillMount()` du cycle de vie, puis appellera la méthode `render()` pour obtenir l'élément rendu.
 
-Dans les deux cas, le réconciliateur saura que l'élément `App` « fait le rendu à ».
+Dans les deux cas, le réconciliateur saura quel élément « a été produit par le rendu de » `App`.
 
-Ce processus est récursif. `App` peut faire le rendu à `<Greeting />`, `Greeting` peut faire le rendu à `<Button />`, et ensuite de suite. Le réconciliateur « explorera » de manière récursive les composants définis par l'utilisateur, et saura ainsi à quoi chaque composant fait le rendu.
+Ce processus est récursif. Le rendu de `App` peut produire un `<Greeting />`, le rendu de `Greeting` peut produire un `<Button />`, et ainsi de suite. Le réconciliateur « s’enfoncera » de manière récursive dans les composants définis par l'utilisateur, et saura ainsi ce que produit le rendu de chacun.
 
 Vous pouvez imaginer ce processus comme un pseudo-code :
 
@@ -219,7 +219,7 @@ function mount(element) {
     // Composants définis par l'utilisateur
     return mountComposite(element);
   } else if (typeof type === 'string') {
-    // Composants de plateformes spécifiques
+    // Composants des plateformes spécifiques
     return mountHost(element);
   }
 }
@@ -231,23 +231,23 @@ rootEl.appendChild(node);
 
 Cela fonctionne mais ça reste loin de la manière dont le réconciliateur est réellement implémenté. L’ingrédient clé manquant est la prise en charge des mises à jour.
 
-### Introducing Internal Instances {#introducing-internal-instances}
+### Introduction aux instances internes {#introducing-internal-instances}
 
-The key feature of React is that you can re-render everything, and it won't recreate the DOM or reset the state:
+La principale caractéristique de React est que vous pouvez refaire tout le rendu sans recréer le DOM ni réinitialiser l'état :
 
 ```js
 ReactDOM.render(<App />, rootEl);
-// Should reuse the existing DOM:
+// Devrait réutiliser le DOM existant :
 ReactDOM.render(<App />, rootEl);
 ```
 
-However, our implementation above only knows how to mount the initial tree. It can't perform updates on it because it doesn't store all the necessary information, such as all the `publicInstance`s, or which DOM `node`s correspond to which components.
+Cependant, notre implémentation ci-dessus sait uniquement monter l'arbre initial. Elle ne peut pas effectuer de mises à jour dans l'arborescence car elle ne stocke pas toutes les informations nécessaires, telles que toutes les `publicInstance`s, ni les nœuds DOM qui correspond aux composants.
 
-The stack reconciler codebase solves this by making the `mount()` function a method and putting it on a class. There are drawbacks to this approach, and we are going in the opposite direction in the [ongoing rewrite of the reconciler](/docs/codebase-overview.html#fiber-reconciler). Nevertheless this is how it works now.
+La base de code du réconciliateur de pile résout ce problème en faisant de la fonction `mount()` une méthode et en la plaçant dans une classe. Cette approche présente des inconvénients et nous allons dans la direction opposée de la [réécriture actuelle du réconciliateur](/docs/codebase-overview.html#fiber-reconciler). Cependant, voici comment cela fonctionne aujourd'hui.
 
-Instead of separate `mountHost` and `mountComposite` functions, we will create two classes: `DOMComponent` and `CompositeComponent`.
+Plutôt que deux fonctions distinctes `mountHost` et `mountComposite`, nous créerons deux classes : `DOMComponent` et `CompositeComponent`.
 
-Both classes have a constructor accepting the `element`, as well as a `mount()` method returning the mounted node. We will replace a top-level `mount()` function with a factory that instantiates the correct class:
+Les deux classes ont un constructeur acceptant `element`, ainsi qu'une méthode `mount()` qui renvoie le nœud monté. Nous remplacerons une fonction `mount()` de haut niveau avec une _factory_ qui instanciera la bonne classe :
 
 ```js
 function instantiateComponent(element) {
@@ -256,13 +256,13 @@ function instantiateComponent(element) {
     // Composants définis par l'utilisateur
     return new CompositeComponent(element);
   } else if (typeof type === 'string') {
-    // Composants de plateformes spécifiques
+    // Composants des plateformes spécifiques
     return new DOMComponent(element);
   }  
 }
 ```
 
-First, let's consider the implementation of `CompositeComponent`:
+Tout d’abord, examinons l'implémentation de `CompositeComponent` :
 
 ```js
 class CompositeComponent {
@@ -273,7 +273,7 @@ class CompositeComponent {
   }
 
   getPublicInstance() {
-    // For composite components, expose the class instance.
+    // Pour les composants composite, exposer l'instance de la classe.
     return this.publicInstance;
   }
 
@@ -300,30 +300,30 @@ class CompositeComponent {
       renderedElement = type(props);
     }
 
-    // Save the public instance
+    // Sauvegarder l'instance publique
     this.publicInstance = publicInstance;
 
-    // Instantiate the child internal instance according to the element.
-    // It would be a DOMComponent for <div /> or <p />,
-    // and a CompositeComponent for <App /> or <Button />:
+    // Instantier l'instance interne de l'enfant en fonction de l'élément.
+    // Ce sera un DOMComponent pour <div /> ou <p />,
+    // et un CompositeComponent pour <App /> ou <Button /> :
     var renderedComponent = instantiateComponent(renderedElement);
     this.renderedComponent = renderedComponent;
 
-    // Mount the rendered output
+    // Monter la valeur de sortie rendue
     return renderedComponent.mount();
   }
 }
 ```
 
-This is not much different from our previous `mountComposite()` implementation, but now we can save some information, such as `this.currentElement`, `this.renderedComponent`, and `this.publicInstance`, for use during updates.
+Ce n'est pas très différent de notre précédente implémentation de `mountComposite()`, mais maintenant, nous pouvons sauver certaines informations, telles que `this.currentElement`, `this.renderedComponent` et `this.publicInstance`, pour une utilisation pendant les mises à jour.
 
-Note that an instance of `CompositeComponent` is not the same thing as an instance of the user-supplied `element.type`. `CompositeComponent` is an implementation detail of our reconciler, and is never exposed to the user. The user-defined class is the one we read from `element.type`, and `CompositeComponent` creates an instance of it.
+Notez qu’une instance de `CompositeComponent` n’est pas la même chose qu’une instance de `element.type` fourni par l'utilisateur. `CompositeComponent` est un détail d'implémentation de notre réconciliateur et n'est jamais exposé à l'utilisateur. La classe définie par l'utilisateur est celle que nous avons lu dans `element.type`, et `CompositeComponent` crée une instance de celle-ci.
 
-To avoid the confusion, we will call instances of `CompositeComponent` and `DOMComponent` "internal instances". They exist so we can associate some long-lived data with them. Only the renderer and the reconciler are aware that they exist.
+Pour éviter toute confusion, nous appellerons les instances `CompositeComponent` et `DOMComponent`, « des instances internes ». Leur existence permet de leur associer des données de longue durée. Seuls le moteur de rendu et le réconciliateur savent qu'elles existent.
 
-In contrast, we call an instance of the user-defined class a "public instance". The public instance is what you see as `this` in the `render()` and other methods of your custom components.
+En revanche, nous appelons une instance de classe définie par l'utilisateur, une « instance publique ». L'instance publique, c'est ce que vous voyez sous la forme `this` dans `render()` et d'autres méthodes de vos composants personnalisés.
 
-The `mountHost()` function, refactored to be a `mount()` method on `DOMComponent` class, also looks familiar:
+La fonction `mountHost()` a été refactorisée pour devenir la méthode `mount()` dans la classe `DOMComponent`, elle a l'air aussi familier :
 
 ```js
 class DOMComponent {
@@ -334,7 +334,7 @@ class DOMComponent {
   }
 
   getPublicInstance() {
-    // For DOM components, only expose the DOM node.
+    // Pour les composants DOM, exposer uniquement le nœud du DOM.
     return this.node;
   }
 
@@ -347,36 +347,36 @@ class DOMComponent {
       children = [children];
     }
 
-    // Create and save the node
+    // Créer et sauvegarder le nœud
     var node = document.createElement(type);
     this.node = node;
 
-    // Set the attributes
+    // Initialiser les attributs
     Object.keys(props).forEach(propName => {
       if (propName !== 'children') {
         node.setAttribute(propName, props[propName]);
       }
     });
 
-    // Create and save the contained children.
-    // Each of them can be a DOMComponent or a CompositeComponent,
-    // depending on whether the element type is a string or a function.
+    // Créer et sauvegarder les enfants contenus.
+    // Chacun d’eux peut être un DOMComponent ou un CompositeComponent,
+    // selon si le type de l'élément est une chaîne de caractère ou une fonction.
     var renderedChildren = children.map(instantiateComponent);
     this.renderedChildren = renderedChildren;
 
-    // Collect DOM nodes they return on mount
+    // Collecter les nœuds DOM qui sont renvoyés lors du montage
     var childNodes = renderedChildren.map(child => child.mount());
     childNodes.forEach(childNode => node.appendChild(childNode));
 
-    // Return the DOM node as mount result
+    // Renvoyer le nœud DOM comme résultat du montage
     return node;
   }
 }
 ```
 
-The main difference after refactoring from `mountHost()` is that we now keep `this.node` and `this.renderedChildren` associated with the internal DOM component instance. We will also use them for applying non-destructive updates in the future.
+La différence principale, après la refactorisation à partir de `mountHost()`, c’est que nous conservons maintenant `this.node` et `this.renderedChildren` associés à l'instance du composant DOM interne. Nous les utiliserons également à l'avenir pour appliquer des mises à jour non destructives.
 
-As a result, each internal instance, composite or host, now points to its child internal instances. To help visualize this, if a function `<App>` component renders a `<Button>` class component, and `Button` class renders a `<div>`, the internal instance tree would look like this:
+Par conséquent, chaque instance interne, composite ou hôte, pointe maintenant vers ses instances internes enfants. Pour vous aider à le visualiser, if a function `<App>` component renders a `<Button>` class component, and `Button` class renders a `<div>`, the internal instance tree would look like this:
 
 ```js
 [object CompositeComponent] {
@@ -394,36 +394,36 @@ As a result, each internal instance, composite or host, now points to its child 
 }
 ```
 
-In the DOM you would only see the `<div>`. However the internal instance tree contains both composite and host internal instances.
+Dans le DOM, vous ne voyez que le `<div>`. Cependant l’arborescence d’instance interne contient des instances internes de composite et d'hôte.
 
-The composite internal instances need to store:
+Les instances internes de composite doivent stocker :
 
-* The current element.
-* The public instance if element type is a class.
-* The single rendered internal instance. It can be either a `DOMComponent` or a `CompositeComponent`.
+* L'élément actuel.
+* L'instance publique si le type de l'élément est une classe.
+* La seule instance interne rendue. Il peut s'agir d'un `DOMComponent` ou un `CompositeComponent`.
 
-The host internal instances need to store:
+Les instances internes d'hôte doivent stocker :
 
-* The current element.
-* The DOM node.
-* All the child internal instances. Each of them can be either a `DOMComponent` or a `CompositeComponent`.
+* L'élément actuel.
+* Le nœud DOM.
+* Toutes les instances internes enfants. Chacune d’elles peut être soit un `DOMComponent` ou un `CompositeComponent`.
 
-If you're struggling to imagine how an internal instance tree is structured in more complex applications, [React DevTools](https://github.com/facebook/react-devtools) can give you a close approximation, as it highlights host instances with grey, and composite instances with purple:
+Si vous avez du mal à imaginer la structure d’une arborescence d’instances internes dans des applications plus complexes, [React DevTools](https://github.com/facebook/react-devtools) peut vous donner une bonne approximation, car il met en évidence les instances hôte en gris, et les instances composite en violet :
 
  <img src="../images/docs/implementation-notes-tree.png" width="500" style="max-width: 100%" alt="React DevTools tree" />
 
-To complete this refactoring, we will introduce a function that mounts a complete tree into a container node, just like `ReactDOM.render()`. It returns a public instance, also like `ReactDOM.render()`:
+Pour terminer cette refactorisation, nous allons introduire une fonction qui monte une arborescence complète dans un nœud de conteneur, tout comme `ReactDOM.render()`. Il renvoie une instance publique, également semblable à `ReactDOM.render()` :
 
 ```js
 function mountTree(element, containerNode) {
-  // Create the top-level internal instance
+  // Créer une instance interne de haut niveau
   var rootComponent = instantiateComponent(element);
 
-  // Mount the top-level component into the container
+  // Monter le composant de haut niveau dans le conteneur
   var node = rootComponent.mount();
   containerNode.appendChild(node);
 
-  // Return the public instance it provides
+  // Renvoyer l'instance publique fournie
   var publicInstance = rootComponent.getPublicInstance();
   return publicInstance;
 }
@@ -432,9 +432,9 @@ var rootEl = document.getElementById('root');
 mountTree(<App />, rootEl);
 ```
 
-### Unmounting {#unmounting}
+### Démontage {#unmounting}
 
-Now that we have internal instances that hold onto their children and the DOM nodes, we can implement unmounting. For a composite component, unmounting calls a lifecycle method and recurses.
+Maintenant que nous avons des instances internes qui conservent leurs enfants et les nœuds DOM, nous pouvons implémenter le démontage. Pour un composant composite, le démontage appelle une méthode du cycle de vie et il est récursif.
 
 ```js
 class CompositeComponent {
@@ -442,7 +442,7 @@ class CompositeComponent {
   // ...
 
   unmount() {
-    // Call the lifecycle method if necessary
+    // Appeler la méthode du cycle de vie si besoin
     var publicInstance = this.publicInstance;
     if (publicInstance) {
       if (publicInstance.componentWillUnmount) {
@@ -450,14 +450,14 @@ class CompositeComponent {
       }
     }
 
-    // Unmount the single rendered component
+    // Démonter l'unique composant rendu
     var renderedComponent = this.renderedComponent;
     renderedComponent.unmount();
   }
 }
 ```
 
-For `DOMComponent`, unmounting tells each child to unmount:
+Pour `DOMComponent`, le démontage appelle celui de chaque enfant :
 
 ```js
 class DOMComponent {
@@ -465,7 +465,7 @@ class DOMComponent {
   // ...
 
   unmount() {
-    // Unmount all the children
+    // Démonter tous les enfants
     var renderedChildren = this.renderedChildren;
     renderedChildren.forEach(child => child.unmount());
   }
