@@ -22,7 +22,7 @@ Personne n’aime perdre en compatibilité ascendante, nous essayons donc de min
 
 Au lieu de ça, nous publions les nouvelles fonctionnalités dans des versions mineures. Celles-ci sont souvent plus intéressantes et motivantes que les majeures, malgré leur nom modeste.
 
-### Sélection des versions stable {#commitment-to-stability}
+### Nos engagements en termes de stabilité {#commitment-to-stability}
 
 À mesure que nous apportons des changements sur React au fil du temps, nous essayons de réduire les efforts requis afin de tirer parti des nouvelles fonctionnalités. Du moment que c'est possible, nous gardons une vieille API fonctionnelle. Et même si ça implique de la placer dans un paquet séparé. Par exemple, [les mixins sont découragés depuis des années] (/ blog / 2016/07/13 / mixins-Considered-dangerous.html) mais ils sont pris en charge à ce jour [via create-react-class] (/ docs / react -without-es6.html # mixins) et de nombreuses bases de code continuent de les utiliser dans du code stable et hérité.
 
