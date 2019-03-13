@@ -40,7 +40,8 @@ npm install eslint-plugin-react-hooks
   ],
   "rules": {
     // ...
-    "react-hooks/rules-of-hooks": "error"
+    "react-hooks/rules-of-hooks": "error",   // Vérifie les règles des Hooks
+    "react-hooks/exhaustive-deps": "warning" // Vérifie les tableaux de dépendances
   }
 }
 ```
