@@ -29,7 +29,7 @@ Au lieu de ça, nous publions les nouvelles fonctionnalités dans des versions m
 Plus d'un million de développeurs utilisent React, qui maintiennent collectivement des millions de composants. La base de code de Facebook contient à elle seule plus de 50 000 composants React.
 Ça signifie que nous devons faciliter au maximum la mise à niveau vers les nouvelles versions de React ; si nous apportons des modifications importantes sans fournir d’aide à la migration, les utilisateurs resteront bloqués sur les anciennes versions. Nous testons ces approches de mise à niveau sur Facebook même : si notre équipe de moins de 10 personnes peut mettre à jour plus de 50 000 composants à elle seule, nous espérons que la mise à niveau sera gérable pour toute personne utilisant React. Dans de nombreux cas, nous écrivons des [scripts automatisés](https://github.com/reactjs/react-codemod) pour mettre à niveau la syntaxe des composants, que nous incluons ensuite dans la version libre de notre code source pour que chacun·e puisse les utiliser.
 
-### Mises à niveau graduelles avec avertissements {#gradual-upgrades-via-warnings}
+### Mises à niveau progressives grâce aux avertissements {#gradual-upgrades-via-warnings}
 
 Les versions de développement de React incluent de nombreux avertissements utiles. Dans la mesure du possible, nous ajoutons des avertissements en prévision de futurs changements radicaux. Ainsi, si votre application ne contient aucun avertissement sur la dernière version, elle sera compatible avec la prochaine version majeure. Cela vous permet de mettre à niveau vos applications composant par composant.
 
