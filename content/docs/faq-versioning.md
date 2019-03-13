@@ -8,7 +8,7 @@ category: FAQ
 
 React suit les principes de [gestion sémantique de version (semver)](https://semver.org/lang/fr/).
 
-Cela signifie qu'avec un numéro de version de type **x.y.z**:
+Ça signifie qu'avec un numéro de version de type **x.y.z** :
 
 * Nous effectuons une ** version majeure ** en modifiant le nombre ** x ** (ex: 15.6.2 à 16.0.0), lors de la publication de ** dernières modifications **.   
 * Nous effectuons une ** version mineure ** en modifiant le nombre ** y ** (ex: 15.6.2 à 15.7.0), lors de la publication de ** nouvelles fonctionnalités **.  
