@@ -4,7 +4,7 @@ title: Intégration avec d'autres bibliothèques
 permalink: docs/integrating-with-other-libraries.html
 ---
 
-React peut être utilisé dans n'importe quelle application Web. Il peut être intégré à d'autres applications et, avec un peu de soin, d'autres applications peuvent être intégrées à React. Ce guide examine certains des cas d'utilisation les plus courants, en se concentrant sur l'intégration avec [jQuery](https://jquery.com/) et [Backbone](https://backbonejs.org/), mais les mêmes idées peuvent être appliquées à l'intégration de composants à n'importe quel code existant.
+React peut être utilisé dans n'importe quelle application web. Il peut être intégré à d'autres applications et, avec un peu de soin, d'autres applications peuvent être intégrées à React. Ce guide examine certains des cas d'utilisation les plus courants, en se concentrant sur l'intégration avec [jQuery](https://jquery.com/) et [Backbone](https://backbonejs.org/), mais les mêmes idées peuvent être appliquées à l'intégration de composants à n'importe quel code existant.
 
 ## Intégration aux plugins de manipulation DOM {#integrating-with-dom-manipulation-plugins}
 
@@ -45,9 +45,9 @@ Notez que nous avons défini les deux [méthodes de cycle de vie](/docs/react-co
 
 Pour un exemple plus concret de ces concepts, écrivons un enrobage minimal pour le plugin [Chosen](https://harvesthq.github.io/chosen/), qui enrichit les champs `<select>`.
 
->**Note**
+>Remarque
 >
->Ça n’est pas parce que c’est possible qu'il s'agît de la meilleure approche pour les applications React. Nous vous encourageons à utiliser les composants React lorsque vous le pouvez. Les composants React sont plus faciles à réutiliser dans les applications React et permettent souvent de mieux contrôler leur comportement et leur apparence.
+>Ça n’est pas parce que c’est possible qu'il s'agit de la meilleure approche pour les applications React. Nous vous encourageons à utiliser les composants React lorsque vous le pouvez. Les composants React sont plus faciles à réutiliser dans les applications React et permettent souvent de mieux contrôler leur comportement et leur apparence.
 
 Tout d'abord, regardons ce que Chosen fait au DOM.
 
@@ -110,7 +110,7 @@ Notez que React n'attribue aucune signification particulière au champ `this.el`
 
 Ça suffit pour afficher notre composant, mais nous souhaitons également être informés des modifications de valeur. Pour ce faire, nous nous abonnerons à l'événement jQuery `change` sur le` <select>` géré par Chosen.
 
-Nous ne transmettrons pas `this.props.onChange` directement à Chosen, car les propriétés du composant peuvent changer avec le temps, ce qui inclut les gestionnaires d'événements. Au lieu de ça, nous allons déclarer une méthode `handleChange()` qui appelle `this.props.onChange`, et l'utilisons pour nous abonner à l'événement jQuery `change` :
+Nous ne transmettrons pas `this.props.onChange` directement à Chosen, car les props du composant peuvent changer avec le temps, ce qui inclut les gestionnaires d'événements. Au lieu de ça, nous allons déclarer une méthode `handleChange()` qui appelle `this.props.onChange`, et l'utiliserons pour nous abonner à l'événement jQuery `change` :
 
 ```js{5,6,10,14-16}
 componentDidMount() {
@@ -133,7 +133,7 @@ handleChange(e) {
 
 [**Essayez dans CodePen**](https://codepen.io/gaearon/pen/bWgbeE?editors=0010)
 
-Enfin, il reste encore une chose à faire. Dans React, les propriétés peuvent changer avec le temps. Par exemple, le composant `<Chosen>` peut avoir différents enfants si l'état du composant parent change. Ça signifie qu’aux points d’intégration, il est important de mettre à jour manuellement le DOM en réponse aux mises à jour des props, car nous ne laissons plus React gérer le DOM pour nous.
+Enfin, il reste une dernière chose à faire. Dans React, les props peuvent changer avec le temps. Par exemple, le composant `<Chosen>` peut avoir différents enfants si l'état du composant parent change. Ça signifie qu’aux points d’intégration, il est important de mettre à jour manuellement le DOM en réponse aux mises à jour des props, car nous ne laissons plus React gérer le DOM pour nous.
 
 La documentation de Chosen suggère que nous pouvons utiliser l'API `trigger()` de jQuery pour l'informer des modifications apportées à l'élément DOM d'origine. Nous laisserons React se charger de la mise à jour de `this.props.children` dans `<select>`, mais nous ajouterons également une méthode de cycle de vie `componentDidUpdate()` notifiant Chosen de tout changement dans la liste des enfants:
 
@@ -158,7 +158,7 @@ class Chosen extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.$el.on('change', this.handleChange);
   }
-  
+
   componentDidUpdate(prevProps) {
     if (prevProps.children !== this.props.children) {
       this.$el.trigger("chosen:updated");
@@ -169,7 +169,7 @@ class Chosen extends React.Component {
     this.$el.off('change', this.handleChange);
     this.$el.chosen('destroy');
   }
-  
+
   handleChange(e) {
     this.props.onChange(e.target.value);
   }
@@ -351,7 +351,7 @@ class List extends React.Component {
 
 ### Extraction de données à partir des modèles Backbone {#extracting-data-from-backbone-models}
 
-L'approche ci-dessus nécessite que vos composants React soient conscients des modèles et des collections Backbone. Si vous envisagez par la suite de migrer vers une autre solution de gestion de données, vous voudrez peut-être concentrer les connaissances sur Backbone dans le moins de parties possibles du code.
+L'approche ci-dessus nécessite que vos composants React soient conscients des modèles et des collections Backbone. Si vous envisagez par la suite de migrer vers une autre solution de gestion de données, vous voudrez peut-être concentrer les connaissances sur Backbone dans le moins possible de parties du code.
 
 Une solution à ce problème consiste à extraire les attributs du modèle sous forme de données simples à chaque modification, et à conserver cette logique en un seul endroit. Ce qui suit est [un composant d'ordre supérieur](/docs/higher-order-components.html) qui extrait tous les attributs d'un modèle Backbone et les stocke dans son état, pour finalement passer les données au composant enrobé.
 
