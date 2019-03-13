@@ -12,7 +12,7 @@ React suit les principes de [gestion sémantique de version (semver)](https://se
 
 * Pour publier des **modifications cassant la compatibilité ascendante**, nous changeons de **version majeure** en modifiant le nombre **x** (ex. 15.6.2 à 16.0.0).
 * Pour publier des **nouvelles fonctionnalités**, nous changeons de **version mineure** en modifiant le nombre **y** (ex. 15.6.2 à 15.7.0).
-* Nous effectuons un ** version de correctif **, en modifiant le nombre ** z ** (ex: 15.6.2 to 15.6.3) lors de la publication de ** corrections de bugs **.  
+* Pour publier des **corrections de bugs**, nous changeons de **version de correctif** en modifiant le nombre **z** (ex. 15.6.2 à 15.6.3).
 
 Les versions majeures peuvent également contenir de nouvelles fonctionnalités, et toute version peut inclure des corrections de bugs.  
 
