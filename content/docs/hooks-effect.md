@@ -8,7 +8,7 @@ prev: hooks-intro.html
 
 Les *Hooks* sont une nouveauté de React 16.8. Ils permettent de bénéficier d’un état local et d'autres fonctionnalités de React sans avoir à écrire de classes.
 
-L’*Effect Hook* permet l’exécution d’effets de bord dans les Fonctions Composants :
+Le *Hook d’effet* permet l’exécution d’effets de bord dans les fonctions composants :
 
 ```js{1,6-10}
 import React, { useState, useEffect } from 'react';
@@ -49,7 +49,7 @@ Parfois, nous souhaitons **exécuter du code supplémentaire après que React a 
 
 ### Exemple en utilisant les classes {#example-using-classes}
 
-Dans les composants React à base de classe, la méthode `render` ne devrait causer aucun effet de bord par elle-même. Ce serait trop tôt—ces effets ne sont utiles qu’*après* que React a mis à jour le DOM.
+Dans les composants React à base de classe, la méthode `render` ne devrait causer aucun effet de bord par elle-même. Ce serait trop tôt : ces effets ne sont utiles qu’*après* que React a mis à jour le DOM.
 
 C’est la raison pour laquelle, dans les classes React, nous plaçons les effets de bord dans les méthodes `componentDidMount` et `componentDidUpdate`. En reprenant notre exemple, voici un composant React à base de classe implémentant un compteur qui met à jour le titre du document juste après que React a modifié le DOM :
 
@@ -114,11 +114,11 @@ function Example() {
 }
 ```
 
-**Que fait `useEffect` ?** On utilise ce Hook pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage. React enregistre la fonction passée en paramètre (que nous appellerons « effet »), et l’appellera plus tard, après avoir mis à jour le DOM. L’effet ci-dessus met à jour le titre du document, mais il pourrait aussi bien récupérer des données distantes, ou appeler n’importe quelle autre API impérative.
+**Que fait `useEffect` ?** On utilise ce Hook pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage. React enregistre la fonction passée en argument (que nous appellerons « effet »), et l’appellera plus tard, après avoir mis à jour le DOM. L’effet ci-dessus met à jour le titre du document, mais il pourrait aussi bien récupérer des données distantes, ou appeler n’importe quelle autre API impérative.
 
 **Pourquoi `useEffect` est-elle invoquée à l’intérieur d’un composant ?** Le fait d’appeler `useEffect` à l’intérieur de notre composant nous permet d’accéder à la variable d’état `count` (ou à n’importe quelle prop) directement depuis l’effet. Pas besoin d’une API dédiée pour les lire : elle est déjà dans la portée de la fonction. Les Hooks profitent pleinement des fermetures lexicales *(closures, NdT)* de JavaScript au lieu d’introduire de nouvelles API spécifiques à React, là où JavaScript propose déjà une solution.
 
-**Est-ce que `useEffect` est appelée après chaque affichage ?** Oui ! Elle est exécutée par défaut après le premier affichage *et* après chaque mise à jour. (Nous verrons comment [personnaliser et optimiser ça](#tip-optimizing-performance-by-skipping-effects) ultérieurement.) Au lieu de penser en termes de « montage » et de « démontage », pensez plutôt que les effets arrivent tout simplement « après l’affichage ». React garantit que le DOM a été mis à jour avant chaque exécution des effets.
+**Est-ce que `useEffect` est appelée après chaque affichage ?** Oui ! Elle est exécutée par défaut après le premier affichage *et* après chaque mise à jour. (Nous verrons comment [personnaliser et optimiser ça](#tip-optimizing-performance-by-skipping-effects) ultérieurement.) Au lieu de penser en termes de « montage » et de « démontage », pensez plutôt que les effets arrivent tout simplement « après l’affichage ». React garantit que le DOM a été mis à jour avant chaque exécution des effets.
 
 ### Explication détaillée {#detailed-explanation}
 
@@ -194,7 +194,7 @@ Remarquez l’effet miroir de `componentDidMount` et `componentWillUnmount`. Les
 
 ### Exemple en utilisant les Hooks {#example-using-hooks-1}
 
-Voyons comment ré-écrire notre exemple avec les Hooks.
+Voyons comment réécrire notre exemple avec les Hooks.
 
 Instinctivement, vous pourriez imaginer qu’un effet distinct est nécessaire pour le nettoyage. Mais les codes pour s’abonner et se désabonner sont si fortement liés que `useEffect` a été pensé pour les conserver ensemble. Si votre effet renvoie une fonction, React l’exécutera lors du nettoyage :
 
@@ -259,13 +259,13 @@ D’autres effets n’ont pas besoin de nettoyage, et ne renvoient rien.
 Le Hook d’effet traite ces deux cas en une seule API.
 
 -------------
-**Si vous pensez avoir déjà bien saisi le fonctionnement du Hook d’effet, ou si c’en est déjà trop pour vous, n’hésitez pas à passer dès maintenant à la [prochaine page sur les Règles des Hooks](/docs/hooks-rules.html).**
+**Si vous pensez avoir déjà bien saisi le fonctionnement du Hook d’effet, ou si c’en est déjà trop pour vous, n’hésitez pas à passer dès maintenant à la [prochaine page sur les règles des Hooks](/docs/hooks-rules.html).**
 
 -------------
 
 ## Astuces pour l’utilisation des effets {#tips-for-using-effects}
 
-Nous allons maintenant nous pencher sur certaines caractéristiques de `useEffect` qui ne manqueront pas de susciter la curiosité des utilisateurs les plus expérimentés de React. Ne vous sentez pas tenus d’y plonger dès à présent. Vous pourrez toujours revenir plus tard sur cette page afin d’y parfaire votre connaissance du Hook d’effet.
+Nous allons maintenant nous pencher sur certaines caractéristiques de `useEffect` qui ne manqueront pas de susciter la curiosité des utilisateurs les plus expérimentés de React. Ne vous sentez pas tenu·e d’y plonger dès à présent. Vous pourrez toujours revenir plus tard sur cette page afin d’y parfaire votre connaissance du Hook d’effet.
 
 ### Astuce : Utiliser plusieurs effets pour séparer les sujets {#tip-use-multiple-effects-to-separate-concerns}
 
@@ -308,7 +308,7 @@ class FriendStatusWithCounter extends React.Component {
 
 Remarquez comme le code qui modifie `document.title` est découpé entre `componentDidMount` et `componentDidUpdate`. Quant à la gestion de l'abonnement, elle est éparpillée entre `componentDidMount` et `componentWillUnmount`. De plus, `componentDidMount` contient du code relatif aux deux tâches.
 
-Comment les Hooks résolvent-ils ce problème ? À l’instar du [Hook `useState` qui peut être utilisé plusieurs fois](/docs/hooks-state.html#tip-using-multiple-state-variables), il est possible d’utiliser plusieurs effets. Cela nous permet de séparer correctement les sujets sans rapport au sein d’effets distincts :
+Comment les Hooks résolvent-ils ce problème ? À l’instar du [Hook `useState` qui peut être utilisé plusieurs fois](/docs/hooks-state.html#tip-using-multiple-state-variables), il est possible d’utiliser plusieurs effets. Cela nous permet de séparer correctement les sujets sans rapport au sein d’effets distincts :
 
 ```js{3,8}
 function FriendStatusWithCounter(props) {
@@ -334,7 +334,7 @@ function FriendStatusWithCounter(props) {
 
 **Les Hooks permettent de découper le code selon ce qu’il fait** plutôt qu’en fonction de ses interventions dans le cycle de vie du composant. React appliquera *tous* les effets utilisés par le composant, dans l’ordre de leur déclaration.
 
-### Explication : pourquoi les effets sont exécutés à chaque mise à jour {#explanation-why-effects-run-on-each-update}
+### Explication : raisons pour lesquelles les effets sont exécutés à chaque mise à jour {#explanation-why-effects-run-on-each-update}
 
 Si vous avez l'habitude des classes, vous pourriez vous demander pourquoi le nettoyage des effets s’effectue après chaque rendu, au lieu d’une seule fois au démontage. Voyons un exemple pratique pour comprendre en quoi ce choix de conception nous aide à réduire les bugs dans nos composants.
 
@@ -411,18 +411,18 @@ Pas besoin de code spécifique pour gérer les mises à jour puisque `useEffect`
 
 ```js
 // Montage avec les propriétés { friend: { id: 100 } }
-ChatAPI.subscribeToFriendStatus(100, handleStatusChange);     // Exécute le premier effet
+ChatAPI.subscribeToFriendStatus(100, handleStatusChange);     // Exécute l’effet 1
 
 // Mise à jour avec les propriétés { friend: { id: 200 } }
-ChatAPI.unsubscribeFromFriendStatus(100, handleStatusChange); // Nettoie l’effet précédent
-ChatAPI.subscribeToFriendStatus(200, handleStatusChange);     // Exécute l’effet suivant
+ChatAPI.unsubscribeFromFriendStatus(100, handleStatusChange); // Nettoie l’effet 1
+ChatAPI.subscribeToFriendStatus(200, handleStatusChange);     // Exécute l’effet 2
 
 // Mise à jour avec les propriétés { friend: { id: 300 } }
-ChatAPI.unsubscribeFromFriendStatus(200, handleStatusChange); // Nettoie l’effet précédent
-ChatAPI.subscribeToFriendStatus(300, handleStatusChange);     // Exécute l’effet suivant
+ChatAPI.unsubscribeFromFriendStatus(200, handleStatusChange); // Nettoie l’effet 2
+ChatAPI.subscribeToFriendStatus(300, handleStatusChange);     // Exécute l’effet 3
 
 // Démontage
-ChatAPI.unsubscribeFromFriendStatus(300, handleStatusChange); // Nettoie le dernier effet
+ChatAPI.unsubscribeFromFriendStatus(300, handleStatusChange); // Nettoie l’effet 3
 ```
 
 Ce comportement par défaut garantit la cohérence et résout les bugs les plus courants des composants à base de classe qui oublient de gérer les mises à jour.
@@ -449,7 +449,7 @@ useEffect(() => {
 
 Dans l’exemple ci-dessus, nous passons `[count]` comme second argument. Qu’est-ce que ça signifie ? Si `count` vaut `5`, et que notre composant est ré-affiché avec `count` toujours égal à `5`, React comparera le `[5]` de l’affichage précédent au `[5]` du suivant. Comme tous les éléments de la liste sont identiques (`5 === 5`), React n’exécutera pas l’effet. Et voilà notre optimisation.
 
-Quand le composant est ré-affiché avec `count` égal à `6`, React comparera la liste d’éléments `[5]` de l'afficahge précédent avec la liste `[6]` du suivant. Cette fois, React ré-exécutera l’effet car `5 !== 6`. Dans le cas où la liste contiendrait plusieurs éléments, React ré-appliquera l’effet si au moins l’un d’entre eux est différent de sa version précédente.
+Quand le composant est ré-affiché avec `count` égal à `6`, React comparera la liste d’éléments `[5]` de l'affichage précédent avec la liste `[6]` du suivant. Cette fois, React ré-exécutera l’effet car `5 !== 6`. Dans le cas où la liste contiendrait plusieurs éléments, React ré-appliquera l’effet si au moins l’un d’entre eux est différent de sa version précédente.
 
 Le fonctionnement est le même pour la phase de nettoyage :
 
@@ -472,16 +472,16 @@ useEffect(() => {
 >
 >Si vous utilisez cette optimisation, assurez-vous que votre tableau inclut bien **toutes les valeurs dans la portée du composant (telles que les props et l'état local) qui peuvent changer avec le temps et sont utilisées par l'effet**. Sinon, votre code va référencer des valeurs obsolètes issues des rendus précédents.  Vous pouvez en apprendre davantage sur [la façon de gérer les dépendances à des fonctions](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) et comment faire quand [les dépendances listées changent trop souvent](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
 >
->Si vous voulez exécuter un effet et le nettoyer une seule fois (au montage puis au démontage), vous pouvez passer un tableau vide (`[]`) comme deuxième argument.  Ça indique à React que votre effet ne dépend *d’aucune* valeur issue des props ou de l'état local, donc il n’a jamais besoin d’être ré-exécuté.  Il ne s'agit pas d'un cas particulier : ça découle directement de la façon dont le tableau des dépendances fonctionne.
+>Si vous voulez exécuter un effet et le nettoyer une seule fois (au montage puis au démontage), vous pouvez passer un tableau vide (`[]`) comme second argument.  Ça indique à React que votre effet ne dépend *d’aucune* valeur issue des props ou de l'état local, donc il n’a jamais besoin d’être ré-exécuté.  Il ne s'agit pas d'un cas particulier : ça découle directement de la façon dont le tableau des dépendances fonctionne.
 >
->Si vous passez un tableau vide (`[]`), les props et l'état local vus depuis l'intérieur de l'effet feront toujours référence à leurs valeurs initiales.  Même si passer `[]` comme deuxième argument vous rapproche du modèle mental habituel de `componentDidMount` et `componentWillUnmount`, il y a en général de [meilleures](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) pour éviter de ré-exécuter les effets trop souvent. Par ailleurs, ne perdez pas de vue que React défère l’exécution de `useEffect` jusqu’à ce que la navigateur ait fini de rafraîchir l’affichage, du coup y faire plus de travail est moins un problème.
+>Si vous passez un tableau vide (`[]`), les props et l'état local vus depuis l'intérieur de l'effet feront toujours référence à leurs valeurs initiales.  Même si passer `[]` comme second argument vous rapproche du modèle mental habituel de `componentDidMount` et `componentWillUnmount`, il y a en général de [meilleures](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) pour éviter de ré-exécuter les effets trop souvent. Par ailleurs, ne perdez pas de vue que React défère l’exécution de `useEffect` jusqu’à ce que la navigateur ait fini de rafraîchir l’affichage, du coup y faire plus de travail est moins un problème.
 >
 >Nous vous conseillons d’utiliser la règle [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) fournie par le module [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Elle vous avertira si des dépendances sont mal spécifiées et vous suggèrera un correctif.
 
 ## Prochaines étapes {#next-steps}
 
-Félicitations ! C‘était une bien longue page, mais avec un peu de chance la plupart de vos questions à propos des effets ont pu y trouver une réponse. Vous avez appris à utiliser le Hook d’état et le Hook d’effet, qui vous ouvre *beaucoup* de possibilités à eux deux. Ils couvrent la majorité des cas d’usage pour les classes—et sinon, peut-être trouverez-vous les [Hooks supplémentaires](/docs/hooks-reference.html) bien utiles.
+Félicitations ! C‘était une bien longue page, mais avec un peu de chance la plupart de vos questions à propos des effets ont pu y trouver une réponse. Vous avez appris à utiliser le Hook d’état et le Hook d’effet, qui vous ouvrent *beaucoup* de possibilités à eux deux. Ils couvrent la majorité des cas d’usage pour les classes—et sinon, peut-être trouverez-vous les [Hooks supplémentaires](/docs/hooks-reference.html) bien utiles.
 
 Nous commençons également à deviner comment les Hooks peuvent résoudre les problématiques listées dans les [raisons](/docs/hooks-intro.html#motivation). Nous avons vu comment le nettoyage des effets évite la duplication de code dans `componentDidUpdate` et `componentWillUnmount`, regroupe le code par sujet, et aide à éviter les bugs. Enfin, nous avons appris comment séparer les effets selon leur finalité, ce qui était totalement impossible avec les classes.
 
-A ce stade vous vous demandez peut-être comment les Hooks fonctionnent. Comment React sait-il quel appel de `useState` correspond à quelle variable d’état local d’un affichage à l’autre ? Comment React « associe-t-il » l’effet précédent au suivant à chaque mise à jour ? **Rendez-vous dans la prochaine page pour apprendre les [Règles des Hooks](/docs/hooks-rules.html), qui sont indispensables à leur bon fonctionnement.**
+A ce stade vous vous demandez peut-être comment les Hooks fonctionnent. Comment React sait-il quel appel de `useState` correspond à quelle variable d’état local d’un affichage à l’autre ? Comment React « associe-t-il » l’effet précédent au suivant à chaque mise à jour ? **Rendez-vous dans la prochaine page pour apprendre les [règles des Hooks](/docs/hooks-rules.html), qui sont indispensables à leur bon fonctionnement.**
