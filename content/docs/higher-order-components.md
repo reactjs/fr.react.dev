@@ -393,4 +393,4 @@ import MyComponent, { someFunction } from './MyComponent.js';
 
 Bien que que la convention pour les composants d'ordre supérieur soit de transmettre toutes les props au composant enfant, elle ne s'applique pas aux refs. Une `ref` n'est en effet pas vraiment une prop—comme une `key`, React la traite de façon particulière. Si vous ajoutez une ref à un élément dont le composant résulte d'un HOC, la ref fait référence à une instance du composant conteneur le plus à l'extérieur, et non pas au composant enfant.
 
-La solution à ce problème réside dans l'utilisation de l'API `React.forwardRef` (introduite dans React 16.3). [Apprenez-en plus dans la section sur la transmission des refs](/docs/forwarding-refs.html).
+La solution à ce problème réside dans l'utilisation de l'API `React.forwardRef` (introduite dans React 16.3). [Apprenez-en davantage dans la section sur la transmission des refs](/docs/forwarding-refs.html).
