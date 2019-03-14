@@ -389,7 +389,7 @@ export { someFunction };
 import MyComponent, { someFunction } from './MyComponent.js';
 ```
 
-### Ne transmettez pas les refs {#refs-arent-passed-through}
+### Les refs ne sont pas transmises {#refs-arent-passed-through}
 
 Bien que que la convention pour les composants d'ordre supérieur soit de transmettre toutes les props au composant enfant, elle ne s'applique pas aux refs. Une `ref` n'est en effet pas vraiment une prop—comme une `key`, React la traite de façon particulière. Si vous ajoutez une ref à un élément dont le composant résulte d'un HOC, la ref fait référence à une instance du composant conteneur le plus à l'extérieur, et non pas au composant enfant.
 
