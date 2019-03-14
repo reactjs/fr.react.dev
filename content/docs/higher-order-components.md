@@ -382,7 +382,7 @@ Une autre solution consiste à exporter les méthodes statiques séparément du 
 MyComponent.someFunction = someFunction;
 export default MyComponent;
 
-// ... exportez les méthodes séparées du composant...
+// ... exportez les méthodes séparément...
 export { someFunction };
 
 // ... et dans le module qui les utilise, importez les deux
