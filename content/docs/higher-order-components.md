@@ -18,7 +18,7 @@ Les HOC sont courants dans des bibliothèques tierces de React, comme [`connect`
 
 Dans ce guide, nous verrons pourquoi les composants d'ordre supérieurs sont utiles, et comment créer le vôtre.
 
-## Utiliser les HOC pour les préoccupations transversales {#use-hocs-for-cross-cutting-concerns}
+## Utiliser les HOC pour les questions transversales {#use-hocs-for-cross-cutting-concerns}
 
 > **Remarque**
 >
