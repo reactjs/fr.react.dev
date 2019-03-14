@@ -26,7 +26,7 @@ Il n'y a rien de « mauvais » à utiliser les méthodes d'état ou du cycle de 
 
 Les composants sont souvent décrits comme de « simples fonctions » mais selon notre vision ils doivent être bien plus que ça pour être utiles. Dans React, les composants décrivent tout comportement composable, ce qui inclut le rendu, le cycle de vie et l'état. Certaines bibliothèques externes telles que [Relay](https://facebook.github.io/relay/) ajoutent d'autres responsabilités aux composants comme la description des dépendances de données. Il est possible que ces idées reviennent dans React sous une forme ou une autre.
 
-### Abstraction courante {#common-abstraction}
+### Abstraction commune {#common-abstraction}
 
 En général, nous [refusons d'ajouter des fonctionnalités](https://www.youtube.com/watch?v=4anAwXYqLG8) (en anglais) pouvant être mises en œuvre par les utilisateurs. Nous ne voulons pas surcharger vos applications avec du code inutile. Il y a toutefois des exceptions à ça.
 
@@ -36,7 +36,7 @@ C'est la raison pour laquelle nous ajoutons parfois des fonctionnalités directe
 
 Nous discutons toujours de ces propositions d'amélioration avec la communauté. Vous pouvez trouver certaines de ces discussions avec l'étiquette [« big picture »](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"Type:+Big+Picture") sur le suivi des problèmes de React.
 
-### Escape Hatches {#escape-hatches}
+### Portes de sortie {#escape-hatches}
 
 React est pragmatique. Il est dicté par les besoins des produits écrits chez Facebook. Bien qu'il soit influencé par certains paradigmes qui ne sont pas tout à fait populaires comme la programmation fonctionnelle, le rendre accessible à un large public de développeurs aux compétences et expériences variées est un objectif affiché du projet.
 
@@ -46,7 +46,7 @@ Si nous voulons déprécier un modèle que nous n'aimons pas, il est de notre re
 
 Nous accordons de l'importance la stabilité de l'API. Chez Facebook, nous avons plus de 50 mille composants utilisant React. De nombreuses autres sociétés, telles que [Twitter](https://twitter.com/) ou [Airbnb](https://www.airbnb.com/), sont également de grandes utilisatrices de React. C'est pour cela que nous sommes généralement réticents à changer les API ou les comportements publics.
 
-Cependant, nous pensons que la stabilité au sens où « rien ne change » est surfaite. Ça se transforme vite en stagnation. Nous préférons plutôt la stabilité au sens « c'est fortement utilisé en production et lorsque quelque chose change, il existe un chemin de migration clair (et de préférence automatisé) ».
+Cependant, nous pensons que la stabilité au sens où « rien ne change » est surfaite. Ça se transforme vite en stagnation. Nous préférons plutôt la stabilité au sens « c'est largement utilisé en production et lorsque quelque chose change, il existe un chemin de migration clair (et de préférence automatisé) ».
 
 Lorsque nous déprécions un modèle, nous étudions son utilisation interne chez Facebook et nous ajoutons des avertissements de dépréciation. Ils nous permettent de mesurer l'impact du changement. Parfois nous renonçons quand nous voyons que c'est encore trop tôt, et nous réfléchissons de manière plus stratégique sur la façon de préparer les bases de code à ce changement.
 
@@ -84,7 +84,7 @@ Pour être clair, nous ne tirons pas avantage de ça pour l'instant. Cependant, 
 
 Il nous serait plus difficile de contrôler la planification si nous permettions à l'utilisateur de composer directement des vues avec le paradigme « *push* » commun à certaines variations de la [programmation fonctionnelle réactive](https://en.wikipedia.org/wiki/Functional_reactive_programming). Nous voulons garder le contrôle du code qui sert de « colle ».
 
-React a comme objectif clé de minimiser la quantité de code utilisateur qui s'exécute avant de laisser la main à React. Cela garantit que React conserve la possibilité de planifier et scinder le travail en morceaux selon sa connaissance de l'UI.
+React a pour objectif clé de minimiser la quantité de code utilisateur qui s'exécute avant de laisser la main à React. Cela garantit que React conserve la possibilité de planifier et scinder le travail en morceaux selon sa connaissance de l'UI.
 
 Il y a une blague en interne dans l'équipe selon laquelle React aurait dû s'appeler « *Schedule* » parce que React ne veut pas être totalement « réactif ».
 
