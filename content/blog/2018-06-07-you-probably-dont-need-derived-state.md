@@ -1,9 +1,9 @@
 ---
-title: "You Probably Don't Need Derived State"
+title: "Vous n'avez sans doute pas besoin d'états dérivés"
 author: [bvaughn]
 ---
 
-React 16.4 included a [bugfix for getDerivedStateFromProps](/blog/2018/05/23/react-v-16-4.html#bugfix-for-getderivedstatefromprops) which caused some existing bugs in React components to reproduce more consistently. If this release exposed a case where your application was using an anti-pattern and didn't work properly after the fix, we're sorry for the churn. In this post, we will explain some common anti-patterns with derived state and our preferred alternatives.
+React 16.4 comprend [un fix pour `getDerivedStateFromProps`](/blog/2018/05/23/react-v-16-4.html#bugfix-for-getderivedstatefromprops) qui fait que certains bugs connus dans les composants React on pût être reproduit plus facilement. Si la publication de cette version à mis en evidence un anti-pattern dans votre application qui l'a cassée suite à l'application de ce fix, nous sommes désolé pour le désagrément. Dans cet article nous allons passer en revus certains anti-patterns habituels autour des état dérivé et les alternatives que nous recommandons.
 
 For a long time, the lifecycle `componentWillReceiveProps` was the only way to update state in response to a change in props without an additional render. In version 16.3, [we introduced a replacement lifecycle, `getDerivedStateFromProps`](/blog/2018/03/29/react-v-16-3.html#component-lifecycle-changes) to solve the same use cases in a safer way. At the same time, we've realized that people have many misconceptions about how to use both methods, and we've found anti-patterns that result in subtle and confusing bugs. The `getDerivedStateFromProps` bugfix in 16.4 [makes derived state more predictable](https://github.com/facebook/react/issues/12898), so the results of misusing it are easier to notice.
 
@@ -85,7 +85,7 @@ class EmailInput extends Component {
       });
     }
   }
-  
+
   // ...
 }
 ```
@@ -267,7 +267,7 @@ class Example extends Component {
 }
 ```
 
-This implementation avoids recalculating `filteredList` more often than necessary. But it is more complicated than it needs to be, because it has to separately track and detect changes in both props and state in order to properly update the filtered list. In this example, we could simplify things by using `PureComponent` and moving the filter operation into the render method: 
+This implementation avoids recalculating `filteredList` more often than necessary. But it is more complicated than it needs to be, because it has to separately track and detect changes in both props and state in order to properly update the filtered list. In this example, we could simplify things by using `PureComponent` and moving the filter operation into the render method:
 
 ```js
 // PureComponents only rerender if at least one state or prop value changes.
