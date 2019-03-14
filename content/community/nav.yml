@@ -23,7 +23,7 @@
     - id: debugging-tools
       title: Débogage
     - id: component-workbenches
-      title: Component Workbenches
+      title: Outils de mise au point
     - id: jsx-integrations
       title: Intégrations JSX
     - id: starter-kits

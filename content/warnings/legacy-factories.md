@@ -1,22 +1,24 @@
 ---
-title: React Element Factories and JSX Warning
+title: "Avertissement : React element factories and JSX"
 layout: single
 permalink: warnings/legacy-factories.html
 ---
 
-You probably came here because your code is calling your component as a plain function call. This is now deprecated:
+Fabriques d’éléments React et JSX
+
+Vous êtes probablement sur cette page parce que votre code appelle votre composant comme une fonction classique.  C’est désormais déprécié :
 
 ```javascript
 var MyComponent = require('MyComponent');
 
 function render() {
-  return MyComponent({ foo: 'bar' });  // WARNING
+  return MyComponent({ foo: 'bar' });  // ATTENTION
 }
 ```
 
 ## JSX {#jsx}
 
-React components can no longer be called directly like this. Instead [you can use JSX](/docs/jsx-in-depth.html).
+Les composants React ne peuvent plus être appelés ainsi directement.  [Utilisez plutôt JSX](/docs/jsx-in-depth.html).
 
 ```javascript
 var React = require('react');
@@ -27,9 +29,9 @@ function render() {
 }
 ```
 
-## Without JSX {#without-jsx}
+## Sans JSX {#without-jsx}
 
-If you don't want to, or can't use JSX, then you'll need to wrap your component in a factory before calling it:
+Si vous ne voulez pas ou ne pouvez pas utiliser JSX, vous aurez besoin d’enrober votre composant dans une _factory_ avant de l’appeler :
 
 ```javascript
 var React = require('react');
@@ -40,11 +42,11 @@ function render() {
 }
 ```
 
-This is an easy upgrade path if you have a lot of existing function calls.
+Ça permet une migration facile si vous avez beaucoup d’appels de fonctions de ce type.
 
-## Dynamic components without JSX {#dynamic-components-without-jsx}
+## Composants dynamiques sans JSX {#dynamic-components-without-jsx}
 
-If you get a component class from a dynamic source, then it might be unnecessary to create a factory that you immediately invoke. Instead you can just create your element inline:
+Si vous obtenez dynamiquement la classe d’un composant, il est peut-être superflu de créer une _factory_ que vous invoqueriez immédiatement.  Vous pouvez plutôt simplement créer votre élément à la volée :
 
 ```javascript
 var React = require('react');
@@ -54,6 +56,6 @@ function render(MyComponent) {
 }
 ```
 
-## In Depth {#in-depth}
+## Aller plus loin {#in-depth}
 
-[Read more about WHY we're making this change.](https://gist.github.com/sebmarkbage/d7bce729f38730399d28)
+[Lisez le détail des **raisons** qui ont motivé ce changement](https://gist.github.com/sebmarkbage/d7bce729f38730399d28).
