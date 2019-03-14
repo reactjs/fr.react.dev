@@ -20,7 +20,7 @@ Dans ce guide, nous verrons pourquoi les composants d'ordre supérieurs sont uti
 
 ## Utiliser les HOC pour les questions transversales {#use-hocs-for-cross-cutting-concerns}
 
-> **Remarque**
+> Remarque
 >
 > Auparavant, nous recommandions d'employer des *mixins* pour gérer les questions transversales. Depuis, nous nous sommes rendus compte que les *mixins* créent plus de problèmes qu'ils n'en résolvent. Vous pouvez [lire le détail](/blog/2016/07/13/mixins-considered-harmful.html) des raisons qui nous ont fait renoncer aux *mixins*, et de la façon dont vous pouvez faire de même pour vos composants existants.
 
