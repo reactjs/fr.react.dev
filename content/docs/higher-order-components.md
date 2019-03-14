@@ -375,7 +375,7 @@ function enhance(WrappedComponent) {
 }
 ```
 
-Une autre solution est d'exporter les méthodes statiques séparées du composant lui-même.
+Une autre solution consiste à exporter les méthodes statiques séparément du composant lui-même.
 
 ```js
 // Plutôt que...
