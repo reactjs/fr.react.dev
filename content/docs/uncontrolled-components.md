@@ -6,9 +6,9 @@ permalink: docs/uncontrolled-components.html
 
 Dans la plupart des cas, pour implémenter des formulaires, nous recommandons d'utiliser des [composants contrôlés](/docs/forms.html). Dans un composant contrôlé, les données du formulaires sont gérées par le composant React. L'alternative est le composant non-contrôlé, où les données sont gérées par le DOM.
 
-Au lieu d'écrire un gestionnaire d'évènement pour chaque mise à jour de l'état d'un composant non-contrôlé, vous pouvez [utiliser une ref](/docs/refs-and-the-dom.html)
+Au lieu d'écrire un gestionnaire d'événements pour chaque mise à jour de l'état d'un composant non-contrôlé, vous pouvez [utiliser une ref](/docs/refs-and-the-dom.html).
 
-Par exemple, ce code accepte un unique nom dans ce composant non-contrôlé :
+Par exemple, ce code accepte une saisie de nom dans un composant non-contrôlé :
 
 ```javascript{5,9,18}
 class NameForm extends React.Component {
@@ -19,7 +19,7 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Un nom a été envoyé : ' + this.input.current.value);
+    alert('Un nom a été envoyé : ' + this.input.current.value);
     event.preventDefault();
   }
 
@@ -58,7 +58,7 @@ render() {
           type="text"
           ref={this.input} />
       </label>
-      <input type="submit" value="Submit" />
+      <input type="submit" value="Envoyer" />
     </form>
   );
 }
@@ -81,5 +81,5 @@ Vous devriez utiliser l'API *File* pour interagir avec les fichiers. L'exemple s
 
 `embed:uncontrolled-components/input-type-file.js`
 
-[](codepen://uncontrolled-components/input-type-file)
+**[Essayer sur CodePen](codepen://uncontrolled-components/input-type-file)**
 
