@@ -1,10 +1,10 @@
 ---
 id: higher-order-components
-title: Composants d'ordre supérieur
+title: Composants d’ordre supérieur
 permalink: docs/higher-order-components.html
 ---
 
-Un composant d'ordre supérieur *(Higher-Order Component ou HOC, NdT)* est une technique avancée de React qui permet de réutiliser la logique de composants. Les HOC ne font pas partie de l'API de React à proprement parler, mais découlent de la nature compositionnelle de React.
+Un composant d'ordre supérieur *(Higher-Order Component ou HOC, NdT)* est une technique avancée de React qui permet de réutiliser la logique de composants. Les HOC ne font pas partie de l'API de React à proprement parler, mais découlent de sa nature compositionnelle.
 
 Concrètement, **un composant d'ordre supérieur est une fonction qui accepte un composant et renvoie un nouveau composant.**
 
@@ -26,7 +26,7 @@ Dans ce guide, nous verrons pourquoi les composants d'ordre supérieurs sont uti
 
 Les composants sont le principal moyen de réutiliser du code en React. Cependant, vous remarquerez que les composants classiques ne conviennent pas à tous les modèles.
 
-Imaginez que vous ayez créé un composant `CommentList` qui écoute une source externe de données pour afficher une liste de commentaires&nbsp;:
+Imaginez que vous ayez créé un composant `CommentList` qui s’abonne à une source externe de données pour afficher une liste de commentaires&nbsp;:
 
 ```js
 class CommentList extends React.Component {
@@ -34,13 +34,13 @@ class CommentList extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
-      // "DataSource" est une source de données quelconque
+      // `DataSource` est une source de données quelconque
       comments: DataSource.getComments()
     };
   }
 
   componentDidMount() {
-    // On s'abonne aux modifications
+    // On s’abonne aux modifications
     DataSource.addChangeListener(this.handleChange);
   }
 
@@ -50,7 +50,7 @@ class CommentList extends React.Component {
   }
 
   handleChange() {
-    // Met à jour l'état local quand la source de données est modifiée
+    // Met à jour l’état local quand la source de données est modifiée
     this.setState({
       comments: DataSource.getComments()
     });
@@ -106,9 +106,9 @@ class BlogPost extends React.Component {
 - Dans l'écouteur, ils appellent `setState` quand la source de données est modifiée.
 - Au démontage *(quand le composant sort de la couche d'affichage, NdT)*, ils enlèvent l'écouteur d'événements.
 
-Vous imaginez bien que dans une appli importante, ce motif d'abonnement à une `DataSource` et d'appel à `setState` sera récurrent. Il nous faut une abstraction qui nous permette de définir cette logique à un seul endroit et de la réutiliser pour de nombreux composants. C'est là que les composants d'ordre supérieur sont particulièrement utiles.
+Vous imaginez bien que dans une appli importante, ce motif d'abonnement à une `DataSource` et d'appel à `setState` sera récurrent. Il nous faut une abstraction qui nous permette de définir cette logique en un seul endroit et de la réutiliser pour de nombreux composants. C'est là que les composants d'ordre supérieur sont particulièrement utiles.
 
-Nous pouvons écrire une fonction qui crée des composants qui s'abonnent à une `DataSource`, comme `CommentList` et `BlogPost`. La fonction acceptera parmi ses arguments un composant enfant, qui recevra les données suivies en props. Appelons cette fonction `withSubscription` :
+Nous pouvons écrire une fonction qui crée des composants qui s'abonnent à une `DataSource`, comme `CommentList` et `BlogPost`. La fonction acceptera parmi ses arguments un composant initial, qui recevra les données suivies en props. Appelons cette fonction `withSubscription` :
 
 ```js
 const CommentListWithSubscription = withSubscription(
@@ -122,7 +122,7 @@ const BlogPostWithSubscription = withSubscription(
 );
 ```
 
-Le premier paramètre est le composant enfant. Le second récupère les données qui nous intéressent, en fonction de la `DataSource` et des props existantes.
+Le premier paramètre est le composant initial. Le second récupère les données qui nous intéressent, en fonction de la `DataSource` et des props existantes.
 
 Lorsque `CommentListWithSubscription` et `BlogPostWithSubscription` s'affichent, `CommentList` et `BlogPost` reçoivent une prop `data` qui contient les données les plus récentes issues de la `DataSource` :
 
@@ -140,7 +140,7 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     componentDidMount() {
-      // ... qui s'occupe de l'abonnement...
+      // ... qui s’occupe de l'abonnement...
       DataSource.addChangeListener(this.handleChange);
     }
 
@@ -155,8 +155,8 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     render() {
-      // ... et affiche composant enfant avec les données à jour !
-      // Remarquez qu'on passe aussi toute autre prop reçue
+      // ... et affiche le composant enrobé avec les données à jour !
+      // Remarquez qu’on passe aussi toute autre prop reçue.
       return <WrappedComponent data={this.state.data} {...this.props} />;
     }
   };
@@ -165,27 +165,27 @@ function withSubscription(WrappedComponent, selectData) {
 
 Remarquez qu'un HOC ne modifie pas le composant qu'on lui passe, et ne recourt pas non plus à l’héritage pour copier son comportement. Un HOC *compose* le composant initial en l'*enrobant* dans un composant conteneur. Il s'agit d'une fonction pure, sans effets de bord.
 
-Et voilà ! Le composant enfant reçoit toutes les props du conteneur ainsi qu'une nouvelle prop, `data`, qu'il emploie pour produire son résultat. Le HOC ne se préoccupe pas de savoir comment ou pourquoi les données sont utilisées, et le composant enfant ne se préoccupe pas de savoir d'où les données viennent.
+Et voilà ! Le composant enrobé reçoit toutes les props du conteneur ainsi qu'une nouvelle prop, `data`, qu'il emploie pour produire son résultat. Le HOC ne se préoccupe pas de savoir comment ou pourquoi les données sont utilisées, et le composant enrobé ne se préoccupe pas de savoir d'où viennent les données.
 
 Puisque `withSubscription` est juste une fonction, vous pouvez lui définir autant ou aussi peu de paramètres que vous le souhaitez. Par exemple, vous pourriez rendre configurable le nom de la prop `data`, afin d’isoler encore davantage le HOC et le composant enrobé. Ou alors, vous pourriez accepter un argument qui configure `shouldComponentUpdate`, ou un autre qui configure la source de données. Tout ça est possible parce que le HOC a un contrôle total sur la façon dont le composant est défini.
 
 Comme pour les composants, le rapport entre `withSubscription` et le composant enrobé se base entièrement sur les props. Ça facilite l'échange d'un HOC pour un autre, du moment qu'ils fournissent les mêmes props au composant enrobé. Ça peut s'avérer utile si vous changez de bibliothèque pour récupérer vos données, par exemple.
 
-## Ne modifiez pas le composant initial. Composez-le. {#dont-mutate-the-original-component-use-composition}
+## Ne modifiez pas le composant initial : composez-le. {#dont-mutate-the-original-component-use-composition}
 
 Résistez à la tentation de modifier le prototype d'un composant (ou de le modifier de quelque façon que ce soit) dans un HOC.
 
 ```js
 function logProps(InputComponent) {
   InputComponent.prototype.componentWillReceiveProps = function(nextProps) {
-    console.log('Current props: ', this.props);
-    console.log('Next props: ', nextProps);
+    console.log('Props actuelles : ', this.props);
+    console.log('Prochaines props : ', nextProps);
   };
-  // Le fait que le composant initial soit renvoyé est un signe qu'il a été modifié.
+  // Le fait que le composant initial soit renvoyé est un signe qu’il a été modifié.
   return InputComponent;
 }
 
-// EnhancedComponent fera un log à chaque fois qu'il reçoit des props
+// EnhancedComponent fera un log à chaque fois qu’il reçoit des props.
 const EnhancedComponent = logProps(InputComponent);
 ```
 
@@ -199,34 +199,35 @@ Plutôt que la mutation, les HOC devraient utiliser la composition, en enrobant 
 function logProps(WrappedComponent) {
   return class extends React.Component {
     componentWillReceiveProps(nextProps) {
-      console.log('Props actuelles : ', this.props);
-      console.log('Prochaines props : ', nextProps);
+      console.log('Props actuelles : ', this.props);
+      console.log('Prochaines props : ', nextProps);
     }
     render() {
-      // Enrobe le composant initial dans un conteneur, sans le modifier. C’est mieux !
+      // Enrobe le composant initial dans un conteneur, sans le modifier. Mieux !
       return <WrappedComponent {...this.props} />;
     }
   }
 }
 ```
 
-Ce HOC a la même fonctionnalité que la version modifiante, tout en évitant le risque de confits. Il fonctionne tout aussi bien avec les composants à base de classe et les fonctions composants. Et puisqu'il s'agit d'une fonction pure, il est composable avec d'autres HOC voire même avec lui-même.
+Ce HOC a la même fonctionnalité que la version modifiante, tout en évitant le risque de conflits. Il fonctionne tout aussi bien avec les composants à base de classe et les fonctions composants. Et puisqu'il s'agit d'une fonction pure, il est composable avec d'autres HOC voire même avec lui-même.
 
 Vous avez peut-être remarqué des ressemblances entre les HOC et le motif des **composants conteneurs**. Les composants conteneurs participent à des stratégies de séparation de responsabilités entre les préoccupations de haut et de bas niveau. Les conteneurs se préoccupent par exemple des abonnements et de l'état, et passent des props à d'autres composants qui se préoccupent par exemple d'afficher l’UI. Les HOC utilisent des conteneurs dans leur implémentation. Vous pouvez voir les HOC comme des définitions paramétrables de composants conteneurs.
 
 ## Convention : transmettez les props annexes au composant enrobé {#convention-pass-unrelated-props-through-to-the-wrapped-component}
 
-Les HOC ajoutent des fonctionnalités à un composant. Ils ne devraient pas drastiquement modifier son contrat. On s'attend à ce que le composant renvoyé par un HOC aie une interface semblable au composant initial.
+Les HOC ajoutent des fonctionnalités à un composant. Ils ne devraient pas drastiquement modifier son contrat. On s'attend à ce que le composant renvoyé par un HOC ait une interface semblable au composant initial.
 
 Les HOC devraient transmettre les props sans rapport avec leur propre fonctionnement. La plupart des HOC ont une méthode de rendu qui ressemble à ça :
 
 ```js
 render() {
-  // Filtre les props supplémentaires propres à ce HOC qui ne devraient pas être transmises
+  // Filtre les props supplémentaires propres à ce HOC
+  // qui ne devraient pas être transmises
   const { extraProp, ...passThroughProps } = this.props;
 
-  // Injecte les props dans le composant enrobé. Il s'agit en général de valeurs de l'état local
-  // ou de méthodes d'instance.
+  // Injecte les props dans le composant enrobé. Il s’agit en général
+  // de valeurs de l’état local ou de méthodes d’instance.
   const injectedProp = someStateOrInstanceMethod;
 
   // Transmet les props au composant enrobé
@@ -239,11 +240,11 @@ render() {
 }
 ```
 
-Cette convention aide à garantir que les HOC sont aussi flexibles et réutilisables que possible.
+Cette convention améliore la flexibilité et la réutilisabilité de nos HOC.
 
 ## Convention : maximisez la composabilité {#convention-maximizing-composability}
 
-Tous les HOC ne sont pas pareils. Ils n'acceptent parfois qu'un seul argument, le composant enrobé :
+Tous les HOC n’ont pas la même interface. Ils n'acceptent parfois qu'un seul argument, le composant enrobé :
 
 ```js
 const NavbarWithRouter = withRouter(Navbar);
@@ -271,25 +272,25 @@ const enhance = connect(commentListSelector, commentListActions);
 const ConnectedComment = enhance(CommentList);
 ```
 
-Autrement dit, `connect` est une fonction d'ordre supérieur qui renvoie un composant d'ordre supérieur !
+Autrement dit, `connect` est une fonction d'ordre supérieur… qui renvoie un composant d'ordre supérieur !
 
-Cette forme peut sembler déroutante ou superflue, pourtant elle a une propriété utile. Les HOC n'acceptant qu'un argument comme celui que renvoie la fonction `connect` ont une signature `Composant => Composant`. Les fonctions dont le type de données est le même à la sortie qu'à l'entrée sont beaucoup plus facile à composer.
+Cette forme peut sembler déroutante ou superflue, pourtant elle a une propriété utile. Les HOC n'acceptant qu'un argument comme celui que renvoie la fonction `connect` ont une signature `Composant => Composant`. Les fonctions dont le type de données est le même en sortie qu'en entrée sont beaucoup plus faciles à composer.
 
 ```js
 // Plutôt que de faire ceci...
 const EnhancedComponent = withRouter(connect(commentSelector)(WrappedComponent))
 
-// ... vous pouvez utiliser un utilitaire de composition de fonction
-// compose(f, g, h) est l'équivalent de (...args) => f(g(h(...args)))
+// ... vous pouvez utiliser un utilitaire de composition de fonction.
+// compose(f, g, h) est l’équivalent de (...args) => f(g(h(...args)))
 const enhance = compose(
-  // Ces deux-là sont des HOC n'acceptant qu'un argument
+  // Ces deux-là sont des HOC n’acceptant qu’un argument.
   withRouter,
   connect(commentSelector)
 )
 const EnhancedComponent = enhance(WrappedComponent)
 ```
 
-(C'est aussi cette propriété qui permet à `connect` et à d'autres HOC du même type d'être utilisés comme décorateurs, une proposition expérimentale JavaScript)
+(C'est aussi cette propriété qui permet à `connect` et à d'autres HOC du même type d'être utilisés comme décorateurs, une proposition expérimentale JavaScript.)
 
 La fonction utilitaire `compose` est fournie par de nombreuses bibliothèques tierces, dont lodash (sous le nom [`lodash.flowRight`](https://lodash.com/docs/#flowRight)), [Redux](https://redux.js.org/api/compose), et [Ramda](https://ramdajs.com/docs/#compose).
 
@@ -332,7 +333,7 @@ render() {
 }
 ```
 
-Il ne s'agit pas uniquement d'un problème de performance : remonter un composant signifie que l'état local de ce composant ainsi que ceux de tous ses enfants seront perdus.
+Il ne s'agit pas uniquement d'un problème de performances : remonter un composant signifie que l'état local de ce composant ainsi que ceux de tous ses enfants seront perdus.
 
 Appliquez plutôt les HOC à l'extérieur de la définition d'un composant, afin de créer le composant enrobé une seule fois. Son identité sera alors constante d’un rendu à l'autre. C'est généralement ce que vous voulez, de toutes façons.
 
@@ -350,7 +351,7 @@ WrappedComponent.staticMethod = function() {/*...*/}
 // Applique un HOC
 const EnhancedComponent = enhance(WrappedComponent);
 
-// Le composant amélioré n'a pas de méthode statique
+// Le composant amélioré n’a pas de méthode statique
 typeof EnhancedComponent.staticMethod === 'undefined' // true
 ```
 
@@ -368,15 +369,15 @@ function enhance(WrappedComponent) {
 Le problème, c’est que ça exige que vous sachiez exactement quelles méthodes doivent être recopiées. Vous devriez plutôt utiliser [hoist-non-react-statics](https://github.com/mridgway/hoist-non-react-statics) pour copier automatiquement toutes les méthodes statiques qui ne viennent pas de React :
 
 ```js
-import hoistNonReactStatic from 'hoist-non-react-statics';
+import hoistNonReactStatics from 'hoist-non-react-statics';
 function enhance(WrappedComponent) {
   class Enhance extends React.Component {/*...*/}
-  hoistNonReactStatic(Enhance, WrappedComponent);
+  hoistNonReactStatics(Enhance, WrappedComponent);
   return Enhance;
 }
 ```
 
-Une autre solution consiste à exporter les méthodes statiques séparément du composant lui-même.
+Une autre solution consiste à exporter les méthodes statiques de façon séparée du composant lui-même.
 
 ```js
 // Plutôt que...
@@ -386,7 +387,7 @@ export default MyComponent;
 // ... exportez les méthodes séparément...
 export { someFunction };
 
-// ... et dans le module qui les utilise, importez les deux
+// ... et dans le module qui les utilise, importez les deux.
 import MyComponent, { someFunction } from './MyComponent.js';
 ```
 
@@ -394,4 +395,4 @@ import MyComponent, { someFunction } from './MyComponent.js';
 
 Bien que que la convention pour les composants d'ordre supérieur soit de transmettre toutes les props au composant enrobé, ça ne marche pas pour les refs. C'est parce que `ref` n'est pas vraiment une prop : comme `key`, React la traite de façon particulière. Si vous ajoutez une ref à un élément dont le composant résulte d'un HOC, la ref fait référence à une instance du composant conteneur extérieur, et non au composant enrobé.
 
-La solution à ce problème réside dans l'utilisation de l'API `React.forwardRef` (introduite dans React 16.3). [Apprenez-en davantage dans la section sur la transmission des refs](/docs/forwarding-refs.html).
+La solution à ce problème réside dans l'utilisation de l'API `React.forwardRef` (introduite dans React 16.3). [Vous pouvez en apprendre davantage dans la section sur la transmission des refs](/docs/forwarding-refs.html).
