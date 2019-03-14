@@ -12,7 +12,7 @@ Concrètement, **un composant d'ordre supérieur est une fonction qui accepte un
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
 ```
 
-Là où un composant transforme des props en interface utilisateur, un composant d'ordre supérieur transforme un composant en un autre composant.
+Là où un composant transforme des props en interface utilisateur (UI), un composant d'ordre supérieur transforme un composant en un autre composant.
 
 Les HOC sont courants dans des bibliothèques tierces de React, comme [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) dans Redux et [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) dans Relay.
 
