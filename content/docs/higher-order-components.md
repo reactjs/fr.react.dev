@@ -199,8 +199,8 @@ Plutôt que la mutation, les HOC devraient utiliser la composition, en enrobant 
 function logProps(WrappedComponent) {
   return class extends React.Component {
     componentWillReceiveProps(nextProps) {
-      console.log('Current props: ', this.props);
-      console.log('Next props: ', nextProps);
+      console.log('Props actuelles : ', this.props);
+      console.log('Prochaines props : ', nextProps);
     }
     render() {
       // Enrobe le composant initial dans un conteneur, sans le modifier. C’est mieux !
