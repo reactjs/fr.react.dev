@@ -20,7 +20,7 @@ class FileInput extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Envoi du fichier:
+          Envoyer un fichier :
           <input type="file" ref={this.fileInput} />
         </label>
         <br />

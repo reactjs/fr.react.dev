@@ -19,7 +19,7 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Un nom a été soumis : ' + this.input.current.value);
+    alert('Un nom a été envoyé : ' + this.input.current.value);
     event.preventDefault();
   }
 
@@ -27,7 +27,7 @@ class NameForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Nom:
+          Nom :
           <input type="text" ref={this.input} />
         </label>
         <input type="submit" value="Envoyer" />
@@ -39,20 +39,20 @@ class NameForm extends React.Component {
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
 
-Puisqu'un composant non-contrôlé garde la source de vérité dans le DOM, il est parfois plus simple d'y intégrer du code React et non-React. Le code peut être également légèrement plus concis si vous souhaitez être rapide et sale. Autrement, vous devriez utiliser les composants contrôlés.
+Puisqu'un composant non-contrôlé garde la source de vérité dans le DOM, il est parfois plus simple d'intégrer du code React à base de composants non-contrôlés avec du code non-React. Le code peut également être légèrement plus concis si vous souhaitez pondre un truc vite fait. Autrement, vous devriez utiliser les composants contrôlés.
 
-Si dans une situation donnée il n'est pas toujours évident de savoir quel type de composant doit être utilisé, [cet article sur les entrées contrôlées ou non-contrôlées](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/) peut vous être utile.
+Si dans une situation donnée il n'est pas toujours évident de savoir quel type de composant utiliser, [cet article sur les champs contrôlés ou non-contrôlés](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/) vous sera peut-être utile.
 
 ### Valeurs par défaut {#default-values}
 
-Dans le cycle de rendu de React, l'attribut `value` des éléments du formulaire va surcharger la valeur du DOM. Avec un composant non-contrôlé, vous souhaiterez souvent spécifier la valeur initiale et laisser les mises à jours suivantes non-contrôlés. Pour gérer ces cas, vous pouvez spécifier un attribut `defaultValue` à la place de `value`.
+Dans le cycle de vie des rendus React, l'attribut `value` des éléments du formulaire va écraser la valeur du DOM. Avec un composant non-contrôlé, vous souhaiterez plus souvent spécifier la valeur initiale et laisser les mises à jours suivantes non-contrôlées. Dans ces cas-là, vous pouvez spécifier un attribut `defaultValue` plutôt que `value`.
 
 ```javascript{7}
 render() {
   return (
     <form onSubmit={this.handleSubmit}>
       <label>
-        Nom:
+        Nom :
         <input
           defaultValue="Thierry"
           type="text"
@@ -64,19 +64,19 @@ render() {
 }
 ```
 
-De la même manière, `<input type="checkbox">` et `<input type="radio">` supportent l'attribut `defaultChecked`, tout comme `<select>` et `<textarea>` supportent `defaultValue`.
+Dans la même série, `<input type="checkbox">` et `<input type="radio">` ont un attribut `defaultChecked`, et `<select>` et `<textarea>` ont aussi `defaultValue`.
 
 ## La balise `input type="file"` {#the-file-input-tag}
 
-En HTML, un `<input type="file">` permet à l’utilisateur de sélectionner un ou plusieurs fichiers depuis son appareil, et de les téléverser vers un serveur ou de les manipuler en JavaScript grâce à [l'API File](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
+En HTML, un `<input type="file">` permet à l’utilisateur de sélectionner un ou plusieurs fichiers depuis son appareil, et de les téléverser vers un serveur ou de les manipuler en JavaScript grâce à [l'API *File*](https://developer.mozilla.org/fr/docs/Web/API/File/Using_files_from_web_applications).
 
 ```html
 <input type="file" />
 ```
 
-`<input type="file" />` est toujours un composant non-contrôlé en React, puisque sa valeur ne peut être définie que par un utilisateur et non programmatiquement.
+`<input type="file" />` est toujours un composant non-contrôlé en React, puisque sa valeur ne peut être définie que par l’utilisateur et non programmatiquement.
 
-Vous devriez utiliser l'API File pour interagir avec les fichiers. L'exemple suivant montre comment créer une [ref sur le noeud DOM](/docs/refs-and-the-dom.html) pour accéder aux fichiers dans un gestionnaire d'envoi.
+Vous devriez utiliser l'API *File* pour interagir avec les fichiers. L'exemple suivant montre comment créer une [ref sur le nœud DOM](/docs/refs-and-the-dom.html) pour accéder aux fichiers lors de l'envoi du formulaire :
 
 
 `embed:uncontrolled-components/input-type-file.js`
