@@ -1,12 +1,12 @@
 ---
 id: hooks-state
-title: Utiliser un Effect Hook
+title: Utiliser un Hook d’effet
 permalink: docs/hooks-effect.html
 next: hooks-rules.html
 prev: hooks-intro.html
 ---
 
-Les *Hooks* sont une nouveauté introduite dans React 16.8. Ils permettent d’utiliser la gestion d’état, ainsi que d’autres fonctionnalités de React, en se passant des classes.
+Les *Hooks* sont une nouveauté de React 16.8. Ils permettent de bénéficier d’un état local et d'autres fonctionnalités de React sans avoir à écrire de classes.
 
 L’*Effect Hook* permet l’exécution d’effets de bord dans les Fonctions Composants :
 
@@ -26,7 +26,7 @@ function Example() {
     <div>
       <p>Vous avez cliqué {count} fois</p>
       <button onClick={() => setCount(count + 1)}>
-        Cliquez moi
+        Cliquez ici
       </button>
     </div>
   );
@@ -35,23 +35,23 @@ function Example() {
 
 Cet extrait se base sur [l’exemple de compteur présenté à la page précédente](/docs/hooks-state.html), avec toutefois une fonctionnalité supplémentaire : le titre du document est mis à jour avec un message personnalisé affichant le nombre de clics.
 
-Récupérer des données depuis un serveur distant, s’abonner à une souscription et modifier manuellement le DOM constituent des exemples d’effets de bord. Qu’ils soient désignés "effets de bord" (ou juste "effets"), il est hautement probable que vous les ayez déjà utilisés dans vos composants par le passé.
+Récupérer des données depuis un serveur distant, s’abonner à quelque chose et modifier manuellement le DOM sont autant d’exemples d’effets de bord. Que vous ayez ou non l’habitude de les appeler « effets de bord » (ou juste « effets »), il est hautement probable que vous les ayez déjà utilisés dans vos composants par le passé.
 
 >Astuce
 >
->Si les méthodes du cycle de vie des classes React vous sont plus familières, vous pouvez penser le Hook `useEffect` comme une combinaison de `componentDidMount`, `componentDidUpdate`, et `componentWillUnmount`.
+>Si vous avez l’habitude des méthodes de cycle de vie des classes React, pensez au Hook `useEffect` comme à une combinaison de `componentDidMount`, `componentDidUpdate`, et `componentWillUnmount`.
 
-Il existe deux grands types d’effets de bord dans les composants React : ceux qui ne nécessitent pas de nettoyage, et ceux qui en ont besoin. Éxaminons cette distinction en détail.
+Il existe deux grands types d’effets de bord dans les composants React : ceux qui ne nécessitent pas de nettoyage, et ceux qui en ont besoin. Examinons cette distinction en détail.
 
 ## Effets sans nettoyage {#effects-without-cleanup}
 
-Parfois, il arrive d’avoir à **exécuter du code supplémentaire après que React a mis à jour le DOM**. Les accès au réseau, les modifications manuelles du DOM, et le logging sont des exemples courants d’effets qui ne nécessitent aucun nettoyage. Cela s’explique par le fait qu’ils peuvent être oubliés immédiatement après leur exécution. Comparons donc la manière dont les classes et les Hooks nous permettent d’exprimer ce genre d’effets de bord.
+Parfois, nous souhaitons **exécuter du code supplémentaire après que React a mis à jour le DOM**. Les requêtes réseau, les modifications manuelles du DOM, et la journalisation sont des exemples courants d’effets qui ne nécessitent aucun nettoyage. Cela s’explique par le fait qu’ils peuvent être oubliés immédiatement après leur exécution. Comparons donc la manière dont les classes et les Hooks nous permettent d’exprimer ce genre d’effets de bord.
 
 ### Exemple en utilisant les classes {#example-using-classes}
 
-Dans les composants React à base de classe, la méthode `render` ne devrait causer aucun effet de bord par elle-même. Ce serait trop tôt -- ces effets trouvent leur intérêt *après* que React a mis à jour le DOM.
+Dans les composants React à base de classe, la méthode `render` ne devrait causer aucun effet de bord par elle-même. Ce serait trop tôt—ces effets ne sont utiles qu’*après* que React a mis à jour le DOM.
 
-C’est la raison pour laquelle les composants à base de classe React exécutent les effets de bord dans les méthodes `componentDidMount` et `componentDidUpdate`. En reprenant notre exemple, voici un composant React à base de classe implémentant un compteur qui met à jour le titre du document juste après que React a modifié le DOM :
+C’est la raison pour laquelle, dans les classes React, nous plaçons les effets de bord dans les méthodes `componentDidMount` et `componentDidUpdate`. En reprenant notre exemple, voici un composant React à base de classe implémentant un compteur qui met à jour le titre du document juste après que React a modifié le DOM :
 
 ```js{9-15}
 class Example extends React.Component {
@@ -83,7 +83,7 @@ class Example extends React.Component {
 }
 ```
 
-Notez la **duplication de code entre les deux méthodes du cycle de vie du composant.**
+Notez la **duplication de code entre ces deux méthodes de cycle de vie du composant.**
 
 En effet, le même effet de bord doit être exécuté au montage et à la mise à jour du composant. Idéalement, il faudrait que cet effet soit exécuté à chaque rendu -- mais les composants React à base de classe ne disposent pas d’une telle méthode. Même en découpant ce code pour déclarer l’effet de bord dans une fonction à part, celle-ci devra malgré tout être invoquée à deux endroits distincts.
 
