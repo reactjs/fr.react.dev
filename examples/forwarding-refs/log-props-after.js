@@ -1,8 +1,8 @@
 function logProps(Component) {
   class LogProps extends React.Component {
     componentDidUpdate(prevProps) {
-      console.log('anciennes props:', prevProps);
-      console.log('nouvelles props:', this.props);
+      console.log('Anciennes props :', prevProps);
+      console.log('Nouvelles props :', this.props);
     }
 
     render() {
@@ -15,8 +15,8 @@ function logProps(Component) {
     }
   }
 
-  // Notez le deuxième paramètre "ref" fourni par "React.forwardRef".
-  // Nous pouvons le transmettre à LogProps comme une prop normale, par exemple "forwardedRef"
+  // Remarquez le deuxième paramètre `ref` fourni par `React.forwardRef`.
+  // Nous pouvons le passer à LogProps comme une prop normale, par exemple `forwardedRef`
   // Et il peut ensuite être attaché au composant.
   // highlight-range{1-3}
   return React.forwardRef((props, ref) => {

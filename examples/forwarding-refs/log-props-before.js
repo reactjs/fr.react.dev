@@ -2,8 +2,8 @@
 function logProps(WrappedComponent) {
   class LogProps extends React.Component {
     componentDidUpdate(prevProps) {
-      console.log('anciennes props:', prevProps);
-      console.log('nouvelles props:', this.props);
+      console.log('Anciennes props :', prevProps);
+      console.log('Nouvelles props :', this.props);
     }
 
     render() {
