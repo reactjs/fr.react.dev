@@ -1,14 +1,14 @@
-// After
+// Après
 class ExampleComponent extends React.Component {
-  // Initialize state in constructor,
-  // Or with a property initializer.
+  // Initialise l’état dans le constructeur, ou au moyen
+  // d’un initialiseur de propriété.
   // highlight-range{1-4}
   state = {
     isScrollingDown: false,
     lastRow: null,
   };
 
-  // highlight-range{1-7}
+  // highlight-range{1-11}
   static getDerivedStateFromProps(props, state) {
     if (props.currentRow !== state.lastRow) {
       return {
@@ -17,7 +17,7 @@ class ExampleComponent extends React.Component {
       };
     }
 
-    // Return null to indicate no change to state.
+    // Renvoie `null` si aucune mise à jour de l’état n’est nécessaire.
     return null;
   }
 }
