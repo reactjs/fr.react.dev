@@ -1,6 +1,6 @@
 ---
 id: examples
-title: Example Projects
+title: Exemples de projets
 layout: community
 sectionid: community
 permalink: community/examples.html
