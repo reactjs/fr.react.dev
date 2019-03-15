@@ -3,44 +3,44 @@ title: "Vous n'avez sans doute pas besoin d'états dérivés"
 author: [bvaughn]
 ---
 
-React 16.4 comprend [un fix pour `getDerivedStateFromProps`](/blog/2018/05/23/react-v-16-4.html#bugfix-for-getderivedstatefromprops) qui fait que certains bugs connus dans les composants React on pût être reproduit plus facilement. Si la publication de cette version à mis en evidence un anti-pattern dans votre application qui l'a cassée suite à l'application de ce fix, nous sommes désolé pour le désagrément. Dans cet article nous allons passer en revus certains anti-patterns habituels autour des état dérivé et les alternatives que nous recommandons.
+React 16.4 comprend [un fix pour `getDerivedStateFromProps`](/blog/2018/05/23/react-v-16-4.html#bugfix-for-getderivedstatefromprops) qui fait que certains bugs connus des composants React se produisent plus fréquemment. Si la publication de cette version avec ce fix à mis en evidence un anti-pattern dans votre application et l'a cassée, nous sommes désolé pour le désagrément. Dans cet article nous allons passer en revus certains anti-patterns habituels autour des état dérivé et les alternatives que nous recommandons.
 
-For a long time, the lifecycle `componentWillReceiveProps` was the only way to update state in response to a change in props without an additional render. In version 16.3, [we introduced a replacement lifecycle, `getDerivedStateFromProps`](/blog/2018/03/29/react-v-16-3.html#component-lifecycle-changes) to solve the same use cases in a safer way. At the same time, we've realized that people have many misconceptions about how to use both methods, and we've found anti-patterns that result in subtle and confusing bugs. The `getDerivedStateFromProps` bugfix in 16.4 [makes derived state more predictable](https://github.com/facebook/react/issues/12898), so the results of misusing it are easier to notice.
+Depuis longtemps, la méthode de cycle de vie `componentWillReceiveProps` était la seule façon de mettre à jour un état suite à un changement de props sans pour autant déclencher un rendu supplémentaire. Dans la version 16.3, [nous avons introduit une méthode de cycle de vie de remplacement `getDerivedStateFromProps`](/blog/2018/03/29/react-v-16-3.html#component-lifecycle-changes) afin de résoudre ce cas d'usage de manière plus sur. Au même moment, nous nous sommes aperçus que les gens avait de nombreuses idées fausses quand à l'utilisation de ces deux méthodes et nous avons découverts des anti-patterns qui amenaient des bugs à la foi subtiles et déroutant. Le fix pour `getDerivedStateFromProps` dans la version 16.4 [rend les états dérivés plus prédictifs](https://github.com/facebook/react/issues/12898), ainsi les conséquences d'uns mauvaise utilisation sont plus facile à identifier.
 
-> Note
+> Remarque :
 >
-> All of the anti-patterns described in this post apply to both the older `componentWillReceiveProps` and the newer `getDerivedStateFromProps`.
+> Tous les anti-patterns décrits dans cette article s'appliquent aussi bien à la vieille méthode `componentWillReceiveProps` qu'à la nouvelle `getDerivedStateFromProps`.
 
- This blog post will cover the following topics:
-* [When to use derived state](#when-to-use-derived-state)
-* [Common bugs when using derived state](#common-bugs-when-using-derived-state)
-  * [Anti-pattern: Unconditionally copying props to state](#anti-pattern-unconditionally-copying-props-to-state)
-  * [Anti-pattern: Erasing state when props change](#anti-pattern-erasing-state-when-props-change)
-* [Preferred solutions](#preferred-solutions)
-* [What about memoization?](#what-about-memoization)
+Cette article va couvrir les sujets suivant :
+* [Quand utiliser les états dérivés](#when-to-use-derived-state)
+* [Les bug courant lors de l'utilisation des états dérivés](#common-bugs-when-using-derived-state)
+  * [Anti-pattern: La copie inconditionnelle des props dans l'état](#anti-pattern-unconditionally-copying-props-to-state)
+  * [Anti-pattern: Effacer l'état quand les props changent](#anti-pattern-erasing-state-when-props-change)
+* [Les solution recommandées](#preferred-solutions)
+* [Et la memoization dans tout ça?](#what-about-memoization)
 
-## When to Use Derived State {#when-to-use-derived-state}
+## Quand utiliser les états dérivés {#when-to-use-derived-state}
 
-`getDerivedStateFromProps` exists for only one purpose. It enables a component to update its internal state as the result of **changes in props**. Our previous blog post provided some examples, like [recording the current scroll direction based on a changing offset prop](/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props) or [loading external data specified by a source prop](/blog/2018/03/27/update-on-async-rendering.html#fetching-external-data-when-props-change).
+`getDerivedStateFromProps` n'existe que dans un seul but. Il permet à un composant de mettre à jour son état interne suite à **un changement de ses props**. Notre article de blog précédent fournissait quelques examples tel que [l'enregistrement de la direction du défilement basé sur le changement d'une prop `offset`](/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props) ou [le chargement de données externes spécifiées avec une prop source](/blog/2018/03/27/update-on-async-rendering.html#fetching-external-data-when-props-change).
 
-We did not provide many examples, because as a general rule, **derived state should be used sparingly**. All problems with derived state that we have seen can be ultimately reduced to either (1) unconditionally updating state from props or (2) updating state whenever props and state don't match. (We'll go over both in more detail below.)
+Nous n'avons pas données beaucoup d'example car, de manière général, **les états dérivés devraient être utilisés avec parcimonie**. Tous les problèmes que nous avons identifié avec les états dérivés peuvent, au bout du bout, se résumer à (1) la mise à jour inconditionnel de l'états avec les props ou (2) la mise à jour de l'état à chaque fois que l'état et les props ne correspondent pas. (Nous allons détailler ces deux cas ci-après)
 
-* If you're using derived state to memoize some computation based only on the current props, you don't need derived state. See [What about memoization?](#what-about-memoization) below.
-* If you're updating derived state unconditionally or updating it whenever props and state don't match, your component likely resets its state too frequently. Read on for more details.
+* Si vous utilisez les états dérivés pour mémoriser (NdT : _memoize_) certains calcules sur la seul base des props courant vous n'avez pas besoin des états dérivés. Allez voir [Et la memoization dans tout ça?](#what-about-memoization) ci-après.
+* Si vous mettrez à jour votre état dérivé sans condition ou si vous le mettez à jour même quand l'état et les props ne correspondent pas, il y a de forte chance que votre composant réinitialise son état trop fréquemment. Continuer votre lecture pour plus de détails.
 
-## Common Bugs When Using Derived State {#common-bugs-when-using-derived-state}
+## Les bug courant lors de l'utilisation des états dérivés {#common-bugs-when-using-derived-state}
 
-The terms ["controlled"](/docs/forms.html#controlled-components) and ["uncontrolled"](/docs/uncontrolled-components.html) usually refer to form inputs, but they can also describe where any component's data lives. Data passed in as props can be thought of as **controlled** (because the parent component _controls_ that data). Data that exists only in internal state can be thought of as **uncontrolled** (because the parent can't directly change it).
+Les termes [« controlé »](/docs/forms.html#controlled-components) et [« non-controlé »](/docs/uncontrolled-components.html) se réfère habituellement aux champs de formulaire, cependant ils peuvent également décrire là où vive les données d'un composant. Les données passées dans des props peuvent êtres considérées comme **controlé** (parce que le composant parent _controle_ ces données). Les données qui existent uniquement dans l'état interne peuvent êtres considérées comme **non-controlé** (parce que le composant parent ne peut pas les changer directement).
 
-The most common mistake with derived state is mixing these two; when a derived state value is also updated by `setState` calls, there isn't a single source of truth for the data. The [external data loading example](/blog/2018/03/27/update-on-async-rendering.html#fetching-external-data-when-props-change) mentioned above may sound similar, but it's different in a few important ways. In the loading example, there is a clear source of truth for both the "source" prop and the "loading" state. When the source prop changes, the loading state should **always** be overridden. Conversely, the state is overridden only when the prop **changes** and is otherwise managed by the component.
+L'erreur la plus courante avec les états dérivé survient lorsqu'on mélange les deux concepts ; quand la valeur d'un état dérivé et également mise à jour par un appel à `setState`, il n'y a plus une seul source de vérité pour les données. [L'example de chargement de données externes](/blog/2018/03/27/update-on-async-rendering.html#fetching-external-data-when-props-change) évoqué ci-avant peut sembler similaire mais il est en réalité différent sur un certain nombre de points clés. Dans l'example du chargement, il y a une source de vérité clairement identifiée à la fois pour la prop « source » et pour l'état de « chargement ». Quand la prop source change, l'état de chargement devrait **toujours** être écrasé. Inversement, l'état n'est écrasé que lorsque la prop **change** et est géré par le composant dans tous les autres cas.
 
-Problems arise when any of these constraints are changed. This typically comes in two forms. Let's take a look at both.
+Les problèmes surviennent quand n'importe laquelle de ces contraintes change. Cela se produit habituellement de deux façon. Voyons chacun de ces cas.
 
-### Anti-pattern: Unconditionally copying props to state {#anti-pattern-unconditionally-copying-props-to-state}
+### Anti-pattern: La copie inconditionnelle des props dans l'état {#anti-pattern-unconditionally-copying-props-to-state}
 
-A common misconception is that `getDerivedStateFromProps` and `componentWillReceiveProps` are only called when props "change". These lifecycles are called any time a parent component rerenders, regardless of whether the props are "different" from before. Because of this, it has always been unsafe to _unconditionally_ override state using either of these lifecycles. **Doing so will cause state updates to be lost.**
+Une erreur courante consiste à croire que `getDerivedStateFromProps` and `componentWillReceiveProps` ne sont appelées que lorsque les props « change ». Ces méthodes de cycle de vie sont appelées à chaque fois qu'un composant parent va être rendu, peut importe que les props soit « différentes » ou non de la fois précédente. Pour cette raison, il a toujours été dangereux d'écraser l'état de manière _inconditionnelle_ en utilisant ces méthodes de cycle de vie. **Cette pratique conduira à une perte des mises à jour de l'état.**
 
-Let’s consider an example to demonstrate the problem. Here is a `EmailInput` component that "mirrors" an email prop in state:
+Prenons un example pour illustrer ce problème. Voici un composant `EmailInput` qui « reflète » une prop e-mail dans l'état :
 ```js
 class EmailInput extends Component {
   state = { email: this.props.email };
@@ -54,22 +54,22 @@ class EmailInput extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    // This will erase any local state updates!
-    // Do not do this.
+    // Ça va écraser toute mise à jour de l'état local !
+    // Ne faites pas ça.
     this.setState({ email: nextProps.email });
   }
 }
 ```
 
-At first, this component might look okay. State is initialized to the value specified by props and updated when we type into the `<input>`. But if our component's parent rerenders, anything we've typed into the `<input>` will be lost! ([See this demo for an example.](https://codesandbox.io/s/m3w9zn1z8x)) This holds true even if we were to compare `nextProps.email !== this.state.email` before resetting.
+A première vue, ce composant à l'air bien. L'état est initialisé avec la valeur spécifiée par les props et mis à jour quand nous saisissons quelque chose dans la balise `<input>`. Cependant, si notre composant parent vient à être rendu à nouveau, tout ce que nous aurons saisie sera perdu ! ([Jetez un coup d'œil à cette démo par example.](https://codesandbox.io/s/m3w9zn1z8x)) Le problème persiste même si on compare `nextProps.email !== this.state.email` avant de réinitialiser la valeur.
 
-In this simple example, adding `shouldComponentUpdate` to rerender only when the email prop has changed could fix this. However in practice, components usually accept multiple props; another prop changing would still cause a rerender and improper reset. Function and object props are also often created inline, making it hard to implement a `shouldComponentUpdate` that reliably returns true only when a material change has happened. [Here is a demo that shows that happening.](https://codesandbox.io/s/jl0w6r9w59) As a result, `shouldComponentUpdate` is best used as a performance optimization, not to ensure correctness of derived state.
+Dans cette example, ajouter `shouldComponentUpdate` afin de réaliser un nouveau rendu quand la prop e-mail change devrait résoudre le problème. Cependant, en pratique, les composant reçoivent plusieurs props et une autre prop pourrait provoquer un nouveau rendu et donc une réinitialisation malvenue. Les props function et objet sont aussi souvent inlinées ce qui rend difficile la mise en œuvre d'une méthode `shouldComponentUpdate` capable de retourner `true` à chaque changement substantiel. [Voici une démo qui montre ce qui ce passe dans un tel cas.](https://codesandbox.io/s/jl0w6r9w59) En conséquences, `shouldComponentUpdate` est un bon système pour optimiser les performances mais il ne vaux rien pour garantir la qualité des états dérivés.
 
-Hopefully it's clear by now why **it is a bad idea to unconditionally copy props to state**. Before reviewing possible solutions, let's look at a related problematic pattern: what if we were to only update the state when the email prop changes?
+On peut espérer que vous savez maintenant pourquoi c'est une mauvaise idée de copier les props dans l'état de manière inconditionnelle. Avant de passer en revue les solutions possibles, jetons un coup d'œil à un autre pattern problématique connexe: Que ce passerait-il si on met à jour l'état quand la prop e-mail change ?
 
-### Anti-pattern: Erasing state when props change {#anti-pattern-erasing-state-when-props-change}
+### Anti-pattern: Effacer l'état quand les props changent {#anti-pattern-erasing-state-when-props-change}
 
-Continuing the example above, we could avoid accidentally erasing state by only updating it when `props.email` changes:
+Si on reprend l'example précédent, on peut éviter d'effacer l'état accidentellement en ne le mettant à jour que lorsque `props.email` change :
 
 ```js
 class EmailInput extends Component {
@@ -78,7 +78,7 @@ class EmailInput extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    // Any time props.email changes, update state.
+    // A chaque fois que props.email change, on met l'état à jour.
     if (nextProps.email !== this.props.email) {
       this.setState({
         email: nextProps.email
