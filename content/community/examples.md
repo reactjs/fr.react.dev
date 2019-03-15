@@ -16,7 +16,7 @@ Beaucoup d'exemples de projets ont déjà été créés par la communauté React
 * **[Shopping Cart](https://github.com/jeffersonRibeiro/react-shopping-cart)** Simple eCommerce avec panier en React
 * **[Progressive Web Tetris](https://github.com/skidding/flatris)** En plus d'être une version de Tetris magnifique et adaptée aux mobiles, ce projet est un terrain de jeu pour l'intégration des technologies web et leur expérimentation.
 * **[Product Comparison Page](https://github.com/Rhymond/product-compare-react)** Simple page de comparaison de produits en React
-* **[Hacker News Clone React/GraphQL](https://github.com/clintonwoo/hackernews-react-graphql)** Hacker News clone rewritten with universal JavaScript, using React and GraphQL.
+* **[Hacker News Clone React/GraphQL](https://github.com/clintonwoo/hackernews-react-graphql)** Le clone de Hacker News réécrit en JavaScript avec React et GraphQL.
 * **[Bitcoin Price Index](https://github.com/mrkjlchvz/bitcoin-price-index)** Simple bitcoin price index data from CoinDesk API.
 * **[Builder Book](https://github.com/builderbook/builderbook)** Open source web app to write and host documentation or sell books. Built with React, Material-UI, Next, Express, Mongoose, MongoDB.
 * **[GFonts Space](https://github.com/pankajladhar/GFontsSpace)** A space which allows user to play with Google fonts. Built with React, Redux and React-Router.
