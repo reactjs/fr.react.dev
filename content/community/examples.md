@@ -19,4 +19,4 @@ Beaucoup d'exemples de projets ont déjà été créés par la communauté React
 * **[Hacker News Clone React/GraphQL](https://github.com/clintonwoo/hackernews-react-graphql)** Le clone de Hacker News réécrit en JavaScript avec React et GraphQL.
 * **[Bitcoin Price Index](https://github.com/mrkjlchvz/bitcoin-price-index)** Graphique d'évolution des prix du Bitcoin via l'API CoinDesk.
 * **[Builder Book](https://github.com/builderbook/builderbook)** Appli web progressive et open source pour écrire et héberger une documentation ou vendre des livres. Élaborée avec React, Material-UI, Next, Express, Mongoose, et MongoDB.
-* **[GFonts Space](https://github.com/pankajladhar/GFontsSpace)** A space which allows user to play with Google fonts. Built with React, Redux and React-Router.
+* **[GFonts Space](https://github.com/pankajladhar/GFontsSpace)** Un espace permettant à l'utilisateur de jouer avec les Google Fonts. Construit avec React, Redux et React-Router.
