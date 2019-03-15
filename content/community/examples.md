@@ -6,8 +6,7 @@ sectionid: community
 permalink: community/examples.html
 ---
 
-There are many example projects created by the React community. Feel free to add your own project. If you add a project, please commit to keeping it up to date with the latest versions of React.
-
+Beaucoup d'exemples de projets ont déjà été créés par la communauté React. N'hésitez pas à y ajouter le votre. Si vous ajoutez un projet, engagez-vous à le maintenir à jour avec les dernières versions de React.
 
 * **[Calculator](https://github.com/ahfarmer/calculator)** Implementation of the iOS calculator built in React
 * **[Emoji Search](https://github.com/ahfarmer/emoji-search)** Simple React app for searching emoji
