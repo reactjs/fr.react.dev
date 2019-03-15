@@ -14,7 +14,7 @@ Beaucoup d'exemples de projets ont déjà été créés par la communauté React
 * **[React Powered Hacker News Client](https://github.com/insin/react-hn)** Une implémentation en React & react-router de Hacker News via son API Firebase.
 * **[Pokedex](https://github.com/alik0211/pokedex)** La liste des Pokémon avec recherche en direct
 * **[Shopping Cart](https://github.com/jeffersonRibeiro/react-shopping-cart)** Simple eCommerce avec panier en React
-* **[Progressive Web Tetris](https://github.com/skidding/flatris)** Besides a beautiful, mobile-friendly implementation of Tetris, this project is a playground for integrating and experimenting with web technologies.
+* **[Progressive Web Tetris](https://github.com/skidding/flatris)** En plus d'être une version de Tetris magnifique et adaptée aux mobiles, ce projet est un terrain de jeu pour l'intégration des technologies web et leur expérimentation.
 * **[Product Comparison Page](https://github.com/Rhymond/product-compare-react)** Simple Product Compare page built in React
 * **[Hacker News Clone React/GraphQL](https://github.com/clintonwoo/hackernews-react-graphql)** Hacker News clone rewritten with universal JavaScript, using React and GraphQL.
 * **[Bitcoin Price Index](https://github.com/mrkjlchvz/bitcoin-price-index)** Simple bitcoin price index data from CoinDesk API.
