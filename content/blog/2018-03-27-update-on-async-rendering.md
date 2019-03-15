@@ -77,154 +77,167 @@ Nous allons maintenant examiner des exemples illustrant l'utilisation de ces deu
 
 ### Initialisation de l’état local {#initializing-state}
 
-<!-- RESUME/FIXME -->
+Cet exemple montre un composant qui fait des appels à `setState` dans `componentWillMount` :
 
-This example shows a component with `setState` calls inside of `componentWillMount`:
 `embed:update-on-async-rendering/initializing-state-before.js`
 
-The simplest refactor for this type of component is to move state initialization to the constructor or to a property initializer, like so:
+La refactorisation la plus simple pour ce type de composant consiste à déplacer l'initialisation de l'état dans le constructeur ou dans un initialiseur de propriété, comme suit :
+
 `embed:update-on-async-rendering/initializing-state-after.js`
 
 ### Récupération de données externes {#fetching-external-data}
 
-Here is an example of a component that uses `componentWillMount` to fetch external data:
+Voici un exemple de composant qui utilise `componentWillMount` pour récupérer des données externes :
+
 `embed:update-on-async-rendering/fetching-external-data-before.js`
 
-The above code is problematic for both server rendering (where the external data won't be used) and the upcoming async rendering mode (where the request might be initiated multiple times).
+Ce code est problématique tant pour le rendu côté serveur (qui n'utilisera pas les données externes) que pour le mode de rendu asynchrone qui arrivera prochainement (dans lequel la requête risquerait d'être déclenchée plusieurs fois).
 
-The recommended upgrade path for most use cases is to move data-fetching into `componentDidMount`:
+La procédure de mise à niveau recommandée dans la plupart des cas consiste à déplacer la récupération des données dans `componentDidMount` :
+
 `embed:update-on-async-rendering/fetching-external-data-after.js`
 
-There is a common misconception that fetching in `componentWillMount` lets you avoid the first empty rendering state. In practice this was never true because React has always executed `render` immediately after `componentWillMount`. If the data is not available by the time `componentWillMount` fires, the first `render` will still show a loading state regardless of where you initiate the fetch. This is why moving the fetch to `componentDidMount` has no perceptible effect in the vast majority of cases.
+Beaucoup de gens croient à tort que la récupération de données dans `componentWillMount` évite un premier affichage vide.  En pratique, ça n'a jamais été le cas puisque React a toujours exécuté `render` immédiatement après `componentWillMount`.  Si les données ne sont pas disponibles au moment où `componentWillMount` était appelé, le premier affichage montre toujours un état de chargement, peu importe l'endroit qui initie la récupération.  C'est pourquoi déplacer ce chargement dans `componentDidMount` n’a aucun effet perceptible dans l'immense majorité des cas.
 
-> Note
+> Remarque
 >
-> Some advanced use-cases (e.g. libraries like Relay) may want to experiment with eagerly prefetching async data. An example of how this can be done is available [here](https://gist.github.com/bvaughn/89700e525ff423a75ffb63b1b1e30a8f).
+> Dans certains cas d'usage avancés (ex. des bibliotèques telles que Relay), on peut tenter des expériences de pré-chargement asynchrone de données.  Vous pouvez trouver un exemple d'implémentation [ici](https://gist.github.com/bvaughn/89700e525ff423a75ffb63b1b1e30a8f).
 >
-> In the longer term, the canonical way to fetch data in React components will likely be based on the “suspense” API [introduced at JSConf Iceland](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Both simple data fetching solutions and libraries like Apollo and Relay will be able to use it under the hood. It is significantly less verbose than either of the above solutions, but will not be finalized in time for the 16.3 release.
+> Sur le plus long terme, la façon canonique de récupérer des données en React sera probablement associée à l’API « Suspense » [présentée à JSConf Iceland](/blog/2018/03/01/sneak-peek-beyond-react-16.html).  Tant les solutions simples de récupération e données que les bibliothèques comme Apollo et Relay seront capables d’en tirer parti sous le capot.  Cette API est considérablement moins verbeuse que les solutions illustrées plus haut, mais ne sera pas finalisée à temps pour la version 16.3.
 >
-> When supporting server rendering, it's currently necessary to provide the data synchronously – `componentWillMount` was often used for this purpose but the constructor can be used as a replacement. The upcoming suspense APIs will make async data fetching cleanly possible for both client and server rendering.
+> Afin de prendre en charge le rendu côté serveur, il est pour l'instant nécessaire de fournir les données de façon synchrone ; `componentWillMount` était souvent utilisée pour ça, mais on peut aisément déplacer ce code dans le constructeur.  Les API Suspense à venir rendront le chargement e données asynchrone beaucoup plus élégant tant côté client que côté serveur.
 
 ### Ajout de gestionnaires d’événements (ou abonnements) {#adding-event-listeners-or-subscriptions}
 
-Here is an example of a component that subscribes to an external event dispatcher when mounting:
+Voici un exemple de composant qui s’abonne au montage à un diffuseur externe d’événements :
+
 `embed:update-on-async-rendering/adding-event-listeners-before.js`
 
-Unfortunately, this can cause memory leaks for server rendering (where `componentWillUnmount` will never be called) and async rendering (where rendering might be interrupted before it completes, causing `componentWillUnmount` not to be called).
+Malheureusement, cette approche peut entraîner des fuites de mémoire lors du rendu côté serveur (car `componentWillUnmount` n’y est pas appelé) et du rendu asynchrone (qui est susceptible d'interrompre le rendu avant sa complétion, ce qui intercepterait l'appel à `componentWillUnmount`).
 
-People often assume that `componentWillMount` and `componentWillUnmount` are always paired, but that is not guaranteed. Only once `componentDidMount` has been called does React guarantee that `componentWillUnmount` will later be called for clean up.
+On suppose souvent que `componentWillMount` et `componentWillUnmount` vont toujours par paire, mais ce n'est pas garanti.  C’est seulement une fois que `componentDidMount` a été appelé que React garanti l’appel ultérieur de nettoyage à `componentWillUnmount`.
 
-For this reason, the recommended way to add listeners/subscriptions is to use the `componentDidMount` lifecycle:
+En conséquence, la façon recommandée d’ajouter des écouteurs ou abonnements consiste à le faire dans `componentDidMount` :
+
 `embed:update-on-async-rendering/adding-event-listeners-after.js`
 
-Sometimes it is important to update subscriptions in response to property changes. If you're using a library like Redux or MobX, the library's container component should handle this for you. For application authors, we've created a small library, [`create-subscription`](https://github.com/facebook/react/tree/master/packages/create-subscription), to help with this. We'll publish it along with React 16.3.
+Il est parfois nécessaire de mettre à jour les abonnements en réponse à des changements de props.  Si vous utilisez une bibliothèque comme Redux ou MobX, le composant conteneur fourni par la bibliothèque devrait s'en charger pour vous.  Pour les auteurs d'applications, nous avons créé une petite bibliothèque, [`create-subscription`](https://github.com/facebook/react/tree/master/packages/create-subscription), qui vous aide dans cette tâche.  Nous la publierons en accompagnement de React 16.3.
 
-Rather than passing a subscribable `dataSource` prop as we did in the example above, we could use `create-subscription` to pass in the subscribed value:
+Plutôt que de passer une prop `dataSource` sur laquelle s'abonner, comme nous l'avons fait dans l'exemple ci-dessus, nous pourrions utiliser `create-subscription` pour passer la valeur suivie :
 
 `embed:update-on-async-rendering/adding-event-listeners-create-subscription.js`
 
-> Note
+> Remarque
 >
-> Libraries like Relay/Apollo should manage subscriptions manually with the same techniques as `create-subscription` uses under the hood (as referenced [here](https://gist.github.com/bvaughn/d569177d70b50b58bff69c3c4a5353f3)) in a way that is most optimized for their library usage.
+> Les bibliothèques telles que Relay ou Apollo devraient gérer leurs abonnements manuellement avec des techniques similaires à celles que `create-subscription` utilise sous le capot (comme indiqué [ici](https://gist.github.com/bvaughn/d569177d70b50b58bff69c3c4a5353f3)) en optimisant ça au mieux vis-à-vis de leur contexte.
 
 ### Mise à jour de `state` sur la base des props {#updating-state-based-on-props}
 
->Note:
+>Remarque
 >
->Both the older `componentWillReceiveProps` and the new `getDerivedStateFromProps` methods add significant complexity to components. This often leads to [bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html#common-bugs-when-using-derived-state). Consider **[simpler alternatives to derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** to make components predictable and maintainable.
+>Tant l’ancienne `componentWillReceiveProps` que la nouvelle `getDerivedStateFromProps` ajoutent une complexité significative aux composants.  Ça entraîne souvent des [bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html#common-bugs-when-using-derived-state). Préférez des **[ alternatives à l’état dérivé plus simples](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** afin de rendre vos composants prévisibles et maintenables.
 
-Here is an example of a component that uses the legacy `componentWillReceiveProps` lifecycle to update `state` based on new `props` values:
+Voici un exemple de composant qui recourt à la méthode historique de cycle de vie `componentWillReceiveProps` pour mettre à jour `state` en fonction des valeurs des `props` :
+
 `embed:update-on-async-rendering/updating-state-from-props-before.js`
 
-Although the above code is not problematic in itself, the `componentWillReceiveProps` lifecycle is often mis-used in ways that _do_ present problems. Because of this, the method will be deprecated.
+Même si le code ci-dessus n'est pas problématique en soi, la méthode de cycle de vie `componentWillReceiveProps` est souvent mal utilisée de façons qui *posent en effet* des problèmes.  C'est pourquoi cette méthode sera bientôt dépréciée.
 
-As of version 16.3, the recommended way to update `state` in response to `props` changes is with the new `static getDerivedStateFromProps` lifecycle. (That lifecycle is called when a component is created and each time it receives new props):
+À partir de la version 16.3, la façon recommandée de mettre à jour `state` en réponse à des changements de `props` consiste à utiliser la nouvelle méthode de cycle de vie `static getDerivedStateFromProps` (cette méthode est appelée quand le composant est créé et à chaque fois qu'il reçoit des nouvelles props) :
+
 `embed:update-on-async-rendering/updating-state-from-props-after.js`
 
-You may notice in the example above that `props.currentRow` is mirrored in state (as `state.lastRow`). This enables `getDerivedStateFromProps` to access the previous props value in the same way as is done in `componentWillReceiveProps`.
+Vous avez peut-être remarqué dans cet exemple que `props.currentRow` est reflétée dans l'état (en tant que `state.lastRow`). Ça permet à `getDerivedStateFromProps` d’accéder à la valeur précédente de la prop de la même façon que si on utilisait `componentWillReceiveProps`.
 
-You may wonder why we don't just pass previous props as a parameter to `getDerivedStateFromProps`. We considered this option when designing the API, but ultimately decided against it for two reasons:
-* A `prevProps` parameter would be null the first time `getDerivedStateFromProps` was called (after instantiation), requiring an if-not-null check to be added any time `prevProps` was accessed.
-* Not passing the previous props to this function is a step toward freeing up memory in future versions of React. (If React does not need to pass previous props to lifecycles, then it does not need to keep the previous `props` object in memory.)
+Vous vous demandez peut-être pourquoi nous ne nous contentons pas de passer les props précédentes en argument à `getDerivedStateFromProps`.  Nous y avons pensé en concevant l’API, mais au final avons décidé de ne pas le faire pour deux raisons :
 
-> Note
+* Un argument `prevProps` serait `null` au premier appel à `getDerivedStateFromProps` (après l'instanciation), vous obligeant à ajouter une vérification de nullité chaque fois que vous utiliseriez `prevProps`.
+* Ne pas passer les props précédentes à la fonction constitue un pas vers de la libération améliorée de la mémoire dans de futures versions de React. (Si React n'a pas besoin de passer les props précédentes aux méthodes de cycle de vie, il n'a pas besoin de conserver l’objet `props` précédent en mémoire.)
+
+> Remarque
 >
-> If you're writing a shared component, the [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) polyfill enables the new `getDerivedStateFromProps` lifecycle to be used with older versions of React as well. [Learn more about how to use it below.](#open-source-project-maintainers)
+> Si vous écrivez un composant partagé, le polyfill [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) vous permet d’utiliser la nouvelle méthode de cycle de vie `getDerivedStateFromProps` même dans d'anciennes versions de React. [Vous pouvez apprendre à l’utiliser plus bas.](#open-source-project-maintainers)
 
 ### Invocation de fonctions de rappel externes {#invoking-external-callbacks}
 
-Here is an example of a component that calls an external function when its internal state changes:
+Voici un exemple de composant qui appelle une fonction externe quand son état local change :
+
 `embed:update-on-async-rendering/invoking-external-callbacks-before.js`
 
-Sometimes people use `componentWillUpdate` out of a misplaced fear that by the time `componentDidUpdate` fires, it is "too late" to update the state of other components. This is not the case. React ensures that any `setState` calls that happen during `componentDidMount` and `componentDidUpdate` are flushed before the user sees the updated UI. In general, it is better to avoid cascading updates like this, but in some cases they are necessary (for example, if you need to position a tooltip after measuring the rendered DOM element).
+On utilise parfois `componentWillUpdate` en raison d’une peur irrationnelle qu’au premier appel à `componentDidUpdate` il soit déjà « trop tard » pour mettre à jour l’état d’autres composants.  Il n’en est rien.  React garantit que tous les appels à `setState` effectués dans `componentDidMount` et `componentDidUpdate` sont traités avant que l’utilisateur voie l’interface utilisateur (UI) mise à jour.  En général, il vaut mieux éviter les mises à jour en cascade comme celle-ci, mais dans certains cas elles sont nécessaires (par exemple, si vous avez besoin de positionner une infobulle après avoir mesure l’élément DOM affiché).
 
-Either way, it is unsafe to use `componentWillUpdate` for this purpose in async mode, because the external callback might get called multiple times for a single update. Instead, the `componentDidUpdate` lifecycle should be used since it is guaranteed to be invoked only once per update:
+Dans les deux cas, utiliser `componentWillUpdate` dans cet objectif en mode asynchrone est dangereux, car la fonction de rappel externe est susceptible d'être appelée plusieurs fois pour une unique mise à jour.  Utilisez plutôt la méthode de cycle de vie `componentDidUpdate`, dont React garantit l'invocation unique à chaque mise à jour :
+
 `embed:update-on-async-rendering/invoking-external-callbacks-after.js`
 
 ### Effets de bord lorsque les props changent {#side-effects-on-props-change}
 
-Similar to the [example above](#invoking-external-callbacks), sometimes components have side effects when `props` change.
+Dans le même esprit que [l’exemple ci-dessus](#invoking-external-callbacks), les composants ont parfois des effets de bord quand les `props` changent.
 
 `embed:update-on-async-rendering/side-effects-when-props-change-before.js`
 
-Like `componentWillUpdate`, `componentWillReceiveProps` might get called multiple times for a single update. For this reason it is important to avoid putting side effects in this method. Instead, `componentDidUpdate` should be used since it is guaranteed to be invoked only once per update:
+Comme `componentWillUpdate`, `componentWillReceiveProps` risque d'être appelée plusieurs fois pour une unique mise à jour.  C’est pourquoi il est important d’éviter d’y placer des effets de bord. Utilisez plutôt `componentDidUpdate`, dont l'invocation unique par mise à jour est garantie :
 
 `embed:update-on-async-rendering/side-effects-when-props-change-after.js`
 
 ### Récupération de données externes lorsque les props changent {#fetching-external-data-when-props-change}
 
-Here is an example of a component that fetches external data based on `props` values:
+Voici un exemple de composant qui récupère des données externes en fonction des valeurs de `props` :
+
 `embed:update-on-async-rendering/updating-external-data-when-props-change-before.js`
 
-The recommended upgrade path for this component is to move data updates into `componentDidUpdate`. You can also use the new `getDerivedStateFromProps` lifecycle to clear stale data before rendering the new props:
+La procédure de mise à niveau recommandée consiste à déplacer les mises à jour de données dans `componentDidUpdate`.  Vous pouvez aussi utiliser la nouvelle méthode de cycle de vie `getDerivedStateFromProps` pour retirer les données obsolètes avant d’afficher les nouvelles props :
+
 `embed:update-on-async-rendering/updating-external-data-when-props-change-after.js`
 
-> Note
+> Remarque
 >
-> If you're using an HTTP library that supports cancellation, like [axios](https://www.npmjs.com/package/axios), then it's simple to cancel an in-progress request when unmounting. For native Promises, you can use an approach like [the one shown here](https://gist.github.com/bvaughn/982ab689a41097237f6e9860db7ca8d6).
+> Si vous utilisez une bibliothèque HTTP qui permet l'annulation, comme [axios](https://www.npmjs.com/package/axios), il est alors facile d’annuler une requête en cours au démontage.  Pour les Promesses natives, vous pouvez utiliser une approche comme [celle illustrée ici](https://gist.github.com/bvaughn/982ab689a41097237f6e9860db7ca8d6).
 
 ### Lecture de propriétés du DOM avant sa mise à jour {#reading-dom-properties-before-an-update}
 
-Here is an example of a component that reads a property from the DOM before an update in order to maintain scroll position within a list:
+Voici un exemple de composant qui lit une propriété du DOM avant une mise à jour afin de maintenir la position de défilement au sein d’une liste :
+
 `embed:update-on-async-rendering/react-dom-properties-before-update-before.js`
 
-In the above example, `componentWillUpdate` is used to read the DOM property. However with async rendering, there may be delays between "render" phase lifecycles (like `componentWillUpdate` and `render`) and "commit" phase lifecycles (like `componentDidUpdate`). If the user does something like resize the window during this time, the `scrollHeight` value read from `componentWillUpdate` will be stale.
+Dans cet exemple, on utilise `componentWillUpdate` pour lire la propriété du DOM.  Seulement voilà, avec le rendu asynchrone, il peut y avoir des délais entre les méthodes de cycle de vie de la phase de « rendu » (comme `componentWillUpdate` et `render`) et celles de la phase de « commit » (comme `componentDidUpdate`).  Si l’utilisateur fait dans l’intervalle quelque chose comme redimensionner la fenêtre, la valeur `scrollHeight` lue dans `componentWillUpdate` sera obsolète.
 
-The solution to this problem is to use the new "commit" phase lifecycle, `getSnapshotBeforeUpdate`. This method gets called _immediately before_ mutations are made (e.g. before the DOM is updated). It can return a value for React to pass as a parameter to `componentDidUpdate`, which gets called _immediately after_ mutations.
+Pour résoudre ce problème, utilisez la nouvelle méthode de cycle de vie de la phase de « commit » `getSnapshotBeforeUpdate`.  Elle est appelée _juste avant_ que les mutations soient finalisées (ex. avant les mises à jour au DOM). Elle peut renvoyer une valeur que React passera en argument à `componentDidUpdate`, laquelle est appelée _juste après_ les mutations.
 
-The two lifecycles can be used together like this:
+Ces deux méthodes de cycle de vie peuvent être utilisées en combinaison comme ceci :
 
 `embed:update-on-async-rendering/react-dom-properties-before-update-after.js`
 
-> Note
+> Remarque
 >
-> If you're writing a shared component, the [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) polyfill enables the new `getSnapshotBeforeUpdate` lifecycle to be used with older versions of React as well. [Learn more about how to use it below.](#open-source-project-maintainers)
+> Si vous écrivez un composant partagé, le polyfill [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) vous permet d’utiliser la nouvelle méthode de cycle de vie `getSnapshotBeforeUpdate` même dans d'anciennes versions de React. [Vous pouvez apprendre à l’utiliser plus bas.](#open-source-project-maintainers)
 
 ## Autres scénarios {#other-scenarios}
 
-While we tried to cover the most common use cases in this post, we recognize that we might have missed some of them. If you are using `componentWillMount`, `componentWillUpdate`, or `componentWillReceiveProps` in ways that aren't covered by this blog post, and aren't sure how to migrate off these legacy lifecycles, please [file a new issue against our documentation](https://github.com/reactjs/reactjs.org/issues/new) with your code examples and as much background information as you can provide. We will update this document with new alternative patterns as they come up.
+Même si nous avons essayé de couvrir les cas d'usages les plus fréquents dans cet article, il est évident que nous pouvons en avoir oublié.  Si vous utilisez `componentWillMount`, `componentWillUpdate` ou `componentWillReceiveProps` d'une façon que nous n’avons pas couverte ici, et que vous n’êtes pas sûr·e de la façon de sortir de ces méthodes historiques, merci de [déposer une *issue* dans le dépôt GitHub de notre documentation](https://github.com/reactjs/reactjs.org/issues/new) avec vos exemples de code et autant d'information de contexte que vous pouvez nous en fournir.  Nous mettrons à jour ce document avec de nouvelles approches alternatives au fur et à mesure de leur apparition.
 
 ## Mainteneurs de projets open-source {#open-source-project-maintainers}
 
-Open source maintainers might be wondering what these changes mean for shared components. If you implement the above suggestions, what happens with components that depend on the new static `getDerivedStateFromProps` lifecycle? Do you also have to release a new major version and drop compatibility for React 16.2 and older?
+Les mainteneurs de projets open-source se demandent peut-être ce que signifient ces évolutions pour leurs composants partagés.  Si vous implémentez les suggestions ci-dessus, que se passera-t-il pour les composants qui dépendant de la nouvelle méthode de cycle de vie `getDerivedStateFromProps` ? Devez-vous sortir une nouvelle version majeure et abandonner la compatibilité ascendante pour les versions de React 16.2 et antérieures ?
 
-Fortunately, you do not!
+Heureusement, il n'en est rien !
 
-When React 16.3 is published, we'll also publish a new npm package, [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat). This package polyfills components so that the new `getDerivedStateFromProps` and `getSnapshotBeforeUpdate` lifecycles will also work with older versions of React (0.14.9+).
+Quand nous sortirons React 16.3, nous publierons également un nouveau module npm : [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat). Ce module polyfille les composants afin que les nouvelles méthodes de cycle de vie `getDerivedStateFromProps` et `getSnapshotBeforeUpdate` fonctionnent également dans les anciennes versions de React (0.14.9+).
 
-To use this polyfill, first add it as a dependency to your library:
+Pour utiliser ce polyfill, commencez par l’ajouter comme dépendance dans votre bibliothèque :
 
 ```bash
-# Yarn
+# Si vous utilisez Yarn
 yarn add react-lifecycles-compat
 
-# NPM
+# Si vous utilisez npm
 npm install react-lifecycles-compat --save
 ```
 
-Next, update your components to use the new lifecycles (as described above).
+Ensuite, mettez à jour vos composants pour utiliser les nouvelles méthodes de cycle de vie (comme décrit plus haut).
 
-Lastly, use the polyfill to make your component backwards compatible with older versions of React:
+Pour finir, utilisez le polyfill pour rendre vos composants compatibles en amont avec les anciennes versions de React :
+
 `embed:update-on-async-rendering/using-react-lifecycles-compat.js`
 
 <!-- FIXME: embedded files, too! -->
