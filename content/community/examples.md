@@ -9,7 +9,7 @@ permalink: community/examples.html
 Beaucoup d'exemples de projets ont déjà été créés par la communauté React. N'hésitez pas à y ajouter le votre. Si vous ajoutez un projet, engagez-vous à le maintenir à jour avec les dernières versions de React.
 
 * **[Calculator](https://github.com/ahfarmer/calculator)** La calculette d'iOS en React
-* **[Emoji Search](https://github.com/ahfarmer/emoji-search)** Simple React app for searching emoji
+* **[Emoji Search](https://github.com/ahfarmer/emoji-search)** Une simple appli React pour chercher des émoji
 * **[Github Battle App](https://tm.dev/react-course-project/)** Battle two Github users and see the most popular Github projects for any language.
 * **[React Powered Hacker News Client](https://github.com/insin/react-hn)** A React & react-router-powered implementation of Hacker News using its Firebase API.
 * **[Pokedex](https://github.com/alik0211/pokedex)** The list of Pokémon with live search
