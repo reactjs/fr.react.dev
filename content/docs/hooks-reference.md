@@ -317,7 +317,7 @@ Fournissez une fonction de « création » et un tableau d'entrées. `useMemo`
 
 Rappelez-vous que la fonction fournie à `useMemo` s'exécute pendant le rendu. N’y faites rien que vous ne feriez pas normalement pendant un rendu. Par exemple, les effets de bord doivent passer par `useEffect`, et non `useMemo`.
 
-Si vous ne fournissez aucun tableau, une nouvelle valeur sera calculée quand une nouvelle fonction sera fournie comme premier argument. (Avec une fonction définie à la volée, ce sera donc à chaque rendu.)
+Si vous ne fournissez aucun tableau, une nouvelle valeur sera calculée à chaque appel.
 
 **Vous pouvez vous appuyer sur `useMemo` comme un moyen d'optimiser les performances, mais pas comme une garantie sémantique.** À l'avenir, React pourrait choisir « d'oublier » certaines valeurs précédemment mémoïsées et de les recalculer au rendu suivant, par exemple pour libérer la mémoire exploitée par des composants présents hors de l'écran. Écrivez votre code de façon à ce qu'il fonctionne sans `useMemo` et ajoutez-le ensuite pour optimiser les performances.
 
