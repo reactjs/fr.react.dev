@@ -15,9 +15,9 @@ function logProps(Component) {
     }
   }
 
-  // Remarquez le deuxième paramètre `ref` fourni par `React.forwardRef`.
-  // Nous pouvons le passer à LogProps comme une prop normale, par exemple `forwardedRef`
-  // Et il peut ensuite être attaché au composant.
+  // Remarquez le deuxième paramètre `ref` fourni par `React.forwardRef`.  Nous
+  // pouvons le passer à LogProps comme une prop normale, par exemple
+  // `forwardedRef`. Et il peut ensuite être attaché au composant.
   // highlight-range{1-3}
   return React.forwardRef((props, ref) => {
     return <LogProps {...props} forwardedRef={ref} />;
