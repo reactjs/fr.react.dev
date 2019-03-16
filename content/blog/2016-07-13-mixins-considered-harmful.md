@@ -1,11 +1,13 @@
 ---
-title: "Mixins Considered Harmful"
+title: "Les mixins sont dangereux"
 author: [gaearon]
 ---
 
-“How do I share the code between several components?” is one of the first questions that people ask when they learn React. Our answer has always been to use component composition for code reuse. You can define a component and use it in several other components.
+« Comment réutiliser mon code à travers plusieurs composants ? » C’est une des premières questions que les gens se posent quand ils apprennent React.  Notre réponse a toujours consisté à utiliser la composition des composants.  Vous pouvez définir un composant et l’utiliser dans plusieurs autres composants.
 
-It is not always obvious how a certain pattern can be solved with composition. React is influenced by functional programming but it came into the field that was dominated by object-oriented libraries. It was hard for engineers both inside and outside of Facebook to give up on the patterns they were used to.
+En fonction du contexte, la solution à base de composition n'est pas toujours évidente.  React est influencé par la programmation fonctionnelle mais il est arrivé dans un domaine où les bibliothèques orientées objets étaient monnaie courante.  Pour les ingénieurs tant chez Facebook qu'en-dehors, abandonner leurs vieux modèles mentaux n’était pas chose aisée.
+
+<!-- RESUME -->
 
 To ease the initial adoption and learning, we included certain escape hatches into React. The mixin system was one of those escape hatches, and its goal was to give you a way to reuse code between components when you aren’t sure how to solve the same problem with composition.
 
