@@ -90,7 +90,7 @@ function mount(element) {
   }
 
   // Ce processus est récursif parce qu'un composant peut
-  // renvoyer un élément avec le type d'un autre composant.
+  // renvoyer un élément avec un autre type de composant.
   return mount(renderedElement);
 
   // Remarque : cette implémentation est incomplète et la récursivité est infinie !
@@ -111,11 +111,11 @@ Récapitulons quelques idées clés dans l’exemple ci-dessus :
 
 * Les éléments React sont des objets simples représentant le type du composant (par exemple `App`) et les props.
 * Les composants définis par l'utilisateur (par exemple `App`) peuvent être des classes ou des fonctions mais toutes « font le rendu des » éléments.
-* Le « montage » est un processus récursif qui crée un DOM ou un arbre natif à partir de l'élément React de niveau supérieur (par exemple `<App />`).
+* Le « montage » est un processus récursif qui crée un DOM ou un arbre natif à partir de l'élément racine React (par exemple `<App />`).
 
 ### Montage d'éléments hôtes {#mounting-host-elements}
 
-Ce processus serait inutile si le résultat n'affichait rien à l'écran.
+Ce processus serait inutile si nous n'affichons pas quelque chose à l'écran.
 
 En plus des composants définis par l'utilisateur (« composite »), les éléments React peuvent également représenter des composants pour des plateformes spécifiques (« hôte »). Par exemple, la méthode qui fait le rendu de `Button`, peut renvoyer un `<div />`.
 
@@ -247,7 +247,7 @@ La base de code du réconciliateur de pile résout ce problème en faisant de la
 
 Plutôt que deux fonctions distinctes `mountHost` et `mountComposite`, nous créerons deux classes : `DOMComponent` et `CompositeComponent`.
 
-Les deux classes ont un constructeur acceptant `element`, ainsi qu'une méthode `mount()` qui renvoie le nœud monté. Nous remplacerons une fonction `mount()` de haut niveau avec une _factory_ qui instanciera la bonne classe :
+Les deux classes ont un constructeur acceptant `element`, ainsi qu'une méthode `mount()` qui renvoie le nœud monté. Nous remplacerons une fonction de haut niveau `mount()` avec une _factory_ qui instanciera la bonne classe :
 
 ```js
 function instantiateComponent(element) {
@@ -416,10 +416,10 @@ Pour terminer cette refactorisation, nous allons introduire une fonction qui mon
 
 ```js
 function mountTree(element, containerNode) {
-  // Crée une instance interne de haut niveau
+  // Crée une instance interne de la racine
   var rootComponent = instantiateComponent(element);
 
-  // Monte le composant de haut niveau dans le conteneur
+  // Monte le composant racine dans le conteneur
   var node = rootComponent.mount();
   containerNode.appendChild(node);
 
@@ -474,7 +474,7 @@ class DOMComponent {
 
 En pratique, le démontage des composants DOM enlève également les écouteurs d'événements et efface certains caches, mais nous ignorerons ces détails.
 
-Nous pouvons maintenant ajouter une nouvelle fonction de niveau supérieur appelée `unmountTree(containerNode)` qui est semblable à `ReactDOM.unmountComponentAtNode()`:
+Nous pouvons maintenant ajouter une nouvelle fonction de haut niveau appelée `unmountTree(containerNode)` qui est semblable à `ReactDOM.unmountComponentAtNode()`:
 
 ```js
 function unmountTree(containerNode) {
@@ -498,10 +498,10 @@ function mountTree(element, containerNode) {
     unmountTree(containerNode);
   }
 
-  // Crée l'instance interne de haut niveau
+  // Crée l'instance interne de la racine
   var rootComponent = instantiateComponent(element);
 
-  // Monte le composant de haut niveau dans un conteneur
+  // Monte le composant racine dans un conteneur
   var node = rootComponent.mount();
   containerNode.appendChild(node);
 
@@ -811,9 +811,9 @@ Lors de la dernière étape, nous exécutons les opérations du DOM. Encore une 
 
 Et c'est tout pour la mise à jour des composants hôte.
 
-### Mises à jour de haut niveau {#top-level-updates}
+### Mises à jour de la racine {#top-level-updates}
 
-Maintenant que `CompositeComponent` et `DOMComponent` implémentent la méthode `receive(nextElement)`, nous pouvons modifier la fonction `mountTree()` de haut niveau pour l’utiliser lorsque le `type` de l’élément est identique à celui de la dernière fois :
+Maintenant que `CompositeComponent` et `DOMComponent` implémentent la méthode `receive(nextElement)`, nous pouvons modifier la fonction de haut niveau `mountTree()` pour l’utiliser lorsque le `type` de l’élément est identique à celui de la dernière fois :
 
 ```js
 function mountTree(element, containerNode) {
@@ -874,7 +874,7 @@ Ce document est simplifié par rapport au vrai code. Il y a quelques aspects imp
 
 ### Saut dans le code {#jumping-into-the-code}
 
-* [`ReactMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/client/ReactMount.js) est l'endroit où réside le code de `mountTree()` et `unmountTree()` de ce tutoriel. Il prend en charge le montage et le démontage des composants de niveau supérieur. [`ReactNativeMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeMount.js) est son analogue pour React Native.
+* [`ReactMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/client/ReactMount.js) est l'endroit où réside le code de `mountTree()` et `unmountTree()` de ce tutoriel. Il prend en charge le montage et le démontage des composants racine. [`ReactNativeMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeMount.js) est son analogue pour React Native.
 * [`ReactDOMComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/shared/ReactDOMComponent.js) est l'équivalent de `DOMComponent` dans ce tutoriel. Il implémente la classe de composant hôte pour le moteur de rendu de React DOM. [`ReactNativeBaseComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeBaseComponent.js) est son analogue pour React Native.
 * [`ReactCompositeComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactCompositeComponent.js) est l'équivalent de `CompositeComponent` dans ce tutoriel. Il gère l'appel des composants définis par l'utilisateur et le maintien de leur état.
 * [`instantiateReactComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/instantiateReactComponent.js) contient le commutateur qui sélectionne la classe d'instance interne appropriée pour construire un élément. C'est l'équivalent de `instantiateComponent()` dans ce tutoriel.
