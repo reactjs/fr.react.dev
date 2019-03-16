@@ -7,7 +7,7 @@ function logProps(Component) {
     return <LogProps {...props} forwardedRef={ref} />;
   }
 
-  // Donne à ce composant un nom d'affichage plus utile dans les DevTools.
+  // Donne à ce composant un nom d’affichage plus utile dans les DevTools.
   // exemple : "ForwardRef(logProps(MyComponent))"
   // highlight-range{1-2}
   const name = Component.displayName || Component.name;
