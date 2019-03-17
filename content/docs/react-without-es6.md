@@ -116,7 +116,7 @@ Tout ça n’est pas nécessaire avec `createReactClass()`, car elle lie toutes 
 ```javascript
 var SayHello = createReactClass({
   getInitialState: function() {
-    return {message: 'Bonjour!'};
+    return {message: 'Bonjour !'};
   },
 
   handleClick: function() {
