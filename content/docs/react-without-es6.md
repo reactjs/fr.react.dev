@@ -4,7 +4,7 @@ title: React sans ES6
 permalink: docs/react-without-es6.html
 ---
 
-En temps normal, pour définir un composant React, vous utilisez une simple classe Javascript :
+En temps normal, pour définir un composant React, vous utilisez une classe Javascript ordinaire :
 
 ```javascript
 class Greeting extends React.Component {
@@ -71,7 +71,7 @@ class Counter extends React.Component {
 }
 ```
 
-Avec `createReactClass()`, vous devez fournir une méthode `getInitialState` qui retourne l'état initial :
+Avec `createReactClass()`, vous devez fournir une méthode `getInitialState` qui renvoie l'état initial :
 
 ```javascript
 var Counter = createReactClass({
@@ -116,7 +116,7 @@ Tout ça n’est pas nécessaire avec `createReactClass()`, car elle lie toutes 
 ```javascript
 var SayHello = createReactClass({
   getInitialState: function() {
-    return {message: 'Bonjour !'};
+    return {message: 'Bonjour !'};
   },
 
   handleClick: function() {
@@ -174,7 +174,7 @@ Si vous préférez la prudence, quelques options s'offrent à vous :
 >
 >ES6 est sorti sans prise en charge des *mixins*. C'est pour cette raison qu'ils ne sont pas pris en charge quand vous utilisez React avec les classes ES6.
 >
->**Nous avons aussi trouvé pas mal de problèmes dans les bases de code utilisant les mixins, du [nous recommandons de ne pas les utiliser à l’avenir](/blog/2016/07/13/mixins-considered-harmful.html).**
+>**Nous avons aussi trouvé pas mal de problèmes dans les bases de code utilisant les mixins, du coup [nous recommandons de ne pas les utiliser à l’avenir](/blog/2016/07/13/mixins-considered-harmful.html).**
 >
 >Cette section n’existe qu’à titre de référence.
 
