@@ -9,7 +9,7 @@ En temps normal, pour définir un composant React, vous utilisez une simple clas
 ```javascript
 class Greeting extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Bonjour, {this.props.name}</h1>;
   }
 }
 ```
@@ -21,7 +21,7 @@ Si vous n'utilisez pas encore ES6, vous pouvez utiliser le module `create-react-
 var createReactClass = require('create-react-class');
 var Greeting = createReactClass({
   render: function() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Bonjour, {this.props.name}</h1>;
   }
 });
 ```
@@ -116,7 +116,7 @@ Tout ça n’est pas nécessaire avec `createReactClass()`, car elle lie toutes 
 ```javascript
 var SayHello = createReactClass({
   getInitialState: function() {
-    return {message: 'Hello!'};
+    return {message: 'Bonjour!'};
   },
 
   handleClick: function() {
