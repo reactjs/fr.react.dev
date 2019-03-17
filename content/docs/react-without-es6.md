@@ -4,7 +4,7 @@ title: React sans ES6
 permalink: docs/react-without-es6.html
 ---
 
-En temps normal, pour définir un composant React, vous utilisez une classe Javascript:
+En temps normal, pour définir un composant React, vous utilisez une simple classe Javascript :
 
 ```javascript
 class Greeting extends React.Component {
@@ -14,7 +14,7 @@ class Greeting extends React.Component {
 }
 ```
 
-Si vous n'utilisez pas encore ES6, vous pouvez utiliser le module `create-react-class`:
+Si vous n'utilisez pas encore ES6, vous pouvez utiliser le module `create-react-class` :
 
 
 ```javascript
@@ -28,9 +28,9 @@ var Greeting = createReactClass({
 
 À quelques exceptions près, l'API des classes ES6 est similaire a `createReactClass()`.
 
-## Déclaration de Props par défaut {#declaring-default-props}
+## Déclarer des props par défaut {#declaring-default-props}
 
-Dans les fonctions et les classes ES6, `defaultProps` est défini en tant que propriété a l'intérieur du composant:
+Dans les fonctions et les classes ES6, `defaultProps` est défini en tant que propriété sur le composant lui-même :
 
 ```javascript
 class Greeting extends React.Component {
@@ -42,7 +42,7 @@ Greeting.defaultProps = {
 };
 ```
 
-Avec `createReactClass()`, vous aurez besoin de définir `getDefaultProps()` en tant que fonction dans l'objet passé en paramètre:
+Avec `createReactClass()`, vous aurez besoin de définir `getDefaultProps()` en tant que fonction dans l'objet passé en argument :
 
 ```javascript
 var Greeting = createReactClass({
@@ -59,7 +59,7 @@ var Greeting = createReactClass({
 
 ## Définir l'état initial {#setting-the-initial-state}
 
-Dans les classes ES6, vous pouvez définir l'état initial en affectant `this.state` dans le constructeur:
+Dans les classes ES6, vous pouvez définir l'état local initial en affectant `this.state` dans le constructeur :
 
 ```javascript
 class Counter extends React.Component {
@@ -71,7 +71,7 @@ class Counter extends React.Component {
 }
 ```
 
-Avec `createReactClass()`, vous devez fournir une méthode `getInitialState` qui retourne l'état initial
+Avec `createReactClass()`, vous devez fournir une méthode `getInitialState` qui retourne l'état initial :
 
 ```javascript
 var Counter = createReactClass({
@@ -82,16 +82,16 @@ var Counter = createReactClass({
 });
 ```
 
-## Autobinding {#autobinding}
+## Liaison automatique des méthodes {#autobinding}
 
-Dans les composants React déclarés en tant que classe ES6, les méthodes suivent la même sémantique tout comme les classes ES6 régulières. Cela veut dire qu'elles ne vont pas lier le `this` a l'instance de classe. Pour ce faire, devez utiliser `.bind(this)` dans le constructeur:
+Dans les composants React déclarés en tant que classes ES6, les méthodes suivent la même sémantique que dans toute classe ES6. Ça signifie qu'elles ne vont pas automatiquement lier `this` a l'instance. Pour ce faire, vous devez utiliser `.bind(this)` dans le constructeur :
 
 ```javascript
 class SayHello extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {message: 'Hello!'};
-    // La ligne ci-dessous est importante!
+    this.state = {message: 'Bonjour !'};
+    // La ligne ci-dessous est importante !
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -100,17 +100,18 @@ class SayHello extends React.Component {
   }
 
   render() {
-    // Nous pourrons utiliser `this.handleClick` pour gérer un événement, car il est lié a l'instance de classe
+    // Nous pouvons utiliser `this.handleClick` comme gestionnaire d’événements,
+    // car il est lié a l'instance courante.
     return (
       <button onClick={this.handleClick}>
-        Dis hello
+        Dis bonjour
       </button>
     );
   }
 }
 ```
 
-Ce ne sera pas nécessaire dans `createReactClass()`, car elle lie toutes les méthodes:
+Tout ça n’est pas nécessaire avec `createReactClass()`, car elle lie toutes les méthodes :
 
 ```javascript
 var SayHello = createReactClass({
@@ -125,26 +126,26 @@ var SayHello = createReactClass({
   render: function() {
     return (
       <button onClick={this.handleClick}>
-        Dis hello
+        Dis bonjour
       </button>
     );
   }
 });
 ```
 
-L'écriture de classes ES6 inclue un peu plus de code générique pour les gestionnaires d'événements, mais ceci améliore légèrement les performances pour les grosses applis.
+L'écriture de classes ES6 nécessite un peu plus de code générique pour les gestionnaires d'événements, mais en contrepartie ça améliore légèrement les performances pour les grosses applications.
 
-Si vous ne trouvez pas le code générique très attirant, vous pouvez activer la proposition de syntaxe **expérimentale** avec Babel [Propriétés de Classe](https://babeljs.io/docs/plugins/transform-class-properties/) :
+Si vous n’arrivez pas à tolérer ce code générique, vous pouvez activer dans Babel la proposition de syntaxe **expérimentale** [Propriétés de classes](https://babeljs.io/docs/plugins/transform-class-properties/) :
 
 
 ```javascript
 class SayHello extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {message: 'Hello!'};
+    this.state = {message: 'Bonjour !'};
   }
-  // ATTENTION: cette syntaxe est expérimentale!
-  // L'utilisation d'une fonction flechée va lier la méthode a l'instance de classe:
+  // ATTENTION : cette syntaxe est expérimentale !
+  // Recourir à une fonction fléchée va lier la méthode à l'instance :
   handleClick = () => {
     alert(this.state.message);
   }
@@ -152,34 +153,34 @@ class SayHello extends React.Component {
   render() {
     return (
       <button onClick={this.handleClick}>
-        Dis hello
+        Dis bonjour
       </button>
     );
   }
 }
 ```
 
-Il faut prendre note du fait que la syntaxe ci-dessus est **expérimentale** et qu'elle pourrait être amenée à changer, ou que la proposition de syntaxe ne soit pas intergrée au langage.
+Remarquez bien que la syntaxe ci-dessus est **expérimentale** et qu'elle pourrait être amenée à changer, ou que la proposition de syntaxe ne soit pas intégrée au langage.
 
-Si vous préférez la prudence, quelques options s'offrent à vous:
+Si vous préférez la prudence, quelques options s'offrent à vous :
 
-* Lier les méthodes à l'instance de classe dans le constructeur.
-* Utiliser des fonctions fléchées, e.g. `onClick={(e) => this.handleClick(e)}`.
+* Lier les méthodes à l'instance dans le constructeur.
+* Utiliser des fonctions fléchées, ex. `onClick={(e) => this.handleClick(e)}`.
 * Continuer à utiliser `createReactClass`.
 
 ## Mixins {#mixins}
 
->**Note:**
+>Remarque
 >
->ES6 a été lancé sans support pour les mixins. C'est pour cette raison qu'il n'y a pas de support pour les mixins quand vous utilisez React avec les classes ES6.
+>ES6 est sorti sans prise en charge des *mixins*. C'est pour cette raison qu'ils ne sont pas pris en charge quand vous utilisez React avec les classes ES6.
 >
->**Nous avons aussi trouvé pas mal de problèmes dans les bases de code utilisant les mixins, [nous recommandons de na pas les utiliser dans vos nouvelles applis](/blog/2016/07/13/mixins-considered-harmful.html).**
+>**Nous avons aussi trouvé pas mal de problèmes dans les bases de code utilisant les mixins, du [nous recommandons de ne pas les utiliser à l’avenir](/blog/2016/07/13/mixins-considered-harmful.html).**
 >
->This section exists only for the reference.
+>Cette section n’existe qu’à titre de référence.
 
-Des composants très différents les uns des autres peuvent partager des fonctionalites communes. Ce sont des [pré-occupations transversales](https://en.wikipedia.org/wiki/Cross-cutting_concern). `createReactClass` vous permet d'utiliser un système de `mixins` de patrimoine (???).
+Des composants très différents les uns des autres peuvent partager des fonctionnalités communes. On parle souvent de [questions transversales](https://en.wikipedia.org/wiki/Cross-cutting_concern) *(cross-cutting concerns, NdT)*. `createReactClass` vous permet d'utiliser un système historique de `mixins` pour ça.
 
-Un cas d'utilisation courant est un composent qui veut se mettre à jour par intervalle de temps. C'est facile d'utiliser `setInterval()`, mais c'est important d'annuler votre intervalle si vous n'en avez plus besoin afin d'economiser de la mémoire. React fournit des [méthodes de cycle de vie](/docs/react-component.html#the-component-lifecycle), celles-si vous font savoir quand est-ce qu'un composant va être crée ou détruit. Créons une simple mixin qui utilise ces méthodes afin de fournir une simple fonction `setInterval()` qui va se nettoyer automatiquement lorsque le composant est détruit.
+Un cas d'usage courant concerne un composant qui veut se mettre à jour à intervalle régulier. C'est facile d'utiliser `setInterval()`, mais il est important de désactiver l’horloge quand vous n'en avez plus besoin afin d'économiser la mémoire. React fournit des [méthodes de cycle de vie](/docs/react-component.html#the-component-lifecycle) qui vous notifient quand un composant est sur le point d’être créé ou détruit. Créons un *mixin* basique qui utilise ces méthodes afin de fournir une fonction `setInterval()` simple d'emploi, qui se nettoiera automatiquement lorsque le composant est détruit.
 
 ```javascript
 var SetIntervalMixin = {
@@ -197,12 +198,12 @@ var SetIntervalMixin = {
 var createReactClass = require('create-react-class');
 
 var TickTock = createReactClass({
-  mixins: [SetIntervalMixin], // Utiliser la mixin
+  mixins: [SetIntervalMixin], // Utiliser le mixin
   getInitialState: function() {
     return {seconds: 0};
   },
   componentDidMount: function() {
-    this.setInterval(this.tick, 1000); // Appeler un méthode dans la mixin
+    this.setInterval(this.tick, 1000); // Appelle la méthode du mixin
   },
   tick: function() {
     this.setState({seconds: this.state.seconds + 1});
@@ -222,4 +223,4 @@ ReactDOM.render(
 );
 ```
 
-Si un composant utilise plusieurs mixins et que nombreuses mixins définissent la même méthode de cycle de vie(C-à-d que de nombreuses mixins veulent faire un nettoyage lorsque le composant est détruit), vous avez la garantie que toutes ces méthodes de cycle de vie vont être appelées. Les méthodes définies dans les mixins se lancent dans l'ordre dans le lequel les mixins ont été listées, suivies par un appel de méthode dans le composant.
+Si un composant utilise plusieurs mixins et que de nombreux mixins définissent la même méthode de cycle de vie (par exemple pour effectuer un nettoyage à la destruction du composant), vous avez la garantie que toutes ces méthodes de cycle de vie seront appelées. Les méthodes définies dans les mixins sont exécutées dans l'ordre dans lequel les mixins ont été listés, suivies par l’appel de la méthode homonyme éventuelle du composant lui-même.
