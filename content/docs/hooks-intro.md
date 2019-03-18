@@ -99,7 +99,7 @@ Nous comprenons aussi que la barre pour ajouter une nouvelle primitive à React 
 
 **Les Hooks fonctionnent cote à cote avec un code existant que vous pouvez adopter progressivement.** Il n'y a pas de hâte de migrer vers Hooks. Nous recommandons d'éviter les "grandes réecriture", spécialement pour les composants à base de classe complexe qui existent déja. Il faut un peu de mentalité pour commencer "en pensant dans le Hooks". Dans notre expérience, il est sage d'utiliser les Hooks Hooks dans de nouveaux composants et s'assurer que tout les personnes de l'équipe se sentent confortable avec. Après avoir essayer les Hooks, soyez libre de [nous envoyer un feedback](https://github.com/facebook/react/issues/new) positif ou negatif.
 
-Nos voulons que les Hooks couvrent tout les cas d'utilisation des classes, mais **nous garderons la prise en charge des composants à base de classe dans un avenir futur.** A Facebook, nous avons des dizaines de milliers de composants écrit avec les classes, et nous ne voulons pas les reécrire. Au lieu de ça, nous avons commencé à utiliser les Hooks dans le nouveau code à côté des classes.
+Nos voulons que les Hooks couvrent tout les cas d'usages des classes, mais **nous continuerons à prendre en charge les composants à base de classes jusqu’à nouvel ordre.** Chez Facebook, nous avons des dizaines de milliers de composants écrit en tant que classes, et nous n’avons absolument pas l'intention de les réécrire. Au lieu de ça, nous avons commencé à utiliser les Hooks dans le nouveau code, côte à côte avec les classes.
 
 ## Questions fréquemment posées {#frequently-asked-questions}
 
