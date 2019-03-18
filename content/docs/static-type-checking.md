@@ -112,7 +112,7 @@ De cette façon, vous pourrez utiliser la syntaxe Flow dans votre code.
 
 >Remarque
 >
->Il n'est pas nécessaire d'avoir le preset `react` afin d'utiliser Flow, mais ils sont souvent utilisés ensemble. Flow comprend la syntaxe JSX par défaut.
+>Il n'est pas nécessaire d'avoir le preset `react` afin d'utiliser Flow, mais ils sont souvent utilisés ensemble. Flow comprend déjà quant à lui la syntaxe JSX.
 
 #### Autres configurations {#other-build-setups}
 
