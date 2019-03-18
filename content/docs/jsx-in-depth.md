@@ -13,7 +13,7 @@ redirect_from:
   - "docs/jsx-in-depth-ko-KR.html"
 ---
 
-Fondamentalement, JSX fournit du sucre syntaxique pour la fonction `React.createElement(component, props, ...children)`. Le code JSX:
+Fondamentalement, JSX fournit juste du sucre syntaxique pour la fonction `React.createElement(component, props, ...children)`. Le code JSX :
 
 ```js
 <MyButton color="blue" shadowSize={2}>
