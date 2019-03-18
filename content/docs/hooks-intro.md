@@ -41,7 +41,7 @@ Lors de la React Conf 2018, Sophie Alpert et Dan Abramov ont présenté les Hook
 
 <iframe width="650" height="366" src="//www.youtube.com/embed/dpw9EHDh2bM" frameborder="0" allowfullscreen></iframe>
 
-## Aucun changement majeur {#no-breaking-changes}
+## Pas de rupture de compatibilité {#no-breaking-changes}
 
 Avant de continuer, notez que les hooks sont:
 
