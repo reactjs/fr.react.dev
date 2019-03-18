@@ -35,7 +35,7 @@ Cette nouvelle fonction `useState` est le premier « Hook » que nous allons e
 
 ## Vidéo de présentation {#video-introduction}
 
-A la React Conf 2018, Sophie Alpert et Dan Abramov introduisent les Hooks, suivi de Ryan Florence qui demontre comment refactoriser une application pour les utiliser. Regardez les vidéos ici:
+Lors de la React Conf 2018, Sophie Alpert et Dan Abramov ont présenté les Hooks, suivis de Ryan Florence qui a montré comment refactoriser une application pour les utiliser. Regardez la vidéo ici :
 
 <br>
 
