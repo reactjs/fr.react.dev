@@ -196,7 +196,7 @@ function NumberDescriber(props) {
 ```
 Vous pouvez en apprendre davantage sur les [conditions](/docs/conditional-rendering.html) et les [boucles](/docs/lists-and-keys.html) au sein des sections correspondantes.
 
-### Les expressions littérales {#string-literals}
+### Les littéraux chaînes {#string-literals}
 
 Vous pouvez passer un littéral chaîne comme prop. Les deux expressions JSX ci-dessous sont équivalentes :
 
