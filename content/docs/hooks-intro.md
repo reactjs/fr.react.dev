@@ -27,7 +27,7 @@ function Example() {
 
 Cette nouvelle fonction `useState` est le premier « Hook » que nous allons explorer, mais cet exemple est juste un petit aperçu. Ne vous inquiétez pas si vous n’y comprenez rien pour le moment !
 
-**Vous pouvez demarrer l'apprentissage des Hooks [à la page suivante](/docs/hooks-overview.html).** A cette page, nous expliquerons pourquoi nous avons ajouté les Hooks à React et comment ils vous aidera à ecrire de grandes applications.
+**Vous pouvez commencer à apprendre les Hooks [à la page suivante](/docs/hooks-overview.html).** Dans celle-ci, nous vous expliquons pourquoi nous avons ajouté les Hooks à React et comment ils vous aideront à écrire des applications géniales.
 
 >Remarque
 >
