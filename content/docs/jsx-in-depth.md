@@ -17,27 +17,27 @@ Fondamentalement, JSX fournit juste du sucre syntaxique pour la fonction `React.
 
 ```js
 <MyButton color="blue" shadowSize={2}>
-  Cliquez!
+  Cliquez ici
 </MyButton>
 ```
 
-est compilé en:
+est compilé en :
 
 ```js
 React.createElement(
   MyButton,
   {color: 'blue', shadowSize: 2},
-  'Cliquez!'
+  'Cliquez ici'
 )
 ```
 
-Il est aussi possible d'utiliser la balise à fermeture automatique si il n'y a pas d'enfants. Donc:
+Il est aussi possible d'utiliser la balise auto-fermante si il n'y a pas d'enfants. Donc :
 
 ```js
 <div className="sidebar" />
 ```
 
-est compilé en:
+est compilé en :
 
 ```js
 React.createElement(
@@ -46,19 +46,19 @@ React.createElement(
   null
 )
 ```
-Si vous souhaitez voir comment certains éléments JSX spécifiques sont compilés en Javascript, vous pouvez utiliser [le compileur en ligne Babel](babel://jsx-simple-example).
+Si vous souhaitez voir comment certains éléments JSX spécifiques sont compilés en JavaScript, vous pouvez utiliser [le compilateur Babel en ligne](babel://jsx-simple-example).
 
 ## Spécifier le type d'un élément React {#specifying-the-react-element-type}
 
 La première partie d'une balise JSX détermine le type de l'élément React en question.
 
-Les types commençant par une lettre majuscule indiquent que la balise JSX fait référence à un composant React. Ces balises sont compilées en références directes à la variable nommée, donc si vous utilisez l'expression JSX  `<Foo />`, `Foo` doit être dans le scope.
+Les types commençant par une lettre majuscule indiquent que la balise JSX fait référence à un composant React. Ces balises sont compilées en références directes à la variable nommée, donc si vous utilisez l'expression JSX  `<Foo />`, `Foo` doit être présente dans la portée.
 
-### React doit être dans le scope {#react-must-be-in-scope}
+### React doit être présent dans la portée {#react-must-be-in-scope}
 
-Étant donné que JSX se compile en appel à `React.createElement`, la librairie `React` doit aussi être dans le scope de votre code JSX.
+Étant donné que JSX se compile en appels à `React.createElement`, la bibliothèque `React` doit aussi être présente dans la portée de votre code JSX.
 
-Par exemple, les deux imports sont nécessaires dans le code ci-dessous même si `React` et `CustomButton` ne sont pas directement référencés depuis Javascript:
+Par exemple, les deux imports sont nécessaires dans le code ci-dessous même si `React` et `CustomButton` ne sont pas directement référencés depuis JavaScript :
 
 ```js{1,2,5}
 import React from 'react';
@@ -70,18 +70,18 @@ function WarningButton() {
 }
 ```
 
-Si vous n'utilisez pas un bundler Javascript et que vous ne chargez pas React à partir d'une balise `<script>`, il est déjà dans le scope en tant que `React` global.
+Si vous n'utilisez pas un *bundler* JavaScript mais que vous chargez React à partir d'une balise `<script>`, il est déjà dans la portée en tant que variable globale `React`.
 
-### Utilisation de la notation en point pour les types JSX {#using-dot-notation-for-jsx-type}
+### Utiliser la notation à points pour un type JSX {#using-dot-notation-for-jsx-type}
 
-Vous pouvez également vous référez à un composant React en utilisant la notation en point de JSX. Ceci est pratique si vous avez un seul module qui exporte plusieurs composants React. Par exemple si `MyComponents.DatePicker` est un composant, vous pouvez directement l'utiliser dans JSX avec:
+Vous pouvez également référencer un composant React en utilisant la notation à points dans JSX. C’est pratique si vous avez un seul module qui exporte de nombreux composants React. Par exemple si `MyComponents.DatePicker` est un composant, vous pouvez directement l'utiliser dans JSX comme ceci :
 
 ```js{10}
 import React from 'react';
 
 const MyComponents = {
   DatePicker: function DatePicker(props) {
-    return <div>Imaginez une {props.color} datepicker ici.</div>;
+    return <div>Imaginez un sélecteur de dates {props.color} ici.</div>;
   }
 }
 
@@ -90,49 +90,49 @@ function BlueDatePicker() {
 }
 ```
 
-### Les composants qui définissent les utilisateurs doivent commencés par une majuscule {#user-defined-components-must-be-capitalized}
+### Les composants utilisateurs doivent commencer par une majuscule {#user-defined-components-must-be-capitalized}
 
-Quand un élément commence avec une lettre minuscule il fait référence à un composant intégré tel que `<div>` ou `<span>` et donne une chaîne de caractères `'div'` ou `'span'` passée à `React.createElement`. Les types qui commencent avec une lettre majuscule comme `<Foo />` sont compilés en `React.createElement(Foo)` et correspondent à un composant défini ou importé dans votre fichié Javascript.
+Quand un élément commence par une lettre minuscule il fait référence à un composant natif tel que `<div>` ou `<span>`, ce qui donne une chaîne de caractères `'div'` ou `'span'` passée à `React.createElement`. Les types qui commencent par une lettre majuscule comme `<Foo />` sont compilés en `React.createElement(Foo)` et correspondent à un composant défini ou importé dans votre fichier JavaScript.
 
-Nous recommandons de nommer les composants avec une lettre majuscule. Si vous avez un composant qui démarre avec une lettre minuscule, affectez-le à une variable avec une lettre majuscule avant de l'utiliser dans votre JSX.
+Nous recommandons de nommer vos composants avec une initiale majuscule. Si vous avez un composant qui démarre avec une lettre minuscule, affectez-le à une variable avec une initiale majuscule avant de l'utiliser dans votre JSX.
 
-Par exemple, ce code ne s'executera pas comme prévu:
+Par exemple, ce code ne s'exécutera pas comme prévu :
 
 ```js{3,4,10,11}
 import React from 'react';
 
-// Faux! Ceci est un composant est devrait commencé par une lettre majuscule:
+// Faux ! C’est un composant, il devrait commencer par une lettre majuscule :
 function hello(props) {
-  // Correct! Cette utilisation de <div> fonctionne car div est une balise HTML valide:
+  // Correct ! Cette utilisation de <div> fonctionne car div est une balise HTML valide :
   return <div>Hello {props.toWhat}</div>;
 }
 
 function HelloWorld() {
-  // Faux! React pense que <hello /> est une balise HTML car il ne commence pas par une majuscule:
+  // Faux ! React pense que <hello /> est une balise HTML car il ça commence pas par une majuscule :
   return <hello toWhat="World" />;
 }
 ```
 
-Pour corriger cela, nous allons renommer `hello` en `Hello` et utiliser `<Hello />` lorsqu'on le mentionne:
+Pour corriger ça, nous allons renommer `hello` en `Hello` et utiliser `<Hello />` lorsqu'on y fait référence :
 
 ```js{3,4,10,11}
 import React from 'react';
 
-// Correct! Ceci est un composant et doit être en majuscule:
+// Correct ! C’est un composant, il doit avoir une initiale majuscule :
 function Hello(props) {
-  // Correct! Cette utilisation de <div> fonctionne car div est une balise HTML valide:
+  // Correct ! Cette utilisation de <div> fonctionne car div est une balise HTML valide :
   return <div>Hello {props.toWhat}</div>;
 }
 
 function HelloWorld() {
-  // Correct! React sait que <Hello /> est un composant car il commence par une majuscule.
+  // Correct ! React sait que <Hello /> est un composant car il commence par une majuscule.
   return <Hello toWhat="World" />;
 }
 ```
 
 ### Choix du type au moment de l'exécution {#choosing-the-type-at-runtime}
 
-Vous ne pouvez pas utiliser une expression générale pour le type d'un élément React. Si vous voulez utiliser une expression pour définir le type d'un élément, initialisez-la d'abord à une variable en minuscule. Cela arrive en général lorsque vous voulez afficher un composant différent basé sur une props:
+Vous ne pouvez pas utiliser une expression générale pour le type d'un élément React. Si vous voulez utiliser une expression pour définir le type d'un élément, affectez-la d'abord à une variable dont l'initiale est majuscule. Ça arrive en général lorsque vous voulez afficher un composant différent en fonction d’une prop :
 
 ```js{10,11}
 import React from 'react';
@@ -144,12 +144,12 @@ const components = {
 };
 
 function Story(props) {
-  // Faux! Un type JSX ne peut pas être une expression.
+  // Faux ! Un type JSX ne peut pas être une expression.
   return <components[props.storyType] story={props.story} />;
 }
 ```
 
-Pour corriger cela, nous allons d'abord initialiser le type à une variable commençant par une majuscule:
+Pour corriger ça, nous allons d'abord affecter le type à une variable commençant par une majuscule :
 
 ```js{10-12}
 import React from 'react';
@@ -161,7 +161,7 @@ const components = {
 };
 
 function Story(props) {
-  // Correct! Un type JSX peut être une variable commeçant par une majuscule.
+  // Correct ! Un type JSX peut être une variable commençant par une majuscule.
   const SpecificStory = components[props.storyType];
   return <SpecificStory story={props.story} />;
 }
@@ -171,9 +171,9 @@ function Story(props) {
 
 Il y a différents moyens de définir les props en JSX.
 
-### Les expressions Javascript comme props {#javascript-expressions-as-props}
+### Les expressions JavaScript comme props {#javascript-expressions-as-props}
 
-Vous pouvez passer n'importe quelle expression Javascript comme props, en l'entourant de `{}`. Par exemple, dans ce code JSX:
+Vous pouvez passer n'importe quelle expression JavaScript comme prop, en l'entourant avec `{}`. Par exemple, dans ce code JSX :
 
 ```js
 <MyComponent foo={1 + 2 + 3 + 4} />
@@ -181,7 +181,7 @@ Vous pouvez passer n'importe quelle expression Javascript comme props, en l'ento
 
 Pour `MyComponent`, la valeur de `props.foo` sera `10` parce que l'expression `1 + 2 + 3 + 4` est calculée.
 
-Les déclarations `if` et les boucles `for` ne sont pas des expressions en Javascript, donc elle ne peuvent pas être directement utilisées en JSX. À la place, vous pouvez les mettre dans le code environnant. Par exemple:
+Les instructions `if` et les boucles `for` ne sont pas des expressions en JavaScript, donc elle ne peuvent pas être directement utilisées en JSX. Au lieu de ça, vous pouvez les mettre dans le code environnant. Par exemple :
 
 ```js{3-7}
 function NumberDescriber(props) {
@@ -194,11 +194,11 @@ function NumberDescriber(props) {
   return <div>{props.number} est un nombre {description}</div>;
 }
 ```
-Vous pouvez en savoir plus sur les [conditions](/docs/conditional-rendering.html) et les [boucles](/docs/lists-and-keys.html) au sein des sections correspondantes.
+Vous pouvez en apprendre davantage sur les [conditions](/docs/conditional-rendering.html) et les [boucles](/docs/lists-and-keys.html) au sein des sections correspondantes.
 
 ### Les expressions littérales {#string-literals}
 
-Vous pouvez passer une expression littérale comme props. Les deux expressions JSX ci-dessous sont équivalentes:
+Vous pouvez passer un littéral chaîne comme prop. Les deux expressions JSX ci-dessous sont équivalentes :
 
 ```js
 <MyComponent message="hello world" />
@@ -206,7 +206,7 @@ Vous pouvez passer une expression littérale comme props. Les deux expressions J
 <MyComponent message={'hello world'} />
 ```
 
-Quand vous passez une expression littérale, sa valeur est du HTML non-échappé. Donc ces deux expressions JSX sont équivalentes:
+Quand vous passez un littéral chaîne, sa valeur subit un échappement HTML inverse. Ces deux expressions JSX sont donc équivalentes :
 
 ```js
 <MyComponent message="&lt;3" />
@@ -216,9 +216,9 @@ Quand vous passez une expression littérale, sa valeur est du HTML non-échappé
 
 Ce comportement n'est en général pas pertinent, ce n'est mentionné ici que par souci d'exhaustivité.
 
-### Les props initialisées à "true" {#props-default-to-true}
+### Les props valent `true` par défaut {#props-default-to-true}
 
-Si vous n'affectez aucune valeur à une props, sa valeur par défaut sera `true`. Ces deux expressions JSX sont équivalentes:
+Si vous n'affectez aucune valeur à une prop, sa valeur par défaut sera `true`. Ces deux expressions JSX sont équivalentes :
 
 ```js
 <MyTextBox autocomplete />
@@ -226,11 +226,11 @@ Si vous n'affectez aucune valeur à une props, sa valeur par défaut sera `true`
 <MyTextBox autocomplete={true} />
 ```
 
-En général, nous ne recommandons pas cette utilisationcar cela peut être confondu avec [l'abrévation des objets ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) `{foo}` qui est l'abréviation de `{foo: foo}` aulieu de `{foo: true}`. Ce comportement existe uniquement pour qu'il corresponde au comportement du HTML.
+En général, nous déconseillons cette syntaxe car ça peut être confondu avec [la notation ES6 de propriétés concises](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Opérateurs/Initialisateur_objet) `{foo}` qui est l'abréviation de `{foo: foo}` et non de `{foo: true}`. Ce comportement existe uniquement par souci de cohérence avec HTML.
 
-### Syntaxe de décomposition {#spread-attributes}
+### Décomposition des props {#spread-attributes}
 
-Si vous avez déjà un objet `props` et vous voulez l'utiliser en JSX, vous pouvez utiliser l'opérateur de diffusion ("spread operator") `...` pour faire passer l'ensemble de l'objet props. Ces deux composants sont équivalents:
+Si vous avez déjà un objet `props` et souhaitez l'utiliser en JSX, vous pouvez utiliser l'opérateur de décomposition *(spread operator, NdT)* `...` pour passer l'ensemble de l'objet props. Ces deux composants sont équivalents :
 
 ```js{7}
 function App1() {
@@ -243,7 +243,7 @@ function App2() {
 }
 ```
 
-Vous pouvez aussi choisir certaines props que votre composant utilisera en passant toutes les autres props avec l'opérateur de diffusion.
+Vous pouvez également choisir certaines props que votre composant utilisera en passant toutes les autres props avec l'opérateur de *rest*.
 
 ```js{2}
 const Button = props => {
@@ -255,41 +255,41 @@ const Button = props => {
 const App = () => {
   return (
     <div>
-      <Button kind="primary" onClick={() => console.log("cliqué!")}>
-        Hello World!
+      <Button kind="primary" onClick={() => console.log("cliqué !")}>
+        Bonjour monde !
       </Button>
     </div>
   );
 };
 ```
 
-Dans l'exemple ci-dessus, la prop `kind` est utilisée en toute sécurité et *n'est pas* passée à l'élément `<button>` dans le DOM.
-Toutes les autres props sont passées via l'objet `...other` rendant ce composant très flexible. Vous pouvez voir que cela passe les props `onClick` et `children`.
+Dans l'exemple ci-dessus, la prop `kind` est extraite pour le composant principal et *n'est pas* passée à l'élément `<button>` du DOM.
+Toutes les autres props sont passées via l'objet `...other`, ce qui rend ce composant très flexible. Vous pouvez voir qu’il passe les props `onClick` et `children`.
 
-Les attributs de diffusion peuvent être utiles, mais ils permettent aussi de passer facilement des props inutiles aux composants qui ne s'en soucient pas ou de passer des attributs HTML invalides au DOM. Nous vous recommandons d'utiliser cette syntaxe avec parcimonie.  
+La décomposition des props peut être utile, mais elle permet aussi de passer trop facilement des props inutiles aux composants, ou de passer des attributs HTML invalides au DOM. Nous vous conseillons d'utiliser cette syntaxe avec parcimonie.  
 
-## Les enfants en JSX {#children-in-jsx}
+## Les éléments enfants en JSX {#children-in-jsx}
 
-Dans les expressions JSX qui contiennent une balise ouvrante et une balise fermante, le contenu entre ces deux balises est passé comme une prop spéciale: `props.children`. Il existe plusieurs moyens pour passer ces enfants:
+Dans les expressions JSX qui comportent une balise ouvrante et une balise fermante, le contenu entre ces deux balises est passé comme une prop spéciale : `props.children`. Il existe plusieurs moyens pour passer ces enfants :
 
-### Littéraux de chaînes de caractères {#string-literals-1}
+### Littéraux chaînes {#string-literals-1}
 
-Vous pouvez mettre une chaîne de caractères entre une balise ouvrante et une fermante et `props.children` définira cette chaîne de caractère. Ceci est utile pour la plupart des éléments HTML intégrés. Par exemple:
+Vous pouvez mettre une chaîne de caractères entre une balise ouvrante et une fermante et `props.children` sera juste cette chaîne de caractères. C’est utile pour la plupart des éléments HTML natifs. Par exemple :
 
 ```js
-<MyComponent>Hello world!</MyComponent>
+<MyComponent>Bonjour monde !</MyComponent>
 ```
 
-Ceci est du JSX valide, et `props.children` dans `MyComponent` sera simplement la chaîne de caractères `"Hello world!"`. Le HTML est non-échappé, donc vous pouvez généralement écrire du JSX de la même façon que vous écrivez du HTML, c'est-à-dire :
+C’est du JSX valide, et `props.children` dans `MyComponent` sera simplement la chaîne de caractères `"Bonjour monde !"`. Le HTML subit un échappement inverse, donc vous pouvez généralement écrire du JSX de la même façon que vous écrivez du HTML, c'est-à-dire :
 
 ```html
-<div>Ceci est à la fois du HTML &amp; du JSX valides.</div>
+<div>Ce contenu est valide en HTML &amp; en JSX.</div>
 ```
 
-JSX supprime les espaces en début et en fin de ligne. Il supprime également les lignes vides. Les nouvelles lignes adjacentes aux balises sont supprimées; les nouvelles lignes qui apparaissent au milieu d'une chaîne de caractères sont condensées en un seul espace. Donc, tous les codes ci-dessous donnent le même résultat :
+JSX supprime les espaces en début et en fin de ligne. Il supprime également les lignes vides. Les sauts de lignes adjacents aux balises sont retirés ; les sauts de lignes apparaissant au sein de littéraux chaînes sont ramenés à une seule espace. Du coup, tous les codes ci-dessous donnent le même résultat :
 
 ```js
-<div>Hello World</div>
+<div>Bonjour monde</div>
 
 <div>
   Hello World
@@ -306,9 +306,9 @@ JSX supprime les espaces en début et en fin de ligne. Il supprime également le
 </div>
 ```
 
-### Enfants JSX {#jsx-children}
+### Éléments JSX enfants {#jsx-children}
 
-Vous pouvez fournir plus d'éléments JSX en tant qu'enfants. Ceci est utile pour afficher les composants imbriqués :
+Vous pouvez fournir plus d'éléments JSX en tant qu'enfants. C’est utile pour afficher des composants imbriqués :
 
 ```js
 <MyContainer>
@@ -317,7 +317,7 @@ Vous pouvez fournir plus d'éléments JSX en tant qu'enfants. Ceci est utile pou
 </MyContainer>
 ```
 
-Vous pouvez mélanger ensemble différents types d'enfants, il est donc possible d'utiliser des chaînes de caractères littérales avec des enfants JSX. Nous avons ici encore un aspect où JSX fonctionne comme le HTML, ceci est du code JSX et HTML valide:
+Vous pouvez mélanger différents types d'enfants, comme par exemple des littéraux chaînes et des éléments JSX. Là encore, JSX est similaire à HTML, de sorte que le code suivant est valide tant en HTML qu'en JSX :
 
 ```html
 <div>
@@ -329,11 +329,11 @@ Vous pouvez mélanger ensemble différents types d'enfants, il est donc possible
 </div>
 ```
 
-Un composant React peut aussi renvoyer un tableau d'éléments:
+Un composant React peut aussi renvoyer un tableau d'éléments :
 
 ```js
 render() {
-  // Pas besoin d'envelopper les éléments de la liste dans un élément supplémentaire !
+  // Pas besoin d'enrober les éléments de la liste dans un élément supplémentaire !
   return [
     // N'oubliez pas les "keys" :)
     <li key="A">First item</li>,
@@ -343,9 +343,9 @@ render() {
 }
 ```
 
-### Les expressions JavaScript comme Enfants {#javascript-expressions-as-children}
+### Les expressions JavaScript comme enfants {#javascript-expressions-as-children}
 
-Vous pouvez passer n'importe quelle expression JavaScript en tant qu'enfant, en l'enfermant dans des `{}`. Par exemple, ces expressions sont équivalentes :
+Vous pouvez passer n'importe quelle expression JavaScript en tant qu'enfant, en l'enrobant avec `{}`. Ainsi, ces expressions sont équivalentes :
 
 ```js
 <MyComponent>foo</MyComponent>
@@ -353,7 +353,7 @@ Vous pouvez passer n'importe quelle expression JavaScript en tant qu'enfant, en 
 <MyComponent>{'foo'}</MyComponent>
 ```
 
-Ceci est souvent utile pour rendre une liste d'expressions JSX de longueur arbitraire. Par exemple, cela rend une liste HTML :
+C’est souvent utile pour afficher une liste d'expressions JSX de longueur quelconque. Par exemple, ce code affiche une liste HTML :
 
 ```js{2,9}
 function Item(props) {
@@ -370,21 +370,22 @@ function TodoList() {
 }
 ```
 
-Les expressions JavaScript peuvent être mélangées avec d'autres types d'enfants. Ceci est souvent utile à la place des modèles de chaînes de caractères:
+Les expressions JavaScript peuvent être mélangées avec d'autres types d'enfants. C‘est souvent utile en remplacement de gabarits textuels :
 
 ```js{2}
 function Hello(props) {
-  return <div>Hello {props.addressee}!</div>;
+  return <div>Bonjour {props.addressee} !</div>;
 }
 ```
 
-### Les fonctions comme Enfants {#functions-as-children}
+### Les fonctions comme enfants {#functions-as-children}
 
-Normalement, les expressions Javascript insérées dans JSX évalueront une chaîne, un élément React ou une liste de ceux-ci. Cependant, `props.children` fonctionne exactement comme n'importe quelle prop dans le sens qu'elle peut passer n'importe quel genre de données, pas seulement celles que React sait rendre. Par exemple, si vous avez un composant personnalisé, vous pouvez lui faire prendre le callback `props.children' : 
+En temps normal, les expressions Javascript insérées dans JSX produiront une chaîne, un élément React ou une liste de ces types. Cependant, `props.children` fonctionne exactement comme n'importe quelle prop dans le sens où elle peut passer n'importe quel genre de données, pas seulement celles que React sait afficher. Par exemple, si vous avez un composant personnalisé, vous pouvez lui faire accepter une fonction de rappel dans `props.children' : 
 
 ```js{4,13}
 
-// Appelle les enfants callback numTimes pour produire un composant répété
+// Appelle la fonction de rappel children à raison de numTimes fois
+// afin de produire une répétition du composant
 function Repeat(props) {
   let items = [];
   for (let i = 0; i < props.numTimes; i++) {
@@ -396,17 +397,17 @@ function Repeat(props) {
 function ListOfTenThings() {
   return (
     <Repeat numTimes={10}>
-      {(index) => <div key={index}>Ceci est l'item {index} de la liste</div>}
+      {(index) => <div key={index}>Ceci est l'élément {index} de la liste</div>}
     </Repeat>
   );
 }
 ```
 
-Les enfants passés à un composant personnalisé peuvent être n'importe quoi, tant que ce composant les transforme en quelque chose que React peut comprendre avant le rendu. Cette utilisation n'est pas courante, mais elle fonctionne si vous voulez étendre ce dont JSX est capable.
+Les enfants passés à un composant personnalisé peuvent être n'importe quoi, du moment que ce composant les transforme en quelque chose que React peut comprendre avant le rendu. Cette utilisation n'est pas courante, mais elle fonctionne si vous voulez étendre ce dont JSX est capable.
 
-### Booléens, Null, et Undefined Sont Ignorés {#booleans-null-and-undefined-are-ignored}
+### Les booléens ainsi que null et undefined sont ignorés {#booleans-null-and-undefined-are-ignored}
 
-`false`, `null`, `undefined`, et `true` sont des enfants valides. Ils ne sont pas rendus. Ces expressions JSX rendront toutes la même chose :
+`false`, `null`, `undefined`, et `true` sont des enfants valides. Ils ne sont simplement pas exploités. Ces expressions JSX produiront toutes la même chose :
 
 ```js
 <div />
@@ -422,7 +423,7 @@ Les enfants passés à un composant personnalisé peuvent être n'importe quoi, 
 <div>{true}</div>
 ```
 
-Ceci peut être utile pour le rendu conditionnel des éléments React. Ce JSX rend un `<Header />` uniquement si `showHeader` est à `true`:
+Ça peut être utile pour afficher des éléments React de façon conditionnelle. Ce JSX produit un `<Header />` uniquement si `showHeader` est à `true` :
 
 ```js{2}
 <div>
@@ -431,7 +432,7 @@ Ceci peut être utile pour le rendu conditionnel des éléments React. Ce JSX re
 </div>
 ```
 
-Une mise en garde s'impose : certaines valeurs ["falsy"](https://developer.mozilla.org/en-US/docs/Glossary/Falsy), comme le nombre `0`, sont rendus par React. Par exemple, ce code ne se comportera pas comme vous l'esperez car `0` sera affichée lorsque `props.messages` est un tableau vide:
+Une mise en garde s'impose : certaines valeurs [*falsy*](https://developer.mozilla.org/fr/docs/Glossaire/Falsy), comme le nombre `0`, sont tout de même affichées par React. Par exemple, ce code ne se comportera pas comme vous l'espérez car il affichera `0` lorsque `props.messages` est un tableau vide :
 
 ```js{2}
 <div>
@@ -441,7 +442,7 @@ Une mise en garde s'impose : certaines valeurs ["falsy"](https://developer.mozil
 </div>
 ```
 
-Pour corriger cela, assurez-vous que l'expression avant `&&` est toujours un booléen:
+Pour corriger ça, assurez-vous que l'expression avant `&&` est toujours un booléen :
 
 ```js{2}
 <div>
@@ -451,7 +452,7 @@ Pour corriger cela, assurez-vous que l'expression avant `&&` est toujours un boo
 </div>
 ```
 
-À l'inverse, si vous voulez qu'une valeur comme `false`, `true`, `null`, ou `undefined` apparaisse comme rendu, vous devez d'abord la [convertir en une chaîne de caractères](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion) 
+Réciproquement, si vous voulez qu'une valeur comme `false`, `true`, `null`, ou `undefined` soit bien affichée, vous devez d'abord la [convertir en chaîne](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String#Conversion_en_String) : 
 
 ```js{2}
 <div>
