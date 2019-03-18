@@ -103,7 +103,7 @@ Nos voulons que les Hooks couvrent tout les cas d'utilisation des classes, mais 
 
 ## Questions fréquemment posées {#frequently-asked-questions}
 
-Nous avons preparé [Page FAQ des Hooks](/docs/hooks-faq.html) qui repondra aux questions plus commune en rapport avec les Hooks.
+Nous avons préparé une [FAQ des Hooks](/docs/hooks-faq.html) qui répond aux questions les plus courantes sur les Hooks.
 
 ## Nouvelle étape {#next-steps}
 
