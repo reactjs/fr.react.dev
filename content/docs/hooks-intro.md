@@ -75,7 +75,7 @@ In many cases it's not possible to break these components into smaller ones beca
 
 To solve this, **Hooks let you split one component into smaller functions based on what pieces are related (such as setting up a subscription or fetching data)**, rather than forcing a split based on lifecycle methods. You may also opt into managing the component's local state with a reducer to make it more predictable.
 
-We'll discuss this more in [Using the Effect Hook](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns).
+Nous en parlerons plus dans [l'utilisation de l'Effet à Hook](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns).
 
 ### Les Classes confondent les gens et les machines {#classes-confuse-both-people-and-machines}
 
