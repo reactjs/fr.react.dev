@@ -3,15 +3,15 @@ title: Des nouvelles du rendu asynchrone
 author: [bvaughn]
 ---
 
-Pendant plus d’un an, l’équipe React a travaillé sur l'implémentation du rendu asynchrone.  Le mois dernier, lors de sa présentation à JSConf Iceland, [Dan a dévoilé une partie des nouvelles possibilités excitantes qu‘offre le rendu asynchrone](/blog/2018/03/01/sneak-peek-beyond-react-16.html).  Nous aimerions aujourd’hui partager avec vous certaines des leçons que nous avons apprises en travaillant sur ces fonctionnalités, et quelques recettes pour vous aider à préparer vos composants à la sortie du rendu asynchrone.
+Pendant plus d’un an, l’équipe React a travaillé sur l'implémentation du rendu asynchrone.  Le mois dernier, lors de sa présentation à JSConf Iceland, [Dan a dévoilé une partie des nouvelles possibilités passionnantes qu‘offre le rendu asynchrone](/blog/2018/03/01/sneak-peek-beyond-react-16.html).  Nous aimerions aujourd’hui partager avec vous certaines des leçons que nous avons apprises en travaillant sur ces fonctionnalités, et quelques recettes pour vous aider à préparer vos composants à la sortie du rendu asynchrone.
 
-Une des principales leçons que nous avons apprises, c’est que certaines de nos méthodes historiques de cycle de vie ont tendance à encourager des pratiques de code dangereuses.  Les méthodes concernées sont :
+Une des principales leçons que nous avons apprises, c’est que certaines de nos méthodes de cycle de vie historiques ont tendance à encourager des pratiques de code dangereuses.  Les méthodes concernées sont :
 
 * `componentWillMount`
 * `componentWillReceiveProps`
 * `componentWillUpdate`
 
-Ces méthodes de cycle de vie ont souvent été mal comprises et subtilement mal utilisées ; qui plus est, nous anticipons un plus gros risque de mésutilisation une fois le rendu asynchrone disponible.  Pour cette raison, nous allons leur ajouter un préfixe `UNSAFE_` dans une prochaine version. (Dans ce cas précis, _“unsafe”_ est sans rapport avec la sécurité, mais indique que le code utilisant ces méthodes de cycle de vie aura un plus grand risque de bugs dans les prochaines versions de React, surtout si le rendu asynchrone est activé.)
+Ces méthodes de cycle de vie ont souvent été mal comprises et subtilement mal utilisées ; qui plus est, nous anticipons un plus gros risque de mésutilisation une fois le rendu asynchrone disponible.  Pour cette raison, nous prévoyons de leur ajouter un préfixe `UNSAFE_` dans une prochaine version. (Dans ce cas précis, _“unsafe”_ est sans rapport avec la sécurité, mais indique que le code utilisant ces méthodes de cycle de vie comportera un plus grand risque de bugs dans les prochaines versions de React, surtout si le rendu asynchrone est activé.)
 
 ## Chemin de migration progressif {#gradual-migration-path}
 
@@ -46,7 +46,7 @@ En combinaison avec `componentDidUpdate`, cette nouvelle méthode devrait couvri
 
 >Remarque
 >
->Tant l’ancienne `componentWillReceiveProps` que la nouvelle `getDerivedStateFromProps` ajoutent une complexité significative aux composants.  Ça entraîne souvent des [bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html#common-bugs-when-using-derived-state). Préférez des **[ alternatives à l’état dérivé plus simples](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** afin de rendre vos composants prévisibles et maintenables.
+>Tant l’ancienne méthode `componentWillReceiveProps` que la nouvelle `getDerivedStateFromProps` ajoutent une complexité significative aux composants.  Ça entraîne souvent des [bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html#common-bugs-when-using-derived-state). Préférez des **[alternatives à l’état dérivé plus simples](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** afin de rendre vos composants prévisibles et maintenables.
 
 ### Nouvelle méthode de cycle de vie : `getSnapshotBeforeUpdate` {#new-lifecycle-getsnapshotbeforeupdate}
 
@@ -73,7 +73,7 @@ Nous allons maintenant examiner des exemples illustrant l'utilisation de ces deu
 
 > Remarque
 >
-> Par souci de concision, les exemples ci-dessous seront écrits en utilisant la transformée Babel expérimentale de propriétés de classes mais ces stratégies de migration restent valables sans ça.
+> Par souci de concision, les exemples ci-dessous seront écrits en utilisant la transformation Babel expérimentale de propriétés de classes mais ces stratégies de migration restent valables sans ça.
 
 ### Initialisation de l’état local {#initializing-state}
 
@@ -109,7 +109,7 @@ Beaucoup de gens croient à tort que la récupération de données dans `compone
 
 ### Ajout de gestionnaires d’événements (ou abonnements) {#adding-event-listeners-or-subscriptions}
 
-Voici un exemple de composant qui s’abonne au montage à un diffuseur externe d’événements :
+Voici un exemple de composant qui s’abonne à un diffuseur externe d’événements au moment du montage :
 
 `embed:update-on-async-rendering/adding-event-listeners-before.js`
 
@@ -135,7 +135,7 @@ Plutôt que de passer une prop `dataSource` sur laquelle s'abonner, comme nous l
 
 >Remarque
 >
->Tant l’ancienne `componentWillReceiveProps` que la nouvelle `getDerivedStateFromProps` ajoutent une complexité significative aux composants.  Ça entraîne souvent des [bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html#common-bugs-when-using-derived-state). Préférez des **[ alternatives à l’état dérivé plus simples](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** afin de rendre vos composants prévisibles et maintenables.
+>Tant l’ancienne méthode `componentWillReceiveProps` que la nouvelle `getDerivedStateFromProps` ajoutent une complexité significative aux composants.  Ça entraîne souvent des [bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html#common-bugs-when-using-derived-state). Préférez des **[ alternatives à l’état dérivé plus simples](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** afin de rendre vos composants prévisibles et maintenables.
 
 Voici un exemple de composant qui recourt à la méthode historique de cycle de vie `componentWillReceiveProps` pour mettre à jour `state` en fonction des valeurs actuelles des `props` :
 
@@ -156,7 +156,7 @@ Vous vous demandez peut-être pourquoi nous ne nous contentons pas de passer les
 
 > Remarque
 >
-> Si vous écrivez un composant partagé, le polyfill [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) vous permet d’utiliser la nouvelle méthode de cycle de vie `getDerivedStateFromProps` même dans d'anciennes versions de React. [Vous pouvez apprendre à l’utiliser plus bas.](#open-source-project-maintainers)
+> Si vous écrivez un composant partagé, le polyfill [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) vous permet d’utiliser la nouvelle méthode de cycle de vie `getDerivedStateFromProps` même avec d'anciennes versions de React. [Vous pouvez apprendre à l’utiliser plus bas.](#open-source-project-maintainers)
 
 ### Invocation de fonctions de rappel externes {#invoking-external-callbacks}
 
@@ -164,7 +164,7 @@ Voici un exemple de composant qui appelle une fonction externe quand son état c
 
 `embed:update-on-async-rendering/invoking-external-callbacks-before.js`
 
-On utilise parfois `componentWillUpdate` en raison d’une peur irrationnelle qu’au premier appel à `componentDidUpdate` il soit déjà « trop tard » pour mettre à jour l’état d’autres composants.  Il n’en est rien.  React garantit que tous les appels à `setState` effectués dans `componentDidMount` et `componentDidUpdate` sont traités avant que l’utilisateur voie l’interface utilisateur (UI) mise à jour.  En général, il vaut mieux éviter les mises à jour en cascade comme celle-ci, mais elles sont parfois nécessaires (par exemple, si vous avez besoin de positionner une infobulle après avoir mesure l’élément DOM affiché).
+On utilise parfois `componentWillUpdate` en raison d’une peur irrationnelle selon laquelle, au premier appel à `componentDidUpdate`, il serait déjà « trop tard » pour mettre à jour l’état d’autres composants.  Il n’en est rien.  React garantit que tous les appels à `setState` effectués dans `componentDidMount` et `componentDidUpdate` sont traités avant que l’utilisateur voie l’interface utilisateur (UI) mise à jour.  En général, il vaut mieux éviter les mises à jour en cascade comme celle-ci, mais elles sont parfois nécessaires (par exemple, si vous avez besoin de positionner une infobulle après avoir mesure l’élément DOM affiché).
 
 Dans les deux cas, utiliser `componentWillUpdate` pour ça en mode asynchrone est dangereux, car la fonction de rappel externe est susceptible d'être appelée plusieurs fois pour une unique mise à jour.  Utilisez plutôt la méthode de cycle de vie `componentDidUpdate`, dont React garantit l'invocation unique à chaque mise à jour :
 
@@ -176,7 +176,7 @@ Dans le même esprit que [l’exemple ci-dessus](#invoking-external-callbacks), 
 
 `embed:update-on-async-rendering/side-effects-when-props-change-before.js`
 
-Comme `componentWillUpdate`, `componentWillReceiveProps` risque d'être appelée plusieurs fois pour une seule mise à jour.  C’est pourquoi il est important d’éviter d’y placer des effets de bord. Utilisez plutôt `componentDidUpdate`, dont l'invocation unique par mise à jour est garantie :
+Comme `componentWillUpdate`, `componentWillReceiveProps` risque d'être appelée plusieurs fois pour une seule mise à jour.  C’est pourquoi il est important d’éviter d’y placer des effets de bord. Utilisez plutôt `componentDidUpdate`, qui ne sera invoquée qu’une seule fois par mise à jour :
 
 `embed:update-on-async-rendering/side-effects-when-props-change-after.js`
 
@@ -202,7 +202,7 @@ Voici un exemple de composant qui lit une propriété du DOM avant une mise à j
 
 Dans cet exemple, on utilise `componentWillUpdate` pour lire la propriété du DOM.  Seulement voilà, avec le rendu asynchrone, il peut y avoir des délais entre les méthodes de cycle de vie de la phase de « rendu » (comme `componentWillUpdate` et `render`) et celles de la phase de « commit » (comme `componentDidUpdate`).  Si l’utilisateur fait dans l’intervalle quelque chose comme redimensionner la fenêtre, la valeur `scrollHeight` lue dans `componentWillUpdate` sera obsolète.
 
-Pour résoudre ce problème, utilisez la nouvelle méthode de cycle de vie de la phase de « commit » `getSnapshotBeforeUpdate`.  Elle est appelée _juste avant_ que les mutations soient finalisées (ex. avant les mises à jour au DOM). Elle peut renvoyer une valeur que React passera en argument à `componentDidUpdate`, laquelle est appelée _juste après_ les mutations.
+Pour résoudre ce problème, utilisez la nouvelle méthode de cycle de vie de la phase de « commit » `getSnapshotBeforeUpdate`.  Elle est appelée _juste avant_ que les mutations soient finalisées (ex. avant les mises à jour du DOM). Elle peut renvoyer une valeur que React passera en argument à `componentDidUpdate`, laquelle est appelée _juste après_ les mutations.
 
 Ces deux méthodes de cycle de vie peuvent être utilisées en combinaison comme ceci :
 
@@ -210,7 +210,7 @@ Ces deux méthodes de cycle de vie peuvent être utilisées en combinaison comme
 
 > Remarque
 >
-> Si vous écrivez un composant partagé, le polyfill [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) vous permet d’utiliser la nouvelle méthode de cycle de vie `getSnapshotBeforeUpdate` même dans d'anciennes versions de React. [Vous pouvez apprendre à l’utiliser plus bas.](#open-source-project-maintainers)
+> Si vous écrivez un composant partagé, le polyfill [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) vous permet d’utiliser la nouvelle méthode de cycle de vie `getSnapshotBeforeUpdate` même avec d'anciennes versions de React. [Vous pouvez apprendre à l’utiliser plus bas.](#open-source-project-maintainers)
 
 ## Autres scénarios {#other-scenarios}
 

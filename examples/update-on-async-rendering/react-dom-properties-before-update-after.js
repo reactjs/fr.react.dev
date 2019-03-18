@@ -3,7 +3,7 @@ class ScrollingList extends React.Component {
 
   // highlight-range{1-10}
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    // On ajoute des nouveaux éléments à la liste ?
+    // Est-ce qu’on ajoute de nouveaux éléments à la liste ?
     // Capturons la position de défilement pour pouvoir l’ajuster plus tard.
     if (prevProps.list.length < this.props.list.length) {
       return (
@@ -15,7 +15,7 @@ class ScrollingList extends React.Component {
 
   // highlight-range{1-10}
   componentDidUpdate(prevProps, prevState, snapshot) {
-    // Si `previousScrollOffset` est défini, on vient d’ajouter des éléments.
+    // Si `snapshot` est défini, on vient d’ajouter des éléments.
     // Il faut alors ajuster la position de défilement pour que ces nouveaux
     // éléments ne poussent pas les anciens hors de la zone visible.
     // (`snapshot` est ici la valeur renvoyée par `getSnapshotBeforeUpdate`.)

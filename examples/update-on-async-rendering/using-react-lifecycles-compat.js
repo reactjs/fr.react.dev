@@ -9,7 +9,7 @@ class ExampleComponent extends React.Component {
   }
 }
 
-// Polyfillez votre composant pour qu’il fonctionne sur de vieilles versions de React :
+// Polyfillez votre composant pour qu’il fonctionne avec de vieilles versions de React :
 // highlight-next-line
 polyfill(ExampleComponent);
 

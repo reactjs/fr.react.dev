@@ -7,7 +7,7 @@ class ExampleComponent extends React.Component {
   // highlight-range{1-13}
   static getDerivedStateFromProps(props, state) {
     // On stocke `prevId` dans l’état pour pouvoir la comparer quand les props changent.
-    // On vire aussi les données chargées précédemment (pour ne pas afficher des vieux trucs).
+    // On efface aussi les données chargées précédemment (pour ne pas afficher des vieux trucs).
     if (props.id !== state.prevId) {
       return {
         externalData: null,

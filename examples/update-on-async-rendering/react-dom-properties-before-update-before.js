@@ -4,7 +4,7 @@ class ScrollingList extends React.Component {
 
   // highlight-range{1-8}
   componentWillUpdate(nextProps, nextState) {
-    // On ajoute des nouveaux éléments à la liste ?
+    // Est-ce qu’on ajoute de nouveaux éléments à la liste ?
     // Capturons la position de défilement pour pouvoir l’ajuster plus tard.
     if (this.props.list.length < nextProps.list.length) {
       this.previousScrollOffset =
