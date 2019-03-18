@@ -91,7 +91,7 @@ Pour résoudre ces problèmes, **Les Hooks nous permentent d'utiliser beaucoup p
 
 ## Stratégie d'adoption progressive {#gradual-adoption-strategy}
 
->**TLDR: Il n'y a aucune idée de supprimer les classes de React.**
+>**TLDR : nous n'avons aucune intention de retirer les classes de React.**
 
 Nous savons que les developpeurs React sont focalisés sur la sortie de produits et n'ont pas assez de temps pour regarder à l'intérieur de chaque nouvelle API qui est publiée. Les Hooks sont nouveaux, et il sera sage d'attendre plusieurs exemples et tutoriels avant d'envisager de les apprendre ou de les adopter.
 
