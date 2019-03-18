@@ -43,7 +43,7 @@ Lors de la React Conf 2018, Sophie Alpert et Dan Abramov ont présenté les Hook
 
 ## Pas de rupture de compatibilité {#no-breaking-changes}
 
-Avant de continuer, notez que les hooks sont:
+Avant de continuer, remarquez bien que les hooks sont :
 
 * **Complètement opt-in.** Vous pouvez essayer les Hooks dans quelques composants sans réécrire le code existant. Mais vous ne devez pas apprendre ou utiliser les Hooks maintenant si vous ne voulez pas.
 * **100% rétro-compatible.** les Hooks ne contiennent aucun changement majeur.
