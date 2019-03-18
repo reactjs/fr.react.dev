@@ -11,7 +11,7 @@ Les *Hooks* sont arrivés avec React 16.8. Ils vous permettent de bénéficier d
 import React, { useState } from 'react';
 
 function Example() {
-  // Declarer une nouvelle variable d'état, que nous appelerons "count"
+  // Déclare une nouvelle variable d'état, que l'on va appeler « count »
   const [count, setCount] = useState(0);
 
   return (
