@@ -107,4 +107,4 @@ Nous avons préparé une [FAQ des Hooks](/docs/hooks-faq.html) qui répond aux q
 
 ## Nouvelle étape {#next-steps}
 
-A la fin de cette page, vous devriez avoir une idée plus claire sur les problèmes résolus par les Hooks, mais plusieurs détails ne sont probablement pas clair. Aucun soucis! **Allons-y maintenant à [la page suivante](/docs/hooks-overview.html) où nous commencons l'apprentissage des Hooks.**
+Arrivés sur cette fin de page, vous devriez avoir une idée plus claire des problèmes résolus par les Hooks, mais de nombreux détails restent sans doute obscurs. Ne vous en faites pas ! **En route pour [la page suivante](/docs/hooks-overview.html), dans laquelle nous commencerons à apprendre les Hooks par l'exemple.**
