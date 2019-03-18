@@ -33,7 +33,7 @@ Cette nouvelle fonction `useState` est le premier « Hook » que nous allons e
 >
 >Les Hooks sont apparus dans React 16.8.0. Lors de la mise à jour de React, n'oubliez pas de mettre à jour tous les modules, dont React DOM. React Native prendre en charge les Hooks dans sa prochaine version stable.
 
-## Introduction de la Vidéo {#video-introduction}
+## Vidéo de présentation {#video-introduction}
 
 A la React Conf 2018, Sophie Alpert et Dan Abramov introduisent les Hooks, suivi de Ryan Florence qui demontre comment refactoriser une application pour les utiliser. Regardez les vidéos ici:
 
