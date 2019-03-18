@@ -47,7 +47,7 @@ Avant de continuer, remarquez bien que les hooks sont :
 
 * **Complètement opt-in.** Vous pouvez essayer les Hooks dans quelques composants sans réécrire le code existant. Mais vous ne devez pas apprendre ou utiliser les Hooks maintenant si vous ne voulez pas.
 * **100% rétro-compatible.** les Hooks ne contiennent aucun changement majeur.
-* **Disponible maintenant.** les Hooks sont disponible maintenant avec la version v16.8.0.
+* **Disponibles maintenant.** Les Hooks sont disponibles depuis la version 16.8.0.
 
 **Aucun plan de supprimer les classes de React.** Vous pouvez en savoir plus sur la stratégie d'adoption des Hooks à la [section du bas](#gradual-adoption-strategy) de cette page.
 
