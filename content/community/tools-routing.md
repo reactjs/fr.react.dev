@@ -6,10 +6,10 @@ permalink: community/routing.html
 ---
 
 * **[Aviator](https://github.com/swipely/aviator)** : Aviator est un routeur front-end construit pour des applications monopages modulaires ([Exemple](https://gist.github.com/hojberg/9549330)).
-* **[Backbone](https://backbonejs.org/)** : Backbone fournit une structure aux applications JavaScript en offrant des modèles de *binding* clé-valeur et des événements personnalisés, des collections avec une API riche de nombreuses fonctions, des vues avec la gestion déclaratives d'événements, et en connectant l'ensemble à votre application existante via une interface JSON RESTful.
+* **[Backbone](https://backbonejs.org/)** : Backbone fournit une structure aux applications JavaScript en offrant des modèles de *binding* clé-valeur, des événements personnalisés, des collections avec une API riche de nombreuses fonctions, des vues avec la gestion déclarative d'événements, et en connectant l'ensemble à votre application existante via une interface JSON RESTful.
 * **[component-router](https://github.com/in-flux/component-router)** : solution de routage basée sur les flux pour les composants.
 * **[Director](https://github.com/flatiron/director)** : un routeur d'URL isomorphique en JavaScript.
-* **[Finch](http://stoodder.github.io/finchjs/)** : une bibliothèque de gestion des routes en JavaScript simple mais puissante.
+* **[Finch](http://stoodder.github.io/finchjs/)** : une bibliothèque de gestion des routes, simple mais puissante, en JavaScript.
 * **[mvc-router](https://github.com/rajeev-k/mvc-router)** : construction d'applications React sur le modèle Modèle-Vue-Contrôleur (*MVC*).
 * **[Reach Router](https://reach.tech/router)** : un routeur accessible pour React.
 * **[react-mini-router](https://github.com/larrymyers/react-mini-router)** : un mixin de routeur minimaliste.
