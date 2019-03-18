@@ -1,76 +1,73 @@
 ---
 id: forwarding-refs
-title: Forwarding Refs
+title: Transfert de refs
 permalink: docs/forwarding-refs.html
 ---
 
-Ref forwarding is a technique for automatically passing a [ref](/docs/refs-and-the-dom.html) through a component to one of its children. This is typically not necessary for most components in the application. However, it can be useful for some kinds of components, especially in reusable component libraries. The most common scenarios are described below.
+Le transfert de ref est une technique permettant de déléguer automatiquement une [ref](/docs/refs-and-the-dom.html) d'un composant à l'un de ses enfants. Ça n'est généralement pas nécessaire pour la plupart des composants dans une application. Cependant, ça peut être utile pour certains types de composants, particulièrement dans les bibliothèques de composants réutilisables. Les scénarios les plus fréquents sont décrits ci-dessous.
 
-## Forwarding refs to DOM components {#forwarding-refs-to-dom-components}
+## Transfert de refs vers des composants du DOM {#forwarding-refs-to-dom-components}
 
-Consider a `FancyButton` component that renders the native `button` DOM element:
+Prenons un composant `FancyButton` qui affiche l'élément DOM natif `button` :
 `embed:forwarding-refs/fancy-button-simple.js`
 
-React components hide their implementation details, including their rendered output. Other components using `FancyButton` **usually will not need to** [obtain a ref](/docs/refs-and-the-dom.html) to the inner `button` DOM element. This is good because it prevents components from relying on each other's DOM structure too much.
+Les composants React masquent leurs détails d'implémentation, y compris leur rendu.
+Les autres composants utilisant `FancyButton` **n'auront généralement pas besoin** [d'obtenir une ref](/docs/refs-and-the-dom.html) sur l'élément DOM interne `button`. C'est une bonne chose, car ça empêche les composants de trop s'appuyer sur la structure DOM les uns et des autres.
 
-Although such encapsulation is desirable for application-level components like `FeedStory` or `Comment`, it can be inconvenient for highly reusable "leaf" components like `FancyButton` or `MyTextInput`. These components tend to be used throughout the application in a similar manner as a regular DOM `button` and `input`, and accessing their DOM nodes may be unavoidable for managing focus, selection, or animations.
+Bien qu'une telle encapsulation soit souhaitable pour les composants applicatifs tels que `FeedStory` ou `Comment`, elle peut être gênante pour les composants hautement réutilisables, tels que `FancyButton` ou `MyTextInput`. Ces composants ont tendance à être utilisés un peu partout dans dans l’application de manière similaire à un `button` ou un `input`, et l’accès à leurs nœuds DOM peut s'avérer nécessaire pour la gestion du focus, de la sélection ou des animations.
 
-**Ref forwarding is an opt-in feature that lets some components take a `ref` they receive, and pass it further down (in other words, "forward" it) to a child.**
+**Le transfert de ref est une fonctionnalité optionnelle qui permet à certains composants de prendre une `ref` qu’ils reçoivent et de la passer plus bas dans l’arbre (en d’autres termes, la « transférer ») à un composant enfant.**
 
-In the example below, `FancyButton` uses `React.forwardRef` to obtain the `ref` passed to it, and then forward it to the DOM `button` that it renders:
-
+Dans l'exemple ci-dessous, `FancyButton` utilise `React.forwardRef` pour obtenir la `ref` qui lui est passée, puis la transfère au `button` DOM qu'il affiche :
 `embed:forwarding-refs/fancy-button-simple-ref.js`
 
-This way, components using `FancyButton` can get a ref to the underlying `button` DOM node and access it if necessary—just like if they used a DOM `button` directly.
+De cette façon, les composants utilisant `FancyButton` peuvent obtenir une ref sur le nœud DOM `button` sous-jacent et y accéder si nécessaire, comme s'ils utilisaient directement un `button` DOM.
 
-Here is a step-by-step explanation of what happens in the above example:
+Voici une explication étape par étape de ce qui se passe dans l'exemple ci-dessus :
 
-1. We create a [React ref](/docs/refs-and-the-dom.html) by calling `React.createRef` and assign it to a `ref` variable.
-1. We pass our `ref` down to `<FancyButton ref={ref}>` by specifying it as a JSX attribute.
-1. React passes the `ref` to the `(props, ref) => ...` function inside `forwardRef` as a second argument.
-1. We forward this `ref` argument down to `<button ref={ref}>` by specifying it as a JSX attribute.
-1. When the ref is attached, `ref.current` will point to the `<button>` DOM node.
+1. Nous créons une [ref React](/docs/refs-and-the-dom.html) en appelant `React.createRef` et l'affectons à une variable `ref`.
+1. Nous passons notre `ref` à `<FancyButton ref={ref}>` en la spécifiant comme un attribut JSX.
+1. React transmet la `ref` à la fonction `(props, ref) => ...` à l'intérieur de `forwardRef` comme deuxième argument.
+1. Nous transférons cet argument `ref` au `<button ref={ref}>` en le spécifiant comme un attribut JSX.
+1. Quand la ref est liée, `ref.current` pointera vers le nœud DOM `button`.
 
->Note
+>Remarque
 >
->The second `ref` argument only exists when you define a component with `React.forwardRef` call. Regular function or class components don't receive the `ref` argument, and ref is not available in props either.
+> Le second argument `ref` n’existe que quand vous définissez un composant avec l'appel à `React.forwardRef`. Les fonctions composants habituelles et les composants à base de classes ne reçoivent pas l'argument `ref`, et la ref n'est pas non plus disponible dans les props du composant.
 >
->Ref forwarding is not limited to DOM components. You can forward refs to class component instances, too.
+> Le transfert de refs n'est pas limité aux composants DOM. Vous pouvez aussi transférer des refs vers des instances de classe de composant.
 
-## Note for component library maintainers {#note-for-component-library-maintainers}
+## Note pour les mainteneurs de bibliothèques de composants {#note-for-component-library-maintainers}
 
-**When you start using `forwardRef` in a component library, you should treat it as a breaking change and release a new major version of your library.** This is because your library likely has an observably different behavior (such as what refs get assigned to, and what types are exported), and this can break apps and other libraries that depend on the old behavior.
+**Lorsque vous commencez à utiliser `forwardRef` dans une bibliothèque de composants, vous devez le traiter comme une rupture de compatibilité ascendante et publier une nouvelle version majeure de votre bibliothèque.** En effet, votre bibliothèque a probablement un comportement différent (par exemple la cible d'affectation des refs et la nature des types exportés), et ça pourrait casser les applications et autres bibliothèques qui dépendent de l'ancien comportement.
 
-Conditionally applying `React.forwardRef` when it exists is also not recommended for the same reasons: it changes how your library behaves and can break your users' apps when they upgrade React itself.
+L'application conditionnelle de `React.forwardRef` lorsqu'elle existe est également déconseillée pour les mêmes raisons : ça modifie le comportement de votre bibliothèque et pourrait casser les applications de vos utilisateurs lorsqu'ils mettent à jour React.
 
-## Forwarding refs in higher-order components {#forwarding-refs-in-higher-order-components}
+## Transfert des refs dans les composants d’ordre supérieur {#forwarding-refs-in-higher-order-components}
 
-This technique can also be particularly useful with [higher-order components](/docs/higher-order-components.html) (also known as HOCs). Let's start with an example HOC that logs component props to the console:
+Cette technique peut aussi être particulièrement utile avec les [composants d'ordre supérieur](/docs/higher-order-components.html) *(Higher-Order Components ou HOC, NdT)*. Commençons par un exemple de HOC qui journalise les props du composant dans la console :
 `embed:forwarding-refs/log-props-before.js`
 
-The "logProps" HOC passes all `props` through to the component it wraps, so the rendered output will be the same. For example, we can use this HOC to log all props that get passed to our "fancy button" component:
+Le HOC `logProps` transmet toutes les `props` au composant qu'il enrobe, ainsi le résultat affiché sera la même. Par exemple, nous pouvons utiliser ce HOC pour lister toutes les props transmises à notre composant *fancy button* :
 `embed:forwarding-refs/fancy-button.js`
 
-There is one caveat to the above example: refs will not get passed through. That's because `ref` is not a prop. Like `key`, it's handled differently by React. If you add a ref to a HOC, the ref will refer to the outermost container component, not the wrapped component.
+Il y a une limitation dans l'exemple ci-dessus : les refs ne seront pas transférées. C'est parce que `ref` n'est pas une prop. Comme `key`, elle est gérée différemment par React. Si vous ajoutez une ref à un HOC, la ref fera référence au composant conteneur extérieur, et non au composant enrobé.
 
-This means that refs intended for our `FancyButton` component will actually be attached to the `LogProps` component:
+Ça signifie que les refs destinées à notre composant `FancyButton` seront en réalité attachées au composant `LogProps` :
 `embed:forwarding-refs/fancy-button-ref.js`
 
-Fortunately, we can explicitly forward refs to the inner `FancyButton` component using the `React.forwardRef` API. `React.forwardRef` accepts a render function that receives `props` and `ref` parameters and returns a React node. For example:
+Heureusement, nous pouvons explicitement transférer les refs au composant `FancyButton` interne à l’aide de l’API `React.forwardRef`. Celle-ci accepte une fonction de rendu qui reçoit les arguments `props` et `ref` et renvoie un nœud React. Par exemple :
 `embed:forwarding-refs/log-props-after.js`
 
-## Displaying a custom name in DevTools {#displaying-a-custom-name-in-devtools}
+## Affichage d'un nom personnalisé dans les DevTools {#displaying-a-custom-name-in-devtools}
 
-`React.forwardRef` accepts a render function. React DevTools uses this function to determine what to display for the ref forwarding component.
+`React.forwardRef` accepte une fonction de rendu. Les outils de développement React *(React DevTools, NdT)* utilisent cette fonction pour déterminer quoi afficher pour le composant de transfert de ref.
 
-For example, the following component will appear as "*ForwardRef*" in the DevTools:
-
+Par exemple, le composant suivant apparaîtra sous le nom "*ForwardRef*" dans les DevTools :
 `embed:forwarding-refs/wrapped-component.js`
 
-If you name the render function, DevTools will also include its name (e.g. "*ForwardRef(myFunction)*"):
-
+Si vous nommez la fonction de rendu, les DevTools incluront également son nom (par exemple, "*ForwardRef(myFunction)*") :
 `embed:forwarding-refs/wrapped-component-with-function-name.js`
 
-You can even set the function's `displayName` property to include the component you're wrapping:
-
+Vous pouvez même définir la propriété `displayName` de la fonction pour y inclure le composant que vous enrobez :
 `embed:forwarding-refs/customized-display-name.js`

@@ -68,7 +68,7 @@
     - id: refs-and-the-dom
       title: Les refs et le DOM
     - id: render-props
-      title: Render props
+      title: Props de rendu
     - id: static-type-checking
       title: Validation statique de types
     - id: strict-mode
