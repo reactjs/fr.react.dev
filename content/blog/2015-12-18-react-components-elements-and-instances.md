@@ -1,24 +1,24 @@
 ---
-title: "React Components, Elements, and Instances"
+title: "Composants, éléments et instances de React"
 author: [gaearon]
 ---
 
-The difference between **components, their instances, and elements** confuses many React beginners. Why are there three different terms to refer to something that is painted on screen?
+La différence entre **les composants, leurs instances et leurs éléments** déroute beaucoup les débutants React. Pourquoi y a-t-il trois termes différents pour désigner quelque chose qui est peint sur l'écran ?
 
-## Managing the Instances {#managing-the-instances}
+## Gestion des instances {#managing-the-instances}
 
-If you’re new to React, you probably only worked with component classes and instances before. For example, you may declare a `Button` *component* by creating a class. When the app is running, you may have several *instances* of this component on screen, each with its own properties and local state. This is the traditional object-oriented UI programming. Why introduce *elements*?
+Si vous débutez avec React, vous n’avez probablement travaillé qu’avec des classes et des instances de composants. Par exemple, vous pouvez déclarer un *composant* `Button` en créant une classe. Lorsque l'application est en cours d'exécution, vous pouvez avoir plusieurs *instances* de ce composant à l'écran, chacune avec ses propres propriétés et son état local. Il s’agit de la programmation d’interface utilisateur traditionnelle orientée objet. Pourquoi introduire des *éléments* ?
 
-In this traditional UI model, it is up to you to take care of creating and destroying child component instances. If a `Form` component wants to render a `Button` component, it needs to create its instance, and manually keep it up to date with any new information.
+Dans ce modèle d'interface utilisateur traditionnel, c'est vous qui devez vous occuper de la création et de la destruction d'instances de composant enfant. Si un composant `Form` veut afficher un composant `Button`, il doit créer son instance et le maintenir manuellement à jour avec les nouvelles informations.
 
 ```js
 class Form extends TraditionalObjectOrientedView {
   render() {
-    // Read some data passed to the view
+    // Lit certaines données passées à la vue
     const { isSubmitted, buttonText } = this.attrs;
 
     if (!isSubmitted && !this.button) {
-      // Form is not yet submitted. Create the button!
+      // Le formulaire n'a pas encore été sousmis. Créons le bouton !
       this.button = new Button({
         children: buttonText,
         color: 'blue'
@@ -27,41 +27,41 @@ class Form extends TraditionalObjectOrientedView {
     }
 
     if (this.button) {
-      // The button is visible. Update its text!
+      // Le bouton est visible. Mettons à jour son texte !
       this.button.attrs.children = buttonText;
       this.button.render();
     }
 
     if (isSubmitted && this.button) {
-      // Form was submitted. Destroy the button!
+      // Le formulaire a été soumis. Détruisons le bouton !
       this.el.removeChild(this.button.el);
       this.button.destroy();
     }
 
     if (isSubmitted && !this.message) {
-      // Form was submitted. Show the success message!
-      this.message = new Message({ text: 'Success!' });
+      // Le formulaire a été soumis. Affichons le message de réussite !
+      this.message = new Message({ text: 'Succès !' });
       this.el.appendChild(this.message.el);
     }
   }
 }
 ```
 
-This is pseudocode, but it is more or less what you end up with when you write composite UI code that behaves consistently in an object-oriented way using a library like Backbone.
+Il s’agit de pseudo-code, mais c’est plus ou moins ce que vous obtenez lorsque vous écrivez un code d’interface utilisateur composite orienté objet qui se comporte de manière cohérente en utilisant une bibliothèque comme Backbone.
 
-Each component instance has to keep references to its DOM node and to the instances of the children components, and create, update, and destroy them when the time is right. The lines of code grow as the square of the number of possible states of the component, and the parents have direct access to their children component instances, making it hard to decouple them in the future.
+Chaque instance de composant doit conserver les références vers son nœud DOM et vers les instances des composants enfants puis les créer, les mettre à jour et les détruire au moment opportun. Le nombre de ligne de code augmentent exponentiellement selon le nombre d'états du composant, de plus, les parents ont un accès direct aux instances de leurs composants enfants, ce qui va plus tard rendre difficile leur dissociation.
 
-So how is React different?
+Alors, en quoi React est-il différent ?
 
-## Elements Describe the Tree {#elements-describe-the-tree}
+## Les éléments décrivent l'arbre {#elements-describe-the-tree}
 
-In React, this is where the *elements* come to rescue. **An element is a plain object *describing* a component instance or DOM node and its desired properties.** It contains only information about the component type (for example, a `Button`), its properties (for example, its `color`), and any child elements inside it.
+Dans React, c'est là que les *éléments* viennent à la rescousse. **Un élément est un objet brut *décrivant* une instance de composant ou un nœud DOM et ses propriétés souhaitées.** Il contient uniquement des informations sur le type du composant (par exemple, un `Button`), ses propriétés (par exemple, sa `color`), et tous ses éléments enfants.
 
-An element is not an actual instance. Rather, it is a way to tell React what you *want* to see on the screen. You can’t call any methods on the element. It’s just an immutable description object with two fields: `type: (string | ReactClass)` and `props: Object`[^1].
+Un élément n'est pas une vrai instance. C'est plutôt un moyen de dire à React ce que vous *voulez* voir à l'écran. Vous ne pouvez appeler aucune méthode sur l'élément. C'est juste un objet de description immuable avec deux champs : `type: (string | ReactClass)` et `props: Object`[^1].
 
-### DOM Elements {#dom-elements}
+### Éléments DOM {#dom-elements}
 
-When an element’s `type` is a string, it represents a DOM node with that tag name, and `props` correspond to its attributes. This is what React will render. For example:
+Lorsque le `type` d'un élément est une chaîne de caractère, il représente un nœud DOM avec comme nom celui de la balise, et les `props` correspondent à ses attributs. C’est ce que React rendra. Par exemple :
 
 ```js
 {
@@ -78,7 +78,7 @@ When an element’s `type` is a string, it represents a DOM node with that tag n
 }
 ```
 
-This element is just a way to represent the following HTML as a plain object:
+Cet élément, sous forme d'un objet brut, est juste un moyen de représenter le code HTML suivant :
 
 ```html
 <button class='button button-blue'>
@@ -88,13 +88,13 @@ This element is just a way to represent the following HTML as a plain object:
 </button>
 ```
 
-Note how elements can be nested. By convention, when we want to create an element tree, we specify one or more child elements as the `children` prop of their containing element.
+Remarquez comment les éléments peuvent être imbriqués. Par convention, lorsque nous voulons créer une arborescence d'éléments, nous spécifions un ou plusieurs éléments enfants en tant que prop `children` de leur élément conteneur.
 
-What’s important is that both child and parent elements are *just descriptions and not the actual instances*. They don’t refer to anything on the screen when you create them. You can create them and throw them away, and it won’t matter much.
+L’important c'est que les éléments parent et enfant ne soient *que des descriptions et non des vraies instances*. Elles ne font référence à rien à l’écran lorsque vous les créez. Vous pouvez les créer et les jeter, et ça aura peu d'importance.
 
-React elements are easy to traverse, don’t need to be parsed, and of course they are much lighter than the actual DOM elements—they’re just objects!
+Les éléments React sont faciles à parcourir, ils n’ont pas besoin d’être analysés, et bien sûr, ils sont beaucoup plus légers que les vrais éléments DOM — ce ne sont que des objets !
 
-### Component Elements {#component-elements}
+### Éléments composant {#component-elements}
 
 However, the `type` of an element can also be a function or a class corresponding to a React component:
 
