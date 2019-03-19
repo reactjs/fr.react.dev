@@ -1,6 +1,6 @@
 ---
 id: jsx-in-depth
-title: JSX dans le détail 
+title: JSX dans le détail
 permalink: docs/jsx-in-depth.html
 redirect_from:
   - "docs/jsx-spread.html"
@@ -13,7 +13,9 @@ redirect_from:
   - "docs/jsx-in-depth-ko-KR.html"
 ---
 
-Fondamentalement, JSX fournit juste du sucre syntaxique pour la fonction `React.createElement(component, props, ...children)`. Le code JSX :
+Fondamentalement, JSX fournit juste du sucre syntaxique pour la fonction `React.createElement(component, props, ...children)`.
+
+Le code JSX :
 
 ```js
 <MyButton color="blue" shadowSize={2}>
@@ -52,7 +54,7 @@ Si vous souhaitez voir comment certains éléments JSX spécifiques sont compil�
 
 La première partie d'une balise JSX détermine le type de l'élément React en question.
 
-Les types commençant par une lettre majuscule indiquent que la balise JSX fait référence à un composant React. Ces balises sont compilées en références directes à la variable nommée, donc si vous utilisez l'expression JSX  `<Foo />`, `Foo` doit être présente dans la portée.
+Les types commençant par une lettre majuscule indiquent que la balise JSX fait référence à un composant React. Ces balises sont compilées en références directes à la variable nommée, donc si vous utilisez l'expression JSX  `<Foo />`, l’identifiant `Foo` doit être présent dans la portée.
 
 ### React doit être présent dans la portée {#react-must-be-in-scope}
 
@@ -108,7 +110,7 @@ function hello(props) {
 }
 
 function HelloWorld() {
-  // Faux ! React pense que <hello /> est une balise HTML car il ça commence pas par une majuscule :
+  // Faux ! React pense que <hello /> est une balise HTML car il commence pas par une majuscule :
   return <hello toWhat="World" />;
 }
 ```
@@ -149,7 +151,7 @@ function Story(props) {
 }
 ```
 
-Pour corriger ça, nous allons d'abord affecter le type à une variable commençant par une majuscule :
+Pour corriger ça, nous allons d'abord affecter le type à une variable dont l’identifiant commence par une majuscule :
 
 ```js{10-12}
 import React from 'react';
@@ -173,7 +175,7 @@ Il y a différents moyens de définir les props en JSX.
 
 ### Les expressions JavaScript comme props {#javascript-expressions-as-props}
 
-Vous pouvez passer n'importe quelle expression JavaScript comme prop, en l'entourant avec `{}`. Par exemple, dans ce code JSX :
+Vous pouvez passer n'importe quelle expression JavaScript comme prop, en l'entourant avec des accolades `{}`. Par exemple, dans ce code JSX :
 
 ```js
 <MyComponent foo={1 + 2 + 3 + 4} />
@@ -194,7 +196,7 @@ function NumberDescriber(props) {
   return <div>{props.number} est un nombre {description}</div>;
 }
 ```
-Vous pouvez en apprendre davantage sur les [conditions](/docs/conditional-rendering.html) et les [boucles](/docs/lists-and-keys.html) au sein des sections correspondantes.
+Vous pouvez en apprendre davantage sur les [conditions](/docs/conditional-rendering.html) et les [boucles](/docs/lists-and-keys.html) au sein des sections correspondantes de la documentation.
 
 ### Les littéraux chaînes {#string-literals}
 
@@ -214,7 +216,7 @@ Quand vous passez un littéral chaîne, sa valeur subit un échappement HTML inv
 <MyComponent message={'<3'} />
 ```
 
-Ce comportement n'est en général pas pertinent, ce n'est mentionné ici que par souci d'exhaustivité.
+Ce comportement n'est en général pas pertinent (au sens où vous n’avez pas à vous en soucier particulièrement), ce n'est mentionné ici que par souci d'exhaustivité.
 
 ### Les props valent `true` par défaut {#props-default-to-true}
 
@@ -266,7 +268,7 @@ const App = () => {
 Dans l'exemple ci-dessus, la prop `kind` est extraite pour le composant principal et *n'est pas* passée à l'élément `<button>` du DOM.
 Toutes les autres props sont passées via l'objet `...other`, ce qui rend ce composant très flexible. Vous pouvez voir qu’il passe les props `onClick` et `children`.
 
-La décomposition des props peut être utile, mais elle permet aussi de passer trop facilement des props inutiles aux composants, ou de passer des attributs HTML invalides au DOM. Nous vous conseillons d'utiliser cette syntaxe avec parcimonie.  
+La décomposition des props peut être utile, mais elle permet aussi de passer trop facilement des props inutiles aux composants, ou de passer des attributs HTML invalides au DOM. Nous vous conseillons d'utiliser cette syntaxe avec parcimonie.
 
 ## Les éléments enfants en JSX {#children-in-jsx}
 
@@ -280,35 +282,35 @@ Vous pouvez mettre une chaîne de caractères entre une balise ouvrante et une f
 <MyComponent>Bonjour monde !</MyComponent>
 ```
 
-C’est du JSX valide, et `props.children` dans `MyComponent` sera simplement la chaîne de caractères `"Bonjour monde !"`. Le HTML subit un échappement inverse, donc vous pouvez généralement écrire du JSX de la même façon que vous écrivez du HTML, c'est-à-dire :
+C’est du JSX valide, et `props.children` dans `MyComponent` sera simplement la chaîne de caractères `"Bonjour monde !"`. Le HTML subit un échappement inverse, donc vous pouvez généralement écrire du JSX de la même façon que vous écrivez du HTML, c'est-à-dire :
 
 ```html
 <div>Ce contenu est valide en HTML &amp; en JSX.</div>
 ```
 
-JSX supprime les espaces en début et en fin de ligne. Il supprime également les lignes vides. Les sauts de lignes adjacents aux balises sont retirés ; les sauts de lignes apparaissant au sein de littéraux chaînes sont ramenés à une seule espace. Du coup, tous les codes ci-dessous donnent le même résultat :
+JSX supprime les espaces en début et en fin de ligne. Il supprime également les lignes vides. Les sauts de lignes adjacents aux balises sont retirés ; les sauts de lignes apparaissant au sein de littéraux chaînes sont ramenés à une seule espace. Du coup, tous les codes ci-dessous donnent le même résultat :
 
 ```js
 <div>Bonjour monde</div>
 
 <div>
-  Hello World
+  Bonjour monde
 </div>
 
 <div>
-  Hello
-  World
+  Bonjour
+  monde
 </div>
 
 <div>
 
-  Hello World
+  Bonjour monde
 </div>
 ```
 
 ### Éléments JSX enfants {#jsx-children}
 
-Vous pouvez fournir plus d'éléments JSX en tant qu'enfants. C’est utile pour afficher des composants imbriqués :
+Vous pouvez fournir des éléments JSX supplémentaires en tant qu'enfants. C’est utile pour afficher des composants imbriqués :
 
 ```js
 <MyContainer>
@@ -321,10 +323,10 @@ Vous pouvez mélanger différents types d'enfants, comme par exemple des littér
 
 ```html
 <div>
-  Here is a list:
+  Voici une liste :
   <ul>
-    <li>Item 1</li>
-    <li>Item 2</li>
+    <li>Élément 1</li>
+    <li>Élément 2</li>
   </ul>
 </div>
 ```
@@ -333,19 +335,19 @@ Un composant React peut aussi renvoyer un tableau d'éléments :
 
 ```js
 render() {
-  // Pas besoin d'enrober les éléments de la liste dans un élément supplémentaire !
+  // Pas besoin d’enrober les éléments de la liste dans un élément supplémentaire !
   return [
-    // N'oubliez pas les "keys" :)
-    <li key="A">First item</li>,
-    <li key="B">Second item</li>,
-    <li key="C">Third item</li>,
+    // N'oubliez pas les "keys" :)
+    <li key="A">Premier élément</li>,
+    <li key="B">Deuxième élément</li>,
+    <li key="C">Troisième élément</li>,
   ];
 }
 ```
 
 ### Les expressions JavaScript comme enfants {#javascript-expressions-as-children}
 
-Vous pouvez passer n'importe quelle expression JavaScript en tant qu'enfant, en l'enrobant avec `{}`. Ainsi, ces expressions sont équivalentes :
+Vous pouvez passer n'importe quelle expression JavaScript en tant qu'enfant, en l'enrobant avec des accolades `{}`. Ainsi, ces expressions sont équivalentes :
 
 ```js
 <MyComponent>foo</MyComponent>
@@ -361,7 +363,7 @@ function Item(props) {
 }
 
 function TodoList() {
-  const todos = ['finish doc', 'submit pr', 'nag dan to review'];
+  const todos = ['finir la doc', 'envoyer la pr', 'tanner Chris pour une revue'];
   return (
     <ul>
       {todos.map((message) => <Item key={message} message={message} />)}
@@ -380,7 +382,9 @@ function Hello(props) {
 
 ### Les fonctions comme enfants {#functions-as-children}
 
-En temps normal, les expressions Javascript insérées dans JSX produiront une chaîne, un élément React ou une liste de ces types. Cependant, `props.children` fonctionne exactement comme n'importe quelle prop dans le sens où elle peut passer n'importe quel genre de données, pas seulement celles que React sait afficher. Par exemple, si vous avez un composant personnalisé, vous pouvez lui faire accepter une fonction de rappel dans `props.children' : 
+En temps normal, les expressions Javascript insérées dans JSX produiront une chaîne, un élément React ou une liste de ces types. Cependant, `props.children` fonctionne exactement comme n'importe quelle prop dans le sens où elle peut passer n'importe quel genre de données, pas seulement celles que React sait afficher.
+
+Par exemple, si vous avez un composant personnalisé, vous pouvez lui faire accepter une fonction de rappel dans `props.children` :
 
 ```js{4,13}
 
@@ -405,7 +409,7 @@ function ListOfTenThings() {
 
 Les enfants passés à un composant personnalisé peuvent être n'importe quoi, du moment que ce composant les transforme en quelque chose que React peut comprendre avant le rendu. Cette utilisation n'est pas courante, mais elle fonctionne si vous voulez étendre ce dont JSX est capable.
 
-### Les booléens ainsi que null et undefined sont ignorés {#booleans-null-and-undefined-are-ignored}
+### Les booléens ainsi que `null` et `undefined` sont ignorés {#booleans-null-and-undefined-are-ignored}
 
 `false`, `null`, `undefined`, et `true` sont des enfants valides. Ils ne sont simplement pas exploités. Ces expressions JSX produiront toutes la même chose :
 
@@ -452,7 +456,7 @@ Pour corriger ça, assurez-vous que l'expression avant `&&` est toujours un bool
 </div>
 ```
 
-Réciproquement, si vous voulez qu'une valeur comme `false`, `true`, `null`, ou `undefined` soit bien affichée, vous devez d'abord la [convertir en chaîne](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String#Conversion_en_String) : 
+Réciproquement, si vous voulez qu'une valeur comme `false`, `true`, `null`, ou `undefined` soit bien affichée, vous devez d'abord la [convertir en chaîne](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String#Conversion_en_String) :
 
 ```js{2}
 <div>
