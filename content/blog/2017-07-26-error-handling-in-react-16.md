@@ -1,23 +1,23 @@
 ---
-title: "Error Handling in React 16"
+title: "Gestion des erreurs dans React 16"
 author: [gaearon]
 ---
 
-As React 16 release is getting closer, we would like to announce a few changes to how React handles JavaScript errors inside components. These changes are included in React 16 beta versions, and will be a part of React 16.
+Comme la version de React 16 se rapproche, nous souhaitons annoncer quelques modifications de la façon dont React traite les erreurs JavaScript dans les composants. Ces modifications sont incluses dans les versions bêta de React 16 et feront partie de React 16.
 
-**By the way, [we just released the first beta of React 16 for you to try!](https://github.com/facebook/react/issues/10294)**
+**D'ailleurs, [nous venons de publier la première version bêta de React 16 pour que vous puissiez l'essayer !](https://github.com/facebook/react/issues/10294)**
 
-## Behavior in React 15 and Earlier {#behavior-in-react-15-and-earlier}
+## Comportement dans React 15 et antérieur {#behavior-in-react-15-and-earlier}
 
-In the past, JavaScript errors inside components used to corrupt React’s internal state and cause it to [emit](https://github.com/facebook/react/issues/4026) [cryptic](https://github.com/facebook/react/issues/6895) [errors](https://github.com/facebook/react/issues/8579) on next renders. These errors were always caused by an earlier error in the application code, but React did not provide a way to handle them gracefully in components, and could not recover from them.
+Auparavant, les erreurs JavaScript au sein des composants avaient l'habitude de corrompre l'état interne de React, et de causer des [erreurs](https://github.com/facebook/react/issues/4026) [assez](https://github.com/facebook/react/issues/6895) [incompréhensibles](https://github.com/facebook/react/issues/8579) lors des rendus suivants. Ces erreurs étaient toujours causées par une erreur antérieure dans le code applicatif et comme React ne proposait alors aucun moyen de les gérer correctement dans les composants, il n'avait pas la possibilité de se rétablir.
 
-## Introducing Error Boundaries {#introducing-error-boundaries}
+## L'arrivée des périmètres d'erreurs {#introducing-error-boundaries}
 
-A JavaScript error in a part of the UI shouldn’t break the whole app. To solve this problem for React users, React 16 introduces a new concept of an “error boundary”.
+Une erreur JavaScript au sein d’une partie de l'interface utilisateur (UI) ne devrait pas casser l'ensemble de l'application. Pour résoudre ce problème, React 16 a introduit un nouveau concept appelé « Périmètres d’erreurs » *(Error Boundaries, NdT)*.
 
-Error boundaries are React components that **catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI** instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+Les périmètres d'erreurs sont des composants React qui **interceptent les erreurs JavaScript n'importe où au sein de leur arbre de composants enfants, enregistrent ces erreurs, et affichent une UI de repli** à la place de l'arbre de composants qui a planté. Les périmètres d'erreurs interceptent les erreurs survenant au rendu, dans les méthodes de cycle de vie, ainsi que dans les constructeurs de tous les éléments de leur arborescence.
 
-A class component becomes an error boundary if it defines a new lifecycle method called `componentDidCatch(error, info)`:
+Une classe de composant devient un périmètre d'erreur si elle définit une nouvelle méthode de cycle de vie appelée `componentDidCatch(error, info)` :
 
 ```js{7-12,15-18}
 class ErrorBoundary extends React.Component {
@@ -27,23 +27,23 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    // Display fallback UI
+    // Affiche une UI de repli
     this.setState({ hasError: true });
-    // You can also log the error to an error reporting service
+    // Vous pouvez aussi enregistrer l'erreur au sein d'un service de rapport.
     logErrorToMyService(error, info);
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
+      // Vous pouvez afficher n'importe quelle UI de repli.
+      return <h1>Quelque chose s'est mal passé.</h1>;
     }
     return this.props.children;
   }
 }
 ```
 
-Then you can use it as a regular component:
+Vous pouvez alors l'utiliser comme un composant classique :
 
 ```js
 <ErrorBoundary>
@@ -51,45 +51,45 @@ Then you can use it as a regular component:
 </ErrorBoundary>
 ```
 
-The `componentDidCatch()` method works like a JavaScript `catch {}` block, but for components. Only class components can be error boundaries. In practice, most of the time you’ll want to declare an error boundary component once and use it throughout your application.
+La méthode `componentDidCatch()` fonctionne comme un bloc JavaScript `catch {}`, mais pour les composants. Seuls les composants à base de classe peuvent être des périmètres d'erreurs. En pratique, vous voudrez généralement définir un seul composant de périmètre d'erreur puis l'utiliser partout dans votre application.
 
-Note that **error boundaries only catch errors in the components below them in the tree**. An error boundary can’t catch an error within itself. If an error boundary fails trying to render the error message, the error will propagate to the closest error boundary above it. This, too, is similar to how `catch {}` block works in JavaScript.
+Notez bien que **les périmètres d'erreurs ne détectent que les erreurs présentes en dessous d'eux dans l'arbre des composants**. Un périmètre d'erreur ne peut intercepter une erreur survenant dans son propre code. Si un périmètre d'erreur plante en tentant d'afficher son message d'erreur, l’erreur se propagera alors au périmètre d'erreur le plus proche au-dessus de lui dans l'arbre. Là aussi, c'est similaire à la façon dont le bloc `catch {}` fonctionne en JavaScript.
 
-## Live Demo {#live-demo}
+## Démonstration interactive {#live-demo}
 
-Check out [this example of declaring and using an error boundary](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) with [React 16 beta](https://github.com/facebook/react/issues/10294).
+Jetez un coup d'œil sur [cet exemple de déclaration et d'utilisation d'un périmètre d'erreur](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) avec [React 16](https://github.com/facebook/react/issues/10294).
 
-## Where to Place Error Boundaries {#where-to-place-error-boundaries}
+## Où placer les périmètres d'erreurs ? {#where-to-place-error-boundaries}
 
-The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
+La granularité des périmètres d'erreurs est à votre discrétion. Vous pourriez enrober les composants racines de routage pour afficher à l'utilisateur un message du type « Quelque chose s'est mal passé », à l'image de ce qui est souvent fait par les frameworks côté serveur. Vous pourriez aussi enrober des éléments d'interface précis avec un périmètre d'erreur afin de les empêcher de planter le reste de l'application.
 
-## New Behavior for Uncaught Errors {#new-behavior-for-uncaught-errors}
+## Nouveau comportement pour les erreurs non-rattrapées {#new-behavior-for-uncaught-errors}
 
-This change has an important implication. **As of React 16, errors that were not caught by any error boundary will result in unmounting of the whole React component tree.**
+Ce changement a un impact important. **À compter de React 16, les erreurs qui ne sont pas interceptées par un périmètre d'erreur entraîneront le démontage de l'intégralité de l'arbre des composants**.
 
-We debated this decision, but in our experience it is worse to leave corrupted UI in place than to completely remove it. For example, in a product like Messenger leaving the broken UI visible could lead to somebody sending a message to the wrong person. Similarly, it is worse for a payments app to display a wrong amount than to render nothing.
+Cette décision a été débattue, mais l'expérience nous a montré qu'il est bien pire de laisser en place une interface corrompue que de la supprimer complètement. Par exemple, dans un produit tel que Messenger, laisser visible une interface dégradée peut amener l'utilisateur à envoyer un message à la mauvaise personne. De la même façon, pour une application de paiement, afficher un mauvais montant est bien pire que de ne rien afficher du tout.
 
-This change means that as you migrate to React 16, you will likely uncover existing crashes in your application that have been unnoticed before. Adding error boundaries lets you provide better user experience when something goes wrong.
+Cette modification signifie que lorsque vous migrez vers React 16, vous découvrirez probablement des plantages dans votre application qui étaient jusque-là passés inaperçus. L'ajout de périmètres d'erreurs permet d'offrir une meilleure expérience utilisateur en cas de problème.
 
-For example, Facebook Messenger wraps content of the sidebar, the info panel, the conversation log, and the message input into separate error boundaries. If some component in one of these UI areas crashes, the rest of them remain interactive.
+Par exemple, Facebook Messanger enrobe le contenu de la barre latérale, du panneau d'information, du journal de conversation, ainsi que de la saisie de message dans des périmètres d'erreurs distincts. Si l'un des composants de ces zones d'interface plante, les autres continueront de fonctionner normalement.
 
-We also encourage you to use JS error reporting services (or build your own) so that you can learn about unhandled exceptions as they happen in production, and fix them.
+Nous vous encourageons également à utiliser des services de rapport d'erreurs JavaScript (ou à construire le vôtre) afin de mieux connaître les exceptions non gérées dès qu'elles apparaissent en production, et donc de pouvoir les corriger.
 
-## Component Stack Traces {#component-stack-traces}
+## Traces de piles des composants {#component-stack-traces}
 
-React 16 prints all errors that occurred during rendering to the console in development, even if the application accidentally swallows them. In addition to the error message and the JavaScript stack, it also provides component stack traces. Now you can see where exactly in the component tree the failure has happened:
+En mode développement, React 16 affiche dans la console toutes les erreurs qui apparaissent durant le rendu, même si l'application les cache accidentellement. En plus du message d'erreur et de la trace de pile *(stack trace, NdT)* JavaScript, il fournit également la trace de pile du composant. Vous pouvez désormais voir exactement où l'erreur est apparue dans l'arbre des composants :
 
-<img src="../images/docs/error-boundaries-stack-trace.png" alt="Component stack traces in error message" style="width: 100%;">
+<img src="../images/docs/error-boundaries-stack-trace.png" alt="Trace de pile du composant dans un message d'erreur" style="width: 100%;">
 
-You can also see the filenames and line numbers in the component stack trace. This works by default in [Create React App](https://github.com/facebookincubator/create-react-app) projects:
+Vous pouvez également voir les noms des fichiers et les numéros de lignes dans la trace de pile du composant. C'est le fonctionnement par défaut pour les projets créés avec [Create React App](https://github.com/facebookincubator/create-react-app) :
 
-<img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" alt="Component stack traces with line numbers in error message" style="width: 100%;">
+<img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" alt="Traces de pile du composants avec les numéros de ligne dans un message d'erreur" style="width: 100%;">
 
-If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
+Si vous n'utilisez pas Create React App, vous pouvez ajouter [cette extension](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) manuellement dans votre configuration Babel. Remarquez que c'est conçu pour le développement et **ne doit pas être activé en production**.
 
-## Why Not Use `try` / `catch`? {#why-not-use-try--catch}
+## Pourquoi ne pas utiliser `try` / `catch`? {#why-not-use-try--catch}
 
-`try` / `catch` is great but it only works for imperative code:
+Les `try` / `catch` sont super, mais ne marchent qu'avec du code impératif :
 
 ```js
 try {
@@ -99,16 +99,16 @@ try {
 }
 ```
 
-However, React components are declarative and specify *what* should be rendered:
+Mais les composants React sont déclaratifs et spécifient *ce qui* doit être rendu :
 
 ```js
 <Button />
 ```
 
-Error boundaries preserve the declarative nature of React, and behave as you would expect. For example, even if an error occurs in a `componentDidUpdate` method caused by a `setState` somewhere deep in the tree, it will still correctly propagate to the closest error boundary.
+Les périmètres d'erreurs respectent la nature déclarative de React, et se comportent sans surprises. Par exemple, même si une erreur survient dans une méthode `componentDidUpdate` suite à un `setState` quelque part au fin fond de l'arbre des composants, elle se propagera correctement jusqu’au périmètre d'erreur le plus proche.
 
-## Naming Changes from React 15 {#naming-changes-from-react-15}
+## Changements de nommage par rapport à React 15 {#naming-changes-from-react-15}
 
-React 15 included a very limited support for error boundaries under a different method name: `unstable_handleError`. This method no longer works, and you will need to change it to `componentDidCatch` in your code starting from the first 16 beta release.
+React 15 disposait d'une prise en charge très limitée des périmètres d'erreurs sous un nom de méthode différent : `unstable_handleError`. Cette méthode ne fonctionne plus, et vous devrez la remplacer par `componentDidCatch` dans votre code à partir de la première version bêta de React 16.
 
-For this change, we’ve provided [a codemod](https://github.com/reactjs/react-codemod#error-boundaries) to automatically migrate your code.
+Pour ce changement, nous fournissons [un codemod](https://github.com/reactjs/react-codemod#error-boundaries) qui vous permet de migrer automatiquement votre code
