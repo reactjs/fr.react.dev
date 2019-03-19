@@ -1,53 +1,54 @@
 ---
 id: jsx-integrations
-title: JSX Integrations
+title: Intégrations JSX
 layout: community
 permalink: community/jsx-integrations.html
 ---
 
-## Editor Integrations {#editor-integrations}
-* **[Sublime Text: babel-sublime](https://github.com/babel/babel-sublime):** Snippets, syntax highlighting and optimized color schemes for Sublime Text
-* **[Atom: language-babel](https://atom.io/packages/language-babel)** Support for es2016, JSX and Flow.
-* **[Visual Studio Code](https://code.visualstudio.com/updates/vFebruary#_languages-javascript)** Visual Studio Code supports JSX directly.
-* **[JetBrains WebStorm](https://www.jetbrains.com/webstorm/):** Syntax highlighting, code completion, error detection for JSX
-* **[JetBrains IDE Live Templates](https://github.com/Minwe/jetbrains-react):** React live templates for JetBrains editors (e.g. WebStorm, PHPStorm, etc.)
-* **[javascript-jsx.tmbundle](https://github.com/jjeising/javascript-jsx.tmbundle)** Syntax for TextMate
-* **[web-mode.el](http://web-mode.org):** An autonomous emacs major mode that indents and highlights JSX.  No support for Automatic Semicolon Insertion.
-* **[vim-jsx](https://github.com/mxw/vim-jsx):** Syntax highlighting and indenting for JSX
+## Intégrations dans les éditeurs {#editor-integrations}
 
-## Build Tools {#build-tools}
+* **[Sublime Text: babel-sublime](https://github.com/babel/babel-sublime)** : des extraits de code, une coloration syntaxique et des couleurs optimisées pour Sublime Text.
+* **[Atom: language-babel](https://atom.io/packages/language-babel)** : support d'ES2016, du JSX et de Flow.
+* **[Visual Studio Code](https://code.visualstudio.com/updates/vFebruary#_languages-javascript)** : Visual Studio Code supporte JSX par défaut.
+* **[JetBrains WebStorm](https://www.jetbrains.com/webstorm/)** : coloration syntaxique, complétion de code et détection d'erreurs pour JSX.
+* **[JetBrains IDE Live Templates](https://github.com/Minwe/jetbrains-react)** : des modèles pour les éditeurs de JetBrains (comme WebStorm, PHPStorm, etc.).
+* **[javascript-jsx.tmbundle](https://github.com/jjeising/javascript-jsx.tmbundle)** : gestion de la syntaxe pour TextMate.
+* **[web-mode.el](http://web-mode.org)** : un mode autonome pour emacs pour l'indentation et la coloration du code JSX. Pas de support pour l'insertion automatique de point-virgules.
+* **[vim-jsx](https://github.com/mxw/vim-jsx)** : coloration syntaxique et indentation du JSX.
 
-* **[Create React App](https://github.com/facebookincubator/create-react-app):** An **officially supported** way to create React apps with no configuration.
-* **[nwb](https://github.com/insin/nwb)**: A toolkit for React, Preact & Inferno apps, React libraries and other npm modules for the web, with no configuration (until you need it)
-* **[Neutrino](https://neutrino.js.org/)**: Create and build modern JavaScript applications with zero initial configuration. Neutrino combines the power of webpack with the simplicity of presets.
-* **[ESLint](https://eslint.org/):** A pluggable JavaScript linter that natively supports JSX syntax. Be sure to download [eslint-plugin-react](https://npmjs.com/package/eslint-plugin-react) for React-specific rules.
-* **[Structor](https://www.npmjs.com/package/structor):** This tool is a user interface builder for node.js Web applications with React UI. Structor replaces the now deprecated React UI Builder. Watch [Structor Video Tutorials](https://youtu.be/z96xYa51EWI?list=PLAcaUOtEwjoR_U6eE2HQEXwkefeVESix1)
-* **[react-jsx](https://github.com/bigpipe/react-jsx):** Compile and use JSX as stand-alone templates that can run server-side and client side!
-* **[cjsx-codemod](https://github.com/jsdf/cjsx-codemod):** Write JSX code within Coffeescript!
-* **[ReactScript](https://github.com/1j01/react-script):** Write React code within Coffeescript without JSX!
-* **[jsxhint](https://npmjs.org/package/jsxhint):** [JSHint](http://jshint.com/) (linting) support. (JSX compilation doesn't affect line numbers so lint can also be run directly on the compiled JS.)
-* **[reactify](https://npmjs.org/package/reactify):** [Browserify](http://browserify.org/) transform.
-* **[Babel](https://babeljs.io/):** Standalone & [Browserify](http://browserify.org/) transform (formerly known as **6to5**).
-* **[node-jsx](https://npmjs.org/package/node-jsx):** Native [Node](https://nodejs.org/) support.
-* **[react-hot-loader](https://gaearon.github.io/react-hot-loader/):** Loader for [webpack](https://webpack.github.io/) that lets you edit JSX and have changes appear immediately in the browser without reloading the page.
-* **[jsx-loader](https://npmjs.org/package/jsx-loader):** Loader for [webpack](https://webpack.github.io/).
-* **[express-jsxtransform](https://www.npmjs.org/package/express-jsxtransform):** Middleware for [Express](https://www.npmjs.org/package/express).
-* **[gradle-react-plugin](https://github.com/ehirsch/gradle-react-plugin):** Transform jsx sources during a gradle build.
-* **[grunt-react](https://npmjs.org/package/grunt-react):** [GruntJS](https://gruntjs.com/) task.
-* **[gulp-react](https://npmjs.org/package/gulp-react):** [GulpJS](https://gulpjs.com/) plugin.
-* **[brunch-react](https://www.npmjs.org/package/react-brunch):** [Brunch](https://brunch.io/) plugin.
-* **[jsx-requirejs-plugin](https://github.com/philix/jsx-requirejs-plugin):** [RequireJS](https://requirejs.org/) plugin.
-* **[react-meteor](https://github.com/benjamn/react-meteor):** [Meteor](https://www.meteor.com/) plugin.
-* **[pyReact](https://github.com/facebook/react-python):** [Python](https://www.python.org/) bridge to JSX.
-* **[react-rails](https://github.com/facebook/react-rails):** Ruby gem for using JSX with [Ruby on Rails](https://rubyonrails.org/).
-* **[react-laravel](https://github.com/talyssonoc/react-laravel):** PHP package for using ReactJS with [Laravel](https://laravel.com/).
-* **[ReactJS.NET](https://reactjs.net/):** .NET library for React and JSX.
-* **[sbt-reactjs](https://github.com/ddispaltro/sbt-reactjs)** SBT/Play/Scala JSX compiler plugin
-* **[mimosa-react](https://github.com/dbashford/mimosa-react):** [Mimosa](http://mimosa.io) plugin.
-* **[react-grails-asset-pipeline](https://github.com/peh/react-grails-asset-pipeline):** Assets for react and precompilation of jsx files in [Grails](https://grails.org/).
-* **[gore-gulp](https://github.com/goreutils/gore-gulp):** Wrapper around [webpack](https://webpack.github.io/), [eslint](https://eslint.org/), [mocha](https://mochajs.org/) for ease of use and zero configuration.
-* **[webpack](https://github.com/webpack/webpack):** Packs CommonJs/AMD modules for the browser. Allows to split your codebase into multiple bundles, which can be loaded on demand. Support loaders to preprocess files, i.e. json, jade, coffee, css, less, ... and your custom stuff.
-* **[webpack-bbq](https://github.com/wenbing/webpack-bbq):** transform your src to lib, supports server rendering and static rendering.
-* **[jsxtransformer](https://github.com/cronn-de/jsxtransformer):** Compile pipeline for jsx files in Java
-* **[babylon-jsx](https://github.com/marionebl/babylon-jsx)**: Transform JSX to ES2015 with babylon sans babel
-* **[CRA Universal CLI](https://github.com/antonybudianto/cra-universal)** - A simple CLI to create and build Express server for your create-react-app projects, featuring Server-side rendering and Code-splitting.
+## Outils de construction {#build-tools}
+
+* **[Create React App](https://github.com/facebookincubator/create-react-app)** : une façon **officielle** de créer des applications React sans configuration.
+* **[nwb](https://github.com/insin/nwb)** : boîtes à outils pour les applications React, PReact & Inferno et d'autres modules npm pour le web, sans configuration (tant que vous n'en avez pas besoin).
+* **[Neutrino](https://neutrino.js.org/)** : créez et construisez des applications JavaScript modernes sans configuration initiale. Neutrino combine la puissance de webpack avec la simplicité des préréglages.
+* **[ESLint](https://eslint.org/)** : un linter JavaScript qui comprend la syntaxe JSX de façon native. Assurez-vous de télécharger l'extension [eslint-plugin-react](https://npmjs.com/package/eslint-plugin-react) pour les règles spécifiques à React.
+* **[Structor](https://www.npmjs.com/package/structor)** : cet outil est un constructeur d'interfaces utilisateur pour les applications web React utilisant Node.js. Il remplace l'outil déprécié React UI Builder. Vous pouvez regarder [des tutoriels vidéos de Structor](https://youtu.be/z96xYa51EWI?list=PLAcaUOtEwjoR_U6eE2HQEXwkefeVESix1). NdT : Structor est lui-même déprécié et leurs auteurs recommandent d'utiliser [Webcodesk](https://webcodesk.com/) à la place.
+* **[react-jsx](https://github.com/bigpipe/react-jsx)** : compilez et utilisez le JSX comme modèles autonomes qui peuvent être exécutés côté serveur ou côté client !
+* **[cjsx-codemod](https://github.com/jsdf/cjsx-codemod)** : écrivez du code JSX à l'aide de Coffeescript !
+* **[ReactScript](https://github.com/1j01/react-script)** : écrivez du code React avec Coffeescript sans JSX !
+* **[jsxhint](https://npmjs.org/package/jsxhint)** : support de l'outil [JSHint](http://jshint.com/). À noter que la compilation JSX ne change pas les numéros de ligne, l'analyse (*lint*) peut donc également être faite directement sur le code JS compilé.
+* **[reactify](https://npmjs.org/package/reactify)** : transformation pour [Browserify](http://browserify.org/).
+* **[Babel](https://babeljs.io/)** : transformation autonome et adaptée à [Browserify](http://browserify.org/) (anciennement appelé **6to5**).
+* **[node-jsx](https://npmjs.org/package/node-jsx)** : support pour [Node.js](https://nodejs.org/).
+* **[react-hot-loader](https://gaearon.github.io/react-hot-loader/)** : chargeur pour [webpack](https://webpack.github.io/) qui vous permet d'éditer le JSX et en voir immédiatement les effets sur votre navigateur sans avoir à recharger la page.
+* **[jsx-loader](https://npmjs.org/package/jsx-loader)** : chargeur pour [webpack](https://webpack.github.io/).
+* **[express-jsxtransform](https://www.npmjs.org/package/express-jsxtransform)** : middleware pour [Express](https://www.npmjs.org/package/express).
+* **[gradle-react-plugin](https://github.com/ehirsch/gradle-react-plugin)** : transforme les sources JSX au cours d'une construction faite avec Gradle.
+* **[grunt-react](https://npmjs.org/package/grunt-react)** : tâche pour [GruntJS](https://gruntjs.com/).
+* **[gulp-react](https://npmjs.org/package/gulp-react)** : extension pour [GulpJS](https://gulpjs.com/).
+* **[brunch-react](https://www.npmjs.org/package/react-brunch)** : extension pour [Brunch](https://brunch.io/).
+* **[jsx-requirejs-plugin](https://github.com/philix/jsx-requirejs-plugin)** : extension pour [RequireJS](https://requirejs.org/).
+* **[react-meteor](https://github.com/benjamn/react-meteor)** : extension pour [Meteor](https://www.meteor.com/).
+* **[pyReact](https://github.com/facebook/react-python)** : pont entre [Python](https://www.python.org/) et JSX.
+* **[react-rails](https://github.com/facebook/react-rails)** : gem Ruby pour utiliser JSX avec [Ruby on Rails](https://rubyonrails.org/).
+* **[react-laravel](https://github.com/talyssonoc/react-laravel)** : paquet PHP pour utiliser React avec [Laravel](https://laravel.com/).
+* **[ReactJS.NET](https://reactjs.net/)** : bibliothèque .NET pour React et JSX.
+* **[sbt-reactjs](https://github.com/ddispaltro/sbt-reactjs)** : extension JSX du compilateur SBT / Play / Scala.
+* **[mimosa-react](https://github.com/dbashford/mimosa-react)** : extension pour [Mimosa](http://mimosa.io).
+* **[react-grails-asset-pipeline](https://github.com/peh/react-grails-asset-pipeline)** : éléments pour React et précompilation des fichiers JSX pour [Grails](https://grails.org/).
+* **[gore-gulp](https://github.com/goreutils/gore-gulp)** : enrôbeur pour [webpack](https://webpack.github.io/), [eslint](https://eslint.org/) et [mocha](https://mochajs.org/) pour faciliter l'utilisation sans configuration.
+* **[webpack](https://github.com/webpack/webpack)** :  génère des modules CommonJs / AMD pour le navigateur. Il vous permet de fractionner votre base de code sur plusieurs *bundles* qui peuvent être chargés à la demande. Il se base sur des chargeurs pour traiter préalablement des fichiers tels que du JSON, Jade, Coffee, CSS, LESS, et bien sûr vos propres éléments.
+* **[webpack-bbq](https://github.com/wenbing/webpack-bbq)** : transforme votre code source en bibliothèque, supporte le rendu côté serveur, et le rendu statique.
+* **[jsxtransformer](https://github.com/cronn-de/jsxtransformer)** : chaîne de compilation Java pour les fichiers JSX.
+* **[babylon-jsx](https://github.com/marionebl/babylon-jsx)** : transforme le JSX en ES2015 avec babylon sans babel.
+* **[CRA Universal CLI](https://github.com/antonybudianto/cra-universal)** : une interface en lignes de commande simple pour créer et construire des serveurs Express pour vos projets en Create React App, intégrant le rendu côté serveur et le fractionnement de code.
