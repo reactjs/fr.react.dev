@@ -1,4 +1,5 @@
 import {ThemeContext, themes} from './theme-context';
+
 import ThemeTogglerButton from './theme-toggler-button';
 
 class App extends React.Component {
@@ -15,7 +16,7 @@ class App extends React.Component {
     };
 
     // highlight-range{1-2,5}
-    // L'état local contient aussi la fonction de mise à jour donc elle va
+    // L’état local contient aussi la fonction de mise à jour donc elle va
     // être passée au fournisseur de contexte
     this.state = {
       theme: themes.light,
@@ -25,7 +26,7 @@ class App extends React.Component {
 
   render() {
     // highlight-range{1,3}
-    // L'état local entier est passé au fournisseur
+    // L’état local entier est passé au fournisseur
     return (
       <ThemeContext.Provider value={this.state}>
         <Content />
