@@ -11,6 +11,7 @@ permalink: docs/strict-mode.html
 > Les vérifications du mode strict sont effectuées uniquement durant le développement. _Elles n'impactent pas la version utilisée en production_.
 
 Vous pouvez activer le mode strict pour n’importe quelle partie de votre application. Par exemple :
+`embed:strict-mode/enabling-strict-mode.js`
 
 Dans l'exemple ci-dessus, les vérifications du mode strict ne seront *pas* appliquées pour les composants `Header` et `Footer`. En revanche, les composants `ComponentOne` et `ComponentTwo`, ainsi que tous leurs descendants, seront vérifiés.
 
