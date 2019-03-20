@@ -195,9 +195,9 @@ In rare cases, you might want to have access to a child's DOM node from a parent
 
 Même si vous pouvez [ajouter une référence à un composant enfant](#adding-a-ref-to-a-class-component), ce n'est pas une solution idéale car vous n'obtenez qu'une instance de composant plutôt qu'un noeud du DOM. De plus, ça ne fonctionne pas avec les fonctions de composants.
 
-Si vous utiliser React 16.3 ou supérieur, nous recommandons d'utiliser [le passage de références](/docs/forwarding-refs.html) pour ces cas. **Le passage de références permet d'exposer les références d'un composant enfant comme celles du composant parent**. Vous pouvez trouver un exemple détaillé de comment exposer un noeud DOM enfant pour un composant parent [dans la documentation de passage de références](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
+Si vous utiliser React 16.3 ou supérieur, nous recommandons d'utiliser [le transfert de références](/docs/forwarding-refs.html) pour ces cas. **Le transfert de références permet d'exposer les références d'un composant enfant comme celles du composant parent**. Vous pouvez trouver un exemple détaillé de comment exposer un noeud DOM enfant pour un composant parent [dans la documentation de transfert de références](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
 
-Si vous utilisé React 16.2 ou précédent, ou si vous avez besoin de plus de flexibilité que fournies par le passage de références, vous pouvez utiliser [cette alternative](https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509) et explicitement passer une références via une autre prop.
+Si vous utilisez React 16.2 ou précédent, ou si vous avez besoin de plus de flexibilités que fournies par le transfert de références, vous pouvez utiliser [cette alternative](https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509) et explicitement passer une références via une autre prop.
 
 Quand possible, nous recommandons de ne pas exposer les noeuds du DOM, mais ça peut être une pirouette utile. Si vous n'avez aucun contrôle sur l'implémentation du composant enfant, votre seule option est d'utiliser [`findDOMNode()`](/docs/react-dom.html#finddomnode), mais ce n'est pas recommandé et obsolète dans [`StrictMode`](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage). 
 
@@ -253,7 +253,7 @@ class CustomTextInput extends React.Component {
 
 React va appeler la fonction de rappel `ref` avec l'élément DOM quand le composant est créé et l'appeler avec `null` quand il est détruit. Les références sont toujours à jour avant l'exécution de `componentDidMount` ou `componentDidUpdate`.
 
-Vous pouvez passer une fonction de rappel en référence entre des composants comme vous pouvez avec des objets de référence qui ont été conçu avec `React.createRef()`.
+Vous pouvez passer une fonction de rappel de références entre des composants comme vous pouvez avec des objets de références qui ont été conçu avec `React.createRef()`.
 
 ```javascript{4,13}
 function CustomTextInput(props) {
