@@ -10,7 +10,7 @@ function ThemeTogglerButton() {
         <button
           onClick={toggleTheme}
           style={{backgroundColor: theme.background}}>
-          Changer de thème
+          Changer le thème
         </button>
       )}
     </ThemeContext.Consumer>

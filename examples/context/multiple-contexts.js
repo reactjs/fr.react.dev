@@ -1,9 +1,9 @@
-// Contexte thème, par défaut à clair 
-const ThemeContext = React.createContext('clair');
+// Contexte de thème, clair par défaut
+const ThemeContext = React.createContext('light');
 
-// Contexte utilisateur authentifié
+// Contexte d’utilisateur authentifié
 const UserContext = React.createContext({
-  name: 'Guest',
+  name: 'Invité',
 });
 
 class App extends React.Component {

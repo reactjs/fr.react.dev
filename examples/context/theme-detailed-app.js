@@ -30,7 +30,7 @@ class App extends React.Component {
   render() {
     //highlight-range{1-3}
     // Le bouton ThemedButton à l'intérieur du ThemeProvider
-    // utilise le thème du state pendant que celui à l'exterieur
+    // utilise le thème du state tandis que celui à l'extérieur
     // utilise le thème dark par défaut
     //highlight-range{3-5,7}
     return (
