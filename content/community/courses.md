@@ -16,7 +16,7 @@ permalink: community/courses.html
 
 - [React Armory: Apprenez React par vous-même](https://reactarmory.com/guides/learn-react-by-itself) - Avec React Armory, vous pouvez apprendre React sans les mots à la mode.
 
-- [Sur la route pour apprendre React](https://www.robinwieruch.de/the-road-to-learn-react/) - Construisez une application du monde réel en React sans outils compliqués.
+- [Sur la route pour apprendre React](https://www.robinwieruch.de/the-road-to-learn-react/) - Construisez une application fonctionnelle en React sans outils compliqués.
 
 - [Egghead.io: Guide pour débutant de ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-reactjs) - Cours gratuit pour les débutants en React et ceux qui cherchent à mieux comprendre les principes fondamentaux de React.
 
@@ -28,9 +28,9 @@ permalink: community/courses.html
 
 - [Masters Frontend](https://frontendmasters.com/courses/) - Cours vidéo sur React et autres frameworks frontend.
 
-- [Fullstack React](https://www.fullstackreact.com/) - Le guide approfondi, complet et à jour sur React et ses amis.
+- [Fullstack React](https://www.fullstackreact.com/) - Le guide approfondi, complet et à jour sur React et son écosystème.
 
-- [Pure React](https://daveceddia.com/pure-react/) - Un guide pas à pas pour maîtriser React..
+- [Pure React](https://daveceddia.com/pure-react/) - Un guide pas à pas pour maîtriser React.
 
 - [React pour les débutants](https://reactforbeginners.com/) - Apprendre React en seulement quelques après-midi.
 
@@ -42,6 +42,6 @@ permalink: community/courses.html
 
 - [Entraînement React: React.js avancé](https://courses.reacttraining.com/p/advanced-react) - Amenez vos compétences React au prochain niveau.
 
-- [Tyler McGinnis](https://tylermcginnis.com/courses) - Tyler McGinnis donne accès à ses cours moyennant des frais mensuels. Les cours comprennent "Fondements de React" et "React universel".
+- [Tyler McGinnis](https://tylermcginnis.com/courses) - Tyler McGinnis donne accès à ses cours moyennant des frais mensuels. Les cours comprennent "Les fondamentaux de React" et "React Universel".
 
 - [Maîtriser React](https://codewithmosh.com/p/mastering-react/) - Construisez des applications interactives professionnelles avec React.
