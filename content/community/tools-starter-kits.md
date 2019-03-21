@@ -9,15 +9,15 @@ permalink: community/starter-kits.html
 
 * **[Create React App](https://github.com/facebook/create-react-app)** : une façon officielle de démarrer un projet côté client avec React sans configuration.
 * **[Next.js](https://nextjs.org/)** : framework pour le rendu côté serveur ou des applications exportées statiquement.
-* **[Gatsby](https://www.gatsbyjs.org/)** : générateur de sites statiques pour React, optimisées pour la rapidité.
+* **[Gatsby](https://www.gatsbyjs.org/)** : générateur de sites statiques pour React, optimisés pour la rapidité.
 * **[nwb](https://github.com/insin/nwb)** : une boîte à outils pour des applications React, des bibliothèques et d'autres modules npm pour le web.
 * **[razzle](https://github.com/jaredpalmer/razzle)** : créez des applications universelles en JavaScript générées côté serveur sans configuration.
-* **[Neutrino](https://neutrino.js.org/)** : créer et construisez des applications JavaScript modernes sans configuration initiale.
-* **[Parcel](https://parceljs.org)** : empaqueteur d'applications web rapide et sans configuration.
+* **[Neutrino](https://neutrino.js.org/)** : créez et construisez des applications JavaScript modernes sans configuration initiale.
+* **[Parcel](https://parceljs.org)** : *bundler* d'applications web rapide et sans configuration.
 
 ## Autres kits de démarrage {#other-starter-kits}
 
-* **[kyt](https://github.com/nytimes/kyt)** : le framework utilisé par le New York Times pour développer et construire les propriétés web. Il a des partis pris mais reste configurable et inclut des kits de démarrage avec des options pour construire des applications full-stack ou statique / côté client avec les outils suivants : Express, React, éléments statiques, dernier ES, modules CSS / Sass, Jest, découpage de code, ESLint / Prettier, StyleLint, PostCSS, et SVG en-ligne.
+* **[kyt](https://github.com/nytimes/kyt)** : le framework utilisé par le New York Times pour développer et construire leurs propriétés web. Il a des partis pris mais reste configurable et inclut des kits de démarrage avec des options pour construire des applis full-stack ou statique / côté client avec les outils suivants : Express, React, éléments statiques, dernier ES, modules CSS / Sass, Jest, découpage de code, ESLint / Prettier, StyleLint, PostCSS, et SVG en-ligne.
 * **[React Redux Boilerplate](https://github.com/iroy2000/react-redux-boilerplate)** : React Redux Boilerplate est un code générique de workflow fournissant un environnement de développement virtuel, adapté à la production et prêt à l'emploi : React, Redux, Reselect, Redux Actions, ES6, ESLint, Webpack avec des supports de configurations d'environnements.
 * **[React + Redux + Saga Boilerplate](https://github.com/gilbarbara/react-redux-saga-boilerplate)** : code générique prêt à l'emploi intégrant react-router, redux, saga, webpack 3, Jest avec couverture de code et enzyme.
 * **[Create React App + Redux + React Router](https://github.com/notrab/create-react-app-redux)** : basé sur Create React App, ce code générique intègre Redux, Redux Thunk et React Router, le tout configuré pour être prêt à l'emploi.
@@ -34,4 +34,4 @@ permalink: community/starter-kits.html
  * **[CRA Universal CLI](https://github.com/antonybudianto/cra-universal)** : interface en lignes de commande pour initialiser des applications avec Create React App sans éjection. Il supporte le rendu côté serveur avec du découpage de code, et le rendu avec Node Stream.
  * **[EDGE Platform](https://github.com/sebastian-software/edge)** : applications React universelles rendues côté serveur avec Apollo GraphQL, découpage du code JS et CSS, réglage fin de Webpack et localisation / internationalisation. La plupart des choses sont des dépendances externes, et le code générique est disponible.
  * **[bae](https://github.com/siddharthkp/bae)**: boîte à outils sans configuration. Rendu côté serveur (avec récupération des données), routage, *streaming* et gestion du style (avec des composants stylisés) et rechargement à chaud de modules (*HMR*) prêts à l'emploi.
- * **[breko-hub](https://github.com/tomatau/breko-hub)** : code générique prêt pour la production pour des applications React. Il est complet avec le découpage de code, le rendu côté serveur (en utilisant koa), Redux, Saga, le débogage, le rechargement à chaud (mise à jour en direct sur le serveur), modules CSS, SCSS, intégration ultra rapide des tests et tests unitaires. L'accent est également mis sur le code propre et de petits fichiers.
+ * **[breko-hub](https://github.com/tomatau/breko-hub)** : code générique prêt à l'emploi pour la production d'applications universelles React. Il est complet avec le découpage de code, le rendu côté serveur (en utilisant koa), Redux, Saga, le débogage, le rechargement à chaud (mise à jour en direct sur le serveur), modules CSS, SCSS, intégration ultra rapide des tests et tests unitaires. L'accent est également mis sur du code propre et de petits fichiers.
