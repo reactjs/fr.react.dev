@@ -6,11 +6,11 @@ sectionid: community
 permalink: community/articles.html
 ---
 
-- [React How-to](https://github.com/petehunt/react-howto) - Pete Hunt's guide to the React ecosystem.
-- [9 things every React.js beginner should know](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know) - Cam Jackson's guide for beginners.
-- [React "Aha" Moments](https://tylermcginnis.com/react-aha-moments/) - Tyler McGinnis' article on his collection of "Aha" moments with React.
-- [You're missing the point of React](https://medium.com/@dan_abramov/youre-missing-the-point-of-react-a20e34a51e1a) - Dan Abramov's article about the best parts of React.
-- [Timeline for Learning React](https://daveceddia.com/timeline-for-learning-react/) - Dave Ceddia's reccommended timeline for learning React and the React ecosystem.
-- [Simple React Development in 2017](https://hackernoon.com/simple-react-development-in-2017-113bd563691f) - Joshua Comeau's guide to showcase how easy it can be to start modern React development.
-- [React FAQ](https://reactfaq.site/) - An external site with articles that try to answer frequently asked questions about React.
-- [Visual Guide to State in React](https://daveceddia.com/visual-guide-to-state-in-react/) - Dave Ceddia's visual guide to React state.
+- [Comment React](https://github.com/petehunt/react-howto) - Guide sur l'écosystème de React par Pete Hunt.
+- [9 choses que chaque débutant en React.js devrait savoir](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know) - Le guide de Cam Jackson pour les débutants.
+- [Les moments "Aha" de React](https://tylermcginnis.com/react-aha-moments/) - L'article de Tyler McGinnis sur sa collection des moments "Aha" avec React.
+- [Vous manquez le point de React](https://medium.com/@dan_abramov/youre-missing-the-point-of-react-a20e34a51e1a) - L'article de Dan Abramov sur les meilleures parties de React.
+- [Chronologie pour apprendre React](https://daveceddia.com/timeline-for-learning-react/) - Le calendrier recommandé par Dave Ceddia pour l'apprentissage de React et de son écosystème.
+- [Développement simple avec React en 2017](https://hackernoon.com/simple-react-development-in-2017-113bd563691f) - Le guide de Joshua Comeau montre combien il est facile de commencer le développement moderne avec React
+- [React FAQ](https://reactfaq.site/) - Un site externe avec des articles qui tentent de répondre aux questions fréquemment posées sur React.
+- [Guide visuel de l'état dans React](https://daveceddia.com/visual-guide-to-state-in-react/) - Le guide visuel de Dave Ceddia sur l'état dans React.
