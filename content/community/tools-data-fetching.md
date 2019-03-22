@@ -1,12 +1,12 @@
 ---
 id: data-fetching
-title: Data Fetching
+title: Chargement de données
 layout: community
 permalink: community/data-fetching.html
 ---
 
-* **[Apollo](https://www.apollographql.com/docs/react/):** Easy to set up and use GraphQL client.
-* **[Axios](https://github.com/mzabriskie/axios):** Promise based HTTP client for the browser and node.js.
-* **[Relay Modern](https://facebook.github.io/relay/docs/en/new-in-relay-modern.html)** - A JavaScript framework for building data-driven React applications.
-* **[Request](https://github.com/request/request):** Simplified HTTP request client.
-* **[Superagent](https://visionmedia.github.io/superagent/):** A lightweight "isomorphic" library for AJAX requests.
+* **[Apollo](https://www.apollographql.com/docs/react/)** : client GraphQL facile à configurer et à utiliser.
+* **[Axios](https://github.com/mzabriskie/axios)** : client HTTP basé sur les promesses pour le navigateur et Node.js.
+* **[Relay Modern](https://facebook.github.io/relay/docs/en/new-in-relay-modern.html)** : un framework JavaScript pour construire des applicatoins React pilotées par la donnée.
+* **[Request](https://github.com/request/request)** : client de requête HTTP simplifié.
+* **[Superagent](https://visionmedia.github.io/superagent/)** : une bibliothèque légère et isomorphique pour les requêtes AJAX.
