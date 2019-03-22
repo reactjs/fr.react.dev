@@ -9,6 +9,18 @@ permalink: community/meetups.html
 Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !
 (Merci de respecter l'ordre alphabétique de la liste)
 
+## Allemagne {#germany}
+* [Düsseldorf](https://www.meetup.com/de-DE/ReactJS-Meetup-Dusseldorf/)
+* [Hamburg](https://www.meetup.com/Hamburg-React-js-Meetup/)
+* [Karlsruhe](https://www.meetup.com/react_ka/)
+* [Munich](https://www.meetup.com/ReactJS-Meetup-Munich/)
+* [React Berlin](https://www.meetup.com/React-Berlin/)
+* [React.JS Girls Berlin](https://www.meetup.com/ReactJS-Girls-Berlin/)
+
+## Angleterre (GB) {#england-uk}
+* [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
+* [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
+
 ## Australie {#australia}
 * [Brisbane](https://www.meetup.com/reactbris/)
 * [Melbourne](https://www.meetup.com/React-Melbourne/)
@@ -20,14 +32,14 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !
 ## Belgique {#belgium}
 * [Belgium](https://www.meetup.com/ReactJS-Belgium/)
 
+## Bolivie {#bolivia}
+* [Bolivia](https://www.meetup.com/ReactBolivia/)
+
 ## Brésil {#brazil}
 * [Belo Horizonte](https://www.meetup.com/reactbh/)
 * [Curitiba](https://www.meetup.com/pt-br/ReactJS-CWB/)
 * [Rio de Janeiro](https://www.meetup.com/pt-BR/React-Rio-de-Janeiro/)
 * [São Paulo](https://www.meetup.com/pt-BR/ReactJS-SP/)
-
-## Bolivie {#bolivia}
-* [Bolivia](https://www.meetup.com/ReactBolivia/)
 
 ## Canada {#canada}
 * [Montreal, QC - ReactJS](https://www.meetup.com/fr-FR/ReactMontreal/)
@@ -45,74 +57,11 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !
 * [Aalborg](https://www.meetup.com/Aalborg-React-React-Native-Meetup/)
 * [Aarhus](https://www.meetup.com/Aarhus-ReactJS-Meetup/)
 
-## Angleterre (GB) {#england-uk}
-* [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
-* [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
-
-## France {#france}
-* [Paris](https://www.meetup.com/ReactJS-Paris/)
-
-## Allemagne {#germany}
-* [Düsseldorf](https://www.meetup.com/de-DE/ReactJS-Meetup-Dusseldorf/)
-* [Hamburg](https://www.meetup.com/Hamburg-React-js-Meetup/)
-* [Karlsruhe](https://www.meetup.com/react_ka/)
-* [Munich](https://www.meetup.com/ReactJS-Meetup-Munich/)
-* [React Berlin](https://www.meetup.com/React-Berlin/)
-* [React.JS Girls Berlin](https://www.meetup.com/ReactJS-Girls-Berlin/)
-
-## Grèce {#greece}
-* [Thessaloniki](https://www.meetup.com/Thessaloniki-ReactJS-Meetup/)
-
-## Hongrie {#hungary}
-* [Budapest](https://www.meetup.com/React-Budapest/)
-
-## Inde {#india}
-* [Bangalore](https://www.meetup.com/ReactJS-Bangalore/)
-* [Chennai](https://www.meetup.com/React-Chennai/)
-* [Delhi NCR](https://www.meetup.com/React-Delhi-NCR/)
-
-## Irlande {#ireland}
-* [Dublin](https://www.meetup.com/ReactJS-Dublin/)
-
-## Israël {#israel}
-* [Tel Aviv](https://www.meetup.com/ReactJS-Israel/)
-
-## Pays-Bas {#netherlands}
-* [Amsterdam](https://www.meetup.com/React-Amsterdam/)
-
-## Nouvelle-Zélande {#new-zealand}
-* [Wellington](https://www.meetup.com/React-Wellington/)
-
-## Norvège {#norway}
-* [Norway](https://reactjs-norway.webflow.io/)
-* [Oslo](https://www.meetup.com/ReactJS-Oslo-Meetup/)
-
-## Pakistan {#pakistan}
-* [Karachi](https://www.facebook.com/groups/902678696597634/)
-
-## Pérou {#peru}
-* [Lima](https://www.meetup.com/ReactJS-Peru/)
-
-## Philippines {#philippines}
-* [Manila](https://www.meetup.com/reactjs-developers-manila/)
-
-## Pologne {#poland}
-* [Warsaw](https://www.meetup.com/React-js-Warsaw/)
-
-## Portugal {#portugal}
-* [Lisbon](https://www.meetup.com/JavaScript-Lisbon/)
-
 ## Écosse (GB) {#scotland-uk}
 * [Edinburgh](https://www.meetup.com/React-Scotland/)
 
 ## Espagne {#spain}
 * [Barcelona](https://www.meetup.com/ReactJS-Barcelona/)
-
-## Suède {#sweden}
-* [Goteborg](https://www.meetup.com/ReactJS-Goteborg/)
-
-## Ukraine {#ukraine}
-* [Kyiv](https://www.meetup.com/Kyiv-ReactJS-Meetup)
 
 ## États-Unis {#us}
 * [Atlanta, GA - ReactJS](https://www.meetup.com/React-ATL/)
@@ -147,3 +96,54 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !
 * [Tampa, FL - ReactJS](https://www.meetup.com/ReactJS-Tampa-Bay/)
 * [Tucson, AZ - ReactJS](https://www.meetup.com/Tucson-ReactJS-Meetup/)
 * [Washington, DC - ReactJS](https://www.meetup.com/React-DC/)
+
+## France {#france}
+* [Paris](https://www.meetup.com/ReactJS-Paris/)
+
+## Grèce {#greece}
+* [Thessaloniki](https://www.meetup.com/Thessaloniki-ReactJS-Meetup/)
+
+## Hongrie {#hungary}
+* [Budapest](https://www.meetup.com/React-Budapest/)
+
+## Inde {#india}
+* [Bangalore](https://www.meetup.com/ReactJS-Bangalore/)
+* [Chennai](https://www.meetup.com/React-Chennai/)
+* [Delhi NCR](https://www.meetup.com/React-Delhi-NCR/)
+
+## Irlande {#ireland}
+* [Dublin](https://www.meetup.com/ReactJS-Dublin/)
+
+## Israël {#israel}
+* [Tel Aviv](https://www.meetup.com/ReactJS-Israel/)
+
+## Norvège {#norway}
+* [Norway](https://reactjs-norway.webflow.io/)
+* [Oslo](https://www.meetup.com/ReactJS-Oslo-Meetup/)
+
+## Nouvelle-Zélande {#new-zealand}
+* [Wellington](https://www.meetup.com/React-Wellington/)
+
+## Pakistan {#pakistan}
+* [Karachi](https://www.facebook.com/groups/902678696597634/)
+
+## Pays-Bas {#netherlands}
+* [Amsterdam](https://www.meetup.com/React-Amsterdam/)
+
+## Pérou {#peru}
+* [Lima](https://www.meetup.com/ReactJS-Peru/)
+
+## Philippines {#philippines}
+* [Manila](https://www.meetup.com/reactjs-developers-manila/)
+
+## Pologne {#poland}
+* [Warsaw](https://www.meetup.com/React-js-Warsaw/)
+
+## Portugal {#portugal}
+* [Lisbon](https://www.meetup.com/JavaScript-Lisbon/)
+
+## Suède {#sweden}
+* [Goteborg](https://www.meetup.com/ReactJS-Goteborg/)
+
+## Ukraine {#ukraine}
+* [Kyiv](https://www.meetup.com/Kyiv-ReactJS-Meetup)
