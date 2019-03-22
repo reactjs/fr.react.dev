@@ -1,6 +1,6 @@
 ---
 id: meetups
-title: Meetups Around the World
+title: Des meetups dans le monde entier
 layout: community
 sectionid: community
 permalink: community/meetups.html
