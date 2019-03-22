@@ -1,13 +1,13 @@
 ---
 id: testing
-title: Testing
+title: Tests
 layout: community
 permalink: community/testing.html
 ---
 
-* **[Enzyme](https://github.com/airbnb/enzyme/):** a JavaScript Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components' output.
-* **[Jest](https://facebook.github.io/jest/):** Delightful JavaScript testing used by Facebook to test all JavaScript code including React applications.
-* **[react-testing-library](https://github.com/kentcdodds/react-testing-library):** 🐐 Simple and complete React DOM testing utilities that encourage good testing practices.
-* **[React-unit](https://github.com/pzavolinsky/react-unit):** a lightweight unit test library for ReactJS with very few (js-only) dependencies.
-* **[Skin-deep](https://github.com/glenjamin/skin-deep):** Testing helpers for use with React's shallowRender test utils.
-* **[Unexpected-react](https://github.com/bruderstein/unexpected-react/):** Plugin for the [unexpected](https://unexpected.js.org/) assertion library that makes it easy to assert over your React Components and trigger events.
+* **[Enzyme](https://github.com/airbnb/enzyme/)** : un utilitaire de tests en JavaScript pour React qui facilite les assertions, la manipulation et l'analyse de la sortie de vos composants React.
+* **[Jest](https://facebook.github.io/jest/)** : outil de tests en JavaScript utilisé par Facebook pour tester tout le code JavaScript, y compris les applications React.
+* **[react-testing-library](https://github.com/kentcdodds/react-testing-library)** : 🐐 utilitaires de tests simples et complets du DOM React pour encourager les bonnes pratiques de tests.
+* **[React-unit](https://github.com/pzavolinsky/react-unit)** : bibliothèque légère de tests unitaires pour React avec très peu de dépendances (et uniquement en JavaScript).
+* **[Skin-deep](https://github.com/glenjamin/skin-deep)** : assistants de tests à utiliser avec les utilitaires de tests *shallowRender*.
+* **[Unexpected-react](https://github.com/bruderstein/unexpected-react/)** : extension pour la bibliothèque d'assertions [unexpected](https://unexpected.js.org/) qui facilite les assertions sur vos composants React et déclenche des événements.
