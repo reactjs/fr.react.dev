@@ -6,7 +6,8 @@ sectionid: community
 permalink: community/meetups.html
 ---
 
-Do you have a local React.js meetup? Add it here! (Please keep the list alphabetical)
+Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !
+(Merci de respecter l'ordre alphabétique de la liste)
 
 ## Australia {#australia}
 * [Brisbane](https://www.meetup.com/reactbris/)
