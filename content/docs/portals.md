@@ -4,7 +4,7 @@ title: Les portails
 permalink: docs/portals.html
 ---
 
-Les portails fournissent une excellente solution pour afficher les enfants d'un nœud DOM qui existe en dehors de la hiérarchie DOM du composant parent.
+Les portails fournissent une excellente solution pour afficher des composants enfants dans un nœud DOM qui existe en dehors de la hiérarchie DOM du composant parent.
 
 ```js
 ReactDOM.createPortal(child, container)
@@ -27,12 +27,12 @@ render() {
 }
 ```
 
-Cependant il est utile d'insérer un enfant dans un autre emplacement du DOM :
+Cependant il est parfois utile d'insérer un enfant à un autre emplacement du DOM :
 
 ```js{6}
 render() {
   // React *ne crée pas* une nouvelle div, mais affiche les enfants dans `domNode`.
-  // Peu importe sa position `domNode` peut être n'importe quel élément valide du DOM.
+  // `domNode` peut être n'importe quel élément valide du DOM, peu importe sa position.
   return ReactDOM.createPortal(
     this.props.children,
     domNode
@@ -40,19 +40,19 @@ render() {
 }
 ```
 
-Un cas typique d'utilisation des portails est lorsqu'un composant parent possède un style `overflow: hidden` ou `z-index` et que l'enfant soit visuellement « sorti de son conteneur ». Par exemple avec les boites de dialogues, les pop-ups ou encore les infobulles.
+Un cas typique d'utilisation des portails survient lorsqu'un composant parent possède un style `overflow: hidden` ou `z-index` et que l'enfant a besoin de « sortir de son conteneur »  visuellement. C’est par exemple le cas des boîtes de dialogues, des pop-ups ou encore des infobulles.
 
-> Remarque :
+> Remarque
 >
 > Lorsque vous travaillez avec les portails, gardez en tête que la [gestion du focus du clavier](/docs/accessibility.html#programmatically-managing-focus) devient très importante.
 >
-> Pour les fenêtres modales, assurez-vous que tout le monde puissent interagir avec celle-ci en suivant les règles [WAI-ARIA Modal Authoring Practices du W3C](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal).
+> Pour les fenêtres modales, assurez-vous que tout le monde puisse interagir avec celle-ci en suivant les règles [WAI-ARIA Modal Authoring Practices du W3C](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal) (en anglais).
 
 [**Essayer dans CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
 
-## La propagation des évènements dans les portails {#event-bubbling-through-portals}
+## La propagation des événements dans les portails {#event-bubbling-through-portals}
 
-Même si un portail peut être placé n'importe où dans l'arborescence DOM, il se comporte comme un simple enfant de React dans tous les autres cas. Les fonctionnalités comme le contexte se comporte exactement de la même façon, indépendamment du fait que l'enfant est un portail. Le portail existe toujours dans *l'arborescence React*, qu'importe sa position dans *l'arborescence DOM*.
+Même si un portail peut être placé n'importe où dans l'arborescence DOM, il se comporte comme un enfant React normal à tous les autres points de vue. Les fonctionnalités comme le contexte se comportent exactement de la même façon, indépendamment du fait que l'enfant soit un portail, car le portail existe toujours dans *l'arborescence React*, indépendamment de sa position dans *l'arborescence DOM*.
 
 Ceci inclut aussi la propagation montante des évènements. Un événement déclenché à l'intérieur d'un portail sera propagé aux ancêtres dans *l'arborescence React*, même si les éléments ne sont pas ancêtres de *l'arborescence DOM*. Considérons le code HTML suivant :
 
@@ -65,7 +65,7 @@ Ceci inclut aussi la propagation montante des évènements. Un événement décl
 </html>
 ```
 
-Un composant `Parent` dans `#app-root` sera capable d'attraper un événement montant non intercepté provenant d'un nœud frère `#modal-root`.
+Un composant `Parent` dans `#app-root` pourrait attraper un événement montant non-intercepté provenant du nœud frère `#modal-root`.
 
 ```js{28-31,42-49,53,61-63,70-71,74}
 // Ces deux conteneurs sont frères dans le DOM
@@ -79,14 +79,14 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
-    // L'élément Portail est inséré dans l'arborescence DOM une fois
+    // L'élément portail est inséré dans l'arborescence DOM une fois
     // que la fenêtre modale enfante est fixée, ce qui signifie que
     // l'enfant est attaché dans un nœud DOM détaché.
-    // Si un composant enfant nécessite d'être attaché dans
+    // Si un composant enfant nécessite d'être attaché au DOM
     // l'arborescence DOM immédiatement lorsque celui-ci est inséré,
     // par exemple pour mesurer un nœud DOM ou utiliser 'autoFocus'
     // dans un nœud descendant, ajoutez un état à la modale et affichez
-    // uniquement l'enfant lorsque la modale est insérée dans le DOM.
+    // uniquement les enfants une fois la modale insérée dans le DOM.
     modalRoot.appendChild(this.el);
   }
 
@@ -125,7 +125,7 @@ class Parent extends React.Component {
         <p>
           Ouvrez les outils de développement de votre navigateur
           pour observer que ce bouton n'est pas un enfant de la div
-          qui possède l'écouteur d'évènements.
+          qui écoute les événements de clic.
         </p>
         <Modal>
           <Child />
@@ -136,8 +136,8 @@ class Parent extends React.Component {
 }
 
 function Child() {
-  // Lors d'un clic du bouton, l'événement va être propagé au parent
-  // car il n'y a pas d'attribut 'onClick' défini.
+  // Lors de clics sur ce bouton, l'événement sera propagé au parent
+  // car il n'y a pas d'attribut 'onClick' défini ici.
   return (
     <div className="modal">
       <button>Cliquez ici</button>
@@ -150,4 +150,4 @@ ReactDOM.render(<Parent />, appRoot);
 
 [**Essayer dans CodePen**](https://codepen.io/gaearon/pen/jGBWpE)
 
-Attraper un événement en cours de propagation depuis un portail dans un composant parent autorise le développement d'abstractions plus flexibles qui ne sont pas forcément liées aux portails. Par exemple, si vous affichez un composant `<Modal />`, le parent peut capturer ces événements indépendamment du fait que ceux-ci sont implémentés avec l'utilisation d'un portail.
+Attraper un événement en cours de propagation depuis un portail dans un composant parent autorise le développement d'abstractions plus flexibles qui ne sont pas forcément liées aux portails. Par exemple, si vous affichez un composant `<Modal />`, le parent peut capturer ses événements, que le parent soit implémenté à base de portails ou non.
