@@ -128,7 +128,7 @@
   - id: how-to-contribute
     title: Comment contribuer
   - id: codebase-overview
-    title: Aperçu de la base de code
+    title: Aperçu du code source
   - id: implementation-notes
     title: Notes d’implémentation
   - id: design-principles
