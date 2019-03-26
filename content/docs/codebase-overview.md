@@ -41,7 +41,7 @@ Par exemple, un test pour [`setInnerHTML.js`](https://github.com/facebook/react/
 
 ### Avertissements et invariants {#warnings-and-invariants}
 
-La base de code de React utilise le module `warning` pour afficher les avertissements :
+Le code source de React utilise le module `warning` pour afficher les avertissements :
 
 ```js
 var warning = require('warning');
@@ -127,10 +127,10 @@ React utilise l'injection dynamique dans certains modules. Bien que ce soit touj
 Vous verrez peut-être des modules déclarer leurs dépendances dynamiques comme ceci :
 
 ```js
-// Injecté dynamiquement
+// Dynamically injected
 var textComponentClass = null;
 
-// Repose sur une valeur injectée dynamiquement
+// Relies on dynamically injected value
 function createInstanceForText(text) {
   return new textComponentClass(text);
 }
@@ -138,7 +138,7 @@ function createInstanceForText(text) {
 var ReactHostComponent = {
   createInstanceForText,
 
-  // Fournit une opportunité d'injection dynamique
+  // Provides an opportunity for dynamic injection
   injection: {
     injectTextComponentClass: function(componentClass) {
       textComponentClass = componentClass;
