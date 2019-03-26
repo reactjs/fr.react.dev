@@ -34,7 +34,7 @@ Par exemple, si React ne proposait pas des méthodes pour l'état local ou le cy
 
 C'est la raison pour laquelle nous ajoutons parfois des fonctionnalités directement à React. Si nous constatons que de nombreux composants implémentent une certaine fonctionnalité de façons incompatibles ou inefficaces, nous préférons parfois l'intégrer à React. Nous ne le faisons pas à la légère. Lorsque nous le faisons, c'est parce que nous sommes convaincus qu'élever le niveau d'abstraction profite à l'ensemble de l'écosystème. L'état local, les méthodes de cycle de vie ou la normalisation des événements des navigateurs en sont de bons exemples.
 
-Nous discutons toujours de ces propositions d'amélioration avec la communauté. Vous pouvez trouver certaines de ces discussions avec l'étiquette [« big picture »](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"Type:+Big+Picture") sur le suivi des problèmes de React.
+Nous discutons toujours de ces propositions d'amélioration avec la communauté. Vous pouvez trouver certaines de ces discussions avec l'étiquette [_“big picture”_](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"Type:+Big+Picture") dans le suivi des problèmes et questions de React.
 
 ### Échappatoires {#escape-hatches}
 
