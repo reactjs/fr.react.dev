@@ -63,7 +63,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !
 ## Espagne {#spain}
 * [Barcelona](https://www.meetup.com/ReactJS-Barcelona/)
 
-## États-Unis {#us}
+## États-Unis d'Amérique {#us}
 * [Atlanta, GA - ReactJS](https://www.meetup.com/React-ATL/)
 * [Austin, TX - ReactJS](https://www.meetup.com/ReactJS-Austin-Meetup/)
 * [Boston, MA - ReactJS](https://www.meetup.com/ReactJS-Boston/)
