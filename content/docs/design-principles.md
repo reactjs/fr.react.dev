@@ -22,9 +22,9 @@ La caractéristique principale de React est la composition de composants. Les co
 
 Par exemple, il devrait être possible d'introduire un état local dans un composant sans changer les composants qui l'utilisent. Dans le même esprit, il devrait être possible d'ajouter du code d'initialisation et de nettoyage à n'importe quel composant lorsque c'est nécessaire.
 
-Il n'y a rien de « mauvais » à utiliser les méthodes d'état ou de cycle de vie dans les composants. Comme n'importe quelle fonctionnalité puissante, elles devraient être utilisées avec modération, mais nous n'avons aucune intention de les retirer. Au contraire, nous pensons qu'elles font partie intégrante de ce qui rend React utile. Nous ajouterons peut-être [des approches plus fonctionnelles](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) (en anglais) à l'avenir, mais les méthodes d'état local et de cycle de vie feront partie de ce modèle.
+Il n'y a rien de « mauvais » à utiliser les méthodes d'état ou de cycle de vie dans les composants. Comme n'importe quelle fonctionnalité puissante, elles devraient être utilisées avec modération, mais nous n'avons aucune intention de les retirer. Au contraire, nous pensons qu'elles font partie intégrante de ce qui rend React utile. Nous ajouterons peut-être [des approches plus fonctionnelles](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) (en anglais) à l'avenir, mais les méthodes d'état local et de cycle de vie feront partie de ce modèle.
 
-Les composants sont souvent décrits comme de « simples fonctions » mais à nos yeux ils doivent être bien plus que ça pour être utiles. Avec React, les composants décrivent un comportement composable, ce qui inclut le rendu, le cycle de vie et l'état local. Certaines bibliothèques externes telles que [Relay](https://facebook.github.io/relay/) ajoutent d'autres responsabilités aux composants comme la description des dépendances de données. Il est possible que ces idées reviennent dans React sous une forme ou une autre.
+Les composants sont souvent décrits comme de « simples fonctions » mais à nos yeux ils doivent être bien plus que ça pour être utiles. Avec React, les composants décrivent un comportement composable, ce qui inclut le rendu, le cycle de vie et l'état local. Certaines bibliothèques externes telles que [Relay](https://facebook.github.io/relay/) ajoutent d'autres responsabilités aux composants comme la description des dépendances de données. Il est possible que ces idées reviennent dans React sous une forme ou une autre.
 
 ### Abstraction commune {#common-abstraction}
 
@@ -40,7 +40,7 @@ Nous discutons toujours de ces propositions d'amélioration avec la communauté.
 
 React est pragmatique. Il est piloté par les besoins des produits développés chez Facebook. Bien qu'il soit influencé par certains paradigmes qui ne sont pas tout à fait populaires comme la programmation fonctionnelle, le rendre accessible à un large public de développeurs aux compétences et expériences variées est un objectif affiché du projet.
 
-Si nous voulons déprécier une approche que nous n'aimons pas, il est de notre responsabilité de considérer tous ses cas d'usage et d'[éduquer la communauté sur les alternatives](/blog/2016/07/13/mixins-considered-harmful.html) avant de la déprécier. Si une approche utile pour la création d'applications est difficile à exprimer de manière déclarative, nous lui [fournirons une API impérative](/docs/more-about-refs.html). Si nous ne parvenons pas à trouver l'API parfaite pour quelque chose que nous jugeons nécessaire dans de nombreuses applications, nous [fournirons une API temporaire de moindre qualité](/docs/legacy-context.html) du moment qu’il est possible de s'en débarrasser ultérieurement et qu'elle laisse la porte ouverte à de futures améliorations.
+Si nous voulons déprécier une approche que nous n'aimons pas, il est de notre responsabilité de considérer tous ses cas d'usage et d'[éduquer la communauté sur les alternatives](/blog/2016/07/13/mixins-considered-harmful.html) avant de la déprécier. Si une approche utile pour la création d'applications est difficile à exprimer de manière déclarative, nous lui [fournirons une API impérative](/docs/more-about-refs.html). Si nous ne parvenons pas à trouver l'API parfaite pour une fonctionnalité que nous estimons nécessaire dans de nombreuses applications, nous [fournirons une API temporaire de moindre qualité](/docs/legacy-context.html) du moment qu’il reste possible de nous en débarrasser ultérieurement et qu'elle laisse la porte ouverte à de futures améliorations.
 
 ### Stabilité {#stability}
 
@@ -76,17 +76,17 @@ Il s'agit d'une distinction subtile mais puissante. Puisque c'est React qui appe
 
 C'est un thème courant dans la conception de React. Certaines bibliothèques populaires implémentent une approche *“push”* dans laquelle les calculs sont exécutés dès que de nouvelles données sont disponibles. React, quant à lui, s'en tient à l'approche *“pull”* où les calculs peuvent être différés au besoin.
 
-React n'est pas une bibliothèque de traitement des données générique. C'est une bibliothèque pour construire des interfaces utilisateurs. Nous pensons qu'il est particulièrement bien placé dans une application pour savoir quels calculs sont pertinents à un instant précis et lesquels ne le sont pas.
+React n'est pas une bibliothèque de traitement de données générique. C'est une bibliothèque pour construire des interfaces utilisateurs. Nous pensons que React est particulièrement bien placé dans une application pour savoir quels calculs sont pertinents à un instant précis et lesquels ne le sont pas.
 
-Si quelque chose est en dehors de la zone affichée à l'écran, nous pouvons différer toute la logique qui lui est associée. Si les données arrivent plus vite que la fréquence de rafraîchissement, nous pouvons fusionner et regrouper les mises à jour. Nous pouvons donner la priorité au travail résultant des interactions utilisateurs (telles qu'une animation déclenchée par le clic d'un bouton) plutôt qu'à une tâche de fond de moindre importance (telle que l’affichage d'un nouveau contenu nouvellement chargé depuis le réseau) afin d'éviter un affichage saccadé.
+Si quelque chose est en dehors de la zone affichée à l'écran, nous pouvons différer toute la logique qui y est associée. Si les données arrivent plus vite que la fréquence de rafraîchissement, nous pouvons fusionner et regrouper les mises à jour. Nous pouvons donner la priorité au travail résultant des interactions utilisateurs (telles qu'une animation déclenchée par le clic d'un bouton) plutôt qu'à une tâche de fond de moindre importance (telle que l’affichage d'un nouveau contenu fraîchement chargé depuis le réseau) afin d'éviter de produire un affichage saccadé.
 
-Pour être clairs, nous n’en sommes pas encore là. Cependant, c'est pour avoir la liberté de faire quelque chose comme ça que nous préférons avoir le contrôle de la planification et que `setState()` est asynchrone. Sur un plan conceptuel, nous voyons ça comme la « planification d'une mise à jour ».
+Pour être clairs, nous n’en sommes pas encore là. Cependant, c'est pour avoir la liberté de faire quelque chose comme ça que nous préférons avoir le contrôle de la planification et que `setState()` est asynchrone. Sur un plan conceptuel, nous voyons ça comme la « planification d'une mise à jour ».
 
-Il nous serait plus difficile de contrôler la planification si nous permettions à l'utilisateur de composer directement des vues avec le paradigme *“push”* commun à certaines variations de la [programmation fonctionnelle réactive](https://en.wikipedia.org/wiki/Functional_reactive_programming). Nous voulons garder le contrôle du code qui sert de « colle ».
+Il nous serait plus difficile de contrôler la planification si nous permettions à l'utilisateur de composer directement des vues avec le paradigme *“push”* commun à certaines variations de la [programmation fonctionnelle réactive](https://en.wikipedia.org/wiki/Functional_reactive_programming). Nous voulons garder le contrôle du code intermédiaire qui sert de « colle ».
 
-React a pour objectif clé de minimiser la quantité de code utilisateur qui s'exécute avant de rendre la main à React. Ça garantit que React conserve la possibilité de planifier et scinder le travail en segments selon sa connaissance de l'UI.
+React a pour objectif-clé de minimiser la quantité de code utilisateur qui s'exécute avant de lui rendre la main. Ça garantit que React conserve la possibilité de planifier et scinder le travail en segments selon sa connaissance de l'UI.
 
-Il y a une blague en interne dans l'équipe selon laquelle React aurait dû s'appeler *“Schedule”* parce que React ne veut pas être totalement « réactif ».
+Il y a une blague interne dans l'équipe selon laquelle React aurait dû s'appeler *“Schedule”* parce que React ne veut pas être totalement « réactif ».
 
 ### Expérience de développement {#developer-experience}
 
@@ -98,27 +98,27 @@ Nous essayons également de faire un effort supplémentaire pour fournir des ave
 
 Les schémas d'utilisation que nous voyons en interne chez Facebook nous aident à comprendre quelles sont les erreurs courantes et comment les prévenir rapidement. Lorsque nous ajoutons de nouvelles fonctionnalités, nous essayons d'anticiper les erreurs courantes et vous avertissons à leur sujet.
 
-Nous cherchons en permanence des moyens d'améliorer l'expérience de développement. Nous aimons écouter vos suggestions et acceptons vos contributions pour la rendre encore meilleure.
+Nous cherchons en permanence des moyens d'améliorer l'expérience de développement. Nous aimons recueillir vos suggestions et accepter vos contributions visant à la rendre encore meilleure.
 
 ### Débogage {#debugging}
 
-Lorsque quelque chose se passe mal, il est important que vous ayez des pistes pour remonter jusqu'à la source de l'erreur dans votre base de code. Avec React, cette piste se base sur les props et l'état local.
+Lorsque quelque chose se passe mal, il est important que vous ayez des pistes pour remonter jusqu'à la source de l'erreur dans votre base de code. Avec React, ces pistes se basent sur les props et l'état local.
 
 Si quelque chose ne va pas à l'écran, vous pouvez ouvrir React DevTools, trouver le composant responsable du rendu, et ainsi voir si les props et l'état sont corrects. Si c'est le cas, vous savez que le problème se situe dans la fonction `render()` ou dans une fonction appelée par `render()`. Le problème est isolé.
 
-Si l'état est incorrect, vous savez que le problème est dû à l'un des appels à `setState()` au sein de ce fichier. C'est également facile à localiser et à corriger car il y a généralement peu d'appels à `setState()` dans un même fichier.
+Si l'état est incorrect, vous savez que le problème est dû à l'un des appels à `setState()` au sein de ce fichier. C'est là aussi facile à localiser et à corriger car il y a généralement peu d'appels à `setState()` dans un même fichier.
 
 Si les props sont incorrectes, vous pouvez remonter le long de l'arbre dans l'inspecteur à la recherche du composant qui est à l'origine des mauvaises props.
 
-Cette capacité à relier n'importe quelle UI aux données qui l'ont générée est très importante dans React. Un objectif explicite de conception impose de ne pas « emprisonner » l'état au sein de fermetures lexicales *(closures, NdT)* ou de combinateurs, mais de le rendre plutôt disponible directement dans React.
+Cette capacité à relier n'importe quelle UI aux données qui l'ont générée est très importante dans React. Un objectif explicite de conception impose de ne pas « emprisonner » l'état au sein de fermetures lexicales *(closures, NdT)* ou de combinateurs, mais de le rendre plutôt disponible directement dans React.
 
-Alors que l'UI est dynamique, nous pensons que les fonctions synchrones `render()` basées entièrement sur les props et l'état local rendent le débogage certes ennuyeux mais limité, plutôt que de tourner au jeu de devinettes. Nous aimerions conserver cette contrainte dans React même si ça complexifie certains cas d'usage, tels que des animations complexes. 
+Alors que l'UI est dynamique, nous pensons que les fonctions synchrones `render()` basées entièrement sur les props et l'état local rendent le débogage certes ennuyeux mais déterministe et bien délimité, plutôt que de virer au jeu de devinettes. Nous aimerions conserver cette contrainte dans React même si ça complexifie certains cas d'usage, tels que des animations complexes.
 
 ### Configuration {#configuration}
 
 Nous considérons les options de configuration d'exécution comme problématiques.
 
-Par exemple, on nous demande parfois d'implémenter une fonction du genre `React.configure(options)` ou `React.register(component)`. Ça pose toutefois de nombreux problèmes, et nous ne connaissons pas de bonne solution à ça.
+Par exemple, on nous demande parfois d'implémenter une fonction du genre `React.configure(options)` ou `React.register(component)`. Ça pose toutefois de nombreux problèmes, et nous ne connaissons pas de bonne solution.
 
 Que se passerait-il si cette fonction était appelée depuis une bibliothèque de composants tierce ? Et si une application React intégrait une autre application React et que leurs configurations respectives étaient incompatibles ? Comment un composant tiers peut-il spécifier qu'il nécessite une configuration spécifique ? Nous pensons que la configuration globale ne fonctionne pas correctement avec la composition. Puisque la composition est au cœur de React, nous ne fournissons aucune configuration globale dans le code.
 
@@ -142,22 +142,22 @@ Nous préférons le code ennuyeux au code trop « malin ». Le code est jetabl
 
 Certaines API couramment utilisées ont des noms à rallonge. Par exemple, nous utilisons `componentDidMount()` plutôt que `didMount()` ou `onMount()`. C'est [volontaire](https://github.com/reactjs/react-future/issues/40#issuecomment-142442124). L'objectif est de bien mettre en avant les points d'interactions avec la bibliothèque.
 
-Dans une base de code aussi vaste que celle de Facebook, il est très important de pouvoir rechercher les utilisations d'API spécifiques. Nous privilégions les noms verbeux et distincts, tout particulièrement pour les fonctionnalités qui doivent être utilisées avec parcimonie. Par exemple, il est difficile de rater `dangerouslySetInnerHTML` lors d'une revue de code.
+Dans une base de code aussi vaste que celle de Facebook, il est très important de pouvoir rechercher les utilisations d'API spécifiques. Nous privilégions les noms verbeux et distinctifs, tout particulièrement pour les fonctionnalités qui doivent être utilisées avec parcimonie. Par exemple, il est difficile de rater `dangerouslySetInnerHTML` lors d'une revue de code.
 
-L'optimisation pour la recherche est également importante du fait de notre dépendance aux [codemods](https://www.youtube.com/watch?v=d0pOgY8__JM) (vidéo en anglais) pour exécuter des modifications qui rompent la compatibilité ascendante. Nous voulons que les changements automatiques sur la base de code soient faciles et surs, et des noms verbeux nous aident à accomplir ça. De même, des noms aisément identifiables facilitent l'écriture de [règles d'analyse statique](https://github.com/yannickcr/eslint-plugin-react) personnalisées pour React sans avoir à se soucier de potentiels faux positifs.
+L'optimisation pour la recherche est également importante du fait de notre dépendance aux [codemods](https://www.youtube.com/watch?v=d0pOgY8__JM) (vidéo en anglais) pour exécuter des modifications qui rompent la compatibilité ascendante. Nous voulons que les changements automatiques sur la base de code soient faciles et surs, et des noms verbeux nous aident à y parvenir. De même, des noms aisément identifiables facilitent l'écriture de [règles d'analyse statique](https://github.com/yannickcr/eslint-plugin-react) personnalisées pour React sans avoir à se soucier de potentiels faux positifs.
 
 [JSX](/docs/introducing-jsx.html) joue un rôle similaire. Bien qu'il ne soit pas nécessaire à React, nous l'utilisons beaucoup chez Facebook à la fois pour des raisons esthétiques et pragmatiques.
 
-Dans notre base de code, JSX indique clairement aux outils qu’ils travaillent avec un arbre d’éléments React. Ça rend possible l'ajout à la construction d'optimisations telles que [l’extraction *(hoisting, NdT)* des éléments constants](https://babeljs.io/docs/en/babel-plugin-transform-react-constant-elements/) (en anglais), l'utilisation sure d‘analyseurs statiques et de *codemods* internes, et [l'inclusion de l’emplacement dans le source JSX](https://github.com/facebook/react/pull/6771) dans les messages d'avertissement.
+Dans notre base de code, JSX indique clairement aux outils qu’ils travaillent avec un arbre d’éléments React. Ça rend possible l'ajout à la construction d'optimisations telles que [l’extraction *(hoisting, NdT)* des éléments constants](https://babeljs.io/docs/en/babel-plugin-transform-react-constant-elements/) (en anglais), l'utilisation sure d‘analyseurs statiques et de *codemods* internes, et [l'inclusion de l’emplacement dans le source JSX](https://github.com/facebook/react/pull/6771) au sein des messages d'avertissements.
 
 ### *Dogfooding* {#dogfooding}
 
 Nous faisons de notre mieux pour résoudre les problèmes soulevés par la communauté. Néanmoins, nous sommes susceptibles de prioriser les problèmes rencontrés aussi par les personnes en interne chez Facebook. Ça peut sembler contre-intuitif, mais nous pensons que c'est la raison principale pour laquelle la communauté peut miser sur React.
 
-L'utilisation importante faite en interne nous conforte dans l'idée que React n'est pas prêt de disparaître. React a été créé chez Facebook pour résoudre ses problèmes. Il apporte une valeur métier tangible à la société et est utilisé dans bon nombre de ses produits. Notre [*dogfooding*](https://fr.wikipedia.org/wiki/Dogfooding) de React signifie que notre vision reste claire et que nous avons une direction bien établie pour l'avenir.
+L'utilisation importante faite en interne nous conforte dans l'idée que React n'est pas près de disparaître. React a été créé chez Facebook pour résoudre ses problèmes. Il apporte une valeur métier tangible à la société et est utilisé dans bon nombre de ses produits. Notre [*dogfooding*](https://fr.wikipedia.org/wiki/Dogfooding) de React signifie que notre vision reste claire et que nous avons une direction bien établie pour l'avenir.
 
-Ça ne signifie pas que nous ignorons les problèmes soulevés par la communauté. Par exemple, nous avons ajouté la prise en charge des [Web Components](/docs/webcomponents.html) et du [SVG](https://github.com/facebook/react/pull/6243) à React bien que nous n'utilisions ni l'un ni l'autre en interne. Nous [écoutons attentivement vos difficultés](https://github.com/facebook/react/issues/2686) et nous [y répondons](/blog/2016/07/11/introducing-reacts-error-code-system.html) au mieux de nos capacités. La communauté est ce qui rend React si spécial pour nous et nous sommes honorés d’y contribuer en retour.
+Ça ne signifie pas que nous ignorons les problèmes soulevés par la communauté. Par exemple, nous avons ajouté la prise en charge des [Web Components](/docs/webcomponents.html) et de [SVG](https://github.com/facebook/react/pull/6243) à React alors que nous n'utilisions ni l'un ni l'autre en interne. Nous [écoutons attentivement vos difficultés](https://github.com/facebook/react/issues/2686) et nous [y répondons](/blog/2016/07/11/introducing-reacts-error-code-system.html) au mieux de nos capacités. La communauté est ce qui rend React si spécial pour nous et nous sommes honorés d’y contribuer en retour.
 
-Après avoir livré de nombreux projets open source chez Facebook, nous avons appris qu'essayer de satisfaire tout le monde en même temps aboutissait à des projets mal ciblés et qui ne se développaient pas. Au lieu de ça, nous avons constaté que choisir un petit public et s'efforcer de le satisfaire avait un net effet positif. C'est exactement ce que nous avons fait avec React et, jusqu'à présent, la résolution des problèmes rencontrés par les équipes de produits chez Facebook s'est bien transposée à la communauté open source.
+Après avoir livré de nombreux projets open source chez Facebook, nous avons appris qu'essayer de satisfaire tout le monde en même temps aboutissait à des projets mal ciblés et qui ne grandissaient pas. Au lieu de ça, nous avons constaté que choisir un petit public et s'efforcer de le satisfaire avait un net effet positif. C'est exactement ce que nous avons fait avec React et, jusqu'à présent, la résolution des problèmes rencontrés par les équipes de produits chez Facebook s'est bien transposée à la communauté open source.
 
-L'inconvénient de cette approche est que parfois nous ne mettons pas assez l'accent sur les problèmes auxquels les équipes de Facebook n'ont pas à faire face, telles que l'expérience de « démarrage ». Nous en sommes parfaitement conscients, et nous réfléchissons aux façons de nous améliorer qui profiteraient à toute la communauté sans commettre les mêmes erreurs que nous avons faites sur de précédents projets open source.
+L'inconvénient de cette approche est que parfois nous ne mettons pas assez l'accent sur les problèmes auxquels les équipes de Facebook n'ont pas à faire face, telles que l'expérience de « démarrage ». Nous en sommes parfaitement conscients, et nous réfléchissons aux façons de nous améliorer qui profiteraient à toute la communauté sans commettre les mêmes erreurs que nous avons faites sur de précédents projets open source.
