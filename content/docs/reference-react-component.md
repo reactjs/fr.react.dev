@@ -89,7 +89,7 @@ Ces méthodes sont appelées lorsqu’une erreur survient au sein de n’importe
 
 ### Autres API {#other-apis}
 
-Chaque composant fournit par ailleurs quelques APIs supplémentaires :
+Chaque composant fournit par ailleurs quelques API supplémentaires :
 
   - [`setState()`](#setstate)
   - [`forceUpdate()`](#forceupdate)
