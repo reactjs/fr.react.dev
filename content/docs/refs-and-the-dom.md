@@ -161,7 +161,7 @@ class Parent extends React.Component {
 }
 ```
 
-Vous devez convertir le composant en une classe si vous avez besoin d'une référence,de la même manière qu'avec les méthodes du cycle de vie ou d'état.
+Vous devez convertir le composant en classe si vous avez besoin d'une ref dessus, comme lorsque vous avez besoin des méthodes de cycle de vie ou d'un état local.
 
 Vous pouvez néanmoins **utiliser l'attribut `ref` dans une fonction composant**, tant que vous vous référez à un élément DOM ou un composant à base de classe :
 
