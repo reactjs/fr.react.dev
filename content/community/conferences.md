@@ -23,7 +23,7 @@ Du 4 au 5 avril 2019 à Cracovie, Pologne
 [Site web](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
 ### React Amsterdam 2019 {#react-amsterdam-2019}
-April 12, 2019 in Amsterdam, The Netherlands
+Le 12 avril 2019 à Amsterdam, Pays-Bas
 
 [Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
 
