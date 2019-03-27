@@ -124,7 +124,11 @@ Un composant a besoin d’un `state` lorsque des données qui lui sont associée
 
 La principale différence entre `state` et `props`, c’est que les `props` sont passées depuis le composant parent, alors que `state` est géré en interne par le composant lui-même.  Un composant ne peut pas changer ses `props`, mais il peut changer son `state`.  Pour cela, il doit appeler `this.setState()`.  Seuls les composants définis par des classes peuvent avoir un état.
 
+<<<<<<< HEAD
 <!-- FIXME: THIS IS NO LONGER TRUE (HOOKS) -->
+=======
+The most important difference between `state` and `props` is that `props` are passed from a parent component, but `state` is managed by the component itself. A component cannot change its `props`, but it can change its `state`.
+>>>>>>> 2304fa1a7c34b719c10cca1023003e22bf0fd137
 
 Pour chaque petite donnée qui va changer, un seul composant devrait la « posséder » dans son état local.  N’essayez pas de synchroniser les états de plusieurs composants.  Préférez [le faire remonter](/docs/lifting-state-up.html) dans leur plus proche ancêtre commun, et faire redescendre l’info via les props aux composants concernés.
 
