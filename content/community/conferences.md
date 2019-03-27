@@ -28,7 +28,7 @@ Le 12 avril 2019 à Amsterdam, Pays-Bas
 [Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
 
 ### ReactJS Girls Conference 
-May 3, 2019 in London, UK
+Le 3 mai 2019 à Londres, Royaume-Uni
 
 [Site web](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
 
