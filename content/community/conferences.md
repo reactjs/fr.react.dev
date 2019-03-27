@@ -38,7 +38,7 @@ Du 23 au 24 mai 2019 à Paris, France
 [Site web](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### React Conf Armenia 2019 {#react-conf-am-19}
-May 25, 2019 in Yerevan, Armenia
+Le 25 mai 2019 à Yerevan, Arménie
 
 [Site web](https://reactconf.am/) - [Twitter](https://twitter.com/ReactConfAM) - [Facebook](https://www.facebook.com/reactconf.am/) - [YouTube](https://www.youtube.com/c/JavaScriptConferenceArmenia) - [CFP](http://bit.ly/speakReact)
 
