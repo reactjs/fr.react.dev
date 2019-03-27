@@ -18,7 +18,7 @@ Du 30 au 31 mars 2019 à San Francisco, États-Unis d'Amérique
 [Site web](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon)
 
 ### App.js Conf 2019 {#appjs-conf-2019}
-April 4-5, 2019 in Kraków, Poland
+Du 4 au 5 avril 2019 à Cracovie, Pologne
 
 [Site web](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
