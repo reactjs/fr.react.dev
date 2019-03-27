@@ -1,20 +1,21 @@
-// After
+// Après
 class ExampleComponent extends React.Component {
   // highlight-range{1-3}
   state = {
     subscribedValue: this.props.dataSource.value,
   };
   // highlight-line
-  // highlight-range{1-18}
+  // highlight-range{1-19}
   componentDidMount() {
-    // Event listeners are only safe to add after mount,
-    // So they won't leak if mount is interrupted or errors.
+    // Les écouteurs d’événements ne devraient être ajoutés qu’après le montage,
+    // afin qu’ils ne fassent pas fuiter la mémoire si le montage est interrompu
+    // ou lève une erreur.
     this.props.dataSource.subscribe(
       this.handleSubscriptionChange
     );
 
-    // External values could change between render and mount,
-    // In some cases it may be important to handle this case.
+    // Des valeurs externes pourraient parfois changer entre le rendu et le
+    // montage, il est alors important de gérer ce cas de figure.
     if (
       this.state.subscribedValue !==
       this.props.dataSource.value

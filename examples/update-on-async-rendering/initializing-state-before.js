@@ -1,4 +1,4 @@
-// Before
+// Avant
 class ExampleComponent extends React.Component {
   state = {};
 
