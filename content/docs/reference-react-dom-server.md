@@ -65,7 +65,7 @@ Produit le HTML initial d’un élément React. Renvoie un [flux en lecture](htt
 
 Si vous appelez [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) sur un nœud dont le balisage a déjà été généré par le serveur, React le conservera et se contentera d’y attacher les gestionnaires d’événements, ce qui vous permettra d’avoir une expérience de chargement initial des plus performantes.
 
-> Remarque :
+>Remarque
 >
 > Côté serveur uniquement. Cette API n’est pas disponible côté navigateur.
 >
@@ -85,7 +85,7 @@ La sortie HTML de ce flux est identique à ce que [`ReactDOMServer.renderToStati
 
 N’utilisez pas cette méthode si vous envisagez d’utiliser React côté client pour rendre le contenu interactif. Préférez [`renderToNodeStream`](#rendertonodestream) côté serveur, et [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) côté client.
 
-> Remarque :
+>Remarque
 >
 Côté serveur uniquement. Cette API n’est pas disponible côté navigateur.
 >

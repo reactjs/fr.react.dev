@@ -18,7 +18,7 @@ const element = <h1>Bonjour, monde</h1>;
 
 Contrairement aux éléments DOM d’un navigateur, les éléments React sont de simples objets peu coûteux à créer. React DOM se charge de mettre à jour le DOM afin qu’il corresponde aux éléments React.
 
->**Remarque :**
+>Remarque
 >
 >On pourrait confondre les éléments avec le concept plus répandu de « composants ». Nous présenterons les composants dans la [prochaine section](/docs/components-and-props.html). Les éléments représentent la base des composants, aussi nous vous conseillons de bien lire cette section avant d’aller plus loin.
 
@@ -56,7 +56,7 @@ Prenons l’exemple de cette horloge :
 
 À chaque seconde, nous appellons `ReactDOM.render()` depuis une fonction de rappel passée à [`setInterval()`](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setInterval).
 
->Remarque :
+>Remarque
 >
 >En pratique, la plupart des applications React n’appellent `ReactDOM.render()` qu’une seule fois. Dans les prochaines sections, nous apprendrons comment encapsuler un tel code dans des [composants à état](/docs/state-and-lifecycle.html).
 >
