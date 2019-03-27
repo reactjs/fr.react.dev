@@ -1,6 +1,6 @@
 ---
 id: conferences
-title: Conferences
+title: Conférences
 layout: community
 sectionid: community
 permalink: community/conferences.html
