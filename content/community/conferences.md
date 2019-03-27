@@ -10,7 +10,7 @@ redirect_from:
 
 Do you know of a local React.js conference? Add it here! (Please keep the list chronological)
 
-## Upcoming Conferences {#upcoming-conferences}
+## Prochaines conférences {#upcoming-conferences}
 
 ### Reactathon 2019 {#reactathon-2019}
 March 30-31, 2019 in San Francisco, USA
@@ -86,7 +86,7 @@ September 26-28, 2019 in Alicante, Spain
 
 [Website](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante)
 
-## Past Conferences {#past-conferences}
+## Anciennes conférences {#past-conferences}
 
 ### React.js Conf 2015 {#reactjs-conf-2015}
 January 28 & 29 in Facebook HQ, CA
