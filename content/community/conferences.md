@@ -33,7 +33,7 @@ Le 3 mai 2019 à Londres, Royaume-Uni
 [Site web](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
 
 ### ReactEurope 2019 {#reacteurope-2019}
-May 23-24, 2019 in Paris, France
+Du 23 au 24 mai 2019 à Paris, France
 
 [Site web](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
