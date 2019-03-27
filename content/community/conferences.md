@@ -43,12 +43,12 @@ Le 25 mai 2019 à Yerevan, Arménie
 [Site web](https://reactconf.am/) - [Twitter](https://twitter.com/ReactConfAM) - [Facebook](https://www.facebook.com/reactconf.am/) - [YouTube](https://www.youtube.com/c/JavaScriptConferenceArmenia) - [CFP](http://bit.ly/speakReact)
 
 ### React Norway 2019 {#react-norway-2019}
-juin 12, 2019. Larvik, Norway
+12 juin 2019 à Larvik, Norvège
 
 [Site web](https://reactnorway.com) - [Twitter](https://twitter.com/ReactNorway)
 
 ### React Loop 2019 {#react-loop-2019}
-juin 21, 2019 Chicago, Illinois USA
+21 juin 2019 à Chicago, États-Unis d'Amérique
 
 [Site web](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
 
