@@ -13,7 +13,7 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici ! (Merci de
 ## Prochaines conférences {#upcoming-conferences}
 
 ### Reactathon 2019 {#reactathon-2019}
-March 30-31, 2019 in San Francisco, USA
+Du 30 au 31 mars 2019 à San Francisco, États-Unis d'Amérique
 
 [Website](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon)
 
