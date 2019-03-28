@@ -14,11 +14,11 @@ Le premier argument (`child`) peut être n'importe quel [enfant affichable par R
 
 ## Utilisation {#usage}
 
-Habituellement, lorsque vous retournez un élément depuis une méthode d'affichage d'un composant, celui-ci est fixé dans le DOM en tant qu'enfant du plus proche parent :
+D’habitude, lorsque vous renvoyez un élément depuis le rendu d'un composant, cet élément est monté dans le DOM en tant qu'enfant du plus proche parent :
 
 ```js{4,6}
 render() {
-  // React positionne une nouvelle div et affiche les enfants à l'intérieur de celle-ci
+  // React monte une nouvelle div et affiche les enfants à l'intérieur de celle-ci
   return (
     <div>
       {this.props.children}
@@ -54,7 +54,7 @@ Un cas typique d'utilisation des portails survient lorsqu'un composant parent po
 
 Même si un portail peut être placé n'importe où dans l'arborescence DOM, il se comporte comme un enfant React normal à tous les autres points de vue. Les fonctionnalités comme le contexte se comportent exactement de la même façon, indépendamment du fait que l'enfant soit un portail, car le portail existe toujours dans *l'arborescence React*, indépendamment de sa position dans *l'arborescence DOM*.
 
-Ceci inclut aussi la propagation montante des évènements. Un événement déclenché à l'intérieur d'un portail sera propagé aux ancêtres dans *l'arborescence React*, même si les éléments ne sont pas ancêtres de *l'arborescence DOM*. Considérons le code HTML suivant :
+Ça concerne aussi la propagation montante des événements. Un événement déclenché à l'intérieur d'un portail sera propagé aux ancêtres dans *l'arborescence React*, même si ces éléments ne sont pas ses ancêtres dans *l'arborescence DOM*. Prenons le code HTML suivant :
 
 ```html
 <html>
@@ -80,10 +80,10 @@ class Modal extends React.Component {
 
   componentDidMount() {
     // L'élément portail est inséré dans l'arborescence DOM une fois
-    // que la fenêtre modale enfante est fixée, ce qui signifie que
-    // l'enfant est attaché dans un nœud DOM détaché.
+    // que les enfants du Modal sont montés, ce qui signifie que
+    // les enfants seront montés sur un nœud DOM détaché.
     // Si un composant enfant nécessite d'être attaché au DOM
-    // l'arborescence DOM immédiatement lorsque celui-ci est inséré,
+    // dès le montage,
     // par exemple pour mesurer un nœud DOM ou utiliser 'autoFocus'
     // dans un nœud descendant, ajoutez un état à la modale et affichez
     // uniquement les enfants une fois la modale insérée dans le DOM.
@@ -112,7 +112,7 @@ class Parent extends React.Component {
   handleClick() {
     // La fonction se déclenchera lorsque le bouton dans l'enfant sera cliqué,
     // permettant la mise à jour de l'état du parent, même si le bouton
-    // n'est pas un élément de parenté directe dans le DOM.
+    // n'en est pas un descendant direct dans le DOM.
     this.setState(state => ({
       clicks: state.clicks + 1
     }));
