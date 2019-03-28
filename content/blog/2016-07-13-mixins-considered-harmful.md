@@ -53,7 +53,7 @@ Quelques mois plus tard, quelqu'un veut rendre la direction de l'infobulle confi
 
 Chaque nouveau besoin rend les mixins plus difficiles à comprendre.  Les composants qui utilisent un même mixin sont de plus en plus fortement couplés avec le temps.  Toute nouvelle fonctionnalité débarque d'office dans tous les composants utilisant le mixin.  Il est impossible d'extraire la partie « plus simple » du mixin sans dupliquer le code ni introduire davantage de dépendances et d'indirections entre les mixins.  Progressivement, les frontières de l'encapsulation se délitent, et puisqu'il est difficile de modifier ou même retirer les mixins existants, ils continuent à monter en abstraction jusqu'à ce que plus personne ne comprenne comment ils marchent.
 
-Nous faisions déjà face à ces problématiques de construction d'appli avant React.  Nous avons constaté qu'on peut les résoudre avec du rendu déclaratif, un flux de données descendant et des composants encapsulés.  Chez Facebook, nous migrons notre code vers des approches alternatives aux mixins, et en général le résultat nous plait beaucoup.  Vous pouvez découvrir ces approches ci-dessous.
+Nous faisions déjà face à ces problématiques de construction d'appli avant React.  Nous avons constaté qu'on peut les résoudre avec du rendu déclaratif, un flux de données descendant et des composants encapsulés.  Chez Facebook, nous migrons notre code vers des approches alternatives aux mixins, et en général le résultat nous plaît beaucoup.  Vous pouvez découvrir ces approches ci-dessous.
 
 ## Sortir des mixins {#migrating-from-mixins}
 
@@ -61,11 +61,11 @@ Pour commencer, précisons que les mixins ne sont pas techniquement dépréciés
 
 Chaque section ci-dessous correspond à un schéma d'utilisation des mixins que nous avons rencontré dans la base de code de Facebook.  Pour chacune, nous décrivons le problème et une solution que nous estimons supérieure.  Les exemples sont écrits en ES5 mais une fois que vous n'avez plus besoin des mixins, vous pouvez passer à la syntaxe de classe ES6 si vous le souhaitez.
 
-Nous espérons que cette liste vous sera utile.  N’hésitez pas à nous signaler des cas d'usages importants que nous aurions loupé afin que nous puissions soit augmenter cette liste, soit devoir manger notre chapeau !
+Nous espérons que cette liste vous sera utile.  N’hésitez pas à nous signaler des cas d'usages importants que nous aurions loupé afin que nous puissions soit augmenter cette liste, soit manger notre chapeau !
 
 ### Optimisation des performances {#performance-optimizations}
 
-Un des mixins les plus couramment utilisés est le [`PureRenderMixin`](/docs/pure-render-mixin.html). Vuos vous en servez peut-être dans certains composants pour [éviter des rafraîchissements superflus](/docs/advanced-performance.html#shouldcomponentupdate-in-action) quand les props et l'état sont superficiellement égaux à leurs valeurs précédentes :
+Un des mixins les plus couramment utilisés est le [`PureRenderMixin`](/docs/pure-render-mixin.html). Vous vous en servez peut-être dans certains composants pour [éviter des rafraîchissements superflus](/docs/advanced-performance.html#shouldcomponentupdate-in-action) quand les props et l'état sont superficiellement égaux à leurs valeurs précédentes :
 
 ```javascript
 var PureRenderMixin = require('react-addons-pure-render-mixin');
@@ -80,7 +80,7 @@ var Button = React.createClass({
 
 #### Solution {#solution}
 
-Pour faire la même chose sans mixins, vous pouvez plutôt utilisez la fonction [`shallowCompare`](/docs/shallow-compare.html) directement :
+Pour faire la même chose sans mixins, vous pouvez utiliser plutôt la fonction [`shallowCompare`](/docs/shallow-compare.html) directement :
 
 ```js
 var shallowCompare = require('react-addons-shallow-compare');
@@ -97,11 +97,11 @@ var Button = React.createClass({
 
 Si vous utilisez un mixin personnalisé qui implémente une fonction `shouldComponentUpdate` avec un algorithme différent, nous vous suggérons d'exporter juste cette fonction depuis un module et de l'appeler directement dans votre composant.
 
-Nous savons bien qu'il est pénible de devoir taper davantage de code.  Pour le cas dominant, nous comptons [fournir une nouvelle classe de base](https://github.com/facebook/react/pull/7195) appelée `React.PureComponent` dans la prochaine version mineure. Elle utilisera la même comparaison de surface que celle de `PureRenderMixin` aujourd’hui.
+Nous savons bien qu'il est pénible de devoir taper davantage de code.  Pour le cas dominant, nous comptons [fournir une nouvelle classe de base](https://github.com/facebook/react/pull/7195) appelée `React.PureComponent` dans la prochaine version mineure. Elle utilisera la même comparaison de surface que celle de `PureRenderMixin` aujourd’hui *(elle est arrivée avec React 15.3, NdT)*.
 
 ### Abonnements et effets de bord {#subscriptions-and-side-effects}
 
-Le deuxième type de mixin le plus courant que nous avons rencontré permet d'abonner un composant React à une source de données tierce.  Que la source soit un dépôt Flux, un observable Rx ou quoi que ce soit d'autre, le schéma est toujours le même : on s'abonne dans `componentDidMount`, on se désabonne dans `componentWillUnmount`, et le gestionnaire de changement appelle `this.setState()`.
+Le deuxième type de mixin le plus courant que nous avons rencontré permet d'abonner un composant React à une source de données tierce.  Que la source soit un dépôt Flux, un observable Rx ou quoi que ce soit d'autre, le schéma est toujours le même : on s'abonne dans `componentDidMount`, on se désabonne dans `componentWillUnmount`, et le gestionnaire de changements appelle `this.setState()`.
 
 ```javascript
 var SubscriptionMixin = {
@@ -147,13 +147,13 @@ module.exports = CommentList;
 
 #### Solution {#solution-1}
 
-Si un seul composant est abonné à la source de données, vous pouvez tout à fait incorporer la logique d'abonnement directement dans ce composant.  Évitez les abstractions prématurées.
+Si un seul composant est abonné à la source de données, vous pouvez tout à fait incorporer la logique d'abonnement directement dans ce composant.  Il est toujours préférable d’éviter les abstractions prématurées.
 
-Si plusieurs composants utilisent le mixin pour s'abonner à la source de données, une manière élégante d'éviter de se répéter consiste à utiliser une approche appelée [« composants d’ordre supérieur »](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750) *(Higher-Order Components ou HOC, NdT)*.  Le terme peut faire peur mais nous allons voir comment cette approche découle naturellement du modèle de composants.
+Si plusieurs composants utilisent le mixin pour s'abonner à la source de données, une manière élégante d'éviter de se répéter consiste à utiliser une approche appelée [« composants d’ordre supérieur »](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750) *(Higher-Order Components ou HOC, NdT)*.  Le terme peut faire peur mais nous allons voir ensemble à quel point cette approche découle naturellement du modèle de composants.
 
 #### Comprendre les composants d'ordre supérieur {#higher-order-components-explained}
 
-Oublions React un instant.  Prenez ces deux fonctions qui ajoutent et multiplient des nombres, en loguant leurs résultats au fil de l’eau :
+Oublions React un instant.  Prenez ces deux fonctions qui ajoutent et multiplient des nombres, en journalisant leurs résultats au fil de l’eau :
 
 ```js
 function addAndLog(x, y) {
@@ -171,9 +171,9 @@ function multiplyAndLog(x, y) {
 
 Ces deux fonctions ne sont pas très utiles mais elles vont nous aider à illustrer une approche que nous pourrons ensuite appliquer aux composants.
 
-Disons que nous voulons extraire leur logique de journalisation sans changer leurs signatures.  Comment y parvenir ?  Une solution élégante consisterait à écrire une [fonction d’ordre supérieur](https://fr.wikipedia.org/wiki/Fonction_d%27ordre_supérieur), c'est-à-dire une fonction qui prend une fonction en argument et qui renvoie une fonction.
+Disons que nous voulons extraire leur logique de journalisation sans changer leurs signatures.  Comment y parvenir ?  Une solution élégante consiste à écrire une [fonction d’ordre supérieur](https://fr.wikipedia.org/wiki/Fonction_d%27ordre_supérieur), c'est-à-dire une fonction qui prend une fonction en argument et qui renvoie une fonction.
 
-Là aussi, ça sonne plus compliqué que le code concerné :
+Là aussi, ça semble compliqué mais le code reste raisonnable :
 
 ```js
 function withLogging(wrappedFunction) {
@@ -214,9 +214,9 @@ var addAndLog = withLogging(add);
 var multiplyAndLog = withLogging(multiply);
 ```
 
-Les composants d'ordre supérieur sont une approche très similaire, mais pour les composants dans React.  Nous allons appliquer cette transformation à partir des mixins en deux étapes.
+Les composants d'ordre supérieur sont une approche très similaire, mais pour les composants dans React.  Nous allons appliquer cette transformation à partir de la version basée sur les mixins en deux étapes.
 
-Pour commencer, nous découperons notre composant `CommentList` en deux, un enfant et un parent.  L’enfant s'occupera uniquement de l'affichage des commentaires, tandis que le parent s'occupera de l'abonnement et de transmettre des données à jour à son enfant via les props.
+Pour commencer, nous découperons notre composant `CommentList` en deux : un enfant et un parent.  L’enfant s'occupera uniquement de l'affichage des commentaires, tandis que le parent s'occupera de l'abonnement et de transmettre des données à jour à son enfant via le mécanisme usuel des props.
 
 ```js
 // Voici le composant enfant.
@@ -273,7 +273,7 @@ Vous vous rappelez comment nous avions écrit `withLogging()` pour qu'elle accep
 
 Nous allons écrire une fonction `withSubscription(WrappedComponent)`.  Son argument peut être n'importe quel composant React.  Nous lui passerons `CommentList` comme `WrappedComponent`, mais on pourrait aussi appeler `withSubscription` avec n’importe quel composant de notre base de code.
 
-Cette fonction nous renverra un autre composant.  Le composant renvoyé gérera l'abonnement et utilisera `<WrappedComponent />` pour son rendu, alimenté par les données actuelles.
+Cette fonction nous renverra un autre composant.  Le composant renvoyé gérera l'abonnement et utilisera `<WrappedComponent />` pour son rendu, en lui transmettant les données actuelles.
 
 Nous appelons cette approche un « composant d’ordre supérieur ».
 
@@ -306,7 +306,7 @@ function withSubscription(WrappedComponent) {
     },
 
     render: function() {
-      // ...et utilise le composant enrobé avec des données à jour pour son rendu !
+      // ...et utilise le composant enrobé, avec des données à jour pour son rendu !
       return <WrappedComponent comments={this.state.comments} />;
     }
   });
@@ -368,8 +368,8 @@ function withSubscription(WrappedComponent) {
     },
 
     render: function() {
-      // Utilise la syntaxe de _spread_ JSX pour transmettre automatiquement
-      // toutes les props ainsi que l'état.
+      // Utilise la syntaxe de décomposition (spread) JSX pour transmettre
+      // automatiquement toutes les props ainsi que l'état.
       return <WrappedComponent {...this.props} {...this.state} />;
     }
   });
@@ -395,11 +395,11 @@ module.exports = withSubscription(CommentList);
 
 Les composants d'ordre supérieur sont une approche puissante.  Vous pouvez leur passer des arguments supplémentaires pour personnaliser leur comportement.  Après tout, il ne s'agit même pas d'une fonctionnalité de React : ce sont juste des fonctions qui reçoivent des composants et en renvoient d’autres qui les enrobent.
 
-Comme toute solution, les composants d'ordre supérieur ont leurs propres pièges.  Par exemple, si vous utilisez massivement les [refs](/docs/refs-and-the-dom.html), vous remarquerez peut-être qu’enrober quelque chose dans un composant d'ordre supérieure modifie la ref de sorte qu'elle pointe sur le composant d'enrobage.  En pratique, nous décourageons le recours aux refs pour faire communiquer les composants et ne pensons donc pas que c'est un problème majeur.  À l'avenir, nous envisagerons peut-être d’ajouter [du transfert de refs](https://github.com/facebook/react/issues/4213) dans React pour éliminer cette irritation. *([Ils l'ont effectivement ajouté](/docs/forwarding-refs.html), NdT.)*
+Comme toute solution, les composants d'ordre supérieur ont leurs propres pièges.  Par exemple, si vous utilisez massivement les [refs](/docs/refs-and-the-dom.html), vous remarquerez peut-être qu’enrober quelque chose dans un composant d'ordre supérieure modifie la ref de sorte qu'elle pointe sur le composant d'enrobage.  En pratique, nous décourageons le recours aux refs pour faire communiquer les composants et ne pensons donc pas que c'est un problème majeur.  À l'avenir, nous envisagerons peut-être d’ajouter [du transfert de refs](https://github.com/facebook/react/issues/4213) dans React pour éliminer cette irritation. *([Ils l'ont effectivement ajouté](/docs/forwarding-refs.html) avec React 16.3, NdT.)*
 
 ### Logique de rendu {#rendering-logic}
 
-Le cas d’usage courant suivant pour les mixins que nous avons repéré dans notre base de code cherche à réutiliser de la logique de rendu entre plusieurs composants.
+Un autre cas d’usage courant des mixins que nous avons repéré dans notre base de code cherche à réutiliser de la logique de rendu entre plusieurs composants.
 
 Voici un exemple typique de ce schéma :
 
@@ -440,11 +440,11 @@ Plusieurs composants pourraient utiliser `RowMixin` pour afficher l’en-tête, 
 
 #### Solution {#solution-2}
 
-Si vous remarquez de la logique de rendu dans un mixin, c’est le moment d'extraire un composant !
+Si vous remarquez de la logique de rendu dans un mixin, ça veut dire que c’est le moment d'extraire un composant !
 
 Au lieu de `RowMixin`, nous allons définir un composant `<RowHeader>`.  Nous remplacerons aussi les conventions d'appel (comme la méthode `getHeaderText()`) par le mécanisme standard de flux de données descendant de React : passer des props.
 
-Pour finir, vu qu’aucun des composants concerné n’a besoin de cycle de vie ou d’état local, nous pouvons les déclarer comme de simples fonctions :
+Pour finir, vu qu’aucun des composants concernés n’a besoin de cycle de vie ou d’état local, nous pouvons les déclarer comme de simples fonctions :
 
 ```js
 function RowHeader(props) {
@@ -469,11 +469,11 @@ Les props permettent aux composants d’exprimer des dépendances explicites, fa
 
 >Remarque
 >
->Vous n’êtes pas obligé·e de définir vos composants en tant que fonctions.  Il n’y a rien de mal à utiliser des méthodes de cycle de vie ou de l’&tat local : ce sont là des fonctionnalités à part entière de React.  Nous utilisons des fonctions composants dans cet exemple parce qu'elles sont plus faciles à lire et que nous n'avions pas l'utilité de ces fonctionnalités supplémentaires, mais ça marchera aussi très bien avec des classes.
+>Vous n’êtes pas obligé·e de définir vos composants en tant que fonctions.  Il n’y a rien de mal à utiliser des méthodes de cycle de vie ou l’état local : ce sont là des fonctionnalités à part entière de React.  Nous utilisons des fonctions composants dans cet exemple parce qu'elles sont plus faciles à lire et que nous n'avions pas l'utilité de ces fonctionnalités supplémentaires, mais ça marchera tout aussi bien avec des classes.
 
 ### Contexte {#context}
 
-Nous avons aussi remarqué une autre catégorie de mixins, qui étaient des utilitaires pour interagir avec le [Contexte React](/docs/context.html). Le Contexte est une fonctionnalité expérimentale instable qui a [quelques soucis](https://github.com/facebook/react/issues/2517), et nous changerons sans doute son API à l’avenir *(c'est le cas, et le lien au début de ce paragraphe documente la nouvelle API, NdT)*. Nous déconseillons de l’utiliser à moins que vous soyez certain·e qu’il représente la seule solution à votre problème.
+Nous avons aussi remarqué une autre catégorie de mixins, qui étaient des utilitaires pour interagir avec le [Contexte React](/docs/context.html). Le Contexte est une fonctionnalité expérimentale instable qui a [quelques soucis](https://github.com/facebook/react/issues/2517), et nous changerons sans doute son API à l’avenir *(ce qu’ils ont fait avec React 16.3, NdT)*. Nous déconseillons de l’utiliser à moins que vous soyez certain·e qu’il représente la seule solution à votre problème.
 
 Toujours est-il que si vous utilisez déjà le contexte, vous avez peut-être masqué son utilisation à l'aide de mixins similaires à celui-ci :
 
@@ -609,7 +609,7 @@ var Button = React.createClass({
 
 Il arrive qu'on utilise les mixins pour ajouter sélectivement de la journalisation ou des méthodes de cycle de vie à certains composants.  À l'avenir nous comptons fournir une [API DevTools officielle](https://github.com/facebook/react/issues/5306) qui vous permettra d’implémenter quelque chose de similaire sans toucher aux composants.  Ce chantier n'est toutefois pas près d'aboutir.  Si vous vous reposez massivement sur les mixins de journalisation pour votre débogage, vous voudrez peut-être les garder sous le coude encore un moment.
 
-Si vous n'arrivez pas à vos fins avec un composant, un composant d'ordre supérieur ou un module utilitaire, ça pourrait vouloir dire que React devrait répondre à votre besoin par défaut. [Créez un ticket](https://github.com/facebook/react/issues/new) pour nous expliquer votre cas d'usage des mixins, et nous vous aiderons à explorer des alternatives, ou peut-être implémenterons-nous la fonctionnalité que vous avez demandée.
+Si vous n'arrivez pas à vos fins avec un composant, un composant d'ordre supérieur ou un module utilitaire, ça pourrait vouloir dire que React devrait répondre à votre besoin par défaut. [Créez un ticket](https://github.com/facebook/react/issues/new) pour nous expliquer votre cas d'usage des mixins, et nous vous aiderons à explorer des alternatives, ou peut-être implémenterons-nous la fonctionnalité dont vous avez besoin.
 
 Les mixins ne sont pas dépréciés au sens traditionnel du terme.  Vous pouvez continuer à vous en servir avec `React.createClass()` car leur API est désormais gelée.  À mesure que les classes ES6 seront plus répandues et que leurs problèmes d'utilisabilité dans React seront réglés, nous sortirons peut-être `React.createClass()` dans un module à part car la plupart des gens n'en auront plus besoin *([ils l'ont fait avec React 15.5](/docs/react-without-es6.html#mixins), NdT)*.  Même dans ce cas, vos vieux mixins continueront à marcher.
 
