@@ -7,9 +7,9 @@ author: [gaearon]
 
 En fonction du contexte, la solution à base de composition n'est pas toujours évidente.  React est influencé par la programmation fonctionnelle mais il est arrivé dans un domaine où les bibliothèques orientées objets étaient monnaie courante.  Pour les ingénieurs tant chez Facebook qu'en dehors, abandonner leurs vieux modèles mentaux n’était pas chose aisée.
 
-Pour faciliter l’adoption initiale et l'apprentissage, nous avons incorporé quelques échappatoires dans React.  Le système de mixins en faisait partie, dont l’objectif était de vous fournir un moyen de réutiliser du code entre plusieurs composants quand vous ne saviez pas trop comment y parvenir avec la composition.
+Pour faciliter l’adoption initiale et l'apprentissage, nous avons incorporé quelques échappatoires dans React.  Le système de mixins en faisait partie, l’objectif étant de fournir un moyen de réutiliser du code entre plusieurs composants quand vous ne saviez pas trop comment y parvenir avec la composition.
 
-Trois ans ont passé depuis que React est sorti.  Le paysage a changé.  Des tas de bibliothèques d’interfaces utilisateurs (UI) adoptent désormais un modèle de composants similaire à React.  Préférer la composition à l'héritage pour construire des UI de façon déclarative n'a plus rien d'une nouveauté.  Notre confiance dans le modèle de composants de React s'est par ailleurs confortée, et nous avons pu voir de nombreuses utilisations créatives de la bibliothèque tant en interne que dans la communauté.
+Trois ans ont passé depuis que React est sorti.  Le paysage a changé.  Des tas de bibliothèques d’interfaces utilisateurs (UI) adoptent désormais un modèle de composants similaire à React.  Préférer la composition à l'héritage pour construire des UI de façon déclarative n'a plus rien d'une nouveauté.  Nous sommes également plus confiants vis-à-vis du modèle de composants de React, et nous avons pu voir de nombreuses utilisations créatives de la bibliothèque tant en interne que dans la communauté.
 
 Dans cet article, nous allons examiner les problèmes qu’entraînent couramment les mixins.  Nous suggérerons alors plusieurs approches alternatives pour les mêmes cas d'usages.  Nous avons constaté que ces approches restent plus maintenables que les mixins lorsque la complexité de la base de code augmente.
 
@@ -25,7 +25,7 @@ Il est cependant inévitable qu'une partie de notre code utilisant React devienn
 
 Il arrive qu'un composant s'appuie sur une méthode précise définie dans le mixin, telle que `getClassName()`.  D'autres fois c'est l'inverse, et le mixin appelle une méthode du composant, du genre `renderHeader()`.  JavaScript est un langage dynamique, de sorte qu'il est difficile de vérifier ou même de documenter ces dépendances.
 
-Les mixins invalident la supposition courante et généralement fiable qu’on peut renommer une clé d'état local ou une méthode en recherchant ses occurrences dans le fichier du composant.  Peut-être écrivez-vous un composant à état, après quoi votre collègue y ajoute un mixin qui lit cet état.  Dans quelques mois, vous pourriez vouloir faire remonter l'état dans le composant parent, pour qu'il puisse être partagé avec vos éléments frères.  Vous rappellerez-vous alors qu'il faut mettre à jour le mixin pour qu'il lise plutôt une prop ?  Et si, à ce stade, d'autres composants utilisent le même mixin ?
+Les mixins invalident la supposition habituelle et généralement fiable qu’on peut renommer une clé d'état local ou une méthode en recherchant ses occurrences dans le fichier du composant.  Peut-être écrivez-vous un composant à état, après quoi votre collègue y ajoute un mixin qui lit cet état.  Dans quelques mois, vous pourriez vouloir faire remonter l'état dans le composant parent, pour qu'il puisse être partagé avec vos éléments frères.  Vous rappellerez-vous alors qu'il faut mettre à jour le mixin pour qu'il lise plutôt une prop ?  Et si, à ce stade, d'autres composants utilisent le même mixin ?
 
 Ces dépendances implicites sont autant d'obstacles empêchant les nouveaux membres de l'équipe de contribuer efficacement à la base de code.  La méthode `render()` d'un composant fait peut-être référence à une méthode qui n'est pas définie dans la classe. Peut-on alors la retirer sereinement ?  Elle est peut-être définie dans l'un des mixins.  Mais lequel ? Vous devez alors remonter jusqu'à la liste des mixins, ouvrir chaque fichier concerné, et y rechercher cette méthode.  Pire, les mixins peuvent utiliser leurs propres mixins, ce qui complexifie la recherche.
 
@@ -59,7 +59,7 @@ Nous faisions déjà face à ces problématiques de construction d'appli avant R
 
 Pour commencer, précisons que les mixins ne sont pas techniquement dépréciés.  Si vous utilisez `React.createClass()`, vous pouvez continuer à vous en servir.  Nous disons seulement qu'ils ne nous ont pas satisfaits, donc nous ne recommanderons par leur utilisation à l'avenir. *(Depuis React 15.5, cette méthode a été [sortie dans un module à part](/docs/react-without-es6.html#mixins), NdT.)*
 
-Chaque section ci-dessous correspond à un schéma d'utilisation des mixins que nous avons rencontré dans la base de code de Facebook.  Pour chacune, nous décrivons le problème et une solution que nous estimons supérieure.  Les exemples sont écrits en ES5 mais une fois que vous n'avez plus besoin des mixins, vous pouvez passer à la syntaxe de classe ES6 si vous le souhaitez.
+Chaque section ci-dessous correspond à un schéma d'utilisation des mixins que nous avons rencontré dans la base de code de Facebook.  Pour chacune, nous décrivons le problème et une solution que nous estimons supérieure.  Les exemples sont écrits en ES5 mais dès que vous n'avez plus besoin des mixins, vous pouvez passer à la syntaxe de classe ES6 si vous le souhaitez.
 
 Nous espérons que cette liste vous sera utile.  N’hésitez pas à nous signaler des cas d'usages importants que nous aurions loupé afin que nous puissions soit augmenter cette liste, soit manger notre chapeau !
 
@@ -97,7 +97,7 @@ var Button = React.createClass({
 
 Si vous utilisez un mixin personnalisé qui implémente une fonction `shouldComponentUpdate` avec un algorithme différent, nous vous suggérons d'exporter juste cette fonction depuis un module et de l'appeler directement dans votre composant.
 
-Nous savons bien qu'il est pénible de devoir taper davantage de code.  Pour le cas dominant, nous comptons [fournir une nouvelle classe de base](https://github.com/facebook/react/pull/7195) appelée `React.PureComponent` dans la prochaine version mineure. Elle utilisera la même comparaison de surface que celle de `PureRenderMixin` aujourd’hui *(elle est arrivée avec React 15.3, NdT)*.
+Nous savons bien qu'il est pénible de devoir écrire davantage de code.  Pour le cas le plus courant, nous comptons [fournir une nouvelle classe de base](https://github.com/facebook/react/pull/7195) appelée `React.PureComponent` dans la prochaine version mineure. Elle utilisera la même comparaison de surface que celle de `PureRenderMixin` aujourd’hui *(elle est arrivée avec React 15.3, NdT)*.
 
 ### Abonnements et effets de bord {#subscriptions-and-side-effects}
 
@@ -473,7 +473,7 @@ Les props permettent aux composants d’exprimer des dépendances explicites, fa
 
 ### Contexte {#context}
 
-Nous avons aussi remarqué une autre catégorie de mixins, qui étaient des utilitaires pour interagir avec le [Contexte React](/docs/context.html). Le Contexte est une fonctionnalité expérimentale instable qui a [quelques soucis](https://github.com/facebook/react/issues/2517), et nous changerons sans doute son API à l’avenir *(ce qu’ils ont fait avec React 16.3, NdT)*. Nous déconseillons de l’utiliser à moins que vous soyez certain·e qu’il représente la seule solution à votre problème.
+Nous avons aussi remarqué une autre catégorie de mixins, qui étaient des utilitaires pour interagir avec le [Contexte React](/docs/context.html). Le Contexte est une fonctionnalité expérimentale instable qui a [quelques soucis](https://github.com/facebook/react/issues/2517), et nous changerons sans doute son API à l’avenir *([ce qu’ils ont fait avec React 16.3](https://fr.reactjs.org/blog/2018/03/29/react-v-16-3.html#official-context-api), NdT)*. Nous déconseillons de l’utiliser à moins que vous soyez certain·e qu’il représente la seule solution à votre problème.
 
 Toujours est-il que si vous utilisez déjà le contexte, vous avez peut-être masqué son utilisation à l'aide de mixins similaires à celui-ci :
 
