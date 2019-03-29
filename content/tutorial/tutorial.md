@@ -59,7 +59,7 @@ Tout d’abord, ouvrez ce **[code de départ](https://codepen.io/gaearon/pen/oWW
 
 Vous pouvez maintenant sauter la seconde option de mise en place, et aller directement à la section [Aperçu](#overview) pour faire un premier survol de React.
 
-### Option 2 : environnement de développement local {#setup-option-2-local-development-environment}
+### Option 2 : Environnement de développement local {#setup-option-2-local-development-environment}
 
 C’est une démarche complètement optionnelle, qui n’a rien d’obligatoire pour ce tutoriel !
 
