@@ -59,7 +59,7 @@ Nous faisions déjà face à ces problématiques de construction d'appli avant R
 
 Pour commencer, précisons que les mixins ne sont pas techniquement dépréciés.  Si vous utilisez `React.createClass()`, vous pouvez continuer à vous en servir.  Nous disons seulement qu'ils ne nous ont pas satisfaits, donc nous ne recommanderons par leur utilisation à l'avenir. *(Depuis React 15.5, cette méthode a été [sortie dans un module à part](/docs/react-without-es6.html#mixins), NdT.)*
 
-Chaque section ci-dessous correspond à un schéma d'utilisation des mixins que nous avons rencontré dans la base de code de Facebook.  Pour chacune, nous décrivons le problème et une solution que nous estimons supérieure.  Les exemples sont écrits en ES5 mais dès que vous n'avez plus besoin des mixins, vous pouvez passer à la syntaxe de classe ES6 si vous le souhaitez.
+Chaque section ci-dessous correspond à un schéma d'utilisation des mixins que nous avons rencontré dans la base de code de Facebook.  Pour chacune, nous décrivons le problème et une solution que nous estimons supérieure.  Les exemples sont écrits en ES5 mais dès lors que vous n'avez plus besoin des mixins, vous pouvez passer à la syntaxe de classe ES6 si vous le souhaitez.
 
 Nous espérons que cette liste vous sera utile.  N’hésitez pas à nous signaler des cas d'usages importants que nous aurions loupé afin que nous puissions soit augmenter cette liste, soit manger notre chapeau !
 
