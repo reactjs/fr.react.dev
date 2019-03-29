@@ -72,9 +72,13 @@ Pour implémenter ça, on a besoin d'ajouter un « état local » au composant
 
 L'état local est similaire aux props, mais il est privé et complètement contrôlé par le composant.
 
+<<<<<<< HEAD
 Nous avons [mentionné auparavant](/docs/components-and-props.html#functional-and-class-components) qu'un composant défini avec une classe a des fonctionnalités supplémentaires. L'état local, c’est exactement ça : une fonctionnalité uniquement disponible dans les classes.
 
 ## Convertir une fonction en classe {#converting-a-function-to-a-class}
+=======
+## Converting a Function to a Class {#converting-a-function-to-a-class}
+>>>>>>> d0f2db967a38e358bd59c65e981862cdf38f3d0b
 
 Vous pouvez convertir un composant fonctionnel comme `Clock` en une classe en cinq étapes :
 
