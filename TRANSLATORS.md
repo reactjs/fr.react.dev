@@ -143,7 +143,7 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
         <ul>
           <li><a href="https://fr.reactjs.org">Accueil</a></li>
           <li><a href="https://fr.reactjs.org/docs/react-api.html">Référence de l’API › React</a></li>
-          <li><a href="https://fr.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html">Blog › Vous n'avez sans doute pas besoin d'états dérivés</a> (en cours)</li>
+          <li><a href="https://fr.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html">Blog › Vous n'avez sans doute pas besoin d'états dérivés</a></li>
         </ul>
       </td>
     </tr>
