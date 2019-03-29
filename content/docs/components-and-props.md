@@ -1,6 +1,6 @@
 ---
 id: components-and-props
-title: Composants et Props
+title: Composants et props
 permalink: docs/components-and-props.html
 redirect_from:
   - "docs/reusable-components.html"

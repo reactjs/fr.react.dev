@@ -1,6 +1,6 @@
 ---
 id: state-and-lifecycle
-title: État et Cycle de vie
+title: État et cycle de vie
 permalink: docs/state-and-lifecycle.html
 redirect_from:
   - "docs/interactivity-and-dynamic-uis.html"
