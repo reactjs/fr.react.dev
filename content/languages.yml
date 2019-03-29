@@ -83,6 +83,10 @@
   translated_name: ភាសាខ្មែរ
   code: km
   status: 0
+- name: kannada
+  translated_name: ಕನ್ನಡ
+  code: kn
+  status: 0
 - name: coréen
   translated_name: 한국어
   code: ko
@@ -150,7 +154,7 @@
 - name: turc
   translated_name: Türkçe
   code: tr
-  status: 1
+  status: 2
 - name: ukrainien
   translated_name: Українська
   code: uk
