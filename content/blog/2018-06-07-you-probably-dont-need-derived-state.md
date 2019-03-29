@@ -5,7 +5,7 @@ author: [bvaughn]
 
 React 16.4 apportait [un correctif pour `getDerivedStateFromProps`](/blog/2018/05/23/react-v-16-4.html#bugfix-for-getderivedstatefromprops) qui déclenchait certains bugs connus des composants React plus fréquemment. Si la publication de cette version a mis en évidence un _anti-pattern_ dans votre application et l'a cassée, nous sommes désolés pour le désagrément. Dans cet article nous allons passer en revue certains anti-patterns habituels autour des états dérivés et les alternatives que nous recommandons.
 
-Depuis longtemps, la méthode de cycle de vie `componentWillReceiveProps` était la seule façon de mettre à jour un état suite à un changement de props sans pour autant déclencher un rendu supplémentaire. Dans la version 16.3, [nous avons introduit une méthode de cycle de vie de remplacement `getDerivedStateFromProps`](/blog/2018/03/29/react-v-16-3.html#component-lifecycle-changes) pour résoudre les même problèmes mais de manière plus fiable. Dans le même temps, nous nous sommes aperçus qu'il y avait de nombreuses idées fausses autour de l'utilisation de ces deux méthodes et nous avons découvert des anti-patterns qui entraînaient des bugs à la fois subtils et déroutants. Le correctif pour `getDerivedStateFromProps` dans la version 16.4 [rend les états dérivés plus prévisibles](https://github.com/facebook/react/issues/12898), ce qui rend les conséquences d'une mauvaise utilisation plus faciles à repérer.
+Depuis longtemps, la méthode de cycle de vie `componentWillReceiveProps` était la seule façon de mettre à jour un état suite à un changement de props sans pour autant déclencher un rendu supplémentaire. Dans la version 16.3, [nous avons introduit une méthode de cycle de vie de remplacement `getDerivedStateFromProps`](/blog/2018/03/29/react-v-16-3.html#component-lifecycle-changes) pour résoudre les même problèmes mais de manière plus fiable. Dans le même temps, nous nous sommes aperçu qu'il y avait de nombreuses idées fausses autour de l'utilisation de ces deux méthodes et nous avons découvert des anti-patterns qui entraînaient des bugs à la fois subtils et déroutants. Le correctif pour `getDerivedStateFromProps` dans la version 16.4 [rend les états dérivés plus prévisibles](https://github.com/facebook/react/issues/12898), ce qui rend les conséquences d'une mauvaise utilisation plus faciles à repérer.
 
 > Remarque
 >
@@ -25,7 +25,7 @@ Cet article va couvrir les sujets suivants :
 
 Nous n'avons pas donné beaucoup d'exemples car, de manière générale, **les états dérivés devraient être utilisés avec parcimonie**. Tous les problèmes que nous avons identifiés avec les états dérivés peuvent au bout du compte se résumer à (1) la mise à jour inconditionnelle de l'état à partir des props ou (2) la mise à jour de l'état à chaque fois que l'état et les props ne correspondent pas. (Nous allons détailler ces deux cas ci-après.)
 
-* Si vous utilisez un état dérivé pour mémoïser certains calculs sur la seule base des props courantes, alors vous n'avez pas besoin d’un état dérivé. Allez voir [Et la mémoïsation dans tout ça ?](#what-about-memoization) ci-après.
+* Si vous utilisez un état dérivé pour mémoïser certains calculs sur la seule base des props courantes, alors vous n'avez pas besoin d’un état dérivé. Allez plutôt voir [Et la mémoïsation dans tout ça ?](#what-about-memoization) ci-après.
 * Si vous mettez à jour votre état dérivé quoi qu'il arrive, ou dès que l'état et les props ne correspondent pas, il y a de fortes chances que votre composant réinitialise son état trop fréquemment. Continuez votre lecture pour en apprendre davantage.
 
 ## Les bugs courants relatifs à un état dérivé {#common-bugs-when-using-derived-state}
@@ -40,7 +40,7 @@ Les problèmes surviennent dès qu’une de ces contraintes change. Ça se produ
 
 Une erreur courante consiste à croire que `getDerivedStateFromProps` et `componentWillReceiveProps` ne sont appelées que lorsque les props « changent ». Ces méthodes de cycle de vie sont appelées à chaque fois qu'un composant parent se rafraîchit, peu importe que les props soient « différentes » ou non de la fois précédente. Pour cette raison, il a toujours été dangereux d'écraser l'état de manière _inconditionnelle_ en utilisant ces méthodes de cycle de vie. **Cette pratique conduira à la perte des mises à jour de l'état.**
 
-Prenons un example pour illustrer ce problème. Voici un composant `EmailInput` qui « reflète » une prop `email` dans l'état :
+Prenons un exemple pour illustrer ce problème. Voici un composant `EmailInput` qui « reflète » une prop `email` dans l'état :
 ```js
 class EmailInput extends Component {
   state = { email: this.props.email };
@@ -69,7 +69,7 @@ Nous espérons avoir clairement établi que **copier les props dans l'état de m
 
 ### Anti-pattern : effacer l'état quand les props changent {#anti-pattern-erasing-state-when-props-change}
 
-En reprenant l'example précédent, on peut éviter d'effacer l'état accidentellement en ne le mettant à jour que lorsque `props.email` change :
+En reprenant l'exemple précédent, on peut éviter d'effacer l'état accidentellement en ne le mettant à jour que lorsque `props.email` change :
 
 ```js
 class EmailInput extends Component {
@@ -92,11 +92,11 @@ class EmailInput extends Component {
 
 > Remarque
 >
-> Bien que l'example précédent utilise `componentWillReceiveProps`, le même anti-pattern s'applique à `getDerivedStateFromProps`.
+> Bien que l'exemple précédent utilise `componentWillReceiveProps`, le même anti-pattern s'applique à `getDerivedStateFromProps`.
 
-Nous avons réalisé une grosse amélioration. À présent notre composant va effacer notre saisie uniquement lorsque la prop changera.
+Nous avons réalisé une grosse amélioration. À présent notre composant effacera notre saisie uniquement lorsque la prop changera.
 
-Un problème subtil demeure cependant. Imaginez un gestionnaire de mots de passe qui utiliserait ce composant. En navigant entre les détails de deux comptes utilisant le même e-mail, le champ ne se mettrait pas à jour. Ça viendrait du fait que la valeur de la prop passée au composant serait la même pour les deux comptes ! Ce serait une sacré surprise pour l'utilisateur puisqu’un changement non-sauvegardé pour un compte affecterait tous ceux qui partagent le même e-mail. ([Voyez la démo ici.](https://codesandbox.io/s/mz2lnkjkrx))
+Un problème subtil demeure cependant. Imaginez un gestionnaire de mots de passe qui utiliserait ce composant. En navigant entre les détails de deux comptes utilisant le même e-mail, le champ ne se mettrait pas à jour. Ça viendrait du fait que la valeur de la prop passée au composant serait la même pour les deux comptes ! Ce serait une sacrée surprise pour l'utilisateur puisqu’un changement non-sauvegardé pour un compte affecterait tous ceux qui partagent le même e-mail. ([Voyez la démo ici.](https://codesandbox.io/s/mz2lnkjkrx))
 
 Cette approche est fondamentalement incorrecte mais c'est aussi une erreur très facile à commettre. ([Je l'ai faite moi-même !](https://twitter.com/brian_d_vaughn/status/959600888242307072)) Heureusement, il y a deux alternatives qui fonctionnent mieux. Le point clé de ces alternatives tient à ce que **pour n'importe quelle donnée vous devez choisir un seul composant comme source de vérité, et éviter de la dupliquer dans d'autres composants.** Jetons un coup d'œil à ces alternatives.
 
@@ -131,7 +131,7 @@ class EmailInput extends Component {
 }
 ```
 
-Pour pouvoir réinitialiser la valeur lorsqu'on change de contexte (comme dans notre scénario de gestionnaire de mots de passe), on peut utiliser l'attribut spécial de React appelé `key`. Quand une `key` change, React [créera une nouvelle instance du composant plutôt que de mettre à jour le composant actuel](/docs/reconciliation.html#keys). Les clés sont habituellement utilisées pour les listes dynamiques mais sont aussi utiles dans ce cas. Dans notre exemple on pourrait utiliser l'ID de l'utilisateur pour recréer le champ e-mail à chaque fois qu'un nouvel utilisateur est sélectionné :
+Pour pouvoir réinitialiser la valeur lorsqu'on change de contexte (comme dans notre scénario de gestionnaire de mots de passe), on peut utiliser l'attribut spécial de React appelé `key`. Quand une `key` change, React [créera une nouvelle instance du composant plutôt que de mettre à jour le composant actuel](/docs/reconciliation.html#keys). Les clés sont habituellement utilisées pour les listes dynamiques mais sont aussi utiles dans ce cas. Dans notre exemple on pourrait utiliser l'ID de l'utilisateur pour recréer le champ e-mail à chaque sélection d'un nouvel utilisateur :
 
 ```js
 <EmailInput
@@ -142,11 +142,11 @@ Pour pouvoir réinitialiser la valeur lorsqu'on change de contexte (comme dans n
 
 À chaque fois que l'ID change, le composant `EmailInput` sera recréé et son état sera initialisé avec la dernière valeur fournie par la prop `defaultEmail`. ([Cliquez ici pour voir la démo de cette solution.](https://codesandbox.io/s/6v1znlxyxn)) Avec cette approche, vous n'avez pas à ajouter une `key` à tous les champs. C'est d'ailleurs sans doute plus sensé d’ajouter une `key` sur le formulaire lui-même plutôt que sur un simple champ. De cette manière, chaque fois que la clé changera, tous les composants dans le formulaire seront recréés avec un nouvel état fraîchement initialisé.
 
-Dans la plupart des cas, c'est la meilleure façon de gérer les états qui ont besoin d'être réinitialisés.
+C'est généralement la meilleure façon de gérer les états qui ont besoin d'être réinitialisés.
 
 > Remarque
 >
-> Bien que ça semble plus lent, la différence de performance est généralement insignifiante. Utiliser une clé peut même être plus rapide si les composants exécutent une logique coûteuse à chaque mise à jour, puisqu’ici la comparaison des arbres enfants est carrément sautée.
+> Bien que ça semble plus lent, la différence de performance est généralement insignifiante. Utiliser une clé peut même s’avérer plus rapide si les composants exécutent une logique métier coûteuse à chaque mise à jour, puisqu’ici la comparaison des arbres enfants est court-circuitée.
 
 #### Alternative 1 : réinitialiser un composant non-contrôlé avec une prop ID {#alternative-1-reset-uncontrolled-component-with-an-id-prop}
 
@@ -160,7 +160,7 @@ class EmailInput extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    // À chaque fois que l‘utilisateur actuel change, on réinitialise
+    // À chaque fois que l’utilisateur actuel change, on réinitialise
     // tous les aspects de l’état qui sont liés à cet utilisateur.
     // Dans cet exemple simple, il ne s’agit que de l’e-mail.
     if (props.userID !== state.prevPropsUserID) {
@@ -232,8 +232,8 @@ class Example extends Component {
   };
 
   // ******************************************************************
-  // REMARQUE : cet exemple n'est PAS la méthode que nous recommandons.
-  // Voyez plutôt l'exemple ci-après pour avoir notre recommandation.
+  // REMARQUE : cet exemple n’est PAS la méthode que nous recommandons.
+  // Voyez plutôt l’exemple ci-après pour avoir notre recommandation.
   // ******************************************************************
 
   static getDerivedStateFromProps(props, state) {
@@ -271,8 +271,10 @@ class Example extends Component {
 Cette solution évite de recalculer `filteredList` plus que nécessaire. Elle est toutefois inutilement compliquée car il faut suivre et vérifier les changements individuels de chacune des props et variables d'état pour pouvoir mettre à jour la liste correctement. Dans cet exemple, nous pouvons simplifier les choses en utilisant `PureComponent` et en déplaçant le filtrage dans la méthode de rendu :
 
 ```js
-// Les PureComponents ne se rafraîchissent que si au moins une valeur de prop ou d’état change.
-// Les changements sont déterminés en faisant une comparaison de surface des clés des objets props et state
+// Les PureComponents ne se rafraîchissent que si au moins
+// une valeur de prop ou d’état change.  Les changements sont
+// déterminés en faisant une comparaison de surface des clés
+// des objets props et state
 class Example extends PureComponent {
   // L’état n’a besoin de retenir que le texte actuel du filtre :
   state = {
@@ -338,8 +340,8 @@ C'est beaucoup plus simple et c'est aussi performant que la version avec état d
 Quand vous utilisez la mémoïsation, souvenez-vous des quelques contraintes suivantes :
 
 1. Dans la plupart des cas, vous voudrez **rattacher la fonction mémoïsée à l'instance du composant**. Ça évite que de multiples instances d'un même composant ne réinitialisent les clés de mémoïsation les unes des autres.
-1. En général, vous voudrez utiliser un utilitaire de mémoïsation avec une **taille de cache limitée** afin d'éviter d'éventuelles fuites de mémoire au fil du temps. (Dans l'exemple précédent, nous avons utilisé `memoize-one` car il ne cache que le couple arguments/résultat le plus récent.)
-1. Aucune des solutions présentées ici ne fonctionnera si `props.list` et recréée à chaque fois que le composant parent se rafraîchit. Cependant, dans la plupart des cas ce système convient.
+2. En général, vous voudrez utiliser un utilitaire de mémoïsation avec une **taille de cache limitée** afin d'éviter d'éventuelles fuites de mémoire au fil du temps. (Dans l'exemple précédent, nous avons utilisé `memoize-one` car il ne cache que le couple arguments/résultat le plus récent.)
+3. Aucune des solutions présentées ici ne fonctionnera si `props.list` et recréée à chaque fois que le composant parent se rafraîchit. Cependant, dans la plupart des cas ce système convient.
 
 ## En conclusion {#in-closing}
 
