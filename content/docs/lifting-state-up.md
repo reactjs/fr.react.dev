@@ -199,7 +199,7 @@ Maintenant, quand le composant `TemperatureInput` veut mettre à jour la tempér
     // ...
 ```
 
->Remarque :
+>Remarque
 >
 >Les noms de props `temperature` et `onTemperatureChange` n’ont pas de sens particulier. On aurait pu les appeler n’importe comment, par exemple `value` et `onChange`, qui constituent une convention de nommage répandue.
 

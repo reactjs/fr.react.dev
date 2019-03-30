@@ -1,4 +1,4 @@
-// Before
+// Avant
 class ExampleComponent extends React.Component {
   // highlight-range{1-10}
   componentWillMount() {
@@ -6,7 +6,7 @@ class ExampleComponent extends React.Component {
       subscribedValue: this.props.dataSource.value,
     });
 
-    // This is not safe; it can leak!
+    // Ce code est dangereux : fuites de mémoire en vue !
     this.props.dataSource.subscribe(
       this.handleSubscriptionChange
     );

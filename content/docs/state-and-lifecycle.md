@@ -1,6 +1,6 @@
 ---
 id: state-and-lifecycle
-title: État et Cycle de vie
+title: État et cycle de vie
 permalink: docs/state-and-lifecycle.html
 redirect_from:
   - "docs/interactivity-and-dynamic-uis.html"
@@ -71,8 +71,6 @@ ReactDOM.render(
 Pour implémenter ça, on a besoin d'ajouter un « état local » au composant `Horloge`.
 
 L'état local est similaire aux props, mais il est privé et complètement contrôlé par le composant.
-
-Nous avons [mentionné auparavant](/docs/components-and-props.html#functional-and-class-components) qu'un composant défini avec une classe a des fonctionnalités supplémentaires. L'état local, c’est exactement ça : une fonctionnalité uniquement disponible dans les classes.
 
 ## Convertir une fonction en classe {#converting-a-function-to-a-class}
 

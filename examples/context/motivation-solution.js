@@ -1,15 +1,15 @@
 // highlight-range{1-4}
-// Context lets us pass a value deep into the component tree
-// without explicitly threading it through every component.
-// Create a context for the current theme (with "light" as the default).
+// Le Contexte nous permet de transmettre une prop profondément dans l’arbre des
+// composants sans la faire passer explicitement à travers tous les composants.
+// Crée un contexte pour le thème (avec “light” comme valeur par défaut).
 const ThemeContext = React.createContext('light');
 
 class App extends React.Component {
   render() {
     // highlight-range{1-3,5}
-    // Use a Provider to pass the current theme to the tree below.
-    // Any component can read it, no matter how deep it is.
-    // In this example, we're passing "dark" as the current value.
+    // Utilise un Provider pour passer le thème plus bas dans l’arbre.
+    // N’importe quel composant peut le lire, quelle que soit sa profondeur.
+    // Dans cet exemple, nous passons “dark” comme valeur actuelle.
     return (
       <ThemeContext.Provider value="dark">
         <Toolbar />
@@ -18,9 +18,8 @@ class App extends React.Component {
   }
 }
 
-// highlight-range{1,2}
-// A component in the middle doesn't have to
-// pass the theme down explicitly anymore.
+// highlight-range{1,1}
+// Un composant au milieu n’a plus à transmettre explicitement le thème
 function Toolbar(props) {
   return (
     <div>
@@ -31,9 +30,9 @@ function Toolbar(props) {
 
 class ThemedButton extends React.Component {
   // highlight-range{1-3,6}
-  // Assign a contextType to read the current theme context.
-  // React will find the closest theme Provider above and use its value.
-  // In this example, the current theme is "dark".
+  // Définit un contextType pour lire le contexte de thème actuel.  React va
+  // trouver le Provider de thème ancêtre le plus proche et utiliser sa valeur.
+  // Dans cet exemple, le thème actuel est “dark”.
   static contextType = ThemeContext;
   render() {
     return <Button theme={this.context} />;

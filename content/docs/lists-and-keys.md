@@ -249,7 +249,7 @@ ReactDOM.render(
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
 
-Les clés servent d'indicateur à React mais ne sont pas passées à vos composants. Si vous avez besoin de la même valeur dans de votre composant, passez-la dans une prop avec un nom différent :
+Les clés servent d'indicateur à React mais ne sont pas passées à vos composants. Si vous avez besoin de la même valeur dans votre composant, passez-la dans une prop avec un nom différent :
 
 ```js{3,4}
 const content = posts.map((post) =>

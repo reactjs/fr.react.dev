@@ -1,4 +1,4 @@
-// After
+// Après
 class ExampleComponent extends React.Component {
   // highlight-range{1-8}
   componentDidUpdate(prevProps, prevState) {

@@ -2,7 +2,7 @@ import {createSubscription} from 'create-subscription';
 
 const Subscription = createSubscription({
   getCurrentValue(sourceProp) {
-    // Return the current value of the subscription (sourceProp).
+    // Renvoie la valeur courante de l’abonnement (sourceProp).
     return sourceProp.value;
   },
 
@@ -11,19 +11,19 @@ const Subscription = createSubscription({
       callback(sourceProp.value);
     }
 
-    // Subscribe (e.g. add an event listener) to the subscription (sourceProp).
-    // Call callback(newValue) whenever a subscription changes.
+    // S’abonne (ex. ajoute un écouteur d’événements) à la source (sourceProp).
+    // Appelle `callback(newValue)` dès que l’abonnement notifie un changement.
     sourceProp.subscribe(handleSubscriptionChange);
 
-    // Return an unsubscribe method.
+    // Renvoie une fonction de désabonnement.
     return function unsubscribe() {
       sourceProp.unsubscribe(handleSubscriptionChange);
     };
   },
 });
 
-// Rather than passing the subscribable source to our ExampleComponent,
-// We could just pass the subscribed value directly:
+// Plutôt que de passer la source sur laquelle s'abonner à notre ExampleComponent,
+// on pourrait juste lui passer la valeur suivie directement :
 <Subscription source={dataSource}>
   {value => <ExampleComponent subscribedValue={value} />}
 </Subscription>;

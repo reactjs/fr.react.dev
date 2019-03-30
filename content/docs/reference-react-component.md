@@ -33,7 +33,7 @@ La seule méthode que vous *devez* définir dans une sous-classe de `React.Compo
 
 **Nous vous recommandons fortement de ne pas créer vos propres classes de base pour vos composants.**  Dans les composants React, [la réutilisation de code est obtenue principalement par composition plutôt que par héritage](/docs/composition-vs-inheritance.html).
 
-> Remarque :
+>Remarque
 >
 > React ne vous force pas à utiliser la syntaxe de classes ES6. Si vous préférez l’éviter, vous pouvez utiliser à la place le module `create-react-class` ou une autre abstraction maison du même genre. Allez faire un tour sur [React sans ES6](/docs/react-without-es6.html) pour en apprendre davantage.
 
@@ -50,7 +50,7 @@ Les méthodes suivantes sont appelées dans cet ordre lorsqu’une instance d’
 - [**`render()`**](#render)
 - [**`componentDidMount()`**](#componentdidmount)
 
-> Remarque :
+>Remarque
 >
 > Les méthodes suivantes sont considérées dépréciées et vous devriez [les éviter](/blog/2018/03/27/update-on-async-rendering.html) dans vos nouveaux codes :
 >
@@ -67,7 +67,7 @@ Une mise à jour est déclenchée par des changements dans les props ou l’éta
 - [**`componentDidUpdate()`**](#componentdidupdate)
 
 
-> Remarque :
+>Remarque
 >
 > Les méthodes suivantes sont considérées dépréciées et vous devriez [les éviter](/blog/2018/03/27/update-on-async-rendering.html) dans vos nouveaux codes :
 >
@@ -89,7 +89,7 @@ Ces méthodes sont appelées lorsqu’une erreur survient au sein de n’importe
 
 ### Autres API {#other-apis}
 
-Chaque composant fournit par ailleurs quelques APIs supplémentaires :
+Chaque composant fournit par ailleurs quelques API supplémentaires :
 
   - [`setState()`](#setstate)
   - [`forceUpdate()`](#forceupdate)

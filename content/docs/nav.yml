@@ -68,9 +68,9 @@
     - id: refs-and-the-dom
       title: Les refs et le DOM
     - id: render-props
-      title: Render props
+      title: Props de rendu
     - id: static-type-checking
-      title: Validation statique de types
+      title: Validation de types statique
     - id: strict-mode
       title: Mode strict
     - id: typechecking-with-proptypes
@@ -128,7 +128,7 @@
   - id: how-to-contribute
     title: Comment contribuer
   - id: codebase-overview
-    title: Aperçu de la base de code
+    title: Aperçu du code source
   - id: implementation-notes
     title: Notes d’implémentation
   - id: design-principles
@@ -140,7 +140,7 @@
     - id: faq-build
       title: Babel, JSX, et étapes de construction
     - id: faq-functions
-      title: Passer des fonctions à des composants
+      title: Passer des fonctions aux composants
     - id: faq-state
       title: État local de composant
     - id: faq-styling
