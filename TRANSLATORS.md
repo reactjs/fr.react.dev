@@ -92,16 +92,6 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
       </td>
     </tr>
     <tr>
-      <td><a href="https://github.com/forresst">forresst</a></td>
-      <td><a href="https://twitter.com/forresst17">@forresst17</a></td>
-      <td>
-        <ul>
-          <li><a href="https://fr.reactjs.org/docs/implementation-notes.html">Contribuer › Notes d’implémentation</a></li>
-          <li><a href="https://fr.reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html">Blog › Les composants, éléments et instances en React</a> (en cours)</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
       <td><a href="https://github.com/franckboudraa">Franck Boudraa</a></td>
       <td><a href="https://twitter.com/neocydfr">@neocydfr</a></td>
       <td>
@@ -342,6 +332,16 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
       <td><a href="https://twitter.com/sbentifraouine">@sbentifraouine</a></td>
       <td>
         <a href="https://fr.reactjs.org/docs/react-without-es6.html">Guides avancés › React sans ES6</a>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/forresst">Stéphane Reynaud</a></td>
+      <td><a href="https://twitter.com/forresst17">@forresst17</a></td>
+      <td>
+        <ul>
+          <li><a href="https://fr.reactjs.org/docs/implementation-notes.html">Contribuer › Notes d’implémentation</a></li>
+          <li><a href="https://fr.reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html">Blog › Les composants, éléments et instances en React</a> (en cours)</li>
+        </ul>
       </td>
     </tr>
     <tr>
