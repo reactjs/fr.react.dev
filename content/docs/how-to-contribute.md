@@ -29,7 +29,7 @@ Nous ferons de notre mieux pour garder la branche [`master`](https://github.com/
 
 Si vous envoyez une _pull request_, merci de la faire sur la branche `master`. Nous maintenons des branches  stables pour chaque version majeure séparément mais n'acceptons pas de _pull requests_ sur ces dernières directement. Nous préférons sélectionner manuellement les changements sur `master` qui ne cassent pas la compatibilité ascendante pour les reporter dans la version stable majeure la plus récente.
 
-### Gestion de versions sémantique {#semantic-versioning}
+### Gestion sémantique de version {#semantic-versioning}
 
 
 React utilise une [gestion sémantique de version](https://semver.org/). Nous publions des versions de correctif pour les correctifs de bugs, des versions mineures pour les nouvelles fonctionnalités et des versions majeures s'il y a rupture de la compatibilité ascendante. Quand nous introduisons de telles ruptures, nous ajoutons aussi des avertissements de dépréciation dans une version mineure afin que nos utilisateurs soient au courant de ces évolutions à venir et qu'ils puissent migrer leur code en amont.
