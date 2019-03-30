@@ -644,11 +644,11 @@ function ProductDetails({ fetchProduct })
 }
 ```
 
-Remarquez que dans cet exemple nous **devons** garder la fonction dans la liste des dépendances.  On s'assure ainsi qu'une modification à la prop `productId` de `ProductPage` déclenchera automatiquement une nouvelle récupération de données dans le composant `ProductDetails`.
+Remarquez que dans cet exemple nous **devons** garder la fonction dans la liste des dépendances.  On s'assure ainsi qu'une modification à la prop `productId` de `ProductPage` déclenchera automatiquement une nouvelle récupération de données distantes dans le composant `ProductDetails`.
 
 ### Que faire quand mes dépendances d’effet changent trop souvent ? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
 
-Il arrive que votre effet lise un état qui change trop fréquemment.  Vous pourriez alors être tenté·e d’omettre cet état de la liste des dépendances, mais ça engendre le plus souvent des bugs :
+Il arrive que votre effet lise un état qui change trop fréquemment.  Vous pourriez alors être tenté·e d’omettre cet état de la liste des dépendances, mais ça engendre souvent des bugs :
 
 ```js{6,9}
 function Counter() {
@@ -686,7 +686,7 @@ function Counter() {
 
 Pour des cas plus complexes (comme lorsqu’un état dépend d'un autre état), essayez de déplacer la logique de mise à jour de l'état hors de l'effet avec le [Hook `useReducer`](/docs/hooks-reference.html#usereducer). [Cet article](https://adamrackis.dev/state-and-use-reducer/) (en anglais) vous donne un exemple de cette approche. **L’identité de la fonction `dispatch` fournie par `useReducer` est garantie stable**, même si la fonction de réduction est déclarée dans le composant et lit ses props.
 
-En dernier recours, si vous voulez un analogue au `this` d’une classe, vous pouvez [utiliser une ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) pour stocker une variable modifiable.  Vous pouvez alors y écrire et la relire.  Par exemple :
+En dernier recours, si vous voulez quelque chose de similaire au `this` d’une classe, vous pouvez [utiliser une ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) pour stocker une donnée modifiable.  Vous pouvez alors y écrire et la relire.  Par exemple :
 
 ```js{2-6,10-11,16}
 function Example(props) {
