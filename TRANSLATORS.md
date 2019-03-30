@@ -6,7 +6,7 @@ Ce document vous fournit le détail de leurs travaux, afin de les remercier plus
 
 ## Pilotage
 
-[Christophe Porteneuve](https://github.com/tdd) pilote l’effort de traduction française : interface avec l’équipe noyau et la responsable des traductions, rédaction des **meilleures pratiques** et du **glossaire**, traduction de **l'infrastructure technique** du site et des pages de service, **accueil** des nouvelles personnes qui demandent à traduire, maintenance de la fiche de progression, **revue détaillée de l'intégralité des traductions proposées**.
+[Christophe Porteneuve](https://github.com/tdd) pilote l’effort de traduction française : interface avec l’équipe noyau et la responsable des traductions, rédaction des **meilleures pratiques** et du **glossaire**, traduction de **l'infrastructure technique** du site et des pages de service, **accueil** des nouvelles personnes qui demandent à traduire, maintenance de la fiche de progression, **synchro et ajout de trads lors des mises à jour de la VO**, **revue détaillée de l'intégralité des traductions proposées**.
 
 Il est assisté pour ce dernier point par des revues en amont de plusieurs **mainteneurs** pour le français, notamment Jean Burellier, Jérémie Patonnier et Romain Rukse.
 
