@@ -24,6 +24,13 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
   </thead>
   <tbody>
     <tr>
+      <td><a href="https://github.com/adrienthiery">Adrien Thiery</a></td>
+      <td></td>
+      <td>
+        <a href="https://fr.reactjs.org/docs/how-to-contribute.html">Contribuer › Comment contribuer</a>
+      </td>
+    </tr>
+    <tr>
       <td><a href="https://github.com/shinework">Baptiste Adrien</a></td>
       <td><a href="https://twitter.com/shinework">@shinework</a></td>
       <td>
