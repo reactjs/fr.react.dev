@@ -338,6 +338,13 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
       </td>
     </tr>
     <tr>
+      <td><a href="https://github.com/flightcom">Sébastien Moreau</a></td>
+      <td><a href="https://twitter.com/flightcom">@flightcom</a></td>
+      <td>
+          <a href="https://fr.reactjs.org/docs/hooks-faq.html">Hooks › FAQ des Hooks</a>
+      </td>
+    </tr>
+    <tr>
       <td><a href="https://github.com/sidbentifraouine">Sid Bentifraouine</a></td>
       <td><a href="https://twitter.com/sbentifraouine">@sbentifraouine</a></td>
       <td>
