@@ -148,7 +148,7 @@ L'optimisation pour la recherche est également importante du fait de notre dép
 
 [JSX](/docs/introducing-jsx.html) joue un rôle similaire. Bien qu'il ne soit pas nécessaire à React, nous l'utilisons beaucoup chez Facebook à la fois pour des raisons esthétiques et pragmatiques.
 
-Dans notre base de code, JSX indique clairement aux outils qu’ils travaillent avec un arbre d’éléments React. Ça rend possible l'ajout à la construction d'optimisations telles que [l’extraction *(hoisting, NdT)* des éléments constants](https://babeljs.io/docs/en/babel-plugin-transform-react-constant-elements/) (en anglais), l'utilisation sure d‘analyseurs statiques et de *codemods* internes, et [l'inclusion de l’emplacement dans le source JSX](https://github.com/facebook/react/pull/6771) au sein des messages d'avertissements.
+Dans notre base de code, JSX indique clairement aux outils qu’ils travaillent avec un arbre d’éléments React. Ça rend possible l'ajout à la construction d'optimisations telles que [l’extraction *(hoisting, NdT)* des éléments constants](https://babeljs.io/docs/en/babel-plugin-transform-react-constant-elements/) (en anglais), l'utilisation sûre d‘analyseurs statiques et de *codemods* internes, et [l'inclusion de l’emplacement dans le source JSX](https://github.com/facebook/react/pull/6771) au sein des messages d'avertissements.
 
 ### *Dogfooding* {#dogfooding}
 
