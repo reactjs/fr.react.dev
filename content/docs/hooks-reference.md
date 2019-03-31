@@ -97,7 +97,7 @@ const [state, setState] = useState(() => {
 
 Si vous mettez à jour un Hook d'état avec la même valeur que son état actuel, React abandonnera cette mise à jour, ce qui signifie qu'aucun nouveau rendu des enfants ne sera effectué et qu'aucun effet ne sera déclenché. (React utilise [l'algorithme de comparaison `Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object/is).)
 
-Note that React may still need to render that specific component again before bailing out. That shouldn't be a concern because React won't unnecessarily go "deeper" into the tree. If you're doing expensive calculations while rendering, you can optimize them with `useMemo`.
+Remarquez que React peut quand même avoir besoin d’afficher ce composant à nouveau avant d'abandonner. Ça ne devrait pas pose problème car React n'ira pas « plus profondément » dans l'arbre. Si vous effectuez des calculs coûteux lors du rendu, vous pouvez les optimiser avec `useMemo`.
 
 ### `useEffect` {#useeffect}
 
