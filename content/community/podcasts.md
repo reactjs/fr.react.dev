@@ -10,9 +10,9 @@ Podcasts dédiés à React et épisodes de podcast individuels avec des discussi
 
 ## Podcasts {#podcasts}
 
-- [Le podcast de React](https://reactpodcast.simplecast.fm/) - Le podcast sur tout React.js, hébergé par [React training](https://reacttraining.com)
+- [Le podcast de React](https://reactpodcast.simplecast.fm/) - Le podcast sur tout React.js, hébergé par [React Training](https://reacttraining.com)
 
-- [JavaScript air](https://javascriptair.com/) - Tout sur JavaScript (ne produit actuellement pas de nouveaux épisodes)
+- [JavaScript Air](https://javascriptair.com/) - Tout sur JavaScript (ne produit actuellement pas de nouveaux épisodes)
 
 - [React 30](https://react30.com/) - Un podcast de 30 minutes consacré à React (transféré dans [les podcasts React](https://reactpodcast.simplecast.fm/)).
 
