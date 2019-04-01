@@ -67,7 +67,11 @@ function Counter({initialCount}) {
 }
 ```
 
+<<<<<<< HEAD
 Les boutons « + » et « - » utilisent la forme fonctionnelle, puisque la nouvelle valeur est calculée à partir de la valeur précédente. Le bouton « Réinitialiser » utilise quant à lui la forme normale puisqu'il remet toujours le total à une valeur fixe.
+=======
+The "+" and "-" buttons use the functional form, because the updated value is based on the previous value. But the "Reset" button uses the normal form, because it always sets the count back to the initial value.
+>>>>>>> 59c3c0a1551841cedfc8478524808492289e61f5
 
 > Remarque
 >
