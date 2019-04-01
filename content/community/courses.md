@@ -20,7 +20,7 @@ permalink: community/courses.html
 
 - [The Road to Learn React](https://www.robinwieruch.de/the-road-to-learn-react/) — Construisez une application fonctionnelle en React sans outillage compliqué.
 
-- [Egghead.io: Guide pour débutant de ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-reactjs) - Cours gratuit pour les débutants en React et ceux qui cherchent à mieux comprendre les principes fondamentaux de React.
+- [Egghead.io : The Beginner’s Guide to ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-reactjs) – Cours gratuit pour les débutant·e·s en React et celles et ceux qui cherchent à mieux comprendre les principes fondamentaux de React.
 
 - [Free React Bootcamp](https://tylermcginnis.com/free-react-bootcamp/) – Enregistrements de trois jours d'une formation React intensive en ligne gratuite.
 
