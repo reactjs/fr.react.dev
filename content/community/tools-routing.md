@@ -5,7 +5,7 @@ layout: community
 permalink: community/routing.html
 ---
 
-* **[Aviator](https://github.com/swipely/aviator)** : Aviator est un routeur front-end construit pour des applications monopages modulaires ([Exemple](https://gist.github.com/hojberg/9549330)).
+* **[Aviator](https://github.com/swipely/aviator)** : Aviator est un routeur front-end construit pour des applications monopages modulaires ([exemple](https://gist.github.com/hojberg/9549330)).
 * **[Backbone](https://backbonejs.org/)** : Backbone fournit une structure aux applications JavaScript en offrant des modèles avec une liaison clé-valeur et des événements personnalisés, des collections avec une API riche, des vues avec une gestion déclarative d'événements, et en connectant l'ensemble à votre application existante via une interface JSON respectant les conventions REST.
 * **[component-router](https://github.com/in-flux/component-router)** : solution de routage basée sur Flux pour les composants.
 * **[Director](https://github.com/flatiron/director)** : un tout petit routeur d'URL isomorphe (c'est-à-dire fonctionnant côtés client et serveur) en JavaScript.
