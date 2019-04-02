@@ -6,9 +6,13 @@ sectionid: community
 permalink: community/courses.html
 ---
 
+> Au sujet de la langue
+>
+>Pour la version française, nous tentons d'inclure les bonnes ressources quand nous les découvrons. Il n'en reste pas moins que l'immense majorité des ressources de qualité sont disponibles en anglais, comme bien souvent en informatique. Sauf indication contraire, la langue des ressources ci-dessous est donc l'anglais.
+
 ## Cours gratuits {#free-courses}
 
-- [OpenClassrooms : réalisez une application web avec React](https://openclassrooms.com/fr/courses/4664381-realisez-une-application-web-avec-react-js) – Cours détaillé sur l'essentiel de React, y compris comment tester vos composants **(en français)**
+- [OpenClassrooms : réalisez une application web avec React](https://openclassrooms.com/fr/courses/4664381-realisez-une-application-web-avec-react-js) – Cours détaillé sur l'essentiel de React, y compris comment tester vos composants **(en français)**
 - [Codecademy : React 101](https://www.codecademy.com/learn/react-101) – Cours d'introduction de Codecademy pour React.
 - [Codecademy : React 102](https://www.codecademy.com/learn/react-102) – Cours un peu plus avancé de Codecademy pour React.
 
@@ -38,7 +42,7 @@ permalink: community/courses.html
 
 - [React for Designers](https://designcode.io/react) – Cours de 6 heures de React pour les designers, par des designers.
 
-- [React Essentials for Designers](https://learnreact.design) – Cours React sur-mesure pour les designers : principes de base, fonctionnalités, limites et liens entre eux et le design.
+- [React Essentials for Designers](https://learnreact.design) – Cours React sur-mesure pour les designers : principes de base, fonctionnalités, limites et liens entre ces points et le design.
 
 - [Essential React](https://learnreact.com/lessons/2018-essential-react-1-overview) – Un cours intensif pour les touche-à-tout, allant de « Bonjour monde » à la composition avancée de composants.
 
