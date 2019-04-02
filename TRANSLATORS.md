@@ -179,10 +179,10 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
           <li><a href="https://fr.reactjs.org/docs/faq-state.html">FAQ › État local de composant</a></li>
           <li><a href="https://fr.reactjs.org/docs/faq-structure.html">FAQ › Structure de fichier</a></li>
           <li><a href="https://fr.reactjs.org/docs/faq-internals.html">FAQ › DOM virtuel et autres détails</a></li>
-          <li><a href="https://fr.reactjs.org/community/support.html">Communauté › Ressources › Support</a> (en cours)</li>
-          <li><a href="https://fr.reactjs.org/community/courses.html">Communauté › Ressources › Cours</a> (en cours)</li>
-          <li><a href="https://fr.reactjs.org/community/articles.html">Communauté › Ressources › Articles</a> (en cours)</li>
-          <li><a href="https://fr.reactjs.org/community/podcasts.html">Communauté › Ressources › Podcasts</a> (en cours)</li>
+          <li><a href="https://fr.reactjs.org/community/support.html">Communauté › Ressources › Support</a></li>
+          <li><a href="https://fr.reactjs.org/community/courses.html">Communauté › Ressources › Cours</a></li>
+          <li><a href="https://fr.reactjs.org/community/articles.html">Communauté › Ressources › Articles</a></li>
+          <li><a href="https://fr.reactjs.org/community/podcasts.html">Communauté › Ressources › Podcasts</a></li>
         </ul>
       </td>
     </tr>
@@ -299,14 +299,14 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
           <li><a href="https://fr.reactjs.org/docs/test-utils.html">Référence de l’API › Utilitaires de test</a></li>
           <li><a href="https://fr.reactjs.org/docs/test-renderer.html">Référence de l’API › Moteur de rendu de test</a></li>
           <li><a href="https://fr.reactjs.org/docs/design-principles.html">Contribuer › Principe de conception</a></li>
-          <li><a href="https://fr.reactjs.org/community/debugging-tools.html">Communauté › Outils › Débogage</a> (en cours)</li>
-          <li><a href="https://fr.reactjs.org/community/component-workbenches.html">Communauté › Outils › Outils de mise au point</a> (en cours)</li>
+          <li><a href="https://fr.reactjs.org/community/debugging-tools.html">Communauté › Outils › Débogage</a></li>
+          <li><a href="https://fr.reactjs.org/community/component-workbenches.html">Communauté › Outils › Outils de mise au point</a></li>
           <li><a href="https://fr.reactjs.org/community/jsx-integrations.html">Communauté › Outils › Intégrations JSX</a> (en cours)</li>
           <li><a href="https://fr.reactjs.org/community/starter-kits.html">Communauté › Outils › Kits de démarrage</a> (en cours)</li>
-          <li><a href="https://fr.reactjs.org/community/routing.html">Communauté › Outils › Routage</a> (en cours)</li>
-          <li><a href="https://fr.reactjs.org/community/model-management.html">Communauté › Outils › Gestion de modèles</a> (en cours)</li>
-          <li><a href="https://fr.reactjs.org/community/data-fetching.html">Communauté › Outils › Chargement de données</a> (en cours)</li>
-          <li><a href="https://fr.reactjs.org/community/testing.html">Communauté › Outils › Tests</a> (en cours)</li>
+          <li><a href="https://fr.reactjs.org/community/routing.html">Communauté › Outils › Routage</a></li>
+          <li><a href="https://fr.reactjs.org/community/model-management.html">Communauté › Outils › Gestion de modèles</a></li>
+          <li><a href="https://fr.reactjs.org/community/data-fetching.html">Communauté › Outils › Chargement de données</a></li>
+          <li><a href="https://fr.reactjs.org/community/testing.html">Communauté › Outils › Tests</a></li>
           <li><a href="https://fr.reactjs.org/community/ui-components.html">Communauté › Outils › Composants UI</a> (en cours)</li>
           <li><a href="https://fr.reactjs.org/community/misc.html">Communauté › Outils › Divers</a> (en cours)</li>
         </ul>
