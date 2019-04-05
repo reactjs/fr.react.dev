@@ -70,8 +70,13 @@
 - name: italien
   translated_name: Italiano
   code: it
+<<<<<<< HEAD
   status: 1
 - name: japonais
+=======
+  status: 2
+- name: Japanese
+>>>>>>> 2a1b08943c2c65bbf5a6a1e63777488833909f45
   translated_name: 日本語
   code: ja
   status: 2
@@ -178,4 +183,4 @@
 - name: chinois traditionnel
   translated_name: 繁體中文
   code: zh-hant
-  status: 0
+  status: 1
