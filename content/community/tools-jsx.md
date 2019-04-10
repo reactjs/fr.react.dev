@@ -19,7 +19,7 @@ permalink: community/jsx-integrations.html
 ## Outils de construction {#build-tools}
 
 * **[Create React App](https://github.com/facebookincubator/create-react-app)** : une façon **officielle** de créer des applications React sans configuration.
-* **[nwb](https://github.com/insin/nwb)** : boîtes à outils pour les applications React, PReact & Inferno et d'autres modules npm pour le web, sans configuration (tant que vous n'en avez pas besoin).
+* **[nwb](https://github.com/insin/nwb)** : une boîte à outils pour les applications React, Preact & Inferno et d'autres modules npm pour le web, sans configuration (jusqu’à ce que vous en ayez besoin).
 * **[Neutrino](https://neutrino.js.org/)** : créez et construisez des applications JavaScript modernes sans configuration initiale. Neutrino combine la puissance de webpack avec la simplicité des préréglages.
 * **[ESLint](https://eslint.org/)** : un linter JavaScript qui comprend la syntaxe JSX de façon native. Assurez-vous de télécharger l'extension [eslint-plugin-react](https://npmjs.com/package/eslint-plugin-react) pour les règles spécifiques à React.
 * **[Structor](https://www.npmjs.com/package/structor)** : cet outil est un constructeur d'interfaces utilisateur pour les applications web React utilisant Node.js. Il remplace l'outil déprécié React UI Builder. Vous pouvez regarder [des tutoriels vidéos de Structor](https://youtu.be/z96xYa51EWI?list=PLAcaUOtEwjoR_U6eE2HQEXwkefeVESix1). *(Structor est lui-même déprécié et ses auteurs recommandent d'utiliser [Webcodesk](https://webcodesk.com/) désormais, NdT.)*
