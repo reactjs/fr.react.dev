@@ -70,13 +70,8 @@
 - name: italien
   translated_name: Italiano
   code: it
-<<<<<<< HEAD
-  status: 1
-- name: japonais
-=======
   status: 2
-- name: Japanese
->>>>>>> 8de5aff111bba0f04ff254aad1a084a2b2f48743
+- name: japonais
   translated_name: 日本語
   code: ja
   status: 2
