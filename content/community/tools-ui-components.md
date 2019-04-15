@@ -12,7 +12,7 @@ permalink: community/ui-components.html
 * **[Belle](https://github.com/nikgraf/belle/)** : composants React configurables avec une belle UX *(User eXperience, NdT)*.
 * **[chartify](https://github.com/kirillstepkin/chartify)** : composant de graphiques en React ultra léger et personnalisable.
 * **[Elemental UI](http://elemental-ui.com)** : une boîte à outils pour les sites web et applis React, prenant en charge les thèmes et constituée de composants empaquetés individuellement.
-* **[Grommet](https://grommet.io/)** : le framework UX open source le plus avancé pour des applications d'entreprise.
+* **[Grommet](https://grommet.io/)** : un framework UX open source pour des applications d'entreprise.
 * **[Halogen](https://yuanyan.github.io/halogen/)** : une collection d'animations de chargement hautement personnalisables avec React.
 * **[La bibliothèque de composants de la Khan Academy](https://khan.github.io/react-components/)**
 * **[markdown-to-jsx](https://www.npmjs.com/package/markdown-to-jsx)** : compile du Markdown en JSX React sûr sans recourir à des échappatoires dangereuses.
@@ -24,7 +24,7 @@ permalink: community/ui-components.html
 * **[React Mdl](https://github.com/tleunen/react-mdl)** : composants React pour Material Design Lite.
 * **[React Web](https://github.com/taobaofed/react-web)** : un framework pour construire des applis web avec React.
 * **[react-amiga-guru-meditation](https://github.com/gfazioli/react-amiga-guru-meditation)** : classe JavaScript React pour afficher un message d'erreur rendant hommage à l'Amiga Guru Meditation.
-* **[react-autosuggest](https://github.com/moroshko/react-autosuggest)** : composant d'auto-suggestion React compatible avec WAI-ARIA.
+* **[react-autosuggest](https://github.com/moroshko/react-autosuggest)** : composant d'auto-suggestion React compatible avec les recommandations WAI-ARIA.
 * **[react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)** : gestion belle et accessible du glisser-déposer avec React.
 * **[react-bootstrap](https://github.com/stevoland/react-bootstrap)** : composants Bootstrap 3 construits avec React.
 * **[react-bootstrap-dialog](https://github.com/akiroom/react-bootstrap-dialog)** : composant Dialog en React pour react-bootstrap, pour remplacer `window.alert` ou `window.confirm`.
@@ -38,7 +38,7 @@ permalink: community/ui-components.html
 * **[react-dropzone](https://github.com/felixrieseberg/React-Dropzone)** : React Dropzone pour des téléversements de fichiers.
 * **[react-forms](https://prometheusresearch.github.io/react-forms/)** : rendu et validation de formulaires pour React.
 * **[react-highlight](https://github.com/akiran/react-highlight)** : composant React pour la coloration syntaxique.
-* **[react-image](https://github.com/mbrevda/react-image)** : comme la balise `<img />` et le composant avancé d'image pour React.
+* **[react-image](https://github.com/mbrevda/react-image)** : comme la balise `<img />` mais avec un composant avancé d'image pour React.
 * **[react-input-autosize](https://github.com/JedWatson/react-input-autosize)** : comme la balise `<input />` mais avec un redimensionnement automatique pour s'adapter au contenu.
 * **[react-intense](https://github.com/brycedorn/react-intense)** : un composant pour visualiser des grandes images de près.
 * **[react-joyride](https://github.com/gilbarbara/react-joyride)** : créez des visites guidées pour vos applis React.
@@ -47,7 +47,7 @@ permalink: community/ui-components.html
 * **[react-notification](https://github.com/pburtchaell/react-notification)** : notifications avec un style Snackbar.
 * **[react-select](https://github.com/JedWatson/react-select)** : champ de saisie de type sélecteur / multi-sélecteur pour React, similaire à Selectize / Chosen / Select2.
 * **[react-selectize](https://furqanzafar.github.io/react-selectize/)** : un composant de sélection sans état et flexible, conçu pour remplacer React.DOM.Select, inspiré par Selectize.
-* **[react-sigma](https://www.npmjs.com/package/react-sigma)** : une bibliothèque légère mais puissante pour dessiner des graphes de réseaux.
+* **[react-sigma](https://www.npmjs.com/package/react-sigma)** : une bibliothèque légère mais puissante permettant de dessiner des graphes de réseaux.
 * **[react-slick](https://github.com/akiran/react-slick)** : composant de carrousel construit avec React.
 * **[react-sparklines](https://borisyankov.github.io/react-sparklines/)** : composant joli et expressif pour des graphes en ligne.
 * **[react-spreadsheet](https://github.com/felixrieseberg/React-Spreadsheet-Component)** : feuilles de calcul et tableaux modifiables en React, avec une saisie au clavier et navigation de type Excel.
@@ -55,11 +55,11 @@ permalink: community/ui-components.html
 * **[react-textarea-autosize](https://github.com/andreypopp/react-textarea-autosize)** : comme `<textarea />` mais avec un redimensionnement automatique pour s'adapter au contenu.
 * **[react-toastify](https://github.com/fkhadra/react-toastify)** : des notifications simplifiées pour React.
 * **[react-toggle](https://github.com/gfazioli/react-toggle)** : joli composant React d'interrupteur à bascule.
-* **[React-TimeAgo](https://www.npmjs.org/package/react-timeago)** : un composant minimaliste TimeAgo avec mise à jour dynamique qui convertit intelligemment n'importe quelle date en un format « il y a ... » ou  « dans ... » et le tient à jour.
+* **[React-TimeAgo](https://www.npmjs.org/package/react-timeago)** : un composant minimaliste TimeAgo avec mise à jour dynamique qui convertit intelligemment n'importe quelle date en un format « il y a… » ou  « dans… » et le tient à jour.
 * **[react-translate-component](https://github.com/martinandert/react-translate-component)** : composant d'internationalisation pour React.
 * **[react-treeview](https://github.com/chenglou/react-treeview)** : vue arborescente facile, légère et flexible.
 * **[react-uwp](https://www.react-uwp.com)** : un ensemble de composants React qui implémentent le UWP Design et le Fluent Design de Microsoft.
-* **[react-validate-framework](https://github.com/MinJieLiu/react-validate-framework)** : un composant léger et extensible de validation pour React.
+* **[react-validate-framework](https://github.com/MinJieLiu/react-validate-framework)** : un composant léger et extensible de validation de formulaires pour React.
 * **[reactstrap](https://reactstrap.github.io/)** : composants simples en Bootstrap 4 construits avec [tether](http://tether.io/).
 * **[recharts](https://github.com/recharts/recharts)** : une bibliothèque de graphiques composables construite sur des composants React.
 * **[Selectivity](https://arendjr.github.io/selectivity/)** : une bibliothèque modulaire et légère pour les sélections.
@@ -68,13 +68,13 @@ permalink: community/ui-components.html
 * **[tcomb-form](https://github.com/gcanti/tcomb-form)** : génération automatique des balises de formulaires, avec libellés automatiques, et validation en-ligne depuis un modèle de domaine.
 * **[valuelink](https://github.com/Volicon/valuelink)** : liaison de données bidirectionnelle et validation de formulaires avec des liens React étendus.
 * **[video-react](https://github.com/video-react/video-react)** : un lecteur de vidéo web construit pour le HTML5 en utilisant React.
-* **[Winterfell](https://github.com/andrewhathaway/Winterfell)** : générez des formulaires complexes, validés, et extensibles basés sur du JSON.
+* **[Winterfell](https://github.com/andrewhathaway/Winterfell)** : générez des formulaires complexes, validés, et extensibles basés sur des descripteurs JSON.
 
 ## Composants payants {#fee-based-components}
 
 * **[ag-Grid](https://www.ag-grid.com)** : grille de données avancée pour React.
 * **[ExtReact components](https://www.sencha.com/products/extreact/)** : plus de 115 composants UI prêts à l'emploi.
-* **[Grapecity Wijmo UI Components for React](https://www.grapecity.com/en/react/)** : développez vos options d'UI React avec une collection de composants JavaScript Wijmo. 
+* **[Grapecity Wijmo UI Components for React](https://www.grapecity.com/en/react/)** : développez vos options d'UI React avec une collection de composants JavaScript Wijmo.
 * **[jQWidgets React components](https://www.jqwidgets.com/react/)** : plus de 70 composants UI prêts pour l'entreprise.
 * **[KendoReact](https://www.telerik.com/kendo-react-ui/)** : éléments d'UI pour les développeurs React.
-* **[Mobiscroll React UI Components](https://mobiscroll.com/react)** : contrôles d'UI mobile pour les développeurs React.
+* **[Mobiscroll React UI Components](https://mobiscroll.com/react)** : éléments d'UI pour les développements d'application mobile en React.
