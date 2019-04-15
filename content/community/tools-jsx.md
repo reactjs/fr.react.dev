@@ -18,17 +18,17 @@ permalink: community/jsx-integrations.html
 
 ## Outils de construction {#build-tools}
 
-* **[Create React App](https://github.com/facebookincubator/create-react-app)** : une façon **officielle** de créer des applications React sans configuration.
+* **[Create React App](https://github.com/facebookincubator/create-react-app)** : une façon **officielle** de créer des applications React sans nécessiter de configuration.
 * **[nwb](https://github.com/insin/nwb)** : une boîte à outils pour les applications React, Preact & Inferno et d'autres modules npm pour le web, sans configuration (jusqu’à ce que vous en ayez besoin).
 * **[Neutrino](https://neutrino.js.org/)** : créez et construisez des applications JavaScript modernes sans configuration initiale. Neutrino combine la puissance de webpack avec la simplicité des préréglages.
-* **[ESLint](https://eslint.org/)** : un linter JavaScript qui comprend la syntaxe JSX de façon native. Assurez-vous de télécharger l'extension [eslint-plugin-react](https://npmjs.com/package/eslint-plugin-react) pour les règles spécifiques à React.
+* **[ESLint](https://eslint.org/)** : un *linter* JS qui comprend la syntaxe JSX de façon native. Assurez-vous de télécharger l'extension [eslint-plugin-react](https://npmjs.com/package/eslint-plugin-react) pour les règles spécifiques à React.
 * **[Structor](https://www.npmjs.com/package/structor)** : cet outil est un constructeur d'interfaces utilisateur pour les applications web React utilisant Node.js. Il remplace l'outil déprécié React UI Builder. Vous pouvez regarder [des tutoriels vidéos de Structor](https://youtu.be/z96xYa51EWI?list=PLAcaUOtEwjoR_U6eE2HQEXwkefeVESix1). *(Structor est lui-même déprécié et ses auteurs recommandent d'utiliser [Webcodesk](https://webcodesk.com/) désormais, NdT.)*
 * **[react-jsx](https://github.com/bigpipe/react-jsx)** : compilez et utilisez du JSX comme modèles autonomes qui peuvent être exécutés côté serveur ou côté client !
 * **[cjsx-codemod](https://github.com/jsdf/cjsx-codemod)** : écrivez du code JSX en Coffeescript !
 * **[ReactScript](https://github.com/1j01/react-script)** : écrivez du code React avec Coffeescript sans JSX !
 * **[jsxhint](https://npmjs.org/package/jsxhint)** : prise en charge de l'outil [JSHint](http://jshint.com/). À noter que la compilation JSX ne change pas les numéros de ligne, l'analyse *(linting)* peut donc également être faite directement sur le code JS compilé.
 * **[reactify](https://npmjs.org/package/reactify)** : transformation pour [Browserify](http://browserify.org/).
-* **[Babel](https://babeljs.io/)** : transformation autonome et adaptée à [Browserify](http://browserify.org/) (anciennement appelé **6to5**).
+* **[Babel](https://babeljs.io/)** : transformation autonome et adaptée à [Browserify](http://browserify.org/) (Babel était anciennement appelé **6to5**).
 * **[node-jsx](https://npmjs.org/package/node-jsx)** : prise en charge de JSX dans [Node.js](https://nodejs.org/).
 * **[react-hot-loader](https://gaearon.github.io/react-hot-loader/)** : chargeur pour [webpack](https://webpack.github.io/) qui vous permet d'éditer le JSX et d'en voir immédiatement les effets dans votre navigateur sans avoir à recharger la page.
 * **[jsx-loader](https://npmjs.org/package/jsx-loader)** : chargeur pour [webpack](https://webpack.github.io/).
