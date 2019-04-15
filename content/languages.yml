@@ -70,7 +70,7 @@
 - name: italien
   translated_name: Italiano
   code: it
-  status: 1
+  status: 2
 - name: japonais
   translated_name: 日本語
   code: ja
@@ -178,4 +178,4 @@
 - name: chinois traditionnel
   translated_name: 繁體中文
   code: zh-hant
-  status: 0
+  status: 1
