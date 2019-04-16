@@ -7,10 +7,10 @@ permalink: community/starter-kits.html
 
 ## Recommandés par l'équipe React {#recommended-by-the-react-team}
 
-* **[Create React App](https://github.com/facebook/create-react-app)** : une façon officielle de démarrer un projet côté client avec React sans configuration.
+* **[Create React App](https://github.com/facebook/create-react-app)** : une manière officielle de démarrer un projet côté client avec React sans avoir à écrire une configuration.
 * **[Next.js](https://nextjs.org/)** : framework pour le rendu côté serveur ou des applications exportées statiquement.
 * **[Gatsby](https://www.gatsbyjs.org/)** : générateur de sites statiques pour React, optimisés pour la rapidité.
-* **[nwb](https://github.com/insin/nwb)** : une boîte à outils pour des applications React, des bibliothèques et d'autres modules npm pour le web.
+* **[nwb](https://github.com/insin/nwb)** : une boîte à outils pour réaliser des applications React, des bibliothèques et d'autres modules npm pour le web.
 * **[razzle](https://github.com/jaredpalmer/razzle)** : créez des applications universelles en JavaScript rendues côté serveur sans configuration.
 * **[Neutrino](https://neutrino.js.org/)** : créez et construisez des applications JavaScript modernes sans configuration initiale.
 * **[Parcel](https://parceljs.org)** : *bundler* d'applications web rapide et sans configuration.
@@ -26,7 +26,7 @@ permalink: community/starter-kits.html
 * **[Rekit](https://github.com/supnate/rekit)** : boîte à outils et codes génériques pour construire des applications web extensibles avec React, Redux et react-router.
 * **[webcube](https://github.com/dexteryy/Project-WebCube)** : une infrastructure JavaScript pour des applications JavaScript et sites web statiques modernes et universels. Il intègre le support et la simplification de sous-applications Redux, la composition de réducteurs, le routage, l’immutabilité, ESLint et Prettier, Docker, la gestion de mono-dépôt et bien d'autres outils encore.
  * **[starter-react-flux](https://github.com/SokichiFujita/starter-react-flux)** : un générateur pour les projets React et Flux avec Flux-Utils, Jest, Immutable.js, les React Addons, Webpack, ESLint, Babel et ES2015.
- * **[react-async-starter](https://github.com/didierfranc/react-async-starter)** : React, Redux, Fetch, ES7 Async avec Webpack, Babel et rechargement à la volée.
+ * **[react-async-starter](https://github.com/didierfranc/react-async-starter)** : kit de démarrage avec React, Redux, Fetch, ES7 Async avec Webpack, Babel et rechargement à la volée.
  * **[Kriasoft React Starter Kit](https://github.com/kriasoft/react-starter-kit)** : Gulp, Webpack, BrowserSync et [React Starter Kit pour Visual Studio](https://marketplace.visualstudio.com/items?itemName=KonstantinTarkus.ReactjsStarterKit).
  * **[electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate)** : un code générique d'applications Electron intégrant React, Flux, React Router, Webpack et React Hot Loader.
  * **[react-boilerplate](https://github.com/mxstbr/react-boilerplate)** : configuration rapide pour des applications React orientées performances, privilégiant le mode déconnecté et incluant Redux, le rechargement à la volée, react-router, ServiceWorker, AppCache, FontFaceObserver et Mocha.
