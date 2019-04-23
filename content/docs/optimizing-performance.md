@@ -435,6 +435,6 @@ x === z; // true
 
 Dans ce cas, puisqu'une nouvelle référence est renvoyée quand on modifie `x`, nous pouvons utiliser la vérification d'égalité référentielle `(x === y)` pour vérifier que la nouvelle valeur stockée dans `y` est différente de celle d'origine stockée dans `x`.
 
-Les deux autres bibliothèques qui facilitent l'utilisation des données immuables sont [seamless-immutable](https://github.com/rtfeldman/seamless-immutable) et [immutability-helper](https://github.com/kolodny/immutability-helper).
+D’autres bibliothèques facilitent l'utilisation des données immuables, notamment [Immer](https://github.com/mweststrate/immer), [immutability-helper](https://github.com/kolodny/immutability-helper), and [seamless-immutable](https://github.com/rtfeldman/seamless-immutable).
 
 Les structures de données immuables vous offrent un moyen peu coûteux de suivre les modifications apportées aux objets. C'est tout ce dont nous avons besoin pour implémenter la méthode `shouldComponentUpdate`. Ça peut souvent contribuer à améliorer significativement les performances.

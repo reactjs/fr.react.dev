@@ -70,7 +70,7 @@
 - name: italien
   translated_name: Italiano
   code: it
-  status: 1
+  status: 2
 - name: japonais
   translated_name: 日本語
   code: ja
@@ -82,6 +82,10 @@
 - name: khmer central
   translated_name: ភាសាខ្មែរ
   code: km
+  status: 0
+- name: kannada
+  translated_name: ಕನ್ನಡ
+  code: kn
   status: 0
 - name: coréen
   translated_name: 한국어
@@ -150,7 +154,7 @@
 - name: turc
   translated_name: Türkçe
   code: tr
-  status: 1
+  status: 2
 - name: ukrainien
   translated_name: Українська
   code: uk
@@ -174,4 +178,4 @@
 - name: chinois traditionnel
   translated_name: 繁體中文
   code: zh-hant
-  status: 0
+  status: 1

@@ -13,25 +13,15 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 
 ## Prochaines conférences {#upcoming-conferences}
 
-### Reactathon 2019 {#reactathon-2019}
-Du 30 au 31 mars 2019 à San Francisco, États-Unis d'Amérique
-
-[Site web](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon)
-
-### App.js Conf 2019 {#appjs-conf-2019}
-Du 4 au 5 avril 2019 à Cracovie, Pologne
-
-[Site web](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
-
-### React Amsterdam 2019 {#react-amsterdam-2019}
-Le 12 avril 2019 à Amsterdam, Pays-Bas
-
-[Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
-
 ### ReactJS Girls Conference
 Le 3 mai 2019 à Londres, Royaume-Uni
 
 [Site web](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
+
+### <React.NotAConf /> 2019 {#reactnotaconf--2019}
+May 11 in Sofia, Bulgaria
+
+[Website](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/events/780891358936156)
 
 ### ReactEurope 2019 {#reacteurope-2019}
 Du 23 au 24 mai 2019 à Paris, France
@@ -53,15 +43,20 @@ Le 21 juin 2019 à Chicago, États-Unis d'Amérique
 
 [Site web](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
 
-### React Week '19 {#rwny19}
-Du 15 au 21 juillet 2019 à New York, États-Unis d'Amérique
+### Chain React 2019
+Du 11 au 12 juillet 2019 à Portland, Orégon, États-Unis d'Amérique
 
-[Site web](https://reactweek.nyc) - [Twitter](https://twitter.com/ReactWeek)
+[Site web](https://infinite.red/ChainReactConf)
 
 ### React Rally 2019 {#react-rally-2019}
 Du 22 au 23 août 2019 à Salt Lake City, États-Unis d'Amérique
 
 [Site web](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
+
+### ComponentsConf 2019 {#componentsconf-2019}
+Le 6 septembre  2019 à Melbourne, Australie
+
+[Site web](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
 
 ### React Native EU 2019 {#react-native-eu-2019}
 Du 5 au 6 septembre 2019 à Wrocław, Pologne
@@ -87,6 +82,17 @@ Du 26 au 28 septembre 2019 à Goa, Inde
 Du 26 au 28 septembre 2019 à Alicante, Espagne
 
 [Site web](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante)
+
+### React Advanced 2019 {#react-advanced-2019}
+
+Le 25 octobre 2019 à Londres, Royaume-Uni
+
+[Site web](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Vidéos](https://youtube.com/c/ReactConferences)
+
+### React Day Berlin 2019 {#react-day-berlin-2019}
+Le 6 décembre 2019 à Berlin, Allemagne
+
+[Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://www.youtube.com/reactdayberlin)
 
 ## Anciennes conférences {#past-conferences}
 
@@ -116,7 +122,7 @@ Du 22 au 23 février 2016 à San Francisco, États-Unis d'Amérique
 ### React Amsterdam 2016 {#react-amsterdam-2016}
 Le 16 avril 2016 à Amsterdam, Pays-Bas
 
-[Site web](https://react.amsterdam/2016) - [Vidéos](https://youtu.be/sXDZBxbRRag?list=PLNBNS7NRGKMG3uLrm5fgY02hJ87Wzb4IU)
+[Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
 
 ### ReactEurope 2016 {#reacteurope-2016}
 Du 2 au 3 juin 2016 à Paris, France
@@ -166,7 +172,7 @@ Le 28 mars 2017 à Londres, Royaume-Uni
 ### React Amsterdam 2017 {#react-amsterdam-2017}
 Le 21 avril 2017 à Amsterdam, Pays-Bas
 
-[Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Vidéos](https://www.youtube.com/watch?v=NQyL-Dm7Kig&list=PLNBNS7NRGKMHxfm0CcYNuINLdRw7r4a9M)
+[Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
 
 ### ReactEurope 2017 {#reacteurope-2017}
 Du 18 au 19 mai 2017 à Paris, France
@@ -362,3 +368,18 @@ Le 30 novembre 2018 à Berlin, Allemagne
 Le 31 janvier 2019 à Téhéran, Iran
 
 [Site web](http://reactiran.com) - [Instagram](https://www.instagram.com/reactiran/)
+
+### Reactathon 2019 {#reactathon-2019}
+Du 30 au 31 mars 2019 à San Francisco, États-Unis d'Amérique
+
+[Site web](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon)
+
+### App.js Conf 2019 {#appjs-conf-2019}
+Du 4 au 5 avril 2019 à Cracovie, Pologne
+
+[Site web](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+
+### React Amsterdam 2019 {#react-amsterdam-2019}
+Le 12 avril 2019 à Amsterdam, Pays-Bas
+
+[Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)

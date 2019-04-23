@@ -109,7 +109,7 @@ Rendez-vous sur [la page de référence de l'API `React.Component`](/docs/react-
 Si la fonction `render()` d'un de vos composants React produit un rendu identique pour le même état et les mêmes propriétés, le faire étendre `React.PureComponent` devrait améliorer les performances dans certains cas.
 
 
-> Remarque :
+>Remarque
 >
 > La méthode `shouldComponentUpdate()` de `React.PureComponent` réalise une simple comparaison de surface. Avec des données complexes, elle peut produire des faux négatifs si la structure de données subit des changements profonds. Ne créez des composants avec `PureComponent` que si vous avez des états et des props simples, et le cas échéant utilisez [`forceUpdate()`](/docs/react-component.html#forceupdate) si vous savez que vos données ont changé en profondeur. Vous pouvez aussi envisager d'utiliser des [objets immuables](https://facebook.github.io/immutable-js/) pour simplifier la comparaison rapide de données imbriquées.
 >
@@ -147,7 +147,7 @@ export default React.memo(MyComponent, areEqual);
 
 Cette méthode n'est qu'un outil d'**[optimisation des performances](/docs/optimizing-performance.html)**. Ne vous y fiez pas pour « empêcher » un rendu car cela peut causer des bugs.
 
-> Remarque :
+>Remarque
 >
 > Contrairement à la méthode [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) des composants créés à l'aide de classes, la fonction `areEqual` renvoie `true` si les props sont égales et `false` dans le cas contraire. C'est donc l'inverse de `shouldComponentUpdate`.
 
@@ -229,7 +229,7 @@ React.Children.map(children, function[(thisArg)])
 
 Cette méthode exécute une fonction sur chacun des enfants directs contenus dans `children` avec le `this` en vigueur transmis dans l’argument `thisArg`. Si `children` est un tableau, il sera parcouru et la fonction sera appelée sur chacun des enfants du tableau. Si `children` est `null` ou `undefined`, la méthode renverra `null` ou `undefined` plutôt qu'un tableau.
 
-> Remarque :
+>Remarque
 >
 > Si `children` est un `Fragment` il sera traité comme un unique enfant et ne sera pas parcouru.
 
@@ -257,7 +257,7 @@ React.Children.only(children)
 
 Cette méthode vérifie que `children` n'a qu'un seul enfant (un élément React) et le renvoie. Si ce n'est pas le cas elle lèvera une erreur.
 
-> Remarque :
+>Remarque
 >
 > `React.Children.only()` n'accepte pas la valeur de retour de [`React.Children.map()`](#reactchildrenmap) car il s'agit d'un tableau et non d'un élément React.
 
@@ -269,7 +269,7 @@ React.Children.toArray(children)
 
 Cette méthode renvoie la structure de donnée opaque de `children` sous la forme d'un tableau linéarisé ou chaque enfant est doté d’une `key`. C'est utile si vous voulez manipuler une collection d'enfants dans votre méthode de rendu, en particulier si vous voulez réorganiser ou découper `this.props.children` avant de le passer à d'autres éléments.
 
-> Remarque :
+>Remarque
 >
 > `React.Children.toArray()` change les `key` pour préserver la sémantique des tableaux imbriqués pendant la linéarisation des enfants. Pour cela, `toArray` préfixe chaque `key` dans le tableau qui sera renvoyé de manière a ce que la `key` de chaque élément soit associée au tableau originel qui les contient.
 
@@ -328,7 +328,7 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 Notez bien que l'affichage d'un composant `lazy` a besoin d'un composant `<React.Suspense>` plus haut dans l'arbre de rendu. C'est de cette manière que vous pouvez spécifier un indicateur de chargement.
 
-> **Remarque :**
+>Remarque
 >
 > Utiliser `React.lazy` avec un `import()` dynamique requiert une prise en charge des *Promises* par  l'environnement JS. Vous aurez donc besoin d’un _polyfill_ pour IE11 et inférieurs.
 
@@ -356,6 +356,6 @@ Tout ça est détaillé dans [notre guide sur la découpe du code](/docs/code-sp
 
 Bien que ce ne soit pas le cas pour le moment, nous prévoyons d'étendre les capacités de `Suspense` pour qu'il puisse gérer d'autre scénarios tel que le chargement de données. Vous pourrez en savoir plus en jetant un coup d'œil à [notre feuille de route](/blog/2018/11/27/react-16-roadmap.html).
 
-> Remarque :
+>Remarque
 >
 > `React.lazy()` et `<React.Suspense>` ne sont pas encore pris en charge par `ReactDOMServer`. C'est une limitation connue qui devrait être résolue à l’avenir.

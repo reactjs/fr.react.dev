@@ -51,7 +51,7 @@ Si vous avez besoin de réviser votre JavaScript, nous vous conseillons la lectu
 
 Il y a deux façons de suivre ce tutoriel : vous pouvez soit écrire le code dans votre navigateur, soit configurer un environnement de développement local sur votre ordinateur.
 
-### Option 1 : Écrire le code dans le navigateur {#setup-option-1-write-code-in-the-browser}
+### Option 1 : écrire le code dans le navigateur {#setup-option-1-write-code-in-the-browser}
 
 C’est la façon la plus rapide de démarrer !
 
