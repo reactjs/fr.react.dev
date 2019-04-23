@@ -8,7 +8,8 @@ redirect_from:
   - "docs/conferences.html"
 ---
 
-Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici ! (Merci de respecter l'ordre chronologique de la liste)
+Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
+(Merci de respecter l'ordre chronologique de la liste)
 
 ## Prochaines conférences {#upcoming-conferences}
 
@@ -27,7 +28,7 @@ Le 12 avril 2019 à Amsterdam, Pays-Bas
 
 [Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
 
-### ReactJS Girls Conference 
+### ReactJS Girls Conference
 Le 3 mai 2019 à Londres, Royaume-Uni
 
 [Site web](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
@@ -52,24 +53,25 @@ Le 21 juin 2019 à Chicago, États-Unis d'Amérique
 
 [Site web](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
 
-### React Week '19 {#RWNY19}
+### React Week '19 {#rwny19}
 Du 15 au 21 juillet 2019 à New York, États-Unis d'Amérique
 
 [Site web](https://reactweek.nyc) - [Twitter](https://twitter.com/ReactWeek)
 
-### React Rally 2019
+### React Rally 2019 {#react-rally-2019}
 Du 22 au 23 août 2019 à Salt Lake City, États-Unis d'Amérique
 
 [Site web](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
-
-### ComponentsConf 2019 {#componentsconf-2019}
-Le 6 septembre 2019 à Melbourne, Australie
-[Site web](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
 
 ### React Native EU 2019 {#react-native-eu-2019}
 Du 5 au 6 septembre 2019 à Wrocław, Pologne
 
 [Site web](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
+
+### ComponentsConf 2019 {#componentsconf-2019}
+Le 6 septembre 2019 à Melbourne, Australie
+
+[Site web](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
 
 ### React New York 2019 {#react-new-york-2019}
 Le 13 septembre 2019 à New York, États-Unis d'Amérique
@@ -92,6 +94,7 @@ Du 26 au 28 septembre 2019 à Alicante, Espagne
 Du 28 au 29 janvier 2015 à Facebook HQ, États-Unis d'Amérique
 
 [Site web](http://conf2015.reactjs.org/) - [Programme](http://conf2015.reactjs.org/schedule.html) - [Vidéos](https://www.youtube.com/playlist?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr)
+<br/><br/>
 
 <iframe title="React.js Conf 2015 Keynote" width="650" height="315" src="//www.youtube-nocookie.com/embed/KVZ-P-ZI6W4?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr" frameborder="0" allowfullscreen></iframe>
 
