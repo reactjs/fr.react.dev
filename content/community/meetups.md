@@ -6,7 +6,7 @@ sectionid: community
 permalink: community/meetups.html
 ---
 
-Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !
+Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 (Merci de respecter l'ordre alphabétique de la liste)
 
 ## Allemagne {#germany}
