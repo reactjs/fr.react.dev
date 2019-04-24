@@ -1,5 +1,5 @@
 ---
-title: "Create React App 2.0: Babel 7, Sass, and More"
+title: "Create React App 2.0: Babel 7, Sass, et plus encore"
 author: [timer, gaearon]
 ---
 
