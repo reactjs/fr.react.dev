@@ -3,17 +3,16 @@ title: "Create React App 2.0: Babel 7, Sass, et plus encore"
 author: [timer, gaearon]
 ---
 
-Create React App 2.0 has been released today, and it brings a year's worth of improvements in a single dependency update.
+Create React App 2.0 a été publié aujourd'hui, et il apporte l'équivalent d'une année d'améliorations dans une seule mise à jour des dépendances.
 
-While React itself [doesn't require any build dependencies](/docs/create-a-new-react-app.html), it can be challenging to write a complex app without a fast test runner, a production minifier, and a modular codebase. Since the very first release, the goal of [Create React App](https://github.com/facebook/create-react-app) has been to help you focus on what matters the most -- your application code -- and to handle build and testing setup for you.
+Alors que React lui-même [ne nécessite aucune dépendance de compilation](/docs/create-a-new-react-app.html), il peut être difficile d'écrire une application complexe sans un lanceur de test rapide, un minificateur de production et une base de code modulaire. Depuis la toute première version, l'objectif de [Create React App](https://github.com/facebook/create-react-app) a été de vous aider à vous concentrer sur ce qui compte le plus -- votre code d'application -- et de gérer la compilation et la configuration des tests pour vous.
 
-Many of the tools it relies on have since released new versions containing new features and performance improvements: [Babel 7](https://babeljs.io/blog/2018/08/27/7.0.0), [webpack 4](https://medium.com/webpack/webpack-4-released-today-6cdb994702d4), and [Jest 23](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing.html). However, updating them manually and making them work well together takes a lot of effort. And this is exactly what [Create React App 2.0 contributors](https://github.com/facebook/create-react-app/graphs/contributors) have been busy with for the past few months: **migrating the configuration and dependencies so that you don't need to do it yourself.**
+Bon nombre des outils sur lesquels elle s'appuie ont depuis publié de nouvelles versions contenant de nouvelles fonctionnalités et des améliorations de performance : [Babel 7](https://babeljs.io/blog/2018/08/27/7.0.0), [webpack 4](https://medium.com/webpack/webpack-4-released-today-6cdb994702d4), et [Jest 23](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing.html). Cependant, les mettre à jour manuellement et les faire bien fonctionner ensemble demande beaucoup d'efforts. Et c'est exactement ce que les [contributeurs de Create React App 2.0](https://github.com/facebook/create-react-app/graphs/contributors) ont été occupés à faire ces derniers mois : **migrer la configuration et les dépendances pour que vous n'ayez pas à le faire vous-même.**
 
-Now that Create React App 2.0 is out of beta, let's see what's new and how you can try it!
-
+Maintenant que Create React App 2.0 n'est plus en beta, voyons ce qu'il y a de nouveau et comment vous pouvez l'essayer !
 >Note
 >
->Don't feel pressured to upgrade anything. If you're satisfied with the current feature set, its performance, and reliability, you can keep using the version you're currently at! It might also be a good idea to let the 2.0 release stabilize a little bit before switching to it in production.
+>Ne vous sentez pas obligé d'améliorer quoi que ce soit. Si vous êtes satisfait du jeu de fonctionnalités actuel, de ses performances et de sa fiabilité, vous pouvez continuer à utiliser la version à laquelle vous êtes actuellement ! Il peut également être une bonne idée de laisser la version 2.0 se stabiliser un peu avant de passer à celle-ci en production.
 
 ## What's New {#whats-new}
 
