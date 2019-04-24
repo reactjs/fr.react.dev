@@ -14,32 +14,33 @@ Maintenant que Create React App 2.0 n'est plus en beta, voyons ce qu'il y a de n
 >
 >Ne vous sentez pas obligé d'améliorer quoi que ce soit. Si vous êtes satisfait du jeu de fonctionnalités actuel, de ses performances et de sa fiabilité, vous pouvez continuer à utiliser la version à laquelle vous êtes actuellement ! Il peut également être une bonne idée de laisser la version 2.0 se stabiliser un peu avant de passer à celle-ci en production.
 
-## What's New {#whats-new}
+## Quoi de neuf {#whats-new}
 
-Here's a short summary of what's new in this release:
+Voici un bref résumé des nouveautés de cette version :
 
-* 🎉 More styling options: you can use [Sass](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-sass-stylesheet) and [CSS Modules](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-modules-stylesheet) out of the box.
-* 🐠 We updated to [Babel 7](https://babeljs.io/blog/2018/08/27/7.0.0), including support for the [React fragment syntax](/docs/fragments.html#short-syntax) and many bugfixes.
-* 📦 We updated to [webpack 4](https://medium.com/webpack/webpack-4-released-today-6cdb994702d4), which automatically splits JS bundles more intelligently.
-* 🃏 We updated to [Jest 23](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing.html), which includes an [interactive mode](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing#interactive-snapshot-mode) for reviewing snapshots.
-* 💄 We added [PostCSS](https://preset-env.cssdb.org/features#stage-3) so you can use new CSS features in old browsers.
-* 💎 You can use [Apollo](https://github.com/leoasis/graphql-tag.macro#usage), [Relay Modern](https://github.com/facebook/relay/pull/2171#issuecomment-411459604), [MDX](https://github.com/facebook/create-react-app/issues/5149#issuecomment-425396995), and other third-party [Babel Macros](https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros) transforms.
-* 🌠 You can now [import an SVG as a React component](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-svgs), and use it in JSX.
-* 🐈 You can try the experimental [Yarn Plug'n'Play mode](https://github.com/yarnpkg/rfcs/pull/101) that removes `node_modules`.
-* 🕸 You can now [plug your own proxy implementation](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#configuring-the-proxy-manually) in development to match your backend API.
-* 🚀 You can now use [packages written for latest Node versions](https://github.com/sindresorhus/ama/issues/446#issuecomment-281014491) without breaking the build.
-* ✂️ You can now optionally get a smaller CSS bundle if you only plan to target modern browsers.
-* 👷‍♀️ Service workers are now opt-in and are built using Google's [Workbox](https://developers.google.com/web/tools/workbox/).
+* 🎉 Plus d'options de style : vous pouvez utiliser [Sass](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-sass-stylesheet) et [des modules CSS](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-modules-stylesheet) tel quels.
+* 🐠 Nous avons mis à jour [Babel 7](https://babeljs.io/blog/2018/08/27/7.0.0), y compris le support de la [syntaxe React fragment](/docs/fragments.html#short-syntax) et de nombreuses corrections de bogues.
+* 📦 Nous avons mis à jour [webpack 4](https://medium.com/webpack/webpack-4-released-today-6cdb994702d4), qui divise automatiquement les paquets JS de manière plus intelligente.
+* 🃏 Nous avons mis à jour [Jest 23](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing.html), qui comprend un [mode interactif](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing#interactive-snapshot-mode) pour l'examen des snapshots.
+* 💄 Nous avons ajouté [PostCSS](https://preset-env.cssdb.org/features#stage-3) afin que vous puissiez utiliser les nouvelles fonctionnalités CSS dans les anciens navigateurs.
+* 💎 Vous pouvez utiliser [Apollo](https://github.com/leoasis/graphql-tag.macro#usage), [Relay Modern](https://github.com/facebook/relay/pull/2171#issuecomment-411459604), [MDX](https://github.com/facebook/create-react-app/issues/5149#issuecomment-425396995), et d'autres tiers [Babel Macros](https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros) transformations.
+* 🌠 Vous pouvez maintenant [importer un SVG en tant que composant React](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-svgs) et utilisez-le dans JSX.
+* 🐈 Vous pouvez essayer la mode expérimentale [Yarn Plug'n'Play](https://github.com/yarnpkg/rfcs/pull/101) qui supprime `node_modules`.
+* 🕸 Vous pouvez maintenant [brancher votre propre implémentation de proxy](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#configuring-the-proxy-manually) en développement pour correspondre à votre API back-end.
 
-**All of these features work out of the box** -- to enable them, follow the below instructions.
+* 🚀 Vous pouvez maintenant utiliser les [paquets écrits pour les dernières versions de Node](https://github.com/sindresorhus/ama/issues/446#issuecomment-281014491) sans casser la construction.
+* ✂️ Vous pouvez maintenant opter pour un paquet CSS plus petit si vous prévoyez seulement de cibler les navigateurs modernes.
+* 👷‍♀️ Les service workers sont maintenant opt-in et sont construits à l'aide de Google [Workbox].(https://developers.google.com/web/tools/workbox/).
 
-## Starting a Project with Create React App 2.0 {#starting-a-project-with-create-react-app-20}
+**Toutes ces fonctions sont prêtes à l'emploi** -- pour les activer, suivez les instructions ci-dessous.
 
-You don't need to update anything special. Starting from today, when you run `create-react-app` it will use the 2.0 version of the template by default. Have fun!
+## Démarrer un projet avec Create React App 2.0 {#starting-a-project-with-create-react-app-20}
 
-If you want to **use the old 1.x template** for some reason, you can do that by passing `--scripts-version=react-scripts@1.x` as an argument to `create-react-app`.
+Vous n'avez pas besoin de mettre à jour quoi que ce soit de spécial. A partir d'aujourd'hui, lorsque vous lancez `create-react-app` il utilisera la version 2.0 du template par défaut. Amusez-vous bien !
 
-## Updating a Project to Create React App 2.0 {#updating-a-project-to-create-react-app-20}
+Si vous voulez **utiliser l'ancien modèle 1.x** pour une raison quelconque, vous pouvez le faire en passant `--scripts-version=react-scripts@1.x` comme argument pour `create-react-app`.
+
+## Mise à jour d'un projet Create React App 2.0 {#updating-a-project-to-create-react-app-20}
 
 Upgrading a non-ejected project to Create React App 2.0 should usually be straightforward. Open `package.json` in the root of your project and find `react-scripts` there.
 
