@@ -1,6 +1,6 @@
 ---
 id: conferences
-title: Conferences
+title: Conférences
 layout: community
 sectionid: community
 permalink: community/conferences.html
@@ -8,354 +8,378 @@ redirect_from:
   - "docs/conferences.html"
 ---
 
-Do you know of a local React.js conference? Add it here! (Please keep the list chronological)
+Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
+(Merci de respecter l'ordre chronologique de la liste)
 
-## Upcoming Conferences {#upcoming-conferences}
+## Prochaines conférences {#upcoming-conferences}
 
-### Reactathon 2019 {#reactathon-2019}
-March 30-31, 2019 in San Francisco, USA
+### ReactJS Girls Conference
+Le 3 mai 2019 à Londres, Royaume-Uni
 
-[Website](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon)
+[Site web](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
 
-### App.js Conf 2019 {#appjs-conf-2019}
-April 4-5, 2019 in Kraków, Poland
+### <React.NotAConf /> 2019 {#reactnotaconf--2019}
+May 11 in Sofia, Bulgaria
 
-[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
-
-### React Amsterdam 2019 {#react-amsterdam-2019}
-April 12, 2019 in Amsterdam, The Netherlands
-
-[Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
-
-### ReactJS Girls Conference 
-May 3, 2019 in London, UK
-
-[Website](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
+[Website](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/events/780891358936156)
 
 ### ReactEurope 2019 {#reacteurope-2019}
-May 23-24, 2019 in Paris, France
+Du 23 au 24 mai 2019 à Paris, France
 
-[Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+[Site web](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Vidéos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### React Conf Armenia 2019 {#react-conf-am-19}
-May 25, 2019 in Yerevan, Armenia
+Le 25 mai 2019 à Yerevan, Arménie
 
-[Website](https://reactconf.am/) - [Twitter](https://twitter.com/ReactConfAM) - [Facebook](https://www.facebook.com/reactconf.am/) - [YouTube](https://www.youtube.com/c/JavaScriptConferenceArmenia) - [CFP](http://bit.ly/speakReact)
+[Site web](https://reactconf.am/) - [Twitter](https://twitter.com/ReactConfAM) - [Facebook](https://www.facebook.com/reactconf.am/) - [YouTube](https://www.youtube.com/c/JavaScriptConferenceArmenia) - [CFP](http://bit.ly/speakReact)
 
 ### React Norway 2019 {#react-norway-2019}
-June 12, 2019. Larvik, Norway
+Le 12 juin 2019 à Larvik, Norvège
 
-[Website](https://reactnorway.com) - [Twitter](https://twitter.com/ReactNorway)
+[Site web](https://reactnorway.com) - [Twitter](https://twitter.com/ReactNorway)
 
 ### React Loop 2019 {#react-loop-2019}
-June 21, 2019 Chicago, Illinois USA
+Le 21 juin 2019 à Chicago, États-Unis d'Amérique
 
-[Website](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
+[Site web](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
 
-### React Week '19 {#RWNY19}
-July 15-21, 2019. New York City, USA
+### Chain React 2019
+Du 11 au 12 juillet 2019 à Portland, Orégon, États-Unis d'Amérique
 
-[Website](https://reactweek.nyc) - [Twitter](https://twitter.com/ReactWeek)
+[Site web](https://infinite.red/ChainReactConf)
 
-### React Rally 2019
-August 22-23, 2019. Salt Lake City, USA.
+### React Rally 2019 {#react-rally-2019}
+Du 22 au 23 août 2019 à Salt Lake City, États-Unis d'Amérique
 
-[Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
+[Site web](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
 
 ### ComponentsConf 2019 {#componentsconf-2019}
-September 6, 2019 in Melbourne, Australia
-[Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
+Le 6 septembre  2019 à Melbourne, Australie
+
+[Site web](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
 
 ### React Native EU 2019 {#react-native-eu-2019}
-September 5-6 in Wrocław, Poland
+Du 5 au 6 septembre 2019 à Wrocław, Pologne
 
-[Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
+[Site web](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
+
+### ComponentsConf 2019 {#componentsconf-2019}
+Le 6 septembre 2019 à Melbourne, Australie
+
+[Site web](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
 
 ### React New York 2019 {#react-new-york-2019}
-September 13th, 2019. New York, USA
+Le 13 septembre 2019 à New York, États-Unis d'Amérique
 
-[Website](https://reactnewyork.com/) - [Twitter](https://twitter.com/reactnewyork)
+[Site web](https://reactnewyork.com/) - [Twitter](https://twitter.com/reactnewyork)
 
 ### React India 2019 {#react-india-2019}
-September 26-28, 2019 in Goa, India
+Du 26 au 28 septembre 2019 à Goa, Inde
 
-[Website](https://www.reactindia.io/) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia)
+[Site web](https://www.reactindia.io/) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia)
 
 ### React Alicante 2019 {#react-alicante-2019}
-September 26-28, 2019 in Alicante, Spain
+Du 26 au 28 septembre 2019 à Alicante, Espagne
 
-[Website](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante)
+[Site web](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante)
 
-## Past Conferences {#past-conferences}
+### React Advanced 2019 {#react-advanced-2019}
+
+Le 25 octobre 2019 à Londres, Royaume-Uni
+
+[Site web](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Vidéos](https://youtube.com/c/ReactConferences)
+
+### React Day Berlin 2019 {#react-day-berlin-2019}
+Le 6 décembre 2019 à Berlin, Allemagne
+
+[Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://www.youtube.com/reactdayberlin)
+
+## Anciennes conférences {#past-conferences}
 
 ### React.js Conf 2015 {#reactjs-conf-2015}
-January 28 & 29 in Facebook HQ, CA
+Du 28 au 29 janvier 2015 à Facebook HQ, États-Unis d'Amérique
 
-[Website](http://conf2015.reactjs.org/) - [Schedule](http://conf2015.reactjs.org/schedule.html) - [Videos](https://www.youtube.com/playlist?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr)
+[Site web](http://conf2015.reactjs.org/) - [Programme](http://conf2015.reactjs.org/schedule.html) - [Vidéos](https://www.youtube.com/playlist?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr)
+<br/><br/>
 
 <iframe title="React.js Conf 2015 Keynote" width="650" height="315" src="//www.youtube-nocookie.com/embed/KVZ-P-ZI6W4?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr" frameborder="0" allowfullscreen></iframe>
 
 ### ReactEurope 2015 {#reacteurope-2015}
-July 2 & 3 in Paris, France
+Du 2 au 3 juillet 2015 à Paris, France
 
-[Website](http://www.react-europe.org/) - [Schedule](http://www.react-europe.org/#schedule) - [Videos](https://www.youtube.com/channel/UCorlLn2oZfgOJ-FUcF2eZ1A/playlists)
+[Site web](http://www.react-europe.org/) - [Programme](http://www.react-europe.org/#schedule) - [Vidéos](https://www.youtube.com/channel/UCorlLn2oZfgOJ-FUcF2eZ1A/playlists)
 
 ### Reactive 2015 {#reactive-2015}
-November 2-4 in Bratislava, Slovakia
+Du 2 au 4 novembre 2015 à Bratislava, Slovaquie
 
-[Website](https://reactive2015.com/) - [Schedule](https://reactive2015.com/schedule_speakers.html#schedule)
+[Site web](https://reactive2015.com/) - [Programme](https://reactive2015.com/schedule_speakers.html#schedule)
 
 ### React.js Conf 2016 {#reactjs-conf-2016}
-February 22 & 23 in San Francisco, CA
+Du 22 au 23 février 2016 à San Francisco, États-Unis d'Amérique
 
-[Website](http://conf.reactjs.com/) - [Schedule](http://conf.reactjs.com/schedule.html) - [Videos](https://www.youtube.com/playlist?list=PLb0IAmt7-GS0M8Q95RIc2lOM6nc77q1IY)
+[Site web](http://conf.reactjs.com/) - [Programme](http://conf.reactjs.com/schedule.html) - [Vidéos](https://www.youtube.com/playlist?list=PLb0IAmt7-GS0M8Q95RIc2lOM6nc77q1IY)
 
 ### React Amsterdam 2016 {#react-amsterdam-2016}
-April 16 in Amsterdam, The Netherlands
+Le 16 avril 2016 à Amsterdam, Pays-Bas
 
-[Website](https://react.amsterdam/2016) - [Videos](https://youtu.be/sXDZBxbRRag?list=PLNBNS7NRGKMG3uLrm5fgY02hJ87Wzb4IU)
+[Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
 
 ### ReactEurope 2016 {#reacteurope-2016}
-June 2 & 3 in Paris, France
+Du 2 au 3 juin 2016 à Paris, France
 
-[Website](http://www.react-europe.org/) - [Schedule](http://www.react-europe.org/#schedule) - [Videos](https://www.youtube.com/channel/UCorlLn2oZfgOJ-FUcF2eZ1A/playlists)
+[Site web](http://www.react-europe.org/) - [Programme](http://www.react-europe.org/#schedule) - [Vidéos](https://www.youtube.com/channel/UCorlLn2oZfgOJ-FUcF2eZ1A/playlists)
 
 ### ReactRally 2016 {#reactrally-2016}
-August 25-26 in Salt Lake City, UT
+Du 25 au 26 août 2016 à Salt Lake City, États-Unis d'Amérique
 
-[Website](http://www.reactrally.com/) - [Schedule](http://www.reactrally.com/#/schedule) - [Videos](https://www.youtube.com/playlist?list=PLUD4kD-wL_zYSfU3tIYsb4WqfFQzO_EjQ)
+[Site web](http://www.reactrally.com/) - [Programme](http://www.reactrally.com/#/schedule) - [Vidéos](https://www.youtube.com/playlist?list=PLUD4kD-wL_zYSfU3tIYsb4WqfFQzO_EjQ)
 
 ### ReactNext 2016 {#reactnext-2016}
-September 15 in Tel Aviv, Israel
+Le 15 septembre 2016 à Tel Aviv, Israël
 
-[Website](http://react-next.com/) - [Schedule](http://react-next.com/#schedule) - [Videos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
+[Site web](http://react-next.com/) - [Programme](http://react-next.com/#schedule) - [Vidéos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
 
 ### ReactNL 2016 {#reactnl-2016}
-October 13 in Amsterdam, The Netherlands - [Schedule](http://reactnl.org/#program)
+Le 13 octobre 2016 à Amsterdam, Pays-Bas
 
-[Website](http://reactnl.org/)
+[Site web](http://reactnl.org/) - [Programme](http://reactnl.org/#program)
 
 ### Reactive 2016 {#reactive-2016}
-October 26-28 in Bratislava, Slovakia
+Du 26 au 28 octobre 2016 à Bratislava, Slovakia
 
-[Website](https://reactiveconf.com/)
+[Site web](https://reactiveconf.com/)
 
 ### React Remote Conf 2016 {#react-remote-conf-2016}
-October 26-28 online
+Du 26 au 28 octobre 2016, en ligne
 
-[Website](https://allremoteconfs.com/react-2016) - [Schedule](https://allremoteconfs.com/react-2016#schedule)
+[Site web](https://allremoteconfs.com/react-2016) - [Programme](https://allremoteconfs.com/react-2016#schedule)
 
 ### Agent Conference 2017 {#agent-conference-2017}
-January 20-21 in Dornbirn, Austria
+Du 20 au 21 janvier 2017 à Dornbirn, Autriche
 
-[Website](http://agent.sh/)
+[Site web](http://agent.sh/)
 
 ### React Conf 2017 {#react-conf-2017}
-March 13-14 in Santa Clara, CA
+Du 13 au 14 mars 2017 à Santa Clara, États-Unis d'Amérique
 
-[Website](http://conf.reactjs.org/) - [Videos](https://www.youtube.com/watch?v=7HSd1sk07uU&list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0)
+[Site web](http://conf.reactjs.org/) - [Vidéos](https://www.youtube.com/watch?v=7HSd1sk07uU&list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0)
 
 ### React London 2017 {#react-london-2017}
-March 28th at the [QEII Centre, London](http://qeiicentre.london/)
+Le 28 mars 2017 à Londres, Royaume-Uni
 
-[Website](http://react.london/) - [Videos](https://www.youtube.com/watch?v=2j9rSur_mnk&list=PLW6ORi0XZU0CFjdoYeC0f5QReBG-NeNKJ)
+[Site web](http://react.london/) - [Vidéos](https://www.youtube.com/watch?v=2j9rSur_mnk&list=PLW6ORi0XZU0CFjdoYeC0f5QReBG-NeNKJ)
 
 ### React Amsterdam 2017 {#react-amsterdam-2017}
-April 21st in Amsterdam, The Netherlands
+Le 21 avril 2017 à Amsterdam, Pays-Bas
 
-[Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Videos](https://www.youtube.com/watch?v=NQyL-Dm7Kig&list=PLNBNS7NRGKMHxfm0CcYNuINLdRw7r4a9M)
+[Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
 
 ### ReactEurope 2017 {#reacteurope-2017}
-May 18th & 19th in Paris, France
+Du 18 au 19 mai 2017 à Paris, France
 
-[Website](http://www.react-europe.org/) - [Schedule](http://www.react-europe.org/#schedule) - [Videos](https://www.youtube.com/channel/UCorlLn2oZfgOJ-FUcF2eZ1A/playlists)
+[Site web](http://www.react-europe.org/) - [Programme](http://www.react-europe.org/#schedule) - [Vidéos](https://www.youtube.com/channel/UCorlLn2oZfgOJ-FUcF2eZ1A/playlists)
 
 ### Chain React 2017 {#chain-react-2017}
-July 10-11 in Portland, Oregon USA
+Du 10 au 11 juillet 2017 à Portland, États-Unis d'Amérique
 
-[Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf) - [Videos](https://www.youtube.com/watch?v=cz5BzwgATpc&list=PLFHvL21g9bk3RxJ1Ut5nR_uTZFVOxu522)
+[Site web](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf) - [Vidéos](https://www.youtube.com/watch?v=cz5BzwgATpc&list=PLFHvL21g9bk3RxJ1Ut5nR_uTZFVOxu522)
 
 ### React Rally 2017 {#react-rally-2017}
-August 24-25 in Salt Lake City, Utah USA
+Du 24 au 25 août 2017 à Salt Lake City, États-Unis d'Amérique
 
-[Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally) - [Videos](https://www.youtube.com/watch?v=f4KnHNCZcH4&list=PLUD4kD-wL_zZUhvAIHJjueJDPr6qHvkni)
+[Site web](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally) - [Vidéos](https://www.youtube.com/watch?v=f4KnHNCZcH4&list=PLUD4kD-wL_zZUhvAIHJjueJDPr6qHvkni)
 
 ### React Native EU 2017 {#react-native-eu-2017}
-September 6-7 in Wroclaw, Poland
+Du 6 au 7 septembre 2017 à Wrocław, Pologne
 
-[Website](http://react-native.eu/) - [Videos](https://www.youtube.com/watch?v=453oKJAqfy0&list=PLzUKC1ci01h_hkn7_KoFA-Au0DXLAQZR7)
+[Site web](http://react-native.eu/) - [Vidéos](https://www.youtube.com/watch?v=453oKJAqfy0&list=PLzUKC1ci01h_hkn7_KoFA-Au0DXLAQZR7)
 
 ### ReactNext 2017 {#reactnext-2017}
-September 8-10 in Tel Aviv, Israel
+Du 8 au 10 septembre 2017 à Tel Aviv, Israël
 
-[Website](http://react-next.com/) - [Twitter](https://twitter.com/ReactNext) - [Videos (Hall A)](https://www.youtube.com/watch?v=eKXQw5kR86c&list=PLMYVq3z1QxSqq6D7jxVdqttOX7H_Brq8Z), [Videos (Hall B)](https://www.youtube.com/watch?v=1InokWxYGnE&list=PLMYVq3z1QxSqCZmaqgTXLsrcJ8mZmBF7T)
+[Site web](http://react-next.com/) - [Twitter](https://twitter.com/ReactNext) - [Vidéos (Hall A)](https://www.youtube.com/watch?v=eKXQw5kR86c&list=PLMYVq3z1QxSqq6D7jxVdqttOX7H_Brq8Z), [Vidéos (Hall B)](https://www.youtube.com/watch?v=1InokWxYGnE&list=PLMYVq3z1QxSqCZmaqgTXLsrcJ8mZmBF7T)
 
 ### ReactFoo 2017 {#reactfoo-2017}
-September 14 in Bangalore, India
+Le 14 septembre 2017 à Bangalore, Inde
 
-[Website](https://reactfoo.in/2017/) - [Videos](https://www.youtube.com/watch?v=3G6tMg29Wnw&list=PL279M8GbNsespKKm1L0NAzYLO6gU5LvfH)
+[Site web](https://reactfoo.in/2017/) - [Vidéos](https://www.youtube.com/watch?v=3G6tMg29Wnw&list=PL279M8GbNsespKKm1L0NAzYLO6gU5LvfH)
 
 ### React Boston 2017 {#react-boston-2017}
-September 23-24 in Boston, Massachusetts USA
+Du 23 au 24 septembre 2017 à Boston, États-Unis d'Amérique
 
-[Website](http://www.reactboston.com/) - [Twitter](https://twitter.com/ReactBoston) - [Videos](https://www.youtube.com/watch?v=2iPE5l3cl_s&list=PL-fCkV3wv4ub8zJMIhmrrLcQqSR5XPlIT)
+[Site web](http://www.reactboston.com/) - [Twitter](https://twitter.com/ReactBoston) - [Vidéos](https://www.youtube.com/watch?v=2iPE5l3cl_s&list=PL-fCkV3wv4ub8zJMIhmrrLcQqSR5XPlIT)
 
 ### React Alicante 2017 {#react-alicante-2017}
-September 28-30 in Alicante, Spain
+Du 28 au 30 septembre 2017 à Alicante, Espagne
 
-[Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante) - [Videos](https://www.youtube.com/watch?v=UMZvRCWo6Dw&list=PLd7nkr8mN0sWvBH_s0foCE6eZTX8BmLUM)
+[Site web](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante) - [Vidéos](https://www.youtube.com/watch?v=UMZvRCWo6Dw&list=PLd7nkr8mN0sWvBH_s0foCE6eZTX8BmLUM)
 
 ### ReactJS Day 2017 {#reactjs-day-2017}
-October 6 in Verona, Italy
+Le 6 octobre 2017 à Vérone, Italie
 
-[Website](http://2017.reactjsday.it) - [Twitter](https://twitter.com/reactjsday) - [Videos](https://www.youtube.com/watch?v=bUqqJPIgjNU&list=PLWK9j6ps_unl293VhhN4RYMCISxye3xH9)
+[Site web](http://2017.reactjsday.it) - [Twitter](https://twitter.com/reactjsday) - [Vidéos](https://www.youtube.com/watch?v=bUqqJPIgjNU&list=PLWK9j6ps_unl293VhhN4RYMCISxye3xH9)
 
 ### React Conf Brasil 2017 {#react-conf-brasil-2017}
-October 7 in Sao Paulo, Brazil
+Le 7 octobre 2017 à Sao Paulo, Brésil
 
-[Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf/)
+[Site web](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf/)
 
 ### State.js Conference 2017 {#statejs-conference-2017}
-October 13 in Stockholm, Sweden
+Le 13 octobre 2017 à Stockholm, Suède
 
-[Website](https://statejs.com/)
+[Site web](https://statejs.com/)
 
 ### React Summit 2017 {#react-summit-2017}
-October 21 in Lagos, Nigeria
+Le 21 octobre 2017 à Lagos, Nigéria
 
-[Website](https://reactsummit2017.splashthat.com/) - [Twitter](https://twitter.com/DevCircleLagos/) - [Facebook](https://www.facebook.com/groups/DevCLagos/)
+[Site web](https://reactsummit2017.splashthat.com/) - [Twitter](https://twitter.com/DevCircleLagos/) - [Facebook](https://www.facebook.com/groups/DevCLagos/)
 
 ### ReactiveConf 2017 {#reactiveconf-2017}
-October 25–27, Bratislava, Slovakia
+Du 25 au 27 octobre 2017 à Bratislava, Slovaquie
 
-[Website](https://reactiveconf.com) - [Videos](https://www.youtube.com/watch?v=BOKxSFB2hOE&list=PLa2ZZ09WYepMB-I7AiDjDYR8TjO8uoNjs)
+[Site web](https://reactiveconf.com) - [Vidéos](https://www.youtube.com/watch?v=BOKxSFB2hOE&list=PLa2ZZ09WYepMB-I7AiDjDYR8TjO8uoNjs)
 
 ### React Seoul 2017 {#react-seoul-2017}
-November 4 in Seoul, South Korea
+Le 4 novembre 2017 à Séoul, Corée du Sud
 
-[Website](http://seoul.reactjs.kr/en)
+[Site web](http://seoul.reactjs.kr/en)
 
 ### React Day Berlin 2017 {#react-day-berlin-2017}
-December 2, Berlin, Germany
+Le 2 décembre 2017 à Berlin, Allemagne
 
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/watch?v=UnNLJvHKfSY&list=PL-3BrJ5CiIx5GoXci54-VsrO6GwLhSHEK)
+[Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://www.youtube.com/watch?v=UnNLJvHKfSY&list=PL-3BrJ5CiIx5GoXci54-VsrO6GwLhSHEK)
 
 ### ReactFoo Pune {#reactfoo-pune}
-January 19-20, Pune, India
+Du 19 au 20 janvier 2018 à Pune, Inde
 
-[Website](https://reactfoo.in/2018-pune/) - [Twitter](https://twitter.com/ReactFoo)
+[Site web](https://reactfoo.in/2018-pune/) - [Twitter](https://twitter.com/ReactFoo)
 
 ### AgentConf 2018 {#agentconf-2018}
-January 25-28 in Dornbirn, Austria
+Du 25 au 28 janvier 2018 à Dornbirn, Autriche
 
-[Website](http://agent.sh/)
+[Site web](http://agent.sh/)
 
 ### ReactFest 2018 {#reactfest-2018}
-March 8-9 in London, UK
+Du 8 au 9 mars 2018 à Londres, Royaume-Uni
 
-[Website](https://reactfest.uk/) - [Twitter](https://twitter.com/ReactFest) - [Videos](https://www.youtube.com/watch?v=YOCrJ5vRCnw&list=PLRgweB8YtNRt-Sf-A0y446wTJNUaAAmle)
+[Site web](https://reactfest.uk/) - [Twitter](https://twitter.com/ReactFest) - [Vidéos](https://www.youtube.com/watch?v=YOCrJ5vRCnw&list=PLRgweB8YtNRt-Sf-A0y446wTJNUaAAmle)
 
 ### Reactathon 2018 {#reactathon-2018}
-March 20-22 in San Francisco, USA
+Du 20 au 22 mars 2018 à San Francisco, États-Unis d'Amérique
 
-[Website](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon) - [Videos (fundamentals)](https://www.youtube.com/watch?v=knn364bssQU&list=PLRvKvw42Rc7OWK5s-YGGFSmByDzzgC0HP), [Videos (advanced day1)](https://www.youtube.com/watch?v=57hmk4GvJpk&list=PLRvKvw42Rc7N0QpX2Rc5CdrqGuxzwD_0H), [Videos (advanced day2)](https://www.youtube.com/watch?v=1hvQ8p8q0a0&list=PLRvKvw42Rc7Ne46QAjWNWFo1Jf0mQdnIW)
+[Site web](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon) - [Vidéos (fundamentals)](https://www.youtube.com/watch?v=knn364bssQU&list=PLRvKvw42Rc7OWK5s-YGGFSmByDzzgC0HP), [Vidéos (advanced day1)](https://www.youtube.com/watch?v=57hmk4GvJpk&list=PLRvKvw42Rc7N0QpX2Rc5CdrqGuxzwD_0H), [Vidéos (advanced day2)](https://www.youtube.com/watch?v=1hvQ8p8q0a0&list=PLRvKvw42Rc7Ne46QAjWNWFo1Jf0mQdnIW)
 
 ### React Native Camp UA 2018 {#react-native-camp-ua-2018}
-March 31 in Kiev, Ukraine
+Le 31 mars 2018 à Kiev, Ukraine
 
-[Website](http://reactnative.com.ua/) - [Twitter](https://twitter.com/reactnativecamp) - [Facebook](https://www.facebook.com/reactnativecamp/)
+[Site web](http://reactnative.com.ua/) - [Twitter](https://twitter.com/reactnativecamp) - [Facebook](https://www.facebook.com/reactnativecamp/)
 
 ### React Amsterdam 2018 {#react-amsterdam-2018}
-April 13 in Amsterdam, The Netherlands
+Le 13 avril 2018 à Amsterdam, Pays-Bas
 
-[Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
+[Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
 
 ### React Finland 2018 {#react-finland-2018}
-April 24-26 in Helsinki, Finland
+Du 24 au 26 avril 2018 à Helsinki, Finlande
 
-[Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
+[Site web](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
 
 ### <React.NotAConf /> 2018 {#reactnotaconf--2018}
-April 28 in Sofia, Bulgaria
+Le 28 avril 2018 à Sofia, Bulgarie
 
-[Website](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/groups/1614950305478021/)
+[Site web](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/groups/1614950305478021/)
 
 ### ReactEurope 2018 {#reacteurope-2018}
-May 17-18 in Paris, France
+Du 17 au 18 mai 2018 à Paris, France
 
-[Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope)
+[Site web](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope)
 
 ### ReactFoo Mumbai {#reactfoo-mumbai}
-May 26 in Mumbai, India
+Le 26 mai 2018 à Mumbai, Inde
 
-[Website](https://reactfoo.in/2018-mumbai/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
+[Site web](https://reactfoo.in/2018-mumbai/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
 
 ### Chain React 2018 {#chain-react-2018}
-July 11-13 in Portland, Oregon USA
+Du 11 au 13 juillet 2018 à Portland, États-Unis d'Amérique
 
-[Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf)
+[Site web](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf)
 
 ### React Rally {#react-rally}
-August 16-17 in Salt Lake City, Utah USA
+Du 16 au 17 août 2018 à Salt Lake City, États-Unis d'Amérique
 
-[Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)
+[Site web](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)
 
 ### React DEV Conf China {#react-dev-conf-china}
-August 18 in Guangzhou, China
+Le 18 août 2018 à Guangzhou, Chine
 
-[Website](https://react.w3ctech.com)
+[Site web](https://react.w3ctech.com)
 
 ### ReactFoo Delhi {#reactfoo-delhi}
-August 18 in Delhi, India
+Le 18 août 2018 à Delhi, Inde
 
-[Website](https://reactfoo.in/2018-delhi/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
+[Site web](https://reactfoo.in/2018-delhi/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
 
 ### Byteconf React 2018 {#byteconf-react-2018}
-August 31 streamed online, via Twitch
+Le 31 août 2018, en ligne
 
-[Website](https://byteconf.com) - [Twitch](https://twitch.tv/byteconf) - [Twitter](https://twitter.com/byteconf)
+[Site web](https://byteconf.com) - [Twitch](https://twitch.tv/byteconf) - [Twitter](https://twitter.com/byteconf)
 
 ### React Native EU 2018 {#react-native-eu-2018}
-September 5-6 in Wrocław, Poland
+Du 5 au 6 septembre 2018 à Wrocław, Pologne
 
-[Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
+[Site web](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
 
 ### React Alicante 2018 {#react-alicante-2018}
-September 13-15 in Alicante, Spain
+Du 13 au 15 septembre 2018 à Alicante, Espagne
 
-[Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante)
+[Site web](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante)
 
 ### React Boston 2018 {#react-boston-2018}
-September 29-30 in Boston, Massachusetts USA
+Du 29 au 30 septembre 2018 à Boston, États-Unis d'Amérique
 
-[Website](http://www.reactboston.com/) - [Twitter](https://twitter.com/ReactBoston)
+[Site web](http://www.reactboston.com/) - [Twitter](https://twitter.com/ReactBoston)
 
 ### ReactJS Day 2018 {#reactjs-day-2018}
-October 5 in Verona, Italy
+Le 5 octobre 2018 à Vérone, Italie
 
-[Website](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
+[Site web](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
 
 ### React Conf Brasil 2018 {#react-conf-brasil-2018}
-October 20 in Sao Paulo, Brazil
+Le 20 octobre 2018 à Sao Paulo, Brésil
 
-[Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf)
+[Site web](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf)
 
 ### React Conf 2018 {#react-conf-2018}
-October 25-26 in Henderson, Nevada USA
+Du 25 au 26 octobre 2018 à Henderson, États-Unis d'Amérique
 
-[Website](https://conf.reactjs.org/)
+[Site web](https://conf.reactjs.org/)
 
 ### ReactNext 2018 {#reactnext-2018}
-November 4 in Tel Aviv, Israel
+Le 4 novembre 2018 à Tel Aviv, Israël
 
-[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
+[Site web](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
 
 ### React Day Berlin 2018 {#react-day-berlin-2018}
-November 30, Berlin, Germany
+Le 30 novembre 2018 à Berlin, Allemagne
 
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/channel/UC1EYHmQYBUJjkmL6OtK4rlw)
+[Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://www.youtube.com/channel/UC1EYHmQYBUJjkmL6OtK4rlw)
 
 ### React Iran 2019 {#react-iran-2019}
-January 31, 2019 in Tehran, Iran
+Le 31 janvier 2019 à Téhéran, Iran
 
-[Website](http://reactiran.com) - [Instagram](https://www.instagram.com/reactiran/)
+[Site web](http://reactiran.com) - [Instagram](https://www.instagram.com/reactiran/)
+
+### Reactathon 2019 {#reactathon-2019}
+Du 30 au 31 mars 2019 à San Francisco, États-Unis d'Amérique
+
+[Site web](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon)
+
+### App.js Conf 2019 {#appjs-conf-2019}
+Du 4 au 5 avril 2019 à Cracovie, Pologne
+
+[Site web](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+
+### React Amsterdam 2019 {#react-amsterdam-2019}
+Le 12 avril 2019 à Amsterdam, Pays-Bas
+
+[Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)

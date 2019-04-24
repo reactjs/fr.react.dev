@@ -1,4 +1,4 @@
-// After
+// Après
 class ExampleComponent extends React.Component {
   state = {
     externalData: null,
@@ -6,8 +6,8 @@ class ExampleComponent extends React.Component {
 
   // highlight-range{1-13}
   static getDerivedStateFromProps(props, state) {
-    // Store prevId in state so we can compare when props change.
-    // Clear out previously-loaded data (so we don't render stale stuff).
+    // On stocke `prevId` dans l’état pour pouvoir la comparer quand les props changent.
+    // On efface aussi les données chargées précédemment (pour ne pas afficher des vieux trucs).
     if (props.id !== state.prevId) {
       return {
         externalData: null,
@@ -15,7 +15,7 @@ class ExampleComponent extends React.Component {
       };
     }
 
-    // No state update necessary
+    // Pas de mise à jour d’état nécessaire.
     return null;
   }
 
@@ -38,9 +38,9 @@ class ExampleComponent extends React.Component {
 
   render() {
     if (this.state.externalData === null) {
-      // Render loading state ...
+      // Afficher un état de chargement...
     } else {
-      // Render real UI ...
+      // Afficher l’UI réelle...
     }
   }
 

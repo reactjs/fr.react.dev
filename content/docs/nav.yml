@@ -128,7 +128,7 @@
   - id: how-to-contribute
     title: Comment contribuer
   - id: codebase-overview
-    title: Aperçu de la base de code
+    title: Aperçu du code source
   - id: implementation-notes
     title: Notes d’implémentation
   - id: design-principles
@@ -140,7 +140,7 @@
     - id: faq-build
       title: Babel, JSX, et étapes de construction
     - id: faq-functions
-      title: Passer des fonctions à des composants
+      title: Passer des fonctions aux composants
     - id: faq-state
       title: État local de composant
     - id: faq-styling

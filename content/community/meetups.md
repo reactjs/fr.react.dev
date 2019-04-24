@@ -57,7 +57,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [Aalborg](https://www.meetup.com/Aalborg-React-React-Native-Meetup/)
 * [Aarhus](https://www.meetup.com/Aarhus-ReactJS-Meetup/)
 
-## Écosse (GB) {#scotland-uk}
+## Écosse (UK) {#scotland-uk}
 * [Edinburgh](https://www.meetup.com/React-Scotland/)
 
 ## Espagne {#spain}
@@ -80,8 +80,8 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [New York, NY - ReactJS](https://www.meetup.com/NYC-Javascript-React-Group/)
 * [New York, NY - React Ladies](https://www.meetup.com/React-Ladies/)
 * [New York, NY - React Native](https://www.meetup.com/React-Native-NYC/)
-* [New York, NY - ReactNYC](https://www.meetup.com/ReactNYC/)
 * [Palo Alto, CA - React Native](https://www.meetup.com/React-Native-Silicon-Valley/)
+* [Philadelphia, PA - ReactJS](https://www.meetup.com/RQ-React/)
 * [Phoenix, AZ - ReactJS](https://www.meetup.com/ReactJS-Phoenix/)
 * [Pittsburgh, PA - ReactJS/React Native](https://www.meetup.com/ReactPgh/)
 * [Portland, OR - ReactJS](https://www.meetup.com/Portland-ReactJS/)
@@ -126,6 +126,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 
 ## Pakistan {#pakistan}
 * [Karachi](https://www.facebook.com/groups/902678696597634/)
+* [Lahore](https://www.facebook.com/groups/ReactjsLahore/)
 
 ## Pays-Bas {#netherlands}
 * [Amsterdam](https://www.meetup.com/React-Amsterdam/)

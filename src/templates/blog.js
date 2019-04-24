@@ -4,15 +4,15 @@
  * @emails react-core
  */
 
-import React from 'react';
-import {graphql} from 'gatsby';
 import Layout from 'components/Layout';
 import MarkdownPage from 'components/MarkdownPage';
+import React from 'react';
 import {createLinkBlog} from 'utils/createLink';
+import {graphql} from 'gatsby';
 
 const toSectionList = allMarkdownRemark => [
   {
-    title: 'Recent Posts',
+    title: 'Billets récents',
     items: allMarkdownRemark.edges
       .map(({node}) => ({
         id: node.fields.slug,
@@ -20,25 +20,40 @@ const toSectionList = allMarkdownRemark => [
       }))
       .concat({
         id: '/blog/all.html',
-        title: 'All posts ...',
+        title: 'Tous les billets…',
       }),
   },
 ];
 
-const Blog = ({data, location}) => (
-  <Layout location={location}>
-    <MarkdownPage
-      authors={data.markdownRemark.frontmatter.author}
-      createLink={createLinkBlog}
-      date={data.markdownRemark.fields.date}
-      location={location}
-      ogDescription={data.markdownRemark.excerpt}
-      markdownRemark={data.markdownRemark}
-      sectionList={toSectionList(data.allMarkdownRemark)}
-      titlePostfix=" &ndash; React Blog"
-    />
-  </Layout>
-);
+const dateFormatter =
+  typeof Intl === 'undefined'
+    ? null
+    : new Intl.DateTimeFormat('fr', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+const Blog = ({data, location}) => {
+  let date = dateFormatter
+    ? dateFormatter.format(new Date(data.markdownRemark.fields.date))
+    : data.markdownRemark.fields.formattedDate;
+
+  return (
+    <Layout location={location}>
+      <MarkdownPage
+        authors={data.markdownRemark.frontmatter.author}
+        createLink={createLinkBlog}
+        date={date}
+        location={location}
+        ogDescription={data.markdownRemark.excerpt}
+        markdownRemark={data.markdownRemark}
+        sectionList={toSectionList(data.allMarkdownRemark)}
+        titlePostfix=" • Blog React"
+      />
+    </Layout>
+  );
+};
 
 export const pageQuery = graphql`
   query TemplateBlogMarkdown($slug: String!) {
@@ -57,7 +72,8 @@ export const pageQuery = graphql`
         }
       }
       fields {
-        date(formatString: "MMMM DD, YYYY")
+        date
+        formattedDate: date(formatString: "D MMMM YYYY")
         path
         slug
       }

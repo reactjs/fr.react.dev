@@ -1,4 +1,4 @@
-// After
+// Après
 class ExampleComponent extends React.Component {
   state = {
     externalData: null,
@@ -22,9 +22,9 @@ class ExampleComponent extends React.Component {
 
   render() {
     if (this.state.externalData === null) {
-      // Render loading state ...
+      // Afficher un état de chargement...
     } else {
-      // Render real UI ...
+      // Afficher l’UI réelle...
     }
   }
 }

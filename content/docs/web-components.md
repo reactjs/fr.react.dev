@@ -20,7 +20,7 @@ class HelloMessage extends React.Component {
 }
 ```
 
-> Remarque :
+>Remarque
 >
 > Les Web Components exposent souvent une API impérative. Par exemple, un Web Component `video` peut exposer les fonctions `play()` et `pause()`. Pour accéder à l'API impérative d'un Web Component, vous devez utiliser une référence pour interagir directement avec le nœud du DOM. Si vous utilisez des Web Components tiers, la meilleure solution consiste à écrire un composant React qui se comporte comme un enrobage pour votre Web Component.
 >
@@ -56,7 +56,7 @@ class XSearch extends HTMLElement {
 customElements.define('x-search', XSearch);
 ```
 
-> Remarque :
+>Remarque
 >
 > Ce code **ne fonctionnera pas** si vous transformez vos classes avec Babel. Consultez la discussion à ce sujet sur [ce ticket](https://github.com/w3c/webcomponents/issues/587).
 > Intégrez l'adaptateur [custom-elements-es5-adapter](https://github.com/webcomponents/webcomponentsjs#custom-elements-es5-adapterjs) préalablement au chargement de vos Web Components afin de résoudre ce problème.

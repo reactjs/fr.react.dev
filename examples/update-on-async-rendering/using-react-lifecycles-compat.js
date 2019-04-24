@@ -5,11 +5,11 @@ import {polyfill} from 'react-lifecycles-compat';
 class ExampleComponent extends React.Component {
   // highlight-next-line
   static getDerivedStateFromProps(props, state) {
-    // Your state update logic here ...
+    // Votre logique de mise à jour d’état ici...
   }
 }
 
-// Polyfill your component to work with older versions of React:
+// Polyfillez votre composant pour qu’il fonctionne avec de vieilles versions de React :
 // highlight-next-line
 polyfill(ExampleComponent);
 
