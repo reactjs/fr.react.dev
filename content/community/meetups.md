@@ -17,7 +17,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !
 * [React Berlin](https://www.meetup.com/React-Berlin/)
 * [React.JS Girls Berlin](https://www.meetup.com/ReactJS-Girls-Berlin/)
 
-## Angleterre (GB) {#england-uk}
+## Angleterre (UK) {#england-uk}
 * [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
 * [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
 
