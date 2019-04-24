@@ -61,6 +61,8 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
           <li><a href="https://fr.reactjs.org/warnings/refs-must-have-owner.html">Avertissements › refs-must-have-owner</a></li>
           <li><a href="https://fr.reactjs.org/warnings/special-props.html">Avertissements › special-props</a></li>
           <li><a href="https://fr.reactjs.org/warnings/unknown-prop.html">Avertissements › unknown-prop</a></li>
+          <li><a href="https://fr.reactjs.org/community/videos.html">Communauté › Ressources › Vidéos</a></li>
+          <li><a href="https://fr.reactjs.org/community/external-resources.html">Communauté › Ressources › Ressources externes</a></li>
           <li><a href="https://fr.reactjs.org/blog/2019/02/23/is-react-translated-yet.html">Blog › React est-il enfin traduit ?</a> (en cours)</li>
           <li><a href="https://fr.reactjs.org/blog/2019/02/06/react-v16.8.0.html">Blog › React v16.8.0</a> (en cours)</li>
           <li><a href="https://fr.reactjs.org/blog/2018/11/27/react-16-roadmap.html">Blog › Feuille de route pour react 16</a> (en cours)</li>
@@ -269,9 +271,9 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
       <td>
         <ul>
           <li><a href="https://fr.reactjs.org/docs/higher-order-components.html">Guides avancés › Composants d’ordre supérieur</a></li>
-          <li><a href="https://fr.reactjs.org/community/examples.html">Communauté › Ressources › Exemples</a> (en cours)</li>
-          <li><a href="https://fr.reactjs.org/community/meetups.html">Communauté › Ressources › Meetups</a> (en cours)</li>
-          <li><a href="https://fr.reactjs.org/community/conferences.html">Communauté › Ressources › Conférences</a> (en cours)</li>
+          <li><a href="https://fr.reactjs.org/community/examples.html">Communauté › Ressources › Exemples</a></li>
+          <li><a href="https://fr.reactjs.org/community/meetups.html">Communauté › Ressources › Meetups</a></li>
+          <li><a href="https://fr.reactjs.org/community/conferences.html">Communauté › Ressources › Conférences</a></li>
         </ul>
       </td>
     </tr>
@@ -301,14 +303,14 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
           <li><a href="https://fr.reactjs.org/docs/design-principles.html">Contribuer › Principe de conception</a></li>
           <li><a href="https://fr.reactjs.org/community/debugging-tools.html">Communauté › Outils › Débogage</a></li>
           <li><a href="https://fr.reactjs.org/community/component-workbenches.html">Communauté › Outils › Outils de mise au point</a></li>
-          <li><a href="https://fr.reactjs.org/community/jsx-integrations.html">Communauté › Outils › Intégrations JSX</a> (en cours)</li>
-          <li><a href="https://fr.reactjs.org/community/starter-kits.html">Communauté › Outils › Kits de démarrage</a> (en cours)</li>
+          <li><a href="https://fr.reactjs.org/community/jsx-integrations.html">Communauté › Outils › Intégrations JSX</a></li>
+          <li><a href="https://fr.reactjs.org/community/starter-kits.html">Communauté › Outils › Kits de démarrage</a></li>
           <li><a href="https://fr.reactjs.org/community/routing.html">Communauté › Outils › Routage</a></li>
           <li><a href="https://fr.reactjs.org/community/model-management.html">Communauté › Outils › Gestion de modèles</a></li>
           <li><a href="https://fr.reactjs.org/community/data-fetching.html">Communauté › Outils › Chargement de données</a></li>
           <li><a href="https://fr.reactjs.org/community/testing.html">Communauté › Outils › Tests</a></li>
-          <li><a href="https://fr.reactjs.org/community/ui-components.html">Communauté › Outils › Composants UI</a> (en cours)</li>
-          <li><a href="https://fr.reactjs.org/community/misc.html">Communauté › Outils › Divers</a> (en cours)</li>
+          <li><a href="https://fr.reactjs.org/community/ui-components.html">Communauté › Outils › Composants UI</a></li>
+          <li><a href="https://fr.reactjs.org/community/misc.html">Communauté › Outils › Divers</a></li>
         </ul>
       </td>
     </tr>
@@ -327,11 +329,7 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
       <td><a href="https://github.com/salimbenfarhat">Salim Benfarhat</a></td>
       <td><a href="https://twitter.com/salimbenfarhat">@salimbenfarhat</a></td>
       <td>
-        <ul>
-          <li><a href="https://fr.reactjs.org/docs/faq-versioning.html">FAQ › Politique de versions</a></li>
-          <li><a href="https://fr.reactjs.org/community/videos.html">Communauté › Ressources › Vidéos</a> (en cours)</li>
-          <li><a href="https://fr.reactjs.org/community/external-resources.html">Communauté › Ressources › Ressources externes</a> (en cours)</li>
-        </ul>
+        <a href="https://fr.reactjs.org/docs/faq-versioning.html">FAQ › Politique de versions</a>
       </td>
     </tr>
     <tr>
