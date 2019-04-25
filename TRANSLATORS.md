@@ -157,7 +157,11 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
       <td><a href="https://github.com/juliettelofaro">Juliette Lofaro</a></td>
       <td></td>
       <td>
-        <a href="https://fr.reactjs.org/docs/jsx-in-depth.html">Guides avancés › JSX dans le détail</a>
+        <ul>
+          <li><a href="https://fr.reactjs.org/docs/jsx-in-depth.html">Guides avancés › JSX dans le détail</a></li>
+          <li><a href="https://fr.reactjs.org/blog/2018/10/01/create-react-app-v2.html">Blog › Create React App 2.0 : Babel 7, Sass et plus encore</a> (en cours)</li>
+          <li><a href="https://fr.reactjs.org/blog/2017/04/07/react-v15.5.0.html">Blog › React v15.5.0</a> (en cours)</li>
+        </ul>
       </td>
     </tr>
     <tr>
