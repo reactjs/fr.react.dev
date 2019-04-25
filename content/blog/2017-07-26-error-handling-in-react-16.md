@@ -1,13 +1,13 @@
 ---
-title: "Gestion des erreurs dans React 16"
+title: "La gestion des erreurs dans React 16"
 author: [gaearon]
 ---
 
-Comme la version de React 16 se rapproche, nous souhaitons annoncer quelques modifications de la façon dont React traite les erreurs JavaScript dans les composants. Ces modifications sont incluses dans les versions bêta de React 16 et feront partie de React 16.
+Alors que la version de React 16 se rapproche, nous aimerions annoncer quelques modifications dans la façon dont React traite les erreurs JavaScript au sein des composants. Ces modifications figurent dans les versions beta de React 16 et feront partie de React 16.
 
-**D'ailleurs, [nous venons de publier la première version bêta de React 16 pour que vous puissiez l'essayer !](https://github.com/facebook/react/issues/10294)**
+**D'ailleurs, [nous venons de publier la première version beta de React 16 pour que vous puissiez l'essayer !](https://github.com/facebook/react/issues/10294)**
 
-## Comportement dans React 15 et antérieur {#behavior-in-react-15-and-earlier}
+## Comportement jusqu’à React 15 inclus {#behavior-in-react-15-and-earlier}
 
 Auparavant, les erreurs JavaScript au sein des composants avaient l'habitude de corrompre l'état interne de React, et de causer des [erreurs](https://github.com/facebook/react/issues/4026) [assez](https://github.com/facebook/react/issues/6895) [incompréhensibles](https://github.com/facebook/react/issues/8579) lors des rendus suivants. Ces erreurs étaient toujours causées par une erreur antérieure dans le code applicatif et comme React ne proposait alors aucun moyen de les gérer correctement dans les composants, il n'avait pas la possibilité de se rétablir.
 
@@ -109,6 +109,6 @@ Les périmètres d'erreurs respectent la nature déclarative de React, et se com
 
 ## Changements de nommage par rapport à React 15 {#naming-changes-from-react-15}
 
-React 15 disposait d'une prise en charge très limitée des périmètres d'erreurs sous un nom de méthode différent : `unstable_handleError`. Cette méthode ne fonctionne plus, et vous devrez la remplacer par `componentDidCatch` dans votre code à partir de la première version bêta de React 16.
+React 15 disposait d'une prise en charge très limitée des périmètres d'erreurs sous un nom de méthode différent : `unstable_handleError`. Cette méthode ne fonctionne plus, et vous devrez la remplacer par `componentDidCatch` dans votre code à partir de la première version beta de React 16.
 
-Pour ce changement, nous fournissons [un codemod](https://github.com/reactjs/react-codemod#error-boundaries) qui vous permet de migrer automatiquement votre code
+Pour ce changement, nous fournissons [un codemod](https://github.com/reactjs/react-codemod#error-boundaries) qui vous permet de migrer automatiquement votre code.
