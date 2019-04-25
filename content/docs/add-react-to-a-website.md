@@ -149,7 +149,7 @@ return (
 
 Ces deux extraits de code sont équivalents. Même si la syntaxe **JSX est [complètement optionnelle](/docs/react-without-jsx.html)**, la plupart des développeur·euse·s React la trouvent très pratique pour écrire du code  (avec React ou même avec d'autres bibliothèques).
 
-Vous pouvez tester JSX en utilisant un [convertisseur en ligne](https://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2%2Cstage-3&prettier=true&targets=Node-6.12&version=6.26.0&envVersion=).
+Vous pouvez tester JSX en utilisant un [convertisseur en ligne](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3).
 
 ### Essayer JSX en un clin d’œil {#quickly-try-jsx}
 

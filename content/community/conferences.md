@@ -13,6 +13,11 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 
 ## Prochaines conférences {#upcoming-conferences}
 
+### React Finland 2019 {#react-finland-2019}
+Du 24 au 26 avril à Helsinki, Finlande
+
+[Site web](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
+
 ### ReactJS Girls Conference
 Le 3 mai 2019 à Londres, Royaume-Uni
 

@@ -115,7 +115,7 @@ Le [blog React](/blog/) est la source officielle des mises à jour, par l'équip
 
 Vous pouvez également suivre le [compte @reactjs](https://twitter.com/reactjs) sur Twitter, mais rien d’essentiel ne vous échappera si vous ne lisez que le blog.
 
-Toutes les versions de React ne méritent pas leur propre article de blog, mais vous pouvez trouver un _changelog_ détaillé pour chaque version [dans le fichier `CHANGELOG.md` du dépôt React](https://github.com/facebook/react/blob/master/CHANGELOG.md), ainsi que sur la page des [_Releases_](https://github.com/facebook/react).
+Toutes les versions de React ne méritent pas leur propre article de blog, mais vous pouvez trouver un _changelog_ détaillé pour chaque version [dans le fichier `CHANGELOG.md` du dépôt React](https://github.com/facebook/react/blob/master/CHANGELOG.md), ainsi que sur la page des [_Releases_](https://github.com/facebook/react/releases).
 
 ## Documentation versionnée {#versioned-documentation}
 

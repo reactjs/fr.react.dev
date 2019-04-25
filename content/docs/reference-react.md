@@ -199,7 +199,7 @@ Cette API a été introduite pour remplacer la méthode dépréciée `React.addo
 React.createFactory(type)
 ```
 
-Cette méthode renvoie une fonction qui produit des éléments React d'un type donné. Comme pour [`React.createElement()`](#createElement), l'argument `type` peut être au choix : une chaîne contenant un nom de balise (tel que `'div'` ou `'span'`), un type de [composant React](/docs/components-and-props.html) (une classe ou une fonction), ou encore un [fragment React](#reactfragment).
+Cette méthode renvoie une fonction qui produit des éléments React d'un type donné. Comme pour [`React.createElement()`](#createelement), l'argument `type` peut être au choix : une chaîne contenant un nom de balise (tel que `'div'` ou `'span'`), un type de [composant React](/docs/components-and-props.html) (une classe ou une fonction), ou encore un type de [fragment React](#reactfragment).
 
 Cette fonction d'aide est historique et nous vous encourageons plutôt à utiliser JSX ou directement `React.createElement()`.
 
