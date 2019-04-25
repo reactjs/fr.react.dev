@@ -3,7 +3,7 @@ title: "La gestion des erreurs dans React 16"
 author: [gaearon]
 ---
 
-Alors que la version de React 16 se rapproche, nous aimerions annoncer quelques modifications dans la façon dont React traite les erreurs JavaScript au sein des composants. Ces modifications figurent dans les versions beta de React 16 et feront partie de React 16.
+Alors que la version 16 de React se rapproche, nous aimerions annoncer quelques modifications dans la façon dont React traite les erreurs JavaScript au sein des composants. Ces modifications figurent dans les versions beta de React 16 et feront partie de React 16.
 
 **D'ailleurs, [nous venons de publier la première version beta de React 16 pour que vous puissiez l'essayer !](https://github.com/facebook/react/issues/10294)**
 
