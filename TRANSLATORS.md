@@ -205,7 +205,7 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
       <td>
         <ul>
           <li><a href="https://fr.reactjs.org/docs/forwarding-refs.html">Guides avancés › Transfert de refs</a></li>
-          <li><a href="https://fr.reactjs.org/blog/2017/07/26/error-handling-in-react-16.html">Blog › Gestion des erreurs dans React 16</a> (en cours)</li>
+          <li><a href="https://fr.reactjs.org/blog/2017/07/26/error-handling-in-react-16.html">Blog › Gestion des erreurs dans React 16</a></li>
           <li><a href="https://fr.reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html">Blog › Prise en charge des fragments dans React v16.2.0</a> (en cours)</li>
         </ul>
       </td>
@@ -387,4 +387,4 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
 
 ------
 
-*Dernière mise à jour : 29/03/2019*
+*Dernière mise à jour : 25/04/2019*
