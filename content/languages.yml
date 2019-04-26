@@ -30,7 +30,7 @@
 - name: grec
   translated_name: Ελληνικά
   code: el
-  status: 0
+  status: 1
 - name: espagnol
   translated_name: Español
   code: es
@@ -158,8 +158,8 @@
 - name: ukrainien
   translated_name: Українська
   code: uk
-  status: 1
-- name: Urdu
+  status: 2
+- name: ourdou
   translated_name: اردو
   code: ur
   status: 0
