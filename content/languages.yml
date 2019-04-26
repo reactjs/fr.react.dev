@@ -30,13 +30,8 @@
 - name: grec
   translated_name: Ελληνικά
   code: el
-<<<<<<< HEAD
-  status: 0
-- name: espagnol
-=======
   status: 1
-- name: Spanish
->>>>>>> 4244fc646618de6bae934686f93dd04c9000d9ae
+- name: espagnol
   translated_name: Español
   code: es
   status: 2
