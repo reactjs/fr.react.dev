@@ -30,8 +30,13 @@
 - name: grec
   translated_name: Ελληνικά
   code: el
+<<<<<<< HEAD
   status: 0
 - name: espagnol
+=======
+  status: 1
+- name: Spanish
+>>>>>>> 4244fc646618de6bae934686f93dd04c9000d9ae
   translated_name: Español
   code: es
   status: 2
@@ -158,7 +163,7 @@
 - name: ukrainien
   translated_name: Українська
   code: uk
-  status: 1
+  status: 2
 - name: Urdu
   translated_name: اردو
   code: ur
