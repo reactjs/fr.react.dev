@@ -255,7 +255,7 @@ const Button = ({ children, color }) => ({
   }
 });
 
-// 2) Utilisation de la factory React.createClass()
+// 2) Utilisation de la fabrique React.createClass()
 const Button = React.createClass({
   render() {
     const { children, color } = this.props;
@@ -294,15 +294,15 @@ class Button extends React.Component {
 }
 ```
 
-When a component is defined as a class, it is a little bit more powerful than a function component. It can store some local state and perform custom logic when the corresponding DOM node is created or destroyed.
+Lorsqu'un composant est défini en tant que classe, il est un peu plus puissant qu'un composant de fonction. Il peut stocker un état local et exécuter une logique personnalisée lorsque le nœud DOM correspondant est créé ou détruit.
 
-A function component is less powerful but is simpler, and acts like a class component with just a single `render()` method. Unless you need features available only in a class, we encourage you to use function components instead.
+Un composant de fonction est moins puissant mais plus simple et agit comme un composant de la classe avec juste une méthode `render()`. Sauf si vous avez besoin de fonctionnalités disponibles uniquement dans une classe, nous vous encourageons à utiliser des composants de fonction.
 
-**However, whether functions or classes, fundamentally they are all components to React. They take the props as their input, and return the elements as their output.**
+**Cependant, qu’il s’agisse de fonctions ou de classes, ceux sont tous des composants de React.  Ils prennent les props en entrée et renvoient les éléments en sortie.**
 
-### Top-Down Reconciliation {#top-down-reconciliation}
+### Réconciliation descendante {#top-down-reconciliation}
 
-When you call:
+Quand vous appelez :
 
 ```js
 ReactDOM.render({
@@ -314,10 +314,10 @@ ReactDOM.render({
 }, document.getElementById('root'));
 ```
 
-React will ask the `Form` component what element tree it returns, given those `props`. It will gradually “refine” its understanding of your component tree in terms of simpler primitives:
+Selon ces `props`, React demandera au composant `Form` quel arbre d'élément il renvoie. Il va progressivement « affiner » sa compréhension de votre arbre de composants par des primitives plus simple :
 
 ```js
-// React: You told me this...
+// React: Tu m'as dit ça …
 {
   type: Form,
   props: {
@@ -326,7 +326,7 @@ React will ask the `Form` component what element tree it returns, given those `p
   }
 }
 
-// React: ...And Form told me this...
+// React: … Et Form m'a dit ça …
 {
   type: Button,
   props: {
@@ -335,7 +335,7 @@ React will ask the `Form` component what element tree it returns, given those `p
   }
 }
 
-// React: ...and Button told me this! I guess I'm done.
+// React: … et Button m'a dit ça ! Je suppose que j'ai fini.
 {
   type: 'button',
   props: {
@@ -350,34 +350,34 @@ React will ask the `Form` component what element tree it returns, given those `p
 }
 ```
 
-This is a part of the process that React calls [reconciliation](/docs/reconciliation.html) which starts when you call [`ReactDOM.render()`](/docs/top-level-api.html#reactdom.render) or [`setState()`](/docs/component-api.html#setstate). By the end of the reconciliation, React knows the result DOM tree, and a renderer like `react-dom` or `react-native` applies the minimal set of changes necessary to update the DOM nodes (or the platform-specific views in case of React Native).
+C'est une partie du processus que React appelle la [réconciliation](/docs/reconciliation.html), elle commence quand vous appelez [`ReactDOM.render()`](/docs/top-level-api.html#reactdom.render) ou [`setState()`](/docs/component-api.html#setstate). À la fin de la réconciliation, React connait l'arbre DOM résultant, et un moteur de rendu comme `react-dom` ou `react-native` applique l'ensemble des modifications nécessaires pour mettre à jour les nœuds DOM (ou les vues spécifiques à la plate-forme dans le cas de React Native).
 
-This gradual refining process is also the reason React apps are easy to optimize. If some parts of your component tree become too large for React to visit efficiently, you can tell it to [skip this “refining” and diffing certain parts of the tree if the relevant props have not changed](/docs/advanced-performance.html). It is very fast to calculate whether the props have changed if they are immutable, so React and immutability work great together, and can provide great optimizations with the minimal effort.
+Les applis React sont faciles à optimiser grâce à ce processus d'affinage progressif. Si certaines parties de l'arbre de votre composant deviennent trop grandes pour que React les visite efficacement, vous pouvez lui dire [d'ignorer cet « affinage » et comparer certaines parties de l'arbre pour contrôler si les props correspondants n'ont pas changé](/docs/advanced-performance.html). Il est très rapide de vérifier si les props ont changé quand elles sont immuables. React et l'immutabilité fonctionnent très bien ensemble et ça permet d'excellentes optimisations avec un minimum d'effort.
 
-You might have noticed that this blog entry talks a lot about components and elements, and not so much about the instances. The truth is, instances have much less importance in React than in most object-oriented UI frameworks.
+Vous avez peut-être remarqué que cet article du blog parle beaucoup des composants, des éléments et peu des instances. En réalité, les instances ont beaucoup moins d'importance dans React que dans la plupart des frameworks d'interface utilisateur orientés objet.
 
-Only components declared as classes have instances, and you never create them directly: React does that for you. While [mechanisms for a parent component instance to access a child component instance](/docs/more-about-refs.html) exist, they are only used for imperative actions (such as setting focus on a field), and should generally be avoided.
+Seuls les composants déclarés comme des classes ont des instances, et vous les créez jamais directement : React le fait pour vous. Bien qu’il existe des [mécanismes permettant à une instance de composant parent d'accéder à une instance de composant enfant](/docs/more-about-refs.html), elles ne sont utilisées que pour des actions impératives (telles que la définition du focus sur un champ) et doivent être évitées en général.
 
-React takes care of creating an instance for every class component, so you can write components in an object-oriented way with methods and local state, but other than that, instances are not very important in the React’s programming model and are managed by React itself.
+React prend en charge la création d'une instance pour chaque composant de classe, vous pouvez donc écrire des composants de manière orientée objet avec des méthodes et un état local, mais à part ça, les instances ne sont pas très importantes dans le modèle de programmation de React et sont gérées par React.
 
-## Summary {#summary}
+## Résumé {#summary}
 
-An *element* is a plain object describing what you want to appear on the screen in terms of the DOM nodes or other components. Elements can contain other elements in their props. Creating a React element is cheap. Once an element is created, it is never mutated.
+Un *élément* est un objet simple décrivant ce que vous souhaitez voir apparaître sur l’écran en ce qui concerne les nœuds DOM ou d’autres composants. Les éléments peuvent contenir d’autres éléments dans leurs props. La création d’un élément React est bon marché. Lorsqu’un élément est créé, il n’est jamais muté.
 
-A *component* can be declared in several different ways. It can be a class with a `render()` method. Alternatively, in simple cases, it can be defined as a function. In either case, it takes props as an input, and returns an element tree as the output.
+Un *composant* peut être déclaré de plusieurs manières différentes. Il peut être une classe avec une méthode `render()`. Autrement, dans les cas simples, il peut être défini comme une fonction. Dans les deux cas, il prend les props en entrée et renvoie un arbre d'éléments en sortie.
 
-When a component receives some props as an input, it is because a particular parent component returned an element with its `type` and these props. This is why people say that the props flows one way in React: from parents to children.
+Lorsqu'un composant reçoit des props en entrée, c'est parce qu'un composant parent particulier a renvoyé un élément avec son `type` et ces props. C’est la raison pour laquelle les gens disent que les props circulent dans un sens dans React : des parents vers les enfants.
 
-An *instance* is what you refer to as `this` in the component class you write. It is useful for [storing local state and reacting to the lifecycle events](/docs/component-api.html).
+Une *instance* correspond à ce que vous appelez `this` dans la classe du composant que vous écrivez. C'est utile pour [stocker l'état local et réagir aux événements du cycle de vie](/docs/component-api.html).
 
-Function components don’t have instances at all. Class components have instances, but you never need to create a component instance directly—React takes care of this.
+Les composants de fonction n’ont pas du tout d’instances. Les composants de classe ont des instances, mais vous n'avez jamais besoin de créer directement une instance de composant. React s'en charge.
 
-Finally, to create elements, use [`React.createElement()`](/docs/top-level-api.html#react.createelement), [JSX](/docs/jsx-in-depth.html), or an [element factory helper](/docs/top-level-api.html#react.createfactory). Don’t write elements as plain objects in the real code—just know that they are plain objects under the hood.
+Enfin, pour créer des éléments, utilisez [`React.createElement()`](/docs/top-level-api.html#react.createelement), [JSX](/docs/jsx-in-depth.html), ou une [aide de fabrique d'élément](/docs/top-level-api.html#react.createfactory). N’écrivez pas des éléments comme de simples objets dans le code réel, sachez simplement qu'il s'agit de simples objets sous le capot.
 
-## Further Reading {#further-reading}
+## Lectures complémentaires {#further-reading}
 
-* [Introducing React Elements](/blog/2014/10/14/introducing-react-elements.html)
-* [Streamlining React Elements](/blog/2015/02/24/streamlining-react-elements.html)
-* [React (Virtual) DOM Terminology](/docs/glossary.html)
+* [Présentation des éléments React](/blog/2014/10/14/introducing-react-elements.html)
+* [Rationalisation des éléments React](/blog/2015/02/24/streamlining-react-elements.html)
+* [Terminologie du DOM (virtuel) de React](/docs/glossary.html)
 
-[^1]: All React elements require an additional ``$$typeof: Symbol.for('react.element')`` field declared on the object for [security reasons](https://github.com/facebook/react/pull/4832). It is omitted in the examples above. This blog entry uses inline objects for elements to give you an idea of what’s happening underneath but the code won’t run as is unless you either add `$$typeof` to the elements, or change the code to use `React.createElement()` or JSX.
+[^1]: Tous les éléments React nécessitent un champ supplémentaire ``$$typeof: Symbol.for('react.element')`` déclaré sur l'objet pour des [raisons de sécurité](https://github.com/facebook/react/pull/4832). Il est omis dans les exemples ci-dessus. Cet article du blog utilise des objets pour les éléments afin de vous donner une idée de ce qui se passe en dessous, mais le code ne fonctionnera pas tel quel, sauf si vous ajoutez `$$typeof` aux éléments ou modifiez le code pour qu'il utilise `React.createElement()` ou JSX.
