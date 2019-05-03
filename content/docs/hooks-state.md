@@ -8,7 +8,11 @@ prev: hooks-overview.html
 
 Les *Hooks* sont une nouveauté de React 16.8. Ils permettent de bénéficier d’un état local et d'autres fonctionnalités de React sans avoir à écrire de classes.
 
+<<<<<<< HEAD
 La [page précédente](/docs/hooks-intro.html) présentait les Hooks avec cet exemple :
+=======
+The [introduction page](/docs/hooks-intro.html) used this example to get familiar with Hooks:
+>>>>>>> b1691780aa3178d39694264863210d34ad5a5f81
 
 ```js{4-5}
 import React, { useState } from 'react';

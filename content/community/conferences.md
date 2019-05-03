@@ -18,8 +18,13 @@ Du 24 au 26 avril à Helsinki, Finlande
 
 [Site web](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
 
+<<<<<<< HEAD
 ### ReactJS Girls Conference
 Le 3 mai 2019 à Londres, Royaume-Uni
+=======
+### ReactJS Girls Conference {#reactjs-girls-conference}
+May 3, 2019 in London, UK
+>>>>>>> b1691780aa3178d39694264863210d34ad5a5f81
 
 [Site web](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
 
@@ -48,13 +53,22 @@ Le 21 juin 2019 à Chicago, États-Unis d'Amérique
 
 [Site web](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
 
+<<<<<<< HEAD
 ### Chain React 2019
 Du 11 au 12 juillet 2019 à Portland, Orégon, États-Unis d'Amérique
+=======
+### Chain React 2019 {#chain-react-2019}
+July 11-12, 2019. Portland, OR, USA.
+>>>>>>> b1691780aa3178d39694264863210d34ad5a5f81
 
 [Site web](https://infinite.red/ChainReactConf)
 
 ### React Rally 2019 {#react-rally-2019}
+<<<<<<< HEAD
 Du 22 au 23 août 2019 à Salt Lake City, États-Unis d'Amérique
+=======
+August 22-23, 2019. Salt Lake City, USA.
+>>>>>>> b1691780aa3178d39694264863210d34ad5a5f81
 
 [Site web](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
 
@@ -77,6 +91,11 @@ Le 6 septembre 2019 à Melbourne, Australie
 Le 13 septembre 2019 à New York, États-Unis d'Amérique
 
 [Site web](https://reactnewyork.com/) - [Twitter](https://twitter.com/reactnewyork)
+
+### React Boston 2019 {#react-boston-2019}
+September 21-22, 2019 in Boston, Massachusetts USA
+
+[Website](https://www.reactboston.com/) - [Twitter](https://twitter.com/reactboston)
 
 ### React India 2019 {#react-india-2019}
 Du 26 au 28 septembre 2019 à Goa, Inde
@@ -387,4 +406,8 @@ Du 4 au 5 avril 2019 à Cracovie, Pologne
 ### React Amsterdam 2019 {#react-amsterdam-2019}
 Le 12 avril 2019 à Amsterdam, Pays-Bas
 
+<<<<<<< HEAD
 [Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
+=======
+[Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
+>>>>>>> b1691780aa3178d39694264863210d34ad5a5f81
