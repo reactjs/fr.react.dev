@@ -212,7 +212,11 @@ const App = () => (
 
 ## Exports nommés {#named-exports}
 
+<<<<<<< HEAD
 Pour le moment, `React.lazy` ne prend en charge que les exports par défaut. Si le module que vous souhaitez importer utilise des exports nommés, vous pouvez créer un module intermédiaire qui réexportera le composant voulu en tant qu’export par défaut. Cela garantit que le *tree shaking* *([procédé permettant de supprimer les exports non-exploités](https://developer.mozilla.org/fr/docs/Glossaire/Tree_shaking), NdT)* continuera à fonctionner et que vous n’embarquerez pas de composants inutilisés.
+=======
+`React.lazy` currently only supports default exports. If the module you want to import uses named exports, you can create an intermediate module that reexports it as the default. This ensures that tree shaking keeps working and that you don't pull in unused components.
+>>>>>>> a211417f6680cce5b4e4f036dc1492c03bc588c7
 
 ```js
 // ManyComponents.js
