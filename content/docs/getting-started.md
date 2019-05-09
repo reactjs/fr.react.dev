@@ -99,7 +99,7 @@ Parfois les gens préféreront des livres et cours vidéo créés par des tiers 
 
 ### Guides avancés {#advanced-concepts}
 
-Une fois que vous serez à l'aise avec les [fondamentaux](#main-concepts) et que vous aurez joué un peu avec React, vous pourriez être intéressé·e par des sujets plus avancés. Cette section présente les fonctionnalités puissantes, mais moins utilisées, de React, telles que le [contexte](/docs/context.html) et les [refs](/docs/refs-and-the-dom.html).
+Une fois que vous serez à l'aise avec les [fondamentaux](/docs/hello-world.html) et que vous aurez joué un peu avec React, vous pourriez être intéressé·e par des sujets plus avancés. Cette section présente les fonctionnalités puissantes, mais moins utilisées, de React, telles que le [contexte](/docs/context.html) et les [refs](/docs/refs-and-the-dom.html).
 
 ### Référence de l’API {#api-reference}
 
