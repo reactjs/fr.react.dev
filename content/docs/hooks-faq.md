@@ -207,11 +207,7 @@ Il existe quelques autres heuristiques, et elles changeront peut-être avec le t
 
 Voici une [petite démo](https://codesandbox.io/s/jvvkoo8pq3) pour vous aider à démarrer. Pour en apprendre davantage, jetez un œil à [cet article](https://www.robinwieruch.de/react-hooks-fetch-data/) (en anglais) sur la récupration de données distantes avec les Hooks.
 
-<<<<<<< HEAD
 ### Existe-t-il un équivalent aux variables d'instances ? {#is-there-something-like-instance-variables}
-=======
-### How can I do data fetching with Hooks? {#how-can-i-do-data-fetching-with-hooks}
->>>>>>> ad6687e25e021b79e8a7a2e071fd846cf657b71f
 
 Oui ! Le Hook [`useRef()`](/docs/hooks-reference.html#useref) n'est pas seulement pour les refs au DOM. L'objet "ref" est un conteneur générique dont la propriété `current` est modifiable et peut contenir n'importe quelle valeur, de la même façon qu'une propriété d'instance dans une classe.
 
@@ -650,11 +646,7 @@ function ProductDetails({ fetchProduct })
 
 Remarquez que dans cet exemple nous **devons** garder la fonction dans la liste des dépendances.  On s'assure ainsi qu'une modification à la prop `productId` de `ProductPage` déclenchera automatiquement une nouvelle récupération de données distantes dans le composant `ProductDetails`.
 
-<<<<<<< HEAD
 ### Que faire quand mes dépendances d’effet changent trop souvent ? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
-=======
-### What can I do if my effect dependencies change too often? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
->>>>>>> ad6687e25e021b79e8a7a2e071fd846cf657b71f
 
 Il arrive que votre effet lise un état qui change trop fréquemment.  Vous pourriez alors être tenté·e d’omettre cet état de la liste des dépendances, mais ça engendre souvent des bugs :
 
