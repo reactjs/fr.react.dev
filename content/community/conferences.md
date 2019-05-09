@@ -79,7 +79,7 @@ Le 13 septembre 2019 à New York, États-Unis d'Amérique
 [Site web](https://reactnewyork.com/) - [Twitter](https://twitter.com/reactnewyork)
 
 ### React Boston 2019 {#react-boston-2019}
-September 21-22, 2019 in Boston, Massachusetts USA
+Du 21 au 22 septembre 2019 à Boston, Massachusetts, États-Unis d'Amérique
 
 [Website](https://www.reactboston.com/) - [Twitter](https://twitter.com/reactboston)
 
