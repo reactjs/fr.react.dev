@@ -393,4 +393,3 @@ Du 4 au 5 avril 2019 à Cracovie, Pologne
 Le 12 avril 2019 à Amsterdam, Pays-Bas
 
 [Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
-
