@@ -81,7 +81,7 @@ Le 13 septembre 2019 à New York, États-Unis d'Amérique
 ### React Boston 2019 {#react-boston-2019}
 Du 21 au 22 septembre 2019 à Boston, Massachusetts, États-Unis d'Amérique
 
-[Website](https://www.reactboston.com/) - [Twitter](https://twitter.com/reactboston)
+[Site web](https://www.reactboston.com/) - [Twitter](https://twitter.com/reactboston)
 
 ### React India 2019 {#react-india-2019}
 Du 26 au 28 septembre 2019 à Goa, Inde
