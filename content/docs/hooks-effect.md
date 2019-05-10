@@ -472,7 +472,11 @@ useEffect(() => {
 >
 >Si vous utilisez cette optimisation, assurez-vous que votre tableau inclut bien **toutes les valeurs dans la portée du composant (telles que les props et l'état local) qui peuvent changer avec le temps et sont utilisées par l'effet**. Sinon, votre code va référencer des valeurs obsolètes issues des rendus précédents.  Vous pouvez en apprendre davantage sur [la façon de gérer les dépendances à des fonctions](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) et comment faire quand [les dépendances listées changent trop souvent](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
 >
+<<<<<<< HEAD
 >Si vous voulez exécuter un effet et le nettoyer une seule fois (au montage puis au démontage), vous pouvez passer un tableau vide (`[]`) comme second argument.  Ça indique à React que votre effet ne dépend *d’aucune* valeur issue des props ou de l'état local, donc il n’a jamais besoin d’être ré-exécuté.  Il ne s'agit pas d'un cas particulier : ça découle directement de la façon dont le tableau des dépendances fonctionne.
+=======
+>If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array (`[]`) as a second argument. This tells React that your effect doesn't depend on *any* values from props or state, so it never needs to re-run. This isn't handled as a special case -- it follows directly from how the dependencies array always works.
+>>>>>>> b91049c05702b53445367e54a1652053b6081c1d
 >
 >Si vous passez un tableau vide (`[]`), les props et l'état local vus depuis l'intérieur de l'effet feront toujours référence à leurs valeurs initiales.  Même si passer `[]` comme second argument vous rapproche du modèle mental habituel de `componentDidMount` et `componentWillUnmount`, il y a en général de [meilleures](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) pour éviter de ré-exécuter les effets trop souvent. Par ailleurs, ne perdez pas de vue que React défère l’exécution de `useEffect` jusqu’à ce que la navigateur ait fini de rafraîchir l’affichage, du coup y faire plus de travail est moins un problème.
 >
