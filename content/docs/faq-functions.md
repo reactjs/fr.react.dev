@@ -83,7 +83,7 @@ class Foo extends Component {
 
 >Remarque
 >
->Utiliser une fonction fléchée dans la fonction de rendu crée une nouvelle fonction à chaque fois que le composant est affiché, ce qui peut impacter négativement les performances (voir plus bas).
+>Utiliser une fonction fléchée dans la fonction de rendu crée une nouvelle fonction à chaque fois que le composant est affiché, ce qui peut impacter négativement les optimisations basées sur une comparaison stricte d'identité.
 
 ### Est-il acceptable d'utiliser une fonction fléchée à l’intérieur de la méthode `render` ? {#is-it-ok-to-use-arrow-functions-in-render-methods}
 

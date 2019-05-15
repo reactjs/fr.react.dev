@@ -732,7 +732,7 @@ Le Hook [`useMemo`](/docs/hooks-reference.html#usememo) vous permet de mettre en
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
-Ce code appelle `computeExpensiveValue(a, b)`. Mais si les arguments `[a, b]` n'ont pas changé depuis le dernier calcul, `useMemo` saute le second appel et réutilise la dernière valeur renvoyée.
+Ce code appelle `computeExpensiveValue(a, b)`. Mais si les dépendances `[a, b]` n'ont pas changé depuis la dernière fois, `useMemo` saute le second appel et réutilise simplement la dernière valeur renvoyée.
 
 Rappelez-vous que la fonction passée à `useMemo` s'exécute pendant le rendu. N‘y faites rien que vous ne feriez normalement pendant le rendu. Par exemple, les effets de bord sont du ressort de `useEffect`, pas de `useMemo`.
 
@@ -759,7 +759,7 @@ Remarquez que cette approche ne fonctionne pas dans une boucle car les appels au
 
 ### Comment créer paresseusement des objets coûteux ? {#how-to-create-expensive-objects-lazily}
 
-`useMemo` vous permet de [mémoïser un calcul coûteux](#how-to-memoize-calculations) si les arguments sont les mêmes. Cependant, il n'est là que pour aider, et ne *garantit* pas que le calcul ne sera pas refait. Mais parfois vous devez vous assurer qu'un objet n'est créé qu'une seule fois.
+`useMemo` vous permet de [mémoïser un calcul coûteux](#how-to-memoize-calculations) si les dépendances sont les mêmes. Cependant, il n'est là que pour aider, et ne *garantit* pas que le calcul ne sera pas refait. Mais parfois vous devez vous assurer qu'un objet n'est créé qu'une seule fois.
 
 **Le principal cas d'utilisation concerne la création d'un état initial coûteux :**
 
