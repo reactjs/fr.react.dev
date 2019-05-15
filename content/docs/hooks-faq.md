@@ -732,11 +732,7 @@ Le Hook [`useMemo`](/docs/hooks-reference.html#usememo) vous permet de mettre en
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
-<<<<<<< HEAD
-Ce code appelle `computeExpensiveValue(a, b)`. Mais si les arguments `[a, b]` n'ont pas changé depuis le dernier calcul, `useMemo` saute le second appel et réutilise la dernière valeur renvoyée.
-=======
-This code calls `computeExpensiveValue(a, b)`. But if the dependencies `[a, b]` haven't changed since the last value, `useMemo` skips calling it a second time and simply reuses the last value it returned.
->>>>>>> d2d2ee420de13803fa3f02dca55e2020d42a411f
+Ce code appelle `computeExpensiveValue(a, b)`. Mais si les dépendances `[a, b]` n'ont pas changé depuis la dernière fois, `useMemo` saute le second appel et réutilise simplement la dernière valeur renvoyée.
 
 Rappelez-vous que la fonction passée à `useMemo` s'exécute pendant le rendu. N‘y faites rien que vous ne feriez normalement pendant le rendu. Par exemple, les effets de bord sont du ressort de `useEffect`, pas de `useMemo`.
 
@@ -763,11 +759,7 @@ Remarquez que cette approche ne fonctionne pas dans une boucle car les appels au
 
 ### Comment créer paresseusement des objets coûteux ? {#how-to-create-expensive-objects-lazily}
 
-<<<<<<< HEAD
-`useMemo` vous permet de [mémoïser un calcul coûteux](#how-to-memoize-calculations) si les arguments sont les mêmes. Cependant, il n'est là que pour aider, et ne *garantit* pas que le calcul ne sera pas refait. Mais parfois vous devez vous assurer qu'un objet n'est créé qu'une seule fois.
-=======
-`useMemo` lets you [memoize an expensive calculation](#how-to-memoize-calculations) if the dependencies are the same. However, it only serves as a hint, and doesn't *guarantee* the computation won't re-run. But sometimes you need to be sure an object is only created once.
->>>>>>> d2d2ee420de13803fa3f02dca55e2020d42a411f
+`useMemo` vous permet de [mémoïser un calcul coûteux](#how-to-memoize-calculations) si les dépendances sont les mêmes. Cependant, il n'est là que pour aider, et ne *garantit* pas que le calcul ne sera pas refait. Mais parfois vous devez vous assurer qu'un objet n'est créé qu'une seule fois.
 
 **Le principal cas d'utilisation concerne la création d'un état initial coûteux :**
 
