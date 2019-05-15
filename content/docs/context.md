@@ -36,7 +36,7 @@ En utilisant le Contexte, nous pouvons éviter de passer les props à travers de
 
 Le Contexte est principalement utilisé quand certaines données doivent être accessibles par de *nombreux* composants à différents niveaux d'imbrication. Utilisez-le avec parcimonie car il rend la réutilisation des composants plus difficile.
 
-**Si vous voulez seulement éviter de passer certaines propos à travers de nombreux niveaux, [la composition des composants](/docs/composition-vs-inheritance.html) est souvent plus simple que le contexte.**
+**Si vous voulez seulement éviter de passer certaines props à travers de nombreux niveaux, [la composition des composants](/docs/composition-vs-inheritance.html) est souvent plus simple que le contexte.**
 
 Par exemple, prenez un composant `Page` qui passe des props `user` et `avatarSize` plusieurs niveaux plus bas pour que les composants profondément imbriqués `Link` et `Avatar` puissent les lire :
 
