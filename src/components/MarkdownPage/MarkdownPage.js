@@ -16,7 +16,13 @@ import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import createOgUrl from 'utils/createOgUrl';
 import findSectionForPath from 'utils/findSectionForPath';
 import {sharedStyles} from 'theme';
+<<<<<<< HEAD
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
+=======
+import createCanonicalUrl from 'utils/createCanonicalUrl';
+
+import type {Node} from 'types';
+>>>>>>> 06deefa56756f8dac13af59ee657186a81d28151
 
 type Props = {
   authors: Array<string>,
@@ -73,7 +79,7 @@ const MarkdownPage = ({
       }}>
       <TitleAndMetaTags
         ogDescription={ogDescription}
-        ogUrl={createOgUrl(markdownRemark.fields.slug)}
+        canonicalUrl={createCanonicalUrl(markdownRemark.fields.slug)}
         title={`${titlePrefix}${titlePostfix}`}
       />
       <div css={{flex: '1 0 auto'}}>
