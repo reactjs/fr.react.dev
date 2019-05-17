@@ -10,6 +10,7 @@ import Header from 'components/Header';
 import Layout from 'components/Layout';
 import React from 'react';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
+import {urlRoot} from 'site-constants';
 import {sharedStyles} from 'theme';
 // $FlowFixMe This is a valid path
 import versions from '../../content/versions.yml';
@@ -24,7 +25,10 @@ const Versions = ({location}: Props) => (
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
           <Header>Versions de React</Header>
-          <TitleAndMetaTags title="React - Versions" />
+          <TitleAndMetaTags
+            canonicalUrl={`${urlRoot}/versions/`}
+            title="React - Versions"
+          />
           <div css={sharedStyles.markdown}>
             <p>
               Un historique complet des versions de React est disponible{' '}

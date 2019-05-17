@@ -13,21 +13,6 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 
 ## Prochaines conférences {#upcoming-conferences}
 
-### React Finland 2019 {#react-finland-2019}
-Du 24 au 26 avril à Helsinki, Finlande
-
-[Site web](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
-
-### ReactJS Girls Conference {#reactjs-girls-conference}
-Le 3 mai 2019 à Londres, Royaume-Uni
-
-[Site web](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
-
-### <React.NotAConf /> 2019 {#reactnotaconf--2019}
-May 11 in Sofia, Bulgaria
-
-[Website](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/events/780891358936156)
-
 ### ReactEurope 2019 {#reacteurope-2019}
 Du 23 au 24 mai 2019 à Paris, France
 
@@ -393,3 +378,18 @@ Du 4 au 5 avril 2019 à Cracovie, Pologne
 Le 12 avril 2019 à Amsterdam, Pays-Bas
 
 [Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
+
+### React Finland 2019 {#react-finland-2019}
+Du 24 au 26 avril à Helsinki, Finlande
+
+[Site web](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
+
+### ReactJS Girls Conference {#reactjs-girls-conference}
+Le 3 mai 2019 à Londres, Royaume-Uni
+
+[Site web](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
+
+### <React.NotAConf /> 2019 {#reactnotaconf--2019}
+Le 11 mai à Sofia, Bulgarie
+
+[Site web](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/events/780891358936156)
