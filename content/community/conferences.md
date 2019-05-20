@@ -24,9 +24,9 @@ Le 25 mai 2019 à Yerevan, Arménie
 [Site web](https://reactconf.am/) - [Twitter](https://twitter.com/ReactConfAM) - [Facebook](https://www.facebook.com/reactconf.am/) - [YouTube](https://www.youtube.com/c/JavaScriptConferenceArmenia) - [CFP](http://bit.ly/speakReact)
 
 ### ReactNext 2019 {#react-next-2019}
-June 11, 2019. Tel Aviv, Israel
+11 juin 2019 à Tel Aviv, Israel
 
-[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
+[Site web](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Vidéos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
 
 ### React Norway 2019 {#react-norway-2019}
 Le 12 juin 2019 à Larvik, Norvège
@@ -69,9 +69,9 @@ Le 13 septembre 2019 à New York, États-Unis d'Amérique
 [Site web](https://reactnewyork.com/) - [Twitter](https://twitter.com/reactnewyork)
 
 ### React Live 2019 {#react-live-2019}
-September 13th, 2019. Amsterdam, The Netherlands
+13 septembre 2019 à Amsterdam, Pays-Bas
 
-[Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
+[Site web](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
 
 ### React Boston 2019 {#react-boston-2019}
 Du 21 au 22 septembre 2019 à Boston, Massachusetts, États-Unis d'Amérique
