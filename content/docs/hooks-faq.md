@@ -825,17 +825,17 @@ Par ailleurs, gardez à l'esprit que la conception de Hooks est plus efficace po
 
 Traditionnellement, les problématiques de performance associées aux fonctions définies à la volée en React sont liées au fait que passer de nouvelles fonctions de rappel à chaque rendu empêche les optimisations basées sur `shouldComponentUpdate` dans les composants enfants. Les Hooks abordent ce problème sous trois angles.
 
-* Le Hook [`useCallback`](/docs/hooks-reference.html#usecallback) vous permet d'utiliser la même fonction de rappel d’un rendu à l’autre afin que `shouldComponentUpdate` puisse continuer à fonctionner :
+* Le Hook [`useCallback`](/docs/hooks-reference.html#usecallback) vous permet de référencer la même fonction de rappel d’un rendu à l’autre afin que `shouldComponentUpdate` puisse continuer à fonctionner :
 
-```js{2}
-// Ne changera pas sauf si `a` ou `b` change
-const memoizedCallback = useCallback(() => {
-  doSomething(a, b);
-}, [a, b]);
-```
+    ```js{2}
+    // Ne changera pas sauf si `a` ou `b` change
+    const memoizedCallback = useCallback(() => {
+      doSomething(a, b);
+    }, [a, b]);
+    ```
 
 * Le [Hook `useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations) permet de contrôler plus facilement les mises à jour des enfants, réduisant le besoin de composants purs.
-* Enfin, le Hook `useReducer` réduit le besoin de passer des fonctions de rappel en profondeur, comme expliqué ci-dessous.
+* Enfin, le Hook [`useReducer`](/docs/hooks-reference.html#usereducer) réduit le besoin de passer en profondeur des fonctions de rappel, comme expliqué ci-dessous.
 
 ### Comment éviter de transmettre des fonctions de rappel ? {#how-to-avoid-passing-callbacks-down}
 
