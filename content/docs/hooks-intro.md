@@ -81,7 +81,11 @@ Pour mettre un terme à ces soucis, **les Hooks vous permettent de découper un 
 
 Nous verrons tout ça plus en détail dans [Utiliser le Hook d’effet](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns).
 
+<<<<<<< HEAD
 ### Les classes sont déroutantes pour les gens comme pour les machines {#classes-confuse-both-people-and-machines}
+=======
+Additionally, React has been out for about five years, and we want to make sure it stays relevant in the next five years. As [Svelte](https://svelte.dev/), [Angular](https://angular.io/), [Glimmer](https://glimmerjs.com/), and others show, [ahead-of-time compilation](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) of components has a lot of future potential. Especially if it's not limited to templates. Recently, we've been experimenting with [component folding](https://github.com/facebook/react/issues/7323) using [Prepack](https://prepack.io/), and we've seen promising early results. However, we found that class components can encourage unintentional patterns that make these optimizations fall back to a slower path. Classes present issues for today's tools, too. For example, classes don't minify very well, and they make hot reloading flaky and unreliable. We want to present an API that makes it more likely for code to stay on the optimizable path.
+>>>>>>> 7b217c701075b1af7ddabd6a237ed847df98853c
 
 En plus de rendre plus difficiles la réutilisation et l’organisation du code, nous avons remarqué que les classes peuvent constituer une barrière significative à l'apprentissage de React. Vous devez comprendre comment `this` fonctionne en JavaScript, d’une façon très différente de la plupart des langages. Vous devez vous souvenir de lier les gestionnaires d'événements.
 

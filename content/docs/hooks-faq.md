@@ -827,6 +827,7 @@ Traditionnellement, les problématiques de performance associées aux fonctions 
 
 * Le Hook [`useCallback`](/docs/hooks-reference.html#usecallback) vous permet d'utiliser la même fonction de rappel d’un rendu à l’autre afin que `shouldComponentUpdate` puisse continuer à fonctionner :
 
+<<<<<<< HEAD
 ```js{2}
 // Ne changera pas sauf si `a` ou `b` change
 const memoizedCallback = useCallback(() => {
@@ -836,6 +837,22 @@ const memoizedCallback = useCallback(() => {
 
 * Le [Hook `useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations) permet de contrôler plus facilement les mises à jour des enfants, réduisant le besoin de composants purs.
 * Enfin, le Hook `useReducer` réduit le besoin de passer des fonctions de rappel en profondeur, comme expliqué ci-dessous.
+=======
+Traditionally, performance concerns around inline functions in React have been related to how passing new callbacks on each render breaks `shouldComponentUpdate` optimizations in child components. Hooks approach this problem from three sides.
+
+* The [`useCallback`](/docs/hooks-reference.html#usecallback) Hook lets you keep the same callback reference between re-renders so that `shouldComponentUpdate` continues to work:
+
+    ```js{2}
+    // Will not change unless `a` or `b` changes
+    const memoizedCallback = useCallback(() => {
+      doSomething(a, b);
+    }, [a, b]);
+    ```
+
+* The [`useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations) Hook makes it easier to control when individual children update, reducing the need for pure components.
+
+* Finally, the [`useReducer`](/docs/hooks-reference.html#usereducer) Hook reduces the need to pass callbacks deeply, as explained below.
+>>>>>>> 7b217c701075b1af7ddabd6a237ed847df98853c
 
 ### Comment éviter de transmettre des fonctions de rappel ? {#how-to-avoid-passing-callbacks-down}
 
