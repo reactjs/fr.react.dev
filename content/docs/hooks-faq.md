@@ -686,7 +686,11 @@ function Counter() {
 
 Pour des cas plus complexes (comme lorsqu’un état dépend d'un autre état), essayez de déplacer la logique de mise à jour de l'état hors de l'effet avec le [Hook `useReducer`](/docs/hooks-reference.html#usereducer). [Cet article](https://adamrackis.dev/state-and-use-reducer/) (en anglais) vous donne un exemple de cette approche. **L’identité de la fonction `dispatch` fournie par `useReducer` est garantie stable**, même si la fonction de réduction est déclarée dans le composant et lit ses props.
 
+<<<<<<< HEAD
 En dernier recours, si vous voulez quelque chose de similaire au `this` d’une classe, vous pouvez [utiliser une ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) pour stocker une donnée modifiable.  Vous pouvez alors y écrire et la relire.  Par exemple :
+=======
+As a last resort, if you want something like `this` in a class, you can [use a ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) to hold a mutable variable. Then you can write and read to it. For example:
+>>>>>>> 1f27bba9484f26ec6dab383b09730ad7ed59f732
 
 ```js{2-6,10-11,16}
 function Example(props) {

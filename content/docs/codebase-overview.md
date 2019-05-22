@@ -211,7 +211,11 @@ Ses objectifs principaux sont :
 * la capacité à renvoyer plusieurs éléments depuis `render()` ;
 * une meilleure prise en charge des périmètres d'erreur.
 
+<<<<<<< HEAD
 Vous pouvez en apprendre davantage sur l’architecture React Fiber [ici](https://github.com/acdlite/react-fiber-architecture) et [ici](https://medium.com/react-in-depth/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react-e1c04700ef6e). Bien qu’elles soient livrées avec React 16, les fonctionnalités asynchrones (telles que Suspense et le mode concurrent) ne sont pas encore activées par défaut.
+=======
+You can read more about React Fiber Architecture [here](https://github.com/acdlite/react-fiber-architecture) and [here](https://blog.ag-grid.com/inside-fiber-an-in-depth-overview-of-the-new-reconciliation-algorithm-in-react). While it has shipped with React 16, the async features are not enabled by default yet.
+>>>>>>> 1f27bba9484f26ec6dab383b09730ad7ed59f732
 
 Son code source est situé dans [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
 
