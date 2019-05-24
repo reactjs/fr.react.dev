@@ -151,7 +151,11 @@ N'utilisez CSS pour retirer ce contour, par exemple en définissant `outline: 0`
 
 Fournissez un mécanisme permettant aux utilisateurs de sauter les sections de navigation dans votre application, car ça facilite et accélère la navigation au clavier.
 
+<<<<<<< HEAD
 Les liens d’évitement *(skiplinks, NdT)* sont des liens de navigation cachés qui ne sont visibles que lorsque l'utilisateur interagit au clavier avec la page. Ils sont très faciles à mettre en œuvre avec les ancres de pages internes et un peu de style :
+=======
+Skiplinks or Skip Navigation Links are hidden navigation links that only become visible when keyboard users interact with the page. They are very easy to implement with internal page anchors and some styling:
+>>>>>>> 04f3dc58db98b6350912a2eff3abe6d20b31df3a
 
 - [WebAIM - Liens d’évitement](http://webaim.org/techniques/skipnav/) (en anglais).
 
@@ -163,7 +167,11 @@ Pour en apprendre davantage sur l'utilisation de ces éléments afin d’amélio
 
 ### Gérer le focus programmatiquement {#programmatically-managing-focus}
 
+<<<<<<< HEAD
 Nos applications React modifient en continu le DOM HTML au cours de l'exécution, ce qui entraîne parfois la perte du focus clavier ou le positionne sur un élément inattendu. Pour corriger ça, nous devons déplacer le focus clavier programmatiquement dans la bonne direction. On peut par exemple redonner le focus clavier à un bouton qui ouvre une fenêtre modale, lorsque cette dernière se referme.
+=======
+Our React applications continuously modify the HTML DOM during runtime, sometimes leading to keyboard focus being lost or set to an unexpected element. In order to repair this, we need to programmatically nudge the keyboard focus in the right direction. For example, by resetting keyboard focus to a button that opened a modal window after that modal window is closed.
+>>>>>>> 04f3dc58db98b6350912a2eff3abe6d20b31df3a
 
 La documentation web du MDN se penche sur ça et décrit comment nous pouvons construire [des éléments d’interface JavaScript permettant la navigation au clavier](https://developer.mozilla.org/fr/docs/Contrôles_DHTML_personnalisés_navigables_au_clavier).
 
@@ -201,7 +209,11 @@ Ensuite, nous pouvons lui donner le focus depuis n'importe où dans notre compos
  }
  ```
 
+<<<<<<< HEAD
 Il arrive parfois qu'un composant parent ait besoin de définir le focus sur un élément au sein d’un composant enfant. Pour ce faire, nous [exposons des refs DOM aux composants parents](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components) via une propriété spéciale sur le composant enfant qui transfère la ref du parent au nœud DOM de l'enfant.
+=======
+Sometimes a parent component needs to set focus to an element in a child component. We can do this by [exposing DOM refs to parent components](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components) through a special prop on the child component that forwards the parent's ref to the child's DOM node.
+>>>>>>> 04f3dc58db98b6350912a2eff3abe6d20b31df3a
 
 ```javascript{4,12,16}
 function CustomTextInput(props) {
@@ -228,9 +240,16 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
+<<<<<<< HEAD
 Quand vous enrobez des composants à l’aide d’un composant d’ordre supérieur *(Higher-Order Component, ou HOC, NdT)*, il est recommandé de [transférer la référence](/docs/forwarding-refs.html) vers l’élément enrobé grâce à la fonction `forwardRef` de React. Si un HOC tiers n'implémente pas le transfert de référence, le modèle ci-dessus peut être utilisé comme solution de secours.
 
 Le composant [react-aria-modal](https://github.com/davidtheclark/react-aria-modal) est un excellent exemple de la gestion du focus. Il s'agit de l'un des rares exemples de fenêtre modale complètement accessible. Non seulement il définit le focus initial sur le bouton d'annulation (empêchant l'utilisateur du clavier d'activer accidentellement l'action de succès), mais il restreint bien le focus clavier à l'intérieur de la fenêtre modale et il remet à terme le focus sur l'élément qui a originellement déclenché la fenêtre modale.
+=======
+When using a HOC to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC does not implement ref forwarding, the above pattern can still be used as a fallback.
+
+A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on
+the cancel button (preventing the keyboard user from accidentally activating the success action) and trap keyboard focus inside the modal, it also resets focus back to the element that initially triggered the modal.
+>>>>>>> 04f3dc58db98b6350912a2eff3abe6d20b31df3a
 
 > Remarque
 >
@@ -238,7 +257,11 @@ Le composant [react-aria-modal](https://github.com/davidtheclark/react-aria-moda
 
 ## Événements de souris et de pointeur {#mouse-and-pointer-events}
 
+<<<<<<< HEAD
 Assurez-vous que toutes les fonctionnalités exposées via un événement de souris ou de pointeur sont également accessibles avec le clavier seul. Ne dépendre que du pointeur peut aboutir à de nombreuses situations où les utilisateurs de clavier ne pourront pas utiliser votre application.
+=======
+Ensure that all functionality exposed through a mouse or pointer event can also be accessed using the keyboard alone. Depending only on the pointer device will lead to many cases where keyboard users cannot use your application.
+>>>>>>> 04f3dc58db98b6350912a2eff3abe6d20b31df3a
 
 Pour illustrer ça, examinons un exemple courant où l'accessibilité est cassée par les événements de clics. Il s'agit du modèle de clic extérieur dans lequel un utilisateur peut désactiver une liste déroulante en cliquant à l'extérieur de l'élément.
 
@@ -295,7 +318,11 @@ constructor(props) {
 }
 ```
 
+<<<<<<< HEAD
 Ça fonctionne peut-être pour les utilisateurs ayant des dispositifs de pointage, tels qu'une souris, mais le fait de n'utiliser que le clavier entraîne des dysfonctionnements lors de la tabulation sur l'élément suivant, car l'objet `window` ne reçoit jamais d'événement `click`. Ça peut finir par masquer des fonctionnalités, ce qui empêche les utilisateurs d'utiliser votre application.
+=======
+This may work fine for users with pointer devices, such as a mouse, but operating this with the keyboard alone leads to broken functionality when tabbing to the next element as the `window` object never receives a `click` event. This can lead to obscured functionality which blocks users from using your application.
+>>>>>>> 04f3dc58db98b6350912a2eff3abe6d20b31df3a
 
 <img src="../images/docs/outerclick-with-keyboard.gif" alt="Un bouton ouvrant une liste déroulante implémenté par le modèle du clic externe et déclenché par le clavier montrant que le menu déroulant ne se ferme pas à la perte de focus et qu'il masque d'autres éléments de l'écran." />
 
@@ -361,15 +388,27 @@ class BlurExample extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Ce code expose la fonctionnalité aussi bien aux utilisateurs de dispositifs de pointage qu'aux utilisateurs de clavier. Remarquez également les propriétés `aria-*` ajoutées afin de prendre en charge les lecteurs d'écran. Par souci de simplicité, les événements clavier permettant l'interaction avec les options du menu déroulant via les touches de curseur n'ont pas été implémentés.
+=======
+This code exposes the functionality to both pointer device and keyboard users. Also note the added `aria-*` props to support screen-reader users. For simplicity's sake the keyboard events to enable `arrow key` interaction of the popover options have not been implemented.
+>>>>>>> 04f3dc58db98b6350912a2eff3abe6d20b31df3a
 
 <img src="../images/docs/blur-popover-close.gif" alt="Une liste déroulante se fermant correctement pour les utilisateurs de souris et de clavier." />
 
+<<<<<<< HEAD
 C'est un exemple des nombreux cas où le fait de ne dépendre que des événements de souris et de pointeur casse les fonctionnalités pour les utilisateurs de clavier. Toujours tester avec le clavier mettra immédiatement en évidence les problèmes qui peuvent ensuite être résolus à l'aide des gestionnaires d'événements clavier.
+=======
+This is one example of many cases where depending on only pointer and mouse events will break functionality for keyboard users. Always testing with the keyboard will immediately highlight the problem areas which can then be fixed by using keyboard aware event handlers.
+>>>>>>> 04f3dc58db98b6350912a2eff3abe6d20b31df3a
 
 ## Éléments d’interface plus complexes {#more-complex-widgets}
 
+<<<<<<< HEAD
 Une expérience utilisateur plus complexe ne doit pas signifier une expérience moins accessible. Alors que l'accessibilité est plus facile à réaliser en codant au plus près du HTML, même les éléments d'interface les plus complexes peuvent être codés de manière accessible.
+=======
+A more complex user experience should not mean a less accessible one. Whereas accessibility is most easily achieved by coding as close to HTML as possible, even the most complex widget can be coded accessibly.
+>>>>>>> 04f3dc58db98b6350912a2eff3abe6d20b31df3a
 
 Nous avons besoin ici de connaître les [rôles ARIA](https://www.w3.org/TR/wai-aria/#roles), ainsi que les [états et propriétés ARIA](https://www.w3.org/TR/wai-aria/#states_and_properties) (liens en anglais).
 Ce sont des boîtes à outils pleines d'attributs HTML pris en charge par JSX et qui nous permettent de construire des composants React pleinement accessibles et hautement fonctionnels.
@@ -428,6 +467,7 @@ La vérification de loin la plus simple, mais aussi l'une des plus importantes, 
 
 ### Assistance au développement {#development-assistance}
 
+<<<<<<< HEAD
 Nous pouvons tester certaines fonctionnalités d'accessibilité directement dans notre code JSX. Souvent des contrôles automatiques sont déjà présents dans les EDI qui prennent en charge JSX pour vérifier les rôles, états et propriétés ARIA. Nous avons également accès à l'outil suivant :
 
 #### eslint-plugin-jsx-a11y {#eslint-plugin-jsx-a11y}
@@ -435,6 +475,15 @@ Nous pouvons tester certaines fonctionnalités d'accessibilité directement dans
 L'extension [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) pour ESLint fournit des informations concernant les problèmes d'accessibilité dans votre JSX. De nombreux EDI vous permettent d'intégrer ces résultats directement dans leurs fenêtres d'analyse de code ou de code source.
 
 [Create React App](https://facebook.github.io/create-react-app/) pré-configure cette extension avec un sous-ensemble de règles activées. Si vous souhaitez activer encore plus de règles d'accessibilité, vous pouvez créer un fichier `.eslintrc` à la racine de votre projet avec ce contenu :
+=======
+We can check some accessibility features directly in our JSX code. Often intellisense checks are already provided in JSX aware IDE's for the ARIA roles, states and properties. We also have access to the following tool:
+
+#### eslint-plugin-jsx-a11y {#eslint-plugin-jsx-a11y}
+
+The [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) plugin for ESLint provides AST linting feedback regarding accessibility issues in your JSX. Many IDE's allow you to integrate these findings directly into code analysis and source code windows.
+
+[Create React App](https://github.com/facebookincubator/create-react-app) has this plugin with a subset of rules activated. If you want to enable even more accessibility rules, you can create an `.eslintrc` file in the root of your project with this content:
+>>>>>>> 04f3dc58db98b6350912a2eff3abe6d20b31df3a
 
   ```json
   {
