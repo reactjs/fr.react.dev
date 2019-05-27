@@ -648,11 +648,7 @@ Remarquez que dans cet exemple nous **devons** garder la fonction dans la liste 
 
 ### Que faire quand mes dépendances d’effet changent trop souvent ? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
 
-<<<<<<< HEAD
-Il arrive que votre effet lise un état qui change trop fréquemment.  Vous pourriez alors être tenté·e d’omettre cet état de la liste des dépendances, mais ça engendre souvent des bugs :
-=======
-Sometimes, your effect may be using state that changes too often. You might be tempted to omit that state from a list of dependencies, but that usually leads to bugs:
->>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
+Il arrive que votre effet utilise un état qui change trop fréquemment.  Vous pourriez alors être tenté·e d’omettre cet état de la liste des dépendances, mais ça engendre souvent des bugs :
 
 ```js{6,9}
 function Counter() {
