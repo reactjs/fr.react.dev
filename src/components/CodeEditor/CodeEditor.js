@@ -106,7 +106,7 @@ class CodeEditor extends Component {
                 color: colors.white,
               }}>
               <MetaTitle onDark={true}>
-                Live JSX Editor
+                Éditeur JSX interactif
                 <label
                   css={{
                     fontSize: 14,
@@ -120,7 +120,7 @@ class CodeEditor extends Component {
                     }
                     type="checkbox"
                   />{' '}
-                  JSX?
+                  JSX ?
                 </label>
               </MetaTitle>
             </div>
@@ -207,7 +207,7 @@ class CodeEditor extends Component {
                   padding: '0 10px',
                   backgroundColor: colors.divider,
                 }}>
-                <MetaTitle>Result</MetaTitle>
+                <MetaTitle>Résultat</MetaTitle>
               </div>
               <div
                 id={containerNodeID}
