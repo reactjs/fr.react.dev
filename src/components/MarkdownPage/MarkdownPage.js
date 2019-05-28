@@ -13,11 +13,10 @@ import type {Node} from 'types';
 import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
-import createOgUrl from 'utils/createOgUrl';
+import createCanonicalUrl from 'utils/createCanonicalUrl';
 import findSectionForPath from 'utils/findSectionForPath';
 import {sharedStyles} from 'theme';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
-import createCanonicalUrl from 'utils/createCanonicalUrl';
 
 type Props = {
   authors: Array<string>,
