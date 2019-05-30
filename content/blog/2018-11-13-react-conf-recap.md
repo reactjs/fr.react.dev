@@ -1,26 +1,27 @@
 ---
-title: "React Conf recap: Hooks, Suspense, and Concurrent Rendering"
+title: "Résumé de la conférence React : Hooks, Suspense, et rendu concurrent"
 author: [tomocchino]
 ---
 
-This year’s [React Conf](https://conf.reactjs.org/) took place on October 25 and 26 in Henderson, Nevada, where more than 600 attendees gathered to discuss the latest in UI engineering.
+
+Cette année, la [Conférence React](https://conf.reactjs.org/) a eu lieu les 25 et 26 octobre à Henderson dans le Nevada, où plus de 600 participants se sont réunis pour suivre les dernières nouveautés en matière de conception d’UI.
 
 <br>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/V-QO-KO90iQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Sophie Alpert and Dan Abramov kicked off Day 1 with their keynote, React Today and Tomorrow. In the talk, they introduced [Hooks](/docs/hooks-intro.html), which are a new proposal that adds the ability to access features such as state without writing a JavaScript class. Hooks promise to dramatically simplify the code required for React components and are currently available in a React alpha release.
+Sophie Alpert et Dan Abramov ont ouvert ce 1er jour de conférence avec une présentation intitulée “React Today and Tomorrow”. Durant celle-ci, ils ont introduit les [Hooks](/docs/hooks-intro.html), une nouvelle fonctionnalité expérimentale qui permet d’exploiter certaines fonctionnalités dans un composant, notamment l'état local, sans avoir à passer par une classe JavaScript. Les Hooks promettent de simplifier drastiquement le code nécessaire à la création d'un composant React, et sont dès à présent disponibles dans la version alpha de React.
 
 <br>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ByBPyMBTzM0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-On the morning of Day 2, Andrew Clark and Brian Vaughn presented Concurrent Rendering in React. Andrew covered the recently announced [React.lazy API for code splitting](/blog/2018/10/23/react-v-16-6.html) and previewed two upcoming features: concurrent mode and Suspense. Brian demonstrated how to use [React’s new profiler](/blog/2018/09/10/introducing-the-react-profiler.html) tooling to make apps built in React run faster.
+Durant la matinée de cette 2ème journée, Andrew Clark et Brian Vaughn ont présenté “Concurrent Rendering in React”. Andrew a introduit la très récente [API React.lazy pour faire de la découpe de code](/blog/2018/10/23/react-v-16-6.html), puis a donné un aperçu de 2 fonctionnalités futures : le mode de rendu concurrent et Suspense. Brian a ensuite montré comment utiliser les outils du [nouveau profileur de React](/blog/2018/09/10/introducing-the-react-profiler.html) pour optimiser l'exécution des applis React.
 
 <br>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UcqRXTriUVI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-In the afternoon, Parashuram N spoke in detail about React Native’s New Architecture, a long-term project that the React Native team has been working on over the past year and [announced in June](https://facebook.github.io/react-native/blog/2018/06/14/state-of-react-native-2018). We’re really excited about the potential of this project to improve performance, simplify interoperability with other libraries, and set a strong foundation for the future of React Native.
+Dans l'après-midi, Parashuram N a détaillé la nouvelle architecture de React Native. C’est un projet de longue haleine sur lequel l'équipe React Native travaille depuis un an et qui [avait été annoncé en juin dernier](https://facebook.github.io/react-native/blog/2018/06/14/state-of-react-native-2018). Ce projet nous semble très prometteur, notamment en ce qui concerne l'amélioration de la performance, la simplification de l'interopérabilité avec les autres bibliothèques, et la mise en place de fondations solides pour le futur de React Native.
 
-Now that the conference is over, all 28 conference talks are [available to stream online](https://www.youtube.com/playlist?list=PLPxbbTqCLbGE5AihOSExAa4wUM-P42EIJ). There are tons of great ones from both days. We can’t wait until next year!
+Maintenant que la conférence est terminée, retrouvez les 28 présentations [en ligne](https://www.youtube.com/playlist?list=PLPxbbTqCLbGE5AihOSExAa4wUM-P42EIJ). De nombreuses présentations très intéressantes ont eu lieu durant ces 2 jours. Vivement la conférence de l'année prochaine !
