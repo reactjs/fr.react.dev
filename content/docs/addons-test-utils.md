@@ -19,7 +19,11 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 avec npm
 
 >Remarque
 >
+<<<<<<< HEAD
 > Nous vous conseillons d’utiliser [`react-testing-library`](https://git.io/react-testing-library). Cette bibliothèque est conçue pour encourager l'écriture de tests utilisant vos composants de façon similaire aux utilisateurs finaux.
+=======
+> We recommend using [React Testing Library](https://testing-library.com/react) which is designed to enable and encourage writing tests that use your components as the end users do.
+>>>>>>> 2d9c2785dd9bd1d2876dd2c5b1e3bc233b115f3e
 >
 > Par ailleurs, Airbnb propose un utilitaire de test appelé [Enzyme](http://airbnb.io/enzyme/), qui permet de facilement exprimer des assertions, manipuler vos composants React et en explorer le résultat.
 

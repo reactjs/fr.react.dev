@@ -248,7 +248,7 @@ C’est généralement implémenté en écoutant l'événement `click` de l'obje
 
 ```javascript{12-14,26-30}
 class OuterClickExample extends React.Component {
-constructor(props) {
+  constructor(props) {
     super(props);
 
     this.state = { isOpen: false };
@@ -299,7 +299,11 @@ constructor(props) {
 
 <img src="../images/docs/outerclick-with-keyboard.gif" alt="Un bouton ouvrant une liste déroulante implémenté par le modèle du clic externe et déclenché par le clavier montrant que le menu déroulant ne se ferme pas à la perte de focus et qu'il masque d'autres éléments de l'écran." />
 
+<<<<<<< HEAD
 La même fonctionnalité peut être obtenue en utilisant les gestionnaires d'événements appropriés, tels que `onBlur` et `onFocus` :
+=======
+The same functionality can be achieved by using appropriate event handlers instead, such as `onBlur` and `onFocus`:
+>>>>>>> 2d9c2785dd9bd1d2876dd2c5b1e3bc233b115f3e
 
 ```javascript{19-29,31-34,37-38,40-41}
 class BlurExample extends React.Component {
