@@ -51,7 +51,7 @@ This repo is meant to provide French translation for the [reactjs.org](https://r
 
 ### Push it
 
-1. `git add -A && git commit -m "My message"` (replacing `My message` with a commit message, such as `Fixed header logo on Android`) to stage and commit your changes
+1. `git add -A && git commit -m "My message"` (replacing `My message` with a commit message, such as `Fix header logo on Android`) to stage and commit your changes
 1. `git push my-fork-name the-name-of-my-branch`
 1. Go to the [fr.reactjs.org repo](https://github.com/reactjs/fr.reactjs.org) and you should see recently pushed branches.
 1. Follow GitHub's instructions.
