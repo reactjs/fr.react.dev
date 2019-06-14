@@ -248,7 +248,7 @@ C’est généralement implémenté en écoutant l'événement `click` de l'obje
 
 ```javascript{12-14,26-30}
 class OuterClickExample extends React.Component {
-constructor(props) {
+  constructor(props) {
     super(props);
 
     this.state = { isOpen: false };
@@ -281,14 +281,19 @@ constructor(props) {
   render() {
     return (
       <div ref={this.toggleContainer}>
+<<<<<<< HEAD
         <button onClick={this.onClickHandler}>Choisissez une option</button>
         {this.state.isOpen ? (
+=======
+        <button onClick={this.onClickHandler}>Select an option</button>
+        {this.state.isOpen && (
+>>>>>>> 4b24c76436001fbe14cf85cca77492660371a87a
           <ul>
             <li>Option 1</li>
             <li>Option 2</li>
             <li>Option 3</li>
           </ul>
-        ) : null}
+        )}
       </div>
     );
   }
@@ -299,7 +304,11 @@ constructor(props) {
 
 <img src="../images/docs/outerclick-with-keyboard.gif" alt="Un bouton ouvrant une liste déroulante implémenté par le modèle du clic externe et déclenché par le clavier montrant que le menu déroulant ne se ferme pas à la perte de focus et qu'il masque d'autres éléments de l'écran." />
 
+<<<<<<< HEAD
 La même fonctionnalité peut être obtenue en utilisant les gestionnaires d'événements appropriés, tels que `onBlur` et `onFocus` :
+=======
+The same functionality can be achieved by using appropriate event handlers instead, such as `onBlur` and `onFocus`:
+>>>>>>> 4b24c76436001fbe14cf85cca77492660371a87a
 
 ```javascript{19-29,31-34,37-38,40-41}
 class BlurExample extends React.Component {
@@ -348,13 +357,13 @@ class BlurExample extends React.Component {
                 aria-expanded={this.state.isOpen}>
           Choisissez une option
         </button>
-        {this.state.isOpen ? (
+        {this.state.isOpen && (
           <ul>
             <li>Option 1</li>
             <li>Option 2</li>
             <li>Option 3</li>
           </ul>
-        ) : null}
+        )}
       </div>
     );
   }
