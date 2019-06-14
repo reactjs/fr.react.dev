@@ -94,13 +94,8 @@
 - name: coréen
   translated_name: 한국어
   code: ko
-<<<<<<< HEAD
-  status: 1
-- name: kurde
-=======
   status: 2
-- name: Kurdish
->>>>>>> 4b24c76436001fbe14cf85cca77492660371a87a
+- name: kurde
   translated_name: کوردی‎
   code: ku
   status: 0
