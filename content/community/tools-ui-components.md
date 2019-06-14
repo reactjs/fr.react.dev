@@ -21,8 +21,8 @@ permalink: community/ui-components.html
 * **[Onsen UI React Components](https://onsen.io/v2/react.html)** : composants UI pour les applis mobiles hybrides avec à la fois le Material Design de Google et le Flat Design pour iOS.
 * **[PrimeReact](https://www.primefaces.org/primereact/)** : une suite de composants UI riche pour React comportant plus de 70 composants open source.
 * **[React Amazing Grid](https://github.com/Amazing-Space-Invader/react-amazing-grid)** : grille Flex avec des styles en-ligne.
-* **[React Mdl](https://github.com/tleunen/react-mdl)** : composants React pour Material Design Lite.
-* **[React Web](https://github.com/taobaofed/react-web)** : un framework pour construire des applis web avec React.
+* **[Material Components for React](https://github.com/material-components/material-components-web-react)** MDC React est l’implémentation officielle des composants Material Design de Google.
+* **[React Native for Web](https://github.com/necolas/react-native-web)** Permet d’utiliser des composants et API React Native sur le web par-dessus le React DOM.
 * **[react-amiga-guru-meditation](https://github.com/gfazioli/react-amiga-guru-meditation)** : classe JavaScript React pour afficher un message d'erreur rendant hommage à l'Amiga Guru Meditation.
 * **[react-autosuggest](https://github.com/moroshko/react-autosuggest)** : composant d'auto-suggestion React compatible avec les recommandations WAI-ARIA.
 * **[react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)** : gestion belle et accessible du glisser-déposer avec React.

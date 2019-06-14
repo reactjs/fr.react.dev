@@ -73,6 +73,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [Columbus, OH - ReactJS](https://www.meetup.com/ReactJS-Columbus-meetup/)
 * [Dallas, TX - ReactJS](https://www.meetup.com/ReactDallas/)
 * [Irvine, CA - ReactJS](https://www.meetup.com/ReactJS-OC/)
+* [Kansas City, MO - ReactJS](https://www.meetup.com/Kansas-City-React-Meetup/)
 * [Las Vegas, NV - ReactJS](https://www.meetup.com/ReactVegas/)
 * [Leesburg, VA - ReactJS](https://www.meetup.com/React-NOVA/)
 * [Los Angeles, CA - React Native](https://www.meetup.com/React-Native-Los-Angeles/)
