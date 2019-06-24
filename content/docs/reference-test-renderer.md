@@ -38,7 +38,7 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-Vous pouvez utiliser la fonctionnalité de test par instantanés *(snapshot testing, NdT)* de Jest pour sauvegarder automatiquement une copie de l'arbre JSON obtenu dans un fichier, puis vérifier dans vos tests qu'il n'a pas changé : [vous trouverez plus de détails ici](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
+Vous pouvez utiliser la fonctionnalité de test par instantanés *(snapshot testing, NdT)* de Jest pour sauvegarder automatiquement une copie de l'arbre JSON obtenu dans un fichier, puis vérifier dans vos tests qu'il n'a pas changé : [vous trouverez plus de détails ici](https://jestjs.io/docs/en/snapshot-testing).
 
 Vous pouvez également explorer le résultat pour trouver des nœuds spécifiques et vérifier vos attentes les concernant.
 
