@@ -35,23 +35,13 @@ Notre API JSON renvoie des données qui ressemblent à ceci :
 
 Pour commencer, dessinez des cases autour de chaque composant (et sous-composant) sur la maquette, et attribuez un nom à chacune. Si vous travaillez avec un designer, il se peut qu'elle l'ait déjà fait, alors allez lui parler ! Ses noms de calques Photoshop pourraient devenir les noms de vos composants React !
 
-<<<<<<< HEAD
-Mais comment savoir quelles parties devraient disposer de leurs propres composants ? Utilisez simplement les mêmes techniques que lorsque vous décidez de créer une nouvelle fonction ou un nouvel objet. L'une de ces techniques est le [principe de responsabilité unique](https://fr.wikipedia.org/wiki/Principe_de_responsabilité_unique), qui stipule qu'un composant ne devrait idéalement faire qu'une seule chose. S'il finit par grossir, il devrait être décomposé en sous-composants plus petits.
+Mais comment savoir quelles parties devraient disposer de leurs propres composants ? Utilisez les mêmes techniques que lorsque vous décidez de créer une nouvelle fonction ou un nouvel objet. L'une de ces techniques est le [principe de responsabilité unique](https://fr.wikipedia.org/wiki/Principe_de_responsabilité_unique), qui stipule qu'un composant ne devrait idéalement faire qu'une seule chose. S'il finit par grossir, il devrait être décomposé en sous-composants plus petits.
 
 Comme vous affichez souvent un modèle de données JSON à un utilisateur, vous constaterez que si votre modèle a été correctement construit, votre interface utilisateur (et donc la structure de vos composants) correspondra aisément. En effet, l'interface utilisateur (UI) et les modèles de données tendent à adhérer à la même *architecture d'information*, ce qui signifie que le travail de séparation de votre UI en composants est souvent trivial. Il suffit de la décomposer en composants qui représentent juste un élément de votre modèle de données.
-=======
-But how do you know what should be its own component? Use the same techniques for deciding if you should create a new function or object. One such technique is the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), that is, a component should ideally only do one thing. If it ends up growing, it should be decomposed into smaller subcomponents.
-
-Since you're often displaying a JSON data model to a user, you'll find that if your model was built correctly, your UI (and therefore your component structure) will map nicely. That's because UI and data models tend to adhere to the same *information architecture*, which means the work of separating your UI into components is often trivial. Break it up into components that represent exactly one piece of your data model.
->>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
 
 ![Schéma des composants](../images/blog/thinking-in-react-components.png)
 
-<<<<<<< HEAD
 Vous pouvez voir que nous avons cinq composants dans notre petite appli. Nous avons mis en italiques les données que chaque composant représente.
-=======
-You'll see here that we have five components in our app. We've italicized the data each component represents.
->>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
 
   1. **`FilterableProductTable` (orange) :** contient l'intégralité de l'exemple
   2. **`SearchBar` (bleu) :** reçoit toutes les *données saisies par l'utilisateur*
@@ -61,11 +51,7 @@ You'll see here that we have five components in our app. We've italicized the da
 
 Si vous regardez `ProductTable`, vous verrez que l'en-tête du tableau (contenant les titres “Name” et “Price”) n'a pas son propre composant. C'est une question de préférence, et honnêtement les deux se valent. Dans cet exemple, nous l'avons laissé au sein de `ProductTable` car il fait partie de l’affichage de la *collection de données*, qui est de la responsabilité de `ProductTable`. Cependant, si cet en-tête devenait complexe (à savoir, si nous devions ajouter des options de tri), il deviendrait logique d'en faire son propre composant `ProductTableHeader`.
 
-<<<<<<< HEAD
-Maintenant que nous avons identifié les composants dans notre maquette, organisons-les en hiérarchie. C'est facile. Les composants qui apparaissent dans un autre composant sur la maquette doivent apparaître comme enfants dans cette hiérarchie :
-=======
-Now that we've identified the components in our mock, let's arrange them into a hierarchy. Components that appear within another component in the mock should appear as a child in the hierarchy:
->>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
+Maintenant que nous avons identifié les composants dans notre maquette, organisons-les en hiérarchie. Les composants qui apparaissent dans un autre composant sur la maquette doivent apparaître comme enfants dans cette hiérarchie :
 
   * `FilterableProductTable`
     * `SearchBar`
@@ -84,15 +70,9 @@ Pour créer une version statique de votre appli qui affiche votre modèle de don
 
 Vous pouvez construire l’appli en partant de l’extérieur ou de l’intérieur. En d'autres termes, vous pouvez aussi bien commencer par construire les composants les plus hauts dans la hiérarchie (dans notre cas, `FilterableProductTable`), que par ceux les plus bas (`ProductRow`). Dans des exemples plus simples, il est généralement plus facile de partir de l’extérieur, et sur des projets plus importants, il est plus facile de partir de l’intérieur et d'écrire les tests au fil de la construction.
 
-<<<<<<< HEAD
-À la fin de cette étape, vous disposerez d'une bibliothèque de composants réutilisables qui afficheront votre modèle de données. Les composants n'auront que des méthodes `render()` puisque c'est une version statique de l'application. Le composant au sommet de la hiérarchie (`FilterableProductTable`) prendra votre modèle de données en tant que *prop*. Si vous modifiez les données et appelez `ReactDOM.render()` à nouveau, l’UI sera mise à jour. On comprend facilement comment votre UI est mise à jour et où y apporter des modifications, car il n'y a rien de compliqué. **Le flux de données unidirectionnel** de React (également appelé *liaison unidirectionnelle*) permet de maintenir la modularité et la rapidité de l'ensemble.
+À la fin de cette étape, vous disposerez d'une bibliothèque de composants réutilisables qui afficheront votre modèle de données. Les composants n'auront que des méthodes `render()` puisque c'est une version statique de l'application. Le composant au sommet de la hiérarchie (`FilterableProductTable`) prendra votre modèle de données en tant que *prop*. Si vous modifiez les données et appelez `ReactDOM.render()` à nouveau, l’UI sera mise à jour. On comprend comment votre UI est mise à jour et où y apporter des modifications, car il n'y a rien de compliqué. **Le flux de données unidirectionnel** de React (également appelé *liaison unidirectionnelle*) permet de maintenir la modularité et la rapidité de l'ensemble.
 
 Jetez un œil à la [doc de React](/docs/) si vous avez besoin d'aide pour cette étape.
-=======
-At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `ReactDOM.render()` again, the UI will be updated. You can see how your UI is updated and where to make changes. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
-
-Refer to the [React docs](/docs/) if you need help executing this step.
->>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
 
 ### Petit entracte : props ou état ? {#a-brief-interlude-props-vs-state}
 
@@ -100,15 +80,9 @@ Il existe deux types de données dans le « modèle » de React : les props e
 
 ## Étape 3 : déterminer le contenu minimal (mais suffisant) de l’état de l’UI {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
-<<<<<<< HEAD
-Pour rendre votre UI interactive, vous devez pouvoir déclencher des modifications à votre modèle de données. React vous facilite la tâche avec l'**état local**.
+Pour rendre votre UI interactive, vous devez pouvoir déclencher des modifications à votre modèle de données. React utilise pour cela l'**état local**.
 
-Afin de construire correctement votre appli, vous devez d'abord penser à l'état modifiable minimal dont votre appli a besoin. La règle est simple : [*ne vous répétez pas*](https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas) *(Don’t Repeat Yourself, aussi désigné par l’acronyme DRY, NdT)*. Déterminez la représentation la plus minimale possible de l'état dont votre appli a besoin, et calculez le reste à la demande. Par exemple, si vous construisez une liste de tâches, gardez simplement un tableau des tâches sous la main ; pas besoin d’une variable d'état pour le compteur. Au lieu de ça, quand vous voulez afficher  le nombre de tâches, prenez simplement la longueur du tableau de tâches.
-=======
-To make your UI interactive, you need to be able to trigger changes to your underlying data model. React achieves this with **state**.
-
-To build your app correctly, you first need to think of the minimal set of mutable state that your app needs. The key here is [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Figure out the absolute minimal representation of the state your application needs and compute everything else you need on-demand. For example, if you're building a TODO list, keep an array of the TODO items around; don't keep a separate state variable for the count. Instead, when you want to render the TODO count, take the length of the TODO items array.
->>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
+Afin de construire correctement votre appli, vous devez d'abord penser à l'état modifiable minimal dont votre appli a besoin. La règle est simple : [*ne vous répétez pas*](https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas) *(Don’t Repeat Yourself, aussi désigné par l’acronyme DRY, NdT)*. Déterminez la représentation la plus minimale possible de l'état dont votre appli a besoin, et calculez le reste à la demande. Par exemple, si vous construisez une liste de tâches, gardez un tableau des tâches sous la main ; pas besoin d’une variable d'état pour le compteur. Au lieu de ça, quand vous voulez afficher  le nombre de tâches, prenez la longueur du tableau de tâches.
 
 Pensez à toutes les données de notre application. On a :
 
@@ -117,11 +91,7 @@ Pensez à toutes les données de notre application. On a :
   * La valeur de la case à cocher
   * La liste filtrée des produits
 
-<<<<<<< HEAD
-Passons-les en revue pour déterminer lesquelles constituent notre état. Posez-vous simplement ces trois questions pour chaque donnée :
-=======
-Let's go through each one and figure out which one is state. Ask three questions about each piece of data:
->>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
+Passons-les en revue pour déterminer lesquelles constituent notre état. Posez-vous ces trois questions pour chaque donnée :
 
   1. Est-elle passée depuis un parent via les props ? Si oui, ce n'est probablement pas de l’état.
   2. Est-elle figée dans le temps ? Si oui, ce n'est probablement pas de l’état.
@@ -144,17 +114,10 @@ Souvenez-vous : React se fonde sur un flux de données unidirectionnel qui desc
 
 Pour chaque partie de l’état de votre application :
 
-<<<<<<< HEAD
   * Identifiez chaque composant qui affiche quelque chose basé sur cet état.
   * Trouvez leur plus proche ancêtre commun (un composant unique, au-dessus de tous les composants qui ont besoin de cette partie de l’état dans la hiérarchie).
   * L’ancêtre commun ou un autre composant situé plus haut dans la hiérarchie devrait posséder cette portion d’état.
   * Si vous ne trouvez pas de composant logique pour posséder cette partie de l’état, créez-en un exprès pour ça, et ajoutez-le quelque part dans la hiérarchie au-dessus de l’ancêtre commun.
-=======
-  * Identify every component that renders something based on that state.
-  * Find a common owner component (a single component above all the components that need the state in the hierarchy).
-  * Either the common owner or another component higher up in the hierarchy should own the state.
-  * If you can't find a component where it makes sense to own the state, create a new component solely for holding the state and add it somewhere in the hierarchy above the common owner component.
->>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
 
 Utilisons cette stratégie pour notre application :
 
@@ -172,24 +135,12 @@ Vous pouvez commencer à voir comment votre application se comportera : défini
 
 Pour le moment, nous avons construit une appli qui s’affiche correctement en fonction des props et de l'état qui descendent le long de la hiérarchie. À présent, il est temps de permettre la circulation des données dans l'autre sens : les composants de formulaire situés plus bas dans la hiérarchie ont besoin de mettre à jour l'état dans `FilterableProductTable`.
 
-<<<<<<< HEAD
-React rend ce flux de données explicite pour faciliter la compréhension du fonctionnement de votre programme, mais cela demande un peu plus de code qu’une liaison de données bidirectionnelle classique.
-=======
-React makes this data flow explicit to help you understand how your program works, but it does require a little more typing than traditional two-way data binding.
->>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
+React rend ce flux de données explicite pour vous aider à comprendre le fonctionnement de votre programme, mais cela demande un peu plus de code qu’une liaison de données bidirectionnelle classique.
 
 Si vous essayez de saisir du texte ou de cocher la case dans la version actuelle de l'exemple, vous verrez que React ne tient pas compte de vos saisies. C'est volontaire, car nous avons spécifié l'attribut `value` de l'élément `input` pour qu’il soit toujours égal à l'état passé depuis `FilterableProductTable`.
 
 Réfléchissons à ce que nous voulons qu'il se passe. Nous voulons garantir que chaque fois que l'utilisateur met à jour le formulaire, nous mettons à jour l'état pour refléter la saisie de l’utilisateur. Puisque les composants ne peuvent mettre à jour que leur propre état, `FilterableProductTable` passera une fonction de rappel à `SearchBar`, qui devra être déclenchée chaque fois que l'état doit être mis à jour. Nous pouvons utiliser l'événement `onChange` des champs pour cela. Les fonctions de rappel passées par `FilterableProductTable` appelleront `setState()`, et l'application sera mise à jour.
 
-<<<<<<< HEAD
-Même si ça semble compliqué, c'est juste quelques lignes de code. Et la façon dont vos données circulent dans l'appli est ainsi vraiment claire.
-
 ## Et c'est tout {#and-thats-it}
 
-Avec un peu de chance, vous avez maintenant une idée de la façon de penser la construction de vos composants et applis en React. Bien que ça demande peut-être un peu plus de code que vous n'en avez l'habitude, souvenez-vous que le code est lu beaucoup plus souvent qu'il n’est écrit, et que ce type de code, modulaire et explicite, est extrêmement facile à lire. Plus vous écrirez de composants, plus vous apprécierez cette clarté et cette modularité, et avec la réutilisation du code, le nombre de vos lignes de code commencera à diminuer. 😀
-=======
-## And That's It {#and-thats-it}
-
-Hopefully, this gives you an idea of how to think about building components and applications with React. While it may be a little more typing than you're used to, remember that code is read far more than it's written, and it's less difficult to read this modular, explicit code. As you start to build large libraries of components, you'll appreciate this explicitness and modularity, and with code reuse, your lines of code will start to shrink. :)
->>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
+Avec un peu de chance, vous avez maintenant une idée de la façon de penser la construction de vos composants et applis en React. Bien que ça demande peut-être un peu plus de code que vous n'en avez l'habitude, souvenez-vous que le code est lu beaucoup plus souvent qu'il n’est écrit, et que ce type de code, modulaire et explicite, est moins difficile à lire. Plus vous écrirez de composants, plus vous apprécierez cette clarté et cette modularité, et avec la réutilisation du code, le nombre de vos lignes de code commencera à diminuer. 😀
