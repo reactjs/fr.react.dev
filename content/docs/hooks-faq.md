@@ -602,7 +602,7 @@ function ProductPage({ productId }) {
 
 Ça permet aussi de gérer les réponses trop tardives grâce à des variables locales à l'effet :
 
-```js{2,6,8}
+```js{2,6,10}
   useEffect(() => {
     let ignore = false;
     async function fetchProduct() {
@@ -610,6 +610,8 @@ function ProductPage({ productId }) {
       const json = await response.json();
       if (!ignore) setProduct(json);
     }
+    
+    fetchProduct();
     return () => { ignore = true };
   }, [productId]);
 ```
