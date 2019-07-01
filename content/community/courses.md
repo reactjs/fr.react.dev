@@ -26,7 +26,13 @@ permalink: community/courses.html
 
 - [Egghead.io : The Beginner’s Guide to ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-reactjs) – Cours gratuit pour les débutant·e·s en React et celles et ceux qui cherchent à mieux comprendre les principes fondamentaux de React.
 
+<<<<<<< HEAD
 - [Free React Bootcamp](https://tylermcginnis.com/free-react-bootcamp/) – Enregistrements de trois jours d'une formation React intensive en ligne gratuite.
+=======
+- [Scrimba: Learn React for free](https://scrimba.com/g/glearnreact) - 48 hands-on video tutorials building react apps.
+
+## Paid Courses {#paid-courses}
+>>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 ## Cours payants {#paid-courses}
 

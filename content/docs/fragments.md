@@ -18,7 +18,11 @@ render() {
 }
 ```
 
+<<<<<<< HEAD
 Il existe aussi une nouvelle [syntaxe concise](#short-syntax) pour les déclarer, mais elle n'est pas encore prise en charge par tous les outils populaires.
+=======
+There is also a new [short syntax](#short-syntax) for declaring them.
+>>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 ## Motivation {#motivation}
 
@@ -113,9 +117,13 @@ class Columns extends React.Component {
 
 Vous pouvez utiliser `<>…</>` de la même manière que n'importe quel élément, à ceci près que cette syntaxe n’accepte ni clés ni attributs.
 
+<<<<<<< HEAD
 Notez que **[certains outils ne la prennent pas encore en charge](/blog/2017/11/28/react-v16.2.0-fragment-support.html#support-for-fragment-syntax)**, aussi vous voudrez peut-être explicitement écrire `<React.Fragment>` jusqu'à que vos outils se mettent à niveau.
 
 ### Les fragments à clé {#keyed-fragments}
+=======
+### Keyed Fragments {#keyed-fragments}
+>>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 Les fragments déclarés explicitement avec la syntaxe `<React.Fragment>` peuvent avoir des clés *(key, NdT)*. Un cas d'utilisation consisterait à faire correspondre une collection à un tableau de fragments—par exemple pour créer une liste de descriptions :
 

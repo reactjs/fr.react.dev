@@ -37,7 +37,11 @@ Pour commencer, dessinez des cases autour de chaque composant (et sous-composant
 
 Mais comment savoir quelles parties devraient disposer de leurs propres composants ? Utilisez les mêmes techniques que lorsque vous décidez de créer une nouvelle fonction ou un nouvel objet. L'une de ces techniques est le [principe de responsabilité unique](https://fr.wikipedia.org/wiki/Principe_de_responsabilité_unique), qui stipule qu'un composant ne devrait idéalement faire qu'une seule chose. S'il finit par grossir, il devrait être décomposé en sous-composants plus petits.
 
+<<<<<<< HEAD
 Comme vous affichez souvent un modèle de données JSON à un utilisateur, vous constaterez que si votre modèle a été correctement construit, votre interface utilisateur (et donc la structure de vos composants) correspondra aisément. En effet, l'interface utilisateur (UI) et les modèles de données tendent à adhérer à la même *architecture d'information*, ce qui signifie que le travail de séparation de votre UI en composants est souvent trivial. Il suffit de la décomposer en composants qui représentent juste un élément de votre modèle de données.
+=======
+Since you're often displaying a JSON data model to a user, you'll find that if your model was built correctly, your UI (and therefore your component structure) will map nicely. That's because UI and data models tend to adhere to the same *information architecture*. Separate your UI into components, where each component matches one piece of your data model.
+>>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 ![Schéma des composants](../images/blog/thinking-in-react-components.png)
 
