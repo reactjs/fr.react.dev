@@ -145,6 +145,10 @@ Même si le code ci-dessus n'est pas problématique en soi, la méthode de cycle
 
 À partir de la version 16.3, la façon recommandée de mettre à jour `state` en réponse à des changements de `props` consiste à utiliser la nouvelle méthode de cycle de vie `static getDerivedStateFromProps` (cette méthode est appelée quand le composant est créé et à chaque fois qu'il reçoit de nouvelles props) :
 
+<<<<<<< HEAD
+=======
+As of version 16.3, the recommended way to update `state` in response to `props` changes is with the new `static getDerivedStateFromProps` lifecycle. It is called when a component is created and each time it re-renders due to changes to props or state:
+>>>>>>> ed9d73105a93239f94d84c619e84ae8adec43483
 `embed:update-on-async-rendering/updating-state-from-props-after.js`
 
 Vous avez peut-être remarqué dans cet exemple que `props.currentRow` est reflétée dans l'état (en tant que `state.lastRow`). Ça permet à `getDerivedStateFromProps` d’accéder à la valeur précédente de la prop de la même façon que si on utilisait `componentWillReceiveProps`.

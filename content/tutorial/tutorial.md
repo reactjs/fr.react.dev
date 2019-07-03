@@ -16,7 +16,11 @@ Ce tutoriel ne présuppose aucune connaissance préalable de React.
 
 ## Avant de commencer le tutoriel {#before-we-start-the-tutorial}
 
+<<<<<<< HEAD
 Nous allons construire un petit jeu pendant ce tutoriel.  **Vous pourriez être tenté·e de l’ignorer sous prétexte que vous ne construisez pas de jeux—mais donnez-lui sa chance.**  Les techniques que vous apprendrez dans ce tutoriel sont fondamentales pour la construction de n’importe quel type d’appli React, et les maîtriser vous apportera une compréhension profonde de React.
+=======
+We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.
+>>>>>>> ed9d73105a93239f94d84c619e84ae8adec43483
 
 >Astuce
 >
