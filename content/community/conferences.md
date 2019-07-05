@@ -13,6 +13,7 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 
 ## Prochaines conférences {#upcoming-conferences}
 
+<<<<<<< HEAD
 ### ReactEurope 2019 {#reacteurope-2019}
 Du 23 au 24 mai 2019 à Paris, France
 
@@ -43,6 +44,8 @@ Du 11 au 12 juillet 2019 à Portland, Orégon, États-Unis d'Amérique
 
 [Site web](https://infinite.red/ChainReactConf)
 
+=======
+>>>>>>> 06a029d53d7ee7e5e717dd39450ac6af1ff554e5
 ### React Rally 2019 {#react-rally-2019}
 Du 22 au 23 août 2019 à Salt Lake City, États-Unis d'Amérique
 
@@ -402,4 +405,38 @@ Le 3 mai 2019 à Londres, Royaume-Uni
 ### <React.NotAConf /> 2019 {#reactnotaconf--2019}
 Le 11 mai à Sofia, Bulgarie
 
+<<<<<<< HEAD
 [Site web](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/events/780891358936156)
+=======
+[Website](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/events/780891358936156)
+
+### ReactEurope 2019 {#reacteurope-2019}
+May 23-24, 2019 in Paris, France
+
+[Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+
+### React Conf Armenia 2019 {#react-conf-am-19}
+May 25, 2019 in Yerevan, Armenia
+
+[Website](https://reactconf.am/) - [Twitter](https://twitter.com/ReactConfAM) - [Facebook](https://www.facebook.com/reactconf.am/) - [YouTube](https://www.youtube.com/c/JavaScriptConferenceArmenia) - [CFP](http://bit.ly/speakReact)
+
+### ReactNext 2019 {#react-next-2019}
+June 11, 2019. Tel Aviv, Israel
+
+[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
+
+### React Norway 2019 {#react-norway-2019}
+June 12, 2019. Larvik, Norway
+
+[Website](https://reactnorway.com) - [Twitter](https://twitter.com/ReactNorway)
+
+### React Loop 2019 {#react-loop-2019}
+June 21, 2019 Chicago, Illinois USA
+
+[Website](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
+
+### Chain React 2019 {#chain-react-2019}
+July 11-12, 2019. Portland, OR, USA.
+
+[Website](https://infinite.red/ChainReactConf)
+>>>>>>> 06a029d53d7ee7e5e717dd39450ac6af1ff554e5

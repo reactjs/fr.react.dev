@@ -83,6 +83,12 @@ MyComponent.propTypes = {
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
+  
+  // An object with warnings on extra properties
+  optionalObjectWithStrictShape: PropTypes.exact({
+    name: PropTypes.string,
+    quantity: PropTypes.number
+  }),   
 
   // Vous pouvez ajouter `isRequired` à la fin de n'importe lequel des validateurs
   // ci-dessus pour vous assurer qu'un message d'avertissement s'affiche lorsque
