@@ -18,7 +18,7 @@ render() {
 }
 ```
 
-Il existe aussi une nouvelle [syntaxe concise](#short-syntax) pour les déclarer, mais elle n'est pas encore prise en charge par tous les outils populaires.
+Il existe aussi une nouvelle [syntaxe concise](#short-syntax) pour les déclarer.
 
 ## Motivation {#motivation}
 
@@ -112,8 +112,6 @@ class Columns extends React.Component {
 ```
 
 Vous pouvez utiliser `<>…</>` de la même manière que n'importe quel élément, à ceci près que cette syntaxe n’accepte ni clés ni attributs.
-
-Notez que **[certains outils ne la prennent pas encore en charge](/blog/2017/11/28/react-v16.2.0-fragment-support.html#support-for-fragment-syntax)**, aussi vous voudrez peut-être explicitement écrire `<React.Fragment>` jusqu'à que vos outils se mettent à niveau.
 
 ### Les fragments à clé {#keyed-fragments}
 

@@ -143,7 +143,7 @@ Voici un exemple de composant qui recourt à la méthode historique de cycle de 
 
 Même si le code ci-dessus n'est pas problématique en soi, la méthode de cycle de vie `componentWillReceiveProps` est souvent mal utilisée de façons qui *posent en effet* des problèmes.  C'est pourquoi cette méthode sera bientôt dépréciée.
 
-À partir de la version 16.3, la façon recommandée de mettre à jour `state` en réponse à des changements de `props` consiste à utiliser la nouvelle méthode de cycle de vie `static getDerivedStateFromProps` (cette méthode est appelée quand le composant est créé et à chaque fois qu'il reçoit de nouvelles props) :
+À partir de la version 16.3, la façon recommandée de mettre à jour `state` en réponse à des changements de `props` consiste à utiliser la nouvelle méthode de cycle de vie `static getDerivedStateFromProps`. Cette méthode est appelée quand le composant est créé et à chaque fois qu'il se rafraîchit en raison de nouvelles props ou d’un nouvel état :
 
 `embed:update-on-async-rendering/updating-state-from-props-after.js`
 

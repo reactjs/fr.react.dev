@@ -602,7 +602,7 @@ function ProductPage({ productId }) {
 
 Ça permet aussi de gérer les réponses trop tardives grâce à des variables locales à l'effet :
 
-```js{2,6,8}
+```js{2,6,10}
   useEffect(() => {
     let ignore = false;
     async function fetchProduct() {
@@ -610,6 +610,8 @@ function ProductPage({ productId }) {
       const json = await response.json();
       if (!ignore) setProduct(json);
     }
+
+    fetchProduct();
     return () => { ignore = true };
   }, [productId]);
 ```
@@ -665,7 +667,9 @@ function Counter() {
 }
 ```
 
-On pourrait corriger le bug en spécifiant `[count]` comme liste de dépendances, mais ça réinitialiserait notre horloge à chaque modification.  Ce n’est peut-être pas souhaitable.  Pour corriger ça, nous pouvons utiliser [la version basée fonction de `setState`](/docs/hooks-reference.html#functional-updates).  Elle nous permet d’indiquer *comment* l’état change, sans référencer l’état *actuel* :
+La liste de dépendances vide, `[]`, singifie que l’effet ne sera exécuté qu’une fois au montage du composant, et non à chaque rafraîchissement.  Le problème vient du fait que dans la fonction de rappel passée à `setInterval`, la valeur de `count` ne va pas changer, car on a créé une fermeture lexicale *(closure, NdT)* avec `count` à `0`, tel qu’elle était lorsque la fonction de rappel de l’effet s’est exécutée.  À chaque seconde, cette fonction appelle `setCount(0 + 1)`, de sorte que le compteur ne dépasse jamais 1.
+
+On pourrait corriger le bug en spécifiant `[count]` comme liste de dépendances, mais ça réinitialiserait notre horloge à chaque modification.  En pratique, chaque `setInterval` aurait une chance de s’exécuter avant d’être réinitialisé (comme pour un `setTimeout`).  Ce n’est peut-être pas souhaitable.  Pour corriger ça, nous pouvons utiliser [la version basée fonction de `setState`](/docs/hooks-reference.html#functional-updates).  Elle nous permet d’indiquer *comment* l’état change, sans référencer l’état *actuel* :
 
 ```js{6,9}
 function Counter() {
@@ -683,6 +687,8 @@ function Counter() {
 ```
 
 (L’identité de la fonction `setCount` est garantie stable, il est donc naturel de l’omettre.)
+
+À présent, la fonction de rappel de `setInterval` est appelée une fois par seconde, mais à chaque fois l’appel interne à `setCount` peut utiliser une valeur à jour de `count` (appelée `c` dans la fonction de rappel ci-dessus).
 
 Pour des cas plus complexes (comme lorsqu’un état dépend d'un autre état), essayez de déplacer la logique de mise à jour de l'état hors de l'effet avec le [Hook `useReducer`](/docs/hooks-reference.html#usereducer). [Cet article](https://adamrackis.dev/state-and-use-reducer/) (en anglais) vous donne un exemple de cette approche. **L’identité de la fonction `dispatch` fournie par `useReducer` est garantie stable**, même si la fonction de réduction est déclarée dans le composant et lit ses props.
 
