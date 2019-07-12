@@ -3,7 +3,7 @@ title: "Composants, éléments et instances de React"
 author: [gaearon]
 ---
 
-La différence entre **les composants, leurs instances et leurs éléments** déroute beaucoup les débutants React. Pourquoi y a-t-il trois termes différents pour désigner quelque chose qui est peint sur l'écran ?
+La différence entre **les composants, leurs instances et leurs éléments** déroute beaucoup les débutants React. Pourquoi y a-t-il trois termes différents pour désigner quelque chose qui est affiché sur l'écran ?
 
 ## Gestion des instances {#managing-the-instances}
 
@@ -18,7 +18,7 @@ class Form extends TraditionalObjectOrientedView {
     const { isSubmitted, buttonText } = this.attrs;
 
     if (!isSubmitted && !this.button) {
-      // Le formulaire n'a pas encore été sousmis. Créons le bouton !
+      // Le formulaire n'a pas encore été soumis. Créons le bouton !
       this.button = new Button({
         children: buttonText,
         color: 'blue'
@@ -49,7 +49,7 @@ class Form extends TraditionalObjectOrientedView {
 
 Il s’agit de pseudo-code, mais c’est plus ou moins ce que vous obtenez lorsque vous écrivez un code d’interface utilisateur composite orienté objet qui se comporte de manière cohérente en utilisant une bibliothèque comme Backbone.
 
-Chaque instance de composant doit conserver les références vers son nœud DOM et vers les instances des composants enfants puis les créer, les mettre à jour et les détruire au moment opportun. Le nombre de ligne de code augmentent exponentiellement selon le nombre d'états du composant, de plus, les parents ont un accès direct aux instances de leurs composants enfants, ce qui va plus tard rendre difficile leur dissociation.
+Chaque instance de composant doit conserver les références vers son nœud DOM et vers les instances des composants enfants puis les créer, les mettre à jour et les détruire au moment opportun. Le nombre de ligne de code augmente exponentiellement selon le nombre d'états du composant, de plus, les parents ont un accès direct aux instances de leurs composants enfants, ce qui va plus tard rendre difficile leur dissociation.
 
 Alors, en quoi React est-il différent ?
 
@@ -294,9 +294,9 @@ class Button extends React.Component {
 }
 ```
 
-Lorsqu'un composant est défini en tant que classe, il est un peu plus puissant qu'un composant de fonction. Il peut stocker un état local et exécuter une logique personnalisée lorsque le nœud DOM correspondant est créé ou détruit.
+Lorsqu'un composant est défini en tant que classe, il est un peu plus puissant qu'une fonction composant. Il peut stocker un état local et exécuter une logique personnalisée lorsque le nœud DOM correspondant est créé ou détruit.
 
-Un composant de fonction est moins puissant mais plus simple et agit comme un composant de la classe avec juste une méthode `render()`. Sauf si vous avez besoin de fonctionnalités disponibles uniquement dans une classe, nous vous encourageons à utiliser des composants de fonction.
+Un composant de fonction est moins puissant mais plus simple et agit comme un composant de la classe avec juste une méthode `render()`. Sauf si vous avez besoin de fonctionnalités disponibles uniquement dans une classe, nous vous encourageons à utiliser des fonctions composant.
 
 **Cependant, qu’il s’agisse de fonctions ou de classes, ceux sont tous des composants de React.  Ils prennent les props en entrée et renvoient les éléments en sortie.**
 
@@ -356,7 +356,7 @@ Les applis React sont faciles à optimiser grâce à ce processus d'affinage pro
 
 Vous avez peut-être remarqué que cet article du blog parle beaucoup des composants, des éléments et peu des instances. En réalité, les instances ont beaucoup moins d'importance dans React que dans la plupart des frameworks d'interface utilisateur orientés objet.
 
-Seuls les composants déclarés comme des classes ont des instances, et vous les créez jamais directement : React le fait pour vous. Bien qu’il existe des [mécanismes permettant à une instance de composant parent d'accéder à une instance de composant enfant](/docs/more-about-refs.html), elles ne sont utilisées que pour des actions impératives (telles que la définition du focus sur un champ) et doivent être évitées en général.
+Seuls les composants déclarés comme des classes ont des instances, et vous ne les créez jamais directement : React le fait pour vous. Bien qu’il existe des [mécanismes permettant à une instance de composant parent d'accéder à une instance de composant enfant](/docs/more-about-refs.html), elles ne sont utilisées que pour des actions impératives (telles que la définition du focus sur un champ) et doivent être évitées en général.
 
 React prend en charge la création d'une instance pour chaque composant de classe, vous pouvez donc écrire des composants de manière orientée objet avec des méthodes et un état local, mais à part ça, les instances ne sont pas très importantes dans le modèle de programmation de React et sont gérées par React.
 
@@ -370,7 +370,7 @@ Lorsqu'un composant reçoit des props en entrée, c'est parce qu'un composant pa
 
 Une *instance* correspond à ce que vous appelez `this` dans la classe du composant que vous écrivez. C'est utile pour [stocker l'état local et réagir aux événements du cycle de vie](/docs/component-api.html).
 
-Les composants de fonction n’ont pas du tout d’instances. Les composants de classe ont des instances, mais vous n'avez jamais besoin de créer directement une instance de composant. React s'en charge.
+Les fonctions composant n’ont pas du tout d’instances. Les composants de classe ont des instances, mais vous n'avez jamais besoin de créer directement une instance de composant. React s'en charge.
 
 Enfin, pour créer des éléments, utilisez [`React.createElement()`](/docs/top-level-api.html#react.createelement), [JSX](/docs/jsx-in-depth.html), ou une [aide de fabrique d'élément](/docs/top-level-api.html#react.createfactory). N’écrivez pas des éléments comme de simples objets dans le code réel, sachez simplement qu'il s'agit de simples objets sous le capot.
 
