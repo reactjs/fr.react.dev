@@ -69,7 +69,11 @@ Depuis la version 16.8.0, React embarque une implémentation stable de React Hoo
 
 Remarquez que **pour activer les Hooks, tous les paquets React doivent être en version 16.8.0 ou supérieure**. Les Hooks ne fonctionneront pas si vous oubliez de mettre à jour React DOM, par exemple.
 
+<<<<<<< HEAD
 React Native prendra complètement en charge les Hooks dans sa prochaine version stable.
+=======
+React Native 0.59 and above support Hooks.
+>>>>>>> 5dca78b7e3b078df79615cfa6e8cf8464f8b397a
 
 ### Dois-je réécrire tous mes composants à base de classe ? {#do-i-need-to-rewrite-all-my-class-components}
 
@@ -559,7 +563,11 @@ Selon votre cas, vous trouverez quelques options supplémentaires plus bas dans 
 
 Voyons en quoi c’est important.
 
+<<<<<<< HEAD
 Si vous précisez une [liste de dépendances](/docs/hooks-reference.html#conditionally-firing-an-effect) comme dernier argument de `useEffect`, `useMemo`, `useCallback`, ou `useImperativeHandle`, cette liste doit inclure toutes les valeurs utilisées dans la fonction passée qui participent au flux de données de React.  Ça inclut les props, l'état local, et toute valeur qui en découle.
+=======
+If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values used inside that participate in the React data flow. That includes props, state, and anything derived from them.
+>>>>>>> 5dca78b7e3b078df79615cfa6e8cf8464f8b397a
 
 Le **seul cas** pour lequel vous pouvez sereinement omettre une fonction de la liste des dépendances, c'est lorsque rien à l'intérieur (y compris dans les autres fonctions qu'elle appelle) ne référence les props, l'état local ou des valeurs qui en découlent.  L'exemple suivant a ce problème :
 
@@ -669,7 +677,11 @@ function Counter() {
 
 La liste de dépendances vide, `[]`, singifie que l’effet ne sera exécuté qu’une fois au montage du composant, et non à chaque rafraîchissement.  Le problème vient du fait que dans la fonction de rappel passée à `setInterval`, la valeur de `count` ne va pas changer, car on a créé une fermeture lexicale *(closure, NdT)* avec `count` à `0`, tel qu’elle était lorsque la fonction de rappel de l’effet s’est exécutée.  À chaque seconde, cette fonction appelle `setCount(0 + 1)`, de sorte que le compteur ne dépasse jamais 1.
 
+<<<<<<< HEAD
 On pourrait corriger le bug en spécifiant `[count]` comme liste de dépendances, mais ça réinitialiserait notre horloge à chaque modification.  En pratique, chaque `setInterval` aurait une chance de s’exécuter avant d’être réinitialisé (comme pour un `setTimeout`).  Ce n’est peut-être pas souhaitable.  Pour corriger ça, nous pouvons utiliser [la version basée fonction de `setState`](/docs/hooks-reference.html#functional-updates).  Elle nous permet d’indiquer *comment* l’état change, sans référencer l’état *actuel* :
+=======
+Specifying `[count]` as a list of dependencies would fix the bug, but would cause the interval to be reset on every change. Effectively, each `setInterval` would get one chance to execute before being cleared (similar to a `setTimeout`.) That may not be desirable. To fix this, we can use the [functional update form of `setState`](/docs/hooks-reference.html#functional-updates). It lets us specify *how* the state needs to change without referencing the *current* state:
+>>>>>>> 5dca78b7e3b078df79615cfa6e8cf8464f8b397a
 
 ```js{6,9}
 function Counter() {

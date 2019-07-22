@@ -63,6 +63,11 @@ Du 26 au 28 septembre 2019 à Alicante, Espagne
 
 [Site web](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante)
 
+### React Conf 2019 {#react-conf-2019}
+October 24-25, 2019 in Henderson, Nevada USA
+
+[Website](https://conf.reactjs.org/) - [Twitter](https://twitter.com/reactjs)
+
 ### React Advanced 2019 {#react-advanced-2019}
 
 Le 25 octobre 2019 à Londres, Royaume-Uni

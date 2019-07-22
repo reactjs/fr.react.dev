@@ -57,8 +57,16 @@ MyComponent.propTypes = {
   // Un élément React.
   optionalElement: PropTypes.element,
 
+<<<<<<< HEAD
   // Vous pouvez aussi déclarer qu'une prop est une instance d'une classe.
   // On utilise pour ça l'opérateur JS instanceof.
+=======
+  // A React element type (ie. MyComponent).
+  optionalElementType: PropTypes.elementType,
+  
+  // You can also declare that a prop is an instance of a class. This uses
+  // JS's instanceof operator.
+>>>>>>> 5dca78b7e3b078df79615cfa6e8cf8464f8b397a
   optionalMessage: PropTypes.instanceOf(Message),
 
   // Vous pouvez vous assurer que votre prop est limitée à certaines
