@@ -10,7 +10,7 @@
 - name: arabe
   translated_name: العربية
   code: ar
-  status: 0
+  status: 1
 - name: azéri
   translated_name: Azərbaycanca
   code: az
