@@ -70,21 +70,12 @@ permalink: community/ui-components.html
 * **[video-react](https://github.com/video-react/video-react)** : un lecteur de vidéo web construit pour le HTML5 en utilisant React.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell)** : générez des formulaires complexes, validés, et extensibles basés sur des descripteurs JSON.
 
-<<<<<<< HEAD
 ## Composants payants {#fee-based-components}
 
 * **[ag-Grid](https://www.ag-grid.com)** : grille de données avancée pour React.
+* **[DevExtreme Reactive](https://devexpress.github.io/devextreme-reactive/react/)** composants à haute performance, basés plugins, pour des grilles de données, un planificateur et des graphiques, utilisant Bootstrap et le Material Design.
 * **[ExtReact components](https://www.sencha.com/products/extreact/)** : plus de 115 composants UI prêts à l'emploi.
 * **[Grapecity Wijmo UI Components for React](https://www.grapecity.com/en/react/)** : développez vos options d'UI React avec une collection de composants JavaScript Wijmo.
 * **[jQWidgets React components](https://www.jqwidgets.com/react/)** : plus de 70 composants UI prêts pour l'entreprise.
 * **[KendoReact](https://www.telerik.com/kendo-react-ui/)** : éléments d'UI pour les développeurs React.
 * **[Mobiscroll React UI Components](https://mobiscroll.com/react)** : éléments d'UI pour les développements d'application mobile en React.
-=======
-* **[ag-Grid](https://www.ag-grid.com)** Advanced data grid / data table for React.
-* **[DevExtreme Reactive](https://devexpress.github.io/devextreme-reactive/react/)** High-performance plugin-based Data Grid, Scheduler and Chart components for Bootstrap and Material Design.
-* **[ExtReact components](https://www.sencha.com/products/extreact//)**: 115+ Ready-to-Use UI Components.
-* **[Grapecity Wijmo UI Components for React](https://www.grapecity.com/en/react/)**: Expand your React UI options with Wijmo’s complete collection of JavaScript components.
-* **[jQWidgets React components](https://www.jqwidgets.com/react/)**: Enterprise Ready 70+ UI Components.
-* **[KendoReact](https://www.telerik.com/kendo-react-ui/)**: UI for React Developers.
-* **[Mobiscroll React UI Components](https://mobiscroll.com/react)** Mobile UI Controls for the Productive React Developer.
->>>>>>> 5dca78b7e3b078df79615cfa6e8cf8464f8b397a

@@ -244,11 +244,7 @@ La méthode `componentDidMount()` est exécutée après que la sortie du composa
   }
 ```
 
-<<<<<<< HEAD
-Notez que l'on a enregistré l'ID du minuteur directement sur `this`.
-=======
-Note how we save the timer ID right on `this` (`this.timerID`).
->>>>>>> 5dca78b7e3b078df79615cfa6e8cf8464f8b397a
+Notez qu’on a enregistré l'ID du minuteur directement sur `this` (`this.timeID`).
 
 Alors que `this.props` est mis en place par React lui-même et que `this.state` a un sens bien spécial, vous pouvez très bien ajouter manuellement d'autres champs sur la classe si vous avez besoin de stocker quelque chose qui ne participe pas au flux de données (comme un ID de minuteur).
 

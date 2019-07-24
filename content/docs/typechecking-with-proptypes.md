@@ -57,16 +57,11 @@ MyComponent.propTypes = {
   // Un élément React.
   optionalElement: PropTypes.element,
 
-<<<<<<< HEAD
+  // Un type d’élément React (ex. MyComponent).
+  optionalElementType: PropTypes.elementType,
+
   // Vous pouvez aussi déclarer qu'une prop est une instance d'une classe.
   // On utilise pour ça l'opérateur JS instanceof.
-=======
-  // A React element type (ie. MyComponent).
-  optionalElementType: PropTypes.elementType,
-  
-  // You can also declare that a prop is an instance of a class. This uses
-  // JS's instanceof operator.
->>>>>>> 5dca78b7e3b078df79615cfa6e8cf8464f8b397a
   optionalMessage: PropTypes.instanceOf(Message),
 
   // Vous pouvez vous assurer que votre prop est limitée à certaines
@@ -91,12 +86,12 @@ MyComponent.propTypes = {
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
-  
+
   // An object with warnings on extra properties
   optionalObjectWithStrictShape: PropTypes.exact({
     name: PropTypes.string,
     quantity: PropTypes.number
-  }),   
+  }),
 
   // Vous pouvez ajouter `isRequired` à la fin de n'importe lequel des validateurs
   // ci-dessus pour vous assurer qu'un message d'avertissement s'affiche lorsque

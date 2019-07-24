@@ -465,15 +465,9 @@ L'[outil Web Accessibility Evaluation](http://wave.webaim.org/extension/) (en an
 
 Sur certains navigateurs, nous pouvons facilement consulter les informations d'accessibilité pour chaque élément de l'arbre d'accessibilité :
 
-<<<<<<< HEAD
 - [Utiliser l'inspecteur d'accessibilité de Firefox](https://developer.mozilla.org/fr/docs/Outils/Inspecteur_accessibilite).
-- [Activer l'inspecteur d'accessibilité de Chrome](https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a) (en anglais).
+- [Utiliser l'inspecteur d'accessibilité de Chrome](https://developers.google.com/web/tools/chrome-devtools/accessibility/reference#pane) (en anglais).
 - [Utiliser l'inspecteur d'accessibilité d'OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html) (en anglais).
-=======
-- [Using the Accessibility Inspector in Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
-- [Using the Accessibility Inspector in Chrome](https://developers.google.com/web/tools/chrome-devtools/accessibility/reference#pane)
-- [Using the Accessibility Inspector in OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
->>>>>>> 5dca78b7e3b078df79615cfa6e8cf8464f8b397a
 
 ### Lecteurs d'écran {#screen-readers}
 
