@@ -3,7 +3,7 @@ title: "React est-il encore traduit? ¡Sí! Sím! はい！"
 author: [tesseralis]
 ---
 
-Nous sommes ravis d’annoncer un effort continu pour maintenir les traductions officielles du site Web de documentation de React dans différentes langues. Grâce aux efforts dévoués des membres de la communauté React du monde entier, React est maintenant traduit dans plus de 30 langues! Vous pouvez les trouver sur la nouvelle page [Langues](/languages) page.
+Nous sommes ravis d’annoncer un effort continu pour maintenir les traductions officielles du site Web de documentation de React dans différentes langues. Grâce aux efforts dévoués des membres de la communauté React du monde entier, React est maintenant traduit dans plus de 30 langues! Vous pouvez les trouver sur la nouvelle page [Langues](/languages).
 
 En outre, les trois langues suivantes ont achevé la traduction de la plupart des documents React! 🎉
 
