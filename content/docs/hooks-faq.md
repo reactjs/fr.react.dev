@@ -69,7 +69,7 @@ Depuis la version 16.8.0, React embarque une implémentation stable de React Hoo
 
 Remarquez que **pour activer les Hooks, tous les paquets React doivent être en version 16.8.0 ou supérieure**. Les Hooks ne fonctionneront pas si vous oubliez de mettre à jour React DOM, par exemple.
 
-React Native prendra complètement en charge les Hooks dans sa prochaine version stable.
+React Native 0.59 et ultérieurs prennent en charge les Hooks.
 
 ### Dois-je réécrire tous mes composants à base de classe ? {#do-i-need-to-rewrite-all-my-class-components}
 

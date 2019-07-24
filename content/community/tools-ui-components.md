@@ -73,6 +73,7 @@ permalink: community/ui-components.html
 ## Composants payants {#fee-based-components}
 
 * **[ag-Grid](https://www.ag-grid.com)** : grille de données avancée pour React.
+* **[DevExtreme Reactive](https://devexpress.github.io/devextreme-reactive/react/)** composants à haute performance, basés plugins, pour des grilles de données, un planificateur et des graphiques, utilisant Bootstrap et le Material Design.
 * **[ExtReact components](https://www.sencha.com/products/extreact/)** : plus de 115 composants UI prêts à l'emploi.
 * **[Grapecity Wijmo UI Components for React](https://www.grapecity.com/en/react/)** : développez vos options d'UI React avec une collection de composants JavaScript Wijmo.
 * **[jQWidgets React components](https://www.jqwidgets.com/react/)** : plus de 70 composants UI prêts pour l'entreprise.
