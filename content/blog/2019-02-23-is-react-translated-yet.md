@@ -1,17 +1,17 @@
 ---
-title: "Is React Translated Yet? ¡Sí! Sím! はい！"
+title: "React est-il encore traduit? ¡Sí! Sím! はい！"
 author: [tesseralis]
 ---
 
-We’re excited to announce an ongoing effort to maintain official translations of the React documentation website into different languages. Thanks to the dedicated efforts of React community members from around the world, React is now being translated into *over 30* languages! You can find them on the new [Languages](/languages) page.
+Nous sommes ravis d’annoncer un effort continu pour maintenir les traductions officielles du site Web de documentation de React dans différentes langues. Grâce aux efforts dévoués des membres de la communauté React du monde entier, React est maintenant traduit dans plus de 30 langues! Vous pouvez les trouver sur la nouvelle page [Langues](/languages) page.
 
-In addition, the following three languages have completed translating most of the React Docs! 🎉
+En outre, les trois langues suivantes ont achevé la traduction de la plupart des documents React! 🎉
 
-* **Spanish: [es.reactjs.org](https://es.reactjs.org)**
-* **Japanese: [ja.reactjs.org](https://ja.reactjs.org)**
-* **Brazilian Portuguese: [pt-br.reactjs.org](https://pt-br.reactjs.org)**
+* **Espagnol: [es.reactjs.org](https://es.reactjs.org)**
+* **Japonais: [ja.reactjs.org](https://ja.reactjs.org)**
+* **Brasilien Portugais: [pt-br.reactjs.org](https://pt-br.reactjs.org)**
 
-Special congratulations to [Alejandro Ñáñez Ortiz](https://github.com/alejandronanez), [Rainer Martínez Fraga](https://github.com/carburo), [David Morales](https://github.com/dmorales), [Miguel Alejandro Bolivar Portilla](https://github.com/Darking360), and all the contributors to the Spanish translation for being the first to *completely* translate the core pages of the docs!
+Félicitations à [Alejandro Ñáñez Ortiz](https://github.com/alejandronanez), [Rainer Martínez Fraga](https://github.com/carburo), [David Morales](https://github.com/dmorales), [Miguel Alejandro Bolivar Portilla](https://github.com/Darking360), et tous les contributeurs à la traduction espagnole pour avoir été les premiers à * complètement * traduire les pages principales de la documentation!
 
 ## Why Localization Matters {#why-localization-matters}
 
