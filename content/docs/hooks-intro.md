@@ -71,7 +71,7 @@ Nous parlerons de ça plus en détail dans [Construire vos propres Hooks](/docs/
 
 ### Les composants complexes deviennent difficiles à comprendre {#complex-components-become-hard-to-understand}
 
-Nous avons souvent dû maintenir des composants qui avaient étaient simples au départ, pour devenir d'ingérables ramassis de logiques à état et d'effets de bord. Chaque méthode de cycle de vie contient un mélange de logiques sans aucun rapport. Par exemple, des composants peuvent récupérer des données dans les méthodes `componentDidMount` et `componentDidUpdate`. Toutefois, cette même méthode `componentDidMount` pourrait contenir d’autres logiques dédiées à la configuration d'écouteurs d'événements, qui seront à leur tour nettoyés dans la méthode `componentWillUnmount`.
+Nous avons souvent dû maintenir des composants qui étaient simples au départ, pour devenir d'ingérables ramassis de logiques à état et d'effets de bord. Chaque méthode de cycle de vie contient un mélange de logiques sans aucun rapport. Par exemple, des composants peuvent récupérer des données dans les méthodes `componentDidMount` et `componentDidUpdate`. Toutefois, cette même méthode `componentDidMount` pourrait contenir d’autres logiques dédiées à la configuration d'écouteurs d'événements, qui seront à leur tour nettoyés dans la méthode `componentWillUnmount`.
 
 Le code mutuellement lié dont les évolutions doivent rester cohérentes est divisé en plusieurs parties, alors que du code sans rapport finit par être combiné en une seule méthode. Ça ouvre grand la porte à l’introduction de bugs et incohérences.
 

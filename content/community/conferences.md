@@ -13,11 +13,6 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 
 ## Prochaines conférences {#upcoming-conferences}
 
-### Chain React 2019 {#chain-react-2019}
-Du 11 au 12 juillet 2019 à Portland, Orégon, États-Unis d'Amérique
-
-[Site web](https://infinite.red/ChainReactConf)
-
 ### React Rally 2019 {#react-rally-2019}
 Du 22 au 23 août 2019 à Salt Lake City, États-Unis d'Amérique
 
@@ -62,6 +57,12 @@ Du 26 au 28 septembre 2019 à Goa, Inde
 Du 26 au 28 septembre 2019 à Alicante, Espagne
 
 [Site web](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante)
+
+### React Conf 2019 {#react-conf-2019}
+
+Du 24 au 25 octobre 2019 à Henderson, Nevada, USA
+
+[Site web](https://conf.reactjs.org/) - [Twitter](https://twitter.com/reactjs)
 
 ### React Advanced 2019 {#react-advanced-2019}
 
@@ -403,3 +404,9 @@ Le 12 juin 2019 à Larvik, Norvège
 Le 21 juin 2019 à Chicago, États-Unis d'Amérique
 
 [Site web](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
+
+### Chain React 2019 {#chain-react-2019}
+Du 11 au 12 juillet 2019 à Portland, Orégon, États-Unis d'Amérique
+
+[Site web](https://infinite.red/ChainReactConf)
+
