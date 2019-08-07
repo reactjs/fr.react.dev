@@ -10,7 +10,7 @@ category: FAQ
 
 `setState()` planifie la mise à jour de l'objet `state` du composant. Quand l'état local change, le composant répond en se rafraîchissant.
 
-### Qu'elle est la différence entre `state` et `props` ? {#what-is-the-difference-between-state-and-props}
+### Quelle est la différence entre `state` et `props` ? {#what-is-the-difference-between-state-and-props}
 
 [`props`](/docs/components-and-props.html) (diminutif de « propriétés ») et [`state`](/docs/state-and-lifecycle.html) sont tous les deux des objets JavaScript bruts. Même s'ils contiennent tous les deux des informations qui influencent le résultat produit, ils présentent une différence majeure : `props` est passé *au* composant (à la manière des arguments d'une fonction) tandis que `state` est géré *dans* le composant (comme le sont les variables déclarées à l'intérieur d'une fonction).
 
