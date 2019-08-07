@@ -75,21 +75,17 @@ Le 6 décembre 2019 à Berlin, Allemagne
 
 [Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://www.youtube.com/reactdayberlin)
 
-<<<<<<< HEAD
-## Anciennes conférences {#past-conferences}
-=======
 ### ReactConf AU 2020 {#reactconfau}
-February 27 & 28, 2020 in Sydney, Australia
+Les 27 et 28 mai 2020 à Sydney, Australie
 
-[Website](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
+[Site web](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
 
 ### Render-Atlanta 2020 {#render-atlanta-2020}
-May 4-6, 2020. Atlanta, GA, USA.
+Du 4 au 6 mai 2020 à Atlanta, GA, États-Unis.
 
-[Website](https://renderatl.com)
+[Site web](https://renderatl.com)
 
-## Past Conferences {#past-conferences}
->>>>>>> e200fd7b93377accb8d387676266f015787e0d33
+## Anciennes conférences {#past-conferences}
 
 ### React.js Conf 2015 {#reactjs-conf-2015}
 Du 28 au 29 janvier 2015 à Facebook HQ, États-Unis d'Amérique
@@ -423,9 +419,3 @@ Le 21 juin 2019 à Chicago, États-Unis d'Amérique
 Du 11 au 12 juillet 2019 à Portland, Orégon, États-Unis d'Amérique
 
 [Site web](https://infinite.red/ChainReactConf)
-
-<<<<<<< HEAD
-=======
-[Website](https://infinite.red/ChainReactConf)
-
->>>>>>> e200fd7b93377accb8d387676266f015787e0d33
