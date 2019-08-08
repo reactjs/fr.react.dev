@@ -49,7 +49,7 @@ Vous pouvez voir que nous avons cinq composants dans notre petite appli. Nous av
   4. **`ProductCategoryRow` (turquoise) :** affiche un titre pour chaque *catégorie*
   5. **`ProductRow` (rouge) :** affiche une ligne pour chaque *produit*
 
-Si vous regardez `ProductTable`, vous verrez que l'en-tête du tableau (contenant les titres “Name” et “Price”) n'a pas son propre composant. C'est une question de préférence, et honnêtement les deux se valent. Dans cet exemple, nous l'avons laissé au sein de `ProductTable` car il fait partie de l’affichage de la *collection de données*, qui est de la responsabilité de `ProductTable`. Cependant, si cet en-tête devenait complexe (à savoir, si nous devions ajouter des options de tri), il deviendrait logique d'en faire son propre composant `ProductTableHeader`.
+Si vous regardez `ProductTable`, vous verrez que l'en-tête du tableau (contenant les titres “Name” et “Price”) n'a pas son propre composant. C'est une question de préférence, et honnêtement les deux se valent. Dans cet exemple, nous l'avons laissé au sein de `ProductTable` car il fait partie de l’affichage de la *collection de données*, qui est de la responsabilité de `ProductTable`. Cependant, si cet en-tête devenait complexe (par exemple, si nous devions ajouter des options de tri), il deviendrait logique d'en faire son propre composant `ProductTableHeader`.
 
 Maintenant que nous avons identifié les composants dans notre maquette, organisons-les en hiérarchie. Les composants qui apparaissent dans un autre composant sur la maquette doivent apparaître comme enfants dans cette hiérarchie :
 
