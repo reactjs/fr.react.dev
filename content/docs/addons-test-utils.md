@@ -122,7 +122,13 @@ it('peut afficher et mettre à jour un compteur', () => {
 });
 ```
 
+<<<<<<< HEAD
 N'oubliez pas que l'émission d'événements DOM ne fonctionne que lorsque le conteneur DOM a été ajouté au `document`. Vous pouvez utiliser un utilitaire comme [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) afin de réduire le volume de code générique.
+=======
+- Don't forget that dispatching DOM events only works when the DOM container is added to the `document`. You can use a library like [React Testing Library](https://testing-library.com/react) to reduce the boilerplate code.
+
+- The [`recipes`](/docs/recipes.html) document contains more details on how `act()` behaves, with examples and usage.
+>>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
 
 * * *
 
@@ -139,7 +145,11 @@ Cette méthode prend un module de composant simulé et lui ajoute des méthodes 
 
 >Remarque
 >
+<<<<<<< HEAD
 > `mockComponent()` est une API obsolète. Nous recommandons plutôt l'usage du [rendu superficiel](/docs/shallow-renderer.html) ou de [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
+=======
+> `mockComponent()` is a legacy API. We recommend using [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) instead.
+>>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
 
 * * *
 
