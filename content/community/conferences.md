@@ -13,6 +13,11 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 
 ## Prochaines conférences {#upcoming-conferences}
 
+### React Conf Iran 2019 {#react-conf-iran-2019}
+August 29, 2019. Tehran, Iran.
+
+[Website](https://reactconf.ir/) - [Twitter](https://twitter.com/reactconf_ir) - [Instagram](https://www.instagram.com/reactconf/)
+
 ### React Rally 2019 {#react-rally-2019}
 Du 22 au 23 août 2019 à Salt Lake City, États-Unis d'Amérique
 
@@ -85,7 +90,17 @@ Du 4 au 6 mai 2020 à Atlanta, GA, États-Unis.
 
 [Site web](https://renderatl.com)
 
+<<<<<<< HEAD
 ## Anciennes conférences {#past-conferences}
+=======
+### React Next 2020 {#react-next-2020}
+June 15, 2020. Tel Aviv, Israel.
+
+[Website](https://react-next.com/) - [Twitter](https://twitter.com/reactnext) - [Facebook](https://www.facebook.com/ReactNext2016/) 
+
+
+## Past Conferences {#past-conferences}
+>>>>>>> de497e250340ff597ce4964279369f16315b8b4b
 
 ### React.js Conf 2015 {#reactjs-conf-2015}
 Du 28 au 29 janvier 2015 à Facebook HQ, États-Unis d'Amérique
