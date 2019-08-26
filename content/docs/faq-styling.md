@@ -48,4 +48,8 @@ _Remarquez bien que cette fonctionnalité ne fait pas partie de React : elle es
 
 ### Puis-je faire des animations avec React ? {#can-i-do-animations-in-react}
 
+<<<<<<< HEAD
 React peut être utilisé pour générer des animations. Voyez par exemple [React Transition Group](https://reactcommunity.org/react-transition-group/) et [React Motion](https://github.com/chenglou/react-motion).
+=======
+React can be used to power animations. See [React Transition Group](https://reactcommunity.org/react-transition-group/) and [React Motion](https://github.com/chenglou/react-motion) or [React Spring](https://github.com/react-spring/react-spring), for example.
+>>>>>>> 519a3aec91a426b0c8c9ae59e292d064df48c66a
