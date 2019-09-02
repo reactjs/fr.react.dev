@@ -131,6 +131,7 @@ function Example() {
   useEffect(() => {
     document.title = `Vous avez cliqué ${count} fois`;
   });
+}
 ```
 
 Nous déclarons la variable d’état `count`, puis indiquons à React que nous avons besoin d’utiliser un effet. Nous passons alors une fonction au Hook `useEffect`. Cette fonction *est* notre effet. À l’intérieur de celui-ci, nous mettons à jour le titre du document en utilisant l’API du navigateur `document.title`. Il est possible d’y lire la dernière valeur de `count`, puisqu’elle est accessible depuis la portée de notre fonction. Lorsque React affichera notre composant, il se souviendra de notre effet, et l’exécutera après avoir mis à jour le DOM. Ce procédé est le même à chaque affichage, dont le tout premier.

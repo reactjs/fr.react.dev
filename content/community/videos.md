@@ -53,7 +53,16 @@ Les ingénieurs de Facebook Bill Fisher et Jing Chen parlent de Flux et de React
 
 ### Repenser les meilleures pratiques {#rethinking-best-practices}
 
+<<<<<<< HEAD
 Cette présentation de Pete Hunt à JSConf EU 2013 couvre trois domaines : se débarasser de la notion de gabarits *(templates, NdT)* pour plutôt construire les vues en JavaScript, « rafraîchir » l’application complète quand les données changent, et une implémentation légère du DOM et des événements – (2013 - 30mn).
+=======
+Areeb Malik investigates how React performs in a high stress situation, and how it helped his team build safe code on a massive scale - (2014 - 0h31m).
+<iframe title="Areeb Malik : Going big with React" width="650" height="366" src="https://www.youtube-nocookie.com/embed/9qcBlN6-qwY" frameborder="0" allowfullscreen></iframe>
+
+### Rethinking Best Practices {#rethinking-best-practices}
+
+Pete Hunt's talk at JSConf EU 2013 covers three topics: throwing out the notion of templates and building views with JavaScript, “re-rendering” your entire application when your data changes, and a lightweight implementation of the DOM and events - (2013 - 0h30m).
+>>>>>>> 941f54180ef5e652221f54ef6d1f6f2e9e063597
 <iframe title="Pete Hunt: React: Rethinking Best Practices - JSConf EU 2013" width="650" height="366" src="https://www.youtube-nocookie.com/embed/x7cQ3mrcKaY" frameborder="0" allowfullscreen></iframe>
 
 ### Programmation DOM fonctionnelle à hautes performances {#high-performance-functional-dom-programming}

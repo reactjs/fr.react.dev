@@ -215,6 +215,7 @@ React construit et maintient une représentation interne de l’UI produite, rep
 
 Quand les props ou l'état local d'un composant changent, React décide si une mise à jour du DOM est nécessaire en comparant l'élément renvoyé avec l'élément du rendu précédent. Quand ils ne sont pas égaux, React met à jour le DOM.
 
+<<<<<<< HEAD
 Vous pouvez visualiser ces rendus de mise à jour du DOM virtuel avec React DevTools :
 
 - [L'extension pour le navigateur Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=fr).
@@ -234,6 +235,9 @@ Prenons cet exemple :
 Remarquez que lorsque l'on saisit une seconde tâche, la première clignote également à l'écran à chaque frappe. Ça signifie qu'elle est également rafraîchie par React avec son champ de saisie. On parle parfois de rendu « gâché ». Nous savons que c’est inutile car le contenu de la première tâche est inchangé, mais React l'ignore.
 
 Même si React ne met à jour que les nœuds DOM modifiés, refaire un rendu prend un certain temps. Dans la plupart des cas ce n'est pas un problème, mais si le ralentissement est perceptible, vous pouvez accélérer le processus en surchargeant la méthode `shouldComponentUpdate` du cycle de vie, qui est déclenchée avant le démarrage du processus de rafraîchissement. L'implémentation par défaut de cette méthode renvoie `true`, laissant ainsi React faire la mise à jour :
+=======
+Even though React only updates the changed DOM nodes, re-rendering still takes some time. In many cases it's not a problem, but if the slowdown is noticeable, you can speed all of this up by overriding the lifecycle function `shouldComponentUpdate`, which is triggered before the re-rendering process starts. The default implementation of this function returns `true`, leaving React to perform the update:
+>>>>>>> 941f54180ef5e652221f54ef6d1f6f2e9e063597
 
 ```javascript
 shouldComponentUpdate(nextProps, nextState) {
@@ -404,6 +408,7 @@ function updateColorMap(colormap) {
 
 Si vous utilisez Create React App, la méthode `Object.assign` et la syntaxe de décomposition d'objets sont toutes deux disponibles par défaut.
 
+<<<<<<< HEAD
 ## Utiliser des structures de données immuables {#using-immutable-data-structures}
 
 L'utilisation d'[Immutable.js](https://github.com/facebook/immutable-js) est une autre façon de résoudre ce problème. Elle fournit des collections immuables et persistantes qui fonctionnent avec du partage structurel :
@@ -437,3 +442,6 @@ Dans ce cas, puisqu'une nouvelle référence est renvoyée quand on modifie `x`,
 D’autres bibliothèques facilitent l'utilisation des données immuables, notamment [Immer](https://github.com/mweststrate/immer), [immutability-helper](https://github.com/kolodny/immutability-helper), and [seamless-immutable](https://github.com/rtfeldman/seamless-immutable).
 
 Les structures de données immuables vous offrent un moyen peu coûteux de suivre les modifications apportées aux objets. C'est tout ce dont nous avons besoin pour implémenter la méthode `shouldComponentUpdate`. Ça peut souvent contribuer à améliorer significativement les performances.
+=======
+When you deal with deeply nested objects, updating them in an immutable way can feel convoluted. If you run into this problem, check out [Immer](https://github.com/mweststrate/immer) or [immutability-helper](https://github.com/kolodny/immutability-helper). These libraries let you write highly readable code without losing the benefits of immutability.
+>>>>>>> 941f54180ef5e652221f54ef6d1f6f2e9e063597

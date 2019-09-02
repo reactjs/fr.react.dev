@@ -111,4 +111,8 @@ Les périmètres d'erreurs respectent la nature déclarative de React, et se com
 
 React 15 disposait d'une prise en charge très limitée des périmètres d'erreurs sous un nom de méthode différent : `unstable_handleError`. Cette méthode ne fonctionne plus, et vous devrez la remplacer par `componentDidCatch` dans votre code à partir de la première version beta de React 16.
 
+<<<<<<< HEAD
 Pour ce changement, nous fournissons [un codemod](https://github.com/reactjs/react-codemod#error-boundaries) qui vous permet de migrer automatiquement votre code.
+=======
+For this change, we’ve provided a [codemod](https://github.com/reactjs/react-codemod#error-boundaries) to automatically migrate your code.
+>>>>>>> 941f54180ef5e652221f54ef6d1f6f2e9e063597
