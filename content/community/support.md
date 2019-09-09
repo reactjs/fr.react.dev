@@ -12,6 +12,8 @@ La communauté React compte des millions de développeur·se·s.
 
 Sur cette page, nous avons répertorié certaines communautés liées à React auxquelles vous pouvez participer ; reportez-vous aux autres pages de cette section pour obtenir d'autres ressources en personne ou en ligne.
 
+Before participating in React's communities, [please read our Code of Conduct](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md). We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) and we expect that all community members adhere to the guidelines within.
+
 ## Stack Overflow {#stack-overflow}
 
 Stack Overflow est un forum populaire pour poser des questions au niveau du code ou si vous êtes bloqué·e sur une erreur spécifique. Vérifiez les [questions existantes](https://stackoverflow.com/questions/tagged/reactjs) étiquetées **reactjs** et éventuellement [posez la vôtre](https://stackoverflow.com/questions/ask?tags=reactjs) !

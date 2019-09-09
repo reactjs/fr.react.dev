@@ -63,13 +63,18 @@ Cette page contient les réponses aux questions les plus fréquentes sur les [Ho
 Depuis la version 16.8.0, React embarque une implémentation stable de React Hooks pour :
 
 * React DOM
+* React Native
 * React DOM Server
 * Le moteur de rendu de test de React
 * Le moteur de rendu superficiel de React
 
 Remarquez que **pour activer les Hooks, tous les paquets React doivent être en version 16.8.0 ou supérieure**. Les Hooks ne fonctionneront pas si vous oubliez de mettre à jour React DOM, par exemple.
 
+<<<<<<< HEAD
 React Native 0.59 et ultérieurs prennent en charge les Hooks.
+=======
+[React Native 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) and above support Hooks.
+>>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
 
 ### Dois-je réécrire tous mes composants à base de classe ? {#do-i-need-to-rewrite-all-my-class-components}
 
@@ -105,7 +110,13 @@ Souvent, les props de rendu et les composants d'ordre supérieur n’affichent q
 
 Vous pouvez continuer à utiliser les mêmes API que d'habitude ; elles fonctionneront toujours comme avant.
 
+<<<<<<< HEAD
 À l'avenir, de nouvelles versions de ces bibliothèques pourraient aussi exposer des Hooks personnalisés tels que `useRedux()` ou `useRouter()` qui vous permettraient d'utiliser les mêmes fonctionnalités sans avoir besoin de composants d'enrobage.
+=======
+React Redux since v7.1.0 [supports Hooks API](https://react-redux.js.org/api/hooks) and exposes hooks like `useDispatch` or `useSelector`.
+
+Libraries like React Router might support hooks in the future.
+>>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
 
 ### Est-ce que les Hooks sont compatibles avec le typage statique ? {#do-hooks-work-with-static-typing}
 
@@ -117,7 +128,15 @@ Surtout, les Hooks personnalisés vous donnent la possibilité de restreindre l'
 
 Du point de vue de React, un composant utilisant des Hooks est un composant normal. Si votre solution de test ne repose pas sur des fonctionnements internes de React, tester des composants avec des Hooks ne devrait pas être différent de la façon dont vous testez vos composants habituellement.
 
+<<<<<<< HEAD
 Par exemple, prenons ce composant de comptage :
+=======
+>Note
+>
+>[Testing Recipes](/docs/testing-recipes.html) include many examples that you can copy and paste.
+
+For example, let's say we have this counter component:
+>>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
 
 ```js
 function Example() {
@@ -175,7 +194,19 @@ it('can render and update a counter', () => {
 });
 ```
 
+<<<<<<< HEAD
 Les appels à `act()` vont aussi traiter les effets qu'ils contiennent.
+=======
+The calls to `act()` will also flush the effects inside of them.
+
+If you need to test a custom Hook, you can do so by creating a component in your test, and using your Hook from it. Then you can test the component you wrote.
+
+To reduce the boilerplate, we recommend using [React Testing Library](https://testing-library.com/react) which is designed to encourage writing tests that use your components as the end users do.
+
+For more information, check out [Testing Recipes](/docs/testing-recipes.html).
+
+### What exactly do the [lint rules](https://www.npmjs.com/package/eslint-plugin-react-hooks) enforce? {#what-exactly-do-the-lint-rules-enforce}
+>>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
 
 Si vous souhaitez tester un Hook personnalisé, c'est possible en créant un composant dans votre test, et en utilisant le Hook depuis celui-ci. Vous pourrez alors tester le composant que vous venez de créer.
 
@@ -555,7 +586,11 @@ Selon votre cas, vous trouverez quelques options supplémentaires plus bas dans 
 
 >Remarque
 >
+<<<<<<< HEAD
 >Nous proposons une règle ESLint [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) dans le cadre du module [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Elle vous aide à trouver les composants qui ne gèrent pas correctement les mises à jour.
+=======
+>We provide the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ESLint rule as a part of the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It helps you find components that don't handle updates consistently.
+>>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
 
 Voyons en quoi c’est important.
 

@@ -25,6 +25,15 @@ Ces méthodes de cycle de vie ont souvent été mal comprises et subtilement mal
 
 Chez Facebook, nous maintenons plus de 50 000 composants, et nous n’avons pas l’intention de tous les réécrire dans l'immédiat.  On est bien conscients que les migrations prennent du temps.  Nous mettrons en place un chemin de migration progressif pour toute la communauté React.
 
+If you don't have the time to migrate or test these components, we recommend running a ["codemod"](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) script that renames them automatically:
+
+```bash
+cd your_project
+npx react-codemod rename-unsafe-lifecycles
+```
+
+Learn more about this codemod on the [16.9.0 release post.](https://reactjs.org/blog/2019/08/08/react-v16.9.0.html#renaming-unsafe-lifecycle-methods) 
+
 ---
 
 ## Sortir des méthodes historiques de cycle de vie {#migrating-from-legacy-lifecycles}

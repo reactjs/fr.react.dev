@@ -13,6 +13,17 @@ import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import HeaderLink from './HeaderLink';
 import {Link} from 'gatsby';
 import React from 'react';
+<<<<<<< HEAD
+=======
+import {colors, fonts, media} from 'theme';
+import {version} from 'site-constants';
+import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
+import DocSearch from './DocSearch';
+
+// $FlowFixMe
+import navHeader from '../../../content/headerNav.yml';
+
+>>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
 import logoSvg from 'icons/logo.svg';
 import {version} from 'site-constants';
 
@@ -120,6 +131,7 @@ const Header = ({location}: {location: Location}) => (
                 'linear-gradient(to right, transparent, black 20px, black 90%, transparent)',
             },
           }}>
+<<<<<<< HEAD
           <HeaderLink
             isActive={location.pathname.includes('/docs/')}
             title="Docs"
@@ -140,6 +152,16 @@ const Header = ({location}: {location: Location}) => (
             title="Communauté"
             to="/community/support.html"
           />
+=======
+          {navHeader.items.map(link => (
+            <HeaderLink
+              key={link.title}
+              isActive={location.pathname.includes(link.activeSelector)}
+              title={link.title}
+              to={link.to}
+            />
+          ))}
+>>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
         </nav>
 
         <DocSearch />
