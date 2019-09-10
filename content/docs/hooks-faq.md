@@ -70,11 +70,7 @@ Depuis la version 16.8.0, React embarque une implémentation stable de React Hoo
 
 Remarquez que **pour activer les Hooks, tous les paquets React doivent être en version 16.8.0 ou supérieure**. Les Hooks ne fonctionneront pas si vous oubliez de mettre à jour React DOM, par exemple.
 
-<<<<<<< HEAD
-React Native 0.59 et ultérieurs prennent en charge les Hooks.
-=======
-[React Native 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) and above support Hooks.
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
+[React Native 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) et ultérieurs prennent en charge les Hooks.
 
 ### Dois-je réécrire tous mes composants à base de classe ? {#do-i-need-to-rewrite-all-my-class-components}
 
@@ -110,13 +106,9 @@ Souvent, les props de rendu et les composants d'ordre supérieur n’affichent q
 
 Vous pouvez continuer à utiliser les mêmes API que d'habitude ; elles fonctionneront toujours comme avant.
 
-<<<<<<< HEAD
-À l'avenir, de nouvelles versions de ces bibliothèques pourraient aussi exposer des Hooks personnalisés tels que `useRedux()` ou `useRouter()` qui vous permettraient d'utiliser les mêmes fonctionnalités sans avoir besoin de composants d'enrobage.
-=======
-React Redux since v7.1.0 [supports Hooks API](https://react-redux.js.org/api/hooks) and exposes hooks like `useDispatch` or `useSelector`.
+Depuis sa version v7.1.0, react Redux [prends en charge l'API des Hooks](https://react-redux.js.org/api/hooks) et met à disponibilité des Hooks tels que `useDispatch` ou `useSelector`.
 
-Libraries like React Router might support hooks in the future.
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
+À l'avenir, les bibliothèques telles que React Router pourraient prendre en charge les Hooks.
 
 ### Est-ce que les Hooks sont compatibles avec le typage statique ? {#do-hooks-work-with-static-typing}
 
@@ -128,15 +120,11 @@ Surtout, les Hooks personnalisés vous donnent la possibilité de restreindre l'
 
 Du point de vue de React, un composant utilisant des Hooks est un composant normal. Si votre solution de test ne repose pas sur des fonctionnements internes de React, tester des composants avec des Hooks ne devrait pas être différent de la façon dont vous testez vos composants habituellement.
 
-<<<<<<< HEAD
-Par exemple, prenons ce composant de comptage :
-=======
 >Note
 >
->[Testing Recipes](/docs/testing-recipes.html) include many examples that you can copy and paste.
+>[Testing Recipes](/docs/testing-recipes.html) inclut plusieurs exemples que vous pouvez copier-coller.
 
-For example, let's say we have this counter component:
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
+Par exemple, prenons ce composant de comptage :
 
 ```js
 function Example() {
@@ -586,11 +574,7 @@ Selon votre cas, vous trouverez quelques options supplémentaires plus bas dans 
 
 >Remarque
 >
-<<<<<<< HEAD
->Nous proposons une règle ESLint [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) dans le cadre du module [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Elle vous aide à trouver les composants qui ne gèrent pas correctement les mises à jour.
-=======
->We provide the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ESLint rule as a part of the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It helps you find components that don't handle updates consistently.
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
+>Nous mettons à disposition la règle ESLint [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) dans le cadre du module [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Elle vous aide à trouver les composants qui ne gèrent pas correctement les mises à jour.
 
 Voyons en quoi c’est important.
 
