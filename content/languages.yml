@@ -10,29 +10,16 @@
 - name: arabe
   translated_name: العربية
   code: ar
-<<<<<<< HEAD
-  status: 1
+  status: 2
 - name: azéri
   translated_name: Azərbaycanca
   code: az
-  status: 0
+  status: 1
 - name: bulgare
   translated_name: Български
   code: bg
-  status: 0
+  status: 1
 - name: bengali
-=======
-  status: 2
-- name: Azerbaijani
-  translated_name: Azərbaycanca
-  code: az
-  status: 1
-- name: Bulgarian
-  translated_name: Български
-  code: bg
-  status: 1
-- name: Bengali
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
   translated_name: বাংলা
   code: bn
   status: 0
@@ -76,28 +63,19 @@
   translated_name: हिन्दी
   code: hi
   status: 0
-<<<<<<< HEAD
-- name: arménien
-=======
-- name: Hungarian
+- name: hongrois
   translated_name: magyar
   code: hu
   status: 0
-- name: Armenian
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
+- name: arménien
   translated_name: Հայերեն
   code: hy
   status: 0
 - name: indonésien
   translated_name: Bahasa Indonesia
   code: id
-<<<<<<< HEAD
-  status: 0
-- name: italien
-=======
   status: 1
-- name: Italian
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
+- name: italien
   translated_name: Italiano
   code: it
   status: 2
@@ -136,13 +114,8 @@
 - name: mongol
   translated_name: Монгол хэл
   code: mn
-<<<<<<< HEAD
-  status: 0
-- name: népalais
-=======
   status: 1
-- name: Nepali
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
+- name: népalais
   translated_name: नेपाली
   code: ne
   status: 0
@@ -209,13 +182,8 @@
 - name: vietnamien
   translated_name: Tiếng Việt
   code: vi
-<<<<<<< HEAD
-  status: 0
-- name: chinois simplifié
-=======
   status: 1
-- name: Simplified Chinese
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
+- name: chinois simplifié
   translated_name: 简体中文
   code: zh-hans
   status: 2
