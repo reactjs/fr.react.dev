@@ -120,7 +120,7 @@ class CodeEditor extends Component {
                     }
                     type="checkbox"
                   />{' '}
-                  JSX ?
+                  JSX ?
                 </label>
               </MetaTitle>
             </div>

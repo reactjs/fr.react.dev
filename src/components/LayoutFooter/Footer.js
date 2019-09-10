@@ -5,9 +5,6 @@
  * @flow
  */
 
-import {colors, media} from 'theme';
-import {sectionListCommunity, sectionListDocs} from 'utils/sectionList';
-
 import Container from 'components/Container';
 import ExternalFooterLink from './ExternalFooterLink';
 import FooterLink from './FooterLink';

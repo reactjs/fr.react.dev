@@ -5,11 +5,7 @@
  * @flow
  */
 
-import {colors, fonts, media} from 'theme';
-
 import Container from 'components/Container';
-import DocSearch from './DocSearch';
-import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import HeaderLink from './HeaderLink';
 import {Link} from 'gatsby';
 import React from 'react';
@@ -22,7 +18,6 @@ import DocSearch from './DocSearch';
 import navHeader from '../../../content/headerNav.yml';
 
 import logoSvg from 'icons/logo.svg';
-import {version} from 'site-constants';
 
 const Header = ({location}: {location: Location}) => (
   <header
