@@ -182,23 +182,13 @@ it('can render and update a counter', () => {
 });
 ```
 
-<<<<<<< HEAD
 Les appels à `act()` vont aussi traiter les effets qu'ils contiennent.
-=======
-The calls to `act()` will also flush the effects inside of them.
-
-If you need to test a custom Hook, you can do so by creating a component in your test, and using your Hook from it. Then you can test the component you wrote.
-
-To reduce the boilerplate, we recommend using [React Testing Library](https://testing-library.com/react) which is designed to encourage writing tests that use your components as the end users do.
-
-For more information, check out [Testing Recipes](/docs/testing-recipes.html).
-
-### What exactly do the [lint rules](https://www.npmjs.com/package/eslint-plugin-react-hooks) enforce? {#what-exactly-do-the-lint-rules-enforce}
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
 
 Si vous souhaitez tester un Hook personnalisé, c'est possible en créant un composant dans votre test, et en utilisant le Hook depuis celui-ci. Vous pourrez alors tester le composant que vous venez de créer.
 
-Pour réduire le code générique, nous vous conseillons d'utiliser [`react-testing-library`](https://git.io/react-testing-library) qui est conçu de manière à encourager l'écriture de tests utilisant les composants comme le feraient les utilisateurs finaux.
+Pour réduire le code générique, nous vous conseillons d'utiliser [React Testing Library](https://testing-library.com/react) qui est conçu de manière à encourager l'écriture de tests utilisant les composants comme le feraient les utilisateurs finaux.
+
+Pour plus d'information, consultez [Testing Recipes](/docs/testing-recipes.html).
 
 ### Qu'est-ce que les [règles de linting](https://www.npmjs.com/package/eslint-plugin-react-hooks) imposent ? {#what-exactly-do-the-lint-rules-enforce}
 
