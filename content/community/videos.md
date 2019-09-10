@@ -51,18 +51,14 @@ Stoyan Stefanov fournit une introdction à React au meetup LAWebSpeed – (2014 
 Les ingénieurs de Facebook Bill Fisher et Jing Chen parlent de Flux et de React à Forward JS 2014, et décrivent la façon dont une arhecture applicative basée sur un flux de données unidirectionnel a nettoyé de larges pans de leur code.
 <iframe title="React and Flux: Building Applications with a Unidirectional Data Flow" width="650" height="366" src="https://www.youtube-nocookie.com/embed/i__969noyAM" frameborder="0" allowfullscreen></iframe>
 
-### Repenser les meilleures pratiques {#rethinking-best-practices}
+### Voir grand avec React {#going-big-with-react}
 
-<<<<<<< HEAD
-Cette présentation de Pete Hunt à JSConf EU 2013 couvre trois domaines : se débarasser de la notion de gabarits *(templates, NdT)* pour plutôt construire les vues en JavaScript, « rafraîchir » l’application complète quand les données changent, et une implémentation légère du DOM et des événements – (2013 - 30mn).
-=======
-Areeb Malik investigates how React performs in a high stress situation, and how it helped his team build safe code on a massive scale - (2014 - 0h31m).
+Areeb Malik étudie le comportement de React dans une situation de stress élevé et comment cela a aidé son équipe à construire du code sécurisé à grande échelle - (2014 - 0h31m).
 <iframe title="Areeb Malik : Going big with React" width="650" height="366" src="https://www.youtube-nocookie.com/embed/9qcBlN6-qwY" frameborder="0" allowfullscreen></iframe>
 
-### Rethinking Best Practices {#rethinking-best-practices}
+### Repenser les meilleures pratiques {#rethinking-best-practices}
 
-Pete Hunt's talk at JSConf EU 2013 covers three topics: throwing out the notion of templates and building views with JavaScript, “re-rendering” your entire application when your data changes, and a lightweight implementation of the DOM and events - (2013 - 0h30m).
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
+Cette présentation de Pete Hunt à JSConf EU 2013 couvre trois domaines : se débarasser de la notion de gabarits *(templates, NdT)* pour plutôt construire les vues en JavaScript, « rafraîchir » l’application complète quand les données changent, et une implémentation légère du DOM et des événements – (2013 - 30mn).
 <iframe title="Pete Hunt: React: Rethinking Best Practices - JSConf EU 2013" width="650" height="366" src="https://www.youtube-nocookie.com/embed/x7cQ3mrcKaY" frameborder="0" allowfullscreen></iframe>
 
 ### Programmation DOM fonctionnelle à hautes performances {#high-performance-functional-dom-programming}
