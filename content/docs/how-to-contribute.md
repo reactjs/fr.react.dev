@@ -10,29 +10,20 @@ redirect_from:
 ---
 
 
-<<<<<<< HEAD
 React est l'un des premiers projets open source de Facebook qui est à la fois en développement intensif et utilisé en production sur les pages publiques de [facebook.com](https://www.facebook.com). Nous travaillons encore à faire qu’il soit aussi facile et transparent que possible de contribuer à ce projet, et ce chantier n'est pas terminé. Mais avec un peu de chance, ce document éclaircira le processus de contribution et répondra à certaines des questions que vous pourriez avoir.
 
-### [Code de conduite](https://code.facebook.com/codeofconduct) {#code-of-conduct}
-=======
-### [Code of Conduct](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
+### [Code de conduite](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
 
-Facebook has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
 
-Facebook a adopté un code de conduite et nous nous attendons à ce que les participant·e·s au projet y adhèrent. Veuillez lire [le texte complet](https://code.facebook.com/codeofconduct) afin de comprendre quelles actions seront ou ne seront pas tolérées.
+Facebook a adopté le code de conduite [Contributor Covenant](https://www.contributor-covenant.org/) et nous nous attendons à ce que les participant·e·s au projet y adhèrent. Veuillez lire [le texte complet](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) afin de comprendre quelles actions seront ou ne seront pas tolérées.
 
 ### Développement ouvert {#open-development}
 
 Tout travail sur React se passe directement sur [GitHub](https://github.com/facebook/react). Les membres de l'équipe noyau *(core team, NdT)* tout comme les contributeurs externes y envoient leur _pull requests_, lesquelles passent à travers le même processus de revue.
 
-<<<<<<< HEAD
 ### Organisation des branches {#branch-organization}
-=======
-We will do our best to keep the [`master` branch](https://github.com/facebook/react/tree/master) in good shape, with tests passing at all times. But in order to move fast, we will make API changes that your application might not be compatible with. We recommend that you use [the latest stable version of React](/versions.html).
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
 
-Nous ferons de notre mieux pour garder la branche [`master`](https://github.com/facebook/react/tree/master) en bon état, avec des tests toujours au vert. Mais pour pouvoir avancer rapidement, nous ferons des changements d'API avec lesquels votre application pourrait ne pas être compatible. Nous vous recommandons d'utiliser [la dernière version stable de React](/downloads.html).
+Nous ferons de notre mieux pour garder la [branche `master`](https://github.com/facebook/react/tree/master) en bon état, avec des tests toujours au vert. Mais pour pouvoir avancer rapidement, nous ferons des changements d'API avec lesquels votre application pourrait ne pas être compatible. Nous vous recommandons d'utiliser [la dernière version stable de React](/versions.html).
 
 Si vous envoyez une _pull request_, merci de la faire sur la branche `master`. Nous maintenons des branches stables pour chaque version majeure séparément mais n'acceptons pas de _pull requests_ sur ces dernières directement. Nous préférons sélectionner manuellement les changements sur `master` qui ne cassent pas la compatibilité ascendante pour les reporter dans la version stable majeure la plus récente.
 
