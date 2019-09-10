@@ -88,22 +88,17 @@ Les 27 et 28 mai 2020 à Sydney, Australie
 ### Render-Atlanta 2020 {#render-atlanta-2020}
 Du 4 au 6 mai 2020 à Atlanta, GA, États-Unis.
 
-<<<<<<< HEAD
-[Site web](https://renderatl.com)
-=======
-[Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) 
+[Site web](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/)
 
 ### React Finland 2020 {#react-finland-2020}
 May 26-29 in Helsinki, Finland
 
-[Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
+[Site web](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
 
 ### React Next 2020 {#react-next-2020}
 June 15, 2020. Tel Aviv, Israel.
 
-[Website](https://react-next.com/) - [Twitter](https://twitter.com/reactnext) - [Facebook](https://www.facebook.com/ReactNext2016/) 
-
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
+[Site web](https://react-next.com/) - [Twitter](https://twitter.com/reactnext) - [Facebook](https://www.facebook.com/ReactNext2016/) 
 
 ## Anciennes conférences {#past-conferences}
 
