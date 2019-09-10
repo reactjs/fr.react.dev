@@ -33,13 +33,7 @@
     - id: model-management
       title: Gestion de modèles
     - id: data-fetching
-<<<<<<< HEAD
       title: Chargement de données
-    - id: testing
-      title: Tests
-=======
-      title: Data Fetching
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
     - id: ui-components
       title: Composants UI
     - id: misc
