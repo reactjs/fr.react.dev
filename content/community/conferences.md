@@ -14,9 +14,9 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 ## Prochaines conférences {#upcoming-conferences}
 
 ### React Conf Iran 2019 {#react-conf-iran-2019}
-August 29, 2019. Tehran, Iran.
+Le 29 août 2019 à Téhéran, Iran.
 
-[Website](https://reactconf.ir/) - [Twitter](https://twitter.com/reactconf_ir) - [Instagram](https://www.instagram.com/reactconf/)
+[Site web](https://reactconf.ir/) - [Twitter](https://twitter.com/reactconf_ir) - [Instagram](https://www.instagram.com/reactconf/)
 
 ### React Rally 2019 {#react-rally-2019}
 Du 22 au 23 août 2019 à Salt Lake City, États-Unis d'Amérique
@@ -91,12 +91,12 @@ Du 4 au 6 mai 2020 à Atlanta, GA, États-Unis.
 [Site web](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/)
 
 ### React Finland 2020 {#react-finland-2020}
-May 26-29 in Helsinki, Finland
+Du 26 au 29 mai à Helsinki, Finland
 
 [Site web](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
 
 ### React Next 2020 {#react-next-2020}
-June 15, 2020. Tel Aviv, Israel.
+Le 15 juin 2020 à Tel Aviv, Israel.
 
 [Site web](https://react-next.com/) - [Twitter](https://twitter.com/reactnext) - [Facebook](https://www.facebook.com/ReactNext2016/) 
 

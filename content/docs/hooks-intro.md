@@ -32,7 +32,8 @@ Cette nouvelle fonction `useState` est le premier « Hook » que nous allons e
 >Remarque
 >
 >Les Hooks sont apparus dans React 16.8.0. Lors de la mise à jour de React, n'oubliez pas de mettre à jour tous les modules, dont React DOM.
->React Native prends en charge les Hooks depuis [la version 0.59 de React Native](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059).
+>
+>React Native prend en charge les Hooks depuis [sa version 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059).
 
 ## Vidéo de présentation {#video-introduction}
 

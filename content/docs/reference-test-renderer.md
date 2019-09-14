@@ -103,7 +103,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sous-Com
 TestRenderer.create(element, options);
 ```
 
-Crée une instance de `TestRenderer` avec l'élément React passé en argument. Ça n’utilise pas un véritable DOM, mais ça ne l’empêche pas de produire l'arbre intégral des composants en mémoire pour pouvoir vérifier vos attentes dessus. Renvoi une [instance de TestRenderer](#testrenderer-instance).
+Crée une instance de `TestRenderer` avec l'élément React passé en argument. Ça n’utilise pas un véritable DOM, mais ça ne l’empêche pas de produire l'arbre intégral des composants en mémoire pour pouvoir vérifier vos attentes dessus. Renvoie une [instance de TestRenderer](#testrenderer-instance).
 
 ### `TestRenderer.act()` {#testrendereract}
 
@@ -115,26 +115,25 @@ De la même manière que l'[utilitaire `act()` de `react-dom/test-utils`](/docs/
 
 ```javascript
 import {create, act} from 'react-test-renderer';
-import App from './app.js'; // The component being tested
+import App from './app.js'; // Le composant testé
 
-// render the component
+// Fait le rendu du component
 let root; 
 act(() => {
   root = create(<App value={1}/>)
 });
 
-// make assertions on root 
+// Exprime des attentes sur la racine
 expect(root.toJSON()).toMatchSnapshot();
 
-// update with some different props
+// Met à jour avec des props différentes
 act(() => {
   root = root.update(<App value={2}/>);
 })
 
-// make assertions on root 
+// Exprime des attentes sur la racine
 expect(root.toJSON()).toMatchSnapshot();
 ```
->>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
 
 ### `testRenderer.toJSON()` {#testrenderertojson}
 

@@ -106,7 +106,7 @@ Souvent, les props de rendu et les composants d'ordre supérieur n’affichent q
 
 Vous pouvez continuer à utiliser les mêmes API que d'habitude ; elles fonctionneront toujours comme avant.
 
-Depuis sa version v7.1.0, react Redux [prends en charge l'API des Hooks](https://react-redux.js.org/api/hooks) et met à disponibilité des Hooks tels que `useDispatch` ou `useSelector`.
+Depuis sa version v7.1.0, React-Redux [prend en charge l'API des Hooks](https://react-redux.js.org/api/hooks) et fournit des Hooks tels que `useDispatch` et `useSelector`.
 
 À l'avenir, les bibliothèques telles que React Router pourraient prendre en charge les Hooks.
 

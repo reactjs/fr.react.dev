@@ -125,7 +125,7 @@
         title: Référence de l'API des Hooks
       - id: hooks-faq
         title: FAQ des Hooks
-- title: Testing
+- title: Tests
   items:
     - id: testing 
       title: Testing Overview
