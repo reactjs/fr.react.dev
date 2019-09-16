@@ -6,7 +6,7 @@ permalink: docs/code-splitting.html
 
 ## Bundling {#bundling}
 
-La plupart des applications React empaquetteront leur fichiers au moyen d’outils tels que [Webpack](https://webpack.js.org/) ou [Browserify](http://browserify.org/). L’empaquetage *(bundling, NdT)* consiste à suivre le graphe des importations dans les fichiers, et à les regrouper au sein d'un même fichier : un *bundle* *(terme que nous utiliserons sans italiques dans la suite de la page, NdT)*. Ce bundle peut ensuite être inclus dans une page web pour charger une application entière d'un seul coup.
+La plupart des applications React empaquetteront leur fichiers au moyen d’outils tels que [Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) ou [Browserify](http://browserify.org/). L’empaquetage *(bundling, NdT)* consiste à suivre le graphe des importations dans les fichiers, et à les regrouper au sein d'un même fichier : un *bundle* *(terme que nous utiliserons sans italiques dans la suite de la page, NdT)*. Ce bundle peut ensuite être inclus dans une page web pour charger une application entière d'un seul coup.
 
 #### Exemple {#example}
 

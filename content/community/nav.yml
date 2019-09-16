@@ -34,8 +34,6 @@
       title: Gestion de modèles
     - id: data-fetching
       title: Chargement de données
-    - id: testing
-      title: Tests
     - id: ui-components
       title: Composants UI
     - id: misc

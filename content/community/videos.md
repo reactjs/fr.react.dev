@@ -51,6 +51,11 @@ Stoyan Stefanov fournit une introdction à React au meetup LAWebSpeed – (2014 
 Les ingénieurs de Facebook Bill Fisher et Jing Chen parlent de Flux et de React à Forward JS 2014, et décrivent la façon dont une arhecture applicative basée sur un flux de données unidirectionnel a nettoyé de larges pans de leur code.
 <iframe title="React and Flux: Building Applications with a Unidirectional Data Flow" width="650" height="366" src="https://www.youtube-nocookie.com/embed/i__969noyAM" frameborder="0" allowfullscreen></iframe>
 
+### Voir grand avec React {#going-big-with-react}
+
+Areeb Malik étudie le comportement de React dans une situation de stress élevé et comment cela a aidé son équipe à construire du code sécurisé à grande échelle - (2014 - 0h31m).
+<iframe title="Areeb Malik : Going big with React" width="650" height="366" src="https://www.youtube-nocookie.com/embed/9qcBlN6-qwY" frameborder="0" allowfullscreen></iframe>
+
 ### Repenser les meilleures pratiques {#rethinking-best-practices}
 
 Cette présentation de Pete Hunt à JSConf EU 2013 couvre trois domaines : se débarasser de la notion de gabarits *(templates, NdT)* pour plutôt construire les vues en JavaScript, « rafraîchir » l’application complète quand les données changent, et une implémentation légère du DOM et des événements – (2013 - 30mn).

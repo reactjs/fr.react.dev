@@ -217,7 +217,7 @@ Son code source est situé dans [`packages/react-reconciler`](https://github.com
 
 ### Système d'événements {#event-system}
 
-React implémente un système d'événements synthétiques indépendant du moteur de rendu, qui fonctionne à la fois avec React DOM et React Native. Son code source se trouve dans [`packages/events`](https://github.com/facebook/react/tree/master/packages/events).
+React implémente un système d'événements synthétiques indépendant du moteur de rendu, qui fonctionne à la fois avec React DOM et React Native. Son code source se trouve dans [`packages/react-events`](https://github.com/facebook/react/tree/master/packages/react-events).
 
 Voici une [vidéo qui plonge en profondeur dans ce code](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 minutes).
 

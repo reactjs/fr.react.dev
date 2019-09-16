@@ -149,7 +149,7 @@ Webpack v4+ minifera automatiquement votre code en mode production.
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-  mode: 'production'
+  mode: 'production',
   optimization: {
     minimizer: [new TerserPlugin({ /* additional options here */ })],
   },
@@ -214,24 +214,6 @@ Si votre application génère d'importantes listes de données (des centaines ou
 React construit et maintient une représentation interne de l’UI produite, représentation qui inclut les éléments React renvoyés par vos composants. Elle permet à React d'éviter la création de nœuds DOM superflus et l'accès excessif aux nœuds existants, dans la mesure où ces opérations sont plus lentes que sur des objets JavaScript. On y fait parfois référence en parlant de « DOM virtuel », mais ça fonctionne de la même façon avec React Native.
 
 Quand les props ou l'état local d'un composant changent, React décide si une mise à jour du DOM est nécessaire en comparant l'élément renvoyé avec l'élément du rendu précédent. Quand ils ne sont pas égaux, React met à jour le DOM.
-
-Vous pouvez visualiser ces rendus de mise à jour du DOM virtuel avec React DevTools :
-
-- [L'extension pour le navigateur Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=fr).
-- [L'extension pour le navigateur Firefox](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/).
-- [Le module pour Node.js](https://www.npmjs.com/package/react-devtools).
-
-Dans la console de développement, choisissez l'option ***Highlight Updates*** dans l'onglet **React** :
-
-<p><center><img src="../images/blog/devtools-highlight-updates.png" style="max-width:100%; margin-top:10px;" alt="Comment activer l'option" /></center></p>
-
-Interagissez avec votre page, et vous devriez voir des bordures colorées apparaître momentanément autour des composants dont le rendu est mis à jour. Ça vous permet de détecter les mises à jour inutiles. Vous pouvez en apprendre davantage sur cette fonctionnalité des React DevTools en lisant [ce billet du blog](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833) de [Ben Edelstein](https://blog.logrocket.com/@edelstein).
-
-Prenons cet exemple :
-
-<center><img src="../images/blog/highlight-updates-example.gif" style="max-width:100%; margin-top:20px;" alt="Exemple de la fonctionnalité de mise en évidence des mises à jour avec React DevTools" /></center>
-
-Remarquez que lorsque l'on saisit une seconde tâche, la première clignote également à l'écran à chaque frappe. Ça signifie qu'elle est également rafraîchie par React avec son champ de saisie. On parle parfois de rendu « gâché ». Nous savons que c’est inutile car le contenu de la première tâche est inchangé, mais React l'ignore.
 
 Même si React ne met à jour que les nœuds DOM modifiés, refaire un rendu prend un certain temps. Dans la plupart des cas ce n'est pas un problème, mais si le ralentissement est perceptible, vous pouvez accélérer le processus en surchargeant la méthode `shouldComponentUpdate` du cycle de vie, qui est déclenchée avant le démarrage du processus de rafraîchissement. L'implémentation par défaut de cette méthode renvoie `true`, laissant ainsi React faire la mise à jour :
 
@@ -404,36 +386,4 @@ function updateColorMap(colormap) {
 
 Si vous utilisez Create React App, la méthode `Object.assign` et la syntaxe de décomposition d'objets sont toutes deux disponibles par défaut.
 
-## Utiliser des structures de données immuables {#using-immutable-data-structures}
-
-L'utilisation d'[Immutable.js](https://github.com/facebook/immutable-js) est une autre façon de résoudre ce problème. Elle fournit des collections immuables et persistantes qui fonctionnent avec du partage structurel :
-
-* *Immuables* : une fois créée, une collection ne peut plus être modifiée ultérieurement.
-* *Persistantes* : de nouvelles collections peuvent être créées à partir d'une ancienne collection et d'une mutation telle que `set`. La collection d'origine reste valide une fois la nouvelle collection créée.
-* *Partage structurel* : les nouvelles collections sont créées en utilisant au maximum la structure de la collection d'origine, réduisant la copie au minimum pour améliorer les performances.
-
-L'immutabilité rend le suivi des modifications peu coûteux. Un changement résultera toujours en un nouvel objet, nous n'avons alors qu'à vérifier si la référence de l'objet a changé. Par exemple, prenons ce code JavaScript classique :
-
-```javascript
-const x = { foo: 'bar' };
-const y = x;
-y.foo = 'baz';
-x === y; // true
-```
-
-Bien que `y` ait été modifié, vu qu'il s'agit toujours d'une référence au même objet `x`, cette comparaison renverra `true`. Vous pouvez écrire un code similaire avec immutable.js :
-
-```javascript
-const SomeRecord = Immutable.Record({ foo: null });
-const x = new SomeRecord({ foo: 'bar' });
-const y = x.set('foo', 'baz');
-const z = x.set('foo', 'bar');
-x === y; // false
-x === z; // true
-```
-
-Dans ce cas, puisqu'une nouvelle référence est renvoyée quand on modifie `x`, nous pouvons utiliser la vérification d'égalité référentielle `(x === y)` pour vérifier que la nouvelle valeur stockée dans `y` est différente de celle d'origine stockée dans `x`.
-
-D’autres bibliothèques facilitent l'utilisation des données immuables, notamment [Immer](https://github.com/mweststrate/immer), [immutability-helper](https://github.com/kolodny/immutability-helper), and [seamless-immutable](https://github.com/rtfeldman/seamless-immutable).
-
-Les structures de données immuables vous offrent un moyen peu coûteux de suivre les modifications apportées aux objets. C'est tout ce dont nous avons besoin pour implémenter la méthode `shouldComponentUpdate`. Ça peut souvent contribuer à améliorer significativement les performances.
+Lorsque vous faites face à des objets profondément imbriqués, les mettre à jour de manière immuable peut se révéler compliqué. Si vous faites face à ce problème, tournez-vous vers [Imer](https://github.com/mweststrate/immer) ou [immutability-helper](http://github.com/kolodny/immutability-helper). Ces librairies vous permettent d'écrire du code très lisible sans perdre les bénéfices de l'immuabilité.

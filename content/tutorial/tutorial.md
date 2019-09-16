@@ -335,7 +335,7 @@ L’extension React Devtools pour [Chrome](https://chrome.google.com/webstore/de
 
 Avec les React DevTools, vous pouvez examiner les props et l’état local de vos composants React.
 
-Après avoir installé React DevTools, vous pouvez faire un clic droit sur n’importe quel élément de la page, cliquer sur « Inspecter » (ou « Examiner l’élément ») pour ouvrir les outils de développement, et l’onglet React devrait alors être le dernier onglet sur la droite.
+Après avoir installé React DevTools, vous pouvez faire un clic droit sur n’importe quel élément de la page, cliquer sur « Inspecter » (ou « Examiner l’élément ») pour ouvrir les outils de développement, et les onglets React ("⚛️ Components" et "⚛️ Profiler") devraient être les derniers onglets sur la droite. Utilisez "⚛️ Components" pour inspecter l'arbre de composants.
 
 **Ceci dit, vous aurez quelques manipulations en plus à faire si vous utilisez CodePen :**
 

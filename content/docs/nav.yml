@@ -59,6 +59,8 @@
       title: Optimiser les performances
     - id: portals
       title: Portails
+    - id: profiler
+      title: Profiler
     - id: react-without-es6
       title: React sans ES6
     - id: react-without-jsx
@@ -123,6 +125,14 @@
         title: Référence de l'API des Hooks
       - id: hooks-faq
         title: FAQ des Hooks
+- title: Tests
+  items:
+    - id: testing 
+      title: Testing Overview
+    - id: testing-recipes
+      title: Testing Recipes
+    - id: testing-environments
+      title: Testing Environments
 - title: Contribuer
   items:
   - id: how-to-contribute

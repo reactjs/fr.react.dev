@@ -122,7 +122,9 @@ it('peut afficher et mettre à jour un compteur', () => {
 });
 ```
 
-N'oubliez pas que l'émission d'événements DOM ne fonctionne que lorsque le conteneur DOM a été ajouté au `document`. Vous pouvez utiliser un utilitaire comme [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) afin de réduire le volume de code générique.
+N'oubliez pas que l'émission d'événements DOM ne fonctionne que lorsque le conteneur DOM a été ajouté au `document`. Vous pouvez utiliser un utilitaire comme [`React Testing Library`](https://testing-library.com/react) afin de réduire le volume de code générique.
+
+La page des [`recettes`](/docs/testing-recipes.html) contient de plus amples détails sur le fonctionnement de `act()`, avec des exemples d’utilisation.
 
 * * *
 
@@ -139,7 +141,7 @@ Cette méthode prend un module de composant simulé et lui ajoute des méthodes 
 
 >Remarque
 >
-> `mockComponent()` est une API obsolète. Nous recommandons plutôt l'usage du [rendu superficiel](/docs/shallow-renderer.html) ou de [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
+> `mockComponent()` est une API obsolète. Nous recommandons plutôt de recourir à [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
 
 * * *
 

@@ -63,13 +63,14 @@ Cette page contient les réponses aux questions les plus fréquentes sur les [Ho
 Depuis la version 16.8.0, React embarque une implémentation stable de React Hooks pour :
 
 * React DOM
+* React Native
 * React DOM Server
 * Le moteur de rendu de test de React
 * Le moteur de rendu superficiel de React
 
 Remarquez que **pour activer les Hooks, tous les paquets React doivent être en version 16.8.0 ou supérieure**. Les Hooks ne fonctionneront pas si vous oubliez de mettre à jour React DOM, par exemple.
 
-React Native 0.59 et ultérieurs prennent en charge les Hooks.
+[React Native 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) et ultérieurs prennent en charge les Hooks.
 
 ### Dois-je réécrire tous mes composants à base de classe ? {#do-i-need-to-rewrite-all-my-class-components}
 
@@ -105,7 +106,9 @@ Souvent, les props de rendu et les composants d'ordre supérieur n’affichent q
 
 Vous pouvez continuer à utiliser les mêmes API que d'habitude ; elles fonctionneront toujours comme avant.
 
-À l'avenir, de nouvelles versions de ces bibliothèques pourraient aussi exposer des Hooks personnalisés tels que `useRedux()` ou `useRouter()` qui vous permettraient d'utiliser les mêmes fonctionnalités sans avoir besoin de composants d'enrobage.
+Depuis sa version v7.1.0, React-Redux [prend en charge l'API des Hooks](https://react-redux.js.org/api/hooks) et fournit des Hooks tels que `useDispatch` et `useSelector`.
+
+À l'avenir, les bibliothèques telles que React Router pourraient prendre en charge les Hooks.
 
 ### Est-ce que les Hooks sont compatibles avec le typage statique ? {#do-hooks-work-with-static-typing}
 
@@ -116,6 +119,10 @@ Surtout, les Hooks personnalisés vous donnent la possibilité de restreindre l'
 ### Comment tester des composants utilisant des Hooks ? {#how-to-test-components-that-use-hooks}
 
 Du point de vue de React, un composant utilisant des Hooks est un composant normal. Si votre solution de test ne repose pas sur des fonctionnements internes de React, tester des composants avec des Hooks ne devrait pas être différent de la façon dont vous testez vos composants habituellement.
+
+>Note
+>
+>[Testing Recipes](/docs/testing-recipes.html) inclut plusieurs exemples que vous pouvez copier-coller.
 
 Par exemple, prenons ce composant de comptage :
 
@@ -179,7 +186,9 @@ Les appels à `act()` vont aussi traiter les effets qu'ils contiennent.
 
 Si vous souhaitez tester un Hook personnalisé, c'est possible en créant un composant dans votre test, et en utilisant le Hook depuis celui-ci. Vous pourrez alors tester le composant que vous venez de créer.
 
-Pour réduire le code générique, nous vous conseillons d'utiliser [`react-testing-library`](https://git.io/react-testing-library) qui est conçu de manière à encourager l'écriture de tests utilisant les composants comme le feraient les utilisateurs finaux.
+Pour réduire le code générique, nous vous conseillons d'utiliser [React Testing Library](https://testing-library.com/react) qui est conçu de manière à encourager l'écriture de tests utilisant les composants comme le feraient les utilisateurs finaux.
+
+Pour plus d'information, consultez [Testing Recipes](/docs/testing-recipes.html).
 
 ### Qu'est-ce que les [règles de linting](https://www.npmjs.com/package/eslint-plugin-react-hooks) imposent ? {#what-exactly-do-the-lint-rules-enforce}
 
@@ -555,7 +564,7 @@ Selon votre cas, vous trouverez quelques options supplémentaires plus bas dans 
 
 >Remarque
 >
->Nous proposons une règle ESLint [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) dans le cadre du module [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Elle vous aide à trouver les composants qui ne gèrent pas correctement les mises à jour.
+>Nous mettons à disposition la règle ESLint [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) dans le cadre du module [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Elle vous aide à trouver les composants qui ne gèrent pas correctement les mises à jour.
 
 Voyons en quoi c’est important.
 
