@@ -102,11 +102,11 @@ import OtherComponent from './OtherComponent';
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 ```
 
-Ça chargera automatiquement le bundle contenant le composant `OtherComponent` quand celui-ci sera rendu pour la premiere fois.
+Ça chargera automatiquement le bundle contenant le composant `OtherComponent` quand celui-ci sera rendu pour la première fois.
 
 `React.lazy` prend une fonction qui doit appeler un `import()` dynamique. Ça doit renvoyer une `Promise` qui s’accomplit avec un module dont l’export par défaut contient un composant React.
 
-Le composant importé dynamiquement devrait etre rendu dans un composent `Suspense`, qui nous permet d'afficher un contenu de repli (tel un indicateur de chargement) en attendant que ce module soit chargé.
+Le composant importé dynamiquement devrait être rendu dans un composent `Suspense`, qui nous permet d'afficher un contenu de repli (tel un indicateur de chargement) en attendant que ce module soit chargé.
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));

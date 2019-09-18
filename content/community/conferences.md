@@ -416,7 +416,7 @@ Le 29 août 2019 à Téhéran, Iran.
 [Site web](https://reactconf.ir/) - [Twitter](https://twitter.com/reactconf_ir) - [Instagram](https://www.instagram.com/reactconf/)
 
 ### ComponentsConf 2019 {#componentsconf-2019}
-Le 6 septembre  2019 à Melbourne, Australie
+Le 6 septembre 2019 à Melbourne, Australie
 
 [Site web](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
 
