@@ -72,36 +72,6 @@ Le 17 juillet 2020 à New York City, NY, États-Unis.
 
 ## Anciennes conférences {#past-conferences}
 
-### React Rally 2019 {#react-rally-2019}
-August 22-23, 2019. Salt Lake City, USA.
-
-[Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
-
-### ComponentsConf 2019 {#componentsconf-2019}
-September 6, 2019 in Melbourne, Australia
-
-[Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
-
-### React Native EU 2019 {#react-native-eu-2019}
-September 5-6 in Wrocław, Poland
-
-[Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
-
-### React New York 2019 {#react-new-york-2019}
-September 13th, 2019. New York, USA
-
-[Website](https://reactnewyork.com/) - [Twitter](https://twitter.com/reactnewyork)
-
-### React Live 2019 {#react-live-2019}
-September 13th, 2019. Amsterdam, The Netherlands
-
-[Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
-
-### React Conf Iran 2019 {#react-conf-iran-2019}	
-August 29, 2019. Tehran, Iran.	
-
-[Website](https://reactconf.ir/) - [Videos](https://www.youtube.com/playlist?list=PL-VNqZFI5Nf-Nsj0rD3CWXGPkH-DI_0VY) - [Highlights](https://github.com/ReactConf/react-conf-highlights)
-
 ### React.js Conf 2015 {#reactjs-conf-2015}
 Du 28 au 29 janvier 2015 à Facebook HQ, États-Unis d'Amérique
 
@@ -434,3 +404,38 @@ Le 21 juin 2019 à Chicago, États-Unis d'Amérique
 Du 11 au 12 juillet 2019 à Portland, Orégon, États-Unis d'Amérique
 
 [Site web](https://infinite.red/ChainReactConf)
+
+### React Rally 2019 {#react-rally-2019}
+Du 22 au 23 août 2019 à Salt Lake City, États-Unis d'Amérique
+
+[Site web](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
+
+### React Conf Iran 2019 {#react-conf-iran-2019}
+Le 29 août 2019 à Téhéran, Iran.
+
+[Site web](https://reactconf.ir/) - [Twitter](https://twitter.com/reactconf_ir) - [Instagram](https://www.instagram.com/reactconf/)
+
+### ComponentsConf 2019 {#componentsconf-2019}
+Le 6 septembre  2019 à Melbourne, Australie
+
+[Site web](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
+
+### React Native EU 2019 {#react-native-eu-2019}
+Du 5 au 6 septembre 2019 à Wrocław, Pologne
+
+[Site web](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
+
+### ComponentsConf 2019 {#componentsconf-2019}
+Le 6 septembre 2019 à Melbourne, Australie
+
+[Site web](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
+
+### React New York 2019 {#react-new-york-2019}
+Le 13 septembre 2019 à New York, États-Unis d'Amérique
+
+[Site web](https://reactnewyork.com/) - [Twitter](https://twitter.com/reactnewyork)
+
+### React Live 2019 {#react-live-2019}
+Le 13 septembre 2019 à Amsterdam, Pays-Bas
+
+[Site web](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
