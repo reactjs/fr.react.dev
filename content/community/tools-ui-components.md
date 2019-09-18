@@ -51,6 +51,7 @@ permalink: community/ui-components.html
 * **[react-slick](https://github.com/akiran/react-slick)** : composant de carrousel construit avec React.
 * **[react-sparklines](https://borisyankov.github.io/react-sparklines/)** : composant joli et expressif pour des graphes en ligne.
 * **[react-spreadsheet](https://github.com/felixrieseberg/React-Spreadsheet-Component)** : feuilles de calcul et tableaux modifiables en React, avec une saisie au clavier et navigation de type Excel.
+* **[react-toggle](https://github.com/gfazioli/react-toggle):** composant React UI pour afficher un bouton de commande à bascule
 * **[react-tappable](https://github.com/JedWatson/react-tappable)** : un composant Tappable React qui génère des événements `onTap` pour des applis mobiles React.
 * **[react-textarea-autosize](https://github.com/andreypopp/react-textarea-autosize)** : comme `<textarea />` mais avec un redimensionnement automatique pour s'adapter au contenu.
 * **[react-toastify](https://github.com/fkhadra/react-toastify)** : des notifications simplifiées pour React.

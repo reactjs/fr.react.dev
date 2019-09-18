@@ -2,8 +2,6 @@
 id: static-type-checking
 title: La validation de types statique
 permalink: docs/static-type-checking.html
-prev: typechecking-with-proptypes.html
-next: refs-and-the-dom.html
 ---
 
 Les systèmes de typage statique tels que [Flow](https://flow.org/) et [TypeScript](https://www.typescriptlang.org/) parviennent à identifier certains types de problèmes avant même d’exécuter votre code. Ils peuvent aussi améliorer le processus de travail des développeurs en y ajoutant des assistances telles que l'auto-complétion. C'est pourquoi nous recommandons l'utilisation de Flow ou TypeScript au lieu des `PropTypes` pour les grandes bases de code source.
