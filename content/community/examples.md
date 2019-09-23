@@ -20,5 +20,6 @@ La communauté React a créé de nombreux exemples de projets. N'hésitez pas à
 * **[Bitcoin Price Index](https://github.com/mrkjlchvz/bitcoin-price-index)** Graphique d'évolution des prix du Bitcoin via l'API CoinDesk.
 * **[Builder Book](https://github.com/builderbook/builderbook)** Appli web progressive et open source pour écrire et héberger de la documentation ou vendre des livres. Élaborée avec React, Material-UI, Next, Express, Mongoose, et MongoDB.
 * **[GFonts Space](https://github.com/pankajladhar/GFontsSpace)** Un espace permettant à l'utilisateur de jouer avec les Google Fonts. Construit avec React, Redux et React-Router.
-* **[Course Learn Page](https://github.com/ulearnpro/ulearn)** Open Source LMS script in Laravel 5.8 and ReactJS 16.9
-* **[Speedy math](https://github.com/pankajladhar/speedy-math)** An application which allows kids to practice basic Mathematics i.e  Addition, Subtraction, Multiply, Comparison. It is a PWA (Progressive web app) with offline support and install as App features.
+* **[Course Learn Page](https://github.com/ulearnpro/ulearn)** Script Open Source LMS utilisant Laravel 5.8 et ReactJS 16.9
+* **[Speedy math](https://github.com/pankajladhar/speedy-math)** Une application qui permet aux enfants de pratiquer les mathématiques de base, telles que l’addition, la soustraction, la multiplication et la comparaison. Il s’agit d’une progressive web app (PWA, application web progressive en français) avec un mode hors ligne et pouvant être installer comme application native.
+
