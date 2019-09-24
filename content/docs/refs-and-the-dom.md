@@ -37,7 +37,7 @@ Vous serez peut-être enclin·e à toujours commencer par une ref pour « faire
 
 ### Créer des refs {#creating-refs}
 
-Les refs sont créées en utilisant `React.createRef()` et attachées aux éléments React via l'attribut `ref`. Les refs sont souvent affectées à une propriété d'instance quand un composant est construit et peuvent donc référencées à travers le composant.
+Les refs sont créées en utilisant `React.createRef()` et attachées aux éléments React via l'attribut `ref`. Les refs sont souvent affectées à une propriété d'instance quand un composant est construit et peuvent donc être référencées à travers le composant.
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
