@@ -41,7 +41,7 @@ Le 25 octobre 2019 à Londres, Royaume-Uni
 [Site web](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Vidéos](https://youtube.com/c/ReactConferences)
 
 ### React Conf Brasil 2019 {#react-conf-2019}
-Le 19 october 2019 à Sao Paulo, Brésil
+Le 19 octobre 2019 à São Paulo, Brésil
 
 [Site web](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
 
