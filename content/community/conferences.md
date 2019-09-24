@@ -40,6 +40,11 @@ Le 25 octobre 2019 à Londres, Royaume-Uni
 
 [Site web](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Vidéos](https://youtube.com/c/ReactConferences)
 
+### React Conf Brasil 2019 {#react-conf-2019}
+Le 19 octobre 2019 à São Paulo, Brésil
+
+[Site web](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
+
 ### React Day Berlin 2019 {#react-day-berlin-2019}
 Le 6 décembre 2019 à Berlin, Allemagne
 
@@ -196,7 +201,7 @@ Le 6 octobre 2017 à Vérone, Italie
 [Site web](http://2017.reactjsday.it) - [Twitter](https://twitter.com/reactjsday) - [Vidéos](https://www.youtube.com/watch?v=bUqqJPIgjNU&list=PLWK9j6ps_unl293VhhN4RYMCISxye3xH9)
 
 ### React Conf Brasil 2017 {#react-conf-brasil-2017}
-Le 7 octobre 2017 à Sao Paulo, Brésil
+Le 7 octobre 2017 à São Paulo, Brésil
 
 [Site web](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf/)
 
@@ -321,7 +326,7 @@ Le 5 octobre 2018 à Vérone, Italie
 [Site web](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
 
 ### React Conf Brasil 2018 {#react-conf-brasil-2018}
-Le 20 octobre 2018 à Sao Paulo, Brésil
+Le 20 octobre 2018 à São Paulo, Brésil
 
 [Site web](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf)
 

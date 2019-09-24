@@ -14,7 +14,7 @@
 - name: azéri
   translated_name: Azərbaycanca
   code: az
-  status: 1
+  status: 2
 - name: bulgare
   translated_name: Български
   code: bg
@@ -114,7 +114,7 @@
 - name: mongol
   translated_name: Монгол хэл
   code: mn
-  status: 1
+  status: 2
 - name: népalais
   translated_name: नेपाली
   code: ne
@@ -190,4 +190,4 @@
 - name: chinois traditionnel
   translated_name: 繁體中文
   code: zh-hant
-  status: 1
+  status: 2
