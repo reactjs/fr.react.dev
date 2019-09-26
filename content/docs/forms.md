@@ -276,7 +276,7 @@ Qui plus est, comme `setState()` fusionne automatiquement un état partiel dans 
 
 ## Valeur nulle des champs contrôlés {#controlled-input-null-value}
 
-Définir la prop `value` sur un [composant contrôlé](/docs/forms.html#controlled-components) empêche l'utilisateur de changer la saisie sauf si le permettez. Si vous spécifiez une `value` mais que le champ reste modifiable, alors `value` doit s’être accidentellement retrouvée à `undefined` ou `null`.
+Définir la prop `value` sur un [composant contrôlé](/docs/forms.html#controlled-components) empêche l'utilisateur de changer la saisie sauf si vous le permettez. Si vous spécifiez une `value` mais que le champ reste modifiable, alors `value` doit s’être accidentellement retrouvée à `undefined` ou `null`.
 
 Le code suivant illustre ce cas de figure. (Le champ est verrouillé au démarrage mais devient modifiable après un court délai.)
 
