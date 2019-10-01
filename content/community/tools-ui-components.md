@@ -80,4 +80,4 @@ permalink: community/ui-components.html
 * **[jQWidgets React components](https://www.jqwidgets.com/react/)** : plus de 70 composants UI prêts pour l'entreprise.
 * **[KendoReact](https://www.telerik.com/kendo-react-ui/)** : éléments d'UI pour les développeurs React.
 * **[Mobiscroll React UI Components](https://mobiscroll.com/react)** : éléments d'UI pour les développements d'application mobile en React.
-* **[React UI Toolkit](https://react-ui-tools.com/)**: 115+ professionally maintainted UI components ranging from a robust grid to charts and more. Try for FREE and build React apps faster.
+* **[React UI Toolkit](https://react-ui-tools.com/)**: plus de 115 composants UI maintenus de manière professionnelle allant de la grille robuste aux graphiques et plus encore. Essayez GRATUITEMENT et construisez vos applications React plus rapidement.
