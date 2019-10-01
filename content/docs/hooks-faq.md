@@ -108,9 +108,9 @@ Vous pouvez continuer à utiliser les mêmes API que d'habitude ; elles fonctio
 
 Depuis sa version v7.1.0, React-Redux [prend en charge l'API des Hooks](https://react-redux.js.org/api/hooks) et fournit des Hooks tels que `useDispatch` et `useSelector`.
 
-React Router [supports hooks](https://reacttraining.com/react-router/web/api/Hooks) since v5.1.
+React Router [prends en charge les Hooks](https://reacttraining.com/react-router/web/api/Hooks) depuis sa version v5.1.
 
-Other libraries might support hooks in the future too.
+À l'avenir, d'autres bibliothèques pourraient elles aussi prendre en charge les Hooks.
 
 ### Est-ce que les Hooks sont compatibles avec le typage statique ? {#do-hooks-work-with-static-typing}
 
