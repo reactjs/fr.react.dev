@@ -118,7 +118,11 @@ Nous vous conseillons de suivre [ces instructions](https://babeljs.io/docs/edito
 
 ### À l’aide, je suis bloqué·e ! {#help-im-stuck}
 
+<<<<<<< HEAD
 Si vous vous retrouvez bloqué·e, jetez un coup d'œil aux [ressources communautaires de support](/community/support.html). [Le chat Reactiflux](https://discord.gg/0ZcbPKXt5bZjGY5n), notamment, est super utile pour obtenir de l’aide rapidement. Si vous ne recevez pas de réponse, ou si elle ne vous débloque pas, merci de nous le signaler par une *issue* dans GitHub, et nous ferons de notre mieux pour vous aider.
+=======
+If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/reactiflux) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
+>>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
 
 ## Aperçu {#overview}
 

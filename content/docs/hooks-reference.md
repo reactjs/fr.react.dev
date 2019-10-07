@@ -58,10 +58,16 @@ function Counter({initialCount}) {
   const [count, setCount] = useState(initialCount);
   return (
     <>
+<<<<<<< HEAD
       Total : {count}
       <button onClick={() => setCount(initialCount)}>Réinitialiser</button>
       <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+=======
+      Count: {count}
+      <button onClick={() => setCount(initialCount)}>Reset</button>
+>>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
       <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
     </>
   );
 }
@@ -111,7 +117,11 @@ L'utilisation de mutations, abonnements, horloges, messages de journalisation, e
 
  Pour ce faire, utilisez plutôt `useEffect`. La fonction fournie à `useEffect` sera exécutée après que le rendu est apparu sur l'écran. Vous pouvez considérer les effets comme des échappatoires pour passer du monde purement fonctionnel de React au monde impératif.
 
+<<<<<<< HEAD
 Par défaut, les effets de bord s'exécutent après chaque rendu, mais vous pouvez choisir d'en exécuter certains [uniquement quand certaines valeurs ont changé](#conditionally-firing-an-effect).
+=======
+By default, effects run after every completed render, but you can choose to fire them [only when certain values have changed](#conditionally-firing-an-effect).
+>>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
 
 #### Nettoyage d'un effet de bord {#cleaning-up-an-effect}
 
@@ -228,9 +238,14 @@ function Counter() {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <>
+<<<<<<< HEAD
       Total : {state.count}
       <button onClick={() => dispatch({type: 'increment'})}>+</button>
+=======
+      Count: {state.count}
+>>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }
@@ -288,8 +303,8 @@ function Counter({initialCount}) {
         onClick={() => dispatch({type: 'reset', payload: initialCount})}>
         Reset
       </button>
-      <button onClick={() => dispatch({type: 'increment'})}>+</button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }
