@@ -80,7 +80,7 @@ Les boutons « + » et « - » utilisent la forme fonctionnelle, puisque la 
 > });
 > ```
 >
-> Il est aussi possible d'utiliser `userReducer`, qui est plus adapté pour gérer les objets d'état local qui contiennent plusieurs sous-valeurs.
+> Il est aussi possible d'utiliser `useReducer`, qui est plus adapté pour gérer les objets d'état local qui contiennent plusieurs sous-valeurs.
 
 #### État local initial paresseux {#lazy-initial-state}
 
