@@ -24,11 +24,19 @@ Il existe de nombreux forums en ligne qui constituent d'excellents lieux de disc
 
 Chaque communauté est composée de plusieurs milliers d'utilisateurs de React.
 
+<<<<<<< HEAD
 * [Communauté React sur DEV](https://dev.to/t/react)
 * [Communauté React sur Hashnode](https://hashnode.com/n/reactjs)
 * [Chat en ligne Reactiflux](https://discord.gg/0ZcbPKXt5bZjGY5n)
 * [Communauté React sur Reddit](https://www.reddit.com/r/reactjs/)
 * [Communauté React sur Spectrum](https://spectrum.chat/react)
+=======
+* [DEV's React community](https://dev.to/t/react)
+* [Hashnode's React community](https://hashnode.com/n/reactjs)
+* [Reactiflux online chat](https://discord.gg/reactiflux)
+* [Reddit's React community](https://www.reddit.com/r/reactjs/)
+* [Spectrum's React community](https://spectrum.chat/react)
+>>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
 
 ## Actualités {#news}
 

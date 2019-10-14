@@ -48,7 +48,16 @@ Si ce n'est pas le cas, vous devrez configurer vous-même la génération de vot
 
 Les bundles c’est génial, mais au fur et à mesure que votre application grandit, votre bundle va grossir aussi. Surtout si vous intégrez de grosses bibliothèques tierces. Vous devez garder un œil sur le code que vous intégrez dans votre bundle pour éviter de le rendre si lourd que le chargement de votre application prendrait beaucoup de temps.
 
+<<<<<<< HEAD
 Pour éviter de vous retrouver avec un bundle trop volumineux, il est bon d'anticiper les problèmes et de commencer à fractionner votre bundle. Le [découpage dynamique de code](https://webpack.js.org/guides/code-splitting/) est une fonctionnalité prise en charge par des empaqueteurs tels que Webpack ou Browserify (via [factor-bundle](https://github.com/browserify/factor-bundle)), qui permet de créer plusieurs bundles pouvant être chargés dynamiquement au moment de l'exécution.
+=======
+To avoid winding up with a large bundle, it's good to get ahead of the problem
+and start "splitting" your bundle.
+Code-Splitting is a feature
+supported by bundlers like [Webpack](https://webpack.js.org/guides/code-splitting/), [Rollup](https://rollupjs.org/guide/en/#code-splitting) and Browserify (via
+[factor-bundle](https://github.com/browserify/factor-bundle)) which can create
+multiple bundles that can be dynamically loaded at runtime.
+>>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
 
 Fractionner votre application peut vous aider à charger à la demande *(lazy-load, NdT)* les parties qui sont nécessaires pour l'utilisateur à un moment donné, ce qui peut améliorer considérablement les performances de votre application. Bien que vous n'ayez pas réduit la quantité de code de votre application, vous évitez de charger du code dont l'utilisateur n'aura peut-être jamais besoin, et réduisez la quantité de code nécessaire au chargement initial.
 

@@ -22,8 +22,13 @@
 - name: bengali
   translated_name: বাংলা
   code: bn
+<<<<<<< HEAD
   status: 0
 - name: catalan
+=======
+  status: 1
+- name: Catalan
+>>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
   translated_name: Català
   code: ca
   status: 0

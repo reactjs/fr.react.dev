@@ -15,12 +15,22 @@ Dans une application React typique, les données sont passées de haut en bas (d
   - [Context.Provider](#contextprovider)
   - [Class.contextType](#classcontexttype)
   - [Context.Consumer](#contextconsumer)
+<<<<<<< HEAD
 - [Exemples](#examples)
   - [Contexte dynamique](#dynamic-context)
   - [Mettre à jour le Contexte à partir d'un composant imbriqué](#updating-context-from-a-nested-component)
   - [Consommer plusieurs Contextes](#consuming-multiple-contexts)
 - [Limitations](#caveats)
 - [API historique](#legacy-api)
+=======
+  - [Context.displayName](#contextdisplayname)
+- [Examples](#examples)
+  - [Dynamic Context](#dynamic-context)
+  - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
+  - [Consuming Multiple Contexts](#consuming-multiple-contexts)
+- [Caveats](#caveats)
+- [Legacy API](#legacy-api)
+>>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
 
 ## Quand utiliser le Contexte {#when-to-use-context}
 
@@ -196,7 +206,25 @@ Nécessite une [fonction enfant](/docs/render-props.html#using-props-other-than-
 >
 > Pour en apprendre davantage sur l'approche « fonction enfant », voyez les [props de rendu](/docs/render-props.html).
 
+<<<<<<< HEAD
 ## Exemples {#examples}
+=======
+### `Context.displayName` {#contextdisplayname}
+
+Context object accepts a `displayName` string property. React DevTools uses this string to determine what to display for the context.
+
+For example, the following component will appear as MyDisplayName in the DevTools:
+
+```js{2}
+const MyContext = React.createContext(/* some value */);
+MyContext.displayName = 'MyDisplayName';
+
+<MyContext.Provider> // "MyDisplayName.Provider" in DevTools
+<MyContext.Consumer> // "MyDisplayName.Consumer" in DevTools
+```
+
+## Examples {#examples}
+>>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
 
 ### Contexte dynamique {#dynamic-context}
 

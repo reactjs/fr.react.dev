@@ -108,7 +108,13 @@ Vous pouvez continuer à utiliser les mêmes API que d'habitude ; elles fonctio
 
 Depuis sa version v7.1.0, React-Redux [prend en charge l'API des Hooks](https://react-redux.js.org/api/hooks) et fournit des Hooks tels que `useDispatch` et `useSelector`.
 
+<<<<<<< HEAD
 À l'avenir, les bibliothèques telles que React Router pourraient prendre en charge les Hooks.
+=======
+React Router [supports hooks](https://reacttraining.com/react-router/web/api/Hooks) since v5.1.
+
+Other libraries might support hooks in the future too.
+>>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
 
 ### Est-ce que les Hooks sont compatibles avec le typage statique ? {#do-hooks-work-with-static-typing}
 
@@ -365,7 +371,7 @@ Remaquez que ça fonctionne pour les props, l'état local, et toute autre valeur
 function Counter() {
   const [count, setCount] = useState(0);
 
-  const calculation = count * 100;
+  const calculation = count + 100;
   const prevCalculation = usePrevious(calculation);
   // ...
 ```
