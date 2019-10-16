@@ -58,14 +58,8 @@ function Counter({initialCount}) {
   const [count, setCount] = useState(initialCount);
   return (
     <>
-<<<<<<< HEAD
       Total : {count}
       <button onClick={() => setCount(initialCount)}>Réinitialiser</button>
-      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
-=======
-      Count: {count}
-      <button onClick={() => setCount(initialCount)}>Reset</button>
->>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
       <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
       <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
     </>
@@ -117,11 +111,7 @@ L'utilisation de mutations, abonnements, horloges, messages de journalisation, e
 
  Pour ce faire, utilisez plutôt `useEffect`. La fonction fournie à `useEffect` sera exécutée après que le rendu est apparu sur l'écran. Vous pouvez considérer les effets comme des échappatoires pour passer du monde purement fonctionnel de React au monde impératif.
 
-<<<<<<< HEAD
-Par défaut, les effets de bord s'exécutent après chaque rendu, mais vous pouvez choisir d'en exécuter certains [uniquement quand certaines valeurs ont changé](#conditionally-firing-an-effect).
-=======
-By default, effects run after every completed render, but you can choose to fire them [only when certain values have changed](#conditionally-firing-an-effect).
->>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
+Par défaut, les effets de bord s'exécutent après chaque rendu, mais vous pouvez choisir d’en exécuter certains [uniquement quand certaines valeurs ont changé](#conditionally-firing-an-effect).
 
 #### Nettoyage d'un effet de bord {#cleaning-up-an-effect}
 
@@ -204,10 +194,8 @@ Un composant qui appelle `useContext` se rafraîchira toujours quand la valeur d
 >
 > `useContext(MyContext)` vous permet seulement de *lire* le contexte et de vous abonner à ses modifications.  Vous aurez toujours besoin d’un `<MyContext.Provider>` plus haut dans l’arbre pour *fournir* une valeur de contexte.
 
-<<<<<<< HEAD
-## Hooks supplémentaires {#additional-hooks}
-=======
-**Putting it together with Context.Provider**
+**Un exemple consolidé avec Context.Provider**
+
 ```js{31-36}
 const themes = {
   light: {
@@ -243,16 +231,15 @@ function ThemedButton() {
 
   return (
     <button style={{ background: theme.background, color: theme.foreground }}>
-      I am styled by theme context!
+      Je suis stylé par le contexte de thème !
     </button>
   );
 }
 ```
-This example is modified for hooks from a previous example in the [Context Advanced Guide](/docs/context.html), where you can find more information about when and how to use Context.
 
+Cet exemple est une version modifiée pour utiliser les Hooks de l’exemple dans le [guide avancé des Contextes](/docs/context.html), au sein duquel vous pourrez trouver davantage d’informations sur l’utilisation appropriée de Context.
 
-## Additional Hooks {#additional-hooks}
->>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
+## Hooks supplémentaires {#additional-hooks}
 
 Les Hooks qui suivent sont soit des variantes des Hooks basiques des sections précédentes, soit seulement nécessaires pour des cas à la marge spécifiques. Ne vous sentez pas obligé·e de les apprendre dès le départ.
 
@@ -286,12 +273,7 @@ function Counter() {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <>
-<<<<<<< HEAD
       Total : {state.count}
-      <button onClick={() => dispatch({type: 'increment'})}>+</button>
-=======
-      Count: {state.count}
->>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
       <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
@@ -349,7 +331,7 @@ function Counter({initialCount}) {
       Total : {state.count}
       <button
         onClick={() => dispatch({type: 'reset', payload: initialCount})}>
-        Reset
+        Réinitialiser
       </button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
       <button onClick={() => dispatch({type: 'increment'})}>+</button>

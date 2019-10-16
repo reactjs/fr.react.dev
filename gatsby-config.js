@@ -164,8 +164,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'React Docs',
-        short_name: 'React',
+        name: 'Documentation React FR',
+        short_name: 'React FR',
         start_url: '/',
         background_color: '#20232a',
         theme_color: '#20232a',
