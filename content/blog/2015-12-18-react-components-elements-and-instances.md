@@ -90,7 +90,7 @@ Cet élément, sous forme d'un objet brut, est juste un moyen de représenter le
 
 Remarquez comment les éléments peuvent être imbriqués. Par convention, lorsque nous voulons créer une arborescence d'éléments, nous spécifions un ou plusieurs éléments enfants au moyen de la prop `children` de leur élément conteneur.
 
-L’important c'est que les éléments parent et enfant ne soient *que des descriptions et non des vraies instances*. Lorsque vous les créez, elles ne font référence à rien sur l’écran. Vous pouvez les créer et les jeter, et cela aura peu d'importance.
+L’important c'est que les éléments parent et enfant ne soit *que des descriptions et non des véritables instances*. Lorsque vous les créez, elles ne font référence à rien sur l’écran. Vous pouvez les créer et les jeter, et cela aura peu d'importance.
 
 Les éléments React sont faciles à parcourir, ils n’ont pas besoin d’être analysés, et bien sûr, ils sont beaucoup plus légers que les vrais éléments DOM — ce ne sont que des objets !
 
@@ -214,7 +214,7 @@ const Form = ({ isSubmitted, buttonText }) => {
     return {
       type: Message,
       props: {
-        text: 'Success!'
+        text: 'Succès !'
       }
     };
   }
