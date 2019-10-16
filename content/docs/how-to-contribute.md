@@ -21,19 +21,25 @@ Facebook a adopté le code de conduite [Contributor Covenant](https://www.contri
 
 Tout travail sur React se passe directement sur [GitHub](https://github.com/facebook/react). Les membres de l'équipe noyau *(core team, NdT)* tout comme les contributeurs externes y envoient leur _pull requests_, lesquelles passent à travers le même processus de revue.
 
+### Gestion sémantique des versions {#semantic-versioning}
+
+React utilise une [gestion sémantique de version](https://semver.org/). Nous publions des versions de correctifs pour les corrections de bugs critiques, des versions mineures pour les nouvelles fonctionnalités et les modifications non-essentielles, et des versions majeures s'il y a rupture de la compatibilité ascendante. Quand nous introduisons de telles ruptures, nous ajoutons aussi des avertissements de dépréciation dans une version mineure afin que nos utilisateur·rice·s puissent se familiariser avec les changements à venir et migrer leur code en amont.  Vous pouvez en apprendre davantage sur notre engagement en termes de stabilité et de migration incrémentielle dans notre [politique de gestion des versions](https://reactjs.org/docs/faq-versioning.html).
+
+Toute modification substancielle est documentée dans le [journal des modifications](https://github.com/facebook/react/blob/master/CHANGELOG.md).
+
 ### Organisation des branches {#branch-organization}
 
-Nous ferons de notre mieux pour garder la [branche `master`](https://github.com/facebook/react/tree/master) en bon état, avec des tests toujours au vert. Mais pour pouvoir avancer rapidement, nous ferons des changements d'API avec lesquels votre application pourrait ne pas être compatible. Nous vous recommandons d'utiliser [la dernière version stable de React](/versions.html).
+Déposez toutes vos modifications directement sur la [branche `master`](https://github.com/facebook/react/tree/master).  Nous n’utilisons pas de branches séparées pour le développement et pour les versions à venir.  Nous faisons de notre mieux pour garder la branche `master` en bon état, avec des tests toujours au vert.
 
-Si vous envoyez une _pull request_, merci de la faire sur la branche `master`. Nous maintenons des branches stables pour chaque version majeure séparément mais n'acceptons pas de _pull requests_ sur ces dernières directement. Nous préférons sélectionner manuellement les changements sur `master` qui ne cassent pas la compatibilité ascendante pour les reporter dans la version stable majeure la plus récente.
+Le code qui atterrit dans `master` doit être compatible avec la dernière version stable.  Il peut contenir de nouvelles fonctionnalités, mais pas de rupture de compatibilité ascendante.  Nous devrions pouvoir sortir une version mineure à partir de la pointe de `master` à tout moment.
 
-### Gestion sémantique de version {#semantic-versioning}
+### Fonctionnalités condtionnelles {#feature-flags}
 
-React utilise une [gestion sémantique de version](https://semver.org/). Nous publions des versions de correctifs pour les correctifs de bugs, des versions mineures pour les nouvelles fonctionnalités et des versions majeures s'il y a rupture de la compatibilité ascendante. Quand nous introduisons de telles ruptures, nous ajoutons aussi des avertissements de dépréciation dans une version mineure afin que nos utilisateurs soient au courant de ces évolutions à venir et qu'ils puissent migrer leur code en amont.
+Afin de conserver la branche `master` dans un état sortable, les ruptures de compatibilité ascendante et les fonctionnalités expérimentales doivent être protégées par un drapeau de fonctionnalité conditionnelle.
 
-Nous étiquetons chaque _pull request_ pour indiquer si le changement devrait aller dans la prochaine [version de correctifs](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-patch), [version mineure](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-minor) ou [version majeure](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-major). Nous publions de nouvelles versions de correctifs toutes les 2–3 semaines, des versions mineures tous les 2–3 mois, et une ou deux versions majeures par an.
+Ces drapeaux sont définis dans [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js).  D‘une version de React à l’autre, des jeux de fonctionnalités conditionnelles distincts sont susceptibles d’être utilisés ; par exemple, React Native peut être configuré différemment de React DOM.  Ces variations sont signalées dans [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks). Les drapeaux de fonctionnalités conditionnelles sont généralement typés par Flow, de sorte que vous pouvez exécuter `yarn flow` pour confirmer que vous avez mis à jour tous les fichiers nécessaires.
 
-Chaque changement important est documenté dans le [fichier d’historique des versions](https://github.com/facebook/react/blob/master/CHANGELOG.md).
+Le système de construction de React retirera toutes les branches fonctionnelles désactivées avant publication.  Une routine d’intégration continue est exécutée à chaque commit pour auditer les évolutions de la taille du *bundle*.  Vous pouvez utiliser ces changements de taille comme confirmation que votre fonctionnalité a bien été périmétrée.
 
 ### Bugs {#bugs}
 

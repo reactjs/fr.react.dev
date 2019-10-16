@@ -15,8 +15,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [Karlsruhe](https://www.meetup.com/react_ka/)
 * [Kiel](https://www.meetup.com/Kiel-React-Native-Meetup/)
 * [Munich](https://www.meetup.com/ReactJS-Meetup-Munich/)
-* [React Berlin](https://www.meetup.com/React-Berlin/)
-* [React.JS Girls Berlin](https://www.meetup.com/ReactJS-Girls-Berlin/)
+* [React Berlin](https://www.meetup.com/React-Open-Source/)
 
 ## Angleterre (UK) {#england-uk}
 * [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
@@ -42,9 +41,9 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [Joinville](https://www.meetup.com/pt-BR/React-Joinville/)
 * [Rio de Janeiro](https://www.meetup.com/pt-BR/React-Rio-de-Janeiro/)
 * [São Paulo](https://www.meetup.com/pt-BR/ReactJS-SP/)
+* [Vila Velha](https://www.meetup.com/pt-BR/React-ES/)
 
 ## Canada {#canada}
-* [Montreal, QC - ReactJS](https://www.meetup.com/fr-FR/ReactMontreal/)
 * [Montreal, QC - React Native](https://www.meetup.com/fr-FR/React-Native-MTL/)
 * [Vancouver, BC](https://www.meetup.com/ReactJS-Vancouver-Meetup/)
 * [Ottawa, ON](https://www.meetup.com/Ottawa-ReactJS-Meetup/)
@@ -86,7 +85,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [New York, NY - React Native](https://www.meetup.com/React-Native-NYC/)
 * [New York, NY - ReactJS](https://www.meetup.com/NYC-Javascript-React-Group/)
 * [Palo Alto, CA - React Native](https://www.meetup.com/React-Native-Silicon-Valley/)
-* [Philadelphia, PA - ReactJS](https://www.meetup.com/RQ-React/)
+* [Philadelphia, PA - ReactJS](https://www.meetup.com/Reactadelphia/)
 * [Phoenix, AZ - ReactJS](https://www.meetup.com/ReactJS-Phoenix/)
 * [Pittsburgh, PA - ReactJS/React Native](https://www.meetup.com/ReactPgh/)
 * [Portland, OR - ReactJS](https://www.meetup.com/Portland-ReactJS/)
@@ -104,6 +103,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [Washington, DC - ReactJS](https://www.meetup.com/React-DC/)
 
 ## France {#france}
+* [Lille](https://www.meetup.com/ReactBeerLille/)
 * [Paris](https://www.meetup.com/ReactJS-Paris/)
 
 ## Grèce {#greece}
@@ -147,6 +147,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 
 ## Philippines {#philippines}
 * [Manila](https://www.meetup.com/reactjs-developers-manila/)
+* [Manila - ReactJS PH](https://www.meetup.com/ReactJS-Philippines/)
 
 ## Pologne {#poland}
 * [Warsaw](https://www.meetup.com/React-js-Warsaw/)

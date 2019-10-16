@@ -15,6 +15,7 @@ Dans une application React typique, les données sont passées de haut en bas (d
   - [Context.Provider](#contextprovider)
   - [Class.contextType](#classcontexttype)
   - [Context.Consumer](#contextconsumer)
+  - [Context.displayName](#contextdisplayname)
 - [Exemples](#examples)
   - [Contexte dynamique](#dynamic-context)
   - [Mettre à jour le Contexte à partir d'un composant imbriqué](#updating-context-from-a-nested-component)
@@ -195,6 +196,20 @@ Nécessite une [fonction enfant](/docs/render-props.html#using-props-other-than-
 > Remarque
 >
 > Pour en apprendre davantage sur l'approche « fonction enfant », voyez les [props de rendu](/docs/render-props.html).
+
+### `Context.displayName` {#contextdisplayname}
+
+Les objets Contexte permettent une propriété textuelle `displayName`.  Les Outils de développement React l’utilisent pour déterminer comment afficher le contexte.
+
+Par exemple, le composant ci-après apparaîtra dans les Outils de développement en tant que MyDisplayName :
+
+```js{2}
+const MyContext = React.createContext(/* une valeur */);
+MyContext.displayName = 'MyDisplayName';
+
+<MyContext.Provider> // "MyDisplayName.Provider" dans les DevTools
+<MyContext.Consumer> // "MyDisplayName.Consumer" dans les DevTools
+```
 
 ## Exemples {#examples}
 

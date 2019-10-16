@@ -9,7 +9,9 @@ permalink: community/ui-components.html
 
 * **[Amaze UI React](https://github.com/amazeui/amazeui-react)** : composants [Amaze UI](https://github.com/allmobilize/amazeui) construits avec React (en chinois).
 * **[Ant Design of React](https://github.com/ant-design/ant-design)** : un langage de conception d'interface utilisateur *(UI pour User Interface, NdT)* et une implémentation basée sur React.
+* **[Base Web](http://baseweb.design)** : Un socle de départ pour créer, faire évoluer et unifier des produits web.
 * **[Belle](https://github.com/nikgraf/belle/)** : composants React configurables avec une belle UX *(User eXperience, NdT)*.
+* **[Chakra UI](https://chakra-ui.com/)** : une bibliothèque de composants simples, modulaires et accessibles.
 * **[chartify](https://github.com/kirillstepkin/chartify)** : composant de graphiques en React ultra léger et personnalisable.
 * **[Elemental UI](http://elemental-ui.com)** : une boîte à outils pour les sites web et applis React, prenant en charge les thèmes et constituée de composants empaquetés individuellement.
 * **[Grommet](https://grommet.io/)** : un framework UX open source pour des applications d'entreprise.
@@ -51,7 +53,6 @@ permalink: community/ui-components.html
 * **[react-slick](https://github.com/akiran/react-slick)** : composant de carrousel construit avec React.
 * **[react-sparklines](https://borisyankov.github.io/react-sparklines/)** : composant joli et expressif pour des graphes en ligne.
 * **[react-spreadsheet](https://github.com/felixrieseberg/React-Spreadsheet-Component)** : feuilles de calcul et tableaux modifiables en React, avec une saisie au clavier et navigation de type Excel.
-* **[react-toggle](https://github.com/gfazioli/react-toggle):** composant React UI pour afficher un bouton de commande à bascule
 * **[react-tappable](https://github.com/JedWatson/react-tappable)** : un composant Tappable React qui génère des événements `onTap` pour des applis mobiles React.
 * **[react-textarea-autosize](https://github.com/andreypopp/react-textarea-autosize)** : comme `<textarea />` mais avec un redimensionnement automatique pour s'adapter au contenu.
 * **[react-toastify](https://github.com/fkhadra/react-toastify)** : des notifications simplifiées pour React.
@@ -62,6 +63,7 @@ permalink: community/ui-components.html
 * **[react-uwp](https://www.react-uwp.com)** : un ensemble de composants React qui implémentent le UWP Design et le Fluent Design de Microsoft.
 * **[react-validate-framework](https://github.com/MinJieLiu/react-validate-framework)** : un composant léger et extensible de validation de formulaires pour React.
 * **[reactstrap](https://reactstrap.github.io/)** : composants simples en Bootstrap 4 construits avec [tether](http://tether.io/).
+* **[Reakit](https://reakit.io/)** : boîte à outils pour construire des applis web riches accessibles avec React.
 * **[recharts](https://github.com/recharts/recharts)** : une bibliothèque de graphiques composables construite sur des composants React.
 * **[Selectivity](https://arendjr.github.io/selectivity/)** : une bibliothèque modulaire et légère pour les sélections.
 * **[Semantic-ui](https://react.semantic-ui.com/)** : l'intégration officielle de Semantic-UI-React, avec des composants avancés et une UI déclarative.
@@ -80,3 +82,4 @@ permalink: community/ui-components.html
 * **[jQWidgets React components](https://www.jqwidgets.com/react/)** : plus de 70 composants UI prêts pour l'entreprise.
 * **[KendoReact](https://www.telerik.com/kendo-react-ui/)** : éléments d'UI pour les développeurs React.
 * **[Mobiscroll React UI Components](https://mobiscroll.com/react)** : éléments d'UI pour les développements d'application mobile en React.
+* **[React UI Toolkit](https://react-ui-tools.com/)** : 115+ composants UI maintenus professionnellement allant d’une grille robuste à des graphiques, et plus encore. Essayez-les GRATUITEMENT et construisez vos applis React plus vite.

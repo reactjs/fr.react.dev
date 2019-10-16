@@ -10,11 +10,13 @@ React suit les principes de [gestion sémantique de version (semver)](https://se
 
 Ça signifie qu'avec un numéro de version de type **x.y.z** :
 
+* Pour publier des **corrections de bugs critiques**, nous changeons de **version de correctif** en modifiant le nombre **z** (ex. 15.6.2 à 15.6.3).
+* Pour publier des **nouvelles fonctionnalités** ou des **corrections de bugs non-critiques**, nous changeons de **version mineure** en modifiant le nombre **y** (ex. 15.6.2 à 15.7.0).
 * Pour publier des **modifications cassant la compatibilité ascendante**, nous changeons de **version majeure** en modifiant le nombre **x** (ex. 15.6.2 à 16.0.0).
-* Pour publier des **nouvelles fonctionnalités**, nous changeons de **version mineure** en modifiant le nombre **y** (ex. 15.6.2 à 15.7.0).
-* Pour publier des **corrections de bugs**, nous changeons de **version de correctif** en modifiant le nombre **z** (ex. 15.6.2 à 15.6.3).
 
 Les versions majeures peuvent également contenir de nouvelles fonctionnalités, et toute version peut inclure des corrections de bugs.
+
+Les versions mineures sont de loin les plus courantes.
 
 ### Ruptures de compatibilité ascendante {#breaking-changes}
 
@@ -48,3 +50,17 @@ Nous fournissons des versions alpha de React afin de tester les nouvelles foncti
 Cette politique se veut pragmatique : nous ne voulons évidemment pas vous causer de maux de tête. Si nous élevions la version majeure pour tous ces changements, nous finirions par publier plus de versions majeures, ce qui s'avèrerait plus pénible pour la communauté. Ça signifierait également que nous ne pourrions pas améliorer React aussi rapidement que nous le souhaiterions.
 
 Cela dit, si nous nous attendons à ce qu’un changement sur cette liste cause de gros problèmes dans la communauté, nous ferons tout notre possible pour fournir un chemin de migration progressif.
+
+### Si une version mineure n’ajoute pas de fonctionnalités, pourquoi n’est-ce pas un correctif ? {#minors-versus-patches}
+
+Il est possible qu’une version mineure n’inclue pas de nouvelles fonctionnalités. [Semver autorise ça](https://semver.org/#spec-item-7), en disant qu’**« [une version mineure] PEUT être incrémentée lors de nouvelles fonctionnalités substancielles ou d’améliorations introduites dans le code privé. Elle PEUT inclure des modifications de type correctif. »**
+
+Toutefois, cela soulève la question de pourquoi ces versions ne sont pas signalées comme de simples correctifs.
+
+Cela tient au fait que toute modification à React (ou à d’autres logiciels) emporte un risque de dysfonctionnements inattendus.  Imaginez un scénario dans lequel une version de correctif qui corrige un bug en introduit accidentellement un autre. Ce ne serait pas seulement dérangeant pour les développeur·se·s, mais ça nuirait à la confiance dans les versions de correctif ultérieures. C’est particulièrement regrettable si le correctif d’origine visait un bug survenant rarement en pratique.
+
+Nous avons un historique plutôt honorable de versions de React sans bugs, mais les versions de correctif mettent la barre encore plus haut en termes de fiabilité parce que la plupart des gens supposent qu’ils peuvent les adopter sans risque.
+
+Voilà pourquoi nous réservons les versions de correctifs aux bugs les plus critiques et aux failles de sécurité.
+
+Si une version inclut des modifications qui ne sont pas essentielles—telles que des refactorings internes, des modifications d’implémentation, des améliorations de performances ou des correctifs mineurs—nous incrémenterons la version mineure quand bien même aucune nouvelle fonctionnalité n’est présente.

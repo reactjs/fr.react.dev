@@ -60,8 +60,8 @@ function Counter({initialCount}) {
     <>
       Total : {count}
       <button onClick={() => setCount(initialCount)}>Réinitialiser</button>
-      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
       <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
     </>
   );
 }
@@ -111,7 +111,7 @@ L'utilisation de mutations, abonnements, horloges, messages de journalisation, e
 
  Pour ce faire, utilisez plutôt `useEffect`. La fonction fournie à `useEffect` sera exécutée après que le rendu est apparu sur l'écran. Vous pouvez considérer les effets comme des échappatoires pour passer du monde purement fonctionnel de React au monde impératif.
 
-Par défaut, les effets de bord s'exécutent après chaque rendu, mais vous pouvez choisir d'en exécuter certains [uniquement quand certaines valeurs ont changé](#conditionally-firing-an-effect).
+Par défaut, les effets de bord s'exécutent après chaque rendu, mais vous pouvez choisir d’en exécuter certains [uniquement quand certaines valeurs ont changé](#conditionally-firing-an-effect).
 
 #### Nettoyage d'un effet de bord {#cleaning-up-an-effect}
 
@@ -194,6 +194,51 @@ Un composant qui appelle `useContext` se rafraîchira toujours quand la valeur d
 >
 > `useContext(MyContext)` vous permet seulement de *lire* le contexte et de vous abonner à ses modifications.  Vous aurez toujours besoin d’un `<MyContext.Provider>` plus haut dans l’arbre pour *fournir* une valeur de contexte.
 
+**Un exemple consolidé avec Context.Provider**
+
+```js{31-36}
+const themes = {
+  light: {
+    foreground: "#000000",
+    background: "#eeeeee"
+  },
+  dark: {
+    foreground: "#ffffff",
+    background: "#222222"
+  }
+};
+
+const ThemeContext = React.createContext(themes.light);
+
+function App() {
+  return (
+    <ThemeContext.Provider value={themes.dark}>
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <button style={{ background: theme.background, color: theme.foreground }}>
+      Je suis stylé par le contexte de thème !
+    </button>
+  );
+}
+```
+
+Cet exemple est une version modifiée pour utiliser les Hooks de l’exemple dans le [guide avancé des Contextes](/docs/context.html), au sein duquel vous pourrez trouver davantage d’informations sur l’utilisation appropriée de Context.
+
 ## Hooks supplémentaires {#additional-hooks}
 
 Les Hooks qui suivent sont soit des variantes des Hooks basiques des sections précédentes, soit seulement nécessaires pour des cas à la marge spécifiques. Ne vous sentez pas obligé·e de les apprendre dès le départ.
@@ -229,8 +274,8 @@ function Counter() {
   return (
     <>
       Total : {state.count}
-      <button onClick={() => dispatch({type: 'increment'})}>+</button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }
@@ -286,10 +331,10 @@ function Counter({initialCount}) {
       Total : {state.count}
       <button
         onClick={() => dispatch({type: 'reset', payload: initialCount})}>
-        Reset
+        Réinitialiser
       </button>
-      <button onClick={() => dispatch({type: 'increment'})}>+</button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }
