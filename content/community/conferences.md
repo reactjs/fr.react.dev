@@ -30,15 +30,20 @@ Le 19 octobre 2019 à São Paulo, Brésil
 
 [Site web](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
 
+### React Summit 2019 {#reactsummit2019}
+Le 30 novembre 2019 à Lagos, Nigeria
+
+[Site web](https://reactsummit2019.splashthat.com) - [Twitter](https://twitter.com/react_summit)
+
 ### React Day Berlin 2019 {#react-day-berlin-2019}
 Le 6 décembre 2019 à Berlin, Allemagne
 
 [Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://www.youtube.com/reactdayberlin)
 
-### ReactConf AU 2020 {#reactconfau}
-Les 27 et 28 mai 2020 à Sydney, Australie
+### React Summit Amsterdam 2020 {#react-summit-2020}
+Du 15 au 17 avril 2020 à Amsterdam, Pays-Bas
 
-[Site web](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
+[Site web](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
 
 ### Render-Atlanta 2020 {#render-atlanta-2020}
 Du 4 au 6 mai 2020 à Atlanta, GA, États-Unis.
@@ -54,6 +59,11 @@ Du 14 au 15 mai 2020 à Paris, France
 Du 26 au 29 mai à Helsinki, Finland
 
 [Site web](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
+
+### ReactConf AU 2020 {#reactconfau}
+Les 27 et 28 mai 2020 à Sydney, Australie
+
+[Site web](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
 
 ### React Next 2020 {#react-next-2020}
 Le 15 juin 2020 à Tel Aviv, Israel.
@@ -93,7 +103,7 @@ Du 22 au 23 février 2016 à San Francisco, États-Unis d'Amérique
 ### React Amsterdam 2016 {#react-amsterdam-2016}
 Le 16 avril 2016 à Amsterdam, Pays-Bas
 
-[Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
+[Site web](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
 
 ### ReactEurope 2016 {#reacteurope-2016}
 Du 2 au 3 juin 2016 à Paris, France
@@ -143,7 +153,7 @@ Le 28 mars 2017 à Londres, Royaume-Uni
 ### React Amsterdam 2017 {#react-amsterdam-2017}
 Le 21 avril 2017 à Amsterdam, Pays-Bas
 
-[Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
+[Site web](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
 
 ### ReactEurope 2017 {#reacteurope-2017}
 Du 18 au 19 mai 2017 à Paris, France
@@ -248,7 +258,7 @@ Le 31 mars 2018 à Kiev, Ukraine
 ### React Amsterdam 2018 {#react-amsterdam-2018}
 Le 13 avril 2018 à Amsterdam, Pays-Bas
 
-[Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
+[Site web](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
 
 ### React Finland 2018 {#react-finland-2018}
 Du 24 au 26 avril 2018 à Helsinki, Finlande
@@ -353,7 +363,7 @@ Du 4 au 5 avril 2019 à Cracovie, Pologne
 ### React Amsterdam 2019 {#react-amsterdam-2019}
 Le 12 avril 2019 à Amsterdam, Pays-Bas
 
-[Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
+[Site web](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
 
 ### React Finland 2019 {#react-finland-2019}
 Du 24 au 26 avril à Helsinki, Finlande
