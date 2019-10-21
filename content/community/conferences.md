@@ -13,6 +13,11 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 
 ## Prochaines conférences {#upcoming-conferences}
 
+### React Summit 2019 {#reactsummit2019}
+November 30, 2019 in Lagos, Nigeria
+
+[Website](https://reactsummit2019.splashthat.com) -[Twitter](https://twitter.com/react_summit)
+
 ### React Conf 2019 {#react-conf-2019}
 
 Du 24 au 25 octobre 2019 à Henderson, Nevada, USA
@@ -39,6 +44,11 @@ Le 6 décembre 2019 à Berlin, Allemagne
 Les 27 et 28 mai 2020 à Sydney, Australie
 
 [Site web](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
+
+### React Summit Amsterdam 2020 {#react-summit-2020}
+April 15-17, 2020 in Amsterdam, The Netherlands
+
+[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
 
 ### Render-Atlanta 2020 {#render-atlanta-2020}
 Du 4 au 6 mai 2020 à Atlanta, GA, États-Unis.
@@ -93,7 +103,11 @@ Du 22 au 23 février 2016 à San Francisco, États-Unis d'Amérique
 ### React Amsterdam 2016 {#react-amsterdam-2016}
 Le 16 avril 2016 à Amsterdam, Pays-Bas
 
+<<<<<<< HEAD
 [Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
+=======
+[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
+>>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
 
 ### ReactEurope 2016 {#reacteurope-2016}
 Du 2 au 3 juin 2016 à Paris, France
@@ -143,7 +157,11 @@ Le 28 mars 2017 à Londres, Royaume-Uni
 ### React Amsterdam 2017 {#react-amsterdam-2017}
 Le 21 avril 2017 à Amsterdam, Pays-Bas
 
+<<<<<<< HEAD
 [Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
+=======
+[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
+>>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
 
 ### ReactEurope 2017 {#reacteurope-2017}
 Du 18 au 19 mai 2017 à Paris, France
@@ -248,7 +266,11 @@ Le 31 mars 2018 à Kiev, Ukraine
 ### React Amsterdam 2018 {#react-amsterdam-2018}
 Le 13 avril 2018 à Amsterdam, Pays-Bas
 
+<<<<<<< HEAD
 [Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
+=======
+[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
+>>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
 
 ### React Finland 2018 {#react-finland-2018}
 Du 24 au 26 avril 2018 à Helsinki, Finlande
@@ -353,7 +375,11 @@ Du 4 au 5 avril 2019 à Cracovie, Pologne
 ### React Amsterdam 2019 {#react-amsterdam-2019}
 Le 12 avril 2019 à Amsterdam, Pays-Bas
 
+<<<<<<< HEAD
 [Site web](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
+=======
+[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
+>>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
 
 ### React Finland 2019 {#react-finland-2019}
 Du 24 au 26 avril à Helsinki, Finlande
