@@ -73,7 +73,6 @@ permalink: community/ui-components.html
 * **[video-react](https://github.com/video-react/video-react)** : un lecteur de vidéo web construit pour le HTML5 en utilisant React.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell)** : générez des formulaires complexes, validés, et extensibles basés sur des descripteurs JSON.
 
-<<<<<<< HEAD
 ## Composants payants {#fee-based-components}
 
 * **[ag-Grid](https://www.ag-grid.com)** : grille de données avancée pour React.
@@ -84,14 +83,4 @@ permalink: community/ui-components.html
 * **[KendoReact](https://www.telerik.com/kendo-react-ui/)** : éléments d'UI pour les développeurs React.
 * **[Mobiscroll React UI Components](https://mobiscroll.com/react)** : éléments d'UI pour les développements d'application mobile en React.
 * **[React UI Toolkit](https://react-ui-tools.com/)** : 115+ composants UI maintenus professionnellement allant d’une grille robuste à des graphiques, et plus encore. Essayez-les GRATUITEMENT et construisez vos applis React plus vite.
-=======
-* **[ag-Grid](https://www.ag-grid.com)** Advanced data grid / data table for React.
-* **[DevExtreme Reactive](https://devexpress.github.io/devextreme-reactive/react/)** High-performance plugin-based Data Grid, Scheduler and Chart components for Bootstrap and Material Design.
-* **[ExtReact components](https://www.sencha.com/products/extreact//)**: 115+ Ready-to-Use UI Components.
-* **[Grapecity Wijmo UI Components for React](https://www.grapecity.com/en/react/)**: Expand your React UI options with Wijmo’s complete collection of JavaScript components.
-* **[jQWidgets React components](https://www.jqwidgets.com/react/)**: Enterprise Ready 70+ UI Components.
-* **[KendoReact](https://www.telerik.com/kendo-react-ui/)**: UI for React Developers.
-* **[Mobiscroll React UI Components](https://mobiscroll.com/react)** Mobile UI Controls for the Productive React Developer.
-* **[React UI Toolkit](https://react-ui-tools.com/)**: 115+ professionally maintainted UI components ranging from a robust grid to charts and more. Try for FREE and build React apps faster.
-* **[Flatlogic React Admin Templates](https://flatlogic.com/templates/react)** 5+ Paid and Free React Admin templates with a lot of components to speed up web development. No jQuery.
->>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
+* **[Flatlogic React Admin Templates](https://flatlogic.com/templates/react)** : 5+ gabarits gratuits et payants d’administration avec des tas de composants pour accélérer le développement web.  Pas de jQuery.
