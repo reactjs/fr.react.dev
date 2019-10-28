@@ -344,7 +344,7 @@ function Counter({initialCount}) {
 
 Si vous renvoyez la même valeur que l'état actuel dans un Hook de réduction, React abandonnera la mise à jour, ce qui signifie qu'aucun nouveau rendu des enfants ne sera effectué et qu'aucun effet ne sera déclenché. (React utilise [l'algorithme de comparaison `Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object/is).)
 
-Notez que React pourrait encore avoir besoin de mettre à jour ce composant spécifique avant de quitter. Cela ne devrait pas être une préoccupation, car React n'ira pas inutilement "plus profondément" dans l'arbre. Si vous effectuez des calculs coûteux lors du rendu, vous pouvez les optimiser avec `useMemo`.
+Remarquez que React pourrait encore avoir besoin de mettre à jour ce composant spécifique avant de lâcher l’affaire. Ça ne devrait pas vous soucier car React n'ira pas inutilement « plus profond » dans l’arbre. Si vous effectuez des calculs coûteux lors du rendu, vous pouvez les optimiser avec `useMemo`.
 
 ### `useCallback` {#usecallback}
 
