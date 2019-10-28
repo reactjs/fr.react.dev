@@ -26,8 +26,13 @@
 - name: catalan
   translated_name: Català
   code: ca
+<<<<<<< HEAD
   status: 0
 - name: allemand
+=======
+  status: 1
+- name: German
+>>>>>>> 081bb31226919062938ef924472ba1b4170facfc
   translated_name: Deutsch
   code: de
   status: 1

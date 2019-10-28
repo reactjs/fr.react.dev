@@ -106,6 +106,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [Washington, DC - ReactJS](https://www.meetup.com/React-DC/)
 
 ## France {#france}
+* [Nantes](https://www.meetup.com/React-Nantes/)
 * [Lille](https://www.meetup.com/ReactBeerLille/)
 * [Paris](https://www.meetup.com/ReactJS-Paris/)
 
