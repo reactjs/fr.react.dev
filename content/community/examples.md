@@ -24,3 +24,5 @@ La communauté React a créé de nombreux exemples de projets. N'hésitez pas à
 * **[Speedy math](https://github.com/pankajladhar/speedy-math)** Une application qui permet aux enfants de pratiquer les mathématiques de base, telles que l’addition, la soustraction, la multiplication et la comparaison. Il s’agit d’une Progressive Web App (PWA, application web progressive en français) fonctionnant hors-connexion et pouvant être installée comme application.
 * **[Unit Converter](https://github.com/KarthikeyanRanasthala/react-unit-converter)** Un convertisseur d’unités minimal mais responsif construit avec React, Material-UI et Convert-Units.
 * **[BMI Calculator](https://github.com/GermaVinsmoke/bmi-calculator)** Une appli React basée Hooks pour calculer l’indice de masse corporelle.
+* **[ReactJS Hangman Game](https://github.com/vetrivelcsamy/reactjs-hangman)** Un jeu de pendu en ReactJS dans lequel vous devez trouver le nom d’un langage de programmation.
+* **[Radix Converter](https://github.com/kumom/radix-converter)** Un petit outil de conversion de nombres entre des bases numériques allant de 2 à 36 sans limite de taille.

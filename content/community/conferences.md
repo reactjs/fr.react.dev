@@ -13,24 +13,6 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 
 ## Prochaines conférences {#upcoming-conferences}
 
-### React Conf 2019 {#react-conf-2019}
-
-Du 24 au 25 octobre 2019 à Henderson, Nevada, USA
-
-[Site web](https://conf.reactjs.org/) - [Twitter](https://twitter.com/reactjs)
-
-### React Advanced 2019 {#react-advanced-2019}
-
-Le 25 octobre 2019 à Londres, Royaume-Uni
-
-[Site web](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Vidéos](https://youtube.com/c/ReactConferences)
-
-### React Conf Brasil 2019 {#react-conf-2019}
-Le 19 octobre 2019 à São Paulo, Brésil
-
-[Site web](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
-
-### React Summit 2019 {#reactsummit2019}
 Le 30 novembre 2019 à Lagos, Nigeria
 
 [Site web](https://reactsummit2019.splashthat.com) - [Twitter](https://twitter.com/react_summit)
@@ -45,7 +27,12 @@ Du 15 au 17 avril 2020 à Amsterdam, Pays-Bas
 
 [Site web](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
 
-### Render-Atlanta 2020 {#render-atlanta-2020}
+### App.js Conf 2020 {#appjsonf2020}
+Du 23 au 24 avril 2020 à Kraków, Pologne
+
+[Site web](http://appjs.co/react) - [Twitter](https://twitter.com/appjsconf)
+
+### render(ATL) 2020 {#render-atlanta-2020}
 Du 4 au 6 mai 2020 à Atlanta, GA, États-Unis.
 
 [Site web](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/)
@@ -70,7 +57,7 @@ Le 15 juin 2020 à Tel Aviv, Israel.
 
 [Site web](https://react-next.com/) - [Twitter](https://twitter.com/reactnext) - [Facebook](https://www.facebook.com/ReactNext2016/)
 
-### React Week NY 2020 {#react-week-NY-2020}
+### React Week NY 2020 {#react-week-ny-2020}
 Le 17 juillet 2020 à New York City, NY, États-Unis.
 
 [Site web](https://reactweek.nyc/) - [Twitter](https://twitter.com/reactweek) - [Facebook](https://www.facebook.com/reactweek)
@@ -459,3 +446,18 @@ Du 26 au 28 septembre 2019 à Goa, Inde
 Du 26 au 28 septembre 2019 à Alicante, Espagne
 
 [Site web](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante)
+
+### React Conf 2019 {#react-conf-2019}
+Du 24 au 25 octobre 2019 à Henderson, Nevada, USA
+
+[Site web](https://conf.reactjs.org/) - [Twitter](https://twitter.com/reactjs)
+
+### React Advanced 2019 {#react-advanced-2019}
+Le 25 octobre 2019 à Londres, Royaume-Uni
+
+[Site web](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Vidéos](https://youtube.com/c/ReactConferences)
+
+### React Conf Brasil 2019 {#react-conf-2019}
+Le 19 octobre 2019 à São Paulo, Brésil
+
+[Site web](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
