@@ -130,11 +130,11 @@
 - title: Tests
   items:
     - id: testing
-      title: Testing Overview
+      title: Aperçu des tests
     - id: testing-recipes
-      title: Testing Recipes
+      title: Recettes de test
     - id: testing-environments
-      title: Testing Environments
+      title: Environnements de test
 - title: Mode concurrent (expérimental)
   isOrdered: true
   items:
