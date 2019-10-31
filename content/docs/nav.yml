@@ -62,7 +62,7 @@
     - id: portals
       title: Portails
     - id: profiler
-      title: Profiler
+      title: Profileur
     - id: react-without-es6
       title: React sans ES6
     - id: react-without-jsx
