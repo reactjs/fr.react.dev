@@ -7,7 +7,7 @@ prev: testing-recipes.html
 
 <!-- Ce document vise les personnes déjà à l’aise avec JavaScript, et qui ont probablement déjà écrit des tests avec.  Il constitue une sorte de référence des différences entre les environnements de test pour les composants React, en explicitant en quoi ces différences affectent l’écriture des tests.  Ce document suppose par ailleurs une légère priorité envers les composants web basés sur react-dom, mais comprend des informations pour les autres moteurs de rendu. -->
 
-Ce document liste les facteurs susceptibles d’affecter votre environ­­nement, et fournit des conseils pour quelques scénarios.
+Ce document détaille les facteurs susceptibles d’affecter votre environ­­nement, et fournit des conseils pour quelques scénarios.
 
 ### Harnais de test {#test-runners}
 
