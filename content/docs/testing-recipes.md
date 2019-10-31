@@ -78,7 +78,7 @@ Vous trouverez peut-être que le recours manuel à `act()` est rapidement un tan
 
 ### Rendu {#rendering}
 
-Vous voudrez fréquemment vérifier que le rendu d’un composant est correct pour un jeu de props donné.  Supposons qu’on a un composant simple qui affiche un message basé sur une prop :
+Vous voudrez fréquemment vérifier que le rendu d’un composant est correct pour un jeu de props donné.  Prenons un composant simple qui affiche un message basé sur une prop :
 
 ```jsx
 // hello.js
@@ -624,4 +624,4 @@ expect(root).toMatchSnapshot();
 
 ### Pas trouvé votre bonheur ? {#something-missing}
 
-Si nous avons oublié de couvrir un scénario courant, n’hésitez pas à nous en faire par sur notre [outil de suivi de tickets](https://github.com/reactjs/reactjs.org/issues) pour le site web de la documentation.
+Si nous avons oublié de couvrir un scénario courant, n’hésitez pas à nous en faire part sur notre [outil de suivi de tickets](https://github.com/reactjs/reactjs.org/issues) pour le site web de la documentation.
