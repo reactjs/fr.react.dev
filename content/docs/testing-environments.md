@@ -11,11 +11,11 @@ Ce document liste les facteurs susceptibles d’affecter votre environ­­nement
 
 ### Harnais de test {#test-runners}
 
-Les harnais de test tels que [Jest](https://jestjs.io/), [mocha](https://mochajs.org/) ou [ava](https://github.com/avajs/ava) vous permettent d’écrire des suites de tests en utilisant du JavaScript classique, et les exécutent dans le cadre de votre processus de développement. Qui plus est, les suites de tests peuvent être exécutés au sein de votre intégration continue.
+Les harnais de test tels que [Jest](https://jestjs.io/), [mocha](https://mochajs.org/) ou [ava](https://github.com/avajs/ava) vous permettent d’écrire des suites de tests en utilisant du JavaScript classique, et les exécutent dans le cadre de votre processus de développement. Qui plus est, les suites de tests peuvent être exécutées au sein de votre intégration continue.
 
 - Jest est largement compatible avec les projets React, en offrant des fonctionnalités telles que l’isolation des [modules](#mocking-modules) et des [horloges](#mocking-timers), ainsi qu’une prise en charge de [`jsdom`](#mocking-a-rendering-surface). **Si vous utilisez Create React App, [Jest est fourni de base](https://facebook.github.io/create-react-app/docs/running-tests) avec des réglages par défaut très utiles.**
 - Les bibliothèques comme [mocha](https://mochajs.org/#running-mocha-in-the-browser) sont bien adaptées à une utilisation au sein de véritables navigateurs, et pourraient vous aider pour des tests ayant explicitement besoin de ce type de contexte d’exécution.
-- Les tests de bout en bout sont surtout pertinents pour les scénarios d’utilisation plus longs, voire impliquant plusieurs pages successives, et requièrent une [mise en place distincte](#end-to-end-tests-aka-e2e-tests).
+- Les tests de bout en bout sont surtout pertinents pour des scénarios plus longs impliquant plusieurs pages successives, et requièrent une [mise en place distincte](#end-to-end-tests-aka-e2e-tests).
 
 ### Simuler une surface d’affichage {#mocking-a-rendering-surface}
 
@@ -27,7 +27,7 @@ Tout comme un véritable navigateur, jsdom nous permet de modéliser les interac
 
 Une large part des tests d’interface utilisateur (UI) peuvent être écrits de cette façon : en utilisant Jest comme harnais, en réalisant le rendu avec jsdom, et en spécifiant les interactions utilisateurs sous forme de séquences d’événements au sein du navigateur, à l’aide de la fonction utilitaire `act()` [<small>(exemple)</small>](/docs/testing-recipes.html).  Par exemple, de très nombreux tests de React lui-même sont écrits ainsi.
 
-Si vous écrivez une bibliothèque qui doit tester principalement des comportements spécifiques aux navigateurs, et requiert donc des comportements natifs du navigateur tels que la mise en page où de véritables champs de saisie, il vous faudra alors plutôt une solution comme [mocha](https://mochajs.org/).
+Si vous écrivez une bibliothèque qui doit tester principalement des comportements spécifiques aux navigateurs, et requiert donc des comportements natifs du navigateur tels que la mise en page ou de véritables champs de saisie, il vous faudra alors plutôt une solution comme [mocha](https://mochajs.org/).
 
 Dans un environnement où vous _ne pouvez pas_ simuler un DOM (par exemple en testant des composants React Native depuis Node.js), vous pourriez opter pour des [utilitaires de simulation d’événements](https://reactjs.org/docs/test-utils.html#simulate), qui simulent les interactions avec les éléments. Une autre option consisterait à utiliser la fonction utilitaire `fireEvent` fournie par [`@testing-library/react-native`](https://testing-library.com/docs/native-testing-library).
 

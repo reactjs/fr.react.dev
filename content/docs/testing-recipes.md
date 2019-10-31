@@ -456,7 +456,7 @@ export default function Card(props) {
 }
 ```
 
-Nous pouvons écrire les tests de ce composant en tiran parti de la [simulation d’horloges de Jest](https://jestjs.io/docs/en/timer-mocks) et en testant les différents états possibles.
+Nous pouvons écrire les tests de ce composant en tirant parti de la [simulation d’horloges de Jest](https://jestjs.io/docs/en/timer-mocks) et en testant les différents états possibles.
 
 ```jsx{7,31,37,49,59}
 // card.test.js
