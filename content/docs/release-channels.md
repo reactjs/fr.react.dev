@@ -14,7 +14,7 @@ Chaque canal de sortie React est conçu pour des cas d’usages bien spécifique
 
 - [**Latest**](#latest-channel) fournit les versions stables de React, conformes à semver.  C’est ce que vous obtenez en installant React depuis npm.  C’est le canal que vous utilisez déjà aujourd’hui. **Utilisez ce canal pour toute application React visant des utilisateurs finaux.**
 - [**Next**](#next-channel) est basée sur la branche `master` du dépôt de code source de React.  Considérez-le comme des versions candidates de la prochaine version semver mineure.  Utilisez-le pour faire des tests d’intégration entre React et des projets tiers.
-- [**Experimental**](#experimental-channel) comprend les API et fonctionnalités expérimentales qu’on ne trouve pas dans les versions stables.  C’est là aussi basé sur la branche `master`, mais des drapeaux de fonctionnalités supplémentaires ont été activés.  Utilisez ce canal pour essayer des fonctionnalités à venir en amont de leur sortie officielle.
+- [**Experimental**](#experimental-channel) comprend les API et fonctionnalités expérimentales qu’on ne trouve pas dans les versions stables. Le canal est également basé sur la branche `master`, mais des drapeaux de fonctionnalités supplémentaires y sont activés.  Utilisez ce canal pour essayer des fonctionnalités à venir en amont de leur sortie officielle.
 
 Toutes ces versions sont publiées sur npm, mais seul *Latest* utilise [une gestion sémantique des versions](/docs/faq-versioning.html). Les pré-versions (celles des canaux *Next* et *Experimental*) ont des versions dont l’identifiant est un hash basé sur leur contenu, par exemple `0.0.0-1022ee0ec` pour *Next* et `0.0.0-experimental-1022ee0ec` pour *Experimental*.
 
