@@ -81,6 +81,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [Chicago, IL - ReactJS](https://www.meetup.com/React-Chicago/)
 * [Columbus, OH - ReactJS](https://www.meetup.com/ReactJS-Columbus-meetup/)
 * [Dallas, TX - ReactJS](https://www.meetup.com/ReactDallas/)
+* [Detroit, MI - Detroit React User Group](https://www.meetup.com/Detroit-React-User-Group/)
 * [Irvine, CA - ReactJS](https://www.meetup.com/ReactJS-OC/)
 * [Kansas City, MO - ReactJS](https://www.meetup.com/Kansas-City-React-Meetup/)
 * [Las Vegas, NV - ReactJS](https://www.meetup.com/ReactVegas/)
@@ -129,14 +130,10 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [Delhi NCR](https://www.meetup.com/React-Delhi-NCR/)
 * [Jaipur](https://www.meetup.com/JaipurJS-Developer-Meetup/)
 
-<<<<<<< HEAD
-## Irlande {#ireland}
-=======
-## Indonesia {#indonesia}
+## Indonésie {#indonesia}
 * [Indonesia](https://www.meetup.com/reactindonesia/)
 
-## Ireland {#ireland}
->>>>>>> 3846b501066388c4d0bc84fc8389918d9080d5d2
+## Irlande {#ireland}
 * [Dublin](https://www.meetup.com/ReactJS-Dublin/)
 
 ## Israël {#israel}
