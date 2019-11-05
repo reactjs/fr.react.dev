@@ -33,7 +33,7 @@ Du 23 au 24 avril 2020 à Kraków, Pologne
 [Site web](http://appjs.co/react) - [Twitter](https://twitter.com/appjsconf)
 
 ### React Day Bangalore 2020 {#react-day-bangalore-2020}
-April 25, 2020 in Bangalore, India
+Le 25 avril 2020 à Bangalore, Inde
 
 [Website](https://reactday.in) - [Twitter](https://twitter.com/ReactDayIn)
 
