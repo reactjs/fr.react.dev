@@ -1,102 +1,103 @@
 ---
-title: "Preparing for the Future with React Prereleases"
+title: "Préparer l’avenir avec les pré-versions de React"
 author: [acdlite]
 ---
 
-To share upcoming changes with our partners in the React ecosystem, we're establishing official prerelease channels. We hope this process will help us make changes to React with confidence, and give developers the opportunity to try out experimental features.
+Afin de partager les évolutions à venir avec nos partenaires de l’écosystème React, nous mettons en place des canaux de sortie officiels.  Nous espérons que ce processus nous aidera à gagner en confiance lors de nos modifications à React, et donnera aux développeur·se·s l’opportunité d’essayer des fonctionnalités expérimentales.
 
-> This post will be most relevant to developers who work on frameworks, libraries, or developer tooling. Developers who use React primarily to build user-facing applications should not need to worry about our prerelease channels.
+> Cet article sera surtout pertinent pour les développeur·se·s qui travaillent sur des frameworks, des bibliothèques ou de l’outillage de développement.  Les personnes qui utilisent React principalement pour construire des applications destinées à des utilisateurs finaux ne devraient pas avoir à se préoccuper de nos canaux de sortie.
 
-React relies on a thriving open source community to file bug reports, open pull requests, and [submit RFCs](https://github.com/reactjs/rfcs). To encourage feedback, we sometimes share special builds of React that include unreleased features.
+React dépend d’une communauté open source florissante pour signaler des bugs, ouvrir des *pull requests* et [soumettre des RFC](https://github.com/reactjs/rfcs). Afin d’encourager des retours efficaces nous partageons parfois des builds spéciaux de React qui comportent des fonctionnalités encore officieuses.
 
-Because the source of truth for React is our [public GitHub repository](https://github.com/facebook/react), it's always been possible to build a copy of React that includes the latest changes. However it's much easier for developers to install React from npm, so we occasionally publish prerelease builds to the npm registry. A recent example is the 16.7 alpha, which included an early version of the Hooks API.
+Dans la mesure où la source de vérité pour React est notre [dépôt GitHub public](https://github.com/facebook/react), il a toujours été possible de construire une version de React qui incluerait les toutes dernières évolutions.  Cependant, il est nettement plus simple pour les développeur·se·s d’installer React à partir de npm, raison pour laquelle nous publions de temps à autre des builds de pré-version disponibles dans le référentiel npm.  La version 16.7 alpha est un exemple récent, qui incluait un embryon de l’API des Hooks.
 
-We would like to make it even easier for developers to test prerelease builds of React, so we're formalizing our process with three separate release channels.
+Nous souhaitons permettre aux développeur·se·s de tester encore plus facilement des pré-versions de React, c’est pourquoi nous formalisons notre process avec trois canaux de sortie séparés.
 
-## Release Channels
+## Canaux de sortie
 
-> The information in this post is also available on our [Release Channels](/docs/release-channels.html) page. We will update that document whenever there are changes to our release process.
+> Les informations de cet article sont également disponibles dans notre page [Canaux de sortie](/docs/release-channels.html) page.  Nous mettrons à jour ce document-là si nous ajustons notre processus de publication de versions.
 
-Each of React's release channels is designed for a distinct use case:
+Chaque canal de sortie React est conçu pour des cas d’usages bien spécifiques :
 
-- [**Latest**](#latest-channel) is for stable, semver React releases. It's what you get when you install React from npm. This is the channel you're already using today. **Use this for all user-facing React applications.**
-- [**Next**](#next-channel) tracks the master branch of the React source code repository. Think of these as release candidates for the next minor semver release. Use this for integration testing between React and third party projects.
-- [**Experimental**](#experimental-channel) includes experimental APIs and features that aren't available in the stable releases. These also track the master branch, but with additional feature flags turned on. Use this to try out upcoming features before they are released.
+- [**Latest**](#latest-channel) fournit les versions stables de React, conformes à semver.  C’est ce que vous obtenez en installant React depuis npm.  C’est le canal que vous utilisez déjà aujourd’hui. **Utilisez ce canal pour toute application React visant des utilisateurs finaux.**
+- [**Next**](#next-channel) est basée sur la branche `master` du dépôt de code source de React.  Considérez-le comme des versions candidates de la prochaine version semver mineure.  Utilisez-le pour faire des tests d’intégration entre React et des projets tiers.
+- [**Experimental**](#experimental-channel) comprend les API et fonctionnalités expérimentales qu’on ne trouve pas dans les versions stables.  C’est là aussi basé sur la branche `master`, mais des drapeaux de fonctionnalités supplémentaires ont été activés.  Utilisez ce canal pour essayer des fonctionnalités à venir en amont de leur sortie officielle.
 
-All releases are published to npm, but only Latest uses [semantic versioning](/docs/faq-versioning.html). Prereleases (those in the Next and Experimental channels) have versions generated from a hash of their contents, e.g. `0.0.0-1022ee0ec` for Next and `0.0.0-experimental-1022ee0ec` for Experimental.
+Toutes ces versions sont publiées sur npm, mais seul *Latest* utilise [une gestion sémantique des versions](/docs/faq-versioning.html). Les pré-versions (celles des canaux *Next* et *Experimental*) ont des versions dont l’identifiant est un hash basé sur leur contenu, par exemple `0.0.0-1022ee0ec` pour *Next* et `0.0.0-experimental-1022ee0ec` pour *Experimental*.
 
-**The only officially supported release channel for user-facing applications is Latest**. Next and Experimental releases are provided for testing purposes only, and we provide no guarantees that behavior won't change between releases. They do not follow the semver protocol that we use for releases from Latest.
+**Latest est le seul canal de sortie officiellement autorisé pour des applications visant les utilisateurs finaux.**  Les sorties des canaux *Next* et *Experimental* sont fournies dans une optique de tests uniquement, et leur comportement est susceptible de varier d’une sortie à l’autre.  Elles ne respectent pas le protocole semver que nous utilisons pour les sorties du canal *Latest*.
 
-By publishing prereleases to the same registry that we use for stable releases, we are able to take advantage of the many tools that support the npm workflow, like [unpkg](https://unpkg.com) and [CodeSandbox](https://codesandbox.io).
+En publiant les pré-versions sur le même référentiel que pour les versions stables, nous pouvons tirer parti des nombreux outils qui se basent sur npm pour fonctionner, tels que [unpkg](https://unpkg.com) et [CodeSandbox](https://codesandbox.io).
 
-### Latest Channel
+### Canal *Latest*
 
-Latest is the channel used for stable React releases. It corresponds to the `latest` tag on npm. It is the recommended channel for all React apps that are shipped to real users.
+Le canal *Latest* est utilisé pour les versions stables de React.  Il correspond à l’étiquette `latest` sur npm.  C’est le canal recommandé pour toute appli React proposée à de véritables utilisateurs.
 
-**If you're not sure which channel you should use, it's Latest.** If you're a React developer, this is what you're already using.
+**Si vous n’êtes pas sûr·e du canal que vous devriez utiliser, alors c’est *Latest*.**  Si vous développez avec React, c’est ce que vous utilisez déjà.
 
-You can expect updates to Latest to be extremely stable. Versions follow the semantic versioning scheme. Learn more about our commitment to stability and incremental migration in our [versioning policy](/docs/faq-versioning.html).
+Vous pouvez vous attendre à ce que les mises à jour sur *Latest* soient extrêmement stables.  On y suit un protocole sémantique de gestion des versions.  Vous pouvez en apprendre davantage sur nos engagements en termes de stabilité et de migration incrémentielle en consultant notre [politique de gestion des versions](/docs/faq-versioning.html).
 
-### Next Channel
+### Canal *Next*
 
-The Next channel is a prerelease channel that tracks the master branch of the React repository. We use prereleases in the Next channel as release candidates for the Latest channel. You can think of Next as a superset of Latest that is updated more frequently.
+Le canal *Next* est un canal de pré-version qui piste la branche `master` du dépôt React.  Nous utilisons les pré-versions du canal *Next* comme des versions candidates pour le canal *Latest*.  Vous pouvez imaginer *Next* comme un sur-ensemble de *Latest*, mis à jour plus fréquemment.
 
-The degree of change between the most recent Next release and the most recent Latest release is approximately the same as you would find between two minor semver releases. However, **the Next channel does not conform to semantic versioning.** You should expect occasional breaking changes between successive releases in the Next channel.
+L’ampleur des changements entre la version *Next* la plus récente et la dernière version *Latest* est à peu près du même ordre que ce que vous trouveriez entre deux versions semver mineures.  En revanche, **le canal *Next* ne respecte pas la gestion sémantique des versions.**  Vous êtes susceptible d’y rencontrer des ruptures de compatibilité ascendante d’une version à la suivante.
 
-**Do not use prereleases in user-facing applications.**
+**N’utilisez pas les pré-versions dans des applications pour utilisateurs finaux.**
 
-Releases in Next are published with the `next` tag on npm. Versions are generated from a hash of the build's contents, e.g. `0.0.0-1022ee0ec`.
+Les sorties de *Next* sont publiées avec l’étiquette `next` sur npm.  Les numéros de versions sont générés sur la base d’un hash de leur contenu, par exemple `0.0.0-1022ee0ec`.
 
-#### Using the Next Channel for Integration Testing
+#### Utiliser le canal *Next* pour des tests d’intégration
 
-The Next channel is designed to support integration testing between React and other projects.
+Le canal *Next* est conçu pour permettre des tests d’intégration entre React et d’autres projets qui se basent dessus.
 
-All changes to React go through extensive internal testing before they are released to the public. However, there are a myriad of environments and configurations used throughout the React ecosystem, and it's not possible for us to test against every single one.
+Toutes les modifications apportées à React passent par une phase poussée de tests internes avant d’être publiées.  Cependant, l’écosystème React recèle une myriade d’environnements et de configurations, et il nous est parfaitement impossible de tester chaque combinaison.
 
-If you're the author of a third party React framework, library, developer tool, or similar infrastructure-type project, you can help us keep React stable for your users and the entire React community by periodically running your test suite against the most recent changes. If you're interested, follow these steps:
+Si vous êtes l’auteur·e d’une solution tierce pour React (framework, bibliothèque, outil de développement ou d’autres projets de type infrastructurel), vous pouvez nous aider à préserver la stabilité de React pour vos utilisateurs et la communauté React toute entière en exécutant régulièrement votre suite de tests avec les dernières modifications en date.  Si cela vous intéresse, suivez ces étapes :
 
-- Set up a cron job using your preferred continuous integration platform. Cron jobs are supported by both [CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) and [Travis CI](https://docs.travis-ci.com/user/cron-jobs/).
-- In the cron job, update your React packages to the most recent React release in the Next channel, using `next` tag on npm. Using the npm cli:
+- Mettez en place une tâche périodique au sein de votre plate-forme préférée d’intégration continue.  On trouve ce type d’exécutions périodiques tant dans [CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) que dans [Travis CI](https://docs.travis-ci.com/user/cron-jobs/).
+- Dans la tâche, mettez à jour les modules React à partir de la version la plus récente du canal *Next*, grâce à l’étiquette `next` sur npm.  Avec la CLI de npm :
 
   ```
   npm update react@next react-dom@next
   ```
 
-  Or yarn:
+  Ou avec Yarn :
 
   ```
   yarn upgrade react@next react-dom@next
   ```
-- Run your test suite against the updated packages.
-- If everything passes, great! You can expect that your project will work with the next minor React release.
-- If something breaks unexpectedly, please let us know by [filing an issue](https://github.com/facebook/react/issues).
 
-A project that uses this workflow is Next.js. (No pun intended! Seriously!) You can refer to their [CircleCI configuration](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml) as an example.
+- Exécutez votre suite de tests avec les modules ainsi mis à jour.
+- Si tout fonctione, super !  Vous pouvez vous attendre à ce que votre projet continue à fonctionner avec la prochaine version mineure de React.
+- Si quelque chose casse de façon inattendue, merci de nous le signaler en [créant un ticket](https://github.com/facebook/react/issues).
 
-### Experimental Channel
+Le projet Next.js (promis, on n’a pas fait exprès !) utilise cette approche.  Vous pouvez consulter leur [configuration CircleCI](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml) à titre d’exemple.
 
-Like Next, the Experimental channel is a prerelease channel that tracks the master branch of the React repository. Unlike Next, Experimental releases include additional features and APIs that are not ready for wider release.
+### Canal *Experimental*
 
-Usually, an update to Next is accompanied by a corresponding update to Experimental. They are based on the same source revision, but are built using a different set of feature flags.
+Tout comme *Next*, le canal *Experimental* est un canal de pré-versions qui piste la branche `master` du dépôt React.  Mais contrairement à *Next*, les sorties sur *Experimental* comportent des fonctionnalités et API qui ne sont pas encore prêtes à être diffusées plus largement.
 
-Experimental releases may be significantly different than releases to Next and Latest. **Do not use Experimental releases in user-facing applications.** You should expect frequent breaking changes between releases in the Experimental channel.
+En général, une mise à jour sur *Next* est accompagnée par une mise à jour correspondante sur *Experimental*.  Elles sont basées sur la même révision de source, mais sont construites avec des jeux distincts de drapeaux de fonctionnalités.
 
-Releases in Experimental are published with the `experimental` tag on npm. Versions are generated from a hash of the build's contents, e.g. `0.0.0-experimental-1022ee0ec`.
+Les versions sur *Experimental* peuvent différer considérablement de celles sur *Next* et *Latest*. **N’utilisez pas les pré-versions *Experimental* dans les applications pour utilisateurs finaux.**  Vous pouvez vous attendre à des ruptures fréquentes de compatibilité ascendante dans les sorties du canal *Experimental*.
 
-#### What Goes Into an Experimental Release?
+Les sorties de *Experimental* sont publiées avec l’étiquette `experimental` sur npm.  Les numéros de versions sont générés sur la base d’un hash de leur contenu, par exemple `0.0.0-experimental-1022ee0ec`.
 
-Experimental features are ones that are not ready to be released to the wider public, and may change drastically before they are finalized. Some experiments may never be finalized -- the reason we have experiments is to test the viability of proposed changes.
+#### Que trouve-t-on dans une sortie *Experimental* ?
 
-For example, if the Experimental channel had existed when we announced Hooks, we would have released Hooks to the Experimental channel weeks before they were available in Latest.
+Les fonctionnalités expérimentales ne sont pas encore prêtes à être livrées à un large public, et sont susceptibles de changer radicalement d’ici leur finalisation.  Certaines expériences n’aboutiront peut-être même jamais—c’est justement pour tester la viabilité de changements proposés que nous avons ces expériences.
 
-You may find it valuable to run integration tests against Experimental. This is up to you. However, be advised that Experimental is even less stable than Next. **We do not guarantee any stability between Experimental releases.**
+Par exemple, si le canal *Experimental* avait existé quand nous avons annoncé les Hooks, nous aurions sorti les Hooks sur le canal *Experimental* plusieurs semaines avant qu’ils deviennent disponibles dans *Latest*.
 
-#### How Can I Learn More About Experimental Features?
+Vous trouverez peut-être utile de lancer des tests d‘intégration avec *Experimental*.  Libre à vous.  Ceci dit, gardez bien à l’esprit que *Experimental* est encore moins stable que *Next*. **Nous ne garantissons aucune stabilité d’une version de *Experimental* à une autre.**
 
-Experimental features may or may not be documented. Usually, experiments aren't documented until they are close to shipping in Next or Stable.
+#### Comment en apprendre davantage sur les fonctionnalités expérimentales ?
 
-If a feature is not documented, they may be accompanied by an [RFC](https://github.com/reactjs/rfcs).
+Les fonctionnalités expérimentales ne sont pas nécessairement documentées.  Le plus souvent, les expériences ne sont documentées qu’une fois qu’elles sont sur le point d’être livrées dans *Next* ou *Latest*.
 
-We will post to the React blog when we're ready to announce new experiments, but that doesn't mean we will publicize every experiment.
+Si une fonctionnalité n’est pas documentée, elle peut toutefois être accompagnée d’une [RFC](https://github.com/reactjs/rfcs).
 
-You can always refer to our public GitHub repository's [history](https://github.com/facebook/react/commits/master) for a comprehensive list of changes.
+Lorsque nous sommes prêts à annoncer de nouvelles expériences, nous en parlons sur le [blog React](/blog), mais ça ne veut pas dire que nous annonçons chaque expérience.
+
+Vous pouvez toujours vous référer à l’[historique](https://github.com/facebook/react/commits/master) de notre dépôt public sur GitHub pour une liste exhaustive des modifications.
