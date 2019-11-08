@@ -22,7 +22,7 @@ Cette page fournit un aperçu théorique du mode concurrent. **Pour une introduc
 
 Le mode concurrent est un ensemble de nouvelles fonctionnalités qui aident les applis React à rester réactives et à s’adapter de façon fluide aux capacités et au débit réseau de l’appareil de l’utilisateur.
 
-Ces fonctionnalités sont encore expérimentales et peuvent changer. Elles ne font pas encore partie d’une version stable de React, mais vous pouver les essayer dès maintenant au moyen d’un build expérimental.
+Ces fonctionnalités sont encore expérimentales et peuvent changer. Elles ne font pas encore partie d’une version stable de React, mais vous pouvez les essayer dès maintenant au moyen d’un build expérimental.
 
 ## Rendu bloquant vs. interruptible {#blocking-vs-interruptible-rendering}
 
@@ -30,7 +30,7 @@ Ces fonctionnalités sont encore expérimentales et peuvent changer. Elles ne fo
 
 Avant que la gestion de versions n’apparaisse, les flux de développement étaient très différents. On n’y trouvait aucun concept de branche. Si vous aviez besoin de modifier certains fichiers, il fallait prévenir tout le monde de ne pas y toucher pendant ce temps-là. Vous ne pouviez même pas commencer à travailler dessus en parallèle les uns des autres : vous étiez littéralement **bloqué·e** par l’autre personne.
 
-Ce scénario illustre bien la façon dont les bibliothèques d’interface utilisateur (UI) fonctionnent généralement aujourd’hui. Une fois qu’elles démarrent le rendu d’une mise à jour, y compris la création de nouveaux nœuds DOM et l’exécution du code au sein des composants, elles ne peuvent pas être interrompues. Nous appellons cette approche le « rendu bloquant ».
+Ce scénario illustre bien la façon dont les bibliothèques d’interface utilisateur (UI) fonctionnent généralement aujourd’hui. Une fois qu’elles démarrent le rendu d’une mise à jour, y compris la création de nouveaux nœuds DOM et l’exécution du code au sein des composants, elles ne peuvent pas être interrompues. Nous appelons cette approche le « rendu bloquant ».
 
 Avec le mode concurrent, le rendu n’est pas bloquant : il est interruptible. Ça améliore l’expérience utilisateur, et en prime, ça ouvre la porte à de nouvelles fonctionnalités qui étaient impossibles jusque-là. Avant de nous pencher sur des exemples concrets dans les [prochaines](/docs/concurrent-mode-suspense.html) [sections](/docs/concurrent-mode-patterns.html), survolons rapidement ces nouvelles fonctionnalités.
 
@@ -50,7 +50,7 @@ Les techniques du mode concurrent réduisent le besoin de *debouncing* et de *th
 
 ### Séquences de chargement intentionnelles {#intentional-loading-sequences}
 
-Nous disions tout à l’heure que pour comprendre le le mode concurrent, on peut imaginer que React travaille « sur une branche ». Les branches ne sont pas seulement utiles pour des correctifs à court terme, mais aussi pour des fonctionnalités plus longues à écrire. Parfois vous pouvez travailler sur une fonctionnalité qui va mettre des semaines avant d’être « assez finie » pour être fusionnée dans `master`. Ici aussi, la métaphore de la gestion de versions s’applique bien au rendu.
+Nous disions tout à l’heure que pour comprendre le mode concurrent, on peut imaginer que React travaille « sur une branche ». Les branches ne sont pas seulement utiles pour des correctifs à court terme, mais aussi pour des fonctionnalités plus longues à écrire. Parfois vous pouvez travailler sur une fonctionnalité qui va mettre des semaines avant d’être « assez finie » pour être fusionnée dans `master`. Ici aussi, la métaphore de la gestion de versions s’applique bien au rendu.
 
 Imaginez que vous naviguiez entre deux écrans d’une appli. Parfois, nous n’aurons peut-être pas assez de code et de données pour afficher un état de chargement « assez fini » à l’utilisateur au sein du nouvel écran. Transiter vers un écran vide (ou doté d’un gros *spinner*) n’est pas une expérience agréable. Et pourtant, il arrive fréquemment que le chargement du code et des données nécessaires ne prenne en fait que peu de temps. **Ne serait-il pas plus agréable que React puisse rester sur l’ancien écran un tout petit peu plus longtemps, pour ensuite « sauter » l’état de « chargement désagréable » lors de la bascule vers le nouvel écran ?**
 
@@ -60,8 +60,8 @@ C’est certes possible aujourd’hui, mais au prix d’une orchestration délic
 
 Résumons les deux exemples ci-avant pour voir comment le mode concurrent en unifie le traitement. **Avec le mode concurrent, React peut travailler à plusieurs mises à jour de l’état _en exécution concurrente_**, tout comme les branches permettent à divers membres d’une équipe de travailler indépendamment les uns des autres :
 
-* Pour les mises à jour dépendantes au processeur (CPU, telles que la création des nœuds DOM et l’exécution du code des composants), la concurrence permet à une mise à jour plus urgente « d’interrompre » le rendu qui a déjà démarré.
-* Pour les mises à jour dépendantes aux entrées/sorties (I/O, telles que la récupération de code ou de données à partir du réseau), la concurrence permet à React de commencer le rendu en mémoire avant même que les données n’arrivent, et de sauter des états de chargement désagréables.
+* Pour les mises à jour dépendantes du processeur (CPU, telles que la création des nœuds DOM et l’exécution du code des composants), la concurrence permet à une mise à jour plus urgente « d’interrompre » le rendu qui a déjà démarré.
+* Pour les mises à jour dépendantes des entrées/sorties (I/O, telles que la récupération de code ou de données à partir du réseau), la concurrence permet à React de commencer le rendu en mémoire avant même que les données n’arrivent, et de sauter des états de chargement désagréables.
 
 Ce qui est critique, c’est que la façon dont vous *utilisez* React reste inchangée. Les concepts tels que les composants, les props et l’état local continuent fondamentalement à marcher de la même façon. Quand vous voulez mettre à jour l’écran, vous ajustez l’état.
 
