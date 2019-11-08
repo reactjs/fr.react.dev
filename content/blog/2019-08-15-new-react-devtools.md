@@ -69,6 +69,6 @@ yarn build:extension
 
 ## Merci ! {#thank-you}
 
-Nous aimerions remercier toutes les personnes qui ont testé des versions préliminaires des DevTools version 4.  Vos retours nous ont beaucoup aidé à améliorer cette sortie officielle.
+Nous aimerions remercier toutes les personnes qui ont testé des versions préliminaires des DevTools version 4.  Vos retours nous ont beaucoup aidés à améliorer cette sortie officielle.
 
 Nous avons encore de nombreuses super fonctionnalités en prévision et vos retours sont toujours les bienvenus ! N’hésitez pas à ouvrir un [ticket sur GitHub](https://github.com/facebook/react/issues/new?labels=Component:%20Developer%20Tools) ou à apostropher l’équipe [@reactjs sur Twitter](https://twitter.com/reactjs).
