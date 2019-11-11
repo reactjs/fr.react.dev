@@ -147,7 +147,7 @@
     - id: concurrent-mode-adoption
       title: Adopter le mode concurrent
     - id: concurrent-mode-reference
-      title: Concurrent Mode API Reference
+      title: Référence de l’API du mode concurrent
 - title: Contribuer
   items:
   - id: how-to-contribute
