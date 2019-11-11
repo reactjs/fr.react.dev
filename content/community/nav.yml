@@ -17,6 +17,7 @@
     - id: videos
       title: Vidéos
     - id: external-resources
+<<<<<<< HEAD
       title: Ressources externes
 - title: Outils
   items:
@@ -38,3 +39,6 @@
       title: Composants UI
     - id: misc
       title: Divers
+=======
+      title: External Resources
+>>>>>>> bbea52211971834d041e76871df8981066c42a3b

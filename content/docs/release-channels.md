@@ -22,7 +22,11 @@ Toutes ces versions sont publiées sur npm, mais seul *Latest* utilise [une gest
 
 En publiant les pré-versions sur le même référentiel que pour les versions stables, nous pouvons tirer parti des nombreux outils qui se basent sur npm pour fonctionner, tels que [unpkg](https://unpkg.com) et [CodeSandbox](https://codesandbox.io).
 
+<<<<<<< HEAD
 ### Canal *Latest*
+=======
+### Latest Channel {#latest-channel}
+>>>>>>> bbea52211971834d041e76871df8981066c42a3b
 
 Le canal *Latest* est utilisé pour les versions stables de React.  Il correspond à l’étiquette `latest` sur npm.  C’est le canal recommandé pour toute appli React proposée à de véritables utilisateurs.
 
@@ -30,7 +34,11 @@ Le canal *Latest* est utilisé pour les versions stables de React.  Il correspon
 
 Vous pouvez vous attendre à ce que les mises à jour sur *Latest* soient extrêmement stables.  On y suit un protocole sémantique de gestion des versions.  Vous pouvez en apprendre davantage sur nos engagements en termes de stabilité et de migration incrémentielle en consultant notre [politique de gestion des versions](/docs/faq-versioning.html).
 
+<<<<<<< HEAD
 ### Canal *Next*
+=======
+### Next Channel {#next-channel}
+>>>>>>> bbea52211971834d041e76871df8981066c42a3b
 
 Le canal *Next* est un canal de pré-version qui piste la branche `master` du dépôt React.  Nous utilisons les pré-versions du canal *Next* comme des versions candidates pour le canal *Latest*.  Vous pouvez imaginer *Next* comme un sur-ensemble de *Latest*, mis à jour plus fréquemment.
 
@@ -40,7 +48,11 @@ L’ampleur des changements entre la version *Next* la plus récente et la derni
 
 Les sorties de *Next* sont publiées avec l’étiquette `next` sur npm.  Les numéros de versions sont générés sur la base d’un hash de leur contenu, par exemple `0.0.0-1022ee0ec`.
 
+<<<<<<< HEAD
 #### Utiliser le canal *Next* pour des tests d’intégration
+=======
+#### Using the Next Channel for Integration Testing {#using-the-next-channel-for-integration-testing}
+>>>>>>> bbea52211971834d041e76871df8981066c42a3b
 
 Le canal *Next* est conçu pour permettre des tests d’intégration entre React et d’autres projets qui se basent dessus.
 
@@ -65,7 +77,11 @@ Si vous êtes l’auteur·e d’une solution tierce pour React (framework, bibli
 - Si tout fonctione, super !  Vous pouvez vous attendre à ce que votre projet continue à fonctionner avec la prochaine version mineure de React.
 - Si quelque chose casse de façon inattendue, merci de nous le signaler en [créant un ticket](https://github.com/facebook/react/issues).
 
+<<<<<<< HEAD
 Le projet Next.js (promis, on n’a pas fait exprès !) utilise cette approche.  Vous pouvez consulter leur [configuration CircleCI](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml) à titre d’exemple.
+=======
+### Experimental Channel {#experimental-channel}
+>>>>>>> bbea52211971834d041e76871df8981066c42a3b
 
 ### Canal *Experimental*
 
@@ -75,7 +91,11 @@ En général, une mise à jour sur *Next* est accompagnée par une mise à jour 
 
 Les versions sur *Experimental* peuvent différer considérablement de celles sur *Next* et *Latest*. **N’utilisez pas les pré-versions *Experimental* dans les applications pour utilisateurs finaux.**  Vous pouvez vous attendre à des ruptures fréquentes de compatibilité ascendante dans les sorties du canal *Experimental*.
 
+<<<<<<< HEAD
 Les sorties de *Experimental* sont publiées avec l’étiquette `experimental` sur npm.  Les numéros de versions sont générés sur la base d’un hash de leur contenu, par exemple `0.0.0-experimental-1022ee0ec`.
+=======
+#### What Goes Into an Experimental Release? {#what-goes-into-an-experimental-release}
+>>>>>>> bbea52211971834d041e76871df8981066c42a3b
 
 #### Que trouve-t-on dans une sortie *Experimental* ?
 
@@ -83,7 +103,11 @@ Les fonctionnalités expérimentales ne sont pas encore prêtes à être livrée
 
 Par exemple, si le canal *Experimental* avait existé quand nous avons annoncé les Hooks, nous aurions sorti les Hooks sur le canal *Experimental* plusieurs semaines avant qu’ils deviennent disponibles dans *Latest*.
 
+<<<<<<< HEAD
 Vous trouverez peut-être utile de lancer des tests d‘intégration avec *Experimental*.  Libre à vous.  Ceci dit, gardez bien à l’esprit que *Experimental* est encore moins stable que *Next*. **Nous ne garantissons aucune stabilité d’une version de *Experimental* à une autre.**
+=======
+#### How Can I Learn More About Experimental Features? {#how-can-i-learn-more-about-experimental-features}
+>>>>>>> bbea52211971834d041e76871df8981066c42a3b
 
 #### Comment en apprendre davantage sur les fonctionnalités expérimentales ?
 
