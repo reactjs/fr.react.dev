@@ -1,101 +1,101 @@
 ---
 id: concurrent-mode-adoption
-title: Adopting Concurrent Mode (Experimental)
+title: Adopter le mode concurrent (expérimental)
 permalink: docs/concurrent-mode-adoption.html
 prev: concurrent-mode-patterns.html
 next: concurrent-mode-reference.html
 ---
 
->Caution:
+> Attention
 >
->This page describes **experimental features that are not yet available in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
+> Cette page décrit **des fonctionnalités expérimentales qui [ne sont pas encore disponibles](/docs/concurrent-mode-adoption.html) dans une version stable**. Ne vous basez pas sur les builds expérimentaux de React pour vos applis en production. Ces fonctionnalités sont susceptibles d’évoluer de façon significative et sans avertissement avant d’intégrer officiellement React.
 >
->This documentation is aimed at early adopters and people who are curious. If you're new to React, don't worry about these features -- you don't need to learn them right now.
+> Cette documentation est destinée aux personnes curieuses ou habituées à adopter les nouvelles technologies très tôt. Si vous débutez en React, ne vous préoccupez pas de ces fonctionnalités : vous n’avez pas besoin de les apprendre pour le moment.
+
 
 - [Installation](#installation)
-  - [Who Is This Experimental Release For?](#who-is-this-experimental-release-for)
-  - [Enabling Concurrent Mode](#enabling-concurrent-mode)
-- [What to Expect](#what-to-expect)
-  - [Migration Step: Blocking Mode](#migration-step-blocking-mode)
-  - [Why So Many Modes?](#why-so-many-modes)
-  - [Feature Comparison](#feature-comparison)
+  - [À qui s’adresse cette version expérimentale ?](#who-is-this-experimental-release-for)
+  - [Activer le mode concurrent](#enabling-concurrent-mode)
+- [À quoi s’attendre ?](#what-to-expect)
+  - [Étape de migration : le mode bloquant](#migration-step-blocking-mode)
+  - [Pourquoi tant de modes ?](#why-so-many-modes)
+  - [Comparaison des fonctionnalités](#feature-comparison)
 
 ## Installation {#installation}
 
-Concurrent Mode is only available in the [experimental builds](/blog/2019/10/22/react-release-channels.html#experimental-channel) of React. To install them, run:
+Le mode concurrent est disponible uniquement dans les [builds expérimentaux](/blog/2019/10/22/react-release-channels.html#experimental-channel) de React. Pour les installer, exécutez :
 
 ```
 npm install react@experimental react-dom@experimental
 ```
 
-**There are no semantic versioning guarantees for the experimental builds.**  
-APIs may be added, changed, or removed with any `@experimental` release.
+**Les builds expérimentaux n’offrent aucune des garanties de la gestion sémantique des versions.**  Nous sommes susceptibles d’ajouter, modifier ou retirer des API dans n’importe quelle version `@experimental`.
 
-**Experimental releases will have frequent breaking changes.**
+**Les versions expérimentales rompront souvent la compatibilité ascendante.**
 
-You can try these builds on personal projects or in a branch, but we don't recommend running them in production. At Facebook, we *do* run them in production, but that's because we're also there to fix bugs when something breaks. You've been warned!
+Vous pouvez essayer ces builds sur des projets personnels ou dans une branche, mais nous déconseillons leur utilisation en production. Chez Facebook, nous les utilisons *effectivement* en production, mais uniquement parce que nous sommes à même d’en corriger les bugs immédiatement. Vous voilà averti·e !
 
-### Who Is This Experimental Release For? {#who-is-this-experimental-release-for}
+### À qui s’adresse cette version expérimentale ? {#who-is-this-experimental-release-for}
 
-This release is primarily aimed at early adopters, library authors, and curious people.
+Cette version est surtout destinée aux personnes habituées à adopter les nouvelles technologies très tôt, aux mainteneurs de bibliothèques et, de façon plus générale, aux personnes curieuses.
 
-We're using this code in production (and it works for us) but there are still some bugs, missing features, and gaps in the documentation. We'd like to hear more about what breaks in Concurrent Mode so we can better prepare it for an official stable release in the future.
+Nous utilisons ce code en production (et ça fonctionne pour nous) mais il reste quelques bugs, des fonctionnalités manquantes, et des lacunes dans la documentation. Nous sommes avides de vos retours sur ce qui casse en mode concurrent, afin que nous puissions mieux le préparer pour sa sortie prochaine au sein d’une version stable.
 
-### Enabling Concurrent Mode {#enabling-concurrent-mode}
+### Activer le mode concurrent {#enabling-concurrent-mode}
 
-Normally, when we add features to React, you can start using them immediately. Fragments, Context, and even Hooks are examples of such features. You can use in new code without making any changes to the existing code.
+En temps normal, quand nous ajoutons des fonctionnalités à React, vous pouvez vous en servir immédiatement. Les fragments, les Contextes ou même les Hooks sont autant d’exemples récents. Vous pouvez les utiliser dans du nouveau code sans avoir à changer quoi que ce soit au code existant.
 
-Concurrent Mode is different. It introduces semantic changes to how React works. Otherwise, the [new features](/docs/concurrent-mode-patterns.html) enabled by it *wouldn't be possible*. This is why they're grouped into a new "mode" rather than released one by one in isolation.
+Il en va différemment pour le mode concurrent. Il introduit des changements sémantiques dans le fonctionnement de React. Si ce n’était pas le cas, les [nouvelles fonctionnalités](/docs/concurrent-mode-patterns.html) qu’il permet *ne seraient pas possibles*. C’est pourquoi nous les avons regroupées dans un « mode » au lieu de les sortir, une à une, en isolation.
 
-You can't opt into Concurrent Mode on a per-subtree basis. Instead, to opt in, you have to do it in the place where today you call `ReactDOM.render()`.
+Vous  ne pouvez pas activer le mode concurrent seulement pour une partie de l’arborescence React. Au lieu de ça, pour l’activer, vous devez le faire à l’endroit où, aujourd’hui, vous appelez `ReactDOM.render()`.
 
-**This will enable Concurrent Mode for the whole `<App />` tree:**
+**Voici comment activer le mode concurrent pour toute l’arborescence de `<App />` :**
 
 ```js
 import ReactDOM from 'react-dom';
 
-// If you previously had:
+// Si vous aviez auparavant :
 //
 // ReactDOM.render(<App />, document.getElementById('root'));
 //
-// You can opt into Concurrent Mode by writing:
+// Vous pouvez désormais activer le mode concurrent en écrivant :
 
 ReactDOM.createRoot(
   document.getElementById('root')
 ).render(<App />);
 ```
 
->Note:
+> Remarque
 >
->Concurrent Mode APIs such as `createRoot` only exist in the experimental builds of React.
+> Les API du mode concurrent, telles que `createRoot`, n’existent que dans les builds expérimentaux de React.
 
-In Concurrent Mode, the lifecycle methods [previously marked](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html) as "unsafe" actually *are* unsafe, and lead to bugs even more than in today's React. We don't recommend trying Concurrent Mode until your app is [Strict Mode](https://reactjs.org/docs/strict-mode.html)-compatible.
+En mode concurrent, les méthodes de cycle de vie qui étaient [auparavant désignées](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html) comme « dangereuses » *(“unsafe”, NdT)* sont *effectivement* dangereuses, et peuvent entraîner des bugs encore plus souvent que dans le code React habituel. Nous vous déconseillons de tester le mode concurrent tant que votre appli n’est pas compatible avec le [mode strict](https://reactjs.org/docs/strict-mode.html).
 
-## What to Expect {#what-to-expect}
+## À quoi s’attendre ? {#what-to-expect}
 
-If you have a large existing app, or if your app depends on a lot of third-party packages, please don't expect that you can use the Concurrent Mode immediately. **For example, at Facebook we are using Concurrent Mode for the new website, but we're not planning to enable it on the old website.** This is because our old website still uses unsafe lifecycle methods in the product code, incompatible third-party libraries, and patterns that don't work well with the Concurrent Mode.
+Si vous avez une grosse appli existante, ou si votre appli dépend de nombreux modules tiers, ne vous attendez pas à pouvoir utiliser le mode concurrent immédiatement. **Par exemple, chez Facebook nous utilisons le mode concurrent sur le nouveau site web, mais nous n’avons pas l’intention de l’activer sur l’ancien site.**  C’est parce que notre ancien site utilise encore de nombreuses méthodes de cycle de vie classées dangereuses, dans son code produit comme dans des bibliothèques tierces, ainsi que diverses approches qui ne fonctionnent pas bien avec le mode concurrent.
 
-In our experience, code that uses idiomatic React patterns and doesn't rely on external state management solutions is the easiest to get running in the Concurrent Mode. We will describe common problems we've seen and the solutions to them separately in the coming weeks.
+L’expérience nous indique que la manière la plus simple de fonctionner en mode concurrent, c’est d’avoir du code qui utilise des approches React idiomatiques et ne repose pas sur des solutions externes de gestion de l’état. Dans les prochaines semaines, nous documenterons séparément les problèmes courants que nous avons rencontrés et leurs solutions.
 
-### Migration Step: Blocking Mode {#migration-step-blocking-mode}
+### Étape de migration : le mode bloquant {#migration-step-blocking-mode}
 
-For older codebases, Concurrent Mode might be a step too far. This is why we also provide a new "Blocking Mode" in the experimental React builds. You can try it by substituting `createRoot` with `createBlockingRoot`. It only offers a *small subset* of the Concurrent Mode features, but it is closer to how React works today and can serve as a migration step.
+Le mode concurrent est sans doute une fausse bonne idée pour les bases de code anciennes. C’est pourquoi nous fournissons aussi un nouveau « mode bloquant » dans nos builds expérimentaux. Vous pouvez l’essayer en remplaçant `createRoot` par `createBlockingRoot`. Il ne fournit qu’un *petit sous-ensemble* des fonctionnalités du mode concurrent, mais il est plus proche de la façon dont React fonctionne aujourd’hui et peut vous faciliter la transition.
 
-To recap:
+En résumé :
 
-* **Legacy Mode:** `ReactDOM.render(<App />, rootNode)`. This is what React apps use today. There are no plans to remove the legacy mode in the observable future — but it won't be able to support these new features.
-* **Blocking Mode:** `ReactDOM.createBlockingRoot(rootNode).render(<App />)`. It is currently experimental. It is intended as a first migration step for apps that want to get a subset of Concurrent Mode features.
-* **Concurrent Mode:** `ReactDOM.createRoot(rootNode).render(<App />)`. It is currently experimental. In the future, after it stabilizes, we intend to make it the default React mode. This mode enables *all* the new features.
+* **Mode historique :** `ReactDOM.render(<App />, rootNode)`. C’est le fonctionnement actuel de React. Nous n’avons pas l’intention de retirer le mode historique dans un avenir proche, mais il ne prendra pas en charge ces nouvelles fonctionnalités.
+* **Mode bloquant :** `ReactDOM.createBlockingRoot(rootNode).render(<App />)`. Il est expérimental pour le moment. Il est pensé comme une première étape de migration pour les applis qui veulent bénéficier d’au moins certaines fonctionnalités du mode concurrent.
+* **Mode concurrent :** `ReactDOM.createRoot(rootNode).render(<App />)`. Il est expérimental pour le moment. À l’avenir, une fois qu’il sera stabilisé, nous comptons en faire le mode par défaut de React. Ce mode active *toutes* les nouvelles fonctionnalités.
 
-### Why So Many Modes? {#why-so-many-modes}
+### Pourquoi tant de modes ? {#why-so-many-modes}
 
-We think it is better to offer a [gradual migration strategy](/docs/faq-versioning.html#commitment-to-stability) than to make huge breaking changes — or to let React stagnate into irrelevance.
+Nous estimons qu’il est préférable de proposer une [stratégie de migration graduelle](/docs/faq-versioning.html#commitment-to-stability) plutôt que de faire d’énormes ruptures de compatibilité ascendante—qui scléroseraient React jusqu’à le rendre hors-sujet.
 
-In practice, we expect that most apps using Legacy Mode today should be able to migrate at least to the Blocking Mode (if not Concurrent Mode). This fragmentation can be annoying for libraries that aim to support all Modes in the short term. However, gradually moving the ecosystem away from the Legacy Mode will also *solve* problems that affect major libraries in the React ecosystem, such as [confusing Suspense behavior when reading layout](https://github.com/facebook/react/issues/14536) and [lack of consistent batching guarantees](https://github.com/facebook/react/issues/15080). There's a number of bugs that can't be fixed in Legacy Mode without changing semantics, but don't exist in Blocking and Concurrent Modes.
+En pratique, nous pensons que la plupart des applis utilisant aujourd’hui le mode historique devraient pouvoir migrer vers au moins le mode bloquant (voire le mode concurrent). Cette fragmentation peut être irritante pour les bibliothèques qui essaient de prendre en charge l’ensemble des modes sur le court terme. Toutefois, éloigner progressivement l’écosystème du mode historique va aussi *résoudre* des problèmes qui affectent des bibliothèques de premier plan dans l’écosystème React, telles que [des comportements déroutants de Suspense lorsqu’on lit la mise en page](https://github.com/facebook/react/issues/14536) et [le manque de garanties stables de traitement par lot](https://github.com/facebook/react/issues/15080). Un certain nombre de bugs ne peuvent pas être corrigés en mode historique, sans changement de sémantique, mais n’existent pas dans les modes bloquant et concurrent.
 
-You can think of the Blocking Mode as a "gracefully degraded" version of the Concurrent Mode. **As a result, in longer term we should be able to converge and stop thinking about different Modes altogether.** But for now, Modes are an important migration strategy. They let everyone decide when a migration is worth it, and upgrade at their own pace.
+Pensez au mode bloquant comme à une version en « gracieusement dégradée » du mode concurrent. **Résultat, sur le long terme nous devrions pouvoir converger et totalement cesser de nous préoccuper des différents modes.**  Mais pour le moment, les modes constituent une importante stratégie de migration. Ils permettent à chacun·e de décider si la migration vaut le coup, et de réaliser la mise à jour à leur propre rythme.
 
-### Feature Comparison {#feature-comparison}
+### Comparaison des fonctionnalités {#feature-comparison}
 
 <style>
   #feature-table table { border-collapse: collapse; }
@@ -105,26 +105,26 @@ You can think of the Blocking Mode as a "gracefully degraded" version of the Con
 
 <div id="feature-table">
 
-|   |Legacy Mode  |Blocking Mode  |Concurrent Mode  |
-|---  |---  |---  |---  |
-|String Refs  |✅  |🚫**  |🚫**  |
-|Legacy Context |✅  |🚫**  |🚫**  |
-|findDOMNode  |✅  |🚫**  |🚫**  |
-|Suspense |✅  |✅  |✅  |
-|SuspenseList |🚫  |✅  |✅  |
-|Suspense SSR + Hydration |🚫  |✅  |✅  |
-|Progressive Hydration  |🚫  |✅  |✅  |
-|Selective Hydration  |🚫  |🚫  |✅  |
-|Cooperative Multitasking |🚫  |🚫  |✅  |
-|Automatic batching of multiple setStates     |🚫* |✅  |✅  |
-|Priority-based Rendering |🚫  |🚫  |✅  |
-|Interruptible Prerendering |🚫  |🚫  |✅  |
-|useTransition  |🚫  |🚫  |✅  |
-|useDeferredValue |🚫  |🚫  |✅  |
-|Suspense Reveal "Train"  |🚫  |🚫  |✅  |
+|                                                  | Mode histo. | Mode bloquant | Mode concurrent |
+| ------------------------------------------------ | ----------- | ------------- | --------------- |
+| Refs de type string                              | ✅           | 🚫**          | 🚫**            |
+| API historique de Contexte                       | ✅           | 🚫**          | 🚫**            |
+| `findDOMNode`                                    | ✅           | 🚫**          | 🚫**            |
+| `Suspense`                                       | ✅           | ✅             | ✅               |
+| `SuspenseList`                                   | 🚫          | ✅             | ✅               |
+| Suspense côté serveur + Hydratation              | 🚫          | ✅             | ✅               |
+| Hydratation progressive                          | 🚫          | ✅             | ✅               |
+| Hydratation sélective                            | 🚫          | 🚫            | ✅               |
+| Multitâches coopératif                           | 🚫          | 🚫            | ✅               |
+| Regroupement automatique de multiples `setState` | 🚫*         | ✅             | ✅               |
+| Rendu basé sur priorités                         | 🚫          | 🚫            | ✅               |
+| Prérendu interruptible                           | 🚫          | 🚫            | ✅               |
+| `useTransition`                                  | 🚫          | 🚫            | ✅               |
+| `useDeferredValue`                               | 🚫          | 🚫            | ✅               |
+| « Train » de révélations de Suspense             | 🚫          | 🚫            | ✅               |
 
 </div>
 
-\*: Legacy mode has automatic batching in React-managed events but it's limited to one browser task. Non-React events must opt-in using `unstable_batchedUpdates`. In Blocking Mode and Concurrent Mode, all `setState`s are batched by default.
+\* : le mode historique regroupe automatiquement les événements gérés par React, mais il est limité à une tâche navigateur. Les événements non-React doivent le demander explicitement en appelant `unstable_batchedUpdates`. Dans les modes bloquant et concurrent, tous les `setState`s sont traités par lot par défaut.
 
-\*\*: Warns in development.
+\*\* : affiche des avertissements en développement.
