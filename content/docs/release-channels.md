@@ -22,7 +22,7 @@ Toutes ces versions sont publiées sur npm, mais seul *Latest* utilise [une gest
 
 En publiant les pré-versions sur le même référentiel que pour les versions stables, nous pouvons tirer parti des nombreux outils qui se basent sur npm pour fonctionner, tels que [unpkg](https://unpkg.com) et [CodeSandbox](https://codesandbox.io).
 
-### Canal *Latest*
+### Canal *Latest* {#latest-channel}
 
 Le canal *Latest* est utilisé pour les versions stables de React.  Il correspond à l’étiquette `latest` sur npm.  C’est le canal recommandé pour toute appli React proposée à de véritables utilisateurs.
 
@@ -30,7 +30,7 @@ Le canal *Latest* est utilisé pour les versions stables de React.  Il correspon
 
 Vous pouvez vous attendre à ce que les mises à jour sur *Latest* soient extrêmement stables.  On y suit un protocole sémantique de gestion des versions.  Vous pouvez en apprendre davantage sur nos engagements en termes de stabilité et de migration incrémentielle en consultant notre [politique de gestion des versions](/docs/faq-versioning.html).
 
-### Canal *Next*
+### Canal *Next* {#next-channel}
 
 Le canal *Next* est un canal de pré-version qui piste la branche `master` du dépôt React.  Nous utilisons les pré-versions du canal *Next* comme des versions candidates pour le canal *Latest*.  Vous pouvez imaginer *Next* comme un sur-ensemble de *Latest*, mis à jour plus fréquemment.
 
@@ -40,7 +40,7 @@ L’ampleur des changements entre la version *Next* la plus récente et la derni
 
 Les sorties de *Next* sont publiées avec l’étiquette `next` sur npm.  Les numéros de versions sont générés sur la base d’un hash de leur contenu, par exemple `0.0.0-1022ee0ec`.
 
-#### Utiliser le canal *Next* pour des tests d’intégration
+#### Utiliser le canal *Next* pour des tests d’intégration {#using-the-next-channel-for-integration-testing}
 
 Le canal *Next* est conçu pour permettre des tests d’intégration entre React et d’autres projets qui se basent dessus.
 
@@ -67,7 +67,7 @@ Si vous êtes l’auteur·e d’une solution tierce pour React (framework, bibli
 
 Le projet Next.js (promis, on n’a pas fait exprès !) utilise cette approche.  Vous pouvez consulter leur [configuration CircleCI](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml) à titre d’exemple.
 
-### Canal *Experimental*
+### Canal *Experimental* {#experimental-channel}
 
 Tout comme *Next*, le canal *Experimental* est un canal de pré-versions qui piste la branche `master` du dépôt React.  Mais contrairement à *Next*, les sorties sur *Experimental* comportent des fonctionnalités et API qui ne sont pas encore prêtes à être diffusées plus largement.
 
@@ -77,7 +77,7 @@ Les versions sur *Experimental* peuvent différer considérablement de celles su
 
 Les sorties de *Experimental* sont publiées avec l’étiquette `experimental` sur npm.  Les numéros de versions sont générés sur la base d’un hash de leur contenu, par exemple `0.0.0-experimental-1022ee0ec`.
 
-#### Que trouve-t-on dans une sortie *Experimental* ?
+#### Que trouve-t-on dans une sortie *Experimental* ? {#what-goes-into-an-experimental-release}
 
 Les fonctionnalités expérimentales ne sont pas encore prêtes à être livrées à un large public, et sont susceptibles de changer radicalement d’ici leur finalisation.  Certaines expériences n’aboutiront peut-être même jamais—c’est justement pour tester la viabilité de changements proposés que nous avons ces expériences.
 
@@ -85,7 +85,7 @@ Par exemple, si le canal *Experimental* avait existé quand nous avons annoncé 
 
 Vous trouverez peut-être utile de lancer des tests d‘intégration avec *Experimental*.  Libre à vous.  Ceci dit, gardez bien à l’esprit que *Experimental* est encore moins stable que *Next*. **Nous ne garantissons aucune stabilité d’une version de *Experimental* à une autre.**
 
-#### Comment en apprendre davantage sur les fonctionnalités expérimentales ?
+#### Comment en apprendre davantage sur les fonctionnalités expérimentales ? {#how-can-i-learn-more-about-experimental-features}
 
 Les fonctionnalités expérimentales ne sont pas nécessairement documentées.  Le plus souvent, les expériences ne sont documentées qu’une fois qu’elles sont sur le point d’être livrées dans *Next* ou *Latest*.
 
