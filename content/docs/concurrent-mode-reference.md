@@ -98,7 +98,7 @@ Lorsque plusieurs composants ont besoin de charger des données, celles-ci peuve
   * `'collapsed'` affiche uniquement le repli du prochain élément dans la liste.
   * `'hidden'` n’affiche aucun élément non chargé.
 
-Remarquez que `SuspenseList` n’opère que sur les composants enfants `Suspense` et `SuspenseList` les plus proches d’elle. Elle ne recherche pas les frontières à plus d’un niveau de profondeur.  Ceci dit, il est possible d’imbriquer plusieurs composants `SuspenseList` pour construire des grilles.
+Remarquez que `SuspenseList` n’opère que sur les composants enfants `Suspense` et `SuspenseList` les plus proches d’elle. Elle ne recherche pas les périmètres à plus d’un niveau de profondeur.  Ceci dit, il est possible d’imbriquer plusieurs composants `SuspenseList` pour construire des grilles.
 
 ### `useTransition` {#usetransition}
 
