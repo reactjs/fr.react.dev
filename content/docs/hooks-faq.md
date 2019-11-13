@@ -31,7 +31,7 @@ Cette page contient les réponses aux questions les plus fréquentes sur les [Ho
   * [Qu'est-ce que les règles de linting imposent ?](#what-exactly-do-the-lint-rules-enforce)
 * **[Des classes aux Hooks](#from-classes-to-hooks)**
   * [Quelles sont les correspondances entre les méthodes de cycle de vie et les Hooks ?](#how-do-lifecycle-methods-correspond-to-hooks)
-  * [Comment récupérer des données distantes avec les Hooks ?](#how-can-i-do-data-fetching-with-hooks)
+  * [Comment charger des données distantes avec les Hooks ?](#how-can-i-do-data-fetching-with-hooks)
   * [Existe-t-il un équivalent aux variables d'instances ?](#is-there-something-like-instance-variables)
   * [Dois-je utiliser une ou plusieurs variables d'état local ?](#should-i-use-one-or-many-state-variables)
   * [Puis-je exécuter un effet seulement lors des mises à jour ?](#can-i-run-an-effect-only-on-updates)
@@ -214,9 +214,9 @@ Il existe quelques autres heuristiques, et elles changeront peut-être avec le t
 * `componentDidMount`, `componentDidUpdate`, `componentWillUnmount` : le [Hook `useEffect`](/docs/hooks-reference.html#useeffect) peut exprimer toutes les combinaisons de celles-ci (y compris des cas [moins](#can-i-skip-an-effect-on-updates) [fréquents](#can-i-run-an-effect-only-on-updates)).
 * `componentDidCatch` et `getDerivedStateFromError` : il n'existe pas encore de Hook équivalent pour ces méthodes, mais ils seront ajoutés prochainement.
 
-### Comment récupérer des données distantes avec les Hooks ? {#how-can-i-do-data-fetching-with-hooks}
+### Comment charger des données distantes avec les Hooks ? {#how-can-i-do-data-fetching-with-hooks}
 
-Voici une [petite démo](https://codesandbox.io/s/jvvkoo8pq3) pour vous aider à démarrer. Pour en apprendre davantage, jetez un œil à [cet article](https://www.robinwieruch.de/react-hooks-fetch-data/) (en anglais) sur la récupration de données distantes avec les Hooks.
+Voici une [petite démo](https://codesandbox.io/s/jvvkoo8pq3) pour vous aider à démarrer. Pour en apprendre davantage, jetez un œil à [cet article](https://www.robinwieruch.de/react-hooks-fetch-data/) (en anglais) sur le chargement de données distantes avec les Hooks.
 
 ### Existe-t-il un équivalent aux variables d'instances ? {#is-there-something-like-instance-variables}
 
@@ -631,7 +631,7 @@ Nous avons déplacé la fonction dans l'effet, donc cette variable n'a pas à fi
 
 >Astuce
 >
->Jetez un coup d’œil à [cette petite démo](https://codesandbox.io/s/jvvkoo8pq3) et [cet article](https://www.robinwieruch.de/react-hooks-fetch-data/) (en anglais) pour en apprendre davantage sur la récupération de données distantes avec les Hooks.
+>Jetez un coup d’œil à [cette petite démo](https://codesandbox.io/s/jvvkoo8pq3) et [cet article](https://www.robinwieruch.de/react-hooks-fetch-data/) (en anglais) pour en apprendre davantage sur le chargement de données distantes avec les Hooks.
 
 **Si pour une raison ou une autre vous ne _pouvez pas_ déplacer la fonction dans l'effet, vous avez d'autres options :**
 
@@ -657,7 +657,7 @@ function ProductDetails({ fetchProduct }) {
 }
 ```
 
-Remarquez que dans cet exemple nous **devons** garder la fonction dans la liste des dépendances.  On s'assure ainsi qu'une modification à la prop `productId` de `ProductPage` déclenchera automatiquement une nouvelle récupération de données distantes dans le composant `ProductDetails`.
+Remarquez que dans cet exemple nous **devons** garder la fonction dans la liste des dépendances.  On s'assure ainsi qu'une modification à la prop `productId` de `ProductPage` déclenchera automatiquement un nouveau chargement de données distantes dans le composant `ProductDetails`.
 
 ### Que faire quand mes dépendances d’effet changent trop souvent ? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
 

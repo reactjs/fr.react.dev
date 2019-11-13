@@ -70,7 +70,7 @@ React fournit quelques Hooks prédéfinis comme `useState`. Vous pouvez aussi cr
 
 ## ⚡️ Hook d’effet {#effect-hook}
 
-Vous avez surement déjà réalisé une récupération de données distantes, des abonnements ou des modifications manuelles sur le DOM depuis un composant React. Nous appelons ces opérations « effets de bord » (ou effets pour faire court) parce qu'elles peuvent affecter d'autres composants et ne peuvent être réalisées pendant l'affichage.
+Vous avez surement déjà réalisé un chargement de données distantes, des abonnements ou des modifications manuelles sur le DOM depuis un composant React. Nous appelons ces opérations « effets de bord » (ou effets pour faire court) parce qu'elles peuvent affecter d'autres composants et ne peuvent être réalisées pendant l'affichage.
 
 Le Hook d'effet, `useEffect`, permet aux fonctions composants de gérer des effets de bord. Il joue le même rôle que `componentDidMount`, `componentDidUpdate`, et `componentWillUnmount` dans les classes React, mais au travers d’une API unique. (Nous verrons des exemples comparant `useEffect` à ces méthodes dans [Utiliser le Hook d'effet ](/docs/hooks-effect.html).)
 

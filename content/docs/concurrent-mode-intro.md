@@ -13,7 +13,7 @@ next: concurrent-mode-suspense.html
 
 Cette page fournit un aperçu théorique du mode concurrent. **Pour une introduction plus orientée vers la pratique, vous voudrez sans doute consulter les prochaines sections :**
 
-* [Suspense pour la récupération de données](/docs/concurrent-mode-suspense.html) décrit un nouveau mécanisme de récupération de données distantes au sein de composants React.
+* [Suspense pour le chargement de données](/docs/concurrent-mode-suspense.html) décrit un nouveau mécanisme de chargement de données distantes au sein de composants React.
 * [Approches pour une UI concurrente](/docs/concurrent-mode-patterns.html) illustre quelques approches de conception d’UI rendues possibles par le mode concurrent et Suspense.
 * [Adopter le mode concurrent](/docs/concurrent-mode-adoption.html) explique comment vous pouvez essayer le mode concurrent dans votre projet.
 * [Référence de l’API du mode concurrent](/docs/concurrent-mode-reference.html) documente les nouvelles API disponibles dans les builds expérimentaux de React.
@@ -61,7 +61,7 @@ C’est certes possible aujourd’hui, mais au prix d’une orchestration délic
 Résumons les deux exemples ci-avant pour voir comment le mode concurrent en unifie le traitement. **Avec le mode concurrent, React peut travailler à plusieurs mises à jour de l’état _en exécution concurrente_**, tout comme les branches permettent à divers membres d’une équipe de travailler indépendamment les uns des autres :
 
 * Pour les mises à jour dépendantes du processeur (CPU, telles que la création des nœuds DOM et l’exécution du code des composants), la concurrence permet à une mise à jour plus urgente « d’interrompre » le rendu qui a déjà démarré.
-* Pour les mises à jour dépendantes des entrées/sorties (I/O, telles que la récupération de code ou de données à partir du réseau), la concurrence permet à React de commencer le rendu en mémoire avant même que les données n’arrivent, et de sauter des états de chargement désagréables.
+* Pour les mises à jour dépendantes des entrées/sorties (I/O, telles que le chargement de code ou de données à partir du réseau), la concurrence permet à React de commencer le rendu en mémoire avant même que les données n’arrivent, et de sauter des états de chargement désagréables.
 
 Ce qui est critique, c’est que la façon dont vous *utilisez* React reste inchangée. Les concepts tels que les composants, les props et l’état local continuent fondamentalement à marcher de la même façon. Quand vous voulez mettre à jour l’écran, vous ajustez l’état.
 
@@ -83,7 +83,7 @@ Vous savez désormais à quoi sert le mode concurrent !
 
 Dans les prochaines pages, vous en apprendrez davantage sur des sujets plus spécifiques :
 
-* [Suspense pour la récupération de données](/docs/concurrent-mode-suspense.html) décrit un nouveau mécanisme de récupération de données distantes au sein de composants React.
+* [Suspense pour le chargement de données](/docs/concurrent-mode-suspense.html) décrit un nouveau mécanisme de chargement de données distantes au sein de composants React.
 * [Approches pour une UI concurrente](/docs/concurrent-mode-patterns.html) illustre quelques approches de conception d’UI rendues possibles par le mode concurrent et Suspense.
 * [Adopter le mode concurrent](/docs/concurrent-mode-adoption.html) explique comment vous pouvez essayer le mode concurrent dans votre projet.
 * [Référence de l’API du mode concurrent](/docs/concurrent-mode-reference.html) documente les nouvelles API disponibles dans les builds expérimentaux de React.

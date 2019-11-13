@@ -17,7 +17,7 @@ Dans cette page, nous utiliserons principalement des fonctions composants.  Ceci
 - [Mise en place / nettoyage](#setup--teardown)
 - [`act()`](#act)
 - [Rendu](#rendering)
-- [Récupération de données](#data-fetching)
+- [Chargement de données](#data-fetching)
 - [Simuler des modules](#mocking-modules)
 - [Événements](#events)
 - [Horloges](#timers)
@@ -57,7 +57,7 @@ Vous utilisez peut-être une autre approche, mais gardez à l’esprit que vous 
 
 ### `act()` {#act}
 
-Lorsqu’on écrit des tests UI, des tâches comme le rendu lui-même, les événements utilisateurs ou encore la récupération de données peuvent être considérées comme autant « d’unités » d’interaction avec l’interface utilisateur.  React fournit une fonction utilitaire appelée `act()` qui s’assure que toutes les mises à jour relatives à ces « unités » ont bien été traitées et appliquées au DOM avant que nous ne commencions à exprimer nos assertions :
+Lorsqu’on écrit des tests UI, des tâches comme le rendu lui-même, les événements utilisateurs ou encore le chargement de données peuvent être considérées comme autant « d’unités » d’interaction avec l’interface utilisateur.  React fournit une fonction utilitaire appelée `act()` qui s’assure que toutes les mises à jour relatives à ces « unités » ont bien été traitées et appliquées au DOM avant que nous ne commencions à exprimer nos assertions :
 
 ```js
 act(() => {
@@ -139,9 +139,9 @@ it("s’affiche avec ou sans nom", () => {
 
 ---
 
-### Récupération de données {#data-fetching}
+### Chargement de données {#data-fetching}
 
-Au lieu d’appeler de véritables API dans tous vos tests, vous pouvez simuler les requêtes et renvoyer des données factices.  Simuler la récupération de données avec de « fausses » données évite de fragiliser les tests lors d’un back-end indisponible, et les accélère en prime.  Remarquez que vous voudrez peut-être qu’une petite partie de vos tests utilisent un framework [« de bout en bout »](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) pour vérifier que l’appli dans son ensemble fonctionne bien.
+Au lieu d’appeler de véritables API dans tous vos tests, vous pouvez simuler les requêtes et renvoyer des données factices.  Simuler le chargement de données avec de « fausses » données évite de fragiliser les tests lors d’un back-end indisponible, et les accélère en prime.  Remarquez que vous voudrez peut-être qu’une petite partie de vos tests utilisent un framework [« de bout en bout »](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) pour vérifier que l’appli dans son ensemble fonctionne bien.
 
 ```jsx
 // user.js

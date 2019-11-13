@@ -122,7 +122,7 @@ const BlogPostWithSubscription = withSubscription(
 );
 ```
 
-Le premier paramètre est le composant initial. Le second récupère les données qui nous intéressent, en fonction de la `DataSource` et des props existantes.
+Le premier paramètre est le composant initial. Le second charge les données qui nous intéressent, en fonction de la `DataSource` et des props existantes.
 
 Lorsque `CommentListWithSubscription` et `BlogPostWithSubscription` s'affichent, `CommentList` et `BlogPost` reçoivent une prop `data` qui contient les données les plus récentes issues de la `DataSource` :
 
@@ -169,7 +169,7 @@ Et voilà ! Le composant enrobé reçoit toutes les props du conteneur ainsi qu
 
 Puisque `withSubscription` est juste une fonction, vous pouvez lui définir autant ou aussi peu de paramètres que vous le souhaitez. Par exemple, vous pourriez rendre configurable le nom de la prop `data`, afin d’isoler encore davantage le HOC et le composant enrobé. Ou alors, vous pourriez accepter un argument qui configure `shouldComponentUpdate`, ou un autre qui configure la source de données. Tout ça est possible parce que le HOC a un contrôle total sur la façon dont le composant est défini.
 
-Comme pour les composants, le rapport entre `withSubscription` et le composant enrobé se base entièrement sur les props. Ça facilite l'échange d'un HOC pour un autre, du moment qu'ils fournissent les mêmes props au composant enrobé. Ça peut s'avérer utile si vous changez de bibliothèque pour récupérer vos données, par exemple.
+Comme pour les composants, le rapport entre `withSubscription` et le composant enrobé se base entièrement sur les props. Ça facilite l'échange d'un HOC pour un autre, du moment qu'ils fournissent les mêmes props au composant enrobé. Ça peut s'avérer utile si vous changez de bibliothèque pour charger vos données, par exemple.
 
 ## Ne modifiez pas le composant initial : composez-le. {#dont-mutate-the-original-component-use-composition}
 
