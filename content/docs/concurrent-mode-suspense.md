@@ -300,11 +300,11 @@ Dans l’approche précédente, nous chargions les données avant d’appeler `s
 2. Finir le chargement
 3. Commencer le rendu
 
-Avec Suspense, nous déclencherons la chargement en premier, mais inverserons les deux dernières étapes :
+Avec Suspense, nous déclencherons le chargement en premier, mais inverserons les deux dernières étapes :
 
-1. Commencer la chargement
+1. Commencer le chargement
 2. **Commencer le rendu**
-3. **Finir la chargement**
+3. **Finir le chargement**
 
 **Avec Suspense, nous n’attendons pas que la réponse nous parvienne pour commencer le rendu.**  En fait, nous commençons le rendu *presque immédiatement* après avoir déclenché la requête réseau :
 
@@ -356,7 +356,7 @@ Cet objet `resource` représente les données qui ne sont pas encore arrivées, 
 
 **Au fil de l’arrivée des données, React recommencera le rendu, et chaque fois il pourra peut-être progresser « plus loin ».**  Lorsque `resource.user` sera chargée, le composant `<ProfileDetails>` pourra être affiché correctement et nous n’aurons plus besoin du contenu de repli `<h1>Chargement du profil...</h1>`. À terme, quand nous aurons toutes les données, il n’y aura plus de contenus de repli à l’écran.
 
-Ce fonctionnement a une conséquence intéressante. Même si nous utilisons un client GraphQL qui regroupe tous nos besoins en données dans une seule requête, *streamer la réponse nous permet d’afficher plus de contenu plus tôt*. Parce que nous faisons le rendu *pendant la chargement* (par opposition à un rendu *après*), si `user` apparaît dans la réponse avant `posts`, nous serons à même de « déverrouiller » le périmètre `<Suspense>` extérieure avant même que la réponse n’ait été totalement reçue. Suspense ne souffre pas intrinsèquement de ce type de cascade, et les bibliothèques comme Relay en tirent parti.
+Ce fonctionnement a une conséquence intéressante. Même si nous utilisons un client GraphQL qui regroupe tous nos besoins en données dans une seule requête, *streamer la réponse nous permet d’afficher plus de contenu plus tôt*. Parce que nous faisons le rendu *pendant le chargement* (par opposition à un rendu *après*), si `user` apparaît dans la réponse avant `posts`, nous serons à même de « déverrouiller » le périmètre `<Suspense>` extérieure avant même que la réponse n’ait été totalement reçue. Suspense ne souffre pas intrinsèquement de ce type de cascade, et les bibliothèques comme Relay en tirent parti.
 
 Remarquez que nous avons éliminé les vérifications `if (...)` « si ça charge » de nos composants. Il ne s’agit pas juste de retirer du code générique, mais ça facilite aussi les ajustements rapides d’expérience utilisateur. Par exemple, si nous voulions que les détails du profil et les publications « surgissent » toujours d’un bloc, il nous suffirait de retirer le périmètre `<Suspense>` entre eux. Ou nous pourrions les rentre complètement indépendants l’un de l’autre en leur donnant à chacun *leur propre* périmètre `<Suspense>`. Suspense nous permet d’ajuster la granularité de nos états de chargement et d’orchestrer leur séquencement sans avoir à réaliser des changements invasifs dans notre code.
 
