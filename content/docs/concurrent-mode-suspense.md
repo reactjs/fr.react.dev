@@ -573,7 +573,7 @@ class ProfileTimeline extends React.Component {
 
 Ce code est faussement simple à lire.
 
-Malheureusement, ni le recours aux classes ni la syntaxe `async` / `await` ne nous ont aidé à résoudre le problème. Cette version souffre exactement du même problème de situations de compétition, pour les mêmes raisons.
+Malheureusement, ni le recours aux classes ni la syntaxe `async` / `await` ne nous ont aidés à résoudre le problème. Cette version souffre exactement du même problème de situations de compétition, pour les mêmes raisons.
 
 ### Le problème {#the-problem}
 
