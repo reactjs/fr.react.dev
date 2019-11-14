@@ -23,7 +23,7 @@ const ProfilePage = React.lazy(() => import('./ProfilePage')); // Chargé à la 
 </Suspense>
 ```
 
-Suspense pour la chargement de données est une nouvelle fonctionnalité qui vous permet d’utiliser également `<Suspense>` pour **« attendre » déclarativement n’importe quoi d’autre, y compris le chargement de données distantes.**  Cette page se concentre sur ce cas d’utilisation, mais vous pouvez utiliser cette technique pour attendre des images, des scripts, ou d’autres traitements asynchrones.
+Suspense pour le chargement de données est une nouvelle fonctionnalité qui vous permet d’utiliser également `<Suspense>` pour **« attendre » déclarativement n’importe quoi d’autre, y compris le chargement de données distantes.**  Cette page se concentre sur ce cas d’utilisation, mais vous pouvez utiliser cette technique pour attendre des images, des scripts, ou d’autres traitements asynchrones.
 
 - [Qu’est-ce que Suspense, exactement ?](#what-is-suspense-exactly)
   - [Ce que Suspense n’est pas](#what-suspense-is-not)
@@ -96,7 +96,7 @@ Suspense est significativement différent des approches existantes pour ce type 
 
 * **Ce n’est pas une implémentation de chargement de données.**  Ça ne suppose pas que vous utilisiez GraphQL, REST ou tout autre format, bibliothèque, transport ou protocole spécifiques.
 * **Ce n’est pas un client prêt à l’emploi.**  Vous ne pouvez pas « remplacer » `fetch` ou Relay par Suspense. Mais vous pouvez utiliser une bibliothèque qui s’intègre avec Suspense (par exemple, les [nouvelles API de Relay](https://relay.dev/docs/en/experimental/api-reference)).
-* **Ça ne lie pas la chargement des données à la couche vue.**  Ça aider à orchestrer l’affichage des états de chargement dans votre UI, mais ça ne lie pas votre logique réseau à vos composants React.
+* **Ça ne lie pas le chargement des données à la couche vue.**  Ça aide à orchestrer l’affichage des états de chargement dans votre UI, mais ça ne lie pas votre logique réseau à vos composants React.
 
 ### Ce que Suspense vous permet de faire {#what-suspense-lets-you-do}
 
@@ -126,7 +126,7 @@ Nous nous attendons à voir la communauté expérimenter largement avec d’autr
 
 Bien que ce soit techniquement faisable, Suspense n’est **pas** pour le moment conçu comme une façon de charger les données lorsqu’un composant s’affiche. Il sert plutôt à permettre aux composants d’exprimer qu’ils « attendent » des données qui sont *déjà en cours de chargement*. **L’article [Construire des super expériences utilisateurs avec le mode concurrent et Suspense](/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.html) décrit en quoi cette distinction est importante, et comment implémenter cette approche en pratique.**
 
-À moins que vous n’ayez une solution pour empêcher les chargements en cascade, nous vous conseillons d’opter pour des API qui favorisent voire exigent un déclenchement de la chargement des données en amont du rendu. Pour un exemple concret, vous pouvez regarder comment [l’API Suspense de Relay](https://relay.dev/docs/en/experimental/api-reference#usepreloadedquery) garantit le pré-chargement. Par le passé, nous n’avons pas communiqué de façon très cohérente sur ce sujet. Suspense pour la chargement de données reste expérimental, de sorte que nos recommandations sont susceptibles de changer avec le temps, au fur et à mesure que nous tirons de nouvelles leçons de notre utilisation en production et améliorons notre compréhension de cette typologie de problèmes.
+À moins que vous n’ayez une solution pour empêcher les chargements en cascade, nous vous conseillons d’opter pour des API qui favorisent voire exigent un déclenchement du chargement des données en amont du rendu. Pour un exemple concret, vous pouvez regarder comment [l’API Suspense de Relay](https://relay.dev/docs/en/experimental/api-reference#usepreloadedquery) garantit le pré-chargement. Par le passé, nous n’avons pas communiqué de façon très cohérente sur ce sujet. Suspense pour le chargement de données reste expérimental, de sorte que nos recommandations sont susceptibles de changer avec le temps, au fur et à mesure que nous tirons de nouvelles leçons de notre utilisation en production et améliorons notre compréhension de cette typologie de problèmes.
 
 ## Les approches traditionnelles vs. Suspense {#traditional-approaches-vs-suspense}
 
@@ -136,7 +136,7 @@ Nous allons plutôt considérer Suspense comme l’étape suivante logique dans 
 
 * **_Fetch-on-render_ (par exemple, `fetch` dans `useEffect`) :** on commence l’affichage des composants. Chacun d’eux est susceptible de déclencher un chargement de données au sein de ses effets ou méthodes de cycle de vie. Cette approche aboutit souvent à des « cascades ».
 * **_Fetch-then-render_ (par exemple, Relay sans Suspense) :** on commence par charger toutes les données pour le prochain écran aussitôt que possible. Quand les données sont prêtes, on affiche le nouvel écran. On ne peut rien faire avant que les données ne soient reçues.
-* **_Render-as-you-fetch_ (par exemple, Relay avec Suspense) :** on lance la chargement de toutes les données requises par le prochain écran aussitôt que possible, et on commence le rendu du nouvel écran *immédiatement, avant d’avoir la réponse du réseau*. Au fil de la réception des flux de données, React retente le rendu des composants qui ont encore besoin de données jusqu’à ce que tout soit disponible.
+* **_Render-as-you-fetch_ (par exemple, Relay avec Suspense) :** on lance le chargement de toutes les données requises par le prochain écran aussitôt que possible, et on commence le rendu du nouvel écran *immédiatement, avant d’avoir la réponse du réseau*. Au fil de la réception des flux de données, React retente le rendu des composants qui ont encore besoin de données jusqu’à ce que tout soit disponible.
 
 > Remarque
 >
@@ -220,7 +220,7 @@ Les cascades sont courantes dans le code qui charge les données au sein du rend
 
 ### Approche 2 : _fetch-then-render_ (sans utiliser Suspense) {#approach-2-fetch-then-render-not-using-suspense}
 
-Les bibliothèques peuvent prévenir les cascades en offrant une approche plus centralisée de la chargement de données. Par exemple, Relay résout ce problème en déplaçant les informations relatives aux données dont un composant a besoin dans des *fragments* analysables statiquement, qui sont ensuite composés en une seule requête.
+Les bibliothèques peuvent prévenir les cascades en offrant une approche plus centralisée du chargement de données. Par exemple, Relay résout ce problème en déplaçant les informations relatives aux données dont un composant a besoin dans des *fragments* analysables statiquement, qui sont ensuite composés en une seule requête.
 
 Sur cette page, nous ne supposons aucune connaissance préalable de Relay, aussi nous ne l’utiliserons pas dans cet exemple. Nous écrirons plutôt manuellement quelque chose de similaire en combinant nos méthodes de chargement de données :
 
@@ -296,8 +296,8 @@ Naturellement, il est possible de corriger cet exemple spécifique. On pourrait 
 
 Dans l’approche précédente, nous chargions les données avant d’appeler `setState` :
 
-1. Commencer la chargement
-2. Finir la chargement
+1. Commencer le chargement
+2. Finir le chargement
 3. Commencer le rendu
 
 Avec Suspense, nous déclencherons la chargement en premier, mais inverserons les deux dernières étapes :
