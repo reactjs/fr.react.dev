@@ -88,7 +88,7 @@ Cette démo est là pour vous ouvrir l’appétit. Ne vous inquiétez pas si ell
 
 Suspense n’est pas une bibliothèque de chargement de données. C’est un **mécanisme à destination des bibliothèques de chargement de données** pour qu’elles puissent indiquer à React que *les données que lit un composant ne sont pas encore disponibles*. React peut alors attendre qu’elles le deviennent et mettre à jour l’interface utilisateur (UI). Chez Facebook, nous utilisons Relay et sa [nouvelle intégration avec Suspense](https://relay.dev/docs/en/experimental/step-by-step). Nous pensons que d’autres bibliothèques, telles qu’Apollo, fournirons des intégrations similaires.
 
-Sur le long terme, nous prévoyons que Suspense deviendra le moyen principal de lire des données asynchrone depuis des composants, et ce d’où que ces données viennent.
+Sur le long terme, nous prévoyons que Suspense deviendra le moyen principal de lire des données asynchrone depuis des composants, et ce quelle que soit la provenance des données.
 
 ### Ce que Suspense n’est pas {#what-suspense-is-not}
 
