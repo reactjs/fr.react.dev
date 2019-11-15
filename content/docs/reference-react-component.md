@@ -281,7 +281,7 @@ Cette méthode existe pour [les rares cas](/blog/2018/06/07/you-probably-dont-ne
 
 Dériver l’état entraîne généralement des composants au code verbeux et difficile à suivre. [Assurez-vous qu’une meilleure alternative n’existe pas](/blog/2018/06/07/you-probably-dont-need-derived-state.html) :
 
-* Si vous avez besoin de **réaliser un effet de bord** (par exemple, récupérer des données ou dérouler une animation) en réponse à une modification des props, utilisez plutôt la méthode de cycle de vie [`componentDidUpdate`](#componentdidupdate).
+* Si vous avez besoin de **réaliser un effet de bord** (par exemple, charger des données ou dérouler une animation) en réponse à une modification des props, utilisez plutôt la méthode de cycle de vie [`componentDidUpdate`](#componentdidupdate).
 * Si vous voulez **recalculer des données seulement quand une prop change**, [utilisez plutôt un utilitaire de mémoïsation](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
 * Si vous souhaitez **« réinitialiser » une partie de l’état local quand une prop change**, voyez s’il ne serait pas plutôt judicieux de rendre le composant [pleinement contrôlé](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) ou [pleinement non-contrôlé avec une `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key).
 
@@ -452,7 +452,7 @@ UNSAFE_componentWillReceiveProps(nextProps)
 >
 > Utiliser cette méthode de cycle de vie aboutit le plus souvent à des bugs de cohérence.
 >
->* Si vous aviez besoin de **réaliser un effet de bord** (par exemple, récupérer des données ou dérouler une animation) en réponse à une modification des props, utilisez plutôt la méthode de cycle de vie [`componentDidUpdate`](#componentdidupdate).
+>* Si vous aviez besoin de **réaliser un effet de bord** (par exemple, charger des données ou dérouler une animation) en réponse à une modification des props, utilisez plutôt la méthode de cycle de vie [`componentDidUpdate`](#componentdidupdate).
 >* Si vous utilisiez `componentWillReceiveProps` pour **recalculer des données seulement quand une prop change**, [utilisez plutôt un utilitaire de mémoïsation](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
 >* Si vous utilisiez `componentWillReceiveProps` pour **« réinitialiser » une partie de l’état local quand une prop change**, voyez s’il ne serait pas plutôt judicieux de rendre le composant [pleinement contrôlé](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) ou [pleinement non-contrôlé avec une `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key).
 >

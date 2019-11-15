@@ -61,7 +61,7 @@ Le mode bloquant fournit une petite partie des fonctionnalités du mode concurre
 
 `Suspense` permet à vos composants « d’attendre » que quelque chose ait lieu avant qu’ils procèdent à leur rendu, en affichant dans l’intervalle une interface utilisateur (UI) de repli.
 
-Dans cet example, `ProfileDetails` attend qu’un appel API asynchrone récupère des données.  Pendant que nous attendons `ProfileDetails` et `ProfilePhoto`, nous affichons le repli `Chargement...` à leur place.  Il faut bien comprendre que jusqu’à ce que tous les enfants de `<Suspense>` soient chargés, nous continuerons à afficher l’UI de repli.
+Dans cet example, `ProfileDetails` attend qu’un appel API asynchrone charge des données.  Pendant que nous attendons `ProfileDetails` et `ProfilePhoto`, nous affichons le repli `Chargement...` à leur place.  Il faut bien comprendre que jusqu’à ce que tous les enfants de `<Suspense>` soient chargés, nous continuerons à afficher l’UI de repli.
 
 `Suspense` prend deux props :
 
@@ -87,7 +87,7 @@ Dans cet example, `ProfileDetails` attend qu’un appel API asynchrone récupèr
 
 `SuspenseList` aide à orchestrer la révélation progressive de composants susceptibles d’être suspendus.
 
-Lorsque plusieurs composants ont besoin de récupérer des données, celles-ci peuvent arriver dans un ordre imprévisible.  Cependant, si vous enrobez ces éléments dans un `SuspenseList`, React ne montrera un élément de la liste qu’une fois que tous les éléments qui le précèdent auront été affichés (ce comportement est d’ailleurs ajustable).
+Lorsque plusieurs composants ont besoin de charger des données, celles-ci peuvent arriver dans un ordre imprévisible.  Cependant, si vous enrobez ces éléments dans un `SuspenseList`, React ne montrera un élément de la liste qu’une fois que tous les éléments qui le précèdent auront été affichés (ce comportement est d’ailleurs ajustable).
 
 `SuspenseList` prend deux props :
 
@@ -98,7 +98,7 @@ Lorsque plusieurs composants ont besoin de récupérer des données, celles-ci p
   * `'collapsed'` affiche uniquement le repli du prochain élément dans la liste.
   * `'hidden'` n’affiche aucun élément non chargé.
 
-Remarquez que `SuspenseList` n’opère que sur les composants enfants `Suspense` et `SuspenseList` les plus proches d’elle. Elle ne recherche pas les frontières à plus d’un niveau de profondeur.  Ceci dit, il est possible d’imbriquer plusieurs composants `SuspenseList` pour construire des grilles.
+Remarquez que `SuspenseList` n’opère que sur les composants enfants `Suspense` et `SuspenseList` les plus proches d’elle. Elle ne recherche pas les périmètres à plus d’un niveau de profondeur.  Ceci dit, il est possible d’imbriquer plusieurs composants `SuspenseList` pour construire des grilles.
 
 ### `useTransition` {#usetransition}
 
@@ -108,7 +108,7 @@ const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
 ```
 
-`useTransition` permet aux composants d’éviter des états de chargement indésirables en attendant que le contenu soit chargé avant de **transiter vers le prochain écran**.  Il permet aussi aux composants de différer des récupérations de données plus lentes vers des rendus ultérieurs afin que les mises à jour les plus cruciales puissent être affichées immédiatement.
+`useTransition` permet aux composants d’éviter des états de chargement indésirables en attendant que le contenu soit chargé avant de **transiter vers le prochain écran**.  Il permet aussi aux composants de différer des chargements de données plus lents vers des rendus ultérieurs afin que les mises à jour les plus cruciales puissent être affichées immédiatement.
 
 Le hook `useTransition` renvoie deux valeurs dans un tableau.
 
@@ -145,7 +145,7 @@ function App() {
 }
 ```
 
-Dans ce code, nous avons enrobé notre récupération de données avec `startTransition`.  Ça nous permet de commencer immédiatement à récupérer les données du profil, tout en différant le rendu de la prochaine page de profil et de son `Spinner` associé pendant 2 secondes (le temps indiqué par `timeoutMs`).
+Dans ce code, nous avons enrobé notre chargement de données avec `startTransition`.  Ça nous permet de commencer immédiatement à charger les données du profil, tout en différant le rendu de la prochaine page de profil et de son `Spinner` associé pendant 2 secondes (le temps indiqué par `timeoutMs`).
 
 Le booléen `isPending` est fourni par React pour nous indiquer que notre composant est en cours de transition, ce qui nous permet d’avertir l’utilisateur en affichant un texte de chargement au sein de la précédente page de profil.
 
@@ -169,7 +169,7 @@ const deferredValue = useDeferredValue(value, { timeoutMs: 2000 });
 
 Renvoie une version différée de la valeur qui est susceptible d’être « en retard » pour un temps maximum de `timeoutMs`.
 
-On utilise couramment ça pour préserver la réactivité de l’interface, avec des affichages immédiats suite à des saisies par l’utilisateur·rice malgré le besoin d’attendre une récupération de données.
+On utilise couramment ça pour préserver la réactivité de l’interface, avec des affichages immédiats suite à des saisies par l’utilisateur·rice malgré le besoin d’attendre un chargement de données.
 
 La saisie de texte constitue un bon exemple :
 

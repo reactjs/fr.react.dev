@@ -35,7 +35,7 @@ function Example() {
 
 Cet extrait se base sur [l’exemple de compteur présenté à la page précédente](/docs/hooks-state.html), avec toutefois une fonctionnalité supplémentaire : le titre du document est mis à jour avec un message personnalisé affichant le nombre de clics.
 
-Récupérer des données depuis un serveur distant, s’abonner à quelque chose et modifier manuellement le DOM sont autant d’exemples d’effets de bord. Que vous ayez ou non l’habitude de les appeler « effets de bord » (ou juste « effets »), il est hautement probable que vous les ayez déjà utilisés dans vos composants par le passé.
+Charger des données depuis un serveur distant, s’abonner à quelque chose et modifier manuellement le DOM sont autant d’exemples d’effets de bord. Que vous ayez ou non l’habitude de les appeler « effets de bord » (ou juste « effets »), il est hautement probable que vous les ayez déjà utilisés dans vos composants par le passé.
 
 >Astuce
 >
@@ -114,7 +114,7 @@ function Example() {
 }
 ```
 
-**Que fait `useEffect` ?** On utilise ce Hook pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage. React enregistre la fonction passée en argument (que nous appellerons « effet »), et l’appellera plus tard, après avoir mis à jour le DOM. L’effet ci-dessus met à jour le titre du document, mais il pourrait aussi bien récupérer des données distantes, ou appeler n’importe quelle autre API impérative.
+**Que fait `useEffect` ?** On utilise ce Hook pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage. React enregistre la fonction passée en argument (que nous appellerons « effet »), et l’appellera plus tard, après avoir mis à jour le DOM. L’effet ci-dessus met à jour le titre du document, mais il pourrait aussi bien charger des données distantes, ou appeler n’importe quelle autre API impérative.
 
 **Pourquoi `useEffect` est-elle invoquée à l’intérieur d’un composant ?** Le fait d’appeler `useEffect` à l’intérieur de notre composant nous permet d’accéder à la variable d’état `count` (ou à n’importe quelle prop) directement depuis l’effet. Pas besoin d’une API dédiée pour les lire : elle est déjà dans la portée de la fonction. Les Hooks profitent pleinement des fermetures lexicales *(closures, NdT)* de JavaScript au lieu d’introduire de nouvelles API spécifiques à React, là où JavaScript propose déjà une solution.
 
