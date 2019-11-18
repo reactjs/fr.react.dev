@@ -5,11 +5,22 @@ permalink: docs/concurrent-mode-intro.html
 next: concurrent-mode-suspense.html
 ---
 
+<style>
+.scary > blockquote {
+  background-color: rgba(237, 51, 21, 0.2);
+  border-left-color: #ed3315;
+}
+</style>
+
+<div class="scary">
+
 > Attention
 >
 > Cette page décrit **des fonctionnalités expérimentales qui [ne sont pas encore disponibles](/docs/concurrent-mode-adoption.html) dans une version stable**. Ne vous basez pas sur les builds expérimentaux de React pour vos applis en production. Ces fonctionnalités sont susceptibles d’évoluer de façon significative et sans avertissement avant d’intégrer officiellement React.
 >
-> Cette documentation est destinée aux personnes curieuses ou habituées à adopter les nouvelles technologies très tôt. Si vous débutez en React, ne vous préoccupez pas de ces fonctionnalités : vous n’avez pas besoin de les apprendre pour le moment.
+> Cette documentation est destinée aux personnes curieuses ou habituées à adopter les nouvelles technologies très tôt. **Si vous débutez en React, ne vous préoccupez pas de ces fonctionnalités** : vous n’avez pas besoin de les apprendre pour le moment.
+
+</div>
 
 Cette page fournit un aperçu théorique du mode concurrent. **Pour une introduction plus orientée vers la pratique, vous voudrez sans doute consulter les prochaines sections :**
 
