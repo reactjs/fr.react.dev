@@ -6,9 +6,6 @@ prev: concurrent-mode-intro.html
 next: concurrent-mode-patterns.html
 ---
 
-<<<<<<< HEAD
-> Attention
-=======
 <style>
 .scary > blockquote {
   background-color: rgba(237, 51, 21, 0.2);
@@ -18,22 +15,15 @@ next: concurrent-mode-patterns.html
 
 <div class="scary">
 
->Caution:
->>>>>>> 72775e97f9a5f26d93153f58e650eb8c604d207f
+> Attention
 >
 > Cette page décrit **des fonctionnalités expérimentales qui [ne sont pas encore disponibles](/docs/concurrent-mode-adoption.html) dans une version stable**. Ne vous basez pas sur les builds expérimentaux de React pour vos applis en production. Ces fonctionnalités sont susceptibles d’évoluer de façon significative et sans avertissement avant d’intégrer officiellement React.
 >
-<<<<<<< HEAD
-> Cette documentation est destinée aux personnes curieuses ou habituées à adopter les nouvelles technologies très tôt. Si vous débutez en React, ne vous préoccupez pas de ces fonctionnalités : vous n’avez pas besoin de les apprendre pour le moment.
-
-React 16.6 ajoutait un composant `<Suspense>` qui vous permettait « d’attendre » que du code soit chargé en spécifiant déclarativement un état de chargement (tel qu’un *spinner*) pendant l’attente :
-=======
->This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now. For example, if you're looking for a data fetching tutorial that works today, read [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) instead.
+> Cette documentation est destinée aux personnes curieuses ou habituées à adopter les nouvelles technologies très tôt. **Si vous débutez en React, ne vous préoccupez pas de ces fonctionnalités** : vous n’avez pas besoin de les apprendre pour le moment. Par exemple, si vous cherchez un tutoriel pour le chargement de données qui fonctionne aujourd’hui, lisez plutôt [cet article](https://www.robinwieruch.de/react-hooks-fetch-data/).
 
 </div>
 
-React 16.6 added a `<Suspense>` component that lets you "wait" for some code to load and declaratively specify a loading state (like a spinner) while we're waiting:
->>>>>>> 72775e97f9a5f26d93153f58e650eb8c604d207f
+React 16.6 ajoutait un composant `<Suspense>` qui vous permettait « d’attendre » que du code soit chargé en spécifiant déclarativement un état de chargement (tel qu’un *spinner*) pendant l’attente :
 
 ```jsx
 const ProfilePage = React.lazy(() => import('./ProfilePage')); // Chargé à la demande
