@@ -6,12 +6,31 @@ prev: concurrent-mode-patterns.html
 next: concurrent-mode-reference.html
 ---
 
+<<<<<<< HEAD
 > Attention
+=======
+<style>
+.scary > blockquote {
+  background-color: rgba(237, 51, 21, 0.2);
+  border-left-color: #ed3315;
+}
+</style>
+
+<div class="scary">
+
+>Caution:
+>>>>>>> 72775e97f9a5f26d93153f58e650eb8c604d207f
 >
 > Cette page décrit **des fonctionnalités expérimentales qui [ne sont pas encore disponibles](/docs/concurrent-mode-adoption.html) dans une version stable**. Ne vous basez pas sur les builds expérimentaux de React pour vos applis en production. Ces fonctionnalités sont susceptibles d’évoluer de façon significative et sans avertissement avant d’intégrer officiellement React.
 >
+<<<<<<< HEAD
 > Cette documentation est destinée aux personnes curieuses ou habituées à adopter les nouvelles technologies très tôt. Si vous débutez en React, ne vous préoccupez pas de ces fonctionnalités : vous n’avez pas besoin de les apprendre pour le moment.
 
+=======
+>This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now.
+
+</div>
+>>>>>>> 72775e97f9a5f26d93153f58e650eb8c604d207f
 
 - [Installation](#installation)
   - [À qui s’adresse cette version expérimentale ?](#who-is-this-experimental-release-for)
