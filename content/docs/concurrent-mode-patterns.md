@@ -729,7 +729,7 @@ function handleChange(e) {
 
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/lively-smoke-fdf93)**
 
-Avec cet ajustement, tout marche comme on le souhaite. On peut taper une valeur et la voir immédiatement, quant à la traduction, elle « rattrape » ce qu’on a saisi un peu plus tard.
+Avec cet ajustement, tout fonctionne comme on le souhaite. On peut taper une valeur et la voir immédiatement, quant à la traduction, elle « rattrape » ce qu’on a saisi un peu plus tard.
 
 ### Différer une valeur {#deferring-a-value}
 
@@ -758,7 +758,7 @@ const deferredValue = useDeferredValue(value, {
 
 Pour illustrer cette fonctionnalité, nous allons utiliser [l’exemple de la bascule de profil](https://codesandbox.io/s/musing-ramanujan-bgw2o). Cliquez sur le bouton « Suivant » et remarquez que ça prend une seconde pour achever la transition.
 
-Disons que la récupération des détails utilisateurs était très rapide et ne prenait que 300 millisecondes. Pour le moment, nous attendons une seconde entière parce que nous avons besoin tant des détails de l’utilisateur que de ses publications pour afficher une page de profil cohérente. Mais qu’en serait-il si nous voulions afficher les détails plus tôt ?
+Disons que la récupération des détails utilisateurs est très rapide et ne prend que 300 millisecondes. Pour le moment, nous attendons une seconde entière parce que nous avons besoin tant des détails de l’utilisateur que de ses publications pour afficher une page de profil cohérente. Mais qu’en serait-il si nous voulions afficher les détails plus tôt ?
 
 Si nous acceptons de sacrifier la cohérence, nous pouvons **passer des données potentiellement obsolètes aux composants qui retardent notre transition**. C’est précisément ce que `useDeferredValue()` nous permet de faire :
 
