@@ -3,7 +3,7 @@ title: "Construire des super expériences utilisateurs avec le mode concurrent e
 author: [josephsavona]
 ---
 
-Lors de la React Conf 2019 nous avons annoncé une [version expérimentale](/docs/concurrent-mode-adoption.html#installation) de React qui prend en charge le mode concurrent et Suspense.  Dans cet article nous allons présenter des meilleures pratiques pour leur utilisation que nous avons identifiées lors de la construction du [nouveau facebook.com](https://twitter.com/facebook/status/1123322299418124289).
+Lors de la React Conf 2019 nous avons annoncé une [version expérimentale](/docs/concurrent-mode-adoption.html#installation) de React qui prend en charge le mode concurrent et Suspense.  Dans cet article nous allons présenter quelques meilleures pratiques pour leur utilisation que nous avons identifiées lors de la construction du [nouveau facebook.com](https://twitter.com/facebook/status/1123322299418124289).
 
 > Cet article est surtout pertinent pour les personnes qui écrivent des _bibliothèques de chargement de données_ pour React.
 >
@@ -15,7 +15,7 @@ Cet article **s’adresse aux auteur·e·s de bibliothèques**.  Si vous dévelo
 
 Si vous préférez regarder des vidéos, certaines des idées de cet article ont été discutées dans plusieurs présentations durant la React Conf 2019 :
 
-* [Chargement de données avec Suspense en Relay](https://www.youtube.com/watch?v=Tl0S7QkxFE4&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=15&t=0s) par [Joe Savona](https://twitter.com/en_JS) *(en anglais)*
+* [Chargement de données avec Suspense et Relay](https://www.youtube.com/watch?v=Tl0S7QkxFE4&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=15&t=0s) par [Joe Savona](https://twitter.com/en_JS) *(en anglais)*
 * [Construire le nouveau Facebook avec React et Relay](https://www.youtube.com/watch?v=KT3XKDBZW7M&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=4) par [Ashley Watkins](https://twitter.com/catchingash) *(en anglais)*
 * [Keynote de la React Conf](https://www.youtube.com/watch?v=uXEEL9mrkAQ&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=2) par [Yuzhi Zheng](https://twitter.com/yuzhiz) *(en anglais)*
 
@@ -25,9 +25,9 @@ Cet article explore plus en profondeur l’implémentation d’un bibliothèque 
 
 L’équipe React et la communauté ont longtemps accordé une attention particulière (certes méritée) à l’expérience développeur : en s’assurant que React avait de bons messages d’erreurs, en considérant les composants d’abord comme un moyen de réfléchir localement au comportement applicatif, en façonnant des API qui étaient prévisibles et encourageaient par défaut une utilisation correcte, etc.  Mais nous n’avons pas fourni assez de recommandations  sur les meilleures manières d’obtenir une excellente expérience *utilisateur* dans de grandes applis.
 
-Par exemple, l’équipe React s’est concentrée sur la performance *du framework* et sur la fourniture d’outils à destination des développeurs pour déboguer et améliorer les performances applicatives (par ex. `React.memo`). Mais nous n’avons pas été prescriptifs sur les *approches de haut niveau* qui font la différence entre des applis rapides et fluides d’un côté, et des applis lentes et saccadées de l’autre.  Nous essayons toujours de nous assurer que React reste abordable pour les nouveaux utilisateurs et prend en charge une large gamme de cas d’usages ; après tout, toutes les applis n’ont pas besoin d’être « ultra-rapides ».  Mais en tant que communauté nous pourrions et devrions viser plus haut. **Nous devrions faciliter au maximum la construction d’applis qui démarrent rapidement et reste rapides,** même si elles gagnent en complexité, pour des utilisateurs sur des appareils et réseaux diversifiés dans le monde entier.
+Par exemple, l’équipe React s’est concentrée sur la performance *du framework* et sur la fourniture d’outils à destination des développeurs pour déboguer et améliorer les performances applicatives (par ex. `React.memo`). Mais nous n’avons pas été prescriptifs sur les *approches de haut niveau* qui font la différence entre des applis rapides et fluides d’un côté, et des applis lentes et saccadées de l’autre.  Nous essayons toujours de nous assurer que React reste abordable pour les nouveaux utilisateurs et prend en charge une large gamme de cas d’usages ; après tout, toutes les applis n’ont pas besoin d’être « ultra-rapides ».  Mais en tant que communauté nous pourrions et devrions viser plus haut. **Nous devrions faciliter au maximum la construction d’applis qui démarrent rapidement et restent rapides,** même si elles gagnent en complexité, pour des utilisateurs sur des appareils et réseaux diversifiés dans le monde entier.
 
-[Le mode concurrent](/docs/concurrent-mode-intro.html) et [Suspense](/docs/concurrent-mode-suspense.html) sont des fonctionnalités expérimentales qui aident les développeurs à atteindre cet objectif.  Nous les avons d’abord introduits à [JSConf Iceland en 2018](/blog/2018/03/01/sneak-peek-beyond-react-16.html), en en dévoilant les détails volontairement très tôt afin de donner le temps à la communauté de digérer ces nouveaux concepts et de préparer le terrain pour des changements à venir.  Depuis lors nous avons terminé des travaux corollaires, tels que la nouvelle API de Contexte et l’arrivée des Hooks, qui sont conçus en partie pour aider les développeurs à naturellement écrire du code qui est davantage compatible avec le mode concurrent.  Mais nous ne voulions pas implémenter ces fonctionnalités et les publier sans valider qu’elles fonctionnaient.  Ainsi, sur l’année écoulée, les équipes chez Facebook en charge de React, Relay, de l’infrastructure web et des produits ont toutes étroitement collaboré pour construire une nouvelle version de facebook.com qui intègre en profondeur le mode concurrent et Suspense pour créer une expérience offrant un ressenti plus fluide, plus proche des applis natives.
+[Le mode concurrent](/docs/concurrent-mode-intro.html) et [Suspense](/docs/concurrent-mode-suspense.html) sont des fonctionnalités expérimentales qui aident les développeurs à atteindre cet objectif.  Nous les avons d’abord introduits à [JSConf Iceland en 2018](/blog/2018/03/01/sneak-peek-beyond-react-16.html), en en dévoilant les détails volontairement très tôt afin de donner le temps à la communauté de digérer ces nouveaux concepts et de préparer le terrain pour des changements à venir.  Depuis lors nous avons terminé des travaux corollaires, tels que la nouvelle API de Contexte et l’arrivée des Hooks, qui sont conçus en partie pour aider les développeurs à naturellement écrire du code qui est davantage compatible avec le mode concurrent.  Mais nous ne voulions pas implémenter ces fonctionnalités et les publier sans valider qu’elles fonctionnent.  Ainsi, sur l’année écoulée, les équipes chez Facebook en charge de React, Relay, de l’infrastructure web et des produits ont toutes étroitement collaboré pour construire une nouvelle version de facebook.com qui intègre en profondeur le mode concurrent et Suspense pour créer une expérience offrant un ressenti plus fluide, plus proche des applis natives.
 
 Grâce à ce projet, nous sommes plus confiants que jamais dans la capacité du mode concurrent et de Suspense à faciliter la livraison d’expériences utilisateurs agréables et *rapides*.  Mais pour y arriver, nous avons dû repenser notre façon de charger le code et les données de nos applis.  En pratique, tous les chargements de données du nouveau facebook.com sont désormais gérés par les [Hooks Relay](https://relay.dev/docs/en/experimental/step-by-step), une nouvelle API Relay basée sur les Hooks qui intègre d’entrée de jeu le mode concurrent et Suspense.
 
@@ -52,7 +52,7 @@ Dans l’exemple `<Post>` ci-avant, nous afficherions idéalement le contenu le 
 * Afficher le contenu le plus important (le corps de publication) le plus tôt possible implique que nous devons charger le code et les données de la vue de façon incrémentale.  Nous *ne voulons pas bloquer l’affichage du corps de publication* à cause du chargement du code de `<CommentList>`, par exemple.
 * Dans le même temps, nous ne voulons pas augmenter le temps que prendra l’affichage intégral de la page (commentaires compris).  Alors nous devons *commencer à charger le code et les données des commentaires* aussitôt que possible, idéalement *en parallèle* du chargement du corps de publication.
 
-Ça peut sembler difficile à réaliser, mais ces contraintes sont en fait extrêmement utiles.  Elles éliminent un grand nombre d’approches et dessinent une solution pour nous.  Ça nous amène aux approches-clés que nous avons implémentées avec les Hooks Relay, et qui peuvent être adaptées pour d’autres bibliothèques de chargement de données.  Nous allons examiner chacune de ces approches-clés à tour de rôle et voir en quoi elles se combinent pour réaliser notre vision d’expériences de chargement rapides et agréables :
+Ça peut sembler difficile à réaliser, mais ces contraintes sont en fait extrêmement utiles.  Elles éliminent un grand nombre d’approches et dessinent une solution pour nous.  Ça nous amène aux approches-clés que nous avons implémentées avec les Hooks Relay, et qui peuvent être adaptées pour d’autres bibliothèques de chargement de données.  Nous allons examiner chacune de ces approches-clés à tour de rôle et voir comment elles se combinent pour réaliser notre vision d’expériences de chargement rapides et agréables :
 
 1. Arbres parallèles pour les données et la vue
 2. Chargement depuis les gestionnaires d’événements
@@ -99,7 +99,7 @@ Supposez que vous êtes sur le point de naviguer depuis une liste des publicatio
 
 Patienter jusqu’au rendu du composant pose les problèmes présentés plus tôt.  Le cœur de la solution consiste à déclencher le chargement du code et des données de la nouvelle vue *dans le même gestionnaire d’événement qui déclenche l’affichage de cette vue*.  Nous pouvons tout aussi bien charger les données au sein de notre routeur (si celui-ci propose le pré-chargement des données pour les routes) ou dans le gestionnaire d’événement de clic pour le lien qui a déclenché la navigation.  Et de fait, les mainteneurs de React Router travaillent dur à construire des API qui permettront le pré-chargement des données pour les routes.  Mais d’autres solutions de routage peuvent aussi implémenter cette idée.
 
-Conceptuellement, nous voulons que chaque définition de route contienne deux choses : le composant à afficher et les données à pré-charger, en tant que fonction des paramètres de route ou d’URL.  Voici à quoi une telle définition de route *pourrait* ressembler.  Cet exemple est librement inspiré des définitions de route de React Router et *sert surtout à illustrer le concept, et non une API spécifique* :
+Conceptuellement, nous voulons que chaque définition de route contienne deux choses : le composant à afficher et les données à pré-charger, en tant que fonction acceptant les paramètres de la route ou l’URL.  Voici à quoi une telle définition de route *pourrait* ressembler.  Cet exemple est librement inspiré des définitions de route de React Router et *sert surtout à illustrer le concept, et non une API spécifique* :
 
 ```javascript
 // PostRoute.js (version GraphQL)
@@ -115,7 +115,7 @@ const PostRoute = {
   component: React.lazy(() => import('./Post')),
 
   // les données à charger pour cette route, sous forme de fonction
-  // des paramètres de la route
+  // acceptant les paramètres de la route
   prepare: routeParams => {
     // Relay extrait les requêtes des composants, nous permettant de
     // référencer les dépendances de données (l’arbre de données) depuis
@@ -153,7 +153,7 @@ const PostRoute = {
   component: React.lazy(() => import('./Post')),
 
   // les données à charger pour cette route, sous forme de fonction
-  // des paramètres de la route
+  // acceptant les paramètres de la route
   prepare: routeParams => {
     const postData = preloadRestEndpoint(
       PostData.endpointUrl,
@@ -172,7 +172,7 @@ Cette même approche peut être exploitée non seulement pour le routage, mais �
 
 Une fois que nous avons implémenté la capacité à déclencher le chargement du code et des données de façon indépendante, nous avons la possibilité d’aller plus loin.  Prenez un composant `<Link to={path} />` qui lie vers une route.  Si l’utilisateur le survole, il y a une bonne probabilité qu’il clique dessus.  Et s’il enfonce un bouton de la souris, la probabilité est élevée que ça aboutisse à un clic.  Si nous pouvons charger le code et les données de la vue *après* le clic par l’utilisateur, nous pouvons aussi démarrer ce travail *avant* le clic, et gagner encore un peu de temps pour préparer la vue.
 
-Le mieux dans tout ça, c’est que nous pouvons centraliser cette logique dans quelques emplacements-clés (un routeur ou des composants UI noyaux) et bénéficier de ces améliorations de performances dans toute notre appli.  Naturellement, le pré-chargement n’est pas systématiquement intéressant.  C’est le genre de chose qu’une application va adapter selon l’appareil ou la capacité réseau de l’utilisateur afin d’éviter de phagociter son forfait données.  Mais cette approche facilite la centralisation de l’implémentation du pré-chargement et de ses conditions d’activation.
+Le mieux dans tout ça, c’est que nous pouvons centraliser cette logique dans quelques emplacements-clés (un routeur ou des composants UI noyaux) et bénéficier de ces améliorations de performances dans toute notre appli.  Naturellement, le pré-chargement n’est pas systématiquement intéressant.  C’est le genre de chose qu’une application va adapter selon l’appareil ou la capacité réseau de l’utilisateur afin d’éviter l'épuisement de son forfait de données.  Mais cette approche facilite la centralisation de l’implémentation du pré-chargement et de ses conditions d’activation.
 
 ### Chargement incrémental de données {#load-data-incrementally}
 
@@ -216,7 +216,7 @@ Pour résoudre ce problème, l’équipe React planche sur des API qui permettra
 
 ## En résumé {#putting-it-all-together}
 
-En somme, mettre en œuvre une super expérience utilisateur de chargement implique que nous puissions **déclencher le chargement du code et des données aussitôt que possible, mais sans avoir besoin d’attendre que l’ensemble des réponses soient disponibles**.  Avoir des arbres parallèles pour les données et la vue nous permet justement de paralléliser leurs chargements.  Déclencher ceux-ci depuis un gestionnaire d’événement signifie que nous pouvons démarrer aussitôt que possible, voire dans une approche prédictive optimiste si la probabilité est suffisamment haute que l’utilisateur naviguera vers cette vue.  Le chargement incrémental des données nous permet de charger les données les plus importantes en premier, sans retarder pour autant le chargement des données moins critiques.  Et traiter le code comme des données (en le pré-chargeant grâce à des API similaires) nous permet d’anticiper aussi sur son chargement.
+En somme, mettre en œuvre une super expérience utilisateur de chargement implique que nous puissions **déclencher le chargement du code et des données aussitôt que possible, mais sans avoir besoin d’attendre que l’ensemble des réponses soient disponibles**.  Avoir des arbres parallèles pour les données et la vue nous permet justement de paralléliser leurs chargements.  Déclencher ceux-ci depuis un gestionnaire d’événement signifie que nous pouvons démarrer aussitôt que possible, voire dans une approche prédictive optimiste si la probabilité est suffisamment haute que l’utilisateur naviguera vers cette vue.  Le chargement incrémental des données nous permet de charger les données les plus importantes en premier, sans retarder pour autant le chargement des données moins critiques.  Et traiter le code comme des données (en le pré-chargeant grâce à des API similaires) nous permet d’anticiper aussi son chargement.
 
 ## Utiliser ces approches {#using-these-patterns}
 
