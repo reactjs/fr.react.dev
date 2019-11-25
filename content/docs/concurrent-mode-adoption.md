@@ -115,6 +115,7 @@ Pensez au mode bloquant comme à une version en « gracieusement dégradée »
 
 <div id="feature-table">
 
+<<<<<<< HEAD
 |                                                  | Mode histo. | Mode bloquant | Mode concurrent |
 | ------------------------------------------------ | ----------- | ------------- | --------------- |
 | Refs de type string                              | ✅           | 🚫**          | 🚫**            |
@@ -132,6 +133,25 @@ Pensez au mode bloquant comme à une version en « gracieusement dégradée »
 | `useTransition`                                  | 🚫          | 🚫            | ✅               |
 | `useDeferredValue`                               | 🚫          | 🚫            | ✅               |
 | « Train » de révélations de Suspense             | 🚫          | 🚫            | ✅               |
+=======
+|   |Legacy Mode  |Blocking Mode  |Concurrent Mode  |
+|---  |---  |---  |---  |
+|[String Refs](/docs/refs-and-the-dom.html#legacy-api-string-refs)  |✅  |🚫**  |🚫**  |
+|[Legacy Context](/docs/legacy-context.html) |✅  |🚫**  |🚫**  |
+|[findDOMNode](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)  |✅  |🚫**  |🚫**  |
+|[Suspense](/docs/concurrent-mode-suspense.html#what-is-suspense-exactly) |✅  |✅  |✅  |
+|[SuspenseList](/docs/concurrent-mode-patterns.html#suspenselist) |🚫  |✅  |✅  |
+|Suspense SSR + Hydration |🚫  |✅  |✅  |
+|Progressive Hydration  |🚫  |✅  |✅  |
+|Selective Hydration  |🚫  |🚫  |✅  |
+|Cooperative Multitasking |🚫  |🚫  |✅  |
+|Automatic batching of multiple setStates     |🚫* |✅  |✅  |
+|[Priority-based Rendering](/docs/concurrent-mode-patterns.html#splitting-high-and-low-priority-state) |🚫  |🚫  |✅  |
+|[Interruptible Prerendering](/docs/concurrent-mode-intro.html#interruptible-rendering) |🚫  |🚫  |✅  |
+|[useTransition](/docs/concurrent-mode-patterns.html#transitions)  |🚫  |🚫  |✅  |
+|[useDeferredValue](/docs/concurrent-mode-patterns.html#deferring-a-value) |🚫  |🚫  |✅  |
+|[Suspense Reveal "Train"](/docs/concurrent-mode-patterns.html#suspense-reveal-train)  |🚫  |🚫  |✅  |
+>>>>>>> 99b790188735016c72a9265a42dbfc87c3221729
 
 </div>
 

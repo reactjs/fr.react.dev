@@ -195,9 +195,14 @@ function Post(props) {
   return (
     <div>
       <h1>{postData.title}</h1>
+<<<<<<< HEAD
       <h2>par {postData.author}</h2>
       {/* @defer se combine naturellement à <Suspense> pour rendre
           l’UI également non-bloquante */}
+=======
+      <h2>by {postData.author}</h2>
+      {/* @defer pairs naturally with <Suspense> to make the UI non-blocking too */}
+>>>>>>> 99b790188735016c72a9265a42dbfc87c3221729
       <Suspense fallback={<Spinner/>}>
         <CommentList post={postData} />
       </Suspense>

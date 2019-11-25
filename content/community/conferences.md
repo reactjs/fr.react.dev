@@ -62,6 +62,11 @@ Le 15 juin 2020 à Tel Aviv, Israel.
 
 [Site web](https://react-next.com/) - [Twitter](https://twitter.com/reactnext) - [Facebook](https://www.facebook.com/ReactNext2016/)
 
+### React Loop 2020 {#react-loop-2020}
+June 19, 2020. Chicago, Illinois, USA.
+
+[Website](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
+
 ### React Week NY 2020 {#react-week-ny-2020}
 Le 17 juillet 2020 à New York City, NY, États-Unis.
 
