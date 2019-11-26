@@ -72,10 +72,6 @@ import("./math").then(math => {
 });
 ```
 
-> Remarque
->
-> La syntaxe d’`import()` dynamique est une [proposition](https://github.com/tc39/proposal-dynamic-import) ECMAScript (JavaScript) qui ne fait pas encore partie du standard du langage. Elle devrait être acceptée dans un avenir proche.
-
 Lorsque Webpack rencontre cette syntaxe, il commence automatiquement à découper le code de votre application. Si vous utilisez Create React App, c’est déjà configuré pour vous et vous pouvez [l’utiliser](https://facebook.github.io/create-react-app/docs/code-splitting) immédiatement. C’est également pris en charge de base par [Next.js](https://github.com/zeit/next.js/#dynamic-import).
 
 Si vous configurez Webpack vous-même, vous voudrez sans doute lire le [guide sur le découpage dynamique de code](https://webpack.js.org/guides/code-splitting/) de Webpack. Votre configuration Webpack devrait vaguement ressembler [à ça](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).

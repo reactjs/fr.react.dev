@@ -115,23 +115,23 @@ Pensez au mode bloquant comme à une version en « gracieusement dégradée »
 
 <div id="feature-table">
 
-|                                                  | Mode histo. | Mode bloquant | Mode concurrent |
-| ------------------------------------------------ | ----------- | ------------- | --------------- |
-| Refs de type string                              | ✅           | 🚫**          | 🚫**            |
-| API historique de Contexte                       | ✅           | 🚫**          | 🚫**            |
-| `findDOMNode`                                    | ✅           | 🚫**          | 🚫**            |
-| `Suspense`                                       | ✅           | ✅             | ✅               |
-| `SuspenseList`                                   | 🚫          | ✅             | ✅               |
-| Suspense côté serveur + Hydratation              | 🚫          | ✅             | ✅               |
-| Hydratation progressive                          | 🚫          | ✅             | ✅               |
-| Hydratation sélective                            | 🚫          | 🚫            | ✅               |
-| Multitâches coopératif                           | 🚫          | 🚫            | ✅               |
-| Regroupement automatique de multiples `setState` | 🚫*         | ✅             | ✅               |
-| Rendu basé sur priorités                         | 🚫          | 🚫            | ✅               |
-| Prérendu interruptible                           | 🚫          | 🚫            | ✅               |
-| `useTransition`                                  | 🚫          | 🚫            | ✅               |
-| `useDeferredValue`                               | 🚫          | 🚫            | ✅               |
-| « Train » de révélations de Suspense             | 🚫          | 🚫            | ✅               |
+|                                                                                                       | Mode histo. | Mode bloquant | Mode concurrent |
+| ----------------------------------------------------------------------------------------------------- | ----------- | ------------- | --------------- |
+| [Refs de type string](/docs/refs-and-the-dom.html#legacy-api-string-refs)                             | ✅           | 🚫**          | 🚫**            |
+| [API historique de Contexte](/docs/legacy-context.html)                                               | ✅           | 🚫**          | 🚫**            |
+| [`findDOMNode`](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)                    | ✅           | 🚫**          | 🚫**            |
+| [`Suspense`](/docs/concurrent-mode-suspense.html#what-is-suspense-exactly)                            | ✅           | ✅             | ✅               |
+| [`SuspenseList`](/docs/concurrent-mode-patterns.html#suspenselist)                                    | 🚫          | ✅             | ✅               |
+| Suspense côté serveur + Hydratation                                                                   | 🚫          | ✅             | ✅               |
+| Hydratation progressive                                                                               | 🚫          | ✅             | ✅               |
+| Hydratation sélective                                                                                 | 🚫          | 🚫            | ✅               |
+| Multitâches coopératif                                                                                | 🚫          | 🚫            | ✅               |
+| Regroupement automatique de multiples `setState`                                                      | 🚫*         | ✅             | ✅               |
+| [Rendu basé sur priorités](/docs/concurrent-mode-patterns.html#splitting-high-and-low-priority-state) | 🚫          | 🚫            | ✅               |
+| [Prérendu interruptible](/docs/concurrent-mode-intro.html#interruptible-rendering)                    | 🚫          | 🚫            | ✅               |
+| [`useTransition`](/docs/concurrent-mode-patterns.html#transitions)                                    | 🚫          | 🚫            | ✅               |
+| [`useDeferredValue`](/docs/concurrent-mode-patterns.html#deferring-a-value)                           | 🚫          | 🚫            | ✅               |
+| [« Train » de révélations de Suspense](/docs/concurrent-mode-patterns.html#suspense-reveal-train)     | 🚫          | 🚫            | ✅               |
 
 </div>
 
