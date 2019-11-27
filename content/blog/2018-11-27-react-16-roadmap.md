@@ -1,50 +1,48 @@
 ---
-title: "React 16.x Roadmap"
+title: "Feuille de route pour React 16.x"
 author: [gaearon]
 ---
 
-You might have heard about features like "Hooks", "Suspense", and "Concurrent Rendering" in the previous blog posts and talks. In this post, we'll look at how they fit together and the expected timeline for their availability in a stable release of React.
+Vous avez peut-être entendu parler de fonctionnalités telles que « les Hooks », « Suspense » ou le « rendu concurrent » dans de précédents articles de blog ou dans des présentations.  Dans cet article, nous allons examiner l’agencement de ces fonctionnalités, et la chronologie prévue pour leur mise à disposition dans une version stable de React.
 
-> An Update from August, 2019
+> Mise à jour d’août 2019
 >
-> You can find an update to this roadmap in the [React 16.9 release blog post](/blog/2019/08/08/react-v16.9.0.html#an-update-to-the-roadmap).
+> Vous pouvez trouver une mise à jour de cette feuille de route dans [l’annonce officielle de sortie de React 16.9](/blog/2019/08/08/react-v16.9.0.html#an-update-to-the-roadmap).
 
- 
-## tl;dr {#tldr}
+## TL;PL {#tldr}
 
-We plan to split the rollout of new React features into the following milestones:
+Nous avons l’intention de répartir la sortie des nouvelles fonctionnalités React au fil des jalons suivants :
 
-* React 16.6 with [Suspense for Code Splitting](#react-166-shipped-the-one-with-suspense-for-code-splitting) (*already shipped*)
-* A minor 16.x release with [React Hooks](#react-16x-q1-2019-the-one-with-hooks) (~Q1 2019)
-* A minor 16.x release with [Concurrent Mode](#react-16x-q2-2019-the-one-with-concurrent-mode) (~Q2 2019)
-* A minor 16.x release with [Suspense for Data Fetching](#react-16x-mid-2019-the-one-with-suspense-for-data-fetching) (~mid 2019)
+* React 16.6 avec [Suspense pour la découpe de code](#react-166-shipped-the-one-with-suspense-for-code-splitting) (*déjà sorti*)
+* Une version mineure 16.x avec [les Hooks React](#react-16x-q1-2019-the-one-with-hooks) (~Q1 2019)
+* Une version mineure 16.x avec [le mode concurrent](#react-16x-q2-2019-the-one-with-concurrent-mode) (~Q2 2019)
+* Une version mineure 16.x avec [Suspense pour le chargement de données](#react-16x-mid-2019-the-one-with-suspense-for-data-fetching) (~mi-2019)
 
-*(The original version of this post used exact version numbers. We edited it to reflect that there might need to be a few other minor releases in the middle between these ones.)*
+*(La version originale de cet article utilisait des numéros spécifiques de versions.  Nous l’avons ajusté pour refléter le fait que nous aurons peut-être besoin d’intercaler quelques autres version mineures avec celles annoncées ici.)*
 
-These are estimates, and the details may change as we're further along. There's at least two more projects we plan to complete in 2019. They require more exploration and aren't tied to a particular release yet:
+Ce sont là des estimations, et les détails sont susceptibles d’évoluer avec le temps.  Il y a au moins deux autres projets que nous avons l’intention de mener à bien en 2019.  Ils requièrent davantage d’exploration et ne sont pour le moment pas liés à une version spécifique :
 
-* [Modernizing React DOM](#modernizing-react-dom)
-* [Suspense for Server Rendering](#suspense-for-server-rendering)
+* [La modernisation de React DOM](#modernizing-react-dom)
+* [Suspense pour le rendu côté serveur](#suspense-for-server-rendering)
 
-We expect to get more clarity on their timeline in the coming months.
+Nous pensons y voir plus clair sur leur chronologie dans les prochains mois.
 
->Note
+> Remarque
 >
->
->This post is just a roadmap -- there is nothing in it that requires your immediate attention. When each of these features are released, we'll publish a full blog post announcing them.
+> Cet article n’est qu’une feuille de route : il ne contient rien qui nécessite votre attention immédiate.  Chaque fois qu’une de ces fonctionnalités sera livrée, nous publierons une annonce détaillée.
 
-## Release Timeline {#release-timeline}
+## Chronologie de sortie {#release-timeline}
 
-We have a single vision for how all of these features fit together, but we're releasing each part as soon as it is ready so that you can test and start using them sooner. The API design doesn't always make sense when looking at one piece in isolation; this post lays out the major parts of our plan to help you see the whole picture. (See our [versioning policy](/docs/faq-versioning.html) to learn more about our commitment to stability.)
+Nous partageons une vision unifiée de ces fonctionnalités et de leur utilisation conjointe, mais nous souhaitons sortir chacune aussitôt qu’elle sera prête afin que vous puissiez la tester et commencer à l’utiliser au plus tôt.  La conception d’une API pourra sembler étrange lorsqu’on l’examine en isolation, aussi cet article essaie de présenter les principales parties du plan pour vous aider à avoir une vision d’ensemble.  (Consultez notre [politique de gestion des versions](/docs/faq-versioning.html) pour en apprendre davantage sur notre engagement en termes de stabilité.)
 
-The gradual release strategy helps us refine the APIs, but the transitional period when some things aren't ready can be confusing. Let's look at what these different features mean for your app, how they relate to each other, and when you can expect to start learning and using them.
+Cette stratégie de publication graduelle nous aide à affiner les API, mais la période de transition, durant laquelle certaines parties ne sont pas encore prêtes, peut être déroutante.  Voyons l’impact de ces fonctionnalités sur votre appli, en quoi elles sont liées les unes aux autres, et à partir de quand vous pourrez commencer à les apprendre et les utiliser.
 
-### [React 16.6](/blog/2018/10/23/react-v-16-6.html) (shipped): The One with Suspense for Code Splitting {#react-166-shipped-the-one-with-suspense-for-code-splitting}
+### [React 16.6](/blog/2018/10/23/react-v-16-6.html) (déjà sorti) : celle avec Suspense pour la découpe de code {#react-166-shipped-the-one-with-suspense-for-code-splitting}
 
-*Suspense* refers to React's new ability to "suspend" rendering while components are waiting for something, and display a loading indicator. In React 16.6, Suspense supports only one use case: lazy loading components with `React.lazy()` and `<React.Suspense>`.
+Le terme *Suspense* désigne la nouvelle capacité de React à « suspendre » le rendu pendant que des composants attendent quelque chose, et à afficher un indicateur de chargement.  Dans React 16.6, Suspense ne prend en charge qu’un cas d’usage : le chargement paresseux de composants à l’aide de `React.lazy()` et `<React.Suspense>`.
 
 ```js
-// This component is loaded dynamically
+// Ce composant est chargé dynamiquement
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
 function MyComponent() {
@@ -58,112 +56,112 @@ function MyComponent() {
 }
 ```
 
-Code splitting with `React.lazy()` with `<React.Suspense>` is documented [in the Code Splitting guide](/docs/code-splitting.html#reactlazy). You can find another practical explanation in [this article](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d).
+La découpe de code avec `React.lazy()` et `<React.Suspense>` est documentée dans [le guide sur la découpe de code](/docs/code-splitting.html#reactlazy). Vous pourrez en trouver une explication pratique supplémentaire dans [cet article](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d).
 
-We have been using Suspense for code splitting at Facebook since July, and expect it to be stable. There's been a few regressions in the initial public release in 16.6.0, but they were fixed in 16.6.3.
+Chez Facebook, nous utilisons Suspense pour la découpe de code depuis juillet, et nous l’estimons stable.  La sortie publique initiale en 16.6.0 comportait quelques régressions, qui ont été corrigées en 16.6.3.
 
-Code splitting is just the first step for Suspense. Our longer term vision for Suspense involves letting it handle data fetching too (and integrate with libraries like Apollo). In addition to a convenient programming model, Suspense also provides better user experience in Concurrent Mode. You'll find information about these topics further below.
+La découpe de code n’est toutefois que la première étape pour Suspense.  Notre vision de Suspense à plus long terme implique qu’il puisse aussi gérer le chargement de données (et s’intégrer avec des bibliothèques telles qu’Apollo).  En plus de fournir un modèle de programmation confortable, Suspense apporte une meilleure expérience utilisateur en mode concurrent.  Vous pourrez en apprendre davantage sur ces points dans la suite de ce texte.
 
-**Status in React DOM:** Available since React 16.6.0.
+**Statut dans React DOM :** disponible depuis React 16.6.0.
 
-**Status in React DOM Server:** Suspense is not available in the server renderer yet. This isn't for the lack of attention. We've started work on a new asynchronous server renderer that will support Suspense, but it's a large project and will take a good chunk of 2019 to complete.
+**Statut dans React DOM Server :** Suspense n‘est pas encore disponible dans le moteur de rendu côté serveur.  Ce n’est pas par manque d’intérêt.  Nous avons commencé à travailler sur un nouveau moteur de rendu asynchrone côté serveur qui prendre en charge Suspense, mais c’est un vaste projet qui prendra une bonne partie de 2019 pour aboutir.
 
-**Status in React Native:** Bundle splitting isn't very useful in React Native, but there's nothing technically preventing `React.lazy()` and `<Suspense>` from working when given a Promise to a module.
+**Statut dans React Native :** La découpe de bundle n’est pas tellement utile avec React Native, mais rien n’empêche techniquement `React.lazy()` et `<Suspense>` de fonctionner lorsqu’ils reçoivent une `Promise` pour un module.
 
-**Recommendation:** If you only do client rendering, we recommend widely adopting `React.lazy()` and `<React.Suspense>` for code splitting React components. If you do server rendering, you'll have to wait with adoption until the new server renderer is ready.
+**Notre conseil :** Si vous ne faites que du rendu client, nous vous recommandons d’adopter massivement `React.lazy()` et `<React.Suspense>` pour la découpe de code de vos composants React.  Si vous faites du rendu côté serveur, il vous faudra attendre que le nouveau moteur de rendu côté serveur soit prêt pour pouvoir démarrer cette adoption.
 
-### React 16.x (~Q1 2019): The One with Hooks {#react-16x-q1-2019-the-one-with-hooks}
+### React 16.x (~Q1 2019) : celle avec les Hooks {#react-16x-q1-2019-the-one-with-hooks}
 
-*Hooks* let you use features like state and lifecycle from function components. They also let you reuse stateful logic between components without introducing extra nesting in your tree.
+Les *Hooks* vous permettent d’utiliser des fonctionnalités telles que l’état local et le cycle de vie au sein de fonctions composants.  Ils permettent aussi de réutiliser de la logique à état dans plusieurs composants sans alourdir pour autant votre arbre de composants.
 
 ```js
 function Example() {
-  // Declare a new state variable, which we'll call "count"
+  // Déclare une nouvelle variable d’état, que nous appellerons `count`
   const [count, setCount] = useState(0);
 
   return (
    <div>
-     <p>You clicked {count} times</p>
+     <p>Vous avez cliqué {count} fois</p>
      <button onClick={() => setCount(count + 1)}>
-       Click me
+       Cliquez ici
      </button>
    </div>
  );
 }
 ```
 
-Hooks [introduction](/docs/hooks-intro.html) and [overview](/docs/hooks-overview.html) are good places to start. Watch [these talks](https://www.youtube.com/watch?v=V-QO-KO90iQ) for a video introduction and a deep dive. The [FAQ](/docs/hooks-faq.html) should answer most of your further questions. To learn more about the motivation behind Hooks, you can read [this article](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889). Some of the rationale for the API design of Hooks is explained in [this RFC thread reply](https://github.com/reactjs/rfcs/pull/68#issuecomment-439314884).
+Une bonne manière de démarrer consiste à lire [l’introduction](/docs/hooks-intro.html) et l’[aperçu](/docs/hooks-overview.html) des Hooks. Regardez [ces présentations](https://www.youtube.com/watch?v=V-QO-KO90iQ) si vous préférez une introduction vidéo et une plongée plus en profondeur. La [FAQ](/docs/hooks-faq.html) devrait répondre à la plupart de vos questions. Pour en apprendre davantage sur les raisons qui sous-tendent la conception des Hooks, vous pouvez lire [cet article](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889). Enfin, certains des choix de conception de l’API sont détaillés dans [cette discussion de la RFC](https://github.com/reactjs/rfcs/pull/68#issuecomment-439314884).
 
-We have been dogfooding Hooks at Facebook since September. We don't expect major bugs in the implementation. Hooks are only available in the 16.7 alpha versions of React. Some of their API is expected to change in the final version (see the end of [this comment](https://github.com/reactjs/rfcs/pull/68#issuecomment-439314884) for details). It is possible that the minor release with Hooks might not be React 16.7.
+Nous utilisons les Hooks chez Facebook depuis septembre.  Nous ne pensons pas que des bugs majeurs subsistent dans leur implémentation.  Les Hooks ne sont disponibles que dans les versions 16.7 alpha de React.  Il est possible qu’au moins certains aspects de leur API évoluent d’ici la version finale (voir [ce commentaire](https://github.com/reactjs/rfcs/pull/68#issuecomment-439314884) pour plus de détails).  Il est également possible que la version mineure qui fournisse les Hooks ne soit pas la 16.7.
 
-Hooks represent our vision for the future of React. They solve both problems that React users experience directly ("wrapper hell" of render props and higher-order components, duplication of logic in lifecycle methods), and the issues we've encountered optimizing React at scale (such as difficulties in inlining components with a compiler). Hooks don't deprecate classes. However, if Hooks are successful, it is possible that in a future *major* release class support might move to a separate package, reducing the default bundle size of React.
+Les Hooks représentent notre vision de l’avenir de React.  Ils résolvent les deux problèmes que les utilisateurs de React rencontrent directement (« l’enfer d’enrobage » que donnent les *render props* et les composants d’ordre supérieur d’une part, la duplication de logique à travers les méthodes de cycle de vie d’autre part) tout en éliminant certains obstacles à l’optimisation de React à grande échelle (tels que la difficulté à *inliner* des composants grâce à un compilateur).  Les Hooks ne déprécient pas les classes.  Toutefois, si les Hooks rencontrent un fort succès, il n’est pas exclus que dans une future version *majeure* la prise en charge des classes soit déportée dans un module distinct, afin de réduire la taille par défaut du bundle de React.
 
-**Status in React DOM:** The first version of `react` and `react-dom` supporting Hooks is `16.7.0-alpha.0`. We expect to publish more alphas over the next months (at the time of writing, the latest one is `16.7.0-alpha.2`). You can try them by installing `react@next` with `react-dom@next`. Don't forget to update `react-dom` -- otherwise Hooks won't work.
+**Statut dans React DOM :** la première version de `react` et `react-dom` à prendre en charge les Hooks est la `16.7.0-alpha.0`. Nous comptons publier des alphas supplémentaires dans les prochains mois (à l’heure où nous écrivons ceci, la plus récente est la `16.7.0-alpha.2`). Vous pouvez les essayer en installant `react@next` et `react-dom@next`. N’oubliez pas de mettre à jour `react-dom`, faute de quoi les Hooks ne fonctionneront pas.
 
-**Status in React DOM Server:** The same 16.7 alpha versions of `react-dom` fully support Hooks with `react-dom/server`.
+**Statut dans React DOM Server :** les mêmes versions 16.7 alpha de `react-dom` prennent pleinement les Hooks en charge avec `react-dom/server`.
 
-**Status in React Native:** There is no officially supported way to try Hooks in React Native yet. If you're feeling adventurous, check out [this thread](https://github.com/facebook/react-native/issues/21967) for unofficial instructions. There is a known issue with `useEffect` firing too late which still needs to be solved.
+**Statut dans React Native :** React Native ne fournit pas pour le moment de prise en charge officielle des Hooks.  Mais si vous êtes joueur·se, jetez un coup d’œil à [cette discussion](https://github.com/facebook/react-native/issues/21967) pour des instructions non-officielles.  Notez qu’un problème identifié de déclenchement tardif de `useEffect` n’est pas encore résolu.
 
-**Recommendation:** When you’re ready, we encourage you to start trying Hooks in new components you write. Make sure everyone on your team is on board with using them and familiar with this documentation. We don’t recommend rewriting your existing classes to Hooks unless you planned to rewrite them anyway (e.g. to fix bugs). Read more about the adoption strategy [here](/docs/hooks-faq.html#adoption-strategy).
+**Notre conseil :** quand vous serez prêt·e, nous vous encourageons à essayer les Hooks dans les nouveaux composants que vous écrirez.  Assurez-vous que tous les membres de votre équipe sont partant·e·s et ont parcouru la documentation associée.  Nous déconseillons de réécrire vos classes existantes vers les Hooks à moins que vous n’ayez déjà prévu de les réécrire pour d’autres raisons (par ex. pour corriger des bugs).  Vous pouvez en apprendre davantage sur la stratégie d’adoption [ici](/docs/hooks-faq.html#adoption-strategy).
 
-### React 16.x (~Q2 2019): The One with Concurrent Mode {#react-16x-q2-2019-the-one-with-concurrent-mode}
+### React 16.x (~Q2 2019) : celle avec le mode concurrent {#react-16x-q2-2019-the-one-with-concurrent-mode}
 
-*Concurrent Mode* lets React apps be more responsive by rendering component trees without blocking the main thread. It is opt-in and allows React to interrupt a long-running render (for example, rendering a new feed story) to handle a high-priority event (for example, text input or hover). Concurrent Mode also improves the user experience of Suspense by skipping unnecessary loading states on fast connections.
+Le *mode concurrent* permet aux applis React d’être plus réactives en réalisant le rendu des arbres de composants sans bloquer le thread principal.  Il doit être explicitement activé et permet à React d’interrompre un rendu long (par exemple, le rendu d’un long fil de discussion) afin de traiter des événements de plus forte priorité (tels qu’une saisie clavier ou un survol de la souris).  Le mode concurrent améliore également l’expérience utilisateur de Suspense en sautant les états de chargement superflus lorsque la connexion est rapide.
 
->Note
+> Remarque
 >
->You might have previously heard Concurrent Mode being referred to as ["async mode"](/blog/2018/03/27/update-on-async-rendering.html). We've changed the name to Concurrent Mode to highlight React's ability to perform work on different priority levels. This sets it apart from other approaches to async rendering.
+> Vous avez peut-être entendu ou lu le terme [“async mode”](/blog/2018/03/27/update-on-async-rendering.html) par le passé pour désigner le mode concurrent.  Nous avons changé le nom en « mode concurrent » pour mettre en avant la capacité de React à réaliser des tâches selon divers niveaux de priorité.  Il s’agit là d’une approche à part dans la gestion de rendu asynchrone.
 
 ```js
-// Two ways to opt in:
+// Deux façons de l’activer :
 
-// 1. Part of an app (not final API)
+// 1. Pour une partie de l’appli (API non finalisée)
 <React.unstable_ConcurrentMode>
   <Something />
 </React.unstable_ConcurrentMode>
 
-// 2. Whole app (not final API)
+// 2. Pour l’appli entière (API non finalisée)
 ReactDOM.unstable_createRoot(domNode).render(<App />);
 ```
 
-There is no documentation written for the Concurrent Mode yet. It is important to highlight that the conceptual model will likely be unfamiliar at first. Documenting its benefits, how to use it efficiently, and its pitfalls is a high priority for us, and will be a prerequisite for calling it stable. Until then, [Andrew's talk](https://www.youtube.com/watch?v=ByBPyMBTzM0) is the best introduction available.
+Il n’existe pas encore de documentation pour le mode concurrent.  Nous tenons aussi à souligner que son modèle conceptuel vous semblera sans doute déconcertant au premier abord.  Nous accordons une priorité particulière à la documentation de ses avantages, de son utilisation efficace et de ses pièges potentiels, et cette documentation sera obligatoire avant qu’on le déclare comme stable.  En attendant, [la présentation d’Andrew](https://www.youtube.com/watch?v=ByBPyMBTzM0) reste la meilleure introduction disponible.
 
-Concurrent Mode is *much* less polished than Hooks. Some APIs aren't properly "wired up" yet and don't do what they're expected to. At the time of writing this post, we don't recommend using it for anything except very early experimentation. We don't expect many bugs in Concurrent Mode itself, but note that components that produce warnings in [`<React.StrictMode>`](https://reactjs.org/docs/strict-mode.html) may not work correctly. On a separate note, we've seen that Concurrent Mode *surfaces* performance problems in other code which can sometimes be mistaken for performance issues in Concurrent Mode itself. For example, a stray `setInterval(fn, 1)` call that runs every millisecond would have a worse effect in Concurrent Mode. We plan to publish more guidance about diagnosing and fixing issues like this as part of this release's documentation.
+Le mode concurrent est *largement* moins abouti que les Hooks.  Certaines API ne sont pas encore correctement « câblées » et ne fonctionnent pas comme on s’y attend.  À l’heure où nous écrivons ceci, nous déconseillons son utilisation hors de l’expérimentation pure.  Nous n’anticipons pas beaucoup de bugs dans le mode concurrent lui-même, mais sachez déjà que les composants qui produisent des avertissements au sein de [`<React.StrictMode>`](/docs/strict-mode.html) risquent de ne pas fonctionner correctement.  Par ailleurs, nous avons remarqué que le mode concurrent *fait émerger* des problèmes de performance dans le code tiers qui peuvent parfois être pris à tort pour des problèmes de performance dans le mode concurrent lui-même.  Par exemple, un `setInterval(fn, 1)` oublié dans un coin, qui s’exécuterait à chaque milliseconde, se fera davantage sentir en mode concurrent.  Nous avons l’intention de publier davantage de recommandations sur les diagnostics et correctifs pour ce type de problème au sein de la documentation pour cette version.
 
-Concurrent Mode is a big part of our vision for React. For CPU-bound work, it allows non-blocking rendering and keeps your app responsive while rendering complex component trees. That's demoed in the first part of [our JSConf Iceland talk](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Concurrent Mode also makes Suspense better. It lets you avoid flickering a loading indicator if the network is fast enough. It's hard to explain without seeing so [Andrew's talk](https://www.youtube.com/watch?v=ByBPyMBTzM0) is the best resource available today. Concurrent Mode relies on a cooperative main thread [scheduler](https://github.com/facebook/react/tree/master/packages/scheduler), and we are [collaborating with the Chrome team](https://www.youtube.com/watch?v=mDdgfyRB5kg) to eventually move this functionality into the browser itself.
+Le mode concurrent constitue une part importante de notre vision pour React.  Pour les tâches de calcul pur, il permet un rendu non-bloquant et préserve la réactivité de nos applis tout en réalisant le rendu d’arbres de composants complexes.  On en trouve une démonstration dans la première partie de [notre présentation à JSConf Iceland](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Le mode concurrent améliore par ailleurs l’impact de Suspense.  Il vous permet d’éviter une brève apparition d’un indicateur de chargement si le réseau est suffisamment rapide.  C’est délicat à expliquer sans support visuel, aussi [la présentation d’Andrew](https://www.youtube.com/watch?v=ByBPyMBTzM0) est la meilleure ressource disponible pour le moment. Le mode concurrent repose sur un [planificateur](https://github.com/facebook/react/tree/master/packages/scheduler) coopératif pour le thread principal, et nous [collaborons avec l’équipe de Chrome](https://www.youtube.com/watch?v=mDdgfyRB5kg) pour déplacer à terme cette capacité dans le navigateur lui-même.
 
-**Status in React DOM:** A *very* unstable version of Concurrent Mode is available behind an `unstable_` prefix in React 16.6 but we don't recommend trying it unless you're willing to often run into walls or missing features. The 16.7 alphas include `React.ConcurrentMode` and `ReactDOM.createRoot` without an `unstable_` prefix, but we'll likely keep the prefix in 16.7, and only document and mark Concurrent Mode as stable in this future minor release.
+**Statut dans React DOM :** une version *très* instable du mode concurrent est disponible avec un préfixe `unstable_` dans React 16.6 mais nous vous déconseillons de l’utiliser à moins que vous ne soyez prêt·e à vous prendre des murs ou tomber sur des fonctionnalités manquantes. Les alphas 16.7 incluent `React.ConcurrentMode` et `ReactDOM.createRoot` sans le préfixe `unstable_`, mais nous conserverons sans doute le préfixe dans la 16.7, et ne documenterons le mode concurrent, qui sera alors considéré stable, que dans cette future version mineure.
 
-**Status in React DOM Server:** Concurrent Mode doesn't directly affect server rendering. It will work with the existing server renderer.
+**Statut dans React DOM Server :** le mode concurrent n’affecte pas directement le rendu côté serveur.  Il fonctionnera avec le moteur de rendu côté serveur existant.
 
-**Status in React Native:** The current plan is to delay enabling Concurrent Mode in React Native until [React Fabric](https://github.com/react-native-community/discussions-and-proposals/issues/4) project is near completion.
+**Statut dans React Native :** les plans actuels diffèrent l’activation du mode concurrent dans React Native jusqu’à ce que le projet [React Fabric](https://github.com/react-native-community/discussions-and-proposals/issues/4) soit sur le point d’aboutir.
 
-**Recommendation:** If you wish to adopt Concurrent Mode in the future, wrapping some component subtrees in [`<React.StrictMode>`](https://reactjs.org/docs/strict-mode.html) and fixing the resulting warnings is a good first step. In general it's not expected that legacy code would immediately be compatible. For example, at Facebook we mostly intend to use the Concurrent Mode in the more recently developed codebases, and keep the legacy ones running in the synchronous mode for the near future.
+**Notre conseil :** si vous souhaitez adopter le mode concurrent à l’avenir, un bon premier pas consiste à enrober des arbres de composants par un [`<React.StrictMode>`](https://reactjs.org/docs/strict-mode.html) et à corriger les avertissements qui en résultent. De façon générale, nous nous attendons à ce que le code légataire ne soit pas automatiquement compatible. Par exemple, chez Facebook nous avons surtout l’intention d’utiliser le mode concurrent pour les bases de code les plus récemment écrites, et de laisser les codes plus anciens tourner en mode synchrone pour le moment.
 
-### React 16.x (~mid 2019): The One with Suspense for Data Fetching {#react-16x-mid-2019-the-one-with-suspense-for-data-fetching}
+### React 16.x (~mi-2019) : celle avec Suspense pour le chargement de données {#react-16x-mid-2019-the-one-with-suspense-for-data-fetching}
 
-As mentioned earlier, *Suspense* refers to React's ability to "suspend" rendering while components are waiting for something, and display a loading indicator. In the already shipped React 16.6, the only supported use case for Suspense is code splitting. In this future minor release, we'd like to provide officially supported ways to use it for data fetching too. We'll provide a reference implementation of a basic "React Cache" that's compatible with Suspense, but you can also write your own. Data fetching libraries like Apollo and Relay will be able to integrate with Suspense by following a simple specification that we'll document.
+Comme indiqué plus tôt, *Suspense* désigne la capacité de React à « suspendre » le rendu pendant que des composants attendent quelque chose, et à afficher un indicateur de chargement.  Dans sa version sortie avec React 16.6, le seul cas d’usage pris en charge concerne la découpe de code.  Dans cette future version mineure, nous aimerions fournir des prises en charge officielles pour le chargement de données également.  Nous fournirons une implémentation de référence avec un « cache React » basique qui sera compatible avec Suspense, mais vous pourrez aussi écrire le vôtre.  Les bibliothèques de chargement de données telles qu’Apollo et Relay pourront s’intégrer avec Suspense en respectant une spécification simple que nous documenterons.
 
 ```js
-// React Cache for simple data fetching (not final API)
+// Cache React pour du chargement simple de données (API non finalisée)
 import {unstable_createResource} from 'react-cache';
 
-// Tell React Cache how to fetch your data
+// Dis au cache React comment charger les données
 const TodoResource = unstable_createResource(fetchTodo);
 
 function Todo(props) {
-  // Suspends until the data is in the cache
+  // Se suspend jusqu’à ce que les données soient dans le cache
   const todo = TodoResource.read(props.id);
   return <li>{todo.title}</li>;
 }
 
 function App() {
   return (
-    // Same Suspense component you already use for code splitting
-    // would be able to handle data fetching too.
+    // Le même composant Suspense que vous utilisez déjà pour la découpe de
+    // code serait capable de gérer également le chargement de données.
     <React.Suspense fallback={<Spinner />}>
       <ul>
-        {/* Siblings fetch in parallel */}
+        {/* Les éléments de même niveau sont chargés en parallèle */}
         <Todo id="1" />
         <Todo id="2" />
       </ul>
@@ -171,40 +169,35 @@ function App() {
   );
 }
 
-// Other libraries like Apollo and Relay can also
-// provide Suspense integrations with similar APIs.
+// D’autres bibliothèques telles qu’Apollo ou Relay peuvent aussi
+// fournir des intégrations avec Suspense en utilisant des API similaires.
 ```
+Il n’existe pas encore de documentation pour le chargement de données avec Suspense, mais vous pouvez trouver quelques informations préliminaires dans [cette présentation](https://youtu.be/ByBPyMBTzM0?t=1312) et [cette petite démo](https://github.com/facebook/react/blob/master/packages/react-devtools/CHANGELOG.md#suspense-toggle).  Nous écrirons la documentation de React Cache (et de la façon d’écrire votre bibliothèque compatible avec Suspense) lorsque cette version de React approchera, mais si vous êtes curieux·se, vous pouvez en trouver le code source embryonnaire [ici](https://github.com/facebook/react/blob/master/packages/react-cache/src/ReactCache.js).
 
-There is no official documentation for how to fetch data with Suspense yet, but you can find some early information in [this talk](https://youtu.be/ByBPyMBTzM0?t=1312) and [this small demo](https://github.com/facebook/react/blob/master/packages/react-devtools/CHANGELOG.md#suspense-toggle). We'll write documentation for React Cache (and how to write your own Suspense-compatible library) closer to this React release, but if you're curious, you can find its very early source code [here](https://github.com/facebook/react/blob/master/packages/react-cache/src/ReactCache.js).
+Le mécanisme de bas niveau de Suspense (qui suspend le rendu et affiche une UI de repli) derait être stable même en React 16.6.  Nous l’utilisons en production depuis des mois pour la découpe de code.  Ceci dit, les API de plus haut niveau pour le chargement de données sont très instables.  React Cache change tout le temps, et ce n’est probablement pas fini.  Certaines API supplémentaires de bas niveau sont encore [manquantes](https://github.com/reactjs/rfcs/pull/89) afin de rendre possibles de meilleures API de plus haut niveau.  Nous déconseillons l’utilisation de React Cache hors de l’expérimentation pure.  Remarquez que React Cache lui-même n’est pas strictement lié aux versions de React, mais les alphas actuelles sont dépourvues de fonctions basiques telles que l’invalidation de cache, vous vous prendrez donc rapidement un mur.  Nous devrions avoir quelque chose d’utilisable pour cette version de React.
 
-The low-level Suspense mechanism (suspending rendering and showing a fallback) is expected to be stable even in React 16.6. We've used it for code splitting in production for months. However, the higher-level APIs for data fetching are very unstable. React Cache is rapidly changing, and will change at least a few more times. There are some low-level APIs that are [missing](https://github.com/reactjs/rfcs/pull/89) for a good higher-level API to be possible. We don't recommend using React Cache anywhere except very early experiments. Note that React Cache itself isn't strictly tied to React releases, but the current alphas lack basic features as cache invalidation, and you'll run into a wall very soon. We expect to have something usable with this React release.
+À terme nous aimerions que la majorité des chargements de données aient lieu *via* Suspense, mais ça prendra beaucoup de temps pour que toutes les intégrations soient prêtes.  En pratique, nous anticipons une adoption très incrémentale, et souvent par l’intermédiaire de couches telles qu’Apollo ou Relay plutôt que directement.  Le manque d’API de plus haut niveau n’est d’ailleurs pas le seul obstacle : certaines approches UI importantes ne sont pas encore prises en charge, telles que [l’affichage d’un indicateur de progression hors de la hiérarchie des vues en cours de chargement](https://github.com/facebook/react/issues/14248).  Comme toujours, nous communiquerons sur notre progression dans les notes de publications sur ce blog.
 
-Eventually we'd like most data fetching to happen through Suspense but it will take a long time until all integrations are ready. In practice we expect it to be adopted very incrementally, and often through layers like Apollo or Relay rather than directly. Missing higher level APIs aren't the only obstacle — there are also some important UI patterns we don't support yet such as [showing progress indicator outside of the loading view hierarchy](https://github.com/facebook/react/issues/14248). As always, we will communicate our progress in the release notes on this blog.
+**Statut dans React DOM et React Native :** techniquement, un cache compatible marcherait déjà avec `<React.Suspense>` dans React 16.6.  Toutefois, nous ne pensons pas avoir une bonne implémentation de ce cache avant cette version mineure de React.  Si vous êtes joueur·se, vous pouvez essayer d’écrire le vôtre en regardant les alphas de React Cache.  Ceci dit, gardez à l’esprit que le modèle mental est suffisamment différent pour que vous courriez un fort risque de le comprendre de travers tant que la documentation ne sera pas prête.
 
-**Status in React DOM and React Native:** Technically, a compatible cache would already work with `<React.Suspense>` in React 16.6. However, we don't expect to have a good cache implementation until this React minor release. If you're feeling adventurous, you can try to write your own cache by looking at the React Cache alphas. However, note that the mental model is sufficiently different that there's a high risk of misunderstanding it until the docs are ready.
+**Statut dans React DOM Server :**  Suspense n’est pas encore disponible dans le moteur de rendu côté serveur.  Comme vu précédemment, nous avons commencé à travailler sur un moteur de rendu asynchrone côté serveur qui prendre Suspense en charge, mais c’est un vaste projet qui devrait prendre une bonne partie de 2019 pour aboutir.
 
-**Status in React DOM Server:** Suspense is not available in the server renderer yet. As we mentioned earlier, we've started work on a new asynchronous server renderer that will support Suspense, but it's a large project and will take a good chunk of 2019 to complete.
+**Notre conseil :** attendez cette version mineure de React pour utiliser Suspense pour le chargement de données.  N’essayez par d’utiliser les capacités de Suspense en 16.6 pour ça : ce n’est pas pris en charge.  En revanche, vos composants `<Suspense>` existants pour la découpe de code seront capables d’afficher des états de chargement pour les données aussi quand Suspense pour le chargement de données sera officiellement disponible.
 
-**Recommendation:** Wait for this minor React release in order to use Suspense for data fetching. Don’t try to use Suspense features in 16.6 for it; it’s not supported. However, your existing `<Suspense>` components for code splitting will be able to show loading states for data too when Suspense for Data Fetching becomes officially supported.
+## Autres projets {#other-projects}
 
-## Other Projects {#other-projects}
+### Modernisation de React DOM {#modernizing-react-dom}
 
-### Modernizing React DOM {#modernizing-react-dom}
+Nous avons commencé à explorer [la simplification et la modernisation](https://github.com/facebook/react/issues/13525) de React DOM, l’objectif étant de réduire la taille du bundle et de se rapprocher davantage du comportement du navigateur.  Il est encore trop tôt pour dire quels objectifs spécifiques seront atteints, car le projet est dans une phase exploratoire.  Nous vous tiendrons au courant.
 
-We started an investigation into [simplifying and modernizing](https://github.com/facebook/react/issues/13525) ReactDOM, with a goal of reduced bundle size and aligning closer with the browser behavior. It is still early to say which specific bullet points will "make it" because the project is in an exploratory phase. We will communicate our progress on that issue.
+### Suspense pour le rendu côté serveur {#suspense-for-server-rendering}
 
-### Suspense for Server Rendering {#suspense-for-server-rendering}
-
-We started designing a new server renderer that supports Suspense (including waiting for asynchronous data on the server without double rendering) and progressively loading and hydrating page content in chunks for best user experience. You can watch an overview of its early prototype in [this talk](https://www.youtube.com/watch?v=z-6JC0_cOns). The new server renderer is going to be our major focus in 2019, but it's too early to say anything about its release schedule. Its development, as always, [will happen on GitHub](https://github.com/facebook/react/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+fizz).
+Nous avons commencé la conception d’un nouveau moteur de rendu côté serveur qui prenne en charge Suspense (y compris l’attente de données asynchrones côté serveur sans double rendu) et le chargement comme l’hydratation progressifs du contenu de la page par morceaux pour optimiser l’expérience utilisateur.  Vous pouvez voir un aperçu d’un premier prototype dans [cette présentation](https://www.youtube.com/watch?v=z-6JC0_cOns). Le nouveau moteur de rendu côté serveur sera une de nos principales priorités pour 2019, mais il est trop tôt pour parler de sa chronologie de sortie.  Son développement, comme toujours, [se fera sur GitHub](https://github.com/facebook/react/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+fizz).
 
 -----
 
-And that's about it! As you can see, there's a lot here to keep us busy but we expect much progress in the coming months.
+Et c’est à peu près tout ! Comme vous pouvez le voir, nous avons de quoi nous occuper mais nous anticipons beaucoup de progrès dans les prochains mois.
 
-We hope this post gives you an idea of what we're working on, what you can use today, and what you can expect to use in the future. While there's a lot of discussion about new features on social media platforms, you won't miss anything important if you read this blog.
+Nous espérons que cet article vous aura donné une idée de ce sur quoi nous travaillons, ce que vous pouvez déjà utiliser, et ce à quoi vous attendre à l’avenir.  Même si beaucoup de discussions sur les nouvelles fonctionnalités ont lieu sur les réseaux sociaux, si vous lisez ce blog, vous ne louperez rien d’important.
 
-We're always open to feedback, and love to hear from you in the [RFC repository](https://github.com/reactjs/rfcs), [the issue tracker](https://github.com/facebook/react/issues), and [on Twitter](https://mobile.twitter.com/reactjs).
-
-
-
-
+Nous sommes toujours ravis de recevoir vos retours et avis sur le [dépôt des RFC](https://github.com/reactjs/rfcs), sur [le suivi de tickets](https://github.com/facebook/react/issues), et sur [Twitter](https://mobile.twitter.com/reactjs).
