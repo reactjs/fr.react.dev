@@ -64,7 +64,7 @@ La découpe de code n’est toutefois que la première étape pour Suspense.  No
 
 **Statut dans React DOM :** disponible depuis React 16.6.0.
 
-**Statut dans React DOM Server :** Suspense n‘est pas encore disponible dans le moteur de rendu côté serveur.  Ce n’est pas par manque d’intérêt.  Nous avons commencé à travailler sur un nouveau moteur de rendu asynchrone côté serveur qui prendre en charge Suspense, mais c’est un vaste projet qui prendra une bonne partie de 2019 pour aboutir.
+**Statut dans React DOM Server :** Suspense n‘est pas encore disponible dans le moteur de rendu côté serveur.  Ce n’est pas par manque d’intérêt.  Nous avons commencé à travailler sur un nouveau moteur de rendu asynchrone côté serveur qui prendra en charge Suspense, mais c’est un vaste projet qui se déroulera sur une bonne partie de 2019 pour aboutir.
 
 **Statut dans React Native :** La découpe de bundle n’est pas tellement utile avec React Native, mais rien n’empêche techniquement `React.lazy()` et `<Suspense>` de fonctionner lorsqu’ils reçoivent une `Promise` pour un module.
 
@@ -124,7 +124,7 @@ Le *mode concurrent* permet aux applis React d’être plus réactives en réali
 ReactDOM.unstable_createRoot(domNode).render(<App />);
 ```
 
-Il n’existe pas encore de documentation pour le mode concurrent.  Nous tenons aussi à souligner que son modèle conceptuel vous semblera sans doute déconcertant au premier abord.  Nous accordons une priorité particulière à la documentation de ses avantages, de son utilisation efficace et de ses pièges potentiels, et cette documentation sera obligatoire avant qu’on le déclare comme stable.  En attendant, [la présentation d’Andrew](https://www.youtube.com/watch?v=ByBPyMBTzM0) reste la meilleure introduction disponible.
+Il n’existe pas encore de documentation pour le mode concurrent.  Nous tenons aussi à souligner que son modèle conceptuel vous semblera sans doute déconcertant au premier abord.  Documenter ses avantages, son utilisation efficace et ses pièges potentiels est une priorité absolue pour nous, et sera une condition préalable pour qu’on le déclare comme stable.  En attendant, [la présentation d’Andrew](https://www.youtube.com/watch?v=ByBPyMBTzM0) reste la meilleure introduction disponible.
 
 Le mode concurrent est *largement* moins abouti que les Hooks.  Certaines API ne sont pas encore correctement « câblées » et ne fonctionnent pas comme on s’y attend.  À l’heure où nous écrivons ceci, nous déconseillons son utilisation hors de l’expérimentation pure.  Nous n’anticipons pas beaucoup de bugs dans le mode concurrent lui-même, mais sachez déjà que les composants qui produisent des avertissements au sein de [`<React.StrictMode>`](/docs/strict-mode.html) risquent de ne pas fonctionner correctement.  Par ailleurs, nous avons remarqué que le mode concurrent *fait émerger* des problèmes de performance dans le code tiers qui peuvent parfois être pris à tort pour des problèmes de performance dans le mode concurrent lui-même.  Par exemple, un `setInterval(fn, 1)` oublié dans un coin, qui s’exécuterait à chaque milliseconde, se fera davantage sentir en mode concurrent.  Nous avons l’intention de publier davantage de recommandations sur les diagnostics et correctifs pour ce type de problème au sein de la documentation pour cette version.
 
@@ -180,7 +180,7 @@ Le mécanisme de bas niveau de Suspense (qui suspend le rendu et affiche une UI 
 
 **Statut dans React DOM et React Native :** techniquement, un cache compatible marcherait déjà avec `<React.Suspense>` dans React 16.6.  Toutefois, nous ne pensons pas avoir une bonne implémentation de ce cache avant cette version mineure de React.  Si vous êtes joueur·se, vous pouvez essayer d’écrire le vôtre en regardant les alphas de React Cache.  Ceci dit, gardez à l’esprit que le modèle mental est suffisamment différent pour que vous courriez un fort risque de le comprendre de travers tant que la documentation ne sera pas prête.
 
-**Statut dans React DOM Server :**  Suspense n’est pas encore disponible dans le moteur de rendu côté serveur.  Comme vu précédemment, nous avons commencé à travailler sur un moteur de rendu asynchrone côté serveur qui prendre Suspense en charge, mais c’est un vaste projet qui devrait prendre une bonne partie de 2019 pour aboutir.
+**Statut dans React DOM Server :**  Suspense n’est pas encore disponible dans le moteur de rendu côté serveur.  Comme vu précédemment, nous avons commencé à travailler sur un moteur de rendu asynchrone côté serveur qui prendra Suspense en charge, mais c’est un vaste projet qui devrait se déroulera sur une bonne partie de 2019 pour aboutir.
 
 **Notre conseil :** attendez cette version mineure de React pour utiliser Suspense pour le chargement de données.  N’essayez par d’utiliser les capacités de Suspense en 16.6 pour ça : ce n’est pas pris en charge.  En revanche, vos composants `<Suspense>` existants pour la découpe de code seront capables d’afficher des états de chargement pour les données aussi quand Suspense pour le chargement de données sera officiellement disponible.
 
