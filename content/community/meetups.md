@@ -10,6 +10,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 (Merci de respecter l'ordre alphabétique de la liste)
 
 ## Allemagne {#germany}
+* [Cologne](https://www.meetup.com/React-Cologne/)
 * [Düsseldorf](https://www.meetup.com/de-DE/ReactJS-Meetup-Dusseldorf/)
 * [Hamburg](https://www.meetup.com/Hamburg-React-js-Meetup/)
 * [Karlsruhe](https://www.meetup.com/react_ka/)
@@ -118,6 +119,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [Paris](https://www.meetup.com/ReactJS-Paris/)
 
 ## Grèce {#greece}
+
 * [Thessaloniki](https://www.meetup.com/Thessaloniki-ReactJS-Meetup/)
 
 ## Hongrie {#hungary}

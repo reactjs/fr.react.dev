@@ -22,6 +22,16 @@ Le 6 décembre 2019 à Berlin, Allemagne
 
 [Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://www.youtube.com/reactdayberlin)
 
+### React Barcamp Cologne 2020 {#react-barcamp-cologne-2020}
+Du 1 au 2 février 2020 à Cologne, Allemagne
+
+[Site web](https://react-barcamp.de/) - [Twitter](https://twitter.com/ReactBarcamp) - [Facebook](https://www.facebook.com/reactbarcamp)
+
+### ReactConf AU 2020 {#reactconfau}
+Du 27 au 28 février 2020 à Sydney, Australie
+
+[Site web](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
+
 ### React Summit Amsterdam 2020 {#react-summit-2020}
 Du 15 au 17 avril 2020 à Amsterdam, Pays-Bas
 
