@@ -20,7 +20,21 @@ Le 30 novembre 2019 à Lagos, Nigeria
 ### React Day Berlin 2019 {#react-day-berlin-2019}
 Le 6 décembre 2019 à Berlin, Allemagne
 
+<<<<<<< HEAD
 [Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://www.youtube.com/reactdayberlin)
+=======
+[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/reactdayberlin)
+
+### React Barcamp Cologne 2020 {#react-barcamp-cologne-2020}
+February 1-2, 2020 in Cologne, Germany
+
+[Website](https://react-barcamp.de/) - [Twitter](https://twitter.com/ReactBarcamp) - [Facebook](https://www.facebook.com/reactbarcamp)
+
+### ReactConf AU 2020 {#reactconfau}
+February 27 & 28, 2020 in Sydney, Australia
+
+[Website](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
+>>>>>>> e0a0ec3dad47804d0b41d4a7bb81841638dc79dd
 
 ### React Summit Amsterdam 2020 {#react-summit-2020}
 Du 15 au 17 avril 2020 à Amsterdam, Pays-Bas
