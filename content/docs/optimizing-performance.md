@@ -386,4 +386,4 @@ function updateColorMap(colormap) {
 
 Si vous utilisez Create React App, la méthode `Object.assign` et la syntaxe de décomposition d'objets sont toutes deux disponibles par défaut.
 
-Lorsque vous faites face à des objets profondément imbriqués, les mettre à jour de manière immuable peut se révéler compliqué. Si vous faites face à ce problème, tournez-vous vers [Imer](https://github.com/mweststrate/immer) ou [immutability-helper](http://github.com/kolodny/immutability-helper). Ces librairies vous permettent d'écrire du code très lisible sans perdre les bénéfices de l'immuabilité.
+Lorsque vous faites face à des objets profondément imbriqués, les mettre à jour de manière immuable peut se révéler compliqué. Si vous faites face à ce problème, tournez-vous vers [Immer](https://github.com/mweststrate/immer) ou [immutability-helper](http://github.com/kolodny/immutability-helper). Ces librairies vous permettent d'écrire du code très lisible sans perdre les bénéfices de l'immuabilité.
