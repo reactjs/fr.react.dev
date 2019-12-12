@@ -233,7 +233,7 @@ class Clock extends React.Component {
 
 On les appelle des « méthodes de cycle de vie ».
 
-La méthode `componentDidMount()` est exécutée après que la sortie du composant a été injectée dans le DOM. C'est un bon endroit pour mettre en place le minuteur :
+La méthode `componentDidMount()` est exécutée après que la sortie du composant ait été injectée dans le DOM. C'est un bon endroit pour mettre en place le minuteur :
 
 ```js{2-5}
   componentDidMount() {
