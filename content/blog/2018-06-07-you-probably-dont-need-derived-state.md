@@ -341,7 +341,7 @@ Quand vous utilisez la mémoïsation, souvenez-vous des quelques contraintes sui
 
 1. Dans la plupart des cas, vous voudrez **rattacher la fonction mémoïsée à l'instance du composant**. Ça évite que de multiples instances d'un même composant ne réinitialisent les clés de mémoïsation les unes des autres.
 2. En général, vous voudrez utiliser un utilitaire de mémoïsation avec une **taille de cache limitée** afin d'éviter d'éventuelles fuites de mémoire au fil du temps. (Dans l'exemple précédent, nous avons utilisé `memoize-one` car il ne cache que le couple arguments/résultat le plus récent.)
-3. Aucune des solutions présentées ici ne fonctionnera si `props.list` et recréée à chaque fois que le composant parent se rafraîchit. Cependant, dans la plupart des cas ce système convient.
+3. Aucune des solutions présentées ici ne fonctionnera si `props.list` est recréée à chaque fois que le composant parent se rafraîchit. Cependant, dans la plupart des cas ce système convient.
 
 ## En conclusion {#in-closing}
 
