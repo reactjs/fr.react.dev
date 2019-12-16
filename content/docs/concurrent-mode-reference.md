@@ -129,7 +129,7 @@ Le hook `useTransition` renvoie deux valeurs dans un tableau.
 **Si une mise à jour donnée de l’état entraîne la suspension d’un composant, cette mise à jour devrait être enrobée dans une transition.**
 
 ```js
-const SUSPENSE_CONFIG = {timeoutMs: 2000 };
+const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
 function App() {
   const [resource, setResource] = useState(initialResource);
