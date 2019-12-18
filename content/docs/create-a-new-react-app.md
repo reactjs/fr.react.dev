@@ -76,13 +76,9 @@ Les boîtes à outils suivantes offrent plus de flexibilité et de choix. Nous l
 - **[Parcel](https://parceljs.org/)** est un *bundler* d'applications web rapide et sans configuration qui [fonctionne avec React](https://parceljs.org/recipes.html#react).
 - **[Razzle](https://github.com/jaredpalmer/razzle)** est un framework de rendu côté serveur qui ne requiert aucune configuration, mais offre plus de flexibilité que Next.js.
 
-<<<<<<< HEAD
 ## Créer une boîte à outils à partir de zéro {#creating-a-toolchain-from-scratch}
 
 Une boîte à outils de construction en JavaScript comprend généralement :
-=======
-- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes.html#react).
->>>>>>> 401b97e9591ac573eaf35c7cf57e5f145276d140
 
 * Un **gestionnaire de paquets**, tel que [Yarn](https://yarnpkg.com/) ou [npm](https://www.npmjs.com/). Il vous permet de tirer parti d'un vaste écosystème de paquets tiers, et de les installer ou les mettre à jour facilement.
 
