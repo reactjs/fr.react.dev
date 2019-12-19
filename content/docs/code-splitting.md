@@ -82,7 +82,7 @@ Si vous utilisez [Babel](http://babeljs.io/), vous devrez vous assurer que Babel
 
 > Remarque
 >
-> `React.lazy` et Suspense ne sont pas encore disponibles pour le rendu côté serveur. Si vous souhaitez fractionner votre code dans une application rendue côté serveur, nous vous recommandons d'utiliser [Loadable Components](https://github.com/smooth-code/loadable-components). Il propose un [guide pratique pour fractionner le bundle avec un rendu côté serveur](https://www.smooth-code.com/open-source/loadable-components/docs/server-side-rendering/).
+> `React.lazy` et Suspense ne sont pas encore disponibles pour le rendu côté serveur. Si vous souhaitez fractionner votre code dans une application rendue côté serveur, nous vous recommandons d'utiliser [Loadable Components](https://github.com/gregberge/loadable-components). Il propose un [guide pratique pour fractionner le bundle avec un rendu côté serveur](https://loadable-components.com/docs/server-side-rendering/).
 
 La fonction `React.lazy` vous permet d'afficher un composant importé dynamiquement comme n’importe quel autre composant.
 
