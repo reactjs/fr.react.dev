@@ -60,7 +60,7 @@ class Calculator extends React.Component {
 
 ## Ajouter un deuxième champ {#adding-a-second-input}
 
-Il nous faut à présent proposer, en sus d'une saisie en Celsius, une saisie en Fahrenheit, les deux devant rester synchronisées.
+Il nous faut à présent proposer, en plus d'une saisie en Celsius, une saisie en Fahrenheit, les deux devant rester synchronisées.
 
 On peut commencer par extraire un composant `TemperatureInput` du code de `Calculator`. Ajoutons-y une prop `scale` qui pourra être soit `"c"`, soit `"f"` :
 
