@@ -25,7 +25,11 @@ Ce document et sa conférence sont des simplifications de la véritable base de 
 
 ### Aperçu {#overview}
 
+<<<<<<< HEAD
 Le réconciliateur lui-même n’a pas d’API publique. Les [moteurs de rendu](/docs/codebase-overview.html#stack-renderers) comme React DOM et React Native l'utilisent pour mettre à jour efficacement l'interface utilisateur en fonction des composants React écrits par l'utilisateur.
+=======
+The reconciler itself doesn't have a public API. [Renderers](/docs/codebase-overview.html#renderers) like React DOM and React Native use it to efficiently update the user interface according to the React components written by the user.
+>>>>>>> 1dd4e325f070ce198aed69fd9cc5467563679e54
 
 ### Le montage, un processus récursif {#mounting-as-a-recursive-process}
 
