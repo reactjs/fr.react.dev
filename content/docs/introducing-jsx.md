@@ -181,4 +181,8 @@ Nous explorerons la retranscription des éléments React dans le DOM dans la pro
 
 >**Astuce :**
 >
+<<<<<<< HEAD
 >Nous recommandons d'utiliser la [définition de langage « Babel »](https://babeljs.io/docs/editors) dans votre éditeur préféré, afin que les codes ES6 et JSX soient correctement colorisés. Ce site utilise le thème de couleurs [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/), qui est compatible avec ce mode syntaxique.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://github.com/voronianski/oceanic-next-color-scheme) color scheme which is compatible with it.
+>>>>>>> 5b6ad388804aaa5cf5504ccd04329f52960e17ae
