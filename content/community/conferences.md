@@ -32,6 +32,11 @@ Du 27 au 28 février 2020 à Sydney, Australie
 
 [Site web](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
 
+### Reactathon 2020 {#reactathon-2020}
+March 30 - 31, 2020 in San Francisco, CA
+
+[Website](https://www.reactathon.com) - [Twitter](https://twitter.com/reactathon) - [Facebook](https://www.facebook.com/events/575942819854160/)
+
 ### React Summit Amsterdam 2020 {#react-summit-2020}
 Du 15 au 17 avril 2020 à Amsterdam, Pays-Bas
 
@@ -50,7 +55,11 @@ Le 25 avril 2020 à Bangalore, Inde
 ### render(ATL) 2020 {#render-atlanta-2020}
 Du 4 au 6 mai 2020 à Atlanta, GA, États-Unis.
 
+<<<<<<< HEAD
 [Site web](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/)
+=======
+[Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/)
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ### ReactEurope 2020 {#reacteurope-2020}
 Du 14 au 15 mai 2020 à Paris, France
@@ -70,7 +79,11 @@ Les 27 et 28 mai 2020 à Sydney, Australie
 ### React Next 2020 {#react-next-2020}
 Le 15 juin 2020 à Tel Aviv, Israel.
 
+<<<<<<< HEAD
 [Site web](https://react-next.com/) - [Twitter](https://twitter.com/reactnext) - [Facebook](https://www.facebook.com/ReactNext2016/)
+=======
+[Website](https://react-next.com/) - [Twitter](https://twitter.com/reactnext) - [Facebook](https://www.facebook.com/ReactNext2016/)
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ### React Loop 2020 {#react-loop-2020}
 Le 19 juin 2020 à Chicago, IL, États-Unis.
@@ -78,7 +91,18 @@ Le 19 juin 2020 à Chicago, IL, États-Unis.
 [Site web](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
 
 ### React Week NY 2020 {#react-week-ny-2020}
+<<<<<<< HEAD
 Le 17 juillet 2020 à New York City, NY, États-Unis.
+=======
+July 17, 2020. New York City, USA.
+
+[Website](https://reactweek.nyc/) - [Twitter](https://twitter.com/reactweek) - [Facebook](https://www.facebook.com/reactweek)
+
+### ComponentsConf 2020 {#components20}
+September 1, 2020 in Melbourne, Australia
+
+[Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/ComponentsConf) - [Facebook](https://www.facebook.com/ComponentsConf/) - [LinkedIn](https://www.linkedin.com/company/componentsconf/) - [YouTube](https://www.youtube.com/ComponentsConf)
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 [Site web](https://reactweek.nyc/) - [Twitter](https://twitter.com/reactweek) - [Facebook](https://www.facebook.com/reactweek)
 
@@ -423,7 +447,11 @@ Du 22 au 23 août 2019 à Salt Lake City, États-Unis d'Amérique
 [Site web](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
 
 ### React Conf Iran 2019 {#react-conf-iran-2019}
+<<<<<<< HEAD
 Le 29 août 2019 à Téhéran, Iran.
+=======
+August 29, 2019. Tehran, Iran.
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 [Site web](https://reactconf.ir/) - [Vidéos](https://www.youtube.com/playlist?list=PL-VNqZFI5Nf-Nsj0rD3CWXGPkH-DI_0VY) - [Moments forts](https://github.com/ReactConf/react-conf-highlights) - [Twitter](https://twitter.com/reactconf_ir) - [Instagram](https://www.instagram.com/reactconf/)
 
@@ -478,6 +506,12 @@ Le 25 octobre 2019 à Londres, Royaume-Uni
 [Site web](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Vidéos](https://youtube.com/c/ReactConferences)
 
 ### React Conf Brasil 2019 {#react-conf-2019}
+<<<<<<< HEAD
 Le 19 octobre 2019 à São Paulo, Brésil
 
 [Site web](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
+=======
+October 19, 2019 in São Paulo, BR
+
+[Website](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4

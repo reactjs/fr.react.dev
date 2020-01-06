@@ -9,6 +9,7 @@ permalink: community/meetups.html
 Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 (Merci de respecter l'ordre alphabétique de la liste)
 
+<<<<<<< HEAD
 ## Allemagne {#germany}
 * [Cologne](https://www.meetup.com/React-Cologne/)
 * [Düsseldorf](https://www.meetup.com/de-DE/ReactJS-Meetup-Dusseldorf/)
@@ -23,6 +24,12 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
 
 ## Australie {#australia}
+=======
+## Argentina {#argentina}
+* [Rosario](https://www.meetup.com/es/reactrosario)
+
+## Australia {#australia}
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 * [Brisbane](https://www.meetup.com/reactbris/)
 * [Melbourne](https://www.meetup.com/React-Melbourne/)
 * [Sydney](https://www.meetup.com/React-Sydney/)
@@ -177,5 +184,53 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 ## Suède {#sweden}
 * [Goteborg](https://www.meetup.com/ReactJS-Goteborg/)
 
+## Switzerland {#switzerland}
+* [Zurich](https://www.meetup.com/Zurich-ReactJS-Meetup/)
+
 ## Ukraine {#ukraine}
 * [Kyiv](https://www.meetup.com/Kyiv-ReactJS-Meetup)
+<<<<<<< HEAD
+=======
+
+## US {#us}
+* [Atlanta, GA - ReactJS](https://www.meetup.com/React-ATL/)
+* [Austin, TX - ReactJS](https://www.meetup.com/ReactJS-Austin-Meetup/)
+* [Boston, MA - ReactJS](https://www.meetup.com/ReactJS-Boston/)
+* [Boston, MA - React Native](https://www.meetup.com/Boston-React-Native-Meetup/)
+* [Charlotte, NC - ReactJS](https://www.meetup.com/ReactJS-Charlotte/)
+* [Charlotte, NC - React Native](https://www.meetup.com/cltreactnative/)
+* [Chicago, IL - ReactJS](https://www.meetup.com/React-Chicago/)
+* [Columbus, OH - ReactJS](https://www.meetup.com/ReactJS-Columbus-meetup/)
+* [Dallas, TX - ReactJS](https://www.meetup.com/ReactDallas/)
+* [Detroit, MI - Detroit React User Group](https://www.meetup.com/Detroit-React-User-Group/)
+* [Irvine, CA - ReactJS](https://www.meetup.com/ReactJS-OC/)
+* [Kansas City, MO - ReactJS](https://www.meetup.com/Kansas-City-React-Meetup/)
+* [Las Vegas, NV - ReactJS](https://www.meetup.com/ReactVegas/)
+* [Leesburg, VA - ReactJS](https://www.meetup.com/React-NOVA/)
+* [Los Angeles, CA - ReactJS](https://www.meetup.com/socal-react/)
+* [Los Angeles, CA - React Native](https://www.meetup.com/React-Native-Los-Angeles/)
+* [Miami, FL - ReactJS](https://www.meetup.com/React-Miami/)
+* [Nashville, TN - ReactJS](https://www.meetup.com/NashReact-Meetup/)
+* [New York, NY - ReactJS](https://www.meetup.com/NYC-Javascript-React-Group/)
+* [New York, NY - React Ladies](https://www.meetup.com/React-Ladies/)
+* [New York, NY - React Native](https://www.meetup.com/React-Native-NYC/)
+* [New York, NY - useReactNYC](https://www.meetup.com/useReactNYC/)
+* [Palo Alto, CA - React Native](https://www.meetup.com/React-Native-Silicon-Valley/)
+* [Philadelphia, PA - ReactJS](https://www.meetup.com/Reactadelphia/)
+* [Phoenix, AZ - ReactJS](https://www.meetup.com/ReactJS-Phoenix/)
+* [Pittsburgh, PA - ReactJS/React Native](https://www.meetup.com/ReactPgh/)
+* [Portland, OR - ReactJS](https://www.meetup.com/Portland-ReactJS/)
+* [Provo, UT - ReactJS](https://www.meetup.com/ReactJS-Utah/)
+* [Sacramento, CA - ReactJS](https://www.meetup.com/Sacramento-ReactJS-Meetup/)
+* [San Diego, CA - San Diego JS](https://www.meetup.com/sandiegojs/)
+* [San Francisco - Real World React](https://www.meetup.com/Real-World-React)
+* [San Francisco - ReactJS](https://www.meetup.com/ReactJS-San-Francisco/)
+* [San Francisco, CA - React Native](https://www.meetup.com/React-Native-San-Francisco/)
+* [San Ramon, CA - TriValley Coders](https://www.meetup.com/trivalleycoders/)
+* [Santa Monica, CA - ReactJS](https://www.meetup.com/Los-Angeles-ReactJS-User-Group/)
+* [Seattle, WA - React Native](https://www.meetup.com/Seattle-React-Native-Meetup/)
+* [Seattle, WA - ReactJS](https://www.meetup.com/seattle-react-js/)
+* [Tampa, FL - ReactJS](https://www.meetup.com/ReactJS-Tampa-Bay/)
+* [Tucson, AZ - ReactJS](https://www.meetup.com/Tucson-ReactJS-Meetup/)
+* [Washington, DC - ReactJS](https://www.meetup.com/React-DC/)
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
