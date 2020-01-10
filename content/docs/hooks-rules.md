@@ -46,7 +46,7 @@ npm install eslint-plugin-react-hooks --save-dev
 }
 ```
 
-À l’avenir, nous comptons inclure ce plugin par défaut dans Create React App et d'autres boîtes à outils similaires.
+Ce plugin est inclus par défaut dans Create React App[Create React App](/docs/create-a-new-react-app.html#create-react-app).
 
 **Vous pouvez maintenant passer directement à la prochaine page, qui explique comment écrire [vos propres Hooks](/docs/hooks-custom.html).** Dans cette page, nous allons maintenant expliquer le raisonnement qui se cache derrière ces règles.
 

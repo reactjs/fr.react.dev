@@ -36,7 +36,7 @@ React prend en charge tous les navigateurs populaires, y compris Internet Explor
 ReactDOM.render(element, container[, callback])
 ```
 
-Affiche un élément React au sein du nœud DOM spécifié par `container` et renvoie une [référence](/docs/more-about-refs.html) sur le composant (ou renvoie `null` pour les [fonctions composants](/docs/components-and-props.html#functional-and-class-components)).
+Affiche un élément React au sein du nœud DOM spécifié par `container` et renvoie une [référence](/docs/more-about-refs.html) sur le composant (ou renvoie `null` pour les [fonctions composants](/docs/components-and-props.html#function-and-class-components)).
 
 Si l’élément React était déjà affiché dans `container`, cette méthode effectuera plutôt une mise à jour et ne modifiera le DOM que là où c’est strictement nécessaire pour refléter l’élément React à jour.
 

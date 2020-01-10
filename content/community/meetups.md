@@ -22,7 +22,10 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
 * [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
 
-## Australie {#australia}
+## Argentine {#argentina}
+* [Rosario](https://www.meetup.com/es/reactrosario)
+
+## Australia {#australia}
 * [Brisbane](https://www.meetup.com/reactbris/)
 * [Melbourne](https://www.meetup.com/React-Melbourne/)
 * [Sydney](https://www.meetup.com/React-Sydney/)
@@ -102,6 +105,7 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 * [Portland, OR - ReactJS](https://www.meetup.com/Portland-ReactJS/)
 * [Provo, UT - ReactJS](https://www.meetup.com/ReactJS-Utah/)
 * [Sacramento, CA - ReactJS](https://www.meetup.com/Sacramento-ReactJS-Meetup/)
+* [San Diego, CA - San Diego JS](https://www.meetup.com/sandiegojs/)
 * [San Francisco, CA - ReactJS](https://www.meetup.com/ReactJS-San-Francisco/)
 * [San Francisco, CA - Real World React](https://www.meetup.com/Real-World-React)
 * [San Francisco, CA - React Native](https://www.meetup.com/React-Native-San-Francisco/)
@@ -176,6 +180,9 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 
 ## Suède {#sweden}
 * [Goteborg](https://www.meetup.com/ReactJS-Goteborg/)
+
+## Suisse {#switzerland}
+* [Zurich](https://www.meetup.com/Zurich-ReactJS-Meetup/)
 
 ## Ukraine {#ukraine}
 * [Kyiv](https://www.meetup.com/Kyiv-ReactJS-Meetup)

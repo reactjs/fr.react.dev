@@ -422,8 +422,8 @@ Ici, nous stockons la valeur précédente de la prop `row` dans une variable de 
 
 ```js
 function ScrollView({row}) {
-  let [isScrollingDown, setIsScrollingDown] = useState(false);
-  let [prevRow, setPrevRow] = useState(null);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [prevRow, setPrevRow] = useState(null);
 
   if (row !== prevRow) {
     // Row a changé depuis le dernier rendu. Met à jour isScrollingDown.
@@ -459,7 +459,7 @@ Vous ne devriez pas en avoir besoin souvent, mais vous pouvez exposer quelques m
 
 ### Comment puis-je mesurer un nœud DOM ? {#how-can-i-measure-a-dom-node}
 
-Afin de mesurer la position ou les dimensions d’un nœud DOM, vous pouvez utilisez une [ref avec fonction de rappel](/docs/refs-and-the-dom.html#callback-refs). React appellera la fonction de rappel chaque fois que la ref est attachée à un nœud différent.  Voici une [petite démo](https://codesandbox.io/s/l7m0v5x4v9) :
+Une façon rudimentaire de mesurer la position ou les dimensions d’un nœud DOM consiste à utiliser une [ref avec fonction de rappel](/docs/refs-and-the-dom.html#callback-refs). React appellera la fonction de rappel chaque fois que la ref est attachée à un nœud différent.  Voici une [petite démo](https://codesandbox.io/s/l7m0v5x4v9) :
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -483,6 +483,8 @@ function MeasureExample() {
 Nous avons évité `useRef` dans cet exemple parce qu’un objet ref ne nous notifie pas des *changements* de la valeur actuelle de la ref.  Une ref avec fonction de rappel garantit que [même si un composant enfant affiche ultérieurement le nœud DOM mesuré](https://codesandbox.io/s/818zzk8m78) (ex. en réaction à un clic), nous serons quand même notifiés dans le composant parent et pourrons mettre les mesures à jour.
 
 Remarquez que nous passons `[]` comme tableau de dépendances à `useCallback`.  C’est pour nous assurer que notre ref à fonction de rappel ne change pas d’un rendu à l’autre, afin que React ne nous appelle pas pour rien.
+
+Dans cet exemple, la ref avec fonction de rappel ne sera appelée que lors du montage et du démontage du composant, puisque le composant `<h1>` reste présent d’un rendu au suivant.  Si vous souhaitez être notifié·e à chaque redimensionnement, vous voudrez peut-être utiliser [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) ou un Hook tiers basé dessus.
 
 Si vous le souhaitez, vous pouvez [extraire cette logique](https://codesandbox.io/s/m5o42082xy) dans un Hook réutilisable :
 
@@ -708,7 +710,7 @@ En dernier recours, si vous voulez quelque chose de similaire au `this` d’une 
 ```js{2-6,10-11,16}
 function Example(props) {
   // Garde les dernières props dans une ref.
-  let latestProps = useRef(props);
+  const latestProps = useRef(props);
   useEffect(() => {
     latestProps.current = props;
   });

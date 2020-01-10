@@ -13,15 +13,6 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 
 ## Prochaines conférences {#upcoming-conferences}
 
-Le 30 novembre 2019 à Lagos, Nigeria
-
-[Site web](https://reactsummit2019.splashthat.com) - [Twitter](https://twitter.com/react_summit)
-
-### React Day Berlin 2019 {#react-day-berlin-2019}
-Le 6 décembre 2019 à Berlin, Allemagne
-
-[Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://www.youtube.com/reactdayberlin)
-
 ### React Barcamp Cologne 2020 {#react-barcamp-cologne-2020}
 Du 1 au 2 février 2020 à Cologne, Allemagne
 
@@ -31,6 +22,11 @@ Du 1 au 2 février 2020 à Cologne, Allemagne
 Du 27 au 28 février 2020 à Sydney, Australie
 
 [Site web](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
+
+### Reactathon 2020 {#reactathon-2020}
+Du 30 au 31 mars 2020 à San Fransisco, CA, États-Unis
+
+[Site web](https://www.reactathon.com) - [Twitter](https://twitter.com/reactathon) - [Facebook](https://www.facebook.com/events/575942819854160/)
 
 ### React Summit Amsterdam 2020 {#react-summit-2020}
 Du 15 au 17 avril 2020 à Amsterdam, Pays-Bas
@@ -79,6 +75,13 @@ Le 19 juin 2020 à Chicago, IL, États-Unis.
 
 ### React Week NY 2020 {#react-week-ny-2020}
 Le 17 juillet 2020 à New York City, NY, États-Unis.
+
+[Site web](https://reactweek.nyc/) - [Twitter](https://twitter.com/reactweek) - [Facebook](https://www.facebook.com/reactweek)
+
+### ComponentsConf 2020 {#components20}
+Le 1er septembre 2020 à Melbourne, Australie
+
+[Site web](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/ComponentsConf) - [Facebook](https://www.facebook.com/ComponentsConf/) - [LinkedIn](https://www.linkedin.com/company/componentsconf/) - [YouTube](https://www.youtube.com/ComponentsConf)
 
 [Site web](https://reactweek.nyc/) - [Twitter](https://twitter.com/reactweek) - [Facebook](https://www.facebook.com/reactweek)
 
@@ -481,3 +484,13 @@ Le 25 octobre 2019 à Londres, Royaume-Uni
 Le 19 octobre 2019 à São Paulo, Brésil
 
 [Site web](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
+
+### React Summit 2019 {#react-summit-2019}
+Le 30 novembre 2019 à Lagos, Nigeria
+
+[Site web](https://reactsummit2019.splashthat.com) - [Twitter](https://twitter.com/react_summit)
+
+### React Day Berlin 2019 {#react-day-berlin-2019}
+Le 6 décembre 2019 à Berlin, Allemagne
+
+[Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://www.youtube.com/reactdayberlin)

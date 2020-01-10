@@ -130,7 +130,8 @@ Chaque objet Contexte est livré avec un composant React `Provider` qui permet a
 
 Il accepte une prop `value` à transmettre aux composants consommateurs descendants de ce `Provider`(plus bas dans l'arbre, donc). Un `Provider` peut être connecté à plusieurs consommateurs. Les `Provider` peuvent être imbriqués pour remplacer leur valeur plus profondément dans l'arbre.
 
-Tous les consommateurs qui sont descendants d'un `Provider` se rafraîchiront lorsque la prop `value` du `Provider` change. La propagation du `Provider` vers ses consommateurs descendants n'est pas assujettie à la méthode `shouldComponentUpdate`, de sorte que le consommateur est mis à jour même lorsqu'un composant ancêtre abandonne sa mise à jour.
+<<<<<<< HEAD
+Tous les consommateurs qui sont descendants d'un `Provider` se rafraîchiront lorsque la prop `value` du `Provider` change. La propagation du `Provider` vers ses consommateurs descendants (y compris [`.contextType`](#classcontexttype) et [`useContext`](/docs/hooks-reference.html#usecontext)) n'est pas assujettie à la méthode `shouldComponentUpdate`, de sorte que le consommateur est mis à jour même lorsqu'un composant ancêtre saute sa mise à jour.
 
 On détermine si modification il y a en comparant les nouvelles et les anciennes valeurs avec le même algorithme que [`Object.is`](//developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object/is#Description).
 
@@ -193,9 +194,15 @@ Un composant React qui s'abonne aux modifications de contexte. Ça permet de s'a
 
 Nécessite une [fonction enfant](/docs/render-props.html#using-props-other-than-render). La fonction reçoit le contexte actuel et renvoie un nœud React. L'argument `value` envoyé à la fonction sera égal à la prop `value` du `Provider` le plus proche (plus haut dans l'arbre) pour le contexte en question. Si il n'y pas de `Provider` pour le contexte voulu, l'argument `value` sera égal à la `defaultValue` passée lors de son `createContext()`.
 
+<<<<<<< HEAD
 > Remarque
 >
 > Pour en apprendre davantage sur l'approche « fonction enfant », voyez les [props de rendu](/docs/render-props.html).
+=======
+> Note
+>
+> For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ### `Context.displayName` {#contextdisplayname}
 
@@ -241,7 +248,11 @@ Il est souvent nécessaire de mettre à jour le contexte à partir d'un composan
 
 ### Consommer plusieurs Contextes {#consuming-multiple-contexts}
 
+<<<<<<< HEAD
 Pour conserver un rafraîchissement rapide du contexte, React a besoin que chaque consommateur de contexte soit un nœud à part dans l'arborescence.
+=======
+To keep context re-rendering fast, React needs to make each context consumer a separate node in the tree.
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 `embed:context/multiple-contexts.js`
 
@@ -263,3 +274,10 @@ Pour contourner ce problème, placez la valeur dans l'état du parent :
 >
 > React fournissait auparavant une API de contextes expérimentale. L'ancienne API restera prise en charge par toutes les versions 16.x, mais les applications qui l'utilisent devraient migrer vers la nouvelle version. L'API historique sera supprimée dans une future version majeure de React. Lisez la [documentation sur l’API historique de contexte ici](/docs/legacy-context.html).
 
+<<<<<<< HEAD
+=======
+> Note
+>
+> React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React version. Read the [legacy context docs here](/docs/legacy-context.html).
+
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
