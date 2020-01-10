@@ -108,18 +108,10 @@ horodatage du début du rendu de la mise à jour courante par React.
 horodatage de la finalisation de la mise à jour courante par React.
 Cette valeur est partagée entre tous les profileurs d’une même finalisation, ce qui permet de les regrouper si on le souhaite.
 * **`interactions: Set`** -
-<<<<<<< HEAD
-un `Set` des [« interactions »](http://fb.me/react-interaction-tracing) qui ont été pistées lors de la planification de la mise à jour (ex. lors des appels à `render` ou `setState`).
-=======
-Set of ["interactions"](https://fb.me/react-interaction-tracing) that were being traced the update was scheduled (e.g. when `render` or `setState` were called).
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+un `Set` des [« interactions »](https://fb.me/react-interaction-tracing) qui ont été pistées lors de la planification de la mise à jour (ex. lors des appels à `render` ou `setState`).
 
 > Remarque
 >
 > Vous pouvez utiliser les interactions pour identifier la cause d’une mise à jour, même si l’API pour le pistage des interactions est encore expérimentale.
 >
-<<<<<<< HEAD
-> Vous pouvez en apprendre davantage sur [fb.me/react-interaction-tracing](http://fb.me/react-interaction-tracing).
-=======
-> Learn more about it at [fb.me/react-interaction-tracing](https://fb.me/react-interaction-tracing)
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+> Vous pouvez en apprendre davantage sur [fb.me/react-interaction-tracing](https://fb.me/react-interaction-tracing).

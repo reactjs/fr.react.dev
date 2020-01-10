@@ -459,11 +459,7 @@ Vous ne devriez pas en avoir besoin souvent, mais vous pouvez exposer quelques m
 
 ### Comment puis-je mesurer un nœud DOM ? {#how-can-i-measure-a-dom-node}
 
-<<<<<<< HEAD
-Afin de mesurer la position ou les dimensions d’un nœud DOM, vous pouvez utilisez une [ref avec fonction de rappel](/docs/refs-and-the-dom.html#callback-refs). React appellera la fonction de rappel chaque fois que la ref est attachée à un nœud différent.  Voici une [petite démo](https://codesandbox.io/s/l7m0v5x4v9) :
-=======
-One rudimentary way to measure the position or size of a DOM node is to use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+Une façon rudimentaire de mesurer la position ou les dimensions d’un nœud DOM consiste à utiliser une [ref avec fonction de rappel](/docs/refs-and-the-dom.html#callback-refs). React appellera la fonction de rappel chaque fois que la ref est attachée à un nœud différent.  Voici une [petite démo](https://codesandbox.io/s/l7m0v5x4v9) :
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -488,13 +484,9 @@ Nous avons évité `useRef` dans cet exemple parce qu’un objet ref ne nous not
 
 Remarquez que nous passons `[]` comme tableau de dépendances à `useCallback`.  C’est pour nous assurer que notre ref à fonction de rappel ne change pas d’un rendu à l’autre, afin que React ne nous appelle pas pour rien.
 
-<<<<<<< HEAD
-Si vous le souhaitez, vous pouvez [extraire cette logique](https://codesandbox.io/s/m5o42082xy) dans un Hook réutilisable :
-=======
-In this example, the callback ref will be called only when the component mounts and unmounts, since the rendered `<h1>` component stays present throughout any rerenders. If you want to be notified any time a component resizes, you may want to use [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or a third-party Hook built on it.
+Dans cet exemple, la ref avec fonction de rappel ne sera appelée que lors du montage et du démontage du composant, puisque le composant `<h1>` reste présent d’un rendu au suivant.  Si vous souhaitez être notifié·e à chaque redimensionnement, vous voudrez peut-être utiliser [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) ou un Hook tiers basé dessus.
 
-If you want, you can [extract this logic](https://codesandbox.io/s/m5o42082xy) into a reusable Hook:
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+Si vous le souhaitez, vous pouvez [extraire cette logique](https://codesandbox.io/s/m5o42082xy) dans un Hook réutilisable :
 
 ```js{2}
 function MeasureExample() {
@@ -717,13 +709,8 @@ En dernier recours, si vous voulez quelque chose de similaire au `this` d’une 
 
 ```js{2-6,10-11,16}
 function Example(props) {
-<<<<<<< HEAD
   // Garde les dernières props dans une ref.
-  let latestProps = useRef(props);
-=======
-  // Keep latest props in a ref.
   const latestProps = useRef(props);
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
   useEffect(() => {
     latestProps.current = props;
   });

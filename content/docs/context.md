@@ -106,11 +106,7 @@ function Page(props) {
 
 Ce motif est suffisant pour les nombreux cas où vous avez besoin de découpler un enfant de ses parents directs. Vous pouvez aller encore plus loin avec les [props de rendu](/docs/render-props.html) si l'enfant a besoin de communiquer avec le parent avant de s'afficher.
 
-<<<<<<< HEAD
 Cependant, parfois les mêmes données ont besoin d'être accessibles par de nombreux composants dans l'arborescence, et à différents niveaux d'imbrication. Le Contexte vous permet de « diffuser » ces données, et leurs mises à jour, à tous les composants plus bas dans l'arbre. Les exemples courants où l'utilisation du Contexte apporte une simplification incluent la gestion des préférences régionales, du thème ou d'un cache de données.
-=======
-However, sometimes the same data needs to be accessible by many components in the tree, and at different nesting levels. Context lets you "broadcast" such data, and changes to it, to all components below. Common examples where using context might be simpler than the alternatives include managing the current locale, theme, or a data cache.
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ## API {#api}
 
@@ -135,22 +131,13 @@ Chaque objet Contexte est livré avec un composant React `Provider` qui permet a
 Il accepte une prop `value` à transmettre aux composants consommateurs descendants de ce `Provider`(plus bas dans l'arbre, donc). Un `Provider` peut être connecté à plusieurs consommateurs. Les `Provider` peuvent être imbriqués pour remplacer leur valeur plus profondément dans l'arbre.
 
 <<<<<<< HEAD
-Tous les consommateurs qui sont descendants d'un `Provider` se rafraîchiront lorsque la prop `value` du `Provider` change. La propagation du `Provider` vers ses consommateurs descendants n'est pas assujettie à la méthode `shouldComponentUpdate`, de sorte que le consommateur est mis à jour même lorsqu'un composant ancêtre abandonne sa mise à jour.
+Tous les consommateurs qui sont descendants d'un `Provider` se rafraîchiront lorsque la prop `value` du `Provider` change. La propagation du `Provider` vers ses consommateurs descendants (y compris [`.contextType`](#classcontexttype) et [`useContext`](/docs/hooks-reference.html#usecontext)) n'est pas assujettie à la méthode `shouldComponentUpdate`, de sorte que le consommateur est mis à jour même lorsqu'un composant ancêtre saute sa mise à jour.
 
 On détermine si modification il y a en comparant les nouvelles et les anciennes valeurs avec le même algorithme que [`Object.is`](//developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object/is#Description).
 
 > Remarque
 >
 > La manière dont les modifications sont déterminées peut provoquer des problèmes lorsqu’on passe des objets dans `value` : voir les [limitations](#caveats).
-=======
-All consumers that are descendants of a Provider will re-render whenever the Provider's `value` prop changes. The propagation from Provider to its descendant consumers (including [`.contextType`](#classcontexttype) and [`useContext`](/docs/hooks-reference.html#usecontext)) is not subject to the `shouldComponentUpdate` method, so the consumer is updated even when an ancestor component skips an update.
-
-Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).
-
-> Note
->
-> The way changes are determined can cause some issues when passing objects as `value`: see [Caveats](#caveats).
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ### `Class.contextType` {#classcontexttype}
 

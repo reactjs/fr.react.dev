@@ -69,13 +69,9 @@ function Counter({initialCount}) {
 
 Les boutons « + » et « - » utilisent la forme fonctionnelle, puisque la nouvelle valeur est calculée à partir de la valeur précédente. Le bouton « Réinitialiser » utilise quant à lui la forme normale puisqu'il remet toujours le total à sa valeur initiale.
 
-<<<<<<< HEAD
-> Remarque
-=======
-If your update function returns the exact same value, the subsequent rerender will be skipped completely.
+Si votre fonction de mise à jour renvoie exactement la même valeur, le rendu ultérieur sera carrément sauté.
 
-> Note
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+> Remarque
 >
 > À l'inverse de la méthode `setState` que l'on trouve dans les composants définis à l'aide d'une classe, `useState` ne fusionne pas automatiquement les objets de mise à jour. Vous pouvez imiter ce comportement en combinant la forme fonctionnelle de mise à jour avec la syntaxe de *spread* des objets :
 >
@@ -184,11 +180,7 @@ const value = useContext(MyContext);
 
 Accepte un objet contexte (la valeur renvoyée par `React.createContext`), et renvoie la valeur actuelle du contexte. Celle-ci est déterminée par la prop `value` du plus proche `<MyContext.Provider>` au-dessus du composant dans l'arbre.
 
-<<<<<<< HEAD
-Quand le plus proche `<MyContext.Provider>` au-dessus du composant est mis à jour, ce Hook va déclencher un rafraîchissement avec la `value` la plus récente passée au fournisseur `MyContext`.
-=======
-When the nearest `<MyContext.Provider>` above the component updates, this Hook will trigger a rerender with the latest context `value` passed to that `MyContext` provider. Even if an ancestor uses [`React.memo`](/docs/react-api.html#reactmemo) or [`shouldComponentUpdate`](/docs/react-component.html#shouldcomponentupdate), a rerender will still happen starting at the component itself using `useContext`.
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+Quand le plus proche `<MyContext.Provider>` au-dessus du composant est mis à jour, ce Hook va déclencher un rafraîchissement avec la `value` la plus récente passée au fournisseur `MyContext`.  Même si un ancêtre utilise [`React.memo`](/docs/react-api.html#reactmemo) ou [`shouldComponentUpdate`](/docs/react-component.html#shouldcomponentupdate), le rendu aura quand même à nouveau lieu à partir du composant qui recourt à `useContext`.
 
 N’oubliez pas que l’argument de `useContext` doit être *l’objet contexte lui-même* :
 

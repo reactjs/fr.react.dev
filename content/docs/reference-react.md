@@ -104,11 +104,7 @@ Rendez-vous sur [la page de référence de l'API `React.Component`](/docs/react-
 
 ### `React.PureComponent` {#reactpurecomponent}
 
-<<<<<<< HEAD
 `React.PureComponent` est similaire à [`React.Component`](#reactcomponent). La seule différence est que [`React.Component`](#reactcomponent) n'implémente pas la méthode [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), alors que `React.PureComponent` l’implémente en réalisant une comparaison de surface de l'état et des propriétés.
-=======
-`React.PureComponent` is similar to [`React.Component`](#reactcomponent). The difference between them is that [`React.Component`](#reactcomponent) doesn't implement [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), but `React.PureComponent` implements it with a shallow prop and state comparison.
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 Si la fonction `render()` d'un de vos composants React produit un rendu identique pour le même état et les mêmes propriétés, le faire étendre `React.PureComponent` devrait améliorer les performances dans certains cas.
 
@@ -133,13 +129,9 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 Si vous avez une fonction composant qui affiche toujours le même résultat pour un même jeu de propriétés, vous pouvez l'enrober avec `React.memo`, ce qui mémoïsera le résultat et devrait augmenter les performances dans certains cas. Cela signifie que React sautera le rafraîchissement du composant en réutilisant son dernier rendu en date.
 
-<<<<<<< HEAD
-Par défaut, seule une comparaison de surface des props sera faite. Si vous voulez gérer cette comparaison vous-même, vous pouvez fournir une fonction de comparaison personnalisée en deuxième argument.
-=======
-`React.memo` only affects props changes. If your function component wrapped in `React.memo` has a [`useState`](/docs/hooks-state.html) or [`useContext`](/docs/hooks-reference.html#usecontext) Hook in its implementation, it will still rerender when state or context change.
+`React.memo` n’affecte que les modifications de props. Si votre fonction composant enrobée par `React.memo` utilise un Hook [`useState`](/docs/hooks-state.html) ou [`useContext`](/docs/hooks-reference.html#usecontext) dans son implémentation, des changements d’état local ou de contexte entraîneront tout de même un nouveau rendu.
 
-By default it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument.
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+Par défaut, seule une comparaison de surface des props sera faite. Si vous voulez gérer cette comparaison vous-même, vous pouvez fournir une fonction de comparaison personnalisée en deuxième argument.
 
 ```javascript
 function MyComponent(props) {
