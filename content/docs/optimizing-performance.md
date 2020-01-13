@@ -180,7 +180,11 @@ Pour faire ça avec Chrome :
 
 6. Les événements React seront regroupés sous l'étiquette ***User Timing***.
 
+<<<<<<< HEAD
 Pour une présentation plus détaillée, consultez [cet article de Ben Schwarz](https://building.calibreapp.com/debugging-react-performance-with-react-16-and-chrome-devtools-c90698a522ad).
+=======
+For a more detailed walkthrough, check out [this article by Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
+>>>>>>> 99a18287c163e328f87709cb224742ccac3e113a
 
 Veuillez noter que **ces résultats sont relatifs et que les composants seront rendus plus rapidement en production**. Néanmoins, ça devrait vous aider à comprendre quand des éléments d'interface sont mis à jour par erreur, ainsi que la profondeur et la fréquence des mises à jour de l'UI.
 

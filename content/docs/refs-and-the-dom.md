@@ -140,7 +140,11 @@ class CustomTextInput extends React.Component {
 
 #### Les refs et les fonctions composants {#refs-and-function-components}
 
+<<<<<<< HEAD
 **Vous ne pouvez pas utiliser l'attribut `ref` sur les fonctions composants** parce qu'elles n'ont pas d'instance.
+=======
+By default, **you may not use the `ref` attribute on function components** because they don't have instances:
+>>>>>>> 99a18287c163e328f87709cb224742ccac3e113a
 
 ```javascript{1,8,13}
 function MyFunctionComponent() {
@@ -161,7 +165,11 @@ class Parent extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Vous devez convertir le composant en classe si vous avez besoin d'une ref dessus, comme lorsque vous avez besoin des méthodes de cycle de vie ou d'un état local.
+=======
+If you want to allow people to take a `ref` to your function component, you can use [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html) (possibly in conjunction with [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)), or you can convert the component to a class.
+>>>>>>> 99a18287c163e328f87709cb224742ccac3e113a
 
 Vous pouvez néanmoins **utiliser l'attribut `ref` dans une fonction composant**, tant que vous vous référez à un élément DOM ou un composant à base de classe :
 

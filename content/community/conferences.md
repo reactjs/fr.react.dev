@@ -11,7 +11,11 @@ redirect_from:
 Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 (Merci de respecter l'ordre chronologique de la liste)
 
+<<<<<<< HEAD
 ## Prochaines conférences {#upcoming-conferences}
+=======
+## Upcoming Conferences {#upcoming-conferences}
+>>>>>>> 99a18287c163e328f87709cb224742ccac3e113a
 
 ### React Barcamp Cologne 2020 {#react-barcamp-cologne-2020}
 Du 1 au 2 février 2020 à Cologne, Allemagne
@@ -83,7 +87,14 @@ Le 1er septembre 2020 à Melbourne, Australie
 
 [Site web](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/ComponentsConf) - [Facebook](https://www.facebook.com/ComponentsConf/) - [LinkedIn](https://www.linkedin.com/company/componentsconf/) - [YouTube](https://www.youtube.com/ComponentsConf)
 
+<<<<<<< HEAD
 [Site web](https://reactweek.nyc/) - [Twitter](https://twitter.com/reactweek) - [Facebook](https://www.facebook.com/reactweek)
+=======
+### React India 2020 {#react-india-2020}
+November 6, 2020 in Mumbai, India
+
+[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
+>>>>>>> 99a18287c163e328f87709cb224742ccac3e113a
 
 ## Anciennes conférences {#past-conferences}
 
@@ -493,4 +504,19 @@ Le 30 novembre 2019 à Lagos, Nigeria
 ### React Day Berlin 2019 {#react-day-berlin-2019}
 Le 6 décembre 2019 à Berlin, Allemagne
 
+<<<<<<< HEAD
 [Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://www.youtube.com/reactdayberlin)
+=======
+[Website](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
+
+### React Summit 2019 {#reactsummit2019}
+November 30, 2019 in Lagos, Nigeria
+
+[Website](https://reactsummit2019.splashthat.com) -[Twitter](https://twitter.com/react_summit)
+
+### React Day Berlin 2019 {#react-day-berlin-2019}
+December 6, 2019 in Berlin, Germany
+
+[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/reactdayberlin)
+
+>>>>>>> 99a18287c163e328f87709cb224742ccac3e113a
