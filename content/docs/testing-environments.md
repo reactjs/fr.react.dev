@@ -53,6 +53,10 @@ Parfois, vous voudrez sans doute ne pas simuler les horloges, par exemple si vou
 
 ### Tests de bout en bout {#end-to-end-tests-aka-e2e-tests}
 
+<<<<<<< HEAD
 Les tests de bout en bout sont utiles pour tester des scénarios plus longs, en particulier s’ils sont critiques à votre activité (comme des paiements ou des inscriptions).  Pour de tels tests, vous voudrez sans doute tester comment un véritable navigateur affiche votre appli entière, charge les données depuis de véritables points d’accès API, utilise les sessions et les cookies, navigue au travers de divers liens…  Vous voudrez sans doute aussi vérifier non seulement l’état du DOM, mais les données sous-jacentes (par exemple pour vérifier si des mises à jour ont bien été persistées en base).
+=======
+End-to-end tests are useful for testing longer workflows, especially when they're critical to your business (such as payments or signups). For these tests, you'd probably want to test how a real browser renders the whole app, fetches data from the real API endpoints, uses sessions and cookies, navigates between different links. You might also likely want to make assertions not just on the DOM state, but on the backing data as well (e.g. to verify whether the updates have been persisted to the database).
+>>>>>>> c8aef5dc0dc340e800fbb7963a94adb97da9803b
 
 Dans un tel scénario, vous utiliserez probablement un framework comme [Cypress](https://www.cypress.io/) ou une bibliothèque telle que [puppeteer](https://github.com/GoogleChrome/puppeteer) afin de pouvoir naviguer à travers de multiples routes et vérifier les effets de bord non seulement au sein du navigateur, mais dans votre couche serveur également.

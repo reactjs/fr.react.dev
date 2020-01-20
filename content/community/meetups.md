@@ -145,7 +145,12 @@ Vous organisez un meetup React.js dans votre ville ? Ajoutez-le ici !<br/>
 ## Israël {#israel}
 * [Tel Aviv](https://www.meetup.com/ReactJS-Israel/)
 
+<<<<<<< HEAD
 ## Malaisie {#malaysia}
+=======
+## Malaysia {#malaysia}
+* [Kuala Lumpur](https://www.kl-react.com/)
+>>>>>>> c8aef5dc0dc340e800fbb7963a94adb97da9803b
 * [Penang](https://www.facebook.com/groups/reactpenang/)
 
 ## Norvège {#norway}
