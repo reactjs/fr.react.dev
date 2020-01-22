@@ -11,14 +11,10 @@ redirect_from:
 Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 (Merci de respecter l'ordre chronologique de la liste)
 
-<<<<<<< HEAD
 ## Prochaines conférences {#upcoming-conferences}
-=======
-## Upcoming Conferences {#upcoming-conferences}
->>>>>>> c8aef5dc0dc340e800fbb7963a94adb97da9803b
 
 ### React Barcamp Cologne 2020 {#react-barcamp-cologne-2020}
-Du 1 au 2 février 2020 à Cologne, Allemagne
+Du 1er au 2 février 2020 à Cologne, Allemagne
 
 [Site web](https://react-barcamp.de/) - [Twitter](https://twitter.com/ReactBarcamp) - [Facebook](https://www.facebook.com/reactbarcamp)
 
@@ -28,7 +24,7 @@ Du 27 au 28 février 2020 à Sydney, Australie
 [Site web](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
 
 ### ReactConf Japan 2020 {#reactconfjp-2020}
-March 21, 2020 in Tokyo, Japan
+Le 21 mars 2020 à Tokyo, Japon
 
 [Website](https://reactconf.jp/) - [Twitter](https://twitter.com/reactjapanconf)
 
@@ -50,11 +46,7 @@ Du 23 au 24 avril 2020 à Kraków, Pologne
 ### React Day Bangalore 2020 {#react-day-bangalore-2020}
 Le 25 avril 2020 à Bangalore, Inde
 
-<<<<<<< HEAD
-[Site web](https://reactday.in) - [Twitter](https://twitter.com/ReactDayIn)
-=======
-[Website](https://reactday.in) - [Twitter](https://twitter.com/ReactDayIn) - [LinkedIn](https://www.linkedin.com/company/react-day/)
->>>>>>> c8aef5dc0dc340e800fbb7963a94adb97da9803b
+[Site web](https://reactday.in) - [Twitter](https://twitter.com/ReactDayIn) - [LinkedIn](https://www.linkedin.com/company/react-day/)
 
 ### render(ATL) 2020 {#render-atlanta-2020}
 Du 4 au 6 mai 2020 à Atlanta, GA, États-Unis.
@@ -92,23 +84,21 @@ Le 17 juillet 2020 à New York City, NY, États-Unis.
 [Site web](https://reactweek.nyc/) - [Twitter](https://twitter.com/reactweek) - [Facebook](https://www.facebook.com/reactweek)
 
 ### React La Conferencia 2020 {#react-la-conferencia-2020}
-July 18, 2020. Medellín, Colombia.
+Le 18 juillet 2020 à Medellín, Colombie.
 
-[Website](https://reactlaconf.co/) - [Twitter](https://twitter.com/reactlaconf)
+[Site web](https://reactlaconf.co/) - [Twitter](https://twitter.com/reactlaconf)
 
 ### ComponentsConf 2020 {#components20}
+
 Le 1er septembre 2020 à Melbourne, Australie
 
 [Site web](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/ComponentsConf) - [Facebook](https://www.facebook.com/ComponentsConf/) - [LinkedIn](https://www.linkedin.com/company/componentsconf/) - [YouTube](https://www.youtube.com/ComponentsConf)
 
-<<<<<<< HEAD
-[Site web](https://reactweek.nyc/) - [Twitter](https://twitter.com/reactweek) - [Facebook](https://www.facebook.com/reactweek)
-=======
 ### React India 2020 {#react-india-2020}
-November 6, 2020 in Mumbai, India
 
-[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
->>>>>>> c8aef5dc0dc340e800fbb7963a94adb97da9803b
+Le 6 novembre 2020 à Mumbai, Inde
+
+[Site web](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
 
 ## Anciennes conférences {#past-conferences}
 
@@ -518,19 +508,5 @@ Le 30 novembre 2019 à Lagos, Nigeria
 ### React Day Berlin 2019 {#react-day-berlin-2019}
 Le 6 décembre 2019 à Berlin, Allemagne
 
-<<<<<<< HEAD
 [Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://www.youtube.com/reactdayberlin)
-=======
-[Website](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
 
-### React Summit 2019 {#reactsummit2019}
-November 30, 2019 in Lagos, Nigeria
-
-[Website](https://reactsummit2019.splashthat.com) -[Twitter](https://twitter.com/react_summit)
-
-### React Day Berlin 2019 {#react-day-berlin-2019}
-December 6, 2019 in Berlin, Germany
-
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/reactdayberlin)
-
->>>>>>> c8aef5dc0dc340e800fbb7963a94adb97da9803b

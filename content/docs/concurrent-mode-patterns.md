@@ -796,11 +796,7 @@ function ProfileTimeline({ isStale, resource }) {
 
 Le compromis que nous faisons ici tient à ce que `<ProfileTimeline>` sera incohérente vis-à-vis des autres composants et affichera potentiellement un élément plus ancien. En cliquant sur « Suivant » plusieurs fois, vous allez le remarquer. Mais grâce à ça, nous pouvons raccourcir le temps de la transition de 1 000 ms à 300 ms.
 
-<<<<<<< HEAD
 La pertinence d’un tel compromis dépend de votre situation. Mais ça reste un outil bien pratique, surtout quand le contenu ne change pas de façon très prononcée d’un élement à l’autre, et que l’utilisateur est susceptible de ne même pas remarquer qu’ils ont des données obsolètes pendant une seconde.
-=======
-Whether or not it's an appropriate tradeoff depends on the situation. But it's a handy tool, especially when the content doesn't change noticeably between items, and the user might not even realize they were looking at a stale version for a second.
->>>>>>> c8aef5dc0dc340e800fbb7963a94adb97da9803b
 
 Notez bien que `useDeferredValue` n’est pas *seulement* utile pour le chargement de données. Elle nous aide aussi lorsqu’une arborescence de composants lourde ralentit une interaction (par ex. la saisie dans un champ). Tout comme nous pouvons « différer » une valeur qui prend trop longtemps à se charger (et afficher l’ancienne valeur en dépit des mises à jour d’autres composants), nous pouvons faire la même chose à des arbres qui prennent trop de temps pour leur rendu.
 

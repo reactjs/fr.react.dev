@@ -144,13 +144,7 @@ Le comportement par défaut des effets de bord consiste à exécuter l'effet apr
 
 Cependant, ça pourrait être exagéré dans certains cas, comme dans l'exemple avec l'abonnement dans la section précédente. On n’a pas besoin d’un nouvel abonnement à chaque mise à jour, mais seulement si la prop `source` a changé.
 
-<<<<<<< HEAD
 Pour mettre ça en œuvre, fournissez un deuxième argument à `useEffect` qui consiste en un tableau de valeurs dont l'effet dépend. Notre exemple mis à jour ressemble maintenant à ça :
-=======
-However, this may be overkill in some cases, like the subscription example from the previous section. We don't need to create a new subscription on every update, only if the `source` prop has changed.
-
-To implement this, pass a second argument to `useEffect` that is the array of values that the effect depends on. Our updated example now looks like this:
->>>>>>> c8aef5dc0dc340e800fbb7963a94adb97da9803b
 
 ```js
 useEffect(
