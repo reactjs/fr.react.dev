@@ -15,7 +15,7 @@ Dans cet article, nous allons examiner les problèmes qu’entraînent courammen
 
 ## Les problèmes des mixins {#why-mixins-are-broken}
 
-Chez Facebook l'utilisation de React est passée de quelques composants à plusieurs milliers.  Ça nous offre un bonne vision des façons dont les gens utilisent React.  Grâce à un rendu déclaratif et au flux de données descendant, de nombreuses équipes ont pu corriger un paquet de bugs tout en livrant de nouvelles fonctionnalités en adoptant React.
+Chez Facebook l'utilisation de React est passée de quelques composants à plusieurs milliers.  Ça nous offre une bonne vision des façons dont les gens utilisent React.  Grâce à un rendu déclaratif et au flux de données descendant, de nombreuses équipes ont pu corriger un paquet de bugs tout en livrant de nouvelles fonctionnalités en adoptant React.
 
 Il est cependant inévitable qu'une partie de notre code utilisant React devienne progressivement incompréhensible.  L'équipe React tombait parfois, dans divers projets, sur des groupes de composants que plus personne n'osait toucher.  Ces composants étaient trop fragiles, déroutants pour les nouveaux développeurs—et même à terme pour leurs auteurs d'origine.  Une large part de cette confusion provenait des mixins.  À l'époque, je ne travaillais pas chez Facebook mais j’en étais arrivé aux [mêmes conclusions](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750) après avoir moi-même écrit ma part de mixins atroces.
 
