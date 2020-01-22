@@ -88,9 +88,9 @@ La phase de commit est le plus souvent très rapide, mais le rendu peut être le
 Pour les composants à base de classes, les méthodes de cycle de vie de la phase de rendu sont les suivantes :
 
 * `constructor`
-* `componentWillMount`
-* `componentWillReceiveProps`
-* `componentWillUpdate`
+* `componentWillMount` (or `UNSAFE_componentWillMount`)
+* `componentWillReceiveProps` (or `UNSAFE_componentWillReceiveProps`)
+* `componentWillUpdate` (or `UNSAFE_componentWillUpdate`)
 * `getDerivedStateFromProps`
 * `shouldComponentUpdate`
 * `render`

@@ -397,14 +397,14 @@ it("change de valeur suite au clic", () => {
 
   // récupère l’élément bouton et déclenche quelques clics dessus
   const button = document.querySelector("[data-testid=toggle]");
-  expect(button.innerHTML).toBe("Éteindre");
+  expect(button.innerHTML).toBe("Allumer");
 
   act(() => {
     button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
 
   expect(onChange).toHaveBeenCalledTimes(1);
-  expect(button.innerHTML).toBe("Allumer");
+  expect(button.innerHTML).toBe("Éteindre");
 
   act(() => {
     for (let i = 0; i < 5; i++) {

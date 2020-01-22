@@ -262,4 +262,3 @@ Pour contourner ce problème, placez la valeur dans l'état du parent :
 > Remarque
 >
 > React fournissait auparavant une API de contextes expérimentale. L'ancienne API restera prise en charge par toutes les versions 16.x, mais les applications qui l'utilisent devraient migrer vers la nouvelle version. L'API historique sera supprimée dans une future version majeure de React. Lisez la [documentation sur l’API historique de contexte ici](/docs/legacy-context.html).
-
