@@ -107,6 +107,7 @@ Afin que nous puissions accepter votre _pull request_, nous avons besoin que vou
 ### Pré-requis pour contribuer {#contribution-prerequisites}
 
 * Vous avez [Node](https://nodejs.org) installé en v8.0.0+ et [Yarn](https://yarnpkg.com/en/) en v1.2.0+.
+* Vous avez le [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) installé.
 * Vous avez `gcc` installé ou êtes à l'aise avec le fait d'installer un compilateur si besoin. Certaines de nos dépendances peuvent nécessiter une étape de compilation. Sur OS X, les outils de ligne de commande XCode s'en occupent. Sur Ubuntu, `apt-get install build-essential` installera les paquets nécessaires. Des commandes similaires devraient fonctionner pour d'autres distributions Linux. Windows nécessite quelques étapes supplémentaires, consultez les [instructions d'installation de `node-gyp`](https://github.com/nodejs/node-gyp#installation) pour plus de détails.
 * Vous êtes à l’aise avec Git
 
@@ -156,19 +157,6 @@ Ensuite, notre *linter* repèrera la plupart des problèmes qui pourraient exist
 Vous pouvez vérifier l’état du style de votre code simplement en lançant `yarn linc`.
 
 Cependant, il y a toujours certains styles que le *linter* ne peut pas remarquer. Si vous n'êtes pas sûr·e de votre coup, laissez-vous guider par le [Guide de style de Airbnb](https://github.com/airbnb/javascript).
-
-### Vidéo de présentation {#introductory-video}
-
-Vous voudrez peut-être regarder cette [cette courte vidéo](https://www.youtube.com/watch?v=wUpPsEcGsg8) (26 minutes, en anglais) qui présente comment contribuer à React.
-
-#### Moments les plus intéressants de la vidéo : {#video-highlights}
-- [4:12](https://youtu.be/wUpPsEcGsg8?t=4m12s) - Compiler et tester React en local
-- [6:07](https://youtu.be/wUpPsEcGsg8?t=6m7s) - Créer et envoyer des _pull requests_
-- [8:25](https://youtu.be/wUpPsEcGsg8?t=8m25s) - Organiser son code
-- [14:43](https://youtu.be/wUpPsEcGsg8?t=14m43s) - npm & React
-- [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s) - Ajouter de nouvelles fonctionnalités à React
-
-Pour avoir une vue d'ensemble réaliste de l’expérience de première contribution à React, jetez un coup d’œil à [cette présentation divertissante donnée à ReactNYC](https://www.youtube.com/watch?v=GWCcZ6fnpn4) (en anglais).
 
 ### Appels à commentaires (RFC) {#request-for-comments-rfc}
 
