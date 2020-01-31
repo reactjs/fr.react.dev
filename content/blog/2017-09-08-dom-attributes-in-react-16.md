@@ -1,38 +1,38 @@
 ---
-title: "DOM Attributes in React 16"
+title: "Les attributs DOM dans React 16"
 author: [gaearon]
 ---
 
-In the past, React used to ignore unknown DOM attributes. If you wrote JSX with an attribute that React doesn't recognize, React would just skip it. For example, this:
+Par le passé, React ignorait les attributs DOM inconnus. Si vous écriviez du JSX avec un attribut que React ne reconnaissait pas, React le sautait tout simplement. Par exemple, le code suivant :
 
 ```js
-// Your code:
-<div mycustomattribute="something" />
+// Votre code :
+<div mycustomattribute="quelque chose" />
 ```
 
-would render an empty div to the DOM with React 15:
+produirait une div vide dans le DOM avec React 15 :
 
 ```js
-// React 15 output:
+// rendu de React 15 :
 <div />
 ```
 
-In React 16, we are making a change. Now, any unknown attributes will end up in the DOM:
+Avec React 16, nous apportons un changement. Désormais, tous les attributs inconnus se retrouveront dans le DOM :
 
 ```js
-// React 16 output:
-<div mycustomattribute="something" />
+// rendu de React 16 :
+<div mycustomattribute="quelque chose" />
 ```
 
-## Why Are We Changing This? {#why-are-we-changing-this}
+## Pourquoi changer ça ? {#why-are-we-changing-this}
 
-React has always provided a JavaScript-centric API to the DOM. Since React components often take both custom and DOM-related props, it makes sense for React to use the `camelCase` convention just like the DOM APIs:
+React a toujours fourni une API pour le DOM centrée sur Javascript. Étant donné que les composants React acceptent souvent à la fois des propriétés personnalisées et d’autres liées au DOM, il est logique que React utilise la convention `camelCase` tout comme les API DOM :
 
 ```js
 <div tabIndex="-1" />
 ```
 
-This has not changed. However, the way we enforced it in the past forced us to maintain a whitelist of all valid React DOM attributes in the bundle:
+Cet aspect n'a pas changé. Cependant, la façon dont nous l'avons géré par le passé nous a obligés à maintenir une liste blanche de tous les attributs DOM React valides dans le paquet :
 
 ```js
 // ...
@@ -43,129 +43,129 @@ title: 'title',
 // ...
 ```
 
-This had two downsides:
+Cette approche présentait deux inconvénients :
 
-* You could not [pass a custom attribute](https://github.com/facebook/react/issues/140). This is useful for supplying browser-specific non-standard attributes, trying new DOM APIs, and integrating with opinionated third-party libraries.
+* Vous ne pouviez pas [passer un attribut personnalisé](https://github.com/facebook/react/issues/140). C’est pourtant utile pour fournir des attributs non standard spécifiques au navigateur, essayer de nouvelles API DOM et s'intégrer avec des bibliothèques tierces imposant certaines contraintes.
 
-* The attribute list kept growing over time, but most React canonical attribute names are already valid in the DOM. Removing most of the whitelist helped us reduce the bundle size a little bit.
+* La liste d'attributs n'a cessé de croître au fil du temps, mais la plupart des noms d'attributs canoniques React sont déjà valides dans le DOM. Retirer la majorité de la liste blanche nous a aidés à diminuer un peu la taille du paquet.
 
-With the new approach, both of these problems are solved. With React 16, you can now pass custom attributes to all HTML and SVG elements, and React doesn't have to include the whole attribute whitelist in the production version.
+Avec la nouvelle approche, ces deux problèmes sont résolus. Avec React 16, vous pouvez désormais transmettre des attributs personnalisés à tous les éléments HTML et SVG, et React n'a pas à inclure de liste blanche d'attributs dans sa version de production.
 
-**Note that you should still use the canonical React naming for known attributes:**
+** Notez que vous devez toujours utiliser la nomenclature canonique React pour les attributs connus :**
 
 ```js
-// Yes, please
+// Oui, s'il vous plaît
 <div tabIndex="-1" />
 
-// Warning: Invalid DOM property `tabindex`. Did you mean `tabIndex`?
+// Attention : propriété du DOM invalide `tabindex`. Vous voulez certainement dire `tabIndex` ?
 <div tabindex="-1" />
 ```
 
-In other words, the way you use DOM components in React hasn't changed, but now you have some new capabilities.
+En d'autres termes, la façon dont vous utilisez les composants du DOM dans React n'a pas changé, mais vous disposez désormais de nouvelles fonctionnalités.
 
-## Should I Keep Data in Custom Attributes? {#should-i-keep-data-in-custom-attributes}
+## Devrais-je stocker des données dans des attributs personnalisés ? {#should-i-keep-data-in-custom-attributes}
 
-No. We don't encourage you to keep data in DOM attributes. Even if you have to, `data-` attributes are probably a better approach, but in most cases data should be kept in React component state or external stores.
+Non. Nous vous déconseillons de stocker des données dans les attributs DOM. Même si vous en aviez besoin, les attributs `data-` constituent probablement une meilleure approche, mais dans la plupart des cas, les données devraient être conservées dans l'état du composant React ou dans des *stores* externes.
 
-However, the new feature is handy if you need to use a non-standard or a new DOM attribute, or if you need to integrate with a third-party library that relies on such attributes.
+Cependant, la nouvelle fonctionnalité est pratique si vous devez utiliser un attribut DOM non standard ou nouveau, ou si vous devez intégrer une bibliothèque tierce qui s'appuie sur de tels attributs.
 
-## Data and ARIA Attributes {#data-and-aria-attributes}
+## Attributs `data-` et ARIA {#data-and-aria-attributes}
 
-Just like before, React lets you pass `data-` and `aria-` attributes freely:
+Comme auparavant, React vous permet de passer librement les attributs `data-` et `aria-` :
 
 ```js
 <div data-foo="42" />
-<button aria-label="Close" onClick={onClose} />
+<button aria-label="Fermer" onClick={onClose} />
 ```
 
-This has not changed.
+Ce point n'a pas changé.
 
-[Accessibility](/docs/accessibility.html) is very important, so even though React 16 passes any attributes through, it still validates that `aria-` props have correct names in development mode, just like React 15 did.
+[L'accessibilité](/docs/accessibility.html) est très importante, donc même si React 16 transmet tous les attributs, il vérifie toujours que les *props* `aria-` ont des noms corrects en mode développement, tout comme React 15.
 
-## Migration Path {#migration-path}
+## Méthodologie de migration {#migration-path}
 
-We have included [a warning about unknown attributes](/warnings/unknown-prop.html) since [React 15.2.0](https://github.com/facebook/react/releases/tag/v15.2.0) which came out more than a year ago. The vast majority of third-party libraries have already updated their code. If your app doesn't produce warnings with React 15.2.0 or higher, this change should not require modifications in your application code.
+Nous avons inclus [un avertissement concernant les attributs inconnus](/warnings/unknown-prop.html) depuis [React 15.2.0](https://github.com/facebook/react/releases/tag/v15.2.0) qui est paru il y a plus d'un an. La grande majorité des bibliothèques tierces ont déjà mis à jour leur code. Si votre application ne génère pas d'avertissements avec React 15.2.0 ou une version ultérieure, ce changement ne devrait pas nécessiter de modifications dans votre code.
 
-If you still accidentally forward non-DOM props to DOM components, with React 16 you will start seeing those attributes in the DOM, for example:
+Si vous envoyez accidentellement des propriétés non-DOM aux composants du DOM, avec React 16, vous commencerez à voir ces attributs dans le DOM, comme par exemple :
 
 ```js
 <div myData='[Object object]' />
 ```
 
-This is somewhat safe (the browser will just ignore them) but we recommend to fix these cases when you see them. One potential hazard is if you pass an object that implements a custom `toString()` or `valueOf()` method that throws. Another possible issue is that legacy HTML attributes like `align` and `valign` will now be passed to the DOM. They used to be stripped out because React didn't support them.
+En un sens c'est peu risqué (le navigateur les ignorera) mais nous vous conseillons de corriger ces cas lorsque vous les voyez. Un risque potentiel consiste à passer un objet qui implémente une méthode personnalisée `toString ()` ou `valueOf ()` qui lèverait une exception. Un autre problème possible vient du fait que les attributs HTML dépréciés comme `align` et `valign` sont désormais transmis au DOM. Ils étaient auparavant filtrés parce que React ne les prenait pas en charge.
 
-To avoid these problems, we suggest to fix the warnings you see in React 15 before upgrading to React 16.
+Pour éviter ces problèmes, nous vous suggérons de corriger les avertissements que vous voyez dans React 15 avant de passer à React 16.
 
-## Changes in Detail {#changes-in-detail}
+## Détail des changements {#changes-in-detail}
 
-We've made a few other changes to make the behavior more predictable and help ensure you're not making mistakes. We don't anticipate that these changes are likely to break real-world applications.
+Nous avons apporté quelques autres modifications pour rendre le comportement plus prévisible et vous aider à vous assurer que vous ne commettez pas d'erreurs. Ces changements ne devraient pas perturber les applications en production.
 
-**These changes only affect DOM components like `<div>`, not your own components.**  
+**Ces modifications n'affectent que les composants DOM comme `<div>`, pas vos propres composants.**
 
-Below is a detailed list of them.
+En voici une liste détaillée.
 
-* **Unknown attributes with string, number, and object values:**  
+* **Attributs inconnus dont la valeur est une chaîne de caractère, un nombre ou un objet :**  
 
     ```js
-    <div mycustomattribute="value" />
+    <div mycustomattribute="valeur" />
     <div mycustomattribute={42} />
     <div mycustomattribute={myObject} />
     ```
 
-    React 15: Warns and ignores them.  
-    React 16: Converts values to strings and passes them through.
+    React 15 : génère un avertissement et les ignore.
+    React 16 : convertit les valeurs en chaînes de caractères et les transmet.
 
-    *Note: attributes starting with `on` are not passed through as an exception because this could become a potential security hole.*
+    *Remarque : les attributs commençant par `on` constituent une exception et ne sont pas transmis, car ils constituent une faille de sécurité potentielle.*
 
-* **Known attributes with a different canonical React name:**  
+* **Attributs connus avec un nom canonique React différent :**  
 
     ```js
     <div tabindex="-1" />
-    <div class="hi" />
+    <div class="salut" />
     ```
 
-    React 15: Warns and ignores them.  
-    React 16: Warns but converts values to strings and passes them through.
+    React 15 : génère un avertissement et les ignore.
+    React 16 : génère un avertissement mais convertit les valeurs en chaînes de caractères et les transmet.
 
-    *Note: always use the canonical React naming for all supported attributes.*
+    *Remarque : utilisez toujours la nomenclature canonique de React pour les attributs pris en charge.*
 
-* **Non-boolean attributes with boolean values:**  
+* **Attributs non booléens avec des valeurs booléennes :**  
 
     ```js
     <div className={false} />
     ```
 
-    React 15: Converts booleans to strings and passes them through.  
-    React 16: Warns and ignores them.
+    React 15 : convertit les booléens en chaînes de caractères et les transmet.
+    React 16 : génère un avertissement et les ignore.
 
-* **Non-event attributes with function values:**  
+* **Attributs non événementiels avec des fonctions comme valeur :**  
 
     ```js
     <div className={function() {}} />
     ```
 
-    React 15: Converts functions to strings and passes them through.  
-    React 16: Warns and ignores them.
+    React 15 : convertit les fonctions en chaînes de caractères et les transmet.
+    React 16 : génère un avertissement et les ignore.
 
-* **Attributes with Symbol values:**
+* **Attributs avec des symboles comme valeur :**
 
     ```js
     <div className={Symbol('foo')} />
     ```
 
-    React 15: Crashes.  
-    React 16: Warns and ignores them.
+    React 15 : plante.  
+    React 16 : génère un avertissement et les ignore.
 
-* **Attributes with `NaN` values:**
+* **Attributs avec des valeurs `NaN` :**
 
     ```js
     <div tabIndex={0 / 0} />
     ```
 
-    React 15: Converts `NaN`s to strings and passes them through.  
-    React 16: Converts `NaN`s to strings and passes them through with a warning.
+    React 15 : convertit les `NaN` en chaînes de caractères et les transmet.  
+    React 16 : convertit les `NaN` en chaînes de caractères et les transmet mais avec un avertissement.
 
-While testing this release, we have also [created an automatically generated table](https://github.com/facebook/react/blob/master/fixtures/attribute-behavior/AttributeTableSnapshot.md) for all known attributes to track potential regressions.
+En testant cette version, nous avons aussi [créé un tableau généré automatiquement](https://github.com/facebook/react/blob/master/fixtures/attribute-behavior/AttributeTableSnapshot.md) pour tous les attributs connus afin de pister d’éventuelles régressions.
 
 ## Try It! {#try-it}
 
