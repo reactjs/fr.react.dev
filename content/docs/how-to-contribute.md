@@ -19,7 +19,11 @@ Facebook a adopté le code de conduite [Contributor Covenant](https://www.contri
 
 ### Développement ouvert {#open-development}
 
+<<<<<<< HEAD
 Tout travail sur React se passe directement sur [GitHub](https://github.com/facebook/react). Les membres de l'équipe noyau *(core team, NdT)* tout comme les contributeurs externes y envoient leur _pull requests_, lesquelles passent à travers le même processus de revue.
+=======
+React follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. When we make breaking changes, we also introduce deprecation warnings in a minor version so that our users learn about the upcoming changes and migrate their code in advance. Learn more about our commitment to stability and incremental migration in [our versioning policy](/docs/faq-versioning.html).
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 ### Gestion sémantique des versions {#semantic-versioning}
 
@@ -57,8 +61,13 @@ Facebook a un [programme de récompenses](https://www.facebook.com/whitehat/) po
 
 ### Comment nous contacter {#how-to-get-in-touch}
 
+<<<<<<< HEAD
 * IRC : [#reactjs sur freenode](https://webchat.freenode.net/?channels=reactjs)
 * [Forums de discussion](/community/support.html#popular-discussion-forums)
+=======
+* IRC: [#reactjs on freenode](https://webchat.freenode.net/?channels=reactjs)
+* [Discussion forums](/community/support.html#popular-discussion-forums)
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 Au cas où vous auriez besoin d'aide avec React, il existe aussi [une communauté active d'utilisateurs de React sur la plate-forme de discussion Discord](https://www.reactiflux.com/).
 

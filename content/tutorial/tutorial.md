@@ -37,7 +37,11 @@ Dans ce tutoriel, nous allons voir comment construire un jeu de morpion interact
 
 Vous pouvez voir ce que ça va donner ici : **[résultat final](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. Si le code vous semble obscur, ou si vous n’êtes pas à l’aise avec la syntaxe du code, ne vous inquiétez pas !  C’est justement l’objectif de ce tutoriel de vous aider à comprendre React et sa syntaxe.
 
+<<<<<<< HEAD
 Nous vous conseillons de jeter un coup d'œil à ce jeu de morpion avant de continuer ce tutoriel.  Une des fonctionnalités que vous remarquerez, c’est qu’il affiche une liste numérotée sur la droite du plateau de jeu.  Cette liste vous fournit un historique des tours de jeu, et elle est mise à jour au fil de l’eau.
+=======
+We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 Vous pouvez refermer le jeu de morpion une fois que vous en avez bien fait le tour.  Nous commencerons par un gabarit plus simple pour ce tutoriel.  Notre prochaine étape consiste à mettre le nécessaire en place, sur votre machine, pour que vous puissiez commencer à construire le jeu.
 
