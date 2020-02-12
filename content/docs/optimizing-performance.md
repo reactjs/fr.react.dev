@@ -189,8 +189,8 @@ Pour le moment, Chrome, Edge et IE sont les seuls navigateurs prenant en charge 
 ## Profilage des composants avec le DevTools Profiler {#profiling-components-with-the-devtools-profiler}
 
 `react-dom` 16.5+ et `react-native` 0.57+ offrent des capacités de profilage avancées en mode de développement avec le Profiler de l'extension React DevTools.
-Vous trouverez un aperçu du *Profiler* sur le billet de blog [*"Introducing the React Profiler"*](/blog/2018/09/10/introducing-the-react-profiler.html).
-Une présentation vidéo du *Profiler* est également [disponible sur YouTube](https://www.youtube.com/watch?v=nySib7ipZdk).
+Vous trouverez un aperçu du profileur sur le billet de blog [*« Découvrez le profileur React »*](/blog/2018/09/10/introducing-the-react-profiler.html).
+Une présentation vidéo du profileur est également [disponible sur YouTube](https://www.youtube.com/watch?v=nySib7ipZdk).
 
 Si vous n'avez pas encore installé l'extension React DevTools, vous pourrez la trouver ici :
 
