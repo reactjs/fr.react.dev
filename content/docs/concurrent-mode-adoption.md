@@ -79,7 +79,7 @@ ReactDOM.createRoot(
 >
 > Les API du mode concurrent, telles que `createRoot`, n’existent que dans les builds expérimentaux de React.
 
-En mode concurrent, les méthodes de cycle de vie qui étaient [auparavant désignées](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html) comme « dangereuses » *(“unsafe”, NdT)* sont *effectivement* dangereuses, et peuvent entraîner des bugs encore plus souvent que dans le code React habituel. Nous vous déconseillons de tester le mode concurrent tant que votre appli n’est pas compatible avec le [mode strict](https://reactjs.org/docs/strict-mode.html).
+En mode concurrent, les méthodes de cycle de vie qui étaient [auparavant désignées](/blog/2018/03/27/update-on-async-rendering.html) comme « dangereuses » *(“unsafe”, NdT)* sont *effectivement* dangereuses, et peuvent entraîner des bugs encore plus souvent que dans le code React habituel. Nous vous déconseillons de tester le mode concurrent tant que votre appli n’est pas compatible avec le [mode strict](/docs/strict-mode.html).
 
 ## À quoi s’attendre ? {#what-to-expect}
 
