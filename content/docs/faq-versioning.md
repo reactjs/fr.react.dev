@@ -22,11 +22,7 @@ Les versions mineures sont de loin les plus courantes.
 
 > Cette politique de versions ne s’applique pas aux pré-versions dans les canaux *Next* et *Experimental*. [En savoir plus sur les pré-versions](/docs/release-channels.html).
 
-<<<<<<< HEAD
-Personne n’aime perdre en compatibilité ascendante, nous essayons donc de minimiser le nombre de versions majeures ; par exemple, React 15 est sorti en avril 2016 et React 16 en septembre 2017 ; React 17 n'est pas prévu avant 2019.
-=======
-Breaking changes are inconvenient for everyone, so we try to minimize the number of major releases – for example, React 15 was released in April 2016 and React 16 was released in September 2017; React 17 isn't expected until sometime in 2020.
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
+Personne n’aime perdre en compatibilité ascendante, nous essayons donc de minimiser le nombre de versions majeures ; par exemple, React 15 est sorti en avril 2016 et React 16 en septembre 2017 ; React 17 n'est pas prévu avant 2020.
 
 Au lieu de ça, nous publions les nouvelles fonctionnalités dans des versions mineures. Celles-ci sont souvent plus intéressantes et motivantes que les majeures, malgré leur nom modeste.
 

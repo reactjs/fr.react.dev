@@ -6,20 +6,11 @@ category: Reference
 permalink: docs/profiler.html
 ---
 
-<<<<<<< HEAD
-Le `Profiler` mesure à quelle fréquence une application React réalise son rendu, et détermine le « coût » de ces rendus.  L’objectif est de vous aider à identifier les parties d’une application qui sont lentes et pourraient bénéficier [d’optimisations telles que la mémoïsation](https://reactjs.org/docs/hooks-faq.html#how-to-memoize-calculations).
-=======
-The `Profiler` measures how often a React application renders and what the "cost" of rendering is.
-Its purpose is to help identify parts of an application that are slow and may benefit from [optimizations such as memoization](/docs/hooks-faq.html#how-to-memoize-calculations).
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
+Le `Profiler` mesure à quelle fréquence une application React réalise son rendu, et détermine le « coût » de ces rendus.  L’objectif est de vous aider à identifier les parties d’une application qui sont lentes et pourraient bénéficier [d’optimisations telles que la mémoïsation](/docs/hooks-faq.html#how-to-memoize-calculations).
 
 > Remarque
 >
-<<<<<<< HEAD
-> Le profilage pénalise légèrement les performances effectives, il est donc **désactivé dans [le build de production](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)**.
-=======
-> Profiling adds some additional overhead, so **it is disabled in [the production build](/docs/optimizing-performance.html#use-the-production-build)**.
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
+> Le profilage pénalise légèrement les performances effectives, il est donc **désactivé dans [le build de production](/docs/optimizing-performance.html#use-the-production-build)**.
 >
 > Pour activer le profilage en production, React fournit un build de production spécifique avec le profilage
 > activé.  Vous pouvez apprendre comment l’utiliser sur [fb.me/react-profiling](https://fb.me/react-profiling).
