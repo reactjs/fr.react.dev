@@ -1,196 +1,166 @@
 ---
-title: "Introducing the React Profiler"
+title: "Découvrez le profileur React"
 author: [bvaughn]
 ---
-React 16.5 adds support for a new DevTools profiler plugin.
-This plugin uses React's [experimental Profiler API](https://github.com/reactjs/rfcs/pull/51) to collect timing information about each component that's rendered in order to identify performance bottlenecks in React applications.
-It will be fully compatible with our upcoming [time slicing and suspense](/blog/2018/03/01/sneak-peek-beyond-react-16.html) features.
 
-This blog post covers the following topics:
-* [Profiling an application](#profiling-an-application)
-* [Reading performance data](#reading-performance-data)
-  * [Browsing commits](#browsing-commits)
-  * [Filtering commits](#filtering-commits)
-  * [Flame chart](#flame-chart)
-  * [Ranked chart](#ranked-chart)
-  * [Component chart](#component-chart)
+React 16.5 prend en charge un nouveau plugin de profilage dans les DevTools.  Ce plugin utilise [l’API expérimentale de profileur](https://github.com/reactjs/rfcs/pull/51) de React pour collecter des données de chronologie sur chaque composant du rendu afin de repérer les goulots d’étranglement de performance dans les applications React.  Il sera totalement compatible avec les fonctionnalités à venir de [découpage temporel et Suspense](/blog/2018/03/01/sneak-peek-beyond-react-16.html).
+
+Cet article couvre les sujets suivants :
+* [Profiler une application](#profiling-an-application)
+* [Lire les données de performance](#reading-performance-data)
+  * [Parcourir les commits](#browsing-commits)
+  * [Filtrer les commits](#filtering-commits)
+  * [Graphique de flammes *(flame chart)*](#flame-chart)
+  * [Graphique de classement](#ranked-chart)
+  * [Graphique de composants](#component-chart)
   * [Interactions](#interactions)
-* [Troubleshooting](#troubleshooting)
-  * [No profiling data has been recorded for the selected root](#no-profiling-data-has-been-recorded-for-the-selected-root)
-  * [No timing data to display for the selected commit](#no-timing-data-to-display-for-the-selected-commit)
-* [Deep dive video](#deep-dive-video)
+* [Dépannage](#troubleshooting)
+  * [Aucune donnée de profilage n’est enregistrée pour la racine sélectionnée](#no-profiling-data-has-been-recorded-for-the-selected-root)
+  * [Aucune donnée de chronologie n’est affichable pour le commit sélectionné](#no-timing-data-to-display-for-the-selected-commit)
+* [Présentation vidéo en profondeur](#deep-dive-video)
 
-## Profiling an application {#profiling-an-application}
+## Profiler une application {#profiling-an-application}
 
-DevTools will show a "Profiler" tab for applications that support the new profiling API:
+Les DevTools affichent désormais un onglet "Profiler" pour les applications prenant en charge la nouvelle API de profilage :
 
-![New DevTools "profiler" tab](../images/blog/introducing-the-react-profiler/devtools-profiler-tab.png)
+![Nouvel onglet “profiler” dans les Devtools](../images/blog/introducing-the-react-profiler/devtools-profiler-tab.png)
 
-> Note:
+> Remarque
 >
-> `react-dom` 16.5+ supports profiling in DEV mode.
-> A production profiling bundle is also available as `react-dom/profiling`.
-> Read more about how to use this bundle at [fb.me/react-profiling](https://fb.me/react-profiling) 
+> `react-dom` 16.5+ prend en charge le profilage en mode DEV.
+> Un bundle de production apte au profilage est également disponible : `react-dom/profiling`.
+> Pour découvrir comment utiliser ce bundle, consultez [fb.me/react-profiling](https://fb.me/react-profiling)
 
-The "Profiler" panel will be empty initially. Click the record button to start profiling:
+Le panneau “Profiler” est initialement vide.  Cliquez sur le bouton d‘enregistrement pour commencer à profiler :
 
-![Click "record" to start profiling](../images/blog/introducing-the-react-profiler/start-profiling.png)
+![Cliquez sur "Record" pour commencer à profiler](../images/blog/introducing-the-react-profiler/start-profiling.png)
 
-Once you've started recording, DevTools will automatically collect performance information each time your application renders.
-Use your app as you normally would.
-When you are finished profiling, click the "Stop" button.
+Une fois que vous enregistrez, les DevTools collectent automatiquement les informations de performance à chaque rendu de l’application.  Utilisez votre appli comme d’habitude.  Quand vous souhaitez mettre un terme au profilage, cliquez sur le bouton “Stop”.
 
-![Click "stop" when you are finished profiling](../images/blog/introducing-the-react-profiler/stop-profiling.png)
+![Cliquez sur "Stop" quand vous avez fini de profiler](../images/blog/introducing-the-react-profiler/stop-profiling.png)
 
-Assuming your application rendered at least once while profiling, DevTools will show several ways to view the performance data.
-We'll [take a look at each of these below](#reading-performance-data).
+En supposant que votre application ait effectué au moins un rendu lors du profilage, les DevTools fourniront plusieurs manières de consulter les données de performance. Nous [explorons chacune d’elles ci-après](#reading-performance-data).
 
-## Reading performance data {#reading-performance-data}
+## Lire les données de performance {#reading-performance-data}
 
-### Browsing commits {#browsing-commits}
-Conceptually, React does work in two phases:
+### Parcourir les commits {#browsing-commits}
 
-* The **render** phase determines what changes need to be made to e.g. the DOM. During this phase, React calls `render` and then compares the result to the previous render.
-* The **commit** phase is when React applies any changes. (In the case of React DOM, this is when React inserts, updates, and removes DOM nodes.) React also calls lifecycles like `componentDidMount` and `componentDidUpdate` during this phase.
+Conceptuellement, React travaille en deux temps :
 
-The DevTools profiler groups performance info by commit.
-Commits are displayed in a bar chart near the top of the profiler:
+* La phase de **rendu** détermine quelles modifications doivent être effectuées, par exemple au DOM.  Durant cette phase, React appelle `render` et compare son résultat au rendu précédent.
+* La phase de **commit** est celle où React applique les changements nécessaires. (Dans le cas de React DOM, c’est à ce moment-là que React insère, met à jour ou retire des nœuds DOM.)  React appelle également les méthodes de cycle de vie telles que `componentDidMount` et `componentDidUpdate` lors de cette phase.
 
-![Bar chart of profiled commits](../images/blog/introducing-the-react-profiler/commit-selector.png)
+Le profileur des DevTools regroupe les informations de performance par commit.  Les commits sont affichés dans un histogramme vers le haut du profileur :
 
-Each bar in the chart represents a single commit with the currently selected commit colored black.
-You can click on a bar (or the left/right arrow buttons) to select a different commit.
+![Histogramme des commits profilés](../images/blog/introducing-the-react-profiler/commit-selector.png)
 
-The color and height of each bar corresponds to how long that commit took to render.
-(Taller, yellow bars took longer than shorter, blue bars.)
+Chaque barre du graphique représente un commit unique, celui actuellement sélectionné étant représenté en noir.  Vous pouvez cliquer sur une barre (ou utiliser les boutons fléchés à gauche et à droite) pour sélectionner un autre commit.
 
-### Filtering commits {#filtering-commits}
+La couleur et la hauteur de chaque barre correspond à la durée du rendu de ce commit. (Les barres plus hautes et jaunes ont pris plus longtemps que les barres plus courtes et vertes.)
 
-The longer you profile, the more times your application will render.
-In some cases you may end up with _too many commits_ to easily process.
-The profiler offers a filtering mechanism to help with this.
-Use it to specify a threshold and the profiler will hide all commits that were _faster_ than that value.
+### Filtrer les commits {#filtering-commits}
 
-![Filtering commits by time](../images/blog/introducing-the-react-profiler/filtering-commits.gif)
+Plus vous profilez longtemps, plus votre application accumulera de rendus.  Dans certains cas, vous pourriez vous retrouver avec _trop de commits_ pour que leur analyse reste aisée.  Le profileur vous permet de filtrer les commits pour y remédier.  Utilisez ce mécanisme pour préciser un seuil : le profileur masquera tous les commits dont l’exécution a pris _moins de temps_ que le seuil indiqué.
 
-### Flame chart {#flame-chart}
+![Filtage des commits par durée d’exécution](../images/blog/introducing-the-react-profiler/filtering-commits.gif)
 
-The flame chart view represents the state of your application for a particular commit.
-Each bar in the chart represents a React component (e.g. `App`, `Nav`).
-The size and color of the bar represents how long it took to render the component and its children.
-(The width of a bar represents how much time was spent _when the component last rendered_ and the color represents how much time was spent _as part of the current commit_.)
+### Graphique de flammes *(flame chart)* {#flame-chart}
 
-![Example flame chart](../images/blog/introducing-the-react-profiler/flame-chart.png)
+Le graphique de flammes *(flame chart, NdT)* représente l’état de votre application pour un commit donné.  Chaque barre du graphique représente un composant React (ex. `App`, `Nav`).  La taille et la couleur de la barre représente la durée de rendu du composant et de ses descendants.  (La largeur de la barre indique le temps passé _par le dernier rendu du composant_ et la couleur indique ce même temps _pour le commit sélectionné_.)
 
-> Note:
+![Exemple de graphique de flammes](../images/blog/introducing-the-react-profiler/flame-chart.png)
+
+> Remarque
 >
-> The width of a bar indicates how long it took to render the component (and its children) when they last rendered.
-> If the component did not re-render as part of this commit, the time represents a previous render.
-> The wider a component is, the longer it took to render.
-> 
-> The color of a bar indicates how long the component (and its children) took to render in the selected commit.
-> Yellow components took more time, blue components took less time, and gray components did not render at all during this commit.
-
-For example, the commit shown above took a total of 18.4ms to render.
-The `Router` component was the "most expensive" to render (taking 18.4ms).
-Most of this time was due to two of its children, `Nav` (8.4ms) and `Route` (7.9ms).
-The rest of the time was divided between its remaining children or spent in the component's own render method.
-
-You can zoom in or out on a flame chart by clicking on components:
-![Click on a component to zoom in or out](../images/blog/introducing-the-react-profiler/zoom-in-and-out.gif)
-
-Clicking on a component will also select it and show information in the right side panel which includes its `props` and `state` at the time of this commit.
-You can drill into these to learn more about what the component actually rendered during the commit:
-
-![Viewing a component's props and state for a commit](../images/blog/introducing-the-react-profiler/props-and-state.gif)
-
-In some cases, selecting a component and stepping between commits may also provide a hint as to _why_ the component rendered:
-
-![Seeing which values changed between commits](../images/blog/introducing-the-react-profiler/see-which-props-changed.gif)
-
-The above image shows that `state.scrollOffset` changed between commits.
-This is likely what caused the `List` component to re-render.
-
-### Ranked chart {#ranked-chart}
-
-The ranked chart view represents a single commit.
-Each bar in the chart represents a React component (e.g. `App`, `Nav`).
-The chart is ordered so that the components which took the longest to render are at the top.
-
-![Example ranked chart](../images/blog/introducing-the-react-profiler/ranked-chart.png)
-
-> Note:
+> La largeur de la barre indique le temps pris par le dernier rendu en date du composant (et de ses descendants).  Si le composant n’a pas fait de rendu lors du commit courant, il s’agira du commit précédent.  Plus la barre est large, plus le rendu a pris longtemps.
 >
-> A component's render time includes the time spent rendering its children,
-> so the components which took the longest to render are generally near the top of the tree.
+> La couleur de la barre indique le temps pris par le rendu du composant (et de ses descendants) pour le commit sélectionné. Les composants jaunes ont pris plus de temps, les verts moins de temps, et les gris n’ont pas fait de rendu durant ce commit.
 
-As with the flame chart, you can zoom in or out on a ranked chart by clicking on components.
+Par exemple, le rendu du commit illustré ci-avant a pris un total de 18,4ms. Le composant `Router` était le « plus lourd » à afficher (il a pris 18,4ms).  La majeure partie de ce temps était occupée par deux de ses enfants, `Nav` (8,4ms) et `Route` (7,9ms).  Le reste du temps était réparti entre ses enfants restants et le code interne de sa méthode `render`.
 
-### Component chart {#component-chart}
+Vous pouvez (dé)zoomer dans un graphique de flammes en cliquant sur les composants :
 
-Sometimes it's useful to see how many times a particular component rendered while you were profiling.
-The component chart provides this information in the form of a bar chart.
-Each bar in the chart represents a time when the component rendered.
-The color and height of each bar corresponds to how long the component took to render _relative to other components_ in a particular commit.
+![Cliquez sur un composant pour (dé)zoomer](../images/blog/introducing-the-react-profiler/zoom-in-and-out.gif)
 
-![Example component chart](../images/blog/introducing-the-react-profiler/component-chart.png)
+Cliquer sur un composant le sélectionnera à la volée et affichera dans le panneau de droite des infos incluant ses `props` et `state` au moment du commit.  Explorez-les pour en déterminer ce que le composant affichait effectivement au moment du commit :
 
-The chart above shows that the `List` component rendered 11 times.
-It also shows that each time it rendered, it was the most "expensive" component in the commit (meaning that it took the longest).
+![Visualiser les props et l’état local d’un composant lors d’un commit](../images/blog/introducing-the-react-profiler/props-and-state.gif)
 
-To view this chart, either double-click on a component _or_ select a component and click on the blue bar chart icon in the right detail pane.
-You can return to the previous chart by clicking the "x" button in the right detail pane.
-You can also double click on a particular bar to view more information about that commit.
+Dans certains cas, sélectionner un composant puis circuler entre les commits peut vous aider à comprendre _pourquoi_ le composant a refait un rendu :
 
-![How to view all renders for a specific component](../images/blog/introducing-the-react-profiler/see-all-commits-for-a-fiber.gif)
+![Voir les valeurs modifiées d’un commit à l’autre](../images/blog/introducing-the-react-profiler/see-which-props-changed.gif)
 
-If the selected component did not render at all during the profiling session, the following message will be shown:
+L’image ci-avant montre que `state.scrollOffset` a changé d’un commit à l’autre.  C’est sans doute pour ça que le composant `List` a refait un rendu.
 
-![No render times for the selected component](../images/blog/introducing-the-react-profiler/no-render-times-for-selected-component.png)
+### Graphique de classement {#ranked-chart}
+
+La vue graphique de classement représente un commit unique.  Chaque barre du graphique représente un composant React (ex. `App`, `Nav`).  Le graphique trie les composants par ordre décroissant de temps de rendu, donc avec les composants les plus lents en haut.
+
+![Exemple de graphique de classement](../images/blog/introducing-the-react-profiler/ranked-chart.png)
+
+> Remarque
+>
+>Le temps de rendu d’un composant inclut celui du rendu de ses enfants, de sorte
+>que les composants au rendu le plus long ont tendance à figurer vers le haut de
+>l’arborescence.
+
+Comme avec le graphique de flammes, vous pouvez (dé)zoomer dans le graphique de classement en cliquant sur les composants.
+
+### Graphique de composants {#component-chart}
+
+Il est parfois utile de savoir combien de fois un composant donné à refait son rendu pendant le profilage.  Le graphique de composants fournit cette information sous forme d’un histogramme.  Chaque barre du graphique représente un rendu du composant.  La couleur et la hauteur de chaque barre correspond au temps que ce rendu a pris _par rapport aux autres composants_ du commit sélectionné.
+
+![Exemple de graphique de composants](../images/blog/introducing-the-react-profiler/component-chart.png)
+
+Le graphique ci-avant indique que le composant `List` a fait 11 rendus au total. Il nous indique aussi qu’à chaque rendu, il était le composant le plus « lourd » de son commit (c’est-à-dire qu’il a pris le plus de temps).
+
+Pour obtenir ce graphique, vous pouvez soit double-cliquer sur le composant, soit le sélectionner puis cliquer sur l’icône d’histogramme bleu dans le panneau de détails sur la droite.  Vous pouvez revenir au graphique précédent en cliquant sur le bouton “x” dans ce même panneau de détails.  Vous pouvez aussi double-cliquer sur une barre en particulier pour en apprendre davantage sur le commit en question.
+
+![Comment voir tous les rendus d’un composant spécifique](../images/blog/introducing-the-react-profiler/see-all-commits-for-a-fiber.gif)
+
+Si le composant sélectionné n’a pas fait de rendus lors de la session de profilage, le message suivant est affiché :
+
+![Aucun temps de rendu pour le composant sélectionné](../images/blog/introducing-the-react-profiler/no-render-times-for-selected-component.png)
 
 ### Interactions {#interactions}
 
-React recently added another [experimental API](https://fb.me/react-interaction-tracing) for tracing the _cause_ of an update.
-"Interactions" traced with this API will also be shown in the profiler:
+React a récemment ajouté une autre [API expérimentale](https://fb.me/react-interaction-tracing) pour pister la _cause_ d’une mise à jour. Les « Interactions » pistées par cette API sont aussi affichées par le profileur :
 
-![The interactions panel](../images/blog/introducing-the-react-profiler/interactions.png)
+![Le panneau Interactions](../images/blog/introducing-the-react-profiler/interactions.png)
 
-The image above shows a profiling session that traced four interactions.
-Each row represents an interaction that was traced.
-The colored dots along the row represent commits that were related to that interaction.
+L’image ci-avant affiche une session de profilage qui a pisté quatre interactions.  Chaque ligne représente une interaction pistée.  Les points de couleur le long de la ligne représentent des commits en rapport avec cette interaction.
 
-You can also see which interactions were traced for a particular commit from the flame chart and ranked chart views as well:
+Vous pouvez aussi visualiser les interactions tracées pour un commit donné depuis le graphique de flammes ou le graphique de classement :
 
-![List of interactions for a commit](../images/blog/introducing-the-react-profiler/interactions-for-commit.png)
+![Liste des interactions pour un commit](../images/blog/introducing-the-react-profiler/interactions-for-commit.png)
 
-You can navigate between interactions and commits by clicking on them:
+Vous pouvez naviguer entre les interactions et les commits en cliquant sur eux :
 
-![Navigate between interactions and commits](../images/blog/introducing-the-react-profiler/navigate-between-interactions-and-commits.gif)
+![Naviguer entre les interactions et les commits](../images/blog/introducing-the-react-profiler/navigate-between-interactions-and-commits.gif)
 
-The tracing API is still new and we will cover it in more detail in a future blog post.
+L’API de pistage est encore fraîche et nous la décrirons plus en détail dans un futur article.
 
-## Troubleshooting {#troubleshooting}
+## Dépannage {#troubleshooting}
 
-### No profiling data has been recorded for the selected root {#no-profiling-data-has-been-recorded-for-the-selected-root}
+### Aucune donnée de profilage n’est enregistrée pour la racine sélectionnée {#no-profiling-data-has-been-recorded-for-the-selected-root}
 
-If your application has multiple "roots", you may see the following message after profiling:
-![No profiling data has been recorded for the selected root](../images/blog/introducing-the-react-profiler/no-profiler-data-multi-root.png)
+Si votre application a plusieurs « racines », vous verrez peut-être le message suivant après votre profilage :
 
-This message indicates that no performance data was recorded for the root that's selected in the "Elements" panel.
-In this case, try selecting a different root in that panel to view profiling information for that root:
+![Aucune donnée de profilage n’est enregistrée pour la racine sélectionnée](../images/blog/introducing-the-react-profiler/no-profiler-data-multi-root.png)
 
-![Select a root in the "Elements" panel to view its performance data](../images/blog/introducing-the-react-profiler/select-a-root-to-view-profiling-data.gif)
+Ce message signifie qu’aucune donnée de performance n’a été enregistrée pour la racine sélectionnée dans le panneau “Elements”.  Dans un tel cas, essayez de sélectionner une racine différente dans ce panneau pour visualiser les informations de profilage associées :
 
-### No timing data to display for the selected commit {#no-timing-data-to-display-for-the-selected-commit}
+![Sélection d’une autre racine dans le panneau "Elements" pour en voir les données de performance](../images/blog/introducing-the-react-profiler/select-a-root-to-view-profiling-data.gif)
 
-Sometimes a commit may be so fast that `performance.now()` doesn't give DevTools any meaningful timing information.
-In this case, the following message will be shown:
+### Aucune donnée de chronologie n’est affichable pour le commit sélectionné {#no-timing-data-to-display-for-the-selected-commit}
 
-![No timing data to display for the selected commit](../images/blog/introducing-the-react-profiler/no-timing-data-for-commit.png)
+Il peut arriver qu’un commit soit si rapide que `performance.now()` ne puisse pas fournir aux DevTools des données utiles.  Dans un tel cas, vous obtiendrez le message suivant :
 
-## Deep dive video {#deep-dive-video}
+![Aucune donnée de Chronologie à afficher pour le commit sélectionné](../images/blog/introducing-the-react-profiler/no-timing-data-for-commit.png)
 
-The following video demonstrates how the React profiler can be used to detect and improve performance bottlenecks in an actual React application.
+## Présentation vidéo en profondeur {#deep-dive-video}
+
+La vidéo qui suit (en anglais) illustre l’utilisation du profileur React pour détecter et résoudre des problèmes de performance sur une application React réelle.
 
 <br>
 
