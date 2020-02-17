@@ -11,7 +11,6 @@ La communauté React a créé de nombreux exemples de projets. N'hésitez pas à
 * **[Zeldog](https://yannsainty.github.io/Zeldog/)** Un jeu à la Zelda avec un chien qui combat des canards et d’autres animaux pour manger de la pizza !
 * **[Calculator](https://github.com/ahfarmer/calculator)** La calculette d'iOS en React
 * **[Emoji Search](https://github.com/ahfarmer/emoji-search)** Une petite appli React pour chercher des emojis
-* **[GitHub Battle App](https://tm.dev/react-course-project/)** Comparez deux utilisateurs de GitHub et découvrez les projets les plus populaires pour chaque langage de programmation.
 * **[React Powered Hacker News Client](https://github.com/insin/react-hn)** Une implémentation en React & React-Router de Hacker News via son API Firebase.
 * **[Pokedex](https://github.com/alik0211/pokedex)** La liste des Pokémon avec une recherche à la volée
 * **[Shopping Cart](https://github.com/jeffersonRibeiro/react-shopping-cart)** Une application de panier e-commerce simple en React
