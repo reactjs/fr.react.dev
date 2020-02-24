@@ -32,7 +32,11 @@ Lorsque le mode strict est actif, React constitue une liste de tous les composan
 
 ![Exemple de message d'avertissement sur les méthodes dépréciées](../images/blog/strict-mode-unsafe-lifecycles-warning.png)
 
+<<<<<<< HEAD
 En résolvant les problèmes identifiés par le mode strict _aujourd’hui_, vous pourrez plus facilement tirer parti du rendu asynchrone qui arrivera dans les futures versions de React.
+=======
+Addressing the issues identified by strict mode _now_ will make it easier for you to take advantage of concurrent rendering in future releases of React.
+>>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
 
 ### Signaler l'utilisation dépréciée de l'API ref à base de chaîne de caractères {#warning-about-legacy-string-ref-api-usage}
 
@@ -83,9 +87,13 @@ Conceptuellement, React fonctionne en deux étapes :
 * La phase de **rendu** détermine les modifications qui doivent être retranscrites, par exemple dans le DOM. Lors de cette phase, React appelle `render` puis compare le résultat au rendu précédent.
 * La phase de **commit** est celle de l'application des modifications. (Dans le cas de React DOM, c'est durant cette phase que React insère, modifie, et supprime des nœuds du DOM.) C’est également durant cette phase que React appelle des méthodes de cycle de vie comme `componentDidMount` et `componentDidUpdate`.
 
+<<<<<<< HEAD
 La phase de commit est le plus souvent très rapide, mais le rendu peut être lent. C'est pourquoi le mode asynchrone à venir (qui n'est pas encore activé par défaut) découpe le travail de rendu en morceaux, suspendant et reprenant le travail pour éviter de bloquer le navigateur. Ça signifie que React peut invoquer les méthodes de cycle de vie de la phase de rendu plus d'une fois avant le commit, ou les invoquer sans phase de commit du tout (à cause d'une erreur ou d'une interruption de plus haute priorité).
 
 Pour les composants à base de classes, les méthodes de cycle de vie de la phase de rendu sont les suivantes :
+=======
+The commit phase is usually very fast, but rendering can be slow. For this reason, the upcoming concurrent mode (which is not enabled by default yet) breaks the rendering work into pieces, pausing and resuming the work to avoid blocking the browser. This means that React may invoke render phase lifecycles more than once before committing, or it may invoke them without committing at all (because of an error or a higher priority interruption).
+>>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
 
 * `constructor`
 * `componentWillMount` (or `UNSAFE_componentWillMount`)

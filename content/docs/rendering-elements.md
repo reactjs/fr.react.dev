@@ -70,6 +70,10 @@ Vous pouvez vérifier ce comportement en inspectant le [dernier exemple](codepen
 
 ![L’inspecteur montrant des mises à jour atomiques](../images/docs/granular-dom-updates.gif)
 
+<<<<<<< HEAD
 Même si nous créons à chaque seconde un élément décrivant l’arborescence complète de l’interface utilisateur, seul le nœud texte dont le contenu a été modifié est mis à jour par React DOM.
+=======
+Even though we create an element describing the whole UI tree on every tick, only the text node whose contents have changed gets updated by React DOM.
+>>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
 
 L’expérience nous montre que réfléchir à quoi devrait ressembler une interface utilisateur à un moment donné plutôt que de réfléchir à comment elle devrait évoluer permet d’éliminer toute une catégorie de bugs.
