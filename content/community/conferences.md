@@ -26,7 +26,7 @@ Du 27 au 28 février 2020 à Sydney, Australie
 ### ReactConf Japan 2020 {#reactconfjp-2020}
 Le 21 mars 2020 à Tokyo, Japon
 
-[Website](https://reactconf.jp/) - [Twitter](https://twitter.com/reactjapanconf)
+[Website](https://reactconf.jp/) - [Twitter](https://twitter.com/reactjp)
 
 ### Reactathon 2020 {#reactathon-2020}
 Du 30 au 31 mars 2020 à San Fransisco, CA, États-Unis
