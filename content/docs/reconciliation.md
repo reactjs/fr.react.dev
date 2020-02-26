@@ -142,11 +142,7 @@ En dernier recours, vous pouvez utiliser l'index de l'élément dans un tableau 
 
 Les tris peuvent également causer des problèmes avec les états des composants quand les index sont utilisés comme des clés. Les instances des composants sont mises à jour et réutilisées en fonction de leur clé. Si la clé est un index, déplacer un élément changera sa clé. En conséquence, l'état local des composants utilisés pour des saisies non-contrôlées peut s'emmêler et être mis à jour de manière inattendue.
 
-<<<<<<< HEAD
-[Voici](codepen://reconciliation/index-used-as-key) un exemple sur CodePen des problèmes qui peuvent être causés en utilisant des index comme clés. [Voilà](codepen://reconciliation/no-index-used-as-key) une version mise à jour du même exemple montrant comment, en évitant d'utiliser les index comme clés, on résoudra ces problèmes de réordonnancement, de tri et d'insertion.
-=======
-Here is [an example of the issues that can be caused by using indexes as keys](codepen://reconciliation/index-used-as-key) on CodePen, and here is [an updated version of the same example showing how not using indexes as keys will fix these reordering, sorting, and prepending issues](codepen://reconciliation/no-index-used-as-key).
->>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
+Voici [un exemple sur CodePen des problèmes qui peuvent être causés en utilisant des index comme clés](codepen://reconciliation/index-used-as-key). Voilà [une version mise à jour du même exemple montrant comment, en évitant d'utiliser les index comme clés, on résoudra ces problèmes de réordonnancement, de tri et d'insertion](codepen://reconciliation/no-index-used-as-key).
 
 ## Compromis {#tradeoffs}
 

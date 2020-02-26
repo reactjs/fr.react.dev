@@ -507,11 +507,7 @@ function ProfileTrivia({ resource }) {
 
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/focused-mountain-uhkzg)**
 
-<<<<<<< HEAD
 Si à présent vous activez « Ouvrir le profil », vous verrez que quelque chose cloche. Ça prend désormais sept bonnes secondes pour effectuer la transition !  C’est parce que notre API de faits amusants est trop lente. Imaginons que nous ne puissions pas l’accélérer : comment alors améliorer l’expérience utilisateur malgré cette contrainte ?
-=======
-If you press "Open Profile" now, you can tell something is wrong. It takes a whole seven seconds to make the transition now! This is because our trivia API is too slow. Let's say we can't make the API faster. How can we improve the user experience with this constraint?
->>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
 
 Si nous ne voulons pas rester à l’état En attente trop longtemps, notre premier instinct pourrait être d’ajuster le `timeoutMs` dans `useTransition` pour le réduire, par exemple à `3000`. Vous pouvez essayer ça [ici](https://codesandbox.io/s/practical-kowalevski-kpjg4). Ça nous permet d’échapper à un état En attente prolongé, mais ça ne nous donne pas pour autant des contenus utiles à afficher !
 
