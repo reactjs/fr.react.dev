@@ -376,9 +376,15 @@ Ce sont des boîtes à outils pleines d'attributs HTML pris en charge par JSX et
 
 Chaque type d'élément d'interface a son modèle de conception spécifique et devrait fonctionner de la même manière avec les utilisateurs et les agents utilisateurs (notamment les navigateurs et les lecteurs d’écran) :
 
+<<<<<<< HEAD
 - [Pratiques de création WAI-ARIA - Modèles de conception et éléments d’interface](https://www.w3.org/TR/wai-aria-practices/#aria_ex) (en anglais).
 - [Heydon Pickering - Exemples ARIA](http://heydonworks.com/practical_aria_examples/) (en anglais).
 - [Composants inclusifs](https://inclusive-components.design/) (en anglais).
+=======
+- [WAI-ARIA Authoring Practices - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
+- [Heydon Pickering - ARIA Examples](https://heydonworks.com/article/practical-aria-examples/)
+- [Inclusive Components](https://inclusive-components.design/)
+>>>>>>> 2ab1ca5007a37ca509863a212293f1c6b26d0afc
 
 ## Autres points à considérer {#other-points-for-consideration}
 
