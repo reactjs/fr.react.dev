@@ -100,8 +100,6 @@
       title: SyntheticEvent
     - id: test-utils
       title: Utilitaires de test
-    - id: shallow-renderer
-      title: Moteur de rendu superficiel
     - id: test-renderer
       title: Moteur de rendu de test
     - id: javascript-environment-requirements
