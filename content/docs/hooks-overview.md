@@ -176,7 +176,7 @@ Nous fournissons un [plugin ESLint](https://www.npmjs.com/package/eslint-plugin-
 
 Parfois, on veut réutiliser la même logique à état dans plusieurs composants. Traditionnellement, on avait deux solutions répandues à ce besoin : les [composants d'ordre supérieur](/docs/higher-order-components.html) et les [props de rendu](/docs/render-props.html). Les Hooks personnalisés vous permettent de faire la même chose, mais sans ajouter de composants à votre arbre.
 
-Un peu plus tôt sur cette page, nous avons présenté un composant `FriendStatus` qui appelle les Hooks `useState` et `useEffect` pour s‘abonner à l'état de connection d'un ami. Disons que l'on veut réutiliser cette logique d’abonnement dans un autre composant.
+Un peu plus tôt sur cette page, nous avons présenté un composant `FriendStatus` qui appelle les Hooks `useState` et `useEffect` pour s‘abonner à l'état de connexion d'un ami. Disons que l'on veut réutiliser cette logique d’abonnement dans un autre composant.
 
 Tout d'abord, nous allons extraire cette logique dans un Hook personnalisé appelé `useFriendStatus` :
 
