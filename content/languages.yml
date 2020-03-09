@@ -70,13 +70,8 @@
 - name: hongrois
   translated_name: magyar
   code: hu
-<<<<<<< HEAD
-  status: 0
-- name: arménien
-=======
   status: 1
-- name: Armenian
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+- name: arménien
   translated_name: Հայերեն
   code: hy
   status: 0

@@ -51,11 +51,7 @@ Les sorties de *Next* sont publiées avec l’étiquette `next` sur npm.  Les nu
 
 Le canal *Next* est conçu pour permettre des tests d’intégration entre React et d’autres projets qui se basent dessus.
 
-<<<<<<< HEAD
 Toutes les modifications apportées à React passent par une phase poussée de tests internes avant d’être publiées.  Cependant, l’écosystème React recèle une myriade d’environnements et de configurations, et il nous est parfaitement impossible de tester chaque combinaison.
-=======
-All changes to React go through extensive internal testing before they are released to the public. However, there are myriad environments and configurations used throughout the React ecosystem, and it's not possible for us to test against every single one.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Si vous êtes l’auteur·e d’une solution tierce pour React (framework, bibliothèque, outil de développement ou d’autres projets de type infrastructurel), vous pouvez nous aider à préserver la stabilité de React pour vos utilisateurs et la communauté React toute entière en exécutant régulièrement votre suite de tests avec les dernières modifications en date.  Si cela vous intéresse, suivez ces étapes :
 

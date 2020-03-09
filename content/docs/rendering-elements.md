@@ -34,11 +34,7 @@ Nous parlons de nœud DOM « racine » car tout ce qu’il contient sera gér�
 
 Les applications dévéloppées uniquement avec React ont généralement un seul nœud DOM racine. Si vous intégrez React dans une application existante, vous pouvez avoir autant de nœuds DOM racines isolés que vous le souhaitez.
 
-<<<<<<< HEAD
-Pour faire le rendu d’un élément React dans un nœud DOM racine, passez les deux à la méthode `ReactDOM.render()` :
-=======
-To render a React element into a root DOM node, pass both to [`ReactDOM.render()`](/docs/react-dom.html#render):
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+Pour faire le rendu d’un élément React dans un nœud DOM racine, passez les deux à la méthode [`ReactDOM.render()`](/docs/react-dom.html#render) :
 
 `embed:rendering-elements/render-an-element.js`
 
@@ -50,11 +46,7 @@ Cet exemple de code affichera « Bonjour, monde » sur la page.
 
 Les éléments React sont [immuables](https://fr.wikipedia.org/wiki/Objet_immuable). Une fois votre élément créé, vous ne pouvez plus modifier ses enfants ou ses attributs. Un élément est comme une image d’un film à un instant T : il représente l’interface utilisateur à un point précis dans le temps.
 
-<<<<<<< HEAD
-Avec nos connaissances actuelles, la seule façon de mettre à jour l’interface utilisateur est de créer un nouvel élément et de le passer à `ReactDOM.render()`.
-=======
-With our knowledge so far, the only way to update the UI is to create a new element, and pass it to [`ReactDOM.render()`](/docs/react-dom.html#render).
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+Avec nos connaissances actuelles, la seule façon de mettre à jour l’interface utilisateur est de créer un nouvel élément et de le passer à [`ReactDOM.render()`](/docs/react-dom.html#render).
 
 Prenons l’exemple de cette horloge :
 
@@ -62,19 +54,11 @@ Prenons l’exemple de cette horloge :
 
 **[Essayer dans CodePen](codepen://rendering-elements/update-rendered-element)**
 
-<<<<<<< HEAD
-À chaque seconde, nous appellons `ReactDOM.render()` depuis une fonction de rappel passée à [`setInterval()`](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setInterval).
-=======
-It calls [`ReactDOM.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+À chaque seconde, nous appellons [`ReactDOM.render()`](/docs/react-dom.html#render) depuis une fonction de rappel passée à [`setInterval()`](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setInterval).
 
 >Remarque
 >
-<<<<<<< HEAD
->En pratique, la plupart des applications React n’appellent `ReactDOM.render()` qu’une seule fois. Dans les prochaines sections, nous apprendrons comment encapsuler un tel code dans des [composants à état](/docs/state-and-lifecycle.html).
-=======
->In practice, most React apps only call [`ReactDOM.render()`](/docs/react-dom.html#render) once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+>En pratique, la plupart des applications React n’appellent [`ReactDOM.render()`](/docs/react-dom.html#render) qu’une seule fois. Dans les prochaines sections, nous apprendrons comment encapsuler un tel code dans des [composants à état](/docs/state-and-lifecycle.html).
 >
 >Nous vous conseillons de lire les sujets abordés dans l’ordre car ils s'appuient l’un sur l’autre.
 
@@ -88,8 +72,4 @@ Vous pouvez vérifier ce comportement en inspectant le [dernier exemple](codepen
 
 Même si nous créons à chaque seconde un élément décrivant l’arborescence complète de l’interface utilisateur, seul le nœud texte dont le contenu a été modifié est mis à jour par React DOM.
 
-<<<<<<< HEAD
 L’expérience nous montre que réfléchir à quoi devrait ressembler une interface utilisateur à un moment donné plutôt que de réfléchir à comment elle devrait évoluer permet d’éliminer toute une catégorie de bugs.
-=======
-In our experience, thinking about how the UI should look at any given moment, rather than how to change it over time, eliminates a whole class of bugs.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504

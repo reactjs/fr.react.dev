@@ -177,15 +177,9 @@ Résistez à la tentation de modifier le prototype d'un composant (ou de le modi
 
 ```js
 function logProps(InputComponent) {
-<<<<<<< HEAD
-  InputComponent.prototype.componentWillReceiveProps = function(nextProps) {
+  InputComponent.prototype.componentidUpdate = function(prevProps) {
     console.log('Props actuelles : ', this.props);
-    console.log('Prochaines props : ', nextProps);
-=======
-  InputComponent.prototype.componentDidUpdate = function(prevProps) {
-    console.log('Current props: ', this.props);
-    console.log('Previous props: ', prevProps);
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+    console.log('Props précédentes : ', prevProps);
   };
   // Le fait que le composant initial soit renvoyé est un signe qu’il a été modifié.
   return InputComponent;
@@ -195,11 +189,7 @@ function logProps(InputComponent) {
 const EnhancedComponent = logProps(InputComponent);
 ```
 
-<<<<<<< HEAD
-Ce genre d'approche pose quelques problèmes. Pour commencer, le composant initial ne peut pas être réutilisé indépendamment du composant amélioré. Plus important encore, si vous appliquez un autre HOC sur `EnhancedComponent` qui modifie *aussi* `componentWillReceiveProps`, les fonctionnalités du premier HOC seront perdues ! Enfin, ce HOC ne fonctionnera pas avec des fonctions composants, qui n'ont pas de méthodes de cycle de vie.
-=======
-There are a few problems with this. One is that the input component cannot be reused separately from the enhanced component. More crucially, if you apply another HOC to `EnhancedComponent` that *also* mutates `componentDidUpdate`, the first HOC's functionality will be overridden! This HOC also won't work with function components, which do not have lifecycle methods.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+Ce genre d'approche pose quelques problèmes. Pour commencer, le composant initial ne peut pas être réutilisé indépendamment du composant amélioré. Plus important encore, si vous appliquez un autre HOC sur `EnhancedComponent` qui modifie *aussi* `componentDidUpdate`, les fonctionnalités du premier HOC seront perdues ! Enfin, ce HOC ne fonctionnera pas avec des fonctions composants, qui n'ont pas de méthodes de cycle de vie.
 
 Les HOC qui modifient le composant enrobé sont une abstraction foireuse : leurs utilisateurs doivent savoir comment ils sont implémentés afin d’éviter des conflits avec d'autres HOC.
 
@@ -208,15 +198,9 @@ Plutôt que la mutation, les HOC devraient utiliser la composition, en enrobant 
 ```js
 function logProps(WrappedComponent) {
   return class extends React.Component {
-<<<<<<< HEAD
-    componentWillReceiveProps(nextProps) {
-      console.log('Props actuelles : ', this.props);
-      console.log('Prochaines props : ', nextProps);
-=======
     componentDidUpdate(prevProps) {
-      console.log('Current props: ', this.props);
-      console.log('Previous props: ', prevProps);
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+      console.log('Props actuelles : ', this.props);
+      console.log('Props précédentes : ', prevProps);
     }
     render() {
       // Enrobe le composant initial dans un conteneur, sans le modifier. Mieux !
