@@ -177,7 +177,7 @@ Résistez à la tentation de modifier le prototype d'un composant (ou de le modi
 
 ```js
 function logProps(InputComponent) {
-  InputComponent.prototype.componentidUpdate = function(prevProps) {
+  InputComponent.prototype.componentDidUpdate = function(prevProps) {
     console.log('Props actuelles : ', this.props);
     console.log('Props précédentes : ', prevProps);
   };
