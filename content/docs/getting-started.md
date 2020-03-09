@@ -36,7 +36,11 @@ React a été conçu dès le départ pour une adoption progressive, et **vous po
 
 ### Terrains de jeu en ligne {#online-playgrounds}
 
+<<<<<<< HEAD
 Si vous souhaitez tester React, vous pouvez utiliser un terrain de jeu en ligne. Essayez un modèle _Hello World_ sur [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new) ou [Glitch](https://glitch.com/edit/#!/remix/starter-react-template).
+=======
+If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template), or [Stackblitz](https://stackblitz.com/fork/react).
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Si vous préférez utiliser votre propre éditeur de texte, vous pouvez aussi [télécharger ce fichier HTML](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), l'éditer et l'ouvrir à partir du système de fichiers local dans votre navigateur. Il transforme le code à la volée lors de l’exécution, ce qui est particulièrement lent. Pour cette raison, nous vous recommandons de ne l'utiliser que pour des démos simples.
 
@@ -83,7 +87,11 @@ Nous vous recommandons de parcourir [cet aperçu JavaScript](https://developer.m
 
 ### Tutoriel pratique {#practical-tutorial}
 
+<<<<<<< HEAD
 Si vous préférez **apprendre par la pratique**, allez voir notre [tutoriel pratique](/tutorial/tutorial.html). Dans ce tutoriel, nous construisons un jeu de morpion en React. Vous pourriez être tenté·e de l’ignorer sous prétexte que vous ne construisez pas de jeux—mais donnez-lui sa chance.  Les techniques que vous apprendrez dans ce tutoriel sont fondamentales pour la construction de n’importe quel type d’appli React, et les maîtriser vous apportera une compréhension profonde de React.
+=======
+If you prefer to **learn by doing,** check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not into building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ### Guide étape par étape {#step-by-step-guide}
 

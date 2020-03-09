@@ -117,13 +117,21 @@ Alors quel est le but de Suspense ?  Il y a plusieurs manières de répondre à
 * **Ça vous permet d’orchestrer vos états de chargement de façon choisie.**  Ça ne dit pas _comment_ les données sont chargées, mais ça vous permet de contrôler finement la séquence visuelle de chargement de votre appli.
 * **Ça vous aide à éviter les situations de compétition** *(race conditions, NdT)*. Même avec `await`, le code asynchrone est souvent sujet aux erreurs. Suspense donne davantage l’impression de lire les données *de façon synchrone*, comme si elles étaient en fait déjà chargées.
 
+<<<<<<< HEAD
 ## Utiliser Suspense en pratique {#using-suspense-in-practice}
+=======
+So what's the point of Suspense? There are a few ways we can answer this:
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Chez Facebook, nous n’avons pour le moment utilisé en production que l’intégration de Relay avec Suspense. **Si vous cherchez un guide pratique pour démarrer maintenant, [jetez un coup d’œil au guide de Relay](https://relay.dev/docs/en/experimental/step-by-step) !**  Il illustre des approches qui ont déjà fait leurs preuves chez nous en production.
 
 **Les démos de code sur cette page utilisent une implémentation d’une API « factice » plutôt que Relay.**  Ça simplifie leur compréhension si vous n’avez pas déjà l’habitude de GraphQL, mais ça ne veut pas dire qu’il s’agisse là de la « bonne manière » de construire une appli avec Suspense. Cette page est davantage conceptuelle, et cherche à vous aider à comprendre *pourquoi* Suspense fonctionne comme il le fait, et quels problèmes il résout.
 
+<<<<<<< HEAD
 ### Et si je n’utilise pas Relay ? {#what-if-i-dont-use-relay}
+=======
+* **It helps you avoid race conditions.** Even with `await`, asynchronous code is often error-prone. Suspense feels more like reading data *synchronously* — as if it were already loaded.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Si vous n’utilisez pas Relay aujourd’hui, vous aurez peut-être besoin d’attendre avant de pouvoir véritablement essayer Suspense dans votre appli. Pour le moment, c’est la seule implémentation que nous ayons testée en production et qui nous a satisfaits.
 
@@ -227,7 +235,11 @@ Si vous exécutez ce code et examinez les logs dans la console, vous y verrez se
 
 Si le chargement des détails de l’utilisateur prend trois secondes, nous ne *commencerons* à charger les publications qu’au bout de trois secondes ! C’est une « cascade » : une *séquence* involontaire qui aurait dû être parallélisée.
 
+<<<<<<< HEAD
 Les cascades sont courantes dans le code qui charge les données au sein du rendu. On peut les corriger, mais à mesure que le produit grandit, les gens préfèreront une solution qui évite carrément ce problème.
+=======
+Waterfalls are common in code that fetches data on render. They're possible to solve, but as the product grows, many people prefer to use a solution that guards against this problem.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ### Approche 2 : _fetch-then-render_ (sans utiliser Suspense) {#approach-2-fetch-then-render-not-using-suspense}
 
@@ -246,7 +258,11 @@ function fetchProfileData() {
 }
 ```
 
+<<<<<<< HEAD
 Dans cet exemple, `<ProfilePage>` attend les deux requêtes mais les démarre en parallèle :
+=======
+In this example, `<ProfilePage>` waits for both requests but starts them in parallel:
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ```js{1,2,8-13}
 // Lance les chargements aussitôt que possible

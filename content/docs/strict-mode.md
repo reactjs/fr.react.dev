@@ -100,10 +100,18 @@ Vu que les méthodes ci-dessus peuvent être appelées plus d'une fois, il est i
 
 Le mode strict ne détecte pas automatiquement ces effets de bord, mais il peut vous aider à les repérer en les rendant un peu plus déterministes. Il y parvient en invoquant volontairement deux fois les méthodes suivantes :
 
+<<<<<<< HEAD
 * Le `constructor` des composants à base de classe
 * La méthode `render`
 * Les fonctions de modification passées à `setState` (son premier argument)
 * La méthode de cycle de vie `static getDerivedStateFromProps`
+=======
+* Class component `constructor` method
+* The `render` method
+* `setState` updater functions (the first argument)
+* The static `getDerivedStateFromProps` lifecycle
+* The `shouldComponentUpdate` method
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 > Remarque
 >

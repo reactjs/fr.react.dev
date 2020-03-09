@@ -497,7 +497,7 @@ Il n’y en a que deux : `setState()` et `forceUpdate()`.
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater[, callback])
+setState(updater, [callback])
 ```
 
 `setState()` planifie des modifications à l’état local du composant, et indique à React que ce composant et ses enfants ont besoin d’être rafraîchis une fois l’état mis à jour. C’est en général ainsi qu’on met à jour l’interface utilisateur en réaction à des événements ou réponses réseau.

@@ -350,7 +350,11 @@ Pour ces `props`, React demandera au composant `Form` quel arbre d'éléments il
 }
 ```
 
+<<<<<<< HEAD
 C'est une partie du processus que React appelle la [réconciliation](/docs/reconciliation.html), elle commence quand vous appelez [`ReactDOM.render()`](/docs/top-level-api.html#reactdom.render) ou [`setState()`](/docs/component-api.html#setstate). À la fin de la réconciliation, React connait l'arbre DOM résultant, et un moteur de rendu comme `react-dom` ou `react-native` applique l'ensemble des modifications nécessaires pour mettre à jour les nœuds DOM (ou les vues spécifiques à la plate-forme dans le cas de React Native).
+=======
+This is a part of the process that React calls [reconciliation](/docs/reconciliation.html) which starts when you call [`ReactDOM.render()`](/docs/top-level-api.html#reactdom.render) or [`setState()`](/docs/component-api.html#setstate). By the end of the reconciliation, React knows the resulting DOM tree, and a renderer like `react-dom` or `react-native` applies the minimal set of changes necessary to update the DOM nodes (or the platform-specific views in case of React Native).
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Les applis React sont faciles à optimiser grâce à ce processus d'affinage progressif. Si certaines parties de l'arbre de votre composant deviennent trop grandes pour que React les visite efficacement, vous pouvez lui dire [d'ignorer cet « affinage » et la comparaison de certaines parties de l'arbre dès lors que les props pertinentes n'ont pas changé](/docs/advanced-performance.html). Si les props sont immuables, déterminer si elles ont bougé se fait très rapidement ; React et l'immutabilité fonctionnent très bien ensemble et ça permet d'excellentes optimisations avec un effort minimum.
 

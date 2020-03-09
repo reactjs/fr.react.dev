@@ -44,8 +44,7 @@ est compilé en :
 ```js
 React.createElement(
   'div',
-  {className: 'sidebar'},
-  null
+  {className: 'sidebar'}
 )
 ```
 Si vous souhaitez voir comment certains éléments JSX spécifiques sont compilés en JavaScript, vous pouvez utiliser [le compilateur Babel en ligne](babel://jsx-simple-example).

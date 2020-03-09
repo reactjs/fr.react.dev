@@ -90,11 +90,19 @@ Les Hooks ont tout de même une courbe d'apprentissage. Si quelque chose manque 
 
 Quand vous serez prêt·e, nous vous conseillons de commencer à essayer les Hooks dans les nouveaux composants que vous écrirez. Assurez-vous que chaque membre de votre équipe soit partant·e pour les utiliser, et à l’aise avec cette documentation. Nous déconseillons de réécrire vos classes existantes avec les Hooks, sauf si vous aviez déjà prévu de les réécrire de toute façon (ex. pour corriger des bugs).
 
+<<<<<<< HEAD
 Vous ne pouvez pas utiliser les Hooks *à l'intérieur* d'un composant à base de classe, mais vous pouvez complètement mélanger classes et fonctions composants utilisant des Hooks dans une même arborescence. Qu'un composant soit une classe ou une fonction utilisant les Hooks ne constitue qu’un détail d'implémentation de ce composant. Sur le long terme, nous nous attendons à ce que l’essentiel des composants React soient écrits à base de Hooks.
+=======
+You can't use Hooks *inside* a class component, but you can definitely mix classes and function components with Hooks in a single tree. Whether a component is a class or a function that uses Hooks is an implementation detail of that component. In the longer term, we expect Hooks to be the primary way people write React components.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ### Est-ce que les Hooks couvrent tous les cas d'utilisation des classes ? {#do-hooks-cover-all-use-cases-for-classes}
 
+<<<<<<< HEAD
 Notre but est que les Hooks couvrent tous les cas d'utilisation des classes dès que possible. Il n’existe pas pour l'instant d'équivalent en Hook pour les méthodes de cycle de vie moins courantes que sont `getSnapshotBeforeUpdate` et `componentDidCatch`, mais nous prévoyons de les ajouter rapidement.
+=======
+Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon `getSnapshotBeforeUpdate`, `getDerivedStateFromError` and `componentDidCatch` lifecycles yet, but we plan to add them soon.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Les Hooks en sont encore à leur débuts, et quelques bibliothèques tierces peuvent ne pas être compatibles avec les Hooks à l'heure actuelle.
 
@@ -214,7 +222,11 @@ Il existe quelques autres heuristiques, et elles changeront peut-être avec le t
 * `componentDidMount`, `componentDidUpdate`, `componentWillUnmount` : le [Hook `useEffect`](/docs/hooks-reference.html#useeffect) peut exprimer toutes les combinaisons de celles-ci (y compris des cas [moins](#can-i-skip-an-effect-on-updates) [fréquents](#can-i-run-an-effect-only-on-updates)).
 * `componentDidCatch` et `getDerivedStateFromError` : il n'existe pas encore de Hook équivalent pour ces méthodes, mais ils seront ajoutés prochainement.
 
+<<<<<<< HEAD
 ### Comment charger des données distantes avec les Hooks ? {#how-can-i-do-data-fetching-with-hooks}
+=======
+* `getSnapshotBeforeUpdate`, `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Voici une [petite démo](https://codesandbox.io/s/jvvkoo8pq3) pour vous aider à démarrer. Pour en apprendre davantage, jetez un œil à [cet article](https://www.robinwieruch.de/react-hooks-fetch-data/) (en anglais) sur le chargement de données distantes avec les Hooks.
 
@@ -283,7 +295,11 @@ Maintenant, disons que nous voulons écrire un bout de code pour modifier `left`
 
 C'est dû au fait que lorsque nous mettons à jour une variable de l'état local, nous *remplaçons* sa valeur, alors qu’avec `this.setState` dans une classe, on *fusionne* les champs mis à jour dans l'objet.
 
+<<<<<<< HEAD
 Si la fusion automatique vous manque, vous pouvez écrire un Hook personnalisé `useLegacyState` qui fusionne les mises à jour de l'état local. Cependant, **nous recommandons plutôt de séparer l'état local en de multiple variables d'état en se basant sur celles qui ont tendance à changer de valeur ensemble**.
+=======
+If you miss automatic merging, you could write a custom `useLegacyState` Hook that merges object state updates. However, **we recommend to split state into multiple state variables based on which values tend to change together.**
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Par exemple, nous pourrions découper l'état local de notre composant en deux objets `position` et `size`, et toujours remplacer la `position` sans avoir besoin de fusionner :
 
@@ -572,7 +588,11 @@ Selon votre cas, vous trouverez quelques options supplémentaires plus bas dans 
 
 Voyons en quoi c’est important.
 
+<<<<<<< HEAD
 Si vous précisez une [liste de dépendances](/docs/hooks-reference.html#conditionally-firing-an-effect) comme dernier argument de `useEffect`, `useMemo`, `useCallback`, ou `useImperativeHandle`, cette liste doit inclure toutes les valeurs utilisées dans la fonction passée qui participent au flux de données de React.  Ça inclut les props, l'état local, et toute valeur qui en découle.
+=======
+If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values that are used inside the callback and participate in the React data flow. That includes props, state, and anything derived from them.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Le **seul cas** pour lequel vous pouvez sereinement omettre une fonction de la liste des dépendances, c'est lorsque rien à l'intérieur (y compris dans les autres fonctions qu'elle appelle) ne référence les props, l'état local ou des valeurs qui en découlent.  L'exemple suivant a ce problème :
 

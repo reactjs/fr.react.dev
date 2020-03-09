@@ -53,7 +53,11 @@ Nous utilisons ce code en production (et ça fonctionne pour nous) mais il reste
 
 ### Activer le mode concurrent {#enabling-concurrent-mode}
 
+<<<<<<< HEAD
 En temps normal, quand nous ajoutons des fonctionnalités à React, vous pouvez vous en servir immédiatement. Les fragments, les Contextes ou même les Hooks sont autant d’exemples récents. Vous pouvez les utiliser dans du nouveau code sans avoir à changer quoi que ce soit au code existant.
+=======
+Normally, when we add features to React, you can start using them immediately. Fragments, Context, and even Hooks are examples of such features. You can use them in new code without making any changes to the existing code.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Il en va différemment pour le mode concurrent. Il introduit des changements sémantiques dans le fonctionnement de React. Si ce n’était pas le cas, les [nouvelles fonctionnalités](/docs/concurrent-mode-patterns.html) qu’il permet *ne seraient pas possibles*. C’est pourquoi nous les avons regroupées dans un « mode » au lieu de les sortir, une à une, en isolation.
 
