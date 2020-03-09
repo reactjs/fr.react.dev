@@ -44,7 +44,7 @@ class Welcome extends React.Component {
 
 Les deux composants ci-dessus sont équivalents du point de vue de React.
 
-Les classes possèdent quelques fonctionnalités supplémentaires dont nous discuterons dans les [prochaines sections](/docs/state-and-lifecycle.html). En attendant, nous utiliserons les fonctions composants pour leur concision.
+Les composants (aussi bien fonctions que classes) possèdent quelques fonctionnalités supplémentaires dont nous discuterons dans les [prochaines sections](/docs/state-and-lifecycle.html).
 
 ## Produire le rendu d’un composant {#rendering-a-component}
 
@@ -60,7 +60,7 @@ Mais ces éléments peuvent également représenter des composants définis par 
 const element = <Welcome name="Sara" />;
 ```
 
-Lorsque React rencontre un élément représentant un composant défini par l’utilisateur, il transmet les attributs JSX à ce composant sous la forme d’un objet unique. Nous appelons cet objet « props ».
+Lorsque React rencontre un élément représentant un composant défini par l’utilisateur, il transmet les attributs JSX et les enfants à ce composant sous la forme d’un objet unique. Nous appelons cet objet « props ».
 
 Par exemple, ce code affiche « Bonjour, Sara » sur la page :
 

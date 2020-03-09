@@ -128,7 +128,7 @@ expect(root.toJSON()).toMatchSnapshot();
 
 // Met à jour avec des props différentes
 act(() => {
-  root = root.update(<App value={2}/>);
+  root.update(<App value={2}/>);
 })
 
 // Exprime des attentes sur la racine

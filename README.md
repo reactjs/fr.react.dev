@@ -38,7 +38,7 @@ This repo is meant to provide French translation for the [reactjs.org](https://r
 
 ### Make the change
 
-1. Follow the "Running locally" instructions
+1. Follow the ["Running locally"](#running-locally) instructions
 1. Save the files and check in the browser
   1. Changes to React components in `src` will hot-reload
   1. Changes to markdown files in `content` will hot-reload

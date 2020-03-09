@@ -104,6 +104,7 @@ Le mode strict ne détecte pas automatiquement ces effets de bord, mais il peut 
 * La méthode `render`
 * Les fonctions de modification passées à `setState` (son premier argument)
 * La méthode de cycle de vie `static getDerivedStateFromProps`
+* La méthode `shouldComponentUpdate`
 
 > Remarque
 >

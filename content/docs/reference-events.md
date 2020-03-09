@@ -26,6 +26,7 @@ void preventDefault()
 boolean isDefaultPrevented()
 void stopPropagation()
 boolean isPropagationStopped()
+void persist()
 DOMEventTarget target
 number timeStamp
 string type
@@ -75,6 +76,7 @@ Les gestionnaires d'événements ci-dessous sont déclenchés par un événement
 - [Événements du clavier](#keyboard-events)
 - [Événements de focus](#focus-events)
 - [Événements de formulaires](#form-events)
+- [Événements génériques](#generic-events)
 - [Événements de la souris](#mouse-events)
 - [Événements du pointeur](#pointer-events)
 - [Événements de sélection](#selection-events)
@@ -176,10 +178,20 @@ DOMEventTarget relatedTarget
 Noms des événements :
 
 ```
-onChange onInput onInvalid onSubmit
+onChange onInput onInvalid onReset onSubmit
 ```
 
 Pour plus d'informations sur l'événement onChange, consultez la documentation sur [les formulaires](/docs/forms.html).
+
+* * *
+
+### Événements génériques {#generic-events}
+
+Noms des événements :
+
+```
+onError onLoad
+```
 
 * * *
 

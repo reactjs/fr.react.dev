@@ -70,7 +70,7 @@
 - name: hongrois
   translated_name: magyar
   code: hu
-  status: 0
+  status: 1
 - name: arménien
   translated_name: Հայերեն
   code: hy

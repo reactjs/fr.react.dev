@@ -94,7 +94,7 @@ Vous ne pouvez pas utiliser les Hooks *à l'intérieur* d'un composant à base d
 
 ### Est-ce que les Hooks couvrent tous les cas d'utilisation des classes ? {#do-hooks-cover-all-use-cases-for-classes}
 
-Notre but est que les Hooks couvrent tous les cas d'utilisation des classes dès que possible. Il n’existe pas pour l'instant d'équivalent en Hook pour les méthodes de cycle de vie moins courantes que sont `getSnapshotBeforeUpdate` et `componentDidCatch`, mais nous prévoyons de les ajouter rapidement.
+Notre but est que les Hooks couvrent tous les cas d'utilisation des classes dès que possible. Il n’existe pas pour l'instant d'équivalent en Hook pour les méthodes de cycle de vie moins courantes que sont `getSnapshotBeforeUpdate`, `getDerivedStateFromError` et `componentDidCatch`, mais nous prévoyons de les ajouter rapidement.
 
 Les Hooks en sont encore à leur débuts, et quelques bibliothèques tierces peuvent ne pas être compatibles avec les Hooks à l'heure actuelle.
 
@@ -212,7 +212,7 @@ Il existe quelques autres heuristiques, et elles changeront peut-être avec le t
 * `shouldComponentUpdate` : voyez `React.memo` [ci-dessous](#how-do-i-implement-shouldcomponentupdate).
 * `render` : c'est le corps-même de la fonction composant.
 * `componentDidMount`, `componentDidUpdate`, `componentWillUnmount` : le [Hook `useEffect`](/docs/hooks-reference.html#useeffect) peut exprimer toutes les combinaisons de celles-ci (y compris des cas [moins](#can-i-skip-an-effect-on-updates) [fréquents](#can-i-run-an-effect-only-on-updates)).
-* `componentDidCatch` et `getDerivedStateFromError` : il n'existe pas encore de Hook équivalent pour ces méthodes, mais ils seront ajoutés prochainement.
+* `getSnapshotBeforeUpdate`, `componentDidCatch` et `getDerivedStateFromError` : il n'existe pas encore de Hook équivalent pour ces méthodes, mais ils seront ajoutés prochainement.
 
 ### Comment charger des données distantes avec les Hooks ? {#how-can-i-do-data-fetching-with-hooks}
 

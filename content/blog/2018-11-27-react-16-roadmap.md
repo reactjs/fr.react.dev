@@ -106,7 +106,7 @@ Les Hooks représentent notre vision de l’avenir de React.  Ils résolvent les
 
 ### React 16.x (~Q2 2019) : celle avec le mode concurrent {#react-16x-q2-2019-the-one-with-concurrent-mode}
 
-Le *mode concurrent* permet aux applis React d’être plus réactives en réalisant le rendu des arbres de composants sans bloquer le thread principal.  Il doit être explicitement activé et permet à React d’interrompre un rendu long (par exemple, le rendu d’un long fil de discussion) afin de traiter des événements de plus forte priorité (tels qu’une saisie clavier ou un survol de la souris).  Le mode concurrent améliore également l’expérience utilisateur de Suspense en sautant les états de chargement superflus lorsque la connexion est rapide.
+Le *mode concurrent* permet aux applis React d’être plus réactives en réalisant le rendu des arbres de composants sans bloquer le thread principal.  Il doit être explicitement activé et permet à React d’interrompre un rendu long (par exemple, le rendu d’un long article de presse) afin de traiter des événements de plus forte priorité (tels qu’une saisie clavier ou un survol de la souris).  Le mode concurrent améliore également l’expérience utilisateur de Suspense en sautant les états de chargement superflus lorsque la connexion est rapide.
 
 > Remarque
 >

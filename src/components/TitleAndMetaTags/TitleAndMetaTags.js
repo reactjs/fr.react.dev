@@ -7,11 +7,12 @@
 
 import Helmet from 'react-helmet';
 import React from 'react';
-import {urlRoot} from 'site-constants';
 // $FlowFixMe This is a valid path
 import languages from '../../../content/languages.yml';
+import {urlRoot} from 'site-constants';
 
-const defaultDescription = 'Une bibliothèque JavaScript pour créer des interfaces utilisateurs';
+const defaultDescription =
+  'Une bibliothèque JavaScript pour créer des interfaces utilisateurs';
 
 type Props = {
   title: string,
@@ -51,7 +52,7 @@ const TitleAndMetaTags = ({title, ogDescription, canonicalUrl}: Props) => {
       <meta property="og:title" content={title} />
       <meta property="og:type" content="website" />
       {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
-      <meta property="og:image" content="/logo-og.png" />
+      <meta property="og:image" content="https://fr.reactjs.org/logo-og.png" />
       <meta
         property="og:description"
         content={ogDescription || defaultDescription}

@@ -34,7 +34,7 @@ Nous parlons de nœud DOM « racine » car tout ce qu’il contient sera gér�
 
 Les applications dévéloppées uniquement avec React ont généralement un seul nœud DOM racine. Si vous intégrez React dans une application existante, vous pouvez avoir autant de nœuds DOM racines isolés que vous le souhaitez.
 
-Pour faire le rendu d’un élément React dans un nœud DOM racine, passez les deux à la méthode `ReactDOM.render()` :
+Pour faire le rendu d’un élément React dans un nœud DOM racine, passez les deux à la méthode [`ReactDOM.render()`](/docs/react-dom.html#render) :
 
 `embed:rendering-elements/render-an-element.js`
 
@@ -46,7 +46,7 @@ Cet exemple de code affichera « Bonjour, monde » sur la page.
 
 Les éléments React sont [immuables](https://fr.wikipedia.org/wiki/Objet_immuable). Une fois votre élément créé, vous ne pouvez plus modifier ses enfants ou ses attributs. Un élément est comme une image d’un film à un instant T : il représente l’interface utilisateur à un point précis dans le temps.
 
-Avec nos connaissances actuelles, la seule façon de mettre à jour l’interface utilisateur est de créer un nouvel élément et de le passer à `ReactDOM.render()`.
+Avec nos connaissances actuelles, la seule façon de mettre à jour l’interface utilisateur est de créer un nouvel élément et de le passer à [`ReactDOM.render()`](/docs/react-dom.html#render).
 
 Prenons l’exemple de cette horloge :
 
@@ -54,11 +54,11 @@ Prenons l’exemple de cette horloge :
 
 **[Essayer dans CodePen](codepen://rendering-elements/update-rendered-element)**
 
-À chaque seconde, nous appellons `ReactDOM.render()` depuis une fonction de rappel passée à [`setInterval()`](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setInterval).
+À chaque seconde, nous appellons [`ReactDOM.render()`](/docs/react-dom.html#render) depuis une fonction de rappel passée à [`setInterval()`](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setInterval).
 
 >Remarque
 >
->En pratique, la plupart des applications React n’appellent `ReactDOM.render()` qu’une seule fois. Dans les prochaines sections, nous apprendrons comment encapsuler un tel code dans des [composants à état](/docs/state-and-lifecycle.html).
+>En pratique, la plupart des applications React n’appellent [`ReactDOM.render()`](/docs/react-dom.html#render) qu’une seule fois. Dans les prochaines sections, nous apprendrons comment encapsuler un tel code dans des [composants à état](/docs/state-and-lifecycle.html).
 >
 >Nous vous conseillons de lire les sujets abordés dans l’ordre car ils s'appuient l’un sur l’autre.
 
