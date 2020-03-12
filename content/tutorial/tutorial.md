@@ -235,7 +235,7 @@ Pour commencer, modifiez la balise `button` renvoyée par la méthode `render()`
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('clic'); }}>
+      <button className="square" onClick={function() { alert('click'); }}>
         {this.props.value}
       </button>
     );
@@ -280,7 +280,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('clic')}>
+      <button className="square" onClick={() => alert('click')}>
         {this.props.value}
       </button>
     );
