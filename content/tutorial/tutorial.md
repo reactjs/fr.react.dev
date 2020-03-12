@@ -253,7 +253,7 @@ Désormais, si vous cliquez sur un `Square`, vous devriez obtenir une alerte dan
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('clic')}>
+>      <button className="square" onClick={() => alert('click')}>
 >        {this.props.value}
 >      </button>
 >    );
