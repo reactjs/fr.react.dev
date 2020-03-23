@@ -227,7 +227,11 @@ Si vous n'affectez aucune valeur à une prop, sa valeur par défaut sera `true`.
 <MyTextBox autocomplete={true} />
 ```
 
+<<<<<<< HEAD
 En général, nous déconseillons cette syntaxe car ça peut être confondu avec [la notation ES6 de propriétés concises](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Opérateurs/Initialisateur_objet) `{foo}` qui est l'abréviation de `{foo: foo}` et non de `{foo: true}`. Ce comportement existe uniquement par souci de cohérence avec HTML.
+=======
+In general, we don't recommend *not* passing a value for a prop, because it can be confused with the [ES6 object shorthand](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) `{foo}` which is short for `{foo: foo}` rather than `{foo: true}`. This behavior is just there so that it matches the behavior of HTML.
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 ### Décomposition des props {#spread-attributes}
 

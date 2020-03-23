@@ -133,6 +133,7 @@ Tout d’abord, lancez `yarn build`. Ça produira des _bundles_ pré-compilés d
 
 La manière la plus simple d'essayer vos modifications consiste à lancer `yarn build react/index,react-dom/index --type=UMD` et ensuite ouvrir `fixtures/packaging/babel-standalone/dev.html`. Ce fichier utilise déjà `react.development.js` depuis le dossier `build`, donc il utilisera vos évolutions.
 
+<<<<<<< HEAD
 Si vous voulez essayer vos évolutions dans votre projet React existant, vous pouvez copier `build/dist/react.development.js`, `build/dist/react-dom.development.js`, ou tout autre produit de la compilation dans votre appli et les utiliser au lieu de la version stable. Si votre projet utilise React via npm, vous pouvez supprimer `react` et `react-dom` dans ses dépendances et utiliser `yarn link` pour les faire pointer vers votre dossier local `build` :
 
 ```sh
@@ -141,12 +142,34 @@ yarn link
 cd ~/chemin_vers_votre_clone_de_react/build/node_modules/react-dom
 yarn link
 cd /chemin/vers/votre/projet
+=======
+If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. 
+
+If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `yarn link` to point them to your local `build` folder. Note that **instead of `--type=UMD` you'll want to pass `--type=NODE` when building**. You'll also need to build the `scheduler` package:
+
+```sh
+cd ~/path_to_your_react_clone/
+yarn build react/index,react-dom/index,scheduler --type=NODE
+
+cd build/node_modules/react
+yarn link
+cd build/node_modules/react-dom
+yarn link
+
+cd ~/path/to/your/project
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 yarn link react react-dom
 ```
 
 Chaque fois que vous lancez `yarn build` dans le dossier de React, les versions mises à jour apparaîtront dans le dossier `node_modules` de votre projet. Vous pouvez alors recompiler votre projet pour essayer vos modifications.
 
+<<<<<<< HEAD
 Nous exigeons tout de même que votre _pull request_ contienne des tests unitaires pour chaque nouvelle fonctionnalité. Ainsi nous pouvons nous assurer de ne pas casser votre code par la suite.
+=======
+If some package is still missing (e.g. maybe you use `react-dom/server` in your project), you can always do a full build with `yarn build`. Note that running `yarn build` without options takes a long time.
+
+We still require that your pull request contains unit tests for any new functionality. This way we can ensure that we don't break your code in the future.
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 ### Guide de style {#style-guide}
 

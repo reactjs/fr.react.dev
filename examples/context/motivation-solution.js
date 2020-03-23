@@ -18,9 +18,16 @@ class App extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 // highlight-range{1,1}
 // Un composant au milieu n’a plus à transmettre explicitement le thème
 function Toolbar(props) {
+=======
+// highlight-range{1,2}
+// A component in the middle doesn't have to
+// pass the theme down explicitly anymore.
+function Toolbar() {
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
   return (
     <div>
       <ThemedButton />

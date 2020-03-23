@@ -13,11 +13,14 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 
 ## Prochaines conférences {#upcoming-conferences}
 
+<<<<<<< HEAD
 ### ReactConf Japan 2020 {#reactconfjp-2020}
 Le 21 mars 2020 à Tokyo, Japon
 
 [Website](https://reactconf.jp/) - [Twitter](https://twitter.com/reactjp)
 
+=======
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 ### Reactathon 2020 {#reactathon-2020}
 Du 30 au 31 mars 2020 à San Fransisco, CA, États-Unis
 
@@ -43,11 +46,14 @@ Le 1er mai 2020, diffusé en direct sur YouTube
 
 [Site web](https://www.bytesized.xyz) - [Twitter](https://twitter.com/bytesizedcode) - [YouTube](https://www.youtube.com/channel/UC046lFvJZhiwSRWsoH8SFjg)
 
+<<<<<<< HEAD
 ### render(ATL) 2020 {#render-atlanta-2020}
 Du 4 au 6 mai 2020 à Atlanta, GA, États-Unis.
 
 [Site web](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/)
 
+=======
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 ### ReactEurope 2020 {#reacteurope-2020}
 Du 14 au 15 mai 2020 à Paris, France
 
@@ -87,6 +93,11 @@ Le 18 juillet 2020 à Medellín, Colombie.
 Du 29 au 30 juillet 2020 à Portland, Oregon, États-Unis.
 
 [Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/ChainReactConf)
+
+### render(ATL) 2020 {#render-atlanta-2020} 
+August 24-26, 2020. Atlanta, GA, USA.
+
+[Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl)
 
 ### ComponentsConf 2020 {#components20}
 

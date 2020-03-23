@@ -55,7 +55,11 @@ Créer le [script de synchronisation](https://github.com/reactjs/reactjs.org-tra
 
 Le problème était de trouver un endroit où faire tourner le bot. Je suis développeuse frontend pour une raison—Heroku et consorts me sont étrangers et *infiniment* frustrants. En fait, jusqu'à mardi dernier, j'exécutais le script à la main sur ma machine locale !
 
+<<<<<<< HEAD
 Le plus gros défi venait de l'espace disque. Chaque fork du dépôt fait environ 100Mo, ce qui prend quelques minutes pour cloner sur ma machine locale. Nous avons *32* forks et les niveaux gratuits de la plupart des plateformes de déploiement que j'ai examinées limitent à 512Mo de stockage. 
+=======
+The biggest challenge was space. Each fork of the repo is around 100MB -- which takes minutes to clone on my local machine. We have *32* forks, and the free tiers of most deployment platforms I checked limited you to 512MB of storage. 
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 Après de nombreux calculs sur un coin de table, j'ai trouvé une solution : supprimer chaque dépôt une fois son traitement terminé et limiter la concurrence des scripts de synchronisation pour respecter les limites de stockage. Heureusement, les dynos Heroku ont une connexion internet beaucoup plus rapide et sont capables de cloner rapidement même le dépôt React.
 
