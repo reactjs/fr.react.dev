@@ -227,7 +227,7 @@ Si vous n'affectez aucune valeur à une prop, sa valeur par défaut sera `true`.
 <MyTextBox autocomplete={true} />
 ```
 
-En général, nous déconseillons cette syntaxe car ça peut être confondu avec [la notation ES6 de propriétés concises](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Opérateurs/Initialisateur_objet) `{foo}` qui est l'abréviation de `{foo: foo}` et non de `{foo: true}`. Ce comportement existe uniquement par souci de cohérence avec HTML.
+En général, nous déconseillons cette syntaxe qui *ne passe pas* de valeur à une *prop*, car ça peut être confondu avec [la notation ES6 de propriétés concises](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Opérateurs/Initialisateur_objet) `{foo}` qui est l'abréviation de `{foo: foo}` et non de `{foo: true}`. Ce comportement existe uniquement par souci de cohérence avec HTML.
 
 ### Décomposition des props {#spread-attributes}
 

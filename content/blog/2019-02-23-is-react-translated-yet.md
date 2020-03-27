@@ -39,7 +39,7 @@ Cette approche nous a plu pour plusieurs raisons :
 * Ça encourageait les mainteneurs actifs pour chaque dépôt à assurer la qualité.
 * Les contributeur·rice·s connaissent déjà la plate-forme GitHub et sont motivé·e·s pour contribuer directement à l'organisation React.
 
-Nous avons commencé par une première période d’essai en trois langues : espagnol, japonais et chinois simplifié. Ça nous a permis de résoudre tous les problèmes dans notre processus et de nous assurer que les futures traductions pourraient aboutir. Je voulais donner aux équipes de traduction la liberté de choisir les outils avec lesquels elles se sentaient à l'aise. La seule exigence était une [liste de cases à cocher](https://github.com/reactjs/reactjs.org-translation/blob/master/PROGRESS.template.md) qui décrivait l'ordre d'importance pour la traduction des pages. 
+Nous avons commencé par une première période d’essai en trois langues : espagnol, japonais et chinois simplifié. Ça nous a permis de résoudre tous les problèmes dans notre processus et de nous assurer que les futures traductions pourraient aboutir. Je voulais donner aux équipes de traduction la liberté de choisir les outils avec lesquels elles se sentaient à l'aise. La seule exigence était une [liste de cases à cocher](https://github.com/reactjs/reactjs.org-translation/blob/master/PROGRESS.template.md) qui décrivait l'ordre d'importance pour la traduction des pages.
 
 Après la période d’essai, nous étions prêts à accepter davantage de langues. J'ai créé [un script](https://github.com/reactjs/reactjs.org-translation/blob/master/scripts/create.js) pour automatiser la création d’un nouveau dépôt de langue, ainsi qu’un site, [Is React Translated Yet?](https://isreacttranslatedyet.com), pour suivre les progrès des différentes traductions. Nous avons démarré *10* nouvelles traductions rien que le premier jour !
 
@@ -55,7 +55,7 @@ Créer le [script de synchronisation](https://github.com/reactjs/reactjs.org-tra
 
 Le problème était de trouver un endroit où faire tourner le bot. Je suis développeuse frontend pour une raison—Heroku et consorts me sont étrangers et *infiniment* frustrants. En fait, jusqu'à mardi dernier, j'exécutais le script à la main sur ma machine locale !
 
-Le plus gros défi venait de l'espace disque. Chaque fork du dépôt fait environ 100Mo, ce qui prend quelques minutes pour cloner sur ma machine locale. Nous avons *32* forks et les niveaux gratuits de la plupart des plateformes de déploiement que j'ai examinées limitent à 512Mo de stockage. 
+Le plus gros défi venait de l'espace disque. Chaque fork du dépôt fait environ 100Mo, ce qui prend quelques minutes pour cloner sur ma machine locale. Nous avons *32* forks et les niveaux gratuits de la plupart des plateformes de déploiement que j'ai examinées limitent à 512Mo de stockage.
 
 Après de nombreux calculs sur un coin de table, j'ai trouvé une solution : supprimer chaque dépôt une fois son traitement terminé et limiter la concurrence des scripts de synchronisation pour respecter les limites de stockage. Heureusement, les dynos Heroku ont une connexion internet beaucoup plus rapide et sont capables de cloner rapidement même le dépôt React.
 

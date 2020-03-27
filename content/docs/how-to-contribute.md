@@ -133,18 +133,26 @@ Tout d’abord, lancez `yarn build`. Ça produira des _bundles_ pré-compilés d
 
 La manière la plus simple d'essayer vos modifications consiste à lancer `yarn build react/index,react-dom/index --type=UMD` et ensuite ouvrir `fixtures/packaging/babel-standalone/dev.html`. Ce fichier utilise déjà `react.development.js` depuis le dossier `build`, donc il utilisera vos évolutions.
 
-Si vous voulez essayer vos évolutions dans votre projet React existant, vous pouvez copier `build/dist/react.development.js`, `build/dist/react-dom.development.js`, ou tout autre produit de la compilation dans votre appli et les utiliser au lieu de la version stable. Si votre projet utilise React via npm, vous pouvez supprimer `react` et `react-dom` dans ses dépendances et utiliser `yarn link` pour les faire pointer vers votre dossier local `build` :
+Si vous voulez essayer vos évolutions dans votre projet React existant, vous pouvez copier `build/dist/react.development.js`, `build/dist/react-dom.development.js`, ou tout autre produit de la compilation dans votre appli et les utiliser au lieu de la version stable.
+
+Si votre projet utilise React via npm, vous pouvez supprimer `react` et `react-dom` dans ses dépendances et utiliser `yarn link` pour les faire pointer vers votre dossier local `build`. Remarquez qu’**au lieu de `--type=UMD` vous voudrez plutôt passer `--type=NODE` à la construction**. Vous aurez aussi besoin du module `scheduler` :
 
 ```sh
-cd ~/chemin_vers_votre_clone_de_react/build/node_modules/react
+cd ~/chemin_vers_votre_clone_de_react/
+yarn build react/index,react-dom/index,scheduler --type=NODE
+
+cd build/node_modules/react
 yarn link
-cd ~/chemin_vers_votre_clone_de_react/build/node_modules/react-dom
+cd build/node_modules/react-dom
 yarn link
-cd /chemin/vers/votre/projet
+
+cd ~/chemin/vers/votre/projet
 yarn link react react-dom
 ```
 
 Chaque fois que vous lancez `yarn build` dans le dossier de React, les versions mises à jour apparaîtront dans le dossier `node_modules` de votre projet. Vous pouvez alors recompiler votre projet pour essayer vos modifications.
+
+Si un module reste manquant (par ex. peut-être utilisez-vous `react-dom/server` dans votre projet), vous pouvez toujours faire une construction intégrale avec `yarn build`.  Gardez à l’esprit que l’exécution de `yarn build` sans options prend beaucoup de temps.
 
 Nous exigeons tout de même que votre _pull request_ contienne des tests unitaires pour chaque nouvelle fonctionnalité. Ainsi nous pouvons nous assurer de ne pas casser votre code par la suite.
 
