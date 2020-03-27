@@ -27,7 +27,7 @@ En suivant cette règle, vous garantissez que toute la logique d’état d’un 
 
 Nous avons publié un plugin ESLint appelé [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) qui assure le respect de ces deux règles. Vous pouvez ajouter ce plugin à votre projet si vous souhaitez l'utiliser :
 
-This plugin is included by default in [Create React App](/docs/create-a-new-react-app.html#create-react-app).
+Ce plugin est inclus par défaut dans Create React App[Create React App](/docs/create-a-new-react-app.html#create-react-app).
 
 ```bash
 npm install eslint-plugin-react-hooks --save-dev
@@ -48,13 +48,7 @@ npm install eslint-plugin-react-hooks --save-dev
 }
 ```
 
-<<<<<<< HEAD
-Ce plugin est inclus par défaut dans Create React App[Create React App](/docs/create-a-new-react-app.html#create-react-app).
-
 **Vous pouvez maintenant passer directement à la prochaine page, qui explique comment écrire [vos propres Hooks](/docs/hooks-custom.html).** Dans cette page, nous allons maintenant expliquer le raisonnement qui se cache derrière ces règles.
-=======
-**You can skip to the next page explaining how to write [your own Hooks](/docs/hooks-custom.html) now.** On this page, we'll continue by explaining the reasoning behind these rules.
->>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 ## Explications {#explanation}
 

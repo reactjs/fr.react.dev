@@ -15,17 +15,7 @@ Si vous souhaitez [contribuer à React](/docs/how-to-contribute.html), nous esp�
 
 Nous ne recommandons pas nécessairement ces conventions dans les applications React. Nombre d'entre elles existent pour des raisons historiques et sont susceptibles d’évoluer avec le temps.
 
-<<<<<<< HEAD
-### Dépendances externes {#external-dependencies}
-
-React n'a presque pas de dépendances externes. Habituellement, un `require()` pointe vers un fichier dans le code de React lui-même. Cependant, il existe quelques exceptions relativement rares.
-
-Le [dépôt fbjs](https://github.com/facebook/fbjs) existe parce que React partage quelques petits utilitaires avec des bibliothèques telles que [Relay](https://github.com/facebook/relay) et que nous les gardons synchronisées. Nous ne dépendons pas de petits modules équivalents dans l'écosystème Node, car nous souhaitons que les ingénieurs de Facebook puissent les modifier à tout moment. Aucun des utilitaires contenus dans fbjs n'est considéré comme une API publique et ils ne doivent être utilisés que par des projets Facebook tels que React.
-
 ### Dossiers racines {#top-level-folders}
-=======
-### Top-Level Folders {#top-level-folders}
->>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 Après avoir cloné le [dépôt React](https://github.com/facebook/react), vous verrez quelques dossiers racines :
 
@@ -175,11 +165,7 @@ Le code pour le noyau React se trouve dans [`packages/react`](https://github.com
 
 ### Moteurs de rendu {#renderers}
 
-<<<<<<< HEAD
-React a été créé à l'origine pour le DOM, mais il a ensuite été adapté pour prendre également en charge les plates-formes natives avec [React Native](https://facebook.github.io/react-native/). C’est ainsi qu’est né le concept de « moteurs de rendu » *(renderers, terme que nous utiliserons sans italiques dans la suite de ce texte, NdT)* au sein de React.
-=======
-React was originally created for the DOM but it was later adapted to also support native platforms with [React Native](https://reactnative.dev/). This introduced the concept of "renderers" to React internals.
->>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
+React a été créé à l'origine pour le DOM, mais il a ensuite été adapté pour prendre également en charge les plates-formes natives avec [React Native](https://react-native.dev/). C’est ainsi qu’est né le concept de « moteurs de rendu » *(renderers, terme que nous utiliserons sans italiques dans la suite de ce texte, NdT)* au sein de React.
 
 **Les renderers gèrent la transformation d'une arborescence React en appels à la plate-forme sous-jacente.**
 

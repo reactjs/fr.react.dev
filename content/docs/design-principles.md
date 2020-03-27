@@ -126,11 +126,7 @@ Nous fournissons cependant une configuration globale au niveau de la constructio
 
 ### Au-delà du DOM {#beyond-the-dom}
 
-<<<<<<< HEAD
-Nous voyons l'utilité de React dans la mesure où il nous permet d'écrire des composants qui ont moins de bugs et se composent facilement entre eux. React visait originellement le DOM, mais [React Native](https://facebook.github.io/react-native/) est tout aussi important pour Facebook et pour la communauté.
-=======
-We see the value of React in the way it allows us to write components that have fewer bugs and compose together well. DOM is the original rendering target for React but [React Native](https://reactnative.dev/) is just as important both to Facebook and the community.
->>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
+Nous voyons l'utilité de React dans la mesure où il nous permet d'écrire des composants qui ont moins de bugs et se composent facilement entre eux. React visait originellement le DOM, mais [React Native](https://react-native.dev/) est tout aussi important pour Facebook et pour la communauté.
 
 Être indépendant du moteur de rendu constitue une contrainte de conception importante pour React. Ça alourdit un peu la représentation interne. D'un autre côté, les améliorations apportées au noyau bénéficient à toutes les plates-formes.
 

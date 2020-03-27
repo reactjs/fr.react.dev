@@ -40,11 +40,7 @@ Les problèmes surviennent dès qu’une de ces contraintes change. Ça se produ
 
 Une erreur courante consiste à croire que `getDerivedStateFromProps` et `componentWillReceiveProps` ne sont appelées que lorsque les props « changent ». Ces méthodes de cycle de vie sont appelées à chaque fois qu'un composant parent se rafraîchit, peu importe que les props soient « différentes » ou non de la fois précédente. Pour cette raison, il a toujours été dangereux d'écraser l'état de manière _inconditionnelle_ en utilisant ces méthodes de cycle de vie. **Cette pratique conduira à la perte des mises à jour de l'état.**
 
-<<<<<<< HEAD
 Prenons un exemple pour illustrer ce problème. Voici un composant `EmailInput` qui « reflète » une prop `email` dans l'état :
-=======
-Let’s consider an example to demonstrate the problem. Here is an `EmailInput` component that "mirrors" an email prop in state:
->>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 ```js
 class EmailInput extends Component {
   state = { email: this.props.email };
