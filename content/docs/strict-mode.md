@@ -98,13 +98,13 @@ Pour les composants à base de classes, les méthodes de cycle de vie de la phas
 
 Vu que les méthodes ci-dessus peuvent être appelées plus d'une fois, il est impératif qu'elles ne contiennent pas d'effets de bord. Ignorer cette règle peut entraîner divers problèmes, dont des fuites de mémoire et un état applicatif invalide. Malheureusement, il peut être difficile de détecter ces problèmes car ils sont souvent [non-déterministes](https://fr.wikipedia.org/wiki/Algorithme_d%C3%A9terministe).
 
-Le mode strict ne détecte pas automatiquement ces effets de bord, mais il peut vous aider à les repérer en les rendant un peu plus déterministes. Il y parvient en invoquant volontairement deux fois les méthodes suivantes :
+Le mode strict ne détecte pas automatiquement ces effets de bord, mais il peut vous aider à les repérer en les rendant un peu plus déterministes. Il y parvient en invoquant volontairement deux fois les fonctions suivantes :
 
-* Le `constructor` des composants à base de classe
-* La méthode `render`
-* Les fonctions de modification passées à `setState` (son premier argument)
-* La méthode de cycle de vie `static getDerivedStateFromProps`
-* La méthode `shouldComponentUpdate`
+* Les méthodes `constructor`, `render` et `shouldComponentUpdate` des composants à base de classe
+* La méthode statique `getDerivedStateFromProps` des composants à base de classe
+* Le corps des fonctions composants
+* Les fonctions de mise à jour d’état (le premier argument passé à `setState`)
+* Les fonctions passées à `useState`, `useMemo` ou `useReducer`
 
 > Remarque
 >
