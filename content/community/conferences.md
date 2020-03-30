@@ -19,22 +19,10 @@ Du 30 au 31 mars 2020 à San Fransisco, CA, États-Unis
 [Site web](https://www.reactathon.com) - [Twitter](https://twitter.com/reactathon) - [Facebook](https://www.facebook.com/events/575942819854160/)
 
 ### React Summit Amsterdam 2020 {#react-summit-2020}
-<<<<<<< HEAD
-Du 15 au 17 avril 2020 à Amsterdam, Pays-Bas
-=======
-September 11, 2020 in Amsterdam, The Netherlands
->>>>>>> 9e5a358cb24a665fc48615ae224f26a4f2191b32
+Le 11 septembre 2020 à Amsterdam, Pays-Bas
 
 [Site web](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
 
-<<<<<<< HEAD
-### App.js Conf 2020 {#appjsonf2020}
-Du 23 au 24 avril 2020 à Kraków, Pologne
-
-[Site web](http://appjs.co/react) - [Twitter](https://twitter.com/appjsconf)
-
-=======
->>>>>>> 9e5a358cb24a665fc48615ae224f26a4f2191b32
 ### React Day Bangalore 2020 {#react-day-bangalore-2020}
 Le 25 avril 2020 à Bangalore, Inde
 
