@@ -14,7 +14,11 @@ Il existe plusieurs façons de tester des composants React, lesquelles se divise
 * **Effectuer le rendu d’arborescences de composants** dans un environnement de test simplifié, et vérifier la sortie.
 * **Exécuter une appli complète** dans un environnement navigateur réaliste (on parle alors de tests « de bout en bout ») *(end-to-end, NdT)*.
 
+<<<<<<< HEAD
 Cette partie de la documentation se concentre sur les stratégies de test pour le premier cas de figure.  Bien que des tests complets de bout en bout puissent être très utiles pour éviter des régressions dans des scénarios critiques d’utilisation, ce type de test ne se préoccupe guère des composants React en particulier, et sort donc du cadre de cette documentation.
+=======
+This documentation section focuses on testing strategies for the first case. While full end-to-end tests can be very useful to prevent regressions to important workflows, such tests are not concerned with React components in particular, and are out of the scope of this section.
+>>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
 
 ### Faire des choix {#tradeoffs}
 
