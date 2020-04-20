@@ -100,11 +100,19 @@ Vu que les méthodes ci-dessus peuvent être appelées plus d'une fois, il est i
 
 Le mode strict ne détecte pas automatiquement ces effets de bord, mais il peut vous aider à les repérer en les rendant un peu plus déterministes. Il y parvient en invoquant volontairement deux fois les fonctions suivantes :
 
+<<<<<<< HEAD
 * Les méthodes `constructor`, `render` et `shouldComponentUpdate` des composants à base de classe
 * La méthode statique `getDerivedStateFromProps` des composants à base de classe
 * Le corps des fonctions composants
 * Les fonctions de mise à jour d’état (le premier argument passé à `setState`)
 * Les fonctions passées à `useState`, `useMemo` ou `useReducer`
+=======
+* Class component `constructor`, `render`, and `shouldComponentUpdate` methods
+* Class component static `getDerivedStateFromProps` method
+* Function component bodies
+* State updater functions (the first argument to `setState`)
+* Functions passed to `useState`, `useMemo`, or `useReducer`
+>>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
 
 > Remarque
 >

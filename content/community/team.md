@@ -78,6 +78,7 @@ Rachel a écrit un [livre sur l’animation des UI](https://abookapart.com/produ
 
 Sebastian a un diplôme en psychologie.  Il est du genre réservé.  Même quand il dit quelque chose, le reste d’entre nous met le plus souvent quelques mois à enfin comprendre ce qu’il raconte.  La prononciation correcte de son nom de famille est « mark-boa-geh », mais il accepte « mark-beige » par pragmatisme—un peu comme avec son approche de React.
 
+<<<<<<< HEAD
 ### Sunil Pai {#sunil-pai}
 
 ![Sunil](../images/team/threepointone.jpg)
@@ -86,6 +87,8 @@ Sebastian a un diplôme en psychologie.  Il est du genre réservé.  Même quand
 
 Sunil a commencé à écrire du JavaScript pour IE6 et en porte encore les cicatrices.  Il a travaillé pour des sociétés de consulting, de design et d’édition produit avant de rejoindre l’équipe React pour aider les autres à faire de même.  Sunil joue sur une guitare Les Paul bleue, adore Londres, et apprécierait une réponse à sa dernière question, s’il vous plaît merci !
 
+=======
+>>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
 ### Yuzhi Zheng {#yuzhi-zheng}
 
 ![Yuzhi](../images/team/yuzhi.jpg)
@@ -124,9 +127,10 @@ React est originellement la création de [Jordan Walke](https://github.com/jordw
 * [Pete Hunt](https://github.com/petehunt)
 * [Philipp Spiess](https://github.com/philipp-spiess)
 * [Sander Spies](https://github.com/sanderspies)
+* [Sasha Aickin](https://github.com/aickin)
 * [Sophia Shoemaker](https://github.com/mrscobbler)
 * [Sophie Alpert](https://github.com/sophiebits)
-* [Sasha Aickin](https://github.com/aickin)
+* [Sunil Pai](https://github.com/threepointone)
 * [Tim Yung](https://github.com/yungsters)
 
 Cette liste n’est pas exhaustive.
