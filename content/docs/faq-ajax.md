@@ -83,7 +83,7 @@ class MyComponent extends React.Component {
 }
 ```
 
-Here is the equivalent with [Hooks](https://reactjs.org/docs/hooks-intro.html): 
+Voici l’équivalent avec les [Hooks](/docs/hooks-intro.html) :
 
 ```js
 function MyComponent() {
@@ -91,9 +91,9 @@ function MyComponent() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
-  // Note: the empty deps array [] means
-  // this useEffect will run once
-  // similar to componentDidMount()
+  // Remarque : le tableau vide de dépendances [] indique
+  // que useEffect ne s’exécutera qu’une fois, un peu comme
+  // componentDidMount()
   useEffect(() => {
     fetch("https://api.example.com/items")
       .then(res => res.json())
@@ -102,9 +102,9 @@ function MyComponent() {
           setIsLoaded(true);
           setItems(result.items);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
+        // Remarque : il faut gérer les erreurs ici plutôt que dans
+        // un bloc catch() afin que nous n’avalions pas les exceptions
+        // dues à de véritables bugs dans les composants.
         (error) => {
           setIsLoaded(true);
           setError(error);
@@ -113,9 +113,9 @@ function MyComponent() {
   }, [])
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Erreur : {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div>Chargement...</div>;
   } else {
     return (
       <ul>

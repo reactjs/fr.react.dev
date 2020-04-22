@@ -10,15 +10,11 @@ permalink: community/courses.html
 >
 >Pour la version française, nous tentons d'inclure les bonnes ressources quand nous les découvrons. Il n'en reste pas moins que l'immense majorité des ressources de qualité sont disponibles en anglais, comme bien souvent en informatique. Sauf indication contraire, la langue des ressources ci-dessous est donc l'anglais.
 
-<<<<<<< HEAD
 ## Cours gratuits {#free-courses}
-=======
-- [Glitch: React Starter Kit](https://glitch.com/glimmer/post/react-starter-kit/) - A free, 5-part video course with interactive code examples that will help you learn React.
->>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
 
 - [OpenClassrooms : réalisez une application web avec React](https://openclassrooms.com/fr/courses/4664381-realisez-une-application-web-avec-react-js) – Cours détaillé sur l'essentiel de React, y compris comment tester vos composants **(en français)**
 
-- [Glitch: React Starter Kit](https://glitch.com/culture/react-starter-kit/) - Cours vidéo gratuit en 5 parties avec des exemples de code interactifs qui vous aideront à apprendre React.
+- [Glitch: React Starter Kit](https://glitch.com/glimmer/post/react-starter-kit/) - Cours vidéo gratuit en 5 parties avec des exemples de code interactifs qui vous aideront à apprendre React.
 
 - [Codecademy : React 101](https://www.codecademy.com/learn/react-101) – Cours d'introduction de Codecademy pour React.
 

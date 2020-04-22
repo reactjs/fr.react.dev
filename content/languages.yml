@@ -46,13 +46,8 @@
 - name: persan
   translated_name: فارسی
   code: fa
-<<<<<<< HEAD
-  status: 0
-- name: français
-=======
   status: 1
-- name: French
->>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
+- name: français
   translated_name: Français
   code: fr
   status: 2
@@ -75,13 +70,8 @@
 - name: hongrois
   translated_name: magyar
   code: hu
-<<<<<<< HEAD
-  status: 1
-- name: arménien
-=======
   status: 2
-- name: Armenian
->>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
+- name: arménien
   translated_name: Հայերեն
   code: hy
   status: 0

@@ -13,23 +13,6 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 
 ## Prochaines conférences {#upcoming-conferences}
 
-### Reactathon 2020 {#reactathon-2020}
-Du 30 au 31 mars 2020 à San Fransisco, CA, États-Unis
-
-[Site web](https://www.reactathon.com) - [Twitter](https://twitter.com/reactathon) - [Facebook](https://www.facebook.com/events/575942819854160/)
-
-<<<<<<< HEAD
-### React Summit Amsterdam 2020 {#react-summit-2020}
-Le 11 septembre 2020 à Amsterdam, Pays-Bas
-
-[Site web](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
-=======
-### React Summit - Remote Edition 2020 {#react-summit-remote-2020}
-3pm CEST time, April 17, 2020 - remote event
-
-[Website](https://remote.reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
->>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
-
 ### React Day Bangalore 2020 {#react-day-bangalore-2020}
 Le 25 avril 2020 à Bangalore, Inde
 
@@ -97,31 +80,27 @@ Du 5 au 6 septembre 2020 à Wrocław, Pologne
 [Site web](https://www.react-native.eu/) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu/) - [YouTube](https://www.youtube.com/watch?v=m0GfmlGFh3E&list=PLZ3MwD-soTTHy9_88QPLF8DEJkvoB5Tl-) - [Instagram](https://www.instagram.com/reactnative_eu/)
 
 ### React Summit Amsterdam 2020 {#react-summit-2020}
-September 8-11, 2020 in Amsterdam, The Netherlands
+Du 8 au 11 septembre 2020 à Amsterdam, Pays-Bas
 
-[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
+[Site web](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
 
 ### React Advanced 2020 {#react-advanced-2020}
-October 21-23, 2020 in London, UK
+Du 21 au 23 octobre 2020 à Londres, Royaume-Uni
 
-[Website](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://youtube.com/c/ReactConferences)
+[Site web](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Vidéos](https://youtube.com/c/ReactConferences)
 
 ### React India 2020 {#react-india-2020}
 
 Le 6 novembre 2020 à Mumbai, Inde
 
-<<<<<<< HEAD
 [Site web](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
 
-## Anciennes conférences {#past-conferences}
-=======
 ### React Day Berlin 2020 {#react-day-berlin-2020}
-November 25-27, 2020 in Berlin, Germany
+Du 25 au 27 novembre 2020 à Berlin, Allemagne
 
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/reactdayberlin)
+[Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://www.youtube.com/reactdayberlin)
 
-## Past Conferences {#past-conferences}
->>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
+## Anciennes conférences {#past-conferences}
 
 ### React.js Conf 2015 {#reactjs-conf-2015}
 Du 28 au 29 janvier 2015 à Facebook HQ, États-Unis d'Amérique
@@ -540,3 +519,13 @@ Du 1er au 2 février 2020 à Cologne, Allemagne
 Du 27 au 28 février 2020 à Sydney, Australie
 
 [Site web](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
+
+### Reactathon 2020 {#reactathon-2020}
+Du 30 au 31 mars 2020 à San Fransisco, CA, États-Unis
+
+[Site web](https://www.reactathon.com) - [Twitter](https://twitter.com/reactathon) - [Facebook](https://www.facebook.com/events/575942819854160/)
+
+### React Summit — Remote Edition 2020 {#react-summit-remote-2020}
+Le 17 avril 2020 à 15h (Amsterdam) — Événement en ligne
+
+[Site web](https://remote.reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Vidéos](https://youtube.com/c/ReactConferences)
