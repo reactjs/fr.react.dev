@@ -6,7 +6,7 @@ class FileInput extends React.Component {
     this.fileInput = React.createRef();
   }
   handleSubmit(event) {
-    // highlight-range{4}
+    // highlight-range{3}
     event.preventDefault();
     alert(
       `Fichier sélectionné - ${
