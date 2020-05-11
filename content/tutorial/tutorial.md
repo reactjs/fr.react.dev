@@ -1047,7 +1047,11 @@ Réalisons un `map` sur notre `history` dans la méthode `render` de `Game` :
 
 **[Voir le code complet à ce stade](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+<<<<<<< HEAD
 Pour chaque tour dans l’historique de notre partie de morpion, nous créons un élément de liste `<li>` qui contient un `<button>`.  Le bouton a un gestionnaire `onClick` qui appelle une méthode `this.jumpTo()`.  Nous n’avons pas encore implémenté `jumpTo()`.  Pour le moment, nous devrions voir une liste des tours ayant déjà eu lieu pendant la partie, et un avertissement dans la console des outils de développement qui dit :
+=======
+For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+>>>>>>> bc91fe4101420f98454a59ac34c1cf1d4d4f4476
 
 > Warning:
 > Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".
