@@ -3,7 +3,7 @@ id: cdn-links
 title: Liens CDN
 permalink: docs/cdn-links.html
 prev: create-a-new-react-app.html
-next: hello-world.html
+next: release-channels.html
 ---
 
 React et ReactDOM sont tous deux accessibles depuis un CDN.

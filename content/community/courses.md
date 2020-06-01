@@ -20,9 +20,13 @@ permalink: community/courses.html
 
 - [Egghead.io : Start Learning React](https://egghead.io/courses/start-learning-react) – Cette série explore les fondamentaux de React pour vous aider à démarrer.
 
+<<<<<<< HEAD
 - [React Crash Course 2018](https://www.youtube.com/watch?v=Ke90Tje7VS0) – Un cours intensif pour débutants abordant les sujets les plus importants de React.
 
 - [React Armory : Learn React by Itself](https://reactarmory.com/guides/learn-react-by-itself) – Avec React Armory, vous pouvez apprendre React sans les fanfreluches.
+=======
+- [Egghead.io: The Beginner's Guide to ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-reactjs) - Free course for React newbies and those looking to get a better understanding of React fundamentals.
+>>>>>>> b4b59062e59d56da37274c6de1fa4a134d2d8f49
 
 - [The Road to Learn React](https://www.robinwieruch.de/the-road-to-learn-react/) — Construisez une application fonctionnelle en React sans outillage compliqué.
 
@@ -50,8 +54,14 @@ permalink: community/courses.html
 
 - [Essential React](https://learnreact.com/lessons/2018-essential-react-1-overview) – Un cours intensif pour les touche-à-tout, allant de « Bonjour monde » à la composition avancée de composants.
 
+<<<<<<< HEAD
 - [React Training: Advanced React.js](https://courses.reacttraining.com/p/advanced-react) - Amenez vos compétences React au prochain niveau.
 
 - [Tyler McGinnis](https://tylermcginnis.com/courses) – Tyler McGinnis donne accès à ses cours moyennant un abonnement mensuel. Ses cours comprennent notamment “React Fundamentals” et “Universal React”.
 
 - [Mastering React](https://codewithmosh.com/p/mastering-react/) – Construisez des applications interactives professionnelles avec React.
+=======
+- [Mastering React](https://codewithmosh.com/p/mastering-react/) - Build professional interactive apps with React.
+
+- [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.
+>>>>>>> b4b59062e59d56da37274c6de1fa4a134d2d8f49
