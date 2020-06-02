@@ -932,7 +932,7 @@ function ProfilePage({ resource }) {
 
 L’option `revealOrder="forwards"` signifie que les nœuds `<Suspense>` les plus proches dans la liste **ne « révèleront » leur contenu que dans l’ordre de leur apparition dans l’arbre, même si leurs données arrivent dans un ordre différent.** `<SuspenseList>` a d’autres modes intéressants : essayez de remplacer `"forwards"` par `"backwards"` ou `"together"` et regardez ce que ça donne.
 
-Vous pouvez contrôler combien d’états de chargement sont visibles à un instant donné grâce à la prop `tail`. Si nous précisons `tail="collapsed"`, nous verrons *au maximum une* UI de repli à un instant donné. Vous pouvez jouer avec [ici](https://codesandbox.io/s/adoring-almeida-1zzjh).
+Vous pouvez contrôler combien d’états de chargement sont visibles à un instant donné grâce à la prop `tail`. Si nous précisons `tail="collapsed"`, nous verrons *au maximum une* UI de repli à la fois. Vous pouvez jouer avec [ici](https://codesandbox.io/s/adoring-almeida-1zzjh).
 
 Gardez à l’esprit que `<SuspenseList>` est composable, comme tout dans React. Par exemple, vous pouvez créer une grille en plaçant plusieurs lignes `<SuspenseList>` au sein d’un tableau `<SuspenseList>`.
 

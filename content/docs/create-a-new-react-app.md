@@ -73,6 +73,7 @@ Les boîtes à outils suivantes offrent plus de flexibilité et de choix. Nous l
 
 - **[Neutrino](https://neutrinojs.org/)** combine la puissance de [webpack](https://webpack.js.org/) avec la simplicité des préréglages. Il inclut un préréglage pour les [applications React](https://neutrinojs.org/packages/react/) et les [composants React](https://neutrinojs.org/packages/react-components/).
 - **[nwb](https://github.com/insin/nwb)** est particulièrement utile pour [publier des composants React sur npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). Il [peut également être utilisé](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) pour créer des applications React.
+- **[Nx](https://nx.dev/react)** est une boîte à outils pour le développements de monorepos full-stack, avec une prise en charge intégrée de React, next.js, [Express](https://expressjs.com/) et plus encore.
 - **[Parcel](https://parceljs.org/)** est un *bundler* d'applications web rapide et sans configuration qui [fonctionne avec React](https://parceljs.org/recipes.html#react).
 - **[Razzle](https://github.com/jaredpalmer/razzle)** est un framework de rendu côté serveur qui ne requiert aucune configuration, mais offre plus de flexibilité que Next.js.
 

@@ -418,12 +418,6 @@ C'est pourquoi on dit souvent que l'état est local ou encapsulé. Il est imposs
 Un composant peut choisir de passer son état à ses enfants via des props :
 
 ```js
-<h2>Il est {this.state.date.toLocaleTimeString()}.</h2>
-```
-
-Cela marche également avec des composants définis par l'utilisateur :
-
-```js
 <FormattedDate date={this.state.date} />
 ```
 
