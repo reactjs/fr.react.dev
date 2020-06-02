@@ -47,7 +47,7 @@ cd mon-app
 npm start
 ```
 
-> Remaque :
+> Remarque :
 >
 > `npx` sur la première ligne n'est pas une faute de frappe -- c'est un [exécuteur de paquets qui est inclus dans npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
 
