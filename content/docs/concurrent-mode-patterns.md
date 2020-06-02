@@ -798,11 +798,7 @@ Le compromis que nous faisons ici tient à ce que `<ProfileTimeline>` sera incoh
 
 La pertinence d’un tel compromis dépend de votre situation. Mais ça reste un outil bien pratique, surtout quand le contenu ne change pas de façon très prononcée d’un élement à l’autre, et que l’utilisateur est susceptible de ne même pas remarquer qu’ils ont des données obsolètes pendant une seconde.
 
-<<<<<<< HEAD
 Notez bien que `useDeferredValue` n’est pas *seulement* utile pour le chargement de données. Elle nous aide aussi lorsqu’une arborescence de composants lourde ralentit une interaction (par ex. la saisie dans un champ). Tout comme nous pouvons « différer » une valeur qui prend trop longtemps à se charger (et afficher l’ancienne valeur en dépit des mises à jour d’autres composants), nous pouvons faire la même chose à des arbres qui prennent trop de temps pour leur rendu.
-=======
-It's worth noting that `useDeferredValue` is not *only* useful for data fetching. It also helps when an expensive component tree causes an interaction (e.g. typing in an input) to be sluggish. Just like we can "defer" a value that takes too long to fetch (and show its old value despite other components updating), we can do this with trees that take too long to render.
->>>>>>> b4b59062e59d56da37274c6de1fa4a134d2d8f49
 
 Par exemple, prenez une liste filtrable comme celle-ci :
 
@@ -936,11 +932,7 @@ function ProfilePage({ resource }) {
 
 L’option `revealOrder="forwards"` signifie que les nœuds `<Suspense>` les plus proches dans la liste **ne « révèleront » leur contenu que dans l’ordre de leur apparition dans l’arbre, même si leurs données arrivent dans un ordre différent.** `<SuspenseList>` a d’autres modes intéressants : essayez de remplacer `"forwards"` par `"backwards"` ou `"together"` et regardez ce que ça donne.
 
-<<<<<<< HEAD
-Vous pouvez contrôler combien d’états de chargement sont visibles à un instant donné grâce à la prop `tail`. Si nous précisons `tail="collapsed"`, nous verrons *au maximum une* UI de repli à un instant donné. Vous pouvez jouer avec [ici](https://codesandbox.io/s/adoring-almeida-1zzjh).
-=======
-You can control how many loading states are visible at once with the `tail` prop. If we specify `tail="collapsed"`, we'll see *at most one* fallback at a time. You can play with it [here](https://codesandbox.io/s/adoring-almeida-1zzjh).
->>>>>>> b4b59062e59d56da37274c6de1fa4a134d2d8f49
+Vous pouvez contrôler combien d’états de chargement sont visibles à un instant donné grâce à la prop `tail`. Si nous précisons `tail="collapsed"`, nous verrons *au maximum une* UI de repli à la fois. Vous pouvez jouer avec [ici](https://codesandbox.io/s/adoring-almeida-1zzjh).
 
 Gardez à l’esprit que `<SuspenseList>` est composable, comme tout dans React. Par exemple, vous pouvez créer une grille en plaçant plusieurs lignes `<SuspenseList>` au sein d’un tableau `<SuspenseList>`.
 

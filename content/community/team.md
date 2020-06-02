@@ -54,17 +54,6 @@ Dominic aime voyager, jouer de la batterie ou de la basse, la comédie *stand-up
 
 Luna a appris a programmer car elle pensait que ça revenait à créer des jeux vidéos.  Au lieu de quoi, elle s’est retrouvée à travailler sur l’appli web de Pinterest, et désormais sur React-même.  Luna n’a plus envie de faire des jeux vidéos, mais elle compte se mettre à l’écriture créative si elle finit par s’ennuyer.
 
-<<<<<<< HEAD
-### Nicolas Gallagher {#nicolas-gallagher}
-
-![Nicolas](../images/team/necolas.jpg)
-
-[@necolas sur GitHub](https://github.com/necolas) &middot; [@necolas sur Twitter](https://twitter.com/necolas)
-
-Nicolas a un diplôme en anthropologie.  Il a démarré le développement web en construisant un site pour un ami, et sans trop savoir comment a fini par refaire le site web de Twitter avec React.  Nicolas se décrit lui-même comme ennuyeux sur le papier, mais nettement mieux dans la vraie vie.
-
-=======
->>>>>>> b4b59062e59d56da37274c6de1fa4a134d2d8f49
 ### Rachel Nabors {#rachel-nabors}
 
 ![Rachel](../images/team/rnabors.jpg)
