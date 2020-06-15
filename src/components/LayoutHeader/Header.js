@@ -5,19 +5,18 @@
  * @flow
  */
 
+import {colors, fonts, media} from 'theme';
+
 import Container from 'components/Container';
+import DocSearch from './DocSearch';
+import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import HeaderLink from './HeaderLink';
 import {Link} from 'gatsby';
 import React from 'react';
-import {colors, fonts, media} from 'theme';
-import {version} from 'site-constants';
-import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
-import DocSearch from './DocSearch';
-
+import logoSvg from 'icons/logo.svg';
 // $FlowFixMe
 import navHeader from '../../../content/headerNav.yml';
-
-import logoSvg from 'icons/logo.svg';
+import {version} from 'site-constants';
 
 const Header = ({location}: {location: Location}) => (
   <header
@@ -57,7 +56,7 @@ const Header = ({location}: {location: Location}) => (
           target="_blank"
           rel="noopener"
           href="https://support.eji.org/give/153413/#!/donation/checkout">
-          Support&nbsp;the&nbsp;Equal&nbsp;Justice&nbsp;Initiative.
+          Soutenez la Equal Justice Initiative.
         </a>
       </div>
     </Container>
