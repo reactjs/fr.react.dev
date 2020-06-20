@@ -53,7 +53,7 @@ Par exemple, prenez un composant `Page` qui passe des props `user` et `avatarSiz
 </Link>
 ```
 
-Ça peut paraître redondant de passer les props `user` et `avatarSize` à travers plusieurs niveaux, si au final seul le composant `Avatar` en a réellement besoin. Il est également pénible qu'à chaque fois que le composant `Avatar` a besoin de davantage de props d'en haut, vous ayez à les ajouter à tous les niveaux.
+Ça peut paraître redondant de passer les props `user` et `avatarSize` à travers plusieurs niveaux, si au final seul le composant `Avatar` en a réellement besoin. Il est également pénible qu'à chaque fois que le composant `Avatar` a besoin d'avantage de props d'en haut, vous ayez à les ajouter à tous les niveaux.
 
 Un des moyens de résoudre ce problème **sans le contexte** consisterait à [transmettre le composant `Avatar` lui-même](/docs/composition-vs-inheritance.html#containment) de façon à ce que les composants intermédiaires n'aient pas besoin de connaître les props `user` ou `avatarSize` :
 
