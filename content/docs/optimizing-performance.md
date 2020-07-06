@@ -376,11 +376,7 @@ function updateColorMap(colormap) {
 
 `updateColorMap` renvoie désormais un nouvel objet, plutôt que de modifier l'ancien. `Object.assign` fait partie d'ES6 et nécessite un polyfill.
 
-<<<<<<< HEAD
-Il existe une proposition JavaScript pour ajouter [la décomposition des propriétés d'objet](https://github.com/sebmarkbage/ecmascript-rest-spread) *(object spread properties, NdT)* afin de simplifier la mise à jour des objets sans pour autant les modifier :
-=======
-[Object spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) makes it easier to update objects without mutation as well:
->>>>>>> 1913f358fcf4f8a6a602ddb8797f110b11901814
+[La syntaxe de décomposition des objets](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Op%C3%A9rateurs/Syntaxe_d%C3%A9composition) facilite la mise à jour d’objets sans pour autant les modifier :
 
 ```js
 function updateColorMap(colormap) {
@@ -388,12 +384,8 @@ function updateColorMap(colormap) {
 }
 ```
 
-<<<<<<< HEAD
-Si vous utilisez Create React App, la méthode `Object.assign` et la syntaxe de décomposition d'objets sont toutes deux disponibles par défaut.
-=======
-This feature was added to JavaScript in ES2018. 
+Cette fonctionnalité est apparue dans JavaScript avec ES2018.
 
-If you're using Create React App, both `Object.assign` and the object spread syntax are available by default.
->>>>>>> 1913f358fcf4f8a6a602ddb8797f110b11901814
+Si vous utilisez Create React App, la méthode `Object.assign` et la syntaxe de décomposition d'objets sont toutes deux disponibles par défaut.
 
 Lorsque vous faites face à des objets profondément imbriqués, les mettre à jour de manière immuable peut se révéler compliqué. Si vous faites face à ce problème, tournez-vous vers [Immer](https://github.com/mweststrate/immer) ou [immutability-helper](http://github.com/kolodny/immutability-helper). Ces librairies vous permettent d'écrire du code très lisible sans perdre les bénéfices de l'immuabilité.

@@ -12,11 +12,7 @@ React n'a pas d'opinion sur la manière dont vous ordonnez vos fichiers à l'int
 
 #### Grouper par fonctionnalité ou par route {#grouping-by-features-or-routes}
 
-<<<<<<< HEAD
 Une façon courante de structurer les projets consiste à placer le CSS, le JS et les tests ensemble dans des dossiers groupés par fonctionnalité ou par route.
-=======
-One common way to structure projects is to locate CSS, JS, and tests together inside folders grouped by feature or route.
->>>>>>> 1913f358fcf4f8a6a602ddb8797f110b11901814
 
 ```
 common/
