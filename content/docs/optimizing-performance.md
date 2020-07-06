@@ -376,13 +376,15 @@ function updateColorMap(colormap) {
 
 `updateColorMap` renvoie désormais un nouvel objet, plutôt que de modifier l'ancien. `Object.assign` fait partie d'ES6 et nécessite un polyfill.
 
-Il existe une proposition JavaScript pour ajouter [la décomposition des propriétés d'objet](https://github.com/sebmarkbage/ecmascript-rest-spread) *(object spread properties, NdT)* afin de simplifier la mise à jour des objets sans pour autant les modifier :
+[La syntaxe de décomposition des objets](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Op%C3%A9rateurs/Syntaxe_d%C3%A9composition) facilite la mise à jour d’objets sans pour autant les modifier :
 
 ```js
 function updateColorMap(colormap) {
   return {...colormap, right: 'blue'};
 }
 ```
+
+Cette fonctionnalité est apparue dans JavaScript avec ES2018.
 
 Si vous utilisez Create React App, la méthode `Object.assign` et la syntaxe de décomposition d'objets sont toutes deux disponibles par défaut.
 
