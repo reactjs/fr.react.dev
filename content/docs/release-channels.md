@@ -4,6 +4,8 @@ title: Canaux de sortie
 permalink: docs/release-channels.html
 layout: docs
 category: installation
+prev: cdn-links.html
+next: hello-world.html
 ---
 
 React dépend d’une communauté open source florissante pour signaler des bugs, ouvrir des *pull requests* et [soumettre des RFC](https://github.com/reactjs/rfcs). Afin d’encourager des retours efficaces nous partageons parfois des builds spéciaux de React qui comportent des fonctionnalités encore officieuses.
