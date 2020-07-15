@@ -5,10 +5,6 @@
  */
 
 import React, {Component} from 'react';
-<<<<<<< HEAD
-=======
-
->>>>>>> dea363ed7d8ce06b7ecc1ccfe43c888217827a64
 import {colors, media} from 'theme';
 
 import CodeEditor from '../CodeEditor/CodeEditor';

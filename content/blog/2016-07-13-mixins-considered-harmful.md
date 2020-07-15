@@ -609,11 +609,7 @@ var Button = React.createClass({
 
 Il arrive qu'on utilise les mixins pour ajouter sélectivement de la journalisation ou des méthodes de cycle de vie à certains composants.  À l'avenir nous comptons fournir une [API DevTools officielle](https://github.com/facebook/react/issues/5306) qui vous permettra d’implémenter quelque chose de similaire sans toucher aux composants.  Ce chantier n'est toutefois pas près d'aboutir.  Si vous vous reposez massivement sur les mixins de journalisation pour votre débogage, vous voudrez peut-être les garder sous le coude encore un moment.
 
-<<<<<<< HEAD
 Si vous n'arrivez pas à vos fins avec un composant, un composant d'ordre supérieur ou un module utilitaire, ça pourrait vouloir dire que React devrait répondre à votre besoin par défaut. [Créez un ticket](https://github.com/facebook/react/issues/new) pour nous expliquer votre cas d'usage des mixins, et nous vous aiderons à explorer des alternatives, ou peut-être implémenterons-nous la fonctionnalité dont vous avez besoin.
-=======
-If you can’t accomplish something with a component, a higher-order component, or a utility module, it could mean that React should provide this out of the box. [File an issue](https://github.com/facebook/react/issues/new) to tell us about your use case for mixins, and we’ll help you consider alternatives or perhaps implement your feature request.
->>>>>>> dea363ed7d8ce06b7ecc1ccfe43c888217827a64
 
 Les mixins ne sont pas dépréciés au sens traditionnel du terme.  Vous pouvez continuer à vous en servir avec `React.createClass()` car leur API est désormais gelée.  À mesure que les classes ES6 seront plus répandues et que leurs problèmes d'utilisabilité dans React seront réglés, nous sortirons peut-être `React.createClass()` dans un module à part car la plupart des gens n'en auront plus besoin *([ils l'ont fait avec React 15.5](/docs/react-without-es6.html#mixins), NdT)*.  Même dans ce cas, vos vieux mixins continueront à marcher.
 

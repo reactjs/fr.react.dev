@@ -101,10 +101,10 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             <MetaTitle onDark={true}>{navFooter.more.title}</MetaTitle>
             <SectionLinks links={navFooter.more.items} />
             <ExternalFooterLink href="https://opensource.facebook.com/legal/privacy">
-              Privacy
+              Vie privée
             </ExternalFooterLink>
             <ExternalFooterLink href="https://opensource.facebook.com/legal/terms">
-              Terms
+              <abbr title="Conditions Générales d’Utilisation">CGU</abbr>
             </ExternalFooterLink>
           </FooterNav>
         </div>
