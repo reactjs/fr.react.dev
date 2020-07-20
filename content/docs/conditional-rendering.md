@@ -123,7 +123,11 @@ Même si déclarer une variable et utiliser une instruction `if` reste une bonne
 
 ### Condition à la volée avec l'opérateur logique `&&` {#inline-if-with-logical--operator}
 
+<<<<<<< HEAD
 Vous pouvez [utiliser n’importe quelle expression dans du JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) en l’enveloppant dans des accolades. Ça vaut aussi pour l'opérateur logique Javascript `&&`. Il peut être pratique pour inclure conditionnellement un élément :
+=======
+You may [embed expressions in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) by wrapping them in curly braces. This includes the JavaScript logical `&&` operator. It can be handy for conditionally including an element:
+>>>>>>> ee75c297574468f888574aae2d9620d64bb5b5a1
 
 ```js{6-10}
 function Mailbox(props) {

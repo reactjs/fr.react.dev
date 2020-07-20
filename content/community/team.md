@@ -38,6 +38,7 @@ Brian a fait des études d'art et programmait à côté pour les payer.  Il a fi
 
 Dan a commencé à programmer en tombant par hasard sur Visual Basic dans Microsoft PowerPoint.  Il a depuis découvert sa véritable vocation, qui est de transformer les tweets de [Sebastian](#sebastian-markbage) en interminables billets de blogs. Dan gagne parfois à Fortnite en se planquant dans un buisson jusqu’à ce que la partie se termine.
 
+<<<<<<< HEAD
 ### Dominic Gannaway {#dominic-gannaway}
 
 ![Dominic](../images/team/trueadm.jpg)
@@ -46,6 +47,8 @@ Dan a commencé à programmer en tombant par hasard sur Visual Basic dans Micros
 
 Dominic aime voyager, jouer de la batterie ou de la basse, la comédie *stand-up* et passer du temps en famille.  Il aime particulièrement bidouiller des idées novatrices dans le domaine des interfaces utilisateurs (UI) et de l’accessibilité, et a une passion pour le peaufinage et l’optimisation de code afin d’obtenir les meilleures performances possibles.
 
+=======
+>>>>>>> ee75c297574468f888574aae2d9620d64bb5b5a1
 ### Luna Ruan {#luna-ruan}
 
 ![Luna](../images/team/lunaruan.jpg)
@@ -62,6 +65,14 @@ Luna a appris a programmer car elle pensait que ça revenait à créer des jeux 
 
 Rachel a écrit un [livre sur l’animation des UI](https://abookapart.com/products/animation-at-work) et a collaboré au MDN et au W3C sur l’API Web Animations.  Elle s’occupe à présent des supports éducatifs et de la gestion de la communauté pour l’équipe React.  Elle a par ailleurs une vie secrète de dessinatrice primée pour adolescentes.  Vous pourrez la trouver dans la micro-cuisine en train de préparer du thé de qualité en dépit d’une eau tiède.
 
+### Rick Hanlon {#rick-hanlon}
+
+![Ricky](../images/team/rickhanlonii.jpg)
+
+[@rickhanlonii on GitHub](https://github.com/rickhanlonii) &middot; [@rickhanlonii on Twitter](https://twitter.com/rickhanlonii)
+
+Ricky majored in theoretical math and somehow found himself on the React Native team for a couple years before joining the React team. When he's not programming you can find him snowboarding, biking, climbing, golfing, or closing GitHub issues that do not match the issue template.
+
 ### Sebastian Markbåge {#sebastian-markbage}
 
 ![Sebastian](../images/team/sebmarkbage.jpg)
@@ -70,13 +81,17 @@ Rachel a écrit un [livre sur l’animation des UI](https://abookapart.com/produ
 
 Sebastian a un diplôme en psychologie.  Il est du genre réservé.  Même quand il dit quelque chose, le reste d’entre nous met le plus souvent quelques mois à enfin comprendre ce qu’il raconte.  La prononciation correcte de son nom de famille est « mark-boa-geh », mais il accepte « mark-beige » par pragmatisme—un peu comme avec son approche de React.
 
-### Yuzhi Zheng {#yuzhi-zheng}
+### Seth Webster {#seth-webster}
 
-![Yuzhi](../images/team/yuzhi.jpg)
-
+<<<<<<< HEAD
 [@yuzhi sur GitHub](https://github.com/yuzhi) &middot; [@yuzhiz sur Twitter](https://twitter.com/yuzhiz)
 
 Yuzhi a étudié l’informatique à l’école.  Elle a aimé la gratification instantanée de voir son code prendre vie sans avoir à être physiquement présente dans un laboratoire.  Elle gère à présent l’équipe React.  Avant d’être manager, elle bossait sur le framework de récupération de données Relay.  Dans son temps libre, Yuzhi aime optimiser sa vie à coup de jardinage et d’autres projets d’aménagement d’intérieur.
+=======
+![Seth](../images/team/sethwebster.jpg)
+
+Seth started programming as a kid growing up in Tucson, AZ. After school, he was bitten by the music bug and was a touring musician for about 10 years before returning to *work*, starting with Intuit. In his spare time, he loves [taking pictures](https://www.sethwebster.com) and flying for animal rescues in the northeastern United States.
+>>>>>>> ee75c297574468f888574aae2d9620d64bb5b5a1
 
 ## Remerciements {#acknowledgements}
 
@@ -93,6 +108,7 @@ React est originellement la création de [Jordan Walke](https://github.com/jordw
 * [Christoph Nakazawa](https://github.com/cpojer)
 * [Christopher Chedeau](https://github.com/vjeux)
 * [Clement Hoang](https://github.com/clemmy)
+* [Dominic Gannaway](https://github.com/trueadm)
 * [Flarnie Marchan](https://github.com/flarnie)
 * [Jason Quense](https://github.com/jquense)
 * [Jesse Beach](https://github.com/jessebeach)
@@ -114,6 +130,7 @@ React est originellement la création de [Jordan Walke](https://github.com/jordw
 * [Sophie Alpert](https://github.com/sophiebits)
 * [Sunil Pai](https://github.com/threepointone)
 * [Tim Yung](https://github.com/yungsters)
+* [Yuzhi Zheng](https://github.com/yuzhi)
 
 Cette liste n’est pas exhaustive.
 
