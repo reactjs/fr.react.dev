@@ -75,7 +75,7 @@ const Acknowlegements = ({data, location}) => (
               <li>
                 <a href="https://github.com/voronianski">Dmitri Voronianski</a>{' '}
                 pour nous avoir permis d’utiliser son thème de couleurs{' '}
-                <a href="https://labs.voronianski.com/oceanic-next-color-scheme/">
+                <a href="https://labs.voronianski.dev/oceanic-next-color-scheme/">
                   Oceanic Next
                 </a>{' '}
                 sur ce site web.
