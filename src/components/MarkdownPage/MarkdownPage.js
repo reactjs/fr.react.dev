@@ -13,10 +13,21 @@ import type {Node} from 'types';
 import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
+<<<<<<< HEAD
 import createCanonicalUrl from 'utils/createCanonicalUrl';
+=======
+import FeedbackForm from 'components/FeedbackForm';
+>>>>>>> 80c16779a751ef997373adf95c47dbc9b1592eb6
 import findSectionForPath from 'utils/findSectionForPath';
 import {sharedStyles} from 'theme';
+<<<<<<< HEAD
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
+=======
+import createCanonicalUrl from 'utils/createCanonicalUrl';
+import {colors} from 'theme';
+
+import type {Node} from 'types';
+>>>>>>> 80c16779a751ef997373adf95c47dbc9b1592eb6
 
 type Props = {
   authors: Array<string>,
@@ -73,6 +84,7 @@ const MarkdownPage = ({
       }}>
       <TitleAndMetaTags
         ogDescription={ogDescription}
+        ogType="article"
         canonicalUrl={createCanonicalUrl(markdownRemark.fields.slug)}
         title={`${titlePrefix}${titlePostfix}`}
       />
@@ -112,6 +124,16 @@ const MarkdownPage = ({
 
                 {markdownRemark.fields.path && (
                   <div css={{marginTop: 80}}>
+                    <span
+                      css={{
+                        whiteSpace: 'nowrap',
+                        paddingBottom: '1em',
+                        marginRight: '36px',
+                        display: 'inline-block',
+                        color: colors.subtle,
+                      }}>
+                      <FeedbackForm />
+                    </span>
                     <a
                       css={sharedStyles.articleLayout.editLink}
                       href={`https://github.com/reactjs/fr.reactjs.org/tree/master/${
