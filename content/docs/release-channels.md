@@ -87,7 +87,11 @@ Par exemple, si le canal *Experimental* avait existé quand nous avons annoncé 
 
 Vous trouverez peut-être utile de lancer des tests d‘intégration avec *Experimental*.  Libre à vous.  Ceci dit, gardez bien à l’esprit que *Experimental* est encore moins stable que *Next*. **Nous ne garantissons aucune stabilité d’une version de *Experimental* à une autre.**
 
+<<<<<<< HEAD
 #### Comment en apprendre davantage sur les fonctionnalités expérimentales ? {#how-can-i-learn-more-about-experimental-features}
+=======
+Experimental features may or may not be documented. Usually, experiments aren't documented until they are close to shipping in Next or Latest.
+>>>>>>> 87dcdbedc36b8d53b4d0d0d36f078924582357f0
 
 Les fonctionnalités expérimentales ne sont pas nécessairement documentées.  Le plus souvent, les expériences ne sont documentées qu’une fois qu’elles sont sur le point d’être livrées dans *Next* ou *Latest*.
 
