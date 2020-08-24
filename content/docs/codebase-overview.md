@@ -35,6 +35,7 @@ Par exemple, un test pour [`setInnerHTML.js`](https://github.com/facebook/react/
 
 ### Avertissements et invariants {#warnings-and-invariants}
 
+<<<<<<< HEAD
 Le code source de React utilise le module `warning` pour afficher les avertissements :
 
 ```js
@@ -62,6 +63,13 @@ if (!didWarnAboutMath) {
     'Les maths sont en vacances aujourd’hui.'
   );
   didWarnAboutMath = true;
+=======
+The React codebase uses `console.error` to display warnings:
+
+```js
+if (__DEV__) {
+  console.error('Something is wrong.');
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 }
 ```
 
@@ -114,6 +122,7 @@ ReactRef.detachRefs = function(
 Dans la mesure du possible, le nouveau code devrait utiliser des annotations Flow.
 Vous pouvez exécuter `yarn flow` localement pour vérifier votre code avec Flow.
 
+<<<<<<< HEAD
 ### Injection dynamique {#dynamic-injection}
 
 React utilise l'injection dynamique dans certains modules. Bien que ce soit toujours explicite, c’est quand même dommage car ça nuit à la compréhension du code. Ces injections viennent principalement du fait que React ne visait initialement que le DOM. React Native a commencé comme un fork de React. Nous avons dû ajouter une injection dynamique pour permettre à React Native de remplacer certains comportements.
@@ -148,6 +157,9 @@ Le champ `injection` n'est en aucun cas traité spécialement. Mais par conventi
 Il y a plusieurs points d'injection dans le code source. À l’avenir, nous entendons nous débarrasser du mécanisme d’injection dynamique et raccorder toutes les pièces de manière statique pendant la construction.
 
 ### Plusieurs paquets {#multiple-packages}
+=======
+### Multiple Packages {#multiple-packages}
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 React est un [monorepo](https://danluu.com/monorepo/). Son dépôt contient plusieurs paquets distincts afin que leurs modifications puissent être coordonnées et que les problèmes puissent être signalés dans un seul et même endroit.
 
@@ -211,9 +223,13 @@ Son code source est situé dans [`packages/react-reconciler`](https://github.com
 
 ### Système d'événements {#event-system}
 
+<<<<<<< HEAD
 React implémente un système d'événements synthétiques indépendant du moteur de rendu, qui fonctionne à la fois avec React DOM et React Native. Son code source se trouve dans [`packages/legacy-events`](https://github.com/facebook/react/tree/master/packages/legacy-events).
 
 Voici une [vidéo qui plonge en profondeur dans ce code](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 minutes).
+=======
+React implements a layer over native events to smooth out cross-browser differences. Its source code is located in [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/master/packages/react-dom/src/events).
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 ### Et maintenant ? {#what-next}
 

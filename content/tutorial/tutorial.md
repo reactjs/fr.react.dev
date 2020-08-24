@@ -562,7 +562,11 @@ En revanche, il est facile de détecter la modification d’objet immuables : s
 
 #### Déterminer quand déclencher un nouveau rendu dans React {#determining-when-to-re-render-in-react}
 
+<<<<<<< HEAD
 Le principal avantage de l’immutabilité pour React, c’est qu’elle permet la construction de _composants purs_.  Des données immuables facilitent la détection des modifications, ce qui à son tour permet de déterminer qu’un composant doit être rafraîchi.
+=======
+The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made, which helps to determine when a component requires re-rendering.
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 Vous pouvez en apprendre davantage sur `shouldComponentUpdate()` et la construction de *composants purs* en lisant [Optimiser les performances](/docs/optimizing-performance.html#examples).
 

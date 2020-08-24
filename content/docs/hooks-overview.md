@@ -229,7 +229,11 @@ function FriendListItem(props) {
 }
 ```
 
+<<<<<<< HEAD
 Les états locaux de ces composants sont complètement indépendants. Les Hooks permettent de réutiliser la *logique à état*, et non l'état lui-même. En fait, chaque *appel* à un Hook a un état complètement isolé ; vous pouvez même utiliser deux fois le même Hook personnalisé dans un même composant.
+=======
+The state of each component is completely independent. Hooks are a way to reuse *stateful logic*, not state itself. In fact, each *call* to a Hook has a completely isolated state -- so you can even use the same custom Hook twice in one component.
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 Les Hooks personnalisés sont plus une convention qu'une fonctionnalité. Si le nom d'une fonction commence par `use` et qu'elle appelle un autre Hook, nous dirons que c’est un Hook personnalisé. La convention de nommage `useSomething` permet à notre plugin ESLint de détecter les bugs dans un code utilisant les Hooks.
 

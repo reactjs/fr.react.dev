@@ -10,7 +10,11 @@ La communauté React a créé de nombreux exemples de projets.  Cette page se co
 
 Si vous ajoutez un projet, merci de vous engager à le maintenir à jour avec les dernières versions de React.
 
+<<<<<<< HEAD
 ## Petits exemples
+=======
+## Small Examples {#small-examples}
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 * **[Calculator](https://github.com/ahfarmer/calculator)** La calculette d'iOS en React
 * **[Emoji Search](https://github.com/ahfarmer/emoji-search)** Une appli React pour chercher des emojis
@@ -20,7 +24,13 @@ Si vous ajoutez un projet, merci de vous engager à le maintenir à jour avec le
 * **[Counter App](https://github.com/arnab-datta/counter-app)** Un petit exemple de panier d’achats
 * **[Tutorial Solutions](https://github.com/harman052/react-tutorial-solutions)** Les solutions aux défis listés dans le tutoriel React
 
+<<<<<<< HEAD
 ## Applis complètes
 
 * **[Hacker News Clone React/GraphQL](https://github.com/clintonwoo/hackernews-react-graphql)** Un clone de Hacker News réécrit en JavaScript avec React et GraphQL.
 * **[Builder Book](https://github.com/builderbook/builderbook)** Appli web progressive et open-source pour écrire et héberger de la documentation ou vendre des livres. Élaborée avec React, Material-UI, Next, Express, Mongoose, et MongoDB.
+=======
+## Complete Apps {#complete-apps}
+
+* **[Builder Book](https://github.com/builderbook/builderbook)** Open-source web app to write and host documentation or sell books. Built with React, Material-UI, Next, Express, Mongoose, MongoDB
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6

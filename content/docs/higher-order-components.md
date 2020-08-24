@@ -2,6 +2,8 @@
 id: higher-order-components
 title: Composants d’ordre supérieur
 permalink: docs/higher-order-components.html
+prev: web-components.html
+next: render-props.html
 ---
 
 Un composant d'ordre supérieur *(Higher-Order Component ou HOC, NdT)* est une technique avancée de React qui permet de réutiliser la logique de composants. Les HOC ne font pas partie de l'API de React à proprement parler, mais découlent de sa nature compositionnelle.

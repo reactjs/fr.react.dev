@@ -54,7 +54,11 @@ function ActionLink() {
 }
 ```
 
+<<<<<<< HEAD
 Ici, `e` est un événement synthétique. React le définit en suivant les [spécifications W3C](https://www.w3.org/TR/DOM-Level-3-Events/), afin que vous n'ayez pas à vous préoccuper de la compatibilité entre les navigateurs. Pour en apprendre davantage, consultez le guide de référence de [`SyntheticEvent`](/docs/events.html).
+=======
+Here, `e` is a synthetic event. React defines these synthetic events according to the [W3C spec](https://www.w3.org/TR/DOM-Level-3-Events/), so you don't need to worry about cross-browser compatibility. React events do not work exactly the same as native events. See the [`SyntheticEvent`](/docs/events.html) reference guide to learn more.
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 Lorsque vous utilisez React, vous n'avez généralement pas besoin d'appeler la méthode `addEventListener` pour ajouter des écouteurs d'événements *(event listeners, NdT)* à un élément du DOM après que celui-ci est créé. À la place, on fournit l'écouteur lors du rendu initial de l'élément.
 

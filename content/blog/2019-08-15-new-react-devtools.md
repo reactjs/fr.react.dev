@@ -22,8 +22,13 @@ La version 4 change beaucoup de choses !  D’une façon générale, cette nouv
 * `16.x` : prises en charge
 
 **`react-native`**
+<<<<<<< HEAD
 * `0`-`0.61` : non prises en charge
 * `0.62` : sera prise en charge (à la sortie de la 0.62)
+=======
+* `0`-`0.61.x`: Not supported
+* `0.62`: Supported
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 ## Comment obtenir les nouveaux DevTools ? {#how-do-i-get-the-new-devtools}
 

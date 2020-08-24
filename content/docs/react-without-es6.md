@@ -2,6 +2,8 @@
 id: react-without-es6
 title: React sans ES6
 permalink: docs/react-without-es6.html
+prev: optimizing-performance.html
+next: react-without-jsx.html
 ---
 
 En temps normal, pour définir un composant React, vous utilisez une classe Javascript ordinaire :

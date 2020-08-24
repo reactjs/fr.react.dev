@@ -2,6 +2,7 @@
 id: code-splitting
 title: Découpage dynamique de code
 permalink: docs/code-splitting.html
+prev: accessibility.html
 ---
 
 ## Bundling {#bundling}
@@ -40,7 +41,12 @@ console.log(add(16, 26)); // 42
 >
 > Vos bundles finiront par être très différents de ceux-là.
 
+<<<<<<< HEAD
 Si vous utilisez [Create React App](https://facebook.github.io/create-react-app/), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/) ou un outil similaire, vous bénéficierez d'une configuration de Webpack prête à l'emploi pour créer le bundle de votre application.
+=======
+If you're using [Create React App](https://create-react-app.dev/), [Next.js](https://nextjs.org/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool, you will have a Webpack setup out of the box to bundle your
+app.
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 Si ce n'est pas le cas, vous devrez configurer vous-même la génération de votre bundle. Consultez les guides [d'installation](https://webpack.js.org/guides/installation/) et de [démarrage](https://webpack.js.org/guides/getting-started/) de Webpack.
 
