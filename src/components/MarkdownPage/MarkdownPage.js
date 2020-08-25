@@ -18,6 +18,7 @@ import {colors} from 'theme';
 import createCanonicalUrl from 'utils/createCanonicalUrl';
 import findSectionForPath from 'utils/findSectionForPath';
 import {sharedStyles} from 'theme';
+import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 
 type Props = {
   authors: Array<string>,
