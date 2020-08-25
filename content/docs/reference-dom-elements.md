@@ -56,12 +56,8 @@ L'événement `onChange` se comporte comme on s'y attend : à chaque fois qu'un
 
 ### selected {#selected}
 
-<<<<<<< HEAD
-L'attribut `selected` est accepté par les composants `<option>`. Vous pouvez l'utiliser pour définir si le composant est sélectionné ou non. C'est utile pour créer des composants contrôlés.
-=======
-If you want to mark an `<option>` as selected, reference the value of that option in the `value` of its `<select>` instead.
-Check out ["The select Tag"](/docs/forms.html#the-select-tag) for detailed instructions.
->>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
+
+Si vous voulez signaler qu’une option est sélectionnée, utilisez plutôt sa valeur dans le `value` de son `<select>`. Pour plus de détails, consultez [« La balise `select` »](/docs/forms.html#the-select-tag).
 
 ### style {#style}
 
@@ -125,11 +121,7 @@ Si vous définissez `suppressHydrationWarning` à `true`, React ne vous avertira
 
 ### value {#value}
 
-<<<<<<< HEAD
-L'attribut `value` est accepté par les composants `<input>` et `<textarea>`. Vous pouvez l'utiliser pour définir la valeur d'un composant. C'est utile pour créer des composants contrôlés. `defaultValue` est l'équivalent non-contrôlé, qui définit la valeur du composant uniquement lorsqu'il est monté pour la première fois.
-=======
-The `value` attribute is supported by `<input>`, `<select>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
->>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
+L'attribut `value` est accepté par les composants `<input>`, `<select>` et `<textarea>`. Vous pouvez l'utiliser pour définir la valeur d'un composant. C'est utile pour créer des composants contrôlés. `defaultValue` est l'équivalent non-contrôlé, qui définit la valeur du composant uniquement lorsqu'il est monté pour la première fois.
 
 ## Tous les attributs HTML pris en charge {#all-supported-html-attributes}
 

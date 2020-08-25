@@ -10,15 +10,11 @@ permalink: community/courses.html
 >
 >Pour la version française, nous tentons d'inclure les bonnes ressources quand nous les découvrons. Il n'en reste pas moins que l'immense majorité des ressources de qualité sont disponibles en anglais, comme bien souvent en informatique. Sauf indication contraire, la langue des ressources ci-dessous est donc l'anglais.
 
-<<<<<<< HEAD
 ## Cours gratuits {#free-courses}
-=======
-- [Glitch: React Starter Kit](https://glitch.com/glimmer/post/react-starter-kit) - A free, 5-part video course with interactive code examples that will help you learn React.
->>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 - [OpenClassrooms : réalisez une application web avec React](https://openclassrooms.com/fr/courses/4664381-realisez-une-application-web-avec-react-js) – Cours détaillé sur l'essentiel de React, y compris comment tester vos composants **(en français)**
 
-- [Glitch: React Starter Kit](https://glitch.com/glimmer/post/react-starter-kit/) - Cours vidéo gratuit en 5 parties avec des exemples de code interactifs qui vous aideront à apprendre React.
+- [Glitch: React Starter Kit](https://glitch.com/glimmer/post/react-starter-kit) - Cours vidéo gratuit en 5 parties avec des exemples de code interactifs qui vous aideront à apprendre React.
 
 - [Codecademy : React 101](https://www.codecademy.com/learn/react-101) – Cours d'introduction de Codecademy pour React.
 
@@ -54,14 +50,10 @@ permalink: community/courses.html
 
 - [React Training: Advanced React.js](https://courses.reacttraining.com/p/advanced-react) - Amenez vos compétences React au prochain niveau.
 
-<<<<<<< HEAD
 - [Tyler McGinnis](https://tylermcginnis.com/courses) – Tyler McGinnis donne accès à ses cours moyennant un abonnement mensuel. Ses cours comprennent notamment “React Fundamentals” et “Universal React”.
 
 - [Mastering React](https://codewithmosh.com/p/mastering-react/) – Construisez des applications interactives professionnelles avec React.
 
-- [Road to React](https://www.roadtoreact.com/) - Votre parcours pour maîtriser React avec JavaScript.
-=======
-- [React Tutorial](https://react-tutorial.app) - Learn React step by step in an interactive environment with flashcards.
+- [React Tutorial](https://react-tutorial.app) - Apprenez React pas à pas dans un environnement interactif avec des cartes mémoires.
 
-- [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.
->>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
+- [Road to React](https://www.roadtoreact.com/) - Votre parcours pour maîtriser React avec JavaScript.

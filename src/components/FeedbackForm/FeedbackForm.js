@@ -7,21 +7,22 @@
 
 // $FlowExpectedError
 import React, {useState} from 'react';
-import {trackCustomEvent} from 'gatsby-plugin-google-analytics';
+
 import {sharedStyles} from 'theme';
+import {trackCustomEvent} from 'gatsby-plugin-google-analytics';
 
 const FeedbackForm = () => {
   const [feedbackGiven, setFeedbackGiven] = useState(false);
 
   if (feedbackGiven) {
-    return 'Thanks for letting us know!';
+    return 'Merci de nous l’avoir dit !';
   } else {
     return (
       <span>
-        Is this page useful?
+        Avez-vous trouvé cette page utile ?
         <button
           css={[sharedStyles.articleLayout.feedbackButton, {marginLeft: '6px'}]}
-          aria-label="Yes"
+          aria-label="Oui"
           onClick={e => {
             e.preventDefault();
             trackCustomEvent({
@@ -44,7 +45,7 @@ const FeedbackForm = () => {
         </button>
         <button
           css={[sharedStyles.articleLayout.feedbackButton, {marginLeft: '3px'}]}
-          aria-label="No"
+          aria-label="Non"
           onClick={e => {
             e.preventDefault();
             trackCustomEvent({

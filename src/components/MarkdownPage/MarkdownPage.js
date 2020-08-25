@@ -6,6 +6,7 @@
  */
 
 import Container from 'components/Container';
+import FeedbackForm from 'components/FeedbackForm';
 import Flex from 'components/Flex';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';
@@ -13,21 +14,10 @@ import type {Node} from 'types';
 import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
-<<<<<<< HEAD
+import {colors} from 'theme';
 import createCanonicalUrl from 'utils/createCanonicalUrl';
-=======
-import FeedbackForm from 'components/FeedbackForm';
->>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 import findSectionForPath from 'utils/findSectionForPath';
 import {sharedStyles} from 'theme';
-<<<<<<< HEAD
-import toCommaSeparatedList from 'utils/toCommaSeparatedList';
-=======
-import createCanonicalUrl from 'utils/createCanonicalUrl';
-import {colors} from 'theme';
-
-import type {Node} from 'types';
->>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 type Props = {
   authors: Array<string>,
@@ -136,9 +126,7 @@ const MarkdownPage = ({
                     </span>
                     <a
                       css={sharedStyles.articleLayout.editLink}
-                      href={`https://github.com/reactjs/fr.reactjs.org/tree/master/${
-                        markdownRemark.fields.path
-                      }`}>
+                      href={`https://github.com/reactjs/fr.reactjs.org/tree/master/${markdownRemark.fields.path}`}>
                       Modifier cette page
                     </a>
                   </div>
