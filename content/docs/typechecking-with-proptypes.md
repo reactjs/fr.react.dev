@@ -2,6 +2,8 @@
 id: typechecking-with-proptypes
 title: Validation de types avec PropTypes
 permalink: docs/typechecking-with-proptypes.html
+prev: jsx-in-depth.html
+next: static-type-checking.html
 redirect_from:
   - "docs/react-api.html#typechecking-with-proptypes"
 ---
@@ -29,6 +31,8 @@ Greeting.propTypes = {
   name: PropTypes.string
 };
 ```
+
+Dans cet exemple nous utilisons un composant à base de classe, mais ça reste vrai pour les fonctions composants et les composants créés avec [`React.memo`](https://reactjs.org/docs/react-api.html#reactmemo) ou [`React.forwardRef`](https://reactjs.org/docs/react-api.html#reactforwardref).
 
 `PropTypes` exporte un ensemble de validateurs qui peuvent être utilisés pour s'assurer que la donnée que vous recevez est valide. Dans cet exemple, nous utilisons `PropTypes.string`. Quand une valeur non valide est fournie à une prop, un message d'avertissement apparaîtra dans la console JavaScript. Pour des raisons de performances, `propTypes` n'est vérifiée qu'en mode développement.
 

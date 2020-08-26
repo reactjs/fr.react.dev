@@ -2,6 +2,8 @@
 id: uncontrolled-components
 title: Composants non-contrôlés
 permalink: docs/uncontrolled-components.html
+prev: refs-and-the-dom.html
+next: optimizing-performance.html
 ---
 
 Dans la plupart des cas, pour implémenter des formulaires, nous recommandons d'utiliser des [composants contrôlés](/docs/forms.html#controlled-components). Dans un composant contrôlé, les données du formulaires sont gérées par le composant React. L'alternative est le composant non-contrôlé, où les données sont gérées par le DOM.

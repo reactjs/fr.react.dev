@@ -2,6 +2,8 @@
 id: context
 title: Contexte
 permalink: docs/context.html
+prev: reconciliation.html
+next: fragments.html
 ---
 
 Le Contexte offre un moyen de faire passer des données à travers l'arborescence du composant sans avoir à passer manuellement les props à chaque niveau.

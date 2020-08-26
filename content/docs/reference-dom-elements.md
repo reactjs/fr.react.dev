@@ -56,7 +56,8 @@ L'événement `onChange` se comporte comme on s'y attend : à chaque fois qu'un
 
 ### selected {#selected}
 
-L'attribut `selected` est accepté par les composants `<option>`. Vous pouvez l'utiliser pour définir si le composant est sélectionné ou non. C'est utile pour créer des composants contrôlés.
+
+Si vous voulez signaler qu’une option est sélectionnée, utilisez plutôt sa valeur dans le `value` de son `<select>`. Pour plus de détails, consultez [« La balise `select` »](/docs/forms.html#the-select-tag).
 
 ### style {#style}
 
@@ -120,7 +121,7 @@ Si vous définissez `suppressHydrationWarning` à `true`, React ne vous avertira
 
 ### value {#value}
 
-L'attribut `value` est accepté par les composants `<input>` et `<textarea>`. Vous pouvez l'utiliser pour définir la valeur d'un composant. C'est utile pour créer des composants contrôlés. `defaultValue` est l'équivalent non-contrôlé, qui définit la valeur du composant uniquement lorsqu'il est monté pour la première fois.
+L'attribut `value` est accepté par les composants `<input>`, `<select>` et `<textarea>`. Vous pouvez l'utiliser pour définir la valeur d'un composant. C'est utile pour créer des composants contrôlés. `defaultValue` est l'équivalent non-contrôlé, qui définit la valeur du composant uniquement lorsqu'il est monté pour la première fois.
 
 ## Tous les attributs HTML pris en charge {#all-supported-html-attributes}
 

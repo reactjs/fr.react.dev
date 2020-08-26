@@ -2,6 +2,8 @@
 id: error-boundaries
 title: Périmètres d'erreurs
 permalink: docs/error-boundaries.html
+prev: portals.html
+next: web-components.html
 ---
 
 Auparavant, les erreurs JavaScript au sein des composants avaient l'habitude de corrompre l'état interne de React, et de causer des [erreurs](https://github.com/facebook/react/issues/4026) [assez](https://github.com/facebook/react/issues/6895) [incompréhensibles](https://github.com/facebook/react/issues/8579) lors des rendus suivants. Ces erreurs étaient toujours causées par une erreur antérieure dans le code applicatif et comme React ne proposait alors aucun moyen de les gérer correctement dans les composants, il n'avait pas la possibilité de se rétablir.
@@ -96,7 +98,7 @@ Vous pouvez également voir les noms des fichiers et les numéros de lignes dans
 
 <img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="Une erreur interceptée par un périmètre d'erreur avec les numéros de lignes">
 
-Si vous n'utilisez pas Create React App, vous pouvez ajouter [cette extension](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) manuellement dans votre configuration Babel. Remarquez que c'est conçu pour le développement et **ne doit pas être activé en production**.
+Si vous n'utilisez pas Create React App, vous pouvez ajouter [cette extension](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-source) manuellement dans votre configuration Babel. Remarquez que c'est conçu pour le développement et **ne doit pas être activé en production**.
 
 > Remarque
 >

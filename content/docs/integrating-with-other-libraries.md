@@ -2,6 +2,8 @@
 id: integrating-with-other-libraries
 title: Intégration avec d'autres bibliothèques
 permalink: docs/integrating-with-other-libraries.html
+prev: render-props.html
+next: accessibility.html
 ---
 
 React peut être utilisé dans n'importe quelle application web. Il peut être intégré à d'autres applications et, avec un peu de soin, d'autres applications peuvent être intégrées à React. Ce guide examine certains des cas d'utilisation les plus courants, en se concentrant sur l'intégration avec [jQuery](https://jquery.com/) et [Backbone](https://backbonejs.org/), mais les mêmes idées peuvent être appliquées à l'intégration de composants à n'importe quel code existant.

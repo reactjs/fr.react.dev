@@ -12,7 +12,7 @@ Ce guide de référence documente l’enrobage `SyntheticEvent` qui fait partie 
 
 Vos gestionnaires d'événements recevront des instances de `SyntheticEvent`, un enrobage compatible tous navigateurs autour de l'événement natif du navigateur. Il fournit la même interface que l'événement natif, comprenant notamment `stopPropagation()` et `preventDefault()`, à ceci près que ces événements fonctionnent de façon identique sur tous les navigateurs.
 
-Si pour une raison ou une autre, vous avez besoin de l'événement sous-jacent du navigateur, utilisez l'attribut `nativeEvent` pour le récupérer. Tous les objets `SyntheticEvent` disposent des attributs suivants :
+Si pour une raison ou une autre, vous avez besoin de l'événement sous-jacent du navigateur, utilisez l'attribut `nativeEvent` pour le récupérer. Les événements synthétiques diffèrent des événements natifs du navigateur, avec lesquels ils n’ont pas toujours de correspondance directe.  Par exemple pour `onMouseLeave`, `event.nativeEvent` référencera un événement `mouseout`. Les correspondances effectives ne font pas partie de l'API publique et sont susceptibles d’évoluer à tout moment. Tous les objets `SyntheticEvent` disposent des attributs suivants :
 
 ```javascript
 boolean bubbles
