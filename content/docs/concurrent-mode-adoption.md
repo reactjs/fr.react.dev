@@ -70,7 +70,7 @@ import ReactDOM from 'react-dom';
 //
 // Vous pouvez désormais activer le mode concurrent en écrivant :
 
-ReactDOM.createRoot(
+ReactDOM.unstable_createRoot(
   document.getElementById('root')
 ).render(<App />);
 ```
