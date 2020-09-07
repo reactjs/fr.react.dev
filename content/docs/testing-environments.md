@@ -29,7 +29,11 @@ Une large part des tests d’interface utilisateur (UI) peuvent être écrits de
 
 Si vous écrivez une bibliothèque qui doit tester principalement des comportements spécifiques aux navigateurs, et requiert donc des comportements natifs du navigateur tels que la mise en page ou de véritables champs de saisie, il vous faudra alors plutôt une solution comme [mocha](https://mochajs.org/).
 
+<<<<<<< HEAD
 Dans un environnement où vous _ne pouvez pas_ simuler un DOM (par exemple en testant des composants React Native depuis Node.js), vous pourriez opter pour des [utilitaires de simulation d’événements](/docs/test-utils.html#simulate), qui simulent les interactions avec les éléments. Une autre option consisterait à utiliser la fonction utilitaire `fireEvent` fournie par [`@testing-library/react-native`](https://testing-library.com/docs/native-testing-library).
+=======
+In an environment where you _can't_ simulate a DOM (e.g. testing React Native components on Node.js), you could use [event simulation helpers](/docs/test-utils.html#simulate) to simulate interactions with elements. Alternately, you could use the `fireEvent` helper from [`@testing-library/react-native`](https://testing-library.com/docs/react-native-testing-library/intro).
+>>>>>>> 657658aa1f19c65e35055ddca4452c98d569552f
 
 Les frameworks comme [Cypress](https://www.cypress.io/), [puppeteer](https://github.com/GoogleChrome/puppeteer) et [webdriver](https://www.seleniumhq.org/projects/webdriver/) sont quant à eux utiles pour exécuter des [tests de bout en bout](#end-to-end-tests-aka-e2e-tests).
 
