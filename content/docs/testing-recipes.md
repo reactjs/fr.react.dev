@@ -57,11 +57,7 @@ Vous utilisez peut-être une autre approche, mais gardez à l’esprit que vous 
 
 ### `act()` {#act}
 
-<<<<<<< HEAD
-Lorsqu’on écrit des tests UI, des tâches comme le rendu lui-même, les événements utilisateurs ou encore le chargement de données peuvent être considérées comme autant « d’unités » d’interaction avec l’interface utilisateur.  React fournit une fonction utilitaire appelée `act()` qui s’assure que toutes les mises à jour relatives à ces « unités » ont bien été traitées et appliquées au DOM avant que nous ne commencions à exprimer nos assertions :
-=======
-When writing UI tests, tasks like rendering, user events, or data fetching can be considered as "units" of interaction with a user interface. `react-dom/test-utils` provides a helper called [`act()`](/docs/test-utils.html#act) that makes sure all updates related to these "units" have been processed and applied to the DOM before you make any assertions:
->>>>>>> 657658aa1f19c65e35055ddca4452c98d569552f
+Lorsqu’on écrit des tests UI, des tâches comme le rendu lui-même, les événements utilisateurs ou encore le chargement de données peuvent être considérées comme autant « d’unités » d’interaction avec l’interface utilisateur.  `react-dom/rest-utils` fournit une fonction utilitaire appelée [`act()`](/docs/test-utils.html#act) qui s’assure que toutes les mises à jour relatives à ces « unités » ont bien été traitées et appliquées au DOM avant que nous ne commencions à exprimer nos assertions :
 
 ```js
 act(() => {
