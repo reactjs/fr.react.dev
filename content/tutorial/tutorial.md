@@ -186,7 +186,7 @@ Le composant `Square` affiche un unique `<button>` et le `Board` affiche 9 cases
 
 ### Passer des données via les props {#passing-data-through-props}
 
-Histoire de tester la température de l’eau, essayons de passer des données de notre composant `Board` à notre composant `Square`.
+Histoire de prendre la température, essayons de passer des données de notre composant `Board` à notre composant `Square`.
 
 Vous pouvez tout à fait copier-coller le code au fil du tutoriel, mais nous vous conseillons de le taper vous-même.  Cela vous aidera à développer une mémoire musculaire et une meilleure compréhension.
 
