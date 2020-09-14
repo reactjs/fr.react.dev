@@ -275,13 +275,7 @@ Nous vous déconseillons de recourir à une comparaison profonde ou à `JSON.str
 static getDerivedStateFromProps(props, state)
 ```
 
-<<<<<<< HEAD
 `getDerivedStateFromProps` est appelée juste avant d’appeler la méthode `render()`, aussi bien pour le montage initial que lors des mises à jour ultérieures. Elle doit renvoyer un objet qui mette à jour l’état, ou `null` faute de mise à jour.
-=======
-`getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or `null` to update nothing.
-
-This method exists for [rare use cases](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) where the state depends on changes in props over time. For example, it might be handy for implementing a `<Transition>` component that compares its previous and next children to decide which of them to animate in and out.
->>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
 
 Cette méthode existe pour [les rares cas](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) où l’état dépend bien des changements de props au fil du temps. Par exemple, elle peut être utile pour implémenter un composant `<Transition>` qui comparerait les enfants précédents et suivants pour décider lesquels animer en entrée et en sortie.
 
@@ -589,11 +583,7 @@ De façon générale, vous devriez tout faire pour éviter de recourir à `force
 
 ### `defaultProps` {#defaultprops}
 
-<<<<<<< HEAD
 `defaultProps` peut être définie comme propriété sur la classe du composant elle-même, pour définir les valeurs par défaut de props pour cette classe. On s’en sert pour les props `undefined`, mais pas pour celles à `null`. Par exemple :
-=======
-`defaultProps` can be defined as a property on the component class itself, to set the default props for the class. This is used for `undefined` props, but not for `null` props. For example:
->>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
 
 ```js
 class CustomButton extends React.Component {
@@ -613,11 +603,7 @@ Si `props.color` n’est pas fournie, elle sera définie par défaut à `'blue'`
   }
 ```
 
-<<<<<<< HEAD
 Si `props.color` est définie à `null`,  elle restera à `null` :
-=======
-If `props.color` is set to `null`, it will remain `null`:
->>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
 
 ```js
   render() {
