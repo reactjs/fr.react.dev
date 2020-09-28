@@ -2,7 +2,6 @@
 id: code-splitting
 title: Découpage dynamique de code
 permalink: docs/code-splitting.html
-prev: accessibility.html
 ---
 
 ## Bundling {#bundling}
