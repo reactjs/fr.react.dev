@@ -6,7 +6,8 @@
  */
 
 // $FlowFixMe Update Flow
-import React, {useState, useLayoutEffect} from 'react';
+import React, {useLayoutEffect, useState} from 'react';
+
 import BannerContext from './BannerContext';
 
 let activeBanner = null;
@@ -29,7 +30,7 @@ function addTimes(date, days) {
 //   snoozeForDays: 7,
 //   content: dismiss => (
 //     <div>
-//       <a href="test">Test</a> <button onClick={dismiss}>close</button>
+//       <a href="test">Test</a> <button onClick={dismiss}>fermer</button>
 //     </div>
 //   ),
 // };

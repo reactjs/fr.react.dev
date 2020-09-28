@@ -5,19 +5,15 @@
  * @flow
  */
 
+// $FlowFixMe Update Flow
+import React, {useContext} from 'react';
+
+import {BannerContext} from 'components/Banner';
 import Container from 'components/Container';
 import FeedbackForm from 'components/FeedbackForm';
 import Flex from 'components/Flex';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';
-<<<<<<< HEAD
-import type {Node} from 'types';
-import React from 'react';
-=======
-// $FlowFixMe Update Flow
-import React, {useContext} from 'react';
-import {BannerContext} from 'components/Banner';
->>>>>>> 32e3c7a6f92cb6580eb38c047960805d5998c2ec
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import {colors} from 'theme';
