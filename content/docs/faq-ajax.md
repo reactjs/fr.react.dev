@@ -41,12 +41,15 @@ class MyComponent extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({
+            isLoaded: true
+    });
     fetch("https://api.example.com/items")
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
-            isLoaded: true,
+            isLoaded: false,
             items: result.items
           });
         },
@@ -55,7 +58,7 @@ class MyComponent extends React.Component {
         // des exceptions provenant de réels bugs du composant.
         (error) => {
           this.setState({
-            isLoaded: true,
+            isLoaded: false,
             error
           });
         }
@@ -95,18 +98,19 @@ function MyComponent() {
   // que useEffect ne s’exécutera qu’une fois, un peu comme
   // componentDidMount()
   useEffect(() => {
+    setIsLoaded(true);
     fetch("https://api.example.com/items")
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
+          setIsLoaded(false);
           setItems(result.items);
         },
         // Remarque : il faut gérer les erreurs ici plutôt que dans
         // un bloc catch() afin que nous n’avalions pas les exceptions
         // dues à de véritables bugs dans les composants.
         (error) => {
-          setIsLoaded(true);
+          setIsLoaded(false);
           setError(error);
         }
       )
