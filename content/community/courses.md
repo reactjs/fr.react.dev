@@ -52,8 +52,14 @@ permalink: community/courses.html
 
 - [Tyler McGinnis](https://tylermcginnis.com/courses) – Tyler McGinnis donne accès à ses cours moyennant un abonnement mensuel. Ses cours comprennent notamment “React Fundamentals” et “Universal React”.
 
+<<<<<<< HEAD
 - [Mastering React](https://codewithmosh.com/p/mastering-react/) – Construisez des applications interactives professionnelles avec React.
 
 - [React Tutorial](https://react-tutorial.app) - Apprenez React pas à pas dans un environnement interactif avec des cartes mémoires.
 
 - [Road to React](https://www.roadtoreact.com/) - Votre parcours pour maîtriser React avec JavaScript.
+=======
+- [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.
+
+- [Epic React](https://epicreact.dev/) - Confidently Ship Well-Architected Production Ready React Apps Like a Pro
+>>>>>>> 30baecf59de28a8cd3c91a2cd878e3822f864061
