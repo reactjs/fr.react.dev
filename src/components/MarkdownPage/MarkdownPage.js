@@ -10,7 +10,11 @@ import FeedbackForm from 'components/FeedbackForm';
 import Flex from 'components/Flex';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';
+<<<<<<< HEAD
 import type {Node} from 'types';
+=======
+// $FlowFixMe Update Flow
+>>>>>>> 8f9ef00db1b36ee3e5a0e6072eb601257a6f8ccb
 import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
@@ -18,7 +22,14 @@ import {colors} from 'theme';
 import createCanonicalUrl from 'utils/createCanonicalUrl';
 import findSectionForPath from 'utils/findSectionForPath';
 import {sharedStyles} from 'theme';
+<<<<<<< HEAD
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
+=======
+import createCanonicalUrl from 'utils/createCanonicalUrl';
+import {colors, media} from 'theme';
+
+import type {Node} from 'types';
+>>>>>>> 8f9ef00db1b36ee3e5a0e6072eb601257a6f8ccb
 
 type Props = {
   authors: Array<string>,
@@ -72,6 +83,12 @@ const MarkdownPage = ({
         flex: '1 0 auto',
         position: 'relative',
         zIndex: 0,
+        '& h1, & h2, & h3, & h4, & h5, & h6': {
+          scrollMarginTop: 'var(--banner-height-normal)',
+          [media.lessThan('small')]: {
+            scrollMarginTop: 'var(--banner-height-small)',
+          },
+        },
       }}>
       <TitleAndMetaTags
         ogDescription={ogDescription}
@@ -86,10 +103,7 @@ const MarkdownPage = ({
               <MarkdownHeader title={titlePrefix} />
 
               {(date || hasAuthors) && (
-                <div
-                  css={{
-                    marginTop: 15,
-                  }}>
+                <div css={{marginTop: 15}}>
                   {date}{' '}
                   {hasAuthors && (
                     <span>
