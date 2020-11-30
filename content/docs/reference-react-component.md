@@ -39,7 +39,11 @@ La seule méthode que vous *devez* définir dans une sous-classe de `React.Compo
 
 ### Le cycle de vie du composant {#the-component-lifecycle}
 
+<<<<<<< HEAD
 Chaque composant a plusieurs « méthodes de cycle de vie » que vous pouvez surcharger pour exécuter du code à des moments précis du processus. **Vous pouvez utiliser [ce diagramme de cycle de vie](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) comme aide-mémoire.**  Dans la liste ci-dessous, les méthodes de cycle de vie courantes sont indiquées en **gras**. Les autres sont là pour des cas d’utilisation relativement rares.
+=======
+Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+>>>>>>> 5e437a10ed4e89cd5eaf990ce4f43e0857592b53
 
 #### Montage {#mounting}
 
@@ -110,7 +114,11 @@ Chaque composant fournit par ailleurs quelques API supplémentaires :
 
 ### Méthodes de cycle de vie couramment utilisées {#commonly-used-lifecycle-methods}
 
+<<<<<<< HEAD
 Les méthodes de cette section couvrent la vaste majorité des cas d’utilisation que vous rencontrerez en créant des composants React. **Pour une référence visuelle, jetez un œil à [ce diagramme de cycle de vie](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+=======
+The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+>>>>>>> 5e437a10ed4e89cd5eaf990ce4f43e0857592b53
 
 ### `render()` {#render}
 
@@ -246,7 +254,11 @@ Vous **ne devez pas appeler `setState()`** dans `componentWillUnmount()` car le 
 
 ### Méthodes de cycle de vie rarement utilisées {#rarely-used-lifecycle-methods}
 
+<<<<<<< HEAD
 Les méthodes de cette section sont liées à des cas d’utilisation peu fréquents. Elles peuvent s’avérer utiles de temps en temps, mais la plupart de vos composants n’en auront sans doute jamais besoin. **Vous pouvez voir la plupart de ces méthods dans [ce diagramme de cycle de vie](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) en cochant la case « Montrer les cycles de vie moins courants » au-dessus.**
+=======
+The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
+>>>>>>> 5e437a10ed4e89cd5eaf990ce4f43e0857592b53
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -277,7 +289,12 @@ static getDerivedStateFromProps(props, state)
 
 `getDerivedStateFromProps` est appelée juste avant d’appeler la méthode `render()`, aussi bien pour le montage initial que lors des mises à jour ultérieures. Elle doit renvoyer un objet qui mette à jour l’état, ou `null` faute de mise à jour.
 
+<<<<<<< HEAD
 Cette méthode existe pour [les rares cas](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) où l’état dépend bien des changements de props au fil du temps. Par exemple, elle peut être utile pour implémenter un composant `<Transition>` qui comparerait les enfants précédents et suivants pour décider lesquels animer en entrée et en sortie.
+=======
+Deriving state leads to verbose code and makes your components difficult to think about.
+[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+>>>>>>> 5e437a10ed4e89cd5eaf990ce4f43e0857592b53
 
 Dériver l’état entraîne généralement des composants au code verbeux et difficile à suivre. [Assurez-vous qu’une meilleure alternative n’existe pas](/blog/2018/06/07/you-probably-dont-need-derived-state.html) :
 
@@ -321,11 +338,17 @@ Un composant basé classe devient un périmètre d’erreur s’il définit au m
 
 N’utilisez les périmètres d’erreurs que pour retomber sur vos pieds lors d’exceptions inattendues ; **ne les utilisez pas comme primitives de contrôle de flux.**
 
+<<<<<<< HEAD
 Pour en apprendre davantage, lisez [*Gestion d’Erreurs dans React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
 > Remarque
 >
 > Les périmètres d’erreurs n’interceptent que les erreurs dans les composants **en-dessous** d’eux dans l’arbre. Un périmètre d’erreur ne peut pas capturer une erreur survenue en son propre sein.
+=======
+> Note
+>
+> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+>>>>>>> 5e437a10ed4e89cd5eaf990ce4f43e0857592b53
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
@@ -410,9 +433,22 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 > Remarque
 >
 > Si une erreur survient, vous pouvez déclencher l’affichage d’une UI de remplacement avec `componentDidCatch()` en appelant `setState`, mais une future version de React dépréciera cette possibilité. Utilisez plutôt  `static getDerivedStateFromError()` pour déclencher l’affichage de l’UI de remplacement.
+=======
+Production and development builds of React slightly differ in the way `componentDidCatch()` handles errors.
+
+On development, the errors will bubble up to `window`, this means that any `window.onerror` or `window.addEventListener('error', callback)` will intercept the errors that have been caught by `componentDidCatch()`.
+
+On production, instead, the errors will not bubble up, which means any ancestor error handler will only receive errors not explicitly caught by `componentDidCatch()`.
+
+> Note
+>
+> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
+> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
+>>>>>>> 5e437a10ed4e89cd5eaf990ce4f43e0857592b53
 
 * * *
 
