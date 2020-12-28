@@ -29,7 +29,7 @@ Avec React 16, nous apportons un changement. Désormais, tous les attributs inco
 React a toujours fourni une API pour le DOM centrée sur Javascript. Étant donné que les composants React acceptent souvent à la fois des propriétés personnalisées et d’autres liées au DOM, il est logique que React utilise la convention `camelCase` tout comme les API DOM :
 
 ```js
-<div tabIndex="-1" />
+<div tabIndex={-1} />
 ```
 
 Cet aspect n'a pas changé. Cependant, la façon dont nous l'avons géré par le passé nous a obligés à maintenir une liste blanche de tous les attributs DOM React valides dans le paquet :
@@ -54,11 +54,19 @@ Avec la nouvelle approche, ces deux problèmes sont résolus. Avec React 16, vou
 ** Notez que vous devez toujours utiliser la nomenclature canonique React pour les attributs connus :**
 
 ```js
+<<<<<<< HEAD
 // Oui, s'il vous plaît
 <div tabIndex="-1" />
 
 // Attention : propriété du DOM invalide `tabindex`. Vous voulez certainement dire `tabIndex` ?
 <div tabindex="-1" />
+=======
+// Yes, please
+<div tabIndex={-1} />
+
+// Warning: Invalid DOM property `tabindex`. Did you mean `tabIndex`?
+<div tabindex={-1} />
+>>>>>>> 7a11d71b384d41c21dd5d475b96d45b5497ade76
 ```
 
 En d'autres termes, la façon dont vous utilisez les composants du DOM dans React n'a pas changé, mais vous disposez désormais de nouvelles fonctionnalités.
@@ -120,8 +128,13 @@ En voici une liste détaillée.
 * **Attributs connus avec un nom canonique React différent :**  
 
     ```js
+<<<<<<< HEAD
     <div tabindex="-1" />
     <div class="salut" />
+=======
+    <div tabindex={-1} />
+    <div class="hi" />
+>>>>>>> 7a11d71b384d41c21dd5d475b96d45b5497ade76
     ```
 
     React 15 : génère un avertissement et les ignore.
