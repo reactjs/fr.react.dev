@@ -2,8 +2,6 @@
 id: context
 title: Contexte
 permalink: docs/context.html
-prev: reconciliation.html
-next: fragments.html
 ---
 
 Le Contexte offre un moyen de faire passer des données à travers l'arborescence du composant sans avoir à passer manuellement les props à chaque niveau.
@@ -130,7 +128,11 @@ L'argument `defaultValue` est **uniquement** utilisé lorsqu'un composant n'a pa
 
 Chaque objet Contexte est livré avec un composant React `Provider` qui permet aux composants consommateurs de s'abonner aux mises à jour du contexte.
 
+<<<<<<< HEAD
 Il accepte une prop `value` à transmettre aux composants consommateurs descendants de ce `Provider`(plus bas dans l'arbre, donc). Un `Provider` peut être connecté à plusieurs consommateurs. Les `Provider` peuvent être imbriqués pour remplacer leur valeur plus profondément dans l'arbre.
+=======
+The Provider component accepts a `value` prop to be passed to consuming components that are descendants of this Provider. One Provider can be connected to many consumers. Providers can be nested to override values deeper within the tree.
+>>>>>>> ed88a240d9c97822cc2f02074306965a1a4f4ac4
 
 Tous les consommateurs qui sont descendants d'un `Provider` se rafraîchiront lorsque la prop `value` du `Provider` change. La propagation du `Provider` vers ses consommateurs descendants (y compris [`.contextType`](#classcontexttype) et [`useContext`](/docs/hooks-reference.html#usecontext)) n'est pas assujettie à la méthode `shouldComponentUpdate`, de sorte que le consommateur est mis à jour même lorsqu'un composant ancêtre saute sa mise à jour.
 

@@ -87,6 +87,7 @@ L'équipe noyau surveille les _pull requests_. Nous ferons une revue de la vôtr
 
 **Avant d’envoyer une _pull request_,** suivez attentivement ces instructions :
 
+<<<<<<< HEAD
 1. [Forkez le dépôt](https://github.com/facebook/react/fork) et créez votre branche depuis `master`.
 2. Lancez `yarn`  à la racine du dépôt.
 3. Si vous avez corrigé un bug ou ajouté du code qui devrait être testé, ajoutez les tests !
@@ -97,6 +98,18 @@ L'équipe noyau surveille les _pull requests_. Nous ferons une revue de la vôtr
 8. Assurez-vous que votre code passe la vérification du *linter* (`yarn lint`). Astuce : `yarn linc` ne vérifiera que les fichiers qui ont changé.
 9. Lancez les vérifications de types [Flow](https://flowtype.org/) (`yarn flow`).
 10. Si vous ne l'avez pas encore fait, remplissez le CLA (voir ci-dessous).
+=======
+1. Fork [the repository](https://github.com/facebook/react) and create your branch from `master`.
+2. Run `yarn` in the repository root.
+3. If you've fixed a bug or added code that should be tested, add tests!
+4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
+5. Run `yarn test --prod` to test in the production environment.
+6. If you need a debugger, run `yarn debug-test --watch TestName`, open `chrome://inspect`, and press "Inspect".
+7. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
+8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
+9. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
+10. If you haven't already, complete the CLA.
+>>>>>>> ed88a240d9c97822cc2f02074306965a1a4f4ac4
 
 ### Accord de licence de contribution (CLA) {#contributor-license-agreement-cla}
 
@@ -116,6 +129,7 @@ Afin que nous puissions accepter votre _pull request_, nous avons besoin que vou
 Après avoir cloné votre fork de React, lancez `yarn` afin d’aller chercher les dépendances du projet.
 Ensuite, vous pouvez lancer différentes commandes :
 
+<<<<<<< HEAD
 * `yarn lint` pour vérifier le style du code.
 * `yarn linc` fonctionne comme `yarn lint` mais va plus vite car elle ne vérifie que les fichiers qui ont changé sur votre branche.
 * `yarn test` lance la suite de tests complète.
@@ -128,6 +142,20 @@ Ensuite, vous pouvez lancer différentes commandes :
 * `yarn build react/index,react-dom/index --type=UMD` crée des *builds* UMD seulement des modules indiqués, ici React et ReactDOM.
 
 Nous recommandons d'utiliser `yarn test` (ou ses variations mentionnées ci-dessus) pour vous assurer de ne pas introduire de régressions en travaillant sur votre contribution. Cependant, il peut être pratique d'essayer votre build de React dans un vrai projet.
+=======
+* `yarn lint` checks the code style.
+* `yarn linc` is like `yarn lint` but faster because it only checks files that differ in your branch.
+* `yarn test` runs the complete test suite.
+* `yarn test --watch` runs an interactive test watcher.
+* `yarn test --prod` runs tests in the production environment.
+* `yarn test <pattern>` runs tests with matching filenames.
+* `yarn debug-test` is just like `yarn test` but with a debugger. Open `chrome://inspect` and press "Inspect".
+* `yarn flow` runs the [Flow](https://flowtype.org/) typechecks.
+* `yarn build` creates a `build` folder with all the packages.
+* `yarn build react/index,react-dom/index --type=UMD` creates UMD builds of just React and ReactDOM.
+
+We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However, it can be handy to try your build of React in a real project.
+>>>>>>> ed88a240d9c97822cc2f02074306965a1a4f4ac4
 
 Tout d’abord, lancez `yarn build`. Ça produira des _bundles_ pré-compilés dans le dossier `build`, et préparera les modules npm dans `build/packages`.
 
