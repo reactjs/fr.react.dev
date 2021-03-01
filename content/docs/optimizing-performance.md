@@ -2,8 +2,6 @@
 id: optimizing-performance
 title: Optimiser les performances
 permalink: docs/optimizing-performance.html
-prev: uncontrolled-components.html
-next: react-without-es6.html
 redirect_from:
   - "docs/advanced-performance.html"
 ---
@@ -49,8 +47,8 @@ Rappelez-vous que cela n'est nécessaire qu'avant le déploiement en production.
 Nous mettons à disposition des versions de React et de React DOM prêtes pour la production sous la forme de fichiers uniques :
 
 ```html
-<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 ```
 
 Rappelez-vous que seuls les fichiers React finissant par `.production.min.js` sont adaptés à la production.
@@ -80,10 +78,17 @@ N'oubliez pas que cela n'est nécessaire que pour générer votre version de pro
 Pour obtenir la version de production la plus efficace avec Browserify, installez quelques extensions :
 
 ```
+<<<<<<< HEAD
 # Si vous utilisez npm :
 npm install --save-dev envify terser uglifyify
 
 # Si vous utilisez Yarn :
+=======
+# If you use npm
+npm install --save-dev envify terser uglifyify
+
+# If you use Yarn
+>>>>>>> 4fa06486cdb8c5a1cd7e3d88b24e76b1920f33fd
 yarn add --dev envify terser uglifyify
 ```
 
@@ -386,7 +391,11 @@ function updateColorMap(colormap) {
 }
 ```
 
+<<<<<<< HEAD
 Cette fonctionnalité est apparue dans JavaScript avec ES2018.
+=======
+This feature was added to JavaScript in ES2018.
+>>>>>>> 4fa06486cdb8c5a1cd7e3d88b24e76b1920f33fd
 
 Si vous utilisez Create React App, la méthode `Object.assign` et la syntaxe de décomposition d'objets sont toutes deux disponibles par défaut.
 
