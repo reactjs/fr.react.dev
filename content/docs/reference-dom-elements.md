@@ -130,9 +130,15 @@ Depuis React 16, tous les attributs standards ou [personnalisés](/blog/2017/09/
 React a toujours fourni une API de gestion du DOM pensée pour JavaScript. Étant donné que les composants React acceptent autant les props personnalisées que celles liées au DOM, React utilise la convention `camelCase` tout comme les API DOM :
 
 ```js
+<<<<<<< HEAD
 <div tabIndex="-1" />      // Tout comme l'API DOM node.tabIndex
 <div className="Button" /> // Tout comme l'API DOM node.className
 <input readOnly={true} />  // Tout comme l'API DOM node.readOnly
+=======
+<div tabIndex={-1} />      // Just like node.tabIndex DOM API
+<div className="Button" /> // Just like node.className DOM API
+<input readOnly={true} />  // Just like node.readOnly DOM API
+>>>>>>> 9df266413be637705d78688ffdd3697e89b102d1
 ```
 
 Ces props fonctionnent comme les attributs HTML correspondants, à l'exception des cas spéciaux documentés ci-dessus.
