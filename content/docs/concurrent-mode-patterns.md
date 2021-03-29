@@ -193,10 +193,17 @@ function App() {
 
 Il ne nous aura fallu que sept lignes de code pour ajouter cette transition :
 
+<<<<<<< HEAD
 * Nous avons importé le Hook `useTransition` et l’avons utilisé dans le composant pour mettre à jour l’état.
 * Nous avons passé `{ timeoutMs: 3000 }` pour rester sur l’écran précédent à raison de 3 secondes maximum.
 * Nous avons enrobé la mise à jour de l’état par un `startTransition` pour indiquer à React qu’il pouvait choisir de la différer.
 * Nous utilisons `isPending` pour communiquer la notion d’une transition d’état en cours à l’utilisateur et désactiver le bouton.
+=======
+* We've imported the `useTransition` Hook and used it in the component that updates the state.
+* We've passed `{timeoutMs: 3000}` to stay on the previous screen for at most 3 seconds.
+* We've wrapped our state update into `startTransition` to tell React it's okay to delay it.
+* We're using `isPending` to communicate the state transition progress to the user and to disable the button.
+>>>>>>> c970f75a0ac3513f50e7a4989757c50cde0b7396
 
 Résultat : cliquer sur « Suivant » n’entraîne pas une transition d’état immédiate vers un état de chargement « indésirable » mais reste plutôt sur l’écran précédent pour y communiquer une progression.
 
