@@ -2,8 +2,6 @@
 id: higher-order-components
 title: Composants d’ordre supérieur
 permalink: docs/higher-order-components.html
-prev: web-components.html
-next: render-props.html
 ---
 
 Un composant d'ordre supérieur *(Higher-Order Component ou HOC, NdT)* est une technique avancée de React qui permet de réutiliser la logique de composants. Les HOC ne font pas partie de l'API de React à proprement parler, mais découlent de sa nature compositionnelle.
@@ -16,7 +14,11 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 Là où un composant transforme des props en interface utilisateur (UI), un composant d'ordre supérieur transforme un composant en un autre composant.
 
+<<<<<<< HEAD
 Les HOC sont courants dans des bibliothèques tierces de React, comme [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) dans Redux et [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) dans Relay.
+=======
+HOCs are common in third-party React libraries, such as Redux's [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) and Relay's [`createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer).
+>>>>>>> 49fd7d5f115378e3663b049f108a2d29b31290c8
 
 Dans ce guide, nous verrons pourquoi les composants d'ordre supérieurs sont utiles, et comment créer le vôtre.
 
@@ -321,7 +323,11 @@ L'utilisation de composants d'ordre supérieur est sujette à quelques limitatio
 
 ### Pas de HOC à l'intérieur de la méthode de rendu {#dont-use-hocs-inside-the-render-method}
 
+<<<<<<< HEAD
 L'algorithme de comparaison de React (qu'on appelle la réconciliation) utilise l'identité des composants pour déterminer s'il faut mettre à jour l'arborescence existante ou la jeter et en monter une nouvelle. Si le composant renvoyé par `render` est identique (`===`) au composant du rendu précédent, React met récursivement à jour l'arborescence en la comparant avec la nouvelle. S'ils ne sont pas identiques, l'ancienne arborescence est intégralement démontée.
+=======
+React's diffing algorithm (called [Reconciliation](/docs/reconciliation.html)) uses component identity to determine whether it should update the existing subtree or throw it away and mount a new one. If the component returned from `render` is identical (`===`) to the component from the previous render, React recursively updates the subtree by diffing it with the new one. If they're not equal, the previous subtree is unmounted completely.
+>>>>>>> 49fd7d5f115378e3663b049f108a2d29b31290c8
 
 En général, vous ne devriez pas avoir à y penser. Mais dans le cadre des HOC c'est important, puisque ça signifie que vous ne pouvez pas appliquer un HOC au sein de la méthode de rendu d'un composant :
 
