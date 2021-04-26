@@ -18,9 +18,15 @@ permalink: community/courses.html
 
 - [Codecademy : React 101](https://www.codecademy.com/learn/react-101) – Cours d'introduction de Codecademy pour React.
 
+<<<<<<< HEAD
 - [Egghead.io : Start Learning React](https://egghead.io/courses/start-learning-react) – Cette série explore les fondamentaux de React pour vous aider à démarrer.
 
 - [React Crash Course 2018](https://www.youtube.com/watch?v=Ke90Tje7VS0) – Un cours intensif pour débutants abordant les sujets les plus importants de React.
+=======
+- [Frontend Armory: React Fundamentals](https://frontarm.com/courses/react-fundamentals/) - Learn React without the buzzwords.
+
+- [Egghead.io: The Beginner's Guide to ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-react) - Free course for React newbies and those looking to get a better understanding of React fundamentals.
+>>>>>>> 5119600cf6f7a5dcbd4d2cc23f6b4ff55d2969b2
 
 - [React Armory : Learn React by Itself](https://reactarmory.com/guides/learn-react-by-itself) – Avec React Armory, vous pouvez apprendre React sans les fanfreluches.
 
@@ -30,7 +36,11 @@ permalink: community/courses.html
 
 - [Scrimba: Learn React for free](https://scrimba.com/g/glearnreact) - 48 tutoriels vidéo pratiques sur la construction d’applis React.
 
+<<<<<<< HEAD
 ## Cours payants {#paid-courses}
+=======
+- [Frontend Masters](https://frontendmasters.com/learn/react/) - Video courses on React.
+>>>>>>> 5119600cf6f7a5dcbd4d2cc23f6b4ff55d2969b2
 
 - [Egghead.io](https://egghead.io/browse/frameworks/react) – Courtes vidéos pédagogiques sur React et de nombreux autres sujets.
 
@@ -52,8 +62,14 @@ permalink: community/courses.html
 
 - [Tyler McGinnis](https://tylermcginnis.com/courses) – Tyler McGinnis donne accès à ses cours moyennant un abonnement mensuel. Ses cours comprennent notamment “React Fundamentals” et “Universal React”.
 
+<<<<<<< HEAD
 - [Mastering React](https://codewithmosh.com/p/mastering-react/) – Construisez des applications interactives professionnelles avec React.
 
 - [React Tutorial](https://react-tutorial.app) - Apprenez React pas à pas dans un environnement interactif avec des cartes mémoires.
 
 - [Road to React](https://www.roadtoreact.com/) - Votre parcours pour maîtriser React avec JavaScript.
+=======
+- [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.
+
+- [Epic React](https://epicreact.dev/) - Confidently Ship Well-Architected Production Ready React Apps Like a Pro
+>>>>>>> 5119600cf6f7a5dcbd4d2cc23f6b4ff55d2969b2

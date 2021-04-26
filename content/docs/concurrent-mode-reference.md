@@ -28,10 +28,16 @@ Cette page est une référence de l’API du [mode concurrent](/docs/concurrent-
 
 - [Activer le mode concurrent](#concurrent-mode)
     - [`createRoot`](#createroot)
+<<<<<<< HEAD
     - [`createBlockingRoot`](#createblockingroot)
 - [API de Suspense](#suspense)
     - [`<Suspense>`](#suspensecomponent)
     - [`<SuspenseList>`](#suspenselist)
+=======
+- [Suspense](#suspense)
+    - [`Suspense`](#suspensecomponent)
+    - [`SuspenseList`](#suspenselist)
+>>>>>>> 5119600cf6f7a5dcbd4d2cc23f6b4ff55d2969b2
     - [`useTransition`](#usetransition)
     - [`useDeferredValue`](#usedeferredvalue)
 
@@ -47,6 +53,7 @@ Remplace `ReactDOM.render(<App />, rootNode)` et active le mode concurrent.
 
 Pour en savoir plus sur le mode concurrent, consultez la [documentation du mode concurrent](/docs/concurrent-mode-intro.html).
 
+<<<<<<< HEAD
 ### `createBlockingRoot` {#createblockingroot}
 
 ```js
@@ -60,6 +67,9 @@ Choisir le mode concurrent introduit des modifications sémantiques dans le fonc
 Le mode bloquant fournit une petite partie des fonctionnalités du mode concurrent, et constitue une étape de migration intermédiaire pour les applis qui ne peuvent malheureusement pas migrer directement.
 
 ## API de Suspense {#suspense}
+=======
+## Suspense API {#suspense}
+>>>>>>> 5119600cf6f7a5dcbd4d2cc23f6b4ff55d2969b2
 
 ### `<Suspense>` {#suspensecomponent}
 
