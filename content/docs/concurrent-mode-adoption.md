@@ -21,6 +21,10 @@ next: concurrent-mode-reference.html
 >
 > Cette documentation est destinée aux personnes curieuses ou habituées à adopter les nouvelles technologies très tôt. **Si vous débutez en React, ne vous préoccupez pas de ces fonctionnalités** : vous n’avez pas besoin de les apprendre pour le moment.
 
+>Caution:
+>
+>All references below to "blocking mode" and `createBlockingRoot` are outdated and should be ignored.
+
 </div>
 
 - [Installation](#installation)
