@@ -398,7 +398,7 @@ Si vous ne fournissez aucun tableau, une nouvelle valeur sera calculée à chaqu
 const refContainer = useRef(initialValue);
 ```
 
-`useRef` renvoie un objet ref modifiable dont la propriété `current` est initialisée avec l'argument fourni (`initialValue`). L'objet renvoyé persistera pendant toute la durée de vie composant.
+`useRef` renvoie un objet ref modifiable dont la propriété `current` est initialisée avec l'argument fourni (`initialValue`). L'objet renvoyé persistera pendant toute la durée de vie du composant.
 
 Un cas d’usage courant consiste à accéder à un enfant de manière impérative :
 
