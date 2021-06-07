@@ -28,10 +28,16 @@ Cette page est une référence de l’API du [mode concurrent](/docs/concurrent-
 
 - [Activer le mode concurrent](#concurrent-mode)
     - [`createRoot`](#createroot)
+<<<<<<< HEAD
     - [`createBlockingRoot`](#createblockingroot)
 - [API de Suspense](#suspense)
     - [`<Suspense>`](#suspensecomponent)
     - [`<SuspenseList>`](#suspenselist)
+=======
+- [Suspense](#suspense)
+    - [`Suspense`](#suspensecomponent)
+    - [`SuspenseList`](#suspenselist)
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
     - [`useTransition`](#usetransition)
     - [`useDeferredValue`](#usedeferredvalue)
 
@@ -47,6 +53,7 @@ Remplace `ReactDOM.render(<App />, rootNode)` et active le mode concurrent.
 
 Pour en savoir plus sur le mode concurrent, consultez la [documentation du mode concurrent](/docs/concurrent-mode-intro.html).
 
+<<<<<<< HEAD
 ### `createBlockingRoot` {#createblockingroot}
 
 ```js
@@ -60,6 +67,9 @@ Choisir le mode concurrent introduit des modifications sémantiques dans le fonc
 Le mode bloquant fournit une petite partie des fonctionnalités du mode concurrent, et constitue une étape de migration intermédiaire pour les applis qui ne peuvent malheureusement pas migrer directement.
 
 ## API de Suspense {#suspense}
+=======
+## Suspense API {#suspense}
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
 
 ### `<Suspense>` {#suspensecomponent}
 
@@ -72,7 +82,11 @@ Le mode bloquant fournit une petite partie des fonctionnalités du mode concurre
 
 `Suspense` permet à vos composants « d’attendre » que quelque chose ait lieu avant qu’ils procèdent à leur rendu, en affichant dans l’intervalle une interface utilisateur (UI) de repli.
 
+<<<<<<< HEAD
 Dans cet example, `ProfileDetails` attend qu’un appel API asynchrone charge des données.  Pendant que nous attendons `ProfileDetails` et `ProfilePhoto`, nous affichons le repli `Chargement...` à leur place.  Il faut bien comprendre que jusqu’à ce que tous les enfants de `<Suspense>` soient chargés, nous continuerons à afficher l’UI de repli.
+=======
+In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` have loaded, we will continue to show the fallback.
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
 
 `Suspense` prend deux props :
 

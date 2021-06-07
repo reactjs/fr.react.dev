@@ -14,10 +14,16 @@ Podcasts dédiés à React et épisodes de podcast individuels avec des discussi
 
 ## Podcasts {#podcasts}
 
+<<<<<<< HEAD
 - [The React Podcast](https://reactpodcast.simplecast.fm/) : le podcast sur tout React.js, hébergé par [React Training](https://reacttraining.com)
 - [JavaScript Air](https://javascriptair.com/) : tout sur JavaScript (ne produit actuellement pas de nouveaux épisodes)
 - [React 30](https://react30.com/) : un podcast de 30 minutes consacré à React (transféré dans [The React Podcast](https://reactpodcast.simplecast.fm/)).
 - [React Native Radio](https://devchat.tv/react-native-radio)
+=======
+- [React Native Radio](https://reactnativeradio.com) - Exploring React Native Together, hosted by [Infinite Red](https://infinite.red)
+
+- [React Wednesdays](https://www.telerik.com/react-wednesdays) - Weekly live streams with the best and brightest in the React world
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
 
 ## Épisodes {#episodes}
 

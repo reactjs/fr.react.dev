@@ -36,7 +36,11 @@ React a été conçu dès le départ pour une adoption progressive, et **vous po
 
 ### Terrains de jeu en ligne {#online-playgrounds}
 
+<<<<<<< HEAD
 Si vous souhaitez tester React, vous pouvez utiliser un terrain de jeu en ligne. Essayez un modèle _Hello World_ sur [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template) ou [Stackblitz](https://stackblitz.com/fork/react).
+=======
+If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), or [Stackblitz](https://stackblitz.com/fork/react).
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
 
 Si vous préférez utiliser votre propre éditeur de texte, vous pouvez aussi [télécharger ce fichier HTML](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), l'éditer et l'ouvrir à partir du système de fichiers local dans votre navigateur. Il transforme le code à la volée lors de l’exécution, ce qui est particulièrement lent. Pour cette raison, nous vous recommandons de ne l'utiliser que pour des démos simples.
 
