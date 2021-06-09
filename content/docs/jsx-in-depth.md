@@ -110,7 +110,7 @@ function hello(props) {
 }
 
 function HelloWorld() {
-  // Faux ! React pense que <hello /> est une balise HTML car il commence pas par une majuscule :
+  // Faux ! React pense que <hello /> est une balise HTML car il commence pas par une minuscule :
   return <hello toWhat="World" />;
 }
 ```
