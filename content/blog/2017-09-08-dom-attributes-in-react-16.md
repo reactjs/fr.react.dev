@@ -29,10 +29,14 @@ Avec React 16, nous apportons un changement. Désormais, tous les attributs inco
 React a toujours fourni une API pour le DOM centrée sur Javascript. Étant donné que les composants React acceptent souvent à la fois des propriétés personnalisées et d’autres liées au DOM, il est logique que React utilise la convention `camelCase` tout comme les API DOM :
 
 ```js
-<div tabIndex="-1" />
+<div tabIndex={-1} />
 ```
 
+<<<<<<< HEAD
 Cet aspect n'a pas changé. Cependant, la façon dont nous l'avons géré par le passé nous a obligés à maintenir une liste blanche de tous les attributs DOM React valides dans le paquet :
+=======
+This has not changed. However, the way we enforced it in the past forced us to maintain an allowlist of all valid React DOM attributes in the bundle:
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 
 ```js
 // ...
@@ -47,18 +51,32 @@ Cette approche présentait deux inconvénients :
 
 * Vous ne pouviez pas [passer un attribut personnalisé](https://github.com/facebook/react/issues/140). C’est pourtant utile pour fournir des attributs non standard spécifiques au navigateur, essayer de nouvelles API DOM et s'intégrer avec des bibliothèques tierces imposant certaines contraintes.
 
+<<<<<<< HEAD
 * La liste d'attributs n'a cessé de croître au fil du temps, mais la plupart des noms d'attributs canoniques React sont déjà valides dans le DOM. Retirer la majorité de la liste blanche nous a aidés à diminuer un peu la taille du paquet.
 
 Avec la nouvelle approche, ces deux problèmes sont résolus. Avec React 16, vous pouvez désormais transmettre des attributs personnalisés à tous les éléments HTML et SVG, et React n'a pas à inclure de liste blanche d'attributs dans sa version de production.
+=======
+* The attribute list kept growing over time, but most React canonical attribute names are already valid in the DOM. Removing most of the allowlist helped us reduce the bundle size a little bit.
+
+With the new approach, both of these problems are solved. With React 16, you can now pass custom attributes to all HTML and SVG elements, and React doesn't have to include the whole attribute allowlist in the production version.
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 
 ** Notez que vous devez toujours utiliser la nomenclature canonique React pour les attributs connus :**
 
 ```js
+<<<<<<< HEAD
 // Oui, s'il vous plaît
 <div tabIndex="-1" />
 
 // Attention : propriété du DOM invalide `tabindex`. Vous voulez certainement dire `tabIndex` ?
 <div tabindex="-1" />
+=======
+// Yes, please
+<div tabIndex={-1} />
+
+// Warning: Invalid DOM property `tabindex`. Did you mean `tabIndex`?
+<div tabindex={-1} />
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 ```
 
 En d'autres termes, la façon dont vous utilisez les composants du DOM dans React n'a pas changé, mais vous disposez désormais de nouvelles fonctionnalités.
@@ -120,8 +138,13 @@ En voici une liste détaillée.
 * **Attributs connus avec un nom canonique React différent :**  
 
     ```js
+<<<<<<< HEAD
     <div tabindex="-1" />
     <div class="salut" />
+=======
+    <div tabindex={-1} />
+    <div class="hi" />
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
     ```
 
     React 15 : génère un avertissement et les ignore.

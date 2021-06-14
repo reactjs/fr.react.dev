@@ -55,7 +55,11 @@ Dans la mesure où les refs à base d’objets sont largement utilisées comme s
 
 React proposait autrefois `findDOMNode` pour rechercher dans l'arborescence le nœud DOM associé à une instance de classe. Normalement, vous n'avez pas besoin de ça car vous pouvez [attacher directement une ref à un nœud du DOM](/docs/refs-and-the-dom.html#creating-refs).
 
+<<<<<<< HEAD
 `findDOMNode` pouvait aussi être utilisée sur des composants à base de classe, mais ça cassait l’encapsulation en permettant à un parent d’exiger que certains enfants soient présents dans le rendu. Cette technique gênait les refactorisations car un composant ne pouvait plus changer ses détails d'implémentation en confiance, dans la mesure où des parents étaient susceptibles d’obtenir un accès direct à son nœud DOM. `findDOMNode` ne renvoie par ailleurs que le premier enfant, alors qu’avec les Fragments un composant peut renvoyer plusieurs nœuds DOM. `findDOMNode` est aussi une API temporalisée : sa valeur renvoyée n'est pas mise à jour automatiquement, de sorte que si un composant enfant se rafraîchit avec un autre nœud DOM, l'API ne vous en informe pas. En d'autres termes, `findDOMNode` ne fonctionnait que pour les composants renvoyant un unique nœud DOM qui ne changeait jamais.
+=======
+`findDOMNode` can also be used on class components but this was breaking abstraction levels by allowing a parent to demand that certain children were rendered. It creates a refactoring hazard where you can't change the implementation details of a component because a parent might be reaching into its DOM node. `findDOMNode` only returns the first child, but with the use of Fragments, it is possible for a component to render multiple DOM nodes. `findDOMNode` is a one time read API. It only gave you an answer when you asked for it. If a child component renders a different node, there is no way to handle this change. Therefore `findDOMNode` only worked if components always return a single DOM node that never changes.
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 
 Préférez une approche explicite en passant une ref à votre composant personnalisé et en la transférant au DOM grâce au [transfert de ref](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
 
@@ -117,7 +121,15 @@ Au premier abord, ce code ne semble pas problématique. Cependant, si `SharedApp
 
 En invoquant volontairement deux fois les méthodes comme le constructeur d'un composant, le mode strict facilite la détection de ces schémas.
 
+<<<<<<< HEAD
 ### Détecter l'API dépréciée de Contexte {#detecting-legacy-context-api}
+=======
+> Note:
+>
+> Starting with React 17, React automatically modifies the console methods like `console.log()` to silence the logs in the second call to lifecycle functions. However, it may cause undesired behavior in certain cases where [a workaround can be used](https://github.com/facebook/react/issues/20090#issuecomment-715927125).
+
+### Detecting legacy context API {#detecting-legacy-context-api}
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 
 L'API dépréciée de Contexte est source d'erreur, et sera retirée dans une future version majeure de React. Elle fonctionne toujours dans les versions 16.x mais le mode strict affichera ce message d'avertissement :
 
