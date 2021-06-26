@@ -30,6 +30,8 @@ permalink: community/courses.html
 
 - [Scrimba: Learn React for free](https://scrimba.com/g/glearnreact) - 48 tutoriels vidéo pratiques sur la construction d’applis React.
 
+- [Grafikart : Formation React](https://grafikart.fr/formations/react) -  36 chapitres allant des notions de base à des notions plus avancé sur React.
+
 ## Cours payants {#paid-courses}
 
 - [Egghead.io](https://egghead.io/browse/frameworks/react) – Courtes vidéos pédagogiques sur React et de nombreux autres sujets.
