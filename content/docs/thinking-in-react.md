@@ -84,7 +84,11 @@ Pour rendre votre UI interactive, vous devez pouvoir déclencher des modificatio
 
 Afin de construire correctement votre appli, vous devez d'abord penser à l'état modifiable minimal dont votre appli a besoin. La règle est simple : [*ne vous répétez pas*](https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas) *(Don’t Repeat Yourself, aussi désigné par l’acronyme DRY, NdT)*. Déterminez la représentation la plus minimale possible de l'état dont votre appli a besoin, et calculez le reste à la demande. Par exemple, si vous construisez une liste de tâches, gardez un tableau des tâches sous la main ; pas besoin d’une variable d'état pour le compteur. Au lieu de ça, quand vous voulez afficher  le nombre de tâches, prenez la longueur du tableau de tâches.
 
+<<<<<<< HEAD
 Pensez à toutes les données de notre application. On a :
+=======
+Think of all the pieces of data in our example application. We have:
+>>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
 
   * La liste des produits
   * Le texte de recherche saisi par l'utilisateur

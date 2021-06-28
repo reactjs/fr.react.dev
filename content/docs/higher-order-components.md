@@ -2,8 +2,6 @@
 id: higher-order-components
 title: Composants d’ordre supérieur
 permalink: docs/higher-order-components.html
-prev: web-components.html
-next: render-props.html
 ---
 
 Un composant d'ordre supérieur *(Higher-Order Component ou HOC, NdT)* est une technique avancée de React qui permet de réutiliser la logique de composants. Les HOC ne font pas partie de l'API de React à proprement parler, mais découlent de sa nature compositionnelle.
@@ -16,7 +14,11 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 Là où un composant transforme des props en interface utilisateur (UI), un composant d'ordre supérieur transforme un composant en un autre composant.
 
+<<<<<<< HEAD
 Les HOC sont courants dans des bibliothèques tierces de React, comme [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) dans Redux et [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) dans Relay.
+=======
+HOCs are common in third-party React libraries, such as Redux's [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) and Relay's [`createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer).
+>>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
 
 Dans ce guide, nous verrons pourquoi les composants d'ordre supérieurs sont utiles, et comment créer le vôtre.
 
@@ -298,7 +300,11 @@ La fonction utilitaire `compose` est fournie par de nombreuses bibliothèques ti
 
 ## Convention : enrobez le `displayName` pour faciliter le débogage {#convention-wrap-the-display-name-for-easy-debugging}
 
+<<<<<<< HEAD
 Tout comme n'importe quel autre composant, les composants conteneurs créés par des HOC apparaissent dans les [Outils de développement React](https://github.com/facebook/react-devtools). Pour faciliter votre débogage, donnez-leur un nom affichable qui indique qu'ils sont le résultat d'un HOC.
+=======
+The container components created by HOCs show up in the [React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) like any other component. To ease debugging, choose a display name that communicates that it's the result of a HOC.
+>>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
 
 Le technique la plus répandue consiste à enrober le nom d'affichage du composant enrobé. Par exemple, si votre composant d'ordre supérieur s'appelle `withSubscription`, et que le nom d'affichage du composant enrobé est `CommentList`, utilisez le nom d'affichage `WithSubscription(CommentList)` :
 
@@ -321,7 +327,11 @@ L'utilisation de composants d'ordre supérieur est sujette à quelques limitatio
 
 ### Pas de HOC à l'intérieur de la méthode de rendu {#dont-use-hocs-inside-the-render-method}
 
+<<<<<<< HEAD
 L'algorithme de comparaison de React (qu'on appelle la réconciliation) utilise l'identité des composants pour déterminer s'il faut mettre à jour l'arborescence existante ou la jeter et en monter une nouvelle. Si le composant renvoyé par `render` est identique (`===`) au composant du rendu précédent, React met récursivement à jour l'arborescence en la comparant avec la nouvelle. S'ils ne sont pas identiques, l'ancienne arborescence est intégralement démontée.
+=======
+React's diffing algorithm (called [Reconciliation](/docs/reconciliation.html)) uses component identity to determine whether it should update the existing subtree or throw it away and mount a new one. If the component returned from `render` is identical (`===`) to the component from the previous render, React recursively updates the subtree by diffing it with the new one. If they're not equal, the previous subtree is unmounted completely.
+>>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
 
 En général, vous ne devriez pas avoir à y penser. Mais dans le cadre des HOC c'est important, puisque ça signifie que vous ne pouvez pas appliquer un HOC au sein de la méthode de rendu d'un composant :
 

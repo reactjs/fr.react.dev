@@ -40,7 +40,11 @@ React est une bibliothèque JavaScript, donc nous supposerons que vous avez une 
 
 >Remarque
 >
+<<<<<<< HEAD
 >Ce guide utilise occasionnellement quelques nouvelles syntaxes de JavaScript dans les exemples. Si vous n'avez pas travaillé avec JavaScript ces dernières années, [ces trois points](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) devraient vous aider.
+=======
+>This guide occasionally uses some newer JavaScript syntax in the examples. If you haven't worked with JavaScript in the last few years, [these three points](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) should get you most of the way.
+>>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
 
 
 ## Commençons ! {#lets-get-started}

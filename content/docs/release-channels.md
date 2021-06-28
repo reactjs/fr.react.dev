@@ -18,7 +18,11 @@ Chaque canal de sortie React est conçu pour des cas d’usages bien spécifique
 - [**Next**](#next-channel) est basée sur la branche `master` du dépôt de code source de React.  Considérez-le comme des versions candidates de la prochaine version semver mineure.  Utilisez-le pour faire des tests d’intégration entre React et des projets tiers.
 - [**Experimental**](#experimental-channel) comprend les API et fonctionnalités expérimentales qu’on ne trouve pas dans les versions stables.  C’est là aussi basé sur la branche `master`, mais des drapeaux de fonctionnalités supplémentaires ont été activés.  Utilisez ce canal pour essayer des fonctionnalités à venir en amont de leur sortie officielle.
 
+<<<<<<< HEAD
 Toutes ces versions sont publiées sur npm, mais seul *Latest* utilise [une gestion sémantique des versions](/docs/faq-versioning.html). Les pré-versions (celles des canaux *Next* et *Experimental*) ont des versions dont l’identifiant est un hash basé sur leur contenu, par exemple `0.0.0-1022ee0ec` pour *Next* et `0.0.0-experimental-1022ee0ec` pour *Experimental*.
+=======
+All releases are published to npm, but only Latest uses [semantic versioning](/docs/faq-versioning.html). Prereleases (those in the Next and Experimental channels) have versions generated from a hash of their contents and the commit date, e.g. `0.0.0-68053d940-20210623` for Next and `0.0.0-experimental-68053d940-20210623` for Experimental.
+>>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
 
 **Latest est le seul canal de sortie officiellement autorisé pour des applications visant les utilisateurs finaux.**  Les sorties des canaux *Next* et *Experimental* sont fournies dans une optique de tests uniquement, et leur comportement est susceptible de varier d’une sortie à l’autre.  Elles ne respectent pas le protocole semver que nous utilisons pour les sorties du canal *Latest*.
 
@@ -40,7 +44,11 @@ L’ampleur des changements entre la version *Next* la plus récente et la derni
 
 **N’utilisez pas les pré-versions dans des applications pour utilisateurs finaux.**
 
+<<<<<<< HEAD
 Les sorties de *Next* sont publiées avec l’étiquette `next` sur npm.  Les numéros de versions sont générés sur la base d’un hash de leur contenu, par exemple `0.0.0-1022ee0ec`.
+=======
+Releases in Next are published with the `next` tag on npm. Versions are generated from a hash of the build's contents and the commit date, e.g. `0.0.0-68053d940-20210623`.
+>>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
 
 #### Utiliser le canal *Next* pour des tests d’intégration {#using-the-next-channel-for-integration-testing}
 
@@ -75,7 +83,11 @@ Tout comme *Next*, le canal *Experimental* est un canal de pré-versions qui pis
 
 En général, une mise à jour sur *Next* est accompagnée par une mise à jour correspondante sur *Experimental*.  Elles sont basées sur la même révision de source, mais sont construites avec des jeux distincts de drapeaux de fonctionnalités.
 
+<<<<<<< HEAD
 Les versions sur *Experimental* peuvent différer considérablement de celles sur *Next* et *Latest*. **N’utilisez pas les pré-versions *Experimental* dans les applications pour utilisateurs finaux.**  Vous pouvez vous attendre à des ruptures fréquentes de compatibilité ascendante dans les sorties du canal *Experimental*.
+=======
+Releases in Experimental are published with the `experimental` tag on npm. Versions are generated from a hash of the build's contents and the commit date, e.g. `0.0.0-experimental-68053d940-20210623`.
+>>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
 
 Les sorties de *Experimental* sont publiées avec l’étiquette `experimental` sur npm.  Les numéros de versions sont générés sur la base d’un hash de leur contenu, par exemple `0.0.0-experimental-1022ee0ec`.
 
