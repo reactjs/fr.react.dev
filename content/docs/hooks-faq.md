@@ -980,6 +980,7 @@ Il existe une liste interne de « cellules mémoire » associées à chaque co
 
 Les Hooks font la synthèse d’idées issues de plusieurs sources :
 
+<<<<<<< HEAD
 * Nos précédentes expériences autour d’API fonctionnelles dans le dépôt [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State).
 * Les expériences de la communauté React avec les API de props de rendu, notamment le [composant Reactions](https://github.com/reactions/component) de [Ryan Florence](https://github.com/ryanflorence).
 * La proposition de [mot-clé `adopt`](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) de [Dominic Gannaway](https://github.com/trueadm) comme sucre syntaxique pour les props de rendu.
@@ -987,5 +988,14 @@ Les Hooks font la synthèse d’idées issues de plusieurs sources :
 * Les [composants réducteurs](https://reasonml.github.io/reason-react/docs/fr/state-actions-reducer.html) de ReasonReact.
 * Les [abonnements](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html) *(Subscriptions, NdT)* en Rx.
 * Les [effets algébriques](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting) de OCaml Multicore.
+=======
+* Our old experiments with functional APIs in the [react-future](https://github.com/reactjs/react-future/tree/main/07%20-%20Returning%20State) repository.
+* React community's experiments with render prop APIs, including [Ryan Florence](https://github.com/ryanflorence)'s [Reactions Component](https://github.com/reactions/component).
+* [Dominic Gannaway](https://github.com/trueadm)'s [`adopt` keyword](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) proposal as a sugar syntax for render props.
+* State variables and state cells in [DisplayScript](http://displayscript.org/introduction.html).
+* [Reducer components](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html) in ReasonReact.
+* [Subscriptions](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html) in Rx.
+* [Algebraic effects](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting) in Multicore OCaml.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 [Sebastian Markbåge](https://github.com/sebmarkbage) a proposé la conception initiale des Hooks, peaufinée ensuite par [Andrew Clark](https://github.com/acdlite), [Sophie Alpert](https://github.com/sophiebits), [Dominic Gannaway](https://github.com/trueadm) et d'autres membres de l'équipe React.

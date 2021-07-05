@@ -19,6 +19,7 @@ Maintenant que Create React App 2.0 n'est plus en beta, voyons ce qu'il y a de n
 
 Voici un bref résumé des nouveautés de cette version :
 
+<<<<<<< HEAD
 * 🎉 Plus d'options de style : vous pouvez utiliser [Sass](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-sass-stylesheet) et [les modules CSS](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-modules-stylesheet) d’entrée de jeu.
 * 🐠 Nous avons mis à jour [Babel 7](https://babeljs.io/blog/2018/08/27/7.0.0), y compris la prise en charge de la [syntaxe de fragments React](/docs/fragments.html#short-syntax) et de nombreuses corrections de bugs.
 * 📦 Nous avons mis à jour [Webpack 4](https://medium.com/webpack/webpack-4-released-today-6cdb994702d4), qui découpe automatiquement les modules JS de manière plus intelligente.
@@ -28,6 +29,20 @@ Voici un bref résumé des nouveautés de cette version :
 * 🌠 Vous pouvez maintenant [importer un SVG en tant que composant React](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-svgs) et utilisez-le dans JSX.
 * 🐈 Vous pouvez essayer la mode expérimentale [Yarn Plug'n'Play](https://github.com/yarnpkg/rfcs/pull/101) qui supprime `node_modules`.
 * 🕸 Vous pouvez maintenant [brancher votre propre implémentation de proxy](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#configuring-the-proxy-manually) en développement pour correspondre à votre API back-end.
+=======
+* 🎉 More styling options: you can use [Sass](https://github.com/facebook/create-react-app/blob/main/packages/react-scripts/template/README.md#adding-a-sass-stylesheet) and [CSS Modules](https://github.com/facebook/create-react-app/blob/main/packages/react-scripts/template/README.md#adding-a-css-modules-stylesheet) out of the box.
+* 🐠 We updated to [Babel 7](https://babeljs.io/blog/2018/08/27/7.0.0), including support for the [React fragment syntax](/docs/fragments.html#short-syntax) and many bugfixes.
+* 📦 We updated to [webpack 4](https://medium.com/webpack/webpack-4-released-today-6cdb994702d4), which automatically splits JS bundles more intelligently.
+* 🃏 We updated to [Jest 23](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing.html), which includes an [interactive mode](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing#interactive-snapshot-mode) for reviewing snapshots.
+* 💄 We added [PostCSS](https://preset-env.cssdb.org/features#stage-3) so you can use new CSS features in old browsers.
+* 💎 You can use [Apollo](https://github.com/leoasis/graphql-tag.macro#usage), [Relay Modern](https://github.com/facebook/relay/pull/2171#issuecomment-411459604), [MDX](https://github.com/facebook/create-react-app/issues/5149#issuecomment-425396995), and other third-party [Babel Macros](https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros) transforms.
+* 🌠 You can now [import an SVG as a React component](https://facebook.github.io/create-react-app/docs/adding-images-fonts-and-files#adding-svgs), and use it in JSX.
+* 🐈 You can try the experimental [Yarn Plug'n'Play mode](https://github.com/yarnpkg/rfcs/pull/101) that removes `node_modules`.
+* 🕸 You can now [plug your own proxy implementation](https://github.com/facebook/create-react-app/blob/main/packages/react-scripts/template/README.md#configuring-the-proxy-manually) in development to match your backend API.
+* 🚀 You can now use [packages written for latest Node versions](https://github.com/sindresorhus/ama/issues/446#issuecomment-281014491) without breaking the build.
+* ✂️ You can now optionally get a smaller CSS bundle if you only plan to target modern browsers.
+* 👷‍♀️ Service workers are now opt-in and are built using Google's [Workbox](https://developers.google.com/web/tools/workbox/).
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 * 🚀 Vous pouvez maintenant utiliser les [paquets écrits pour les dernières versions de Node](https://github.com/sindresorhus/ama/issues/446#issuecomment-281014491) sans casser la construction.
 * ✂️ Vous pouvez maintenant opter pour un *bundle* CSS plus petit si vous prévoyez seulement de cibler les navigateurs modernes.
@@ -65,6 +80,10 @@ Voici quelques autres conseils pour vous aider à démarrer.
 
 **Si vous avez déjà éjecté mais que vous voulez maintenant mettre à niveau,** une solution courante consiste à trouver les commits où vous avez été éjecté (et tous les commits ultérieurs modifiant la configuration), les renverser (au sens `git revert`), mettre à niveau, puis éventuellement éjecter à nouveau plus tard. Il est également possible que la fonctionnalité pour laquelle vous aviez éjectée (peut-être Sass ou les modules CSS ?) soit maintenant prise en charge de base.
 
+<<<<<<< HEAD
+=======
+**If `npm start` still doesn't quite work for you after the upgrade,** [check out the more detailed migration instructions in the release notes](https://github.com/facebook/create-react-app/releases/tag/v2.0.3). There *are* a few breaking changes in this release but the scope of them is limited, so they shouldn't take more than a few hours to sort out. Note that **[support for older browsers](https://github.com/facebook/create-react-app/blob/main/packages/react-app-polyfill/README.md) is now opt-in** to reduce the polyfill size.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 
 > Remarque
@@ -75,6 +94,7 @@ Voici quelques autres conseils pour vous aider à démarrer.
 
 Voici une courte liste des ruptures de compatibilité ascendante dans cette version :
 
+<<<<<<< HEAD
 * Node 6 n'est plus pris en charge.
 * La prise en charge des anciens navigateurs (comme IE 9 jusqu'à IE 11) est maintenant opt-in avec [un paquet séparé](https://github.com/facebook/create-react-app/tree/master/packages/react-app-polyfill).
 * La découpe de code avec `import()` suit désormais au plus près la spécification, alors que `require.ensure()` est désactivé.
@@ -82,6 +102,15 @@ Voici une courte liste des ruptures de compatibilité ascendante dans cette vers
 * La prise en charge de la spécification d'un objet en tant que paramètre `proxy` a été remplacée par la prise en charge d'un module proxy personnalisé.
 * L'extension `.mjs` n’est plus prise en charge en attendant que l'écosystème qui l'entoure se stabilise.
 * Les définitions PropTypes sont automatiquement supprimées des builds de production.
+=======
+* Node 6 is no longer supported.
+* Support for older browsers (such as IE 9 to IE 11) is now opt-in with a [separate package](https://github.com/facebook/create-react-app/tree/main/packages/react-app-polyfill).
+* Code-splitting with `import()` now behaves closer to specification, while `require.ensure()` is disabled.
+* The default Jest environment now includes jsdom.
+* Support for specifying an object as `proxy` setting was replaced with support for a custom proxy module.
+* Support for `.mjs` extension was removed until the ecosystem around it stabilizes.
+* PropTypes definitions are automatically stripped out of the production builds.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 Si l'un ou l'autre de ces points vous concerne, les [notes de version 2.0.3](https://github.com/facebook/create-react-app/releases/tag/v2.0.3) contiennent des instructions plus détaillées à leur sujet.
 

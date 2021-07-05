@@ -52,11 +52,18 @@ Ensuite, ajoutez trois balises `<script>` à votre page HTML, juste avant la fer
 ```html{6,7,10}
   <!-- ... autres contenus HTML ... -->
 
+<<<<<<< HEAD
   <!-- Charge React -->
   <!-- Remarque : pour le déploiement, remplacez "development.js"
        par "production.min.js" -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+=======
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
   <!-- Charge notre composant React -->
   <script src="like_button.js"></script>
@@ -84,7 +91,11 @@ const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
+<<<<<<< HEAD
 Ces deux lignes de code vont remplacer le contenu de la `<div>` que nous avons ajoutée dans la première étape. Ainsi elles afficheront notre composant React sous forme de bouton « J’aime ».
+=======
+These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 ### Et voilà ! {#thats-it}
 
@@ -115,8 +126,8 @@ Avant de déployer votre site web en production, gardez à l'esprit qu'un JavaSc
 Si vous minifiez déjà vos scripts applicatifs et si vous vous assurez de référencer les versions de React dont les noms se terminent en `production.min.js`, **votre site sera prêt pour la production** :
 
 ```js
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 Si vous n'avez pas de minification déjà en place pour vos scripts, voici [une façon de faire](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
@@ -159,7 +170,11 @@ La façon la plus simple et rapide de tester JSX dans votre projet est d'ajouter
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
+<<<<<<< HEAD
 Vous pouvez désormais utiliser JSX dans les fichiers chargés par n'importe quelle balise `<script>` simplement en lui ajoutant l'attribut `type="text/babel"`. Vous pouvez télécharger et tester cet exemple contenant un [fichier HTML utilisant JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html).
+=======
+Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) that you can download and play with.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 Cette approche est acceptable pour se former ou réaliser des démos simples. Cependant, elle va ralentir l'affichage de votre site, elle n'est donc **pas adaptée pour la production**. Lorsque vous serez prêt·e à aller plus loin, supprimez la balise `<script>` et l'attribut `type="text/babel"` que vous venez d'ajouter. Dans la section suivante, nous verrons plutôt comment configurer le préprocesseur JSX afin de convertir automatiquement toutes les balises `<script>`.
 

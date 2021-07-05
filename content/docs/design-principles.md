@@ -22,7 +22,11 @@ La caractéristique principale de React est la composition de composants. Les co
 
 Par exemple, il devrait être possible d'introduire un état local dans un composant sans changer les composants qui l'utilisent. Dans le même esprit, il devrait être possible d'ajouter du code d'initialisation et de nettoyage à n'importe quel composant lorsque c'est nécessaire.
 
+<<<<<<< HEAD
 Il n'y a rien de « mauvais » à utiliser les méthodes d'état ou de cycle de vie dans les composants. Comme n'importe quelle fonctionnalité puissante, elles devraient être utilisées avec modération, mais nous n'avons aucune intention de les retirer. Au contraire, nous pensons qu'elles font partie intégrante de ce qui rend React utile. Nous ajouterons peut-être [des approches plus fonctionnelles](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) (en anglais) à l'avenir, mais les méthodes d'état local et de cycle de vie feront partie de ce modèle.
+=======
+There is nothing "bad" about using state or lifecycle methods in components. Like any powerful feature, they should be used in moderation, but we have no intention to remove them. On the contrary, we think they are integral parts of what makes React useful. We might enable [more functional patterns](https://github.com/reactjs/react-future/tree/main/07%20-%20Returning%20State) in the future, but both local state and lifecycle methods will be a part of that model.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 Les composants sont souvent décrits comme de « simples fonctions » mais à nos yeux ils doivent être bien plus que ça pour être utiles. Avec React, les composants décrivent un comportement composable, ce qui inclut le rendu, le cycle de vie et l'état local. Certaines bibliothèques externes telles que [Relay](https://facebook.github.io/relay/) ajoutent d'autres responsabilités aux composants comme la description des dépendances de données. Il est possible que ces idées reviennent dans React sous une forme ou une autre.
 
@@ -92,7 +96,11 @@ Il y a une blague interne dans l'équipe selon laquelle React aurait dû s'appel
 
 Nous tenons à offrir une bonne expérience de développement.
 
+<<<<<<< HEAD
 Par exemple, nous maintenons les [React DevTools](https://github.com/facebook/react-devtools) qui vous permettent d'inspecter l'arbre des composants React dans Chrome et Firefox. Nous avons entendu dire que ça améliore considérablement la productivité des ingénieur·e·s de Facebook et de la communauté.
+=======
+For example, we maintain [React DevTools](https://github.com/facebook/react/tree/main/packages/react-devtools) which let you inspect the React component tree in Chrome and Firefox. We have heard that it brings a big productivity boost both to the Facebook engineers and to the community.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 Nous essayons également de faire un effort supplémentaire pour fournir des avertissements utiles aux développeurs. Par exemple, React vous avertit durant le développement si vous imbriquez des balises d'une façon que le navigateur ne comprend pas, ou si vous faites une faute de frappe courante dans l'API. Les avertissements aux développeurs et les vérifications associées sont la raison principale pour laquelle la version de développement de React est plus lente que celle de production.
 

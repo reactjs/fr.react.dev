@@ -17,9 +17,18 @@ next: concurrent-mode-adoption.html
 
 > Attention
 >
+<<<<<<< HEAD
 > Cette page décrit **des fonctionnalités expérimentales qui [ne sont pas encore disponibles](/docs/concurrent-mode-adoption.html) dans une version stable**. Ne vous basez pas sur les builds expérimentaux de React pour vos applis en production. Ces fonctionnalités sont susceptibles d’évoluer de façon significative et sans avertissement avant d’intégrer officiellement React.
 >
 > Cette documentation est destinée aux personnes curieuses ou habituées à adopter les nouvelles technologies très tôt. **Si vous débutez en React, ne vous préoccupez pas de ces fonctionnalités** : vous n’avez pas besoin de les apprendre pour le moment. Par exemple, si vous cherchez un tutoriel sur le chargement de données qui fonctionne dès maintenant, lisez plutôt [cet article](https://www.robinwieruch.de/react-hooks-fetch-data/).
+=======
+>This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>
+>Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
+) for the up-to-date information.**
+>
+>Before React 18 is released, we will replace this page with stable documentation.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 </div>
 
@@ -193,10 +202,17 @@ function App() {
 
 Il ne nous aura fallu que sept lignes de code pour ajouter cette transition :
 
+<<<<<<< HEAD
 * Nous avons importé le Hook `useTransition` et l’avons utilisé dans le composant pour mettre à jour l’état.
 * Nous avons passé `{ timeoutMs: 3000 }` pour rester sur l’écran précédent à raison de 3 secondes maximum.
 * Nous avons enrobé la mise à jour de l’état par un `startTransition` pour indiquer à React qu’il pouvait choisir de la différer.
 * Nous utilisons `isPending` pour communiquer la notion d’une transition d’état en cours à l’utilisateur et désactiver le bouton.
+=======
+* We've imported the `useTransition` Hook and used it in the component that updates the state.
+* We've passed `{timeoutMs: 3000}` to stay on the previous screen for at most 3 seconds.
+* We've wrapped our state update into `startTransition` to tell React it's okay to delay it.
+* We're using `isPending` to communicate the state transition progress to the user and to disable the button.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 Résultat : cliquer sur « Suivant » n’entraîne pas une transition d’état immédiate vers un état de chargement « indésirable » mais reste plutôt sur l’écran précédent pour y communiquer une progression.
 
