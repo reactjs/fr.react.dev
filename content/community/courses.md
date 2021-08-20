@@ -12,7 +12,7 @@ permalink: community/courses.html
 
 ## Cours gratuits {#free-courses}
 
-- [OpenClassrooms : réalisez une application web avec React](https://openclassrooms.com/fr/courses/4664381-realisez-une-application-web-avec-react-js) – Cours détaillé sur l'essentiel de React, y compris comment tester vos composants **(en français)**
+- [OpenClassrooms : débutez avec React](https://openclassrooms.com/fr/courses/7008001-debutez-avec-react) – Cours détaillé sur l'essentiel de React, y compris comment tester vos composants **(en français)**
 
 - [Glitch: React Starter Kit](https://glitch.com/glimmer/post/react-starter-kit) - Cours vidéo gratuit en 5 parties avec des exemples de code interactifs qui vous aideront à apprendre React.
 
