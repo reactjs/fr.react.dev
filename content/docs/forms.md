@@ -9,7 +9,11 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
+<<<<<<< HEAD
 Les formulaires HTML fonctionnent un peu différemment des autres éléments du DOM en React car ils possèdent naturellement un état interne. Par exemple, ce formulaire en HTML qui accepte juste un nom :
+=======
+HTML form elements work a bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:
+>>>>>>> a11c2534062bd79cc1e6e34db0e149f928df35bb
 
 ```html
 <form>
@@ -31,7 +35,7 @@ On peut combiner ces deux concepts en utilisant l'état local React comme « so
 
 Par exemple, en reprenant le code ci-dessus pour afficher le nom lors de la soumission, on peut écrire le formulaire sous forme de composant contrôlé :
 
-```javascript{4,10-12,24}
+```javascript{4,10-12,21,24}
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
