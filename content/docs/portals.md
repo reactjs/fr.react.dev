@@ -44,7 +44,7 @@ render() {
 
 Un cas typique d'utilisation des portails survient lorsqu'un composant parent possède un style `overflow: hidden` ou `z-index` et que l'enfant a besoin de « sortir de son conteneur »  visuellement. C’est par exemple le cas des boîtes de dialogues, des pop-ups ou encore des infobulles.
 
-> Remarque
+> Remarques
 >
 > Lorsque vous travaillez avec les portails, gardez en tête que la [gestion du focus du clavier](/docs/accessibility.html#programmatically-managing-focus) devient très importante.
 >
@@ -56,7 +56,7 @@ Un cas typique d'utilisation des portails survient lorsqu'un composant parent po
 
 Même si un portail peut être placé n'importe où dans l'arborescence DOM, il se comporte comme un enfant React normal à tous les autres points de vue. Les fonctionnalités comme le contexte se comportent exactement de la même façon, indépendamment du fait que l'enfant soit un portail, car le portail existe toujours dans *l'arborescence React*, indépendamment de sa position dans *l'arborescence DOM*.
 
-Ça concerne aussi la propagation montante des événements. Un événement déclenché à l'intérieur d'un portail sera propagé aux ancêtres dans *l'arborescence React*, même si ces éléments ne sont pas ses ancêtres dans *l'arborescence DOM*. Prenons par exemple le code HTML suivant :
+Cela concerne aussi la propagation montante des événements. Un événement déclenché à l'intérieur d'un portail sera propagé aux ancêtres dans *l'arborescence React*, même si ces éléments ne sont pas ses ancêtres dans *l'arborescence DOM*. Prenons par exemple le code HTML suivant :
 
 ```html
 <html>
@@ -152,4 +152,4 @@ ReactDOM.render(<Parent />, appRoot);
 
 [**Essayer dans CodePen**](https://codepen.io/gaearon/pen/jGBWpE)
 
-Attraper un événement en cours de propagation depuis un portail dans un composant parent autorise le développement d'abstractions plus flexibles qui ne sont pas forcément liées aux portails. Par exemple, si vous affichez un composant `<Modal />`, le parent peut capturer ses événements, que le parent soit implémenté à base de portails ou non.
+Capturer un événement en cours de propagation depuis un portail dans un composant parent permet le développement d'abstractions plus flexibles qui ne sont pas forcément liées aux portails. Par exemple, si vous affichez un composant `<Modal />`, le parent peut capturer ses événements, que le parent soit implémenté à base de portails ou non.
