@@ -44,7 +44,7 @@ render() {
 
 Un cas typique d'utilisation des portails survient lorsqu'un composant parent possède un style `overflow: hidden` ou `z-index` et que l'enfant a besoin de « sortir de son conteneur »  visuellement. C’est par exemple le cas des boîtes de dialogues, des pop-ups ou encore des infobulles.
 
-> Remarques
+> Remarque
 >
 > Lorsque vous travaillez avec les portails, gardez en tête que la [gestion du focus du clavier](/docs/accessibility.html#programmatically-managing-focus) devient très importante.
 >
