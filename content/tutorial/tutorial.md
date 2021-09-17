@@ -235,7 +235,11 @@ Pour commencer, modifiez la balise `button` renvoyée par la méthode `render()`
 class Square extends React.Component {
   render() {
     return (
+<<<<<<< HEAD
       <button className="square" onClick={function() { alert('clic'); }}>
+=======
+      <button className="square" onClick={function() { console.log('click'); }}>
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
         {this.props.value}
       </button>
     );
@@ -243,7 +247,11 @@ class Square extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Désormais, si vous cliquez sur un `Square`, vous devriez obtenir une alerte dans votre navigateur.
+=======
+If you click on a Square now, you should see 'click' in your browser's devtools console.
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 
 >Remarque
 >
@@ -253,7 +261,11 @@ Désormais, si vous cliquez sur un `Square`, vous devriez obtenir une alerte dan
 >class Square extends React.Component {
 >  render() {
 >    return (
+<<<<<<< HEAD
 >      <button className="square" onClick={() => alert('clic')}>
+=======
+>      <button className="square" onClick={() => console.log('click')}>
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,7 +273,11 @@ Désormais, si vous cliquez sur un `Square`, vous devriez obtenir une alerte dan
 >}
 >```
 >
+<<<<<<< HEAD
 >Remarquez que dans `onClick={() => alert('click')}`, nous passons *une fonction* à la prop `onClick`.  React ne l’appellera que suite à un clic.  Une erreur courante consiste à oublier le `() =>` de départ, pour écrire seulement `onClick={alert('click')}` : l’alerte se déclencherait alors immédiatement, à chaque affichage.
+=======
+>Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 
 Pour l’étape suivante, nous voulons que le composant `Square` « se souvienne » qu'on lui a cliqué dessus, et se remplisse alors avec la marque « X ».  Afin qu’ils puissent « se souvenir » de choses, les composants utilisent **l’état local**.
 
@@ -280,7 +296,11 @@ class Square extends React.Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <button className="square" onClick={() => alert('clic')}>
+=======
+      <button className="square" onClick={() => console.log('click')}>
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
         {this.props.value}
       </button>
     );
@@ -524,7 +544,11 @@ Remarquez que dans `handleClick`, nous appelons `.slice()` pour créer une copie
 
 ### Pourquoi l’immutabilité est importante {#why-immutability-is-important}
 
+<<<<<<< HEAD
 Dans l’exemple de code précédent, nous vous suggérions d’utiliser la méthode `.slice()` pour créer une copie du tableau `squares` à modifier, au lieu de travailler directement sur le tableau existant.  Nous allons maintenant parler d’immutabilité, et des raisons pour lesquelles c’est un sujet qui mérite d’être appris.
+=======
+In the previous code example, we suggested that you create a copy of the `squares` array using the `slice()` method instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 
 Il y a en général deux approches à la modification de données.  La première consiste à *muter* les données en altérant directement leurs valeurs.  La seconde préfère remplacer les données d’origine par une nouvelle copie, porteuse des modifications désirées.
 

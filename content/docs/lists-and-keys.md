@@ -208,7 +208,11 @@ Gardez en tête cette règle simple : chaque élément à l'intérieur d'un app
 
 ### Les clés n’ont besoin d’être uniques qu’au sein de la liste {#keys-must-only-be-unique-among-siblings}
 
+<<<<<<< HEAD
 Les clés utilisées dans un tableau doivent être uniques parmi leurs voisins. Cependant, elles n'ont pas besoin d'être globalement uniques. On peut utiliser les mêmes clés dans des tableaux différents :
+=======
+Keys used within arrays should be unique among their siblings. However, they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {

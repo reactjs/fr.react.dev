@@ -1,8 +1,13 @@
 ---
 id: refs-and-the-dom
+<<<<<<< HEAD
 title: Les refs et le DOM
 prev: static-type-checking.html
 next: uncontrolled-components.html
+=======
+title: Refs and the DOM
+permalink: docs/refs-and-the-dom.html
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 redirect_from:
   - "docs/working-with-the-browser.html"
   - "docs/more-about-refs.html"
@@ -10,7 +15,6 @@ redirect_from:
   - "docs/more-about-refs-zh-CN.html"
   - "tips/expose-component-functions.html"
   - "tips/children-undefined.html"
-permalink: docs/refs-and-the-dom.html
 ---
 
 Les refs fournissent un moyen d’accéder aux nœuds du DOM ou éléments React créés dans la méthode de rendu.
