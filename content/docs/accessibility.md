@@ -2,8 +2,6 @@
 id: accessibility
 title: Accessibilité
 permalink: docs/accessibility.html
-prev: integrating-with-other-libraries.html
-next: code-splitting.html
 ---
 
 ## Pourquoi l'accessibilité ? {#why-accessibility}
@@ -230,7 +228,11 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
+<<<<<<< HEAD
 Quand vous enrobez des composants à l’aide d’un composant d’ordre supérieur *(Higher-Order Component, ou HOC, NdT)*, il est recommandé de [transférer la référence](/docs/forwarding-refs.html) vers l’élément enrobé grâce à la fonction `forwardRef` de React. Si un HOC tiers n'implémente pas le transfert de référence, le modèle ci-dessus peut être utilisé comme solution de secours.
+=======
+When using a [HOC](/docs/higher-order-components.html) to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC does not implement ref forwarding, the above pattern can still be used as a fallback.
+>>>>>>> f0a9793dff9f8e86ec365bfadb0b4b23c6f618ce
 
 Le composant [react-aria-modal](https://github.com/davidtheclark/react-aria-modal) est un excellent exemple de la gestion du focus. Il s'agit de l'un des rares exemples de fenêtre modale complètement accessible. Non seulement il définit le focus initial sur le bouton d'annulation (empêchant l'utilisateur du clavier d'activer accidentellement l'action de succès), mais il restreint bien le focus clavier à l'intérieur de la fenêtre modale et il remet à terme le focus sur l'élément qui a originellement déclenché la fenêtre modale.
 
