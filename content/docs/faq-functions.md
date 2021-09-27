@@ -152,7 +152,6 @@ const A = 65 // Code de caractère ASCII
 class Alphabet extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
     this.state = {
       justClicked: null,
       letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i))
@@ -291,9 +290,12 @@ class Searchbox extends React.Component {
   }
 
   handleChange(e) {
+<<<<<<< HEAD
     // React recycle les événements, on a donc besoin de lire la valeur avant le différé.
     // On aurait aussi pu appeler `event.persist()` et passer l’événement complet.
     // Pour en apprendre davantage, consultez fr.reactjs.org/docs/events.html#event-pooling
+=======
+>>>>>>> 4fab3d31469ab7a53dbf8b50cab5d57880a0c035
     this.emitChangeDebounced(e.target.value);
   }
 
