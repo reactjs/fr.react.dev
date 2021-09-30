@@ -126,7 +126,7 @@ Lorsqu’elle est appelée, elle examine en général `this.props` et `this.stat
 - **Tableaux et fragments.**  Ils vous permettent de renvoyer plusieurs éléments racines depuis un rendu. Consultez la documentation des [fragments](/docs/fragments.html) pour plus de détails.
 - **Portails**. Ils permettent d’effectuer le rendu des enfants dans une autre partie du DOM. Consultez la documentation des [portails](/docs/portals.html) pour plus de détails.
 - **Chaînes de caractères et nombres.**  Ils deviennent des nœuds textuels dans le DOM.
-- **Booléens ou `null`.**  Ils ne produisent rien. (Ça existe principalement pour permettre des motifs de code tels que `return test && <Child />`, ou `test` serait booléen.)
+- **Booléens ou `null`.**  Ils ne produisent rien. (Ça existe principalement pour permettre des motifs de code tels que `return test && <Child />`, où `test` serait booléen.)
 
 La fonction `render()` doit être pure, c’est-à-dire qu’elle ne doit rien changer à l’état local du composant, doit renvoyer le même résultat chaque fois qu’elle est invoquée (dans des conditions identiques), et ne doit pas interagir directement avec le navigateur.
 
@@ -146,7 +146,7 @@ constructor(props)
 
 **Si vous n’initialisez pas d’état local et ne liez pas de méthodes, vous n’avez pas besoin d’implémenter votre propre constructeur pour votre composant React.**
 
-Le constructeur d’un composant React est appelé avant que celui-ci soit monté. Quand on implémente le constructeur d’une sous-classe de `React.Component`, il faut commencer par appeler `super(props)`, avant toute manipulation de `this`. Dans le cas contraire, outre une éventuelle erreur de syntaxe ES6, `this.props` sera `undefined` dans le constructeur, ce qui peut causer des bugs.
+Le constructeur d’un composant React est appelé avant que celui-ci soit monté. Quand on implémente le constructeur d’une sous-classe de `React.Component`, il faut commencer par appeler `super(props)` avant toute manipulation de `this`. Dans le cas contraire, outre une éventuelle erreur de syntaxe ES6, `this.props` sera `undefined` dans le constructeur, ce qui peut causer des bugs.
 
 Les constructeurs React sont habituellement utilisés pour deux raisons seulement :
 
@@ -502,7 +502,7 @@ setState(updater, [callback])
 
 `setState()` planifie des modifications à l’état local du composant, et indique à React que ce composant et ses enfants ont besoin d’être rafraîchis une fois l’état mis à jour. C’est en général ainsi qu’on met à jour l’interface utilisateur en réaction à des événements ou réponses réseau.
 
-Visualisez `setState()` comme une *demande* plutôt que comme une commande immédiate qui mettrait à jour le composant. Afin d’améliorer la performance perçue, React peut différer son traitement, pour ensuite mettre à jour plusieurs composants en une seule passe. React ne guarantit pas que les mises à jour d’état sont appliquées immédiatement.
+Visualisez `setState()` comme une *demande* plutôt que comme une commande immédiate qui mettrait à jour le composant. Afin d’améliorer la performance perçue, React peut différer son traitement, pour ensuite mettre à jour plusieurs composants en une seule passe. React ne garantit pas que les mises à jour d’état sont appliquées immédiatement.
 
 `setState()` ne met pas toujours immédiatement le composant à jour. Il peut regrouper les mises à jour voire les différer. En conséquence, lire la valeur de `this.state` juste après avoir appelé `setState()` est une mauvaise idée. Utilisez plutôt `componentDidUpdate` ou la fonction de rappel de `setState` (`setState(updater, callback)`), les deux bénéficiant d'une garantie de déclenchement après que la mise à jour aura été appliquée. Si vous avez besoin de mettre à jour l’état sur base de sa valeur précédente, lisez plus bas comment fonctionne l’argument `updater`.
 
