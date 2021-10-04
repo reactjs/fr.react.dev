@@ -5,8 +5,12 @@
  * @flow
  */
 
+<<<<<<< HEAD
 import {colors, fonts, media} from 'theme';
 
+=======
+import Banner from 'components/Banner';
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 import Container from 'components/Container';
 import DocSearch from './DocSearch';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
@@ -17,6 +21,15 @@ import logoSvg from 'icons/logo.svg';
 // $FlowFixMe
 import navHeader from '../../../content/headerNav.yml';
 import {version} from 'site-constants';
+
+const ContainerWrapper = ({children}) => (
+  <div
+    css={{
+      backgroundColor: 'hsl(222, 14%, 10%)',
+    }}>
+    {children}
+  </div>
+);
 
 const Header = ({location}: {location: Location}) => (
   <header
@@ -32,6 +45,7 @@ const Header = ({location}: {location: Location}) => (
         display: 'none',
       },
     }}>
+<<<<<<< HEAD
     <Container>
       <div
         css={{
@@ -60,6 +74,15 @@ const Header = ({location}: {location: Location}) => (
         </a>
       </div>
     </Container>
+=======
+    <ContainerWrapper>
+      <Container>
+        <div style={{position: 'relative'}}>
+          <Banner />
+        </div>
+      </Container>
+    </ContainerWrapper>
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
     <Container>
       <div
         css={{
