@@ -48,7 +48,13 @@ Si la fonction de rappel optionnelle est fournie, elle sera exécutée après qu
 >
 >`ReactDOM.render()` ne modifie pas le nœud conteneur lui-même (seulement ses enfants).  Il peut arriver qu’insérer un composant dans un nœud DOM existant n’en modifie pas les enfants.
 >
+<<<<<<< HEAD
 >`ReactDOM.render()` renvoie pour le moment une référence sur l’instance racine de composant React.  Toutefois, manipuler la valeur renvoyée est considéré comme déprécié, et vous devriez vous en abstenir dans la mesure où de futures versions de React pourraient gérer le rendu de façon asynchrone dans certains cas.  Si vous avez besoin d’une référence sur l’instance racine de composant React, une meilleure solution consiste à associer une [ref de rappel](/docs/more-about-refs.html#callback-refs) à l’élément racine.
+=======
+> `ReactDOM.render()` currently returns a reference to the root `ReactComponent` instance. However, using this return value is legacy
+> and should be avoided because future versions of React may render components asynchronously in some cases. If you need a reference to the root `ReactComponent` instance, the preferred solution is to attach a
+> [callback ref](/docs/refs-and-the-dom.html#callback-refs) to the root element.
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 >
 >Utiliser `ReactDOM.render()` pour hydrater un conteneur rendu côté serveur est une pratique dépréciée qui disparaîtra avec React 17.  Utilisez plutôt la méthode [`hydrate()`](#hydrate).
 

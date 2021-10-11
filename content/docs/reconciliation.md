@@ -2,8 +2,6 @@
 id: reconciliation
 title: Réconciliation
 permalink: docs/reconciliation.html
-prev: react-without-jsx.html
-next: context.html
 ---
 
 React fournit une API déclarative afin que vous n'ayez pas à vous soucier de savoir ce qui change exactement lors de chaque mise à jour. Ça facilite grandement l'écriture d'applications, mais la manière dont React s’y prend n'est pas forcément évidente. Cet article explique les choix que nous avons faits dans l'algorithme de comparaison de façon à rendre prévisibles les mises à jour des composants tout en restant suffisamment rapide pour des applications à hautes performances.
@@ -29,7 +27,11 @@ En comparant deux arbres, React va commencer par comparer les éléments racines
 
 Chaque fois que les éléments racines ont des types différents, React va détruire l'ancien arbre et reconstruire le nouvel arbre à partir de zéro. Passer de `<a>` à `<img>`, ou de `<Article>` à `<Comment>`, ou de `<Button>` à `<div>` : tous aboutiront à une reconstruction complète.
 
+<<<<<<< HEAD
 Lors de la destruction d'un arbre, les anciens nœuds DOM sont détruits. Les instances des composants reçoivent `componentWillUnmount()`. Lors de la construction d'un nouvel arbre, les nouveaux nœuds sont insérés dans le DOM. Les instances de composants reçoivent `componentWillMount()` puis `componentDidMount()`. Tous les états associés à l'ancien arbre sont perdus.
+=======
+When tearing down a tree, old DOM nodes are destroyed. Component instances receive `componentWillUnmount()`. When building up a new tree, new DOM nodes are inserted into the DOM. Component instances receive `UNSAFE_componentWillMount()` and then `componentDidMount()`. Any state associated with the old tree is lost.
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
 Tous les composants au-dessous de la racine seront également démontés et leur état détruit. Par exemple, en comparant :
 
@@ -45,7 +47,17 @@ Tous les composants au-dessous de la racine seront également démontés et leur
 
 Ça détruira l'ancien `Counter` puis en remontera un nouveau.
 
+<<<<<<< HEAD
 ### Éléments DOM de même type {#dom-elements-of-the-same-type}
+=======
+>Note:
+>
+>These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>
+>- `UNSAFE_componentWillMount()`
+
+### DOM Elements Of The Same Type {#dom-elements-of-the-same-type}
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
 Lors de la comparaison entre deux éléments DOM React de même type, React examine les attributs des deux, conserve le même nœud DOM sous-jacent, et ne met à jour que les attributs modifiés. Par exemple :
 
@@ -71,11 +83,26 @@ Après avoir manipulé le nœud DOM, React applique le même traitement sur les 
 
 ### Éléments composants de même type {#component-elements-of-the-same-type}
 
+<<<<<<< HEAD
 Lorsqu'un composant est mis à jour, l'instance reste la même, afin que l'état soit maintenu d’un rendu à l’autre. React met à jour les props de l’instance de composant sous-jacente pour correspondre au nouvel élément, et appelle `componentWillReceiveProps()` et `componentWillUpdate()` dessus.
+=======
+When a component updates, the instance stays the same, so that state is maintained across renders. React updates the props of the underlying component instance to match the new element, and calls `UNSAFE_componentWillReceiveProps()`, `UNSAFE_componentWillUpdate()` and `componentDidUpdate()` on the underlying instance.
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
 Ensuite, la méthode `render()` est appelée et l'algorithme de comparaison reprend entre son résultat précédent et le nouveau.
 
+<<<<<<< HEAD
 ### Traitement récursif sur les enfants {#recursing-on-children}
+=======
+>Note:
+>
+>These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>
+>- `UNSAFE_componentWillUpdate()`
+>- `UNSAFE_componentWillReceiveProps()`
+
+### Recursing On Children {#recursing-on-children}
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
 Par défaut, lorsqu'il traite les enfants d'un nœud DOM, React parcourt simultanément les deux listes d'enfants et génère une modification chaque fois qu'il y a une différence.
 

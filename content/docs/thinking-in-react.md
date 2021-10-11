@@ -39,9 +39,15 @@ Mais comment savoir quelles parties devraient disposer de leurs propres composan
 
 Comme vous affichez souvent un modèle de données JSON à un utilisateur, vous constaterez que si votre modèle a été correctement construit, votre interface utilisateur (et donc la structure de vos composants) correspondra aisément. En effet, l'interface utilisateur (UI) et les modèles de données tendent à adhérer à la même *architecture d'information*. Séparez votre UI en composants, où chaque composant représente juste un élément de votre modèle de données.
 
+<<<<<<< HEAD
 ![Schéma des composants](../images/blog/thinking-in-react-components.png)
 
 Vous pouvez voir que nous avons cinq composants dans notre petite appli. Nous avons mis en italiques les données que chaque composant représente.
+=======
+![Diagram showing nesting of components](../images/blog/thinking-in-react-components.png)
+
+You'll see here that we have five components in our app. We've italicized the data each component represents. The numbers in the image correspond to the numbers below.
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
   1. **`FilterableProductTable` (orange) :** contient l'intégralité de l'exemple
   2. **`SearchBar` (bleu) :** reçoit toutes les *données saisies par l'utilisateur*
@@ -84,7 +90,11 @@ Pour rendre votre UI interactive, vous devez pouvoir déclencher des modificatio
 
 Afin de construire correctement votre appli, vous devez d'abord penser à l'état modifiable minimal dont votre appli a besoin. La règle est simple : [*ne vous répétez pas*](https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas) *(Don’t Repeat Yourself, aussi désigné par l’acronyme DRY, NdT)*. Déterminez la représentation la plus minimale possible de l'état dont votre appli a besoin, et calculez le reste à la demande. Par exemple, si vous construisez une liste de tâches, gardez un tableau des tâches sous la main ; pas besoin d’une variable d'état pour le compteur. Au lieu de ça, quand vous voulez afficher  le nombre de tâches, prenez la longueur du tableau de tâches.
 
+<<<<<<< HEAD
 Pensez à toutes les données de notre application. On a :
+=======
+Think of all the pieces of data in our example application. We have:
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
   * La liste des produits
   * Le texte de recherche saisi par l'utilisateur
@@ -137,7 +147,11 @@ Pour le moment, nous avons construit une appli qui s’affiche correctement en f
 
 React rend ce flux de données explicite pour vous aider à comprendre le fonctionnement de votre programme, mais cela demande un peu plus de code qu’une liaison de données bidirectionnelle classique.
 
+<<<<<<< HEAD
 Si vous essayez de saisir du texte ou de cocher la case dans la version actuelle de l'exemple, vous verrez que React ne tient pas compte de vos saisies. C'est volontaire, car nous avons spécifié l'attribut `value` de l'élément `input` pour qu’il soit toujours égal à l'état passé depuis `FilterableProductTable`.
+=======
+If you try to type or check the box in the previous version of the example (step 4), you'll see that React ignores your input. This is intentional, as we've set the `value` prop of the `input` to always be equal to the `state` passed in from `FilterableProductTable`.
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
 Réfléchissons à ce que nous voulons qu'il se passe. Nous voulons garantir que chaque fois que l'utilisateur met à jour le formulaire, nous mettons à jour l'état pour refléter la saisie de l’utilisateur. Puisque les composants ne peuvent mettre à jour que leur propre état, `FilterableProductTable` passera une fonction de rappel à `SearchBar`, qui devra être déclenchée chaque fois que l'état doit être mis à jour. Nous pouvons utiliser l'événement `onChange` des champs pour cela. Les fonctions de rappel passées par `FilterableProductTable` appelleront `setState()`, et l'application sera mise à jour.
 
