@@ -16,9 +16,18 @@ next: concurrent-mode-suspense.html
 
 > Attention
 >
+<<<<<<< HEAD
 > Cette page décrit **des fonctionnalités expérimentales qui [ne sont pas encore disponibles](/docs/concurrent-mode-adoption.html) dans une version stable**. Ne vous basez pas sur les builds expérimentaux de React pour vos applis en production. Ces fonctionnalités sont susceptibles d’évoluer de façon significative et sans avertissement avant d’intégrer officiellement React.
 >
 > Cette documentation est destinée aux personnes curieuses ou habituées à adopter les nouvelles technologies très tôt. **Si vous débutez en React, ne vous préoccupez pas de ces fonctionnalités** : vous n’avez pas besoin de les apprendre pour le moment.
+=======
+>This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>
+>Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
+) for the up-to-date information.**
+>
+>Before React 18 is released, we will replace this page with stable documentation.
+>>>>>>> 4133943e718a77f11627888db2f59f6cb7a73403
 
 </div>
 
@@ -37,7 +46,11 @@ Ces fonctionnalités sont encore expérimentales et peuvent changer. Elles ne fo
 
 ## Rendu bloquant vs. interruptible {#blocking-vs-interruptible-rendering}
 
+<<<<<<< HEAD
 **Pour expliquer le mode concurrent, nous allons utiliser la gestion de versions comme métaphore.**  Si vous travaillez en équipe, vous utilisez probablement un système de gestion de versions tel que Git, et travaillez sur des branches. Quand une branche est finalisée, vous pouvez en fusionner le travail dans `master` afin que d’autres puissent le récupérer.
+=======
+**To explain Concurrent Mode, we'll use version control as a metaphor.** If you work on a team, you probably use a version control system like Git and work on branches. When a branch is ready, you can merge your work into main so that other people can pull it.
+>>>>>>> 4133943e718a77f11627888db2f59f6cb7a73403
 
 Avant que la gestion de versions n’apparaisse, les flux de développement étaient très différents. On n’y trouvait aucun concept de branche. Si vous aviez besoin de modifier certains fichiers, il fallait prévenir tout le monde de ne pas y toucher pendant ce temps-là. Vous ne pouviez même pas commencer à travailler dessus en parallèle les uns des autres : vous étiez littéralement **bloqué·e** par l’autre personne.
 
@@ -61,7 +74,11 @@ Les techniques du mode concurrent réduisent le besoin de *debouncing* et de *th
 
 ### Séquences de chargement intentionnelles {#intentional-loading-sequences}
 
+<<<<<<< HEAD
 Nous disions tout à l’heure que pour comprendre le mode concurrent, on peut imaginer que React travaille « sur une branche ». Les branches ne sont pas seulement utiles pour des correctifs à court terme, mais aussi pour des fonctionnalités plus longues à écrire. Parfois vous pouvez travailler sur une fonctionnalité qui va mettre des semaines avant d’être « assez finie » pour être fusionnée dans `master`. Ici aussi, la métaphore de la gestion de versions s’applique bien au rendu.
+=======
+We've said before that Concurrent Mode is like React working "on a branch". Branches are useful not only for short-term fixes, but also for long-running features. Sometimes you might work on a feature, but it could take weeks before it's in a "good enough state" to merge into main. This side of our version control metaphor applies to rendering too.
+>>>>>>> 4133943e718a77f11627888db2f59f6cb7a73403
 
 Imaginez que vous naviguiez entre deux écrans d’une appli. Parfois, nous n’aurons peut-être pas assez de code et de données pour afficher un état de chargement « assez fini » à l’utilisateur au sein du nouvel écran. Transiter vers un écran vide (ou doté d’un gros *spinner*) n’est pas une expérience agréable. Et pourtant, il arrive fréquemment que les chargements du code et des données nécessaires ne prennent en fait que peu de temps. **Ne serait-il pas plus agréable que React puisse rester sur l’ancien écran un tout petit peu plus longtemps, pour ensuite « sauter » l’état de « chargement désagréable » lors de la bascule vers le nouvel écran ?**
 
