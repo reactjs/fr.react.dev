@@ -181,4 +181,8 @@ Nous explorerons la retranscription des éléments React dans le DOM dans la [pr
 
 >**Astuce :**
 >
+<<<<<<< HEAD
 >Nous recommandons d'utiliser la [définition de langage « Babel »](https://babeljs.io/docs/editors) dans votre éditeur préféré, afin que les codes ES6 et JSX soient correctement colorisés.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/en/next/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
