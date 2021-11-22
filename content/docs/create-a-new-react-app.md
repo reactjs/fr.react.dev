@@ -39,7 +39,11 @@ L'équipe React recommande en premier lieu ces solutions :
 
 [Create React App](https://github.com/facebookincubator/create-react-app) est un environnement confortable pour **apprendre React**, et constitue la meilleure option pour démarrer **une nouvelle [application web monopage](/docs/glossary.html#single-page-application)** en React.
 
+<<<<<<< HEAD
 Il configure votre environnement de développement de façon à vous permettre d'utiliser les dernières fonctionnalités de JavaScript, propose une expérience développeur agréable et optimise votre application pour la production. Vous aurez besoin de [Node >= 8.10 et de npm >= 5.6](https://nodejs.org/en/) sur votre machine. Pour créer un projet, exécutez :
+=======
+It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have [Node >= 14.0.0 and npm >= 5.6](https://nodejs.org/en/) on your machine. To create a project, run:
+>>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 ```bash
 npx create-react-app mon-app
@@ -79,7 +83,11 @@ Les boîtes à outils suivantes offrent plus de flexibilité et de choix. Nous l
 
 ## Créer une boîte à outils à partir de zéro {#creating-a-toolchain-from-scratch}
 
+<<<<<<< HEAD
 Une boîte à outils de construction en JavaScript comprend généralement :
+=======
+- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes/react/).
+>>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 * Un **gestionnaire de paquets**, tel que [Yarn](https://yarnpkg.com/) ou [npm](https://www.npmjs.com/). Il vous permet de tirer parti d'un vaste écosystème de paquets tiers, et de les installer ou les mettre à jour facilement.
 

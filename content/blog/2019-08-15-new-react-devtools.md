@@ -9,7 +9,11 @@ Nous sommes ravis d’annoncer la sortie des nouveaux outils de développement *
 
 La version 4 change beaucoup de choses !  D’une façon générale, cette nouvelle version devrait améliorer considérablement les performances et l’expérience de navigation.  Elle prend également pleinement en charge les Hooks, y compris l’inspection d’objets imbriqués.
 
+<<<<<<< HEAD
 ![Capture d’écran des DevTools en version 4](../images/blog/devtools-v4-screenshot.png)
+=======
+[Visit the interactive tutorial](https://react-devtools-tutorial.now.sh/) to try out the new version or [see the changelog](https://github.com/facebook/react/blob/main/packages/react-devtools/CHANGELOG.md#400-august-15-2019) for demo videos and more details.
+>>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 [Allez voir le didacticiel interactif](https://react-devtools-tutorial.now.sh/) pour essayer la nouvelle version ou [consultez le journal des modifications](https://github.com/facebook/react/blob/master/packages/react-devtools/CHANGELOG.md#400-august-15-2019) pour des vidéos de démonstration et davantage de détails.
 
