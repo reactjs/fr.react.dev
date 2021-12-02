@@ -56,7 +56,6 @@ Un cas typique d'utilisation des portails survient lorsqu'un composant parent po
 
 Même si un portail peut être placé n'importe où dans l'arborescence DOM, il se comporte comme un enfant React normal à tous les autres points de vue. Les fonctionnalités comme le contexte se comportent exactement de la même façon, indépendamment du fait que l'enfant soit un portail, car le portail existe toujours dans *l'arborescence React*, indépendamment de sa position dans *l'arborescence DOM*.
 
-Cela concerne aussi la propagation montante des événements. Un événement déclenché à l'intérieur d'un portail sera propagé aux ancêtres dans *l'arborescence React*, même si ces éléments ne sont pas ses ancêtres dans *l'arborescence DOM*. Prenons par exemple le code HTML suivant :
 
 ```html
 <html>
