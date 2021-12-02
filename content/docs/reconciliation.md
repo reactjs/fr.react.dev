@@ -29,7 +29,7 @@ En comparant deux arbres, React va commencer par comparer les éléments racines
 
 Chaque fois que les éléments racines ont des types différents, React va détruire l'ancien arbre et reconstruire le nouvel arbre à partir de zéro. Passer de `<a>` à `<img>`, ou de `<Article>` à `<Comment>`, ou de `<Button>` à `<div>` : tous aboutiront à une reconstruction complète.
 
-Lors de la destruction d'un arbre, les anciens nœuds DOM sont détruits. Les instances des composants reçoivent `componentWillUnmount()`. Lors de la construction d'un nouvel arbre, les nouveaux nœuds sont insérés dans le DOM. Les instances de composants reçoivent `componentWillMount()` puis `componentDidMount()`. Tous les états associés à l'ancien arbre sont perdus.
+Lors de la destruction d'un arbre, les anciens nœuds DOM sont détruits. Les instances des composants reçoivent `componentWillUnmount()`. Lors de la construction d'un nouvel arbre, les nouveaux nœuds sont insérés dans le DOM. Les instances de composants reçoivent `UNSAFE_componentWillMount()` puis `componentDidMount()`. Tous les états associés à l'ancien arbre sont perdus.
 
 Tous les composants au-dessous de la racine seront également démontés et leur état détruit. Par exemple, en comparant :
 
@@ -44,6 +44,12 @@ Tous les composants au-dessous de la racine seront également démontés et leur
 ```
 
 Ça détruira l'ancien `Counter` puis en remontera un nouveau.
+
+>Remarque
+>
+> Les méthodes suivantes sont considérées dépréciées et vous devriez [les éviter](/blog/2018/03/27/update-on-async-rendering.html) dans vos nouveaux codes :
+>
+>- `UNSAFE_componentWillMount()`
 
 ### Éléments DOM de même type {#dom-elements-of-the-same-type}
 
@@ -71,9 +77,16 @@ Après avoir manipulé le nœud DOM, React applique le même traitement sur les 
 
 ### Éléments composants de même type {#component-elements-of-the-same-type}
 
-Lorsqu'un composant est mis à jour, l'instance reste la même, afin que l'état soit maintenu d’un rendu à l’autre. React met à jour les props de l’instance de composant sous-jacente pour correspondre au nouvel élément, et appelle `componentWillReceiveProps()` et `componentWillUpdate()` dessus.
+Lorsqu'un composant est mis à jour, l'instance reste la même, afin que l'état soit maintenu d’un rendu à l’autre. React met à jour les props de l’instance de composant sous-jacente pour correspondre au nouvel élément, et appelle `UNSAFE_componentWillReceiveProps()`, `UNSAFE_componentWillUpdate()` et `componentDidUpdate()` dessus.
 
 Ensuite, la méthode `render()` est appelée et l'algorithme de comparaison reprend entre son résultat précédent et le nouveau.
+
+>Remarque
+>
+> Les méthodes suivantes sont considérées dépréciées et vous devriez [les éviter](/blog/2018/03/27/update-on-async-rendering.html) dans vos nouveaux codes :
+>
+>- `UNSAFE_componentWillReceiveProps()`
+>- `UNSAFE_componentWillUpdate()`
 
 ### Traitement récursif sur les enfants {#recursing-on-children}
 
