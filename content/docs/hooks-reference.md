@@ -47,7 +47,7 @@ Au cours des rendus suivants, la première valeur renvoyée par `useState` sera 
 
 >Remarque
 >
->React garantit que l’identité de la fonction `setState` est stable et ne changera pas d’un rendu à l’autre. C’est pourquoi on peut l'omettre de la liste des dépendances de `useEffect` et `useCallback` en tout sécurité.
+>React garantit que l’identité de la fonction `setState` est stable et ne changera pas d’un rendu à l’autre. C’est pourquoi on peut l'omettre de la liste des dépendances de `useEffect` et `useCallback` en toute sécurité.
 
 #### Mises à jour fonctionnelles {#functional-updates}
 
@@ -285,7 +285,7 @@ function Counter() {
 
 >Remarque
 >
->React garantit que l’identité de la fonction `dispatch` est stable et ne changera pas d’un rendu à l’autre. C’est pourquoi on peut l'omettre de la liste des dépendances de `useEffect` et `useCallback` en tout sécurité.
+>React garantit que l’identité de la fonction `dispatch` est stable et ne changera pas d’un rendu à l’autre. C’est pourquoi on peut l'omettre de la liste des dépendances de `useEffect` et `useCallback` en toute sécurité.
 
 #### Préciser l'état local initial {#specifying-the-initial-state}
 

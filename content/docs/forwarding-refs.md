@@ -14,7 +14,7 @@ Prenons un composant `FancyButton` qui affiche l'élément DOM natif `button` :
 Les composants React masquent leurs détails d'implémentation, y compris leur rendu.
 Les autres composants utilisant `FancyButton` **n'auront généralement pas besoin** [d'obtenir une ref](/docs/refs-and-the-dom.html) sur l'élément DOM interne `button`. C'est une bonne chose, car ça empêche les composants de trop s'appuyer sur la structure DOM les uns et des autres.
 
-Bien qu'une telle encapsulation soit souhaitable pour les composants applicatifs tels que `FeedStory` ou `Comment`, elle peut être gênante pour les composants hautement réutilisables, tels que `FancyButton` ou `MyTextInput`. Ces composants ont tendance à être utilisés un peu partout dans dans l’application de manière similaire à un `button` ou un `input`, et l’accès à leurs nœuds DOM peut s'avérer nécessaire pour la gestion du focus, de la sélection ou des animations.
+Bien qu'une telle encapsulation soit souhaitable pour les composants applicatifs tels que `FeedStory` ou `Comment`, elle peut être gênante pour les composants hautement réutilisables, tels que `FancyButton` ou `MyTextInput`. Ces composants ont tendance à être utilisés un peu partout dans l’application de manière similaire à un `button` ou un `input`, et l’accès à leurs nœuds DOM peut s'avérer nécessaire pour la gestion du focus, de la sélection ou des animations.
 
 **Le transfert de ref est une fonctionnalité optionnelle qui permet à certains composants de prendre une `ref` qu’ils reçoivent et de la passer plus bas dans l’arbre (en d’autres termes, la « transférer ») à un composant enfant.**
 
