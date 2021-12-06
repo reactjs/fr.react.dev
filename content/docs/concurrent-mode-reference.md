@@ -16,9 +16,18 @@ prev: concurrent-mode-adoption.html
 
 > Attention
 >
+<<<<<<< HEAD
 > Cette page décrit **des fonctionnalités expérimentales qui [ne sont pas encore disponibles](/docs/concurrent-mode-adoption.html) dans une version stable**. Ne vous basez pas sur les builds expérimentaux de React pour vos applis en production. Ces fonctionnalités sont susceptibles d’évoluer de façon significative et sans avertissement avant d’intégrer officiellement React.
 >
 > Cette documentation est destinée aux personnes curieuses ou habituées à adopter les nouvelles technologies très tôt. **Si vous débutez en React, ne vous préoccupez pas de ces fonctionnalités** : vous n’avez pas besoin de les apprendre pour le moment.
+=======
+>This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>
+>Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
+) for the up-to-date information.**
+>
+>Before React 18 is released, we will replace this page with stable documentation.
+>>>>>>> aa70dcedc6db07987a814dba2b296cc4c5219860
 
 </div>
 
@@ -28,10 +37,16 @@ Cette page est une référence de l’API du [mode concurrent](/docs/concurrent-
 
 - [Activer le mode concurrent](#concurrent-mode)
     - [`createRoot`](#createroot)
+<<<<<<< HEAD
     - [`createBlockingRoot`](#createblockingroot)
 - [API de Suspense](#suspense)
     - [`<Suspense>`](#suspensecomponent)
     - [`<SuspenseList>`](#suspenselist)
+=======
+- [Suspense](#suspense)
+    - [`Suspense`](#suspensecomponent)
+    - [`SuspenseList`](#suspenselist)
+>>>>>>> aa70dcedc6db07987a814dba2b296cc4c5219860
     - [`useTransition`](#usetransition)
     - [`useDeferredValue`](#usedeferredvalue)
 
@@ -47,6 +62,7 @@ Remplace `ReactDOM.render(<App />, rootNode)` et active le mode concurrent.
 
 Pour en savoir plus sur le mode concurrent, consultez la [documentation du mode concurrent](/docs/concurrent-mode-intro.html).
 
+<<<<<<< HEAD
 ### `createBlockingRoot` {#createblockingroot}
 
 ```js
@@ -60,6 +76,9 @@ Choisir le mode concurrent introduit des modifications sémantiques dans le fonc
 Le mode bloquant fournit une petite partie des fonctionnalités du mode concurrent, et constitue une étape de migration intermédiaire pour les applis qui ne peuvent malheureusement pas migrer directement.
 
 ## API de Suspense {#suspense}
+=======
+## Suspense API {#suspense}
+>>>>>>> aa70dcedc6db07987a814dba2b296cc4c5219860
 
 ### `<Suspense>` {#suspensecomponent}
 
@@ -72,7 +91,11 @@ Le mode bloquant fournit une petite partie des fonctionnalités du mode concurre
 
 `Suspense` permet à vos composants « d’attendre » que quelque chose ait lieu avant qu’ils procèdent à leur rendu, en affichant dans l’intervalle une interface utilisateur (UI) de repli.
 
+<<<<<<< HEAD
 Dans cet example, `ProfileDetails` attend qu’un appel API asynchrone charge des données.  Pendant que nous attendons `ProfileDetails` et `ProfilePhoto`, nous affichons le repli `Chargement...` à leur place.  Il faut bien comprendre que jusqu’à ce que tous les enfants de `<Suspense>` soient chargés, nous continuerons à afficher l’UI de repli.
+=======
+In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` have loaded, we will continue to show the fallback.
+>>>>>>> aa70dcedc6db07987a814dba2b296cc4c5219860
 
 `Suspense` prend deux props :
 

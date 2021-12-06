@@ -2,8 +2,6 @@
 id: react-without-jsx
 title: React sans JSX
 permalink: docs/react-without-jsx.html
-prev: react-without-es6.html
-next: reconciliation.html
 ---
 
 Vous n'êtes pas obligé·e d'employer JSX pour utiliser React. React sans JSX vous dispense de configurer votre environnement de travail pour gérer la compilation de votre code.
