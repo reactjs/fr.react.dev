@@ -10,9 +10,15 @@ redirect_from:
 ---
 
 
+<<<<<<< HEAD
 React est l'un des premiers projets open source de Facebook qui est à la fois en développement intensif et utilisé en production sur les pages publiques de [facebook.com](https://www.facebook.com). Nous travaillons encore à faire qu’il soit aussi facile et transparent que possible de contribuer à ce projet, et ce chantier n'est pas terminé. Mais avec un peu de chance, ce document éclaircira le processus de contribution et répondra à certaines des questions que vous pourriez avoir.
 
 ### [Code de conduite](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
+=======
+### [Code of Conduct](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md) {#code-of-conduct}
+
+Facebook has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+>>>>>>> 0cddca13ddebb3ed19c1124723e10d006a5457fc
 
 
 Facebook a adopté le code de conduite [Contributor Covenant](https://www.contributor-covenant.org/) et nous nous attendons à ce que les participant·e·s au projet y adhèrent. Veuillez lire [le texte complet](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) afin de comprendre quelles actions seront ou ne seront pas tolérées.
@@ -21,19 +27,35 @@ Facebook a adopté le code de conduite [Contributor Covenant](https://www.contri
 
 Tout travail sur React se passe directement sur [GitHub](https://github.com/facebook/react). Les membres de l'équipe noyau *(core team, NdT)* tout comme les contributeurs externes y envoient leur _pull requests_, lesquelles passent à travers le même processus de revue.
 
+<<<<<<< HEAD
 ### Gestion sémantique des versions {#semantic-versioning}
+=======
+Every significant change is documented in the [changelog file](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+>>>>>>> 0cddca13ddebb3ed19c1124723e10d006a5457fc
 
 React utilise une [gestion sémantique de version](https://semver.org/). Nous publions des versions de correctifs pour les corrections de bugs critiques, des versions mineures pour les nouvelles fonctionnalités et les modifications non-essentielles, et des versions majeures s'il y a rupture de la compatibilité ascendante. Quand nous introduisons de telles ruptures, nous ajoutons aussi des avertissements de dépréciation dans une version mineure afin que nos utilisateur·rice·s puissent se familiariser avec les changements à venir et migrer leur code en amont.  Vous pouvez en apprendre davantage sur notre engagement en termes de stabilité et de migration incrémentielle dans notre [politique de gestion des versions](/docs/faq-versioning.html).
 
+<<<<<<< HEAD
 Toute modification substancielle est documentée dans le [journal des modifications](https://github.com/facebook/react/blob/master/CHANGELOG.md).
 
 ### Organisation des branches {#branch-organization}
+=======
+Submit all changes directly to the [`main branch`](https://github.com/facebook/react/tree/main). We don't use separate branches for development or for upcoming releases. We do our best to keep `main` in good shape, with all tests passing.
+
+Code that lands in `main` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `main` at any time.
+>>>>>>> 0cddca13ddebb3ed19c1124723e10d006a5457fc
 
 Déposez toutes vos modifications directement sur la [branche `master`](https://github.com/facebook/react/tree/master).  Nous n’utilisons pas de branches séparées pour le développement et pour les versions à venir.  Nous faisons de notre mieux pour garder la branche `master` en bon état, avec des tests toujours au vert.
 
+<<<<<<< HEAD
 Le code qui atterrit dans `master` doit être compatible avec la dernière version stable.  Il peut contenir de nouvelles fonctionnalités, mais pas de rupture de compatibilité ascendante.  Nous devrions pouvoir sortir une version mineure à partir de la pointe de `master` à tout moment.
 
 ### Fonctionnalités condtionnelles {#feature-flags}
+=======
+To keep the `main` branch in a releasable state, breaking changes and experimental features must be gated behind a feature flag.
+
+Feature flags are defined in [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/main/packages/shared/ReactFeatureFlags.js). Some builds of React may enable different sets of feature flags; for example, the React Native build may be configured differently than React DOM. These flags are found in [`packages/shared/forks`](https://github.com/facebook/react/tree/main/packages/shared/forks). Feature flags are statically typed by Flow, so you can run `yarn flow` to confirm that you've updated all the necessary files.
+>>>>>>> 0cddca13ddebb3ed19c1124723e10d006a5457fc
 
 Afin de conserver la branche `master` dans un état sortable, les ruptures de compatibilité ascendante et les fonctionnalités expérimentales doivent être protégées par un drapeau de fonctionnalité conditionnelle.
 
@@ -72,7 +94,11 @@ Si vous corrigez seulement un bug, il est tout à fait acceptable d’envoyer di
 
 Vous travaillez sur votre première _pull request_ ? Vous pouvez apprendre comment faire ça au mieux grâce à cette série de vidéos gratuites (en anglais) :
 
+<<<<<<< HEAD
 **[Comment contribuer à un projet open source sur GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
+=======
+**[How to Contribute to an Open Source Project on GitHub](https://app.egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)**
+>>>>>>> 0cddca13ddebb3ed19c1124723e10d006a5457fc
 
 Pour vous aider à vous jeter à l'eau et vous familiariser avec le processus de contribution, nous avons une liste de **[bons premiers tickets](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** qui contient des bugs d’étendue relativement limitée.
 C'est un excellent point de départ.
@@ -87,6 +113,7 @@ L'équipe noyau surveille les _pull requests_. Nous ferons une revue de la vôtr
 
 **Avant d’envoyer une _pull request_,** suivez attentivement ces instructions :
 
+<<<<<<< HEAD
 1. [Forkez le dépôt](https://github.com/facebook/react/fork) et créez votre branche depuis `master`.
 2. Lancez `yarn`  à la racine du dépôt.
 3. Si vous avez corrigé un bug ou ajouté du code qui devrait être testé, ajoutez les tests !
@@ -97,6 +124,18 @@ L'équipe noyau surveille les _pull requests_. Nous ferons une revue de la vôtr
 8. Assurez-vous que votre code passe la vérification du *linter* (`yarn lint`). Astuce : `yarn linc` ne vérifiera que les fichiers qui ont changé.
 9. Lancez les vérifications de types [Flow](https://flowtype.org/) (`yarn flow`).
 10. Si vous ne l'avez pas encore fait, remplissez le CLA (voir ci-dessous).
+=======
+1. Fork [the repository](https://github.com/facebook/react) and create your branch from `main`.
+2. Run `yarn` in the repository root.
+3. If you've fixed a bug or added code that should be tested, add tests!
+4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
+5. Run `yarn test --prod` to test in the production environment.
+6. If you need a debugger, run `yarn debug-test --watch TestName`, open `chrome://inspect`, and press "Inspect".
+7. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
+8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
+9. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
+10. If you haven't already, complete the CLA.
+>>>>>>> 0cddca13ddebb3ed19c1124723e10d006a5457fc
 
 ### Accord de licence de contribution (CLA) {#contributor-license-agreement-cla}
 
@@ -116,6 +155,7 @@ Afin que nous puissions accepter votre _pull request_, nous avons besoin que vou
 Après avoir cloné votre fork de React, lancez `yarn` afin d’aller chercher les dépendances du projet.
 Ensuite, vous pouvez lancer différentes commandes :
 
+<<<<<<< HEAD
 * `yarn lint` pour vérifier le style du code.
 * `yarn linc` fonctionne comme `yarn lint` mais va plus vite car elle ne vérifie que les fichiers qui ont changé sur votre branche.
 * `yarn test` lance la suite de tests complète.
@@ -128,18 +168,41 @@ Ensuite, vous pouvez lancer différentes commandes :
 * `yarn build react/index,react-dom/index --type=UMD` crée des *builds* UMD seulement des modules indiqués, ici React et ReactDOM.
 
 Nous recommandons d'utiliser `yarn test` (ou ses variations mentionnées ci-dessus) pour vous assurer de ne pas introduire de régressions en travaillant sur votre contribution. Cependant, il peut être pratique d'essayer votre build de React dans un vrai projet.
+=======
+* `yarn lint` checks the code style.
+* `yarn linc` is like `yarn lint` but faster because it only checks files that differ in your branch.
+* `yarn test` runs the complete test suite.
+* `yarn test --watch` runs an interactive test watcher.
+* `yarn test --prod` runs tests in the production environment.
+* `yarn test <pattern>` runs tests with matching filenames.
+* `yarn debug-test` is just like `yarn test` but with a debugger. Open `chrome://inspect` and press "Inspect".
+* `yarn flow` runs the [Flow](https://flowtype.org/) typechecks.
+* `yarn build` creates a `build` folder with all the packages.
+* `yarn build react/index,react-dom/index --type=UMD` creates UMD builds of just React and ReactDOM.
+
+We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However, it can be handy to try your build of React in a real project.
+>>>>>>> 0cddca13ddebb3ed19c1124723e10d006a5457fc
 
 Tout d’abord, lancez `yarn build`. Ça produira des _bundles_ pré-compilés dans le dossier `build`, et préparera les modules npm dans `build/packages`.
 
 La manière la plus simple d'essayer vos modifications consiste à lancer `yarn build react/index,react-dom/index --type=UMD` et ensuite ouvrir `fixtures/packaging/babel-standalone/dev.html`. Ce fichier utilise déjà `react.development.js` depuis le dossier `build`, donc il utilisera vos évolutions.
 
+<<<<<<< HEAD
 Si vous voulez essayer vos évolutions dans votre projet React existant, vous pouvez copier `build/dist/react.development.js`, `build/dist/react-dom.development.js`, ou tout autre produit de la compilation dans votre appli et les utiliser au lieu de la version stable.
+=======
+If you want to try your changes in your existing React project, you may copy `build/node_modules/react/umd/react.development.js`, `build/node_modules/react-dom/umd/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. 
+>>>>>>> 0cddca13ddebb3ed19c1124723e10d006a5457fc
 
 Si votre projet utilise React via npm, vous pouvez supprimer `react` et `react-dom` dans ses dépendances et utiliser `yarn link` pour les faire pointer vers votre dossier local `build`. Remarquez qu’**au lieu de `--type=UMD` vous voudrez plutôt passer `--type=NODE` à la construction**. Vous aurez aussi besoin du module `scheduler` :
 
 ```sh
+<<<<<<< HEAD
 cd ~/chemin_vers_votre_clone_de_react/
 yarn build react/index,react-dom/index,scheduler --type=NODE
+=======
+cd ~/path_to_your_react_clone/
+yarn build react/index,react/jsx,react-dom/index,scheduler --type=NODE
+>>>>>>> 0cddca13ddebb3ed19c1124723e10d006a5457fc
 
 cd build/node_modules/react
 yarn link
