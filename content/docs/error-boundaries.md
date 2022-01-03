@@ -2,8 +2,6 @@
 id: error-boundaries
 title: Périmètres d'erreurs
 permalink: docs/error-boundaries.html
-prev: portals.html
-next: web-components.html
 ---
 
 Auparavant, les erreurs JavaScript au sein des composants avaient l'habitude de corrompre l'état interne de React, et de causer des [erreurs](https://github.com/facebook/react/issues/4026) [assez](https://github.com/facebook/react/issues/6895) [incompréhensibles](https://github.com/facebook/react/issues/8579) lors des rendus suivants. Ces erreurs étaient toujours causées par une erreur antérieure dans le code applicatif et comme React ne proposait alors aucun moyen de les gérer correctement dans les composants, il n'avait pas la possibilité de se rétablir.
@@ -63,7 +61,11 @@ Vous pouvez alors l'utiliser comme un composant classique :
 
 Les périmètres d'erreurs fonctionnent comme un bloc JavaScript `catch {}`, mais pour les composants. Seuls les composants à base de classe peuvent être des périmètres d'erreurs. En pratique, vous voudrez généralement définir un seul composant de périmètre d'erreur puis l'utiliser partout dans votre application.
 
+<<<<<<< HEAD
 Notez bien que **les périmètres d'erreurs ne détectent que les erreurs présentes en dessous d'eux dans l'arbre des composants**. Un périmètre d'erreur ne peut intercepter une erreur survenant dans son propre code. Si un périmètre d'erreur plante en tentant d'afficher son message d'erreur, l’erreur se propagera alors au périmètre d'erreur le plus proche au-dessus de lui dans l'arbre. Là aussi, c'est similaire à la façon dont le bloc `catch {}` fonctionne en JavaScript.
+=======
+Note that **error boundaries only catch errors in the components below them in the tree**. An error boundary can’t catch an error within itself. If an error boundary fails trying to render the error message, the error will propagate to the closest error boundary above it. This, too, is similar to how the `catch {}` block works in JavaScript.
+>>>>>>> b41b1dc35679c01c3252e7d512ce28c5e100d0a4
 
 ## Démonstration interactive {#live-demo}
 
@@ -72,7 +74,11 @@ Jetez un coup d'œil sur [cet exemple de déclaration et d'utilisation d'un pér
 
 ## Où placer les périmètres d'erreurs ? {#where-to-place-error-boundaries}
 
+<<<<<<< HEAD
 La granularité des périmètres d'erreurs est à votre discrétion. Vous pourriez enrober les composants racines de routage pour afficher à l'utilisateur un message du type « Quelque chose s'est mal passé », à l'image de ce qui est souvent fait par les frameworks côté serveur. Vous pourriez aussi enrober des éléments d'interface précis avec un périmètre d'erreur afin de les empêcher de planter le reste de l'application.
+=======
+The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like how server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
+>>>>>>> b41b1dc35679c01c3252e7d512ce28c5e100d0a4
 
 
 ## Nouveau comportement pour les erreurs non-rattrapées {#new-behavior-for-uncaught-errors}
@@ -131,7 +137,11 @@ Les périmètres d'erreurs n'interceptent **pas** les erreurs qui surviennent au
 
 React n'a pas besoin de périmètres d'erreurs pour gérer les erreurs dans les gestionnaires d'événements. Contrairement aux méthodes de rendu ou de cycle de vie, les gestionnaires d'événements ne sont pas appelés pendant le rendu. Du coup même si ces gestionnaires lèvent une erreur, React saura tout de même quoi afficher à l'écran.
 
+<<<<<<< HEAD
 Si vous avez besoin d'intercepter une erreur au sein d'un gestionnaire d'événements, il suffit d'utiliser un classique `try` / `catch` JavaScript :
+=======
+If you need to catch an error inside an event handler, use the regular JavaScript `try` / `catch` statement:
+>>>>>>> b41b1dc35679c01c3252e7d512ce28c5e100d0a4
 
 ```js{9-13,17-20}
 class MyComponent extends React.Component {

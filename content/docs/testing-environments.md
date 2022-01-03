@@ -55,4 +55,8 @@ Parfois, vous voudrez sans doute ne pas simuler les horloges, par exemple si vou
 
 Les tests de bout en bout sont utiles pour tester des scénarios plus longs, en particulier s’ils sont critiques à votre activité (comme des paiements ou des inscriptions).  Pour de tels tests, vous voudrez sans doute tester comment un véritable navigateur affiche votre appli entière, charge les données depuis de véritables points d’accès API, utilise les sessions et les cookies, navigue au travers de divers liens…  Vous voudrez sans doute aussi vérifier non seulement l’état du DOM, mais les données sous-jacentes (par exemple pour vérifier si des mises à jour ont bien été persistées en base).
 
+<<<<<<< HEAD
 Dans un tel scénario, vous utiliserez probablement un framework comme [Cypress](https://www.cypress.io/) ou une bibliothèque telle que [puppeteer](https://github.com/GoogleChrome/puppeteer) afin de pouvoir naviguer à travers de multiples routes et vérifier les effets de bord non seulement au sein du navigateur, mais dans votre couche serveur également.
+=======
+In this scenario, you would use a framework like [Cypress](https://www.cypress.io/), [Playwright](https://playwright.dev) or a library like [Puppeteer](https://pptr.dev/) so you can navigate between multiple routes and assert on side effects not just in the browser, but potentially on the backend as well.
+>>>>>>> b41b1dc35679c01c3252e7d512ce28c5e100d0a4
