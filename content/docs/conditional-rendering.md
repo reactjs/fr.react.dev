@@ -153,7 +153,24 @@ ReactDOM.render(
 
 Du coup, si la condition vaut `true`, l'élément juste après `&&` sera affiché. Si elle vaut `false`, React va l'ignorer et le sauter.
 
+<<<<<<< HEAD
 ### Alternative à la volée avec opérateur ternaire {#inline-if-else-with-conditional-operator}
+=======
+Note that returning a falsy expression will still cause the element after `&&` to be skipped but will return the falsy expression. In the example below, `<div>0</div>` will be returned by the render method.
+
+```javascript{2,5}
+render() {
+  const count = 0;
+  return (
+    <div>
+      { count && <h1>Messages: {count}</h1>}
+    </div>
+  );
+}
+```
+
+### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
+>>>>>>> 569949e266f5724a04821d6c4f211286238616dc
 
 Une autre méthode pour l’affichage conditionnel à la volée d'éléments consiste à utiliser l'opérateur ternaire Javascript [`condition ? trueValue : falseValue`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Opérateurs/L_opérateur_conditionnel).
 

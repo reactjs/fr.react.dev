@@ -2,8 +2,6 @@
 id: render-props
 title: Props de rendu
 permalink: docs/render-props.html
-prev: higher-order-components.html
-next: integrating-with-other-libraries.html
 ---
 
 Le terme [« prop de rendu »](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) _(render prop, NdT)_ fait référence à une technique qui consiste à partager du code entre des composants React en utilisant une prop dont la valeur est une fonction.

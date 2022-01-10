@@ -76,6 +76,7 @@ Si votre fonction de mise à jour renvoie exactement la même valeur que l’ét
 > À l'inverse de la méthode `setState` que l'on trouve dans les composants définis à l'aide d'une classe, `useState` ne fusionne pas automatiquement les objets de mise à jour. Vous pouvez imiter ce comportement en combinant la forme fonctionnelle de mise à jour avec la syntaxe de *spread* des objets :
 >
 > ```js
+> const [state, setState] = useState({});
 > setState(prevState => {
 >   // Object.assign marcherait aussi
 >   return {...prevState, ...updatedValues};
