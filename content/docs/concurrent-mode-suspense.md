@@ -17,9 +17,18 @@ next: concurrent-mode-patterns.html
 
 > Attention
 >
+<<<<<<< HEAD
 > Cette page décrit **des fonctionnalités expérimentales qui [ne sont pas encore disponibles](/docs/concurrent-mode-adoption.html) dans une version stable**. Ne vous basez pas sur les builds expérimentaux de React pour vos applis en production. Ces fonctionnalités sont susceptibles d’évoluer de façon significative et sans avertissement avant d’intégrer officiellement React.
 >
 > Cette documentation est destinée aux personnes curieuses ou habituées à adopter les nouvelles technologies très tôt. **Si vous débutez en React, ne vous préoccupez pas de ces fonctionnalités** : vous n’avez pas besoin de les apprendre pour le moment. Par exemple, si vous cherchez un tutoriel sur le chargement de données qui fonctionne dès maintenant, lisez plutôt [cet article](https://www.robinwieruch.de/react-hooks-fetch-data/).
+=======
+>This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>
+>Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
+) for the up-to-date information.**
+>
+>Before React 18 is released, we will replace this page with stable documentation.
+>>>>>>> b9c33a05520ddc728f15c4eb19a343213309f59f
 
 </div>
 
@@ -97,7 +106,11 @@ function ProfileTimeline() {
 
 Cette démo est là pour vous ouvrir l’appétit. Ne vous inquiétez pas si elle est déroutante à ce stade, nous la décrirons plus en détail dans un instant. Gardez à l’esprit que Suspense est davantage un *mécanisme*, et que les API spécifiques dans l’exemple ci-avant, telles que `fetchProfileData()` ou `resource.posts.read()`, n’ont que peu d’importance. Si vous êtes curieux·se, vous pouvez toujours en consulter l’implémentation directement dans la [sandbox de démonstration](https://codesandbox.io/s/frosty-hermann-bztrp).
 
+<<<<<<< HEAD
 Suspense n’est pas une bibliothèque de chargement de données. C’est un **mécanisme à destination des bibliothèques de chargement de données** pour qu’elles puissent indiquer à React que *les données que lit un composant ne sont pas encore disponibles*. React peut alors attendre qu’elles le deviennent et mettre à jour l’interface utilisateur (UI). Chez Facebook, nous utilisons Relay et sa [nouvelle intégration avec Suspense](https://relay.dev/docs/en/experimental/step-by-step). Nous pensons que d’autres bibliothèques, telles qu’Apollo, fournirons des intégrations similaires.
+=======
+Suspense is not a data fetching library. It's a **mechanism for data fetching libraries** to communicate to React that *the data a component is reading is not ready yet*. React can then wait for it to be ready and update the UI. At Facebook, we use Relay and its [new Suspense integration](https://relay.dev/docs/getting-started/step-by-step-guide/). We expect that other libraries like Apollo can provide similar integrations.
+>>>>>>> b9c33a05520ddc728f15c4eb19a343213309f59f
 
 Sur le long terme, nous prévoyons que Suspense deviendra le moyen principal de lire des données asynchrone depuis des composants, et ce quelle que soit la provenance des données.
 
@@ -109,7 +122,11 @@ Suspense est significativement différent des approches existantes pour ce type 
 * **Ce n’est pas un client prêt à l’emploi.**  Vous ne pouvez pas « remplacer » `fetch` ou Relay par Suspense. Mais vous pouvez utiliser une bibliothèque qui s’intègre avec Suspense (par exemple, les [nouvelles API de Relay](https://relay.dev/docs/en/experimental/api-reference)).
 * **Ça ne lie pas le chargement des données à la couche vue.**  Ça aide à orchestrer l’affichage des états de chargement dans votre UI, mais ça ne lie pas votre logique réseau à vos composants React.
 
+<<<<<<< HEAD
 ### Ce que Suspense vous permet de faire {#what-suspense-lets-you-do}
+=======
+ * **It is not a ready-to-use client.** You can't "replace" `fetch` or Relay with Suspense. But you can use a library that's integrated with Suspense (for example, [new Relay APIs](https://relay.dev/docs/api-reference/relay-environment-provider/)).
+>>>>>>> b9c33a05520ddc728f15c4eb19a343213309f59f
 
 Alors quel est le but de Suspense ?  Il y a plusieurs manières de répondre à cette question :
 
@@ -127,7 +144,11 @@ Chez Facebook, nous n’avons pour le moment utilisé en production que l’int�
 
 Si vous n’utilisez pas Relay aujourd’hui, vous aurez peut-être besoin d’attendre avant de pouvoir véritablement essayer Suspense dans votre appli. Pour le moment, c’est la seule implémentation que nous ayons testée en production et qui nous a satisfaits.
 
+<<<<<<< HEAD
 Pendant les prochains mois, plusieurs bibliothèques vont apparaître qui exploiteront de diverses façons les API Suspense. **Si vous préférez apprendre une fois que les choses sont raisonnablement stables, vous voudrez peut-être ignorer tout ça pour le moment, et revenir lorsque l’écosystème Suspense sera plus mûr.**
+=======
+At Facebook, so far we have only used the Relay integration with Suspense in production. **If you're looking for a practical guide to get started today, [check out the Relay Guide](https://relay.dev/docs/getting-started/step-by-step-guide/)!** It demonstrates patterns that have already worked well for us in production.
+>>>>>>> b9c33a05520ddc728f15c4eb19a343213309f59f
 
 Vous pouvez aussi écrire votre propre intégration pour une bibliothèque de chargement de données, si vous le souhaitez.
 
@@ -145,9 +166,13 @@ Nous pourrions introduire Suspense sans mentionner les approches répandues de c
 
 Nous allons plutôt considérer Suspense comme l’étape suivante logique dans une chronologie d’approches :
 
+<<<<<<< HEAD
 * **_Fetch-on-render_ (par exemple, `fetch` dans `useEffect`) :** on commence l’affichage des composants. Chacun d’eux est susceptible de déclencher un chargement de données au sein de ses effets ou méthodes de cycle de vie. Cette approche aboutit souvent à des « cascades ».
 * **_Fetch-then-render_ (par exemple, Relay sans Suspense) :** on commence par charger toutes les données pour le prochain écran aussitôt que possible. Quand les données sont prêtes, on affiche le nouvel écran. On ne peut rien faire avant que les données ne soient reçues.
 * **_Render-as-you-fetch_ (par exemple, Relay avec Suspense) :** on lance le chargement de toutes les données requises par le prochain écran aussitôt que possible, et on commence le rendu du nouvel écran *immédiatement, avant d’avoir la réponse du réseau*. Au fil de la réception des flux de données, React retente le rendu des composants qui ont encore besoin de données jusqu’à ce que tout soit disponible.
+=======
+Unless you have a solution that helps prevent waterfalls, we suggest to prefer APIs that favor or enforce fetching before render. For a concrete example, you can look at how [Relay Suspense API](https://relay.dev/docs/api-reference/use-preloaded-query/) enforces preloading. Our messaging about this hasn't been very consistent in the past. Suspense for Data Fetching is still experimental, so you can expect our recommendations to change over time as we learn more from production usage and understand the problem space better.
+>>>>>>> b9c33a05520ddc728f15c4eb19a343213309f59f
 
 > Remarque
 >

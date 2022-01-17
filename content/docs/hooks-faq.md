@@ -902,9 +902,13 @@ Remarquez que vous pouvez toujours choisir de transmettre l'*état* applicatif c
 
 >Remarque
 >
+<<<<<<< HEAD
 >Nous recommandons de [transmettre `dispatch` dans le contexte](#how-to-avoid-passing-callbacks-down) plutôt que des fonctions de rappel individuelles dans les props. L'approche ci-dessous n'est mentionnée que par souci d'exhaustivité et à titre d'échappatoire.
 >
 >Notez aussi que cette approche peut causer des problèmes avec le [mode concurrent](/blog/2018/03/27/update-on-async-rendering.html). Nous prévoyons de proposer des alternatives plus ergonomiques à l'avenir, mais la solution la plus sûre pour l'instant consiste à toujours invalider la fonction de rappel si des valeurs dont elle dépend changent.
+=======
+>We recommend to [pass `dispatch` down in context](#how-to-avoid-passing-callbacks-down) rather than individual callbacks in props. The approach below is only mentioned here for completeness and as an escape hatch.
+>>>>>>> b9c33a05520ddc728f15c4eb19a343213309f59f
 
 Dans de rares cas vous pourriez avoir besoin de mémoïser une fonction de rappel avec [`useCallback`](/docs/hooks-reference.html#usecallback) mais la mémoïsation ne fonctionne pas très bien parce que la fonction interne a tout de même trop souvent besoin d'être recréée. Si la fonction que vous mémoïsez est un gestionnaire d'événements et n'est pas utilisée pendant le rendu, vous pouvez utiliser une [ref comme variable d'instance](#is-there-something-like-instance-variables), et y stocker manuellement la dernière valeur renvoyée :
 
