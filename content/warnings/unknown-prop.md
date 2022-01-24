@@ -31,7 +31,11 @@ function MyDiv(props) {
 }
 ```
 
+<<<<<<< HEAD
 **Correct :** l’opérateur de _rest_ est utilisé pour retirer certaines props du lot général, et laisser les autres dans une nouvelle variable.
+=======
+**Good:** The spread syntax can be used to pull variables off props, and put the remaining props into a variable.
+>>>>>>> 69bd27a3d558d6633e4f0adc61ecb8bb3d5f2edf
 
 ```js
 function MyDiv(props) {
