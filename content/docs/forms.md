@@ -9,7 +9,11 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
+<<<<<<< HEAD
 Les formulaires HTML fonctionnent un peu différemment des autres éléments du DOM en React car ils possèdent naturellement un état interne. Par exemple, ce formulaire en HTML qui accepte juste un nom :
+=======
+HTML form elements work a bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:
+>>>>>>> 5f0549c86e7a9c0774e66687d1bc0118a681eb9d
 
 ```html
 <form>
@@ -31,7 +35,7 @@ On peut combiner ces deux concepts en utilisant l'état local React comme « so
 
 Par exemple, en reprenant le code ci-dessus pour afficher le nom lors de la soumission, on peut écrire le formulaire sous forme de composant contrôlé :
 
-```javascript{4,10-12,24}
+```javascript{4,10-12,21,24}
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
@@ -270,7 +274,11 @@ Qui plus est, comme `setState()` fusionne automatiquement un état partiel dans 
 
 ## Valeur nulle des champs contrôlés {#controlled-input-null-value}
 
+<<<<<<< HEAD
 Définir la prop `value` sur un [composant contrôlé](/docs/forms.html#controlled-components) empêche l'utilisateur de changer la saisie sauf si vous le permettez. Si vous spécifiez une `value` mais que le champ reste modifiable, alors `value` doit s’être accidentellement retrouvée à `undefined` ou `null`.
+=======
+Specifying the `value` prop on a [controlled component](/docs/forms.html#controlled-components) prevents the user from changing the input unless you desire so. If you've specified a `value` but the input is still editable, you may have accidentally set `value` to `undefined` or `null`.
+>>>>>>> 5f0549c86e7a9c0774e66687d1bc0118a681eb9d
 
 Le code suivant illustre ce cas de figure. (Le champ est verrouillé au démarrage mais devient modifiable après un court délai.)
 
