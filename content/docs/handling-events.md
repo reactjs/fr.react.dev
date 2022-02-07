@@ -29,20 +29,30 @@ est légèrement différent avec React:
 </button>
 ```
 
+<<<<<<< HEAD
 Autre différence importante : en React, on ne peut pas renvoyer `false` pour empêcher le comportement par défaut. Vous devez appeler explicitement `preventDefault`. Par exemple, en HTML, pour annuler le comportement par défaut des liens qui consiste à ouvrir une nouvelle page, vous pourriez écrire :
 
 ```html
 <a href="#" onclick="console.log('Le lien a été cliqué.'); return false">
   Clique ici
 </a>
+=======
+Another difference is that you cannot return `false` to prevent default behavior in React. You must call `preventDefault` explicitly. For example, with plain HTML, to prevent the default form behavior of submitting, you can write:
+
+```html
+<form onsubmit="console.log('You clicked submit.'); return false">
+  <button type="submit">Submit</button>
+</form>
+>>>>>>> 20f0fe280f3c122df7541256b983c46e21e33b20
 ```
 
 En React, ça pourrait être :
 
-```js{2-5,8}
-function ActionLink() {
-  function handleClick(e) {
+```js{3}
+function Form() {
+  function handleSubmit(e) {
     e.preventDefault();
+<<<<<<< HEAD
     console.log('Le lien a été cliqué.');
   }
 
@@ -50,6 +60,15 @@ function ActionLink() {
     <a href="#" onClick={handleClick}>
       Clique ici
     </a>
+=======
+    console.log('You clicked submit.');
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit</button>
+    </form>
+>>>>>>> 20f0fe280f3c122df7541256b983c46e21e33b20
   );
 }
 ```
@@ -72,8 +91,13 @@ class Toggle extends React.Component {
   }
 
   handleClick() {
+<<<<<<< HEAD
     this.setState(state => ({
       isToggleOn: !state.isToggleOn
+=======
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+>>>>>>> 20f0fe280f3c122df7541256b983c46e21e33b20
     }));
   }
 
