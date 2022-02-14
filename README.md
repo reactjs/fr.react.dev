@@ -28,12 +28,16 @@ Please, checkout issue #1 for specifics on contributing to the localization effo
 
 ### Guidelines
 
+<<<<<<< HEAD
 This repo is meant to provide French translation for the [reactjs.org](https://reactjs.org/) web site, changes should be limited to L10N features only (mostly string translation). To make deeper changes in the structure or the content of the web site, please consider contributing to the [reactjs.org repo](https://github.com/reactjs/reactjs.org).
+=======
+The documentation is divided into several sections with a different tone and purpose. If you plan to write more than a few sentences, you might find it helpful to get familiar with the [contributing guidelines](https://github.com/reactjs/reactjs.org/blob/main/CONTRIBUTING.md#guidelines-for-text) for the appropriate sections.
+>>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
 
 ### Create a branch
 
-1. `git checkout master` from any folder in your local `reactjs.org` repository
-1. `git pull origin master` to ensure you have the latest main code
+1. `git checkout main` from any folder in your local `reactjs.org` repository
+1. `git pull origin main` to ensure you have the latest main code
 1. `git checkout -b the-name-of-my-branch` (replacing `the-name-of-my-branch` with a suitable name) to create a branch
 
 ### Make the change
@@ -55,12 +59,12 @@ This repo is meant to provide French translation for the [reactjs.org](https://r
 1. `git push my-fork-name the-name-of-my-branch`
 1. Go to the [fr.reactjs.org repo](https://github.com/reactjs/fr.reactjs.org) and you should see recently pushed branches.
 1. Follow GitHub's instructions.
-1. If possible, include screenshots of visual changes. A Netlify build will also be automatically created once you make your PR so other people can see your change.
+1. If possible, include screenshots of visual changes. A preview build is triggered after your changes are pushed to GitHub.
 
 
 ## Translation
 
-If you are interested in translating `reactjs.org`, please see the current translation efforts at [isreacttranslatedyet.com](https://www.isreacttranslatedyet.com/).
+If you are interested in translating `reactjs.org`, please see the current translation efforts at [translations.reactjs.org](https://translations.reactjs.org/).
 
 If your language does not have a translation and you would like to create one, please follow the instructions at [reactjs.org Translations](https://github.com/reactjs/reactjs.org-translation#translating-reactjsorg).
 

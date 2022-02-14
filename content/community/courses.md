@@ -18,19 +18,36 @@ permalink: community/courses.html
 
 - [Codecademy : React 101](https://www.codecademy.com/learn/react-101) – Cours d'introduction de Codecademy pour React.
 
+<<<<<<< HEAD
 - [Egghead.io : Start Learning React](https://egghead.io/courses/start-learning-react) – Cette série explore les fondamentaux de React pour vous aider à démarrer.
 
 - [React Crash Course 2018](https://www.youtube.com/watch?v=Ke90Tje7VS0) – Un cours intensif pour débutants abordant les sujets les plus importants de React.
+=======
+- [Frontend Armory: React Fundamentals](https://frontarm.com/courses/react-fundamentals/) - Learn React without the buzzwords.
+
+- [Egghead.io: The Beginner's Guide to ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-react) - Free course for React newbies and those looking to get a better understanding of React fundamentals.
+>>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
 
 - [React Armory : Learn React by Itself](https://reactarmory.com/guides/learn-react-by-itself) – Avec React Armory, vous pouvez apprendre React sans les fanfreluches.
 
 - [Egghead.io : The Beginner’s Guide to ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-reactjs) – Cours gratuit pour les débutant·e·s en React et celles et ceux qui cherchent à mieux comprendre les principes fondamentaux de React.
 
+<<<<<<< HEAD
 - [Free React Bootcamp](https://tylermcginnis.com/free-react-bootcamp/) – Enregistrements de trois jours d'une formation React intensive en ligne gratuite.
+=======
+- [University of Helsinki: Full Stack Open MOOC](https://fullstackopen.com/en/) - Learn to build web applications with React. Available in English, Spanish, Chinese and Finnish.
+
+
+## Paid Courses {#paid-courses}
+>>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
 
 - [Scrimba: Learn React for free](https://scrimba.com/g/glearnreact) - 48 tutoriels vidéo pratiques sur la construction d’applis React.
 
+<<<<<<< HEAD
 ## Cours payants {#paid-courses}
+=======
+- [Frontend Masters](https://frontendmasters.com/learn/react/) - Video courses on React.
+>>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
 
 - [Egghead.io](https://egghead.io/browse/frameworks/react) – Courtes vidéos pédagogiques sur React et de nombreux autres sujets.
 
@@ -46,14 +63,24 @@ permalink: community/courses.html
 
 - [React Essentials for Designers](https://learnreact.design) – Cours React sur-mesure pour les designers : principes de base, fonctionnalités, limites et liens entre ces points et le design.
 
+<<<<<<< HEAD
 - [Essential React](https://learnreact.com/lessons/2018-essential-react-1-overview) – Un cours intensif pour les touche-à-tout, allant de « Bonjour monde » à la composition avancée de composants.
+=======
+- [Tyler McGinnis](https://ui.dev/) - Tyler McGinnis provides access to his courses for a monthly fee. Courses include "React Fundamentals" and "Universal React".
+>>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
 
 - [React Training: Advanced React.js](https://courses.reacttraining.com/p/advanced-react) - Amenez vos compétences React au prochain niveau.
 
 - [Tyler McGinnis](https://tylermcginnis.com/courses) – Tyler McGinnis donne accès à ses cours moyennant un abonnement mensuel. Ses cours comprennent notamment “React Fundamentals” et “Universal React”.
 
+<<<<<<< HEAD
 - [Mastering React](https://codewithmosh.com/p/mastering-react/) – Construisez des applications interactives professionnelles avec React.
 
 - [React Tutorial](https://react-tutorial.app) - Apprenez React pas à pas dans un environnement interactif avec des cartes mémoires.
 
 - [Road to React](https://www.roadtoreact.com/) - Votre parcours pour maîtriser React avec JavaScript.
+=======
+- [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.
+
+- [Epic React](https://epicreact.dev/) - Confidently Ship Well-Architected Production Ready React Apps Like a Pro
+>>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
