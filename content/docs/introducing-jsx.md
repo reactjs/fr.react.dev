@@ -68,7 +68,11 @@ ReactDOM.render(
 );
 ```
 
+<<<<<<< HEAD
 **[Essayer sur CodePen](codepen://introducing-jsx)**
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)**
+>>>>>>> 2310e15532aba273d713996a4c6ef04247dff764
 
 On découple le JSX en plusieurs lignes pour une meilleure lisibilité. Par la même occasion, nous recommandons également de le mettre entre parenthèses afin d'éviter les pièges [d'insertion de point-virgule automatique](https://stackoverflow.com/q/2846283), même si cette pratique n'est pas obligatoire.
 
@@ -92,7 +96,7 @@ function getGreeting(user) {
 Vous pouvez utiliser des guillemets pour spécifier des littéraux chaînes de caractères dans les attributs :
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 Vous pouvez aussi utiliser des accolades pour utiliser une expression JavaScript dans un attribut :
@@ -181,4 +185,8 @@ Nous explorerons la retranscription des éléments React dans le DOM dans la [pr
 
 >**Astuce :**
 >
+<<<<<<< HEAD
 >Nous recommandons d'utiliser la [définition de langage « Babel »](https://babeljs.io/docs/editors) dans votre éditeur préféré, afin que les codes ES6 et JSX soient correctement colorisés.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/en/next/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+>>>>>>> 2310e15532aba273d713996a4c6ef04247dff764
