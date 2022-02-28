@@ -7,7 +7,11 @@
 
 // NOTE: We can't just use `location.toString()` because when we are rendering
 // the SSR part in node.js we won't have a proper location.
+<<<<<<< HEAD
 const urlRoot = 'https://fr.reactjs.org';
+=======
+const urlRoot = 'https://reactjs.org';
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 const version = '17.0.2';
 const babelURL = 'https://unpkg.com/babel-standalone@6.26.0/babel.min.js';
 

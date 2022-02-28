@@ -2,7 +2,6 @@
 id: jsx-in-depth
 title: JSX dans le détail
 permalink: docs/jsx-in-depth.html
-next: typechecking-with-proptypes.html
 redirect_from:
   - "docs/jsx-spread.html"
   - "docs/jsx-gotchas.html"
@@ -232,7 +231,11 @@ En général, nous déconseillons cette syntaxe qui *ne passe pas* de valeur à 
 
 ### Décomposition des props {#spread-attributes}
 
+<<<<<<< HEAD
 Si vous avez déjà un objet `props` et souhaitez l'utiliser en JSX, vous pouvez utiliser l'opérateur de décomposition *(spread operator, NdT)* `...` pour passer l'ensemble de l'objet props. Ces deux composants sont équivalents :
+=======
+If you already have `props` as an object, and you want to pass it in JSX, you can use `...` as a "spread" syntax to pass the whole props object. These two components are equivalent:
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 
 ```js{7}
 function App1() {
@@ -245,7 +248,11 @@ function App2() {
 }
 ```
 
+<<<<<<< HEAD
 Vous pouvez également choisir certaines props que votre composant utilisera en passant toutes les autres props avec l'opérateur de *rest*.
+=======
+You can also pick specific props that your component will consume while passing all other props using the spread syntax.
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 
 ```js{2}
 const Button = props => {
