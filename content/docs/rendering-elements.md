@@ -38,7 +38,11 @@ Pour faire le rendu d’un élément React dans un nœud DOM racine, passez les
 
 `embed:rendering-elements/render-an-element.js`
 
+<<<<<<< HEAD
 **[Essayer sur CodePen](codepen://rendering-elements/render-an-element)**
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
+>>>>>>> a08e1fd4b574a4d2d55e292af9eb01d55a526303
 
 Cet exemple de code affichera « Bonjour, monde » sur la page.
 
@@ -52,7 +56,11 @@ Prenons l’exemple de cette horloge :
 
 `embed:rendering-elements/update-rendered-element.js`
 
+<<<<<<< HEAD
 **[Essayer dans CodePen](codepen://rendering-elements/update-rendered-element)**
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
+>>>>>>> a08e1fd4b574a4d2d55e292af9eb01d55a526303
 
 À chaque seconde, nous appellons [`ReactDOM.render()`](/docs/react-dom.html#render) depuis une fonction de rappel passée à [`setInterval()`](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setInterval).
 
@@ -66,7 +74,11 @@ Prenons l’exemple de cette horloge :
 
 React DOM compare l’élément et ses enfants avec la version précédente, et applique uniquement les mises à jour DOM nécessaires pour refléter l’état voulu.
 
+<<<<<<< HEAD
 Vous pouvez vérifier ce comportement en inspectant le [dernier exemple](codepen://rendering-elements/update-rendered-element) avec les outils de développement du navigateur :
+=======
+You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) with the browser tools:
+>>>>>>> a08e1fd4b574a4d2d55e292af9eb01d55a526303
 
 ![L’inspecteur montrant des mises à jour atomiques](../images/docs/granular-dom-updates.gif)
 
