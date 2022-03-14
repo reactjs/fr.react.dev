@@ -96,9 +96,13 @@ Vous ne pouvez pas utiliser les Hooks *à l'intérieur* d'un composant à base d
 
 Notre but est que les Hooks couvrent tous les cas d'utilisation des classes dès que possible. Il n’existe pas pour l'instant d'équivalent en Hook pour les méthodes de cycle de vie moins courantes que sont `getSnapshotBeforeUpdate`, `getDerivedStateFromError` et `componentDidCatch`, mais nous prévoyons de les ajouter rapidement.
 
+<<<<<<< HEAD
 Les Hooks en sont encore à leur débuts, et quelques bibliothèques tierces peuvent ne pas être compatibles avec les Hooks à l'heure actuelle.
 
 ### Est-ce que les Hooks remplacent les props de rendu et les composants d'ordre supérieur ? {#do-hooks-replace-render-props-and-higher-order-components}
+=======
+### Do Hooks replace render props and higher-order components? {#do-hooks-replace-render-props-and-higher-order-components}
+>>>>>>> 7994045415a9066f8663ee5403e874edbb4c5f83
 
 Souvent, les props de rendu et les composants d'ordre supérieur n’affichent qu’un seul enfant. Nous pensons que les Hooks simplifient ce cas d'utilisation. Ces deux approches restent pertinentes (par exemple, un composant de défilement virtuel pourrait avoir une prop `renderItem`, ou un composant de conteneur visuel pourrait avoir sa propre structure DOM). Mais dans la plupart des cas, les Hooks seront suffisants et pourront aider à réduire l'imbrication dans votre arborescence de composants.
 
@@ -902,9 +906,13 @@ Remarquez que vous pouvez toujours choisir de transmettre l'*état* applicatif c
 
 >Remarque
 >
+<<<<<<< HEAD
 >Nous recommandons de [transmettre `dispatch` dans le contexte](#how-to-avoid-passing-callbacks-down) plutôt que des fonctions de rappel individuelles dans les props. L'approche ci-dessous n'est mentionnée que par souci d'exhaustivité et à titre d'échappatoire.
 >
 >Notez aussi que cette approche peut causer des problèmes avec le [mode concurrent](/blog/2018/03/27/update-on-async-rendering.html). Nous prévoyons de proposer des alternatives plus ergonomiques à l'avenir, mais la solution la plus sûre pour l'instant consiste à toujours invalider la fonction de rappel si des valeurs dont elle dépend changent.
+=======
+>We recommend to [pass `dispatch` down in context](#how-to-avoid-passing-callbacks-down) rather than individual callbacks in props. The approach below is only mentioned here for completeness and as an escape hatch.
+>>>>>>> 7994045415a9066f8663ee5403e874edbb4c5f83
 
 Dans de rares cas vous pourriez avoir besoin de mémoïser une fonction de rappel avec [`useCallback`](/docs/hooks-reference.html#usecallback) mais la mémoïsation ne fonctionne pas très bien parce que la fonction interne a tout de même trop souvent besoin d'être recréée. Si la fonction que vous mémoïsez est un gestionnaire d'événements et n'est pas utilisée pendant le rendu, vous pouvez utiliser une [ref comme variable d'instance](#is-there-something-like-instance-variables), et y stocker manuellement la dernière valeur renvoyée :
 

@@ -92,7 +92,11 @@ Il y a une blague interne dans l'équipe selon laquelle React aurait dû s'appel
 
 Nous tenons à offrir une bonne expérience de développement.
 
+<<<<<<< HEAD
 Par exemple, nous maintenons les [React DevTools](https://github.com/facebook/react-devtools) qui vous permettent d'inspecter l'arbre des composants React dans Chrome et Firefox. Nous avons entendu dire que ça améliore considérablement la productivité des ingénieur·e·s de Facebook et de la communauté.
+=======
+For example, we maintain [React DevTools](https://github.com/facebook/react/tree/main/packages/react-devtools) which let you inspect the React component tree in Chrome and Firefox. We have heard that it brings a big productivity boost both to the Facebook engineers and to the community.
+>>>>>>> 7994045415a9066f8663ee5403e874edbb4c5f83
 
 Nous essayons également de faire un effort supplémentaire pour fournir des avertissements utiles aux développeurs. Par exemple, React vous avertit durant le développement si vous imbriquez des balises d'une façon que le navigateur ne comprend pas, ou si vous faites une faute de frappe courante dans l'API. Les avertissements aux développeurs et les vérifications associées sont la raison principale pour laquelle la version de développement de React est plus lente que celle de production.
 

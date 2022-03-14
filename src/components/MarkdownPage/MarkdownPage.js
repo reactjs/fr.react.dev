@@ -10,6 +10,7 @@ import FeedbackForm from 'components/FeedbackForm';
 import Flex from 'components/Flex';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';
+<<<<<<< HEAD
 import type {Node} from 'types';
 import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
@@ -19,6 +20,20 @@ import createCanonicalUrl from 'utils/createCanonicalUrl';
 import findSectionForPath from 'utils/findSectionForPath';
 import {sharedStyles} from 'theme';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
+=======
+// $FlowFixMe Update Flow
+import React from 'react';
+import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
+import TitleAndMetaTags from 'components/TitleAndMetaTags';
+import FeedbackForm from 'components/FeedbackForm';
+import findSectionForPath from 'utils/findSectionForPath';
+import toCommaSeparatedList from 'utils/toCommaSeparatedList';
+import {sharedStyles} from 'theme';
+import createCanonicalUrl from 'utils/createCanonicalUrl';
+import {colors, media} from 'theme';
+
+import type {Node} from 'types';
+>>>>>>> 7994045415a9066f8663ee5403e874edbb4c5f83
 
 type Props = {
   authors: Array<string>,
@@ -72,6 +87,14 @@ const MarkdownPage = ({
         flex: '1 0 auto',
         position: 'relative',
         zIndex: 0,
+        '& h1, & h2, & h3, & h4, & h5, & h6': {
+          scrollMarginTop:
+            'calc(var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
+          [media.lessThan('small')]: {
+            scrollMarginTop:
+              'calc(var(--survey-banner-height-small) + var(--social-banner-height-small))',
+          },
+        },
       }}>
       <TitleAndMetaTags
         ogDescription={ogDescription}
@@ -86,14 +109,16 @@ const MarkdownPage = ({
               <MarkdownHeader title={titlePrefix} />
 
               {(date || hasAuthors) && (
-                <div
-                  css={{
-                    marginTop: 15,
-                  }}>
+                <div css={{marginTop: 15}}>
                   {date}{' '}
                   {hasAuthors && (
+<<<<<<< HEAD
                     <span>
                       par{' '}
+=======
+                    <span css={{lineHeight: 1.75}}>
+                      by{' '}
+>>>>>>> 7994045415a9066f8663ee5403e874edbb4c5f83
                       {toCommaSeparatedList(authors, author => (
                         <a
                           css={sharedStyles.link}
@@ -127,8 +152,13 @@ const MarkdownPage = ({
                     </span>
                     <a
                       css={sharedStyles.articleLayout.editLink}
+<<<<<<< HEAD
                       href={`https://github.com/reactjs/fr.reactjs.org/tree/master/${markdownRemark.fields.path}`}>
                       Modifier cette page
+=======
+                      href={`https://github.com/reactjs/reactjs.org/tree/main/${markdownRemark.fields.path}`}>
+                      Edit this page
+>>>>>>> 7994045415a9066f8663ee5403e874edbb4c5f83
                     </a>
                   </div>
                 )}
