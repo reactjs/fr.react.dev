@@ -17,9 +17,18 @@ next: concurrent-mode-adoption.html
 
 > Attention
 >
+<<<<<<< HEAD
 > Cette page décrit **des fonctionnalités expérimentales qui [ne sont pas encore disponibles](/docs/concurrent-mode-adoption.html) dans une version stable**. Ne vous basez pas sur les builds expérimentaux de React pour vos applis en production. Ces fonctionnalités sont susceptibles d’évoluer de façon significative et sans avertissement avant d’intégrer officiellement React.
 >
 > Cette documentation est destinée aux personnes curieuses ou habituées à adopter les nouvelles technologies très tôt. **Si vous débutez en React, ne vous préoccupez pas de ces fonctionnalités** : vous n’avez pas besoin de les apprendre pour le moment. Par exemple, si vous cherchez un tutoriel sur le chargement de données qui fonctionne dès maintenant, lisez plutôt [cet article](https://www.robinwieruch.de/react-hooks-fetch-data/).
+=======
+>This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>
+>Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
+) for the up-to-date information.**
+>
+>Before React 18 is released, we will replace this page with stable documentation.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 </div>
 
@@ -49,7 +58,11 @@ Par exemple, si nous passons d’une page à une autre et que ni le code ni les 
 
 ## Transitions {#transitions}
 
+<<<<<<< HEAD
 Reprenons [cette démo](https://codesandbox.io/s/infallible-feather-xjtbu) de la page précédente sur [Suspense pour le chargement de données](/docs/concurrent-mode-suspense.html).
+=======
+Let's revisit [this demo](https://codesandbox.io/s/sparkling-field-41z4r3) from the previous page about [Suspense for Data Fetching](/docs/concurrent-mode-suspense.html).
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Lorsqu’on clique sur le bouton « Suivant » pour basculer le profil actif, les données de la page existante disparaissent immédiatement, et nous avons à nouveau un indicateur de chargement pour la page entière. On pourrait qualifier cet état de chargement « d’indésirable ». **Ce serait sympa si nous pouvions « sauter » cet état et attendre qu’un peu de contenu arrive avant de transiter vers le nouvel écran.**
 
@@ -117,15 +130,27 @@ Nous allons enrober cette mise à jour de l’état dans un appel à `startTrans
 >
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/musing-driscoll-6nkie)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/vigilant-feynman-kpjy8w)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Cliquez sur « Suivant » plusieurs fois. Remarquez comme une différence se fait déjà bien sentir. **Au lieu de voir immédiatement un écran vide suite au clic, nous continuons à voir l’écran précédent pendant un instant.**  Une fois les données chargées, React transite sur le nouvel écran.
 
+<<<<<<< HEAD
 Si nous ajustons nos API pour mettre 5 secondes à répondre, [nous pouvons confirmer](https://codesandbox.io/s/relaxed-greider-suewh) que React décide alors « d’abandonner » en transitant vers le prochain écran au bout de 3 secondes. C’est dû à notre argument `{ timeoutMs: 3000 }` dans `useTransition()`. À titre d’exemple, si nous avions plutôt passé `{ timeoutMs: 60000 }`, il aurait attendu une minute entière.
+=======
+If we make our API responses take 5 seconds, [we can confirm](https://codesandbox.io/s/heuristic-leftpad-9hit59) that now React "gives up" and transitions anyway to the next screen after 3 seconds. This is because we passed `{timeoutMs: 3000}` to `useTransition()`. For example, if we passed `{timeoutMs: 60000}` instead, it would wait a whole minute.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 ### Ajouter un indicateur d’attente {#adding-a-pending-indicator}
 
+<<<<<<< HEAD
 Il reste quelque chose qui semble cassé dans [notre dernier exemple](https://codesandbox.io/s/musing-driscoll-6nkie). Bien sûr, c’est sympa de ne pas voir un « mauvais » état de chargement. **Mais n’avoir aucun indicateur de progression est quelque part encore pire !**  Quand on clique sur « Suivant », rien ne se passe et on dirait que l’appli est cassée.
+=======
+There's still something that feels broken about [our last example](https://codesandbox.io/s/vigilant-feynman-kpjy8w). Sure, it's nice not to see a "bad" loading state. **But having no indication of progress at all feels even worse!** When we click "Next", nothing happens and it feels like the app is broken.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Notre appel à `useTransition()` renvoie deux valeurs : `startTransition` et `isPending`.
 
@@ -155,13 +180,21 @@ return (
 );
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/jovial-lalande-26yep)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/frosty-haslett-ds0h9h)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Voilà qui rend beaucoup mieux !  Quand nous cliquons sur « Suivant », le bouton est désactivé puisque cliquer dessus plusieurs fois n’aurait pas de sens. Et le nouveau texte « Chargement... » indique à l’utilisateur que l’appli n’a pas gelé.
 
 ### Le point sur les changements {#reviewing-the-changes}
 
+<<<<<<< HEAD
 Revoyons l’ensemble des modifications apportées à notre [exemple d’origine](https://codesandbox.io/s/infallible-feather-xjtbu) :
+=======
+Let's take another look at all the changes we've made since the [original example](https://codesandbox.io/s/nice-shadow-zvosx0):
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 ```js{3-5,9,11,14,19}
 function App() {
@@ -189,14 +222,25 @@ function App() {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/jovial-lalande-26yep)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/frosty-haslett-ds0h9h)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Il ne nous aura fallu que sept lignes de code pour ajouter cette transition :
 
+<<<<<<< HEAD
 * Nous avons importé le Hook `useTransition` et l’avons utilisé dans le composant pour mettre à jour l’état.
 * Nous avons passé `{ timeoutMs: 3000 }` pour rester sur l’écran précédent à raison de 3 secondes maximum.
 * Nous avons enrobé la mise à jour de l’état par un `startTransition` pour indiquer à React qu’il pouvait choisir de la différer.
 * Nous utilisons `isPending` pour communiquer la notion d’une transition d’état en cours à l’utilisateur et désactiver le bouton.
+=======
+* We've imported the `useTransition` Hook and used it in the component that updates the state.
+* We've passed `{timeoutMs: 3000}` to stay on the previous screen for at most 3 seconds.
+* We've wrapped our state update into `startTransition` to tell React it's okay to delay it.
+* We're using `isPending` to communicate the state transition progress to the user and to disable the button.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Résultat : cliquer sur « Suivant » n’entraîne pas une transition d’état immédiate vers un état de chargement « indésirable » mais reste plutôt sur l’écran précédent pour y communiquer une progression.
 
@@ -210,7 +254,11 @@ Clairement, les deux « versions » de `<ProfilePage>` existent en même temps.
 
 On touche là à l’essence-même du mode concurrent. Nous avons [dit précédemment](/docs/concurrent-mode-intro.html#intentional-loading-sequences) que c’était un peu comme si React travaillait sur la mise à jour de l’état sur une « branche ». Une autre façon de conceptualiser ça consiste à se dire qu’enrober une mise à jour de l’état avec `startTransition` déclenche son rendu *« dans un univers parallèle »*, comme dans les films de science-fiction. Nous ne « voyons » pas cet univers directement—mais nous pouvons en détecter des signaux qui nous informent que quelque chose s’y passe (`isPending`). Quand la mise à jour est enfin prête, nos « univers » fusionnent, et nous voyons le résultat à l’écran !
 
+<<<<<<< HEAD
 Jouez un peu plus avec la [démo](https://codesandbox.io/s/jovial-lalande-26yep), et tentez d’imaginez ce comportement derrière elle.
+=======
+Play a bit more with the [demo](https://codesandbox.io/s/frosty-haslett-ds0h9h), and try to imagine it happening.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Bien entendu, ces deux versions de l’arbre effectuant leur rendu *en même temps* ne sont qu’une illusion, tout comme l’idée que tous les programmes tournent sur votre ordinateur en même temps est une illusion. Un système d’exploitation bascule entre les différentes applications très rapidement. De façon similaire, React peut basculer entre la version de votre arbre affichée à l’écran et celle « en préparation » pour l’affichage suivant.
 
@@ -248,11 +296,19 @@ function ProfilePage() {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/boring-shadow-100tf)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/trusting-brown-6hj0m0)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Dans cet exemple, nous commençons à charger les données lorsque le composant se charge *et* à chaque fois que nous activons « Rafraîchir ». Nous plaçons le résultat de l’appel à `fetchUserAndPosts()` dans l’état pour que les composants plus bas dans l’arbre puissent commencer à lire les nouvelles données de la requête que nous venons de déclencher.
 
+<<<<<<< HEAD
 On peut voir dans [cet exemple](https://codesandbox.io/s/boring-shadow-100tf) qu’activer « Rafraîchir » fonctionne bien. Les composants `<ProfileDetails>` et `<ProfileTimeline>` reçoivent une nouvelle prop `resource` qui représente les données à jour, ils « se suspendent » parce que la réponse n’est pas encore là, et nous en voyons les UI de repli. Une fois la réponse chargée, nous voyons les publications mises à jour (notre API factice en ajoute toutes les 3 secondes).
+=======
+We can see in [this example](https://codesandbox.io/s/trusting-brown-6hj0m0) that pressing "Refresh" works. The `<ProfileDetails>` and `<ProfileTimeline>` components receive a new `resource` prop that represents the fresh data, they "suspend" because we don't have a response yet, and we see the fallbacks. When the response loads, we can see the updated posts (our fake API adds them every 3 seconds).
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Cependant, l’expérience obtenue est très saccadée. Nous étions en train de consulter une page, mais celle-ci a été remplacée par un état de chargement alors même que nous étions en train d’interagir avec. C’est déroutant. **Tout comme précédemment, pour éviter d’afficher un état de chargement indésirable, nous pouvons enrober la mise à jour de l’état par une transition :**
 
@@ -287,7 +343,11 @@ function ProfilePage() {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/sleepy-field-mohzb)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/zealous-mccarthy-fiiwu2)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Voilà qui est beaucoup plus agréable ! Cliquer sur « Rafraîchir » ne nous vire plus de la page que nous étions en train de consulter. Nous voyons que quelque chose est en train de charger « en place » dans le contenu, et lorsque les données sont enfin prêtes, elles sont automatiquement affichées.
 
@@ -327,7 +387,11 @@ function Button({ children, onClick }) {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/modest-ritchie-iufrh)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/heuristic-cerf-8bo4rk)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Remarquez que le bouton ne se soucie pas de savoir *quel* état vous mettez à jour. Il enrobe dans une transition *n’importe quelle* mise à jour d’état qui survient au sein du gestionnaire `onClick`. À présent que notre `<Button>` s’occupe tout seul de mettre la transition en place, le composant `<ProfilePage>` n’a plus besoin de s’en occuper lui-même :
 
@@ -353,7 +417,11 @@ function ProfilePage() {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/modest-ritchie-iufrh)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/heuristic-cerf-8bo4rk)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Quand on clique sur un bouton, celui-ci démarre une transition et appelle `props.onClick()` à l’intérieur—ce qui déclenche `handleRefreshClick` dans le composant `<ProfilePage>`. On commence à charger les données à jour, mais ça n’active pas l’UI de repli car nous sommes au sein d’une transition, et que l’expiration de 10 secondes spécifiée dans l’appel à `useTransition` n’est pas encore atteinte. Pendant que la transition est active, le bouton affiche un indicateur de chargement intégré.
 
@@ -375,7 +443,11 @@ Pour finir, il y a deux principales façons d’arriver à l’état Squelette. 
 
 ### Par défaut : En retrait → Squelette → Terminé {#default-receded-skeleton-complete}
 
+<<<<<<< HEAD
 Ouvrez [cet exemple](https://codesandbox.io/s/prod-grass-g1lh5) et cliquez sur « Ouvrir le profil ». Vous verrez plusieurs états visuels l’un après l’autre :
+=======
+Open [this example](https://codesandbox.io/s/xenodochial-breeze-khk2fh) and click "Open Profile". You will see several visual states one by one:
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 * **En retrait** : pendant une seconde, vous verrez l’UI de repli `<h1>Chargement de l’appli...</h1>`.
 * **Squelette** : vous verrez le composant `<ProfilePage>` avec à l’intérieur `<h2>Chargement des publications...</h2>`.
@@ -466,14 +538,23 @@ Quand nous utilisons `useTransition`, React nous permet de « rester » sur l�
 
 Vous pouvez comparer ces deux exemples pour ressentir la différence :
 
+<<<<<<< HEAD
 * Défaut : [En retrait → Squelette → Terminé](https://codesandbox.io/s/prod-grass-g1lh5)
 * **Préférable : [En attente → Squelette → Terminé](https://codesandbox.io/s/focused-snow-xbkvl)**
+=======
+* Default: [Receded → Skeleton → Complete](https://codesandbox.io/s/xenodochial-breeze-khk2fh)
+* **Preferred: [Pending → Skeleton → Complete](https://codesandbox.io/s/serene-pascal-w3no1l)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 La seule différence entre ces deux exemples tient à ce que le premier utilise des `<button>` classiques, alors que le second utilise notre composant personnalisé `<Button>`, qui intègre un `useTransition`.
 
 ### Enrobez les fonctionnalités paresseuses avec `<Suspense>` {#wrap-lazy-features-in-suspense}
 
+<<<<<<< HEAD
 Ouvrez [cet exemple](https://codesandbox.io/s/nameless-butterfly-fkw5q). Quand vous activez un bouton, vous voyez l’état En attente pendant une seconde avant de passer à la suite. Cette transition est agréable et fluide.
+=======
+Open [this example](https://codesandbox.io/s/crazy-browser-0tdg6m). When you press a button, you'll see the Pending state for a second before moving on. This transition feels nice and fluid.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Nous allons maintenant ajouter une fonctionnalité toute neuve à la page de profil : une liste de faits amusants relatifs à la personne :
 
@@ -505,11 +586,19 @@ function ProfileTrivia({ resource }) {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/focused-mountain-uhkzg)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/agitated-snowflake-m3scjk)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Si à présent vous activez « Ouvrir le profil », vous verrez que quelque chose cloche. Ça prend désormais sept bonnes secondes pour effectuer la transition !  C’est parce que notre API de faits amusants est trop lente. Imaginons que nous ne puissions pas l’accélérer : comment alors améliorer l’expérience utilisateur malgré cette contrainte ?
 
+<<<<<<< HEAD
 Si nous ne voulons pas rester à l’état En attente trop longtemps, notre premier instinct pourrait être d’ajuster le `timeoutMs` dans `useTransition` pour le réduire, par exemple à `3000`. Vous pouvez essayer ça [ici](https://codesandbox.io/s/practical-kowalevski-kpjg4). Ça nous permet d’échapper à un état En attente prolongé, mais ça ne nous donne pas pour autant des contenus utiles à afficher !
+=======
+If we don't want to stay in the Pending state for too long, our first instinct might be to set `timeoutMs` in `useTransition` to something smaller, like `3000`. You can try this [here](https://codesandbox.io/s/nervous-galileo-ln6pbh). This lets us escape the prolonged Pending state, but we still don't have anything useful to show!
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Il y a un moyen plus simple de résoudre ça. **Plutôt que d’abréger la transition, nous pouvons « déconnecter » le composant lent de celle-ci** en l’enrobant dans son propre périmètre `<Suspense>` :
 
@@ -529,7 +618,11 @@ function ProfilePage({ resource }) {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/condescending-shape-s6694)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/mutable-silence-wffd1t)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Voilà qui met en lumière un point important. React préfèrera toujours arriver à l’état Squelette le plus tôt possible. Même si nous utilisons partout des transitions à expiration longue, React ne restera pas dans l’état En attente plus longtemps que le strict nécessaire pour éviter l’état En retrait.
 
@@ -539,7 +632,11 @@ Voilà qui met en lumière un point important. React préfèrera toujours arrive
 
 Lorsque nous sommes déjà sur le prochain écran, il peut arriver que les données nécessaires pour « déverrouiller » des périmètres `<Suspense>` distincts arrivent en succession rapide. Par exemple, deux réponses distinctes pourraient arriver respectivement après 1 000 et 1 050 ms. Si vous avez déjà attendu une seconde, vous ne percevrez pas l’attente supplémentaire de 50 ms. C’est pourquoi React ne révèle les périmètres `<Suspense>` que selon un horaire déterminé, comme un « train » qui arriverait périodiquement. Il échange un court délai contre une réduction des modifications majeures à la mise en page et du nombre de changements visuels présentés à l’utilisateur.
 
+<<<<<<< HEAD
 Vous pouvez voir une démo de ça [ici](https://codesandbox.io/s/admiring-mendeleev-y54mk). Les réponses « publications » et « faits amusants » arrivent à 100 ms l’une de l’autre. Mais React les regroupe pour « révéler » leurs périmètres en une seule passe.
+=======
+You can see a demo of this [here](https://codesandbox.io/s/ecstatic-sammet-zeddc4). The "posts" and "fun facts" responses come within 100ms of each other. But React coalesces them and "reveals" their Suspense boundaries together. 
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 ### Différer un indicateur d’attente {#delaying-a-pending-indicator}
 
@@ -564,7 +661,11 @@ function Button({ children, onClick }) {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/floral-thunder-iy826)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/jolly-http-n94od0)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Ça signale à l’utilisateur qu’un travail a lieu. Toutefois, si cette transition est relativement courte (disons, moins de 500 ms), cet affichage est plus une distraction qu’autre chose et peut faire que la transition elle-même semble *plus lente*.
 
@@ -598,9 +699,15 @@ return (
 );
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/gallant-spence-l6wbk)**
 
 Avec cette modification, même si nous sommes dans l’état En attente, nous n’affichons aucune indication à l’utilisateur jusqu’à ce que 500 ms se soient écoulés. Ça peut sembler une amélioration superflue quand les réponses API sont lentes. Mais comparez le ressenti [avant](https://codesandbox.io/s/thirsty-liskov-1ygph) et [après](https://codesandbox.io/s/hardcore-http-s18xr) lorsque l’appel API est rapide. Même si le reste du code n’a pas changé, supprimer un état de chargement « trop rapide » améliore les performances perçues en évitant d’attirer l’attention de l’utilisateur.
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/optimistic-night-4td1me)**
+
+With this change, even though we're in the Pending state, we don't display any indication to the user until 500ms has passed. This may not seem like much of an improvement when the API responses are slow. But compare how it feels [before](https://codesandbox.io/s/priceless-water-yw7zw4) and [after](https://codesandbox.io/s/mystifying-noether-tnxftn) when the API call is fast. Even though the rest of the code hasn't changed, suppressing a "too fast" loading state improves the perceived performance by not calling attention to the delay.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 ### En résumé {#recap}
 
@@ -658,7 +765,11 @@ function Translation({ resource }) {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/brave-villani-ypxvf)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/boring-frost-t5ijqm)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Remarquez comme, lorsque vous tapez dans le champ de saisie, le composant `<Translation>` se suspend, vous affichant l’UI de repli `<p>Chargement...</p>` jusqu’à obtenir des résultats à jour. Ce n’est pas idéal. Il serait préférable que vous puissiez brièvement voir la *précédente* traduction, tandis que nous chargeons la prochaine.
 
@@ -701,7 +812,11 @@ function App() {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/zen-keldysh-rifos)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/wizardly-swirles-476m52)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Essayez de saisir une valeur à présent. Quelque chose cloche !  Le champ n’est mis à jour que très lentement.
 
@@ -727,7 +842,11 @@ function handleChange(e) {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/lively-smoke-fdf93)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/elegant-kalam-dhlrkz)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Avec cet ajustement, tout fonctionne comme on le souhaite. On peut taper une valeur et la voir immédiatement, quant à la traduction, elle « rattrape » ce qu’on a saisi un peu plus tard.
 
@@ -756,7 +875,11 @@ const deferredValue = useDeferredValue(value, {
 });
 ```
 
+<<<<<<< HEAD
 Pour illustrer cette fonctionnalité, nous allons utiliser [l’exemple de la bascule de profil](https://codesandbox.io/s/musing-ramanujan-bgw2o). Cliquez sur le bouton « Suivant » et remarquez que ça prend une seconde pour achever la transition.
+=======
+To demonstrate this feature, we'll use [the profile switcher example](https://codesandbox.io/s/quirky-carson-vs6g0i). Click the "Next" button and notice how it takes 1 second to do a transition.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Disons que la récupération des détails utilisateurs est très rapide et ne prend que 300 millisecondes. Pour le moment, nous attendons une seconde entière parce que nous avons besoin tant des détails de l’utilisateur que de ses publications pour afficher une page de profil cohérente. Mais qu’en serait-il si nous voulions afficher les détails plus tôt ?
 
@@ -792,7 +915,11 @@ function ProfileTimeline({ isStale, resource }) {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/vigorous-keller-3ed2b)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/dazzling-fog-o6ovhr)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Le compromis que nous faisons ici tient à ce que `<ProfileTimeline>` sera incohérente vis-à-vis des autres composants et affichera potentiellement un élément plus ancien. En cliquant sur « Suivant » plusieurs fois, vous allez le remarquer. Mais grâce à ça, nous pouvons raccourcir le temps de la transition de 1 000 ms à 300 ms.
 
@@ -823,7 +950,11 @@ function App() {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/pensive-shirley-wkp46)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/runtime-pine-kl2yff)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Dans cet exemple, **chaque élément dans `<MySlowList>` est artificiellement ralenti : chacun d’eux bloque le thread pour quelques millisecondes**. On ne ferait jamais ça dans une véritable appli, mais ça nous aide à simuler ce qui pourrait se passer dans une arborescence de composants profonde qui ne contiendrait pas pour autant d’endroits évidents à optimiser.
 
@@ -853,7 +984,11 @@ function App() {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/infallible-dewdney-9fkv9)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/charming-goldwasser-6kuh4m)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 À présent la frappe cause beaucoup moins de saccade, mais au prix d’un affichage différé des résultats.
 
@@ -883,7 +1018,11 @@ function ProfilePage({ resource }) {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/proud-tree-exg5t)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/hardcore-river-14ecuq)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 La durée de l’appel API dans cet exemple est aléatoire. Si vous rafraîchissez encore et encore, vous remarquerez que parfois les publications arrivent en premier, alors que d’autres fois ce sont les « faits amusants ».
 
@@ -898,7 +1037,11 @@ Une manière de corriger ça consiste à les placer tous deux dans le même pér
 </Suspense>
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/currying-violet-5jsiy)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/quirky-meadow-w1c61p)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Le souci avec ce correctif est qu’à présent nous devons *toujours* attendre que les deux contenus soient chargés. Et pourtant, si ce sont les *publications* qui répondent en premier, il n’y a pas de raison d’attendre pour les afficher. Quand les faits amusants arriveront plus tard, ils ne décaleront pas la mise en page parce qu’ils seront situés sous les publications.
 
@@ -928,11 +1071,19 @@ function ProfilePage({ resource }) {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayez sur CodeSandbox](https://codesandbox.io/s/black-wind-byilt)**
+=======
+**[Try it on CodeSandbox](https://codesandbox.io/s/empty-leaf-lp7eom)**
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 L’option `revealOrder="forwards"` signifie que les nœuds `<Suspense>` les plus proches dans la liste **ne « révèleront » leur contenu que dans l’ordre de leur apparition dans l’arbre, même si leurs données arrivent dans un ordre différent.** `<SuspenseList>` a d’autres modes intéressants : essayez de remplacer `"forwards"` par `"backwards"` ou `"together"` et regardez ce que ça donne.
 
+<<<<<<< HEAD
 Vous pouvez contrôler combien d’états de chargement sont visibles à un instant donné grâce à la prop `tail`. Si nous précisons `tail="collapsed"`, nous verrons *au maximum une* UI de repli à la fois. Vous pouvez jouer avec [ici](https://codesandbox.io/s/adoring-almeida-1zzjh).
+=======
+You can control how many loading states are visible at once with the `tail` prop. If we specify `tail="collapsed"`, we'll see *at most one* fallback at a time. You can play with it [here](https://codesandbox.io/s/keen-leaf-gccxd8).
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Gardez à l’esprit que `<SuspenseList>` est composable, comme tout dans React. Par exemple, vous pouvez créer une grille en plaçant plusieurs lignes `<SuspenseList>` au sein d’un tableau `<SuspenseList>`.
 

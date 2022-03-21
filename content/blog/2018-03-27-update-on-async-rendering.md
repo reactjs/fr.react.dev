@@ -130,7 +130,11 @@ En conséquence, la façon recommandée d’ajouter des écouteurs ou abonnement
 
 `embed:update-on-async-rendering/adding-event-listeners-after.js`
 
+<<<<<<< HEAD
 Il est parfois nécessaire de mettre à jour les abonnements en réponse à des changements de props.  Si vous utilisez une bibliothèque comme Redux ou MobX, le composant conteneur fourni par la bibliothèque devrait s'en charger pour vous.  Pour les auteurs d'applications, nous avons créé une petite bibliothèque, [`create-subscription`](https://github.com/facebook/react/tree/master/packages/create-subscription), qui vous aide dans cette tâche.  Nous la publierons en accompagnement de React 16.3.
+=======
+Sometimes it is important to update subscriptions in response to property changes. If you're using a library like Redux or MobX, the library's container component should handle this for you. For application authors, we've created a small library, [`create-subscription`](https://github.com/facebook/react/tree/main/packages/create-subscription), to help with this. We'll publish it along with React 16.3.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 Plutôt que de passer une prop `dataSource` sur laquelle s'abonner, comme nous l'avons fait dans l'exemple ci-dessus, nous pourrions utiliser `create-subscription` pour passer la valeur suivie :
 

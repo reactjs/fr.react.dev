@@ -19,9 +19,17 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 avec npm
 
 >Remarque
 >
+<<<<<<< HEAD
 > Nous vous conseillons d’utiliser [React Testing Library](https://testing-library.com/react). Cette bibliothèque est conçue pour encourager l'écriture de tests utilisant vos composants de façon similaire aux utilisateurs finaux.
 >
 > Par ailleurs, Airbnb propose un utilitaire de test appelé [Enzyme](http://airbnb.io/enzyme/), qui permet de facilement exprimer des assertions, manipuler vos composants React et en explorer le résultat.
+=======
+> We recommend using [React Testing Library](https://testing-library.com/react) which is designed to enable and encourage writing tests that use your components as the end users do.
+> 
+> For React versions <= 16, the [Enzyme](https://airbnb.io/enzyme/) library makes it easy to assert, manipulate, and traverse your React Components' output.
+
+
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
@@ -141,7 +149,11 @@ Cette méthode prend un module de composant simulé et lui ajoute des méthodes 
 
 >Remarque
 >
+<<<<<<< HEAD
 > `mockComponent()` est une API obsolète. Nous recommandons plutôt de recourir à [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
+=======
+> `mockComponent()` is a legacy API. We recommend using [`jest.mock()`](https://jestjs.io/docs/tutorial-react-native#mock-native-modules-using-jestmock) instead.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 * * *
 
