@@ -324,7 +324,11 @@ Faire remonter l'état implique d'écrire plus de code générique *(boilerplate
 
 Si quelque chose peut être dérivé des props ou de l'état, cette chose ne devrait probablement pas figurer dans l'état. Par exemple, plutôt que de stocker à la fois `celsiusValue` et `fahrenheitValue`, on stocke uniquement la dernière `temperature` modifiée et son unité `scale`. La valeur de l'autre champ peut toujours être calculée dans la méthode `render()` à partir de la valeur de ces données. Ça nous permet de vider ou d’arrondir la valeur de l’autre champ sans perdre la valeur saisie par l'utilisateur.
 
+<<<<<<< HEAD
 Quand vous voyez quelque chose qui ne va pas dans l'UI, vous pouvez utiliser les [outils de développement React](https://github.com/facebook/react/tree/master/packages/react-devtools) pour examiner les props et remonter dans l'arborescence des composants jusqu'à trouver le composant responsable de la mise à jour de l'état. Ça vous permet de remonter à la source des bugs :
+=======
+When you see something wrong in the UI, you can use [React Developer Tools](https://github.com/facebook/react/tree/main/packages/react-devtools) to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 <img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
 

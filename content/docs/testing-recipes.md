@@ -377,8 +377,11 @@ let container = null;
 beforeEach(() => {
   // met en place un élément DOM comme cible de rendu
   container = document.createElement("div");
+<<<<<<< HEAD
   // `container` *doit* être attaché à `document` pour que les événements
   // fonctionnent correctement.
+=======
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
   document.body.appendChild(container);
 });
 
@@ -395,7 +398,11 @@ it("change de valeur suite au clic", () => {
     render(<Toggle onChange={onChange} />, container);
   });
 
+<<<<<<< HEAD
   // récupère l’élément bouton et déclenche quelques clics dessus
+=======
+  // get a hold of the button element, and trigger some clicks on it
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
   const button = document.querySelector("[data-testid=toggle]");
   expect(button.innerHTML).toBe("Allumer");
 
@@ -417,7 +424,11 @@ it("change de valeur suite au clic", () => {
 });
 ```
 
+<<<<<<< HEAD
 Les événements DOM disponibles et leurs propriétés sont décrits dans le [MDN](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent).  Remarquez que vous devez passer `{ bubbles: true }` pour chaque événement créé afin qu’ils puissent atteindre l’écouteur de React, car React délègue automatiquement les événements au niveau racine du document.
+=======
+Different DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the root.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 > Remarque
 >
@@ -467,13 +478,12 @@ import { act } from "react-dom/test-utils";
 
 import Card from "./card";
 
-jest.useFakeTimers();
-
 let container = null;
 beforeEach(() => {
   // met en place un élément DOM comme cible de rendu
   container = document.createElement("div");
   document.body.appendChild(container);
+  jest.useFakeTimers();
 });
 
 afterEach(() => {
@@ -481,6 +491,7 @@ afterEach(() => {
   unmountComponentAtNode(container);
   container.remove();
   container = null;
+  jest.useRealTimers();
 });
 
 it("devrait sélectionner null à expiration", () => {
@@ -607,7 +618,11 @@ Il est généralement préférable de recourir à des assertions spécifiques pl
 
 ### Moteurs de rendu multiples {#multiple-renderers}
 
+<<<<<<< HEAD
 Dans de rares cas, vous pourrez vous retrouver à exécuter un test pour un composant qui, lui, recourt à plusieurs moteurs de rendu.  Par exemple, peut-être exécutez-vous des tests à base d’instantanés sur un composant en utilisant `react-test-renderer`, alors que sous le capot le composant utilise `ReactDOM.render` pour obtenir le contenu d’un composant enfant.  Dans un tel scénario vous pouvez enrober les mises à jour avec les appels aux fonctions `act()` des moteurs appropriés.
+=======
+In rare cases, you may be running a test on a component that uses multiple renderers. For example, you may be running snapshot tests on a component with `react-test-renderer`, that internally uses `render` from `react-dom` inside a child component to render some content. In this scenario, you can wrap updates with `act()`s corresponding to their renderers.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ```jsx
 import { act as domAct } from "react-dom/test-utils";

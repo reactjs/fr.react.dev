@@ -34,11 +34,19 @@ Nous parlons de nœud DOM « racine » car tout ce qu’il contient sera gér�
 
 Les applications dévéloppées uniquement avec React ont généralement un seul nœud DOM racine. Si vous intégrez React dans une application existante, vous pouvez avoir autant de nœuds DOM racines isolés que vous le souhaitez.
 
+<<<<<<< HEAD
 Pour faire le rendu d’un élément React dans un nœud DOM racine, passez les deux à la méthode [`ReactDOM.render()`](/docs/react-dom.html#render) :
 
 `embed:rendering-elements/render-an-element.js`
 
 **[Essayer sur CodePen](codepen://rendering-elements/render-an-element)**
+=======
+To render a React element, first pass the DOM element to [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot), then pass the React element to `root.render()`:
+
+`embed:rendering-elements/render-an-element.js`
+
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 Cet exemple de code affichera « Bonjour, monde » sur la page.
 
@@ -46,19 +54,33 @@ Cet exemple de code affichera « Bonjour, monde » sur la page.
 
 Les éléments React sont [immuables](https://fr.wikipedia.org/wiki/Objet_immuable). Une fois votre élément créé, vous ne pouvez plus modifier ses enfants ou ses attributs. Un élément est comme une image d’un film à un instant T : il représente l’interface utilisateur à un point précis dans le temps.
 
+<<<<<<< HEAD
 Avec nos connaissances actuelles, la seule façon de mettre à jour l’interface utilisateur est de créer un nouvel élément et de le passer à [`ReactDOM.render()`](/docs/react-dom.html#render).
+=======
+With our knowledge so far, the only way to update the UI is to create a new element, and pass it to `root.render()`.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 Prenons l’exemple de cette horloge :
 
 `embed:rendering-elements/update-rendered-element.js`
 
+<<<<<<< HEAD
 **[Essayer dans CodePen](codepen://rendering-elements/update-rendered-element)**
 
 À chaque seconde, nous appellons [`ReactDOM.render()`](/docs/react-dom.html#render) depuis une fonction de rappel passée à [`setInterval()`](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setInterval).
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
+
+It calls [`root.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 >Remarque
 >
+<<<<<<< HEAD
 >En pratique, la plupart des applications React n’appellent [`ReactDOM.render()`](/docs/react-dom.html#render) qu’une seule fois. Dans les prochaines sections, nous apprendrons comment encapsuler un tel code dans des [composants à état](/docs/state-and-lifecycle.html).
+=======
+>In practice, most React apps only call `root.render()` once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 >
 >Nous vous conseillons de lire les sujets abordés dans l’ordre car ils s'appuient l’un sur l’autre.
 
@@ -66,7 +88,11 @@ Prenons l’exemple de cette horloge :
 
 React DOM compare l’élément et ses enfants avec la version précédente, et applique uniquement les mises à jour DOM nécessaires pour refléter l’état voulu.
 
+<<<<<<< HEAD
 Vous pouvez vérifier ce comportement en inspectant le [dernier exemple](codepen://rendering-elements/update-rendered-element) avec les outils de développement du navigateur :
+=======
+You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) with the browser tools:
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ![L’inspecteur montrant des mises à jour atomiques](../images/docs/granular-dom-updates.gif)
 
