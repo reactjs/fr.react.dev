@@ -455,7 +455,7 @@ Quand on clique sur un `Square`, la fonction `onClick` fournie par le `Board` es
 2. Quand on cliquera sur le bouton, React appellera le gestionnaire d’événements `onClick` défini dans la méthode `render()` de `Square`.
 3. Ce gestionnaire d’événements appelle `this.props.onClick()`.  La prop `onClick` de `Square` a été spécifiée par le `Board`.
 4. Puisque le `Board` a passé `onClick={() => this.handleClick(i)}` à `Square`, ce dernier appelle en fait `this.handleClick(i)` (dans le contexte de `Board`) lors du clic.
-5. Nous n’avons pas encore défini la méthode `handleClick()`, du coup notre code plante. Si vous cliquez sur une case à ce stade, vous devriez voir un écran rouge d’erreur qui dit quelque chose comme *“this.handleClick is not a function”*.
+5. Nous n’avons pas encore défini la méthode `handleClick()`, du coup notre code plante. Si vous cliquez sur une case à ce stade, vous devriez voir dans la console du navigateur un message rouge d’erreur qui dit quelque chose comme *“this.handleClick is not a function”*.
 
 >Remarque
 >
