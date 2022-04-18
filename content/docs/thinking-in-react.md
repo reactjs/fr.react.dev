@@ -39,9 +39,15 @@ Mais comment savoir quelles parties devraient disposer de leurs propres composan
 
 Comme vous affichez souvent un modèle de données JSON à un utilisateur, vous constaterez que si votre modèle a été correctement construit, votre interface utilisateur (et donc la structure de vos composants) correspondra aisément. En effet, l'interface utilisateur (UI) et les modèles de données tendent à adhérer à la même *architecture d'information*. Séparez votre UI en composants, où chaque composant représente juste un élément de votre modèle de données.
 
+<<<<<<< HEAD
 ![Schéma des composants](../images/blog/thinking-in-react-components.png)
 
 Vous pouvez voir que nous avons cinq composants dans notre petite appli. Nous avons mis en italiques les données que chaque composant représente.
+=======
+![Diagram showing nesting of components](../images/blog/thinking-in-react-components.png)
+
+You'll see here that we have five components in our app. We've italicized the data each component represents. The numbers in the image correspond to the numbers below.
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
   1. **`FilterableProductTable` (orange) :** contient l'intégralité de l'exemple
   2. **`SearchBar` (bleu) :** reçoit toutes les *données saisies par l'utilisateur*
@@ -70,9 +76,15 @@ Pour créer une version statique de votre appli qui affiche votre modèle de don
 
 Vous pouvez construire l’appli en partant de l’extérieur ou de l’intérieur. En d'autres termes, vous pouvez aussi bien commencer par construire les composants les plus hauts dans la hiérarchie (dans notre cas, `FilterableProductTable`), que par ceux les plus bas (`ProductRow`). Dans des exemples plus simples, il est généralement plus facile de partir de l’extérieur, et sur des projets plus importants, il est plus facile de partir de l’intérieur et d'écrire les tests au fil de la construction.
 
+<<<<<<< HEAD
 À la fin de cette étape, vous disposerez d'une bibliothèque de composants réutilisables qui afficheront votre modèle de données. Les composants n'auront que des méthodes `render()` puisque c'est une version statique de l'application. Le composant au sommet de la hiérarchie (`FilterableProductTable`) prendra votre modèle de données en tant que *prop*. Si vous modifiez les données et appelez `ReactDOM.render()` à nouveau, l’UI sera mise à jour. On comprend comment votre UI est mise à jour et où y apporter des modifications, car il n'y a rien de compliqué. **Le flux de données unidirectionnel** de React (également appelé *liaison unidirectionnelle*) permet de maintenir la modularité et la rapidité de l'ensemble.
 
 Jetez un œil à la [doc de React](/docs/) si vous avez besoin d'aide pour cette étape.
+=======
+At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `root.render()` again, the UI will be updated. You can see how your UI is updated and where to make changes. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
+
+Refer to the [React docs](/docs/getting-started.html) if you need help executing this step.
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 ### Petit entracte : props ou état ? {#a-brief-interlude-props-vs-state}
 
@@ -84,7 +96,11 @@ Pour rendre votre UI interactive, vous devez pouvoir déclencher des modificatio
 
 Afin de construire correctement votre appli, vous devez d'abord penser à l'état modifiable minimal dont votre appli a besoin. La règle est simple : [*ne vous répétez pas*](https://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas) *(Don’t Repeat Yourself, aussi désigné par l’acronyme DRY, NdT)*. Déterminez la représentation la plus minimale possible de l'état dont votre appli a besoin, et calculez le reste à la demande. Par exemple, si vous construisez une liste de tâches, gardez un tableau des tâches sous la main ; pas besoin d’une variable d'état pour le compteur. Au lieu de ça, quand vous voulez afficher  le nombre de tâches, prenez la longueur du tableau de tâches.
 
+<<<<<<< HEAD
 Pensez à toutes les données de notre application. On a :
+=======
+Think of all the pieces of data in our example application. We have:
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
   * La liste des produits
   * Le texte de recherche saisi par l'utilisateur
@@ -137,7 +153,11 @@ Pour le moment, nous avons construit une appli qui s’affiche correctement en f
 
 React rend ce flux de données explicite pour vous aider à comprendre le fonctionnement de votre programme, mais cela demande un peu plus de code qu’une liaison de données bidirectionnelle classique.
 
+<<<<<<< HEAD
 Si vous essayez de saisir du texte ou de cocher la case dans la version actuelle de l'exemple, vous verrez que React ne tient pas compte de vos saisies. C'est volontaire, car nous avons spécifié l'attribut `value` de l'élément `input` pour qu’il soit toujours égal à l'état passé depuis `FilterableProductTable`.
+=======
+If you try to type or check the box in the previous version of the example (step 4), you'll see that React ignores your input. This is intentional, as we've set the `value` prop of the `input` to always be equal to the `state` passed in from `FilterableProductTable`.
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 Réfléchissons à ce que nous voulons qu'il se passe. Nous voulons garantir que chaque fois que l'utilisateur met à jour le formulaire, nous mettons à jour l'état pour refléter la saisie de l’utilisateur. Puisque les composants ne peuvent mettre à jour que leur propre état, `FilterableProductTable` passera une fonction de rappel à `SearchBar`, qui devra être déclenchée chaque fois que l'état doit être mis à jour. Nous pouvons utiliser l'événement `onChange` des champs pour cela. Les fonctions de rappel passées par `FilterableProductTable` appelleront `setState()`, et l'application sera mise à jour.
 

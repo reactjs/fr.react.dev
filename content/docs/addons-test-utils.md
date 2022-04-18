@@ -19,9 +19,17 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 avec npm
 
 >Remarque
 >
+<<<<<<< HEAD
 > Nous vous conseillons d’utiliser [React Testing Library](https://testing-library.com/react). Cette bibliothèque est conçue pour encourager l'écriture de tests utilisant vos composants de façon similaire aux utilisateurs finaux.
 >
 > Par ailleurs, Airbnb propose un utilitaire de test appelé [Enzyme](http://airbnb.io/enzyme/), qui permet de facilement exprimer des assertions, manipuler vos composants React et en explorer le résultat.
+=======
+> We recommend using [React Testing Library](https://testing-library.com/react) which is designed to enable and encourage writing tests that use your components as the end users do.
+> 
+> For React versions <= 16, the [Enzyme](https://airbnb.io/enzyme/) library makes it easy to assert, manipulate, and traverse your React Components' output.
+
+
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
@@ -87,7 +95,7 @@ Voici comment nous pouvons le tester :
 
 ```js{3,20-22,29-31}
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Counter from './Counter';
 
@@ -106,7 +114,7 @@ afterEach(() => {
 it('peut afficher et mettre à jour un compteur', () => {
   // Teste le premier affichage et l'appel à componentDidMount
   act(() => {
-    ReactDOM.render(<Counter />, container);
+    ReactDOM.createRoot(container).render(<Counter />);
   });
   const button = container.querySelector('button');
   const label = container.querySelector('p');
@@ -141,7 +149,11 @@ Cette méthode prend un module de composant simulé et lui ajoute des méthodes 
 
 >Remarque
 >
+<<<<<<< HEAD
 > `mockComponent()` est une API obsolète. Nous recommandons plutôt de recourir à [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
+=======
+> `mockComponent()` is a legacy API. We recommend using [`jest.mock()`](https://jestjs.io/docs/tutorial-react-native#mock-native-modules-using-jestmock) instead.
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 * * *
 
@@ -302,7 +314,7 @@ Réalise le rendu d'un élément React au sein d'un nœud du DOM détaché du do
 
 ```js
 const domContainer = document.createElement('div');
-ReactDOM.render(element, domContainer);
+ReactDOM.createRoot(domContainer).render(element);
 ```
 
 >Remarque
