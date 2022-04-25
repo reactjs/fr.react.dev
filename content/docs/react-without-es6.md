@@ -2,8 +2,6 @@
 id: react-without-es6
 title: React sans ES6
 permalink: docs/react-without-es6.html
-prev: optimizing-performance.html
-next: react-without-jsx.html
 ---
 
 En temps normal, pour définir un composant React, vous utilisez une classe Javascript ordinaire :
@@ -219,10 +217,8 @@ var TickTock = createReactClass({
   }
 });
 
-ReactDOM.render(
-  <TickTock />,
-  document.getElementById('example')
-);
+const root = ReactDOM.createRoot(document.getElementById('example'));
+root.render(<TickTock />);
 ```
 
 Si un composant utilise plusieurs mixins et que de nombreux mixins définissent la même méthode de cycle de vie (par exemple pour effectuer un nettoyage à la destruction du composant), vous avez la garantie que toutes ces méthodes de cycle de vie seront appelées. Les méthodes définies dans les mixins sont exécutées dans l'ordre dans lequel les mixins ont été listés, suivies par l’appel de la méthode homonyme éventuelle du composant lui-même.

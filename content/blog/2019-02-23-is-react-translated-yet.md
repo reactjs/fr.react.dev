@@ -41,7 +41,11 @@ Cette approche nous a plu pour plusieurs raisons :
 
 Nous avons commencé par une première période d’essai en trois langues : espagnol, japonais et chinois simplifié. Ça nous a permis de résoudre tous les problèmes dans notre processus et de nous assurer que les futures traductions pourraient aboutir. Je voulais donner aux équipes de traduction la liberté de choisir les outils avec lesquels elles se sentaient à l'aise. La seule exigence était une [liste de cases à cocher](https://github.com/reactjs/reactjs.org-translation/blob/master/PROGRESS.template.md) qui décrivait l'ordre d'importance pour la traduction des pages.
 
+<<<<<<< HEAD
 Après la période d’essai, nous étions prêts à accepter davantage de langues. J'ai créé [un script](https://github.com/reactjs/reactjs.org-translation/blob/master/scripts/create.js) pour automatiser la création d’un nouveau dépôt de langue, ainsi qu’un site, [Is React Translated Yet?](https://isreacttranslatedyet.com), pour suivre les progrès des différentes traductions. Nous avons démarré *10* nouvelles traductions rien que le premier jour !
+=======
+After the trial period, we were ready to accept more languages. I created [a script](https://github.com/reactjs/reactjs.org-translation/blob/master/scripts/create.js) to automate the creation of the new language repo, and a site, [Is React Translated Yet?](https://translations.reactjs.org), to track progress on the different translations. We started *10* new translations on our first day alone!
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 En raison de l'automatisation, le reste de la maintenance s'est déroulé sans encombre. Nous avons finalement créé un [canal Slack](https://rt-slack-invite.herokuapp.com) pour faciliter l'échange d'informations entre traducteurs, et j'ai publié un guide renforçant les [responsabilités des mainteneurs](https://github.com/reactjs/reactjs.org-translation/blob/master/maintainer-guide.md). Permettre aux traducteurs de se parler était une aubaine ; par exemple, les traductions arabes, persanes et hébraïques ont pu se parler afin de faire fonctionner le [texte de droite à gauche](https://en.wikipedia.org/wiki/Right-to-left).
 
