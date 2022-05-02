@@ -64,26 +64,35 @@ Lorsque React rencontre un élément représentant un composant défini par l’
 
 Par exemple, ce code affiche « Bonjour, Sara » sur la page :
 
-```js{1,5}
+```js{1,6}
 function Welcome(props) {
   return <h1>Bonjour, {props.name}</h1>;
 }
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 const element = <Welcome name="Sara" />;
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
+root.render(element);
 ```
 
+<<<<<<< HEAD
 **[Essayer sur CodePen](codepen://components-and-props/rendering-a-component)**
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 Récapitulons ce qui se passe dans cet exemple :
 
+<<<<<<< HEAD
 1. On appelle `ReactDOM.render()` avec l’élément `<Welcome name="Sara" />`.
 2. React appelle le composant `Welcome` avec comme props `{name: 'Sara'}`.
 3. Notre composant `Welcome` retourne un élément `<h1>Bonjour, Sara</h1>` pour résultat.
 4. React DOM met à jour efficacement le DOM pour correspondre à `<h1>Bonjour, Sara</h1>`.
+=======
+1. We call `root.render()` with the `<Welcome name="Sara" />` element.
+2. React calls the `Welcome` component with `{name: 'Sara'}` as the props.
+3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
+4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 >Remarque
 >
@@ -111,14 +120,13 @@ function App() {
     </div>
   );
 }
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
 ```
 
+<<<<<<< HEAD
 **[Essayer sur CodePen](codepen://components-and-props/composing-components)**
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 En règle générale, les nouvelles applications React ont un seul composant `App` à la racine.  En revanche, si vous intégrez React à une application existante, vous pouvez commencer tout en bas par un petit composant comme `Button` et remonter progressivement la hiérarchie des vues.
 
@@ -152,7 +160,11 @@ function Comment(props) {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayer sur CodePen](codepen://components-and-props/extracting-components)**
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 Il accepte comme props `author` (un objet), `text` (une chaîne de caractères) et `date` (une date), et décrit un commentaire sur un réseau social en ligne.
 
@@ -231,7 +243,11 @@ function Comment(props) {
 }
 ```
 
+<<<<<<< HEAD
 **[Essayer sur CodePen](codepen://components-and-props/extracting-components-continued)**
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 Au début, extraire des composants peut vous sembler fastidieux, mais disposer d’une palette de composants réutilisables s’avère rentable sur des applications de plus grande taille. En règle générale, si une partie de votre interface utilisateur est utilisée plusieurs fois (`Button`, `Panel`, `Avatar`) ou si elle est suffisamment complexe en elle-même (`App`, `FeedStory`, `Comment`), c’est un bon candidat pour une extraction en tant que composant séparé.
 

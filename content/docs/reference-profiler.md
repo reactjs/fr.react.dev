@@ -47,9 +47,14 @@ render(
 );
 ```
 
+<<<<<<< HEAD
 Les composants `Profiler` peuvent par ailleurs être imbriqués pour mesurer différents périmètres dans une même partie de l’arborescence :
 
 ```js{2,6,8}
+=======
+`Profiler` components can also be nested to measure different components within the same subtree:
+```js{3,5,8}
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 render(
   <App>
     <Profiler id="Panel" onRender={callback}>

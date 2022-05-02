@@ -46,6 +46,14 @@ Dan a commencé à programmer en tombant par hasard sur Visual Basic dans Micros
 
 Luna a appris a programmer car elle pensait que ça revenait à créer des jeux vidéos.  Au lieu de quoi, elle s’est retrouvée à travailler sur l’appli web de Pinterest, et désormais sur React-même.  Luna n’a plus envie de faire des jeux vidéos, mais elle compte se mettre à l’écriture créative si elle finit par s’ennuyer.
 
+### Marco Salazar {#marco-salazar}
+
+![Marco](../images/team/salazarm.jpeg)
+
+[@salazarm on GitHub](https://github.com/salazarm) &middot; [@BkOptimism on Twitter](https://twitter.com/BkOptimism)
+
+Marco's first programming language was Assembly because he could use it to hack video games. Now online games are much more secure so he settles for playing fairly (mostly). In his spare time he plays games on his treadmill desk and makes art that he never finishes. Hopefully his PRs don't have the same fate.
+
 ### Rachel Nabors {#rachel-nabors}
 
 ![Rachel](../images/team/rnabors.jpg)
@@ -78,7 +86,19 @@ Sebastian a un diplôme en psychologie.  Il est du genre réservé.  Même quand
 
 Seth a commencé à programmer lorsqu’il était enfant à Tucson, Arizona. Après l’école, il est devenu mordu de musique et a tourné comme musicien pendant environ 10 ans avant de recommencer à *travailler*, tout d’abord chez Intuit.  Dans son temps libre, il adore [prendre des photos](https://www.sethwebster.com) et voler au secours d’animaux dans le quart Nord-Est des États-Unis.
 
+<<<<<<< HEAD
 ## Remerciements {#acknowledgements}
+=======
+### Xuan Huang {#xuan-huang}
+
+![Xuan](../images/team/huxpro.jpg)
+
+[@huxpro on GitHub](https://github.com/huxpro) &middot; [@huxpro on Twitter](https://twitter.com/huxpro)
+
+Xuan met with programming in childhood to make games in Flash. He did digital media arts in college but eventually got tricked into making compilers, and somehow React needs one. Out of work, he pours terrible latte arts and plays tennis either on or off a table.
+
+## Acknowledgements {#acknowledgements}
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 React est originellement la création de [Jordan Walke](https://github.com/jordwalke).  Aujourd’hui, React compte plus d’un millier de contributeurs open source.  Nous aimerions remercier tout particulièrement certaines personnes dont les contributions passées à React et à sa documentation ont été significatives, et qui ont aidé à le maintenir au fil des ans :
 
@@ -119,4 +139,8 @@ React est originellement la création de [Jordan Walke](https://github.com/jordw
 
 Cette liste n’est pas exhaustive.
 
+<<<<<<< HEAD
 Nous aimerions aussi remercier chaleureusement [Tom Occhino](https://github.com/tomocchino) et [Adam Wolff](https://github.com/wolffiex) pour leurs conseils et leur soutien depuis des années, ainsi que tous les volontaires qui ont [traduit React dans d’autres langues](https://isreacttranslatedyet.com/).
+=======
+We'd like to give special thanks to [Tom Occhino](https://github.com/tomocchino) and [Adam Wolff](https://github.com/wolffiex) for their guidance and support over the years. We'd also like to thank all the volunteers who [translated React into other languages](https://translations.reactjs.org/).
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d

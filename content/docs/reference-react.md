@@ -65,6 +65,13 @@ Lisez [React sans JSX](/docs/react-without-jsx.html) pour plus de détails.
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
+### Transitions {#transitions}
+
+*Transitions* are a new concurrent feature introduced in React 18. They allow you to mark updates as transitions, which tells React that they can be interrupted and avoid going back to Suspense fallbacks for already visible content.
+
+- [`React.startTransition`](#starttransition)
+- [`React.useTransition`](/docs/hooks-reference.html#usetransition)
+
 ### Hooks {#hooks}
 
 Les *Hooks* sont une nouveauté de React 16.8. Ils vous permettent d'utiliser les états et d'autres fonctionnalités de React sans avoir à écrire de classes. Les *Hooks* disposent de [leur propre documentation](/docs/hooks-intro.html) et leur API est détaillée à part :
@@ -81,6 +88,12 @@ Les *Hooks* sont une nouveauté de React 16.8. Ils vous permettent d'utiliser le
   - [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)
   - [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect)
   - [`useDebugValue`](/docs/hooks-reference.html#usedebugvalue)
+  - [`useDeferredValue`](/docs/hooks-reference.html#usedeferredvalue)
+  - [`useTransition`](/docs/hooks-reference.html#usetransition)
+  - [`useId`](/docs/hooks-reference.html#useid)
+- [Library Hooks](/docs/hooks-reference.html#library-hooks)
+  - [`useSyncExternalStore`](/docs/hooks-reference.html#usesyncexternalstore)
+  - [`useInsertionEffect`](/docs/hooks-reference.html#useinsertioneffect)
 
 * * *
 
@@ -129,7 +142,11 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 Si vous avez un composant qui affiche toujours le même résultat pour un même jeu de propriétés, vous pouvez l'enrober avec `React.memo`, ce qui mémoïsera le résultat et devrait augmenter les performances dans certains cas. Cela signifie que React sautera le rafraîchissement du composant en réutilisant son dernier rendu en date.
 
+<<<<<<< HEAD
 `React.memo` ne se préoccupe que des modifications de props. Si votre fonction composant enrobée par `React.memo` utilise un Hook [`useState`](/docs/hooks-state.html) ou [`useContext`](/docs/hooks-reference.html#usecontext) dans son implémentation, des changements d’état local ou de contexte entraîneront tout de même un nouveau rendu.
+=======
+`React.memo` only checks for prop changes. If your function component wrapped in `React.memo` has a [`useState`](/docs/hooks-state.html), [`useReducer`](/docs/hooks-reference.html#usereducer) or [`useContext`](/docs/hooks-reference.html#usecontext) Hook in its implementation, it will still rerender when state or context change.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 Par défaut, seule une comparaison de surface des props sera faite. Si vous voulez gérer cette comparaison vous-même, vous pouvez fournir une fonction de comparaison personnalisée en deuxième argument.
 
@@ -176,12 +193,16 @@ Tout code écrit avec [JSX](/docs/introducing-jsx.html) sera converti de manièr
 ```
 React.cloneElement(
   element,
-  [props],
+  [config],
   [...children]
 )
 ```
 
+<<<<<<< HEAD
 Cette méthode clone et renvoie un nouvel élément en utilisant `element` comme point de départ. L'élément obtenu aura les props de l'élément originel augmentées par une fusion de surface des nouvelles props. Les nouveaux éléments enfants (`children`) remplaceront les anciens. Les `key` et `ref` issues de l'élément originel seront préservées.
+=======
+Clone and return a new React element using `element` as the starting point. `config` should contain all new props, `key`, or `ref`. The resulting element will have the original element's props with the new props merged in shallowly. New children will replace existing children. `key` and `ref` from the original element will be preserved if no `key` and `ref` present in the `config`.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 `React.cloneElement()` est quasiment équivalent à :
 
@@ -189,7 +210,11 @@ Cette méthode clone et renvoie un nouvel élément en utilisant `element` comme
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
+<<<<<<< HEAD
 Cependant elle préserve les `ref`. Concrètement, ça signifie que si vous avez un enfant avec une `ref` associée, vous ne la volerez pas accidentellement à votre ancêtre. Vous aurez la même `ref` associée au nouvel élément.
+=======
+However, it also preserves `ref`s. This means that if you get a child with a `ref` on it, you won't accidentally steal it from your ancestor. You will get the same `ref` attached to your new element. The new `ref` or `key` will replace old ones if present.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 Cette API a été introduite pour remplacer la méthode dépréciée `React.addons.cloneWithProps()`.
 
@@ -330,6 +355,7 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 Notez bien que l'affichage d'un composant `lazy` a besoin d'un composant `<React.Suspense>` plus haut dans l'arbre de rendu. C'est de cette manière que vous pouvez spécifier un indicateur de chargement.
 
+<<<<<<< HEAD
 >Remarque
 >
 > Utiliser `React.lazy` avec un `import()` dynamique requiert une prise en charge des *Promises* par  l'environnement JS. Vous aurez donc besoin d’un _polyfill_ pour IE11 et inférieurs.
@@ -337,6 +363,13 @@ Notez bien que l'affichage d'un composant `lazy` a besoin d'un composant `<React
 ### `React.Suspense` {#reactsuspense}
 
 `React.Suspense` vous permet de définir un indicateur de chargement pour le cas où certains composants plus bas dans l’arbre de rendu ne seraient pas encore prêts à être affichés. Pour le moment le **seul** cas d'usage pris en charge par `<React.Suspense>`, c’est le chargement différé de composants via [`React.lazy`](#reactlazy) :
+=======
+### `React.Suspense` {#reactsuspense}
+
+`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. In the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
+
+Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ```js
 // Ce composant est chargé dynamiquement
@@ -356,8 +389,37 @@ function MyComponent() {
 
 Tout ça est détaillé dans [notre guide sur la découpe du code](/docs/code-splitting.html#reactlazy). Remarquez que les composants `lazy` peuvent être profondément enfouis dans l'arbre des descendants de `Suspense`—ils n'ont pas besoin d'être enveloppés individuellement. La bonne pratique consiste à placer un `<Suspense>` aux endroits où vous souhaitez voir un indicateur de chargement, et à utiliser `lazy()` partout ou vous voulez découper votre code.
 
+<<<<<<< HEAD
 Bien que ce ne soit pas le cas pour le moment, nous prévoyons d'étendre les capacités de `Suspense` pour qu'il puisse gérer d'autre scénarios tel que le chargement de données. Vous pourrez en savoir plus en jetant un coup d'œil à [notre feuille de route](/blog/2018/11/27/react-16-roadmap.html).
 
 >Remarque
 >
 > `React.lazy()` et `<React.Suspense>` ne sont pas encore pris en charge par `ReactDOMServer`. C'est une limitation connue qui devrait être résolue à l’avenir.
+=======
+> Note
+> 
+> For content that is already shown to the user, switching back to a loading indicator can be disorienting. It is sometimes better to show the "old" UI while the new UI is being prepared. To do this, you can use the new transition APIs [`startTransition`](#starttransition) and [`useTransition`](/docs/hooks-reference.html#usetransition) to mark updates as transitions and avoid unexpected fallbacks.
+
+#### `React.Suspense` in Server Side Rendering {#reactsuspense-in-server-side-rendering}
+During server side rendering Suspense Boundaries allow you to flush your application in smaller chunks by suspending.
+When a component suspends we schedule a low priority task to render the closest Suspense boundary's fallback. If the component unsuspends before we flush the fallback then we send down the actual content and throw away the fallback.
+
+#### `React.Suspense` during hydration {#reactsuspense-during-hydration}
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before its hydrated will cause the boundary to hydrate at 
+a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+
+### `React.startTransition` {#starttransition}
+
+```js
+React.startTransition(callback)
+```
+`React.startTransition` lets you mark updates inside the provided callback as transitions. This method is designed to be used when [`React.useTransition`](/docs/hooks-reference.html#usetransition) is not available.
+
+> Note:
+>
+> Updates in a transition yield to more urgent updates such as clicks.
+>
+> Updates in a transitions will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+>
+> `React.startTransition` does not provide an `isPending` flag. To track the pending status of a transition see [`React.useTransition`](/docs/hooks-reference.html#usetransition).
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d

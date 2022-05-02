@@ -235,7 +235,11 @@ Pour commencer, modifiez la balise `button` renvoyée par la méthode `render()`
 class Square extends React.Component {
   render() {
     return (
+<<<<<<< HEAD
       <button className="square" onClick={function() { alert('clic'); }}>
+=======
+      <button className="square" onClick={function() { console.log('click'); }}>
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
         {this.props.value}
       </button>
     );
@@ -243,7 +247,11 @@ class Square extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Désormais, si vous cliquez sur un `Square`, vous devriez obtenir une alerte dans votre navigateur.
+=======
+If you click on a Square now, you should see 'click' in your browser's devtools console.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 >Remarque
 >
@@ -253,7 +261,11 @@ Désormais, si vous cliquez sur un `Square`, vous devriez obtenir une alerte dan
 >class Square extends React.Component {
 >  render() {
 >    return (
+<<<<<<< HEAD
 >      <button className="square" onClick={() => alert('clic')}>
+=======
+>      <button className="square" onClick={() => console.log('click')}>
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,7 +273,11 @@ Désormais, si vous cliquez sur un `Square`, vous devriez obtenir une alerte dan
 >}
 >```
 >
+<<<<<<< HEAD
 >Remarquez que dans `onClick={() => alert('click')}`, nous passons *une fonction* à la prop `onClick`.  React ne l’appellera que suite à un clic.  Une erreur courante consiste à oublier le `() =>` de départ, pour écrire seulement `onClick={alert('click')}` : l’alerte se déclencherait alors immédiatement, à chaque affichage.
+=======
+>Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 Pour l’étape suivante, nous voulons que le composant `Square` « se souvienne » qu'on lui a cliqué dessus, et se remplisse alors avec la marque « X ».  Afin qu’ils puissent « se souvenir » de choses, les composants utilisent **l’état local**.
 
@@ -280,7 +296,11 @@ class Square extends React.Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <button className="square" onClick={() => alert('clic')}>
+=======
+      <button className="square" onClick={() => console.log('click')}>
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
         {this.props.value}
       </button>
     );
@@ -451,11 +471,19 @@ class Square extends React.Component {
 
 Quand on clique sur un `Square`, la fonction `onClick` fournie par le `Board` est appelée.  Voici un rappel de ce que nous avons fait pour cela :
 
+<<<<<<< HEAD
 1. La prop `onClick` du composant DOM natif `<button>` indique à React de mettre en place un gestionnaire d’événements pour les clics.
 2. Quand on cliquera sur le bouton, React appellera le gestionnaire d’événements `onClick` défini dans la méthode `render()` de `Square`.
 3. Ce gestionnaire d’événements appelle `this.props.onClick()`.  La prop `onClick` de `Square` a été spécifiée par le `Board`.
 4. Puisque le `Board` a passé `onClick={() => this.handleClick(i)}` à `Square`, ce dernier appelle en fait `this.handleClick(i)` (dans le contexte de `Board`) lors du clic.
 5. Nous n’avons pas encore défini la méthode `handleClick()`, du coup notre code plante. Si vous cliquez sur une case à ce stade, vous devriez voir un écran rouge d’erreur qui dit quelque chose comme *“this.handleClick is not a function”*.
+=======
+1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
+2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
+3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
+4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls the Board's `handleClick(i)` when clicked.
+5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 >Remarque
 >
@@ -524,7 +552,11 @@ Remarquez que dans `handleClick`, nous appelons `.slice()` pour créer une copie
 
 ### Pourquoi l’immutabilité est importante {#why-immutability-is-important}
 
+<<<<<<< HEAD
 Dans l’exemple de code précédent, nous vous suggérions d’utiliser la méthode `.slice()` pour créer une copie du tableau `squares` à modifier, au lieu de travailler directement sur le tableau existant.  Nous allons maintenant parler d’immutabilité, et des raisons pour lesquelles c’est un sujet qui mérite d’être appris.
+=======
+In the previous code example, we suggested that you create a copy of the `squares` array using the `slice()` method instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 Il y a en général deux approches à la modification de données.  La première consiste à *muter* les données en altérant directement leurs valeurs.  La seconde préfère remplacer les données d’origine par une nouvelle copie, porteuse des modifications désirées.
 
@@ -1047,7 +1079,13 @@ Réalisons un `map` sur notre `history` dans la méthode `render` de `Game` :
 
 **[Voir le code complet à ce stade](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+<<<<<<< HEAD
 Pour chaque tour dans l’historique de notre partie de morpion, nous créons un élément de liste `<li>` qui contient un `<button>`.  Le bouton a un gestionnaire `onClick` qui appelle une méthode `this.jumpTo()`.  Nous n’avons pas encore implémenté `jumpTo()`.  Pour le moment, nous devrions voir une liste des tours ayant déjà eu lieu pendant la partie, et un avertissement dans la console des outils de développement qui dit :
+=======
+As we iterate through `history` array, `step` variable refers to the current `history` element value, and `move` refers to the current `history` element index. We are only interested in `move` here, hence `step` is not getting assigned to anything.
+
+For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 > Warning:
 > Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".
@@ -1149,11 +1187,21 @@ Ensuite, définissons la méthode `jumpTo` dans `Game` pour qu’elle mette à j
   }
 ```
 
+<<<<<<< HEAD
 Nous allons maintenant apporter quelques modifications à la méthode `handleClick` de `Game`, qui est déclenchée quand on clique sur une case.
+=======
+Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as is. For more info **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
+
+We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 L’état `stepNumber` que nous avons ajouté reflète le tour actuellement affiché.  Après qu’un nouveau tour est joué, nous devons mettre à jour `stepNumber` en ajoutant `stepNumber: history.length` au sein de l’argument de `this.setState`.  Ainsi, on est sûrs de ne pas rester bloqués sur le tour affiché après avoir choisi une case.
 
+<<<<<<< HEAD
 Nous devrons aussi remplacer la lecture de `this.state.history` par `this.state.history.slice(0, this.state.stepNumber + 1)`.  Ainsi, nous sommes certains que si nous « revenons dans le passé » puis jouons un nouveau tour à partir de ce point, nous retirerons de l’historique toute la partie « future » que ce nouveau coup invaliderait.
+=======
+We will also replace reading `this.state.history` with `this.state.history.slice(0, this.state.stepNumber + 1)`. This ensures that if we "go back in time" and then make a new move from that point, we throw away all the "future" history that would now be incorrect.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ```javascript{2,13}
   handleClick(i) {

@@ -30,7 +30,7 @@ class FileInput extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <FileInput />,
+const root = ReactDOM.createRoot(
   document.getElementById('root')
 );
+root.render(<FileInput />);
