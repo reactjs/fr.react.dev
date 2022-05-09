@@ -33,13 +33,14 @@ const listItems = numbers.map((number) =>
 );
 ```
 
+<<<<<<< HEAD
 On inclut tout le tableau `listItems` dans un élément `<ul>`, et [on l'affiche dans le DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom) :
+=======
+Then, we can include the entire `listItems` array inside a `<ul>` element:
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 ```javascript{2}
-ReactDOM.render(
-  <ul>{listItems}</ul>,
-  document.getElementById('root')
-);
+<ul>{listItems}</ul>
 ```
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
@@ -64,10 +65,8 @@ function NumberList(props) {
 }
 
 const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<NumberList numbers={numbers} />);
 ```
 
 En exécutant ce code, vous obtiendrez un avertissement disant qu'une clé devrait être fournie pour les éléments d'une liste. Une « clé » *(key, NdT)*, est un attribut spécial que vous devez inclure quand vous créez une liste d'éléments. Nous verrons pourquoi c'est important dans la prochaine section.
@@ -86,12 +85,6 @@ function NumberList(props) {
     <ul>{listItems}</ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
@@ -166,12 +159,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 **Exemple : utilisation correcte des clés**
@@ -194,12 +181,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
@@ -208,7 +189,11 @@ Gardez en tête cette règle simple : chaque élément à l'intérieur d'un app
 
 ### Les clés n’ont besoin d’être uniques qu’au sein de la liste {#keys-must-only-be-unique-among-siblings}
 
+<<<<<<< HEAD
 Les clés utilisées dans un tableau doivent être uniques parmi leurs voisins. Cependant, elles n'ont pas besoin d'être globalement uniques. On peut utiliser les mêmes clés dans des tableaux différents :
+=======
+Keys used within arrays should be unique among their siblings. However, they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {
@@ -240,10 +225,9 @@ const posts = [
   {id: 1, title: 'Bonjour, monde', content: 'Bienvenue sur la doc de React !'},
   {id: 2, title: 'Installation', content: 'Vous pouvez installer React depuis npm.'}
 ];
-ReactDOM.render(
-  <Blog posts={posts} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Blog posts={posts} />);
 ```
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)

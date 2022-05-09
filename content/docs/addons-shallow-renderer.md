@@ -59,7 +59,11 @@ Le rendu superficiel a pour le moment quelques limites, notamment l'absence de p
 
 Vous pouvez voir le `shallowRenderer` comme un « endroit » dans lequel faire le rendu du composant que vous testez, et depuis lequel vous pouvez extraire la sortie que ce composant produit.
 
+<<<<<<< HEAD
 `shallowRenderer.render()` est similaire à [`ReactDOM.render()`](/docs/react-dom.html#render), à ceci près qu'elle n'a pas besoin du DOM et n’effectue le rendu qu’à un seul niveau de profondeur. Ça signifie que vous pouvez tester des composants indépendamment de l'implémentation de leurs enfants.
+=======
+`shallowRenderer.render()` is similar to [`root.render()`](/docs/react-dom-client.html#createroot) but it doesn't require DOM and only renders a single level deep. This means you can test components isolated from how their children are implemented.
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 

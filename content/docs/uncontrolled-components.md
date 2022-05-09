@@ -2,8 +2,6 @@
 id: uncontrolled-components
 title: Composants non-contrôlés
 permalink: docs/uncontrolled-components.html
-prev: refs-and-the-dom.html
-next: optimizing-performance.html
 ---
 
 Dans la plupart des cas, pour implémenter des formulaires, nous recommandons d'utiliser des [composants contrôlés](/docs/forms.html#controlled-components). Dans un composant contrôlé, les données du formulaires sont gérées par le composant React. L'alternative est le composant non-contrôlé, où les données sont gérées par le DOM.
@@ -47,7 +45,11 @@ Si dans une situation donnée il n'est pas toujours évident de savoir quel type
 
 ### Valeurs par défaut {#default-values}
 
+<<<<<<< HEAD
 Dans le cycle de vie des rendus React, l'attribut `value` des éléments du formulaire va écraser la valeur du DOM. Avec un composant non-contrôlé, vous souhaiterez plus souvent spécifier la valeur initiale et laisser les mises à jours suivantes non-contrôlées. Dans ces cas-là, vous pouvez spécifier un attribut `defaultValue` plutôt que `value`.
+=======
+In the React rendering lifecycle, the `value` attribute on form elements will override the value in the DOM. With an uncontrolled component, you often want React to specify the initial value, but leave subsequent updates uncontrolled. To handle this case, you can specify a `defaultValue` attribute instead of `value`. Changing the value of `defaultValue` attribute after a component has mounted will not cause any update of the value in the DOM.
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 ```javascript{7}
 render() {

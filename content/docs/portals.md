@@ -2,8 +2,6 @@
 id: portals
 title: Les portails
 permalink: docs/portals.html
-prev: fragments.html
-next: error-boundaries.html
 ---
 
 Les portails fournissent une excellente solution pour afficher des composants enfants dans un nœud DOM qui existe en dehors de la hiérarchie DOM du composant parent.
@@ -147,7 +145,8 @@ function Child() {
   );
 }
 
-ReactDOM.render(<Parent />, appRoot);
+const root = ReactDOM.createRoot(appRoot);
+root.render(<Parent />);
 ```
 
 [**Essayer dans CodePen**](https://codepen.io/gaearon/pen/jGBWpE)
