@@ -12,7 +12,11 @@ La communauté React compte des millions de développeur·se·s.
 
 Sur cette page, nous avons répertorié certaines communautés liées à React auxquelles vous pouvez participer ; reportez-vous aux autres pages de cette section pour obtenir d'autres ressources en personne ou en ligne.
 
+<<<<<<< HEAD
 Avant de participer aux communautés React, [merci de lire notre Code de Conduite](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md). Nous avons adopté le [Contributor Covenant](https://www.contributor-covenant.org/) et attendons de tous les membres de nos communautés qu’ils·elles respectent les règles et recommandations qui y figurent.
+=======
+Before participating in React's communities, [please read our Code of Conduct](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md). We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) and we expect that all community members adhere to the guidelines within.
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 ## Stack Overflow {#stack-overflow}
 
@@ -24,11 +28,18 @@ Il existe de nombreux forums en ligne qui constituent d'excellents lieux de disc
 
 Chaque communauté est composée de plusieurs milliers d'utilisateurs de React.
 
+<<<<<<< HEAD
 * [Communauté React sur DEV](https://dev.to/t/react)
 * [Communauté React sur Hashnode](https://hashnode.com/n/reactjs)
 * [Chat en ligne Reactiflux](https://discord.gg/reactiflux)
 * [Communauté React sur Reddit](https://www.reddit.com/r/reactjs/)
 * [Communauté React sur Spectrum](https://spectrum.chat/react)
+=======
+* [DEV's React community](https://dev.to/t/react)
+* [Hashnode's React community](https://hashnode.com/n/reactjs)
+* [Reactiflux online chat](https://discord.gg/reactiflux)
+* [Reddit's React community](https://www.reddit.com/r/reactjs/)
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 ## Actualités {#news}
 

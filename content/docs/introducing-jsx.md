@@ -33,6 +33,7 @@ Ceci étant posé, commençons !
 Dans l'exemple suivant, nous déclarons une variable appelée `name` et nous l'utilisons ensuite dans JSX en l'encadrant avec des accolades :
 
 ```js{1,2}
+<<<<<<< HEAD
 const name = 'Clarisse Agbegnenou';
 const element = <h1>Bonjour, {name}</h1>;
 
@@ -40,6 +41,10 @@ ReactDOM.render(
   element,
   document.getElementById('root')
 );
+=======
+const name = 'Josh Perez';
+const element = <h1>Hello, {name}</h1>;
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 ```
 
 Vous pouvez utiliser n'importe quelle [expression JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_et_Op%C3%A9rateurs#Expressions) valide dans des accolades en JSX. Par exemple, `2 + 2`, `user.firstName`, ou `formatName(user)` sont toutes des expressions JavaScript valides.
@@ -61,14 +66,13 @@ const element = (
     Bonjour, {formatName(user)} !
   </h1>
 );
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
 ```
 
+<<<<<<< HEAD
 **[Essayer sur CodePen](codepen://introducing-jsx)**
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)**
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 On découple le JSX en plusieurs lignes pour une meilleure lisibilité. Par la même occasion, nous recommandons également de le mettre entre parenthèses afin d'éviter les pièges [d'insertion de point-virgule automatique](https://stackoverflow.com/q/2846283), même si cette pratique n'est pas obligatoire.
 
@@ -92,7 +96,7 @@ function getGreeting(user) {
 Vous pouvez utiliser des guillemets pour spécifier des littéraux chaînes de caractères dans les attributs :
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 Vous pouvez aussi utiliser des accolades pour utiliser une expression JavaScript dans un attribut :
@@ -181,4 +185,8 @@ Nous explorerons la retranscription des éléments React dans le DOM dans la [pr
 
 >**Astuce :**
 >
+<<<<<<< HEAD
 >Nous recommandons d'utiliser la [définition de langage « Babel »](https://babeljs.io/docs/editors) dans votre éditeur préféré, afin que les codes ES6 et JSX soient correctement colorisés.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/en/next/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4

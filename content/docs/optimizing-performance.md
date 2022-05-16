@@ -2,8 +2,6 @@
 id: optimizing-performance
 title: Optimiser les performances
 permalink: docs/optimizing-performance.html
-prev: uncontrolled-components.html
-next: react-without-es6.html
 redirect_from:
   - "docs/advanced-performance.html"
 ---
@@ -49,8 +47,8 @@ Rappelez-vous que cela n'est nécessaire qu'avant le déploiement en production.
 Nous mettons à disposition des versions de React et de React DOM prêtes pour la production sous la forme de fichiers uniques :
 
 ```html
-<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 ```
 
 Rappelez-vous que seuls les fichiers React finissant par `.production.min.js` sont adaptés à la production.
@@ -80,10 +78,17 @@ N'oubliez pas que cela n'est nécessaire que pour générer votre version de pro
 Pour obtenir la version de production la plus efficace avec Browserify, installez quelques extensions :
 
 ```
+<<<<<<< HEAD
 # Si vous utilisez npm :
 npm install --save-dev envify terser uglifyify
 
 # Si vous utilisez Yarn :
+=======
+# If you use npm
+npm install --save-dev envify terser uglifyify
+
+# If you use Yarn
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 yarn add --dev envify terser uglifyify
 ```
 
@@ -162,6 +167,7 @@ Vous pouvez en apprendre davantage sur le sujet en consultant la [documentation 
 
 Rappelez-vous que vous n'avez à faire cela que pour la version de production. Vous ne devez pas utiliser `TerserPlugin` en développement, car cela masquerait des avertissements utiles de React et ralentirait la construction.
 
+<<<<<<< HEAD
 ## Profilage des composants avec l'onglet Performance de Chrome {#profiling-components-with-the-chrome-performance-tab}
 
 En mode de **développement**, vous pouvez voir comment les composants sont montés, mis à jour et démontés en utilisant les outils de performances dans les navigateurs qui les prennent en charge. Par exemple :
@@ -189,6 +195,9 @@ Veuillez noter que **ces résultats sont relatifs et que les composants seront r
 Pour le moment, Chrome, Edge et IE sont les seuls navigateurs prenant en charge cette fonctionnalité, mais comme nous utilisons [l'API standard User Timing](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API), nous nous attendons à ce que d'autres navigateurs la prennent en charge.
 
 ## Profilage des composants avec le DevTools Profiler {#profiling-components-with-the-devtools-profiler}
+=======
+## Profiling Components with the DevTools Profiler {#profiling-components-with-the-devtools-profiler}
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 `react-dom` 16.5+ et `react-native` 0.57+ offrent des capacités de profilage avancées en mode de développement avec le Profiler de l'extension React DevTools.
 Vous trouverez un aperçu du profileur sur le billet de blog [*« Découvrez le profileur React »*](/blog/2018/09/10/introducing-the-react-profiler.html).
@@ -205,9 +214,20 @@ Si vous n'avez pas encore installé l'extension React DevTools, vous pourrez la 
 > Un module de profilage pour la production de `react-dom` existe aussi dans `react-dom/profiling`.
 > Pour en savoir plus sur l'utilisation de ce module, rendez-vous à l'adresse [fb.me/react-profiling](https://fb.me/react-profiling).
 
+<<<<<<< HEAD
 ## Virtualiser les listes longues {#virtualize-long-lists}
 
 Si votre application génère d'importantes listes de données (des centaines ou des milliers de lignes), nous vous conseillons d'utiliser la technique de « fenêtrage » *(windowing, NdT)*. Cette technique consiste à n'afficher à tout instant qu'un petit sous-ensemble des lignes, ce qui permet de diminuer considérablement le temps nécessaire au rendu des composants ainsi que le nombre de nœuds DOM créés.
+=======
+> Note
+>
+> Before React 17, we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) to profile components with the chrome performance tab.
+> For a more detailed walkthrough, check out [this article by Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
+
+## Virtualize Long Lists {#virtualize-long-lists}
+
+If your application renders long lists of data (hundreds or thousands of rows), we recommend using a technique known as "windowing". This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 [react-window](https://react-window.now.sh/) et [react-virtualized](https://bvaughn.github.io/react-virtualized/) sont des bibliothèques populaires de gestion du fenêtrage. Elles fournissent différents composants réutilisables pour afficher des listes, des grilles et des données tabulaires. Vous pouvez également créer votre propre composant, comme [l'a fait Twitter](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), si vous voulez quelque chose de plus adapté à vos cas d'usage spécifiques.
 
@@ -386,7 +406,11 @@ function updateColorMap(colormap) {
 }
 ```
 
+<<<<<<< HEAD
 Cette fonctionnalité est apparue dans JavaScript avec ES2018.
+=======
+This feature was added to JavaScript in ES2018.
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 Si vous utilisez Create React App, la méthode `Object.assign` et la syntaxe de décomposition d'objets sont toutes deux disponibles par défaut.
 
