@@ -35,11 +35,17 @@ function Greeting(props) {
   return <GuestGreeting />;
 }
 
+<<<<<<< HEAD
 ReactDOM.render(
   // Essayez de changer ça vers isLoggedIn={true} :
   <Greeting isLoggedIn={false} />,
   document.getElementById('root')
 );
+=======
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+// Try changing to isLoggedIn={true}:
+root.render(<Greeting isLoggedIn={false} />);
+>>>>>>> 3aac8c59848046fb427aab4373a7aadd7069a24c
 ```
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
@@ -111,10 +117,8 @@ class LoginControl extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <LoginControl />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(<LoginControl />);
 ```
 
 [**Essayer sur  CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
@@ -141,10 +145,9 @@ function Mailbox(props) {
 }
 
 const messages = ['React', 'Re: React', 'Re:Re: React'];
-ReactDOM.render(
-  <Mailbox unreadMessages={messages} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(<Mailbox unreadMessages={messages} />);
 ```
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
@@ -153,7 +156,24 @@ ReactDOM.render(
 
 Du coup, si la condition vaut `true`, l'élément juste après `&&` sera affiché. Si elle vaut `false`, React va l'ignorer et le sauter.
 
+<<<<<<< HEAD
 ### Alternative à la volée avec opérateur ternaire {#inline-if-else-with-conditional-operator}
+=======
+Note that returning a falsy expression will still cause the element after `&&` to be skipped but will return the falsy expression. In the example below, `<div>0</div>` will be returned by the render method.
+
+```javascript{2,5}
+render() {
+  const count = 0;
+  return (
+    <div>
+      {count && <h1>Messages: {count}</h1>}
+    </div>
+  );
+}
+```
+
+### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
+>>>>>>> 3aac8c59848046fb427aab4373a7aadd7069a24c
 
 Une autre méthode pour l’affichage conditionnel à la volée d'éléments consiste à utiliser l'opérateur ternaire Javascript [`condition ? trueValue : falseValue`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Opérateurs/L_opérateur_conditionnel).
 
@@ -232,10 +252,8 @@ class Page extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Page />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(<Page />);
 ```
 
 [**Essayer sur on CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)

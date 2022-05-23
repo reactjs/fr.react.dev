@@ -6,14 +6,22 @@ category: Reference
 permalink: docs/javascript-environment-requirements.html
 ---
 
+<<<<<<< HEAD
 React 16 dépend des types de collections [Map](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Map) et [Set](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Set). Si vous devez supporter des navigateurs et des appareils plus anciens, qui ne supportent pas ces objets natifs (par exemple IE < 11) ou dont l'implémentation n'est pas conforme aux standards (par exemple IE 11), vous pouvez envisager d'inclure un polyfill global dans votre application, comme [core-js](https://github.com/zloirock/core-js) ou [babel-polyfill](https://babeljs.io/docs/usage/polyfill/).
 
 L'utilisation d'un polyfill pour supporter React 16 sur les anciens navigateurs internet, grâce à core-js, peut ressembler à ceci :
+=======
+React 18 supports all modern browsers (Edge, Firefox, Chrome, Safari, etc).
 
-```js
-import 'core-js/es/map';
-import 'core-js/es/set';
+If you support older browsers and devices such as Internet Explorer which do not provide modern browser features natively or have non-compliant implementations, consider including a global polyfill in your bundled application.
+>>>>>>> 3aac8c59848046fb427aab4373a7aadd7069a24c
 
+Here is a list of the modern features React 18 uses:
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [`Symbol`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
+- [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+
+<<<<<<< HEAD
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -29,3 +37,6 @@ Vous pouvez utiliser le paquet [raf](https://www.npmjs.com/package/raf) pour ém
 ```js
 import 'raf/polyfill';
 ```
+=======
+The correct polyfill for these features depend on your environment. For many users, you can configure your [Browserlist](https://github.com/browserslist/browserslist) settings. For others, you may need to import polyfills like [`core-js`](https://github.com/zloirock/core-js) directly.
+>>>>>>> 3aac8c59848046fb427aab4373a7aadd7069a24c
