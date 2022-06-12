@@ -31,7 +31,7 @@ Dans cette page, nous utiliserons principalement des fonctions composants.  Ceci
 
 Pour chaque test, nous voulons habituellement réaliser le rendu d’un arbre React au sein d’un élément DOM attaché à `document`.  Ce dernier point est nécessaire pour que le composant puisse recevoir les événements du DOM.  Et lorsque le test se termine, nous voulons « nettoyer » et démonter l’arbre présent dans `document`.
 
-Une façon courante de faire ça consiste à associer les blocks `beforeEach` et `afterEach` afin qu’il s’exécutent systématiquement autour de chaque test, ce qui permet d’en isoler les effets :
+Une façon courante de faire consiste à associer les blocks `beforeEach` et `afterEach` afin qu’il s’exécutent systématiquement autour de chaque test, ce qui permet d’en isoler les effets :
 
 ```jsx
 import { unmountComponentAtNode } from "react-dom";
