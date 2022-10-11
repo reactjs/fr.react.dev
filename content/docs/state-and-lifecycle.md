@@ -199,7 +199,7 @@ Ensuite, nous allons faire en sorte que le composant `Clock` mette en place son
 
 Dans des applications avec de nombreux composants, il est très important de libérer les ressources utilisées par les composants quand ils sont détruits.
 
-Nous voulons [mettre en place un minuteur](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setInterval) quand une `Horloge` apparaît dans le DOM pour la première fois. Le terme React « montage » désigne cette phase.
+Nous voulons [mettre en place un minuteur](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) quand une `Horloge` apparaît dans le DOM pour la première fois. Le terme React « montage » désigne cette phase.
 
 Nous voulons également [nettoyer le minuteur](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/clearInterval) quand le DOM produit par l'`Horloge` est supprimé. En React, on parle de « démontage ».
 
