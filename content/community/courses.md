@@ -14,6 +14,8 @@ permalink: community/courses.html
 
 - [OpenClassrooms : débutez avec React](https://openclassrooms.com/fr/courses/7008001-debutez-avec-react) – Cours détaillé sur l'essentiel de React **(en français)**
 
+- [OpenClassrooms : Créez une application React complète](https://openclassrooms.com/fr/courses/7150606-creez-une-application-react-complete) – Construisez pas à pas votre première application, en l'enrichissant de fonctionnalités avancées **(en français)**
+
 - [Glitch: React Starter Kit](https://glitch.com/glimmer/post/react-starter-kit) - Cours vidéo gratuit en 5 parties avec des exemples de code interactifs qui vous aideront à apprendre React.
 
 - [Codecademy : React 101](https://www.codecademy.com/learn/react-101) – Cours d'introduction de Codecademy pour React.
