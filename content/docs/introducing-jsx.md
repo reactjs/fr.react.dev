@@ -70,7 +70,7 @@ ReactDOM.render(
 
 **[Essayer sur CodePen](codepen://introducing-jsx)**
 
-On découple le JSX en plusieurs lignes pour une meilleure lisibilité. Par la même occasion, nous recommandons également de le mettre entre parenthèses afin d'éviter les pièges [d'insertion de point-virgule automatique](https://stackoverflow.com/q/2846283), même si cette pratique n'est pas obligatoire.
+On découpe le JSX en plusieurs lignes pour une meilleure lisibilité. Par la même occasion, nous recommandons également de le mettre entre parenthèses afin d'éviter les pièges [d'insertion de point-virgule automatique](https://stackoverflow.com/q/2846283), même si cette pratique n'est pas obligatoire.
 
 ### JSX n’est rien d’autre qu’une expression {#jsx-is-an-expression-too}
 
