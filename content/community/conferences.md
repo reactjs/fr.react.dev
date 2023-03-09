@@ -13,6 +13,11 @@ Vous avez entendu parler d'une conférence React.js ? Ajoutez-la ici !<br/>
 
 ## Prochaines conférences {#upcoming-conferences}
 
+### React Native Connection 2023 {#react-native-connection-2023}
+Le 1er juin 2023 à Paris.
+
+[Site web](https://www.reactnativeconnection.io/) - [Twitter](https://twitter.com/reactnativeconn)
+
 ### React Native EU 2020 {#react-native-eu-2020}
 Du 3 au 4 septembre 2020 - Événement à distance
 
