@@ -10,15 +10,18 @@ import FeedbackForm from 'components/FeedbackForm';
 import Flex from 'components/Flex';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';
-import type {Node} from 'types';
+// $FlowFixMe Update Flow
 import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import {colors} from 'theme';
 import createCanonicalUrl from 'utils/createCanonicalUrl';
 import findSectionForPath from 'utils/findSectionForPath';
-import {sharedStyles} from 'theme';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
+import createCanonicalUrl from 'utils/createCanonicalUrl';
+import {sharedStyles, colors, media, fonts} from 'theme';
+
+import type {Node} from 'types';
 
 type Props = {
   authors: Array<string>,
@@ -72,6 +75,13 @@ const MarkdownPage = ({
         flex: '1 0 auto',
         position: 'relative',
         zIndex: 0,
+        '& h1, & h2, & h3, & h4, & h5, & h6': {
+          scrollMarginTop: fonts.header.fontSize,
+
+          [media.lessThan('medium')]: {
+            scrollMarginTop: fonts.header[media.lessThan('medium')].fontSize,
+          },
+        },
       }}>
       <TitleAndMetaTags
         ogDescription={ogDescription}
@@ -86,13 +96,10 @@ const MarkdownPage = ({
               <MarkdownHeader title={titlePrefix} />
 
               {(date || hasAuthors) && (
-                <div
-                  css={{
-                    marginTop: 15,
-                  }}>
+                <div css={{marginTop: 15}}>
                   {date}{' '}
                   {hasAuthors && (
-                    <span>
+                    <span css={{lineHeight: 1.75}}>
                       par{' '}
                       {toCommaSeparatedList(authors, author => (
                         <a
@@ -127,7 +134,7 @@ const MarkdownPage = ({
                     </span>
                     <a
                       css={sharedStyles.articleLayout.editLink}
-                      href={`https://github.com/reactjs/fr.reactjs.org/tree/master/${markdownRemark.fields.path}`}>
+                      href={`https://github.com/reactjs/fr.reactjs.org/tree/main/${markdownRemark.fields.path}`}>
                       Modifier cette page
                     </a>
                   </div>

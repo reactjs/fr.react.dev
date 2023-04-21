@@ -4,6 +4,14 @@ title: La validation de types statique
 permalink: docs/static-type-checking.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> Check out [React TypeScript cheatsheet](https://react-typescript-cheatsheet.netlify.app/) for how to use React with TypeScript.
+
+</div>
+
 Les systèmes de typage statique tels que [Flow](https://flow.org/) et [TypeScript](https://www.typescriptlang.org/) parviennent à identifier certains types de problèmes avant même d’exécuter votre code. Ils peuvent aussi améliorer le processus de travail des développeurs en y ajoutant des assistances telles que l'auto-complétion. C'est pourquoi nous recommandons l'utilisation de Flow ou TypeScript au lieu des `PropTypes` pour les grandes bases de code source.
 
 ## Flow {#flow}
@@ -319,7 +327,7 @@ Vous êtes maintenant prêt·e à écrire du code ! Nous vous conseillons de je
 * [Documentation TypeScript : migrer depuis JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
 * [Documentation TypeScript : React et Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
 
-## Reason {#reason}
+## ReScript {#rescript}
 
 [Reason](https://reasonml.github.io/) n'est pas un nouveau langage, c'est une nouvelle syntaxe et une boîte à outils par-dessus le langage reconnu [OCaml](https://ocaml.org/). Reason donne à OCaml une syntaxe qui plaira aux développeurs JavaScript, et s’intègre bien avec les processus de développement basés sur npm et Yarn que les développeurs utilisent quotidiennement.
 

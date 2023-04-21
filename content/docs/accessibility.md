@@ -2,8 +2,6 @@
 id: accessibility
 title: Accessibilité
 permalink: docs/accessibility.html
-prev: integrating-with-other-libraries.html
-next: code-splitting.html
 ---
 
 ## Pourquoi l'accessibilité ? {#why-accessibility}
@@ -406,7 +404,7 @@ Assurez-vous que tous les textes lisibles sur votre site web ont un contraste de
 - [Tout savoir sur le contraste des couleurs et pourquoi vous devriez le repenser](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/) (en anglais).
 - [A11yProject - Qu'est-ce que le contraste des couleurs ?](http://a11yproject.com/posts/what-is-color-contrast/) (en anglais).
 
-Il peut être fastidieux de calculer manuellement les combinaisons de couleurs appropriées pour toutes les situations sur votre site web, aussi vous est-il possible de [calculer une palette entière de couleurs accessible avec Colorable](http://jxnblk.com/colorable/) (en anglais).
+Il peut être fastidieux de calculer manuellement les combinaisons de couleurs appropriées pour toutes les situations sur votre site web, aussi vous est-il possible de [calculer une palette entière de couleurs accessible avec Colorable](http://colorable.jxnblk.com/) (en anglais).
 
 Les outils aXe et WAVE mentionnés ci-dessous incluent également des tests de contraste des couleurs et signalent les erreurs de contraste.
 
@@ -455,7 +453,7 @@ Deque Systems propose [aXe-core](https://github.com/dequelabs/axe-core) pour aut
 
 [*The Accessibility Engine*](https://www.deque.com/products/axe/) (en anglais) ou aXe, est une extension du navigateur qui fournit un inspecteur d'accessibilité en se basant sur `aXe-core`.
 
-Vous pouvez aussi utiliser le module [react-axe](https://github.com/dylanb/react-axe) pour signaler directement ces résultats d'accessibilité dans la console durant le développement et le débogage.
+Vous pouvez aussi utiliser le module [@axe-core/react](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/react) pour signaler directement ces résultats d'accessibilité dans la console durant le développement et le débogage.
 
 #### WebAIM WAVE {#webaim-wave}
 

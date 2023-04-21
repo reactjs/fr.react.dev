@@ -39,12 +39,8 @@ JSX est une extension syntaxique de JavaScript.  C’est un peu comme un langage
 
 React DOM utilise la casse `camelCase` comme convention de nommage des propriétés, au lieu des noms d’attributs HTML. Par exemple, l’attribut `class` devient `className`, dans la mesure où `class` est un mot réservé en JavaScript :
 
-```js
-const name = 'Clémentine';
-ReactDOM.render(
-  <h1 className="hello">Je m’appelle {name} !</h1>,
-  document.getElementById('root')
-);
+```jsx
+<h1 className="hello">Je m’appelle Clémentine !</h1>
 ```
 
 ## [Éléments](/docs/rendering-elements.html) {#elements}

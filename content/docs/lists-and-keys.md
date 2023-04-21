@@ -6,6 +6,17 @@ prev: conditional-rendering.html
 next: forms.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Rendering Lists](https://react.dev/learn/rendering-lists)
+
+</div>
+
+
 Tout d'abord, voyons comment transformer des listes en JavaScript.
 
 Dans le code suivant, on utilise la méthode [`map()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/map) pour prendre un tableau de nombres et doubler leurs valeurs. On affecte le nouveau tableau retourné par `map()` à une variable `doubled` et on l'affiche dans la console :
@@ -36,10 +47,7 @@ const listItems = numbers.map((number) =>
 On inclut tout le tableau `listItems` dans un élément `<ul>`, et [on l'affiche dans le DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom) :
 
 ```javascript{2}
-ReactDOM.render(
-  <ul>{listItems}</ul>,
-  document.getElementById('root')
-);
+<ul>{listItems}</ul>
 ```
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
@@ -64,10 +72,8 @@ function NumberList(props) {
 }
 
 const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<NumberList numbers={numbers} />);
 ```
 
 En exécutant ce code, vous obtiendrez un avertissement disant qu'une clé devrait être fournie pour les éléments d'une liste. Une « clé » *(key, NdT)*, est un attribut spécial que vous devez inclure quand vous créez une liste d'éléments. Nous verrons pourquoi c'est important dans la prochaine section.
@@ -86,12 +92,6 @@ function NumberList(props) {
     <ul>{listItems}</ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
@@ -131,7 +131,7 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-Nous vous recommandons de ne pas utiliser l'index comme clé si l'ordre des éléments est susceptible de changer. Ça peut avoir un effet négatif sur les performances, et causer des problèmes avec l'état du composant. Vous pouvez lire l'article de Robin Pokorny pour une [explication en profondeur de l'impact négatif de l'utilisation de l'index comme clé](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318) (en anglais). Si vous choisissez de ne pas donner explicitement de clé aux éléments d'une liste, React utilisera l’index par défaut.
+Nous vous recommandons de ne pas utiliser l'index comme clé si l'ordre des éléments est susceptible de changer. Ça peut avoir un effet négatif sur les performances, et causer des problèmes avec l'état du composant. Vous pouvez lire l'article de Robin Pokorny pour une [explication en profondeur de l'impact négatif de l'utilisation de l'index comme clé](https://robinpokorny.com/blog/index-as-a-key-is-an-anti-pattern/) (en anglais). Si vous choisissez de ne pas donner explicitement de clé aux éléments d'une liste, React utilisera l’index par défaut.
 
 Si vous voulez en apprendre davantage, consultez cette [explication en profondeur de la raison pour laquelle les clés sont nécessaires](/docs/reconciliation.html#recursing-on-children).
 
@@ -166,12 +166,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 **Exemple : utilisation correcte des clés**
@@ -194,12 +188,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
@@ -240,10 +228,9 @@ const posts = [
   {id: 1, title: 'Bonjour, monde', content: 'Bienvenue sur la doc de React !'},
   {id: 2, title: 'Installation', content: 'Vous pouvez installer React depuis npm.'}
 ];
-ReactDOM.render(
-  <Blog posts={posts} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Blog posts={posts} />);
 ```
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)

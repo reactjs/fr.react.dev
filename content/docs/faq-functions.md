@@ -37,14 +37,13 @@ class Foo extends Component {
 }
 ```
 
-#### Propriété de classe (proposition stade 3) {#class-properties-stage-3-proposal}
+#### Class Properties (ES2022) {#class-properties-es2022}
 
 ```jsx
 class Foo extends Component {
-  // Remarque : cette syntaxe est expérimentale et n'est pas encore standardisée
   handleClick = () => {
     console.log('Cliqué');
-  }
+  };
   render() {
     return <button onClick={this.handleClick}>Cliquez ici</button>;
   }
@@ -152,7 +151,6 @@ const A = 65 // Code de caractère ASCII
 class Alphabet extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
     this.state = {
       justClicked: null,
       letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i))
@@ -291,9 +289,6 @@ class Searchbox extends React.Component {
   }
 
   handleChange(e) {
-    // React recycle les événements, on a donc besoin de lire la valeur avant le différé.
-    // On aurait aussi pu appeler `event.persist()` et passer l’événement complet.
-    // Pour en apprendre davantage, consultez fr.reactjs.org/docs/events.html#event-pooling
     this.emitChangeDebounced(e.target.value);
   }
 

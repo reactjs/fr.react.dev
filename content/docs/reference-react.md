@@ -13,6 +13,19 @@ redirect_from:
   - "docs/top-level-api-zh-CN.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`react`: Components](https://react.dev/reference/react/components)
+> - [`react`: Hooks](https://react.dev/reference/react/)
+> - [`react`: APIs](https://react.dev/reference/react/apis)
+> - [`react`: Legacy APIs](https://react.dev/reference/react/legacy)
+
+</div>
+
 L'objet `React` est le point d'entrée de la bibliothèque React. Si vous chargez React depuis une balise `<script>`, ces API de haut-niveau sont disponibles depuis l'objet global `React`. Si vous utilisez npm avec la syntaxe ES6, vous pouvez écrire : `import React from 'react'`. Si vous utilisez npm avec la syntaxe ES5, vous pouvez écrire : `var React = require('react')`.
 
 ## Aperçu {#overview}
@@ -65,6 +78,13 @@ Lisez [React sans JSX](/docs/react-without-jsx.html) pour plus de détails.
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
+### Transitions {#transitions}
+
+*Transitions* are a new concurrent feature introduced in React 18. They allow you to mark updates as transitions, which tells React that they can be interrupted and avoid going back to Suspense fallbacks for already visible content.
+
+- [`React.startTransition`](#starttransition)
+- [`React.useTransition`](/docs/hooks-reference.html#usetransition)
+
 ### Hooks {#hooks}
 
 Les *Hooks* sont une nouveauté de React 16.8. Ils vous permettent d'utiliser les états et d'autres fonctionnalités de React sans avoir à écrire de classes. Les *Hooks* disposent de [leur propre documentation](/docs/hooks-intro.html) et leur API est détaillée à part :
@@ -81,12 +101,26 @@ Les *Hooks* sont une nouveauté de React 16.8. Ils vous permettent d'utiliser le
   - [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)
   - [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect)
   - [`useDebugValue`](/docs/hooks-reference.html#usedebugvalue)
+  - [`useDeferredValue`](/docs/hooks-reference.html#usedeferredvalue)
+  - [`useTransition`](/docs/hooks-reference.html#usetransition)
+  - [`useId`](/docs/hooks-reference.html#useid)
+- [Library Hooks](/docs/hooks-reference.html#library-hooks)
+  - [`useSyncExternalStore`](/docs/hooks-reference.html#usesyncexternalstore)
+  - [`useInsertionEffect`](/docs/hooks-reference.html#useinsertioneffect)
 
 * * *
 
 ## Référence de l’API {#reference}
 
 ### `React.Component` {#reactcomponent}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Component`](https://react.dev/reference/react/Component).
+
+</div>
 
 `React.Component` est la classe de base utilisée pour créer des composants React avec la syntaxe des [classes ES6](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes) :
 
@@ -104,6 +138,14 @@ Rendez-vous sur [la page de référence de l'API `React.Component`](/docs/react-
 
 ### `React.PureComponent` {#reactpurecomponent}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`PureComponent`](https://react.dev/reference/react/PureComponent).
+
+</div>
+
 `React.PureComponent` est similaire à [`React.Component`](#reactcomponent). La seule différence est que [`React.Component`](#reactcomponent) n'implémente pas la méthode [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), alors que `React.PureComponent` l’implémente en réalisant une comparaison de surface de l'état et des propriétés.
 
 Si la fonction `render()` d'un de vos composants React produit un rendu identique pour le même état et les mêmes propriétés, le faire étendre `React.PureComponent` devrait améliorer les performances dans certains cas.
@@ -111,13 +153,21 @@ Si la fonction `render()` d'un de vos composants React produit un rendu identiqu
 
 >Remarque
 >
-> La méthode `shouldComponentUpdate()` de `React.PureComponent` réalise une simple comparaison de surface. Avec des données complexes, elle peut produire des faux négatifs si la structure de données subit des changements profonds. Ne créez des composants avec `PureComponent` que si vous avez des états et des props simples, et le cas échéant utilisez [`forceUpdate()`](/docs/react-component.html#forceupdate) si vous savez que vos données ont changé en profondeur. Vous pouvez aussi envisager d'utiliser des [objets immuables](https://facebook.github.io/immutable-js/) pour simplifier la comparaison rapide de données imbriquées.
+> La méthode `shouldComponentUpdate()` de `React.PureComponent` réalise une simple comparaison de surface. Avec des données complexes, elle peut produire des faux négatifs si la structure de données subit des changements profonds. Ne créez des composants avec `PureComponent` que si vous avez des états et des props simples, et le cas échéant utilisez [`forceUpdate()`](/docs/react-component.html#forceupdate) si vous savez que vos données ont changé en profondeur. Vous pouvez aussi envisager d'utiliser des [objets immuables](https://immutable-js.com/) pour simplifier la comparaison rapide de données imbriquées.
 >
 > De plus, la méthode `shouldComponentUpdate()` de `React.PureComponent` ignore la mise à jour des propriétés de tout l'arbre des composants enfants. Assurez-vous donc que tous les composants enfants sont également « purs ».
 
 * * *
 
 ### `React.memo` {#reactmemo}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`memo`](https://react.dev/reference/react/memo).
+
+</div>
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
@@ -157,6 +207,14 @@ Cette méthode n'est qu'un outil d'**[optimisation des performances](/docs/optim
 
 ### `createElement()` {#createelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createElement`](https://react.dev/reference/react/createElement).
+
+</div>
+
 ```javascript
 React.createElement(
   type,
@@ -173,10 +231,18 @@ Tout code écrit avec [JSX](/docs/introducing-jsx.html) sera converti de manièr
 
 ### `cloneElement()` {#cloneelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`cloneElement`](https://react.dev/reference/react/cloneElement).
+
+</div>
+
 ```
 React.cloneElement(
   element,
-  [props],
+  [config],
   [...children]
 )
 ```
@@ -189,13 +255,21 @@ Cette méthode clone et renvoie un nouvel élément en utilisant `element` comme
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-Cependant elle préserve les `ref`. Concrètement, ça signifie que si vous avez un enfant avec une `ref` associée, vous ne la volerez pas accidentellement à votre ancêtre. Vous aurez la même `ref` associée au nouvel élément.
+Cependant elle préserve les `ref`. Concrètement, ça signifie que si vous avez un enfant avec une `ref` associée, vous ne la volerez pas accidentellement à votre ancêtre. Vous aurez la même `ref` associée au nouvel élément. The new `ref` or `key` will replace old ones if present.
 
 Cette API a été introduite pour remplacer la méthode dépréciée `React.addons.cloneWithProps()`.
 
 * * *
 
 ### `createFactory()` {#createfactory}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createFactory`](https://react.dev/reference/react/createFactory).
+
+</div>
 
 ```javascript
 React.createFactory(type)
@@ -211,6 +285,14 @@ Normalement vous ne devriez pas appeler `React.createFactory()` si vous utilisez
 
 ### `isValidElement()` {#isvalidelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`isValidElement`](https://react.dev/reference/react/isValidElement).
+
+</div>
+
 ```javascript
 React.isValidElement(object)
 ```
@@ -220,6 +302,14 @@ Cette méthode vérifie qu'un objet est bien un élément React. Elle renvoie `t
 * * *
 
 ### `React.Children` {#reactchildren}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Children`](https://react.dev/reference/react/Children).
+
+</div>
 
 `React.Children` fournit des utilitaires pour interagir avec la structure de données opaque de `this.props.children`.
 
@@ -279,6 +369,14 @@ Cette méthode renvoie la structure de donnée opaque de `children` sous la form
 
 ### `React.Fragment` {#reactfragment}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Fragment`](https://react.dev/reference/react/Fragment).
+
+</div>
+
 Le composant `React.Fragment` vous permet de renvoyer plusieurs éléments depuis une méthode `render()` sans avoir à créer un élément DOM supplémentaire :
 
 ```javascript
@@ -297,10 +395,26 @@ Vous pouvez également l'utiliser via la syntaxe raccourcie `<></>` . Pour plus 
 
 ### `React.createRef` {#reactcreateref}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createRef`](https://react.dev/reference/react/createRef).
+
+</div>
+
 `React.createRef` crée une [`ref`](/docs/refs-and-the-dom.html) qui peut être associée à des éléments React via l'attribut `ref`.
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`forwardRef`](https://react.dev/reference/react/forwardRef).
+
+</div>
 
 `React.forwardRef` crée un composant React qui transfère la valeur de l'attribut [ref](/docs/refs-and-the-dom.html) qu'il reçoit à un autre composant plus bas dans l'arbre. Cette technique est assez inhabituelle mais elle est particulièrement utile dans deux cas :
 
@@ -319,6 +433,14 @@ Pour en savoir plus, lisez [Transférer les refs](/docs/forwarding-refs.html)
 
 ### `React.lazy` {#reactlazy}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`lazy`](https://react.dev/reference/react/lazy).
+
+</div>
+
 `React.lazy()` vous permet de définir un composant qui sera chargé dynamiquement. Cela aide à réduire la taille du fichier initial en reportant à plus tard le chargement des composants inutiles lors du rendu initial.
 
 Vous pouvez apprendre comment l'utiliser en lisant [la documentation sur la découpe du code](/docs/code-splitting.html#reactlazy). Vous voudrez peut-être aussi jeter un œil à [cet article](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d), qui explique comment l'utiliser en détail.
@@ -330,11 +452,17 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 Notez bien que l'affichage d'un composant `lazy` a besoin d'un composant `<React.Suspense>` plus haut dans l'arbre de rendu. C'est de cette manière que vous pouvez spécifier un indicateur de chargement.
 
->Remarque
->
-> Utiliser `React.lazy` avec un `import()` dynamique requiert une prise en charge des *Promises* par  l'environnement JS. Vous aurez donc besoin d’un _polyfill_ pour IE11 et inférieurs.
-
 ### `React.Suspense` {#reactsuspense}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Suspense`](https://react.dev/reference/react/Suspense).
+
+</div>
+
+`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. In the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
 
 `React.Suspense` vous permet de définir un indicateur de chargement pour le cas où certains composants plus bas dans l’arbre de rendu ne seraient pas encore prêts à être affichés. Pour le moment le **seul** cas d'usage pris en charge par `<React.Suspense>`, c’est le chargement différé de composants via [`React.lazy`](#reactlazy) :
 
@@ -356,8 +484,36 @@ function MyComponent() {
 
 Tout ça est détaillé dans [notre guide sur la découpe du code](/docs/code-splitting.html#reactlazy). Remarquez que les composants `lazy` peuvent être profondément enfouis dans l'arbre des descendants de `Suspense`—ils n'ont pas besoin d'être enveloppés individuellement. La bonne pratique consiste à placer un `<Suspense>` aux endroits où vous souhaitez voir un indicateur de chargement, et à utiliser `lazy()` partout ou vous voulez découper votre code.
 
-Bien que ce ne soit pas le cas pour le moment, nous prévoyons d'étendre les capacités de `Suspense` pour qu'il puisse gérer d'autre scénarios tel que le chargement de données. Vous pourrez en savoir plus en jetant un coup d'œil à [notre feuille de route](/blog/2018/11/27/react-16-roadmap.html).
-
->Remarque
+> Note
 >
-> `React.lazy()` et `<React.Suspense>` ne sont pas encore pris en charge par `ReactDOMServer`. C'est une limitation connue qui devrait être résolue à l’avenir.
+> For content that is already shown to the user, switching back to a loading indicator can be disorienting. It is sometimes better to show the "old" UI while the new UI is being prepared. To do this, you can use the new transition APIs [`startTransition`](#starttransition) and [`useTransition`](/docs/hooks-reference.html#usetransition) to mark updates as transitions and avoid unexpected fallbacks.
+
+#### `React.Suspense` in Server Side Rendering {#reactsuspense-in-server-side-rendering}
+During server side rendering Suspense Boundaries allow you to flush your application in smaller chunks by suspending.
+When a component suspends we schedule a low priority task to render the closest Suspense boundary's fallback. If the component unsuspends before we flush the fallback then we send down the actual content and throw away the fallback.
+
+#### `React.Suspense` during hydration {#reactsuspense-during-hydration}
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before it is hydrated will cause the boundary to hydrate at a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+
+### `React.startTransition` {#starttransition}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`startTransition`](https://react.dev/reference/react/startTransition).
+
+</div>
+
+```js
+React.startTransition(callback)
+```
+`React.startTransition` lets you mark updates inside the provided callback as transitions. This method is designed to be used when [`React.useTransition`](/docs/hooks-reference.html#usetransition) is not available.
+
+> Remarque
+>
+> Updates in a transition yield to more urgent updates such as clicks.
+>
+> Updates in a transition will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+>
+> `React.startTransition` does not provide an `isPending` flag. To track the pending status of a transition see [`React.useTransition`](/docs/hooks-reference.html#usetransition).

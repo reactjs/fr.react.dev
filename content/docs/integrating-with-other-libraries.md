@@ -2,9 +2,20 @@
 id: integrating-with-other-libraries
 title: Intégration avec d'autres bibliothèques
 permalink: docs/integrating-with-other-libraries.html
-prev: render-props.html
-next: accessibility.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`useSyncExternalStore`: Subscribing to an external store 
+](https://react.dev/reference/react/useSyncExternalStore#subscribing-to-an-external-store)
+> - [`createPortal`: Rendering React components into non-React DOM nodes 
+](https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes)
+
+</div>
 
 React peut être utilisé dans n'importe quelle application web. Il peut être intégré à d'autres applications et, avec un peu de soin, d'autres applications peuvent être intégrées à React. Ce guide examine certains des cas d'utilisation les plus courants, en se concentrant sur l'intégration avec [jQuery](https://jquery.com/) et [Backbone](https://backbonejs.org/), mais les mêmes idées peuvent être appliquées à l'intégration de composants à n'importe quel code existant.
 
@@ -192,9 +203,9 @@ class Chosen extends React.Component {
 
 ## Intégration à d'autres bibliothèques de vues {#integrating-with-other-view-libraries}
 
-React peut être intégré à d’autres applications grâce à la flexibilité de [`ReactDOM.render()`](/docs/react-dom.html#render).
+React peut être intégré à d’autres applications grâce à la flexibilité de [`createRoot()`](/docs/react-dom-client.html#createRoot).
 
-Bien que React soit couramment utilisé au démarrage pour charger un seul composant racine React dans le DOM, `ReactDOM.render()` peut également être appelé plusieurs fois pour afficher des parties indépendantes de l'interface utilisateur (UI), qui peuvent être aussi petites qu'un bouton ou aussi grandes qu'une application.
+Bien que React soit couramment utilisé au démarrage pour charger un seul composant racine React dans le DOM, `createRoot()` peut également être appelé plusieurs fois pour afficher des parties indépendantes de l'interface utilisateur (UI), qui peuvent être aussi petites qu'un bouton ou aussi grandes qu'une application.
 
 En fait, c’est exactement comme ça que React est utilisé chez Facebook. Ça nous permet d'écrire des applications en React morceau par morceau, et de les combiner avec nos gabarits existants générés par le serveur et d'autres codes côté client.
 
@@ -218,15 +229,9 @@ function Button() {
   return <button id="btn">Dis bonjour</button>;
 }
 
-ReactDOM.render(
-  <Button />,
-  document.getElementById('container'),
-  function() {
-    $('#btn').click(function() {
-      alert('Bonjour !');
-    });
-  }
-);
+$('#btn').click(function() {
+  alert('Bonjour !');
+});
 ```
 
 À partir de là, vous pouvez intégrer plus de logique dans le composant et commencer à adopter des pratiques React plus courantes. Par exemple, dans les composants, il est préférable de ne pas compter sur les ID, car un même composant peut être affiché plusieurs fois. Nous utiliserons plutôt le [système d’événements React](/docs/handling-events.html) et enregistrerons le gestionnaire de clics directement sur l’élément React `<button>` :
@@ -242,36 +247,34 @@ function HelloButton() {
   }
   return <Button onClick={handleClick} />;
 }
-
-ReactDOM.render(
-  <HelloButton />,
-  document.getElementById('container')
-);
 ```
 
 [**Essayez dans CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
 
-Vous pouvez avoir autant de composants isolés que vous le souhaitez et utiliser `ReactDOM.render()` pour les restituer dans différents conteneurs DOM. Au fur et à mesure que vous convertissez les parties de votre application en React, vous pourrez les combiner en composants plus volumineux et déplacer une partie des appels à `ReactDOM.render()` plus haut dans la hiérarchie.
+Vous pouvez avoir autant de composants isolés que vous le souhaitez et utiliser `ReactDOM.createRoot()` pour les restituer dans différents conteneurs DOM. Au fur et à mesure que vous convertissez les parties de votre application en React, vous pourrez les combiner en composants plus volumineux et déplacer une partie des appels à `ReactDOM.createRoot()` plus haut dans la hiérarchie.
 
 ### Incorporer React dans une vue Backbone {#embedding-react-in-a-backbone-view}
 
 Les vues [Backbone](https://backbonejs.org/) utilisent généralement des chaînes HTML ou des fonctions de gabarit produisant des chaînes pour créer le contenu de leurs éléments DOM. Ce processus peut également être remplacé par le rendu d'un composant React.
 
-Ci-dessous, nous allons créer une vue Backbone appelée `ParagraphView`. La fonction `render()` de Backbone sera remplacée pour afficher un composant React `<Paragraph>` dans l'élément DOM fourni par Backbone (`this.el`). Ici aussi, nous utilisons  [`ReactDOM.render()`](/docs/react-dom.html#render):
+Ci-dessous, nous allons créer une vue Backbone appelée `ParagraphView`. La fonction `render()` de Backbone sera remplacée pour afficher un composant React `<Paragraph>` dans l'élément DOM fourni par Backbone (`this.el`). Ici aussi, nous utilisons  [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot):
 
-```js{1,5,8,12}
+```js{7,11,15}
 function Paragraph(props) {
   return <p>{props.text}</p>;
 }
 
 const ParagraphView = Backbone.View.extend({
+  initialize(options) {
+    this.reactRoot = ReactDOM.createRoot(this.el);
+  },
   render() {
     const text = this.model.get('text');
-    ReactDOM.render(<Paragraph text={text} />, this.el);
+    this.reactRoot.render(<Paragraph text={text} />);
     return this;
   },
   remove() {
-    ReactDOM.unmountComponentAtNode(this.el);
+    this.reactRoot.unmount();
     Backbone.View.prototype.remove.call(this);
   }
 });
@@ -279,7 +282,7 @@ const ParagraphView = Backbone.View.extend({
 
 [**Essayez dans CodePen**](https://codepen.io/gaearon/pen/gWgOYL?editors=0010)
 
-Il est important que nous appelions également `ReactDOM.unmountComponentAtNode()` dans la méthode `remove` afin que React désinscrive les gestionnaires d'événements et les autres ressources associées à l'arborescence des composants lorsqu'ils sont détachés.
+Il est important que nous appelions également `root.unmount()` dans la méthode `remove` afin que React désinscrive les gestionnaires d'événements et les autres ressources associées à l'arborescence des composants lorsqu'ils sont détachés.
 
 Lorsqu'un composant est supprimé *depuis* une arborescence React, le nettoyage est effectué automatiquement, mais comme nous supprimons l'arborescence complète à la main, nous devons appeler cette méthode.
 
@@ -430,10 +433,8 @@ function Example(props) {
 }
 
 const model = new Backbone.Model({ firstName: 'Frodo' });
-ReactDOM.render(
-  <Example model={model} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Example model={model} />);
 ```
 
 [**Essayez dans CodePen**](https://codepen.io/gaearon/pen/PmWwwa?editors=0010)

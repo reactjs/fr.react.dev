@@ -8,6 +8,17 @@ redirect_from:
   - "tips/false-in-jsx.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Conditional Rendering](https://react.dev/learn/conditional-rendering)
+
+</div>
+
+
 En React, vous pouvez concevoir des composants distincts qui encapsulent le comportement voulu. Vous pouvez alors n’afficher que certains d'entre eux, suivant l'état de votre application.
 
 L’affichage conditionnel en React fonctionne de la même façon que les conditions en Javascript. On utilise l'instruction Javascript [`if`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Instructions/if...else) ou l’[opérateur ternaire](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Opérateurs/L_opérateur_conditionnel) pour créer des éléments représentant l'état courant, et on laisse React mettre à jour l'interface utilisateur (UI) pour qu’elle corresponde.
@@ -35,11 +46,9 @@ function Greeting(props) {
   return <GuestGreeting />;
 }
 
-ReactDOM.render(
-  // Essayez de changer ça vers isLoggedIn={true} :
-  <Greeting isLoggedIn={false} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+// Essayez de changer ça vers isLoggedIn={true} :
+root.render(<Greeting isLoggedIn={false} />);
 ```
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
@@ -111,10 +120,8 @@ class LoginControl extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <LoginControl />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(<LoginControl />);
 ```
 
 [**Essayer sur  CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
@@ -141,10 +148,9 @@ function Mailbox(props) {
 }
 
 const messages = ['React', 'Re: React', 'Re:Re: React'];
-ReactDOM.render(
-  <Mailbox unreadMessages={messages} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(<Mailbox unreadMessages={messages} />);
 ```
 
 [**Essayer sur CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
@@ -152,6 +158,19 @@ ReactDOM.render(
 Ça fonctionne parce qu'en JavaScript, `true && expression` est toujours évalué à `expression`, et `false && expression` est toujours évalué à `false`.
 
 Du coup, si la condition vaut `true`, l'élément juste après `&&` sera affiché. Si elle vaut `false`, React va l'ignorer et le sauter.
+
+Note that returning a falsy expression will still cause the element after `&&` to be skipped but will return the falsy expression. In the example below, `<div>0</div>` will be returned by the render method.
+
+```javascript{2,5}
+render() {
+  const count = 0;
+  return (
+    <div>
+      {count && <h1>Messages: {count}</h1>}
+    </div>
+  );
+}
+```
 
 ### Alternative à la volée avec opérateur ternaire {#inline-if-else-with-conditional-operator}
 
@@ -232,10 +251,8 @@ class Page extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Page />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(<Page />);
 ```
 
 [**Essayer sur on CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)

@@ -4,6 +4,17 @@ title: Transfert de refs
 permalink: docs/forwarding-refs.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Manipulating the DOM with Refs](https://react.dev/learn/manipulating-the-dom-with-refs)
+> - [`forwardRef`](https://react.dev/reference/react/forwardRef)
+
+</div>
+
 Le transfert de ref est une technique permettant de déléguer automatiquement une [ref](/docs/refs-and-the-dom.html) d'un composant à l'un de ses enfants. Ça n'est généralement pas nécessaire pour la plupart des composants dans une application. Cependant, ça peut être utile pour certains types de composants, particulièrement dans les bibliothèques de composants réutilisables. Les scénarios les plus fréquents sont décrits ci-dessous.
 
 ## Transfert de refs vers des composants du DOM {#forwarding-refs-to-dom-components}

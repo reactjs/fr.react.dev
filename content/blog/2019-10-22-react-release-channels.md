@@ -3,6 +3,12 @@ title: "Préparer l’avenir avec les pré-versions de React"
 author: [acdlite]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 Afin de partager les évolutions à venir avec nos partenaires de l’écosystème React, nous mettons en place des canaux de sortie officiels.  Nous espérons que ce processus nous aidera à gagner en confiance lors de nos modifications à React, et donnera aux développeur·se·s l’opportunité d’essayer des fonctionnalités expérimentales.
 
 > Cet article sera surtout pertinent pour les développeur·se·s qui travaillent sur des frameworks, des bibliothèques ou de l’outillage de développement.  Les personnes qui utilisent React principalement pour construire des applications destinées à des utilisateurs finaux ne devraient pas avoir à se préoccuper de nos canaux de sortie.
@@ -58,13 +64,13 @@ Si vous êtes l’auteur·e d’une solution tierce pour React (framework, bibli
 - Mettez en place une tâche périodique au sein de votre plate-forme préférée d’intégration continue.  On trouve ce type d’exécutions périodiques tant dans [CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) que dans [Travis CI](https://docs.travis-ci.com/user/cron-jobs/).
 - Dans la tâche, mettez à jour les modules React à partir de la version la plus récente du canal *Next*, grâce à l’étiquette `next` sur npm.  Avec la CLI de npm :
 
-  ```
+  ```console
   npm update react@next react-dom@next
   ```
 
   Ou avec Yarn :
 
-  ```
+  ```console
   yarn upgrade react@next react-dom@next
   ```
 
@@ -100,4 +106,4 @@ Si une fonctionnalité n’est pas documentée, elle peut toutefois être accomp
 
 Lorsque nous sommes prêts à annoncer de nouvelles expériences, nous en parlons sur le [blog React](/blog), mais ça ne veut pas dire que nous annonçons chaque expérience.
 
-Vous pouvez toujours vous référer à l’[historique](https://github.com/facebook/react/commits/master) de notre dépôt public sur GitHub pour une liste exhaustive des modifications.
+Vous pouvez toujours vous référer à l’[historique](https://github.com/facebook/react/commits/main) de notre dépôt public sur GitHub pour une liste exhaustive des modifications.

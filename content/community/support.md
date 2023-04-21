@@ -8,11 +8,20 @@ redirect_from:
   - "support.html"
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See the [Community](https://react.dev/community) resources on the new site.
+
+</div>
+
 La communauté React compte des millions de développeur·se·s.
 
 Sur cette page, nous avons répertorié certaines communautés liées à React auxquelles vous pouvez participer ; reportez-vous aux autres pages de cette section pour obtenir d'autres ressources en personne ou en ligne.
 
-Avant de participer aux communautés React, [merci de lire notre Code de Conduite](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md). Nous avons adopté le [Contributor Covenant](https://www.contributor-covenant.org/) et attendons de tous les membres de nos communautés qu’ils·elles respectent les règles et recommandations qui y figurent.
+Avant de participer aux communautés React, [merci de lire notre Code de Conduite](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md). Nous avons adopté le [Contributor Covenant](https://www.contributor-covenant.org/) et attendons de tous les membres de nos communautés qu’ils·elles respectent les règles et recommandations qui y figurent.
 
 ## Stack Overflow {#stack-overflow}
 
@@ -28,7 +37,6 @@ Chaque communauté est composée de plusieurs milliers d'utilisateurs de React.
 * [Communauté React sur Hashnode](https://hashnode.com/n/reactjs)
 * [Chat en ligne Reactiflux](https://discord.gg/reactiflux)
 * [Communauté React sur Reddit](https://www.reddit.com/r/reactjs/)
-* [Communauté React sur Spectrum](https://spectrum.chat/react)
 
 ## Actualités {#news}
 

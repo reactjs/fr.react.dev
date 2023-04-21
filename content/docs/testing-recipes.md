@@ -377,8 +377,6 @@ let container = null;
 beforeEach(() => {
   // met en place un élément DOM comme cible de rendu
   container = document.createElement("div");
-  // `container` *doit* être attaché à `document` pour que les événements
-  // fonctionnent correctement.
   document.body.appendChild(container);
 });
 
@@ -467,13 +465,12 @@ import { act } from "react-dom/test-utils";
 
 import Card from "./card";
 
-jest.useFakeTimers();
-
 let container = null;
 beforeEach(() => {
   // met en place un élément DOM comme cible de rendu
   container = document.createElement("div");
   document.body.appendChild(container);
+  jest.useFakeTimers();
 });
 
 afterEach(() => {
@@ -481,6 +478,7 @@ afterEach(() => {
   unmountComponentAtNode(container);
   container.remove();
   container = null;
+  jest.useRealTimers();
 });
 
 it("devrait sélectionner null à expiration", () => {

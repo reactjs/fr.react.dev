@@ -3,6 +3,12 @@ title: "Nouvelle politique de gestion de versions"
 author: [sebmarkbage]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 Aujourd’hui, nous annonçons notre bascule vers une gestion de versions majeures pour React. La version actuelle est la 0.14.7. La prochaine sera la **15.0.0**.
 
 Cette bascule ne devrait pas concrètement affecter la plupart d’entre vous.  Passer à une gestion sémantique de versions nous aide simplement à affirmer notre engagement de stabilité, et nous donne la flexibilité nécessaire à l’ajout de fonctionnalités compatibles en amont dans des versions mineures.  Ça signifie que nous pouvons avoir moins de versions majeures, et que vous n’aurez pas à attendre aussi longtemps pour profiter des améliorations apportées à React.  En prime, si vous êtes l’auteur·e de composants, cette gestion de versions vous permet de prendre en charge deux versions majeures de React simultanément, sans que vous ayez à laisser une partie de vos utilisateurs au bord de la route.

@@ -2,11 +2,20 @@
 id: optimizing-performance
 title: Optimiser les performances
 permalink: docs/optimizing-performance.html
-prev: uncontrolled-components.html
-next: react-without-es6.html
 redirect_from:
   - "docs/advanced-performance.html"
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`memo`: Skipping re-rendering when props are unchanged
+](https://react.dev/reference/react/memo#skipping-re-rendering-when-props-are-unchanged)
+
+</div>
 
 En interne, React fait appel à différentes techniques intelligentes pour minimiser le nombre d'opérations coûteuses sur le DOM nécessaires à la mise à jour de l'interface utilisateur (UI). Pour de nombreuses applications, utiliser React offrira une UI rapide sans avoir à fournir beaucoup de travail pour optimiser les performances. Néanmoins, il existe plusieurs façons d'accélérer votre application React.
 
@@ -49,8 +58,8 @@ Rappelez-vous que cela n'est nécessaire qu'avant le déploiement en production.
 Nous mettons à disposition des versions de React et de React DOM prêtes pour la production sous la forme de fichiers uniques :
 
 ```html
-<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 ```
 
 Rappelez-vous que seuls les fichiers React finissant par `.production.min.js` sont adaptés à la production.
@@ -162,32 +171,6 @@ Vous pouvez en apprendre davantage sur le sujet en consultant la [documentation 
 
 Rappelez-vous que vous n'avez à faire cela que pour la version de production. Vous ne devez pas utiliser `TerserPlugin` en développement, car cela masquerait des avertissements utiles de React et ralentirait la construction.
 
-## Profilage des composants avec l'onglet Performance de Chrome {#profiling-components-with-the-chrome-performance-tab}
-
-En mode de **développement**, vous pouvez voir comment les composants sont montés, mis à jour et démontés en utilisant les outils de performances dans les navigateurs qui les prennent en charge. Par exemple :
-
-<center><img src="../images/blog/react-perf-chrome-timeline.png" style="max-width:100%" alt="Des composants React dans la frise chronologique de Chrome" /></center>
-
-Pour faire ça avec Chrome :
-
-1. **Désactivez temporairement toutes les extensions de Chrome, en particulier React DevTools**. Elles peuvent considérablement impacter les résutats !
-
-2. Assurez-vous d'utiliser l'application en mode de développement.
-
-3. Ouvrez l'onglet ***[Performances](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)*** dans les DevTools de Chrome et appuyez sur ***Record***.
-
-4. Effectuez les opérations que vous voulez analyser. N'enregistrez pas plus de 20 secondes, car Chrome pourrait se bloquer.
-
-5. Arrêtez l'enregistrement.
-
-6. Les événements React seront regroupés sous l'étiquette ***User Timing***.
-
-Pour une présentation plus détaillée, consultez [cet article de Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
-
-Veuillez noter que **ces résultats sont relatifs et que les composants seront rendus plus rapidement en production**. Néanmoins, ça devrait vous aider à comprendre quand des éléments d'interface sont mis à jour par erreur, ainsi que la profondeur et la fréquence des mises à jour de l'UI.
-
-Pour le moment, Chrome, Edge et IE sont les seuls navigateurs prenant en charge cette fonctionnalité, mais comme nous utilisons [l'API standard User Timing](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API), nous nous attendons à ce que d'autres navigateurs la prennent en charge.
-
 ## Profilage des composants avec le DevTools Profiler {#profiling-components-with-the-devtools-profiler}
 
 `react-dom` 16.5+ et `react-native` 0.57+ offrent des capacités de profilage avancées en mode de développement avec le Profiler de l'extension React DevTools.
@@ -204,6 +187,11 @@ Si vous n'avez pas encore installé l'extension React DevTools, vous pourrez la 
 >
 > Un module de profilage pour la production de `react-dom` existe aussi dans `react-dom/profiling`.
 > Pour en savoir plus sur l'utilisation de ce module, rendez-vous à l'adresse [fb.me/react-profiling](https://fb.me/react-profiling).
+
+> Note
+>
+> Before React 17, we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) to profile components with the chrome performance tab.
+> For a more detailed walkthrough, check out [this article by Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
 
 ## Virtualiser les listes longues {#virtualize-long-lists}
 

@@ -92,6 +92,8 @@
           title: React.Component
     - id: react-dom
       title: ReactDOM
+    - id: react-dom-client
+      title: ReactDOMClient
     - id: react-dom-server
       title: ReactDOMServer
     - id: dom-elements
@@ -133,19 +135,6 @@
       title: Recettes de test
     - id: testing-environments
       title: Environnements de test
-- title: Mode concurrent (expérimental)
-  isOrdered: true
-  items:
-    - id: concurrent-mode-intro
-      title: Introduction au mode concurrent
-    - id: concurrent-mode-suspense
-      title: Suspense pour le chargement de données
-    - id: concurrent-mode-patterns
-      title: Approches pour une UI concurrente
-    - id: concurrent-mode-adoption
-      title: Adopter le mode concurrent
-    - id: concurrent-mode-reference
-      title: Référence de l’API du mode concurrent
 - title: Contribuer
   items:
   - id: how-to-contribute

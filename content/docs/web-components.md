@@ -2,11 +2,17 @@
 id: web-components
 title: Web Components
 permalink: docs/web-components.html
-prev: error-boundaries.html
-next: higher-order-components.html
 redirect_from:
   - "docs/webcomponents.html"
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> See [Custom HTML elements](https://react.dev/reference/react-dom/components#custom-html-elements) in the new docs.
+>
+</div>
 
 React et [les Web Components](https://developer.mozilla.org/fr/docs/Web/Web_Components) sont conçus pour résoudre des problèmes différents. Les Web Components offrent une encapsulation forte pour des composants réutilisables, tandis que React fournit une bibliothèque déclarative qui permet au DOM de rester synchronisé avec vos données. Les deux objectifs sont complémentaires. En tant que développeur·se, vous êtes libre d'utiliser React dans vos Web Components, ou bien d'utiliser des Web Components dans React, ou encore les deux à la fois.
 
@@ -52,7 +58,8 @@ class XSearch extends HTMLElement {
 
     const name = this.getAttribute('name');
     const url = 'https://www.google.com/search?q=' + encodeURIComponent(name);
-    ReactDOM.render(<a href={url}>{name}</a>, mountPoint);
+    const root = ReactDOM.createRoot(mountPoint);
+    root.render(<a href={url}>{name}</a>);
   }
 }
 customElements.define('x-search', XSearch);

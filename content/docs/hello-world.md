@@ -2,22 +2,29 @@
 id: hello-world
 title: Bonjour, monde !
 permalink: docs/hello-world.html
-prev: cdn-links.html
+prev: release-channels.html
 next: introducing-jsx.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Quick Start](https://react.dev/learn) for an introduction to React.
+
+</div>
+
 Le plus petit exemple de React ressemble à ceci :
 
-```js
-ReactDOM.render(
-  <h1>Bonjour, monde !</h1>,
-  document.getElementById('root')
-);
+```jsx
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<h1>Bonjour, monde !</h1>);
 ```
 
 Il affiche un titre qui dit « Bonjour, monde ! » sur la page.
 
-**[Essayer sur CodePen](codepen://hello-world)**
+**[Essayer sur CodePen](https://codepen.io/gaearon/pen/rrpgNB?editors=1010)**
 
 Cliquez sur le lien ci-dessus pour ouvrir un éditeur en ligne. Vous êtes libres de faire quelques changements et de voir comment ils affectent l'affichage. La plupart des pages de ce guide auront des exemples modifiables comme celui-ci.
 

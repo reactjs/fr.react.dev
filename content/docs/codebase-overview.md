@@ -19,8 +19,8 @@ Nous ne recommandons pas nécessairement ces conventions dans les applications R
 
 Après avoir cloné le [dépôt React](https://github.com/facebook/react), vous verrez quelques dossiers racines :
 
-* [`packages`](https://github.com/facebook/react/tree/master/packages) contient des métadonnées (telles que `package.json`) et le code source (sous-répertoire `src`) de tous les paquets du dépôt React. **Si votre modification est liée au code, vous passerez le plus clair de votre temps dans le sous-répertoire `src` des différents paquets.**
-* [`fixtures`](https://github.com/facebook/react/tree/master/fixtures) contient quelques petites applications React de test pour les contributeurs.
+* [`packages`](https://github.com/facebook/react/tree/main/packages) contient des métadonnées (telles que `package.json`) et le code source (sous-répertoire `src`) de tous les paquets du dépôt React. **Si votre modification est liée au code, vous passerez le plus clair de votre temps dans le sous-répertoire `src` des différents paquets.**
+* [`fixtures`](https://github.com/facebook/react/tree/main/fixtures) contient quelques petites applications React de test pour les contributeurs.
 * `build` est la sortie de construction de React. Il ne figure pas dans le dépôt, mais il apparaîtra dans votre clone de React après que vous [l'aurez construit](/docs/how-to-contribute.html#development-workflow) pour la première fois.
 
 La documentation est hébergée [dans un dépôt distinct de React](https://github.com/reactjs/fr.reactjs.org).
@@ -98,7 +98,7 @@ React est un [monorepo](https://danluu.com/monorepo/). Son dépôt contient plus
 
 ### Le noyau de React {#react-core}
 
-Le « noyau » de React inclut toutes les [API `React` de niveau racine](/docs/top-level-api.html#react), par exemple :
+Le « noyau » de React inclut toutes les [API `React` de niveau racine](/docs/react-api.html#react), par exemple :
 
 * `React.createElement()`
 * `React.Component`
@@ -106,7 +106,7 @@ Le « noyau » de React inclut toutes les [API `React` de niveau racine](/docs
 
 **Le noyau React n'inclut que les API nécessaires à la définition des composants.**  Il n'inclut pas l'algorithme de [réconciliation](/docs/reconciliation.html) ni aucun code spécifique à une plate-forme. Il est utilisé à la fois par les composants de React DOM et de React Native.
 
-Le code pour le noyau React se trouve dans [`packages/react`](https://github.com/facebook/react/tree/master/packages/react) au sein de l'arborescence source. Il est disponible sur npm via le module [`react`](https://www.npmjs.com/package/react). La version autonome correspondante pour l’utilisation à même le navigateur est appelée `react.js`, et exporte une variable globale appelée `React`.
+Le code pour le noyau React se trouve dans [`packages/react`](https://github.com/facebook/react/tree/main/packages/react) au sein de l'arborescence source. Il est disponible sur npm via le module [`react`](https://www.npmjs.com/package/react). La version autonome correspondante pour l’utilisation à même le navigateur est appelée `react.js`, et exporte une variable globale appelée `React`.
 
 ### Moteurs de rendu {#renderers}
 
@@ -114,17 +114,17 @@ React a été créé à l'origine pour le DOM, mais il a ensuite été adapté p
 
 **Les renderers gèrent la transformation d'une arborescence React en appels à la plate-forme sous-jacente.**
 
-Les renderers sont également situés dans [`packages/`](https://github.com/facebook/react/tree/master/packages/) :
+Les renderers sont également situés dans [`packages/`](https://github.com/facebook/react/tree/main/packages/) :
 
-* [Le renderer de React DOM](https://github.com/facebook/react/tree/master/packages/react-dom) retranscrit les composants React dans le DOM. Il implémente [les API `ReactDOM` racines](/docs/react-dom.html) et est disponible via le module npm [`react-dom`](https://www.npmjs.com/package/react-dom). Il peut aussi être utilisé en tant que _bundle_ autonome dans le navigateur, lequel est nommé `react-dom.js` et exporte une variable globale `ReactDOM`.
-* [Le renderer de React Native](https://github.com/facebook/react/tree/master/packages/react-native-renderer) retranscrit les composants React sous forme de vues natives. Il est utilisé en interne par React Native.
-* [Le renderer de test de React](https://github.com/facebook/react/tree/master/packages/react-test-renderer) retranscrit les composants React sous forme d’arbres JSON. Il est utilisé par la fonctionnalité d’[instantanés](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html) *(snapshots, NdT)* de [Jest](https://facebook.github.io/jest) et est disponible via le module npm [react-test-renderer](https://www.npmjs.com/package/react-test-renderer).
+* [Le renderer de React DOM](https://github.com/facebook/react/tree/main/packages/react-dom) retranscrit les composants React dans le DOM. Il implémente [les API `ReactDOM` racines](/docs/react-dom.html) et est disponible via le module npm [`react-dom`](https://www.npmjs.com/package/react-dom). Il peut aussi être utilisé en tant que _bundle_ autonome dans le navigateur, lequel est nommé `react-dom.js` et exporte une variable globale `ReactDOM`.
+* [Le renderer de React Native](https://github.com/facebook/react/tree/main/packages/react-native-renderer) retranscrit les composants React sous forme de vues natives. Il est utilisé en interne par React Native.
+* [Le renderer de test de React](https://github.com/facebook/react/tree/main/packages/react-test-renderer) retranscrit les composants React sous forme d’arbres JSON. Il est utilisé par la fonctionnalité d’[instantanés](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html) *(snapshots, NdT)* de [Jest](https://facebook.github.io/jest) et est disponible via le module npm [react-test-renderer](https://www.npmjs.com/package/react-test-renderer).
 
-Le seul autre moteur de rendu officiellement pris en charge est [`react-art`](https://github.com/facebook/react/tree/master/packages/react-art). Auparavant, il se trouvait dans un [dépôt GitHub](https://github.com/reactjs/react-art) séparé, mais nous l'avons déplacé dans l'arborescence source principale pour le moment.
+Le seul autre moteur de rendu officiellement pris en charge est [`react-art`](https://github.com/facebook/react/tree/main/packages/react-art). Auparavant, il se trouvait dans un [dépôt GitHub](https://github.com/reactjs/react-art) séparé, mais nous l'avons déplacé dans l'arborescence source principale pour le moment.
 
 >Remarque
 >
->Techniquement, le [`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) est une couche très mince qui apprend à React à interagir avec l’implémentation de React Native.  Le véritable code spécifique à la plate-forme, qui gère les vues natives et fournit les composants, réside quant à lui dans le [dépôt React Native](https://github.com/facebook/react-native).
+>Techniquement, le [`react-native-renderer`](https://github.com/facebook/react/tree/main/packages/react-native-renderer) est une couche très mince qui apprend à React à interagir avec l’implémentation de React Native.  Le véritable code spécifique à la plate-forme, qui gère les vues natives et fournit les composants, réside quant à lui dans le [dépôt React Native](https://github.com/facebook/react-native).
 
 ### Réconciliateurs {#reconcilers}
 
@@ -152,11 +152,11 @@ Ses objectifs principaux sont :
 
 Vous pouvez en apprendre davantage sur l’architecture React Fiber [ici](https://github.com/acdlite/react-fiber-architecture) et [ici](https://blog.ag-grid.com/inside-fiber-an-in-depth-overview-of-the-new-reconciliation-algorithm-in-react). Bien qu’elles soient livrées avec React 16, les fonctionnalités asynchrones ne sont pas encore activées par défaut.
 
-Son code source est situé dans [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
+Son code source est situé dans [`packages/react-reconciler`](https://github.com/facebook/react/tree/main/packages/react-reconciler).
 
 ### Système d'événements {#event-system}
 
-React implémente une abstraction par-dessus les événements natifs afin de lisser les disparités d’un navigateur à l’autre. Son code source se trouve dans [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/master/packages/react-dom/src/events).
+React implémente une abstraction par-dessus les événements natifs afin de lisser les disparités d’un navigateur à l’autre. Son code source se trouve dans [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/main/packages/react-dom/src/events).
 
 ### Et maintenant ? {#what-next}
 

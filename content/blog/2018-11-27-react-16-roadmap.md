@@ -3,6 +3,12 @@ title: "Feuille de route pour React 16.x"
 author: [gaearon]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 Vous avez peut-être entendu parler de fonctionnalités telles que « les Hooks », « Suspense » ou le « rendu concurrent » dans de précédents articles de blog ou dans des présentations.  Dans cet article, nous allons examiner l’agencement de ces fonctionnalités, et la chronologie prévue pour leur mise à disposition dans une version stable de React.
 
 > Mise à jour d’août 2019
@@ -128,7 +134,7 @@ Il n’existe pas encore de documentation pour le mode concurrent.  Nous tenons 
 
 Le mode concurrent est *largement* moins abouti que les Hooks.  Certaines API ne sont pas encore correctement « câblées » et ne fonctionnent pas comme on s’y attend.  À l’heure où nous écrivons ceci, nous déconseillons son utilisation hors de l’expérimentation pure.  Nous n’anticipons pas beaucoup de bugs dans le mode concurrent lui-même, mais sachez déjà que les composants qui produisent des avertissements au sein de [`<React.StrictMode>`](/docs/strict-mode.html) risquent de ne pas fonctionner correctement.  Par ailleurs, nous avons remarqué que le mode concurrent *fait émerger* des problèmes de performance dans le code tiers qui peuvent parfois être pris à tort pour des problèmes de performance dans le mode concurrent lui-même.  Par exemple, un `setInterval(fn, 1)` oublié dans un coin, qui s’exécuterait à chaque milliseconde, se fera davantage sentir en mode concurrent.  Nous avons l’intention de publier davantage de recommandations sur les diagnostics et correctifs pour ce type de problème au sein de la documentation pour cette version.
 
-Le mode concurrent constitue une part importante de notre vision pour React.  Pour les tâches de calcul pur, il permet un rendu non-bloquant et préserve la réactivité de nos applis tout en réalisant le rendu d’arbres de composants complexes.  On en trouve une démonstration dans la première partie de [notre présentation à JSConf Iceland](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Le mode concurrent améliore par ailleurs l’impact de Suspense.  Il vous permet d’éviter une brève apparition d’un indicateur de chargement si le réseau est suffisamment rapide.  C’est délicat à expliquer sans support visuel, aussi [la présentation d’Andrew](https://www.youtube.com/watch?v=ByBPyMBTzM0) est la meilleure ressource disponible pour le moment. Le mode concurrent repose sur un [planificateur](https://github.com/facebook/react/tree/master/packages/scheduler) coopératif pour le thread principal, et nous [collaborons avec l’équipe de Chrome](https://www.youtube.com/watch?v=mDdgfyRB5kg) pour déplacer à terme cette capacité dans le navigateur lui-même.
+Le mode concurrent constitue une part importante de notre vision pour React.  Pour les tâches de calcul pur, il permet un rendu non-bloquant et préserve la réactivité de nos applis tout en réalisant le rendu d’arbres de composants complexes.  On en trouve une démonstration dans la première partie de [notre présentation à JSConf Iceland](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Le mode concurrent améliore par ailleurs l’impact de Suspense.  Il vous permet d’éviter une brève apparition d’un indicateur de chargement si le réseau est suffisamment rapide.  C’est délicat à expliquer sans support visuel, aussi [la présentation d’Andrew](https://www.youtube.com/watch?v=ByBPyMBTzM0) est la meilleure ressource disponible pour le moment. Le mode concurrent repose sur un [planificateur](https://github.com/facebook/react/tree/main/packages/scheduler) coopératif pour le thread principal, et nous [collaborons avec l’équipe de Chrome](https://www.youtube.com/watch?v=mDdgfyRB5kg) pour déplacer à terme cette capacité dans le navigateur lui-même.
 
 **Statut dans React DOM :** une version *très* instable du mode concurrent est disponible avec un préfixe `unstable_` dans React 16.6 mais nous vous déconseillons de l’utiliser à moins que vous ne soyez prêt·e à vous prendre des murs ou tomber sur des fonctionnalités manquantes. Les alphas 16.7 incluent `React.ConcurrentMode` et `ReactDOM.createRoot` sans le préfixe `unstable_`, mais nous conserverons sans doute le préfixe dans la 16.7, et ne documenterons le mode concurrent, qui sera alors considéré stable, que dans cette future version mineure.
 
@@ -195,6 +201,12 @@ Nous avons commencé à explorer [la simplification et la modernisation](https:/
 Nous avons commencé la conception d’un nouveau moteur de rendu côté serveur qui prenne en charge Suspense (y compris l’attente de données asynchrones côté serveur sans double rendu) et le chargement comme l’hydratation progressifs du contenu de la page par morceaux pour optimiser l’expérience utilisateur.  Vous pouvez voir un aperçu d’un premier prototype dans [cette présentation](https://www.youtube.com/watch?v=z-6JC0_cOns). Le nouveau moteur de rendu côté serveur sera une de nos principales priorités pour 2019, mais il est trop tôt pour parler de sa chronologie de sortie.  Son développement, comme toujours, [se fera sur GitHub](https://github.com/facebook/react/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+fizz).
 
 -----
+
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
 
 Et c’est à peu près tout ! Comme vous pouvez le voir, nous avons de quoi nous occuper mais nous anticipons beaucoup de progrès dans les prochains mois.
 

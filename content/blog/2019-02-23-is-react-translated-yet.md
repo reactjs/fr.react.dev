@@ -3,6 +3,12 @@ title: "React est-il enfin traduit? ¡Sí! Sím! はい！"
 author: [tesseralis]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 Nous sommes ravis d’annoncer un effort en cours pour maintenir les traductions officielles du site web de documentation de React dans différentes langues. Grâce aux efforts dévoués des membres de la communauté React du monde entier, React est maintenant traduit dans plus de 30 langues ! Vous pouvez les trouver sur la nouvelle page [Langues](/languages).
 
 En outre, les trois langues suivantes ont achevé la traduction de l’essentiel de la documentation de React ! 🎉
@@ -41,7 +47,7 @@ Cette approche nous a plu pour plusieurs raisons :
 
 Nous avons commencé par une première période d’essai en trois langues : espagnol, japonais et chinois simplifié. Ça nous a permis de résoudre tous les problèmes dans notre processus et de nous assurer que les futures traductions pourraient aboutir. Je voulais donner aux équipes de traduction la liberté de choisir les outils avec lesquels elles se sentaient à l'aise. La seule exigence était une [liste de cases à cocher](https://github.com/reactjs/reactjs.org-translation/blob/master/PROGRESS.template.md) qui décrivait l'ordre d'importance pour la traduction des pages.
 
-Après la période d’essai, nous étions prêts à accepter davantage de langues. J'ai créé [un script](https://github.com/reactjs/reactjs.org-translation/blob/master/scripts/create.js) pour automatiser la création d’un nouveau dépôt de langue, ainsi qu’un site, [Is React Translated Yet?](https://isreacttranslatedyet.com), pour suivre les progrès des différentes traductions. Nous avons démarré *10* nouvelles traductions rien que le premier jour !
+Après la période d’essai, nous étions prêts à accepter davantage de langues. J'ai créé [un script](https://github.com/reactjs/reactjs.org-translation/blob/master/scripts/create.js) pour automatiser la création d’un nouveau dépôt de langue, ainsi qu’un site, [Is React Translated Yet?](https://translations.reactjs.org), pour suivre les progrès des différentes traductions. Nous avons démarré *10* nouvelles traductions rien que le premier jour !
 
 En raison de l'automatisation, le reste de la maintenance s'est déroulé sans encombre. Nous avons finalement créé un [canal Slack](https://rt-slack-invite.herokuapp.com) pour faciliter l'échange d'informations entre traducteurs, et j'ai publié un guide renforçant les [responsabilités des mainteneurs](https://github.com/reactjs/reactjs.org-translation/blob/master/maintainer-guide.md). Permettre aux traducteurs de se parler était une aubaine ; par exemple, les traductions arabes, persanes et hébraïques ont pu se parler afin de faire fonctionner le [texte de droite à gauche](https://en.wikipedia.org/wiki/Right-to-left).
 

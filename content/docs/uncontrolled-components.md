@@ -2,9 +2,19 @@
 id: uncontrolled-components
 title: Composants non-contrôlés
 permalink: docs/uncontrolled-components.html
-prev: refs-and-the-dom.html
-next: optimizing-performance.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [`<input>`](https://react.dev/reference/react-dom/components/input)
+> - [`<select>`](https://react.dev/reference/react-dom/components/select)
+> - [`<textarea>`](https://react.dev/reference/react-dom/components/textarea)
+
+</div>
 
 Dans la plupart des cas, pour implémenter des formulaires, nous recommandons d'utiliser des [composants contrôlés](/docs/forms.html#controlled-components). Dans un composant contrôlé, les données du formulaires sont gérées par le composant React. L'alternative est le composant non-contrôlé, où les données sont gérées par le DOM.
 
@@ -47,7 +57,7 @@ Si dans une situation donnée il n'est pas toujours évident de savoir quel type
 
 ### Valeurs par défaut {#default-values}
 
-Dans le cycle de vie des rendus React, l'attribut `value` des éléments du formulaire va écraser la valeur du DOM. Avec un composant non-contrôlé, vous souhaiterez plus souvent spécifier la valeur initiale et laisser les mises à jours suivantes non-contrôlées. Dans ces cas-là, vous pouvez spécifier un attribut `defaultValue` plutôt que `value`.
+Dans le cycle de vie des rendus React, l'attribut `value` des éléments du formulaire va écraser la valeur du DOM. Avec un composant non-contrôlé, vous souhaiterez plus souvent spécifier la valeur initiale et laisser les mises à jours suivantes non-contrôlées. Dans ces cas-là, vous pouvez spécifier un attribut `defaultValue` plutôt que `value`. Changing the value of `defaultValue` attribute after a component has mounted will not cause any update of the value in the DOM.
 
 ```javascript{7}
 render() {

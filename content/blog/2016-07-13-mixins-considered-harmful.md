@@ -3,6 +3,12 @@ title: "Les mixins sont dangereux"
 author: [gaearon]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 « Comment réutiliser mon code à travers plusieurs composants ? » C’est une des premières questions que les gens se posent quand ils apprennent React.  Notre réponse a toujours consisté à utiliser la composition des composants.  Vous pouvez définir un composant et l’utiliser dans plusieurs autres composants.
 
 En fonction du contexte, la solution à base de composition n'est pas toujours évidente.  React est influencé par la programmation fonctionnelle mais il est arrivé dans un domaine où les bibliothèques orientées objets étaient monnaie courante.  Pour les ingénieurs tant chez Facebook qu'en dehors, abandonner leurs vieux modèles mentaux n’était pas chose aisée.

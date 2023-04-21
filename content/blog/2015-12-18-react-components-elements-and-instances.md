@@ -3,6 +3,12 @@ title: "Composants, éléments et instances en React"
 author: [gaearon]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 La différence entre **les composants, leurs instances et leurs éléments** déroute beaucoup les débutants React. Pourquoi y a-t-il trois termes différents pour désigner quelque chose qui est affiché sur l'écran ?
 
 ## Gestion des instances {#managing-the-instances}

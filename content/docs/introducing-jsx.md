@@ -6,6 +6,18 @@ prev: hello-world.html
 next: rendering-elements.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx)
+> - [JavaScript in JSX with Curly Braces](https://react.dev/learn/javascript-in-jsx-with-curly-braces)
+
+</div>
+
 Observez cette déclaration de variable :
 
 ```js
@@ -35,11 +47,6 @@ Dans l'exemple suivant, nous déclarons une variable appelée `name` et nous l'u
 ```js{1,2}
 const name = 'Clarisse Agbegnenou';
 const element = <h1>Bonjour, {name}</h1>;
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
 ```
 
 Vous pouvez utiliser n'importe quelle [expression JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_et_Op%C3%A9rateurs#Expressions) valide dans des accolades en JSX. Par exemple, `2 + 2`, `user.firstName`, ou `formatName(user)` sont toutes des expressions JavaScript valides.
@@ -61,14 +68,9 @@ const element = (
     Bonjour, {formatName(user)} !
   </h1>
 );
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
 ```
 
-**[Essayer sur CodePen](codepen://introducing-jsx)**
+**[Essayer sur CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)**
 
 On découple le JSX en plusieurs lignes pour une meilleure lisibilité. Par la même occasion, nous recommandons également de le mettre entre parenthèses afin d'éviter les pièges [d'insertion de point-virgule automatique](https://stackoverflow.com/q/2846283), même si cette pratique n'est pas obligatoire.
 
@@ -92,7 +94,7 @@ function getGreeting(user) {
 Vous pouvez utiliser des guillemets pour spécifier des littéraux chaînes de caractères dans les attributs :
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 Vous pouvez aussi utiliser des accolades pour utiliser une expression JavaScript dans un attribut :
@@ -181,4 +183,4 @@ Nous explorerons la retranscription des éléments React dans le DOM dans la [pr
 
 >**Astuce :**
 >
->Nous recommandons d'utiliser la [définition de langage « Babel »](https://babeljs.io/docs/editors) dans votre éditeur préféré, afin que les codes ES6 et JSX soient correctement colorisés.
+>Nous recommandons d'utiliser la [définition de langage « Babel »](https://babeljs.io/docs/en/next/editors) dans votre éditeur préféré, afin que les codes ES6 et JSX soient correctement colorisés.
