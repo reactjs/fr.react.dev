@@ -18,7 +18,6 @@ import {colors} from 'theme';
 import createCanonicalUrl from 'utils/createCanonicalUrl';
 import findSectionForPath from 'utils/findSectionForPath';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
-import createCanonicalUrl from 'utils/createCanonicalUrl';
 import {sharedStyles, colors, media, fonts} from 'theme';
 
 import type {Node} from 'types';
