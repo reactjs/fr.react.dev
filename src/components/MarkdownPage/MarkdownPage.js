@@ -14,7 +14,6 @@ import NavigationFooter from 'templates/components/NavigationFooter';
 import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
-import {colors} from 'theme';
 import createCanonicalUrl from 'utils/createCanonicalUrl';
 import findSectionForPath from 'utils/findSectionForPath';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';

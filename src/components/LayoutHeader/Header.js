@@ -17,6 +17,7 @@ import logoSvg from 'icons/logo.svg';
 // $FlowFixMe
 import navHeader from '../../../content/headerNav.yml';
 import {version} from 'site-constants';
+import {colors, media, fonts} from 'theme';
 
 const ContainerWrapper = ({children}) => (
   <div
