@@ -318,7 +318,7 @@ Récapitulons ce qui se passe et l'ordre dans lequel les méthodes sont invoqué
 
 ## Utiliser l'état local correctement {#using-state-correctly}
 
-Il y'a trois choses que vous devriez savoir à propos de `setState()`.
+Il y a trois choses que vous devriez savoir à propos de `setState()`.
 
 ### Ne modifiez pas l'état directement {#do-not-modify-state-directly}
 
