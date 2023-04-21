@@ -3,6 +3,12 @@ title: Des nouvelles du rendu asynchrone
 author: [bvaughn]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 Pendant plus d’un an, l’équipe React a travaillé sur l'implémentation du rendu asynchrone.  Le mois dernier, lors de sa présentation à JSConf Iceland, [Dan a dévoilé une partie des nouvelles possibilités passionnantes qu‘offre le rendu asynchrone](/blog/2018/03/01/sneak-peek-beyond-react-16.html).  Nous aimerions aujourd’hui partager avec vous certaines des leçons que nous avons apprises en travaillant sur ces fonctionnalités, et quelques recettes pour vous aider à préparer vos composants à la sortie du rendu asynchrone.
 
 Une des principales leçons que nous avons apprises, c’est que certaines de nos méthodes de cycle de vie historiques ont tendance à encourager des pratiques de code dangereuses.  Les méthodes concernées sont :
@@ -35,6 +41,12 @@ npx react-codemod rename-unsafe-lifecycles
 Vous pouvez en apprendre davantage sur ce codemod dans [le billet d’annonce de la 16.9.0](/blog/2019/08/08/react-v16.9.0.html#renaming-unsafe-lifecycle-methods).
 
 ---
+
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
 
 ## Sortir des méthodes historiques de cycle de vie {#migrating-from-legacy-lifecycles}
 
@@ -130,7 +142,7 @@ En conséquence, la façon recommandée d’ajouter des écouteurs ou abonnement
 
 `embed:update-on-async-rendering/adding-event-listeners-after.js`
 
-Il est parfois nécessaire de mettre à jour les abonnements en réponse à des changements de props.  Si vous utilisez une bibliothèque comme Redux ou MobX, le composant conteneur fourni par la bibliothèque devrait s'en charger pour vous.  Pour les auteurs d'applications, nous avons créé une petite bibliothèque, [`create-subscription`](https://github.com/facebook/react/tree/master/packages/create-subscription), qui vous aide dans cette tâche.  Nous la publierons en accompagnement de React 16.3.
+Il est parfois nécessaire de mettre à jour les abonnements en réponse à des changements de props.  Si vous utilisez une bibliothèque comme Redux ou MobX, le composant conteneur fourni par la bibliothèque devrait s'en charger pour vous.  Pour les auteurs d'applications, nous avons créé une petite bibliothèque, [`create-subscription`](https://github.com/facebook/react/tree/main/packages/create-subscription), qui vous aide dans cette tâche.  Nous la publierons en accompagnement de React 16.3.
 
 Plutôt que de passer une prop `dataSource` sur laquelle s'abonner, comme nous l'avons fait dans l'exemple ci-dessus, nous pourrions utiliser `create-subscription` pour passer la valeur suivie :
 

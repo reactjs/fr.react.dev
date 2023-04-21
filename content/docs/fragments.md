@@ -2,9 +2,17 @@
 id: fragments
 title: Fragments
 permalink: docs/fragments.html
-prev: context.html
-next: portals.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`<Fragment>`](https://react.dev/reference/react/Fragment)
+
+</div>
 
 En React, il est courant pour un composant de renvoyer plusieurs éléments. Les fragments nous permettent de grouper une liste d'enfants sans ajouter de nœud supplémentaire au DOM.
 

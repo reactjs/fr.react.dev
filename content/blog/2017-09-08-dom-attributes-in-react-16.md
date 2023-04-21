@@ -3,6 +3,12 @@ title: "Les attributs DOM dans React 16"
 author: [gaearon]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 Par le passé, React ignorait les attributs DOM inconnus. Si vous écriviez du JSX avec un attribut que React ne reconnaissait pas, React le sautait tout simplement. Par exemple, le code suivant :
 
 ```js
@@ -29,7 +35,7 @@ Avec React 16, nous apportons un changement. Désormais, tous les attributs inco
 React a toujours fourni une API pour le DOM centrée sur Javascript. Étant donné que les composants React acceptent souvent à la fois des propriétés personnalisées et d’autres liées au DOM, il est logique que React utilise la convention `camelCase` tout comme les API DOM :
 
 ```js
-<div tabIndex="-1" />
+<div tabIndex={-1} />
 ```
 
 Cet aspect n'a pas changé. Cependant, la façon dont nous l'avons géré par le passé nous a obligés à maintenir une liste blanche de tous les attributs DOM React valides dans le paquet :
@@ -55,10 +61,10 @@ Avec la nouvelle approche, ces deux problèmes sont résolus. Avec React 16, vou
 
 ```js
 // Oui, s'il vous plaît
-<div tabIndex="-1" />
+<div tabIndex={-1} />
 
 // Attention : propriété du DOM invalide `tabindex`. Vous voulez certainement dire `tabIndex` ?
-<div tabindex="-1" />
+<div tabindex={-1} />
 ```
 
 En d'autres termes, la façon dont vous utilisez les composants du DOM dans React n'a pas changé, mais vous disposez désormais de nouvelles fonctionnalités.
@@ -120,7 +126,7 @@ En voici une liste détaillée.
 * **Attributs connus avec un nom canonique React différent :**  
 
     ```js
-    <div tabindex="-1" />
+    <div tabindex={-1} />
     <div class="salut" />
     ```
 
@@ -165,7 +171,7 @@ En voici une liste détaillée.
     React 15 : convertit les `NaN` en chaînes de caractères et les transmet.  
     React 16 : convertit les `NaN` en chaînes de caractères et les transmet mais avec un avertissement.
 
-En testant cette version, nous avons aussi [créé un tableau généré automatiquement](https://github.com/facebook/react/blob/master/fixtures/attribute-behavior/AttributeTableSnapshot.md) pour tous les attributs connus afin de pister d’éventuelles régressions.
+En testant cette version, nous avons aussi [créé un tableau généré automatiquement](https://github.com/facebook/react/blob/main/fixtures/attribute-behavior/AttributeTableSnapshot.md) pour tous les attributs connus afin de pister d’éventuelles régressions.
 
 ## Try It! {#try-it}
 

@@ -2,9 +2,17 @@
 id: portals
 title: Les portails
 permalink: docs/portals.html
-prev: fragments.html
-next: error-boundaries.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [`createPortal`](https://react.dev/reference/react-dom/createPortal)
+
+</div>
 
 Les portails fournissent une excellente solution pour afficher des composants enfants dans un nœud DOM qui existe en dehors de la hiérarchie DOM du composant parent.
 
@@ -48,7 +56,7 @@ Un cas typique d'utilisation des portails survient lorsqu'un composant parent po
 >
 > Lorsque vous travaillez avec les portails, gardez en tête que la [gestion du focus du clavier](/docs/accessibility.html#programmatically-managing-focus) devient très importante.
 >
-> Pour les fenêtres modales, assurez-vous que tout le monde puisse interagir avec celles-ci en suivant les règles [WAI-ARIA Modal Authoring Practices du W3C](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal) (en anglais).
+> Pour les fenêtres modales, assurez-vous que tout le monde puisse interagir avec celles-ci en suivant les règles [WAI-ARIA Modal Authoring Practices du W3C](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/) (en anglais).
 
 [**Essayer dans CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
 
@@ -147,7 +155,8 @@ function Child() {
   );
 }
 
-ReactDOM.render(<Parent />, appRoot);
+const root = ReactDOM.createRoot(appRoot);
+root.render(<Parent />);
 ```
 
 [**Essayer dans CodePen**](https://codepen.io/gaearon/pen/jGBWpE)

@@ -6,6 +6,16 @@ layout: docs
 category: Reference
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Common components (e.g. `<div>`)](https://react.dev/reference/react-dom/components/common)
+
+</div>
+
 Ce guide de référence documente l’enrobage `SyntheticEvent` qui fait partie du système d'événements de React. Consultez le guide sur la [gestion d'événements](/docs/handling-events.html) pour en savoir plus.
 
 ## Aperçu {#overview}
@@ -31,6 +41,10 @@ DOMEventTarget target
 number timeStamp
 string type
 ```
+
+> Note:
+>
+> As of v17, `e.persist()` doesn't do anything because the `SyntheticEvent` is no longer [pooled](/docs/legacy-event-pooling.html).
 
 >Remarque
 >
@@ -167,8 +181,81 @@ Ces événements de focus fonctionnent sur tous les éléments du DOM de React, 
 
 Propriétés :
 
-```javascript
+```js
 DOMEventTarget relatedTarget
+```
+
+#### onFocus {#onfocus}
+
+The `onFocus` event is called when the element (or some element inside of it) receives focus. For example, it's called when the user clicks on a text input.
+
+```javascript
+function Example() {
+  return (
+    <input
+      onFocus={(e) => {
+        console.log('Focused on input');
+      }}
+      placeholder="onFocus is triggered when you click this input."
+    />
+  )
+}
+```
+
+#### onBlur {#onblur}
+
+The `onBlur` event handler is called when focus has left the element (or left some element inside of it). For example, it's called when the user clicks outside of a focused text input.
+
+```javascript
+function Example() {
+  return (
+    <input
+      onBlur={(e) => {
+        console.log('Triggered because this input lost focus');
+      }}
+      placeholder="onBlur is triggered when you click this input and then you click outside of it."
+    />
+  )
+}
+```
+
+#### Detecting Focus Entering and Leaving {#detecting-focus-entering-and-leaving}
+
+You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from _outside_ of the parent element. Here is a demo you can copy and paste that shows how to detect focusing a child, focusing the element itself, and focus entering or leaving the whole subtree.
+
+```javascript
+function Example() {
+  return (
+    <div
+      tabIndex={1}
+      onFocus={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('focused self');
+        } else {
+          console.log('focused child', e.target);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // Not triggered when swapping focus between children
+          console.log('focus entered self');
+        }
+      }}
+      onBlur={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('unfocused self');
+        } else {
+          console.log('unfocused child', e.target);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // Not triggered when swapping focus between children
+          console.log('focus left self');
+        }
+      }}
+    >
+      <input id="1" />
+      <input id="2" />
+    </div>
+  );
+}
 ```
 
 * * *
@@ -304,6 +391,10 @@ Noms des événements :
 ```
 onScroll
 ```
+
+>Note
+>
+>Starting with React 17, the `onScroll` event **does not bubble** in React. This matches the browser behavior and prevents the confusion when a nested scrollable element fires events on a distant parent.
 
 Propriétés :
 

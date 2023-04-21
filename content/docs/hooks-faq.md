@@ -5,6 +5,14 @@ permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> The new documentation pages teaches React with Hooks.
+
+</div>
+
 Les *Hooks* sont une nouveauté de React 16.8. Ils permettent de bénéficier d’un état local et d'autres fonctionnalités de React sans avoir à écrire de classes.
 
 Cette page contient les réponses aux questions les plus fréquentes sur les [Hooks](/docs/hooks-overview.html).
@@ -96,8 +104,6 @@ Vous ne pouvez pas utiliser les Hooks *à l'intérieur* d'un composant à base d
 
 Notre but est que les Hooks couvrent tous les cas d'utilisation des classes dès que possible. Il n’existe pas pour l'instant d'équivalent en Hook pour les méthodes de cycle de vie moins courantes que sont `getSnapshotBeforeUpdate`, `getDerivedStateFromError` et `componentDidCatch`, mais nous prévoyons de les ajouter rapidement.
 
-Les Hooks en sont encore à leur débuts, et quelques bibliothèques tierces peuvent ne pas être compatibles avec les Hooks à l'heure actuelle.
-
 ### Est-ce que les Hooks remplacent les props de rendu et les composants d'ordre supérieur ? {#do-hooks-replace-render-props-and-higher-order-components}
 
 Souvent, les props de rendu et les composants d'ordre supérieur n’affichent qu’un seul enfant. Nous pensons que les Hooks simplifient ce cas d'utilisation. Ces deux approches restent pertinentes (par exemple, un composant de défilement virtuel pourrait avoir une prop `renderItem`, ou un composant de conteneur visuel pourrait avoir sa propre structure DOM). Mais dans la plupart des cas, les Hooks seront suffisants et pourront aider à réduire l'imbrication dans votre arborescence de composants.
@@ -149,7 +155,7 @@ Nous le testerons en utilisant React DOM. Pour être certains que le comportemen
 
 ```js{3,20-22,29-31}
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Counter from './Counter';
 
@@ -168,7 +174,7 @@ afterEach(() => {
 it('can render and update a counter', () => {
   // Test du premier rendu et de son effet
   act(() => {
-    ReactDOM.render(<Counter />, container);
+    ReactDOM.createRoot(container).render(<Counter />);
   });
   const button = container.querySelector('button');
   const label = container.querySelector('p');
@@ -329,9 +335,7 @@ C'est un cas d'utilisation assez rare. Si vous en avez besoin, vous pouvez [util
 
 Actuellement, vous pouvez le faire manuellement [avec une ref](#is-there-something-like-instance-variables) :
 
-```js{6,8}
-function Counter() {
-  const [count, setCount] = useState(0);
+Sometimes, you need previous props to **clean up an effect.** For example, you might have an effect that subscribes to a socket based on the `userId` prop. If the `userId` prop changes, you want to unsubscribe from the _previous_ `userId` and subscribe to the _next_ one. You don't need to do anything special for this to work:
 
   const prevCountRef = useRef();
   useEffect(() => {
@@ -903,8 +907,6 @@ Remarquez que vous pouvez toujours choisir de transmettre l'*état* applicatif c
 >Remarque
 >
 >Nous recommandons de [transmettre `dispatch` dans le contexte](#how-to-avoid-passing-callbacks-down) plutôt que des fonctions de rappel individuelles dans les props. L'approche ci-dessous n'est mentionnée que par souci d'exhaustivité et à titre d'échappatoire.
->
->Notez aussi que cette approche peut causer des problèmes avec le [mode concurrent](/blog/2018/03/27/update-on-async-rendering.html). Nous prévoyons de proposer des alternatives plus ergonomiques à l'avenir, mais la solution la plus sûre pour l'instant consiste à toujours invalider la fonction de rappel si des valeurs dont elle dépend changent.
 
 Dans de rares cas vous pourriez avoir besoin de mémoïser une fonction de rappel avec [`useCallback`](/docs/hooks-reference.html#usecallback) mais la mémoïsation ne fonctionne pas très bien parce que la fonction interne a tout de même trop souvent besoin d'être recréée. Si la fonction que vous mémoïsez est un gestionnaire d'événements et n'est pas utilisée pendant le rendu, vous pouvez utiliser une [ref comme variable d'instance](#is-there-something-like-instance-variables), et y stocker manuellement la dernière valeur renvoyée :
 

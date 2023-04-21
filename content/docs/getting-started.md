@@ -18,6 +18,15 @@ redirect_from:
   - "docs/environments.html"
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> The new [Quick Start](https://react.dev/learn) teaches modern React and includes live examples.
+
+</div>
+
 Cette page est un aperçu de la documentation React et des ressources associées.
 
 **React** est une bibliothèque JavaScript pour la construction d'interfaces utilisateur (UI). Pour découvrir à quoi sert React, allez sur [notre page d'accueil](/) ou [dans le tutoriel](/tutorial/tutorial.html).
@@ -38,7 +47,7 @@ React a été conçu dès le départ pour une adoption progressive, et **vous po
 
 Si vous souhaitez tester React, vous pouvez utiliser un terrain de jeu en ligne. Essayez un modèle _Hello World_ sur [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template) ou [Stackblitz](https://stackblitz.com/fork/react).
 
-Si vous préférez utiliser votre propre éditeur de texte, vous pouvez aussi [télécharger ce fichier HTML](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), l'éditer et l'ouvrir à partir du système de fichiers local dans votre navigateur. Il transforme le code à la volée lors de l’exécution, ce qui est particulièrement lent. Pour cette raison, nous vous recommandons de ne l'utiliser que pour des démos simples.
+Si vous préférez utiliser votre propre éditeur de texte, vous pouvez aussi [télécharger ce fichier HTML](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html), l'éditer et l'ouvrir à partir du système de fichiers local dans votre navigateur. Il transforme le code à la volée lors de l’exécution, ce qui est particulièrement lent. Pour cette raison, nous vous recommandons de ne l'utiliser que pour des démos simples.
 
 ### Ajouter React à un site Web {#add-react-to-a-website}
 
@@ -115,7 +124,7 @@ Le [blog React](/blog/) est la source officielle des mises à jour, par l'équip
 
 Vous pouvez également suivre le [compte @reactjs](https://twitter.com/reactjs) sur Twitter, mais rien d’essentiel ne vous échappera si vous ne lisez que le blog.
 
-Toutes les versions de React ne méritent pas leur propre article de blog, mais vous pouvez trouver un _changelog_ détaillé pour chaque version dans le [fichier `CHANGELOG.md` du dépôt React](https://github.com/facebook/react/blob/master/CHANGELOG.md), ainsi que sur la page des [_Releases_](https://github.com/facebook/react/releases).
+Toutes les versions de React ne méritent pas leur propre article de blog, mais vous pouvez trouver un _changelog_ détaillé pour chaque version dans le [fichier `CHANGELOG.md` du dépôt React](https://github.com/facebook/react/blob/main/CHANGELOG.md), ainsi que sur la page des [_Releases_](https://github.com/facebook/react/releases).
 
 ## Documentation versionnée {#versioned-documentation}
 

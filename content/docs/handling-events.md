@@ -8,6 +8,16 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Responding to Events](https://react.dev/learn/responding-to-events)
+
+</div>
+
 La gestion des événements pour les éléments React est très similaire à celle des éléments du DOM. Il y a tout de même quelques différences de syntaxe :
 
 * Les événements de React sont nommés en `camelCase` plutôt qu’en minuscules.
@@ -32,24 +42,24 @@ est légèrement différent avec React:
 Autre différence importante : en React, on ne peut pas renvoyer `false` pour empêcher le comportement par défaut. Vous devez appeler explicitement `preventDefault`. Par exemple, en HTML, pour annuler le comportement par défaut des liens qui consiste à ouvrir une nouvelle page, vous pourriez écrire :
 
 ```html
-<a href="#" onclick="console.log('Le lien a été cliqué.'); return false">
-  Clique ici
-</a>
+<form onsubmit="console.log('You clicked submit.'); return false">
+  <button type="submit">Submit</button>
+</form>
 ```
 
 En React, ça pourrait être :
 
-```js{2-5,8}
-function ActionLink() {
-  function handleClick(e) {
+```js{3}
+function Form() {
+  function handleSubmit(e) {
     e.preventDefault();
-    console.log('Le lien a été cliqué.');
+    console.log('You clicked submit.');
   }
 
   return (
-    <a href="#" onClick={handleClick}>
-      Clique ici
-    </a>
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit</button>
+    </form>
   );
 }
 ```
@@ -72,8 +82,8 @@ class Toggle extends React.Component {
   }
 
   handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
     }));
   }
 
@@ -85,11 +95,6 @@ class Toggle extends React.Component {
     );
   }
 }
-
-ReactDOM.render(
-  <Toggle />,
-  document.getElementById('root')
-);
 ```
 
 [**Essayer dans CodePen**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)
@@ -98,15 +103,14 @@ En JSX, vous devez être prudent·e avec l'utilisation de `this` dans les foncti
 
 Ce n'est pas un comportement spécifique à React, ça fait partie du [fonctionnement normal des fonctions en JavaScript](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). En général, si vous faites référence à une méthode sans l’appeler avec `()`, comme dans `onClick={this.handleClick}`, vous devriez lier cette méthode.
 
-Si vous ne souhaitez pas utiliser `bind`, vous avez deux alternatives possibles. Si vous avez l'habitude d'utiliser la [syntaxe des champs de classes](https://babeljs.io/docs/plugins/transform-class-properties/), qui est encore expérimentale, vous pourriez l’utiliser pour lier les fonctions de rappel :
+Si vous ne souhaitez pas utiliser `bind`, vous avez deux alternatives possibles. Si vous avez l'habitude d'utiliser la [syntaxe des champs de classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields#public_instance_fields), qui est encore expérimentale, vous pourriez l’utiliser pour lier les fonctions de rappel :
 
 ```js{2-6}
 class LoggingButton extends React.Component {
-  // Cette syntaxe nous assure que `this` est bien lié dans la méthode handleClick.
-  // Attention : cette syntaxe est encore *expérimentale*.
+  // This syntax ensures `this` is bound within handleClick.
   handleClick = () => {
     console.log('this vaut :', this);
-  }
+  };
 
   render() {
     return (

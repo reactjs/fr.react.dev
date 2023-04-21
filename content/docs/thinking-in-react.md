@@ -8,6 +8,14 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> The updated [Thinking in React](https://react.dev/learn/thinking-in-react) guide teaches modern React and includes live examples.
+
+</div>
+
 React est, à notre avis, la meilleure façon de créer des applis web vastes et performantes en JavaScript. Il a très bien tenu le coup pour nous, à Facebook et Instagram.
 
 L'un des nombreux points forts de React, c’est la façon dont il vous fait penser aux applis pendant que vous les créez. Dans ce document, nous vous guiderons à travers l'élaboration avec React d'un tableau de données de produits proposant filtrage et recherche.
@@ -41,7 +49,7 @@ Comme vous affichez souvent un modèle de données JSON à un utilisateur, vous 
 
 ![Schéma des composants](../images/blog/thinking-in-react-components.png)
 
-Vous pouvez voir que nous avons cinq composants dans notre petite appli. Nous avons mis en italiques les données que chaque composant représente.
+Vous pouvez voir que nous avons cinq composants dans notre petite appli. Nous avons mis en italiques les données que chaque composant représente. The numbers in the image correspond to the numbers below.
 
   1. **`FilterableProductTable` (orange) :** contient l'intégralité de l'exemple
   2. **`SearchBar` (bleu) :** reçoit toutes les *données saisies par l'utilisateur*
@@ -70,9 +78,9 @@ Pour créer une version statique de votre appli qui affiche votre modèle de don
 
 Vous pouvez construire l’appli en partant de l’extérieur ou de l’intérieur. En d'autres termes, vous pouvez aussi bien commencer par construire les composants les plus hauts dans la hiérarchie (dans notre cas, `FilterableProductTable`), que par ceux les plus bas (`ProductRow`). Dans des exemples plus simples, il est généralement plus facile de partir de l’extérieur, et sur des projets plus importants, il est plus facile de partir de l’intérieur et d'écrire les tests au fil de la construction.
 
-À la fin de cette étape, vous disposerez d'une bibliothèque de composants réutilisables qui afficheront votre modèle de données. Les composants n'auront que des méthodes `render()` puisque c'est une version statique de l'application. Le composant au sommet de la hiérarchie (`FilterableProductTable`) prendra votre modèle de données en tant que *prop*. Si vous modifiez les données et appelez `ReactDOM.render()` à nouveau, l’UI sera mise à jour. On comprend comment votre UI est mise à jour et où y apporter des modifications, car il n'y a rien de compliqué. **Le flux de données unidirectionnel** de React (également appelé *liaison unidirectionnelle*) permet de maintenir la modularité et la rapidité de l'ensemble.
+À la fin de cette étape, vous disposerez d'une bibliothèque de composants réutilisables qui afficheront votre modèle de données. Les composants n'auront que des méthodes `render()` puisque c'est une version statique de l'application. Le composant au sommet de la hiérarchie (`FilterableProductTable`) prendra votre modèle de données en tant que *prop*. Si vous modifiez les données et appelez `root.render()` à nouveau, l’UI sera mise à jour. On comprend comment votre UI est mise à jour et où y apporter des modifications, car il n'y a rien de compliqué. **Le flux de données unidirectionnel** de React (également appelé *liaison unidirectionnelle*) permet de maintenir la modularité et la rapidité de l'ensemble.
 
-Jetez un œil à la [doc de React](/docs/) si vous avez besoin d'aide pour cette étape.
+Jetez un œil à la [doc de React](/docs/getting-started.html) si vous avez besoin d'aide pour cette étape.
 
 ### Petit entracte : props ou état ? {#a-brief-interlude-props-vs-state}
 

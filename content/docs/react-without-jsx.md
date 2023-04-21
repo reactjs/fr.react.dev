@@ -2,9 +2,13 @@
 id: react-without-jsx
 title: React sans JSX
 permalink: docs/react-without-jsx.html
-prev: react-without-es6.html
-next: reconciliation.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
 
 Vous n'êtes pas obligé·e d'employer JSX pour utiliser React. React sans JSX vous dispense de configurer votre environnement de travail pour gérer la compilation de votre code.
 
@@ -19,10 +23,8 @@ class Hello extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Hello toWhat="monde" />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Hello toWhat="monde" />);
 ```
 
 Il peut être compilé vers ce code qui n'utilise pas JSX :
@@ -34,10 +36,8 @@ class Hello extends React.Component {
   }
 }
 
-ReactDOM.render(
-  React.createElement(Hello, {toWhat: 'monde'}, null),
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(React.createElement(Hello, {toWhat: 'monde'}, null));
 ```
 
 Si vous voulez voir plus d'exemples de conversion de code JSX en JavaScript brut, vous pouvez essayer [le compilateur Babel en ligne](babel://jsx-simple-example).
@@ -49,10 +49,8 @@ Si vous n'avez pas envie de taper `React.createElement` à chaque fois, vous pou
 ```js
 const e = React.createElement;
 
-ReactDOM.render(
-  e('div', null, 'Bonjour, monde'),
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(e('div', null, 'Bonjour, monde'));
 ```
 Si vous utilisez un tel raccourci pour `React.createElement`, utiliser React sans JSX devient presque aussi pratique.
 

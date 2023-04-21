@@ -6,6 +6,18 @@ next: hooks-state.html
 prev: hooks-intro.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach React with Hooks:
+>
+> - [Quick Start](https://react.dev/learn)
+> - [Tutorial](https://react.dev/learn/tutorial-tic-tac-toe)
+> - [`react`: Hooks](https://react.dev/reference/react)
+
+</div>
+
 Les *Hooks* sont une nouveauté de React 16.8. Ils permettent de bénéficier d’un état local et d'autres fonctionnalités de React sans avoir à écrire de classes.
 
 Les Hooks sont [rétro-compatibles](/docs/hooks-intro.html#no-breaking-changes). Cette page fournit un survol des Hooks pour les utilisateurs expérimentés de React. C'est un tour d’horizon rapide. Si vous trouvez le contenu déroutant, cherchez un panneau jaune comme celui-ci :

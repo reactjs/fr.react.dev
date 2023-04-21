@@ -9,6 +9,16 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
+
+</div>
+
 Plusieurs composants ont souvent besoin de refléter les mêmes données dynamiques. Nous conseillons de faire remonter l'état partagé dans leur ancêtre commun le plus proche. Voyons comment ça marche.
 
 Dans cette section, nous allons créer un calculateur de température qui détermine si l'eau bout à une température donnée.
@@ -324,7 +334,7 @@ Faire remonter l'état implique d'écrire plus de code générique *(boilerplate
 
 Si quelque chose peut être dérivé des props ou de l'état, cette chose ne devrait probablement pas figurer dans l'état. Par exemple, plutôt que de stocker à la fois `celsiusValue` et `fahrenheitValue`, on stocke uniquement la dernière `temperature` modifiée et son unité `scale`. La valeur de l'autre champ peut toujours être calculée dans la méthode `render()` à partir de la valeur de ces données. Ça nous permet de vider ou d’arrondir la valeur de l’autre champ sans perdre la valeur saisie par l'utilisateur.
 
-Quand vous voyez quelque chose qui ne va pas dans l'UI, vous pouvez utiliser les [outils de développement React](https://github.com/facebook/react/tree/master/packages/react-devtools) pour examiner les props et remonter dans l'arborescence des composants jusqu'à trouver le composant responsable de la mise à jour de l'état. Ça vous permet de remonter à la source des bugs :
+Quand vous voyez quelque chose qui ne va pas dans l'UI, vous pouvez utiliser les [outils de développement React](https://github.com/facebook/react/tree/main/packages/react-devtools) pour examiner les props et remonter dans l'arborescence des composants jusqu'à trouver le composant responsable de la mise à jour de l'état. Ça vous permet de remonter à la source des bugs :
 
 <img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
 

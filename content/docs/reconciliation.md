@@ -2,9 +2,17 @@
 id: reconciliation
 title: Réconciliation
 permalink: docs/reconciliation.html
-prev: react-without-jsx.html
-next: context.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)
+
+</div>
 
 React fournit une API déclarative afin que vous n'ayez pas à vous soucier de savoir ce qui change exactement lors de chaque mise à jour. Ça facilite grandement l'écriture d'applications, mais la manière dont React s’y prend n'est pas forcément évidente. Cet article explique les choix que nous avons faits dans l'algorithme de comparaison de façon à rendre prévisibles les mises à jour des composants tout en restant suffisamment rapide pour des applications à hautes performances.
 

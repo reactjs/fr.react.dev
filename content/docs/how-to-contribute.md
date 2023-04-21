@@ -12,10 +12,10 @@ redirect_from:
 
 React est l'un des premiers projets open source de Facebook qui est à la fois en développement intensif et utilisé en production sur les pages publiques de [facebook.com](https://www.facebook.com). Nous travaillons encore à faire qu’il soit aussi facile et transparent que possible de contribuer à ce projet, et ce chantier n'est pas terminé. Mais avec un peu de chance, ce document éclaircira le processus de contribution et répondra à certaines des questions que vous pourriez avoir.
 
-### [Code de conduite](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
+### [Code de conduite](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md) {#code-of-conduct}
 
 
-Facebook a adopté le code de conduite [Contributor Covenant](https://www.contributor-covenant.org/) et nous nous attendons à ce que les participant·e·s au projet y adhèrent. Veuillez lire [le texte complet](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) afin de comprendre quelles actions seront ou ne seront pas tolérées.
+Facebook a adopté le code de conduite [Contributor Covenant](https://www.contributor-covenant.org/) et nous nous attendons à ce que les participant·e·s au projet y adhèrent. Veuillez lire [le texte complet](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md) afin de comprendre quelles actions seront ou ne seront pas tolérées.
 
 ### Développement ouvert {#open-development}
 
@@ -25,19 +25,19 @@ Tout travail sur React se passe directement sur [GitHub](https://github.com/face
 
 React utilise une [gestion sémantique de version](https://semver.org/). Nous publions des versions de correctifs pour les corrections de bugs critiques, des versions mineures pour les nouvelles fonctionnalités et les modifications non-essentielles, et des versions majeures s'il y a rupture de la compatibilité ascendante. Quand nous introduisons de telles ruptures, nous ajoutons aussi des avertissements de dépréciation dans une version mineure afin que nos utilisateur·rice·s puissent se familiariser avec les changements à venir et migrer leur code en amont.  Vous pouvez en apprendre davantage sur notre engagement en termes de stabilité et de migration incrémentielle dans notre [politique de gestion des versions](/docs/faq-versioning.html).
 
-Toute modification substancielle est documentée dans le [journal des modifications](https://github.com/facebook/react/blob/master/CHANGELOG.md).
+Toute modification substancielle est documentée dans le [journal des modifications](https://github.com/facebook/react/blob/main/CHANGELOG.md).
 
 ### Organisation des branches {#branch-organization}
 
-Déposez toutes vos modifications directement sur la [branche `master`](https://github.com/facebook/react/tree/master).  Nous n’utilisons pas de branches séparées pour le développement et pour les versions à venir.  Nous faisons de notre mieux pour garder la branche `master` en bon état, avec des tests toujours au vert.
+Déposez toutes vos modifications directement sur la [branche `main`](https://github.com/facebook/react/tree/main).  Nous n’utilisons pas de branches séparées pour le développement et pour les versions à venir.  Nous faisons de notre mieux pour garder la branche `main` en bon état, avec des tests toujours au vert.
 
-Le code qui atterrit dans `master` doit être compatible avec la dernière version stable.  Il peut contenir de nouvelles fonctionnalités, mais pas de rupture de compatibilité ascendante.  Nous devrions pouvoir sortir une version mineure à partir de la pointe de `master` à tout moment.
+Le code qui atterrit dans `main` doit être compatible avec la dernière version stable.  Il peut contenir de nouvelles fonctionnalités, mais pas de rupture de compatibilité ascendante.  Nous devrions pouvoir sortir une version mineure à partir de la pointe de `main` à tout moment.
 
 ### Fonctionnalités condtionnelles {#feature-flags}
 
-Afin de conserver la branche `master` dans un état sortable, les ruptures de compatibilité ascendante et les fonctionnalités expérimentales doivent être protégées par un drapeau de fonctionnalité conditionnelle.
+Afin de conserver la branche `main` dans un état sortable, les ruptures de compatibilité ascendante et les fonctionnalités expérimentales doivent être protégées par un drapeau de fonctionnalité conditionnelle.
 
-Ces drapeaux sont définis dans [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js).  D‘une version de React à l’autre, des jeux de fonctionnalités conditionnelles distincts sont susceptibles d’être utilisés ; par exemple, React Native peut être configuré différemment de React DOM.  Ces variations sont signalées dans [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks). Les drapeaux de fonctionnalités conditionnelles sont généralement typés par Flow, de sorte que vous pouvez exécuter `yarn flow` pour confirmer que vous avez mis à jour tous les fichiers nécessaires.
+Ces drapeaux sont définis dans [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/main/packages/shared/ReactFeatureFlags.js).  D‘une version de React à l’autre, des jeux de fonctionnalités conditionnelles distincts sont susceptibles d’être utilisés ; par exemple, React Native peut être configuré différemment de React DOM.  Ces variations sont signalées dans [`packages/shared/forks`](https://github.com/facebook/react/tree/main/packages/shared/forks). Les drapeaux de fonctionnalités conditionnelles sont généralement typés par Flow, de sorte que vous pouvez exécuter `yarn flow` pour confirmer que vous avez mis à jour tous les fichiers nécessaires.
 
 Le système de construction de React retirera toutes les branches fonctionnelles désactivées avant publication.  Une routine d’intégration continue est exécutée à chaque commit pour auditer les évolutions de la taille du *bundle*.  Vous pouvez utiliser ces changements de taille comme confirmation que votre fonctionnalité a bien été périmétrée.
 
@@ -72,7 +72,7 @@ Si vous corrigez seulement un bug, il est tout à fait acceptable d’envoyer di
 
 Vous travaillez sur votre première _pull request_ ? Vous pouvez apprendre comment faire ça au mieux grâce à cette série de vidéos gratuites (en anglais) :
 
-**[Comment contribuer à un projet open source sur GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
+**[Comment contribuer à un projet open source sur GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)**
 
 Pour vous aider à vous jeter à l'eau et vous familiariser avec le processus de contribution, nous avons une liste de **[bons premiers tickets](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** qui contient des bugs d’étendue relativement limitée.
 C'est un excellent point de départ.
@@ -87,7 +87,7 @@ L'équipe noyau surveille les _pull requests_. Nous ferons une revue de la vôtr
 
 **Avant d’envoyer une _pull request_,** suivez attentivement ces instructions :
 
-1. [Forkez le dépôt](https://github.com/facebook/react/fork) et créez votre branche depuis `master`.
+1. [Forkez le dépôt](https://github.com/facebook/react/fork) et créez votre branche depuis `main`.
 2. Lancez `yarn`  à la racine du dépôt.
 3. Si vous avez corrigé un bug ou ajouté du code qui devrait être testé, ajoutez les tests !
 4. Assurez-vous que tous les tests passent (`yarn test`). Astuce : `yarn test --watch NomDuTest` est très utile en phase de développement.
@@ -133,13 +133,13 @@ Tout d’abord, lancez `yarn build`. Ça produira des _bundles_ pré-compilés d
 
 La manière la plus simple d'essayer vos modifications consiste à lancer `yarn build react/index,react-dom/index --type=UMD` et ensuite ouvrir `fixtures/packaging/babel-standalone/dev.html`. Ce fichier utilise déjà `react.development.js` depuis le dossier `build`, donc il utilisera vos évolutions.
 
-Si vous voulez essayer vos évolutions dans votre projet React existant, vous pouvez copier `build/dist/react.development.js`, `build/dist/react-dom.development.js`, ou tout autre produit de la compilation dans votre appli et les utiliser au lieu de la version stable.
+Si vous voulez essayer vos évolutions dans votre projet React existant, vous pouvez copier `build/node_modules/react/umd/react.development.js`, `build/node_modules/react-dom/umd/react-dom.development.js`, ou tout autre produit de la compilation dans votre appli et les utiliser au lieu de la version stable.
 
 Si votre projet utilise React via npm, vous pouvez supprimer `react` et `react-dom` dans ses dépendances et utiliser `yarn link` pour les faire pointer vers votre dossier local `build`. Remarquez qu’**au lieu de `--type=UMD` vous voudrez plutôt passer `--type=NODE` à la construction**. Vous aurez aussi besoin du module `scheduler` :
 
 ```sh
 cd ~/chemin_vers_votre_clone_de_react/
-yarn build react/index,react-dom/index,scheduler --type=NODE
+yarn build react/index,react/jsx,react-dom/index,scheduler --type=NODE
 
 cd build/node_modules/react
 yarn link

@@ -3,6 +3,12 @@ title: "Le nouveau système de codes d'erreurs de React"
 author: [keyanzhang]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 React a toujours été particulièrement soucieux de construire une meilleure expérience pour les développeurs, et une partie cruciale de ça consiste à détecter rapidement les approches contre-productives *(anti-patterns, NdT)*  et erreurs potentielles, et à fournir des messages d'erreurs utiles lorsque les choses tournent (peut-être) mal.
 Ceci étant dit, la plupart de ces messages n'existent qu'en mode développement ; en production, nous évitons d'avoir des assertions coûteuses supplémentaires et d'envoyer des messages d'erreur complets afin de réduire le nombre d'octets à faire circuler sur le réseau.
 Avant cette version, nous supprimions les messages d'erreur au moment du *build*, c'est pourquoi vous avez peut-être vu ce message en production :

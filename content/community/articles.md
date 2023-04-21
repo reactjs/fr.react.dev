@@ -6,9 +6,11 @@ sectionid: community
 permalink: community/articles.html
 ---
 
-> Au sujet de la langue
->
->Pour la version française, nous tentons d'inclure les bonnes ressources quand nous les découvrons. Il n'en reste pas moins que l'immense majorité des ressources de qualité sont disponibles en anglais, comme bien souvent en informatique. Sauf indication contraire, la langue des ressources ci-dessous est donc l'anglais.
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
 
 - [React How-to](https://github.com/petehunt/react-howto) : le guide sur l'écosystème de React par Pete Hunt.
 - [9 things every React.js beginner should know](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know) : le guide de Cam Jackson pour les débutants.

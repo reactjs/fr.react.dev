@@ -87,7 +87,7 @@ Voici comment nous pouvons le tester :
 
 ```js{3,20-22,29-31}
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Counter from './Counter';
 
@@ -106,7 +106,7 @@ afterEach(() => {
 it('peut afficher et mettre à jour un compteur', () => {
   // Teste le premier affichage et l'appel à componentDidMount
   act(() => {
-    ReactDOM.render(<Counter />, container);
+    ReactDOM.createRoot(container).render(<Counter />);
   });
   const button = container.querySelector('button');
   const label = container.querySelector('p');
@@ -141,7 +141,7 @@ Cette méthode prend un module de composant simulé et lui ajoute des méthodes 
 
 >Remarque
 >
-> `mockComponent()` est une API obsolète. Nous recommandons plutôt de recourir à [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
+> `mockComponent()` est une API obsolète. Nous recommandons plutôt de recourir à [`jest.mock()`](https://jestjs.io/docs/tutorial-react-native#mock-native-modules-using-jestmock).
 
 * * *
 
@@ -302,7 +302,7 @@ Réalise le rendu d'un élément React au sein d'un nœud du DOM détaché du do
 
 ```js
 const domContainer = document.createElement('div');
-ReactDOM.render(element, domContainer);
+ReactDOM.createRoot(domContainer).render(element);
 ```
 
 >Remarque

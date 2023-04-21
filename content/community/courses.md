@@ -6,9 +6,12 @@ sectionid: community
 permalink: community/courses.html
 ---
 
-> Au sujet de la langue
+<div class="scary">
+
 >
->Pour la version française, nous tentons d'inclure les bonnes ressources quand nous les découvrons. Il n'en reste pas moins que l'immense majorité des ressources de qualité sont disponibles en anglais, comme bien souvent en informatique. Sauf indication contraire, la langue des ressources ci-dessous est donc l'anglais.
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
 
 ## Cours gratuits {#free-courses}
 
@@ -57,3 +60,5 @@ permalink: community/courses.html
 - [React Tutorial](https://react-tutorial.app) - Apprenez React pas à pas dans un environnement interactif avec des cartes mémoires.
 
 - [Road to React](https://www.roadtoreact.com/) - Votre parcours pour maîtriser React avec JavaScript.
+
+- [Epic React](https://epicreact.dev/) - Confidently Ship Well-Architected Production Ready React Apps Like a Pro

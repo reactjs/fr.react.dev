@@ -16,6 +16,18 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Your First Component](https://react.dev/learn/your-first-component)
+> - [Passing Props to a Component](https://react.dev/learn/passing-props-to-a-component)
+
+</div>
+
 Les composants vous permettent de découper l’interface utilisateur en éléments indépendants et réutilisables, vous permettant ainsi de considérer chaque élément de manière isolée. Cette page fournit une introduction au concept de composants. Vous trouverez une [référence détaillée de l’API des composants ici](/docs/react-component.html).
 
 Conceptuellement, les composants sont comme des fonctions JavaScript. Ils acceptent des entrées quelconques (appelées « props ») et renvoient des éléments React décrivant ce qui doit apparaître à l’écran.
@@ -64,23 +76,21 @@ Lorsque React rencontre un élément représentant un composant défini par l’
 
 Par exemple, ce code affiche « Bonjour, Sara » sur la page :
 
-```js{1,5}
+```js{1,6}
 function Welcome(props) {
   return <h1>Bonjour, {props.name}</h1>;
 }
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 const element = <Welcome name="Sara" />;
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
+root.render(element);
 ```
 
-**[Essayer sur CodePen](codepen://components-and-props/rendering-a-component)**
+**[Essayer sur CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
 
 Récapitulons ce qui se passe dans cet exemple :
 
-1. On appelle `ReactDOM.render()` avec l’élément `<Welcome name="Sara" />`.
+1. On appelle `root.render()` avec l’élément `<Welcome name="Sara" />`.
 2. React appelle le composant `Welcome` avec comme props `{name: 'Sara'}`.
 3. Notre composant `Welcome` retourne un élément `<h1>Bonjour, Sara</h1>` pour résultat.
 4. React DOM met à jour efficacement le DOM pour correspondre à `<h1>Bonjour, Sara</h1>`.
@@ -111,14 +121,9 @@ function App() {
     </div>
   );
 }
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
 ```
 
-**[Essayer sur CodePen](codepen://components-and-props/composing-components)**
+**[Essayer sur CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
 
 En règle générale, les nouvelles applications React ont un seul composant `App` à la racine.  En revanche, si vous intégrez React à une application existante, vous pouvez commencer tout en bas par un petit composant comme `Button` et remonter progressivement la hiérarchie des vues.
 
@@ -152,7 +157,7 @@ function Comment(props) {
 }
 ```
 
-**[Essayer sur CodePen](codepen://components-and-props/extracting-components)**
+**[Essayer sur CodePen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
 
 Il accepte comme props `author` (un objet), `text` (une chaîne de caractères) et `date` (une date), et décrit un commentaire sur un réseau social en ligne.
 
@@ -231,7 +236,7 @@ function Comment(props) {
 }
 ```
 
-**[Essayer sur CodePen](codepen://components-and-props/extracting-components-continued)**
+**[Essayer sur CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
 
 Au début, extraire des composants peut vous sembler fastidieux, mais disposer d’une palette de composants réutilisables s’avère rentable sur des applications de plus grande taille. En règle générale, si une partie de votre interface utilisateur est utilisée plusieurs fois (`Button`, `Panel`, `Avatar`) ou si elle est suffisamment complexe en elle-même (`App`, `FeedStory`, `Comment`), c’est un bon candidat pour une extraction en tant que composant séparé.
 

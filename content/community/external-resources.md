@@ -6,6 +6,12 @@ sectionid: community
 permalink: community/external-resources.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 Voici quelques ressources externes merveilleuses que la communauté React a mises en place.
 
 - [Reactiflux](https://www.reactiflux.com/) – Une communauté de 20 000+ développeurs React. On y trouve une [section d’apprentissage](https://www.reactiflux.com/learning/) soigneusement entretenue.

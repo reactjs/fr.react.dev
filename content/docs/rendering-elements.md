@@ -8,6 +8,18 @@ prev: introducing-jsx.html
 next: components-and-props.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach how to write JSX and show it on an HTML page:
+>
+> - [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx)
+> - [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project#step-2-render-react-components-anywhere-on-the-page)
+
+</div>
+
 Les éléments sont les blocs élémentaires d’une application React.
 
 Un élément décrit ce que vous voulez voir à l’écran :
@@ -38,7 +50,7 @@ Pour faire le rendu d’un élément React dans un nœud DOM racine, passez les
 
 `embed:rendering-elements/render-an-element.js`
 
-**[Essayer sur CodePen](codepen://rendering-elements/render-an-element)**
+**[Essayer sur CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
 
 Cet exemple de code affichera « Bonjour, monde » sur la page.
 
@@ -52,13 +64,13 @@ Prenons l’exemple de cette horloge :
 
 `embed:rendering-elements/update-rendered-element.js`
 
-**[Essayer dans CodePen](codepen://rendering-elements/update-rendered-element)**
+**[Essayer dans CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
 
-À chaque seconde, nous appellons [`ReactDOM.render()`](/docs/react-dom.html#render) depuis une fonction de rappel passée à [`setInterval()`](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setInterval).
+À chaque seconde, nous appellons [`root.render()`](/docs/react-dom.html#render) depuis une fonction de rappel passée à [`setInterval()`](https://developer.mozilla.org/fr/docs/Web/API/WindowTimers/setInterval).
 
 >Remarque
 >
->En pratique, la plupart des applications React n’appellent [`ReactDOM.render()`](/docs/react-dom.html#render) qu’une seule fois. Dans les prochaines sections, nous apprendrons comment encapsuler un tel code dans des [composants à état](/docs/state-and-lifecycle.html).
+>En pratique, la plupart des applications React n’appellent `root.render()` qu’une seule fois. Dans les prochaines sections, nous apprendrons comment encapsuler un tel code dans des [composants à état](/docs/state-and-lifecycle.html).
 >
 >Nous vous conseillons de lire les sujets abordés dans l’ordre car ils s'appuient l’un sur l’autre.
 
@@ -66,7 +78,7 @@ Prenons l’exemple de cette horloge :
 
 React DOM compare l’élément et ses enfants avec la version précédente, et applique uniquement les mises à jour DOM nécessaires pour refléter l’état voulu.
 
-Vous pouvez vérifier ce comportement en inspectant le [dernier exemple](codepen://rendering-elements/update-rendered-element) avec les outils de développement du navigateur :
+Vous pouvez vérifier ce comportement en inspectant le [dernier exemple](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) avec les outils de développement du navigateur :
 
 ![L’inspecteur montrant des mises à jour atomiques](../images/docs/granular-dom-updates.gif)
 

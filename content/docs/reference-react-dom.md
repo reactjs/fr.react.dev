@@ -6,35 +6,129 @@ category: Reference
 permalink: docs/react-dom.html
 ---
 
-Si vous chargez React directement au moyen d’une balise `<script>`, ces API de haut-niveau seront disponibles directement via la variable globale `ReactDOM`.  Si vous utilisez ES6 avec `npm`, vous pouvez écrire `import ReactDOM from 'react-dom'`.  Si vous utilisez ES5 avec npm, utilisez `var ReactDOM = require('react-dom')`.
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`react-dom`: Components](https://react.dev/reference/react-dom/components)
+> - [`react-dom`: APIs](https://react.dev/reference/react-dom)
+> - [`react-dom`: Client APIs](https://react.dev/reference/react-dom/client)
+> - [`react-dom`: Server APIs](https://react.dev/reference/react-dom/server)
+
+</div>
+
+The `react-dom` package provides DOM-specific methods that can be used at the top level of your app and as an escape hatch to get outside the React model if you need to.
+
+```js
+import * as ReactDOM from 'react-dom';
+```
+
+If you use ES5 with npm, you can write:
+
+```js
+var ReactDOM = require('react-dom');
+```
+
+The `react-dom` package also provides modules specific to client and server apps:
+- [`react-dom/client`](/docs/react-dom-client.html)
+- [`react-dom/server`](/docs/react-dom-server.html)
 
 ## Aperçu {#overview}
 
-Le module `react-dom` fournit des méthodes spécifiques au DOM que vous pouvez utiliser au niveau racine de votre appli et comme échappatoire pour travailler hors du modèle React si vous en avez besoin.  La plupart des composants ne devraient jamais avoir besoin d’utiliser ce module.
+The `react-dom` package exports these methods:
+- [`createPortal()`](#createportal)
+- [`flushSync()`](#flushsync)
 
+These `react-dom` methods are also exported, but are considered legacy:
 - [`render()`](#render)
 - [`hydrate()`](#hydrate)
-- [`unmountComponentAtNode()`](#unmountcomponentatnode)
 - [`findDOMNode()`](#finddomnode)
-- [`createPortal()`](#createportal)
+- [`unmountComponentAtNode()`](#unmountcomponentatnode)
+
+> Note: 
+> 
+> Both `render` and `hydrate` have been replaced with new [client methods](/docs/react-dom-client.html) in React 18. These methods will warn that your app will behave as if it's running React 17 (learn more [here](https://reactjs.org/link/switch-to-createroot)).
 
 ### Navigateurs pris en charge {#browser-support}
 
-React prend en charge tous les navigateurs populaires, y compris Internet Explorer 9 et au-delà, même si [certains polyfills sont nécessaires](/docs/javascript-environment-requirements.html) pour les navigateurs plus anciens tels qu’IE 9 et IE 10.
+React supports all modern browsers, although [some polyfills are required](/docs/javascript-environment-requirements.html) for older versions.
 
 >Remarque
 >
->Nous ne prenons pas en charge les navigateurs plus anciens qui n'exposent pas les méthodes ES5 mais vous verrez que vos applis peuvent y fonctionner si vous incluez des polyfills tels que [es5-shim et es5-sham](https://github.com/es-shims/es5-shim) dans la page.  Ceci dit, vous serez alors livré·e à vous-même en termes de support.
-
-* * *
+> We do not support older browsers that don't support ES5 methods or microtasks such as Internet Explorer. You may find that your apps do work in older browsers if polyfills such as [es5-shim and es5-sham](https://github.com/es-shims/es5-shim) are included in the page, but you're on your own if you choose to take this path.
 
 ## Référence de l’API {#reference}
 
-### `render()` {#render}
+### `createPortal()` {#createportal}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createPortal`](https://react.dev/reference/react-dom/createPortal).
+
+</div>
 
 ```javascript
-ReactDOM.render(element, container[, callback])
+createPortal(child, container)
 ```
+
+Creates a portal. Portals provide a way to [render children into a DOM node that exists outside the hierarchy of the DOM component](/docs/portals.html).
+
+### `flushSync()` {#flushsync}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`flushSync`](https://react.dev/reference/react-dom/flushSync).
+
+</div>
+
+```javascript
+flushSync(callback)
+```
+
+Force React to flush any updates inside the provided callback synchronously. This ensures that the DOM is updated immediately.
+
+```javascript
+// Force this state update to be synchronous.
+flushSync(() => {
+  setCount(count + 1);
+});
+// By this point, DOM is updated.
+```
+
+> Note:
+> 
+> `flushSync` can significantly hurt performance. Use sparingly.
+> 
+> `flushSync` may force pending Suspense boundaries to show their `fallback` state.
+> 
+> `flushSync` may also run pending effects and synchronously apply any updates they contain before returning.
+> 
+> `flushSync` may also flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
+
+## Legacy Reference {#legacy-reference}
+### `render()` {#render}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`render`](https://react.dev/reference/react-dom/render).
+
+</div>
+
+```javascript
+render(element, container[, callback])
+```
+
+> Note:
+>
+> `render` has been replaced with `createRoot` in React 18. See [createRoot](/docs/react-dom-client.html#createroot) for more info.
 
 Affiche un élément React au sein du nœud DOM spécifié par `container` et renvoie une [référence](/docs/more-about-refs.html) sur le composant (ou renvoie `null` pour les [fonctions composants](/docs/components-and-props.html#function-and-class-components)).
 
@@ -44,21 +138,33 @@ Si la fonction de rappel optionnelle est fournie, elle sera exécutée après qu
 
 >Remarque
 >
->`ReactDOM.render()` contrôle le contenu du nœud conteneur que vous lui passez.  Tout élément DOM existant à l’intérieur sera potentiellement remplacé au premier appel.  Les appels ultérieurs utiliseront l’algorithme de différence DOM de React pour des mises à jour efficaces.
+>`render()` contrôle le contenu du nœud conteneur que vous lui passez.  Tout élément DOM existant à l’intérieur sera potentiellement remplacé au premier appel.  Les appels ultérieurs utiliseront l’algorithme de différence DOM de React pour des mises à jour efficaces.
 >
->`ReactDOM.render()` ne modifie pas le nœud conteneur lui-même (seulement ses enfants).  Il peut arriver qu’insérer un composant dans un nœud DOM existant n’en modifie pas les enfants.
+>`render()` ne modifie pas le nœud conteneur lui-même (seulement ses enfants).  Il peut arriver qu’insérer un composant dans un nœud DOM existant n’en modifie pas les enfants.
 >
->`ReactDOM.render()` renvoie pour le moment une référence sur l’instance racine de composant React.  Toutefois, manipuler la valeur renvoyée est considéré comme déprécié, et vous devriez vous en abstenir dans la mesure où de futures versions de React pourraient gérer le rendu de façon asynchrone dans certains cas.  Si vous avez besoin d’une référence sur l’instance racine de composant React, une meilleure solution consiste à associer une [ref de rappel](/docs/more-about-refs.html#callback-refs) à l’élément racine.
+>`render()` renvoie pour le moment une référence sur l’instance racine de composant React.  Toutefois, manipuler la valeur renvoyée est considéré comme déprécié, et vous devriez vous en abstenir dans la mesure où de futures versions de React pourraient gérer le rendu de façon asynchrone dans certains cas.  Si vous avez besoin d’une référence sur l’instance racine de composant React, une meilleure solution consiste à associer une [ref de rappel](/docs/more-about-refs.html#callback-refs) à l’élément racine.
 >
->Utiliser `ReactDOM.render()` pour hydrater un conteneur rendu côté serveur est une pratique dépréciée qui disparaîtra avec React 17.  Utilisez plutôt la méthode [`hydrate()`](#hydrate).
+> Utiliser `render()` pour hydrater un conteneur rendu côté serveur est une pratique dépréciée qui disparaîtra avec React 17.  Utilisez plutôt la méthode [`hydrateRoot()`](/docs/react-dom-client.html#hydrateroot).
 
 * * *
 
 ### `hydrate()` {#hydrate}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`hydrate`](https://react.dev/reference/react-dom/hydrate).
+
+</div>
+
 ```javascript
-ReactDOM.hydrate(element, container[, callback])
+hydrate(element, container[, callback])
 ```
+
+> Note:
+>
+> `hydrate` has been replaced with `hydrateRoot` in React 18. See [hydrateRoot](/docs/react-dom-client.html#hydrateroot) for more info.
 
 Similaire à [`render()`](#render), mais sert à hydrater un conteneur dont le HTML a déjà été produit par [`ReactDOMServer`](/docs/react-dom-server.html). React tentera alors d’associer les gestionnaires d’événements au balisage existant.
 
@@ -74,9 +180,21 @@ Souvenez-vous que les connexions lentes ont un impact sur l’expérience utilis
 
 ### `unmountComponentAtNode()` {#unmountcomponentatnode}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`unmountComponentAtNode`](https://react.dev/reference/react-dom/unmountComponentAtNode).
+
+</div>
+
 ```javascript
-ReactDOM.unmountComponentAtNode(container)
+unmountComponentAtNode(container)
 ```
+
+> Note:
+>
+> `unmountComponentAtNode` has been replaced with `root.unmount()` in React 18. See [createRoot](/docs/react-dom-client.html#createroot) for more info.
 
 Retire un composant React monté du DOM et nettoie ses gestionnaires d’événements et son état local.  Si aucun composant n’était monté sur ce conteneur, appeler cette fonction ne fait rien.  Renvoie `true` si un composant a bien été démonté et `false` si aucun composant ne nécessitait de démontage.
 
@@ -84,12 +202,20 @@ Retire un composant React monté du DOM et nettoie ses gestionnaires d’événe
 
 ### `findDOMNode()` {#finddomnode}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`findDOMNode`](https://react.dev/reference/react-dom/findDOMNode).
+
+</div>
+
 >Remarque
 >
 >`findDOMNode` est une échappatoire utilisée pour accéder au nœud du DOM associé au composant.  La plupart du temps, nous déconseillons le recours à cette échappatoire parce qu’elle rompt l’abstraction du composant. [Elle est d’ailleurs désormais dépréciée en mode strict.](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
 
 ```javascript
-ReactDOM.findDOMNode(component)
+findDOMNode(component)
 ```
 
 Si le composant a été monté dans le DOM, cette méthode renvoie l’élément DOM (natif au navigateur) qui a servi de point de montage. Ça peut être utile pour lire des valeurs issues du DOM, telles que la valeur d’un champ de formulaire, ou pour effectuer des mesures de tailles sur les nœuds du DOM.  **La plupart du temps, préférez associer une ref au nœud du DOM, et évitez complètement `findDOMNode`.**
@@ -103,11 +229,3 @@ Quand le rendu d’un composant produit `null` ou `false`, `finDOMNode` renvoie 
 >`findDOMNode` ne peut pas être utilisée sur des fonctions composants.
 
 * * *
-
-### `createPortal()` {#createportal}
-
-```javascript
-ReactDOM.createPortal(child, container)
-```
-
-Crée un portail.  Les portails fournissent un moyen d’[afficher des enfants dans un nœud du DOM à l’extérieur de la hiérarchie DOM du composant](/docs/portals.html).

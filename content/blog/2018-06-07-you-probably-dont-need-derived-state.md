@@ -3,6 +3,12 @@ title: "Vous n'avez sans doute pas besoin d'états dérivés"
 author: [bvaughn]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 React 16.4 apportait [un correctif pour `getDerivedStateFromProps`](/blog/2018/05/23/react-v-16-4.html#bugfix-for-getderivedstatefromprops) qui déclenchait certains bugs connus des composants React plus fréquemment. Si la publication de cette version a mis en évidence un _anti-pattern_ dans votre application et l'a cassée, nous sommes désolés pour le désagrément. Dans cet article nous allons passer en revue certains anti-patterns habituels autour des états dérivés et les alternatives que nous recommandons.
 
 Depuis longtemps, la méthode de cycle de vie `componentWillReceiveProps` était la seule façon de mettre à jour un état suite à un changement de props sans pour autant déclencher un rendu supplémentaire. Dans la version 16.3, [nous avons introduit une méthode de cycle de vie de remplacement `getDerivedStateFromProps`](/blog/2018/03/29/react-v-16-3.html#component-lifecycle-changes) pour résoudre les même problèmes mais de manière plus fiable. Dans le même temps, nous nous sommes aperçu qu'il y avait de nombreuses idées fausses autour de l'utilisation de ces deux méthodes et nous avons découvert des anti-patterns qui entraînaient des bugs à la fois subtils et déroutants. Le correctif pour `getDerivedStateFromProps` dans la version 16.4 [rend les états dérivés plus prévisibles](https://github.com/facebook/react/issues/12898), ce qui rend les conséquences d'une mauvaise utilisation plus faciles à repérer.
@@ -205,6 +211,12 @@ Le composant de formulaire parent pourrait alors [utiliser une `ref` pour appele
 Les refs peuvent être utiles dans certains cas comme celui-ci mais de façon générale, nous recommandons de les utiliser avec parcimonie. Même dans le cadre de cette démo, cette méthode impérative est sous-optimale car elle entraîne la réalisation de deux rendus au lieu d'un seul.
 
 -----
+
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
 
 ### En résumé {#recap}
 

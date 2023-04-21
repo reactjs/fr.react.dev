@@ -2,9 +2,17 @@
 id: error-boundaries
 title: Périmètres d'erreurs
 permalink: docs/error-boundaries.html
-prev: portals.html
-next: web-components.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`React.Component`: Catching rendering errors with an error boundary](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
+
+</div>
 
 Auparavant, les erreurs JavaScript au sein des composants avaient l'habitude de corrompre l'état interne de React, et de causer des [erreurs](https://github.com/facebook/react/issues/4026) [assez](https://github.com/facebook/react/issues/6895) [incompréhensibles](https://github.com/facebook/react/issues/8579) lors des rendus suivants. Ces erreurs étaient toujours causées par une erreur antérieure dans le code applicatif et comme React ne proposait alors aucun moyen de les gérer correctement dans les composants, il n'avait pas la possibilité de se rétablir.
 

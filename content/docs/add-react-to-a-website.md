@@ -8,6 +8,15 @@ prev: getting-started.html
 next: create-a-new-react-app.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project) for the recommended ways to add React.
+
+</div>
+
 Utiliser React en fonction de vos besoins
 
 React a été conçu dès le départ pour une adoption progressive, et **vous pouvez utiliser React _a minima_ ou autant que nécessaire.** Peut-être souhaitez-vous juste ajouter un peu d'interactivité à une page existante. Les composants React sont une bonne solution pour ça.
@@ -25,7 +34,7 @@ Dans cette partie, nous allons voir comment ajouter un composant React à une pa
 
 Pas besoin d'outils compliqués ni de faire des installations : **pour suivre cette section, vous avez juste besoin d'une connexion à internet et d'une minute de votre temps.**
 
-Optionnel : [Télécharger l'exemple complet (2 Ko zippé)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+Optionnel : [Télécharger l'exemple complet (2 Ko zippé)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)
 
 ### Étape 1 : ajouter un conteneur DOM à votre HTML {#step-1-add-a-dom-container-to-the-html}
 
@@ -55,8 +64,8 @@ Ensuite, ajoutez trois balises `<script>` à votre page HTML, juste avant la fer
   <!-- Charge React -->
   <!-- Remarque : pour le déploiement, remplacez "development.js"
        par "production.min.js" -->
-  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 
   <!-- Charge notre composant React -->
   <script src="like_button.js"></script>
@@ -77,11 +86,12 @@ Ouvrez et copiez **[le code de démarrage](https://gist.github.com/gaearon/0b180
 
 Ajoutez deux lignes à la fin de `like_button.js`, après **[le code de démarrage](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** :
 
-```js{3,4}
+```js{3,4,5}
 // ... le code de démarrage que vous avez collé ...
 
 const domContainer = document.querySelector('#like_button_container');
-ReactDOM.render(e(LikeButton), domContainer);
+const root = ReactDOM.createRoot(domContainer);
+root.render(e(LikeButton));
 ```
 
 Ces deux lignes de code vont remplacer le contenu de la `<div>` que nous avons ajoutée dans la première étape. Ainsi elles afficheront notre composant React sous forme de bouton « J’aime ».
@@ -94,7 +104,7 @@ Pour plus d'astuces concernant l'intégration de React, n'hésitez pas à consul
 
 **[Voir le code source intégral de l'exemple](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
-**[Télécharger le code source intégral de l'exemple (2 Ko zippé)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
+**[Télécharger le code source intégral de l'exemple (2 Ko zippé)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)**
 
 ### Astuce : réutiliser un composant {#tip-reuse-a-component}
 
@@ -102,7 +112,7 @@ Généralement, on souhaite afficher des composants React à plusieurs endroits 
 
 [Voir le code source intégral de l'exemple](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
-[Télécharger le code source intégral de l'exemple (2 Ko zippé)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
+[Télécharger le code source intégral de l'exemple (2 Ko zippé)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/279839cb9891bd41802ebebc5365e9dec08eeb9f.zip)
 
 >Remarque
 >
@@ -115,8 +125,8 @@ Avant de déployer votre site web en production, gardez à l'esprit qu'un JavaSc
 Si vous minifiez déjà vos scripts applicatifs et si vous vous assurez de référencer les versions de React dont les noms se terminent en `production.min.js`, **votre site sera prêt pour la production** :
 
 ```js
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 Si vous n'avez pas de minification déjà en place pour vos scripts, voici [une façon de faire](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
@@ -149,7 +159,7 @@ return (
 
 Ces deux extraits de code sont équivalents. Même si la syntaxe **JSX est [complètement optionnelle](/docs/react-without-jsx.html)**, la plupart des développeur·euse·s React la trouvent très pratique pour écrire du code  (avec React ou même avec d'autres bibliothèques).
 
-Vous pouvez tester JSX en utilisant un [convertisseur en ligne](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3).
+Vous pouvez tester JSX en utilisant un [convertisseur en ligne](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.15.7).
 
 ### Essayer JSX en un clin d’œil {#quickly-try-jsx}
 
@@ -159,7 +169,7 @@ La façon la plus simple et rapide de tester JSX dans votre projet est d'ajouter
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
-Vous pouvez désormais utiliser JSX dans les fichiers chargés par n'importe quelle balise `<script>` simplement en lui ajoutant l'attribut `type="text/babel"`. Vous pouvez télécharger et tester cet exemple contenant un [fichier HTML utilisant JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html).
+Vous pouvez désormais utiliser JSX dans les fichiers chargés par n'importe quelle balise `<script>` simplement en lui ajoutant l'attribut `type="text/babel"`. Vous pouvez télécharger et tester cet exemple contenant un [fichier HTML utilisant JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html).
 
 Cette approche est acceptable pour se former ou réaliser des démos simples. Cependant, elle va ralentir l'affichage de votre site, elle n'est donc **pas adaptée pour la production**. Lorsque vous serez prêt·e à aller plus loin, supprimez la balise `<script>` et l'attribut `type="text/babel"` que vous venez d'ajouter. Dans la section suivante, nous verrons plutôt comment configurer le préprocesseur JSX afin de convertir automatiquement toutes les balises `<script>`.
 
@@ -182,7 +192,7 @@ Bravo ! Vous venez d'ajouter **une configuration JSX de production** à votre p
 
 Créez un dossier nommé `src` et lancez la commande suivante dans le terminal :
 
-```
+```console
 npx babel --watch src --out-dir . --presets react-app/prod
 ```
 

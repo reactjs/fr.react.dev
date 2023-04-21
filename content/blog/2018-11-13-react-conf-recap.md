@@ -3,6 +3,11 @@ title: "Résumé de la conférence React : Hooks, Suspense, et rendu concurrent
 author: [tomocchino]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
 
 Cette année, la [Conférence React](https://conf.reactjs.org/) a eu lieu les 25 et 26 octobre à Henderson dans le Nevada, où plus de 600 participants se sont réunis pour suivre les dernières nouveautés en matière de conception d’UI.
 

@@ -15,6 +15,16 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`React.Component`](https://react.dev/reference/react/Component)
+
+</div>
+
 Cette page fournit une référence détaillée de l'API pour la définition de composants React à base de classes. Elle suppose que vous êtes à l’aise avec les concepts fondamentaux de React, tels que les [Composants et props](/docs/components-and-props.html), ainsi que l’[État et cycle de vie](/docs/state-and-lifecycle.html). Si ce n’est pas le cas, lisez ces pages avant de continuer.
 
 ## Aperçu de l’API {#overview}
@@ -39,7 +49,7 @@ La seule méthode que vous *devez* définir dans une sous-classe de `React.Compo
 
 ### Le cycle de vie du composant {#the-component-lifecycle}
 
-Chaque composant a plusieurs « méthodes de cycle de vie » que vous pouvez surcharger pour exécuter du code à des moments précis du processus. **Vous pouvez utiliser [ce diagramme de cycle de vie](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) comme aide-mémoire.**  Dans la liste ci-dessous, les méthodes de cycle de vie courantes sont indiquées en **gras**. Les autres sont là pour des cas d’utilisation relativement rares.
+Chaque composant a plusieurs « méthodes de cycle de vie » que vous pouvez surcharger pour exécuter du code à des moments précis du processus. **Vous pouvez utiliser [ce diagramme de cycle de vie](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) comme aide-mémoire.**  Dans la liste ci-dessous, les méthodes de cycle de vie courantes sont indiquées en **gras**. Les autres sont là pour des cas d’utilisation relativement rares.
 
 #### Montage {#mounting}
 
@@ -110,7 +120,7 @@ Chaque composant fournit par ailleurs quelques API supplémentaires :
 
 ### Méthodes de cycle de vie couramment utilisées {#commonly-used-lifecycle-methods}
 
-Les méthodes de cette section couvrent la vaste majorité des cas d’utilisation que vous rencontrerez en créant des composants React. **Pour une référence visuelle, jetez un œil à [ce diagramme de cycle de vie](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+Les méthodes de cette section couvrent la vaste majorité des cas d’utilisation que vous rencontrerez en créant des composants React. **Pour une référence visuelle, jetez un œil à [ce diagramme de cycle de vie](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
 ### `render()` {#render}
 
@@ -246,7 +256,7 @@ Vous **ne devez pas appeler `setState()`** dans `componentWillUnmount()` car le 
 
 ### Méthodes de cycle de vie rarement utilisées {#rarely-used-lifecycle-methods}
 
-Les méthodes de cette section sont liées à des cas d’utilisation peu fréquents. Elles peuvent s’avérer utiles de temps en temps, mais la plupart de vos composants n’en auront sans doute jamais besoin. **Vous pouvez voir la plupart de ces méthods dans [ce diagramme de cycle de vie](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) en cochant la case « Montrer les cycles de vie moins courants » au-dessus.**
+Les méthodes de cette section sont liées à des cas d’utilisation peu fréquents. Elles peuvent s’avérer utiles de temps en temps, mais la plupart de vos composants n’en auront sans doute jamais besoin. **Vous pouvez voir la plupart de ces méthods dans [ce diagramme de cycle de vie](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) en cochant la case « Montrer les cycles de vie moins courants » au-dessus.**
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -410,6 +420,12 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
+Production and development builds of React slightly differ in the way `componentDidCatch()` handles errors.
+
+On development, the errors will bubble up to `window`, this means that any `window.onerror` or `window.addEventListener('error', callback)` will intercept the errors that have been caught by `componentDidCatch()`.
+
+On production, instead, the errors will not bubble up, which means any ancestor error handler will only receive errors not explicitly caught by `componentDidCatch()`.
+
 > Remarque
 >
 > Si une erreur survient, vous pouvez déclencher l’affichage d’une UI de remplacement avec `componentDidCatch()` en appelant `setState`, mais une future version de React dépréciera cette possibilité. Utilisez plutôt  `static getDerivedStateFromError()` pour déclencher l’affichage de l’UI de remplacement.
@@ -497,7 +513,7 @@ Il n’y en a que deux : `setState()` et `forceUpdate()`.
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater, [callback])
+setState(updater[, callback])
 ```
 
 `setState()` planifie des modifications à l’état local du composant, et indique à React que ce composant et ses enfants ont besoin d’être rafraîchis une fois l’état mis à jour. C’est en général ainsi qu’on met à jour l’interface utilisateur en réaction à des événements ou réponses réseau.

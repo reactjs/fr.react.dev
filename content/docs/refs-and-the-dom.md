@@ -1,8 +1,7 @@
 ---
 id: refs-and-the-dom
 title: Les refs et le DOM
-prev: static-type-checking.html
-next: uncontrolled-components.html
+permalink: docs/refs-and-the-dom.html
 redirect_from:
   - "docs/working-with-the-browser.html"
   - "docs/more-about-refs.html"
@@ -10,8 +9,20 @@ redirect_from:
   - "docs/more-about-refs-zh-CN.html"
   - "tips/expose-component-functions.html"
   - "tips/children-undefined.html"
-permalink: docs/refs-and-the-dom.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Referencing Values with Refs](https://react.dev/learn/referencing-values-with-refs)
+> - [Manipulating the DOM with Refs](https://react.dev/learn/manipulating-the-dom-with-refs)
+> - [`useRef`](https://react.dev/reference/react/useRef)
+> - [`forwardRef`](https://react.dev/reference/react/forwardRef)
+
+</div>
 
 Les refs fournissent un moyen d’accéder aux nœuds du DOM ou éléments React créés dans la méthode de rendu.
 

@@ -2,9 +2,16 @@
 id: render-props
 title: Props de rendu
 permalink: docs/render-props.html
-prev: higher-order-components.html
-next: integrating-with-other-libraries.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> Render props are used in modern React, but aren't very common.  
+> For many cases, they have been replaced by [custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks).
+
+</div>
 
 Le terme [« prop de rendu »](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) _(render prop, NdT)_ fait référence à une technique qui consiste à partager du code entre des composants React en utilisant une prop dont la valeur est une fonction.
 

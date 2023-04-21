@@ -3,6 +3,12 @@ title: "Construire des super expériences utilisateurs avec le mode concurrent e
 author: [josephsavona]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 Lors de la React Conf 2019 nous avons annoncé une [version expérimentale](/docs/concurrent-mode-adoption.html#installation) de React qui prend en charge le mode concurrent et Suspense.  Dans cet article nous allons présenter quelques meilleures pratiques pour leur utilisation que nous avons identifiées lors de la construction du [nouveau facebook.com](https://twitter.com/facebook/status/1123322299418124289).
 
 > Cet article est surtout pertinent pour les personnes qui écrivent des _bibliothèques de chargement de données_ pour React.

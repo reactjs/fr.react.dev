@@ -8,6 +8,15 @@ prev: cdn-links.html
 next: hello-world.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Versioning Policy](https://react.dev/community/versioning-policy) to learn about the React release channels.
+
+</div>
+
 React dépend d’une communauté open source florissante pour signaler des bugs, ouvrir des *pull requests* et [soumettre des RFC](https://github.com/reactjs/rfcs). Afin d’encourager des retours efficaces nous partageons parfois des builds spéciaux de React qui comportent des fonctionnalités encore officieuses.
 
 > Ce document sera surtout pertinent pour les développeur·se·s qui travaillent sur des frameworks, des bibliothèques ou de l’outillage de développement.  Les personnes qui utilisent React principalement pour construire des applications destinées à des utilisateurs finaux ne devraient pas avoir à se préoccuper de nos canaux de sortie.
@@ -53,13 +62,13 @@ Si vous êtes l’auteur·e d’une solution tierce pour React (framework, bibli
 - Mettez en place une tâche périodique au sein de votre plate-forme préférée d’intégration continue.  On trouve ce type d’exécutions périodiques tant dans [CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) que dans [Travis CI](https://docs.travis-ci.com/user/cron-jobs/).
 - Dans la tâche, mettez à jour les modules React à partir de la version la plus récente du canal *Next*, grâce à l’étiquette `next` sur npm.  Avec la CLI de npm :
 
-  ```
+  ```console
   npm update react@next react-dom@next
   ```
 
   Ou avec Yarn :
 
-  ```
+  ```console
   yarn upgrade react@next react-dom@next
   ```
 
@@ -70,6 +79,8 @@ Si vous êtes l’auteur·e d’une solution tierce pour React (framework, bibli
 Le projet Next.js (promis, on n’a pas fait exprès !) utilise cette approche.  Vous pouvez consulter leur [configuration CircleCI](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml) à titre d’exemple.
 
 ### Canal *Experimental* {#experimental-channel}
+
+Like Next, the Experimental channel is a prerelease channel that tracks the master branch of the React repository. Unlike Next, Experimental releases include additional features and APIs that are not ready for wider release.
 
 Tout comme *Next*, le canal *Experimental* est un canal de pré-versions qui piste la branche `master` du dépôt React.  Mais contrairement à *Next*, les sorties sur *Experimental* comportent des fonctionnalités et API qui ne sont pas encore prêtes à être diffusées plus largement.
 
@@ -95,4 +106,4 @@ Si une fonctionnalité n’est pas documentée, elle peut toutefois être accomp
 
 Lorsque nous sommes prêts à annoncer de nouvelles expériences, nous en parlons sur le [blog React](/blog), mais ça ne veut pas dire que nous annonçons chaque expérience.
 
-Vous pouvez toujours vous référer à l’[historique](https://github.com/facebook/react/commits/master) de notre dépôt public sur GitHub pour une liste exhaustive des modifications.
+Vous pouvez toujours vous référer à l’[historique](https://github.com/facebook/react/commits/main) de notre dépôt public sur GitHub pour une liste exhaustive des modifications.

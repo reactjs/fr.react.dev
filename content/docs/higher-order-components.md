@@ -2,9 +2,15 @@
 id: higher-order-components
 title: Composants d’ordre supérieur
 permalink: docs/higher-order-components.html
-prev: web-components.html
-next: render-props.html
 ---
+
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> Higher-order components are not commonly used in modern React code.
+
+</div>
 
 Un composant d'ordre supérieur *(Higher-Order Component ou HOC, NdT)* est une technique avancée de React qui permet de réutiliser la logique de composants. Les HOC ne font pas partie de l'API de React à proprement parler, mais découlent de sa nature compositionnelle.
 
@@ -16,7 +22,7 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 Là où un composant transforme des props en interface utilisateur (UI), un composant d'ordre supérieur transforme un composant en un autre composant.
 
-Les HOC sont courants dans des bibliothèques tierces de React, comme [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) dans Redux et [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) dans Relay.
+Les HOC sont courants dans des bibliothèques tierces de React, comme [`connect`](https://react-redux.js.org/api/connect) dans Redux et [`createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer) dans Relay.
 
 Dans ce guide, nous verrons pourquoi les composants d'ordre supérieurs sont utiles, et comment créer le vôtre.
 
@@ -298,7 +304,7 @@ La fonction utilitaire `compose` est fournie par de nombreuses bibliothèques ti
 
 ## Convention : enrobez le `displayName` pour faciliter le débogage {#convention-wrap-the-display-name-for-easy-debugging}
 
-Tout comme n'importe quel autre composant, les composants conteneurs créés par des HOC apparaissent dans les [Outils de développement React](https://github.com/facebook/react-devtools). Pour faciliter votre débogage, donnez-leur un nom affichable qui indique qu'ils sont le résultat d'un HOC.
+Tout comme n'importe quel autre composant, les composants conteneurs créés par des HOC apparaissent dans les [Outils de développement React](https://github.com/facebook/react/tree/main/packages/react-devtools). Pour faciliter votre débogage, donnez-leur un nom affichable qui indique qu'ils sont le résultat d'un HOC.
 
 Le technique la plus répandue consiste à enrober le nom d'affichage du composant enrobé. Par exemple, si votre composant d'ordre supérieur s'appelle `withSubscription`, et que le nom d'affichage du composant enrobé est `CommentList`, utilisez le nom d'affichage `WithSubscription(CommentList)` :
 

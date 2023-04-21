@@ -18,7 +18,7 @@ const colors = {
   brand: '#61dafb', // electric blue
   brandLight: '#bbeffd',
   text: '#1a1a1a', // very dark grey / black substitute
-  subtle: '#6d6d6d', // light grey for text
+  subtle: '#6B6B6B', // light grey for text
   subtleOnDark: '#999',
   divider: '#ececec', // very light grey
   note: '#ffe564', // yellow
@@ -318,7 +318,6 @@ const sharedStyles = {
       },
 
       lineHeight: 1.2,
-      scrollMarginTop: 120,
 
       ':first-child': {
         '::before': {

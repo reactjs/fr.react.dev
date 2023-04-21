@@ -14,6 +14,21 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Common components (e.g. `<div>`)](https://react.dev/reference/react-dom/components/common)
+> - [`<input>`](https://react.dev/reference/react-dom/components/input)
+> - [`<option>`](https://react.dev/reference/react-dom/components/option)
+> - [`<progress>`](https://react.dev/reference/react-dom/components/progress)
+> - [`<select>`](https://react.dev/reference/react-dom/components/select)
+> - [`<textarea>`](https://react.dev/reference/react-dom/components/textarea)
+
+</div>
+
 React implémente un système de DOM indépendant des navigateurs pour des raisons de performance et de compatibilité entre navigateurs. Nous en avons profité pour arrondir les angles des implémentations du DOM des navigateurs.
 
 En React, toutes les propriétés et tous les attributs du DOM (y compris les gestionnaires d'événements) doivent être en *camelCase*. Par exemple, l'attribut HTML `tabindex` correspond à l'attribut `tabIndex` en React. Les attributs `aria-*` et `data-*` sont l’exception à la règle, et doivent être en minuscules. Par exemple, vous pouvez garder `aria-label` en tant que `aria-label`.
@@ -117,7 +132,7 @@ Normalement un avertissement apparaît lorsqu'un élément avec des enfants est 
 
 Si vous utilisez le rendu côté serveur de React, normalement un avertissement apparaît lorsque le serveur et le client produisent des contenus différents. Cependant, dans certains cas rares, il est très difficile—voire impossible—de garantir un contenu identique. Par exemple, les horodatages diffèrent généralement entre le serveur et le client.
 
-Si vous définissez `suppressHydrationWarning` à `true`, React ne vous avertira pas des différences dans les attributs et le contenu de cet élément. Ça ne fonctionne qu’à un niveau de profondeur, et c’est conçu comme une échappatoire. N'en abusez pas. Pour en apprendre davantage sur la phase d'hydratation, consultez la [`documentation de ReactDOM.hydrate()`](/docs/react-dom.html#hydrate).
+Si vous définissez `suppressHydrationWarning` à `true`, React ne vous avertira pas des différences dans les attributs et le contenu de cet élément. Ça ne fonctionne qu’à un niveau de profondeur, et c’est conçu comme une échappatoire. N'en abusez pas. Pour en apprendre davantage sur la phase d'hydratation, consultez la [`documentation de ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot).
 
 ### value {#value}
 
@@ -130,7 +145,7 @@ Depuis React 16, tous les attributs standards ou [personnalisés](/blog/2017/09/
 React a toujours fourni une API de gestion du DOM pensée pour JavaScript. Étant donné que les composants React acceptent autant les props personnalisées que celles liées au DOM, React utilise la convention `camelCase` tout comme les API DOM :
 
 ```js
-<div tabIndex="-1" />      // Tout comme l'API DOM node.tabIndex
+<div tabIndex={-1} />      // Tout comme l'API DOM node.tabIndex
 <div className="Button" /> // Tout comme l'API DOM node.className
 <input readOnly={true} />  // Tout comme l'API DOM node.readOnly
 ```
