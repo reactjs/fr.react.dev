@@ -19,11 +19,11 @@ title: <Fragment> (<>...</>)
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `<Fragment>` {/*fragment*/}
 
-Wrap elements in `<Fragment>` to group them together in situations where you need a single element. Grouping elements in `Fragment` has no effect on the resulting DOM; it is the same as if the elements were not grouped. The empty JSX tag `<></>` is shorthand for `<Fragment></Fragment>` in most cases.
+Englober des éléments dans un `<Fragment>` pour les grouper ensemble dans des situations ou vous avez besoin d'un seul élément. Grouper des éléments dans un `<Fragment>` n'a pas d'effet particulier sur le DOM ; c'est comme si les éléments n'étaient pas groupés. La plupart du temps, la balise vide en JSX `<></>` est utilisée afin de raccourcir l'écriture de `<Fragment></Fragment>`.
 
 #### Props {/*props*/}
 
