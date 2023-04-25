@@ -232,11 +232,11 @@ Lisez **[Choisir la structure de l'état](/learn/choosing-the-state-structure)**
 
 </LearnMore>
 
-## Partager les états entre les composants {/*sharing-state-between-components*/}
+## Partager l'état entre les composants {/*sharing-state-between-components*/}
 
-Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as "lifting state up", and it's one of the most common things you will do writing React code.
+Parfois, vous souhaitez que l'état de deux composants change toujours ensemble. Pour ce faire, il faut supprimer l'état des deux composants, le déplacer vers leur parent commun le plus proche, puis le leur transmettre par l'intermédiaire des *props*. C'est ce qu'on appelle "lever l'état", et c'est l'une des choses les plus courantes que vous ferez en écrivant du code React.
 
-In this example, only one panel should be active at a time. To achieve this, instead of keeping the active state inside each individual panel, the parent component holds the state and specifies the props for its children.
+In this example, only one panel should be active at a time. Pour ce faire, au lieu de conserver l'état actif à l'intérieur de chaque panneau, le composant parent conserve l'état et spécifie les props pour ses enfants.
 
 <Sandpack>
 
@@ -249,18 +249,18 @@ export default function Accordion() {
     <>
       <h2>Almaty, Kazakhstan</h2>
       <Panel
-        title="About"
+        title="A propos"
         isActive={activeIndex === 0}
         onShow={() => setActiveIndex(0)}
       >
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+        Avec une population d'environ 2 millions d'habitants, Almaty est la plus grande ville du Kazakhstan. De 1929 à 1997, elle en a été la capitale.
       </Panel>
       <Panel
-        title="Etymology"
+        title="Etymologie"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+        Le nom vient de <span lang="kk-KZ">алма</span>, le mot kazakh pour "pomme" et est souvent traduit comme "plein de pommes". En fait, la région d'Almaty est considérée comme le berceau ancestral de la pomme, et le <i lang="la">Malus sieversii</i> sauvage est considéré comme un candidat probable pour être l'ancêtre de la pomme domestique moderne.
       </Panel>
     </>
   );
@@ -279,7 +279,7 @@ function Panel({
         <p>{children}</p>
       ) : (
         <button onClick={onShow}>
-          Show
+          Afficher
         </button>
       )}
     </section>
@@ -299,15 +299,15 @@ h3, p { margin: 5px 0px; }
 
 <LearnMore path="/learn/sharing-state-between-components">
 
-Read **[Sharing State Between Components](/learn/sharing-state-between-components)** to learn how to lift state up and keep components in sync.
+Lisez **[Partager l'état entre les composants](/learn/sharing-state-between-components)** pour apprendre comment lever l'état et garder les composants synchronisés.
 
 </LearnMore>
 
-## Preserving and resetting state {/*preserving-and-resetting-state*/}
+## Préserver et réinitialiser l'état {/*preserving-and-resetting-state*/}
 
-When you re-render a component, React needs to decide which parts of the tree to keep (and update), and which parts to discard or re-create from scratch. In most cases, React's automatic behavior works well enough. By default, React preserves the parts of the tree that "match up" with the previously rendered component tree.
+Lorsque vous rafraichissez un composant, React doit décider quelles parties de l'arbre doivent être conservées (et mises à jour), et quelles parties doivent être supprimées ou recréées à partir de zéro. Dans la plupart des cas, le comportement automatique de React fonctionne assez bien. Par défaut, React préserve les parties de l'arbre qui "correspondent" à l'arbre des composants affichés précédemment.
 
-However, sometimes this is not what you want. In this chat app, typing a message and then switching the recipient does not reset the input. This can make the user accidentally send a message to the wrong person:
+Cependant, il arrive que ce ne soit pas ce que vous souhaitez. Dans cette application de chat, le fait de taper un message puis de changer de destinataire ne réinitialise pas la saisie. L'utilisateur peut ainsi envoyer accidentellement un message à la mauvaise personne :
 
 <Sandpack>
 
@@ -331,7 +331,7 @@ export default function Messenger() {
 }
 
 const contacts = [
-  { name: 'Taylor', email: 'taylor@mail.com' },
+  { name: 'Thierry', email: 'thierry@mail.com' },
   { name: 'Alice', email: 'alice@mail.com' },
   { name: 'Bob', email: 'bob@mail.com' }
 ];
@@ -370,11 +370,11 @@ export default function Chat({ contact }) {
     <section className="chat">
       <textarea
         value={text}
-        placeholder={'Chat to ' + contact.name}
+        placeholder={'Ecrire à ' + contact.name}
         onChange={e => setText(e.target.value)}
       />
       <br />
-      <button>Send to {contact.email}</button>
+      <button>Envoyer à {contact.email}</button>
     </section>
   );
 }
@@ -404,6 +404,8 @@ textarea {
 
 React lets you override the default behavior, and *force* a component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients resets the input field--even though you render the same component.
 
+React vous permet d'outrepasser le comportement par défaut, et de *forcer* un composant à réinitialiser son état en lui passant une `key` différente, comme `<Chat key={email} />`. Cela indique à React que si le destinataire est différent, il doit être considéré comme un composant `Chat` *différent* qui doit être recréé à partir de zéro avec les nouvelles données (et l'interface utilisateur comme les entrées). Maintenant, passer d'un destinataire à l'autre réinitialise le champ de saisie, même si vous affichez le même composant.
+
 <Sandpack>
 
 ```js App.js
@@ -426,7 +428,7 @@ export default function Messenger() {
 }
 
 const contacts = [
-  { name: 'Taylor', email: 'taylor@mail.com' },
+  { name: 'Thierry', email: 'thierry@mail.com' },
   { name: 'Alice', email: 'alice@mail.com' },
   { name: 'Bob', email: 'bob@mail.com' }
 ];
@@ -465,11 +467,11 @@ export default function Chat({ contact }) {
     <section className="chat">
       <textarea
         value={text}
-        placeholder={'Chat to ' + contact.name}
+        placeholder={'Ecrire à ' + contact.name}
         onChange={e => setText(e.target.value)}
       />
       <br />
-      <button>Send to {contact.email}</button>
+      <button>Envoyer à {contact.email}</button>
     </section>
   );
 }
@@ -499,7 +501,7 @@ textarea {
 
 <LearnMore path="/learn/preserving-and-resetting-state">
 
-Read **[Preserving and Resetting State](/learn/preserving-and-resetting-state)** to learn the lifetime of state and how to control it.
+Lisez **[Préserver et réinitialiser l'état](/learn/preserving-and-resetting-state)** pour apprendre la durée de vie d'un état et comment la contrôler.
 
 </LearnMore>
 
