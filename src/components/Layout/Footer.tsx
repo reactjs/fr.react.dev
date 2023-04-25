@@ -286,7 +286,7 @@ export function Footer() {
         </div>
         <div className="flex flex-col">
           <FooterLink href="/learn" isHeader={true}>
-            Learn React
+            Apprendre React
           </FooterLink>
           <FooterLink href="/learn/">Quick Start</FooterLink>
           <FooterLink href="/learn/installation">Installation</FooterLink>
@@ -301,14 +301,14 @@ export function Footer() {
         </div>
         <div className="flex flex-col">
           <FooterLink href="/reference/react" isHeader={true}>
-            API Reference
+            Référence de l’API
           </FooterLink>
           <FooterLink href="/reference/react">React APIs</FooterLink>
           <FooterLink href="/reference/react-dom">React DOM APIs</FooterLink>
         </div>
         <div className="md:col-start-2 xl:col-start-4 flex flex-col">
           <FooterLink href="/community" isHeader={true}>
-            Community
+            Communauté
           </FooterLink>
           <FooterLink href="https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md">
             Code of Conduct
@@ -322,7 +322,7 @@ export function Footer() {
           </FooterLink>
         </div>
         <div className="flex flex-col">
-          <FooterLink isHeader={true}>More</FooterLink>
+          <FooterLink isHeader={true}>Plus</FooterLink>
           <FooterLink href="/blog">Blog</FooterLink>
           <FooterLink href="https://reactnative.dev/">React Native</FooterLink>
           <FooterLink href="https://opensource.facebook.com/legal/privacy">
