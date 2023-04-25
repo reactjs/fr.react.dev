@@ -451,7 +451,7 @@ export default function MyApp() {
 }
 
 function MyButton() {
-  // …on a bougé ce code à partir d’ici…
+  // ... on a bougé ce code à partir d’ici ...
 }
 
 ```
