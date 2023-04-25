@@ -121,24 +121,24 @@
       ]
     },
     {
-      "title": "Managing State",
+      "title": "Gérer les états",
       "path": "/learn/managing-state",
       "tags": ["intermediate"],
       "routes": [
         {
-          "title": "Reacting to Input with State",
+          "title": "Réagir à une entrée avec un état",
           "path": "/learn/reacting-to-input-with-state"
         },
         {
-          "title": "Choosing the State Structure",
+          "title": "Choisir la structure de l'état",
           "path": "/learn/choosing-the-state-structure"
         },
         {
-          "title": "Sharing State Between Components",
+          "title": "Partager l'état entre les composants",
           "path": "/learn/sharing-state-between-components"
         },
         {
-          "title": "Preserving and Resetting State",
+          "title": "Préserver et réinitialiser l'état",
           "path": "/learn/preserving-and-resetting-state"
         },
         {
