@@ -3,31 +3,31 @@
  */
 
 import {
-  createContext,
-  memo,
-  useState,
-  useContext,
-  useId,
   Fragment,
   Suspense,
+  createContext,
+  memo,
+  useContext,
   useEffect,
-  useRef,
-  useTransition,
+  useId,
   useReducer,
+  useRef,
+  useState,
+  useTransition,
 } from 'react';
-import cn from 'classnames';
-import NextLink from 'next/link';
 
-import ButtonLink from '../ButtonLink';
-import {IconRestart} from '../Icon/IconRestart';
 import BlogCard from 'components/MDX/BlogCard';
-import {IconChevron} from 'components/Icon/IconChevron';
-import {IconSearch} from 'components/Icon/IconSearch';
-import {Logo} from 'components/Logo';
-import Link from 'components/MDX/Link';
+import ButtonLink from '../ButtonLink';
 import CodeBlock from 'components/MDX/CodeBlock';
-import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import {ExternalLink} from 'components/ExternalLink';
+import {IconChevron} from 'components/Icon/IconChevron';
+import {IconNavArrow} from 'components/Icon/IconNavArrow';
+import {IconRestart} from '../Icon/IconRestart';
+import {IconSearch} from 'components/Icon/IconSearch';
+import Link from 'components/MDX/Link';
+import {Logo} from 'components/Logo';
+import NextLink from 'next/link';
+import cn from 'classnames';
 import sidebarBlog from '../../sidebarBlog.json';
 
 function Section({children, background = null}) {
@@ -131,7 +131,7 @@ export function HomeContent() {
             React
           </h1>
           <p className="text-4xl font-display max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
-            The library for web and native user interfaces
+            La bibliothèque pour des interfaces utilisateurs web et natives
           </p>
           <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
             <ButtonLink
@@ -139,29 +139,31 @@ export function HomeContent() {
               type="primary"
               size="lg"
               className="w-full sm:w-auto justify-center"
-              label="Learn React">
-              Learn React
+              label="Apprenez React">
+              Apprenez React
             </ButtonLink>
             <ButtonLink
               href={'/reference/react'}
               type="secondary"
               size="lg"
               className="w-full sm:w-auto justify-center"
-              label="API Reference">
-              API Reference
+              label="Référence de l’API">
+              Référence de l’API
             </ButtonLink>
           </div>
         </div>
 
         <Section background="left-card">
           <Center>
-            <Header>Create user interfaces from components</Header>
+            <Header>
+              Créez des interfaces utilisateurs à l’aide de composants
+            </Header>
             <Para>
-              React lets you build user interfaces out of individual pieces
-              called components. Create your own React components like{' '}
-              <Code>Thumbnail</Code>, <Code>LikeButton</Code>, and{' '}
-              <Code>Video</Code>. Then combine them into entire screens, pages,
-              and apps.
+              React vous permet de construire des interfaces utilisateurs à
+              partir de briques individuelles appelées composants. Créez vos
+              propres composants tels que <Code>Thumbnail</Code>,{' '}
+              <Code>LikeButton</Code>, et <Code>Video</Code>. Puis combinez-les
+              pour produire des écrans, pages et applis entières.
             </Para>
           </Center>
           <FullBleed>
@@ -169,10 +171,11 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              Whether you work on your own or with thousands of other
-              developers, using React feels the same. It is designed to let you
-              seamlessly combine components written by independent people,
-              teams, and organizations.
+              Que vous travailliez dans votre coin ou avec des milliers d’autres
+              développeur·se·s, l’utilisation de React est la même. React est
+              conçu pour vous permettre de combiner sans effort des composants
+              produits par des acteurs distincts, qu’il s’agisse de personnes,
+              d’équipes ou d’organisations entières.
             </Para>
           </Center>
         </Section>
@@ -922,8 +925,8 @@ function Example1() {
           <Video
             video={{
               id: 'ex1-0',
-              title: 'My video',
-              description: 'Video description',
+              title: 'Ma vidéo',
+              description: 'Description de la vidéo',
               image: 'blue',
               url: null,
             }}
