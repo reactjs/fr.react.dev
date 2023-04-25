@@ -27,7 +27,7 @@ Englober des éléments dans un `<Fragment>` pour les grouper ensemble dans des 
 
 #### Props {/*props*/}
 
-- **optional** `key`: Fragments declared with the explicit `<Fragment>` syntax may have [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+- **optionnel** `key`: Les Fragments déclarés explicitement avec la syntaxe `<Fragment>` peuvent contenir des [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
 
 #### Caveats {/*caveats*/}
 
