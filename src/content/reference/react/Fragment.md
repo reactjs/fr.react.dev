@@ -4,7 +4,7 @@ title: <Fragment> (<>...</>)
 
 <Intro>
 
-`<Fragment>`, often used via `<>...</>` syntax, lets you group elements without a wrapper node.
+`<Fragment>`, souvent utilisé avec la syntaxe `<>...</>`, vous permet de grouper des éléments sans balise englobante.
 
 ```js
 <>
