@@ -10,7 +10,53 @@ Ce document vous fournit le détail de leurs travaux, afin de les remercier plus
 
 Il est assisté pour ce dernier point par des revues en amont de plusieurs **mainteneurs** pour le français, notamment Jean Burellier, Jérémie Patonnier et Romain Rukse.
 
-## Traduction
+## Traduction (docs 2023+)
+
+Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis à eux ! 🙏🏻**
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom (lien GitHub)</th>
+      <th>Twitter / Mastodon</th>
+      <th>Traductions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/tdd">Christophe Porteneuve</a></td>
+      <td>@porteneuve / https://piaille.fr/@porteneuve</td>
+      <td>
+        <ul>
+          <li><a href="https://fr.react.dev">Page d'accueil</a> (<em>above-the-fold</em> pour le moment)</li>
+          <li><a href="https://fr.react.dev/learn">Démarrage rapide</a></li>
+          <li><a href="https://fr.react.dev/learn/synchronizing-with-effects">Synchronisation grâce aux effets</a> (à venir)</li>
+          <li><a href="https://fr.react.dev/learn/you-might-not-need-an-effect">Vous n’avez pas forcément besoin d’un effet</a> (à venir)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/sheplu">Jean Burellier</a></td>
+      <td><a href="https://twitter.com/shepsheplu">@shepsheplu</a></td>
+      <td>
+        <ul>
+          <li><a href="https://fr.react.dev/learn/thinking-in-react">Penser en React</a> (à venir)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/Nab69">Romain Rukse</a></td>
+      <td></td>
+      <td>
+        <ul>
+          <li><a href="https://fr.react.dev/learn/tutorial-tic-tac-toe">Tutoriel : jeu de morpion</a> (à venir)</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Traduction (docs historiques)
 
 Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis à eux ! 🙏🏻**
 
