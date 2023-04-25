@@ -1,30 +1,32 @@
 ---
-title: Managing State
+title: Gérer les états
 ---
 
 <Intro>
 
-As your application grows, it helps to be more intentional about how your state is organized and how the data flows between your components. Redundant or duplicate state is a common source of bugs. In this chapter, you'll learn how to structure your state well, how to keep your state update logic maintainable, and how to share state between distant components.
+Au fur et à mesure que votre application se développe, il est utile d'être plus attentif à la façon dont votre état est organisé et à la façon dont les données circulent entre vos composants. Les états redondants ou dupliqués sont une source fréquente de bugs. Dans ce chapitre, vous apprendrez à bien structurer votre état, à maintenir votre logique de mise à jour de l'état et à partager l'état entre des composants distants. 
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to think about UI changes as state changes](/learn/reacting-to-input-with-state)
-* [How to structure state well](/learn/choosing-the-state-structure)
-* [How to "lift state up" to share it between components](/learn/sharing-state-between-components)
-* [How to control whether the state gets preserved or reset](/learn/preserving-and-resetting-state)
-* [How to consolidate complex state logic in a function](/learn/extracting-state-logic-into-a-reducer)
-* [How to pass information without "prop drilling"](/learn/passing-data-deeply-with-context)
-* [How to scale state management as your app grows](/learn/scaling-up-with-reducer-and-context)
+* [Comment considérer les changements d'interface comme des changements d'état ?](/learn/reacting-to-input-with-state)
+* [Comment bien structurer ses états](/learn/choosing-the-state-structure)
+* [Comment "soulever l'état" pour le partager entre les composants ?](/learn/sharing-state-between-components)
+* [Comment contrôler si l'état est préservé ou réinitialisé ?](/learn/preserving-and-resetting-state)
+* [Comment consolider une logique d'état complexe dans une fonction ?](/learn/extracting-state-logic-into-a-reducer)
+* [Comment transmettre l'information sans "perçage de prop" ?](/learn/passing-data-deeply-with-context)
+* [Comment adapter la gestion des états à la croissance de votre application](/learn/scaling-up-with-reducer-and-context)
 
 </YouWillLearn>
 
-## Reacting to input with state {/*reacting-to-input-with-state*/}
+## Réagir à une entrée avec un état {/*reacting-to-input-with-state*/}
 
-With React, you won't modify the UI from code directly. For example, you won't write commands like "disable the button", "enable the button", "show the success message", etc. Instead, you will describe the UI you want to see for the different visual states of your component ("initial state", "typing state", "success state"), and then trigger the state changes in response to user input. This is similar to how designers think about UI.
+Avec React, vous ne modifierez pas l'interface utilisateur directement à partir du code. Par exemple, vous n'écrirez pas de commandes telles que "désactiver le bouton", "activer le bouton", "afficher le message de réussite", etc. 
+Au lieu de cela, vous décrirez l'interface utilisateur que vous souhaitez voir apparaître pour les différents états visuels de votre composant ("état initial", "état d'écriture", "état de réussite"), puis vous déclencherez les changements d'état en réponse à l'entrée de l'utilisateur. 
+Cela ressemble à la façon dont les concepteurs réfléchissent à l'interface utilisateur.
 
-Here is a quiz form built using React. Note how it uses the `status` state variable to determine whether to enable or disable the submit button, and whether to show the success message instead.
+Voici un formulaire de quiz construit avec React. Notez comment il utilise la variable d'état `status` pour déterminer s'il faut activer ou désactiver le bouton *submit*, et s'il faut afficher le message de réussite à la place.
 
 <Sandpack>
 
@@ -37,7 +39,7 @@ export default function Form() {
   const [status, setStatus] = useState('typing');
 
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>C'est exact</h1>
   }
 
   async function handleSubmit(e) {
@@ -58,9 +60,9 @@ export default function Form() {
 
   return (
     <>
-      <h2>City quiz</h2>
+      <h2>Quiz de villes</h2>
       <p>
-        In which city is there a billboard that turns air into drinkable water?
+        Dans quelle ville trouve-t-on un panneau d'affichage qui transforme l'air en eau potable ?
       </p>
       <form onSubmit={handleSubmit}>
         <textarea
@@ -86,12 +88,12 @@ export default function Form() {
 }
 
 function submitForm(answer) {
-  // Pretend it's hitting the network.
+  // Imaginez que c'est envoyé par réseau
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let shouldError = answer.toLowerCase() !== 'lima'
       if (shouldError) {
-        reject(new Error('Good guess but a wrong answer. Try again!'));
+        reject(new Error('Bonne idée, mais mauvaise réponse. Réessayez !'));
       } else {
         resolve();
       }
@@ -108,15 +110,16 @@ function submitForm(answer) {
 
 <LearnMore path="/learn/reacting-to-input-with-state">
 
-Read **[Reacting to Input with State](/learn/reacting-to-input-with-state)** to learn how to approach interactions with a state-driven mindset.
+Lisez **[Réagir à une entrée avec un état](/learn/reacting-to-input-with-state)** pour apprendre à aborder les interactions avec un état d'esprit orienté vers les états.
 
 </LearnMore>
 
-## Choosing the state structure {/*choosing-the-state-structure*/}
+## Choisir la structure de l'état {/*choosing-the-state-structure*/}
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. The most important principle is that state shouldn't contain redundant or duplicated information. If there's unnecessary state, it's easy to forget to update it, and introduce bugs!
+Une bonne structuration de l'état peut faire la différence entre un composant agréable à modifier et à déboguer et un composant qui est une source constante de bugs. Le principe le plus important est que l'état ne doit pas contenir d'informations redondantes ou dupliquées. 
+S'il y a des états inutiles, il est facile d'oublier de les mettre à jour et d'introduire des bugs !
 
-For example, this form has a **redundant** `fullName` state variable:
+Par exemple, ce formulaire a une variable d'état `fullName` **redondante** :
 
 <Sandpack>
 
@@ -140,23 +143,23 @@ export default function Form() {
 
   return (
     <>
-      <h2>Let’s check you in</h2>
+      <h2>Vérifions votre identité :</h2>
       <label>
-        First name:{' '}
+        Prénom :{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Nom :{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Votre billet sera délivré à : <b>{fullName}</b>
       </p>
     </>
   );
@@ -169,7 +172,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-You can remove it and simplify the code by calculating `fullName` while the component is rendering:
+Vous pouvez le retirer et simplifier le code en évaluant `fullName` pendant que le composant s'affiche :
 
 <Sandpack>
 
@@ -192,23 +195,23 @@ export default function Form() {
 
   return (
     <>
-      <h2>Let’s check you in</h2>
+      <h2>Vérifions votre identité :</h2>
       <label>
-        First name:{' '}
+        Prénom :{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Nom :{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Votre billet sera délivré à : <b>{fullName}</b>
       </p>
     </>
   );
@@ -221,15 +224,15 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-This might seem like a small change, but many bugs in React apps are fixed this way.
+Cela peut sembler être un petit changement, mais de nombreux bugs dans les applications React sont corrigés de cette façon.
 
 <LearnMore path="/learn/choosing-the-state-structure">
 
-Read **[Choosing the State Structure](/learn/choosing-the-state-structure)** to learn how to design the state shape to avoid bugs.
+Lisez **[Choisir la structure de l'état](/learn/choosing-the-state-structure)** pour apprendre à concevoir la forme de l'état afin d'éviter les bugs.
 
 </LearnMore>
 
-## Sharing state between components {/*sharing-state-between-components*/}
+## Partager les états entre les composants {/*sharing-state-between-components*/}
 
 Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as "lifting state up", and it's one of the most common things you will do writing React code.
 
