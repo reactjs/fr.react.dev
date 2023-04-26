@@ -4,7 +4,7 @@ title: useId
 
 <Intro>
 
-`useId` is a React Hook for generating unique IDs that can be passed to accessibility attributes.
+`useId` est un React Hook permettant de générer des identifiants uniques qui peuvent être transmis aux attributs d'accessibilité.
 
 ```js
 const id = useId()
@@ -16,11 +16,11 @@ const id = useId()
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `useId()` {/*useid*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+Appelez `useId` au niveau supérieur de votre composant pour générer un identifiant unique :
 
 ```js
 import { useId } from 'react';
@@ -30,17 +30,17 @@ function PasswordField() {
   // ...
 ```
 
-[See more examples below.](#usage)
+[Voir d'autres exemples ci-dessous.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Arguments {/*parameters*/}
 
-`useId` does not take any parameters.
+`useId` n'accepte aucun argument.
 
-#### Returns {/*returns*/}
+#### Valeur renvoyer {/*returns*/}
 
-`useId` returns a unique ID string associated with this particular `useId` call in this particular component.
+`useId` renvoie un identifiant unique en chaîne de charactères associée à cet appel `useId` particulier le composant en question.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
 * `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
 
