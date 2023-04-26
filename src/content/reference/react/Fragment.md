@@ -158,9 +158,9 @@ function DateRangePicker({ start, end }) {
 
 ---
 
-### Rendering a list of Fragments {/*rendering-a-list-of-fragments*/}
+### Rendre une liste de Fragments {/*rendering-a-list-of-fragments*/}
 
-Here's a situation where you need to write `Fragment` explicitly instead of using the `<></>` syntax. When you [render multiple elements in a loop](/learn/rendering-lists), you need to assign a `key` to each element. If the elements within the loop are Fragments, you need to use the normal JSX element syntax in order to provide the `key` attribute:
+Voici une situation ou vous avez besoin d'écrire `Fragment` explicitement plutôt que d'utiliser la syntaxe `<></>`. Quand vous [rendez plusieurs éléments dans une boucle](/learn/rendering-lists), vous avez besoin d'assigner une `key` à chaque élément. Si les éléments compris dans une boucle sont des Fragments, vous devez utiliser la syntaxe JSX classique afin de fournir l'attribut `key` :
 
 ```js {3,6}
 function Blog() {
@@ -173,6 +173,7 @@ function Blog() {
 }
 ```
 
+Vous pouvez inspecter le DOM pour vérifier qu'il n'y a pas de balise englobante autour des enfants du Fragment :
 You can inspect the DOM to verify that there are no wrapper elements around the Fragment children:
 
 <Sandpack>
@@ -181,8 +182,8 @@ You can inspect the DOM to verify that there are no wrapper elements around the 
 import { Fragment } from 'react';
 
 const posts = [
-  { id: 1, title: 'An update', body: "It's been a while since I posted..." },
-  { id: 2, title: 'My new blog', body: 'I am starting a new blog!' }
+  { id: 1, title: 'Une mise à jour', body: "Ça fait un moment que je n'ai pas posté..." },
+  { id: 2, title: 'Mon nouveau blog', body: 'Je démarre un nouveau blog !' }
 ];
 
 export default function Blog() {
