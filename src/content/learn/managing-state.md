@@ -505,9 +505,9 @@ Lisez **[Préserver et réinitialiser l'état](/learn/preserving-and-resetting-s
 
 </LearnMore>
 
-## Extracting state logic into a reducer {/*extracting-state-logic-into-a-reducer*/}
+## Extraire la logique d'état avec un réducteur {/*extracting-state-logic-into-a-reducer*/}
 
-Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer". Your event handlers become concise because they only specify the user "actions". At the bottom of the file, the reducer function specifies how the state should update in response to each action!
+Les composants comportant de nombreuses mises à jour d'état réparties entre de nombreux gestionnaires d'événements peuvent devenir encombrants. Dans ce cas, vous pouvez consolider toute la logique de mise à jour de l'état en dehors de votre composant dans une seule fonction, appelée "reducer". Vos gestionnaires d'événements deviennent concis car ils ne spécifient que les "actions" de l'utilisateur. Au bas du fichier, la fonction reducer spécifie comment l'état doit être mis à jour en réponse à chaque action !
 
 <Sandpack>
 
@@ -546,7 +546,7 @@ export default function TaskApp() {
 
   return (
     <>
-      <h1>Prague itinerary</h1>
+      <h1>Itinéraire à Prague</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -581,16 +581,16 @@ function tasksReducer(tasks, action) {
       return tasks.filter(t => t.id !== action.id);
     }
     default: {
-      throw Error('Unknown action: ' + action.type);
+      throw Error('Action inconnue : ' + action.type);
     }
   }
 }
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Visit Kafka Museum', done: true },
-  { id: 1, text: 'Watch a puppet show', done: false },
-  { id: 2, text: 'Lennon Wall pic', done: false }
+  { id: 0, text: 'Visiter le musée Kafka', done: true },
+  { id: 1, text: 'Spectacle de marionnettes', done: false },
+  { id: 2, text: 'Photo du mur Lennon', done: false }
 ];
 ```
 
@@ -602,14 +602,14 @@ export default function AddTask({ onAddTask }) {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Ajouter tâche"
         value={text}
         onChange={e => setText(e.target.value)}
       />
       <button onClick={() => {
         setText('');
         onAddTask(text);
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   )
 }
@@ -653,7 +653,7 @@ function Task({ task, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Valider
         </button>
       </>
     );
@@ -662,7 +662,7 @@ function Task({ task, onChange, onDelete }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Editer
         </button>
       </>
     );
@@ -681,7 +681,7 @@ function Task({ task, onChange, onDelete }) {
       />
       {taskContent}
       <button onClick={() => onDelete(task.id)}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
@@ -698,15 +698,16 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/extracting-state-logic-into-a-reducer">
 
-Read **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-into-a-reducer)** to learn how to consolidate logic in the reducer function.
+Lisez **[Extraire la logique d'état avec un réducteur](/learn/extracting-state-logic-into-a-reducer)** pour apprendre à consolider la logique dans la fonction "reducer".
 
 </LearnMore>
 
-## Passing data deeply with context {/*passing-data-deeply-with-context*/}
+## Transmettre des données en profondeur avec le contexte {/*passing-data-deeply-with-context*/}
 
-Usually, you will pass information from a parent component to a child component via props. But passing props can become inconvenient if you need to pass some prop through many components, or if many components need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep it is—without passing it explicitly through props.
+Habituellement, vous transmettez des informations d'un composant parent à un composant enfant par l'intermédiaire des props. Mais le passage des props peut s'avérer gênant si vous devez faire passer une information à travers plusieurs composants, ou si plusieurs composants ont besoin de la même information. 
+Le contexte permet au composant parent de rendre certaines informations disponibles à n'importe quel composant de l'arbre situé en dessous de lui, quelle que soit sa profondeur, sans avoir à les transmettre explicitement par le biais de props.
 
-Here, the `Heading` component determines its heading level by "asking" the closest `Section` for its level. Each `Section` tracks its own level by asking the parent `Section` and adding one to it. Every `Section` provides information to all components below it without passing props--it does that through context.
+Ici, le composant `Heading` détermine son niveau d'en-tête en "demandant" son niveau à la `Section` la plus proche. Chaque `Section` suit son propre niveau en demandant à la `Section` parente et en lui en ajoutant un. Chaque `Section` fournit des informations à tous les composants situés en dessous d'elle sans passer de props - elle le fait par le biais du contexte.
 
 <Sandpack>
 
@@ -717,19 +718,19 @@ import Section from './Section.js';
 export default function Page() {
   return (
     <Section>
-      <Heading>Title</Heading>
+      <Heading>Titre</Heading>
       <Section>
-        <Heading>Heading</Heading>
-        <Heading>Heading</Heading>
-        <Heading>Heading</Heading>
+        <Heading>En-tête</Heading>
+        <Heading>En-tête</Heading>
+        <Heading>En-tête</Heading>
         <Section>
-          <Heading>Sub-heading</Heading>
-          <Heading>Sub-heading</Heading>
-          <Heading>Sub-heading</Heading>
+          <Heading>Sous-en-tête</Heading>
+          <Heading>Sous-en-tête</Heading>
+          <Heading>Sous-en-tête</Heading>
           <Section>
-            <Heading>Sub-sub-heading</Heading>
-            <Heading>Sub-sub-heading</Heading>
-            <Heading>Sub-sub-heading</Heading>
+            <Heading>Sous-sous-en-tête</Heading>
+            <Heading>Sous-sous-en-tête</Heading>
+            <Heading>Sous-sous-en-tête</Heading>
           </Section>
         </Section>
       </Section>
@@ -762,7 +763,7 @@ export default function Heading({ children }) {
   const level = useContext(LevelContext);
   switch (level) {
     case 0:
-      throw Error('Heading must be inside a Section!');
+      throw Error("Une en-tête doit être à l'intérieur d'une section !");
     case 1:
       return <h1>{children}</h1>;
     case 2:
@@ -776,7 +777,7 @@ export default function Heading({ children }) {
     case 6:
       return <h6>{children}</h6>;
     default:
-      throw Error('Unknown level: ' + level);
+      throw Error('Niveau inconnu: ' + level);
   }
 }
 ```
@@ -800,7 +801,7 @@ export const LevelContext = createContext(0);
 
 <LearnMore path="/learn/passing-data-deeply-with-context">
 
-Read **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)** to learn about using context as an alternative to passing props.
+Lisez **[Transmettre des données en profondeur avec le contexte](/learn/passing-data-deeply-with-context)** pour apprendre à utiliser le contexte comme une alternative aux props.
 
 </LearnMore>
 
