@@ -94,9 +94,9 @@ function PostBody({ body }) {
 
 <DeepDive>
 
-#### How to write a Fragment without the special syntax? {/*how-to-write-a-fragment-without-the-special-syntax*/}
+#### Comment utiliser un Fragment sans la syntaxe spéciale ? {/*how-to-write-a-fragment-without-the-special-syntax*/}
 
-The example above is equivalent to importing `Fragment` from React:
+L'exemple ci-dessus est equivalent à importer `Fragment` depuis React :
 
 ```js {1,5,8}
 import { Fragment } from 'react';
@@ -111,7 +111,7 @@ function Post() {
 }
 ```
 
-Usually you won't need this unless you need to [pass a `key` to your `Fragment`.](#rendering-a-list-of-fragments)
+Normalement vous n'aurez pas besoin d'utiliser ça à moins d'avoir besoin de [donner des `key` à votre `Fragment`.](#rendering-a-list-of-fragments)
 
 </DeepDive>
 
