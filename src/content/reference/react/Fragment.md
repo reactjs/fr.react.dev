@@ -117,9 +117,9 @@ Normalement vous n'aurez pas besoin d'utiliser ça à moins d'avoir besoin de [d
 
 ---
 
-### Assigning multiple elements to a variable {/*assigning-multiple-elements-to-a-variable*/}
+### Initialiser plusieurs éléments à une variable {/*assigning-multiple-elements-to-a-variable*/}
 
-Like any other element, you can assign Fragment elements to variables, pass them as props, and so on:
+Comme pour tous les autres éléments, vous pouvez initialiser un Fragment à des variables, les passer en tant que props, etc :
 
 ```js
 function CloseDialog() {
@@ -131,7 +131,7 @@ function CloseDialog() {
   );
   return (
     <AlertDialog buttons={buttons}>
-      Are you sure you want to leave this page?
+      Êtes vous sûr de vouloir quittez cette page ?
     </AlertDialog>
   );
 }
