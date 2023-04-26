@@ -7,23 +7,23 @@ import type {RouteTag} from './Layout/getRouteMeta';
 
 const variantMap = {
   foundation: {
-    name: 'Foundation',
+    name: 'Fondamentaux',
     classes: 'bg-yellow-50 text-white',
   },
   intermediate: {
-    name: 'Intermediate',
+    name: 'Intermédiaire',
     classes: 'bg-purple-40 text-white',
   },
   advanced: {
-    name: 'Advanced',
+    name: 'Avancé',
     classes: 'bg-green-40 text-white',
   },
   experimental: {
-    name: 'Experimental',
+    name: 'Expérimental',
     classes: 'bg-ui-orange text-white',
   },
   deprecated: {
-    name: 'Deprecated',
+    name: 'Déprécié',
     classes: 'bg-red-40 text-white',
   },
 };

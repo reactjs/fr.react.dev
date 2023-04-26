@@ -50,7 +50,7 @@ export function Challenge({
           className="text-xl text-primary dark:text-primary-dark mb-2 mt-0 font-medium"
           id={currentChallenge.id}>
           <div className="font-bold block md:inline">
-            {isRecipes ? 'Example' : 'Challenge'} {currentChallenge.order} of{' '}
+            {isRecipes ? 'Exemple' : 'Défi'} {currentChallenge.order} sur{' '}
             {totalChallenges}
             <span className="text-primary dark:text-primary-dark">: </span>
           </div>
@@ -63,14 +63,14 @@ export function Challenge({
           <div>
             <Button className="mr-2" onClick={toggleHint} active={showHint}>
               <IconHint className="mr-1.5" />{' '}
-              {showHint ? 'Hide hint' : 'Show hint'}
+              {showHint ? 'Masquer l’indice' : 'Afficher l’indice'}
             </Button>
             <Button
               className="mr-2"
               onClick={toggleSolution}
               active={showSolution}>
               <IconSolution className="mr-1.5" />{' '}
-              {showSolution ? 'Hide solution' : 'Show solution'}
+              {showSolution ? 'Masquer la solution' : 'Afficher la solution'}
             </Button>
           </div>
         ) : (
@@ -80,7 +80,7 @@ export function Challenge({
               onClick={toggleSolution}
               active={showSolution}>
               <IconSolution className="mr-1.5" />{' '}
-              {showSolution ? 'Hide solution' : 'Show solution'}
+              {showSolution ? 'Masquer la solution' : 'Afficher la solution'}
             </Button>
           )
         )}
@@ -94,7 +94,7 @@ export function Challenge({
             )}
             onClick={handleClickNextChallenge}
             active>
-            Next {isRecipes ? 'Example' : 'Challenge'}
+            Prochain {isRecipes ? 'exemple' : 'défi'}
             <IconArrowSmall displayDirection="right" className="block ml-1.5" />
           </Button>
         )}
@@ -109,7 +109,7 @@ export function Challenge({
           {currentChallenge.solution}
           <div className="flex justify-between items-center mt-4">
             <Button onClick={() => setShowSolution(false)}>
-              Close solution
+              Fermer la solution
             </Button>
             {hasNextChallenge && (
               <Button
@@ -118,7 +118,7 @@ export function Challenge({
                 )}
                 onClick={handleClickNextChallenge}
                 active>
-                Next Challenge
+                Prochain défi
                 <IconArrowSmall
                   displayDirection="right"
                   className="block ml-1.5"
