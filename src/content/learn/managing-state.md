@@ -403,8 +403,6 @@ textarea {
 
 </Sandpack>
 
-React lets you override the default behavior, and *force* a component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients resets the input field--even though you render the same component.
-
 React vous permet d'outrepasser le comportement par défaut, et de *forcer* un composant à réinitialiser son état en lui passant une `key` différente, comme `<Chat key={email} />`. Cela indique à React que si le destinataire est différent, il doit être considéré comme un composant `Chat` *différent* qui doit être recréé à partir de zéro avec les nouvelles données (et l'interface utilisateur comme les entrées). Maintenant, passer d'un destinataire à l'autre réinitialise le champ de saisie, même si vous affichez le même composant.
 
 <Sandpack>
