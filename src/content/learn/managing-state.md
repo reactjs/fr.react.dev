@@ -4,7 +4,8 @@ title: Gérer les états
 
 <Intro>
 
-Au fur et à mesure que votre application se développe, il est utile d'être plus attentif à la façon dont votre état est organisé et à la façon dont les données circulent entre vos composants. Les états redondants ou dupliqués sont une source fréquente de bugs. Dans ce chapitre, vous apprendrez à bien structurer votre état, à maintenir votre logique de mise à jour de l'état et à partager l'état entre des composants distants. 
+Au fur et à mesure que votre application se développe, il est utile d'être plus attentif à la façon dont votre état est organisé et à la façon dont les données circulent entre vos composants. Les états redondants ou dupliqués sont une source fréquente de bugs.
+Dans ce chapitre, vous apprendrez à bien structurer votre état, à maintenir votre logique de mise à jour de l'état et à partager l'état entre des composants distants. 
 
 </Intro>
 
@@ -805,11 +806,11 @@ Lisez **[Transmettre des données en profondeur avec le contexte](/learn/passing
 
 </LearnMore>
 
-## Scaling up with reducer and context {/*scaling-up-with-reducer-and-context*/}
+## Mise à l'échelle avec réducteur et contexte {/*scaling-up-with-reducer-and-context*/}
 
-Reducers let you consolidate a component’s state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
+Les réducteurs vous permettent de consolider la logique de mise à jour de l'état d'un composant. Le contexte vous permet de transmettre des informations en profondeur à d'autres composants. Vous pouvez combiner les réducteurs et le contexte pour gérer l'état d'un écran complexe.
 
-With this approach, a parent component with complex state manages it with a reducer. Other components anywhere deep in the tree can read its state via context. They can also dispatch actions to update that state.
+Avec cette approche, un composant parent ayant un état complexe le gère à l'aide d'un réducteur. D'autres composants situés à n'importe quel endroit de l'arbre peuvent lire son état via le contexte. Ils peuvent également envoyer des actions pour mettre à jour cet état.
 
 <Sandpack>
 
@@ -821,7 +822,7 @@ import { TasksProvider } from './TasksContext.js';
 export default function TaskApp() {
   return (
     <TasksProvider>
-      <h1>Day off in Kyoto</h1>
+      <h1>Journée de repos à Kyoto</h1>
       <AddTask />
       <TaskList />
     </TasksProvider>
@@ -882,15 +883,15 @@ function tasksReducer(tasks, action) {
       return tasks.filter(t => t.id !== action.id);
     }
     default: {
-      throw Error('Unknown action: ' + action.type);
+      throw Error('Action inconnue : ' + action.type);
     }
   }
 }
 
 const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  { id: 0, text: 'Le chemin des philosophes', done: true },
+  { id: 1, text: 'Visiter le temple', done: false },
+  { id: 2, text: 'Boire du matcha', done: false }
 ];
 ```
 
@@ -904,7 +905,7 @@ export default function AddTask({ onAddTask }) {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Ajouter tâche"
         value={text}
         onChange={e => setText(e.target.value)}
       />
@@ -915,7 +916,7 @@ export default function AddTask({ onAddTask }) {
           id: nextId++,
           text: text,
         });
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   );
 }
@@ -959,7 +960,7 @@ function Task({ task }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Valider
         </button>
       </>
     );
@@ -968,7 +969,7 @@ function Task({ task }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Editer
         </button>
       </>
     );
@@ -995,7 +996,7 @@ function Task({ task }) {
           id: task.id
         });
       }}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
@@ -1012,12 +1013,12 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/scaling-up-with-reducer-and-context">
 
-Read **[Scaling Up with Reducer and Context](/learn/scaling-up-with-reducer-and-context)** to learn how state management scales in a growing app.
+Lisez **[Mise à l'échelle avec un réducteur et un contexte](/learn/scaling-up-with-reducer-and-context)** pour apprendre comment la gestion des états s'adapte à une application en pleine croissance.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Quelle est la suite ? {/*whats-next*/}
 
-Head over to [Reacting to Input with State](/learn/reacting-to-input-with-state) to start reading this chapter page by page!
+Rendez vous sur [Réagir à une entrée avec un état](/learn/reacting-to-input-with-state) pour commencer à lire ce chapitre page par page !
 
-Or, if you're already familiar with these topics, why not read about [Escape Hatches](/learn/escape-hatches)?
+Ou, si vous êtes déjà familier avec ces sujets, pourquoi ne pas lire à propos des [Trappes d'évacuation](/learn/escape-hatches)?
