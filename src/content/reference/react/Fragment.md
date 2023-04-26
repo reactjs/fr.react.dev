@@ -37,11 +37,11 @@ Englober des éléments dans un `<Fragment>` pour les grouper ensemble dans des 
 
 ---
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
-### Returning multiple elements {/*returning-multiple-elements*/}
+### Renvoyer plusieurs éléments {/*returning-multiple-elements*/}
 
-Use `Fragment`, or the equivalent `<>...</>` syntax, to group multiple elements together. You can use it to put multiple elements in any place where a single element can go. For example, a component can only return one element, but by using a Fragment you can group multiple elements together and then return them as a group:
+Utilisez `Fragment`, ou la syntaxe équivalente `<>...</>`, afin de grouper plusieurs éléments ensemble. Vous pouvez l'utiliser pour mettre plusieurs éléments à la place d'un élément. Par exemple, un composant ne peut d'habitude renvoyer qu'un élément unique, mais avec un Fragment vous pouvez grouper plusieurs éléments et renvoyer ce groupe :
 
 ```js {3,6}
 function Post() {
@@ -54,7 +54,7 @@ function Post() {
 }
 ```
 
-Fragments are useful because grouping elements with a Fragment has no effect on layout or styles, unlike if you wrapped the elements in another container like a DOM element. If you inspect this example with the browser tools, you'll see that all `<h1>` and `<p>` DOM nodes appear as siblings without wrappers around them:
+Les Fragments sont utiles car grouper des éléments avec un Fragment n'as pas d'effet sur la mise en page ou les styles, contrairement à l'utilisation d'un autre balise englobante du DOM. Si vous inspectez cet exemple avec les outils du navigateur, vous verrez que toutes les balises `<h1>` et `<p>` du DOM apparaissent en tant frères et sœur sans balise englobante :
 
 <Sandpack>
 
@@ -62,8 +62,8 @@ Fragments are useful because grouping elements with a Fragment has no effect on 
 export default function Blog() {
   return (
     <>
-      <Post title="An update" body="It's been a while since I posted..." />
-      <Post title="My new blog" body="I am starting a new blog!" />
+      <Post title="Une mise à jour" body="Ça fait un moment que je n'ai pas posté..." />
+      <Post title="Mon nouveau blog" body="Je démarre un nouveau blog !" />
     </>
   )
 }
