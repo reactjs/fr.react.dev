@@ -23,7 +23,7 @@ title: <Fragment> (<>...</>)
 
 ### `<Fragment>` {/*fragment*/}
 
-Englober des éléments dans un `<Fragment>` pour les grouper ensemble dans des situations ou vous avez besoin d'un seul élément. Grouper des éléments dans un `<Fragment>` n'a pas d'effet particulier sur le DOM ; c'est comme si les éléments n'étaient pas groupés. La plupart du temps, la balise vide en JSX `<></>` est utilisée afin de raccourcir l'écriture de `<Fragment></Fragment>`.
+Englober des éléments dans un `<Fragment>` pour les grouper dans des situations ou vous avez besoin d'un seul élément. Grouper des éléments dans un `<Fragment>` n'a pas d'effet sur le DOM rendu ; c'est comme si les éléments n'étaient pas groupés. La balise vide `<></>` en JSX est utilisée la plupart du temps afin de raccourcir l'écriture de `<Fragment></Fragment>`.
 
 #### Props {/*props*/}
 
@@ -33,7 +33,7 @@ Englober des éléments dans un `<Fragment>` pour les grouper ensemble dans des 
 
 - Si vous souhaitez utiliser des `key` dans un Fragment, vous ne pouvez pas utiliser la syntaxe `<>...</>`. Vous devez explicitement importer `Fragment` depuis `'react'` et rendre `<Fragment key={yourKey}>...</Fragment>`.
 
-- React ne [réinitialise pas l'état](/learn/preserving-and-resetting-state) quand vous passez de rendre `<><Child /></>` à `[<Child />]` et inversement, ou ni si vous passez de rendre `<><Child /></>` à `<Child />` et inversement. Ça marche seulement à un niveau plus profond : par exemple, en passer de `<><><Child /></></>` à `<Child />` réinitialise l'état. Consultez la sémantique précise [ici.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
+- React ne [réinitialise pas l'état](/learn/preserving-and-resetting-state) quand vous passez de rendre `<><Child /></>` à `[<Child />]` et inversement, ou ni si vous passez de rendre `<><Child /></>` à `<Child />` et inversement. Ça marche seulement à un niveau plus profond : par exemple, passer de `<><><Child /></></>` à `<Child />` réinitialise l'état. Consultez la sémantique précise [ici.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
 
 ---
 
@@ -41,7 +41,7 @@ Englober des éléments dans un `<Fragment>` pour les grouper ensemble dans des 
 
 ### Renvoyer plusieurs éléments {/*returning-multiple-elements*/}
 
-Utilisez `Fragment`, ou la syntaxe équivalente `<>...</>`, afin de grouper plusieurs éléments ensemble. Vous pouvez l'utiliser pour mettre plusieurs éléments à la place d'un élément. Par exemple, un composant ne peut d'habitude renvoyer qu'un élément unique, mais avec un Fragment vous pouvez grouper plusieurs éléments et renvoyer ce groupe :
+Utilisez `Fragment`, ou la syntaxe équivalente `<>...</>`, afin de grouper plusieurs éléments ensemble. Vous pouvez l'utiliser pour mettre plusieurs éléments à la place d'un élément. Par exemple, un composant ne peut renvoyer qu'un élément unique, mais avec un Fragment vous pouvez grouper plusieurs éléments et renvoyer ce groupe :
 
 ```js {3,6}
 function Post() {
@@ -160,7 +160,7 @@ function DateRangePicker({ start, end }) {
 
 ### Rendre une liste de Fragments {/*rendering-a-list-of-fragments*/}
 
-Voici une situation ou vous avez besoin d'écrire `Fragment` explicitement plutôt que d'utiliser la syntaxe `<></>`. Quand vous [rendez plusieurs éléments dans une boucle](/learn/rendering-lists), vous avez besoin d'assigner une `key` à chaque élément. Si les éléments compris dans une boucle sont des Fragments, vous devez utiliser la syntaxe JSX classique afin de fournir l'attribut `key` :
+Voici une situation ou vous avez besoin d'écrire explicitement `Fragment` plutôt que d'utiliser la syntaxe `<></>`. Quand vous [rendez plusieurs éléments dans une boucle](/learn/rendering-lists), vous avez besoin d'assigner une `key` à chaque élément. Si les éléments compris dans une boucle sont des Fragments, vous devez utiliser la syntaxe classique JSX afin de fournir l'attribut `key` :
 
 ```js {3,6}
 function Blog() {
@@ -174,7 +174,6 @@ function Blog() {
 ```
 
 Vous pouvez inspecter le DOM pour vérifier qu'il n'y a pas de balise englobante autour des enfants du Fragment :
-You can inspect the DOM to verify that there are no wrapper elements around the Fragment children:
 
 <Sandpack>
 
