@@ -139,17 +139,17 @@ function CloseDialog() {
 
 ---
 
-### Grouping elements with text {/*grouping-elements-with-text*/}
+### Englober des éléments avec du texte {/*grouping-elements-with-text*/}
 
-You can use `Fragment` to group text together with components:
+Vous pouvez utilisez `Fragment` pour grouper des textes avec des éléments :
 
 ```js
 function DateRangePicker({ start, end }) {
   return (
     <>
-      From
+      De
       <DatePicker date={start} />
-      to
+      à
       <DatePicker date={end} />
     </>
   );
