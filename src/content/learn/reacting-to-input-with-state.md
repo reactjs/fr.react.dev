@@ -29,7 +29,7 @@ En **programmation impérative**, ce qui précède correspond directement à la 
 
 <Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="Dans une voiture conduite par une personne à l’air anxieuse représentant le Javascript, un passager lui odronne d'exécuter une séquence de navigations compliquées, virage par virage." />
 
-Ils ne savent pas où vous voulez aller, ils se contentent de suivre vos ordres. (Et si vous vous trompez de direction, vous vous retrouvez au mauvais endroit !) On l'appelle *impératif* parce que vous devez « commander » chaque élément, d *spinner* au bouton, en indiquant à l’ordinateur *comment* mettre à jour l’interface utilisateur.
+Ils ne savent pas où vous voulez aller, ils se contentent de suivre vos ordres. (Et si vous vous trompez de direction, vous vous retrouvez au mauvais endroit !) On l'appelle *impératif* parce que vous devez « commander » chaque élément, du *spinner* au bouton, en indiquant à l’ordinateur *comment* mettre à jour l’interface utilisateur.
 
 Dans cet exemple de programmation impérative de l'interface utilisateur, le questionnaire est construit *sans* React. Il utilise uniquement le navigateur [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
 
@@ -192,14 +192,13 @@ export default function Form({
 
 </Sandpack>
 
-You could call that prop anything you like, the naming is not important. Try editing `status = 'empty'` to `status = 'success'` to see the success message appear. Mocking lets you quickly iterate on the UI before you wire up any logic. Here is a more fleshed out prototype of the same component, still "controlled" by the `status` prop:
-Vous pouvez appeler cette propriété comme vous le souhaitez, le nom n’est pas important. Essayez de modifier `status = 'empty'` en `status = 'success'` pour voir le message de succès apparaître. La création de maquettes vous permet d’itérer rapidement sur l’interface utilisateur avant de câbler la logique. Voici un prototype plus élaboré du même composant, toujours « contrôlé » par la propriété `status` :
+Vous pouvez appeler cette propriété comme vous le souhaitez, le nom n’est pas important. Essayez de modifier `status = 'empty'` en `status = 'success'` pour voir le message de succès apparaître. La création de maquettes vous permet d’itérer rapidement sur l’interface utilisateur avant de câbler la logique. Voici un prototype plus élaboré du même composant, toujours « contrôlé » par la prop `status` :
 
 <Sandpack>
 
 ```js
 export default function Form({
-  // Try 'submitting', 'error', 'success':
+  // Essayez 'submitting', 'error', 'success':
   status = 'empty'
 }) {
   if (status === 'success') {
@@ -220,7 +219,7 @@ export default function Form({
           status === 'empty' ||
           status === 'submitting'
         }>
-          Submit
+          Envoyer
         </button>
         {status === 'error' &&
           <p className="Error">
@@ -264,7 +263,7 @@ export default function App() {
     <>
       {statuses.map(status => (
         <section key={status}>
-          <h4>Form ({status}):</h4>
+          <h4>Questionnaire ({status}):</h4>
           <Form status={status} />
         </section>
       ))}
@@ -288,7 +287,7 @@ export default function Form({ status }) {
         status === 'empty' ||
         status === 'submitting'
       }>
-        Submit
+        Envoyer
       </button>
       {status === 'error' &&
         <p className="Error">
@@ -309,14 +308,12 @@ body { margin: 0; }
 
 </Sandpack>
 
-Pages like this are often called "living styleguides" or "storybooks".
 Les pages de ce type sont souvent appelées "living styleguides" ou "storybooks"
 
 </DeepDive>
 
 ### Étape 2: Déterminer ce qui déclenche ces changements d’état {/*step-2-determine-what-triggers-those-state-changes*/}
 
-You can trigger state updates in response to two kinds of inputs:
 Vous pouvez déclencher des mises à jour de l'état en réponse à deux types d’entrées :
 
 * **Entrées humaines**, telles que cliquer sur un bouton, écrire dans un champ ou naviguer dans un lien.
@@ -330,9 +327,9 @@ Vous pouvez déclencher des mises à jour de l'état en réponse à deux types d
 Dans chaque cas, **vous devez définir des [variables d’état](/learn/state-a-components-memory#anatomy-of-usestate) pour mettre à jour l’interface**. Pour le questionnaire que vous développez, vous allez devoir changer l’état en réponse à quelques entrées différentes :
 
 * **Changer la saisie du texte** (humain) doit changer l’état depuis *Empty* vers *Typing*, ou dans l’autre sens, selon si la saisie est vide ou non.
-* **Clicking the Submit button** (humain) doit changer l’état en *Submitting*.
-* **Successful network response** (ordinateur) doit changer l’état en *Success*.
-* **Failed network response** (ordinateur) doit changer l’état en *Error* avec le message d’erreur correspondant.
+* **Clicker sur le bouton Submit** (humain) doit changer l’état en *Submitting*.
+* **Réponse du réseau validée** (ordinateur) doit changer l’état en *Success*.
+* **Échec de la réponse du réseau** (ordinateur) doit changer l’état en *Error* avec le message d’erreur correspondant.
 
 <Note>
 
@@ -375,17 +372,15 @@ const [isSuccess, setIsSuccess] = useState(false);
 const [isError, setIsError] = useState(false);
 ```
 
-Your first idea likely won't be the best, but that's ok--refactoring state is a part of the process!
 Votre première idée ne sera sûrement pas la meilleure, mais ce n’est mas grave -- la refonte fait partie du processus !
 
-### Étape 4: Remove any non-essential state variables {/*step-4-remove-any-non-essential-state-variables*/}
+### Étape 4: Retirer les variables d’état non-essentielles Remove any non-essential state variables {/*step-4-remove-any-non-essential-state-variables*/}
 
 Vous souhaitez éviter les doublons dans le contenu des états afin de ne suivre que ce qui est essentiel. En consacrant un peu de temps à la refonte de votre structure d’état, vous rendrez vos composants plus faciles à comprendre, vous réduirez la duplication et vous éviterez les significations involontaires. Votre objectif est de **prévenir les cas où l’état en mémoire ne représente aucune interface utilisateur valide que vous ne voudriez pas que l’utilisateur voie** (par exemple, vous ne voulez jamais afficher un message d’erreur et désactiver la saisie en même temps, ou l’utilisateur ne sera pas en mesure de corriger l’erreur).
 
 Voici quelques questions que vous pouvez poser sur vos variables d'état :
 
 * **Es-ce que cet état cause un paradoxe ?** Par exemple, `isTyping` et `isSubmitting` ne peuvent pas être tous les deux définis à `true`. Un paradoxe signifie généralement que l’état n’est pas suffisamment contraint. Il y a quatre combinaisons possibles de deux booléens, mais seulement trois correspondent à des états valides. Pour supprimer l’état "impossible", vous pouvez les combiner dans un `status` qui doit être l’une des trois valeurs suivantes : `'typing'`, `'submitting'`, ou `'success'`.
-* **Is the same information available in another state variable already?** Another paradox: `isEmpty` and `isTyping` can't be `true` at the same time. By making them separate state variables, you risk them going out of sync and causing bugs. Fortunately, you can remove `isEmpty` and instead check `answer.length === 0`.
 * **La même information est-elle déjà disponible dans une autre variable d’état ?** Un autre paradoxe : `isEmpty` et `isTyping` ne peuvent pas être à `true` en même temps. En les rendant distinctes, vous risquez de les désynchroniser et de provoquer des bugs. Heureusement, vous pouvez supprimer `isEmpty` et vérifier à la place `answer.length === 0`.
 * **Pouvez-vous obtenir la même information à partir de l’inverse d'une autre variable d’état ?** `isError` n’est pas nécessaire car vous pouvez vérifier `error !== null` à la place.
 
@@ -394,7 +389,7 @@ Après ce nettoyage, il vous reste seulement 3 (au lieu de 7 !) variables d’é
 ```js
 const [answer, setAnswer] = useState('');
 const [error, setError] = useState(null);
-const [status, setStatus] = useState('typing'); // 'typing', 'submitting', or 'success'
+const [status, setStatus] = useState('typing'); // 'typing', 'submitting', ou 'success'
 ```
 
 Vous savez qu’elles sont essentielles parce que vous ne pouvez retirer aucune d’entre elles sans casser le fonctionnement.
@@ -422,7 +417,7 @@ export default function Form() {
   const [status, setStatus] = useState('typing');
 
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>C’est exact !</h1>
   }
 
   async function handleSubmit(e) {
@@ -707,9 +702,8 @@ Gardez à l'esprit que si deux morceaux JSX différents décrivent le même arbr
 
 </Solution>
 
-#### Éditeur de profil Profile editor {/*profile-editor*/}
+#### Éditeur de profil {/*profile-editor*/}
 
-Here is a small form implemented with plain JavaScript and DOM. Play with it to understand its behavior:
 Voici un court questionnaire implémenté en JavaScript pur et le DOM. Utilisez le pour comprendre son comportement :
 
 <Sandpack>
