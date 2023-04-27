@@ -24,14 +24,43 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
   </thead>
   <tbody>
     <tr>
+      <td><a href="https://github.com/bastiendmt">Bastien Dumont</a></td>
+      <td></td>
+      <td>
+        <ul>
+          <li><a href="https://fr.react.dev/reference/react/Fragment">Référence : <code>&lt;Fragment&gt;</code></a></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/celia">Célia Bourial</a></td>
+      <td><a href="https://twitter.com/celiabourial">@celiabourial</a></td>
+      <td>
+        <ul>
+          <li><a href="https://fr.react.dev/learn/describing-the-ui">Décrire l’UI</a> (à venir)</li>
+          <li><a href="https://fr.react.dev/learn/your-first-component">Votre premier composant</a> (à venir)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
       <td><a href="https://github.com/tdd">Christophe Porteneuve</a></td>
-      <td>@porteneuve / https://piaille.fr/@porteneuve</td>
+      <td>@porteneuve / @porteneuve@piaille.fr</td>
       <td>
         <ul>
           <li><a href="https://fr.react.dev">Page d'accueil</a> (<em>above-the-fold</em> pour le moment)</li>
           <li><a href="https://fr.react.dev/learn">Démarrage rapide</a></li>
-          <li><a href="https://fr.react.dev/learn/synchronizing-with-effects">Synchronisation grâce aux effets</a> (à venir)</li>
+          <li><a href="https://fr.react.dev/learn/escape-hatches">Échappatoires</a> (à venir)</li>
+          <li><a href="https://fr.react.dev/learn/synchronizing-with-effects">Synchroniser grâce aux effets</a></li>
           <li><a href="https://fr.react.dev/learn/you-might-not-need-an-effect">Vous n’avez pas forcément besoin d’un effet</a> (à venir)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/emmadal">Emmanuel Dal</a></td>
+      <td><a href="https://twitter.com/emmanuel_dal">@emmanuel_dal</a></td>
+      <td>
+        <ul>
+          <li><a href="">Référence : Hooks</a> (accueil de chapitre, à venir)</li>
         </ul>
       </td>
     </tr>
@@ -45,11 +74,49 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
       </td>
     </tr>
     <tr>
+      <td><a href="https://github.com/MatteoGauthier">Mattèo Gauthier</a></td>
+      <td><a href="https://twitter.com/MatteoGauthier_">@MatteoGauthier_</a></td>
+      <td>
+        <ul>
+          <li><a href="https://fr.react.dev/reference/react/useDebugValue">Référence : code>useDebugValue</code></a> (à venir)</li>
+          <li><a href="https://fr.react.dev/reference/react/useId">Référence : <code>useId</code></a> (à venir)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/ninofiliu">Nino Filiu</a></td>
+      <td><a href="https://twitter.com/ninofiliu">@ninofiliu</a></td>
+      <td>
+        <ul>
+          <li><a href="https://fr.react.dev/learn/installation">Installation</a> (à venir)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/linsolas">Romain Linsolas</a></td>
+      <td></td>
+      <td>
+        <ul>
+          <li><a href=https://fr.react.dev/learn/reusing-logic-with-custom-hooks">Factoriser la logique avec des Hooks personnalisés</a> (à venir)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
       <td><a href="https://github.com/Nab69">Romain Rukse</a></td>
       <td></td>
       <td>
         <ul>
           <li><a href="https://fr.react.dev/learn/tutorial-tic-tac-toe">Tutoriel : jeu de morpion</a> (à venir)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="[https://github.com/Nab69](https://github.com/KohdeAvekLeQ)">Simon Leclers</a></td>
+      <td></td>
+      <td>
+        <ul>
+          <li><a href="https://fr.react.dev/learn/managing-state">Gérer l’état</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/learn/reacting-to-input-with-state">Réagir à la saisie avec un état</a> (à venir)</li>
         </ul>
       </td>
     </tr>
