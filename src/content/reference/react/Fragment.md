@@ -23,7 +23,7 @@ title: <Fragment> (<>...</>)
 
 ### `<Fragment>` {/*fragment*/}
 
-Englober des éléments dans un `<Fragment>` pour les grouper dans des situations ou vous avez besoin d’un seul élément. Grouper des éléments dans un `<Fragment>` n’a pas d’effet sur le DOM rendu ; c’est comme si les éléments n’étaient pas groupés. La balise vide `<></>` en JSX est utilisée la plupart du temps afin de raccourcir l’écriture de `<Fragment></Fragment>`.
+Englober des éléments dans un `<Fragment>` pour les grouper dans des situations ou vous avez besoin d’un seul élément. Grouper des éléments dans un `<Fragment>` n’a pas d’effet sur le DOM rendu ; c’est comme si les éléments n’étaient pas groupés. La balise vide `<></>` en JSX est utilisée la plupart du temps afin de raccourcir l’écriture de `<Fragment></Fragment>`.
 
 #### Props {/*props*/}
 
@@ -41,7 +41,7 @@ Englober des éléments dans un `<Fragment>` pour les grouper dans des situation
 
 ### Renvoyer plusieurs éléments {/*returning-multiple-elements*/}
 
-Utilisez `Fragment`, ou la syntaxe équivalente `<>...</>`, afin de grouper plusieurs éléments ensemble. Vous pouvez l’utiliser pour mettre plusieurs éléments à la place d’un élément. Par exemple, un composant ne peut renvoyer qu’un élément unique, mais avec un Fragment vous pouvez grouper plusieurs éléments et renvoyer ce groupe :
+Utilisez `Fragment`, ou la syntaxe équivalente `<>...</>`, afin de grouper plusieurs éléments ensemble. Vous pouvez vous en servir pour mettre plusieurs éléments à la place d’un élément. Par exemple, un composant ne peut renvoyer qu’un élément unique, mais avec un Fragment vous pouvez grouper plusieurs éléments et renvoyer ce groupe :
 
 ```js {3,6}
 function Post() {
@@ -63,7 +63,7 @@ export default function Blog() {
   return (
     <>
       <Post title="Une mise à jour" body="Ça fait un moment que je n’ai pas posté..." />
-      <Post title="Mon nouveau blog" body="Je démarre un nouveau blog !" />
+      <Post title="Mon nouveau blog" body="Je démarre un nouveau blog !" />
     </>
   )
 }
@@ -111,7 +111,7 @@ function Post() {
 }
 ```
 
-Normalement vous n’aurez pas besoin d’utiliser ça à moins d’avoir besoin de [donner des `key` à votre `Fragment`.](#rendering-a-list-of-fragments)
+Normalement vous n’aurez pas besoin d’utiliser ça, sauf pour [fournir une `key` à votre `Fragment`.](#rendering-a-list-of-fragments)
 
 </DeepDive>
 
@@ -173,7 +173,7 @@ function Blog() {
 }
 ```
 
-Vous pouvez inspecter le DOM pour vérifier qu’il n’y a pas de balise englobante autour des enfants du Fragment :
+Vous pouvez inspecter le DOM et vérifier qu’il n’y a pas de balise englobante autour des enfants du Fragment :
 
 <Sandpack>
 
@@ -182,7 +182,7 @@ import { Fragment } from 'react';
 
 const posts = [
   { id: 1, title: 'Une mise à jour', body: 'Ça fait un moment que je n’ai pas posté...' },
-  { id: 2, title: 'Mon nouveau blog', body: 'Je démarre un nouveau blog !' }
+  { id: 2, title: 'Mon nouveau blog', body: 'Je démarre un nouveau blog !' }
 ];
 
 export default function Blog() {
