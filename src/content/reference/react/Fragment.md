@@ -4,7 +4,7 @@ title: <Fragment> (<>...</>)
 
 <Intro>
 
-`<Fragment>`, souvent utilisé avec la syntaxe `<>...</>`, vous permet de grouper des éléments sans balise englobante.
+`<Fragment>`, qu’on utilise souvent *via* la syntaxe `<>...</>`, vous permet de grouper des éléments sans balise enrobante.
 
 ```js
 <>
@@ -27,11 +27,11 @@ Englober des éléments dans un `<Fragment>` pour les grouper dans des situation
 
 #### Props {/*props*/}
 
-- **optionnel** `key`: Les Fragments déclarés explicitement avec la syntaxe `<Fragment>` peuvent contenir des [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+- `key` **optionnel** : les fragments déclarés explicitement avec la syntaxe `<Fragment>` peuvent avoir une [keys](/learn/rendering-lists#keeping-list-items-in-order-with-key).
 
 #### Limitations {/*caveats*/}
 
-- Si vous souhaitez utiliser des `key` dans un Fragment, vous ne pouvez pas utiliser la syntaxe `<>...</>`. Vous devez explicitement importer `Fragment` depuis `'react'` et rendre `<Fragment key={yourKey}>...</Fragment>`.
+- Si vous souhaitez utiliser une `key` dans un Fragment, vous ne pouvez pas utiliser la syntaxe `<>...</>`. Vous devez explicitement importer `Fragment` depuis `'react'` et écrire `<Fragment key={yourKey}>...</Fragment>`.
 
 - React ne [réinitialise pas l’état](/learn/preserving-and-resetting-state) quand vous passez de rendre `<><Child /></>` à `[<Child />]` et inversement, ou ni si vous passez de rendre `<><Child /></>` à `<Child />` et inversement. Ça marche seulement à un niveau plus profond : par exemple, passer de `<><><Child /></></>` à `<Child />` réinitialise l’état. Consultez la sémantique précise [ici.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
 
@@ -117,9 +117,9 @@ Normalement vous n’aurez pas besoin d’utiliser ça à moins d’avoir besoin
 
 ---
 
-### Initialiser plusieurs éléments à une variable {/*assigning-multiple-elements-to-a-variable*/}
+### Affecter plusieurs éléments à une variable {/*assigning-multiple-elements-to-a-variable*/}
 
-Comme pour tous les autres éléments, vous pouvez initialiser un Fragment à des variables, les passer en tant que props, etc :
+Comme pour tous les autres éléments, vous pouvez affecter des Fragment à des variables, les passer en tant que props, etc. :
 
 ```js
 function CloseDialog() {
@@ -131,7 +131,7 @@ function CloseDialog() {
   );
   return (
     <AlertDialog buttons={buttons}>
-      Êtes vous sûr de vouloir quittez cette page ?
+      Êtes vous sûr·e de vouloir quitter cette page ?
     </AlertDialog>
   );
 }
@@ -139,9 +139,9 @@ function CloseDialog() {
 
 ---
 
-### Englober des éléments avec du texte {/*grouping-elements-with-text*/}
+### Grouper des éléments et du texte {/*grouping-elements-with-text*/}
 
-Vous pouvez utilisez `Fragment` pour grouper des textes avec des éléments :
+Vous pouvez utiliser `Fragment` pour grouper du texte et des éléments :
 
 ```js
 function DateRangePicker({ start, end }) {
@@ -158,7 +158,7 @@ function DateRangePicker({ start, end }) {
 
 ---
 
-### Rendre une liste de Fragments {/*rendering-a-list-of-fragments*/}
+### Afficher une liste de Fragments {/*rendering-a-list-of-fragments*/}
 
 Voici une situation ou vous avez besoin d’écrire explicitement `Fragment` plutôt que d’utiliser la syntaxe `<></>`. Quand vous [rendez plusieurs éléments dans une boucle](/learn/rendering-lists), vous avez besoin d’assigner une `key` à chaque élément. Si les éléments compris dans une boucle sont des Fragments, vous devez utiliser la syntaxe classique JSX afin de fournir l’attribut `key` :
 
