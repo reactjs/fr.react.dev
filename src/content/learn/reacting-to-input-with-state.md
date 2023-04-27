@@ -31,7 +31,7 @@ En **programmation impérative**, ce qui précède correspond directement à la 
 
 Ils ne savent pas où vous voulez aller, ils se contentent de suivre vos ordres. (Et si vous vous trompez de direction, vous vous retrouvez au mauvais endroit !) On l'appelle *impératif* parce que vous devez « commander » chaque élément, d *spinner* au bouton, en indiquant à l’ordinateur *comment* mettre à jour l’interface utilisateur.
 
-Dans cet exemple de programmation impérative de l'interface utilisateur, le formulaire est construit *sans* React. Il utilise uniquement le navigateur [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
+Dans cet exemple de programmation impérative de l'interface utilisateur, le questionnaire est construit *sans* React. Il utilise uniquement le navigateur [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
 
 <Sandpack>
 
@@ -131,7 +131,7 @@ body { font-family: sans-serif; margin: 20px; padding: 0; }
 
 </Sandpack>
 
-La manipulation impérative de l’interface utilisateur fonctionne assez bien pour des exemples isolés, mais elle devient exponentiellement plus difficile à gérer dans des systèmes plus complexes. Imaginez la mise à jour d’une page remplie de différents formulaires comme celui-ci. L’ajout d’un nouvel élément d’interface ou d’une nouvelle interaction nécessiterait de vérifier soigneusement tout le code existant pour s’assurer que vous n’avez pas introduit de bug (par exemple, en oubliant d’afficher ou de masquer quelque chose).
+La manipulation impérative de l’interface utilisateur fonctionne assez bien pour des exemples isolés, mais elle devient exponentiellement plus difficile à gérer dans des systèmes plus complexes. Imaginez la mise à jour d’une page remplie de différents questionnaires comme celui-ci. L’ajout d’un nouvel élément d’interface ou d’une nouvelle interaction nécessiterait de vérifier soigneusement tout le code existant pour s’assurer que vous n’avez pas introduit de bug (par exemple, en oubliant d’afficher ou de masquer quelque chose).
 
 React a été conçu pour résoudre ce problème.
 
@@ -403,13 +403,13 @@ Vous savez qu’elles sont essentielles parce que vous ne pouvez retirer aucune 
 
 #### Éliminer les états « impossibles » avec un réducteur {/*eliminating-impossible-states-with-a-reducer*/}
 
-Ces trois variables représentent assez bien l’état de ce formulaire. Cependant, il y a encore quelques états intermédiaires qui n’ont pas tout à fait de sens. Par exemple, une `error` non nulle n’a pas de sens quand `status` est à `'success'`. Pour modéliser l’état plus précisément, vous pouvez [l’extraire dans un réducteur](/learn/extracting-state-logic-into-a-reducer). Les réducteurs vous permettent d’unifier plusieurs variables d’état en un seul objet et de consolider toute la logique associée !
+Ces trois variables représentent assez bien l’état de ce questionnaire. Cependant, il y a encore quelques états intermédiaires qui n’ont pas tout à fait de sens. Par exemple, une `error` non nulle n’a pas de sens quand `status` est à `'success'`. Pour modéliser l’état plus précisément, vous pouvez [l’extraire dans un réducteur](/learn/extracting-state-logic-into-a-reducer). Les réducteurs vous permettent d’unifier plusieurs variables d’état en un seul objet et de consolider toute la logique associée !
 
 </DeepDive>
 
-### Étape 5: Connect the event handlers to set state {/*step-5-connect-the-event-handlers-to-set-state*/}
+### Étape 5: Connecter les gestionnaires d’évènements pour définir l’état {/*step-5-connect-the-event-handlers-to-set-state*/}
 
-Lastly, create event handlers that update the state. Below is the final form, with all event handlers wired up:
+Enfin, créez des gestionnaires d’événements qui mettent à jour l’état. Voici le questionnaire final, avec tous les gestionnaires d’événements connectés :
 
 <Sandpack>
 
@@ -443,9 +443,9 @@ export default function Form() {
 
   return (
     <>
-      <h2>City quiz</h2>
+      <h2>Quiz sur les villes</h2>
       <p>
-        In which city is there a billboard that turns air into drinkable water?
+        Dans quelle ville trouve-t-on un panneau d’affichage qui transforme l’air en eau potable ?
       </p>
       <form onSubmit={handleSubmit}>
         <textarea
@@ -458,7 +458,7 @@ export default function Form() {
           answer.length === 0 ||
           status === 'submitting'
         }>
-          Submit
+          Envoyer
         </button>
         {error !== null &&
           <p className="Error">
@@ -476,7 +476,7 @@ function submitForm(answer) {
     setTimeout(() => {
       let shouldError = answer.toLowerCase() !== 'lima'
       if (shouldError) {
-        reject(new Error('Good guess but a wrong answer. Try again!'));
+        reject(new Error('Bonne idée, mais mauvaise réponse. Réessayez !'));
       } else {
         resolve();
       }
@@ -491,17 +491,17 @@ function submitForm(answer) {
 
 </Sandpack>
 
-Although this code is longer than the original imperative example, it is much less fragile. Expressing all interactions as state changes lets you later introduce new visual states without breaking existing ones. It also lets you change what should be displayed in each state without changing the logic of the interaction itself.
+Bien que ce code soit plus long que l’exemple impératif original, il est beaucoup moins fragile. Le fait d’exprimer toutes les interactions sous forme de changements d’état vous permet d’introduire ultérieurement de nouveaux états visuels sans casser les états existants. Cela vous permet également de modifier ce qui doit être affiché dans chaque état sans changer la logique de l’interaction elle-même.
 
 <Recap>
 
-* Declarative programming means describing the UI for each visual state rather than micromanaging the UI (imperative).
-* When developing a component:
-  1. Identify all its visual states.
-  2. Determine the human and computer triggers for state changes.
-  3. Model the state with `useState`.
-  4. Remove non-essential state to avoid bugs and paradoxes.
-  5. Connect the event handlers to set state.
+* La programmation déclarative consiste à décrire l’interface utilisateur pour chaque état visuel plutôt que de micro-gérer l’interface utilisateur (impératif).
+* Lors du développement d’un composant :
+  1. Identifier tous ses états visuels.
+  2. Déterminer les déclencheurs humains et informatiques des changements d’état.
+  3. Modéliser l’état avec `useState`.
+  4. Supprimer les états non essentiel pour éviter les bugs et les paradoxes.
+  5. Connecter les gestionnaires d’événements pour définir l’état.
 
 </Recap>
 
@@ -509,11 +509,11 @@ Although this code is longer than the original imperative example, it is much le
 
 <Challenges>
 
-#### Add and remove a CSS class {/*add-and-remove-a-css-class*/}
+#### Ajouter et retirer une classe CSS {/*add-and-remove-a-css-class*/}
 
-Make it so that clicking on the picture *removes* the `background--active` CSS class from the outer `<div>`, but *adds* the `picture--active` class to the `<img>`. Clicking the background again should restore the original CSS classes.
+Faites en sorte que cliquer sur l’image *supprime* la classe CSS `background--active` de la `<div>` extérieure, mais *ajoute* la classe `picture--active` à la balise `<img>`. Un nouveau clic sur l’arrière-plan devrait rétablir les classes CSS d'origine.
 
-Visually, you should expect that clicking on the picture removes the purple background and highlights the picture border. Clicking outside the picture highlights the background, but removes the picture border highlight.
+Visuellement, il faut s’attendre à ce qu’un clic sur l’image supprime l’arrière-plan violet et mette en évidence la bordure de l’image. Si vous cliquez en dehors de l’image, l’arrière-plan est mis en évidence, mais la bordure de l’image n'est pas mise en évidence.
 
 <Sandpack>
 
@@ -523,7 +523,7 @@ export default function Picture() {
     <div className="background background--active">
       <img
         className="picture"
-        alt="Rainbow houses in Kampung Pelangi, Indonesia"
+        alt="Des maisons multicolores à Kampung Pelangi, Indonésie"
         src="https://i.imgur.com/5qwVYb1.jpeg"
       />
     </div>
@@ -562,14 +562,14 @@ body { margin: 0; padding: 0; height: 250px; }
 
 <Solution>
 
-This component has two visual states: when the image is active, and when the image is inactive:
+Ce composant a deux états visuels : lorsque l’image est active, et lorsque l’image est inactive :
 
-* When the image is active, the CSS classes are `background` and `picture picture--active`.
-* When the image is inactive, the CSS classes are `background background--active` and `picture`.
+* Lorsque l’image est active, les classes CSS sont `background` et `picture picture--active`.
+* Lorsque l’image est inactive, les classes CSS sont `background background--active` et `picture`.
 
-A single boolean state variable is enough to remember whether the image is active. The original task was to remove or add CSS classes. However, in React you need to *describe* what you want to see rather than *manipulate* the UI elements. So you need to calculate both CSS classes based on the current state. You also need to [stop the propagation](/learn/responding-to-events#stopping-propagation) so that clicking the image doesn't register as a click on the background.
+Une seule variable d’état booléenne suffit pour se souvenir si l’image est active. La tâche initiale était de supprimer ou d’ajouter des classes CSS. Cependant, dans React, vous devez *décrire* ce que vous voulez voir plutôt que *manipuler* les éléments de l’interface utilisateur. Vous devez donc calculer les deux classes CSS en fonction de l’état actuel. Vous devez également [arrêter la propagation](/learn/responding-to-events#stopping-propagation) pour que le clic sur l’image ne soit pas enregistré comme un clic sur l’arrière-plan.
 
-Verify that this version works by clicking the image and then outside of it:
+Vérifiez que cette version fonctionne en cliquant sur l’image puis en dehors :
 
 <Sandpack>
 
@@ -598,7 +598,7 @@ export default function Picture() {
           setIsActive(true);
         }}
         className={pictureClassName}
-        alt="Rainbow houses in Kampung Pelangi, Indonesia"
+        alt="Des maisons multicolores à Kampung Pelangi, Indonésie"
         src="https://i.imgur.com/5qwVYb1.jpeg"
       />
     </div>
@@ -636,7 +636,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Alternatively, you could return two separate chunks of JSX:
+Alternativement, vous pouvez retourner deux pièces séparées de JSX :
 
 <Sandpack>
 
@@ -653,7 +653,7 @@ export default function Picture() {
       >
         <img
           className="picture picture--active"
-          alt="Rainbow houses in Kampung Pelangi, Indonesia"
+          alt="Des maisons multicolores à Kampung Pelangi, Indonésie"
           src="https://i.imgur.com/5qwVYb1.jpeg"
           onClick={e => e.stopPropagation()}
         />
@@ -664,7 +664,7 @@ export default function Picture() {
     <div className="background background--active">
       <img
         className="picture"
-        alt="Rainbow houses in Kampung Pelangi, Indonesia"
+        alt="Des maisons multicolores à Kampung Pelangi, Indonésie"
         src="https://i.imgur.com/5qwVYb1.jpeg"
         onClick={() => setIsActive(true)}
       />
@@ -703,27 +703,28 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Keep in mind that if two different JSX chunks describe the same tree, their nesting (first `<div>` → first `<img>`) has to line up. Otherwise, toggling `isActive` would recreate the whole tree below and [reset its state.](/learn/preserving-and-resetting-state) This is why, if a similar JSX tree gets returned in both cases, it is better to write them as a single piece of JSX.
+Gardez à l'esprit que si deux morceaux JSX différents décrivent le même arbre, leur imbrication (première `<div>` → première `<img>`) doit s’aligner. Sinon, basculer `isActive` recréerait tout l'arbre en dessous et [réinitialiserait son état](/learn/preserving-and-resetting-state). C’est pourquoi, si un arbre JSX similaire est retourné dans les deux cas, il est préférable de les écrire comme un seul morceau de JSX.
 
 </Solution>
 
-#### Profile editor {/*profile-editor*/}
+#### Éditeur de profil Profile editor {/*profile-editor*/}
 
 Here is a small form implemented with plain JavaScript and DOM. Play with it to understand its behavior:
+Voici un court questionnaire implémenté en JavaScript pur et le DOM. Utilisez le pour comprendre son comportement :
 
 <Sandpack>
 
 ```js index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
-  if (editButton.textContent === 'Edit Profile') {
-    editButton.textContent = 'Save Profile';
+  if (editButton.textContent === 'Modifier le profil') {
+    editButton.textContent = 'Sauvegarder le profil';
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
   } else {
-    editButton.textContent = 'Edit Profile';
+    editButton.textContent = 'Modifier le profil';
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
@@ -734,18 +735,18 @@ function handleFormSubmit(e) {
 function handleFirstNameChange() {
   firstNameText.textContent = firstNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Bonjour ' +
     firstNameInput.value + ' ' +
-    lastNameInput.value + '!'
+    lastNameInput.value + ' !'
   );
 }
 
 function handleLastNameChange() {
   lastNameText.textContent = lastNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Bonjour ' +
     firstNameInput.value + ' ' +
-    lastNameInput.value + '!'
+    lastNameInput.value + ' !'
   );
 }
 
@@ -778,23 +779,23 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name:
-    <b id="firstNameText">Jane</b>
+    Prénom :
+    <b id="firstNameText">Jeanne</b>
     <input
       id="firstNameInput"
-      value="Jane"
+      value="Jeanne"
       style="display: none">
   </label>
   <label>
-    Last name:
+    Nom :
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="editButton">Edit Profile</button>
-  <p><i id="helloText">Hello, Jane Jacobs!</i></p>
+  <button type="submit" id="editButton">Modifier le profil</button>
+  <p><i id="helloText">Bonjour, Jeanne Jacobs !</i></p>
 </form>
 
 <style>
@@ -806,11 +807,11 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-This form switches between two modes: in the editing mode, you see the inputs, and in the viewing mode, you only see the result. The button label changes between "Edit" and "Save" depending on the mode you're in. When you change the inputs, the welcome message at the bottom updates in real time.
+Ce questionnaire passe d’un mode à l’autre : en mode édition, vous voyez les entrées, et en mode visualisation, vous ne voyez que le résultat. L’intitulé du bouton change entre « Modifier » et « Enregistrer » en fonction du mode dans lequel vous vous trouvez. Lorsque vous modifiez les entrées, le message de bienvenue en bas de page est mis à jour en temps réel.
 
-Your task is to reimplement it in React in the sandbox below. For your convenience, the markup was already converted to JSX, but you'll need to make it show and hide the inputs like the original does.
+Votre tâche consiste à le réimplémenter en React dans le bac à sable ci-dessous. Pour votre commodité, le balisage a déjà été converti en JSX, mais vous devrez faire en sorte qu’il affiche et cache les entrées comme le fait l’original.
 
-Make sure that it updates the text at the bottom, too!
+Veillez également à ce qu'il mette à jour le texte en bas de page !
 
 <Sandpack>
 
@@ -819,19 +820,19 @@ export default function EditProfile() {
   return (
     <form>
       <label>
-        First name:{' '}
-        <b>Jane</b>
+        Prenom :{' '}
+        <b>Jeanne</b>
         <input />
       </label>
       <label>
-        Last name:{' '}
+        Nom :{' '}
         <b>Jacobs</b>
         <input />
       </label>
       <button type="submit">
-        Edit Profile
+        Modifier le Profil
       </button>
-      <p><i>Hello, Jane Jacobs!</i></p>
+      <p><i>Bonjour, Jeanne Jacobs !</i></p>
     </form>
   );
 }
@@ -845,9 +846,9 @@ label { display: block; margin-bottom: 20px; }
 
 <Solution>
 
-You will need two state variables to hold the input values: `firstName` and `lastName`. You're also going to need an `isEditing` state variable that holds whether to display the inputs or not. You should _not_ need a `fullName` variable because the full name can always be calculated from the `firstName` and the `lastName`.
+Vous aurez besoin de deux variables d’état pour contenir les valeurs d’entrée : `firstName` et `lastName`. Vous aurez aussi besoin d’une variable d’état `isEditing` qui indique si les entrées doivent être affichées ou non. Vous ne devriez _pas_ avoir besoin d'une variable `fullName` car le nom complet peut toujours être calculé à partir de `firstName` et de `lastName`.
 
-Finally, you should use [conditional rendering](/learn/conditional-rendering) to show or hide the inputs depending on `isEditing`.
+Enfin, vous devriez utiliser le [rendu conditionnel](/learn/conditional-rendering) pour afficher ou cacher les entrées en fonction de `isEditing`.
 
 <Sandpack>
 
@@ -856,7 +857,7 @@ import { useState } from 'react';
 
 export default function EditProfile() {
   const [isEditing, setIsEditing] = useState(false);
-  const [firstName, setFirstName] = useState('Jane');
+  const [firstName, setFirstName] = useState('Jeanne');
   const [lastName, setLastName] = useState('Jacobs');
 
   return (
@@ -865,7 +866,7 @@ export default function EditProfile() {
       setIsEditing(!isEditing);
     }}>
       <label>
-        First name:{' '}
+        Prénom :{' '}
         {isEditing ? (
           <input
             value={firstName}
@@ -878,7 +879,7 @@ export default function EditProfile() {
         )}
       </label>
       <label>
-        Last name:{' '}
+        Nom :{' '}
         {isEditing ? (
           <input
             value={lastName}
@@ -891,9 +892,9 @@ export default function EditProfile() {
         )}
       </label>
       <button type="submit">
-        {isEditing ? 'Save' : 'Edit'} Profile
+        {isEditing ? 'Sauvegarder' : 'Modifier'} Profile
       </button>
-      <p><i>Hello, {firstName} {lastName}!</i></p>
+      <p><i>Bonjour, {firstName} {lastName}!</i></p>
     </form>
   );
 }
@@ -905,27 +906,27 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Compare this solution to the original imperative code. How are they different?
+Comparez cette solution à la version impérative originale du code. En quoi sont-elles différentes ?
 
 </Solution>
 
-#### Refactor the imperative solution without React {/*refactor-the-imperative-solution-without-react*/}
+#### Refondre la solution impérative sans React {/*refactor-the-imperative-solution-without-react*/}
 
-Here is the original sandbox from the previous challenge, written imperatively without React:
+Voici la sandbox originale du challenge précédent, écrite impérativement sans React :
 
 <Sandpack>
 
 ```js index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
-  if (editButton.textContent === 'Edit Profile') {
-    editButton.textContent = 'Save Profile';
+  if (editButton.textContent === 'Modifier le Profil') {
+    editButton.textContent = 'Sauvegarder le Profil';
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
   } else {
-    editButton.textContent = 'Edit Profile';
+    editButton.textContent = 'Modifier le Profil';
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
@@ -936,16 +937,16 @@ function handleFormSubmit(e) {
 function handleFirstNameChange() {
   firstNameText.textContent = firstNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Bonjour ' +
     firstNameInput.value + ' ' +
-    lastNameInput.value + '!'
+    lastNameInput.value + ' !'
   );
 }
 
 function handleLastNameChange() {
   lastNameText.textContent = lastNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Bonjour ' +
     firstNameInput.value + ' ' +
     lastNameInput.value + '!'
   );
@@ -980,23 +981,23 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name:
-    <b id="firstNameText">Jane</b>
+    Prénom:
+    <b id="firstNameText">Jeanne</b>
     <input
       id="firstNameInput"
-      value="Jane"
+      value="Jeanne"
       style="display: none">
   </label>
   <label>
-    Last name:
+    Nom:
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="editButton">Edit Profile</button>
-  <p><i id="helloText">Hello, Jane Jacobs!</i></p>
+  <button type="submit" id="editButton">Modifier le profil</button>
+  <p><i id="helloText">Bonjour, Jeanne Jacobs !</i></p>
 </form>
 
 <style>
@@ -1008,14 +1009,14 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Imagine React didn't exist. Can you refactor this code in a way that makes the logic less fragile and more similar to the React version? What would it look like if the state was explicit, like in React?
+Imaginez que React n’existe pas. Pouvez-vous refactoriser ce code de manière à rendre la logique moins fragile et plus similaire à la version React ? À quoi cela ressemblerait-il si l’état était explicite, comme dans React ?
 
-If you're struggling to think where to start, the stub below already has most of the structure in place. If you start here, fill in the missing logic in the `updateDOM` function. (Refer to the original code where needed.)
+Si vous avez du mal à savoir par où commencer, le code ci-dessous a déjà la plupart de la structure en place. Si vous commencez ici, complétez la logique manquante dans la fonction `updateDOM`. (Référez-vous au code original si nécessaire).
 
 <Sandpack>
 
 ```js index.js active
-let firstName = 'Jane';
+let firstName = 'Jeanne';
 let lastName = 'Jacobs';
 let isEditing = false;
 
@@ -1049,13 +1050,13 @@ function setIsEditing(value) {
 
 function updateDOM() {
   if (isEditing) {
-    editButton.textContent = 'Save Profile';
-    // TODO: show inputs, hide content
+    editButton.textContent = 'Sauvegarder le profil';
+    // A FAIRE : afficher les entrées, cacher le contenu
   } else {
-    editButton.textContent = 'Edit Profile';
-    // TODO: hide inputs, show content
+    editButton.textContent = 'Modifier le profil';
+    // A FAIRE : cacher les entrées, afficher le contenu
   }
-  // TODO: update text labels
+  // A FAIRE : mettre à jour les textes
 }
 
 function hide(el) {
@@ -1087,23 +1088,23 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name:
-    <b id="firstNameText">Jane</b>
+    Prénom :
+    <b id="firstNameText">Jeanne</b>
     <input
       id="firstNameInput"
-      value="Jane"
+      value="Jeanne"
       style="display: none">
   </label>
   <label>
-    Last name:
+    Nom :
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="editButton">Edit Profile</button>
-  <p><i id="helloText">Hello, Jane Jacobs!</i></p>
+  <button type="submit" id="editButton">Modifier le profil</button>
+  <p><i id="helloText">Bonjour Jeanne Jacobs !</i></p>
 </form>
 
 <style>
@@ -1117,12 +1118,12 @@ label { display: block; margin-bottom: 20px; }
 
 <Solution>
 
-The missing logic included toggling the display of inputs and content, and updating the labels:
+La logique manquante comprenait le basculement de l’affichage des entrées et du contenu, ainsi que la mise à jour des textes :
 
 <Sandpack>
 
 ```js index.js active
-let firstName = 'Jane';
+let firstName = 'Jeanne';
 let lastName = 'Jacobs';
 let isEditing = false;
 
@@ -1156,13 +1157,13 @@ function setIsEditing(value) {
 
 function updateDOM() {
   if (isEditing) {
-    editButton.textContent = 'Save Profile';
+    editButton.textContent = 'Sauvegarder le profil';
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
   } else {
-    editButton.textContent = 'Edit Profile';
+    editButton.textContent = 'Modifier le profil';
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
@@ -1171,9 +1172,9 @@ function updateDOM() {
   firstNameText.textContent = firstName;
   lastNameText.textContent = lastName;
   helloText.textContent = (
-    'Hello ' +
+    'Bonjour ' +
     firstName + ' ' +
-    lastName + '!'
+    lastName + ' !'
   );
 }
 
@@ -1206,23 +1207,23 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name:
-    <b id="firstNameText">Jane</b>
+    Prénom:
+    <b id="firstNameText">Jeanne</b>
     <input
       id="firstNameInput"
-      value="Jane"
+      value="Jeanne"
       style="display: none">
   </label>
   <label>
-    Last name:
+    Nom :
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="editButton">Edit Profile</button>
-  <p><i id="helloText">Hello, Jane Jacobs!</i></p>
+  <button type="submit" id="editButton">Modifier le profil</button>
+  <p><i id="helloText">Bonjour, Jeanne Jacobs !</i></p>
 </form>
 
 <style>
@@ -1234,7 +1235,7 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-The `updateDOM` function you wrote shows what React does under the hood when you set the state. (However, React also avoids touching the DOM for properties that have not changed since the last time they were set.)
+La fonction `updateDOM` que vous avez écrite montre ce que React fait sous le capot lorsque vous définissez l’état. (Cependant, React évite également de toucher le DOM pour les propriétés qui n’ont pas changé depuis la dernière fois qu’elles ont été définies).
 
 </Solution>
 
