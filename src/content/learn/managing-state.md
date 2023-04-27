@@ -5,27 +5,25 @@ title: Gérer l’état
 <Intro>
 
 Au fur et à mesure que votre application se développe, il est utile de réfléchir à la façon dont vous organisez votre état et à la façon dont les données circulent entre vos composants. Les états redondants ou dupliqués sont une source fréquente de bugs.
-Dans ce chapitre, vous apprendrez à bien structurer votre état, à garder une logique de mise à jour de l'état maintenable, et à partager l'état entre des composants distants. 
+Dans ce chapitre, vous apprendrez à bien structurer votre état, à garder une logique de mise à jour de l'état maintenable, et à partager l'état entre des composants distants.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [Comment modéliser les changements d'interface en tant que changements d'état](/learn/reacting-to-input-with-state)
+* [Comment modéliser les changements d’interface en tant que changements d'état](/learn/reacting-to-input-with-state)
 * [Comment bien structurer l’état](/learn/choosing-the-state-structure)
-* [Comment "faire remonter l'état" pour le partager entre les composants](/learn/sharing-state-between-components)
+* [Comment « faire remonter l'état » pour le partager entre les composants](/learn/sharing-state-between-components)
 * [Comment contrôler si l'état est préservé ou réinitialisé](/learn/preserving-and-resetting-state)
 * [Comment consolider une logique d'état complexe dans une fonction](/learn/extracting-state-logic-into-a-reducer)
-* [Comment transmettre l'information sans "faire percoler les props"](/learn/passing-data-deeply-with-context)
+* [Comment transmettre l’information sans « faire percoler les props »](/learn/passing-data-deeply-with-context)
 * [Comment adapter la gestion d’état à la croissance de votre application](/learn/scaling-up-with-reducer-and-context)
 
 </YouWillLearn>
 
 ## Réagir à la saisie avec un état {/*reacting-to-input-with-state*/}
 
-Avec React, vous ne modifierez pas l'interface utilisateur directement à partir du code. Par exemple, vous n'écrirez pas de commandes telles que « désactive le bouton », « active le bouton », « affiche le message de réussite », etc. 
-Au lieu de ça, vous décrirez l'interface utilisateur que vous souhaitez voir apparaître pour les différents états visuels de votre composant (« état initial », « état de saisie », « état de réussite »), puis vous déclencherez les changements d'état en réponse aux interactions de l'utilisateur. 
-Ça ressemble à la façon dont les designers réfléchissent à l'interface utilisateur.
+Avec React, vous ne modifierez pas l’interface utilisateur directement à partir du code. Par exemple, vous n'écrirez pas de commandes telles que « désactive le bouton », « active le bouton », « affiche le message de réussite », etc. Au lieu de ça, vous décrirez l’interface utilisateur que vous souhaitez voir apparaître pour les différents états visuels de votre composant (« état initial », « état de saisie », « état de réussite »), puis vous déclencherez les changements d'état en réponse aux interactions de l’utilisateur. Ça ressemble à la façon dont les designers réfléchissent à l’interface utilisateur.
 
 Voici un formulaire de quiz construit avec React. Voyez comment il utilise la variable d'état `status` pour déterminer s'il faut activer ou désactiver le bouton d’envoi, et s'il faut plutôt afficher le message de réussite.
 
@@ -40,7 +38,7 @@ export default function Form() {
   const [status, setStatus] = useState('typing');
 
   if (status === 'success') {
-    return <h1>C'est exact !</h1>
+    return <h1>C’est exact !</h1>
   }
 
   async function handleSubmit(e) {
@@ -63,7 +61,7 @@ export default function Form() {
     <>
       <h2>Quiz sur les villes</h2>
       <p>
-        Dans quelle ville trouve-t-on un panneau d'affichage qui transforme l'air en eau potable ?
+        Dans quelle ville trouve-t-on un panneau d’affichage qui transforme l’air en eau potable ?
       </p>
       <form onSubmit={handleSubmit}>
         <textarea
@@ -117,8 +115,8 @@ Lisez **[Réagir à la saisie avec un état](/learn/reacting-to-input-with-state
 
 ## Choisir la structure de l'état {/*choosing-the-state-structure*/}
 
-Une bonne structuration de l'état peut faire la différence entre un composant agréable à modifier et à déboguer, et un composant qui est une source constante de bugs. Le principe le plus important est que l'état ne doit pas contenir d'informations redondantes ou dupliquées. 
-S'il y a des éléments d’état inutiles, il est facile d'oublier de les mettre à jour et d'introduire des bugs !
+Une bonne structuration de l'état peut faire la différence entre un composant agréable à modifier et à déboguer, et un composant qui est une source constante de bugs. Le principe le plus important est que l'état ne doit pas contenir d’informations redondantes ou dupliquées.
+S'il y a des éléments d’état inutiles, il est facile d’oublier de les mettre à jour et d’introduire des bugs !
 
 Par exemple, ce formulaire a une variable d'état `fullName` **redondante** :
 
@@ -173,7 +171,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Vous pouvez le retirer et simplifier le code en calculant `fullName` à l’affichage du composant :
+Vous pouvez la retirer et simplifier le code en calculant `fullName` à l’affichage du composant :
 
 <Sandpack>
 
@@ -225,7 +223,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Ce changement peut sembler mineur, mais de nombreux bugs dans les applications React se corrigent de cette façon.
+Ce changement peut sembler mineur, mais de nombreux bugs dans les applis React se corrigent ainsi.
 
 <LearnMore path="/learn/choosing-the-state-structure">
 
@@ -235,9 +233,9 @@ Lisez **[Choisir la structure de l'état](/learn/choosing-the-state-structure)**
 
 ## Partager l'état entre des composants {/*sharing-state-between-components*/}
 
-Parfois, vous souhaitez que l’état de deux composants change toujours en même temps. Pour cela, retirez l’état des deux composants, déplacez-le vers leur ancêtre commun le plus proche, puis transmettez-leur par l’intermédiaire des props. C'est ce qu’on appelle « faire remonter l’état », et c’est l’une des choses que vous ferez le plus souvent en écrivant du code React.
+Parfois, vous souhaitez que l’état de deux composants change toujours en même temps. Pour cela, retirez l’état des deux composants, déplacez-le vers leur ancêtre commun le plus proche, puis transmettez-leur par l’intermédiaire des props. C’est ce qu’on appelle « faire remonter l’état », et c’est l’une des choses que vous ferez le plus souvent en écrivant du code React.
 
-Dans l’exemple qui suit, seul un panneau devrait être actif à tout moment. Pour ce faire, au lieu de conserver l'état actif à l'intérieur de chaque panneau, le composant parent conserve l'état et spécifie les props de ses enfants.
+Dans l’exemple qui suit, seul un panneau devrait être actif à tout moment. Pour ce faire, au lieu de conserver l'état actif au sein de chaque panneau, le composant parent conserve l'état et spécifie les props de ses enfants.
 
 <Sandpack>
 
@@ -254,14 +252,14 @@ export default function Accordion() {
         isActive={activeIndex === 0}
         onShow={() => setActiveIndex(0)}
       >
-        Avec une population d'environ 2 millions d'habitants, Almaty est la plus grande ville du Kazakhstan. De 1929 à 1997, elle en a été la capitale.
+        Avec une population d’environ 2 millions d’habitants, Almaty est la plus grande ville du Kazakhstan. De 1929 à 1997, elle en était la capitale.
       </Panel>
       <Panel
         title="Étymologie"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-        Le nom vient de <span lang="kk-KZ">алма</span>, le mot kazakh pour "pomme" et est souvent traduit comme "plein de pommes". En fait, la région d'Almaty est considérée comme le berceau ancestral de la pomme, et la <i lang="la">Malus sieversii</i> sauvage est considérée comme l'ancêtre probable de la pomme domestique moderne.
+        Le nom vient de <span lang="kk-KZ">алма</span>, le mot kazakh pour « pomme » et est souvent traduit comme « plein de pommes ». En fait, la région d’Almaty est considérée comme le berceau ancestral de la pomme, et la <i lang="la">Malus sieversii</i> sauvage est considérée comme l’ancêtre probable de la pomme domestique moderne.
       </Panel>
     </>
   );
@@ -306,9 +304,9 @@ Lisez **[Partager l’état entre des composants](/learn/sharing-state-between-c
 
 ## Préserver et réinitialiser l'état {/*preserving-and-resetting-state*/}
 
-Lorsque vous rafraîchissez un composant, React doit décider quelles parties de l'arbre doivent être conservées (et mises à jour), et quelles parties doivent être supprimées ou recréées à partir de zéro. Dans la plupart des cas, le comportement automatique de React fonctionne assez bien. Par défaut, React préserve les parties de l'arbre qui « correspondent » avec l’arbre de composants du rendu précédent.
+Lorsque vous rafraîchissez un composant, React doit décider quelles parties de l’arbre doivent être conservées (et mises à jour), et quelles parties doivent être supprimées ou recréées à partir de zéro. Dans la plupart des cas, le comportement automatique de React fonctionne assez bien. Par défaut, React préserve les parties de l’arbre qui « correspondent » avec l’arbre de composants du rendu précédent.
 
-Cependant, il arrive que ce ne soit pas ce que vous souhaitez. Dans cette appli de discussion, le fait de taper un message puis de changer de destinataire ne réinitialise pas la saisie. L'utilisateur risque ainsi d’envoyer accidentellement un message à la mauvaise personne :
+Cependant, il arrive que ce ne soit pas ce que vous souhaitez. Dans cette appli de discussion, le fait de taper un message puis de changer de destinataire ne réinitialise pas la saisie. L’utilisateur risque ainsi d’envoyer accidentellement un message à la mauvaise personne :
 
 <Sandpack>
 
@@ -403,7 +401,7 @@ textarea {
 
 </Sandpack>
 
-React vous permet d'outrepasser le comportement par défaut, et de *forcer* un composant à réinitialiser son état en lui passant une `key` différente, comme `<Chat key={email} />`. Ça dit à React que si le destinataire est différent, alors le composant `Chat` est considéré comme *différent* et doit être recréé à partir de zéro avec les nouvelles données (et l'interface utilisateur, par exemple les champs de saisie). À présent, passer d'un destinataire à l'autre réinitialise le champ de saisie, même si vous affichez le même composant.
+React vous permet d’outrepasser le comportement par défaut, et de *forcer* un composant à réinitialiser son état en lui passant une `key` différente, comme `<Chat key={email} />`. Ça dit à React que si le destinataire est différent, alors le composant `Chat` est considéré comme *différent* et doit être recréé à partir de zéro avec les nouvelles données (et l’interface utilisateur, par exemple les champs de saisie). À présent, passer d’un destinataire à l’autre réinitialise le champ de saisie, même si vous affichez le même composant.
 
 <Sandpack>
 
@@ -500,13 +498,13 @@ textarea {
 
 <LearnMore path="/learn/preserving-and-resetting-state">
 
-Lisez **[Préserver et réinitialiser l'état](/learn/preserving-and-resetting-state)** pour apprendre le cycle de vie d'un état et comment le contrôler.
+Lisez **[Préserver et réinitialiser l'état](/learn/preserving-and-resetting-state)** pour apprendre le cycle de vie d’un état et comment le contrôler.
 
 </LearnMore>
 
 ## Extraire la logique d'état dans un réducteur {/*extracting-state-logic-into-a-reducer*/}
 
-Les composants comportant de nombreuses mises à jour d'état réparties entre de nombreux gestionnaires d'événements peuvent devenir intimidants. Dans ce type de cas, vous pouvez consolider toute la logique de mise à jour de l'état en-dehors de votre composant dans une seule fonction, appelée « réducteur » _(reducer, NdT)_. Vos gestionnaires d'événements deviennent concis car ils ne spécifient que les « actions » de l'utilisateur. Au bas du fichier, la fonction du réducteur spécifie comment l'état doit être mis à jour en réponse à chaque action !
+Les composants comportant de nombreuses mises à jour d'état réparties entre de nombreux gestionnaires d'événements peuvent devenir intimidants. Dans un tel cas, vous pouvez consolider toute la logique de mise à jour de l'état en-dehors de votre composant dans une seule fonction, appelée « réducteur » _(reducer, NdT)_. Vos gestionnaires d'événements deviennent concis car ils ne spécifient que les « actions » de l’utilisateur. Au bas du fichier, la fonction du réducteur spécifie comment l'état doit être mis à jour en réponse à chaque action !
 
 <Sandpack>
 
@@ -703,10 +701,10 @@ Lisez **[Extraire la logique d'état dans un réducteur](/learn/extracting-state
 
 ## Transmettre des données en profondeur avec le contexte {/*passing-data-deeply-with-context*/}
 
-Habituellement, vous transmettez des informations d'un composant parent à un composant enfant par l'intermédiaire des props. Mais le passage des props peut s'avérer gênant si vous devez faire passer une information à travers plusieurs composants, ou si plusieurs composants ont besoin de la même information. 
-Le contexte permet au composant parent de rendre certaines informations disponibles à n'importe quel composant de l'arbre situé en-dessous de lui--quelle que soit sa profondeur--sans avoir à les transmettre explicitement par le biais de props.
+Habituellement, vous transmettez des informations d’un composant parent à un composant enfant par l’intermédiaire des props. Mais le passage des props peut s'avérer gênant si vous devez faire passer une information à travers plusieurs composants, ou si plusieurs composants ont besoin de la même information.
+Le contexte permet au composant parent de rendre certaines informations disponibles à n’importe quel composant de l’arbre situé en-dessous de lui--quelle que soit sa profondeur--sans avoir à les transmettre explicitement par le biais de props.
 
-Ici, le composant `Heading` détermine son niveau d'en-tête en "demandant" son niveau à la `Section` la plus proche. Chaque `Section` détermine son propre niveau en demandant à la `Section` parente le sien, et en lui ajoutant un. Chaque `Section` fournit des informations à tous les composants situés en-dessous d'elle sans passer de props--elle le fait par le biais du contexte.
+Ici, le composant `Heading` détermine son niveau d’en-tête en « demandant » son niveau à la `Section` la plus proche. Chaque `Section` détermine son propre niveau en demandant à la `Section` parente le sien, et en lui ajoutant un. Chaque `Section` fournit des informations à tous les composants situés en-dessous d’elle sans passer de props--elle le fait par le biais du contexte.
 
 <Sandpack>
 
@@ -762,7 +760,7 @@ export default function Heading({ children }) {
   const level = useContext(LevelContext);
   switch (level) {
     case 0:
-      throw Error("Une en-tête doit être à l'intérieur d'une section !");
+      throw Error("Un en-tête doit être à l’intérieur d’une section !");
     case 1:
       return <h1>{children}</h1>;
     case 2:
@@ -804,11 +802,11 @@ Lisez **[Transmettre des données en profondeur avec le contexte](/learn/passing
 
 </LearnMore>
 
-## Mise à l'échelle avec réducteur et contexte {/*scaling-up-with-reducer-and-context*/}
+## Mise à l'échelle en combinant réducteur et contexte {/*scaling-up-with-reducer-and-context*/}
 
-Les réducteurs vous permettent de consolider la logique de mise à jour de l'état d'un composant. Le contexte vous permet de transmettre des informations en profondeur à d'autres composants. Vous pouvez combiner les réducteurs et le contexte pour gérer l'état d'un écran complexe.
+Les réducteurs vous permettent de consolider la logique de mise à jour de l'état d’un composant. Le contexte vous permet de transmettre des informations en profondeur à d’autres composants. Vous pouvez combiner les réducteurs et le contexte pour gérer l'état d’un écran complexe.
 
-Avec cette approche, un composant parent ayant un état complexe le gère à l'aide d'un réducteur. D'autres composants situés à n'importe quel endroit de l'arbre peuvent lire son état via le contexte. Ils peuvent également envoyer des actions pour mettre à jour cet état.
+Avec cette approche, un composant parent ayant un état complexe le gère à l’aide d’un réducteur. D’autres composants situés à n’importe quel endroit de l’arbre peuvent lire son état *via* le contexte. Ils peuvent également envoyer des actions pour mettre à jour cet état.
 
 <Sandpack>
 
@@ -1011,7 +1009,7 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/scaling-up-with-reducer-and-context">
 
-Lisez **[Mise à l'échelle avec réducteur et contexte](/learn/scaling-up-with-reducer-and-context)** pour apprendre comment adapter la gestion d’état à une application en pleine croissance.
+Lisez **[Mise à l'échelle en combinant réducteur et contexte](/learn/scaling-up-with-reducer-and-context)** pour apprendre comment adapter la gestion d’état à une application en pleine croissance.
 
 </LearnMore>
 

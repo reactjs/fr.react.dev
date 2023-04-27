@@ -130,27 +130,27 @@
           "path": "/learn/reacting-to-input-with-state"
         },
         {
-          "title": "Choisir la structure de l'état",
+          "title": "Choisir la structure de l’état",
           "path": "/learn/choosing-the-state-structure"
         },
         {
-          "title": "Partager l'état entre des composants",
+          "title": "Partager l’état entre des composants",
           "path": "/learn/sharing-state-between-components"
         },
         {
-          "title": "Préserver et réinitialiser l'état",
+          "title": "Préserver et réinitialiser l’état",
           "path": "/learn/preserving-and-resetting-state"
         },
         {
-          "title": "Extracting State Logic into a Reducer",
+          "title": "Extraire la logique d’état dans un réducteur",
           "path": "/learn/extracting-state-logic-into-a-reducer"
         },
         {
-          "title": "Passing Data Deeply with Context",
+          "title": "Transmettre des données en profondeur avec le contexte",
           "path": "/learn/passing-data-deeply-with-context"
         },
         {
-          "title": "Scaling Up with Reducer and Context",
+          "title": "Mise à l’échelle en combinant réducteur et contexte",
           "path": "/learn/scaling-up-with-reducer-and-context"
         }
       ]
@@ -186,7 +186,7 @@
         },
         {
           "title": "Removing Effect Dependencies",
-          "path": "/learn/removing-effect-dependencies"              
+          "path": "/learn/removing-effect-dependencies"
         },
         {
           "title": "Reusing Logic with Custom Hooks",
