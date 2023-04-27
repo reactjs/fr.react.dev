@@ -23,7 +23,7 @@ title: <Fragment> (<>...</>)
 
 ### `<Fragment>` {/*fragment*/}
 
-Englober des éléments dans un `<Fragment>` pour les grouper dans des situations ou vous avez besoin d’un seul élément. Grouper des éléments dans un `<Fragment>` n’a pas d’effet sur le DOM rendu ; c’est comme si les éléments n’étaient pas groupés. La balise vide `<></>` en JSX est utilisée la plupart du temps afin de raccourcir l’écriture de `<Fragment></Fragment>`.
+Enrobez des éléments dans un `<Fragment>` pour les grouper dans des situations ou vous ne devez fournir qu'un seul élément. Grouper des éléments dans un `<Fragment>` n’a pas d’effet sur le DOM résultat ; c’est comme si les éléments n’étaient pas groupés. La balise vide `<></>` en JSX est utilisée la plupart du temps comme version concise de `<Fragment></Fragment>`.
 
 #### Props {/*props*/}
 
@@ -33,7 +33,7 @@ Englober des éléments dans un `<Fragment>` pour les grouper dans des situation
 
 - Si vous souhaitez utiliser une `key` dans un Fragment, vous ne pouvez pas utiliser la syntaxe `<>...</>`. Vous devez explicitement importer `Fragment` depuis `'react'` et écrire `<Fragment key={yourKey}>...</Fragment>`.
 
-- React ne [réinitialise pas l’état](/learn/preserving-and-resetting-state) quand vous passez de rendre `<><Child /></>` à `[<Child />]` et inversement, ou ni si vous passez de rendre `<><Child /></>` à `<Child />` et inversement. Ça marche seulement à un niveau plus profond : par exemple, passer de `<><><Child /></></>` à `<Child />` réinitialise l’état. Consultez la sémantique précise [ici.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
+- React ne [réinitialise pas l’état](/learn/preserving-and-resetting-state) quand vous passez d'une structure `<><Child /></>` à `[<Child />]` et inversement, ni quand vous passez de `<><Child /></>` à `<Child />` et inversement. Ça ne marche qu’à un niveau de profondeur : par exemple, passer de `<><><Child /></></>` à `<Child />` réinitialise l’état. Consultez [la sémantique précise ici](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b).
 
 ---
 
@@ -41,7 +41,7 @@ Englober des éléments dans un `<Fragment>` pour les grouper dans des situation
 
 ### Renvoyer plusieurs éléments {/*returning-multiple-elements*/}
 
-Utilisez `Fragment`, ou la syntaxe équivalente `<>...</>`, afin de grouper plusieurs éléments ensemble. Vous pouvez l’utiliser pour mettre plusieurs éléments à la place d’un élément. Par exemple, un composant ne peut renvoyer qu’un élément unique, mais avec un Fragment vous pouvez grouper plusieurs éléments et renvoyer ce groupe :
+Utilisez `Fragment`, ou la syntaxe équivalente `<>...</>`, afin de grouper plusieurs éléments ensemble. Vous pouvez l’utiliser pour passer plusieurs éléments là où un seul élément est attendu. Par exemple, un composant ne peut renvoyer qu’un seul élément, mais avec un Fragment vous pouvez grouper plusieurs éléments et renvoyer ce groupe :
 
 ```js {3,6}
 function Post() {
@@ -54,7 +54,7 @@ function Post() {
 }
 ```
 
-Les Fragments sont utiles car grouper des éléments avec un Fragment n’as pas d’effet sur la mise en page ou les styles, contrairement à l’utilisation d’un autre balise englobante du DOM. Si vous inspectez cet exemple avec les outils du navigateur, vous verrez que toutes les balises `<h1>` et `<p>` du DOM apparaissent en tant frères et sœur sans balise englobante :
+Les Fragments sont utiles car grouper des éléments avec un Fragment n’as pas d’effet sur la mise en page ou les styles, contrairement à l’enrobage par une balise conteneur telle qu’un élément du DOM. Si vous inspectez cet exemple avec les outils du navigateur, vous verrez que toutes les balises `<h1>` et `<p>` du DOM apparaissent au même niveau (avec le même parent) sans balise enrobante :
 
 <Sandpack>
 
@@ -62,7 +62,7 @@ Les Fragments sont utiles car grouper des éléments avec un Fragment n’as pas
 export default function Blog() {
   return (
     <>
-      <Post title="Une mise à jour" body="Ça fait un moment que je n’ai pas posté..." />
+      <Post title="Des nouvelles" body="Ça fait un moment que je n’ai pas écrit..." />
       <Post title="Mon nouveau blog" body="Je démarre un nouveau blog !" />
     </>
   )
@@ -96,7 +96,7 @@ function PostBody({ body }) {
 
 #### Comment utiliser un Fragment sans la syntaxe spéciale ? {/*how-to-write-a-fragment-without-the-special-syntax*/}
 
-L’exemple ci-dessus est equivalent à importer `Fragment` depuis React :
+L’exemple ci-dessus revient à importer `Fragment` depuis React :
 
 ```js {1,5,8}
 import { Fragment } from 'react';
@@ -111,7 +111,7 @@ function Post() {
 }
 ```
 
-Normalement vous n’aurez pas besoin d’utiliser ça à moins d’avoir besoin de [donner des `key` à votre `Fragment`.](#rendering-a-list-of-fragments)
+Normalement vous n’aurez pas besoin d’utiliser ça à moins de vouloir [associer une `key` à votre `Fragment`](#rendering-a-list-of-fragments).
 
 </DeepDive>
 
@@ -160,7 +160,7 @@ function DateRangePicker({ start, end }) {
 
 ### Afficher une liste de Fragments {/*rendering-a-list-of-fragments*/}
 
-Voici une situation ou vous avez besoin d’écrire explicitement `Fragment` plutôt que d’utiliser la syntaxe `<></>`. Quand vous [rendez plusieurs éléments dans une boucle](/learn/rendering-lists), vous avez besoin d’assigner une `key` à chaque élément. Si les éléments compris dans une boucle sont des Fragments, vous devez utiliser la syntaxe classique JSX afin de fournir l’attribut `key` :
+Voici un cas de figure où vous devez écrire `Fragment` explicitement plutôt que d’utiliser la syntaxe `<></>`. Quand vous [affichez plusieurs éléments dans une boucle](/learn/rendering-lists), vous avez besoin d’associer une `key` à chaque élément. Si les éléments compris dans la boucle sont des Fragments, vous devez utiliser la syntaxe classique JSX afin de fournir la prop `key` :
 
 ```js {3,6}
 function Blog() {
@@ -173,7 +173,7 @@ function Blog() {
 }
 ```
 
-Vous pouvez inspecter le DOM pour vérifier qu’il n’y a pas de balise englobante autour des enfants du Fragment :
+Vous pouvez inspecter le DOM pour vérifier qu’il n’y a pas d'élément enrobant autour des enfants du Fragment :
 
 <Sandpack>
 
@@ -181,7 +181,7 @@ Vous pouvez inspecter le DOM pour vérifier qu’il n’y a pas de balise englob
 import { Fragment } from 'react';
 
 const posts = [
-  { id: 1, title: 'Une mise à jour', body: 'Ça fait un moment que je n’ai pas posté...' },
+  { id: 1, title: 'Des nouvelles', body: 'Ça fait un moment que je n’ai pas écrit...' },
   { id: 2, title: 'Mon nouveau blog', body: 'Je démarre un nouveau blog !' }
 ];
 
