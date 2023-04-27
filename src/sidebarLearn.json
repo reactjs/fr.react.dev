@@ -121,12 +121,12 @@
       ]
     },
     {
-      "title": "Gérer les états",
+      "title": "Gérer l'état",
       "path": "/learn/managing-state",
       "tags": ["intermediate"],
       "routes": [
         {
-          "title": "Réagir à une entrée avec un état",
+          "title": "Réagir à la saisie avec un état",
           "path": "/learn/reacting-to-input-with-state"
         },
         {
@@ -134,7 +134,7 @@
           "path": "/learn/choosing-the-state-structure"
         },
         {
-          "title": "Partager l'état entre les composants",
+          "title": "Partager l'état entre des composants",
           "path": "/learn/sharing-state-between-components"
         },
         {
