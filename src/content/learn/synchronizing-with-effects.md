@@ -20,7 +20,7 @@ Certains composants ont besoin de se synchroniser avec des systèmes tiers. Par 
 
 ## Qu’est-ce qu’un Effet, et en quoi ça diffère d’un événement ? {/*what-are-effects-and-how-are-they-different-from-events*/}
 
-Avant d’étudier les Effets, vous devez être à l’aisde avec deux types de comportement dans les composants Reaxct :
+Avant d’étudier les Effets, vous devez être à l’aise avec deux types de code dans les composants React :
 
 - **Le code de rendu** (présenté dans [Décrire l’UI](/learn/describing-the-ui)) vit au niveau racine de votre composant.  C’est là que vous récupérez les props et l’état, les transformez et renvoyez du JSX décrivant ce que vous voulez voir à l’écran. [Le code de rendu doit être pur](/learn/keeping-components-pure).  Comme une formule mathématique, il doit se contenter de *calculer* le résultat, un point c’est tout.
 
@@ -28,7 +28,7 @@ Avant d’étudier les Effets, vous devez être à l’aisde avec deux types de 
 
 Mais parfois, ça ne suffit pas.  Imaginez un composant `ChatRoom` qui doit se connecter à un serveur de discussion dès qu’il devient visible à l’écran.  La connexion au serveur ne constitue pas un calcul pur (c’est un effet de bord), elle ne doit donc pas survenir pendant le rendu.  Et pourtant, il n’existe pas d’événement particulier (tel qu’un clic) pour signifier que `ChatRoom` devient visible.
 
-**Les *Effets* vous permettent de spécifier des effets de bord causés par le rendu lui-même, plutôt que par un événement particulier.**  Envoyer un message dans la discussion est un *événement*, parce que c’est directement lié au fait que l’utilisateur a cliqué sur un bouton précis.  En revanche, mettre en place la connexion au serveur est un *Effet* parce que ça doit se produire quelle que soit l’interaction qui a entraîné l’affichage du composant. Les Effets sont exécuté à la fin de la phase de [commit](/learn/render-and-commit), après que l’écran a été mis à jour.  C’est le bon moment pour synchroniser les composants React avec des systèmes extérieurs (comme le réseau ou une bibliothèque tierce).
+**Les *Effets* vous permettent de spécifier des effets de bord causés par le rendu lui-même, plutôt que par un événement particulier.**  Envoyer un message dans la discussion est un *événement*, parce que c’est directement lié au fait que l’utilisateur a cliqué sur un bouton précis.  En revanche, mettre en place la connexion au serveur est un *Effet* parce que ça doit se produire quelle que soit l’interaction qui a entraîné l’affichage du composant. Les Effets sont exécuté à la fin de la phase de [commit](/learn/render-and-commit), après que l’écran a été mis à jour.  C’est le bon moment pour synchroniser les composants React avec des systèmes extérieurs (comme par exemple le réseau ou une bibliothèque tierce).
 
 <Note>
 
@@ -74,7 +74,7 @@ Chaque fois que le composant calculera son rendu, React mettra l’affichage à 
 Voyons comment vous pouvez utiliser un Effet pour vous synchroniser avec un système extérieur.  Prenons un composant React `<VideoPlayer>`.  Ce serait chouette de pouvoir contrôler son état de lecture (en cours ou en pause) en lui passant une prop `isPlaying` :
 
 ```js
-<VideoPlayer isPlaying={isPlaying} />;
+<VideoPlayer isPlaying={isPlaying} />
 ```
 
 Votre composant personnalisé `VideoPlayer` utilise la balise native [`<video>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/video) du navigateur :
@@ -134,7 +134,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-Ce code est incorrect parce qu’il essaie de manipuler le DOM pendant le rendu. Dans React, [le rendu doit etre un calcul pur](/learn/keeping-components-pure) de JSX et ne devrait pas contenir d’effets de bord tels qu’une manipulation du DOM.
+Ce code est incorrect parce qu’il essaie de manipuler le DOM pendant le rendu. Dans React, [le rendu doit être un calcul pur](/learn/keeping-components-pure) de JSX et ne devrait pas contenir d’effets de bord tels qu’une manipulation du DOM.
 
 Qui plus est, quand `VideoPlayer` est appelé pour la première fois, son DOM n’existe pas encore ! Il n’y a pas encore de nœud DOM sur lequel appeler `play()` ou `pause()`, parce que React ne saura quel DOM créer qu’une fois que vous aurez renvoyé le JSX.
 
@@ -232,7 +232,7 @@ Les Effets ne devraient normalement synchroniser vos composants qu’avec des sy
 Par défaut, les Effets s’exécutent après *chaque* rendu. Souvent pourtant, **ce n’est pas ce que vous voulez** :
 
 - Parfois, c’est lent. La synchronisation avec un système extérieur n’est pas toujours instantanée, aussi vous pourriez vouloir l’éviter si elle est superflue.  Par exemple, vous ne souhaitez pas vous reconnecter au serveur de discussion à chaque frappe clavier.
-- Parfois, c’est incorrect. Par exemple, vous ne voulez pas déclencher une animation de fondu entrant à chaque frappe clavier. L’animation ne devrait se dérouler qu’une seule fois, lorsque le composant apparaît initialement.
+- Parfois, c’est incorrect. Par exemple, vous ne voulez pas déclencher une animation de fondu entrant à chaque frappe clavier. L’animation ne devrait se dérouler qu’une seule fois, après que le composant apparaît.
 
 Pour mettre ce problème en évidence, revoici l’exemple précédent avec quelques appels à `console.log` en plus, et un champ de saisie textuelle qui met à jour l’état du parent.  Voyez comme la saisie entraîne la ré-exécution de l’Effet :
 
@@ -282,7 +282,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-Vous pouvez dire à React de **sauter les ré-exécutions superflue de l’Effet** en fournissant un tableau de *dépendances* comme second argument lors de l’appel à `useEffect`.  Commencez par ajouter un tableau vide `[]` dans l’exemple précédent, à la ligne 14 :
+Vous pouvez dire à React de **sauter les ré-exécutions superflues de l’Effet** en fournissant un tableau de *dépendances* comme second argument lors de l’appel à `useEffect`.  Commencez par ajouter un tableau vide `[]` dans l’exemple précédent, à la ligne 14 :
 
 ```js {3}
   useEffect(() => {
@@ -642,7 +642,7 @@ En développement, votre Effet appellera `addEventListener()`, puis immédiateme
 
 ### Déclencher des animations {/*triggering-animations*/}
 
-Si votre Effet réalise une animation d’entrée, la fonction de nettoyage devrait revenir aux valeurs initiales de l’animation :
+Si votre Effet réalise une animation d’entrée, la fonction de nettoyage devrait s’assurer de revenir aux valeurs initiales de l’animation :
 
 ```js {4-6}
 useEffect(() => {
@@ -658,7 +658,7 @@ En développement, l’opacité sera mise à `1`, puis à `0`, puis encore à `1
 
 ### Charger des données {/*fetching-data*/}
 
-Si votre Effet charge quelque chose (par exemple via la réseau), la fonction de nettoyage devrait soit [abandonner le chargement](https://developer.mozilla.org/fr/docs/Web/API/AbortController) soit ignorer son résultat :
+Si votre Effet charge quelque chose (par exemple *via* la réseau), la fonction de nettoyage devrait soit [abandonner le chargement](https://developer.mozilla.org/fr/docs/Web/API/AbortController) soit ignorer son résultat :
 
 ```js {2,6,13-15}
 useEffect(() => {
@@ -701,13 +701,13 @@ Non seulement ça améliorera l’expérience de développement (DX), mais l’a
 
 - **Les Effets ne fonctionnent pas côté serveur.**  Ça implique que le HTML rendu côté serveur avec React proposera un état initial sans données chargées. Le poste client devra télécharger tout le JavaScript et afficher l’appli pour découvrir seulement alors qu’il lui faut aussi charger des données. Ce n’est pas très efficace.
 - **Charger depuis les Effets entraîne souvent des « cascades réseau ».** On affiche le composant parent, il charge ses données, affiche ses composants enfants, qui commencent seulement alors à charger leurs propres données.  Si le réseau n’est pas ultra-rapide, cette séquence est nettement plus lente que le chargement parallèle de toutes les données concernées.
-- **Charger depuis les Effets implique généralement l’absence de pré-chargement ou de cache des données.**  Par exemple, si le composant est démonté puis remonté, il lui faudrait charger à nouveau ses données.
+- **Charger depuis les Effets implique généralement l’absence de pré-chargement ou de cache des données.**  Par exemple, si le composant est démonté puis remonté, il lui faudrait charger à nouveau les données dont il a besoin.
 - **L’ergonomie n’est pas top.**  Écrire ce genre d’appels `fetch` manuels nécessite pas mal de code générique, surtout lorsqu’on veut éviter des bugs tels que les [*race conditions*](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect).
 
-Cette liste d’inconvénients n’est d’ailleurs pas spécifique à React.  Elle s’applique au chargement de données lors du montage quelle que soit la bibliothèque.  Comme pour le routage, bien orchestrer son chargement de données est un exercice délicat, et nous vous recommandons plutôt les approches suivantes :
+Cette liste d’inconvénients n’est d’ailleurs pas spécifique à React.  Elle s’applique au chargement de données lors du montage quelle que soit la bibliothèque.  Comme pour le routage, bien orchestrer son chargement de données est un exercice délicat, c’est pourquoi nous vous recommandons plutôt les approches suivantes :
 
-- **Si vous utilisez un [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), utilisez son mécanisme intégré de chargement de données.** Les frameworks React modernes ont intégré le chargement de données de façon efficace afin d’éviter ces ornières.
-- **Dans le cas contraire, envisagez l’utilisation ou la construction d’un cache côté client.**  Les solutions open-source les plus populaires incluent  [React Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), et [React Router 6.4+](https://beta.reactrouter.com/en/main/start/overview). Vous pouvez aussi construire votre propre solution, auquel cas vous utiliseriez sans doute les Effet sous le capot, mais ajouteriez la logique nécessaire au dédoublonnement de requêtes, à la mise en cache des réponses, et à l’optimisation des cascades réseau (en préchargeant les données ou en consolidant vers le haut les besoins de données des routes).
+- **Si vous utilisez un [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), utilisez son mécanisme intégré de chargement de données.** Les frameworks React modernes ont intégré le chargement de données de façon efficace afin d’éviter ce type d’ornières.
+- **Dans le cas contraire, envisagez l’utilisation ou la construction d’un cache côté client.**  Les solutions open-source les plus populaires incluent  [React Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), et [React Router 6.4+](https://beta.reactrouter.com/en/main/start/overview). Vous pouvez aussi construire votre propre solution, auquel cas vous utiliseriez sans doute les Effets sous le capot, mais ajouteriez la logique nécessaire au dédoublonnement de requêtes, à la mise en cache des réponses, et à l’optimisation des cascades réseau (en préchargeant les données ou en consolidant vers le haut les besoins de données des routes).
 
 Vous pouvez continuer à charger les données directement dans les Effets si aucune de ces approches ne vous convient.
 
@@ -727,7 +727,7 @@ En développement, `logVisit` sera appelée deux fois pour chaque URL, ce qui in
 
 **En production, il n’y aura pas de doublon de visite.**
 
-Pour déboguer les événements analytiques que vous envoyez, vous pouvez déployer votre appli sur un environnement de recette (qui s’exécute en mode production), ou temporairement désactiver le [mode strict](/reference/react/StrictMode) et ses vérifications de montage en mode développement.  Vous pourriez aussi envoyer vos événements analytiques suite à des gestionnaires d’événements de changement de route plutôt que depuis les Effets.  Pour obtenir des analyses plus granulaires encore, les [observateurs d’intersection](https://developer.mozilla.org/fr/docs/Web/API/Intersection_Observer_API) peuvent vous aider à surveiller quels composants sont dans la zone visible de la page, et pour combien de temps ils y restent.
+Pour déboguer les événements analytiques que vous envoyez, vous pouvez déployer votre appli sur un environnement de recette (qui s’exécute en mode production), ou temporairement désactiver le [mode strict](/reference/react/StrictMode) et ses vérifications de montage en mode développement.  Vous pourriez aussi envoyer vos événements analytiques au sein de gestionnaires d’événements de changement de route plutôt que depuis les Effets.  Pour obtenir des analyses plus granulaires encore, les [observateurs d’intersection](https://developer.mozilla.org/fr/docs/Web/API/Intersection_Observer_API) peuvent vous aider à surveiller quels composants sont dans la zone visible de la page, et mesurer combien de temps ils y restent.
 
 ### Pas un Effet : initialiser l’application {/*not-an-effect-initializing-the-application*/}
 
@@ -746,7 +746,7 @@ function App() {
 
 Ça garantit que ces traitements ne sont exécutés qu’une fois, après que le navigateur a chargé la page.
 
-### Pas un Effet : Acheter un produit {/*not-an-effect-buying-a-product*/}
+### Pas un Effet : acheter un produit {/*not-an-effect-buying-a-product*/}
 
 Parfois, même une fonction de nettoyage ne suffit pas à masquer les conséquences visibles de la double exécution d’un Effet.  Par exemple, peut-être votre Effet envoie-t-il une requête POST qui achète un produit :
 
@@ -757,9 +757,9 @@ useEffect(() => {
 }, []);
 ```
 
-Vous ne voulez sans doute pas acheter le produit deux fois.  C’est justement pour ça que ce type de traitement n’a pas sa place dans un Effet.  Et si l’utilisateur navigue ailleurs puis revient ? Votre Effet s’exécuterait encore.  On ne veut pas déclencher un achat quand l’utilisateur *visite* la page ; on veut acheter quand l’utilisateur *clique* le bouton Acheter.
+Vous ne voulez sans doute pas acheter le produit deux fois.  C’est justement pour ça que ce type de traitement n’a pas sa place dans un Effet.  Et si l’utilisateur navigue ailleurs puis revient ? Votre Effet s’exécuterait encore.  On ne veut pas déclencher un achat quand l’utilisateur *visite* la page ; on veut acheter quand l’utilisateur *clique* sur le bouton Acheter.
 
-Ce n’est pas le rendu qui déclenche l’achat, c’est une interaction spécifique.  On ne devrait donc l’exécuter que lorsque l’utilisateur active le bouton. **Supprimez l’Effet et déplacer la requête à `/api/buy` dans le gestionnaire d’événement du bouton Acheter :**
+Ce n’est pas le rendu qui déclenche l’achat, c’est une interaction spécifique.  On ne devrait donc l’exécuter que lorsque l’utilisateur active le bouton. **Supprimez l’Effet et déplacez la requête à `/api/buy` dans le gestionnaire d’événement du bouton Acheter :**
 
 ```js {2-3}
   function handleClick() {
@@ -768,13 +768,13 @@ Ce n’est pas le rendu qui déclenche l’achat, c’est une interaction spéci
   }
 ```
 
-**Ça illustre bien le fait que si le remontage casse la logique de votre application, il s’agit probablement d’un bug dans votre code.**  Du point de vue de l’utilisateur, visiter la page ne devrait en rien différer de la visiter, cliquer un lien, puis y revenir.  React vérifie que vos composant obéissent à ce principe en les remontant une fois lors du développement.
+**Ça illustre bien le fait que si le remontage casse la logique de votre application, il s’agit probablement d’un bug dans votre code.**  Du point de vue de l’utilisateur, visiter la page ne devrait en rien différer de la visiter, puis cliquer un lien, puis y revenir.  React vérifie que vos composants obéissent à ce principe en les remontant une fois lors du développement.
 
 ## Tous ensemble cette fois {/*putting-it-all-together*/}
 
-Le bac à sable ci-après devrait vous aider à affiner votre intuition du fonctionnement des Effets dans la pratique.
+Le bac à sable ci-après devrait vous aider à affiner votre intuition du fonctionnement des Effets en pratique.
 
-Cet exemple utilise [`setTimeout`](https://developer.mozilla.org/fr/docs/Web/API/setTimeout) pour planifier un message en console avec le texte saisi, mais 3 secondes après l’exécution de l’Effet.  La fonction de nettoyage annule le *timer* mis en place.  Commencez par activer « Monter le composant ».
+Cet exemple utilise [`setTimeout`](https://developer.mozilla.org/fr/docs/Web/API/setTimeout) pour planifier un message en console avec le texte saisi, qui surviendra 3 secondes après l’exécution de l’Effet.  La fonction de nettoyage annule le *timer* mis en place.  Commencez par activer « Monter le composant ».
 
 <Sandpack>
 
@@ -860,7 +860,7 @@ Voyons ce qui se passe exactement lorsque l’utilisateur se promène dans l’a
 
 #### Rendu initial {/*initial-render*/}
 
-L’utilisateur visite `<ChatRoom roomId="general" />`. [Substituons mentalement](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `roomId` par `'general'` :
+L’utilisateur visite `<ChatRoom roomId="general" />`. [Substituons mentalement](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) la référence à `roomId` par sa valeur, `'general'` :
 
 ```js
   // JSX pour le premier rendu (roomId = "general")
@@ -884,7 +884,7 @@ React exécute l’Effet, qui nous connecte au salon de discussion `'general'`.
 
 #### Rendu suivant avec les mêmes dépendances {/*re-render-with-same-dependencies*/}
 
-Supposons que `<ChatRoom roomId="general" />` fasse un nouveau rendu. Le résultat JSX est le même :
+Supposons que `<ChatRoom roomId="general" />` fasse un nouveau rendu. Le résultat JSX est exactement le même :
 
 ```js
   // JSX pour le deuxième rendu (roomId = "general")
@@ -910,7 +910,7 @@ React compare le `['general']` du deuxième rendu au `['general']` du premier. *
 
 #### Rendu suivant avec des dépendances différentes {/*re-render-with-different-dependencies*/}
 
-L’utilisateur visite alors `<ChatRoom roomId="travel" />`. Cette fois, le composant renvoie du JSX différent :
+L’utilisateur visite alors `<ChatRoom roomId="travel" />`. Cette fois, le JSX renvoyé est différent :
 
 ```js
   // JSX pour le troisième rendu (roomId = "travel")
@@ -940,7 +940,7 @@ Après ça, React exécute l’Effet du troisième rendu.  Il nous connecte au s
 
 #### Démontage {/*unmount*/}
 
-Au bout du compte, notre utilisateur s’en va, et le composant `ChatRoom` est démonté.  React exécute la fonction de nettoyage du dernier Effet exécuté.  C’était celui du troisième rendu.  Sa fonction de nettoyage referme la connexion `createConnection('travel')`. L’appli se déconnecte donc du salon `'travel'`.
+Au bout du compte, notre utilisateur s’en va, et le composant `ChatRoom` est démonté.  React exécute la fonction de nettoyage du dernier Effet exécuté : celui du troisième rendu.  Sa fonction de nettoyage referme la connexion `createConnection('travel')`. L’appli se déconnecte donc du salon `'travel'`.
 
 #### Comportements spécifiques au développement {/*development-only-behaviors*/}
 
@@ -978,7 +978,7 @@ import { useEffect, useRef } from 'react';
 export default function MyInput({ value, onChange }) {
   const ref = useRef(null);
 
-  // TODO: Ça ne marche pas tout à fait.  Corrigez ça.
+  // TODO: Ça ne marche pas tout à fait, corrigez ça.
   // ref.current.focus()
 
   return (
@@ -1045,11 +1045,11 @@ body {
 
 Pour vérifier que votre solution fonctionne, cliquez « Afficher le formulaire » et vérifiez que le champ de saisie reçoit le focus (il a un halo et le curseur y est actif).  Cliquez sur « Masquer le formulaire » puis à nouveau « Afficher le formulaire ». Vérifiez que le champ a de nouveau le focus.
 
-`MyInput` ne devrait recevoir le focus *qu’au montage* plutôt qu’après chaque rendu.  Pour le vérifier, cliquez « Afficher le formulaire » puis jouez avec la case à cocher « Le mettre en majuscules ». Ça ne devrait *pas* redonner le focus au champ textuel à chaque bascule.
+`MyInput` ne devrait recevoir le focus *qu’au montage* plutôt qu’après chaque rendu.  Pour le vérifier, cliquez sur « Afficher le formulaire » puis jouez avec la case à cocher « Le mettre en majuscules ». Ça ne devrait *pas* redonner le focus au champ textuel à chaque bascule.
 
 <Solution>
 
-Appeler `ref.current.focus()` depuis le rendu est incorrect, car il s’agit d’un *effet de bord*. Les effets de bord devraient figurer soit dans des gestionnaires d’événements, soit au sein d’appels à `useEffect`.  Dans notre cas, l’effet de bord est *causé* par l’apparition du composant plutôt que par une interaction spécifique, de sorte qu’il est logique de le placer dans un Effet.
+Appeler `ref.current.focus()` depuis le rendu est incorrect, car il s’agit d’un *effet de bord*. Les effets de bord devraient figurer soit dans des gestionnaires d’événements, soit au sein d’appels à `useEffect`.  Dans notre cas, l’effet de bord est *causé* par l’apparition du composant plutôt que par une interaction spécifique, il est donc logique de le placer dans un Effet.
 
 Pour corriger le problème, enrobez l’appel à `ref.current.focus()` dans une déclaration d’Effet.  Ensuite, assurez-vous que cet Effet n’est exécuté qu’au montage (plutôt qu’après chaque rendu) en lui passant un tableau de dépendances vide `[]`.
 
@@ -1133,7 +1133,7 @@ body {
 
 Ce formulaire exploite deux composants `<MuInput />`.
 
-Appuyez sur « Afficher le formulaire » et remarquez que le deuxième champ reçoit automatiquement le focus. C’est partce que les deux composants `<MuInput />` essaient de donner le focus à leur champ.  Quand on appelle `focus()` sur deux champs d’affilé, le dernier « gagne » toujours.
+Appuyez sur « Afficher le formulaire » et remarquez que le deuxième champ reçoit automatiquement le focus. C’est parce que les deux composants `<MuInput />` essaient de donner le focus à leur champ.  Quand on appelle `focus()` sur deux champs d’affilée, le dernier « gagne » toujours.
 
 Disons que vous souhaitez donner le focus au premier champ. Le premier composant `MyInput` reçoit désormais une prop `shouldFocus` à `true`.  Modifiez le code de façon à ce que `focus()` ne soit appelée que si la prop `shouldFocus` reçue par `MyInput` est `true`.
 
@@ -1376,7 +1376,7 @@ body {
 
 Quand le [mode strict](/reference/react/StrictMode) est actif (ce qui est le cas dans les bacs à sable de ce site), React remonte chaque composant une fois en développement.  Par conséquent, l’intervalle est mis en place deux fois, c’est pourquoi à chaque seconde le compteur est incrémenté deux fois.
 
-Cependant, ce comportement de React n’est pas la *cause* du bug : le bug existe déjà dans votre code.  Le comportement de React le rend simplement plus facile à remarquer.  La véritable cause, c’est que l’Effet démarre un processus sans fournir un  façon de le nettoyer.
+Cependant, ce comportement de React n’est pas la *cause* du bug : le bug existe déjà dans votre code.  Le comportement de React le rend simplement plus facile à remarquer.  La véritable cause, c’est que l’Effet démarre un processus sans fournir une façon de le nettoyer.
 
 Pour corriger ce code, sauvegardez l’ID de *timer* renvoyé par `setInterval` et implémentez une fonction de nettoyage qui le passera à [`clearInterval`](https://developer.mozilla.org/fr/docs/Web/API/clearInterval) :
 
@@ -1564,7 +1564,7 @@ export async function fetchBio(person) {
 
 </Sandpack>
 
-Chaque Effet a sa propre variable `ignore`.  Au départ, la variable `ignore` est à `false`. Mais si un Effet est nettoyé (par exemple en sélectionnant une autre personne), sa variable `ignore` passe à `true`.  Du coup, peu importe désormais dans quel ordre les requêtes aboutissent.  Seule la personne associée au dernier Effet aura `ignore` à `false`, ce qui permettra l’appel à `setBio(result)`.  Les Effets passés auront été nettoyés, invalidant leur condition `if (!ignore)` et empêchant leur appel à `setBio` :
+Chaque Effet a sa propre variable `ignore`.  Au départ, la variable `ignore` est à `false`. Mais si un Effet est nettoyé (par exemple en sélectionnant une autre personne), sa variable `ignore` passe à `true`.  Du coup, peu importe désormais dans quel ordre les requêtes aboutissent.  Seule la personne associée au dernier Effet aura `ignore` à `false`, ce qui permettra l’appel à `setBio(result)`.  Les Effets passés auront été nettoyés, invalidant leur condition `if (!ignore)`, ce qui les empêchera d’appeler `setBio` :
 
 - Sélectionner `'Bob'` déclenche `fetchBio('Bob')`
 - Sélectionner `'Marie'` déclenche `fetchBio('Marie')` **et nettoie l’Effet précédent (celui de Bob)**

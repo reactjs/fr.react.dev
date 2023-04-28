@@ -47,7 +47,7 @@
       "sectionHeader": "LEARN REACT"
     },
     {
-      "title": "Describing the UI",
+      "title": "Décrire l’UI",
       "tags": [],
       "path": "/learn/describing-the-ui",
       "routes": [
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "title": "Adding Interactivity",
+      "title": "Ajouter de l’interactivité",
       "path": "/learn/adding-interactivity",
       "tags": [],
       "routes": [
@@ -173,7 +173,7 @@
           "path": "/learn/synchronizing-with-effects"
         },
         {
-          "title": "You Might Not Need an Effect",
+          "title": "Vous n’avez pas forcément besoin d’un Effet",
           "path": "/learn/you-might-not-need-an-effect"
         },
         {
