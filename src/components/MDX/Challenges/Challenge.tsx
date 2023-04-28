@@ -52,7 +52,7 @@ export function Challenge({
           <div className="font-bold block md:inline">
             {isRecipes ? 'Exemple' : 'Défi'} {currentChallenge.order} sur{' '}
             {totalChallenges}
-            <span className="text-primary dark:text-primary-dark">: </span>
+            <span className="text-primary dark:text-primary-dark"> · </span>
           </div>
           {currentChallenge.name}
         </H4>
