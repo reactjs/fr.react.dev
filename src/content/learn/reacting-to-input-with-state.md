@@ -507,7 +507,7 @@ Bien que ce code soit plus long que l’exemple impératif original, il est beau
 
 Faites en sorte que cliquer sur l’image *supprime* la classe CSS `background--active` de la `<div>` extérieure, mais *ajoute* la classe `picture--active` à la balise `<img>`. Un nouveau clic sur l’arrière-plan devrait rétablir les classes CSS d'origine.
 
-Visuellement, il faut s’attendre à ce qu’un clic sur l’image supprime l’arrière-plan violet et mette en évidence la bordure de l’image. Si vous cliquez en dehors de l’image, l’arrière-plan est mis en évidence, mais la bordure de l’image n'est pas mise en évidence.
+Visuellement, il faut s’attendre à ce qu’un clic sur l’image supprime l’arrière-plan violet et mette en évidence la bordure de l’image. Si vous cliquez en dehors de l’image, l’arrière-plan est mis en évidence, mais la bordure de l’image ne l’est plus.
 
 <Sandpack>
 
@@ -561,9 +561,9 @@ Ce composant a deux états visuels : lorsque l’image est active, et lorsque l�
 * Lorsque l’image est active, les classes CSS sont `background` et `picture picture--active`.
 * Lorsque l’image est inactive, les classes CSS sont `background background--active` et `picture`.
 
-Une seule variable d’état booléenne suffit pour se souvenir si l’image est active. La tâche initiale était de supprimer ou d’ajouter des classes CSS. Cependant, dans React, vous devez *décrire* ce que vous voulez voir plutôt que *manipuler* les éléments de l’interface utilisateur. Vous devez donc calculer les deux classes CSS en fonction de l’état actuel. Vous devez également [arrêter la propagation](/learn/responding-to-events#stopping-propagation) pour que le clic sur l’image ne soit pas enregistré comme un clic sur l’arrière-plan.
+Une seule variable d’état booléenne suffit pour se souvenir si l’image est active. La tâche initiale était de supprimer ou d’ajouter des classes CSS. Avec React cependant, vous devez *décrire* ce que vous voulez voir plutôt que *manipuler* les éléments de l’interface utilisateur. Vous devez donc calculer les deux classes CSS en fonction de l’état actuel. Vous devez également [arrêter la propagation](/learn/responding-to-events#stopping-propagation) pour que le clic sur l’image ne soit pas aussi exploité comme clic sur l’arrière-plan.
 
-Vérifiez que cette version fonctionne en cliquant sur l’image puis en dehors :
+Vérifiez que cette version fonctionne en cliquant sur l’image puis en-dehors :
 
 <Sandpack>
 
@@ -630,7 +630,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Alternativement, vous pouvez retourner deux pièces séparées de JSX :
+Autrement, vous pouvez retourner deux morceaux distincts de JSX :
 
 <Sandpack>
 
@@ -697,13 +697,13 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Gardez à l'esprit que si deux morceaux JSX différents décrivent le même arbre, leur imbrication (première `<div>` → première `<img>`) doit s’aligner. Sinon, basculer `isActive` recréerait tout l'arbre en dessous et [réinitialiserait son état](/learn/preserving-and-resetting-state). C’est pourquoi, si un arbre JSX similaire est retourné dans les deux cas, il est préférable de les écrire comme un seul morceau de JSX.
+Gardez à l'esprit que si deux morceaux de JSX différents décrivent le même arbre, leur imbrication (première `<div>` → première `<img>`) doit correspondre. Sinon, basculer `isActive` recréerait tout l'arbre en-dessous et [réinitialiserait son état](/learn/preserving-and-resetting-state). C’est pourquoi, si un arbre JSX similaire est renvoyé dans les deux cas, il est préférable de l’implémenter comme un seul morceau de JSX.
 
 </Solution>
 
 #### Éditeur de profil {/*profile-editor*/}
 
-Voici un court questionnaire implémenté en JavaScript pur et le DOM. Utilisez le pour comprendre son comportement :
+Voici un court questionnaire implémenté en JavaScript pur avec le DOM. Utilisez-le pour en comprendre le comportement :
 
 <Sandpack>
 
@@ -788,7 +788,7 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <button type="submit" id="editButton">Modifier le profil</button>
-  <p><i id="helloText">Bonjour, Jeanne Jacobs !</i></p>
+  <p><i id="helloText">Bonjour, Jeanne Deroin !</i></p>
 </form>
 
 <style>
@@ -800,9 +800,9 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Ce questionnaire passe d’un mode à l’autre : en mode édition, vous voyez les entrées, et en mode visualisation, vous ne voyez que le résultat. L’intitulé du bouton change entre « Modifier » et « Enregistrer » en fonction du mode dans lequel vous vous trouvez. Lorsque vous modifiez les entrées, le message de bienvenue en bas de page est mis à jour en temps réel.
+Ce questionnaire passe d’un mode à l’autre : en mode édition, vous voyez les champs de saisie, et en mode visualisation, vous ne voyez que le résultat. L’intitulé du bouton bascule entre « Modifier » et « Enregistrer » en fonction du mode dans lequel vous vous trouvez. Lorsque vous modifiez les saisies, le message de bienvenue en bas de page est mis à jour en temps réel.
 
-Votre tâche consiste à le réimplémenter en React dans le bac à sable ci-dessous. Pour votre commodité, le balisage a déjà été converti en JSX, mais vous devrez faire en sorte qu’il affiche et cache les entrées comme le fait l’original.
+Votre tâche consiste à le réimplémenter en React dans le bac à sable ci-dessous. Pour vous aider à démarrer, le balisage a déjà été converti en JSX, mais vous devrez faire en sorte qu’il affiche ou masque les champs de saisie comme le fait l’original.
 
 Veillez également à ce qu'il mette à jour le texte en bas de page !
 
@@ -813,7 +813,7 @@ export default function EditProfile() {
   return (
     <form>
       <label>
-        Prenom :{' '}
+        Prénom :{' '}
         <b>Jeanne</b>
         <input />
       </label>
@@ -823,9 +823,9 @@ export default function EditProfile() {
         <input />
       </label>
       <button type="submit">
-        Modifier le Profil
+        Modifier le profil
       </button>
-      <p><i>Bonjour, Jeanne Jacobs !</i></p>
+      <p><i>Bonjour, Jeanne Deroin !</i></p>
     </form>
   );
 }
@@ -839,9 +839,9 @@ label { display: block; margin-bottom: 20px; }
 
 <Solution>
 
-Vous aurez besoin de deux variables d’état pour contenir les valeurs d’entrée : `firstName` et `lastName`. Vous aurez aussi besoin d’une variable d’état `isEditing` qui indique si les entrées doivent être affichées ou non. Vous ne devriez _pas_ avoir besoin d'une variable `fullName` car le nom complet peut toujours être calculé à partir de `firstName` et de `lastName`.
+Vous aurez besoin de deux variables d’état pour stocker les valeurs saisies : `firstName` et `lastName`. Vous aurez aussi besoin d’une variable d’état `isEditing` qui indique si les champs de saisie doivent être affichés ou non. Vous ne devriez _pas_ avoir besoin d'une variable `fullName` car le nom complet peut toujours être calculé à partir de `firstName` et de `lastName`.
 
-Enfin, vous devriez utiliser le [rendu conditionnel](/learn/conditional-rendering) pour afficher ou cacher les entrées en fonction de `isEditing`.
+Enfin, vous devriez utiliser le [rendu conditionnel](/learn/conditional-rendering) pour afficher ou masquer les champs de saisie en fonction de `isEditing`.
 
 <Sandpack>
 
@@ -885,9 +885,9 @@ export default function EditProfile() {
         )}
       </label>
       <button type="submit">
-        {isEditing ? 'Sauvegarder' : 'Modifier'} Profile
+        {isEditing ? 'Sauvegarder' : 'Modifier'} le profil
       </button>
-      <p><i>Bonjour, {firstName} {lastName}!</i></p>
+      <p><i>Bonjour, {firstName} {lastName} !</i></p>
     </form>
   );
 }
@@ -905,21 +905,21 @@ Comparez cette solution à la version impérative originale du code. En quoi son
 
 #### Refondre la solution impérative sans React {/*refactor-the-imperative-solution-without-react*/}
 
-Voici la sandbox originale du challenge précédent, écrite impérativement sans React :
+Voici la sandbox originale du challenge précédent, écrite en style impératif sans React :
 
 <Sandpack>
 
 ```js index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
-  if (editButton.textContent === 'Modifier le Profil') {
-    editButton.textContent = 'Sauvegarder le Profil';
+  if (editButton.textContent === 'Modifier le profil') {
+    editButton.textContent = 'Sauvegarder le profil';
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
   } else {
-    editButton.textContent = 'Modifier le Profil';
+    editButton.textContent = 'Modifier le profil';
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
@@ -974,7 +974,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    Prénom:
+    Prénom :
     <b id="firstNameText">Jeanne</b>
     <input
       id="firstNameInput"
@@ -982,7 +982,7 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Nom:
+    Nom :
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
@@ -990,7 +990,7 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <button type="submit" id="editButton">Modifier le profil</button>
-  <p><i id="helloText">Bonjour, Jeanne Jacobs !</i></p>
+  <p><i id="helloText">Bonjour, Jeanne Deroin !</i></p>
 </form>
 
 <style>
@@ -1002,9 +1002,9 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Imaginez que React n’existe pas. Pouvez-vous refactoriser ce code de manière à rendre la logique moins fragile et plus similaire à la version React ? À quoi cela ressemblerait-il si l’état était explicite, comme dans React ?
+Imaginez que React n’existe pas. Pouvez-vous refactoriser ce code de manière à rendre son fonctionnement moins fragile et plus similaire à la version React ? À quoi cela ressemblerait-il si l’état était explicite, comme dans React ?
 
-Si vous avez du mal à savoir par où commencer, le code ci-dessous a déjà la plupart de la structure en place. Si vous commencez ici, complétez la logique manquante dans la fonction `updateDOM`. (Référez-vous au code original si nécessaire).
+Si vous avez du mal à savoir par où commencer, le code ci-dessous a déjà la plupart de la structure en place. Si vous commencez ici, complétez la logique manquante dans la fonction `updateDOM`. (Référez-vous au code original si nécessaire.)
 
 <Sandpack>
 
@@ -1044,12 +1044,12 @@ function setIsEditing(value) {
 function updateDOM() {
   if (isEditing) {
     editButton.textContent = 'Sauvegarder le profil';
-    // A FAIRE : afficher les entrées, cacher le contenu
+    // TODO: afficher les champs, cacher le contenu
   } else {
     editButton.textContent = 'Modifier le profil';
-    // A FAIRE : cacher les entrées, afficher le contenu
+    // TODO: masquer les champs, afficher le contenu
   }
-  // A FAIRE : mettre à jour les textes
+  // TODO: mettre à jour les textes
 }
 
 function hide(el) {
@@ -1097,7 +1097,7 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <button type="submit" id="editButton">Modifier le profil</button>
-  <p><i id="helloText">Bonjour Jeanne Jacobs !</i></p>
+  <p><i id="helloText">Bonjour Jeanne Deroin !</i></p>
 </form>
 
 <style>
@@ -1111,7 +1111,7 @@ label { display: block; margin-bottom: 20px; }
 
 <Solution>
 
-La logique manquante comprenait le basculement de l’affichage des entrées et du contenu, ainsi que la mise à jour des textes :
+Les traitements manquants comprenaient le basculement de l’affichage des champs et du contenu, ainsi que la mise à jour des textes :
 
 <Sandpack>
 
@@ -1200,7 +1200,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    Prénom:
+    Prénom :
     <b id="firstNameText">Jeanne</b>
     <input
       id="firstNameInput"
@@ -1216,7 +1216,7 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <button type="submit" id="editButton">Modifier le profil</button>
-  <p><i id="helloText">Bonjour, Jeanne Jacobs !</i></p>
+  <p><i id="helloText">Bonjour, Jeanne Deroin !</i></p>
 </form>
 
 <style>
@@ -1228,7 +1228,7 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-La fonction `updateDOM` que vous avez écrite montre ce que React fait sous le capot lorsque vous définissez l’état. (Cependant, React évite également de toucher le DOM pour les propriétés qui n’ont pas changé depuis la dernière fois qu’elles ont été définies).
+La fonction `updateDOM` que vous avez écrite montre ce que React fait sous le capot lorsque vous définissez l’état. (Cependant, React évite également de redéfinir les aspects du DOM qui n’ont pas bougé depuis la dernière mise à jour.)
 
 </Solution>
 
