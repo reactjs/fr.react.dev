@@ -116,7 +116,7 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
       <td>
         <ul>
           <li><a href="https://fr.react.dev/learn/managing-state">Gérer l’état</a> (accueil chapitre)</li>
-          <li><a href="https://fr.react.dev/learn/reacting-to-input-with-state">Réagir à la saisie avec un état</a> (à venir)</li>
+          <li><a href="https://fr.react.dev/learn/reacting-to-input-with-state">Réagir à la saisie avec un état</a></li>
         </ul>
       </td>
     </tr>
