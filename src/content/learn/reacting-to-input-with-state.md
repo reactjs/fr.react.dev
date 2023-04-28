@@ -21,7 +21,7 @@ React offre un moyen déclaratif de manipuler l’interface utilisateur (UI). Au
 Lorsque vous concevez des interactions avec l’UI, vous pensez probablement à la manière dont l'interface *change* en réponse aux actions de l’utilisateur. Prenons l’exemple d’un questionnaire qui permet à l’utilisateur de soumettre une réponse :
 
 * Quand vous saisissez quelque chose dans le questionnaire, le bouton « Envoyer » **devient actif**.
-* Quand vous appuyez sur « Envoyer », le questionnaire et le bouton **deviennent inactifs**, et un *spinner* **apparaît**
+* Quand vous appuyez sur « Envoyer », le questionnaire et le bouton **deviennent inactifs**, et un *spinner* (une roue de chargement) **apparaît**
 * Si la requête réseau réussit, le questionnaire **disparaît**, et le message « Merci » **apparaît**.
 * Si la requête réseau échoue, un message d'erreur **apparaît** et le questionnaire **redevient actif**.
 
@@ -29,7 +29,7 @@ En **programmation impérative**, ce qui précède correspond directement à la 
 
 <Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="Dans une voiture conduite par une personne l’air anxieuse représentant JavaScript, un passager lui ordonne d'exécuter une séquence de navigations compliquées, étape par étape." />
 
-La personne qui conduit ne sait pas où vous voulez aller, elle se contente de suivre vos ordres. (Et si vous vous trompez de direction, vous vous retrouvez au mauvais endroit !) On appelle ça *impératif* parce que vous devez « commander » chaque élément, du *spinner* au bouton, en indiquant à l’ordinateur *comment* mettre à jour l’interface.
+La personne qui conduit ne sait pas où vous voulez aller, elle se contente de suivre vos ordres. (Et si vous vous trompez de direction, vous vous retrouvez au mauvais endroit !) On appelle ça le style *impératif* parce que vous devez « commander » chaque élément, du *spinner* au bouton, en indiquant à l’ordinateur *comment* mettre à jour l’interface utilisateur.
 
 Dans cet exemple de programmation impérative de l'UI, le questionnaire est construit *sans* React. Il utilise uniquement le [DOM](https://developer.mozilla.org/fr/docs/Web/API/Document_Object_Model) du navigateur :
 
@@ -87,7 +87,7 @@ function submitForm(answer) {
       if (answer.toLowerCase() == 'istanbul') {
         resolve();
       } else {
-        reject(new Error('Bonne idée, mais mauvaise réponse. Réessayez !'));
+        reject(new Error('Bonne idée, mais mauvaise réponse. Réessayez !'));
       }
     }, 1500);
   });
@@ -113,7 +113,7 @@ textarea.oninput = handleTextareaChange;
 <form id="form">
   <h2>City quiz</h2>
   <p>
-    Quelle ville est située sur deux continents ?
+    Quelle ville est située sur deux continents ?
   </p>
   <textarea id="textarea"></textarea>
   <br />
@@ -121,7 +121,7 @@ textarea.oninput = handleTextareaChange;
   <p id="loading" style="display: none">Chargement...</p>
   <p id="error" style="display: none; color: red;"></p>
 </form>
-<h1 id="success" style="display: none">C’est exact !</h1>
+<h1 id="success" style="display: none">C’est exact !</h1>
 
 <style>
 * { box-sizing: border-box; }
@@ -141,7 +141,7 @@ Avec React, vous ne manipulez pas directement l’UI--vous ne vous souciez pas d
 
 ## Penser l'UI de manière déclarative {/*thinking-about-ui-declaratively*/}
 
-Vous avez vu ci-dessus comment implémenter un questionnaire de manière impérative. Pour mieux comprendre comment penser en React, vous allez voir comment réimplémenter cette interface utilisateur avec React :
+Vous avez vu ci-dessus comment implémenter un questionnaire de manière impérative. Pour mieux comprendre comment penser en React, vous allez voir comment réimplémenter cette interface avec React :
 
 1. **Identifiez** les différents états visuels de votre composant
 2. **Déterminez** ce qui déclenche ces changement d’état
@@ -155,7 +155,7 @@ En informatique, vous entendez parfois parler d’une [« machine à états »
 
 Pour commencer, vous devez visualiser tous les « états » distincts de l’interface que l’utilisateur est susceptible de voir :
 
-* **Vide** : le questionnaire a un bouton « Envoyer » inactif.
+* **Vide** : le questionnaire a un bouton « Envoyer » inactif.
 * **Saisie** : le questionnaire a un bouton « Envoyer » actif.
 * **Envoi** : le questionnaire est complètement inactif, le *spinner* est affiché.
 * **Succès** : le message « Merci » est affiché au lieu du questionnaire.
@@ -170,13 +170,13 @@ export default function Form({
   status = 'empty'
 }) {
   if (status === 'success') {
-    return <h1>C’est exact !</h1>
+    return <h1>C’est exact !</h1>
   }
   return (
     <>
       <h2>Quiz sur les villes</h2>
       <p>
-        Dans quelle ville trouve-t-on une pancarte qui transforme l’air en eau potable ?
+        Dans quelle ville trouve-t-on une pancarte qui transforme l’air en eau potable ?
       </p>
       <form>
         <textarea />
@@ -202,13 +202,13 @@ export default function Form({
   status = 'empty'
 }) {
   if (status === 'success') {
-    return <h1>C’est exact !</h1>
+    return <h1>C’est exact !</h1>
   }
   return (
     <>
       <h2>Quiz sur les villes</h2>
       <p>
-        Dans quelle ville trouve-t-on une pancarte qui transforme l’air en eau potable ?
+        Dans quelle ville trouve-t-on une pancarte qui transforme l’air en eau potable ?
       </p>
       <form>
         <textarea disabled={
@@ -223,7 +223,7 @@ export default function Form({
         </button>
         {status === 'error' &&
           <p className="Error">
-            Bonne idée, mais mauvaise réponse. Réessayez !
+            Bonne idée, mais mauvaise réponse. Réessayez !
           </p>
         }
       </form>
@@ -242,7 +242,7 @@ export default function Form({
 
 #### Afficher plusieurs états visuels à la fois {/*displaying-many-visual-states-at-once*/}
 
-Si un composant a beaucoup d'états visuels, ça peut être plus pratique de tous les afficher sur la même page :
+Si un composant a beaucoup d'états visuels, il peut être pratique de tous les afficher sur la même page :
 
 <Sandpack>
 
@@ -274,7 +274,7 @@ export default function App() {
 ```js Form.js
 export default function Form({ status }) {
   if (status === 'success') {
-    return <h1>C’est exact !</h1>
+    return <h1>C’est exact !</h1>
   }
   return (
     <form>
@@ -290,7 +290,7 @@ export default function Form({ status }) {
       </button>
       {status === 'error' &&
         <p className="Error">
-          Bonne idée, mais mauvaise réponse. Réessayez !
+          Bonne idée, mais mauvaise réponse. Réessayez !
         </p>
       }
     </form>
@@ -328,7 +328,7 @@ Dans les deux cas, **vous devez définir des [variables d’état](/learn/state-
 * **Ajuster la saisie** (utilisateur) devrait basculer l’état entre *Vide* et *Saisie*, selon que le champ est vide ou non.
 * **Cliquer sur le bouton Envoyer** (utilisateur) devrait passer l’état à *Envoi*.
 * **Un succès de réponse réseau** (technique) devrait passer l’état à *Succès*.
-* **Un échec de réponse réseau** (technique) devrait passer l’état à *Erreur* avec le message d’erreur correspondant.
+* **Un échec de réponse réseau** (technique) devrait passer l’état à *Erreur* avec le message correspondant.
 
 <Note>
 
@@ -348,7 +348,7 @@ Pour vous aider à visualiser ce flux, essayez de dessiner chaque état sur papi
 
 </DiagramGroup>
 
-### Étape 3 : représenter l’état en mémoire avec `useState` {/*step-3-represent-the-state-in-memory-with-usestate*/}
+### Étape 3 : représenter l’état en mémoire avec `useState` {/*step-3-represent-the-state-in-memory-with-usestate*/}
 
 Ensuite, vous devrez représenter les états visuels de votre composant en mémoire avec [`useState`](/reference/react/useState). La simplicité est la clé : chaque élément d’état est une « pièce mobile », et **vous voulez le moins de « pièces mobiles » possible**. Plus de complexité conduit à davantage de bugs !
 
@@ -371,19 +371,19 @@ const [isSuccess, setIsSuccess] = useState(false);
 const [isError, setIsError] = useState(false);
 ```
 
-Votre première idée ne sera sûrement pas la meilleure, mais ce n’est pas grave--la refonte de l’état fait partie du processus !
+Votre première idée ne sera sûrement pas la meilleure, mais ce n’est pas grave--la refonte de la structure de l’état fait partie du processus !
 
 ### Étape 4: retirer les variables d’état non essentielles {/*step-4-remove-any-non-essential-state-variables*/}
 
 Il est préférable d’éviter les doublons entre éléments ɗ’état afin de se concentrer sur ce qui est essentiel. En consacrant un peu de temps à la refonte de votre structure d’état, vous rendrez vos composants plus faciles à comprendre, vous réduirez la duplication et vous éviterez des erreurs d’interprétation. Votre objectif est d’**éviter les cas où l’état en mémoire ne représente aucune interface valide que vous accepteriez de montrer à l’utilisateur**. (Par exemple, vous ne voulez jamais afficher un message d’erreur et désactiver la saisie en même temps, ou l’utilisateur ne sera pas en mesure de corriger l’erreur !)
 
-Voici quelques questions que vous pouvez vous poser sur vos variables d'état :
+Voici quelques questions que vous pouvez vous poser sur vos variables d'état :
 
 * **Es-ce que cet état est paradoxal ?** Par exemple, `isTyping` et `isSubmitting` ne peuvent pas être tous les deux à `true`. Un paradoxe signifie généralement que l’état n’est pas suffisamment contraint. Il y a quatre combinaisons possibles de deux booléens, mais seulement trois correspondent à des états valides. Pour supprimer l’état « impossible », vous pouvez les combiner dans un `status` qui doit être l’une des trois valeurs suivantes : `'typing'`, `'submitting'`, ou `'success'`.
-* **La même information est-elle déjà disponible dans une autre variable d’état ?** Un autre paradoxe : `isEmpty` et `isTyping` ne peuvent pas être à `true` en même temps. En les rendant distinctes, vous risquez de les désynchroniser et de provoquer des bugs. Heureusement, vous pouvez supprimer `isEmpty` et vérifier à la place `answer.length === 0`.
-* **Pouvez-vous obtenir la même information en inversant une autre variable d’état ?** `isError` n’est pas nécessaire car vous pouvez vérifier `error !== null` à la place.
+* **La même information est-elle déjà disponible dans une autre variable d’état ?** Un autre paradoxe : `isEmpty` et `isTyping` ne peuvent pas être à `true` en même temps. En les rendant distinctes, vous risquez de les désynchroniser et de provoquer des bugs. Heureusement, vous pouvez supprimer `isEmpty` et vérifier à la place `answer.length === 0`.
+* **Pouvez-vous obtenir la même information en inversant une autre variable d’état ?** `isError` n’est pas nécessaire car vous pouvez vérifier `error !== null` à la place.
 
-Après ce nettoyage, il vous reste seulement 3 (au lieu de 7 !) variables d’état *essentielles* :
+Après ce nettoyage, il vous reste seulement 3 (au lieu de 7 !) variables d’état *essentielles* :
 
 ```js
 const [answer, setAnswer] = useState('');
@@ -391,19 +391,19 @@ const [error, setError] = useState(null);
 const [status, setStatus] = useState('typing'); // 'typing', 'submitting', ou 'success'
 ```
 
-Vous savez qu’elles sont essentielles parce que vous ne pouvez retirer aucune d’entre elles sans casser le fonctionnement.
+Vous savez qu’elles sont essentielles parce que vous ne pouvez retirer aucune d’entre elles sans casser le fonctionnement de l’interface.
 
 <DeepDive>
 
 #### Éliminer les états « impossibles » avec un réducteur {/*eliminating-impossible-states-with-a-reducer*/}
 
-Ces trois variables représentent assez bien l’état de ce questionnaire. Cependant, il y a encore quelques états intermédiaires qui n’ont pas tout à fait de sens. Par exemple, une `error` non nulle n’a pas de sens quand `status` est à `'success'`. Pour modéliser l’état plus précisément, vous pouvez [l’extraire dans un réducteur](/learn/extracting-state-logic-into-a-reducer). Les réducteurs vous permettent d’unifier plusieurs variables d’état en un seul objet et de consolider toute la logique associée !
+Ces trois variables représentent assez bien l’état de ce questionnaire. Cependant, il y a encore quelques états intermédiaires qui n’ont pas tout à fait de sens. Par exemple, une `error` non nulle n’a pas de sens quand `status` est à `'success'`. Pour modéliser l’état plus précisément, vous pouvez [l’extraire dans un réducteur](/learn/extracting-state-logic-into-a-reducer). Les réducteurs vous permettent d’unifier plusieurs variables d’état en un seul objet et de consolider toute la logique associée !
 
 </DeepDive>
 
 ### Étape 5 : connecter les gestionnaires d’événements pour définir l’état {/*step-5-connect-the-event-handlers-to-set-state*/}
 
-Enfin, créez des gestionnaires d’événements qui mettent à jour l’état. Voici le questionnaire final, avec tous les gestionnaires d’événements connectés :
+Enfin, créez des gestionnaires d’événements qui mettent à jour l’état. Voici le questionnaire final, avec tous les gestionnaires d’événements connectés :
 
 <Sandpack>
 
@@ -416,7 +416,7 @@ export default function Form() {
   const [status, setStatus] = useState('typing');
 
   if (status === 'success') {
-    return <h1>C’est exact !</h1>
+    return <h1>C’est exact !</h1>
   }
 
   async function handleSubmit(e) {
@@ -439,7 +439,7 @@ export default function Form() {
     <>
       <h2>Quiz sur les villes</h2>
       <p>
-        Dans quelle ville trouve-t-on un panneau d’affichage qui transforme l’air en eau potable ?
+        Dans quelle ville trouve-t-on un panneau d’affichage qui transforme l’air en eau potable ?
       </p>
       <form onSubmit={handleSubmit}>
         <textarea
@@ -470,7 +470,7 @@ function submitForm(answer) {
     setTimeout(() => {
       let shouldError = answer.toLowerCase() !== 'lima'
       if (shouldError) {
-        reject(new Error('Bonne idée, mais mauvaise réponse. Réessayez !'));
+        reject(new Error('Bonne idée, mais mauvaise réponse. Réessayez !'));
       } else {
         resolve();
       }
@@ -556,14 +556,14 @@ body { margin: 0; padding: 0; height: 250px; }
 
 <Solution>
 
-Ce composant a deux états visuels : lorsque l’image est active, et lorsque l’image est inactive :
+Ce composant a deux états visuels : lorsque l’image est active, et lorsque l’image est inactive :
 
 * Lorsque l’image est active, les classes CSS sont `background` et `picture picture--active`.
 * Lorsque l’image est inactive, les classes CSS sont `background background--active` et `picture`.
 
 Une seule variable d’état booléenne suffit pour se souvenir si l’image est active. La tâche initiale était de supprimer ou d’ajouter des classes CSS. Avec React cependant, vous devez *décrire* ce que vous voulez voir plutôt que *manipuler* les éléments de l’interface utilisateur. Vous devez donc calculer les deux classes CSS en fonction de l’état actuel. Vous devez également [arrêter la propagation](/learn/responding-to-events#stopping-propagation) pour que le clic sur l’image ne soit pas aussi exploité comme clic sur l’arrière-plan.
 
-Vérifiez que cette version fonctionne en cliquant sur l’image puis en-dehors :
+Vérifiez que cette version fonctionne en cliquant sur l’image puis en-dehors :
 
 <Sandpack>
 
@@ -730,7 +730,7 @@ function handleFirstNameChange() {
   helloText.textContent = (
     'Bonjour ' +
     firstNameInput.value + ' ' +
-    lastNameInput.value + ' !'
+    lastNameInput.value + ' !'
   );
 }
 
@@ -739,209 +739,7 @@ function handleLastNameChange() {
   helloText.textContent = (
     'Bonjour ' +
     firstNameInput.value + ' ' +
-    lastNameInput.value + ' !'
-  );
-}
-
-function hide(el) {
-  el.style.display = 'none';
-}
-
-function show(el) {
-  el.style.display = '';
-}
-
-let form = document.getElementById('form');
-let editButton = document.getElementById('editButton');
-let firstNameInput = document.getElementById('firstNameInput');
-let firstNameText = document.getElementById('firstNameText');
-let lastNameInput = document.getElementById('lastNameInput');
-let lastNameText = document.getElementById('lastNameText');
-let helloText = document.getElementById('helloText');
-form.onsubmit = handleFormSubmit;
-firstNameInput.oninput = handleFirstNameChange;
-lastNameInput.oninput = handleLastNameChange;
-```
-
-```js sandbox.config.json hidden
-{
-  "hardReloadOnChange": true
-}
-```
-
-```html public/index.html
-<form id="form">
-  <label>
-    Prénom :
-    <b id="firstNameText">Jeanne</b>
-    <input
-      id="firstNameInput"
-      value="Jeanne"
-      style="display: none">
-  </label>
-  <label>
-    Nom :
-    <b id="lastNameText">Jacobs</b>
-    <input
-      id="lastNameInput"
-      value="Jacobs"
-      style="display: none">
-  </label>
-  <button type="submit" id="editButton">Modifier le profil</button>
-  <p><i id="helloText">Bonjour, Jeanne Deroin !</i></p>
-</form>
-
-<style>
-* { box-sizing: border-box; }
-body { font-family: sans-serif; margin: 20px; padding: 0; }
-label { display: block; margin-bottom: 20px; }
-</style>
-```
-
-</Sandpack>
-
-Ce questionnaire passe d’un mode à l’autre : en mode édition, vous voyez les champs de saisie, et en mode visualisation, vous ne voyez que le résultat. L’intitulé du bouton bascule entre « Modifier » et « Enregistrer » en fonction du mode dans lequel vous vous trouvez. Lorsque vous modifiez les saisies, le message de bienvenue en bas de page est mis à jour en temps réel.
-
-Votre tâche consiste à le réimplémenter en React dans le bac à sable ci-dessous. Pour vous aider à démarrer, le balisage a déjà été converti en JSX, mais vous devrez faire en sorte qu’il affiche ou masque les champs de saisie comme le fait l’original.
-
-Veillez également à ce qu'il mette à jour le texte en bas de page !
-
-<Sandpack>
-
-```js
-export default function EditProfile() {
-  return (
-    <form>
-      <label>
-        Prénom :{' '}
-        <b>Jeanne</b>
-        <input />
-      </label>
-      <label>
-        Nom :{' '}
-        <b>Jacobs</b>
-        <input />
-      </label>
-      <button type="submit">
-        Modifier le profil
-      </button>
-      <p><i>Bonjour, Jeanne Deroin !</i></p>
-    </form>
-  );
-}
-```
-
-```css
-label { display: block; margin-bottom: 20px; }
-```
-
-</Sandpack>
-
-<Solution>
-
-Vous aurez besoin de deux variables d’état pour stocker les valeurs saisies : `firstName` et `lastName`. Vous aurez aussi besoin d’une variable d’état `isEditing` qui indique si les champs de saisie doivent être affichés ou non. Vous ne devriez _pas_ avoir besoin d'une variable `fullName` car le nom complet peut toujours être calculé à partir de `firstName` et de `lastName`.
-
-Enfin, vous devriez utiliser le [rendu conditionnel](/learn/conditional-rendering) pour afficher ou masquer les champs de saisie en fonction de `isEditing`.
-
-<Sandpack>
-
-```js
-import { useState } from 'react';
-
-export default function EditProfile() {
-  const [isEditing, setIsEditing] = useState(false);
-  const [firstName, setFirstName] = useState('Jeanne');
-  const [lastName, setLastName] = useState('Jacobs');
-
-  return (
-    <form onSubmit={e => {
-      e.preventDefault();
-      setIsEditing(!isEditing);
-    }}>
-      <label>
-        Prénom :{' '}
-        {isEditing ? (
-          <input
-            value={firstName}
-            onChange={e => {
-              setFirstName(e.target.value)
-            }}
-          />
-        ) : (
-          <b>{firstName}</b>
-        )}
-      </label>
-      <label>
-        Nom :{' '}
-        {isEditing ? (
-          <input
-            value={lastName}
-            onChange={e => {
-              setLastName(e.target.value)
-            }}
-          />
-        ) : (
-          <b>{lastName}</b>
-        )}
-      </label>
-      <button type="submit">
-        {isEditing ? 'Sauvegarder' : 'Modifier'} le profil
-      </button>
-      <p><i>Bonjour, {firstName} {lastName} !</i></p>
-    </form>
-  );
-}
-```
-
-```css
-label { display: block; margin-bottom: 20px; }
-```
-
-</Sandpack>
-
-Comparez cette solution à la version impérative originale du code. En quoi sont-elles différentes ?
-
-</Solution>
-
-#### Refondre la solution impérative sans React {/*refactor-the-imperative-solution-without-react*/}
-
-Voici la sandbox originale du challenge précédent, écrite en style impératif sans React :
-
-<Sandpack>
-
-```js index.js active
-function handleFormSubmit(e) {
-  e.preventDefault();
-  if (editButton.textContent === 'Modifier le profil') {
-    editButton.textContent = 'Sauvegarder le profil';
-    hide(firstNameText);
-    hide(lastNameText);
-    show(firstNameInput);
-    show(lastNameInput);
-  } else {
-    editButton.textContent = 'Modifier le profil';
-    hide(firstNameInput);
-    hide(lastNameInput);
-    show(firstNameText);
-    show(lastNameText);
-  }
-}
-
-function handleFirstNameChange() {
-  firstNameText.textContent = firstNameInput.value;
-  helloText.textContent = (
-    'Bonjour ' +
-    firstNameInput.value + ' ' +
-    lastNameInput.value + ' !'
-  );
-}
-
-function handleLastNameChange() {
-  lastNameText.textContent = lastNameInput.value;
-  helloText.textContent = (
-    'Bonjour ' +
-    firstNameInput.value + ' ' +
-    lastNameInput.value + '!'
+    lastNameInput.value + ' !'
   );
 }
 
@@ -983,10 +781,212 @@ lastNameInput.oninput = handleLastNameChange;
   </label>
   <label>
     Nom :
-    <b id="lastNameText">Jacobs</b>
+    <b id="lastNameText">Deroin</b>
     <input
       id="lastNameInput"
-      value="Jacobs"
+      value="Deroin"
+      style="display: none">
+  </label>
+  <button type="submit" id="editButton">Modifier le profil</button>
+  <p><i id="helloText">Bonjour, Jeanne Deroin !</i></p>
+</form>
+
+<style>
+* { box-sizing: border-box; }
+body { font-family: sans-serif; margin: 20px; padding: 0; }
+label { display: block; margin-bottom: 20px; }
+</style>
+```
+
+</Sandpack>
+
+Ce questionnaire passe d’un mode à l’autre : en mode édition, vous voyez les champs de saisie, et en mode visualisation, vous ne voyez que le résultat. L’intitulé du bouton bascule entre « Modifier » et « Enregistrer » en fonction du mode dans lequel vous vous trouvez. Lorsque vous modifiez les saisies, le message de bienvenue en bas est mis à jour en temps réel.
+
+Votre tâche consiste à le réimplémenter en React dans le bac à sable ci-dessous. Pour vous aider à démarrer, le balisage a déjà été converti en JSX, mais vous devrez faire en sorte qu’il affiche ou masque les champs de saisie comme le fait l’original.
+
+Veillez également à ce qu'il mette à jour le texte en bas de page !
+
+<Sandpack>
+
+```js
+export default function EditProfile() {
+  return (
+    <form>
+      <label>
+        Prénom :{' '}
+        <b>Jeanne</b>
+        <input />
+      </label>
+      <label>
+        Nom :{' '}
+        <b>Deroin</b>
+        <input />
+      </label>
+      <button type="submit">
+        Modifier le profil
+      </button>
+      <p><i>Bonjour, Jeanne Deroin !</i></p>
+    </form>
+  );
+}
+```
+
+```css
+label { display: block; margin-bottom: 20px; }
+```
+
+</Sandpack>
+
+<Solution>
+
+Vous aurez besoin de deux variables d’état pour stocker les valeurs saisies : `firstName` et `lastName`. Vous aurez aussi besoin d’une variable d’état `isEditing` qui indique si les champs de saisie doivent être affichés ou non. Vous ne devriez _pas_ avoir besoin d'une variable `fullName` car le nom complet peut toujours être calculé à partir de `firstName` et de `lastName`.
+
+Enfin, vous devriez utiliser le [rendu conditionnel](/learn/conditional-rendering) pour afficher ou masquer les champs de saisie en fonction de `isEditing`.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function EditProfile() {
+  const [isEditing, setIsEditing] = useState(false);
+  const [firstName, setFirstName] = useState('Jeanne');
+  const [lastName, setLastName] = useState('Deroin');
+
+  return (
+    <form onSubmit={e => {
+      e.preventDefault();
+      setIsEditing(!isEditing);
+    }}>
+      <label>
+        Prénom :{' '}
+        {isEditing ? (
+          <input
+            value={firstName}
+            onChange={e => {
+              setFirstName(e.target.value)
+            }}
+          />
+        ) : (
+          <b>{firstName}</b>
+        )}
+      </label>
+      <label>
+        Nom :{' '}
+        {isEditing ? (
+          <input
+            value={lastName}
+            onChange={e => {
+              setLastName(e.target.value)
+            }}
+          />
+        ) : (
+          <b>{lastName}</b>
+        )}
+      </label>
+      <button type="submit">
+        {isEditing ? 'Sauvegarder' : 'Modifier'} le profil
+      </button>
+      <p><i>Bonjour, {firstName} {lastName} !</i></p>
+    </form>
+  );
+}
+```
+
+```css
+label { display: block; margin-bottom: 20px; }
+```
+
+</Sandpack>
+
+Comparez cette solution à la version impérative originale du code. En quoi sont-elles différentes ?
+
+</Solution>
+
+#### Refondre la solution impérative sans React {/*refactor-the-imperative-solution-without-react*/}
+
+Voici la sandbox originale du challenge précédent, écrite en style impératif sans React :
+
+<Sandpack>
+
+```js index.js active
+function handleFormSubmit(e) {
+  e.preventDefault();
+  if (editButton.textContent === 'Modifier le profil') {
+    editButton.textContent = 'Sauvegarder le profil';
+    hide(firstNameText);
+    hide(lastNameText);
+    show(firstNameInput);
+    show(lastNameInput);
+  } else {
+    editButton.textContent = 'Modifier le profil';
+    hide(firstNameInput);
+    hide(lastNameInput);
+    show(firstNameText);
+    show(lastNameText);
+  }
+}
+
+function handleFirstNameChange() {
+  firstNameText.textContent = firstNameInput.value;
+  helloText.textContent = (
+    'Bonjour ' +
+    firstNameInput.value + ' ' +
+    lastNameInput.value + ' !'
+  );
+}
+
+function handleLastNameChange() {
+  lastNameText.textContent = lastNameInput.value;
+  helloText.textContent = (
+    'Bonjour ' +
+    firstNameInput.value + ' ' +
+    lastNameInput.value + ' !'
+  );
+}
+
+function hide(el) {
+  el.style.display = 'none';
+}
+
+function show(el) {
+  el.style.display = '';
+}
+
+let form = document.getElementById('form');
+let editButton = document.getElementById('editButton');
+let firstNameInput = document.getElementById('firstNameInput');
+let firstNameText = document.getElementById('firstNameText');
+let lastNameInput = document.getElementById('lastNameInput');
+let lastNameText = document.getElementById('lastNameText');
+let helloText = document.getElementById('helloText');
+form.onsubmit = handleFormSubmit;
+firstNameInput.oninput = handleFirstNameChange;
+lastNameInput.oninput = handleLastNameChange;
+```
+
+```js sandbox.config.json hidden
+{
+  "hardReloadOnChange": true
+}
+```
+
+```html public/index.html
+<form id="form">
+  <label>
+    Prénom :
+    <b id="firstNameText">Jeanne</b>
+    <input
+      id="firstNameInput"
+      value="Jeanne"
+      style="display: none">
+  </label>
+  <label>
+    Nom :
+    <b id="lastNameText">Deroin</b>
+    <input
+      id="lastNameInput"
+      value="Deroin"
       style="display: none">
   </label>
   <button type="submit" id="editButton">Modifier le profil</button>
@@ -1010,7 +1010,7 @@ Si vous avez du mal à savoir par où commencer, le code ci-dessous a déjà la 
 
 ```js index.js active
 let firstName = 'Jeanne';
-let lastName = 'Jacobs';
+let lastName = 'Deroin';
 let isEditing = false;
 
 function handleFormSubmit(e) {
@@ -1081,7 +1081,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    Prénom :
+    Prénom :
     <b id="firstNameText">Jeanne</b>
     <input
       id="firstNameInput"
@@ -1089,11 +1089,11 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Nom :
-    <b id="lastNameText">Jacobs</b>
+    Nom :
+    <b id="lastNameText">Deroin</b>
     <input
       id="lastNameInput"
-      value="Jacobs"
+      value="Deroin"
       style="display: none">
   </label>
   <button type="submit" id="editButton">Modifier le profil</button>
@@ -1117,7 +1117,7 @@ Les traitements manquants comprenaient le basculement de l’affichage des champ
 
 ```js index.js active
 let firstName = 'Jeanne';
-let lastName = 'Jacobs';
+let lastName = 'Deroin';
 let isEditing = false;
 
 function handleFormSubmit(e) {
@@ -1167,7 +1167,7 @@ function updateDOM() {
   helloText.textContent = (
     'Bonjour ' +
     firstName + ' ' +
-    lastName + ' !'
+    lastName + ' !'
   );
 }
 
@@ -1208,15 +1208,15 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Nom :
-    <b id="lastNameText">Jacobs</b>
+    Nom :
+    <b id="lastNameText">Deroin</b>
     <input
       id="lastNameInput"
-      value="Jacobs"
+      value="Deroin"
       style="display: none">
   </label>
   <button type="submit" id="editButton">Modifier le profil</button>
-  <p><i id="helloText">Bonjour, Jeanne Deroin !</i></p>
+  <p><i id="helloText">Bonjour, Jeanne Deroin !</i></p>
 </form>
 
 <style>
