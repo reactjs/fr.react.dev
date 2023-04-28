@@ -78,7 +78,7 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
       <td><a href="https://twitter.com/MatteoGauthier_">@MatteoGauthier_</a></td>
       <td>
         <ul>
-          <li><a href="https://fr.react.dev/reference/react/useDebugValue">Référence : code>useDebugValue</code></a> (à venir)</li>
+          <li><a href="https://fr.react.dev/reference/react/useDebugValue">Référence : <code>useDebugValue</code></a> (à venir)</li>
           <li><a href="https://fr.react.dev/reference/react/useId">Référence : <code>useId</code></a> (à venir)</li>
         </ul>
       </td>
@@ -111,7 +111,7 @@ Voici la liste par ordre alphabétique (prénom, nom).  **🙏🏻 Mille mercis 
       </td>
     </tr>
     <tr>
-      <td><a href="[https://github.com/Nab69](https://github.com/KohdeAvekLeQ)">Simon Leclers</a></td>
+      <td><a href="https://github.com/KohdeAvekLeQ">Simon Leclers</a></td>
       <td></td>
       <td>
         <ul>
