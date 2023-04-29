@@ -54,11 +54,7 @@ function Post() {
 }
 ```
 
-<<<<<<< HEAD
 Les Fragments sont utiles car grouper des éléments avec un Fragment n’as pas d’effet sur la mise en page ou les styles, contrairement à l’enrobage par une balise conteneur telle qu’un élément du DOM. Si vous inspectez cet exemple avec les outils du navigateur, vous verrez que toutes les balises `<h1>` et `<p>` du DOM apparaissent au même niveau (avec le même parent) sans balise enrobante :
-=======
-Fragments are useful because grouping elements with a Fragment has no effect on layout or styles, unlike if you wrapped the elements in another container like a DOM element. If you inspect this example with the browser tools, you'll see that all `<h1>` and `<article>` DOM nodes appear as siblings without wrappers around them:
->>>>>>> 8ed23b1a06ed0d836151622c1455c74bf2d0ce25
 
 <Sandpack>
 
