@@ -12,7 +12,7 @@ React met à disposition des composants que vous pouvez utiliser dans votre JSX.
 
 ## Composants intégrés {/*built-in-components*/}
 
-* [`<Fragment>`](/reference/react/Fragment), autrement écrit avec `<>...</>`, vous permet d'englober plusieurs éléments JSX ensemble.
+* [`<Fragment>`](/reference/react/Fragment), autrement écrit avec `<>...</>`, vous permet de grouper des éléments sans balise enrobante.
 * [`<Profiler>`](/reference/react/Profiler) vous permet de mesurer les performance de rendu d'un arbre React.
 * [`<Suspense>`](/reference/react/Suspense) vous permet d'afficher un composant alternatif pendant que les enfants chargent.
 * [`<StrictMode>`](/reference/react/StrictMode) active des vérifications supplémentaires spécifiques en mode développement qui vous permettent d'anticiper des bugs.
