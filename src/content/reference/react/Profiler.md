@@ -4,7 +4,7 @@ title: <Profiler>
 
 <Intro>
 
-`<Profiler>` lets you measure rendering performance of a React tree programmatically.
+`<Profiler>` vous permet de mesurer les performance de rendu d'un arbre React.
 
 ```js
 <Profiler id="App" onRender={onRender}>
@@ -22,7 +22,7 @@ title: <Profiler>
 
 ### `<Profiler>` {/*profiler*/}
 
-Wrap a component tree in a `<Profiler>` to measure its rendering performance.
+Enrober un arbre de composant dans un `<Profiler>` afin de mesurer ses performances de rendu.
 
 ```js
 <Profiler id="App" onRender={onRender}>
@@ -32,31 +32,31 @@ Wrap a component tree in a `<Profiler>` to measure its rendering performance.
 
 #### Props {/*props*/}
 
-* `id`: A string identifying the part of the UI you are measuring.
-* `onRender`: An [`onRender` callback](#onrender-callback) that React calls every time components within the profiled tree update. It receives information about what was rendered and how much time it took.
+* `id`: Une chaîne de caractère identifiant le composant que vous souhaitez mesurer.
+* `onRender`: Une [fonction de rappel `onRender`](#onrender-callback) appelée à chaque nouveau rendu d'un composant situé l'arbre profilé. Elle reçoit les informations de rendu tel que le composant et la durée prise.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
-* Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](https://fb.me/react-profiling)
+* Le profilage une certaine lourdeur, il est ainsi **désactivé par défaut dans les builds de production**. Pour activer le profilage en production, vous devez utiliser un [build spécifique avec profilage activé](https://fb.me/react-profiling).
 
 ---
 
-### `onRender` callback {/*onrender-callback*/}
+### `onRender` fonction de rappel {/*onrender-callback*/}
 
-React will call your `onRender` callback with information about what was rendered.
+React va appeler votre fonction de rappel `onRender` avec les informations de rendu.
 
 ```js
 function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime) {
-  // Aggregate or log render timings...
+  // Agréger ou afficher la durée de rendu...
 }
 ```
 
-#### Parameters {/*onrender-parameters*/}
+#### Paramètres {/*onrender-parameters*/}
 
-* `id`: The string `id` prop of the `<Profiler>` tree that has just committed. This lets you identify which part of the tree was committed if you are using multiple profilers.
-* `phase`: `"mount"`, `"update"` or `"nested-update"`. This lets you know whether the tree has just been mounted for the first time or re-rendered due to a change in props, state, or hooks.
-* `actualDuration`: The number of milliseconds spent rendering the `<Profiler>` and its descendants for the current update. This indicates how well the subtree makes use of memoization (e.g. [`memo`](/reference/react/memo) and [`useMemo`](/reference/react/useMemo)). Ideally this value should decrease significantly after the initial mount as many of the descendants will only need to re-render if their specific props change.
-* `baseDuration`: The number of milliseconds estimating how much time it would take to re-render the entire `<Profiler>` subtree without any optimizations. It is calculated by summing up the most recent render durations of each component in the tree. This value estimates a worst-case cost of rendering (e.g. the initial mount or a tree with no memoization). Compare `actualDuration` against it to see if memoization is working.
+* `id`: La chaîne de caractère `id` utilisée en prop de l'arbre `<Profiler>`. Elle vous permet d'identifier quelles partie de l'arbre re-rendu en cas de co-existence de profiler.
+* `phase`: `"mount"`, `"update"` ou `"nested-update"`. Ça vous permet de savoir si l'arbre a été monté pour la première fois ou re-monté à cause d'un changement dans les props, state ou hooks.
+* `actualDuration`: La durée en millisecondes écoulée pendant le rendu de `<Profiler>` et ses enfants pour la mise à jour concernée. Elle indique à quel point vos enfants profitent de la mémorisation (plus précisément [`memo`](/reference/react/memo) et [`useMemo`](/reference/react/useMemo)). Idéalement, cette valeur devrait décroître de façon significative après le rendu initial car les enfants devront uniquement être re-rendu si leurs props spécifique changent.
+* `baseDuration`: Le temps en milliseconde estimant la durée que prendrait un rendu complet de `<Profiler>` sans aucune optimisation. Elle est calculée en sommant la durée de chaque rendu des composants enfant. Cette valeur estime le pire scénario de rendu(c'est à dire le temps initial de rendu sans mémorisation). Comparez avec `actualDuration` afin de voir si la mémorisation fonctionne.
 * `startTime`: A numeric timestamp for when React began rendering the current update.
 * `endTime`: A numeric timestamp for when React committed the current update. This value is shared between all profilers in a commit, enabling them to be grouped if desirable.
 
@@ -129,4 +129,3 @@ You can also nest `<Profiler>` components:
 Although `<Profiler>` is a lightweight component, it should be used only when necessary. Each use adds some CPU and memory overhead to an application.
 
 ---
-
