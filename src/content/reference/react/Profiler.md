@@ -4,7 +4,7 @@ title: <Profiler>
 
 <Intro>
 
-`<Profiler>` vous permet de mesurer les performance de rendu d'un arbre React.
+`<Profiler>` vous permet de mesurer dans votre code les performances de rendu d'un arbre React.
 
 ```js
 <Profiler id="App" onRender={onRender}>
