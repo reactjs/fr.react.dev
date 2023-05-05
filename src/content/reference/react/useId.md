@@ -42,9 +42,9 @@ function PasswordField() {
 
 #### Limitations {/*caveats*/}
 
-* `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* `useId` est un Hook, vous pouvez donc uniquement l'appeler **au niveau supérieur de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l'appeler à l'intérieur de boucles ou de conditions. Si nécessaire, extrayez un nouveau composant et déplacez l'état dans celui-ci.
 
-* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+* `useId` ne doit pas être utilisé pour générer des clés dans une liste. [Les clés doivent être obtenues à partir de vos données.](/learn/rendering-lists#where-to-get-your-key)
 
 ---
 
