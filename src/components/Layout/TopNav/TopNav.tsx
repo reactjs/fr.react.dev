@@ -2,29 +2,30 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import * as React from 'react';
+
 import {
-  useState,
-  useRef,
+  Suspense,
+  startTransition,
   useCallback,
   useEffect,
-  startTransition,
-  Suspense,
+  useRef,
+  useState,
 } from 'react';
-import * as React from 'react';
-import cn from 'classnames';
-import NextLink from 'next/link';
-import {useRouter} from 'next/router';
 import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 
+import {Feedback} from '../Feedback';
 import {IconClose} from 'components/Icon/IconClose';
 import {IconHamburger} from 'components/Icon/IconHamburger';
 import {IconSearch} from 'components/Icon/IconSearch';
-import {Search} from 'components/Search';
 import {Logo} from '../../Logo';
-import {Feedback} from '../Feedback';
-import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
+import NextLink from 'next/link';
 import type {RouteItem} from '../getRouteMeta';
+import {Search} from 'components/Search';
 import {SidebarLink} from '../Sidebar';
+import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
+import cn from 'classnames';
+import {useRouter} from 'next/router';
 
 declare global {
   interface Window {
@@ -268,7 +269,7 @@ export default function TopNav({
                 )}
                 onClick={onOpenSearch}>
                 <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
-                Search
+                Recherche
                 <span className="ml-auto hidden sm:flex item-center mr-1">
                   <Kbd data-platform="mac">⌘</Kbd>
                   <Kbd data-platform="win" wide>
@@ -281,15 +282,15 @@ export default function TopNav({
             <div className="text-base justify-center items-center gap-1.5 flex 3xl:flex-1 flex-row 3xl:justify-end">
               <div className="mx-2.5 gap-1.5 hidden lg:flex">
                 <NavItem isActive={section === 'learn'} url="/learn">
-                  Learn
+                  Apprendre
                 </NavItem>
                 <NavItem
                   isActive={section === 'reference'}
                   url="/reference/react">
-                  Reference
+                  Référence
                 </NavItem>
                 <NavItem isActive={section === 'community'} url="/community">
-                  Community
+                  Communauté
                 </NavItem>
                 <NavItem isActive={section === 'blog'} url="/blog">
                   Blog

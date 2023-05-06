@@ -3,13 +3,14 @@
  *
  */
 
-import {useRef, useEffect} from 'react';
-import cn from 'classnames';
-import {ExternalLink} from './ExternalLink';
+import {useEffect, useRef} from 'react';
 
-const bannerText = 'Support Ukraine 🇺🇦';
+import {ExternalLink} from './ExternalLink';
+import cn from 'classnames';
+
+const bannerText = 'Soutenez l’Ukraine 🇺🇦';
 const bannerLink = 'https://opensource.fb.com/support-ukraine';
-const bannerLinkText = 'Help Provide Humanitarian Aid to Ukraine';
+const bannerLinkText = 'Aidez-nous à fournir une aide humanitaire à l’Ukraine';
 
 export default function SocialBanner() {
   const ref = useRef<HTMLDivElement | null>(null);
