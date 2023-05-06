@@ -91,31 +91,31 @@
       "tags": [],
       "routes": [
         {
-          "title": "Responding to Events",
+          "title": "Répondre aux événements",
           "path": "/learn/responding-to-events"
         },
         {
-          "title": "State: A Component's Memory",
+          "title": "État : la mémoire d'un composant",
           "path": "/learn/state-a-components-memory"
         },
         {
-          "title": "Render and Commit",
+          "title": "Le rendu et la mise à jour",
           "path": "/learn/render-and-commit"
         },
         {
-          "title": "State as a Snapshot",
+          "title": "L'état comme une capture",
           "path": "/learn/state-as-a-snapshot"
         },
         {
-          "title": "Queueing a Series of State Updates",
+          "title": "Mettre en file d'attente une série de mises à jour d'état",
           "path": "/learn/queueing-a-series-of-state-updates"
         },
         {
-          "title": "Updating Objects in State",
+          "title": "Mettre à jour les objets d'un état",
           "path": "/learn/updating-objects-in-state"
         },
         {
-          "title": "Updating Arrays in State",
+          "title": "Mettre à jour les tableaux d'un état",
           "path": "/learn/updating-arrays-in-state"
         }
       ]
