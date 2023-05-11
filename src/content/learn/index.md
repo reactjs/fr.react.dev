@@ -73,7 +73,7 @@ export default function MyApp() {
 
 </Sandpack>
 
-Les mots-clés `export default` indiquent le composant principal du fichier.  Si vous n'êtes pas habitué·e à certains éléments syntaxiques de JavaScript, le [MDN](https://developer.mozilla.org/fr/docs/web/javascript/reference/statements/export) et [javascript.info](https://fr.javascript.info/import-export) sont d’excellentes références.
+Les mots-clés `export default` indiquent le composant principal du fichier.  Si vous n’êtes pas habitué·e à certains éléments syntaxiques de JavaScript, le [MDN](https://developer.mozilla.org/fr/docs/web/javascript/reference/statements/export) et [javascript.info](https://fr.javascript.info/import-export) sont d’excellentes références.
 
 ## Écrire du balisage avec JSX {/*writing-markup-with-jsx*/}
 
@@ -96,7 +96,7 @@ Si vous avez beaucoup de HTML à migrer vers du JSX, vous pouvez vous aider d’
 
 ## Ajouter des styles {/*adding-styles*/}
 
-Dans React, vous précisez une classe CSS avec `className`.  Ça fonctionne exactement comme l’attribut HTML [`class`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/class) :
+Dans React, vous précisez une classe CSS avec `className`.  Ça fonctionne exactement comme l’attribut [`class`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/class) en HTML :
 
 ```js
 <img className="avatar" />
@@ -177,11 +177,11 @@ export default function Profile() {
 
 </Sandpack>
 
-Dans l’exemple ci-avant, `style={{}}` ne constitue pas une syntaxe spéciale : c’est un littéral objet `{}` au sein d’accolades JSX `style={}`.  Vous pouvez utiliser l’attribut `style` lorsque vos styles dépendent de variables JavaScript.
+Dans l’exemple ci-avant, `style={{}}` ne constitue pas une syntaxe spéciale : c’est un littéral objet `{}` au sein d’accolades JSX `style={}`.  Vous pouvez utiliser l’attribut `style` lorsque vos styles dépendent de données dans votre code JavaScript.
 
 ## Affichage conditionnel {/*conditional-rendering*/}
 
-Dans React, il n’y a pas de syntaxe spéciale pour écrire des conditions.  Au lieu de ça, on utilise les mêmes techniques que pour écrire du code JavaScript normal.  Par exemple, vous pouvez utiliser une instruction [`if`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/if...else) pour choisir quel bout de  JSX inclure :
+Dans React, il n’y a pas de syntaxe spéciale pour écrire des conditions.  Au lieu de ça, on utilise les mêmes techniques que pour écrire du code JavaScript normal.  Par exemple, vous pouvez utiliser une instruction [`if`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/if...else) pour choisir quel bout de JSX inclure :
 
 ```js
 let content;
@@ -316,7 +316,7 @@ function MyButton() {
   // ...
 ```
 
-Un appel à `useState` vous renvoie deux choses : l’état courant (`count`), et une fonction pour le mettre à jour (`setCount`).  Vous pouvez leur donner n’importe quels noms, mais la convention consiste à écrire `[something, setSomething]`.
+Un appel à `useState` vous renvoie deux choses : l’état courant (`count`), et une fonction pour le mettre à jour (`setCount`).  Vous pouvez leur donner n’importe quels noms, mais la convention largement répandue consiste à écrire `[something, setSomething]`.
 
 La première fois que le bouton est affiché, `count` est à `0` car vous avez passé `0` à `useState()`. Lorsque vous souhaitez modifier l’état, appelez  `setCount()` et passez-lui la nouvelle valeur.  Cliquer sur ce bouton incrémentera le compteur :
 
@@ -383,7 +383,7 @@ Voyez comme chaque bouton « se souvient » de son propre état `count` et n�
 
 ## Utiliser des Hooks {/*using-hooks*/}
 
-Les fonctions dont le nom commence par `use` sont appelées *Hooks*. `useState` est un Hook fourni directement par React.  Vous pouvez trouver les autres Hooks inclus dans la [référence de l’API](/reference/react).  Vous pouvez aussi créer vos propres Hooks en combinant ceux existants.
+Les fonctions dont le nom commence par `use` sont appelées *Hooks*. `useState` est un Hook fourni directement par React.  Vous pouvez trouver les autres Hooks fournis dans la [référence de l’API](/reference/react).  Vous pouvez aussi créer vos propres Hooks en combinant ceux existants.
 
 Les Hooks sont plus contraignants que les autres fonctions.  Vous pouvez seulement appeler les Hooks *au début* du code vos composants (ou d’autres Hooks).  Si vous voulez utiliser `useState` dans une condition ou une boucle, extrayez un composant dédié au besoin et mettez le Hook à l’intérieur.
 
@@ -399,7 +399,7 @@ Au départ, l’état `count` de chaque `MyButton` est à `0`
 
 </Diagram>
 
-<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="Le même diagramme que précédemment, avec le count du premier composant enfant MyButton mis en exergue pour indiquer qu'un clic l'a incrémenté à un. Le deuxième composant MyButton indique toujours une valeur de zéro." >
+<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="Le même diagramme que précédemment, avec le count du premier composant enfant MyButton mis en exergue pour indiquer qu’un clic l’a incrémenté à un. Le deuxième composant MyButton indique toujours une valeur de zéro." >
 
 Le premier `MyButton` met à jour son état `count` à `1`
 
@@ -421,7 +421,7 @@ Au départ, l’état `count` de `MyApp` vaut `0`, qui est transmis aux deux enf
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Le même diagramme que précédemment, avec le count du premier composant enfant MyApp mis en exergue pour indiquer qu'un clic l'a incrémenté à un. Le flux vers les deux enfants MyButton est mis en exergue aussi, et la valeur count de chaque enfant est à un, illustrant la transmission de la valeur vers le bas." >
+<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Le même diagramme que précédemment, avec le count du premier composant enfant MyApp mis en exergue pour indiquer qu’un clic l’a incrémenté à un. Le flux vers les deux enfants MyButton est mis en exergue aussi, et la valeur count de chaque enfant est à un, illustrant la transmission de la valeur vers le bas." >
 
 Au clic, `MyApp` met à jour son état `count` à `1`, et le transmet aux deux enfants
 
