@@ -28,7 +28,7 @@ Avant d’étudier les Effets, vous devez être à l’aise avec deux types de c
 
 Mais parfois, ça ne suffit pas.  Imaginez un composant `ChatRoom` qui doit se connecter à un serveur de discussion dès qu’il devient visible à l’écran.  La connexion au serveur ne constitue pas un calcul pur (c’est un effet de bord), elle ne doit donc pas survenir pendant le rendu.  Et pourtant, il n’existe pas d’événement particulier (tel qu’un clic) pour signifier que `ChatRoom` devient visible.
 
-**Les *Effets* vous permettent de spécifier des effets de bord causés par le rendu lui-même, plutôt que par un événement particulier.**  Envoyer un message dans la discussion est un *événement*, parce que c’est directement lié au fait que l’utilisateur a cliqué sur un bouton précis.  En revanche, mettre en place la connexion au serveur est un *Effet* parce que ça doit se produire quelle que soit l’interaction qui a entraîné l’affichage du composant. Les Effets sont exécuté à la fin de la phase de [commit](/learn/render-and-commit), après que l’écran a été mis à jour.  C’est le bon moment pour synchroniser les composants React avec des systèmes extérieurs (comme par exemple le réseau ou une bibliothèque tierce).
+**Les *Effets* vous permettent de spécifier des effets de bord causés par le rendu lui-même, plutôt que par un événement particulier.**  Envoyer un message dans la discussion est un *événement*, parce que c’est directement lié au fait que l’utilisateur a cliqué sur un bouton précis.  En revanche, mettre en place la connexion au serveur est un *Effet* parce que ça doit se produire quelle que soit l’interaction qui a entraîné l’affichage du composant. Les Effets sont exécutés à la fin de la phase de [commit](/learn/render-and-commit), après que l’écran a été mis à jour.  C’est le bon moment pour synchroniser les composants React avec des systèmes extérieurs (comme par exemple le réseau ou une bibliothèque tierce).
 
 <Note>
 
@@ -697,7 +697,7 @@ Non seulement ça améliorera l’expérience de développement (DX), mais l’a
 
 #### Que préférer au chargement de données dans les Effets ? {/*what-are-good-alternatives-to-data-fetching-in-effects*/}
 
-Écrire nos appels `fetch` dans les Effets est [une façon populaire de charger des données](https://www.robinwieruch.de/react-hooks-fetch-data/), en particulier pour des applications entièrement côté client.  Il s’agit toutefois d’une approche de bas niveau qui comporte plusieurs inconvénients significatifs :
+Écrire nos appels `fetch` dans les Effets constitue [une façon populaire de charger des données](https://www.robinwieruch.de/react-hooks-fetch-data/), en particulier pour des applications entièrement côté client.  Il s’agit toutefois d’une approche de bas niveau qui comporte plusieurs inconvénients significatifs :
 
 - **Les Effets ne fonctionnent pas côté serveur.**  Ça implique que le HTML rendu côté serveur avec React proposera un état initial sans données chargées. Le poste client devra télécharger tout le JavaScript et afficher l’appli pour découvrir seulement alors qu’il lui faut aussi charger des données. Ce n’est pas très efficace.
 - **Charger depuis les Effets entraîne souvent des « cascades réseau ».** On affiche le composant parent, il charge ses données, affiche ses composants enfants, qui commencent seulement alors à charger leurs propres données.  Si le réseau n’est pas ultra-rapide, cette séquence est nettement plus lente que le chargement parallèle de toutes les données concernées.
@@ -932,7 +932,7 @@ L’Effet du troisième rendu ressemble à ceci :
   ['travel']
 ```
 
-React compare le `['travel']` du troisième rendu au `['general']` du deuxième. Une dépendance est différente: `Object.is('travel', 'general')` vaut `false`. L’Effet ne peut pas être sauté.
+React compare le `['travel']` du troisième rendu au `['general']` du deuxième. Une dépendance est différente : `Object.is('travel', 'general')` vaut `false`. L’Effet ne peut pas être sauté.
 
 **Avant de pouvoir appliquer l’Effet du troisième rendu, React doit nettoyer le dernier Effet qui *a été exécuté*.**  Celui du deuxième rendu a été sauté, donc React doit nettoyer l’Effet du premier rendu.  Si vous remontez pour voir le premier rendu, vous verrez que sa fonction de nettoyage appelle `disconnect()` sur la connexion créée avec `createConnection('general')`. Ça déconnecte l’appli du salon de discussion `'general'`.
 
@@ -1049,9 +1049,9 @@ Pour vérifier que votre solution fonctionne, cliquez « Afficher le formulaire
 
 <Solution>
 
-Appeler `ref.current.focus()` depuis le rendu est incorrect, car il s’agit d’un *effet de bord*. Les effets de bord devraient figurer soit dans des gestionnaires d’événements, soit au sein d’appels à `useEffect`.  Dans notre cas, l’effet de bord est *causé* par l’apparition du composant plutôt que par une interaction spécifique, il est donc logique de le placer dans un Effet.
+Il serait incorrect d’appeler `ref.current.focus()` depuis le rendu, car il s’agit d’un *effet de bord*. Les effets de bord devraient figurer soit dans des gestionnaires d’événements, soit au sein d’appels à `useEffect`.  Dans notre cas, l’effet de bord est *causé* par l’apparition du composant plutôt que par une interaction spécifique, il est donc logique de le placer au sein d’un Effet.
 
-Pour corriger le problème, enrobez l’appel à `ref.current.focus()` dans une déclaration d’Effet.  Ensuite, assurez-vous que cet Effet n’est exécuté qu’au montage (plutôt qu’après chaque rendu) en lui passant un tableau de dépendances vide `[]`.
+Pour corriger le problème, enrobez l’appel à `ref.current.focus()` dans une déclaration d’Effet.  Ensuite, assurez-vous que cet Effet n’est exécuté qu’au montage (plutôt qu’après chaque rendu) en prenant soin de lui passer un tableau de dépendances vide `[]`.
 
 <Sandpack>
 
@@ -1131,9 +1131,9 @@ body {
 
 #### Focus conditionnel {/*focus-a-field-conditionally*/}
 
-Ce formulaire exploite deux composants `<MuInput />`.
+Ce formulaire exploite deux composants `<MyInput />`.
 
-Appuyez sur « Afficher le formulaire » et remarquez que le deuxième champ reçoit automatiquement le focus. C’est parce que les deux composants `<MuInput />` essaient de donner le focus à leur champ.  Quand on appelle `focus()` sur deux champs d’affilée, le dernier « gagne » toujours.
+Appuyez sur « Afficher le formulaire » et remarquez que le deuxième champ reçoit automatiquement le focus. C’est parce que les deux composants `<MyInput />` essaient de donner le focus à leur champ.  Quand on appelle `focus()` sur deux champs d’affilée, le dernier « gagne » toujours.
 
 Disons que vous souhaitez donner le focus au premier champ. Le premier composant `MyInput` reçoit désormais une prop `shouldFocus` à `true`.  Modifiez le code de façon à ce que `focus()` ne soit appelée que si la prop `shouldFocus` reçue par `MyInput` est `true`.
 
