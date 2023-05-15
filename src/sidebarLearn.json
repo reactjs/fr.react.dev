@@ -91,23 +91,23 @@
       "tags": [],
       "routes": [
         {
-          "title": "Répondre aux événements",
+          "title": "Réagir aux événements",
           "path": "/learn/responding-to-events"
         },
         {
-          "title": "État : la mémoire d'un composant",
+          "title": "L’état : la mémoire d’un composant",
           "path": "/learn/state-a-components-memory"
         },
         {
-          "title": "Le rendu et la mise à jour",
+          "title": "Rendu et Commit",
           "path": "/learn/render-and-commit"
         },
         {
-          "title": "L'état comme une capture",
+          "title": "L'état est un instantané",
           "path": "/learn/state-as-a-snapshot"
         },
         {
-          "title": "Mettre en file d'attente une série de mises à jour d'état",
+          "title": "Cumuler les mises à jour d’un même état",
           "path": "/learn/queueing-a-series-of-state-updates"
         },
         {
