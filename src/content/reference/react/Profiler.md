@@ -4,7 +4,7 @@ title: <Profiler>
 
 <Intro>
 
-`<Profiler>` vous permet de mesurer dans votre code les performances de rendu d’un arbre React.
+`<Profiler>` vous permet de mesurer au sein de votre code les performances de rendu d’un arbre de composants React.
 
 ```js
 <Profiler id="App" onRender={onRender}>
@@ -54,7 +54,7 @@ function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime
 #### Paramètres {/*onrender-parameters*/}
 
 * `id` : la prop textuelle `id` du `<Profiler>` qui vient de boucler son rendu. Elle vous permet d’identifier quelle partie de l’arbre est finalisée lorsque vous utilisez plusieurs profileurs.
-* `phase` : `"mount"`, `"update"` ou `"nested-update"`. Ça vous permet de savoir si l’arbre vient d’être monté pour la première fois ou a fait un nouveau rendu suite à un changement dans les props, l'état ou les hooks.
+* `phase` : `"mount"`, `"update"` ou `"nested-update"`. Ça vous permet de savoir si l’arbre vient d’être monté pour la première fois ou a fait un nouveau rendu suite à un changement dans les props, l’état ou les hooks.
 * `actualDuration` : la durée en millisecondes du rendu du `<Profiler>` et de ses enfants pour la mise à jour concernée. Ça indique à quel point vos descendants profitent de la mémoïsation (notamment [`memo`](/reference/react/memo) et [`useMemo`](/reference/react/useMemo)). Idéalement, cette valeur devrait décroître de façon significative après le montage initial car la plupart des descendants ne referont un rendu que si leurs props changent.
 * `baseDuration` : une estimation de la durée en millisecondes que prendrait un rendu complet du `<Profiler>` et de ses descendants, sans aucune optimisation. Elle est calculée en ajoutant les durées de rendu les plus récentes de chaque composant concerné. Cette valeur représente le coût maximal de rendu (c’est-à-dire le temps initial de montage sans mémoïsation). Comparez-la avec `actualDuration` pour déterminer si la mémoïsation fonctionne.
 * `startTime` : un horodatage numérique du début de la mise à jour par React.
