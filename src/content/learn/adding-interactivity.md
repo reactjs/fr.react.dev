@@ -4,27 +4,27 @@ title: Ajouter de l’interactivité
 
 <Intro>
 
-Certaines choses à l'écran se mettent à jour en réponse aux actions de l'utilisateur. Par exemple, en cliquant sur une galerie d'images, l'image active change. En React, les données qui changent au fil du temps sont appelées *état*. Vous pouvez ajouter un état à n'importe quel composant et le mettre à jour quand nécessaire. Dans ce chapitre, vous apprendrez à écrire des composants qui gèrent des interactions, mettent à jour leur état et ajustent leur affichage au fil du temps.
+Certaines choses à l’écran se mettent à jour en réponse aux actions de l’utilisateur. Par exemple, en cliquant sur une galerie d’images, l’image active change. En React, les données qui changent au fil du temps sont appelées *état*. Vous pouvez ajouter un état à n'importe quel composant et le mettre à jour quand nécessaire. Dans ce chapitre, vous apprendrez à écrire des composants qui gèrent des interactions, mettent à jour leur état et ajustent leur affichage au fil du temps.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [Comment gérer les événements initiés par l'utilisateur](/learn/responding-to-events)
+* [Comment gérer les événements initiés par l’utilisateur](/learn/responding-to-events)
 * [Comment faire en sorte que les composants « se souviennent » des informations grâce aux états](/learn/state-a-components-memory)
-* [Comment React met à jour l'interface utilisateur (UI) en deux phases](/learn/render-and-commit)
-* [Pourquoi l'état ne se met pas à jour immédiatement après sa modification](/learn/state-as-a-snapshot)
+* [Comment React met à jour l’interface utilisateur (UI) en deux phases](/learn/render-and-commit)
+* [Pourquoi l’état ne se met pas à jour immédiatement après sa modification](/learn/state-as-a-snapshot)
 * [Comment cumuler plusieurs mises à jour d’un même état](/learn/queueing-a-series-of-state-updates)
-* [Comment mettre à jour un objet dans l'état](/learn/updating-objects-in-state)
-* [Comment mettre à jour un tableau dans l'état](/learn/updating-arrays-in-state)
+* [Comment mettre à jour un objet dans l’état](/learn/updating-objects-in-state)
+* [Comment mettre à jour un tableau dans l’état](/learn/updating-arrays-in-state)
 
 </YouWillLearn>
 
 ## Réagir aux événements {/*responding-to-events*/}
 
-React vous permet d'ajouter des *gestionnaires d'événements* à votre JSX. Les gestionnaires d'événements sont vos propres fonctions qui seront déclenchées en réponse aux interactions de l'utilisateur telles que des clics, survols, activations de champs de saisie de formulaires, etc.
+React vous permet d’ajouter des *gestionnaires d’événements* à votre JSX. Les gestionnaires d’événements sont vos propres fonctions qui seront déclenchées en réponse aux interactions de l’utilisateur telles que des clics, survols, activations de champs de saisie de formulaires, etc.
 
-Les composants natifs tels que `<button>` ne prennent en charge que les événements natifs du navigateur tels que `onClick`. Cependant, vous pouvez également créer vos propres composants et donner à leurs props de gestionnaires d'événements des noms spécifiques à l'application, selon vos besoins.
+Les composants natifs tels que `<button>` ne prennent en charge que les événements natifs du navigateur tels que `onClick`. Cependant, vous pouvez également créer vos propres composants et donner à leurs props de gestionnaires d’événements des noms spécifiques à l’application, selon vos besoins.
 
 <Sandpack>
 
@@ -32,8 +32,8 @@ Les composants natifs tels que `<button>` ne prennent en charge que les événem
 export default function App() {
   return (
     <Toolbar
-      onPlayMovie={() => alert('Lecture en cours !')}
-      onUploadImage={() => alert('Téléchargement en cours !')}
+      onPlayMovie={() => alert('Lecture en cours !')}
+      onUploadImage={() => alert('Téléversement en cours !')}
     />
   );
 }
@@ -45,7 +45,7 @@ function Toolbar({ onPlayMovie, onUploadImage }) {
         Voir le film
       </Button>
       <Button onClick={onUploadImage}>
-        Télécharger une image
+        Téléverser une image
       </Button>
     </div>
   );
@@ -68,22 +68,22 @@ button { margin-right: 10px; }
 
 <LearnMore path="/learn/responding-to-events">
 
-Lisez **[Réagir aux événements](/learn/responding-to-events)** pour apprendre comment ajouter des gestionnaires d'événements.
+Lisez **[Réagir aux événements](/learn/responding-to-events)** pour apprendre comment ajouter des gestionnaires d’événements.
 
 </LearnMore>
 
 ## L’état : la mémoire d’un composant {/*state-a-components-memory*/}
 
-Les composants ont souvent besoin de modifier ce qui est affiché à l'écran en réponse à une interaction. Par exemple, saisir du texte dans un formulaire devrait mettre à jour le champ de saisie, cliquer sur « suivant » dans un carrousel d'images devrait changer l'image affichée, cliquer sur « acheter » ajoute un produit au panier d'achats. Les composants ont besoin de « se souvenir » de certaines choses : la valeur saisie, l'image active, le panier d'achats. En React, ce type de mémoire spécifique au composant est appelé *état*.
+Les composants ont souvent besoin de modifier ce qui est affiché à l’écran en réponse à une interaction. Par exemple, saisir du texte dans un formulaire devrait mettre à jour le champ de saisie, cliquer sur « suivant » dans un carrousel d’images devrait changer l’image affichée, cliquer sur « acheter » ajoute un produit au panier d’achats. Les composants ont besoin de « se souvenir » de certaines choses : la valeur saisie, l’image active, le panier d’achats. En React, ce type de mémoire spécifique au composant est appelé *état*.
 
-Vous pouvez ajouter un état à un composant avec un Hook [`useState`](/reference/react/useState). Les *Hooks* sont des fonctions spéciales qui permettent à vos composants d'utiliser des fonctionnalités de React (l'état en est une). Le Hook `useState` vous permet de déclarer une variable d'état. Il prend l'état initial en argument et renvoie une paire de valeurs : l'état actuel et une fonction qui vous permet de le modifier.
+Vous pouvez ajouter un état à un composant avec un Hook [`useState`](/reference/react/useState). Les *Hooks* sont des fonctions spéciales qui permettent à vos composants d’utiliser des fonctionnalités de React (l’état en est une). Le Hook `useState` vous permet de déclarer une variable d’état. Il prend l’état initial en argument et renvoie une paire de valeurs : l’état actuel et une fonction qui vous permet de le modifier.
 
 ```js
 const [index, setIndex] = useState(0);
 const [showMore, setShowMore] = useState(false);
 ```
 
-Voici comment une galerie d'images utilise et met à jour l'état lors d'un clic :
+Voici comment une galerie d’images utilise et met à jour l’état lors d’un clic :
 
 <Sandpack>
 
@@ -180,7 +180,7 @@ export const sculptureList = [{
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
-  description: "Szapocznikow est connue pour ses sculptures du corps fragmenté en tant que métaphore de la fragilité et de l'impermanence de la jeunesse et de la beauté. Cette sculpture représente deux ventres très réalistes empilés l'un sur l'autre, chacun mesurant environ cinq pieds (1,5m) de hauteur.",
+  description: "Szapocznikow est connue pour ses sculptures du corps fragmenté en tant que métaphore de la fragilité et de l’impermanence de la jeunesse et de la beauté. Cette sculpture représente deux ventres très réalistes empilés l’un sur l’autre, chacun mesurant environ cinq pieds (1,5m) de hauteur.",
   url: 'https://i.imgur.com/AlHTAdDm.jpg',
   alt: 'La sculpture rappelle une cascade de plis, très différente des ventres dans les sculptures classiques.'
 }, {
@@ -229,19 +229,19 @@ button {
 
 <LearnMore path="/learn/state-a-components-memory">
 
-Lisez **[L’état : la mémoire d’un composant](/learn/state-a-components-memory)** pour apprendre comment mémoriser une valeur et la mettre à jour lors d'une interaction.
+Lisez **[L’état : la mémoire d’un composant](/learn/state-a-components-memory)** pour apprendre comment mémoriser une valeur et la mettre à jour lors d’une interaction.
 
 </LearnMore>
 
 ## Rendu et Commit {/*render-and-commit*/}
 
-Avant que vos composants ne soient affichés à l'écran, ils doivent être rendus par React. Comprendre les étapes de ce processus vous aidera à réfléchir à la manière dont votre code s'exécute et à expliquer son comportement.
+Avant que vos composants ne soient affichés à l’écran, React doit effectuer leur rendu. Comprendre les étapes de ce processus vous aidera à réfléchir à l’exécution de votre code et à expliquer son comportement.
 
-Imaginez que vos composants soient des cuisiniers dans un restaurant, assemblant des plats savoureux à partir d'ingrédients. Dans ce scénario, React est le serveur qui prend les commandes des clients et leur apporte leurs plats. Ce processus de demande et de service de l'UI comporte trois étapes :
+Imaginez que vos composants soient des cuisiniers dans un restaurant, assemblant des plats savoureux à partir d’ingrédients. Dans ce scénario, React est le serveur qui prend les commandes des clients et leur apporte leurs plats. Ce processus de demande et de service de l’UI comporte trois étapes :
 
 1. **Déclencher** un rendu (envoyer la commande du client à la cuisine)
 2. **Faire le rendu** du composant (préparer la commande en cuisine)
-3. **Mettre à jour** le DOM (phase de Commit ;  revient à déposer la commande sur la table du client)
+3. **Mettre à jour** le DOM (phase de Commit ;  revient à déposer la commande sur la table du client)
 
 <IllustrationBlock sequential>
   <Illustration caption="Déclencher" alt="React agit comme un serveur dans un restaurant, qui récupère les commandes des utilisateurs et les transmet à la cuisine des composants." src="/images/docs/illustrations/i_render-and-commit1.png" />
@@ -255,9 +255,9 @@ Lisez **[Rendu et Commit](/learn/render-and-commit)** pour apprendre sur le cycl
 
 </LearnMore>
 
-## L'état comme un instantané {/*state-as-a-snapshot*/}
+## L’état comme un instantané {/*state-as-a-snapshot*/}
 
-Contrairement aux variables JavaScript classiques, une variable d'état dans React se comporte davantage comme une photo instantanée. Lui affecter une nouvelle valeur ne change pas la variable d'état que vous avez déjà, mais déclenche plutôt un nouveau rendu. Ça peut surprendre au début !
+Contrairement aux variables JavaScript classiques, une variable d’état dans React se comporte davantage comme une photo instantanée. Lui affecter une nouvelle valeur ne change pas la variable d’état que vous avez déjà, mais déclenche plutôt un nouveau rendu. Ça peut surprendre au début !
 
 ```js
 console.log(count);  // 0
@@ -265,7 +265,7 @@ setCount(count + 1); // Entraînera un nouveau rendu avec la valeur 1
 console.log(count);  // Toujours 0 !
 ```
 
-Ce comportement vous aide à éviter des bugs subtils. Voici une petite appli de discussion. Essayez de deviner ce qui se passe si vous appuyez sur « Envoyer » d'abord, *et ensuite* changez le destinataire pour Bob. Quel nom apparaîtra dans le `alert` cinq secondes plus tard ?
+Ce comportement vous aide à éviter des bugs subtils. Voici une petite appli de discussion. Essayez de deviner ce qui se passe si vous appuyez sur « Envoyer » d’abord, *et ensuite* changez le destinataire pour Bob. Quel nom apparaîtra dans le `alert` cinq secondes plus tard ?
 
 <Sandpack>
 
@@ -314,13 +314,13 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <LearnMore path="/learn/state-as-a-snapshot">
 
-Lisez **[L'état comme un instantané](/learn/state-as-a-snapshot)** pour comprendre pourquoi un état semble « fixe » et immuable à l’intérieur des gestionnaires d’événements.
+Lisez **[L’état comme un instantané](/learn/state-as-a-snapshot)** pour comprendre pourquoi un état semble « fixe » et immuable à l’intérieur des gestionnaires d’événements.
 
 </LearnMore>
 
 ## Cumuler les mises à jour d’un même état {/*queueing-a-series-of-state-updates*/}
 
-Ce composant comporte un bug : cliquer sur "+3" n'incrémente le score qu'une seule fois.
+Ce composant comporte un bug : cliquer sur « +3 » n'incrémente le score qu'une seule fois.
 
 <Sandpack>
 
@@ -354,7 +354,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[L'état comme un instantané](/learn/state-as-a-snapshot) en explique la raison. Affecter une nouvelle valeur à un état déclenchera un nouveau rendu, mais ne change pas sa valeur dans le code en cours d’exécution. Ainsi, `score` reste à `0` juste après avoir appelé `setScore(score + 1)`.
+[L’état comme un instantané](/learn/state-as-a-snapshot) en explique la raison. Affecter une nouvelle valeur à un état déclenchera un nouveau rendu, mais ne change pas sa valeur dans le code en cours d’exécution. Ainsi, `score` reste à `0` juste après avoir appelé `setScore(score + 1)`.
 
 ```js
 console.log(score);  // 0
@@ -366,7 +366,7 @@ setScore(score + 1); // setScore(0 + 1);
 console.log(score);  // 0
 ```
 
-Vous pouvez corriger ça en passant une *fonction de mise à jour* lorsque vous affectez une nouvelle valeur à l’état. Voyez comme le remplacement de `setScore(score + 1)` par `setScore(s => s + 1)` corrige le bouton "+3". Ça vous permet de cumuler plusieurs mises à jour d’un même état.
+Vous pouvez corriger ça en passant une *fonction de mise à jour* lorsque vous affectez une nouvelle valeur à l’état. Voyez comme le remplacement de `setScore(score + 1)` par `setScore(s => s + 1)` corrige le bouton « +3 ». Ça vous permet de cumuler plusieurs mises à jour d’un même état.
 
 <Sandpack>
 
@@ -406,11 +406,11 @@ Lisez **[Cumuler les série de mises à jour d’un même état](/learn/queueing
 
 </LearnMore>
 
-## Mettre à jour les objets d'un état {/*updating-objects-in-state*/}
+## Mettre à jour les objets d’un état {/*updating-objects-in-state*/}
 
-Un état peut contenir n'importe quel type de valeur JavaScript, y compris des objets. Cependant, vous ne devez pas changer directement les objets et les tableaux que vous stockez dans l'état React. Au lieu de cela, lorsque vous voulez mettre à jour un objet ou un tableau, vous devez en créer un nouveau (ou faire une copie de l'existant), puis mettre à jour l'état pour utiliser cette copie.
+Un état peut contenir n'importe quel type de valeur JavaScript, y compris des objets. Cependant, vous ne devez pas changer directement les objets et les tableaux que vous stockez dans l’état React. Au lieu de cela, lorsque vous voulez mettre à jour un objet ou un tableau, vous devez en créer un nouveau (ou faire une copie de l’existant), puis mettre à jour l’état pour utiliser cette copie.
 
-Généralement, vous utiliserez la syntaxe de *spread* `...` pour copier les objets et les tableaux que vous souhaitez modifier. Par exemple, la mise à jour d'un objet imbriqué pourrait ressembler à ceci :
+Généralement, vous utiliserez la syntaxe de *spread* `...` pour copier les objets et les tableaux que vous souhaitez modifier. Par exemple, la mise à jour d’un objet imbriqué pourrait ressembler à ceci :
 
 <Sandpack>
 
@@ -467,28 +467,28 @@ export default function Form() {
   return (
     <>
       <label>
-        Nom :
+        Nom :
         <input
           value={person.name}
           onChange={handleNameChange}
         />
       </label>
       <label>
-        Titre :
+        Titre :
         <input
           value={person.artwork.title}
           onChange={handleTitleChange}
         />
       </label>
       <label>
-        Ville :
+        Ville :
         <input
           value={person.artwork.city}
           onChange={handleCityChange}
         />
       </label>
       <label>
-        Image :
+        Image :
         <input
           value={person.artwork.image}
           onChange={handleImageChange}
@@ -518,7 +518,7 @@ img { width: 200px; height: 200px; }
 
 </Sandpack>
 
-Si la copie d'objets dans le code devient fastidieuse, vous pouvez utiliser une bibliothèque telle que [Immer](https://github.com/immerjs/use-immer) pour simplifier le code :
+Si la copie d’objets dans le code devient fastidieuse, vous pouvez utiliser une bibliothèque telle que [Immer](https://github.com/immerjs/use-immer) pour simplifier le code :
 
 <Sandpack>
 
@@ -562,28 +562,28 @@ export default function Form() {
   return (
     <>
       <label>
-        Nom :
+        Nom :
         <input
           value={person.name}
           onChange={handleNameChange}
         />
       </label>
       <label>
-        Titre :
+        Titre :
         <input
           value={person.artwork.title}
           onChange={handleTitleChange}
         />
       </label>
       <label>
-        Ville :
+        Ville :
         <input
           value={person.artwork.city}
           onChange={handleCityChange}
         />
       </label>
       <label>
-        Image :
+        Image :
         <input
           value={person.artwork.image}
           onChange={handleImageChange}
@@ -633,13 +633,13 @@ img { width: 200px; height: 200px; }
 
 <LearnMore path="/learn/updating-objects-in-state">
 
-Lisez **[Mettre à jour les objets d'un état](/learn/updating-objects-in-state)** pour apprendre comment mettre à jour les objets correctement.
+Lisez **[Mettre à jour les objets d’un état](/learn/updating-objects-in-state)** pour apprendre comment mettre à jour correctement les objets d’une variable d’état.
 
 </LearnMore>
 
-## Mettre à jour les tableaux d'un état {/*updating-arrays-in-state*/}
+## Mettre à jour les tableaux d’un état {/*updating-arrays-in-state*/}
 
-Les tableaux sont un autre type d'objet modifiable en JavaScript que vous pouvez stocker dans un état et que vous devez traiter comme étant en lecture seule. Tout comme avec les objets, lorsque vous souhaitez mettre à jour un tableau stocké dans un état, vous devez en créer un nouveau (ou en copier un existant), puis affecter le nouveau tableau dans l'état :
+Les tableaux sont un autre type d’objet modifiable en JavaScript que vous pouvez stocker dans un état et que vous devez traiter comme étant en lecture seule. Tout comme avec les objets, lorsque vous souhaitez mettre à jour un tableau stocké dans un état, vous devez en créer un nouveau (ou en copier un existant), puis affecter le nouveau tableau dans l’état :
 
 <Sandpack>
 
@@ -670,8 +670,8 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Liste d'œuvres d'art</h1>
-      <h2>Ma liste à voir absolument :</h2>
+      <h1>Liste d’œuvres d’art</h1>
+      <h2>Ma liste à voir absolument :</h2>
       <ItemList
         artworks={list}
         onToggle={handleToggle} />
@@ -735,8 +735,8 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Liste d'œuvres d'art</h1>
-      <h2>Ma liste à voir absolument :</h2>
+      <h1>Liste d’œuvres d’art</h1>
+      <h2>Ma liste à voir absolument :</h2>
       <ItemList
         artworks={list}
         onToggle={handleToggle} />
@@ -791,12 +791,12 @@ function ItemList({ artworks, onToggle }) {
 
 <LearnMore path="/learn/updating-arrays-in-state">
 
-Lisez **[Mettre à jour les tableaux d'un état](/learn/updating-arrays-in-state)** pour apprendre comment mettre à jour les tableaux correctement.
+Lisez **[Mettre à jour les tableaux d’un état](/learn/updating-arrays-in-state)** pour apprendre comment mettre à jour correctement les tableaux d’une variable d’état.
 
 </LearnMore>
 
-## Et maintenant ? {/*whats-next*/}
+## Et maintenant ? {/*whats-next*/}
 
 Allez sur [Réagir aux événements](/learn/responding-to-events) pour commencer à lire ce chapitre page par page !
 
-Ou alors, si vous êtes déjà à l’aise avec ces sujets, pourquoi ne pas explorer comment [Gérer l'état](/learn/managing-state) ?
+Ou alors, si vous êtes déjà à l’aise avec ces sujets, pourquoi ne pas explorer comment [Gérer l’état](/learn/managing-state) ?
