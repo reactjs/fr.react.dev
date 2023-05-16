@@ -1414,7 +1414,7 @@ C’est une raison pour laquelle il est souvent utile d’enrober des effets dan
 2. Vous permettez à vos composants de se concentrer sur l’intention plutôt que sur l’implémentation exacte de vos effets.
 3. Lorsque React ajoute de nouvelles fonctionnalités, vous pouvez retirer ces effets sans changer aucun de vos composants.
 
-À la manière d’un [système de design](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), vous pourriez trouver utile de commencer à extraire les idiomes communs des composants de votre appli dans des Hooks personnalisés. Ainsi, le code de vos composants restera centré sur l’intention et vous éviterez la plupart du temps d’utiliser des effets bruts. De nombreux Hooks personnalisés de qualité sont maintenus par la communauté React.
+À la manière d’un [Design System](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), vous pourriez trouver utile de commencer à extraire les idiomes communs des composants de votre appli dans des Hooks personnalisés. Ainsi, le code de vos composants restera centré sur l’intention et vous éviterez la plupart du temps d’utiliser des effets bruts. De nombreux Hooks personnalisés de qualité sont maintenus par la communauté React.
 
 <DeepDive>
 
