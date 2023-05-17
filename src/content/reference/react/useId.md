@@ -4,7 +4,7 @@ title: useId
 
 <Intro>
 
-`useId` est un React Hook permettant de générer des identifiants uniques qui peuvent être transmis aux attributs d'accessibilité.
+`useId` est un Hook React permettant de générer des identifiants uniques qui peuvent être passés comme attributs d'accessibilité.
 
 ```js
 const id = useId()
@@ -20,7 +20,7 @@ const id = useId()
 
 ### `useId()` {/*useid*/}
 
-Appelez `useId` au niveau supérieur de votre composant pour générer un identifiant unique :
+Appelez `useId` à la racine de votre composant pour générer un identifiant unique :
 
 ```js
 import { useId } from 'react';
@@ -32,33 +32,33 @@ function PasswordField() {
 
 [Voir d'autres exemples ci-dessous.](#usage)
 
-#### Arguments {/*parameters*/}
+#### Paramètres {/*parameters*/}
 
-`useId` n'accepte aucun argument.
+`useId` ne prend aucun paramètre.
 
-#### Valeur renvoyer {/*returns*/}
+#### Valeur renvoyée {/*returns*/}
 
-`useId` renvoie un identifiant unique en chaîne de caractères associée à cet appel `useId` particulier le composant en question.
+`useId` renvoie un identifiant textuel unique associé à cet appel `useId` particulier dans ce composant spécifique.
 
 #### Limitations {/*caveats*/}
 
-* `useId` est un Hook, vous pouvez donc uniquement l'appeler **au niveau supérieur de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l'appeler à l'intérieur de boucles ou de conditions. Si nécessaire, extrayez un nouveau composant et déplacez l'état dans celui-ci.
+* `useId` est un Hook, vous pouvez donc uniquement l'appeler **à la racine de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l'appeler à l'intérieur de boucles ou de conditions. Si nécessaire, extrayez un nouveau composant et déplacez l'état dans celui-ci.
 
-* `useId` ne doit pas être utilisé pour générer des clés dans une liste. [Les clés doivent être obtenues à partir de vos données.](/learn/rendering-lists#where-to-get-your-key)
+* `useId` ne doit pas être utilisé pour générer des clés dans une liste. [Les clés devraient être basées sur vos données.](/learn/rendering-lists#where-to-get-your-key)
 
 ---
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
 <Pitfall>
 
-**N'appelez pas `useId` pour générer des clés dans une liste.** [Les clés doivent être obtenues à partir de vos données.](/learn/rendering-lists#where-to-get-your-key)
+**N'appelez pas `useId` pour générer des clés dans une liste.** [Les clés devraient être basées sur vos données.](/learn/rendering-lists#where-to-get-your-key)
 
 </Pitfall>
 
 ### Générer des identifiants uniques pour les attributs d'accessibilité {/*generating-unique-ids-for-accessibility-attributes*/}
 
-Appelez `useId` au niveau supérieur de votre composant pour générer un identifiant unique :
+Appelez `useId` à la racine de votre composant pour générer un identifiant unique :
 
 ```js [[1, 4, "passwordHintId"]]
 import { useId } from 'react';
@@ -79,7 +79,7 @@ Vous pouvez ensuite transmettre <CodeStep step={1}>l'identifiant généré</Code
 
 **Prenons un exemple pour mieux saisir l'utilité de cette méthode.**
 
-[Les attributs d'accessibilité HTML](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) tels que [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) vous permettent de spécifier que deux balises sont liées l'une à l'autre. Par exemple, vous pouvez spécifier qu'un élément (exemple : un champ de saisie) est décrit par un autre élément (un paragraphe).
+[Les attributs d'accessibilité HTML](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA) tels que [`aria-describedby`](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) vous permettent de spécifier que deux balises sont liées l'une à l'autre. Par exemple, vous pouvez spécifier qu'un élément (tel qu'un champ de saisie) est décrit par un autre élément (tel qu'un paragraphe).
 
 En HTML classique, vous l'écririez comme suit :
 
@@ -96,7 +96,7 @@ En HTML classique, vous l'écririez comme suit :
 </p>
 ```
 
-Cependant, coder des ID en dur comme cela n'est pas une bonne pratique avec React. Un composant pourrait être rendu plus d'une fois sur la page--mais les ID doivent être uniques ! Au lieu de coder en dur un identifiant, générez un identifiant unique avec `useId` :
+Cependant, définir des ID en dur comme ça constitue une mauvaise pratique en React. Un composant pourrait être présent plusieurs fois sur la page--mais les ID doivent être uniques ! Au lieu d'utiliser un identifiant fixe, générez un identifiant unique avec `useId` :
 
 ```js {4,11,14}
 import { useId } from 'react';
@@ -132,7 +132,7 @@ function PasswordField() {
   return (
     <>
       <label>
-        Mot de passe:
+        Mot de passe :
         <input
           type="password"
           aria-describedby={passwordHintId}
@@ -163,11 +163,11 @@ input { margin: 5px; }
 
 </Sandpack>
 
-[Regardez cette vidéo](https://www.youtube.com/watch?v=0dNzNcuEuOo) pour voir la différence d'expérience de l'utilisateur avec l'utilisation des technologies d'assistance.
+[Regardez cette vidéo](https://www.youtube.com/watch?v=0dNzNcuEuOo) pour comprendre en quoi ça améliore l'expérience des utilisateurs de technologies d'assistance.
 
 <Pitfall>
 
-Avec [le rendu côté serveur](/reference/react-dom/server), **`useId` requiert une arborescence de composants identique sur le serveur et sur le client**. Si les arborescences que vous rendez sur le serveur et sur le client ne correspondent pas exactement, les identifiants générés ne correspondront donc pas.
+Avec [le rendu côté serveur](/reference/react-dom/server), **`useId` requiert une arborescence de composants identique sur le serveur et sur le client**. Si les arborescences produites sur le serveur et sur le client ne correspondent pas exactement, les identifiants générés ne correspondront pas non plus.
 
 </Pitfall>
 
@@ -175,13 +175,13 @@ Avec [le rendu côté serveur](/reference/react-dom/server), **`useId` requiert 
 
 #### Pourquoi utiliser useId plutôt qu'un compteur incrémental ? {/*why-is-useid-better-than-an-incrementing-counter*/}
 
-Vous vous demandez peut-être pour quelle raison il vaut mieux utiliser `useId` plutôt que d'incrémenter une variable globale comme `nextId++`.
+Vous vous demandez peut-être pourquoi il est préférable d’utiliser `useId` plutôt que d'incrémenter une variable globale, du genre `nextId++`.
 
-Le principal avantage de `useId` est que React s'assure de son bon fonctionnement avec [le rendu serveur.](/reference/react-dom/server) Lors du rendu serveur, vos composants génèrent une sortie HTML. Plus tard, sur le client, le processus d'[hydratation](/reference/react-dom/client/hydrateRoot) attache vos gestionnaires d'événements au HTML généré. Pour que l'hydratation fonctionne, la sortie du client doit correspondre au HTML du serveur.
+Le principal avantage de `useId` tient à ce que React garantit son bon fonctionnement dans [le rendu serveur](/reference/react-dom/server). Lors du rendu serveur, vos composants produisent du HTML. Plus tard, sur le client, le processus d'[hydratation](/reference/react-dom/client/hydrateRoot) attache vos gestionnaires d'événements au HTML généré. Pour que l'hydratation fonctionne, le résultat du code client doit correspondre au HTML du serveur.
 
-Il est très difficile de garantir cela avec un compteur incrémentiel, car l'ordre dans lequel les composants du client sont hydratés peut ne pas correspondre à l'ordre dans lequel le code HTML du serveur a été émis. En appelant `useId`, vous vous assurez que l'hydratation fonctionnera et que la sortie correspondra entre le serveur et le client.
+Il est très difficile de garantir ça avec un compteur incrémental, car l'ordre dans lequel les composants côté client sont hydratés peut ne pas correspondre à l'ordre dans lequel le code HTML du serveur est émis. En appelant `useId`, vous vous assurez que l'hydratation fonctionnera et que la sortie correspondra entre le serveur et le client.
 
-Dans React, `useId` est généré à partir du "chemin parent" du composant appelant. C'est pourquoi, si l'arbre du client et celui du serveur sont identiques, le "chemin parent" correspondra quel que soit l'ordre de rendu.
+Dans React, `useId` est généré à partir du « chemin de parents » du composant appelant. C'est pourquoi, si l'arbre du client et celui du serveur sont identiques, ce « chemin » correspondra quel que soit l'ordre de rendu.
 
 </DeepDive>
 
@@ -216,20 +216,20 @@ input { margin: 5px; }
 
 </Sandpack>
 
-Cela permet d'éviter d'appeler `useId` pour chaque élément qui a besoin d'un identifiant unique.
+Vous évitez ainsi d'appeler `useId` pour chaque élément nécessitant un identifiant unique.
 
 ---
 
 ### Préciser un préfixe partagé pour tous les identifiants générés {/*specifying-a-shared-prefix-for-all-generated-ids*/}
 
-Si vous rendez plusieurs applications React indépendantes sur une même page, passez `identifierPrefix` comme option à vos appels [`createRoot`](/reference/react-dom/client/createRoot#parameters) ou [`hydrateRoot`](/reference/react-dom/client/hydrateRoot). Cela garantira que les identifiants générés par les deux applications distinctes ne seront jamais en conflit, car chaque identifiant généré avec `useId` commencera par le préfixe distinct que vous avez spécifié.
+Si vous affichez plusieurs applications React indépendantes sur une même page, passez `identifierPrefix` comme option à vos appels [`createRoot`](/reference/react-dom/client/createRoot#parameters) ou [`hydrateRoot`](/reference/react-dom/client/hydrateRoot). Ça garantira que les identifiants générés par les deux applications distinctes ne seront jamais en conflit, car chaque identifiant généré avec `useId` commencera par le préfixe distinct que vous aurez spécifié.
 
 <Sandpack>
 
 ```html index.html
 <!DOCTYPE html>
 <html>
-  <head><title>Mon app</title></head>
+  <head><title>Mon appli</title></head>
   <body>
     <div id="root1"></div>
     <div id="root2"></div>
