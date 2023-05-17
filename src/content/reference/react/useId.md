@@ -4,7 +4,7 @@ title: useId
 
 <Intro>
 
-`useId` est un Hook React permettant de générer des identifiants uniques qui peuvent être passés comme attributs d'accessibilité.
+`useId` est un Hook React permettant de générer des identifiants uniques qui peuvent être passés comme attributs d’accessibilité.
 
 ```js
 const id = useId()
@@ -30,7 +30,7 @@ function PasswordField() {
   // ...
 ```
 
-[Voir d'autres exemples ci-dessous.](#usage)
+[Voir d’autres exemples ci-dessous.](#usage)
 
 #### Paramètres {/*parameters*/}
 
@@ -38,13 +38,13 @@ function PasswordField() {
 
 #### Valeur renvoyée {/*returns*/}
 
-`useId` renvoie un identifiant textuel unique associé à cet appel `useId` particulier dans ce composant spécifique.
+`useId` renvoie un identifiant textuel unique, associé à cet appel `useId` précis au sein de ce composant.
 
 #### Limitations {/*caveats*/}
 
-* `useId` est un Hook, vous pouvez donc uniquement l'appeler **à la racine de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l'appeler à l'intérieur de boucles ou de conditions. Si nécessaire, extrayez un nouveau composant et déplacez l'état dans celui-ci.
+* `useId` est un Hook, vous pouvez donc uniquement l’appeler **à la racine de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l’appeler à l’intérieur de boucles ou de conditions. Si nécessaire, extrayez un nouveau composant et déplacez l'état dans celui-ci.
 
-* `useId` ne doit pas être utilisé pour générer des clés dans une liste. [Les clés devraient être basées sur vos données.](/learn/rendering-lists#where-to-get-your-key)
+* `useId` ne doit pas être utilisé pour générer des clés dans une liste. [Les clés devraient toujours être basées sur vos données.](/learn/rendering-lists#where-to-get-your-key)
 
 ---
 
@@ -52,13 +52,13 @@ function PasswordField() {
 
 <Pitfall>
 
-**N'appelez pas `useId` pour générer des clés dans une liste.** [Les clés devraient être basées sur vos données.](/learn/rendering-lists#where-to-get-your-key)
+**N'appelez pas `useId` pour générer des clés dans une liste.** [Les clés devraient toujours être basées sur vos données.](/learn/rendering-lists#where-to-get-your-key)
 
 </Pitfall>
 
-### Générer des identifiants uniques pour les attributs d'accessibilité {/*generating-unique-ids-for-accessibility-attributes*/}
+### Générer des identifiants uniques pour les attributs d’accessibilité {/*generating-unique-ids-for-accessibility-attributes*/}
 
-Appelez `useId` à la racine de votre composant pour générer un identifiant unique :
+Appelez `useId` à la racine de votre composant pour générer un identifiant unique :
 
 ```js [[1, 4, "passwordHintId"]]
 import { useId } from 'react';
@@ -68,7 +68,7 @@ function PasswordField() {
   // ...
 ```
 
-Vous pouvez ensuite transmettre <CodeStep step={1}>l'identifiant généré</CodeStep> à différents attributs :
+Vous pouvez ensuite transmettre <CodeStep step={1}>l’identifiant généré</CodeStep> à différents attributs :
 
 ```js [[1, 2, "passwordHintId"], [1, 3, "passwordHintId"]]
 <>
@@ -77,15 +77,15 @@ Vous pouvez ensuite transmettre <CodeStep step={1}>l'identifiant généré</Code
 </>
 ```
 
-**Prenons un exemple pour mieux saisir l'utilité de cette méthode.**
+**Prenons un exemple pour mieux saisir l’utilité de cette méthode.**
 
-[Les attributs d'accessibilité HTML](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA) tels que [`aria-describedby`](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) vous permettent de spécifier que deux balises sont liées l'une à l'autre. Par exemple, vous pouvez spécifier qu'un élément (tel qu'un champ de saisie) est décrit par un autre élément (tel qu'un paragraphe).
+[Les attributs d’accessibilité HTML](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA) tels que [`aria-describedby`](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) vous permettent de spécifier que deux balises sont liées l’une à l’autre. Par exemple, vous pouvez spécifier qu'un élément (tel qu'un champ de saisie) est décrit par un autre élément (tel qu'un paragraphe).
 
-En HTML classique, vous l'écririez comme suit :
+En HTML classique, vous l'écririez comme suit :
 
 ```html {5,8}
 <label>
-  Mot de passe :
+  Mot de passe :
   <input
     type="password"
     aria-describedby="password-hint"
@@ -96,7 +96,7 @@ En HTML classique, vous l'écririez comme suit :
 </p>
 ```
 
-Cependant, définir des ID en dur comme ça constitue une mauvaise pratique en React. Un composant pourrait être présent plusieurs fois sur la page--mais les ID doivent être uniques ! Au lieu d'utiliser un identifiant fixe, générez un identifiant unique avec `useId` :
+Cependant, définir des ID en dur comme ça constitue une mauvaise pratique en React. Un composant pourrait être présent plusieurs fois sur la page--mais les ID doivent être uniques ! Au lieu d’utiliser un identifiant fixe, générez un identifiant unique avec `useId` :
 
 ```js {4,11,14}
 import { useId } from 'react';
@@ -106,7 +106,7 @@ function PasswordField() {
   return (
     <>
       <label>
-        Mot de passe :
+        Mot de passe :
         <input
           type="password"
           aria-describedby={passwordHintId}
@@ -120,7 +120,7 @@ function PasswordField() {
 }
 ```
 
-Désormais, même si `PasswordField` apparaît plusieurs fois à l'écran, les identifiants générés ne seront pas en conflit.
+Désormais, même si `PasswordField` est utilisé plusieurs fois à l'écran, les identifiants générés ne rentreront pas en conflit.
 
 <Sandpack>
 
@@ -132,7 +132,7 @@ function PasswordField() {
   return (
     <>
       <label>
-        Mot de passe :
+        Mot de passe :
         <input
           type="password"
           aria-describedby={passwordHintId}
@@ -163,7 +163,7 @@ input { margin: 5px; }
 
 </Sandpack>
 
-[Regardez cette vidéo](https://www.youtube.com/watch?v=0dNzNcuEuOo) pour comprendre en quoi ça améliore l'expérience des utilisateurs de technologies d'assistance.
+[Regardez cette vidéo](https://www.youtube.com/watch?v=0dNzNcuEuOo) pour comprendre en quoi ça améliore l’expérience des utilisateurs de technologies d’assistance.
 
 <Pitfall>
 
@@ -173,15 +173,15 @@ Avec [le rendu côté serveur](/reference/react-dom/server), **`useId` requiert 
 
 <DeepDive>
 
-#### Pourquoi utiliser useId plutôt qu'un compteur incrémental ? {/*why-is-useid-better-than-an-incrementing-counter*/}
+#### Pourquoi utiliser useId plutôt qu'un compteur incrémental ? {/*why-is-useid-better-than-an-incrementing-counter*/}
 
-Vous vous demandez peut-être pourquoi il est préférable d’utiliser `useId` plutôt que d'incrémenter une variable globale, du genre `nextId++`.
+Vous vous demandez peut-être pourquoi il est préférable d’utiliser `useId` plutôt que d’incrémenter une variable globale, du genre `nextId++`.
 
-Le principal avantage de `useId` tient à ce que React garantit son bon fonctionnement dans [le rendu serveur](/reference/react-dom/server). Lors du rendu serveur, vos composants produisent du HTML. Plus tard, sur le client, le processus d'[hydratation](/reference/react-dom/client/hydrateRoot) attache vos gestionnaires d'événements au HTML généré. Pour que l'hydratation fonctionne, le résultat du code client doit correspondre au HTML du serveur.
+Le principal avantage de `useId` tient à ce que React garantit son bon fonctionnement dans [le rendu serveur](/reference/react-dom/server). Lors du rendu serveur, vos composants produisent du HTML. Plus tard, sur le client, le processus d'[hydratation](/reference/react-dom/client/hydrateRoot) attache vos gestionnaires d'événements au HTML généré. Pour que l’hydratation fonctionne, le résultat du code client doit correspondre au HTML du serveur.
 
-Il est très difficile de garantir ça avec un compteur incrémental, car l'ordre dans lequel les composants côté client sont hydratés peut ne pas correspondre à l'ordre dans lequel le code HTML du serveur est émis. En appelant `useId`, vous vous assurez que l'hydratation fonctionnera et que la sortie correspondra entre le serveur et le client.
+Il est très difficile de garantir ça avec un compteur incrémental, car l’ordre dans lequel les composants côté client sont hydratés peut ne pas correspondre à l’ordre dans lequel le code HTML du serveur est émis. En appelant `useId`, vous vous assurez que l'hydratation fonctionnera et que la sortie correspondra entre le serveur et le client.
 
-Dans React, `useId` est généré à partir du « chemin de parents » du composant appelant. C'est pourquoi, si l'arbre du client et celui du serveur sont identiques, ce « chemin » correspondra quel que soit l'ordre de rendu.
+Dans React, `useId` est généré à partir du « chemin de parents » du composant appelant. C’est pourquoi, si l’arbre du client et celui du serveur sont identiques, ce « chemin » correspondra quel que soit l’ordre de rendu.
 
 </DeepDive>
 
@@ -189,7 +189,7 @@ Dans React, `useId` est généré à partir du « chemin de parents » du compos
 
 ### Générer des identifiants pour plusieurs éléments liés {/*generating-ids-for-several-related-elements*/}
 
-Si vous devez attribuer des identifiants à plusieurs éléments liés, vous pouvez appeler `useId` pour leur attribuer un préfixe commun :
+Si vous devez attribuer des identifiants à plusieurs éléments liés, vous pouvez appeler `useId` pour leur attribuer un préfixe commun :
 
 <Sandpack>
 
@@ -200,10 +200,10 @@ export default function Form() {
   const id = useId();
   return (
     <form>
-      <label htmlFor={id + '-firstName'}>Prénom :</label>
+      <label htmlFor={id + '-firstName'}>Prénom :</label>
       <input id={id + '-firstName'} type="text" />
       <hr />
-      <label htmlFor={id + '-lastName'}>Nom de famille :</label>
+      <label htmlFor={id + '-lastName'}>Nom de famille :</label>
       <input id={id + '-lastName'} type="text" />
     </form>
   );
@@ -242,11 +242,11 @@ import { useId } from 'react';
 
 function PasswordField() {
   const passwordHintId = useId();
-  console.log('Identifiant généré :', passwordHintId)
+  console.log('Identifiant généré :', passwordHintId)
   return (
     <>
       <label>
-        Mot de passe :
+        Mot de passe :
         <input
           type="password"
           aria-describedby={passwordHintId}
@@ -302,4 +302,3 @@ input { margin: 5px; }
 ```
 
 </Sandpack>
-
