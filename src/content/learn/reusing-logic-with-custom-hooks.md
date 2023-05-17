@@ -252,7 +252,7 @@ function getSorted(items) {
 }
 ```
 
-Ça garantit que votre code peut appeler cette fonction normale n’importe où, y compris dans des conditions :
+Ça garantit que votre code peut appeler cette fonction n’importe où, y compris dans des conditions :
 
 ```js
 function List({ items, shouldSort }) {
@@ -265,7 +265,7 @@ function List({ items, shouldSort }) {
 }
 ```
 
-Vous devez utiliser le préfixe `use` pour une fonction (et ainsi, en faire un Hook) si elle utilise elle-même un Hook :
+Vous devez utiliser le préfixe `use` pour une fonction (et ainsi, en faire un Hook) si elle utilise elle-même un Hook dans son code :
 
 ```js
 // ✅ Correct : un Hook qui utilise un autre Hook
@@ -274,7 +274,7 @@ function useAuth() {
 }
 ```
 
-Techniquement, cette règle n’est pas vérifiée par React. En principe, vous pouvez créer un Hook qui n’appelle pas d’autres Hooks. C’est souvent déroutant et limitant, aussi est-il préférable d’éviter cette approche. Cependant, il peut y avoir de rares cas où c’est utile. Par exemple, votre fonction n’appelle pas encore de Hook, mais vous prévoyez d’y ajouter des appels à des Hooks à l'avenir. Il est alors logique d’utiliser le préfixe `use` :
+Techniquement, cette règle n’est pas vérifiée par React. En principe, vous pouvez créer un Hook qui n’appelle pas d’autres Hooks. C’est souvent déroutant et limitant, aussi est-il préférable d’éviter cette approche. Cependant, il peut y avoir de rares cas où c’est utile. Par exemple, votre fonction n’appelle pas encore de Hook, mais vous prévoyez d’y ajouter des appels à des Hooks à l’avenir. Il est alors logique d’utiliser le préfixe `use` :
 
 
 ```js {3-4}
@@ -646,7 +646,7 @@ export default function ChatRoom({ roomId }) {
 
 C’est plus simple ainsi ! (Mais ça fait toujours la même chose.)
 
-Remarquez que la logique *réagit toujours* aux changement des props et de l’état. Essayez de modifier l’URL du serveur ou le salon choisi : 
+Remarquez que la logique *réagit toujours* aux changement des props et de l’état. Essayez de modifier l’URL du serveur ou le salon choisi :
 
 <Sandpack>
 
@@ -1412,7 +1412,7 @@ C’est une raison pour laquelle il est souvent utile d’enrober des effets dan
 
 1. Vous rendez le flux de données vers et depuis vos effets très explicite.
 2. Vous permettez à vos composants de se concentrer sur l’intention plutôt que sur l’implémentation exacte de vos effets.
-3. Lorsque React ajoute de nouvelles fonctionnalités, vous pouvez retirer ces effets sans changer aucun de vos composants.
+3. Lorsque React ajoute de nouvelles fonctionnalités, vous pouvez retirer ces effets sans changer le code d’aucun de vos composants.
 
 À la manière d’un [Design System](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), vous pourriez trouver utile de commencer à extraire les idiomes communs des composants de votre appli dans des Hooks personnalisés. Ainsi, le code de vos composants restera centré sur l’intention et vous éviterez la plupart du temps d’utiliser des effets bruts. De nombreux Hooks personnalisés de qualité sont maintenus par la communauté React.
 
@@ -2409,7 +2409,7 @@ body { min-height: 300px; }
 
 <Solution>
 
-Voici une version fonctionnelle. Vous conservez `delayedValue` comme variable d’état. Quand `value` change, votre effet planifie un compte à rebours pour mettre à jour `delayedValue`. C’est pourquoi `delayedValue` est toujours « en retard » sur `value`.
+Voici une version fonctionnelle. Vous conservez `delayedValue` comme variable d’état. Quand `value` change, votre effet planifie un compte à rebours pour mettre à jour `delayedValue`. C’est pourquoi `delayedValue` est toujours « en retard » par rapport à `value`.
 
 <Sandpack>
 
