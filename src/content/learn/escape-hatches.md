@@ -29,7 +29,7 @@ Quand vous souhaitez que votre composant « se souvienne » de quelque chose, 
 const ref = useRef(0);
 ```
 
-Comme l’état, les refs sont préservées par React d’un rendu à l’autre.  Cependant, modifier un état déclenche un nouveau rendu du composant. Mais ce n’est pas le cas lorsqu’on modifie une ref ! Vous pouvez accéder à la valeur actuelle d’une ref au travers de sa propriété `ref.current`.
+Comme l’état, les refs sont préservées par React d’un rendu à l’autre.  Cependant, modifier un état déclenche un nouveau rendu du composant, alors que ce n’est pas le cas lorsqu’on modifie une ref ! Vous pouvez accéder à la valeur actuelle d’une ref au travers de sa propriété `ref.current`.
 
 <Sandpack>
 
@@ -183,7 +183,7 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-En développement, React exécutera et nettoiera votre effet immédiatement une fois supplémentaire.  C’est pourquoi vous voyez deux fois `"✅ Connexion..."` dans la console. Ça garantit que vous n’oublierez pas d’implémenter la fonction de nettoyage.
+En développement, React exécutera et nettoiera votre Effet immédiatement une fois supplémentaire.  C’est pourquoi vous voyez deux fois `"✅ Connexion..."` dans la console. Ça garantit que vous n’oublierez pas d’implémenter la fonction de nettoyage.
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
@@ -315,11 +315,11 @@ Lisez **[Cycle de vie des Effets réactifs](/learn/lifecycle-of-reactive-effects
 
 <Wip>
 
-Cette section décrit une **API expérimentale qui n’a pas encore été livrée** dans une version stable de React.
+Cette section décrit une **API expérimentale : elle n’a donc pas encore été livrée** dans une version stable de React.
 
 </Wip>
 
-Les gestionnaires d’événements ne sont ré-exécutés que lorsque vous refaites la même interaction.  Contrairement aux gestionnaires d’événements, les Effets se resynchronisent si au moins une des valeurs qu’ils lisent (telles que des props ou variables d’état) diffèrent depuis le rendu précédent.  Vous aurez parfois besoin d’une comportement hybride : un Effet qui s’exécute à nouveau en réaction à certains changements de valeurs, mais pas tous.
+Les gestionnaires d’événements ne sont ré-exécutés que lorsque vous répétez l’interaction qui les concerne.  Contrairement aux gestionnaires d’événements, les Effets se resynchronisent si au moins une des valeurs qu’ils lisent (telles que des props ou variables d’état) diffère depuis le rendu précédent.  Vous aurez parfois besoin d’une comportement hybride : un Effet qui s’exécute à nouveau en réaction à certains changements de valeurs, mais pas tous.
 
 Tout le code au sein d’un Effet est *réactif*. Il sera exécuté à nouveau si une des valeurs réactives qu’il lit a changé lors du dernier rendu.  Par exemple, l’Effet que voici se reconnecte au serveur de discussion si `roomId` ou `theme` changent :
 
@@ -753,7 +753,7 @@ Lisez **[Alléger les dépendances des Effets](/learn/removing-effect-dependenci
 
 ## Réutiliser de la logique grâce aux Hooks personnalisés {/*reusing-logic-with-custom-hooks*/}
 
-React fournit des Hooks prééfinis tels que `useState`, `useContext`, et `useEffect`. Vous souhaiterez parfois qu’un Hook existe pour un besoin plus ciblé : par exemple pour charger des données, surveiller l’état de connectivité du réseau, ou vous connecter à un salon de discussion. Pour de tels cas de figure, vous pouvez créer vos propres Hooks selon les besoins de votre application.
+React fournit des Hooks prédéfinis tels que `useState`, `useContext`, et `useEffect`. Vous souhaiterez parfois qu’un Hook existe pour un besoin plus ciblé : par exemple pour charger des données, surveiller l’état de connectivité du réseau, ou vous connecter à un salon de discussion. Pour de tels cas de figure, vous pouvez créer vos propres Hooks selon les besoins de votre application.
 
 Dans l’exemple ci-après, le Hook personnalisé `usePointerPosition` piste la position du curseur, tandis que le Hook personnalisé `useDelayedValue` renvoie une valeur qui est « en retard » sur celle que vous lui passez, à raison d’un délai précis en millisecondes.  Déplacez le curseur dans la zone de prévisualisation du bac à sable pour voir une file de points suivre son mouvement :
 
