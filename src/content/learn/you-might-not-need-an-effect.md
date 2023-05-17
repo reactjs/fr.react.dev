@@ -23,7 +23,7 @@ Les Effets sont une façon d’échapper au paradigme de React.  Ils vous permet
 
 Il y a deux scénarios principaux pour lesquels vous n’avez pas besoin d’Effets :
 
-- **Vous n’avez pas besoin d’Effets pour transformer des données en vue du rendu.**  Disons par exemple que vous souhaitez filtrer une liste avant de l’afficher.  Vous pourriez etre tenté·e d’écrire un Effet qui mette à jour une variable d’état lorsque la liste change.  C’est pourtant inefficace.  Lorsque vous mettez à jour l’état, React va d’abord appeler vos fonctions composants pour calculer ce qu’il doit afficher à l’écran.  Puis React va [retranscrire](/learn/render-and-commit) ces modifications auprès du DOM (_phase de “commit”, NdT)_, ce qui mettra l’écran à jour. Ensuite React exécutera vos Effets. Si votre Effet met immédiatement l’état à jour *lui aussi*, ça va tout refaire du début !  Pour éviter des passes de rendu superflues, transformez les données à la racine de vos composants.  Ce code sera automatiquement ré-exécuté dès que vos props ou votre état changera.
+- **Vous n’avez pas besoin d’Effets pour transformer des données utilisées par le rendu.**  Disons par exemple que vous souhaitez filtrer une liste avant de l’afficher.  Vous pourriez etre tenté·e d’écrire un Effet qui mette à jour une variable d’état lorsque la liste change.  C’est pourtant inefficace.  Lorsque vous mettez à jour l’état, React va d’abord appeler vos fonctions composants pour calculer ce qu’il doit afficher à l’écran.  Puis React va [retranscrire](/learn/render-and-commit) ces modifications auprès du DOM (_phase de “commit”, NdT)_, ce qui mettra l’écran à jour. Ensuite React exécutera vos Effets. Si votre Effet met immédiatement l’état à jour *lui aussi*, ça va tout refaire du début !  Pour éviter des passes de rendu superflues, transformez les données à la racine de vos composants.  Ce code sera automatiquement ré-exécuté dès que vos props ou votre état changera.
 - **Vous n’avez pas besoin d’Effets pour gérer les événements utilisateurs.**  Supposons que vou souhaitez envoyer une requête POST à `/api/buy` et afficher une notification lorsque l’utilisateur achète un produit.  Dans le gestionnaire d’événement clic du bouton Acheter, vous savez précisément pourquoi vous êtes là.  Alors qu’au moment où l’Effet s’exécutera, vous ne saurez pas *ce qu’a fait* l’utilisateur (par exemple, quel bouton il a cliqué).  C’est pourquoi vous traiterez généralement les événements utilisateurs directement au sein des gestionnaires d’événements concernés.
 
 En revanche, *vous avez besoin* d’Effets pour [synchroniser](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) votre composant avec des systèmes extérieurs.  Par exemple, vous pouvez écrire un Effet qui synchronise un widget basé jQuery avec votre état React.  Vous pouvez aussi charger des données avec les Effets, par exemple pour synchroniser des résultats de recherche avec la requête à jour. Gardez toutefois à l’esprit que les [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) modernes vous fournissent de base des mécanismes de chargement de données plus efficaces que si vous l’écrivez directement dans vos Effets.
@@ -123,7 +123,7 @@ function TodoList({ todos, filter }) {
 
 **Ça dit à React que vous ne souhaitez pas ré-exécuter la fonction imbriquée sauf si `todos` ou `filter` ont changé.**  React se souviendra de la valeur renvoyée par `getFilteredTodos()` au moment du rendu initial. Lors des rendus ultérieurs, il vérifiera si `todos` ou `filter` ont changé.  S’ils sont identiques à leurs valeurs du rendu précédent, `useMemo` renverra le dernier résultat qu’il avait stocké.  Mais si une différence survient, React rappellera la fonction imbriquée (et stockera le résultat).
 
-La fonction que vous enrobez avec [`useMemo`](/reference/react/useMemo) s’exécute pendant le rendu, ça ne marche donc que pour [des calculs purs](/learn/keeping-components-pure).
+La fonction que vous enrobez avec [`useMemo`](/reference/react/useMemo) s’exécute pendant le rendu, ça ne s’applique donc que pour [des fonctions de calcul pures](/learn/keeping-components-pure).
 
 <DeepDive>
 
@@ -199,7 +199,7 @@ Remarquez que dans cet exemple, seul le composant externe `ProfilePage` est expo
 
 ### Modifier une partie de l’état quand une prop change {/*adjusting-some-state-when-a-prop-changes*/}
 
-Il arrive que vous souhaitiez ne réinitialiser, ou ajuster, qu’une partie de l’état quand une prop change (plutôt que l’intégralité).
+Il arrive que vous souhaitiez ne réinitialiser, ou ajuster, qu’une partie de l’état quand une prop change (plutôt que l’état dans son intégralité).
 
 Le composant `List` ci-après reçoit une liste d’éléments *via* sa prop `items`, et garde l’élément sélectionné dans sa variable d’état `selection`.  Vous souhaitez ramener `selection` à `null` chaque fois que `items` reçoit un nouveau tableau :
 
@@ -235,11 +235,11 @@ function List({ items }) {
 }
 ```
 
-[Stocker des infos issues de rendus précédents](/reference/react/useState#storing-information-from-previous-renders) de cette façon peut être difficile à comprendre, mais c’est toujours mieux que de faire la même mise à jour au sein d’un Effet.  Dans l’exemple ci-dessus, `setSelection` est appelée directement au sein du rendu.  React refera le rendu de `List` *immédiatement* après qu’il ait terminé au moyen de son instruction `return`.  React n’aura pas encore fait le rendu des composants enfants de `List`, et encore moins mis à jour le DOM, ce qui permet aux enfants de `List` d’éviter un rendu sur base d’une valeur obsolète de `selection`.
+[Stocker des infos issues de rendus précédents](/reference/react/useState#storing-information-from-previous-renders) de cette façon peut être difficile à comprendre, mais c’est toujours mieux que de faire la même mise à jour au sein d’un Effet.  Dans l’exemple ci-dessus, `setSelection` est appelée directement au sein du rendu.  React refera le rendu de `List` *immédiatement* après qu’il aura terminé au moyen de son instruction `return`.  React n’aura pas encore fait le rendu des composants enfants de `List`, et encore moins mis à jour le DOM, ce qui permet aux enfants de `List` d’éviter un rendu sur base d’une valeur obsolète de `selection`.
 
-Quand vous mettez à jour un composant au sein de son rendu, React jette le JSX renvoyé et retente immédiatement un rendu.  Pour éviter des cascades désastreuses de tentatives, React ne vous permet de mettre à jour que l’état du *même*  composant au sein d’un rendu.  Si vous tentez d’y mettre à jour l’état d’un autre composant, vous obtiendrez une erreur.  Une condition telle que `items !== prevItems` est nécessaire pour éviter les boucles.  Vous pouvez ajuster l’état ainsi, mais tout autre effet de bord (tel qu’une modification du DOM, ou la définition de timers) devrait rester dans des gestionnaires d’événements ou des Effets afin de [garder vos composants purs](/learn/keeping-components-pure).
+Quand vous mettez à jour un composant au sein de son rendu, React jette le JSX renvoyé et retente immédiatement un rendu.  Pour éviter des cascades désastreuses de tentatives, React ne vous permet de mettre à jour que l’état du *même* composant au sein d’un rendu.  Si vous tentez d’y mettre à jour l’état d’un autre composant, vous obtiendrez une erreur.  Une condition telle que `items !== prevItems` est nécessaire pour éviter les boucles.  Vous pouvez ajuster l’état ainsi, mais tout autre effet de bord (tel qu’une modification du DOM, ou la définition de timers) devrait rester dans des gestionnaires d’événements ou des Effets afin de [garder vos composants purs](/learn/keeping-components-pure).
 
-**Même si cette approche est plus efficace qu’un Effet, la plupart des composants ne devraient pas en avoir besoin non plus.** Peut importe comment vous vous y prenez, ajuster l’état sur base des props ou d’un autre état rend votre flux de données plus difficile à comprendre et à déboguer.  Vérifiez toujours si vous ne pourriez pas plutôt [réinitialiser tout votre état à l’aide d’une clé](#resetting-all-state-when-a-prop-changes) ou [tout calculer pendant le rendu](#updating-state-based-on-props-or-state). Par exemple, au lieu de stocker (et réinitialiser) *l’élément* sélectionné, vous pourriez stocker *son ID* :
+**Même si cette approche est plus efficace qu’un Effet, la plupart des composants ne devraient pas en avoir besoin non plus.** Peu importe comment vous vous y prenez, ajuster l’état sur base des props ou d’un autre état rend votre flux de données plus difficile à comprendre et à déboguer.  Vérifiez toujours si vous ne pourriez pas plutôt [réinitialiser tout votre état à l’aide d’une clé](#resetting-all-state-when-a-prop-changes) ou [tout calculer pendant le rendu](#updating-state-based-on-props-or-state). Par exemple, au lieu de stocker (et réinitialiser) *l’élément* sélectionné, vous pourriez stocker *son ID* :
 
 ```js {3-5}
 function List({ items }) {
@@ -306,7 +306,7 @@ Non seulement ça retire un Effet superflu, mais ça corrige le bug au passage.
 
 ### Envoyer une requête POST {/*sending-a-post-request*/}
 
-Ce composant `Form` envoie deux types de requêtes POST.  Il envoie un événement analytique au moment du montage.  Et lorsque vous remplissez les champs et cliquer sur le bouton Envoyer, il envoie une requête POST au point d’accès `/api/register` :
+Ce composant `Form` envoie deux types de requêtes POST.  Il envoie un événement analytique au moment du montage.  Et lorsque vous remplissez les champs et cliquez sur le bouton Envoyer, il envoie une requête POST au point d’accès `/api/register` :
 
 ```js {5-8,10-16}
 function Form() {
@@ -336,7 +336,7 @@ function Form() {
 
 Appliquons les mêmes critères que pour l’exemple précédent.
 
-La requête POST analytique devrait rester dans un Effet. C’est parce que la *raison* de notre événement analytique est le fait que le formulaire ait été affiché. (Ça s’exécuterait deux fois en développement, mais [voyez comment gérer cet aspect](/learn/synchronizing-with-effects#sending-analytics)).
+La requête POST analytique devrait rester dans un Effet. En effet (ah ah), la *raison* de notre événement analytique, c’est justement le fait que le formulaire ait été affiché. (Ça s’exécuterait deux fois en développement, mais [voyez comment gérer cet aspect](/learn/synchronizing-with-effects#sending-analytics)).
 
 En revanche, la requête POST à `/api/register` n’est pas due à *l’affichage* du formulaire.  On veut seulement envoyer cette requête pour une raison précise : quand l’utilisateur appuie sur le bouton.  Ça ne devrait arriver que *suite à cette interaction spécifique*.  Supprimez le deuxième Effet et déplacez la requête POST dans le gestionnaire d’événement :
 
@@ -457,7 +457,7 @@ Il peut arriver que vous *ne puissiez pas* calculer le prochain état directemen
 
 Certains traitements ne devraient s’exécuter qu’une fois, au démarrage de l’appli.
 
-Il pourrait être tenant de les places dans un Effet du composant racine :
+Il pourrait être tentant de les placer dans un Effet du composant racine :
 
 ```js {2-6}
 function App() {
@@ -565,7 +565,7 @@ function Toggle({ onChange }) {
 }
 ```
 
-Avec cette approche, tant le composant `Toggle` que son parent mettent à jour leurs état lors de la gestion de l’événement.  React [regroupe les mises à jour](/learn/queueing-a-series-of-state-updates) issues de différents composants, de sorte qu’on ne fait qu’une passe de rendu.
+Avec cette approche, tant le composant `Toggle` que son parent mettent à jour leurs états lors de la gestion de l’événement.  React [regroupe les mises à jour](/learn/queueing-a-series-of-state-updates) issues de différents composants, de sorte qu’on ne fait qu’une passe de rendu.
 
 Peut-être même pouvez-vous carrément retirer l’état, et recevoir `isOn` depuis votre composant parent :
 
@@ -721,7 +721,7 @@ Vous n’avez *pas besoin* de déplacer ce chargement dans un gestionnaire d’�
 
 Peu importe d’où viennent `page` et `query`.  Lorsque ce composant est affiché, vous voulez garantir que `results` reste [synchronisé](/learn/synchronizing-with-effects) avec les données fournies par le réseau pour les `page` et `query` actuelles. Voilà pourquoi c’est un Effet.
 
-Néanmoins, le code ci-avant a un bug.  Supposons que vous tapiez  `"hello"` rapidement.  Ça modifierait successivement `query` de `"h"` à `"he"`, `"hel"`, `"hell"`, et enfin `"hello"`.  Ça déclencherait à chaque fois un chargement dédié, mais on n’a aucune garantie que les réponses réseau arriveront dans le bon ordre.  Par exemple, la réponse pour `"hell"` pourrait arriver *après* la réponse pour `"hello"`.  Comme lle appellera `setResults()` en dernier, on affichera les mauvais résultats de recherche… un bug d’enfer.  Ce scénario s’apppelle une *[“race condition”](https://fr.wikipedia.org/wiki/Situation_de_comp%C3%A9tition)* : deux requêtes distinctes ont « fait la course » l’une contre l’autre et sont arrivées dans un ordre différent de celui attendu.
+Néanmoins, le code ci-avant a un bug.  Supposons que vous tapiez  `"hello"` rapidement.  Ça modifierait successivement `query` de `"h"` à `"he"`, `"hel"`, `"hell"`, et enfin `"hello"`.  Ça déclencherait à chaque fois un chargement dédié, mais on n’a aucune garantie que les réponses réseau arriveront dans le bon ordre.  Par exemple, la réponse pour `"hell"` pourrait arriver *après* la réponse pour `"hello"`.  Comme elle appellera `setResults()` en dernier, on affichera les mauvais résultats de recherche… un bug d’enfer.  Ce scénario s’appelle une *[“race condition”](https://fr.wikipedia.org/wiki/Situation_de_comp%C3%A9tition)* : deux requêtes distinctes ont « fait la course » l’une contre l’autre et sont arrivées dans un ordre différent de celui attendu.
 
 **Pour corriger cette _race condition_, [ajoutez une fonction de nettoyage](/learn/synchronizing-with-effects#fetching-data) pour ignorer les réponses périmées :**
 
@@ -748,7 +748,7 @@ function SearchResults({ query }) {
 }
 ```
 
-Ça garantit que lorsque votre Effet charge des données, toutes les réponses hormis la dernière seront ignorées.
+Ça garantit que lorsque votre Effet charge des données, toutes les réponses hormis la dernière sont ignorées.
 
 La gestion des *race conditions* n’est d’ailleurs pas la seule difficulté lorsqu’on implémente un chargement de données.  Vous aurez peut-être à vous préoccuper de la mise en cache des données (afin qu’en naviguant en arrière vos utilisateurs retrouvent instantanément l’écran précédent), de leur chargement côté serveur (pour que le HTML initial fourni par le serveur contienne déjà les données plutôt qu’un indicateur de chargement), et d’éviter les cascades réseau (afin qu’un composant enfant puisse charger ses données sans devoir attendre que chaque parent ait fini ses chargements).
 
@@ -1007,7 +1007,7 @@ input { margin-top: 10px; }
 
 Dans cet exemple, on a extrait le filtrage des tâches dans une fonction dédiée appelée `getVisibleTodos()`.  Cette fonction contient un appel à `console.log()` qui nous permet de savoir qu’elle est appelée.  Basculez le réglage « Seulement les tâches à faire » et remarquez que la fonction `getVisibleTodos()` est appelée à nouveau.  C’est normal, puisque les tâches visibles changent selon le réglage choisi.
 
-Votre objectif est de retirer l’Effet qui recalcule la liste `visibleTodos` dans le composant `TodoList`.  Cependant, vous devrez vous assurer que `getVisibleTodos()` n’est *pas* appelée à nouveau (et donc n’affiche rien dans la console) lorsque vous saisissez un texte de tâche.
+Votre objectif est de retirer l’Effet qui recalcule la liste `visibleTodos` dans le composant `TodoList`.  Cependant, vous devrez vous assurer que `getVisibleTodos()` n’est *pas* appelée à nouveau (et donc n’affiche rien dans la console) lorsque vous saisissez un intitulé de tâche.
 
 <Hint>
 
@@ -1273,7 +1273,7 @@ Cette approche satisfait elle aussi nos critères.  Lorsque vous saisissez une v
 
 #### Réinitialiser l’état sans Effet {/*reset-state-without-effects*/}
 
-Ce composant `EditContact` reçoit un objet contact de forme `{ id, name, email }` *via* sa prop `savedContact`. Essayez de modifier les champs de nom et d’e-mail.  Lorsque vous cliquez sur Enregistrer, le bouton du contact situé au-dessus est mis à jour avec le nouveau nom.  Lorsque vous cliquez sur Réinitialiser, toute modification en cours dans le formulaire est abandonnée.  Prenez un moment pour manipuler cette interface afin d’en saisir le fonctionnement.
+Ce composant `EditContact` reçoit un objet contact de forme `{ id, name, email }` *via* sa prop `savedContact`. Essayez de modifier les champs de nom et d’e-mail.  Lorsque vous appuyez sur Enregistrer, le bouton du contact situé au-dessus est mis à jour avec le nouveau nom.  Lorsque vous appuyez sur Réinitialiser, toute modification en cours dans le formulaire est abandonnée.  Prenez un moment pour manipuler cette interface afin d’en saisir le fonctionnement.
 
 Lorsque vous sélectionnez un contact au moyen des boutons du haut, le formulaire est réinitialisé pour refléter les détails de ce contact.  C’est implémenté au moyen d’un Effet dans `EditContact.js`.  Retirez cet Effet, et trouvez une autre façon de réinitaliser l’état du formulaire lorsque `savedContact.id` change.
 
@@ -1676,7 +1676,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <Solution>
 
-La variable d’état `showForm` détermine s’il faut afficher le formulaire ou le message de remerciement.  Ceci étant dit, vous n’envoyez pas le message simplement parce que le message *est affiché*.  Vous souhaitez envoyer le message parce que l’utilisateur a *soumis le formulaire*.  Retirez cet Effet trompeur et déplacez l’appel à `sendMessage` dans le gestionnaire d’événement `handleSubmit` :
+La variable d’état `showForm` détermine s’il faut afficher le formulaire ou le message de remerciement.  Seulement voilà, vous n’envoyez pas le message simplement parce que le message *est affiché*.  Vous souhaitez envoyer le message parce que l’utilisateur a *soumis le formulaire*.  Retirez cet Effet trompeur et déplacez l’appel à `sendMessage` dans le gestionnaire d’événement `handleSubmit` :
 
 <Sandpack>
 
@@ -1732,7 +1732,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-Remarquez que dans cette version, seul *la soumission du formulaire* (qui est un événement) cause l’envoi du message.  Ça fonctionne peu importe la valeur initiale de `showForm` : `true` ou `false`. (Mettez-la à `false` et remarquez l’absence de message superflu en console.)
+Remarquez que dans cette version, seule *la soumission du formulaire* (qui est un événement) cause l’envoi du message.  Ça fonctionne peu importe la valeur initiale de `showForm` : `true` ou `false`. (Mettez-la à `false` et remarquez l’absence de message superflu en console.)
 
 </Solution>
 
