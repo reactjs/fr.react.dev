@@ -34,7 +34,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Ensuite, si vous laissez le tableau de dépendances vide (`[]`), le *linter* vous suggèrera les dépendances appropriées :
+Ensuite, si vous laissez le tableau de dépendances vide (`[]`), le *linter* vous suggèrera automatiquement les dépendances appropriées :
 
 <Sandpack>
 
@@ -173,7 +173,7 @@ button { margin-left: 10px; }
 
 ### Pour retirer une dépendance, prouvez qu'elle n'en est pas une {/*to-remove-a-dependency-prove-that-its-not-a-dependency*/}
 
-Notez que vous ne pouvez pas « choisir » les dépendances de votre Effet. Chaque <CodeStep step={2}>valeur réactive</CodeStep> utilisée par le code de votre Effet doit être déclarée dans votre liste de dépendances. Cette liste est déterminée par le code environnant :
+Notez que vous ne pouvez pas « choisir » les dépendances de votre Effet. Chaque <CodeStep step={2}>valeur réactive</CodeStep> utilisée par le code de votre Effet doit être déclarée dans votre liste de dépendances, qui découle donc du code environnant :
 
 ```js [[2, 3, "roomId"], [2, 5, "roomId"], [2, 8, "roomId"]]
 const serverUrl = 'https://localhost:1234';
@@ -350,9 +350,9 @@ button { margin: 10px; }
 
 Disons que vous souhaitiez que cet Effet ne s’exécute « qu'au montage ». Vous avez lu qu'un [tableau de dépendances vide (`[]`)](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) permettait ça, aussi vous avez décidé d'ignorer le *linter*, et avez forcé les dépendances à `[]`.
 
-Ce compter était censé s'incrémenter chaque seconde de la quantité configurée *via* les deux boutons. Et pourtant, puisque vous avez « menti » à React en lui disant que cet Effet ne dépendait de rien, React continuera éternellement à utiliser la fonction `onTick` du rendu initial. [Pendant ce rendu](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time), `count` valait `0` et `increment` était à `1`. C'est pourquoi la `onTick` de ce rendu appelle systématiquement `setCount(0 + 1)` chaque seconde, et vous obtenez donc toujours `1`.  Ce type de bugs est encore plus délicat à corriger lorsqu'il impacte plusieurs composants.
+Ce compteur était censé s'incrémenter chaque seconde de la quantité configurée *via* les deux boutons. Et pourtant, puisque vous avez « menti » à React en lui disant que cet Effet ne dépendait de rien, React continuera éternellement à utiliser la fonction `onTick` du rendu initial. [Pendant ce rendu](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time), `count` valait `0` et `increment` était à `1`. C'est pourquoi la `onTick` de ce rendu appelle systématiquement `setCount(0 + 1)` chaque seconde, et vous obtenez donc toujours `1`.  Ce type de bugs est encore plus délicat à corriger lorsqu'il impacte plusieurs composants.
 
-Ignorer le *linter* n'est jamais la meilleure approche !  Pour corriger ce code, vous devez ajouter `onTick` à la liste de dépendances. (Pour vous assurer que l'intervalle n'est mis en place qu'une seule fois, [faites de `onTick` un Événement d'Effet](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events).)
+Ignorer le *linter* n'est jamais la meilleure approche !  Pour corriger ce code, vous devez ajouter `onTick` à la liste de dépendances. (Pour vous assurer que l'intervalle ne soit mis en place qu'une seule fois, [faites de `onTick` un Événement d'Effet](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events).)
 
 **Nous vous conseillons de traiter toute erreur du *linter* de dépendances comme une erreur de compilation.  Si vous ne le réduisez pas au silence, vous ne rencontrerez jamais ce type de bug.**  Le reste de cette page vous présente des alternatives pour divers cas de figure de ce genre.
 
@@ -360,7 +360,7 @@ Ignorer le *linter* n'est jamais la meilleure approche !  Pour corriger ce code
 
 ## Retirer les dépendances superflues {/*removing-unnecessary-dependencies*/}
 
-Chaque fois que vous ajustez la liste des dépendances de l'Effet pour refléter le code, regardez bien cette liste. Est-il logique que l'Effet soit ré-exécuté chaque fois qu'une de ces dépendances change ?  Parfois, la réponse est « non » :
+Chaque fois que vous ajustez la liste des dépendances de l'Effet pour refléter le code, regardez bien cette liste. Est-il logique que l'Effet soit ré-exécuté chaque fois qu'une de ces dépendances change ?  Parfois, la réponse légitime est « non » :
 
 - Vous pourriez vouloir ré-exécuter des *parties distinctes* de votre Effet selon la situation.
 - Vous pourriez vouloir seulement lire la *valeur la plus à jour* d'une dépendance plutôt que de « réagir » à chacun de ses changements.
@@ -441,7 +441,7 @@ function Form() {
 
 Demandez-vous ensuite si votre Effet ne fait pas plusieurs choses sans rapport entre elles.
 
-Disons que vous êtes en train de créer un formulaire d'expédition dans lequel l'utilisateur doit choisir sa ville et son quartier.p  Vous charger une liste de `cities` depuis le serveur en fonction du `country` sélectionné, afin de proposer une liste déroulante :
+Disons que vous êtes en train de créer un formulaire d'expédition dans lequel l'utilisateur doit choisir sa ville et son quartier.  Vous chargez une liste de `cities` depuis le serveur en fonction du `country` sélectionné, afin de proposer une liste déroulante :
 
 ```js
 function ShippingForm({ country }) {
@@ -553,7 +553,7 @@ Désormais, le premier Effet n'est ré-exécuté que lorsque `country` change, t
 
 Le code final est certes plus long que l'original, mais découper ces Effets reste la bonne approche. [Chaque Effet doit représenter un processus distinct de synchronisation](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process). Dans notre exemple, retirer un Effet ne casse pas le comportement de l'autre.  Ça indique bien qu'ils *synchronisent des choses distinctes*, et qu'on a bien fait de les découper. Si la duplication du code vous ennuie, vous pouvez améliorer ça en [extrayant la logique répétitive dans un Hook personnalisé](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks).
 
-### Lisez-vous un état pour calculer le prochain état ? {/*are-you-reading-some-state-to-calculate-the-next-state*/}
+### Lisez-vous un état pour calculer le prochain ? {/*are-you-reading-some-state-to-calculate-the-next-state*/}
 
 L'Effet ci-après met à jour la variable d'état `messages` avec un tableau fraîchement créé chaque fois qu'un nouveau message arrive :
 
@@ -569,7 +569,7 @@ function ChatRoom({ roomId }) {
     // ...
 ```
 
-Elle utilise la variable `messages` pour [créer un nouveau tableau](/learn/updating-arrays-in-state) qui commence par tous les messages existants et leur ajoute le nouveau message à la fin.  Cependant, puisque `messages` est une valeur réactive utilisér par l'Effet, elle doit être déclarée dans les dépendances :
+Il utilise la variable `messages` pour [créer un nouveau tableau](/learn/updating-arrays-in-state) qui commence par tous les messages existants et leur ajoute le nouveau message à la fin.  Cependant, puisque `messages` est une valeur réactive utilisée par l'Effet, elle doit être déclarée dans les dépendances :
 
 ```js {7,10}
 function ChatRoom({ roomId }) {
@@ -615,7 +615,7 @@ Cette section décrit une **API expérimentale : elle n’a donc pas encore ét
 
 </Wip>
 
-Disons que vous souhaitez jouer un son lorsque l'utilisateur reçoit un nouveau message, à moins que `isMuted` soit à `true` :
+Disons que vous souhaitez jouer un son lorsque l'utilisateur reçoit un nouveau message, à moins que `isMuted` ne soit à `true` :
 
 ```js {3,10-12}
 function ChatRoom({ roomId }) {
@@ -741,7 +741,7 @@ Les Événements d'Effets ne sont pas réactifs, vous n'avez donc pas à les ajo
 
 #### Séparer les codes réactif et non réactif {/*separating-reactive-and-non-reactive-code*/}
 
-Dans l'exemple qui suit, vous souhaitez ajouter une visite dans votre journal à chaque fois que `roomId` change. Vous souhaitez inclure `notificationCount` dans chaque entrée de journal, mais vous *ne voulez pas* qu'une modification de `notificationCount` déclenche une journalisation.
+Dans l'exemple qui suit, vous souhaitez ajouter un événement de visite dans votre journal analytique à chaque fois que `roomId` change. Vous souhaitez inclure `notificationCount` dans chaque entrée de journal, mais vous *ne voulez pas* qu'une modification de `notificationCount` déclenche une journalisation.
 
 Pour y parvenir, sortez la partie non réactive du code dans un Événement d'Effet :
 
@@ -778,7 +778,7 @@ function ChatRoom({ roomId }) {
     // ...
 ```
 
-Cet objet est déclaré dans le corps du composant, il s'agit donc d'une [valeur réactive](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values).  Lorsque vous lisez une valeur réactive depuis votre Effet, vous devez la déclarer comme dépendance.  Ça garantit que votre Effet « réagit » à ses modifications :
+Cet objet est déclaré dans le corps du composant, il s'agit donc d'une [valeur réactive](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values).  Lorsque vous lisez une valeur réactive depuis votre Effet, vous devez la déclarer comme dépendance.  Ça garantit que votre Effet « réagit » aux modifications de cette valeur :
 
 ```js {3,6}
   // ...
@@ -790,7 +790,7 @@ Cet objet est déclaré dans le corps du composant, il s'agit donc d'une [valeur
   // ...
 ```
 
-C'est important de le déclarer comme dépendance ! Ça garantit par exemple que si `roomId` change, votre Effet se reconnecterait au serveur en utilisant les nouvelles `options`.  Toutefois, le code ci-avant a également un problème.  Pour vous en rendre compte, essayez de taper quelque chose dans le champ du bac à sable qui suit, et regardez ce qui se passe dans la console :
+C'est important de déclarer cet objet comme dépendance ! Ça garantit par exemple que si `roomId` change, votre Effet se reconnecterait au serveur en utilisant les nouvelles `options`.  Toutefois, le code ci-avant a également un problème.  Pour vous en rendre compte, essayez de taper quelque chose dans le champ du bac à sable qui suit, et regardez ce qui se passe dans la console :
 
 <Sandpack>
 
@@ -872,7 +872,7 @@ Dans le bac à sable qui précède, le champ de saisie se contente de mettre à 
 
 Un nouvel objet `options` est créé à chaque rendu du composant `ChatRoom`.  React perçoit cet objet `options` comme un *objet distinct* de l'objet `options` créé lors du rendu précédent. C'est pourquoi il resynchronise votre Effet (qui dépend d'`options`), entraînant des reconnexions au serveur au fil de votre saisie.
 
-**Ce problème n'affecte que les objets et fonctions. Dans JavaScript, chaque objet ou fonction nouvellement créé est considéré comme distinct de tous les autres. Peu importe que leurs contenus soient identiques !**
+**Ce problème n'affecte que les objets et fonctions. En JavaScript, chaque objet ou fonction nouvellement créé est considéré comme distinct de tous les autres. Peu importe que leurs contenus soient identiques !**
 
 ```js {7-8}
 // Lors du premier rendu
@@ -887,7 +887,7 @@ console.log(Object.is(options1, options2)); // false
 
 **Les dépendances aux objets et fonctions peuvent entraîner des resynchronisations excessives de votre Effet.**
 
-Voilà pourquoi, autant que possible, vous devriez essayer d'éviter les objets et fonctions dans les dépendances de votre Effet. Essayez plutôt de les sortir de votre composant, ou dans votre Effet, ou d'en extraire les valeurs primitives.
+Voilà pourquoi, autant que possible, vous devriez essayer d'éviter les objets et fonctions dans les dépendances de votre Effet. Essayez plutôt de les sortir de votre composant, ou de les déplacer au sein de votre Effet, ou d'en extraire les valeurs primitives.
 
 #### Sortez les objets et fonctions statiques de votre composant {/*move-static-objects-and-functions-outside-your-component*/}
 
@@ -910,7 +910,7 @@ function ChatRoom() {
   // ...
 ```
 
-Ainsi, vous pouvez *prouver* au *linter* qu'il n'est pas réactif. Il ne peut pas changer suite à un nouveau rendu, il n'a donc pas besoin de figurer dans vos dépendances. À présent un nouveau rendu de `ChatRoom` n'entraînera pas une resynchronisation de votre Effet.
+Ainsi, vous pouvez *prouver* au *linter* qu'il n'est pas réactif. Il ne peut pas changer suite à un nouveau rendu, il n'a donc pas besoin de figurer dans vos dépendances. Désormais, un nouveau rendu de `ChatRoom` n'entraînera pas une resynchronisation de votre Effet.
 
 Ça marche aussi pour les fonctions :
 
@@ -958,7 +958,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Maintenant qu'`options` est déclarée au sein de votre Effet, il n'en constitue plus une dépendance. La seule valeur réactive utilisée par votre Effet est désormais `roomId`.  Puisqu'elle n'est ni un objet ni une fonction, vous pouvez être certain·e qu'elle ne va pas changer *par inadvertance*. Dans JavaScript, les nombres et chaînes de caractères sont comparés par leur valeur :
+Maintenant qu'`options` est déclaré au sein de votre Effet, il n'en constitue plus une dépendance. La seule valeur réactive utilisée par votre Effet est désormais `roomId`.  Puisqu'elle n'est ni un objet ni une fonction, vous pouvez être certain·e qu'elle ne va pas changer *par inadvertance*. En JavaScript, les nombres et chaînes de caractères sont comparés par leur valeur :
 
 ```js {7-8}
 // Lors du premier rendu
@@ -1119,7 +1119,7 @@ function ChatRoom({ options }) {
   // ...
 ```
 
-Ce type de code a un côté un peu répétitif (on extrait quelques valeurs d'un objet hors de l'Effet, pour ensuite recréer un objet de forme et valeurs identiques au sein de l'Effet).  Mais il a l'avantage de rendre très explicite les informations dont votre Effet dépend *réellement*.  Si un objet est recréé par inadvertance par le composant parent, votre panneau de discussion n'aura pas à se reconnecter.  En revanche, si `options.roomId` ou `options.serverUrl` changent réellement, vous vous reconnecteriez.
+Ce type de code a un côté un peu répétitif (on extrait quelques valeurs d'un objet hors de l'Effet, pour ensuite recréer un objet de forme et valeurs identiques au sein de l'Effet).  Mais il a l'avantage de rendre très explicite les informations dont votre Effet dépend *réellement*.  Si un objet est recréé par inadvertance par le composant parent, votre salon de discussion n'aura pas à se reconnecter.  En revanche, si `options.roomId` ou `options.serverUrl` changent réellement, vous vous reconnecterez.
 
 #### Calculez des valeurs primitives à partir des fonctions {/*calculate-primitive-values-from-functions*/}
 
@@ -1163,12 +1163,12 @@ function ChatRoom({ getOptions }) {
 - Si vos dépendances vous embêtent, vous devez ajuster le code.
 - Réduire le *linter* au silence entraînera des bugs très surprenants, et vous devriez bannir cette pratique.
 - Pour retirer une dépendance, vous devez « prouver » au *linter* qu'elle est superflue.
-- Si du code devrait s'exécuter en réaction à une interaction spécifique, déplacez-le dans un gestionnaire d'événement.
+- Si du code est censé s'exécuter en réaction à une interaction spécifique, déplacez-le dans un gestionnaire d'événement adéquat.
 - Si diverses parties de votre Effet doivent réagir à des scénarios distincts, découpez-le en plusieurs Effets.
 - Si vous souhaitez mettre à jour un état sur base d'un état précédent, passez une fonction de mise à jour.
-- Si vous souhaitez lire la dernière valeur à jour sans « réagir » aux changements, extrayez un Événément d'Effet à partir de votre Effet.
-- Dans JavaScript, les objets et fonctions sont considérés distincts s'ils sont créés à des moments distincts.
-- Essayez d'éviter les dépendances sur objets ou fonctions. Sortez-le du composant ou déplacez-les au sein de l'Effet.
+- Si vous souhaitez lire la dernière valeur à jour sans « réagir » aux changements, extrayez un Événement d'Effet à partir de votre Effet.
+- En JavaScript, les objets et fonctions sont considérés distincts s'ils sont créés à des moments distincts.
+- Essayez d'éviter les dépendances sur objets ou fonctions. Sortez-les du composant ou déplacez-les directement au sein de l'Effet.
 
 </Recap>
 
@@ -1250,11 +1250,11 @@ Au lieu de lire `count` au sein de l'Effet, passez à React la fonction `c => c 
 
 Dans l'exemple que voici, quand vous appuyez sur « Afficher », un message de bienvenue apparaît en fondu enchaîné.  L'animation dure une seconde. Quand vous appuyez sur « Masquer », le message disparaît immédiatement. La logique pour le fondu enchaîné est implémentée dans le fichier `animation.js` sous forme d'une [boucle d'animation](https://developer.mozilla.org/fr/docs/Web/API/window/requestAnimationFrame) en JavaScript pur.  Vous n'avez pas besoin d'y changer quoi que ce soit.  Considérez-la comme une bibliothèque tierce.  Votre Effet crée une instance de `FadeAnimation`pour le nœud DOM, puis appelle `start(duration)` ou `stop()` pour contrôler l'animation. La `duration` (durée) est contrôlée par un curseur. Ajustez le curseur et regardez comment l'animation évolue.
 
-Ce code fonctionne en l'état, mais vous souhaitez y changer quelque chose. Pour le moent, lorsque vous déplacez le curseur qui contrôle la variable d'état `duration`, ça redéclenche l'animation.  Modifiez ce comportement de façon à ce que l'Effet ne « réagisse » pas à la variable `duration`.  Quand vous appuierez sur « Afficher », l'Effet devrait utiliser la `duration` à jour représentée par le curseur.  En revanche, manipuler le curseur lui-même ne devrait pas redéclencher l'animation.
+Ce code fonctionne en l'état, mais vous souhaitez y changer quelque chose. Pour le moment, lorsque vous déplacez le curseur qui contrôle la variable d'état `duration`, ça redéclenche l'animation.  Modifiez ce comportement de façon à ce que l'Effet ne « réagisse » pas à la variable `duration`.  Quand vous appuierez sur « Afficher », l'Effet devrait utiliser la `duration` à jour représentée par le curseur.  En revanche, manipuler le curseur lui-même ne devrait pas redéclencher l'animation.
 
 <Hint>
 
-Y'a-t-il une ligne de code au sein de votre Effet qui ne devrait pas être réactive ?  Comment sortir le code non réactif de votre Effet ?
+Y'a-t-il une ligne de code dans votre Effet qui ne devrait pas être réactive ?  Comment sortir cette partie de votre Effet ?
 
 </Hint>
 
@@ -1512,13 +1512,13 @@ Les Événements d'Effets tels que `onAppear` ne sont pas réactifs, de sorte qu
 
 #### On se reconnecte au serveur {/*fix-a-reconnecting-chat*/}
 
-Dans l'exemple ci-après, chaque fois que vous pressez « Basculer le thème », on se reconnecte au serveur de discussion.  Pourquoi donc ?  Corrigez l'erreur afin qu'on ne se reconnecte au serveur que si l'URL du serveur change ou lorsqu'on choisit un salon de discussion différent.
+Dans l'exemple ci-après, chaque fois que vous pressez « Basculer le thème », le salon se reconnecte au serveur de discussion.  Pourquoi donc ?  Corrigez l'erreur afin qu'il ne se reconnecte au serveur que si l'URL du serveur change ou lorsqu'on choisit un salon de discussion différent.
 
 Considérez que `chat.js` est une bibliothèque tierce : vous pouvez y vérifier l'API exposée, mais ne le modifiez pas.
 
 <Hint>
 
-Il y a plusieurs façons de résoudre le problème, mais au bout du compte vous voulez éviter d'avoir un objet comme dépendance.
+Il y a plusieurs façons de résoudre le problème, mais au bout du compte vous devriez éviter d'avoir des objets comme dépendances de votre Effet.
 
 </Hint>
 
@@ -1805,7 +1805,7 @@ Favorisez les props de type primitif chaque foi que c'est possible : ça facili
 
 #### Encore de la reconnexion {/*fix-a-reconnecting-chat-again*/}
 
-Cet exemple se connecte au serveur de discussion avec ou sans chiffrage. Basculez la case à cocher pour constater des messages différents dans la console selon que le chiffrage est actif ou non.  Essayez de changer de salon. Ensuite, changez le thème. Lorsque vous êtes connecté·e à un salon, vous recevrez de nouveau messages de temps en temps.  Vérifiez que leur charte couleur correspond au thème que vous avez choisi.
+Cet exemple se connecte au serveur de discussion avec ou sans chiffrage. Basculez la case à cocher pour constater des messages différents dans la console selon que le chiffrage est actif ou non.  Essayez de changer de salon. Ensuite, changez le thème. Lorsque vous êtes connecté·e à un salon, vous recevrez de nouveaux messages de temps en temps.  Vérifiez que leur charte couleur correspond au thème que vous avez choisi.
 
 Dans cet exemple, on se reconnecte au serveur chaque fois que le thème change.  Corrigez ça.  Après quoi, changer le thème ne devrait plus entraîner de reconnexion au serveur ; en revanche, basculer le mode de chiffrement ou changer de salon devrait bien se reconnecter.
 
@@ -2050,7 +2050,7 @@ export default function ChatRoom({ roomId, createConnection, onMessage }) {
 
 Contrairement à la prop `onMessage`, l'Événement d'Effet `onReceiveMessage` n'est pas réactif.  C'est pourquoi il n'a pas besoin de figurer dans les dépendances de votre Effet. Par conséquent, les modifications de `onMessage` n'entraîneront plus de reconnexion.
 
-Vous ne pouvez toutefois pas adopter la même approche pour `createConnection`, car cell-ci *devrait* être réactive. Vous *voulez* que l'Effet soit redéclenché si l'utilisateur bascule le mode de chiffrement de la connexion, ou s'il change de salon de discussion.  En revanche, comme `createConnection` est une fonction, vous ne pouvez pas vérifier si l'information qu'elle lit a *réellement* changé ou non.  Pour y remédier, plutôt que de passer `createConnection` depuis le composant `App`, passez les valeurs brutes `roomId` et `isEncrypted` :
+Vous ne pouvez toutefois pas adopter la même approche pour `createConnection`, car celle-ci *devrait* être réactive. Vous *voulez* que l'Effet soit redéclenché si l'utilisateur bascule le mode de chiffrement de la connexion, ou s'il change de salon de discussion.  En revanche, comme `createConnection` est une fonction, vous ne pouvez pas vérifier si l'information qu'elle lit a *réellement* changé ou non.  Pour y remédier, plutôt que de passer `createConnection` depuis le composant `App`, passez les valeurs brutes `roomId` et `isEncrypted` :
 
 ```js {2-3}
       <ChatRoom
@@ -2114,7 +2114,7 @@ export default function ChatRoom({ roomId, isEncrypted, onMessage }) { // Valeur
   }, [roomId, isEncrypted]); // ✅ Toutes les dépendances sont déclarées
 ```
 
-Par conséquent, la reconnexion au serveur n'a lieu que lorsqu'une modification pertinente (de `roomId` ou `isEncrypted`) a lieu :
+Par conséquent, la reconnexion au serveur n'a lieu que lorsqu'une modification pertinente (c'est-à-dire un changement des props `roomId` ou `isEncrypted`) a lieu :
 
 <Sandpack>
 
