@@ -161,11 +161,11 @@
       "tags": ["advanced"],
       "routes": [
         {
-          "title": "Referencing Values with Refs",
+          "title": "Référencer des valeurs avec les refs",
           "path": "/learn/referencing-values-with-refs"
         },
         {
-          "title": "Manipulating the DOM with Refs",
+          "title": "Manipuler le DOM avec des refs",
           "path": "/learn/manipulating-the-dom-with-refs"
         },
         {
@@ -177,15 +177,15 @@
           "path": "/learn/you-might-not-need-an-effect"
         },
         {
-          "title": "Lifecycle of Reactive Effects",
+          "title": "Cycle de vie des Effets réactifs",
           "path": "/learn/lifecycle-of-reactive-effects"
         },
         {
-          "title": "Separating Events from Effects",
+          "title": "Séparer les événements des Effets",
           "path": "/learn/separating-events-from-effects"
         },
         {
-          "title": "Removing Effect Dependencies",
+          "title": "Alléger les dépendances des Effets",
           "path": "/learn/removing-effect-dependencies"
         },
         {

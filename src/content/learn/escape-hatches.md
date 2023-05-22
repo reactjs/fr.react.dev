@@ -1,35 +1,35 @@
 ---
-title: Escape Hatches
+title: Échappatoires
 ---
 
 <Intro>
 
-Some of your components may need to control and synchronize with systems outside of React. For example, you might need to focus an input using the browser API, play and pause a video player implemented without React, or connect and listen to messages from a remote server. In this chapter, you'll learn the escape hatches that let you "step outside" React and connect to external systems. Most of your application logic and data flow should not rely on these features.
+Certains de vos composants pourraient avoir besoin de se synchroniser avec des systèmes extérieurs à React, voire de les contrôler.  Par exemple, vous pourriez avoir besoin de rendre un champ actif au moyen d’une API du navigateur, de démarrer ou mettre en pause un lecteur vidéo implémenté sans React, ou de vous connecter à un serveur distant pour en écouter les messages.  Dans ce chapitre, vous apprendrez quelles échappatoires React vous propose pour « sortir de React » et vous connecter à des systèmes extérieurs.  La majorité de votre logique applicative et de vos flux de données ne devraient pas avoir besoin de ces fonctionnalités.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to "remember" information without re-rendering](/learn/referencing-values-with-refs)
-* [How to access DOM elements managed by React](/learn/manipulating-the-dom-with-refs)
-* [How to synchronize components with external systems](/learn/synchronizing-with-effects)
-* [How to remove unnecessary Effects from your components](/learn/you-might-not-need-an-effect)
-* [How an Effect's lifecycle is different from a component's](/learn/lifecycle-of-reactive-effects)
-* [How to prevent some values from re-triggering Effects](/learn/separating-events-from-effects)
-* [How to make your Effect re-run less often](/learn/removing-effect-dependencies)
-* [How to share logic between components](/learn/reusing-logic-with-custom-hooks)
+* [Comment « se souvenir » d’informations sans causer de nouveaux rendus](/learn/referencing-values-with-refs)
+* [Comment accéder aux éléments DOM gérés par React](/learn/manipulating-the-dom-with-refs)
+* [Comment synchroniser vos composants avec des systèmes extérieurs](/learn/synchronizing-with-effects)
+* [Comment retirer les Effets superflus de vos composants](/learn/you-might-not-need-an-effect)
+* [En quoi le cycle de vie d’un Effet diffère de celui d’un composant](/learn/lifecycle-of-reactive-effects)
+* [Comment éviter que certaines valeurs redéclenchent un Effet](/learn/separating-events-from-effects)
+* [Comment réduire le nombre d’exécutions de votre Effet](/learn/removing-effect-dependencies)
+* [Comment partager de la logique entre composants](/learn/reusing-logic-with-custom-hooks)
 
 </YouWillLearn>
 
-## Referencing values with refs {/*referencing-values-with-refs*/}
+## Référencer des valeurs avec les refs {/*referencing-values-with-refs*/}
 
-When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
+Quand vous souhaitez que votre composant « se souvienne » de quelque chose, mais que vous voulez éviter que l’évolution de ces données [déclenche de nouveaux rendus](/learn/render-and-commit), vous pouvez utiliser une *ref* :
 
 ```js
 const ref = useRef(0);
 ```
 
-Like state, refs are retained by React between re-renders. However, setting state re-renders a component. Changing a ref does not! You can access the current value of that ref through the `ref.current` property.
+Comme l’état, les refs sont préservées par React d’un rendu à l’autre.  Cependant, modifier un état déclenche un nouveau rendu du composant, alors que ce n’est pas le cas lorsqu’on modifie une ref ! Vous pouvez accéder à la valeur actuelle d’une ref au travers de sa propriété `ref.current`.
 
 <Sandpack>
 
@@ -41,12 +41,12 @@ export default function Counter() {
 
   function handleClick() {
     ref.current = ref.current + 1;
-    alert('You clicked ' + ref.current + ' times!');
+    alert('Vous avez cliqué ' + ref.current + ' fois !');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me!
+      Cliquez ici
     </button>
   );
 }
@@ -54,17 +54,17 @@ export default function Counter() {
 
 </Sandpack>
 
-A ref is like a secret pocket of your component that React doesn't track. For example, you can use refs to store [timeout IDs](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value), [DOM elements](https://developer.mozilla.org/en-US/docs/Web/API/Element), and other objects that don't impact the component's rendering output.
+Une ref est comme une poche secrète de votre composant que React ne peut pas surveiller.  Par exemple, vous pouvez utiliser les refs pour stocker [des ID de timers](https://developer.mozilla.org/fr/docs/Web/API/setTimeout#return_value), des [éléments du DOM](https://developer.mozilla.org/fr/docs/Web/API/Element), et d’autres objets qui n’impactent pas le résultat du rendu de votre composant.
 
 <LearnMore path="/learn/referencing-values-with-refs">
 
-Read **[Referencing Values with Refs](/learn/referencing-values-with-refs)** to learn how to use refs to remember information.
+Lisez **[Référencer des valeurs avec les refs](/learn/referencing-values-with-refs)** pour en apprendre davantage sur le recours aux refs pour retenir des informations.
 
 </LearnMore>
 
-## Manipulating the DOM with refs {/*manipulating-the-dom-with-refs*/}
+## Manipuler le DOM avec des refs {/*manipulating-the-dom-with-refs*/}
 
-React automatically updates the DOM to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
+React met automatiquement le DOM à jour pour correspondre au résultat de votre rendu, de sorte que vos composants ont rarement besoin de le manipuler directement.  Ceci dit, il arrive parfois que vous ayez besoin d’accéder à des éléments du DOM gérés par React ; par exemple pour donner le focus à un élément, défiler jusqu’à celui-ci, ou mesurer ses dimensions ou sa position.  Il n’y a pas de solution intégrée à React pour de tels besoins, aussi devrez-vous utiliser une ref vers le nœud DOM en question.  Dans l’exemple ci-après, cliquer sur le bouton donnera le focus au champ grâce à une ref :
 
 <Sandpack>
 
@@ -82,7 +82,7 @@ export default function Form() {
     <>
       <input ref={inputRef} />
       <button onClick={handleClick}>
-        Focus the input
+        Donner le focus au champ
       </button>
     </>
   );
@@ -93,15 +93,15 @@ export default function Form() {
 
 <LearnMore path="/learn/manipulating-the-dom-with-refs">
 
-Read **[Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs)** to learn how to access DOM elements managed by React.
+Lisez **[Manipuler le DOM avec des refs](/learn/manipulating-the-dom-with-refs)** pour découvrir comment accéder aux éléments du DOM qui sont gérés par React.
 
 </LearnMore>
 
-## Synchronizing with Effects {/*synchronizing-with-effects*/}
+## Synchroniser grâce aux Effets {/*synchronizing-with-effects*/}
 
-Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with a system outside of React.
+Certains composants ont besoin de se synchroniser avec des systèmes extérieurs.  Par exemple, vous pourriez vouloir contrôler un composant non React sur la base d’un état React, mettre en place une connexion à un serveur, ou envoyer des événements analytiques lorsqu’un composant apparaît à l’écran.  Contrairement aux gestionnaires d’événements, qui vous permettent de réagir à des événements spécifiques, les *Effets* vous permettent d’exécuter du code à la suite du rendu.  Utilisez-les pour synchroniser votre composant avec un système extérieur à React.
 
-Press Play/Pause a few times and see how the video player stays synchronized to the `isPlaying` prop value:
+Appuyez quelques fois sur Lecture / Pause et voyez comme le lecteur vidéo natif reste synchronisé avec la valeur de la prop `isPlaying` :
 
 <Sandpack>
 
@@ -127,7 +127,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setIsPlaying(!isPlaying)}>
-        {isPlaying ? 'Pause' : 'Play'}
+        {isPlaying ? 'Pause' : 'Lecture'}
       </button>
       <VideoPlayer
         isPlaying={isPlaying}
@@ -145,7 +145,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-Many Effects also "clean up" after themselves. For example, an Effect that sets up a connection to a chat server should return a *cleanup function* that tells React how to disconnect your component from that server:
+De nombreux Effets ont également besoin de « nettoyer derrière eux ».  Par exemple, si un Effet met en place une connexion à un serveur de discussion, il devrait renvoyer une *fonction de nettoyage* indiquant à React comment déconnecter le composant du serveur :
 
 <Sandpack>
 
@@ -159,19 +159,19 @@ export default function ChatRoom() {
     connection.connect();
     return () => connection.disconnect();
   }, []);
-  return <h1>Welcome to the chat!</h1>;
+  return <h1>Bienvenue dans la discussion !</h1>;
 }
 ```
 
 ```js chat.js
 export function createConnection() {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai
   return {
     connect() {
-      console.log('✅ Connecting...');
+      console.log('✅ Connexion...');
     },
     disconnect() {
-      console.log('❌ Disconnected.');
+      console.log('❌ Déconnecté.');
     }
   };
 }
@@ -183,30 +183,31 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-In development, React will immediately run and clean up your Effect one extra time. This is why you see `"✅ Connecting..."` printed twice. This ensures that you don't forget to implement the cleanup function.
+En développement, React exécutera et nettoiera votre Effet immédiatement une fois supplémentaire.  C’est pourquoi vous voyez deux fois `"✅ Connexion..."` dans la console. Ça garantit que vous n’oublierez pas d’implémenter la fonction de nettoyage.
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
-Read **[Synchronizing with Effects](/learn/synchronizing-with-effects)** to learn how to synchronize components with external systems.
+Lisez **[Synchroniser grâce aux Effets](/learn/synchronizing-with-effects)** pour apprendre à synchroniser vos composants avec des systèmes extérieurs.
 
 </LearnMore>
 
-## You Might Not Need An Effect {/*you-might-not-need-an-effect*/}
+## Vous n’avez pas forcément besoin d’un Effet {/*you-might-not-need-an-effect*/}
 
-Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
+Les Effets sont une façon d’échapper au paradigme de React. Ils vous permettent de « sortir » de React et de synchroniser vos composants avec un système extérieur quelconque. S’il n’y a pas de système extérieur dans l’histoire (par exemple, vous voulez juste mettre à jour l’état d’un composant lorsque ses props ou son état changent), vous ne devriez pas avoir besoin d’un Effet. Retirer des Effets superflus rendra votre code plus simple à comprendre, plus performant, et moins sujet aux erreurs.
 
-There are two common cases in which you don't need Effects:
-- **You don't need Effects to transform data for rendering.**
-- **You don't need Effects to handle user events.**
+Il y a deux scénarios principaux pour lesquels vous n’avez pas besoin d’Effets :
 
-For example, you don't need an Effect to adjust some state based on other state:
+- **Vous n’avez pas besoin d’Effets pour transformer des données utilisées par le rendu.**
+- **Vous n’avez pas besoin d’Effets pour gérer les événements utilisateurs.**
+
+Par exemple, vous n’avez pas besoin d’un Effet pour ajuster un état sur la base d’un autre état :
 
 ```js {5-9}
 function Form() {
-  const [firstName, setFirstName] = useState('Taylor');
-  const [lastName, setLastName] = useState('Swift');
+  const [firstName, setFirstName] = useState('Clara');
+  const [lastName, setLastName] = useState('Luciani');
 
-  // 🔴 Avoid: redundant state and unnecessary Effect
+  // 🔴 Évitez : état redondant et Effet superflu
   const [fullName, setFullName] = useState('');
   useEffect(() => {
     setFullName(firstName + ' ' + lastName);
@@ -215,31 +216,31 @@ function Form() {
 }
 ```
 
-Instead, calculate as much as you can while rendering:
+Calculez plutôt le maximum de choses au moment du rendu :
 
 ```js {4-5}
 function Form() {
-  const [firstName, setFirstName] = useState('Taylor');
-  const [lastName, setLastName] = useState('Swift');
-  // ✅ Good: calculated during rendering
+  const [firstName, setFirstName] = useState('Clara');
+  const [lastName, setLastName] = useState('Luciani');
+  // ✅ Correct : valeur calculée lors du rendu
   const fullName = firstName + ' ' + lastName;
   // ...
 }
 ```
 
-However, you *do* need Effects to synchronize with external systems. 
+En revanche, vous *avez besoin* d’Effets pour vous synchroniser à des systèmes extérieurs.
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
-Read **[You Might Not Need an Effect](/learn/you-might-not-need-an-effect)** to learn how to remove unnecessary Effects.
+Lisez **[Vous n’avez pas forcément besoin d’un Effet](/learn/you-might-not-need-an-effect)** pour apprendre comment retirer les Effets superflus ou inadaptés.
 
 </LearnMore>
 
-## Lifecycle of reactive effects {/*lifecycle-of-reactive-effects*/}
+## Cycle de vie des Effets réactifs {/*lifecycle-of-reactive-effects*/}
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time.
+Les Effets ont un cycle de vie différent de celui des composants.  Les composants peuvent être montés, mis à jour ou démontés.  Un Effet ne peut faire que deux choses : commencer la synchronisation avec quelque chose, et plus tard cesser la synchronisation.  Ce cycle peut survenir de nombreuses fois si votre Effet dépend de props ou d’éléments d’état qui changent avec le temps.
 
-This Effect depends on the value of the `roomId` prop. Props are *reactive values,* which means they can change on a re-render. Notice that the Effect *re-synchronizes* (and re-connects to the server) if `roomId` changes:
+L’Effet ci-après dépend de la valeur de la prop `roomId`.  Les props sont des *valeurs réactives*, ce qui signifie qu’elles peuvent changer d’un rendu à l’autre.  Voyez comme l’Effet *se resynchronise* (et se reconnecte au serveur) si `roomId` change :
 
 <Sandpack>
 
@@ -256,7 +257,7 @@ function ChatRoom({ roomId }) {
     return () => connection.disconnect();
   }, [roomId]);
 
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Bienvenue dans le salon {roomId} !</h1>;
 }
 
 export default function App() {
@@ -264,14 +265,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <hr />
@@ -283,13 +284,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -302,25 +303,25 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-React provides a linter rule to check that you've specified your Effect's dependencies correctly. If you forget to specify `roomId` in the list of dependencies in the above example, the linter will find that bug automatically.
+React fournit une règle de *linter* pour vérifier que vous fournissez des dépendances appropriées à vos Effets.  Si vous oubliez de préciser `roomId` dans la liste des dépendances de l’exemple ci-avant, le *linter* repèrera le problème automatiquement.
 
 <LearnMore path="/learn/lifecycle-of-reactive-effects">
 
-Read **[Lifecycle of Reactive Events](/learn/lifecycle-of-reactive-effects)** to learn how an Effect's lifecycle is different from a component's.
+Lisez **[Cycle de vie des Effets réactifs](/learn/lifecycle-of-reactive-effects)** pour découvrir en quoi le cycle de vie d’un Effet est différent de celui d’un composant.
 
 </LearnMore>
 
-## Separating events from Effects {/*separating-events-from-effects*/}
+## Séparer les événements des Effets {/*separating-events-from-effects*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+Cette section décrit une **API expérimentale : elle n’a donc pas encore été livrée** dans une version stable de React.
 
 </Wip>
 
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
+Les gestionnaires d’événements ne sont ré-exécutés que lorsque vous répétez l’interaction qui les concerne.  Contrairement aux gestionnaires d’événements, les Effets se resynchronisent si au moins une des valeurs qu’ils lisent (telles que des props ou variables d’état) diffère depuis le rendu précédent.  Vous aurez parfois besoin d’une comportement hybride : un Effet qui s’exécute à nouveau en réaction à certains changements de valeurs, mais pas tous.
 
-All code inside Effects is *reactive.* It will run again if some reactive value it reads has changed due to a re-render. For example, this Effect will re-connect to the chat if either `roomId` or `theme` have changed:
+Tout le code au sein d’un Effet est *réactif*. Il sera exécuté à nouveau si une des valeurs réactives qu’il lit a changé lors du dernier rendu.  Par exemple, l’Effet que voici se reconnecte au serveur de discussion si `roomId` ou `theme` changent :
 
 <Sandpack>
 
@@ -352,13 +353,13 @@ function ChatRoom({ roomId, theme }) {
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.on('connected', () => {
-      showNotification('Connected!', theme);
+      showNotification('Connecté !', theme);
     });
     connection.connect();
     return () => connection.disconnect();
   }, [roomId, theme]);
 
-  return <h1>Welcome to the {roomId} room!</h1>
+  return <h1>Bienvenue dans le salon {roomId} !</h1>
 }
 
 export default function App() {
@@ -372,9 +373,9 @@ export default function App() {
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <label>
@@ -383,12 +384,12 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Use dark theme
+        Utiliser le thème sombre
       </label>
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
@@ -397,7 +398,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   let connectedCallback;
   let timeout;
   return {
@@ -410,10 +411,10 @@ export function createConnection(serverUrl, roomId) {
     },
     on(event, callback) {
       if (connectedCallback) {
-        throw Error('Cannot add the handler twice.');
+        throw Error('Il n’est pas possible d’ajouter un gestionnaire deux fois.');
       }
       if (event !== 'connected') {
-        throw Error('Only "connected" event is supported.');
+        throw Error('Seul l’événement "connected" est accepté.');
       }
       connectedCallback = callback;
     },
@@ -448,7 +449,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-This is not ideal. You want to re-connect to the chat only if the `roomId` has changed. Switching the `theme` shouldn't re-connect to the chat! Move the code reading `theme` out of your Effect into an *Effect Event*:
+Ce n’est pas idéal.  Vous voulez vous reconnecter au serveur de discussion seulement si `roomId` a changé.  Basculer le `theme` ne devrait pas entraîner une reconnexion au serveur !  Déplacez le code qui lit `theme` hors de votre Effet et dans un *Événement d’Effet* *(Effect Event, NdT)* :
 
 <Sandpack>
 
@@ -479,7 +480,7 @@ const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId, theme }) {
   const onConnected = useEffectEvent(() => {
-    showNotification('Connected!', theme);
+    showNotification('Connecté !', theme);
   });
 
   useEffect(() => {
@@ -491,7 +492,7 @@ function ChatRoom({ roomId, theme }) {
     return () => connection.disconnect();
   }, [roomId]);
 
-  return <h1>Welcome to the {roomId} room!</h1>
+  return <h1>Bienvenue dans le salon {roomId} !</h1>
 }
 
 export default function App() {
@@ -505,9 +506,9 @@ export default function App() {
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <label>
@@ -516,12 +517,12 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Use dark theme
+        Utiliser le thème sombre
       </label>
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
@@ -530,7 +531,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   let connectedCallback;
   let timeout;
   return {
@@ -543,10 +544,10 @@ export function createConnection(serverUrl, roomId) {
     },
     on(event, callback) {
       if (connectedCallback) {
-        throw Error('Cannot add the handler twice.');
+        throw Error('Il n’est pas possible d’ajouter un gestionnaire deux fois.');
       }
       if (event !== 'connected') {
-        throw Error('Only "connected" event is supported.');
+        throw Error('Seul l’événement "connected" est accepté.');
       }
       connectedCallback = callback;
     },
@@ -581,19 +582,19 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Code inside Effect Events isn't reactive, so changing the `theme` no longer makes your Effect re-connect.
+Le code au sein des Événements d’Effets n’est pas réactif, de sorte que modifier `theme` n’entraînera pas la ré-exécution de votre Effet de connexion.
 
 <LearnMore path="/learn/separating-events-from-effects">
 
-Read **[Separating Events from Effects](/learn/separating-events-from-effects)** to learn how to prevent some values from re-triggering Effects.
+Lisez **[Séparer les événements des Effets](/learn/separating-events-from-effects)** pour apprendre comment éviter que les changements de certaines valeurs ne redéclenchent vos Effets.
 
 </LearnMore>
 
-## Removing Effect dependencies {/*removing-effect-dependencies*/}
+## Alléger les dépendances des Effets {/*removing-effect-dependencies*/}
 
-When you write an Effect, the linter will verify that you've included every reactive value (like props and state) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. The way you remove them depends on the case.
+Lorsque vous écrivez un Effet, le *linter* vérifiera que vous avez bien inclus, dans les dépendances de l’Effet, chaque valeur réactive (telle que des props ou variables d’état) que l’Effet lit.  Ça garantit que votre Effet reste synchronisé avec les props et variables d’état les plus récentes de votre composant.  Les dépendances superflues peuvent toutefois entraîner des exécutions trop fréquentes de votre Effet, voire créer une boucle de rendus infinie.  La façon de les alléger dépend du cas de figure.
 
-For example, this Effect depends on the `options` object which gets re-created every time you edit the input:
+Par exemple, l’Effet que voici dépend de l’objet `options`, qui est recréé chaque fois que la saisie est modifiée :
 
 <Sandpack>
 
@@ -619,7 +620,7 @@ function ChatRoom({ roomId }) {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon{roomId} !</h1>
       <input value={message} onChange={e => setMessage(e.target.value)} />
     </>
   );
@@ -630,14 +631,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <hr />
@@ -649,13 +650,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -668,7 +669,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-You don't want the chat to re-connect every time you start typing a message in that chat. To fix this problem, move creation of the `options` object inside the Effect so that the Effect only depends on the `roomId` string:
+Vous ne souhaitez pas que votre composant se reconnecte chaque fois que vous commencez à saisir un message dans ce salon.  Pour corriger le problème, déplacez la création de l’objet `options` au sein de l’Effet, de façon à ce qu’il ne dépende plus que de la chaîne de caractères `roomId` :
 
 <Sandpack>
 
@@ -693,7 +694,7 @@ function ChatRoom({ roomId }) {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
       <input value={message} onChange={e => setMessage(e.target.value)} />
     </>
   );
@@ -704,14 +705,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <hr />
@@ -723,13 +724,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -742,19 +743,19 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that you didn't start by editing the dependency list to remove the `options` dependency. That would be wrong. Instead, you changed the surrounding code so that the dependency became *unnecessary.* Think of the dependency list as a list of all the reactive values used by your Effect's code. You don't intentionally choose what to put on that list. The list describes your code. To change the dependency list, change the code.
+Notez que vous n’avez pas commencé par retirer la dépendance à `options` de la liste des dépendances. Ce serait incorrect.  Vous avez plutôt modifié le code environnant de façon à ce que cette dépendance devienne *inutile*.  Voyez la liste de dépendances comme une liste de toutes les valeurs réactives utilisées par le code de l’Effet. Vous ne choisissez pas ce que vous y listez. La liste décrit le code. Pour changer la liste des dépendances, changez le code de l’Effet.
 
 <LearnMore path="/learn/removing-effect-dependencies">
 
-Read **[Removing Effect Dependencies](/learn/removing-effect-dependencies)** to learn how to make your Effect re-run less often.
+Lisez **[Alléger les dépendances des Effets](/learn/removing-effect-dependencies)** pour apprendre à réduire le nombre d’exécutions de vos Effets.
 
 </LearnMore>
 
-## Reusing logic with custom Hooks {/*reusing-logic-with-custom-hooks*/}
+## Réutiliser de la logique grâce aux Hooks personnalisés {/*reusing-logic-with-custom-hooks*/}
 
-React comes with built-in Hooks like `useState`, `useContext`, and `useEffect`. Sometimes, you’ll wish that there was a Hook for some more specific purpose: for example, to fetch data, to keep track of whether the user is online, or to connect to a chat room. To do this, you can create your own Hooks for your application's needs.
+React fournit des Hooks prédéfinis tels que `useState`, `useContext`, et `useEffect`. Vous souhaiterez parfois qu’un Hook existe pour un besoin plus ciblé : par exemple pour charger des données, surveiller l’état de connectivité du réseau, ou vous connecter à un salon de discussion. Pour de tels cas de figure, vous pouvez créer vos propres Hooks selon les besoins de votre application.
 
-In this example, the `usePointerPosition` custom Hook tracks the cursor position, while `useDelayedValue` custom Hook returns a value that's "lagging behind" the value you passed by a certain number of milliseconds. Move the cursor over the sandbox preview area to see a moving trail of dots following the cursor:
+Dans l’exemple ci-après, le Hook personnalisé `usePointerPosition` piste la position du curseur, tandis que le Hook personnalisé `useDelayedValue` renvoie une valeur qui est « en retard » sur celle que vous lui passez, à raison d’un délai précis en millisecondes.  Déplacez le curseur dans la zone de prévisualisation du bac à sable pour voir une file de points suivre son mouvement :
 
 <Sandpack>
 
@@ -835,14 +836,14 @@ body { min-height: 300px; }
 
 </Sandpack>
 
-You can create custom Hooks, compose them together, pass data between them, and reuse them between components. As your app grows, you will write fewer Effects by hand because you'll be able to reuse custom Hooks you already wrote. There are also many excellent custom Hooks maintained by the React community.
+Vous pouvez créer vos propres Hooks, les composer ensemble, passer des données de l’un à l’autre, et les réutiliser dans plusieurs composants.  Au fil de la croissance de votre appli, vous écrirez de moins en moins d’Effets directs car vous pourrez capitaliser sur vos Hooks personnalisés déjà écrits.  La communauté React maintient énormément d’excellents Hooks personnalisés.
 
 <LearnMore path="/learn/reusing-logic-with-custom-hooks">
 
-Read **[Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)** to learn how to share logic between components.
+Lisez **[Réutiliser de la logique grâce aux Hooks personnalisés](/learn/reusing-logic-with-custom-hooks)** pour découvrir comment partager de la logique applicative entre vos composants.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Et maintenant ? {/*whats-next*/}
 
-Head over to [Referencing Values with Refs](/learn/referencing-values-with-refs) to start reading this chapter page by page!
+Allez voir [Référencer des valeurs avec les refs](/learn/referencing-values-with-refs) pour commencer à lire ce chapitre page par page !
