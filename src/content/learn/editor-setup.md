@@ -22,21 +22,21 @@ Un éditeur correctement configuré peut faciliter la lecture du code et accél�
 Voici d'autres éditeurs utilisés par la communauté React :
 
 * [WebStorm](https://www.jetbrains.com/webstorm/) est un environnement de développement intégré (EDI) spécialement conçu pour JavaScript.
-* [Sublime Text](https://www.sublimetext.com/) supporte JSX et TypeScript, [la coloration syntaxique](https://stackoverflow.com/a/70960574/458193) et inclut l'autocomplétion.
-* [Vim](https://www.vim.org/) est un éditeur de texte extrêmement configurable créé pour rendre très efficace la création et l'édition de tout type de texte. Il est inclus sous le nom de "vi" dans la plupart des systèmes UNIX et dans Apple OS X.
+* [Sublime Text](https://www.sublimetext.com/) prend nativement en charge JSX et TypeScript, [la coloration syntaxique](https://stackoverflow.com/a/70960574/458193) et l'autocomplétion.
+* [Vim](https://www.vim.org/) est un éditeur de texte extrêmement configurable créé pour optimiser la création et l'édition de tout type de texte. Il est inclus sous le nom de "vi" dans la plupart des systèmes UNIX et dans Apple OS X.
 
 ## Fonctionnalités d'éditeur de texte recommandées {/*recommended-text-editor-features*/}
 
-Certains éditeurs incluent ces fonctionnalités, mais d'autres pourraient demander d'installer des extensions. Vérifiez ce que propose votre éditeur préféré pour être sûr·e !
+Certains éditeurs incluent ces fonctionnalités d'entrée de jeu, mais d'autres pourraient nécessiter l'installation d'extensions. Vérifiez ce que propose votre éditeur préféré pour être sûr·e !
 
 ### Linting {/*linting*/}
 
-Les linters de code trouvent les problèmes dans votre code au moment où vous l'écrivez, ce qui vous aide à les corriger au plus tôt. [ESLint](https://eslint.org/) est un outil de lint populaire et open source pour JavaScript.
+Les *linters* (analyseurs statiques) de code trouvent les problèmes dans votre code au moment où vous l'écrivez, ce qui vous aide à les corriger au plus tôt. [ESLint](https://eslint.org/) est un *linter* populaire en logiciel libre pour JavaScript.
 
-* [Installez ESLint avec la configuration recommandée pour React](https://www.npmjs.com/package/eslint-config-react-app) (soyez sûr·e que vous avez [installé Node !](https://nodejs.org/en/download/current/))
+* [Installez ESLint avec la configuration recommandée pour React](https://www.npmjs.com/package/eslint-config-react-app) (assurez-vous d'avoir [installé Node !](https://nodejs.org/fr/download/current/))
 * [Intégrez ESLint dans VSCode avec l'extension officielle](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-**Assurez-vous que vous avez activé toutes les règles [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) pour votre projet.** Elles sont essentielles et permettent de corriger les bugs les plus graves au plus tôt. Le préréglage [`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) les inclut déjà.
+**Assurez-vous d'avoir activé toutes les règles [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) pour votre projet.** Elles sont essentielles et permettent de corriger tôt les bugs les plus graves . Le préréglage [`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) les inclut déjà.
 
 ### Formatage {/*formatting*/}
 
