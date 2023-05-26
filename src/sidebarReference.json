@@ -1,5 +1,5 @@
 {
-  "title": "API Reference",
+  "title": "Référence de l’API",
   "path": "/reference/react",
   "routes": [
     {
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "title": "Components",
+      "title": "Composants",
       "path": "/reference/react/components",
       "routes": [
         {
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "title": "APIs",
+      "title": "Fonctions",
       "path": "/reference/react/apis",
       "routes": [
         {
@@ -125,7 +125,7 @@
       "sectionHeader": "react-dom@18.2.0"
     },
     {
-      "title": "Components",
+      "title": "Composants",
       "path": "/reference/react-dom/components",
       "routes": [
         {
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "title": "APIs",
+      "title": "Fonctions",
       "path": "/reference/react-dom",
       "routes": [
         {
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "title": "Client APIs",
+      "title": "Fonctions côté client",
       "path": "/reference/react-dom/client",
       "routes": [
         {
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "title": "Server APIs",
+      "title": "Fonctions côté serveur",
       "path": "/reference/react-dom/server",
       "routes": [
         {
@@ -230,10 +230,10 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Legacy APIs"
+      "sectionHeader": "API historique"
     },
     {
-      "title": "Legacy React APIs",
+      "title": "API React historique",
       "path": "/reference/react/legacy",
       "routes": [
         {

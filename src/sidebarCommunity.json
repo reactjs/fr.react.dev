@@ -1,5 +1,5 @@
 {
-  "title": "Community",
+  "title": "Communauté",
   "path": "/community",
   "routes": [
     {
@@ -7,7 +7,7 @@
       "sectionHeader": "GET INVOLVED"
     },
     {
-      "title": "Community",
+      "title": "Communauté",
       "path": "/community",
       "skipBreadcrumb": true,
       "routes": [
