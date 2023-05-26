@@ -23,7 +23,7 @@ Certains de vos composants pourraient avoir besoin de se synchroniser avec des s
 
 ## Référencer des valeurs avec les refs {/*referencing-values-with-refs*/}
 
-Quand vous souhaitez que votre composant « se souvienne » de quelque chose, mais que vous voulez éviter que l’évolution de ces données [déclenche de nouveaux rendus](/learn/render-and-commit), vous pouvez utiliser une *ref* :
+Lorsque vous souhaitez que votre composant « se souvienne » de quelque chose, mais que vous voulez éviter que l’évolution de ces données [déclenche de nouveaux rendus](/learn/render-and-commit), vous pouvez utiliser une *ref* :
 
 ```js
 const ref = useRef(0);
