@@ -523,7 +523,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // Une vraie implémentation se connecterait à un serveur
+  // Une véritable implémentation se connecterait en vrai au serveur
   let connectedCallback;
   let timeout;
   return {
