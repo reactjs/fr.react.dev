@@ -139,10 +139,10 @@ export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connexion au salon "' + roomId + '" depuis ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » depuis ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Déconnexion du salon "' + roomId + '" depuis ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » depuis ' + serverUrl);
     }
   };
 }
