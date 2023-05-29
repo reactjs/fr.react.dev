@@ -56,7 +56,7 @@ Avec un gestionnaire d’événement, vous pouvez être sûr·e que `sendMessage
 
 Rappelez-vous que vous devez également veiller à ce que le composant reste connecté au salon de discussion. Où va ce code ?
 
-La *raison* pour laquelle ce code s'exécute n’est pas liée à une interaction particulière. Peu importe pourquoi ou comment l’utilisateur a rejoint le salon de discussion. Maintenant qu’il le voit et peut interagir avec lui, le composant doit rester connecté au serveur sélectionné. Même si ce composant est l’écran initial de votre appli et que l’utilisateur n’a encore rien fait, vous devrez *tout de même* vous connecter. C’est pourquoi il s’agit d’un Effet :
+La *raison* pour laquelle ce code s'exécute n’est pas liée à une interaction particulière. Peu importe pourquoi ou comment l’utilisateur a rejoint le salon de discussion. Maintenant qu’il le voit et peut interagir avec lui, le composant doit rester connecté au serveur sélectionné. Même si ce composant est l’écran initial de votre appli et que l’utilisateur n’a encore rien fait, vous devrez *tout de même* vous connecter. C’est pourquoi ce traitement a sa place dans un Effet :
 
 ```js {3-9}
 function ChatRoom({ roomId }) {
@@ -226,9 +226,9 @@ Les Effets sont réactifs, donc `createConnection(serverUrl, roomId)` et `connec
 
 ## Extraire la logique non réactive des Effets {/*extracting-non-reactive-logic-out-of-effects*/}
 
-Les choses deviennent plus compliquées quand vous souhaitez mélanger une logique réactive avec une logique non réactive.
+Les choses deviennent tout de suite plus compliquées lorsque vous souhaitez mélanger une logique réactive avec une logique non réactive.
 
-Par exemple, imaginez que vous souhaitiez afficher une notification quand l’utilisateur se connecte au salon. Vous lisez le thème courant (sombre ou clair) depuis les props de façon à afficher la notification dans la bonne couleur :
+Par exemple, imaginez que vous souhaitiez afficher une notification quand l’utilisateur se connecte au salon. Vous lisez le thème courant (sombre ou clair) depuis les props de façon à pouvoir afficher la notification en utilisant la bonne couleur :
 
 ```js {1,4-6}
 function ChatRoom({ roomId, theme }) {
@@ -386,9 +386,9 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Quand `roomId` change, le salon se reconnecte comme prévu. Mais vu que `theme` est également une dépendance, le salon se reconnecte *aussi* à chaque fois que vous passez du thème sombre au thème clair. Ce n’est pas top !
+Quand `roomId` change, le salon se reconnecte comme prévu. Mais vu que `theme` est également une dépendance, le salon se reconnecte *aussi* à chaque fois que vous basculez entre le thème sombre et le thème clair. Ce n’est pas top !
 
-En d’autres termes, vous ne voulez *pas* que cette ligne soit réactive, même si elle se trouve dans un Effet (qui est réactif) :
+En d’autres termes, vous ne voulez *pas* que cette ligne soit réactive, en dépit du fait qu'elle se trouve dans un Effet (qui, lui, est réactif) :
 
 ```js
       // ...
@@ -657,11 +657,11 @@ Ici, `onVisit` est un Événement d’Effet. Le code à l’intérieur n’est p
 
 En revanche, l’Effet lui-même reste réactif. Le code de l’Effet utilise la prop `url`, donc l’Effet sera réexécuté après chaque changement de `url` que causerait un nouveau rendu. L'Effet appellera à son tour l’Événement d’Effet `onVisit`.
 
-Par conséquent, vous appellerez `logVisit` pour chaque changement d’`url` et lirez toujours la dernière valeur de `numberOfItems`. Cependant, si `numberOfItems` change à son tour, ça ne causera aucune réexécution de code.
+Par conséquent, vous appellerez `logVisit` pour chaque changement d’`url` et lirez toujours la dernière valeur de `numberOfItems`. Cependant, si `numberOfItems` change à son tour, ça ne réexécutera aucun code.
 
 <Note>
 
-Vous vous demandez peut-être si vous pouvez appeler `onVisit()` sans paramètres et lire l’`url` à l’intérieur :
+Vous vous demandez peut-être si vous pouvez appeler `onVisit()` sans paramètres, pour ensuite lire l’`url` à l’intérieur :
 
 ```js {2,6}
   const onVisit = useEffectEvent(() => {
@@ -701,7 +701,7 @@ C’est particulièrement critique si votre Effet contient de la logique asynch
   }, [url]);
 ```
 
-Ici, `url` à l’intérieur de `onVisit` correspond à la *dernière* `url` (qui pourrait avoir déjà changé), alors que `visitedUrl` correspond à l’`url` qui a originellement déclenché l’exécution de l’Effet (et donc l’appel à `onVisit`).
+Ici, `url` à l’intérieur de `onVisit` correspond à la *dernière* `url` (qui pourrait avoir déjà changé), alors que `visitedUrl` correspond à l’`url` qui a originellement déclenché l’exécution de l’Effet (et donc l’appel à la fonction `onVisit`).
 
 </Note>
 
@@ -872,7 +872,7 @@ body {
 
 Ça ne signifie pas que `useEffectEvent` soit *toujours* la solution adaptée. Dans le bac à sable ci-dessus, vous ne vouliez pas que le code de l’Effet soit réactif par rapport à `canMove`. C’est pourquoi il était logique d’extraire un Événement d’Effet.
 
-Lisez [Alléger les dépendances des Effets](/learn/removing-effect-dependencies) pour d’autres alternatives correctes à la mise en sourdine du *linter*.
+Lisez [Alléger les dépendances des Effets](/learn/removing-effect-dependencies) pour explorer d’autres alternatives correctes à la mise en sourdine du *linter*.
 
 </DeepDive>
 
@@ -959,7 +959,7 @@ Les Événements d’Effets sont des « parties » non réactives du code de v
 
 <Challenges>
 
-#### Restaurer la mise à jour d'une variable {/*fix-a-variable-that-doesnt-update*/}
+#### Garantir une variable à jour {/*fix-a-variable-that-doesnt-update*/}
 
 Ce composant `Timer` maintient une variable d’état `count` qui s’incrémente à chaque seconde. Son pas d'incrément est stocké dans la variable d’état `increment`. Vous pouvez contrôler la variable `increment` avec les boutons plus et moins.
 
@@ -1020,7 +1020,7 @@ button { margin: 10px; }
 
 <Solution>
 
-Comme d’habitude, quand vous cherchez des bugs dans des Effets, commencez par chercher des mises en sourdine du *linter*.
+Comme d’habitude, quand vous cherchez des bugs dans des Effets, commencez par chercher si le *linter* a été mis en sourdine quelque part.
 
 Si vous enlevez le commentaire avec la directive de mise en sourdine, React vous dira que le code de cet Effet dépend de `increment`, mais vous avez « menti » à React en affirmant que cet Effet ne dépendait d’aucune valeur réactive (`[]`). Ajoutez `increment` dans le tableau des dépendances :
 
@@ -1151,7 +1151,7 @@ button { margin: 10px; }
 
 <Solution>
 
-Le problème est que le code à l’intérieur de l’Effet utilise la variable d’état `increment`. Puisque c’est une dépendance de votre Effet, chaque changement de `increment` entraîne la resynchronisation de l’Effet, ce qui a pour conséquence d’effacer le timer. Si vous l’effacez avant même qu’il n’ait eu le temps de se déclencher, alors vous aurez l’impression que le minuteur est figé.
+Le problème est que le code à l’intérieur de l’Effet utilise la variable d’état `increment`. Puisque c’est une dépendance de votre Effet, chaque changement de `increment` entraîne la resynchronisation de l’Effet, ce qui a pour conséquence d’effacer le timer. Si vous l’effacez avant même qu’il n’ait eu le temps de se déclencher, alors vous aurez l’impression que votre minuteur est figé.
 
 Pour résoudre ce problème, extrayez un Événement d’Effet `onTick` de votre Effet :
 
@@ -1402,7 +1402,9 @@ button { margin: 10px; }
 
 </Sandpack>
 
-En général, méfiez-vous de fonctions comme `onMount` qui se focalisent sur le *timing* plutôt que sur l’*objectif* d’un bout de code. Ça peut sembler « plus descriptif » à première vue, mais ça dissimule votre intention. En règle générale, les Événements d’Effets doivent correspondre à quelque chose qui se produit du point de vue de l’*utilisateur*. Par exemple `onMessage`, `onTick`, `onVisit` ou `onConnected` sont de bons noms d’Événements d’Effets. Le code qu’ils contiennent n’a probablement pas besoin d’être réactif. En revanche, `onMount`, `onUpdate`, `onUnmount` ou `onAfterRender` sont si génériques qu’il est facile d’y mettre accidentellement du code qui *devrait* être réactif. C’est pourquoi vous devriez nommer vos Événements d’Effets en fonction de *ce qui s’est passé selon l’utilisateur*, et non en fonction du moment où le code s’est exécuté.
+En général, méfiez-vous de fonctions comme `onMount` qui se focalisent sur le *timing* plutôt que sur l’*objectif* d’un bout de code. Ça peut sembler « plus descriptif » à première vue, mais ça dissimule votre intention. En règle générale, les Événements d’Effets doivent correspondre à quelque chose qui se produit du point de vue de l’*utilisateur*.
+
+Par exemple `onMessage`, `onTick`, `onVisit` ou `onConnected` sont de bons noms d’Événements d’Effets. Le code qu’ils contiennent n’a probablement pas besoin d’être réactif. En revanche, `onMount`, `onUpdate`, `onUnmount` ou `onAfterRender` sont si génériques qu’il est facile d’y mettre accidentellement du code qui *devrait* être réactif. C’est pourquoi vous devriez nommer vos Événements d’Effets en fonction de *ce qui s’est passé selon l’utilisateur*, et non en fonction du moment où le code s’est exécuté.
 
 </Solution>
 
@@ -1416,7 +1418,7 @@ Faites en sorte que lorsque vous passez rapidement de « général » à « v
 
 <Hint>
 
-Votre Effet sait à quel salon il est connecté. Y a-t-il des informations que vous souhaiteriez transmettre à votre Événement d’Effet ?
+Votre Effet sait à quel salon il est connecté. Y a-t-il des informations que vous souhaiteriez qu'il transmette à votre Événement d’Effet ?
 
 </Hint>
 
@@ -1696,7 +1698,7 @@ label { display: block; margin-top: 10px; }
 
 L’Effet pour lequel `roomId` vaut `"travel"` (qui est donc connecté au salon `"travel"`) affichera la notification pour `"travel"`. L’Effet pour lequel `roomId` est défini à `"music"` (qui est donc connecté au salon `"music"`) affichera la notification pour `"music"`. Autrement dit, `connectedRoomId` provient de votre Effet (qui est réactif), alors que `theme` utilise toujours la dernière valeur.
 
-Pour résoudre le défi supplémentaire, enregistrez l’ID du timer de notification et effacez-le dans la fonction de nettoyage de votre Effet :
+Pour résoudre le défi supplémentaire, enregistrez l’ID du timer de notification, puis effacez-le dans la fonction de nettoyage de votre Effet :
 
 <Sandpack>
 
@@ -1837,7 +1839,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Ça permet de s’assurer que les notifications déjà planifiées (mais pas encore affichées) sont annulées quand vous changez de salon.
+Ça permet de s’assurer que les notifications déjà planifiées (mais pas encore affichées) sont annulées à chaque fois que vous changez de salon.
 
 </Solution>
 
