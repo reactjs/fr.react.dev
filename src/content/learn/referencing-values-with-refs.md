@@ -1,49 +1,49 @@
 ---
-title: 'Referencing Values with Refs'
+title: 'Référencer des valeurs avec les refs'
 ---
 
 <Intro>
 
-When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*.
+Lorsque vous souhaitez que votre composant « se souvienne » de quelque chose, mais que vous voulez éviter que l’évolution de ces données [déclenche de nouveaux rendus](/learn/render-and-commit), vous pouvez utiliser une *ref*.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to add a ref to your component
-- How to update a ref's value
-- How refs are different from state
-- How to use refs safely
+- Comment ajouter une ref à votre composant
+- Comment mettre à jour la valeur d'une ref
+- En quoi les refs diffèrent des variables d'état
+- Comment utiliser les refs de façon fiable
 
 </YouWillLearn>
 
-## Adding a ref to your component {/*adding-a-ref-to-your-component*/}
+## Ajouter une ref à votre composant {/*adding-a-ref-to-your-component*/}
 
-You can add a ref to your component by importing the `useRef` Hook from React:
+Vous pouvez ajouter une ref à votre composant en important le Hook `useRef` de React :
 
 ```js
 import { useRef } from 'react';
 ```
 
-Inside your component, call the `useRef` Hook and pass the initial value that you want to reference as the only argument. For example, here is a ref to the value `0`:
+Au sein de votre composant, appelez le Hook `useRef` et passez-lui comme unique argument la valeur initiale que vous souhaitez référencer.  Par exemple, voici une ref vers la valeur `0` :
 
 ```js
 const ref = useRef(0);
 ```
 
-`useRef` returns an object like this:
+`useRef` renvoie un objet comme celui-ci :
 
 ```js
-{ 
-  current: 0 // The value you passed to useRef
+{
+  current: 0 // La valeur que vous avez passée à useRef
 }
 ```
 
-<Illustration src="/images/docs/illustrations/i_ref.png" alt="An arrow with 'current' written on it stuffed into a pocket with 'ref' written on it." />
+<Illustration src="/images/docs/illustrations/i_ref.png" alt="Une flèche labellisée “current” au sein d'une poche avec “ref” écrit dessus." />
 
-You can access the current value of that ref through the `ref.current` property. This value is intentionally mutable, meaning you can both read and write to it. It's like a secret pocket of your component that React doesn't track. (This is what makes it an "escape hatch" from React's one-way data flow--more on that below!)
+Vous pouvez accéder à la valeur actuelle de cette ref au travers de la propriété `ref.current`.  Cette valeur est volontairement modifiable, ce qui signifie que vous pouvez aussi bien la lire que l'écrire.  C'est un peu comme une poche secrète de votre composant que React ne peut pas surveiller. (C'est ce qui en fait une « échappatoire » du flux de données unidirectionnel de React--on va détailler ça dans un instant !)
 
-Here, a button will increment `ref.current` on every click:
+Voici maintenant un bouton qui incrémente `ref.current` à chaque clic :
 
 <Sandpack>
 
@@ -55,12 +55,12 @@ export default function Counter() {
 
   function handleClick() {
     ref.current = ref.current + 1;
-    alert('You clicked ' + ref.current + ' times!');
+    alert('Vous avez cliqué ' + ref.current + ' fois !');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me!
+      Cliquez ici
     </button>
   );
 }
@@ -68,20 +68,20 @@ export default function Counter() {
 
 </Sandpack>
 
-The ref points to a number, but, like [state](/learn/state-a-components-memory), you could point to anything: a string, an object, or even a function. Unlike state, ref is a plain JavaScript object with the `current` property that you can read and modify.
+La ref pointe vers un nombre, mais tout comme pour [l'état](/learn/state-a-components-memory), vous pouvez pointer vers ce que vous voulez : une chaîne de caractères, un objet, ou même une fonction.  Contrairement aux variables d'état, une ref est juste un objet JavaScript brut avec une propriété `current` que vous pouvez lire et modifier.
 
-Note that **the component doesn't re-render with every increment.** Like state, refs are retained by React between re-renders. However, setting state re-renders a component. Changing a ref does not!
+Remarquez que **le composant ne refait pas de rendu à chaque incrémentation**.  Comme les variables d'état, les refs sont préservées par React d'un rendu à l'autre. Cependant, modifier un état entraîne un nouveau rendu du composant, tandis que modifier une ref ne le fait pas !
 
-## Example: building a stopwatch {/*example-building-a-stopwatch*/}
+## Exemple : construire un chronomètre {/*example-building-a-stopwatch*/}
 
-You can combine refs and state in a single component. For example, let's make a stopwatch that the user can start or stop by pressing a button. In order to display how much time has passed since the user pressed "Start", you will need to keep track of when the Start button was pressed and what the current time is. **This information is used for rendering, so you'll keep it in state:**
+Vous pouvez combiner des refs et des variables d'état dans un même composant.  Construisons par exemple un chronomètre que l'utilisateur peut démarrer et arrêter en pressant un bouton.  Afin de pouvoir afficher le temps écoulé depuis que l'utilisateur a pressé « Démarrer », vous allez devoir garder trace du moment auquel ce bouton a été pressé, et du moment courant. **Ces informations sont nécessaires au rendu, de sorte que vous les stockez dans des variables d'état :**
 
 ```js
 const [startTime, setStartTime] = useState(null);
 const [now, setNow] = useState(null);
 ```
 
-When the user presses "Start", you'll use [`setInterval`](https://developer.mozilla.org/docs/Web/API/setInterval) in order to update the time every 10 milliseconds:
+Lorsque l'utilisateur pressera « Démarrer », vous utiliserez [`setInterval`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) afin de mettre à jour le moment courant toutes les 10 millisecondes :
 
 <Sandpack>
 
@@ -93,12 +93,12 @@ export default function Stopwatch() {
   const [now, setNow] = useState(null);
 
   function handleStart() {
-    // Start counting.
+    // Commencer à chronométrer.
     setStartTime(Date.now());
     setNow(Date.now());
 
     setInterval(() => {
-      // Update the current time every 10ms.
+      // Mettre à jour le temps toutes les 10ms.
       setNow(Date.now());
     }, 10);
   }
@@ -110,9 +110,9 @@ export default function Stopwatch() {
 
   return (
     <>
-      <h1>Time passed: {secondsPassed.toFixed(3)}</h1>
+      <h1>Temps écoulé : {secondsPassed.toFixed(3)}</h1>
       <button onClick={handleStart}>
-        Start
+        Démarrer
       </button>
     </>
   );
@@ -121,7 +121,7 @@ export default function Stopwatch() {
 
 </Sandpack>
 
-When the "Stop" button is pressed, you need to cancel the existing interval so that it stops updating the `now` state variable. You can do this by calling [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval), but you need to give it the interval ID that was previously returned by the `setInterval` call when the user pressed Start. You need to keep the interval ID somewhere. **Since the interval ID is not used for rendering, you can keep it in a ref:**
+Lorsque le bouton « Arrêter » est pressé, vous devez annuler l'intervalle pour qu'il cesse de mettre à jour la variable d'état `now`.  Vous pouvez faire ça en appelant [`clearInterval`](https://developer.mozilla.org/fr/docs/Web/API/clearInterval), mais vous avez besoin de lui fournir l'ID du timer renvoyé précédemment par votre appel à `setInterval` lorsque l'utilisateur avait pressé « Démarrer ».  Il faut donc bien conserver cet ID quelque part. **Puisque l'ID de l'intervalle n'est pas nécessaire au rendu, vous pouvez le conserver dans une ref :**
 
 <Sandpack>
 
@@ -154,12 +154,12 @@ export default function Stopwatch() {
 
   return (
     <>
-      <h1>Time passed: {secondsPassed.toFixed(3)}</h1>
+      <h1>Temps écoulé : {secondsPassed.toFixed(3)}</h1>
       <button onClick={handleStart}>
-        Start
+        Démarrer
       </button>
       <button onClick={handleStop}>
-        Stop
+        Arrêter
       </button>
     </>
   );
@@ -168,20 +168,20 @@ export default function Stopwatch() {
 
 </Sandpack>
 
-When a piece of information is used for rendering, keep it in state. When a piece of information is only needed by event handlers and changing it doesn't require a re-render, using a ref may be more efficient.
+Lorsqu'une information est utilisée pour le rendu, conservez-la dans une variable d'état. Lorsqu'elle n'est nécessaire qu'aux gestionnaires d'événements, et que la modifier ne doit pas entraîner un nouveau rendu, il est plus efficace de passer par une ref.
 
-## Differences between refs and state {/*differences-between-refs-and-state*/}
+## Différences entre refs et variables d'état {/*differences-between-refs-and-state*/}
 
-Perhaps you're thinking refs seem less "strict" than state—you can mutate them instead of always having to use a state setting function, for instance. But in most cases, you'll want to use state. Refs are an "escape hatch" you won't need often. Here's how state and refs compare:
+Vous trouvez peut-être que les refs semblent moins « strictes » que les variables d'état--vous pouvez les modifier plutôt que de devoir passer par une fonction de mise à jour d'état, par exemple.  Pourtant dans la majorité des cas, vous voudrez utiliser des états.  Les refs sont une « échappatoire » dont vous n'aurez pas souvent besoin.  Voici un comparatif entre variables d'état et refs :
 
-| refs                                                                                  | state                                                                                                                     |
+| Ref                                                                                  | Variable d'état                                                                                                                     |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `useRef(initialValue)` returns `{ current: initialValue }`                            | `useState(initialValue)` returns the current value of a state variable and a state setter function ( `[value, setValue]`) |
-| Doesn't trigger re-render when you change it.                                         | Triggers re-render when you change it.                                                                                    |
-| Mutable—you can modify and update `current`'s value outside of the rendering process. | "Immutable"—you must use the state setting function to modify state variables to queue a re-render.                       |
-| You shouldn't read (or write) the `current` value during rendering. | You can read state at any time. However, each render has its own [snapshot](/learn/state-as-a-snapshot) of state which does not change.
+| `useRef(initialValue)` renvoie `{ current: initialValue }`.                            | `useState(initialValue)` renvoie la valeur actuelle d'une variable d'état et une fonction de modification de cette valeur (`[value, setValue]`). |
+| Ne redéclenche pas un rendu quand vous la modifiez.                                         | Déclenche un nouveau rendu quand vous la modifiez.                                                                                    |
+| Modifiable : vous pouvez changer la valeur de `current` hors du rendu. | « Immuable » : vous devez passer par la fonction de mise à jour de l'état pour changer la variable d'état, ce qui est mis en attente pour le prochain rendu.                       |
+| Vous ne devriez pas lire (ou écrire) la valeur de `current` pendant le rendu. | Vous pouvez lire l'état à tout moment.  En revanche, chaque rendu a son propre [instantané](/learn/state-as-a-snapshot) de l'état, qui ne change pas.
 
-Here is a counter button that's implemented with state:
+Voici un bouton de compteur implémenté avec une variable d'état :
 
 <Sandpack>
 
@@ -197,7 +197,7 @@ export default function Counter() {
 
   return (
     <button onClick={handleClick}>
-      You clicked {count} times
+      Vous avez cliqué {count} fois
     </button>
   );
 }
@@ -205,9 +205,9 @@ export default function Counter() {
 
 </Sandpack>
 
-Because the `count` value is displayed, it makes sense to use a state value for it. When the counter's value is set with `setCount()`, React re-renders the component and the screen updates to reflect the new count.
+Étant donné que la valeur `count` est affichée, il est logique d'utiliser une variable d'état pour la stocker.  Quand la valeur du compteur est modifiée via `setCount()`, React fait un nouveau rendu du composant et l'écran est mis à jour pour refléter le nouveau compteur.
 
-If you tried to implement this with a ref, React would never re-render the component, so you'd never see the count change! See how clicking this button **does not update its text**:
+Si vous utilisiez une ref, React ne déclencherait jamais un nouveau rendu du composant, et vous ne verriez jamais la valeur changer !  Essayez ci-dessous de cliquer le bouton, **ça ne met pas à jour le texte** :
 
 <Sandpack>
 
@@ -218,13 +218,13 @@ export default function Counter() {
   let countRef = useRef(0);
 
   function handleClick() {
-    // This doesn't re-render the component!
+    // Le composant ne refait pas son rendu !
     countRef.current = countRef.current + 1;
   }
 
   return (
     <button onClick={handleClick}>
-      You clicked {countRef.current} times
+      Vous avez cliqué {countRef.current} fois
     </button>
   );
 }
@@ -232,82 +232,80 @@ export default function Counter() {
 
 </Sandpack>
 
-This is why reading `ref.current` during render leads to unreliable code. If you need that, use state instead.
+Voilà pourquoi la lecture de `ref.current` pendant le rendu n'est pas une pratique fiable.  Si vous avez besoin de ça, utilisez plutôt une variable d'état.
 
 <DeepDive>
 
-#### How does useRef work inside? {/*how-does-use-ref-work-inside*/}
+#### Comment fonctionne `useRef` en interne ? {/*how-does-use-ref-work-inside*/}
 
-Although both `useState` and `useRef` are provided by React, in principle `useRef` could be implemented _on top of_ `useState`. You can imagine that inside of React, `useRef` is implemented like this:
+Même si `useState` et `useRef` sont fournis par React, en principe `useRef` pourrait être implémenté *par-dessus* `useState`.  On pourrait imaginer que dans le code de React, `useRef` serait peut-être implémenté de la façon suivante :
 
 ```js
-// Inside of React
+// Dans React…
 function useRef(initialValue) {
   const [ref, unused] = useState({ current: initialValue });
   return ref;
 }
 ```
 
-During the first render, `useRef` returns `{ current: initialValue }`. This object is stored by React, so during the next render the same object will be returned. Note how the state setter is unused in this example. It is unnecessary because `useRef` always needs to return the same object!
+Lors du premier rendu, `useRef` renvoie `{ current: initialValue}`.  Cet objet est stocké par React, de sorte qu'au prochain rendu il renverra le même objet.  Remarquez que la fonction de modification de l'état est inutilisée dans ce code.  Elle est superflue puisque `useRef` renvoie toujours le même objet !
 
-React provides a built-in version of `useRef` because it is common enough in practice. But you can think of it as a regular state variable without a setter. If you're familiar with object-oriented programming, refs might remind you of instance fields--but instead of `this.something` you write `somethingRef.current`.
+React fournit directement `useRef` parce qu'il s'agit d'un cas d'usage suffisamment courant.  Mais vous pouvez le voir comme une variable d'état classique mais sans fonction modificatrice.  Si vous avez l'habitude de la programmation orientée objet, les refs vous font peut-être penser à des champs d'instance--sauf qu'au lieu d'écrire `this.something` vous écrivez `somethingRef.current`.
 
 </DeepDive>
 
-## When to use refs {/*when-to-use-refs*/}
+## Quand utiliser des refs {/*when-to-use-refs*/}
 
-Typically, you will use a ref when your component needs to "step outside" React and communicate with external APIs—often a browser API that won't impact the appearance of the component. Here are a few of these rare situations:
+En général, vous utiliserez une ref lorsque votre composant a besoin de « sortir » de React et communiquer avec des API extérieures (souvent une API du navigateur qui n'impactera pas l'apparence du composant).  Voici quelques-unes de ces situations peu fréquentes :
 
-- Storing [timeout IDs](https://developer.mozilla.org/docs/Web/API/setTimeout)
-- Storing and manipulating [DOM elements](https://developer.mozilla.org/docs/Web/API/Element), which we cover on [the next page](/learn/manipulating-the-dom-with-refs)
-- Storing other objects that aren't necessary to calculate the JSX.
+- Conserver des [ID de timers](https://developer.mozilla.org/fr/docs/Web/API/setTimeout).
+- Référencer puis manipuler des [éléments du DOM](https://developer.mozilla.org/fr/docs/Web/API/Element), comme nous le verrons en détail [dans la prochaine page](/learn/manipulating-the-dom-with-refs).
+- Référencer d'autres objets qui ne sont pas nécessaires au calcul du JSX.
 
-If your component needs to store some value, but it doesn't impact the rendering logic, choose refs.
+Si votre composant a besoin de stocker une valeur, mais que cette valeur n'impacte pas la logique de rendu, optez pour une ref.
 
-## Best practices for refs {/*best-practices-for-refs*/}
+## Meilleures pratiques pour les refs {/*best-practices-for-refs*/}
 
-Following these principles will make your components more predictable:
+Pour rendre vos composants plus prévisibles, respectez les principes suivants :
 
-- **Treat refs as an escape hatch.** Refs are useful when you work with external systems or browser APIs. If much of your application logic and data flow relies on refs, you might want to rethink your approach.
-- **Don't read or write `ref.current` during rendering.** If some information is needed during rendering, use [state](/learn/state-a-components-memory) instead. Since React doesn't know when `ref.current` changes, even reading it while rendering makes your component's behavior difficult to predict. (The only exception to this is code like `if (!ref.current) ref.current = new Thing()` which only sets the ref once during the first render.)
+- **Traitez les refs comme une échappatoire.**  Les refs sont utiles lorsque vous travaillez avec des systèmes extérieurs ou des API du navigateur.  Mais si une large part de votre logique applicative et de votre flux de données repose sur les refs, vous devriez probablement repenser votre approche.
+- **Ne lisez pas et n'écrivez pas dans `ref.current` pendant le rendu.** Si une information est nécessaire au rendu, utilisez plutôt [un état](/learn/state-a-components-memory).  Comme React ne sait pas que `ref.current` change, même le simple fait de la lire pendant le rendu peut introduire des comportements déroutants dans votre composant. (La seule exception concerne du code du style `if (!ref.current) ref.current = new Thing()`, qui ne met à jour la ref qu'une fois lors du rendu initial.)
 
-Limitations of React state don't apply to refs. For example, state acts like a [snapshot for every render](/learn/state-as-a-snapshot) and [doesn't update synchronously.](/learn/queueing-a-series-of-state-updates) But when you mutate the current value of a ref, it changes immediately:
+Les contraintes des états React ne s'appliquent pas aux refs.  Par exemple, l'état se comporte comme un [instantané pour chaque rendu](/learn/state-as-a-snapshot) et [est mis à jour en asynchrone](/learn/queueing-a-series-of-state-updates).  En revanche, lorsque vous modifiez la valeur actuelle d'une ref, c'est immédiat :
 
 ```js
 ref.current = 5;
 console.log(ref.current); // 5
 ```
 
-This is because **the ref itself is a regular JavaScript object,** and so it behaves like one.
+C'est parce que **la ref elle-même n'est qu'un objet JavaScript brut**, et se comporte donc comme tel.
 
-You also don't need to worry about [avoiding mutation](/learn/updating-objects-in-state) when you work with a ref. As long as the object you're mutating isn't used for rendering, React doesn't care what you do with the ref or its contents.
+Vous n'avez pas non plus à vous préoccuper [d'éviter les mutations](/learn/updating-objects-in-state) lorsque vous travaillez avec une ref.  Du moment que l'objet que vous modifiez n'est pas utilisé pour le rendu, React se fiche de ce que vous faites avec la ref et son contenu.
 
-## Refs and the DOM {/*refs-and-the-dom*/}
+## Les refs et le DOM {/*refs-and-the-dom*/}
 
-You can point a ref to any value. However, the most common use case for a ref is to access a DOM element. For example, this is handy if you want to focus an input programmatically. When you pass a ref to a `ref` attribute in JSX, like `<div ref={myRef}>`, React will put the corresponding DOM element into `myRef.current`. You can read more about this in [Manipulating the DOM with Refs.](/learn/manipulating-the-dom-with-refs)
+Vous pouvez faire pointer votre ref vers ce que vous voulez.  Ceci dit, le cas le plus courant pour une ref consiste à accéder à un élément du DOM. C'est par exemple bien pratique pour gérer le focus programmatiquement. Quand vous passez une ref à la prop `ref` d'un élément en JSX, comme dans `<div ref={myRef}>`, React référencera l'élément DOM correspondant dans `myRef.current`.  Vous pouvez en apprendre davantage dans [Manipuler le DOM avec des refs](/learn/manipulating-the-dom-with-refs).
 
 <Recap>
 
-- Refs are an escape hatch to hold onto values that aren't used for rendering. You won't need them often.
-- A ref is a plain JavaScript object with a single property called `current`, which you can read or set.
-- You can ask React to give you a ref by calling the `useRef` Hook.
-- Like state, refs let you retain information between re-renders of a component.
-- Unlike state, setting the ref's `current` value does not trigger a re-render.
-- Don't read or write `ref.current` during rendering. This makes your component hard to predict.
+- Les refs sont une échappatoire qui vous permet de conserver des valeurs qui ne servent pas au rendu.  Vous n'en aurez pas souvent besoin.
+- Une ref est un objet JavaScript brut avec une unique propriété `current`, que vous pouvez lire et écrire.
+- Vous pouvez demander à React de vous fournir une ref en appelant le Hook `useRef`.
+- Tout comme les variables d'état, les refs préservent leur information d'un rendu à l'autre du composant.
+- Contrairement aux états, modifier la valeur `current` d'une ref ne déclenche pas un nouveau rendu.
+- Évitez de lire ou d'écrire dans `ref.current` pendant le rendu ; le comportement de votre composant deviendrait imprévisible.
 
 </Recap>
 
-
-
 <Challenges>
 
-#### Fix a broken chat input {/*fix-a-broken-chat-input*/}
+#### Corriger un bouton de discussion {/*fix-a-broken-chat-input*/}
 
-Type a message and click "Send". You will notice there is a three second delay before you see the "Sent!" alert. During this delay, you can see an "Undo" button. Click it. This "Undo" button is supposed to stop the "Sent!" message from appearing. It does this by calling [`clearTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout) for the timeout ID saved during `handleSend`. However, even after "Undo" is clicked, the "Sent!" message still appears. Find why it doesn't work, and fix it.
+Tapez un message et cliquez sur « Envoyer ». Vous remarquerez un délai de trois secondes avant de voir la notification « Envoyé ! ». Dans l'intervalle, vous pouvez voir un bouton « Annuler ». Ce bouton est supposé empêcher l'apparition de la notification « Envoyé ! ». Pour cela, il appelle [`clearTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout) sur l'ID de timer sauvegardé lors de `handleSend`. Pourtant, même après avoir cliqué sur « Annuler », la notification « Envoyé ! » apparaît.  Trouvez ce qui cloche et corrigez-le.
 
 <Hint>
 
-Regular variables like `let timeoutID` don't "survive" between re-renders because every render runs your component (and initializes its variables) from scratch. Should you keep the timeout ID somewhere else?
+Les simples variables comme `let timeoutID` ne « survivent » pas d'un rendu à l'autre, car chaque rendu réexécute votre composant (et donc initialise ses variables) à partir de zéro.  Peut-être devriez-vous conserver l'ID du timer ailleurs ?
 
 </Hint>
 
@@ -324,7 +322,7 @@ export default function Chat() {
   function handleSend() {
     setIsSending(true);
     timeoutID = setTimeout(() => {
-      alert('Sent!');
+      alert('Envoyé !');
       setIsSending(false);
     }, 3000);
   }
@@ -344,11 +342,11 @@ export default function Chat() {
       <button
         disabled={isSending}
         onClick={handleSend}>
-        {isSending ? 'Sending...' : 'Send'}
+        {isSending ? 'Envoi...' : 'Envoyer'}
       </button>
       {isSending &&
         <button onClick={handleUndo}>
-          Undo
+          Annuler
         </button>
       }
     </>
@@ -360,7 +358,7 @@ export default function Chat() {
 
 <Solution>
 
-Whenever your component re-renders (such as when you set state), all local variables get initialized from scratch. This is why you can't save the timeout ID in a local variable like `timeoutID` and then expect another event handler to "see" it in the future. Instead, store it in a ref, which React will preserve between renders.
+Chaque fois que votre composant fait un nouveau rendu (par exemple suite à un changement d'état), toutes les variables locales sont réinitialisées.  C'est pourquoi vous ne pouvez pas préserver un ID de timer dans une variable locale comme `timeoutID` et vous attendre à ce que votre gestionnaire d'événement la « voie » par la suite.  Conservez-le plutôt dans une ref, que React préservera d'un rendu à l'autre.
 
 <Sandpack>
 
@@ -375,7 +373,7 @@ export default function Chat() {
   function handleSend() {
     setIsSending(true);
     timeoutRef.current = setTimeout(() => {
-      alert('Sent!');
+      alert('Envoyé !');
       setIsSending(false);
     }, 3000);
   }
@@ -395,11 +393,11 @@ export default function Chat() {
       <button
         disabled={isSending}
         onClick={handleSend}>
-        {isSending ? 'Sending...' : 'Send'}
+        {isSending ? 'Envoi...' : 'Envoyer'}
       </button>
       {isSending &&
         <button onClick={handleUndo}>
-          Undo
+          Annuler
         </button>
       }
     </>
@@ -412,9 +410,9 @@ export default function Chat() {
 </Solution>
 
 
-#### Fix a component failing to re-render {/*fix-a-component-failing-to-re-render*/}
+#### Re-déclencher le rendu {/*fix-a-component-failing-to-re-render*/}
 
-This button is supposed to toggle between showing "On" and "Off". However, it always shows "Off". What is wrong with this code? Fix it.
+Ce bouton est censé basculer entre un affichage "On" et "Off". Pourtant, il affiche toujours "Off". Quel est le problème ? Corrigez ça.
 
 <Sandpack>
 
@@ -438,7 +436,7 @@ export default function Toggle() {
 
 <Solution>
 
-In this example, the current value of a ref is used to calculate the rendering output: `{isOnRef.current ? 'On' : 'Off'}`. This is a sign that this information should not be in a ref, and should have instead been put in state. To fix it, remove the ref and use state instead:
+Dans cet exemple, la valeur actuelle de la ref est utilisée pour calculer le résultat du rendu : `{isOnRef.current ? 'On' : 'Off'}`. C'est le signe que cette information ne devrait pas figurer dans une ref, mais aurait dû être stockée dans une variable d'état.  Pour corriger ça, retirez la ref et remplacez-la par une variable d'état :
 
 <Sandpack>
 
@@ -462,17 +460,17 @@ export default function Toggle() {
 
 </Solution>
 
-#### Fix debouncing {/*fix-debouncing*/}
+#### Corriger le *debouncing* {/*fix-debouncing*/}
 
-In this example, all button click handlers are ["debounced".](https://redd.one/blog/debounce-vs-throttle) To see what this means, press one of the buttons. Notice how the message appears a second later. If you press the button while waiting for the message, the timer will reset. So if you keep clicking the same button fast many times, the message won't appear until a second *after* you stop clicking. Debouncing lets you delay some action until the user "stops doing things".
+Dans l'exemple qui suit, tous les gestionnaires de clic des boutons sont *["debounced"](https://redd.one/blog/debounce-vs-throttle)*.  Pour saisir ce que ça signifie, pressez l'un des boutons.  Remarquez que le message apparaît une seconde plus tard.  Si vous pressez le bouton pendant que vous attendez le message, le timer sera réinitialisé.  Du coup, si vous cliquez en rafale sur le même bouton, le message n'apparaîtra qu'une seconde *après* que vous aurez arrêté de cliquer.  Le *debouncing* permet de retarder une action jusqu'à ce que l'utilisateur « termine ce qu'il est en train de faire ».
 
-This example works, but not quite as intended. The buttons are not independent. To see the problem, click one of the buttons, and then immediately click another button. You'd expect that after a delay, you would see both button's messages. But only the last button's message shows up. The first button's message gets lost.
+Cet exemple fonctionne, mais pas tout à fait comme prévu.  Les boutons ne sont pas indépendants.  Pour comprendre le problème, cliquez sur l'un des boutons, puis cliquez immédiatement sur un autre bouton.  Vous vous attendriez à ce qu'une fois le délai écoulé, vous obteniez les messages des deux boutons.  Mais seul le message du dernier bouton apparaît. Celui du premier bouton est perdu.
 
-Why are the buttons interfering with each other? Find and fix the issue.
+Pourquoi ces boutons interfèrent-ils l'un avec l'autre ? Trouvez et corrigez le problème.
 
 <Hint>
 
-The last timeout ID variable is shared between all `DebouncedButton` components. This is why clicking one button resets another button's timeout. Can you store a separate timeout ID for each button?
+La variable contenant l'ID du dernier timer en date est partagée par tous les composants `DebouncedButton`.  C'est pour ça que cliquer sur un des boutons réinitialise aussi le timer des autres boutons.  Comment stocker un ID de timer distinct pour chaque bouton ?
 
 </Hint>
 
@@ -498,19 +496,19 @@ export default function Dashboard() {
   return (
     <>
       <DebouncedButton
-        onClick={() => alert('Spaceship launched!')}
+        onClick={() => alert('Décollage !')}
       >
-        Launch the spaceship
+        Faire décoller le vaisseau
       </DebouncedButton>
       <DebouncedButton
-        onClick={() => alert('Soup boiled!')}
+        onClick={() => alert('À la soupe !')}
       >
-        Boil the soup
+        Faire cuire la soupe
       </DebouncedButton>
       <DebouncedButton
-        onClick={() => alert('Lullaby sung!')}
+        onClick={() => alert('Bonne nuit !')}
       >
-        Sing a lullaby
+        Chanter une berceuse
       </DebouncedButton>
     </>
   )
@@ -525,7 +523,7 @@ button { display: block; margin: 10px; }
 
 <Solution>
 
-A variable like `timeoutID` is shared between all components. This is why clicking on the second button resets the first button's pending timeout. To fix this, you can keep timeout in a ref. Each button will get its own ref, so they won't conflict with each other. Notice how clicking two buttons fast will show both messages.
+Une variable comme `timeoutID` est partagée par tous les composants, c'est pourquoi cliquer sur le deuxième bouton réinitialise le timer en cours du premier bouton.  Pour corriger ça, vous pouvez conserver l'ID de timer dans une ref.  Chaque bouton gardera ainsi sa propre ref, et il n'y aura plus de conflit.  Essayez de cliquer rapidement sur deux boutons : vous devriez voir les deux messages.
 
 <Sandpack>
 
@@ -550,19 +548,19 @@ export default function Dashboard() {
   return (
     <>
       <DebouncedButton
-        onClick={() => alert('Spaceship launched!')}
+        onClick={() => alert('Décollage !')}
       >
-        Launch the spaceship
+        Faire décoller le vaisseau
       </DebouncedButton>
       <DebouncedButton
-        onClick={() => alert('Soup boiled!')}
+        onClick={() => alert('À la soupe !')}
       >
-        Boil the soup
+        Faire cuire la soupe
       </DebouncedButton>
       <DebouncedButton
-        onClick={() => alert('Lullaby sung!')}
+        onClick={() => alert('Bonne nuit !')}
       >
-        Sing a lullaby
+        Chanter une berceuse
       </DebouncedButton>
     </>
   )
@@ -577,11 +575,11 @@ button { display: block; margin: 10px; }
 
 </Solution>
 
-#### Read the latest state {/*read-the-latest-state*/}
+#### Lire la dernière valeur à jour {/*read-the-latest-state*/}
 
-In this example, after you press "Send", there is a small delay before the message is shown. Type "hello", press Send, and then quickly edit the input again. Despite your edits, the alert would still show "hello" (which was the value of state [at the time](/learn/state-as-a-snapshot#state-over-time) the button was clicked).
+Dans cet exemple, lorsque vous pressez « Envoyer », un message est affiché après un petit délai.  Tapez « bonjour », pressez « Envoyer », puis modifiez rapidement la saisie.  Malgré vos changements, le message devrait rester « bonjour » (qui était la valeur de l'état [au moment](/learn/state-as-a-snapshot#state-over-time) où vous avez cliqué sur le bouton).
 
-Usually, this behavior is what you want in an app. However, there may be occasional cases where you want some asynchronous code to read the *latest* version of some state. Can you think of a way to make the alert show the *current* input text rather than what it was at the time of the click?
+D'habitude, c'est bien le comportement que vous souhaitez.  Toutefois, il arrive parfois que vous souhaitiez que du code asynchrone lise la *dernière* version d'une donnée.  Avez-vous une idée pour faire que le message affiche la version *à jour* du champ de saisie, plutôt que celle en vigueur au moment du clic ?
 
 <Sandpack>
 
@@ -593,7 +591,7 @@ export default function Chat() {
 
   function handleSend() {
     setTimeout(() => {
-      alert('Sending: ' + text);
+      alert('Envoi : ' + text);
     }, 3000);
   }
 
@@ -605,7 +603,7 @@ export default function Chat() {
       />
       <button
         onClick={handleSend}>
-        Send
+        Envoyer
       </button>
     </>
   );
@@ -616,7 +614,7 @@ export default function Chat() {
 
 <Solution>
 
-State works [like a snapshot](/learn/state-as-a-snapshot), so you can't read the latest state from an asynchronous operation like a timeout. However, you can keep the latest input text in a ref. A ref is mutable, so you can read the `current` property at any time. Since the current text is also used for rendering, in this example, you will need *both* a state variable (for rendering), *and* a ref (to read it in the timeout). You will need to update the current ref value manually.
+L'état fonctionne [comme un instantané](/learn/state-as-a-snapshot), de sorte que vous ne pouvez pas lire le dernier état à jour depuis un traitement asynchrone comme un timer.  En revanche, vous pouvez conserver la valeur saisie dans une ref.  Une ref est modifiable, donc vous pouvez lire sa propriété `current` à tout moment.  Comme le texte saisi est aussi utilisé pour le rendu, dans cet exemple il vous faudra *à la fois* une variable d'état (pour le rendu) *et* une ref (pour la lire depuis le timeout).  Vous aurez besoin de mettre à jour la valeur de la ref manuellement.
 
 <Sandpack>
 
@@ -634,7 +632,7 @@ export default function Chat() {
 
   function handleSend() {
     setTimeout(() => {
-      alert('Sending: ' + textRef.current);
+      alert('Envoi : ' + textRef.current);
     }, 3000);
   }
 
@@ -646,7 +644,7 @@ export default function Chat() {
       />
       <button
         onClick={handleSend}>
-        Send
+        Envoyer
       </button>
     </>
   );
