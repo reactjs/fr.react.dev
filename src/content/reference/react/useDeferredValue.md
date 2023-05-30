@@ -137,8 +137,8 @@ import { fetchData } from './data.js';
 // Note: ce composant est écrit en utilisant une API expérimentale
 // qui n'est pas encore disponible dans les versions stables de React.
 
-// Pour un exemple réaliste que vous pouvez suivre aujourd'hui, 
-// essayez un framework intégré avec Suspense, comme Relay ou Next.js.
+// Si vous souhaitez suivre cet exemple avec une version stable, 
+// essayez un framework intégrant Suspense, comme Relay ou Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -159,8 +159,8 @@ export default function SearchResults({ query }) {
   );
 }
 
-// C'est une solution de contournement d'un bug pour lancer la démo. 
-// TODO: replacer avec la vraie implémentation quand le bug sera fixé. 
+// Ceci est une astuce permettant de contourner un bug afin de lancer la démo. 
+// TODO: remplacer avec la vraie implémentation quand le bug sera fixé. 
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -186,9 +186,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: la manière dont vous pourriez récupérer les données 
-// dépends du framework avec lequel vous utilisez Suspense. 
-// Normalement, la logique de cache serait à l'intérieur d'un framework. 
+// Note: la manière de récupérer les données dépend 
+// du framework avec lequel vous utilisez Suspense. 
+// En temps normal, la logique de cache est à l'intérieur d'un framework. 
 
 let cache = new Map();
 
@@ -352,8 +352,8 @@ import { fetchData } from './data.js';
 // Note: ce composant est écrit en utilisant une API expérimentale
 // qui n'est pas encore disponible dans les versions stables de React.
 
-// Pour un exemple réaliste que vous pouvez suivre aujourd'hui, 
-// essayez un framework intégré avec Suspense, comme Relay ou Next.js.
+// Si vous souhaitez suivre cet exemple avec une version stable, 
+// essayez un framework intégrant Suspense, comme Relay ou Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -374,8 +374,8 @@ export default function SearchResults({ query }) {
   );
 }
 
-// C'est une solution de contournement d'un bug pour lancer la démo. 
-// TODO: replacer avec la vraie implémentation quand le bug sera fixé. 
+// Ceci est une astuce permettant de contourner un bug afin de lancer la démo. 
+// TODO: remplacer avec la vraie implémentation quand le bug sera fixé. 
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -401,9 +401,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: la manière dont vous pourriez récupérer les données 
-// dépends du framework avec lequel vous utilisez Suspense. 
-// Normalement, la logique de cache serait à l'intérieur d'un framework. 
+// Note: la manière de récupérer les données dépend 
+// du framework avec lequel vous utilisez Suspense. 
+// En temps normal, la logique de cache est à l'intérieur d'un framework. 
 
 let cache = new Map();
 
@@ -630,9 +630,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: la manière dont vous pourriez récupérer les données 
-// dépends du framework avec lequel vous utilisez Suspense. 
-// Normalement, la logique de cache serait à l'intérieur d'un framework. 
+// Note: la manière de récupérer les données dépend 
+// du framework avec lequel vous utilisez Suspense. 
+// En temps normal, la logique de cache est à l'intérieur d'un framework. 
 let cache = new Map();
 
 export function fetchData(url) {
@@ -819,7 +819,7 @@ const SlowList = memo(function SlowList({ text }) {
 function SlowItem({ text }) {
   let startTime = performance.now();
   while (performance.now() - startTime < 1) {
-    // Ne fait rien pendant 1 ms par élément pour émuler du code extrêmement lent
+    // Ne fait rien pendant 1 ms par élément pour simuler du code extrêmement lent
   }
 
   return (
