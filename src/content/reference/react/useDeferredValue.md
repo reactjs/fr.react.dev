@@ -778,7 +778,7 @@ Cela ne rend pas le nouveau rendu de `SlowList` plus rapide. Cependant, cela dit
 
 #### Reporter le rendu d'une liste {/*deferred-re-rendering-of-the-list*/}
 
-Dans cet exemple, chaque élément du composant `SlowList` est **artificiellement ralenti** afin que vous puissiez observer comment `useDeferredValue` permet de garder ce champ de saisie réactif. Ecrivez dans le champ de saisie et observez comment écrire semble rapide et comment la liste "est en retard".
+Dans cet exemple, chaque élément du composant `SlowList` est **artificiellement ralenti** afin que vous puissiez observer comment `useDeferredValue` permet de garder ce champ de saisie réactif. Écrivez dans le champ de saisie et observez comment écrire semble rapide et comment la liste "est en retard".
 
 <Sandpack>
 
@@ -933,7 +933,7 @@ export default SlowList;
 
 <Pitfall>
 
-L'optimisation nécessite que `SlowList` soit accompagnée d'un [`memo`.](/reference/react/memo) A chaque fois que `text` change, React a besoin d'être capable de re-render le composant parent rapidement. Durant ce rendu, `deferredText` possède toujours sa valeur précédente, donc `SlowList` est capable d'ignorer le re-rendering (ses propriétés n'ont pas changé). Sans [`memo`,](/reference/react/memo) il a besoin de re-render dans tous les cas, ce qui empêche l'optimisation.
+L'optimisation nécessite que `SlowList` soit accompagnée d'un [`memo`.](/reference/react/memo) À chaque fois que `text` change, React a besoin d'être capable de re-render le composant parent rapidement. Durant ce rendu, `deferredText` possède toujours sa valeur précédente, donc `SlowList` est capable d'ignorer le re-rendering (ses propriétés n'ont pas changé). Sans [`memo`,](/reference/react/memo) il a besoin de re-render dans tous les cas, ce qui empêche l'optimisation.
 
 </Pitfall>
 
