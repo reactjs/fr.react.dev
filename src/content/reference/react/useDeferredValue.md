@@ -44,7 +44,7 @@ Durant le rendu initial, la valeur différée renvoyée sera celle que vous avez
 
 #### Limitations {/*caveats*/}
 
-- Les valeurs que vous passez à `useDeferredValue` doivent  être soit des valeurs primitives (comme des chaînes de caractères ou des nombres), soit des objets créés en-dehors du rendu. Si vous créez un nouvel objet pendant le rendu et que vous le passez immédiatement à `useDeferredValue`, il sera différent à chaque rendu, entraînant des rendus inutiles en arrière-plan.
+- Les valeurs que vous passez à `useDeferredValue` doivent être soit des valeurs primitives (comme des chaînes de caractères ou des nombres), soit des objets créés en-dehors du rendu. Si vous créez un nouvel objet pendant le rendu et que vous le passez immédiatement à `useDeferredValue`, il sera différent à chaque rendu, entraînant des rendus inutiles en arrière-plan.
 
 - Quand `useDeferredValue` reçoit une valeur différente (en comparant au moyen de [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), en plus du rendu en cours (dans lequel il utilisera encore la valeur précédente), il planifie un rendu supplémentaire en arrière-plan avec la nouvelle valeur. Ce rendu d'arrière-plan est susceptible d'être interrompu : s'il y a un nouvelle mise à jour de `value`, React le recommencera de zéro. Par exemple, si l'utilisateur tape dans un champ de saisie trop rapidement pour qu'un graphique basé sur sa valeur différée puisse suivre, le graphique ne se mettra à jour qu'une fois que l'utilisateur aura terminé sa saisie.
 
@@ -208,7 +208,7 @@ async function getData(url) {
 }
 
 async function getSearchResults(query) {
-  // Ajoute un faux délai pour que l'attente soit perceptible.
+    // Ajoute un faux délai pour que le temps d'attente soit remarqué par l'utilisateur.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
@@ -578,7 +578,7 @@ export default function App() {
 ```js SearchResults.js hidden
 import { fetchData } from './data.js';
 
-// Note: ce composant est écrit en utilisant une API expérimentale
+// Remarque : ce composant est écrit en utilisant une API expérimentale
 // qui n'est pas encore disponible dans les versions stables de React.
 
 // Si vous souhaitez suivre cet exemple avec une version stable, 
@@ -603,8 +603,8 @@ export default function SearchResults({ query }) {
   );
 }
 
-// Ceci est une astuce permettant de contourner un bug afin de lancer la démo. 
-// TODO: remplacer avec la vraie implémentation quand le bug sera fixé. 
+// Astuce de contournement d'un bug afin d'exécuter la démo. 
+// TODO: remplacer avec la véritable implémentation quand le bug sera corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -630,9 +630,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: la manière de récupérer les données dépend 
+// Remarque : la manière de récupérer les données dépend 
 // du framework avec lequel vous utilisez Suspense. 
-// En temps normal, la logique de cache est à l'intérieur d'un framework. 
+// En temps normal, la logique de cache est fournie par le framework. 
 let cache = new Map();
 
 export function fetchData(url) {
@@ -879,7 +879,7 @@ export default function App() {
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
-  // S'affiche une seule fois. Le ralentissement est à l'intérieur de SlowItem.
+  // S'affiche une seule fois. Le ralentissement est dans SlowItem.
   console.log('[ARTIFICIELLEMENT LENT] Rendu de 250 <SlowItem />');
 
   let items = [];
@@ -896,7 +896,7 @@ const SlowList = memo(function SlowList({ text }) {
 function SlowItem({ text }) {
   let startTime = performance.now();
   while (performance.now() - startTime < 1) {
-    // Ne fais rien pendant une 1 ms par élément pour simuler du code extrêmement lent 
+    // Ne fait rien pendant 1 ms par élément pour simuler du code extrêmement lent
   }
 
   return (
