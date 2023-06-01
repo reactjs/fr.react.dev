@@ -105,28 +105,28 @@ root.render(<h1>Hello, world</h1>);
 
 Bien sûr, vous ne voulez pas réellement effacer le contenu HTML existant !
 
-Delete this code.
+Supprimez ce code.
 
-Instead, you probably want to render your React components in specific places in your HTML. Open your HTML page (or the server templates that generate it) and add a unique [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) attribute to any tag, for example:
+Au lieu de cela, vous souhaitez probablement afficher vos composants React à des emplacements spécifiques dans votre HTML. Ouvrez votre page HTML (ou les modèles de serveur qui la génèrent) et ajoutez un attribut [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) unique à n'importe quelle balise, par exemple :
 
 ```html
-<!-- ... somewhere in your html ... -->
+<!-- ... quelque part dans votre html ... -->
 <nav id="navigation"></nav>
-<!-- ... more html ... -->
+<!-- ... plus de html ... -->
 ```
 
-This lets you find that HTML element with [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) and pass it to [`createRoot`](/reference/react-dom/client/createRoot) so that you can render your own React component inside:
+Cela vous permet de trouver cet élément HTML avec [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) et de le transmettre à [`createRoot`](/reference/react-dom/client/createRoot) afin de pouvoir afficher votre propre composant React à l'intérieur :
 
 <Sandpack>
 
 ```html index.html
 <!DOCTYPE html>
 <html>
-  <head><title>My app</title></head>
+  <head><title>Mon appli</title></head>
   <body>
-    <p>This paragraph is a part of HTML.</p>
+    <p>Ce paragraphe fait partie du HTML.</p>
     <nav id="navigation"></nav>
-    <p>This paragraph is also a part of HTML.</p>
+    <p>Ce paragraphe fait également partie du HTML.</p>
   </body>
 </html>
 ```
@@ -135,7 +135,7 @@ This lets you find that HTML element with [`document.getElementById`](https://de
 import { createRoot } from 'react-dom/client';
 
 function NavigationBar() {
-  // TODO: Actually implement a navigation bar
+  // TODO: Implémentez réellement une barre de navigation
   return <h1>Hello from React!</h1>;
 }
 
@@ -146,10 +146,10 @@ root.render(<NavigationBar />);
 
 </Sandpack>
 
-Notice how the original HTML content from `index.html` is preserved, but your own `NavigationBar` React component now appears inside the `<nav id="navigation">` from your HTML. Read the [`createRoot` usage documentation](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) to learn more about rendering React components inside an existing HTML page.
+Remarquez comment le contenu HTML d'origine de `index.html` est préservé, mais votre propre composant React `NavigationBar` apparaît maintenant à l'intérieur de la balise `<nav id="navigation">` de votre HTML. Lisez [la documentation sur l'utilisation de `createRoot`](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) pour en savoir plus sur l'affichage des composants React à l'intérieur d'une page HTML existante.
 
-When you adopt React in an existing project, it's common to start with small interactive components (like buttons), and then gradually keep "moving upwards" until eventually your entire page is built with React. If you ever reach that point, we recommend migrating to [a React framework](/learn/start-a-new-react-project) right after to get the most out of React.
+Lorsque vous adoptez React dans un projet existant, il est courant de commencer par de petits composants interactifs (comme des boutons), puis de progressivement "monter en gamme" jusqu'à ce que finalement l'ensemble de votre page soit construit avec React. Si vous atteignez ce point, nous vous recommandons de migrer vers [un framework React](/learn/start-a-new-react-project) pour tirer le meilleur parti de React.
 
-## Using React Native in an existing native mobile app {/*using-react-native-in-an-existing-native-mobile-app*/}
+## Utiliser React Native dans une application mobile native existante {/*using-react-native-in-an-existing-native-mobile-app*/}
 
-[React Native](https://reactnative.dev/) can also be integrated into existing native apps incrementally. If you have an existing native app for Android (Java or Kotlin) or iOS (Objective-C or Swift), [follow this guide](https://reactnative.dev/docs/integration-with-existing-apps) to add a React Native screen to it.
+[React Native](https://reactnative.dev/) peut également être intégré progressivement dans des applications natives existantes. Si vous avez une application native existante pour Android (Java ou Kotlin) ou iOS (Objective-C ou Swift), [suivez ce guide](https://reactnative.dev/docs/integration-with-existing-apps) pour ajouter un affichage React Native à celle-ci.
