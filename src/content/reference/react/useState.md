@@ -110,9 +110,6 @@ La convention est de nommer les variables d'états de cette manière : `[somethi
 
 `useState` retourne un tableau avec exactement deux valeurs :
 
-1. L'état courant. Pendant le premier rendu, il sera le même que l'`initialState` que vous avez passé en entrée.
-2. La [fonction `set`](#setstate). Elle vous permet de mettre à jour l'état avec une valeur différente et de déclencher un nouveau rendu.
-
 1. L'<CodeStep step={1}>état courant</CodeStep> de cette variable d'état, initialement le même que l'<CodeStep step={3}>état initial</CodeStep> que vous avez passé en entrée.
 2. La <CodeStep step={2}>fonction `set`</CodeStep> qui vous permet de le changer avec n'importe quelle valeur lors d'une interaction.
 
@@ -322,7 +319,6 @@ En développement, React pourra [appeler deux fois vos mises à jour](#my-initia
 #### Est-il toujours préférable d'utiliser une mise à jour ? {/*is-using-an-updater-always-preferred*/}
 
 Vous pourrez peut-être entendre des recommandations vous disant de toujours écrire votre code de cette manière, si l'état que vous mettez à jour est calculé depuis l'état précédent : `setAge(a => a + 1)`. Il n'y a aucun mal à le faire, mais ce n'est pas toujours nécessaire.
-
 
 Dans la plupart des cas, il n'y a aucune différence entre ces deux approches. React vérifiera toujours, pour les actions intentionnelles des utilisateurs, que l'état `age` soit mis à jour avant le prochain click. Cela signifie qu'il n'y a aucun risque à ce qu'un gestionnaire de click voit un `age` "obsolète" au début de la gestion des évènements.
 
