@@ -17,11 +17,11 @@ Avant que vos composants ne soient affichés à l'écran, React doit en effectue
 
 </YouWillLearn>
 
-Imaginons que vos composants sont les membres d'une brigade de cuisine, qui confectionnent de savoureux plats à partir d'ingrédients de base.  Dans ce cas, React serait le serveur qui transmet les commandes des clients et leur ramène leurs plats.  Ce processus de requêtes et réponses liées à l'interface utilisateur *(UI pour User Interface, NdT)* comporte trois étapes :
+Imaginons que vos composants soient les membres d'une brigade de cuisine, qui confectionnent de savoureux plats à partir d'ingrédients de base.  Dans ce cas, React serait le serveur qui transmet les commandes des clients et leur ramène leurs plats.  Ce processus de requêtes et réponses liées à l'interface utilisateur *(UI pour User Interface, NdT)* comporte trois étapes :
 
 1. Le **déclenchement** du rendu (on transmet la commande du client à la cuisine)
 2. Le **rendu** du composant (on prépare la commande en cuisine)
-3. Le **commit** (la retranscription des changements) dans le DOM (on amène la commande préparée sur la table)
+3. Le **commit** (la retranscription des changements) dans le DOM (on amène les plats sur la table)
 
 <IllustrationBlock sequential>
   <Illustration caption="Déclenchement" alt="React est le serveur d’un restaurant, qui récupère les commandes des clients et les transmet à la Cuisine des Composants." src="/images/docs/illustrations/i_render-and-commit1.png" />
@@ -33,7 +33,7 @@ Imaginons que vos composants sont les membres d'une brigade de cuisine, qui conf
 
 Il y a deux déclencheurs possibles pour le rendu d'un composant :
 
-1. C'est le **rendu initial** du composant.
+1. On est sur le **rendu initial** du composant.
 2. Dans le composant (ou un de ses ancêtres), **l'état local a été mis à jour**.
 
 ### Rendu initial {/*initial-render*/}
@@ -67,10 +67,10 @@ Essayez de commenter l'appel à `root.render()` pour voir votre composant dispar
 
 ### Nouveaux rendus suite à des mises à jour d'état {/*re-renders-when-state-updates*/}
 
-Une fois que le composant a fait son rendu initial, vous pouvez déclencher des rendus supplémentaire en mettant à jour son état au moyen d'une [fonction `set`](/reference/react/useState#setstate). Mettre à jour l'état local d'un composant met automatiquement un rendu en file d'attente. (C'est un peu comme le convive d'un restaurant qui commanderait du thé, un dessert et plein d'autres choses après avoir passé sa commande initiale, en fonction de l'état de sa faim et de sa soif.)
+Une fois que le composant a fait son rendu initial, vous pouvez déclencher des rendus supplémentaires en mettant à jour son état au moyen d'une [fonction `set`](/reference/react/useState#setstate). Mettre à jour l'état local d'un composant met automatiquement un rendu en file d'attente. (C'est un peu comme le convive d'un restaurant qui commanderait du thé, un dessert et plein d'autres choses après avoir passé sa commande initiale, en fonction de l'état de sa faim et de sa soif.)
 
 <IllustrationBlock sequential>
-  <Illustration caption="Une mise à jour d'état…" alt="React est le serveur d’un restaurant, qui sert une UI Card à l'utilisateur, représenté par un convive avec un curseur en guise de tête.  Le client indique alors qu'il veut une carte rose, pas une carte noire !" src="/images/docs/illustrations/i_rerender1.png" />
+  <Illustration caption="Une mise à jour d'état…" alt="React est le serveur d’un restaurant, qui sert une UI Card à l'utilisateur, représenté par une convive avec un curseur en guise de tête.  La cliente indique alors qu'elle veut une carte rose, pas une carte noire !" src="/images/docs/illustrations/i_rerender1.png" />
   <Illustration caption="…déclenche…" alt="React retourne dans la Cuisine des Composants et indique au Chef des Cards qu'il a besoin d'une Card rose." src="/images/docs/illustrations/i_rerender2.png" />
   <Illustration caption="…un rendu !" alt="Le Chef des Cards donne une Card rose à React." src="/images/docs/illustrations/i_rerender3.png" />
 </IllustrationBlock>
@@ -80,9 +80,9 @@ Une fois que le composant a fait son rendu initial, vous pouvez déclencher des 
 Après que vous avez déclenché un rendu, React appelle vos composants pour déterminer ce qu'il doit afficher à l'écran. **Le « rendu », c'est React qui appelle vos composants.**
 
 - **Lors du rendu initial**, React appelle le composant racine.
-- **Lors des rendus suivants**, Reat appellera les fonctions composants dont une mise à jour de l'état local a déclenché le rendu.
+- **Lors des rendus suivants**, React appellera les fonctions composants dont une mise à jour de l'état local a déclenché le rendu.
 
-Ce processus est récursif : si le composant mis à jour renvoie un autre composant, React fera le rendu de *ce* composant-là ensuite, si celui-là renvoie à son tour un autre composant, il fera le rendu de *ce* composant-là, et ainsi de suite.  Le processus continue jusqu'à ce qu'il ne reste plus de composants imbriqués à traiter, pour que React sache exactement ce qu'il doit afficher à l'écran.
+Ce processus est récursif : si le composant mis à jour renvoie un autre composant, React fera le rendu de *ce* composant-là ensuite, et si ce dernier renvoie à son tour un autre composant, il fera le rendu de *ce* composant-là, et ainsi de suite.  Le processus continue jusqu'à ce qu'il ne reste plus de composants imbriqués à traiter, pour que React sache exactement ce qu'il doit afficher à l'écran.
 
 Dans l'exemple qui suit, React appellera `Gallery()`, puis plusieurs fois `Image()` :
 
@@ -142,7 +142,7 @@ En enfreignant ces règles, attendez-vous à des bugs déroutants et des comport
 
 #### Optimiser les performances {/*optimizing-performance*/}
 
-Le comportement par défaut, qui fait le rendu de tous les composants enveloppés par le composant mis à jour, n'est pas optimal pour les performances lorsque le composant mis à jour est situé très haut dans l'arbre.  Si vous constatez un souci avéré de performances, vous disposez de plusieurs options à mettre en place explicitement pour résoudre ça ; elles sont décrites dans la section [Performance](https://reactjs.org/docs/optimizing-performance.html). **Évitez les optimisations prématurées !**
+Le comportement par défaut, qui fait le rendu de tous les composants enveloppés par le composant mis à jour, n'est pas optimal pour les performances lorsque le composant mis à jour est situé très haut dans l'arbre.  Si vous constatez un souci avéré de performances, vous disposez de plusieurs options à mettre en place explicitement pour résoudre ça ; elles sont décrites dans la section [Performance](https://fr.legacy.reactjs.org/docs/optimizing-performance.html). **Évitez les optimisations prématurées !**
 
 </DeepDive>
 
@@ -150,8 +150,8 @@ Le comportement par défaut, qui fait le rendu de tous les composants enveloppé
 
 Après avoir fait le rendu de vos composants (c'est-à-dire après avoir appelé leurs fonctions), React devra mettre à jour le DOM.
 
-- **Lors du rendu initial**, React utilisera l'API DOM [`appendChild()`](https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild) pour injecter à l'écran tous les nœuds DOM qu'il a créés.
-- **Lors des rendus ultérieurs**, React s'attachera à effectuer le strict minimum d'opérations nécessaires (qu'il aura déterminées lors du rendu !) pour mettre le DOM en correspondance avec le résultat du dernier rendu en date.
+- **Lors du rendu initial**, React utilisera l'API DOM [`appendChild()`](https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild) pour retranscrire à l'écran tous les nœuds DOM qu'il a créés.
+- **Lors des rendus ultérieurs**, React s'attachera à effectuer le strict minimum d'opérations nécessaires (qu'il aura déterminées lors de la phase de rendu !) pour mettre le DOM en correspondance avec le résultat du dernier rendu en date.
 
 **React ne modifie les nœuds DOM que s'il y a un écart d'un rendu à l'autre.**  Par exemple, voici un composant qui refait son rendu avec des props différentes passées depuis son parent à chaque seconde.  Remarquez que vous pouvez ajouter du texte dans l'`<input>`, modifier sa `value`, mais le texte ne disparaît pas quand le composant refait son rendu :
 
@@ -193,9 +193,9 @@ export default function App() {
 
 </Sandpack>
 
-Ça fonctionne parce qu'à l'étape précédente, React n'a mis à jour que le contenu du `<h1>`, avec le nouveau `time`.  Il constate qu'un `<input/>` est présent dans le JSX au même endroit que la dernière fois, avec les mêmes props (il n'en a pas), aussi React ne touche-t-il pas à l'`<input/>`--pas plus qu'à sa `value` !
+Ça fonctionne parce qu'à l'étape précédente (le rendu), React n'a mis à jour que le contenu du `<h1>`, avec le nouveau `time`.  Il constate qu'un `<input/>` est présent dans le JSX au même endroit que la dernière fois, avec les mêmes props (il n'en a pas), aussi React ne touche-t-il pas à l'`<input/>`--encore moins à sa `value` !
 
-## Épilogue : Dessin par le navigateur *(Browser Paint)* {/*epilogue-browser-paint*/}
+## Épilogue : dessin par le navigateur *(Browser Paint)* {/*epilogue-browser-paint*/}
 
 Une fois que React a mis à jour le DOM en se basant sur les résultats du rendu, le navigateur va devoir redessiner l'écran. Même si ce procédé est souvent appelé « rendu » *(“rendering”, NdT)*, nous parlerons plutôt dans cette documentation de « dessin » *(“painting”, NdT)* pour éviter toute confusion.
 
