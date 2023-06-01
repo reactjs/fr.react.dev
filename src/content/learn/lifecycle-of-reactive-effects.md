@@ -1,37 +1,38 @@
 ---
-title: 'Lifecycle of Reactive Effects'
+title: 'Cycle de vie des Effets réactifs'
 ---
 
 <Intro>
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time. React provides a linter rule to check that you've specified your Effect's dependencies correctly. This keeps your Effect synchronized to the latest props and state.
+Les Effets ont un cycle de vie différent de celui des composants. Les composants peuvent se monter, être mis à jour ou se démonter. Un Effet ne peut faire que deux choses : commencer à synchroniser quelque chose et arrêter de le faire. Ce cycle peut se produire plusieurs fois si votre Effet dépend de props et d'états change au fil du temps. React fournit une règle de *linter* pour vérifier que vous avez correctement spécifié les dépendances de votre Effet. Ça permet à votre Effet de rester synchronisé avec les dernières props et états.
 
 </Intro>
 
 <YouWillLearn>
 
-- How an Effect's lifecycle is different from a component's lifecycle
-- How to think about each individual Effect in isolation
-- When your Effect needs to re-synchronize, and why
-- How your Effect's dependencies are determined
-- What it means for a value to be reactive
-- What an empty dependency array means
-- How React verifies your dependencies are correct with a linter
-- What to do when you disagree with the linter
+- En quoi le cycles de vie d'un Effet diffère de celui d'un composant
+- Comment penser à chaque Effet de manière isolée
+- Quand votre Effet doit être re-synchronisé et pourquoi
+- Comment sont déterminées les dépedances de votre Effet
+- Ce que signifie pour une valeur d'être réactive
+- Ce qu'un tableau de dépendances vide signifie
+- Comment React vérifie si vos dépendances sont correctes avec un *linter*
+- Que faire lorsque vous n'êtes pas d'accord avec le *linter*
+
 
 </YouWillLearn>
 
 ## The lifecycle of an Effect {/*the-lifecycle-of-an-effect*/}
 
-Every React component goes through the same lifecycle:
+Chaque composant de React suit le même cycle de vie :
 
-- A component _mounts_ when it's added to the screen.
-- A component _updates_ when it receives new props or state, usually in response to an interaction.
-- A component _unmounts_ when it's removed from the screen.
+- Un composant _se monte_ quand il est ajouté à l'écran.
+- Un composant _se met à jour_ quand il reçoit de nouveaux props ou état, généralement à la suite d'une interaction.
+- Un composant _se démonte_ quand il est retiré de l'écran.
 
-**It's a good way to think about components, but _not_ about Effects.** Instead, try to think about each Effect independently from your component's lifecycle. An Effect describes how to [synchronize an external system](/learn/synchronizing-with-effects) to the current props and state. As your code changes, synchronization will need to happen more or less often.
+**C'est une bonne façon de penser aux composants, mais _pas_ aux Effets**. Essayez plutôt de voir chaque Effet indépendament du cycle de vie de vos composants. Un Effet décrit la façon de [synchroniser un système extérieur](/learn/synchronizing-with-effects) avec les props et états actuels. Au fur et à mesure que votre code change, la synchronisation devra être plus ou moins fréquente.
 
-To illustrate this point, consider this Effect connecting your component to a chat server:
+Pour illustrer ce point, regardez cet Effet qui se connecte à un salon de discussion :
 
 ```js
 const serverUrl = 'https://localhost:1234';
@@ -48,7 +49,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Your Effect's body specifies how to **start synchronizing:**
+Le corps de votre Effet définit comment **démarrer la synchronisation** :
 
 ```js {2-3}
     // ...
@@ -60,7 +61,7 @@ Your Effect's body specifies how to **start synchronizing:**
     // ...
 ```
 
-The cleanup function returned by your Effect specifies how to **stop synchronizing:**
+La fonction de nettoyage retournée par votre Effet spéficié comment **stopper la synchronisation** :
 
 ```js {5}
     // ...
@@ -72,141 +73,141 @@ The cleanup function returned by your Effect specifies how to **stop synchronizi
     // ...
 ```
 
-Intuitively, you might think that React would **start synchronizing** when your component mounts and **stop synchronizing** when your component unmounts. However, this is not the end of the story! Sometimes, it may also be necessary to **start and stop synchronizing multiple times** while the component remains mounted.
+Intuitivement, vous pourriez penser que React **commencerait à se synchroniser** quand votre composant se monte et **arrêterait sa synchronisation** quand votre composant se démonte. Cependant, ce n'est pas la fin de l'histoire ! Parfois, il peut être nécessaire de **démarrer et d'arrêter la synchronisation plusieurs fois** alors que le composant reste monté.
 
-Let's look at _why_ this is necessary, _when_ it happens, and _how_ you can control this behavior.
+Voyons _pourquoi_ c'est nécessaire, _quand_ ça se produit et _comment_ vous pouvez contrôler ce comportement.
 
 <Note>
 
-Some Effects don't return a cleanup function at all. [More often than not,](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) you'll want to return one--but if you don't, React will behave as if you returned an empty cleanup function.
+Certains Effets ne retourne aucune fonction de nettoyage. [Le plus souvent](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development), vous voudrez en retourner une—mais dans le cas contraire, React se comportera comme si vous retourniez une fonction de nettoyage vide.
 
 </Note>
 
-### Why synchronization may need to happen more than once {/*why-synchronization-may-need-to-happen-more-than-once*/}
+### Pourquoi la synchronisation doit-elle se produire plus d'une fois {/*why-synchronization-may-need-to-happen-more-than-once*/}
 
-Imagine this `ChatRoom` component receives a `roomId` prop that the user picks in a dropdown. Let's say that initially the user picks the `"general"` room as the `roomId`. Your app displays the `"general"` chat room:
+Imaginez que ce composant `ChatRoom` reçoive une prop `roomId` que l'utilisateur choisit depuis une liste déroulante. Supposons que ce dernier choisisse initialement le salon `"general"` pour le `roomId`. Votre appli affiche le salon de discussion `"general"` :
 
 ```js {3}
 const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId /* "general" */ }) {
   // ...
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Bienvenue dans le salon {roomId} !</h1>;
 }
 ```
 
-After the UI is displayed, React will run your Effect to **start synchronizing.** It connects to the `"general"` room:
+Après l'affichage de l'interface utilisateur, React va exécuter votre Effet pour **démarrer la synchronisation**. Il se connecte au salon `"general"` :
 
 ```js {3,4}
 function ChatRoom({ roomId /* "general" */ }) {
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Connects to the "general" room
+    const connection = createConnection(serverUrl, roomId); // Connexion au salon "general"
     connection.connect();
     return () => {
-      connection.disconnect(); // Disconnects from the "general" room
+      connection.disconnect(); // Déconnexion du salon "general"
     };
   }, [roomId]);
   // ...
 ```
 
-So far, so good.
+Jusqu'ici, tout va bien.
 
-Later, the user picks a different room in the dropdown (for example, `"travel"`). First, React will update the UI:
+Plus tard, l'utilisateur choisit un salon différent depuis la liste déroulate (par exemple `"travel"`). React met d'abord à jour l'interface utilisateur :
 
 ```js {1}
 function ChatRoom({ roomId /* "travel" */ }) {
   // ...
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Bienvenue dans le salon {roomId} !</h1>;
 }
 ```
 
-Think about what should happen next. The user sees that `"travel"` is the selected chat room in the UI. However, the Effect that ran the last time is still connected to the `"general"` room. **The `roomId` prop has changed, so what your Effect did back then (connecting to the `"general"` room) no longer matches the UI.**
+Réfléchissez à ce qui doit se passer ensuite. L'utilisateur voit que le salon `"travel"` est séléctionné dans l'interface utilisateur. Cependant, l'Effet exécuté la dernière fois est toujours connecté au salon `"general"` room. **La prop `roomId` a changé, et ce qu'a fait votre Effet plus tôt (se connecter au salon `"general"`) ne correspond plus à ce qui se trouve dans l'interface utilisateur**.
 
-At this point, you want React to do two things:
+À ce stade, vous voulez que React fasse deux choses :
 
-1. Stop synchronizing with the old `roomId` (disconnect from the `"general"` room)
-2. Start synchronizing with the new `roomId` (connect to the `"travel"` room)
+1. Arrêter la synchronisation avec l'ancien `roomId` (se déconnecter du salon `"general"`).
+2. Démarrer la synchronisation avec le nouveau `roomId` (se connecter au salon `"travel"`).
 
-**Luckily, you've already taught React how to do both of these things!** Your Effect's body specifies how to start synchronizing, and your cleanup function specifies how to stop synchronizing. All that React needs to do now is to call them in the correct order and with the correct props and state. Let's see how exactly that happens.
+**Heureusement, vous avez déjà appris à React à faire ces deux choses-là** ! Le corps de votre Effet spécifie comment démarrer la synchronisation et votre fonction de nettoyage comment l'arrêter. Tout ce que React doit faire maintenant est de les appeler dans le bon ordre et avec les bons props et états. Voyons comment ça se passe exactement.
 
-### How React re-synchronizes your Effect {/*how-react-re-synchronizes-your-effect*/}
+### Comment React re-synchronise votre Effet {/*how-react-re-synchronizes-your-effect*/}
 
-Recall that your `ChatRoom` component has received a new value for its `roomId` prop. It used to be `"general"`, and now it is `"travel"`. React needs to re-synchronize your Effect to re-connect you to a different room.
+Souvenez-vous que votre composant `ChatRoom` a reçu une nouvelle valeur pour sa prop `roomId`. Avant, c'était `"general"` et c'est maintenant `"travel"`. React a besoin de resynchroniser votre Effet pour se reconnecter à un salon différent.
 
-To **stop synchronizing,** React will call the cleanup function that your Effect returned after connecting to the `"general"` room. Since `roomId` was `"general"`, the cleanup function disconnects from the `"general"` room:
+Pour **arrêter la synchronisation**, React doit appeler la fonction de nettoyage que votre Effet a retourné après sa connexion au salon `"general"` room. Comme `roomId` valait `"general"`, la fonction de nettoyage se déconnecte du salon `"general"` :
 
 ```js {6}
 function ChatRoom({ roomId /* "general" */ }) {
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Connects to the "general" room
+    const connection = createConnection(serverUrl, roomId); // Connexion au salon "general"
     connection.connect();
     return () => {
-      connection.disconnect(); // Disconnects from the "general" room
+      connection.disconnect(); // Déconnexion du salon "general"
     };
     // ...
 ```
 
-Then React will run the Effect that you've provided during this render. This time, `roomId` is `"travel"` so it will **start synchronizing** to the `"travel"` chat room (until its cleanup function is eventually called too):
+Puis React va exécuter l'Effet que vous avez fourni durant le rendu. Cette fois, `roomId` vaut `"travel"`, donc il va **démarrer sa synchronisation** au salon `"travel"` (jusqu'à ce que cette fonction de nettoyage soit appelée à son tour) :
 
 ```js {3,4}
 function ChatRoom({ roomId /* "travel" */ }) {
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Connects to the "travel" room
+    const connection = createConnection(serverUrl, roomId); // Connexion au salon "travel"
     connection.connect();
     // ...
 ```
 
-Thanks to this, you're now connected to the same room that the user chose in the UI. Disaster averted!
+Grâce à ça, vous êtes maintenant connecté au même salon que celui choisit par l'utilisateur sur l'interface utilisateur. La catastrophe est évitée !
 
-Every time after your component re-renders with a different `roomId`, your Effect will re-synchronize. For example, let's say the user changes `roomId` from `"travel"` to `"music"`. React will again **stop synchronizing** your Effect by calling its cleanup function (disconnecting you from the `"travel"` room). Then it will **start synchronizing** again by running its body with the new `roomId` prop (connecting you to the `"music"` room).
+Chaque fois que votre composant sera re-rendu avec un `roomId` différent, votre Effet se resynchronisera. Par exemple, disons que l'utilisateur change le `roomId` de `"travel"` à `"music"`. React **arrêtera à nouveau de synchroniser** votre Effet en appelant la fonction de nettoyage (en se déconnectant du salon `"travel"`). Puis, il **recommencera à se synchroniser** en exécutant le code avec la nouvelle prop `roomId` (en se connectant au salon `"music"`).
 
-Finally, when the user goes to a different screen, `ChatRoom` unmounts. Now there is no need to stay connected at all. React will **stop synchronizing** your Effect one last time and disconnect you from the `"music"` chat room.
+Enfin, lorsque votre utilisateur change d'écran, `ChatRoom` se démonte. Il n'y a plus besoin de rester connecté. React **arrêtera de synchroniser** votre Effet une dernière fois et vous déconnectera du salon `"music"`.
 
-### Thinking from the Effect's perspective {/*thinking-from-the-effects-perspective*/}
+### Penser du point de vue de l'Effet {/*thinking-from-the-effects-perspective*/}
 
-Let's recap everything that's happened from the `ChatRoom` component's perspective:
+Récapitulons tout ce qui se passe du point de vue du composant `ChatRoom` :
 
-1. `ChatRoom` mounted with `roomId` set to `"general"`
-1. `ChatRoom` updated with `roomId` set to `"travel"`
-1. `ChatRoom` updated with `roomId` set to `"music"`
-1. `ChatRoom` unmounted
+1. `ChatRoom` s'est monté avec `roomId` valant `"general"`
+1. `ChatRoom` s'est mis à jour avec `roomId` valant `"travel"`
+1. `ChatRoom` s'est mis à jour avec `roomId` valant `"music"`
+1. `ChatRoom` s'est démonté
 
-During each of these points in the component's lifecycle, your Effect did different things:
+À chacune de ces étapes du cycle de vie du composant, votre Effet a fait différentes choses :
 
-1. Your Effect connected to the `"general"` room
-1. Your Effect disconnected from the `"general"` room and connected to the `"travel"` room
-1. Your Effect disconnected from the `"travel"` room and connected to the `"music"` room
-1. Your Effect disconnected from the `"music"` room
+1. Votre Effet s'est connecté au salon `"general"`
+1. Votre Effet s'est déconnecté du salon `"general"` et s'est connecté au salon `"travel"`
+1. Votre Effet s'est déconnecté du salon `"travel"` et s'est connecté au salon `"music"`
+1. Votre Effet s'est déconnecté du salon `"music"`
 
-Now let's think about what happened from the perspective of the Effect itself:
+Maintenant, voyons ce qu'il s'est passé du point de vue de l'Effet lui-même :
 
 ```js
   useEffect(() => {
-    // Your Effect connected to the room specified with roomId...
+    // Votre Effet s'est connecté au salon spécifié par roomId...
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => {
-      // ...until it disconnected
+      // ...jusqu'à sa déconnexion
       connection.disconnect();
     };
   }, [roomId]);
 ```
 
-This code's structure might inspire you to see what happened as a sequence of non-overlapping time periods:
+La structure de ce code peut vous inciter à voir que ce qui s'est passé comme une séquence de périodes de temps qui ne se chevauchent pas :
 
-1. Your Effect connected to the `"general"` room (until it disconnected)
-1. Your Effect connected to the `"travel"` room (until it disconnected)
-1. Your Effect connected to the `"music"` room (until it disconnected)
+1. Votre Effet s'est connecté au salon `"general"` (jusqu'à sa déconnexion)
+1. Votre Effet s'est connecté au salon `"travel"` (jusqu'à sa déconnexion)
+1. Votre Effet s'est connecté au salon `"music"` (jusqu'à sa déconnexion)
 
-Previously, you were thinking from the component's perspective. When you looked from the component's perspective, it was tempting to think of Effects as "callbacks" or "lifecycle events" that fire at a specific time like "after a render" or "before unmount". This way of thinking gets complicated very fast, so it's best to avoid.
+Précédemment, vous pensiez du point de vue du composant. Lorsque vous regardiez du point de vue du composant, il était tentant de voir les Effets comme des « fonctions de rappel » ou des « événements de cycle de vie » qui se déclenchent à un moment précis, par exemple « après un rendu » ou « avant le démontage ». Cette façon de penser se complique très vite, aussi il est préférable de l'éviter.
 
-**Instead, always focus on a single start/stop cycle at a time. It shouldn't matter whether a component is mounting, updating, or unmounting. All you need to do is to describe how to start synchronization and how to stop it. If you do it well, your Effect will be resilient to being started and stopped as many times as it's needed.**
+**Au lieu de ça, concentrez-vous sur un seul cycle démarrage / arrêt en même temps. Le fait qu'un composant soit en train de se monter, de se mettre à jour ou de se démonter ne devrait pas avoir d'importance. Tout ce que vous avez à faire est de décrire comment démarrer et arrêter la synchronisation. Si vous faites ça correctement, votre Effet pourra être démarré et arrêté autant de fois que nécessaire.**
 
-This might remind you how you don't think whether a component is mounting or updating when you write the rendering logic that creates JSX. You describe what should be on the screen, and React [figures out the rest.](/learn/reacting-to-input-with-state)
+Ça peut vous rappeler que vous ne vous souciez pas de savoir si un composant est en train de se monter ou de se mettre à jour quand vous écrivez la logique de rendu qui crée le JSX. Vous décrivez ce qui doit être à l'écran, et React [se charge du reste](/learn/reacting-to-input-with-state).
 
-### How React verifies that your Effect can re-synchronize {/*how-react-verifies-that-your-effect-can-re-synchronize*/}
+### Comment React vérifie que votre Effet peut se resynchroniser {/*how-react-verifies-that-your-effect-can-re-synchronize*/}
 
-Here is a live example that you can play with. Press "Open chat" to mount the `ChatRoom` component:
+Voici un exemple avec lequel vous pouvez interagir. Pressez « Ouvrir le salon » pour monter le composant `ChatRoom` :
 
 <Sandpack>
 
@@ -222,7 +223,7 @@ function ChatRoom({ roomId }) {
     connection.connect();
     return () => connection.disconnect();
   }, [roomId]);
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Bienvenue dans le salon {roomId} !</h1>;
 }
 
 export default function App() {
@@ -231,18 +232,18 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Fermer le salon' : 'Ouvrir le salon'}
       </button>
       {show && <hr />}
       {show && <ChatRoom roomId={roomId} />}
@@ -253,13 +254,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » depuis ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » depuis ' + serverUrl);
     }
   };
 }
@@ -272,49 +273,49 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that when the component mounts for the first time, you see three logs:
+Remarquez que lorsque le composant se monte pour la première fois, vous voyez trois messages :
 
-1. `✅ Connecting to "general" room at https://localhost:1234...` *(development-only)*
-1. `❌ Disconnected from "general" room at https://localhost:1234.` *(development-only)*
-1. `✅ Connecting to "general" room at https://localhost:1234...`
+1. `✅ Connexion au salon « general » depuis https://localhost:1234...` *(seulement en mode développement)*
+1. `❌ Déconnexion du salon « general » depuis https://localhost:1234.` *(seulement en mode développement)*
+1. `✅ Connexion au salon « general » depuis https://localhost:1234...`
 
-The first two logs are development-only. In development, React always remounts each component once.
+Les deux premiers messages n'apparaissent qu'en mode de développement. Dans ce mode, React monte toujours les composants deux fois.
 
-**React verifies that your Effect can re-synchronize by forcing it to do that immediately in development.** This might remind you of opening a door and closing it an extra time to check if the door lock works. React starts and stops your Effect one extra time in development to check [you've implemented its cleanup well.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+**React vérifie que votre Effet peut se resynchroniser en le forçant à le faire immédiatement en mode de développement**. Ça peut vous faire penser à ouvrir une porte puis la fermer une fois de plus pour s'assurer que la serrure fonctionne bien. React démarre puis arrête votre Effet une fois de plus en mode de développement pour vérifier [que vous avez correctement implémenté son nettoyage](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development).
 
-The main reason your Effect will re-synchronize in practice is if some data it uses has changed. In the sandbox above, change the selected chat room. Notice how, when the `roomId` changes, your Effect re-synchronizes.
+La raison principale pour laquelle un Effet se resychronisera est que certaines données qu'il utilise ont changé. Dans le bac à sable plus haut, changez le salon de discussion sélectionné. Remarquez comment votre Effet se resynchronise quand `roomId` change.
 
-However, there are also more unusual cases in which re-synchronization is necessary. For example, try editing the `serverUrl` in the sandbox above while the chat is open. Notice how the Effect re-synchronizes in response to your edits to the code. In the future, React may add more features that rely on re-synchronization.
+Cependant, il existe des cas plus inhabituels où la re-synchronization est nécessaire. Par exemple, essayez de modifier le `serverUrl` dans le bac à sable plus haut alors que le salon est ouvert. Remarquez comment l'Effet se re-synchronise en même temps que vous éditez le code. À l'avenir, React pourrait ajouter d'autres fonctionnalités reposant sur la synchronisation.
 
-### How React knows that it needs to re-synchronize the Effect {/*how-react-knows-that-it-needs-to-re-synchronize-the-effect*/}
+### Comment React sait qu'il doit resynchroniser l'Effet {/*how-react-knows-that-it-needs-to-re-synchronize-the-effect*/}
 
-You might be wondering how React knew that your Effect needed to re-synchronize after `roomId` changes. It's because *you told React* that its code depends on `roomId` by including it in the [list of dependencies:](/learn/synchronizing-with-effects#step-2-specify-the-effect-dependencies)
+Vous vous demandez peut-être comment React a su que votre Effet devait se resynchroniser après la modification de `roomId`. C'est parce que *vous avez indique à React* que son code dépend de `roomId` en l'incluant dans la [liste des dépendances](/learn/synchronizing-with-effects#step-2-specify-the-effect-dependencies) :
 
 ```js {1,3,8}
-function ChatRoom({ roomId }) { // The roomId prop may change over time
+function ChatRoom({ roomId }) { // La prop roomId peut changer au cours du temps
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // This Effect reads roomId 
+    const connection = createConnection(serverUrl, roomId); // Cet Effet lit roomId 
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, [roomId]); // So you tell React that this Effect "depends on" roomId
+  }, [roomId]); // Donc vous dites à React que cet Effet « dépend » de roomId
   // ...
 ```
 
-Here's how this works:
+Voilà comment ça fonctionne :
 
-1. You knew `roomId` is a prop, which means it can change over time.
-2. You knew that your Effect reads `roomId` (so its logic depends on a value that may change later).
-3. This is why you specified it as your Effect's dependency (so that it re-synchronizes when `roomId` changes).
+1. Vous saviez que `roomId` est une prop, ce qui veut dire qu'elle peut changer avec le temps.
+2. Vous saviez que votre Effet lit `roomId` (donc sa logique dépend d'une valeur qui peut changer avec le temps).
+3. C'est pourquoi vous l'avez spécifié dans les dépendances de votre Effet (donc il se re-synchronise quand `roomId` change).
 
-Every time after your component re-renders, React will look at the array of dependencies that you have passed. If any of the values in the array is different from the value at the same spot that you passed during the previous render, React will re-synchronize your Effect.
+Chaque fois que votre composant se réaffiche, React regardera le tableau des dépendances que vous avez passé. Si l'une des valeurs de ce tableau est différente de la valeur lors du précédent rendu, alors React resynchronisera votre Effet.
 
-For example, if you passed `["general"]` during the initial render, and later you passed `["travel"]` during the next render, React will compare `"general"` and `"travel"`. These are different values (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), so React will re-synchronize your Effect. On the other hand, if your component re-renders but `roomId` has not changed, your Effect will remain connected to the same room.
+Par exemple, si vous avez passé `["general"]` lors du rendu initial, puis au prochain rendu vous avez passé `["travel"]`, React comparera `"general"` et `"travel"`. Ce sont des valeurs différentes (comparées avec [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), donc React resynchronisera votre Effet. D'un autre côté, si votre composant effectue un nouveau rendu mais que `roomId` n'a pas changé, alors votre Effet restera connecté au même salon.
 
-### Each Effect represents a separate synchronization process {/*each-effect-represents-a-separate-synchronization-process*/}
+### Chaque Effet représente un processus de synchronisation distinct {/*each-effect-represents-a-separate-synchronization-process*/}
 
-Resist adding unrelated logic to your Effect only because this logic needs to run at the same time as an Effect you already wrote. For example, let's say you want to send an analytics event when the user visits the room. You already have an Effect that depends on `roomId`, so you might feel tempted to add the analytics call there:
+Résistez à l'envie d'ajouter de la logique sans rapport avec votre Effet uniquement parce qu'elle doit être exécutée en même temps qu'un Effet que vous avez déjà écrit. Par exemple, disons que vous voulez envoyer des événements d'analytique quand un utilisateur visite un salon. Vous avez déjà un Effet qui dépend de `roomId`, vous pourriez être tenté d'ajouter l'appel à l'analytique ici :
 
 ```js {3}
 function ChatRoom({ roomId }) {
@@ -330,7 +331,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-But imagine you later add another dependency to this Effect that needs to re-establish the connection. If this Effect re-synchronizes, it will also call `logVisit(roomId)` for the same room, which you did not intend. Logging the visit **is a separate process** from connecting. Write them as two separate Effects:
+Imaginez que par la suite vous ajoutez une autre dépendance à cet Effet qui doit rétablir la connexion. Si cet Effet se re-synchronise, il appellera aussi `logVisit(roomId)` pour le même salon, ce que vous ne souhaitez pas. L'enregistrement de la visite **est un processus distinct** de celui de la connexion. Écrivez les dans deux Effets différents :
 
 ```js {2-4}
 function ChatRoom({ roomId }) {
@@ -346,13 +347,13 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-**Each Effect in your code should represent a separate and independent synchronization process.**
+**Chaque Effet de votre code doit représenter un processus de synchronisation distinct et indépendant.**
 
-In the above example, deleting one Effect wouldn’t break the other Effect's logic. This is a good indication that they synchronize different things, and so it made sense to split them up. On the other hand, if you split up a cohesive piece of logic into separate Effects, the code may look "cleaner" but will be [more difficult to maintain.](/learn/you-might-not-need-an-effect#chains-of-computations) This is why you should think whether the processes are same or separate, not whether the code looks cleaner.
+Dans le code ci-dessus, supprimer un Effet ne casserait pas la logique de l'autre Effet. C'est un bon indicateur qu'ils synchronisent des choses différentes, c'était donc logique de les séparer. En revanche, si vous diviser un bout de logique cohérente entre plusieurs Effets, le code peut sembler « plus propre », mais il sera [plus difficile à maintenir](/learn/you-might-not-need-an-effect#chains-of-computations). C'est pourquoi vous devez vous demander si les processus sont les mêmes ou pas et non si le code semble plus propre.
 
-## Effects "react" to reactive values {/*effects-react-to-reactive-values*/}
+## Les Effets « réagissent » aux valeurs réactives {/*effects-react-to-reactive-values*/}
 
-Your Effect reads two variables (`serverUrl` and `roomId`), but you only specified `roomId` as a dependency:
+Votre Effet lit deux variables (`serverUrl` et `roomId`), mais vous n'avez spécifié que `roomId` comme dépendance :
 
 ```js {5,10}
 const serverUrl = 'https://localhost:1234';
@@ -369,32 +370,32 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Why doesn't `serverUrl` need to be a dependency?
+Pourquoi le `serverUrl` n'a pas besoin d'être une dépendance ?
 
-This is because the `serverUrl` never changes due to a re-render. It's always the same no matter how many times the component re-renders and why. Since `serverUrl` never changes, it wouldn't make sense to specify it as a dependency. After all, dependencies only do something when they change over time!
+Simplement parce que `serverUrl` ne change jamais à cause d'un nouveau rendu. Il reste le même, quelque soit le nombre de fois où le composant est rendu ou pourquoi il l'est. Puisque `serverUrl` ne change jamais, ça n'aurait aucun sens de le spécifier comme une dépendance. Après tout, les dépendances n'ont d'importance que si elles changent au cours du temps !
 
-On the other hand, `roomId` may be different on a re-render. **Props, state, and other values declared inside the component are _reactive_ because they're calculated during rendering and participate in the React data flow.**
+En revanche, `roomId` peut être différent lors d'un nouveau rendu. **Les props, états et autres valeurs déclarées au sein d'un composant sont _réactifs_ parce qu'ils sont calculés pendant un rendu et participe au flux de données de React**.
 
-If `serverUrl` was a state variable, it would be reactive. Reactive values must be included in dependencies:
+Si `serverUrl` était une variable d'état, elle aurait été réactive. Les valeurs réactives doivent être incluses dans les dépendances :
 
 ```js {2,5,10}
-function ChatRoom({ roomId }) { // Props change over time
-  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // State may change over time
+function ChatRoom({ roomId }) { // Les props changent au cours du temps
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // L'état peut changer au cours du temps
 
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Your Effect reads props and state
+    const connection = createConnection(serverUrl, roomId); // Votre Effet lit les props et états
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, [roomId, serverUrl]); // So you tell React that this Effect "depends on" on props and state
+  }, [roomId, serverUrl]); // Vous indiquez à React que cet Effet « dépend de » ces props et états
   // ...
 }
 ```
 
-By including `serverUrl` as a dependency, you ensure that the Effect re-synchronizes after it changes.
+En ajoutant `serverUrl` comme dépendance, vous vous assurez que l'Effet se resynchronise après sa modification.
 
-Try changing the selected chat room or edit the server URL in this sandbox:
+Dans ce bac à sable, essayez de changer le salon de discussion sélectionné, ou modifiez l'URL du serveur :
 
 <Sandpack>
 
@@ -414,13 +415,13 @@ function ChatRoom({ roomId }) {
   return (
     <>
       <label>
-        Server URL:{' '}
+        URL du serveur :{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
     </>
   );
 }
@@ -430,14 +431,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <hr />
@@ -449,13 +450,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » depuis ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » depuis ' + serverUrl);
     }
   };
 }
@@ -468,11 +469,11 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Whenever you change a reactive value like `roomId` or `serverUrl`, the Effect re-connects to the chat server.
+À chaque fois que vous modifiez une valeur réactive comme `roomId` ou `serverUrl`, l'Effet se reconnecte au serveur de discussion.
 
-### What an Effect with empty dependencies means {/*what-an-effect-with-empty-dependencies-means*/}
+### Ce que siginifie un Effet avec un tableau de dépendances vide {/*what-an-effect-with-empty-dependencies-means*/}
 
-What happens if you move both `serverUrl` and `roomId` outside the component?
+Que se passe-t-il si vous déplacez `serverUrl` et `roomId` à l'extérieur du composant ?
 
 ```js {1,2}
 const serverUrl = 'https://localhost:1234';
@@ -485,14 +486,14 @@ function ChatRoom() {
     return () => {
       connection.disconnect();
     };
-  }, []); // ✅ All dependencies declared
+  }, []); // ✅ Toutes les dépendances sont déclarées
   // ...
 }
 ```
 
-Now your Effect's code does not use *any* reactive values, so its dependencies can be empty (`[]`).
+Maintenant, le code de votre Effet n'utilise *aucune* valeur réactive, donc ses dépendances sont vides (`[]`).
 
-Thinking from the component's perspective, the empty `[]` dependency array means this Effect connects to the chat room only when the component mounts, and disconnects only when the component unmounts. (Keep in mind that React would still [re-synchronize it an extra time](#how-react-verifies-that-your-effect-can-re-synchronize) in development to stress-test your logic.)
+En réfléchissant du point de vue du composant, le tableau de dépendances vide `[]` signifie que cet Effet se connecte au salon de discussion seulement quand le composant se monte, puis se déconnecte qu'une fois le composant démonté. (Gardez en mémoire que React voudra toujours [se resynchroniser une fois de plus](#how-react-verifies-that-your-effect-can-re-synchronize) dans le mode de développement pour tester votre logique.)
 
 
 <Sandpack>
@@ -510,7 +511,7 @@ function ChatRoom() {
     connection.connect();
     return () => connection.disconnect();
   }, []);
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Bienvenue dans le salon {roomId} !</h1>;
 }
 
 export default function App() {
@@ -518,7 +519,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Fermer le salon' : 'Ouvrir le salon'}
       </button>
       {show && <hr />}
       {show && <ChatRoom />}
@@ -529,13 +530,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » depuis ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » depuis ' + serverUrl);
     }
   };
 }
@@ -548,52 +549,52 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-However, if you [think from the Effect's perspective,](#thinking-from-the-effects-perspective) you don't need to think about mounting and unmounting at all. What's important is you've specified what your Effect does to start and stop synchronizing. Today, it has no reactive dependencies. But if you ever want the user to change `roomId` or `serverUrl` over time (and they would become reactive), your Effect's code won't change. You will only need to add them to the dependencies.
+Cependant, si vous [pensez du point de vue de l'Effet](#thinking-from-the-effects-perspective), vous n'avez pas besoin de penser au montage et au démontage. Ce qui importe, c'est que vous avez spécifié ce que votre Effet fait pour démarrer et arrêter la synchronisation. Pour l'instant, il n'a aucune dépendance réactive. Toutefois, si vous souhaitez que l'utilisateur puisse changer `roomId` ou `serverUrl` au fil du temps (et donc qu'ils deviennent réactifs), le code de votre Effet ne changera pas. Il suffira de les ajouter en tant que dépendances.
 
-### All variables declared in the component body are reactive {/*all-variables-declared-in-the-component-body-are-reactive*/}
+### Toutes les variables déclarées dans le corps du composant sont réactives {/*all-variables-declared-in-the-component-body-are-reactive*/}
 
-Props and state aren't the only reactive values. Values that you calculate from them are also reactive. If the props or state change, your component will re-render, and the values calculated from them will also change. This is why all variables from the component body used by the Effect should be in the Effect dependency list.
+Les props et états ne sont pas les seules valeurs réactives. Les valeurs que vous calculez à partir de ceux-ci sont aussi réactives. Si vos props ou états changent, votre composant sera à nouveau rendu et les valeurs calculées à partir d'eux changeront également. C'est pourquoi toutes les variables au sein du composant utilisées par l'Effet doivent apparaître dans la liste des dépendances.
 
-Let's say that the user can pick a chat server in the dropdown, but they can also configure a default server in settings. Suppose you've already put the settings state in a [context](/learn/scaling-up-with-reducer-and-context) so you read the `settings` from that context. Now you calculate the `serverUrl` based on the selected server from props and the default server:
+Imaginez que l'utilisateur puisse choisir le serveur de discussion dans une liste déroulante, mais qu'il puisse aussi configurer un serveur par défaut dans les paramètres. Supposez que vous ayez déjà mis l'état des paramètres dans un [contexte](/learn/scaling-up-with-reducer-and-context) et que vous lisiez ces `settings` depuis celui-ci. Vous calculez maintenant le `serverUrl` en fonction du serveur sélectionné depuis les props et le serveur par défaut :
 
 ```js {3,5,10}
-function ChatRoom({ roomId, selectedServerUrl }) { // roomId is reactive
-  const settings = useContext(SettingsContext); // settings is reactive
-  const serverUrl = selectedServerUrl ?? settings.defaultServerUrl; // serverUrl is reactive
+function ChatRoom({ roomId, selectedServerUrl }) { // roomId est réactive
+  const settings = useContext(SettingsContext); // settings est réactif
+  const serverUrl = selectedServerUrl ?? settings.defaultServerUrl; // serverUrl est réactif
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Your Effect reads roomId and serverUrl
+    const connection = createConnection(serverUrl, roomId); // Votre Effect lit roomId et serverUrl
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, [roomId, serverUrl]); // So it needs to re-synchronize when either of them changes!
+  }, [roomId, serverUrl]); // Donc il doit se resynchoniser lorsque l'un deux change
   // ...
 }
 ```
 
-In this example, `serverUrl` is not a prop or a state variable. It's a regular variable that you calculate during rendering. But it's calculated during rendering, so it can change due to a re-render. This is why it's reactive.
+Dans cet exemple, `serverUrl` n'est ni une prop ni une variable d'état. Il s'agit d'une variable ordinaire que vous calculez durant le rendu. Comme elle est calculée au moment du rendu, elle peut aussi changer à la suite d'un nouveau rendu. C'est pourquoi elle est réactive.
 
-**All values inside the component (including props, state, and variables in your component's body) are reactive. Any reactive value can change on a re-render, so you need to include reactive values as Effect's dependencies.**
+**Toutes les variables au sein du composant (y compris les props, états et les variables dans le corps de votre composant) sont réactives. Toute valeur réactive pouvant changer lors d'un nouveau rendu, vous devez l'inclure dans les dépendances de votre Effet.**
 
-In other words, Effects "react" to all values from the component body.
+En d'autres termes, les Effets « réagissent » à toutes les variables du corps du composant.
 
 <DeepDive>
 
-#### Can global or mutable values be dependencies? {/*can-global-or-mutable-values-be-dependencies*/}
+#### Des valeurs globales ou modifiables peuvent-elles êtres des dépendances ? {/*can-global-or-mutable-values-be-dependencies*/}
 
-Mutable values (including global variables) aren't reactive.
+Les valeurs modifiables (y compris les variables globales) ne sont pas réactives.
 
-**A mutable value like [`location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname) can't be a dependency.** It's mutable, so it can change at any time completely outside of the React rendering data flow. Changing it wouldn't trigger a re-render of your component. Therefore, even if you specified it in the dependencies, React *wouldn't know* to re-synchronize the Effect when it changes. This also breaks the rules of React because reading mutable data during rendering (which is when you calculate the dependencies) breaks [purity of rendering.](/learn/keeping-components-pure) Instead, you should read and subscribe to an external mutable value with [`useSyncExternalStore`.](/learn/you-might-not-need-an-effect#subscribing-to-an-external-store)
+**Une valeur modifiable telle que [`location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname) ne peut pas être une dépendance**. Elle est modifiables, elle peut donc changer n'importe quand en dehors du flux de données de rendu de React. La modifier ne déclencherait pas un nouveau rendu de votre composant. Par conséquent, même si vous la spécifiez dans vos dépendances, React *ne saura pas* qu'il faut resynchroniser l'Effet quand elle change. Ça enfreint également les règles de React car lire des données modifiables pendant le rendu (ce qui est le cas lorsque vous calculez les dépendances) rompt la [pureté du rendu](/learn/keeping-components-pure). Au lieu de ça, vous devriez lire et vous abonner à une valeur extérieure modifiables avec un [`useSyncExternalStore`](/learn/you-might-not-need-an-effect#subscribing-to-an-external-store).
 
-**A mutable value like [`ref.current`](/reference/react/useRef#reference) or things you read from it also can't be a dependency.** The ref object returned by `useRef` itself can be a dependency, but its `current` property is intentionally mutable. It lets you [keep track of something without triggering a re-render.](/learn/referencing-values-with-refs) But since changing it doesn't trigger a re-render, it's not a reactive value, and React won't know to re-run your Effect when it changes.
+**Une valeur modifiable telle que [`ref.current`](/reference/react/useRef#reference) ou les choses que vous lisez à partir d'elle ne peuvent également pas être des dépendances**. L'objet ref retourné par `useRef` lui-même peut être une dépendance, mais sa propriété `current` est intentionnellement modifiable. Ça vous permet de [garder une trace de quelque chose sans pour autant déclencher un nouveau rendu](/learn/referencing-values-with-refs). Puisque sa modification n'entraîne pas un nouveau rendu, ce n'est pas une valeur réactive et React ne saura pas qu'il faut réexécuter votre Effet quand elle change.
 
-As you'll learn below on this page, a linter will check for these issues automatically.
+Comme vous l'apprendrez plus loin sur cette page, le *linter* vérifiera automatiquement ces problèmes.
 
 </DeepDive>
 
-### React verifies that you specified every reactive value as a dependency {/*react-verifies-that-you-specified-every-reactive-value-as-a-dependency*/}
+### React vérifie que vous spécifiez chaque valeur réactive comme dépendance {/*react-verifies-that-you-specified-every-reactive-value-as-a-dependency*/}
 
-If your linter is [configured for React,](/learn/editor-setup#linting) it will check that every reactive value used by your Effect's code is declared as its dependency. For example, this is a lint error because both `roomId` and `serverUrl` are reactive:
+Si votre *linter* est [configuré pour React,](/learn/editor-setup#linting), il contrôlera que chaque valeur réactive utilisée par le code de votre Effet est déclarée parmi ses dépendances. Par exemple, voici une erreur du *linter* parce que `roomId` et `serverUrl` sont réactifs :
 
 <Sandpack>
 
@@ -601,25 +602,25 @@ If your linter is [configured for React,](/learn/editor-setup#linting) it will c
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
-function ChatRoom({ roomId }) { // roomId is reactive
-  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // serverUrl is reactive
+function ChatRoom({ roomId }) { // roomId est réactif
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // serverUrl est réactif
 
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => connection.disconnect();
-  }, []); // <-- Something's wrong here!
+  }, []); // <-- Quelque chose est incorrect ici !
 
   return (
     <>
       <label>
-        Server URL:{' '}
+        URL du serveur :{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
     </>
   );
 }
@@ -629,14 +630,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <hr />
@@ -648,13 +649,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » depuis ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » depuis ' + serverUrl);
     }
   };
 }
@@ -667,41 +668,41 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-This may look like a React error, but really React is pointing out a bug in your code. Both `roomId` and `serverUrl` may change over time, but you're forgetting to re-synchronize your Effect when they change. You will remain connected to the initial `roomId` and `serverUrl` even after the user picks different values in the UI.
+Ça peut ressembler à une erreur React, mais en réalité React signale un bug dans votre code. `roomId` et `serverUrl` peuvent tous deux changer au cours du temps, mais vous oubliez de resynchroniser votre Effet quand lorsqu'ils changent. Vous resterez lié aux valeurs initiales de `roomId` et `serverUrl`, même si l'utilisateur choisit des valeurs différentes depuis l'interface utilisateur.
 
-To fix the bug, follow the linter's suggestion to specify `roomId` and `serverUrl` as dependencies of your Effect:
+Pour corriger le bug, appliquez la suggestion du *linter* en spécifiant `roomId` et `serverUrl` comme dépendances de votre Effet :
 
 ```js {9}
-function ChatRoom({ roomId }) { // roomId is reactive
-  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // serverUrl is reactive
+function ChatRoom({ roomId }) { // roomId est réactif
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // serverUrl est réactif
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, [serverUrl, roomId]); // ✅ All dependencies declared
+  }, [serverUrl, roomId]); // ✅ Toutes les dépendances sont déclarées
   // ...
 }
 ```
 
-Try this fix in the sandbox above. Verify that the linter error is gone, and the chat re-connects when needed.
+Essayez de corriger ça dans le bac à sable ci-dessus. Vérifiez que l'erreur du *linter est partie et que le salon se reconnecte quand c'est nécessaire.
 
 <Note>
 
-In some cases, React *knows* that a value never changes even though it's declared inside the component. For example, the [`set` function](/reference/react/useState#setstate) returned from `useState` and the ref object returned by [`useRef`](/reference/react/useRef) are *stable*--they are guaranteed to not change on a re-render. Stable values aren't reactive, so you may omit them from the list. Including them is allowed: they won't change, so it doesn't matter.
+Dans certains cas, React *sait* qu'une valeur ne change jamais, même si elle est déclarée dans le composant. Par exemple, la [fonction `set`](/reference/react/useState#setstate) renvoyée par `useState` et l'objet ref renvoyés par [`useRef`](/reference/react/useRef) sont *stables*—ils sont garantis de ne pas changés durant un nouveau rendu. Les valeurs stables ne sont pas réactives, vous pouvez donc les omettre de la liste. Les inclure est autorisé : elles ne changeront, ça n'a donc pas d'importance.
 
 </Note>
 
-### What to do when you don't want to re-synchronize {/*what-to-do-when-you-dont-want-to-re-synchronize*/}
+### Que faire quand vous ne voulez pas resynchroniser {/*what-to-do-when-you-dont-want-to-re-synchronize*/}
 
-In the previous example, you've fixed the lint error by listing `roomId` and `serverUrl` as dependencies.
+Dans l'exemple précédent, vous avez corriger l'erreur du *linter* en ajoutant `roomId` et `serverUrl` comme dépendances.
 
-**However, you could instead "prove" to the linter that these values aren't reactive values,** i.e. that they *can't* change as a result of a re-render. For example, if `serverUrl` and `roomId` don't depend on rendering and always have the same values, you can move them outside the component. Now they don't need to be dependencies:
+**Cependant, vous pourriez plutôt « prouver » au *linter* que ces valeurs ne sont pas réactives**, c'est-à-dire qu'elle *ne peuvent pas* changer à la suite d'un nouveau rendu. Par exemple, si `serverUrl` et `roomId` ne dépendent pas du rendu et ont toujours les mêmes valeurs, vous pouvez les extraire du composant. Ainsi, ils n'ont plus besoin d'être des dépendances :
 
 ```js {1,2,11}
-const serverUrl = 'https://localhost:1234'; // serverUrl is not reactive
-const roomId = 'general'; // roomId is not reactive
+const serverUrl = 'https://localhost:1234'; // serverUrl n'est pas réactif
+const roomId = 'general'; // roomId n'est pas réactif
 
 function ChatRoom() {
   useEffect(() => {
@@ -710,80 +711,80 @@ function ChatRoom() {
     return () => {
       connection.disconnect();
     };
-  }, []); // ✅ All dependencies declared
+  }, []); // ✅ Toutes les dépendances sont déclarées
   // ...
 }
 ```
 
-You can also move them *inside the Effect.* They aren't calculated during rendering, so they're not reactive:
+Vous pouvez aussi les déplacer *à l'intérieur de l'Effet*. Ils ne sont pas calculés durant le rendu et ne sont pas donc réactifs :
 
 ```js {3,4,10}
 function ChatRoom() {
   useEffect(() => {
-    const serverUrl = 'https://localhost:1234'; // serverUrl is not reactive
-    const roomId = 'general'; // roomId is not reactive
+    const serverUrl = 'https://localhost:1234'; // serverUrl n'est pas réactif
+    const roomId = 'general'; // roomId n'est pas réactif
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, []); // ✅ All dependencies declared
+  }, []); // ✅ Toutes les dépendances sont déclarées
   // ...
 }
 ```
 
-**Effects are reactive blocks of code.** They re-synchronize when the values you read inside of them change. Unlike event handlers, which only run once per interaction, Effects run whenever synchronization is necessary.
+**Les Effets sont des bouts de code réactifs**. Ils se resynchronisent quand les valeurs que vous lisez à l'intérieur changent. Contrairement aux gestionnaires d'événements, qui ne s'exécutent qu'une fois par interaction, les Effets s'exécutent chaque fois qu'une synchronisation est nécessaire.
 
-**You can't "choose" your dependencies.** Your dependencies must include every [reactive value](#all-variables-declared-in-the-component-body-are-reactive) you read in the Effect. The linter enforces this. Sometimes this may lead to problems like infinite loops and to your Effect re-synchronizing too often. Don't fix these problems by suppressing the linter! Here's what to try instead:
+**Vous ne pouvez pas « choisir » vos dépendances**. Vos dépendances doivent inclure chaque [valeur réactive](#all-variables-declared-in-the-component-body-are-reactive) que vous lisez dans l'Effet. C'est imposé par le *linter*. Ça peut parfois aboutir à des problèmes comme des boucles infinies et des resynchronisation trop fréquentes de votre Effet. Ne corrigez pas ces erreurs en supprimant le *linter* ! Voici ce qu'il faut faire à la place :
 
-* **Check that your Effect represents an independent synchronization process.** If your Effect doesn't synchronize anything, [it might be unnecessary.](/learn/you-might-not-need-an-effect) If it synchronizes several independent things, [split it up.](#each-effect-represents-a-separate-synchronization-process)
+* **Vérifier que votre Effet représente un processue de sychronisation indépendant**. Si votre Effet ne synchronize rien du tout, [il est peut-être inutile](/learn/you-might-not-need-an-effect). S'il synchronise plusieurs choses indépendantes, [séparez-le](#each-effect-represents-a-separate-synchronization-process).
 
-* **If you want to read the latest value of props or state without "reacting" to it and re-synchronizing the Effect,** you can split your Effect into a reactive part (which you'll keep in the Effect) and a non-reactive part (which you'll extract into something called an _Effect Event_). [Read about separating Events from Effects.](/learn/separating-events-from-effects)
+* **Si vous voulez lire la dernière valeur des props ou de l'état sans « réagir » et resynchroniser l'Effet**, vous pouvez séparer votre Effet en une partie réactive (que vous garderez dans l'Effet) et une partie non réactive (que vous extrairez dans ce que l'on appelle un _événement d'Effet_). [À propos de la séparation des événements et des Effets](/learn/separating-events-from-effects).
 
-* **Avoid relying on objects and functions as dependencies.** If you create objects and functions during rendering and then read them from an Effect, they will be different on every render. This will cause your Effect to re-synchronize every time. [Read more about removing unnecessary dependencies from Effects.](/learn/removing-effect-dependencies)
+* **Évitez de vous appuyez sur des objets et des fonctions comme dépendances**. Si vous créez des objets et des fonctions durant le rendu, puis que vous les lisez dans un Effet, ils seront différents à chaque rendu. Ça obligera votre Effet à se resynchroniser à chaque fois. [À props de la suppression des dépendances inutiles dans les Effets](/learn/removing-effect-dependencies).
 
 <Pitfall>
 
-The linter is your friend, but its powers are limited. The linter only knows when the dependencies are *wrong*. It doesn't know *the best* way to solve each case. If the linter suggests a dependency, but adding it causes a loop, it doesn't mean the linter should be ignored. You need to change the code inside (or outside) the Effect so that that value isn't reactive and doesn't *need* to be a dependency.
+Le *linter* est votre ami, mais ses pouvoirs sont limités. Le *linter* ne sait que lorsque les dépendances sont *mauvaises*. Il ne connaît pas *la meilleure* solution pour résoudre chaque situation. Si le *linter* suggère une dépendance, mais que cet ajout entraîne une boucle, ça ne signifie pas pour autant qu'il faille l'ignorer. Vous devez modifier le code à l'intérieur (ou à l'extérieur) de l'Effet de façon à ce que cette valeur ne soit plus réactive et n'ait pas *besoin* d'être une dépendance.
 
-If you have an existing codebase, you might have some Effects that suppress the linter like this:
+Si vous avez une base de code existante, vous pouvez avoir certains Effet qui suppriment le *linter* comme ça :
 
 ```js {3-4}
 useEffect(() => {
   // ...
-  // 🔴 Avoid suppressing the linter like this:
+  // 🔴 Évitez de supprimer le linter comme ça :
   // eslint-ignore-next-line react-hooks/exhaustive-deps
 }, []);
 ```
 
-On the [next](/learn/separating-events-from-effects) [pages](/learn/removing-effect-dependencies), you'll learn how to fix this code without breaking the rules. It's always worth fixing!
+Dans les [pages](/learn/separating-events-from-effects) [suivantes](/learn/removing-effect-dependencies), vous apprendrez comme corriger ce code sans enfreindre les règles. Ça vaut toujours la peine d'être corrigé !
 
 </Pitfall>
 
 <Recap>
 
-- Components can mount, update, and unmount.
-- Each Effect has a separate lifecycle from the surrounding component.
-- Each Effect describes a separate synchronization process that can *start* and *stop*.
-- When you write and read Effects, think from each individual Effect's perspective (how to start and stop synchronization) rather than from the component's perspective (how it mounts, updates, or unmounts).
-- Values declared inside the component body are "reactive".
-- Reactive values should re-synchronize the Effect because they can change over time.
-- The linter verifies that all reactive values used inside the Effect are specified as dependencies.
-- All errors flagged by the linter are legitimate. There's always a way to fix the code to not break the rules.
+- Les composants peuvent se monter, se mettre à jour et se démonter.
+- Chaque Effet a un cycle de vie distinct du composant qui l'enrobe.
+- Chaque Effet décrit un processus de synchronisation distinct qui peut *démarrer* et *s'arrêter*.
+- Quand vous écrivez et lisez des Effets, pensez du point de vue de chaque Effet individuellement (comment démarrer et arrêter sa synchronisation), plutôt que du point de vue du composant (comment il se monte, se met à jour ou se démonte).
+- Les valeurs déclarées à l'intérieur du corps du composant sont « réactives ».
+- Les valeurs réactives doivent resynchroniser l'Effet car elles peuvent changer au cours du temps.
+- Le *linter* vérifie que toutes les valeurs réactives utilisées à l'intérieur de l'Effet sont spécifiées comme dépendances.
+- Toutes les erreurs signalées par le *linter* sont légitimes. Il y a toujours une façon de corriger le code pour ne pas enfreindre les règles.
 
 </Recap>
 
 <Challenges>
 
-#### Fix reconnecting on every keystroke {/*fix-reconnecting-on-every-keystroke*/}
+#### Corrigez la reconnexion à chaque frappe de touche {/*fix-reconnecting-on-every-keystroke*/}
 
-In this example, the `ChatRoom` component connects to the chat room when the component mounts, disconnects when it unmounts, and reconnects when you select a different chat room. This behavior is correct, so you need to keep it working.
+Dans cet exemple, le composant `ChatRoom` se connecte au salon de discussion au montage, se déconnete au démontage et se reconnecte lorsque vous changez le salon. Ce comportement est correct, aussi vous devez le maintenir.
 
-However, there is a problem. Whenever you type into the message box input at the bottom, `ChatRoom` *also* reconnects to the chat. (You can notice this by clearing the console and typing into the input.) Fix the issue so that this doesn't happen.
+Cependant, il y a un souci. Lorsque vous tapez dans la boite de message en dessus, le composant `ChatRoom` se reconnecte *également* au salon (vous pouvez remarquer ça en vidant la console puis en tapant dans le champ de saisie). Corrigez ce problème pour que ça ne se reproduise pas.
 
 <Hint>
 
-You might need to add a dependency array for this Effect. What dependencies should be there?
+Vous pourriez avoir besoin d'ajouter un tableau de dépendances pour cet Effet. Quelles dépendances doivent y figurer ?
 
 </Hint>
 
@@ -806,7 +807,7 @@ function ChatRoom({ roomId }) {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
       <input
         value={message}
         onChange={e => setMessage(e.target.value)}
@@ -820,14 +821,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <hr />
@@ -839,13 +840,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » depuis ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » depuis ' + serverUrl);
     }
   };
 }
@@ -860,7 +861,7 @@ button { margin-left: 10px; }
 
 <Solution>
 
-This Effect didn't have a dependency array at all, so it re-synchronized after every re-render. First, add a dependency array. Then, make sure that every reactive value used by the Effect is specified in the array. For example, `roomId` is reactive (because it's a prop), so it should be included in the array. This ensures that when the user selects a different room, the chat reconnects. On the other hand, `serverUrl` is defined outside the component. This is why it doesn't need to be in the array.
+Cet Effet n'avait pas du tout de tableau de dépendances, il se resynchronisait donc après chaque rendu. D'abord, ajoutez le tableau. Ensuite, assurez-vous que chaque valeur réactive utilisée par l'Effet est spécifiée dans ce tableau. Par exemple, `roomId` est réactif (puisque c'est une prop), donc il doit être inclus dans le tableau. Ça permet de s'assurer que le salon se reconnecte quand l'utilisateur choisit un salon différent. En revanche, `serverUrl` est défini à l'extérieur du composant. C'est pourquoi il n'a pas besoin d'être dans le tableau.
 
 <Sandpack>
 
@@ -881,7 +882,7 @@ function ChatRoom({ roomId }) {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
       <input
         value={message}
         onChange={e => setMessage(e.target.value)}
@@ -895,14 +896,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <hr />
@@ -914,13 +915,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » depuis ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » depuis ' + serverUrl);
     }
   };
 }
@@ -935,15 +936,15 @@ button { margin-left: 10px; }
 
 </Solution>
 
-#### Switch synchronization on and off {/*switch-synchronization-on-and-off*/}
+#### Activer et désactiver la synchronisation {/*switch-synchronization-on-and-off*/}
 
-In this example, an Effect subscribes to the window [`pointermove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event) event to move a pink dot on the screen. Try hovering over the preview area (or touching the screen if you're on a mobile device), and see how the pink dot follows your movement.
+Dans cet exemple, un Effet s'abonne à l'événement [`pointermove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event) de `window` pour déplacer un point rose à l'écran. Essayez de survoler la zone de prévisualisation (ou touchez l'écran si vous utilisez un appareil mobile) et observez comment le point rose suit votre mouvement.
 
-There is also a checkbox. Ticking the checkbox toggles the `canMove` state variable, but this state variable is not used anywhere in the code. Your task is to change the code so that when `canMove` is `false` (the checkbox is ticked off), the dot should stop moving. After you toggle the checkbox back on (and set `canMove` to `true`), the box should follow the movement again. In other words, whether the dot can move or not should stay synchronized to whether the checkbox is checked.
+Il y a également une case à cocher. Le fait de la cocher change la valeur de la variable d'état `canMove`, mais elle n'est utilisée nulle part dans le code. Votre tâche consiste à modifier le code pour que le point arrête son mouvement quand `canMove` est à `false` (la case n'est pas cochée). Lorsque vous recocher la case (et donc que `canMove` vaut `true`), le point doit suivre à nouveau le mouvement. En d'autres termes, le fait que le point puisse ou non se déplacer doit rester synchronisé avec le fait que la case soit cochée ou non.
 
 <Hint>
 
-You can't declare an Effect conditionally. However, the code inside the Effect can use conditions!
+Vous ne pouvez pas déclarer un Effet de manière conditionnelle. Cependant, le code à l'intérieur de votre Effet peut utiliser des conditions !
 
 </Hint>
 
@@ -971,7 +972,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)} 
         />
-        The dot is allowed to move
+        Le point peut se déplacer
       </label>
       <hr />
       <div style={{
@@ -1001,7 +1002,7 @@ body {
 
 <Solution>
 
-One solution is to wrap the `setPosition` call into an `if (canMove) { ... }` condition:
+Une solution consiste à enrober l'appel à `setPosition` dans une condition `if (canMove) { ... }` :
 
 <Sandpack>
 
@@ -1029,7 +1030,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)} 
         />
-        The dot is allowed to move
+        Le point peut se déplacer
       </label>
       <hr />
       <div style={{
@@ -1057,7 +1058,7 @@ body {
 
 </Sandpack>
 
-Alternatively, you could wrap the *event subscription* logic into an `if (canMove) { ... }` condition:
+Vous pouvez aussi bien enrober la logique de *souscription à l'événement* dans une condition `if (canMove) { ... }` :
 
 <Sandpack>
 
@@ -1085,7 +1086,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)} 
         />
-        The dot is allowed to move
+        Le point peut se déplacer
       </label>
       <hr />
       <div style={{
@@ -1113,19 +1114,19 @@ body {
 
 </Sandpack>
 
-In both of these cases, `canMove` is a reactive variable that you read inside the Effect. This is why it must be specified in the list of Effect dependencies. This ensures that the Effect re-synchronizes after every change to its value.
+Dans les deux cas, `canMove` est une variable réactive que vous lisez dans votre Effet. C'est pourquoi elle doit être dans la liste des dépendances de l'Effet. Ça garantit que l'Effet se resynchronise après chaque modification de sa valeur.
 
 </Solution>
 
-#### Investigate a stale value bug {/*investigate-a-stale-value-bug*/}
+#### Recherchez un bug sur une valeur obsolète {/*investigate-a-stale-value-bug*/}
 
-In this example, the pink dot should move when the checkbox is on, and should stop moving when the checkbox is off. The logic for this has already been implemented: the `handleMove` event handler checks the `canMove` state variable.
+Dans cet exemple, le point rose doit se déplacer quand la case est cochée et doit s'arrêter si elle ne l'est pas. Cette logique a déjà été implémentée : le gestionnaire d'événement `handleMove` contrôle la variable d'état `canMove`.
 
-However, for some reason, the `canMove` state variable inside `handleMove` appears to be "stale": it's always `true`, even after you tick off the checkbox. How is this possible? Find the mistake in the code and fix it.
+Cependant, pour certaines raisons, la variable d'état `canMove` dans `handleMove` semble être « obsolète » : elle vaut toujours `true`, même après avoir cliqué sur la case à cocher. Comment est-ce possible ? Trouvez l'erreur dans le code et corrigez-la.
 
 <Hint>
 
-If you see a linter rule being suppressed, remove the suppression! That's where the mistakes usually are.
+Si vous constatez qu'une règle du *linter* est supprimée, réactivez-la ! C'est là que se trouvent généralement les erreurs.
 
 </Hint>
 
@@ -1157,7 +1158,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)} 
         />
-        The dot is allowed to move
+        Le point peut se déplacer
       </label>
       <hr />
       <div style={{
@@ -1187,13 +1188,13 @@ body {
 
 <Solution>
 
-The problem with the original code was suppressing the dependency linter. If you remove the suppression, you'll see that this Effect depends on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
+Le problème du code original était la suppression du *linter*. Si vous le réactivez, vous verrez que cet Effet dépend de la fonction `handleMove`. C'est logique : `handleMove` est déclarée dans le corps du composant, ce qui en fait une valeur réactive. Chaque valeur réactive doit être spécifiée comme une dépendance sans quoi elle risque de devenir obsolète au cours du temps !
 
-The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
+L'auteur du code original a « menti » à React en disant que l'Effet ne dépendait (`[]`) d'aucune valeur réactive. C'est pour ça que React n'a pas resynchronisé l'Effet quand `canMove` a changé (et `handleMove` avec). React n'ayant pas resynchronisé l'Effet, la fonction `handleMove` attachée en tant qu'écouteur est la fonction `handleMove` créée au rendu initial. À ce moment-là, `canMove` valait `true`, c'est pourquoi la fonction `handleMove` du rendu initial verra toujours cette valeur.
 
-**If you never suppress the linter, you will never see problems with stale values.** There are a few different ways to solve this bug, but you should always start by removing the linter suppression. Then change the code to fix the lint error.
+**Si vous ne supprimez jamais le *linter*, vous ne rencontrerez jamais de problèmes avec des valeurs obsolètes**. Il existe différentes façons de résoudre ce bug, mais vous devez toujours commencer par réactiver le *linter*. Ensuite, changez le code pour corriger l'erreur du *linter*.
 
-You can change the Effect dependencies to `[handleMove]`, but since it's going to be a newly defined function for every render, you might as well remove dependencies array altogether. Then the Effect *will* re-synchronize after every re-render:
+Vous pouvez définir les dépendances de l'Effet à `[handleMove]`, mais comme il s'agira d'une nouvelle fonction pour chaque rendu, vous pourriez tout aussi bien supprimer complétement le tableau de dépendances. Ainsi, l'Effet *se resynchronisera* après chaque nouveau rendu :
 
 <Sandpack>
 
@@ -1222,7 +1223,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)} 
         />
-        The dot is allowed to move
+        Le point peut se déplacer
       </label>
       <hr />
       <div style={{
@@ -1250,9 +1251,9 @@ body {
 
 </Sandpack>
 
-This solution works, but it's not ideal. If you put `console.log('Resubscribing')` inside the Effect, you'll notice that it resubscribes after every re-render. Resubscribing is fast, but it would still be nice to avoid doing it so often.
+Cette solution fonctionne, mais n'est pas idéale. Si vous ajoutez `console.log('Nouvelle souscription')` dans l'Effet, vous noterez qu'il resouscrit après chaque nouveau rendu. La resouscription est rapide, mais il serait quand même préférable de le faire aussi souvent.
 
-A better fix would be to move the `handleMove` function *inside* the Effect. Then `handleMove` won't be a reactive value, and so your Effect won't depend on a function. Instead, it will need to depend on `canMove` which your code now reads from inside the Effect. This matches the behavior you wanted, since your Effect will now stay synchronized with the value of `canMove`:
+Une meilleure correction serait de déplacer la fonction `handleMove` *à l'intérieur* de l'Effect. Alors, `handleMove` ne serait plus une valeur réactive et votre Effet ne dépendrait plus d'une fonction. À la place, il devra dépendre de `canMove` que votre code lit désormais à l'intérieur de l'Effet. Ça correspond au comportement que vous vouliez, puisque votre Effet reste synchronisé avec la valeur de `canMove` :
 
 <Sandpack>
 
@@ -1281,7 +1282,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)} 
         />
-        The dot is allowed to move
+        Le point peut se déplacer
       </label>
       <hr />
       <div style={{
@@ -1309,21 +1310,21 @@ body {
 
 </Sandpack>
 
-Try adding `console.log('Resubscribing')` inside the Effect body and notice that now it only resubscribes when you toggle the checkbox (`canMove` changes) or edit the code. This makes it better than the previous approach that always resubscribed.
+Ajoutez `console.log('Nouvelle souscription')` à l'intérieur de l'Effet et constatez qu'il ne resouscrit que lorsque vous cliquez sur la case à cocher (lorsque `canMove` change) ou éditez le code. C'est une meilleure approche que la précédente qui consistait à toujours resouscrire.
 
-You'll learn a more general approach to this type of problem in [Separating Events from Effects.](/learn/separating-events-from-effects)
+Vous découvrirez une approche plus générale de ce type de problème dans [Séparer les événements des Effets](/learn/separating-events-from-effects).
 
 </Solution>
 
-#### Fix a connection switch {/*fix-a-connection-switch*/}
+#### Réparez un sélecteur de connexion {/*fix-a-connection-switch*/}
 
-In this example, the chat service in `chat.js` exposes two different APIs: `createEncryptedConnection` and `createUnencryptedConnection`. The root `App` component lets the user choose whether to use encryption or not, and then passes down the corresponding API method to the child `ChatRoom` component as the `createConnection` prop.
+Dans cet exemple, le service de discussion dans `chat.js` expose deux API différentes : `createEncryptedConnection` et `createUnencryptedConnection`. Le composant racine `App` laisse l'utilisateur choisir d'utiliser le chiffrement ou non, et transmet ensuite l'API correspondante au composant enfant `ChatRoom` par la prop `createConnection`.
 
-Notice that initially, the console logs say the connection is not encrypted. Try toggling the checkbox on: nothing will happen. However, if you change the selected room after that, then the chat will reconnect *and* enable encryption (as you'll see from the console messages). This is a bug. Fix the bug so that toggling the checkbox *also* causes the chat to reconnect.
+Notez qu'initialement, la console indique que la connexion n'est pas chiffrée. Essayez d'activer la case à cocher : rien ne se passe. Cependant, si vous changez de salon après ça, le salon se reconnecte *et* active le chiffrement (ce que vous voyez dans les messages de la console). C'est un bug. Corrigez-le pour que le fait d'activer la case à cocher entraîne *aussi* la reconnexion au salon.
 
 <Hint>
 
-Suppressing the linter is always suspicious. Could this be a bug?
+Une suppression du *linter* est toujours suspecte. Serait-ce un bug ?
 
 </Hint>
 
@@ -1343,14 +1344,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <label>
@@ -1359,7 +1360,7 @@ export default function App() {
           checked={isEncrypted}
           onChange={e => setIsEncrypted(e.target.checked)}
         />
-        Enable encryption
+        Activer le chiffrement
       </label>
       <hr />
       <ChatRoom
@@ -1385,31 +1386,31 @@ export default function ChatRoom({ roomId, createConnection }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Bienvenue dans le salon {roomId} !</h1>;
 }
 ```
 
 ```js chat.js
 export function createEncryptedConnection(roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ 🔐 Connecting to "' + roomId + '... (encrypted)');
+      console.log('✅ 🔐 Connexion au salon « ' + roomId + ' »... (chiffrée)');
     },
     disconnect() {
-      console.log('❌ 🔐 Disconnected from "' + roomId + '" room (encrypted)');
+      console.log('❌ 🔐 Déconnexion du salon « ' + roomId + ' »... (chiffrée)');
     }
   };
 }
 
 export function createUnencryptedConnection(roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '... (unencrypted)');
+      console.log('✅ Connexion au salon « ' + roomId + ' »... (non chiffrée)');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room (unencrypted)');
+      console.log('❌ Déconnexion du salon « ' + roomId + ' »... (non chiffrée)');
     }
   };
 }
@@ -1423,7 +1424,7 @@ label { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-If you remove the linter suppression, you will see a lint error. The problem is that `createConnection` is a prop, so it's a reactive value. It can change over time! (And indeed, it should--when the user ticks the checkbox, the parent component passes a different value of the `createConnection` prop.) This is why it should be a dependency. Include it in the list to fix the bug:
+Si vous réactivez le *linter*, il vous indiquera une erreur. Le problème est que `createConnection` est une prop, c'est donc une valeur réactive. Elle peut changer au cours du temps (et en effet elle devrait—quand l'utilisateur clique sur la case à cocher, le composant parent passe une valeur différente de la prop `createConnection` prop) ! C'est pour ça qu'elle doit être une dépendance. Il faut donc l'inclure dans la liste pour corriger le bug :
 
 <Sandpack>
 
@@ -1441,14 +1442,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <label>
@@ -1457,7 +1458,7 @@ export default function App() {
           checked={isEncrypted}
           onChange={e => setIsEncrypted(e.target.checked)}
         />
-        Enable encryption
+        Activer le chiffrement
       </label>
       <hr />
       <ChatRoom
@@ -1482,31 +1483,31 @@ export default function ChatRoom({ roomId, createConnection }) {
     return () => connection.disconnect();
   }, [roomId, createConnection]);
 
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Bienvenue dans le salon {roomId} !</h1>;
 }
 ```
 
 ```js chat.js
 export function createEncryptedConnection(roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ 🔐 Connecting to "' + roomId + '... (encrypted)');
+      console.log('✅ 🔐 Connexion au salon « ' + roomId + ' »... (chiffrée)');
     },
     disconnect() {
-      console.log('❌ 🔐 Disconnected from "' + roomId + '" room (encrypted)');
+      console.log('❌ 🔐 Déconnexion du salon « ' + roomId + ' »... (chiffrée)');
     }
   };
 }
 
 export function createUnencryptedConnection(roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '... (unencrypted)');
+      console.log('✅ Connexion au salon « ' + roomId + ' »... (non chiffrée)');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room (unencrypted)');
+      console.log('❌ Déconnexion du salon « ' + roomId + ' »... (non chiffrée)');
     }
   };
 }
@@ -1518,7 +1519,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-It is correct that `createConnection` is a dependency. However, this code is a bit fragile because someone could edit the `App` component to pass an inline function as the value of this prop. In that case, its value would be different every time the `App` component re-renders, so the Effect might re-synchronize too often. To avoid this, you can pass `isEncrypted` down instead:
+Il est vrai que `createConnection` est une dépendance. Toutefois, ce code est un peu fragile car quelqu'un pourrait changer le composant `App` pour transmettre une fonction en ligne comme valeur de cette prop. Dans ce cas, sa valeur serait différente à chaque fois que le composant `App` est rendu, donc l'Effet pourrait se resynchroniser trop souvent. Pour éviter ça, vous pouvez transmettre `isEncrypted` à la place :
 
 <Sandpack>
 
@@ -1532,14 +1533,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <label>
@@ -1548,7 +1549,7 @@ export default function App() {
           checked={isEncrypted}
           onChange={e => setIsEncrypted(e.target.checked)}
         />
-        Enable encryption
+        Activer le chiffrement
       </label>
       <hr />
       <ChatRoom
@@ -1577,31 +1578,31 @@ export default function ChatRoom({ roomId, isEncrypted }) {
     return () => connection.disconnect();
   }, [roomId, isEncrypted]);
 
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Bienvenue dans le salon {roomId} !</h1>;
 }
 ```
 
 ```js chat.js
 export function createEncryptedConnection(roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ 🔐 Connecting to "' + roomId + '... (encrypted)');
+      console.log('✅ 🔐 Connexion au salon « ' + roomId + ' »... (chiffrée)');
     },
     disconnect() {
-      console.log('❌ 🔐 Disconnected from "' + roomId + '" room (encrypted)');
+      console.log('❌ 🔐 Déconnexion du salon « ' + roomId + ' »... (chiffrée)');
     }
   };
 }
 
 export function createUnencryptedConnection(roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '... (unencrypted)');
+      console.log('✅ Connexion au salon « ' + roomId + ' »... (non chiffrée)');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room (unencrypted)');
+      console.log('❌ Déconnexion du salon « ' + roomId + ' »... (non chiffrée)');
     }
   };
 }
@@ -1613,21 +1614,21 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-In this version, the `App` component passes a boolean prop instead of a function. Inside the Effect, you decide which function to use. Since both `createEncryptedConnection` and `createUnencryptedConnection` are declared outside the component, they aren't reactive, and don't need to be dependencies. You'll learn more about this in [Removing Effect Dependencies.](/learn/removing-effect-dependencies)
+Dans cette version, le composant `App` transmet une prop booléenne plutôt qu'une fonction. Au sein de l'Effet, vous choisissez quelle fonction utiliser. Puis que `createEncryptedConnection` et `createUnencryptedConnection` sont toutes les deux définies en dehors du composant, elles ne sont pas réactives et n'ont pas besoin d'être des dépendances. Vous en saurez plus à ce sujet dans [Supprimer les dépendances des Effets](/learn/removing-effect-dependencies).
 
 </Solution>
 
-#### Populate a chain of select boxes {/*populate-a-chain-of-select-boxes*/}
+#### Remplir une série de listes déroulantes {/*populate-a-chain-of-select-boxes*/}
 
-In this example, there are two select boxes. One select box lets the user pick a planet. Another select box lets the user pick a place *on that planet.* The second box doesn't work yet. Your task is to make it show the places on the chosen planet.
+Dans cet exemple, il y a deux listes déroulantes. La première permet à l'utilisateur de choisir une planète. La seconde lui permet de sélectionner un endroit *sur cette planète*. Ce dernière ne fonctionne pas encore. Votre tâche consiste à afficher les lieux pour la planète choisie.
 
-Look at how the first select box works. It populates the `planetList` state with the result from the `"/planets"` API call. The currently selected planet's ID is kept in the `planetId` state variable. You need to find where to add some additional code so that the `placeList` state variable is populated with the result of the `"/planets/" + planetId + "/places"` API call.
+Regardez comment fonctionne la première liste déroulante. Elle remplit l'état `planetList` avec le résultat de l'appel à l'API `"/planets"`. L'identifiant de la planète sélectionnée est conservé dans la variable d'état `planetId`. Vous devez trouver où ajouter du code pour que la variable d'état `placeList` soit remplie avec le résultat de l'appel à l'API `"/planets/" + planetId + "/places"`.
 
-If you implement this right, selecting a planet should populate the place list. Changing a planet should change the place list.
+Si vous implémentez ça correctement, choisir une planète doit remplir la liste des lieux. Changer de planète doit modifier cette liste.
 
 <Hint>
 
-If you have two independent synchronization processes, you need to write two separate Effects.
+Si vous avez deux processus de synchronisation différents, vous devez écrire deux Effets distincts.
 
 </Hint>
 
@@ -1648,9 +1649,9 @@ export default function Page() {
     let ignore = false;
     fetchData('/planets').then(result => {
       if (!ignore) {
-        console.log('Fetched a list of planets.');
+        console.log("Récupération d'une liste de planètes.");
         setPlanetList(result);
-        setPlanetId(result[0].id); // Select the first planet
+        setPlanetId(result[0].id); // Sélection de la première planète
       }
     });
     return () => {
@@ -1661,7 +1662,7 @@ export default function Page() {
   return (
     <>
       <label>
-        Pick a planet:{' '}
+        Choisissez une planète :{' '}
         <select value={planetId} onChange={e => {
           setPlanetId(e.target.value);
         }}>
@@ -1671,7 +1672,7 @@ export default function Page() {
         </select>
       </label>
       <label>
-        Pick a place:{' '}
+        Choisissez un lieu :{' '}
         <select value={placeId} onChange={e => {
           setPlaceId(e.target.value);
         }}>
@@ -1681,7 +1682,7 @@ export default function Page() {
         </select>
       </label>
       <hr />
-      <p>You are going to: {placeId || '???'} on {planetId || '???'} </p>
+      <p>Vous allez à : {placeId || '???'} sur {planetId || '???'} </p>
     </>
   );
 }
@@ -1705,10 +1706,10 @@ async function fetchPlanets() {
     setTimeout(() => {
       resolve([{
         id: 'earth',
-        name: 'Earth'
+        name: 'Terre'
       }, {
         id: 'venus',
-        name: 'Venus'
+        name: 'Vénus'
       }, {
         id: 'mars',
         name: 'Mars'        
@@ -1732,10 +1733,10 @@ async function fetchPlaces(planetId) {
           name: 'Laos'
         }, {
           id: 'spain',
-          name: 'Spain'
+          name: 'Espagne'
         }, {
           id: 'vietnam',
-          name: 'Vietnam'        
+          name: 'Viêt Nam'        
         }]);
       } else if (planetId === 'venus') {
         resolve([{
@@ -1773,12 +1774,12 @@ label { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-There are two independent synchronization processes:
+Il y a deux processus de synchronisation distincts :
 
-- The first select box is synchronized to the remote list of planets.
-- The second select box is synchronized to the remote list of places for the current `planetId`.
+- La première liste déroulante est synchronisée avec la liste des planètes.
+- La seconde est synchronisée avec la liste des lieux pour la `planetId` choisie.
 
-This is why it makes sense to describe them as two separate Effects. Here's an example of how you could do this:
+C'est pourquoi c'est logique de les décrire comme deux Effets distincts. Voici un exemple de ce que vous pouvez faire :
 
 <Sandpack>
 
@@ -1797,9 +1798,9 @@ export default function Page() {
     let ignore = false;
     fetchData('/planets').then(result => {
       if (!ignore) {
-        console.log('Fetched a list of planets.');
+        console.log("Récupération d'une liste de planètes.");
         setPlanetList(result);
-        setPlanetId(result[0].id); // Select the first planet
+        setPlanetId(result[0].id); // Sélection de la première planète
       }
     });
     return () => {
@@ -1809,16 +1810,16 @@ export default function Page() {
 
   useEffect(() => {
     if (planetId === '') {
-      // Nothing is selected in the first box yet
+      // Rien n'est choisi dans la première liste
       return;
     }
 
     let ignore = false;
     fetchData('/planets/' + planetId + '/places').then(result => {
       if (!ignore) {
-        console.log('Fetched a list of places on "' + planetId + '".');
+        console.log('Récupération de la liste des lieux sur « ' + planetId + ' ».');
         setPlaceList(result);
-        setPlaceId(result[0].id); // Select the first place
+        setPlaceId(result[0].id); // Sélection du premier lieu
       }
     });
     return () => {
@@ -1829,7 +1830,7 @@ export default function Page() {
   return (
     <>
       <label>
-        Pick a planet:{' '}
+        Choisissez une planète :{' '}
         <select value={planetId} onChange={e => {
           setPlanetId(e.target.value);
         }}>
@@ -1839,7 +1840,7 @@ export default function Page() {
         </select>
       </label>
       <label>
-        Pick a place:{' '}
+        Choisissez un lieu :{' '}
         <select value={placeId} onChange={e => {
           setPlaceId(e.target.value);
         }}>
@@ -1849,7 +1850,7 @@ export default function Page() {
         </select>
       </label>
       <hr />
-      <p>You are going to: {placeId || '???'} on {planetId || '???'} </p>
+      <p>Vous allez à : {placeId || '???'} sur {planetId || '???'} </p>
     </>
   );
 }
@@ -1873,10 +1874,10 @@ async function fetchPlanets() {
     setTimeout(() => {
       resolve([{
         id: 'earth',
-        name: 'Earth'
+        name: 'Terre'
       }, {
         id: 'venus',
-        name: 'Venus'
+        name: 'Vénus'
       }, {
         id: 'mars',
         name: 'Mars'        
@@ -1900,10 +1901,10 @@ async function fetchPlaces(planetId) {
           name: 'Laos'
         }, {
           id: 'spain',
-          name: 'Spain'
+          name: 'Espagne'
         }, {
           id: 'vietnam',
-          name: 'Vietnam'        
+          name: 'Viêt Nam'        
         }]);
       } else if (planetId === 'venus') {
         resolve([{
@@ -1939,9 +1940,9 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-This code is a bit repetitive. However, that's not a good reason to combine it into a single Effect! If you did this, you'd have to combine both Effect's dependencies into one list, and then changing the planet would refetch the list of all planets. Effects are not a tool for code reuse.
+Ce code est un tantinet répétitif. Cependant, ce n'est pas une bonne raison pour tout mettre dans un seul Effet ! Si vous faisiez ça, vous devriez combiner les dépendances des deux Effets dans une seule liste, et le changement de la planète entraînerait la récupération de toutes les planètes. Les Effets ne sont pas un outil pour la réutilisation de code.
 
-Instead, to reduce repetition, you can extract some logic into a custom Hook like `useSelectOptions` below:
+Pour limiter la répétition, vous pouvez plutôt extraire une partie de la logique dans un Hook personnalisé `useSelectOptions` ci-dessous :
 
 <Sandpack>
 
@@ -1965,7 +1966,7 @@ export default function Page() {
   return (
     <>
       <label>
-        Pick a planet:{' '}
+        Choisissez une planète :{' '}
         <select value={planetId} onChange={e => {
           setPlanetId(e.target.value);
         }}>
@@ -1975,7 +1976,7 @@ export default function Page() {
         </select>
       </label>
       <label>
-        Pick a place:{' '}
+        Choisissez un lieu :{' '}
         <select value={placeId} onChange={e => {
           setPlaceId(e.target.value);
         }}>
@@ -1985,7 +1986,7 @@ export default function Page() {
         </select>
       </label>
       <hr />
-      <p>You are going to: {placeId || '...'} on {planetId || '...'} </p>
+      <p>Vous allez à : {placeId || '...'} sur {planetId || '...'} </p>
     </>
   );
 }
@@ -2036,10 +2037,10 @@ async function fetchPlanets() {
     setTimeout(() => {
       resolve([{
         id: 'earth',
-        name: 'Earth'
+        name: 'Terre'
       }, {
         id: 'venus',
-        name: 'Venus'
+        name: 'Vénus'
       }, {
         id: 'mars',
         name: 'Mars'        
@@ -2063,10 +2064,10 @@ async function fetchPlaces(planetId) {
           name: 'Laos'
         }, {
           id: 'spain',
-          name: 'Spain'
+          name: 'Espagne'
         }, {
           id: 'vietnam',
-          name: 'Vietnam'        
+          name: 'Viêt Nam'        
         }]);
       } else if (planetId === 'venus') {
         resolve([{
@@ -2102,7 +2103,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-Check the `useSelectOptions.js` tab in the sandbox to see how it works. Ideally, most Effects in your application should eventually be replaced by custom Hooks, whether written by you or by the community. Custom Hooks hide the synchronization logic, so the calling component doesn't know about the Effect. As you keep working on your app, you'll develop a palette of Hooks to choose from, and eventually you won't need to write Effects in your components very often.
+Regardez l'onglet `useSelectOptions.js` dans le bac à sable pour voir son fonctionnement. Dans l'idéal, la plupart des Effets de votre application devraient être remplacés par des Hooks personnalisés, qu'ils soient écrits par vous ou par la communauté. Les Hooks personnalisés cache la logique de synchronisation, de sorte que le composant appelant ne sait rien de l'Effet. Au fur et à mesure que vous travaillerez sur votre appli, vous développerez une palette de Hooks parmi lesquels vous pourrez choisir, et finalement vous n'aurez pas besoin d'écrire des Effets dans vos composants très souvent.
 
 </Solution>
 
