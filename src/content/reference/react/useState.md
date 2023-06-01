@@ -200,9 +200,9 @@ export default function MyInput() {
 
 <Solution />
 
-#### Case à cocher (booléan) {/*checkbox-boolean*/}
+#### Case à cocher (booléen) {/*checkbox-boolean*/}
 
-Dans cet exemple, la variable d'état `liked` contient un booléan. Lorsque vous cliquez sur la case, `setLiked` met à jour la variable d'état `liked` selon si la case est cochée ou non. La variable `liked` est utilisée pour effectuer le rendu du texte sous la case à cocher.
+Dans cet exemple, la variable d'état `liked` contient un booléen. Lorsque vous cliquez sur la case, `setLiked` met à jour la variable d'état `liked` selon si la case est cochée ou non. La variable `liked` est utilisée pour effectuer le rendu du texte sous la case à cocher.
 
 <Sandpack>
 
