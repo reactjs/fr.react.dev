@@ -4,7 +4,7 @@ title: useState
 
 <Intro>
 
-`useState` is a React Hook that lets you add a [state variable](/learn/state-a-components-memory) to your component.
+`useState` est un Hook React qui vous laisse ajouter une [variable d'état](/learn/state-a-components-memory) (*state, NdT*) dans votre composant.
 
 ```js
 const [state, setState] = useState(initialState);
@@ -16,11 +16,11 @@ const [state, setState] = useState(initialState);
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `useState(initialState)` {/*usestate*/}
 
-Call `useState` at the top level of your component to declare a [state variable.](/learn/state-a-components-memory)
+Appelez `useState` à la racine de votre composant pour déclarer une [variable d'état](/learn/state-a-components-memory).
 
 ```js
 import { useState } from 'react';
@@ -32,32 +32,32 @@ function MyComponent() {
   // ...
 ```
 
-The convention is to name state variables like `[something, setSomething]` using [array destructuring.](https://javascript.info/destructuring-assignment)
+La convention est de nommer les variables d'états de cette manière : `[something, setSomething]`, en utilisant la [déstructuration positionnelle](https://fr.javascript.info/destructuring-assignment).
 
-[See more examples below.](#usage)
+[Voir d’autres exemples ci-dessous](#usage).
 
-#### Parameters {/*parameters*/}
+#### Paramètres {/*parameters*/}
 
-* `initialState`: The value you want the state to be initially. It can be a value of any type, but there is a special behavior for functions. This argument is ignored after the initial render.
-  * If you pass a function as `initialState`, it will be treated as an _initializer function_. It should be pure, should take no arguments, and should return a value of any type. React will call your initializer function when initializing the component, and store its return value as the initial state. [See an example below.](#avoiding-recreating-the-initial-state)
+* `initialState`: La valeur initiale de votre état. Ça peut être une valeur de n'importe quel type, mais il existe un comportement spécial pour les fonctions. Cet argument est ignoré après le rendu initial.
+  * Si vous passez une fonction dans votre `initialState`, elle sera traitée comme une _fonction d'initialisation_ (*initializer function, NdT*). Elle doit être pure, ne doit pas prendre d'argument, et doit retourner une valeur de n'importe quel type. React appellera votre fonction d'initialisation en initialisant le composant, et stockera sa valeur de retour dans votre état initial. [Voir un exemple ci-dessous](#avoiding-recreating-the-initial-state).
 
-#### Returns {/*returns*/}
+#### Valeur renvoyée {/*returns*/}
 
-`useState` returns an array with exactly two values:
+`useState` retourne un tableau avec exactement deux valeurs :
 
-1. The current state. During the first render, it will match the `initialState` you have passed.
-2. The [`set` function](#setstate) that lets you update the state to a different value and trigger a re-render.
+1. L'état courant. Pendant le premier rendu, il sera le même que l'`initialState` que vous avez passé en entrée.
+2. La [fonction `set`](#setstate). Elle vous permet de mettre à jour l'état avec une valeur différente et de déclencher un nouveau rendu.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
-* `useState` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* In Strict Mode, React will **call your initializer function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your initializer function is pure (as it should be), this should not affect the behavior. The result from one of the calls will be ignored.
+* `useState` est un Hook, vous ne pouvez donc l’appeler qu'uniquement **à la racine de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l’appeler à l’intérieur de boucles ou de conditions. Si nécessaire, extrayez un nouveau composant et déplacez l'état dans celui-ci.
+* En mode Strict, React appellera votre **fonction d'initialisation** deux fois dans le but de vous aider à [trouver les impuretés accidentelles](#my-initializer-or-updater-function-runs-twice). Ce comportement est uniquement présent en mode développement et n'affecte pas la production. Si votre fonction d'initialisation est pure (ce qui devrait être le cas), ça ne devrait pas affecter le comportement. Le résultat d'un des appels sera ignoré.
 
 ---
 
-### `set` functions, like `setSomething(nextState)` {/*setstate*/}
+### Les fonctions `set`, comme `setSomething(nextState)` {/*setstate*/}
 
-The `set` function returned by `useState` lets you update the state to a different value and trigger a re-render. You can pass the next state directly, or a function that calculates it from the previous state:
+La fonction `set` retournée par `useState` permet de mettre à jour l'état avec une valeur différente et de déclencher un nouveau rendu. Vous pouvez directement passer le prochain état, ou une fonction qui le calcule à l'aide de l'état précédent :
 
 ```js
 const [name, setName] = useState('Edward');
@@ -68,34 +68,34 @@ function handleClick() {
   // ...
 ```
 
-#### Parameters {/*setstate-parameters*/}
+#### Paramètres {/*setstate-parameters*/}
 
-* `nextState`: The value that you want the state to be. It can be a value of any type, but there is a special behavior for functions.
-  * If you pass a function as `nextState`, it will be treated as an _updater function_. It must be pure, should take the pending state as its only argument, and should return the next state. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying all of the queued updaters to the previous state. [See an example below.](#updating-state-based-on-the-previous-state)
+* `nextState`: La valeur désirée de l'état. Elle peut être une valeur de n'importe quel type, mais il existe un comportement spécial pour les fonctions.
+  * Si vous passez une fonction en tant que `nextState`, elle sera traitée comme une _fonction de mise à jour_ (*updater function, NdT*). Elle doit être pure, doit prendre l'état en attente comme seul argument, et doit retourner le prochain état. React mettra votre fonction de mise à jour dans une file et fera un nouveau rendu de votre composant. Pendant le prochain rendu, React va calculer le prochain état en appliquant toutes les fonctions de mises à jour à l'état précédent. [Voir un exemple ci-dessous](#updating-state-based-on-the-previous-state).
 
-#### Returns {/*setstate-returns*/}
+#### Valeur renvoyée {/*setstate-returns*/}
 
-`set` functions do not have a return value.
+Les fonctions `set` n'ont pas de valeur de retour.
 
-#### Caveats {/*setstate-caveats*/}
+#### Limitations {/*setstate-caveats*/}
 
-* The `set` function **only updates the state variable for the *next* render**. If you read the state variable after calling the `set` function, [you will still get the old value](#ive-updated-the-state-but-logging-gives-me-the-old-value) that was on the screen before your call.
+* La fonction `set` **ne met à jour que les variables d'état pour le *prochain* rendu**. Si vous lisez la variable d'état après avoir appelé la fonction `set`, [vous obtiendrez la même ancienne valeur](#ive-updated-the-state-but-logging-gives-me-the-old-value) qui était sur votre écran avant l'appel.
 
-* If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will **skip re-rendering the component and its children.** This is an optimization. Although in some cases React may still need to call your component before skipping the children, it shouldn't affect your code.
+* Si la nouvelle valeur que vous donnez est identique au `state` actuel, en comparant au moyen de [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is), React **ne fera pas un nouveau rendu de ce composant et de ses enfants**. Il s'agit d'une optimisation. Même si, dans certains cas, React a tout de même besoin d'appeler votre composant sans faire de rendu de ses enfants, ça ne devrait pas affecter votre code.
 
-* React [batches state updates.](/learn/queueing-a-series-of-state-updates) It updates the screen **after all the event handlers have run** and have called their `set` functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use [`flushSync`.](/reference/react-dom/flushSync)
+* React [met à jour les états par lots](/learn/queueing-a-series-of-state-updates). Il met à jour l'écran après que tous les gestionnaires d'évènements aient été lancés et qu'ils aient appelés leurs fonctions `set`. Ça évite des rendu inutiles pour un unique évènement. Dans de rares cas où vous avez besoin de forcer React à mettre à jour l'écran plus tôt, par exemple pour accéder au DOM, vous pouvez utiliser [`flushSync`](/reference/react-dom/flushSync).
 
-* Calling the `set` function *during rendering* is only allowed from within the currently rendering component. React will discard its output and immediately attempt to render it again with the new state. This pattern is rarely needed, but you can use it to **store information from the previous renders**. [See an example below.](#storing-information-from-previous-renders)
+* Appeler la fonction `set` *pendant le rendu* est autorisé seulement dans le composant en train d'être rendu. React ignorera son retour et essayera immédiatement de faire un nouveau rendu avec le nouvel état. Ce modèle est rarement nécessaire, mais vous pouvez l'utiliser pour **stocker des informations des précédents rendus**. [Voir un exemple ci-dessous](#storing-information-from-previous-renders).
 
-* In Strict Mode, React will **call your updater function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your updater function is pure (as it should be), this should not affect the behavior. The result from one of the calls will be ignored.
+* En mode Strict, React **appellera votre fonction d'initialisation deux fois** dans le but de vous aider à [trouver les impuretés accidentelles](#my-initializer-or-updater-function-runs-twice). Ce comportement est uniquement présent en mode développement et n'affecte pas la production. Si votre fonction de mise à jour est pure (ce qui devrait être le cas), ça ne devrait pas affecter le comportement. Le résultat d'un des appels sera ignoré.
 
 ---
 
 ## Usage {/*usage*/}
 
-### Adding state to a component {/*adding-state-to-a-component*/}
+### Ajouter un état à un composant {/*adding-state-to-a-component*/}
 
-Call `useState` at the top level of your component to declare one or more [state variables.](/learn/state-a-components-memory)
+Appelez `useState` à la racine de votre composant pour déclarer une ou plusieurs [variables d'état](/learn/state-a-components-memory).
 
 ```js [[1, 4, "age"], [2, 4, "setAge"], [3, 4, "42"], [1, 5, "name"], [2, 5, "setName"], [3, 5, "'Taylor'"]]
 import { useState } from 'react';
@@ -106,14 +106,17 @@ function MyComponent() {
   // ...
 ```
 
-The convention is to name state variables like `[something, setSomething]` using [array destructuring.](https://javascript.info/destructuring-assignment)
+La convention est de nommer les variables d'états de cette manière : `[something, setSomething]`, en utilisant la [déstructuration positionnelle](https://fr.javascript.info/destructuring-assignment).
 
-`useState` returns an array with exactly two items:
+`useState` retourne un tableau avec exactement deux valeurs :
 
-1. The <CodeStep step={1}>current state</CodeStep> of this state variable, initially set to the <CodeStep step={3}>initial state</CodeStep> you provided.
-2. The <CodeStep step={2}>`set` function</CodeStep> that lets you change it to any other value in response to interaction.
+1. L'état courant. Pendant le premier rendu, il sera le même que l'`initialState` que vous avez passé en entrée.
+2. La [fonction `set`](#setstate). Elle vous permet de mettre à jour l'état avec une valeur différente et de déclencher un nouveau rendu.
 
-To update what’s on the screen, call the `set` function with some next state:
+1. L'<CodeStep step={1}>état courant</CodeStep> de cette variable d'état, initialement le même que l'<CodeStep step={3}>état initial</CodeStep> que vous avez passé en entrée.
+2. La <CodeStep step={2}>fonction `set`</CodeStep> qui vous permet de le changer avec n'importe quelle valeur lors d'une interaction.
+
+Pour mettre à jour ce qu'il y a sur l'écran, appelez la fonction `set` avec le prochain autre état :
 
 ```js [[2, 2, "setName"]]
 function handleClick() {
@@ -121,28 +124,28 @@ function handleClick() {
 }
 ```
 
-React will store the next state, render your component again with the new values, and update the UI.
+React stockera ce prochain état, fera un nouveau rendu de votre composant avec les nouvelles valeurs, et mettra à jour l'interface utilisateur *(UI, NdT)*
 
 <Pitfall>
 
-Calling the `set` function [**does not** change the current state in the already executing code](#ive-updated-the-state-but-logging-gives-me-the-old-value):
+Appeler la fonction `set` [**ne change pas** l'état actuel dans le code en train d'être exécuté](#ive-updated-the-state-but-logging-gives-me-the-old-value) :
 
 ```js {3}
 function handleClick() {
   setName('Robin');
-  console.log(name); // Still "Taylor"!
+  console.log(name); // Toujours "Taylor" !
 }
 ```
 
-It only affects what `useState` will return starting from the *next* render.
+Elle n'affecte que ce que `useState` va retourner à partir du *prochain* rendu.
 
 </Pitfall>
 
-<Recipes titleText="Basic useState examples" titleId="examples-basic">
+<Recipes titleText="Exemple basique d'utilisation de useState" titleId="examples-basic">
 
-#### Counter (number) {/*counter-number*/}
+#### Compteur (nombre) {/*counter-number*/}
 
-In this example, the `count` state variable holds a number. Clicking the button increments it.
+Dans cet exemple, la variable d'état `count` contient un nombre. Elle est incrémentée en cliquant sur un bouton.
 
 <Sandpack>
 
@@ -158,7 +161,7 @@ export default function Counter() {
 
   return (
     <button onClick={handleClick}>
-      You pressed me {count} times
+      Vous avez cliqué sur ce bouton {count} fois
     </button>
   );
 }
@@ -168,9 +171,9 @@ export default function Counter() {
 
 <Solution />
 
-#### Text field (string) {/*text-field-string*/}
+#### Champ de saisie (chaîne de caractères) {/*text-field-string*/}
 
-In this example, the `text` state variable holds a string. When you type, `handleChange` reads the latest input value from the browser input DOM element, and calls `setText` to update the state. This allows you to display the current `text` below.
+Dans cet exemple, la variable d'état `text` contient une chaîne de caractères. Lorsque vous tapez, `handleChange` lit la dernière valeur entrée dans l'élément de champ de saisie du DOM, et appelle `setText` pour mettre à jour l'état. Ça vous permet d'afficher le `text` courant ci-dessous.
 
 <Sandpack>
 
@@ -178,7 +181,7 @@ In this example, the `text` state variable holds a string. When you type, `handl
 import { useState } from 'react';
 
 export default function MyInput() {
-  const [text, setText] = useState('hello');
+  const [text, setText] = useState('bonjour');
 
   function handleChange(e) {
     setText(e.target.value);
@@ -187,9 +190,9 @@ export default function MyInput() {
   return (
     <>
       <input value={text} onChange={handleChange} />
-      <p>You typed: {text}</p>
-      <button onClick={() => setText('hello')}>
-        Reset
+      <p>Vous avez tapé : {text}</p>
+      <button onClick={() => setText('bonjour')}>
+        Réinitialiser
       </button>
     </>
   );
@@ -200,9 +203,9 @@ export default function MyInput() {
 
 <Solution />
 
-#### Checkbox (boolean) {/*checkbox-boolean*/}
+#### Case à cocher (booléan) {/*checkbox-boolean*/}
 
-In this example, the `liked` state variable holds a boolean. When you click the input, `setLiked` updates the `liked` state variable with whether the browser checkbox input is checked. The `liked` variable is used to render the text below the checkbox.
+Dans cet exemple, la variable d'état `liked` contient un booléan. Lorsque vous cliquez sur la case, `setLiked` met à jour la variable d'état `liked` selon si la case est cochée ou non. La variable `liked` est utilisée pour effectuer le rendu du texte sous la case à cocher.
 
 <Sandpack>
 
@@ -224,9 +227,9 @@ export default function MyCheckbox() {
           checked={liked}
           onChange={handleChange}
         />
-        I liked this
+        J'ai aimé
       </label>
-      <p>You {liked ? 'liked' : 'did not like'} this.</p>
+      <p>Vous {liked ? 'avez' : 'n\'avez pas'} aimé.</p>
     </>
   );
 }
@@ -236,9 +239,9 @@ export default function MyCheckbox() {
 
 <Solution />
 
-#### Form (two variables) {/*form-two-variables*/}
+#### Formulaire (deux variables) {/*form-two-variables*/}
 
-You can declare more than one state variable in the same component. Each state variable is completely independent.
+Vous pouvez déclarer plus d'une variable d'état dans le même composant. Chaque variable d'état est complètement indépendante.
 
 <Sandpack>
 
@@ -256,9 +259,9 @@ export default function Form() {
         onChange={e => setName(e.target.value)}
       />
       <button onClick={() => setAge(age + 1)}>
-        Increment age
+        Incrémenter l'âge
       </button>
-      <p>Hello, {name}. You are {age}.</p>
+      <p>Bonjour, {name}. Vous avez {age} ans.</p>
     </>
   );
 }
@@ -276,9 +279,9 @@ button { display: block; margin-top: 10px; }
 
 ---
 
-### Updating state based on the previous state {/*updating-state-based-on-the-previous-state*/}
+### Mettre à jour l'état selon son état précédent {/*updating-state-based-on-the-previous-state*/}
 
-Suppose the `age` is `42`. This handler calls `setAge(age + 1)` three times:
+Supposons que `age` vaut `42`. Ce gestionnaire appelle `setAge(age + 1)` trois fois :
 
 ```js
 function handleClick() {
@@ -288,9 +291,9 @@ function handleClick() {
 }
 ```
 
-However, after one click, `age` will only be `43` rather than `45`! This is because calling the `set` function [does not update](/learn/state-as-a-snapshot) the `age` state variable in the already running code. So each `setAge(age + 1)` call becomes `setAge(43)`.
+Cependant, après un click, `age` ne va valoir que `43`, plutôt que `45` ! C'est parce qu'appeler la fonction `set` [ne met pas à jour](/learn/state-as-a-snapshot) la variable d'état `age` dans le code en cours d'exécution. Donc, chaque appel à `setAge(age + 1)` devient `setAge(43)`.
 
-To solve this problem, **you may pass an *updater function*** to `setAge` instead of the next state:
+Pour résoudre ce problème, **vous devez passer une *fonction de mise à jour*** à `setAge` au lieu du prochain état :
 
 ```js [[1, 2, "a", 0], [2, 2, "a + 1"], [1, 3, "a", 0], [2, 3, "a + 1"], [1, 4, "a", 0], [2, 4, "a + 1"]]
 function handleClick() {
@@ -300,31 +303,32 @@ function handleClick() {
 }
 ```
 
-Here, `a => a + 1` is your updater function. It takes the <CodeStep step={1}>pending state</CodeStep> and calculates the <CodeStep step={2}>next state</CodeStep> from it.
+Ici, `a => a + 1` est votre fonction de mise à jour. Elle prend l'<CodeStep step={1}>état en attente</CodeStep> et calcule à partir de celui-ci le <CodeStep step={2}>prochain état</CodeStep>.
 
-React puts your updater functions in a [queue.](/learn/queueing-a-series-of-state-updates) Then, during the next render, it will call them in the same order:
+React met vos fonctions de mise à jour dans une [file](/learn/queueing-a-series-of-state-updates). Ensuite, pendant le prochain rendu, il va les appeler dans le même ordre :
 
-1. `a => a + 1` will receive `42` as the pending state and return `43` as the next state.
-1. `a => a + 1` will receive `43` as the pending state and return `44` as the next state.
-1. `a => a + 1` will receive `44` as the pending state and return `45` as the next state.
+1. `a => a + 1` recevra un état en attente valant `42` et va retourner un prochain état valant `43`.
+1. `a => a + 1` recevra un état en attente valant `43` et va retourner un prochain état valant `44`.
+1. `a => a + 1` recevra un état en attente valant `44` et va retourner un prochain état valant `45`.
 
-There are no other queued updates, so React will store `45` as the current state in the end.
+Il n'y a pas d'autres mises à jour en file, React stockera donc à la fin `45` comme étant l'état courant.
 
-By convention, it's common to name the pending state argument for the first letter of the state variable name, like `a` for `age`. However, you may also call it like `prevAge` or something else that you find clearer.
+Par convention, il est commun de nommer l'argument de l'état en attente selon la première lettre du nom de la variable d'état, comme `a` pour `age`. Cependant, vous pouvez également le nommer `prevAge`, ou quelque chose d'autre que vous trouvez plus clair.
 
-React may [call your updaters twice](#my-initializer-or-updater-function-runs-twice) in development to verify that they are [pure.](/learn/keeping-components-pure)
+En développement, React pourra [appeler deux fois vos mises à jour](#my-initializer-or-updater-function-runs-twice) pour vérifier si elles sont [pures](/learn/keeping-components-pure).
 
 <DeepDive>
 
-#### Is using an updater always preferred? {/*is-using-an-updater-always-preferred*/}
+#### Est-il toujours préférable d'utiliser une mise à jour ? {/*is-using-an-updater-always-preferred*/}
 
-You might hear a recommendation to always write code like `setAge(a => a + 1)` if the state you're setting is calculated from the previous state. There is no harm in it, but it is also not always necessary.
+Vous pourrez peut-être entendre des recommandations vous disant de toujours écrire votre code de cette manière, si l'état que vous mettez à jour est calculé depuis l'état précédent : `setAge(a => a + 1)`. Il n'y a aucun mal à le faire, mais ce n'est pas toujours nécessaire.
 
-In most cases, there is no difference between these two approaches. React always makes sure that for intentional user actions, like clicks, the `age` state variable would be updated before the next click. This means there is no risk of a click handler seeing a "stale" `age` at the beginning of the event handler.
 
-However, if you do multiple updates within the same event, updaters can be helpful. They're also helpful if accessing the state variable itself is inconvenient (you might run into this when optimizing re-renders).
+Dans la plupart des cas, il n'y a aucune différence entre ces deux approches. React vérifiera toujours, pour les actions intentionnelles des utilisateurs, que l'état `age` soit mis à jour avant le prochain click. Cela signifie qu'il n'y a aucun risque à ce qu'un gestionnaire de click voit un `age` "obsolète" au début de la gestion des évènements.
 
-If you prefer consistency over slightly more verbose syntax, it's reasonable to always write an updater if the state you're setting is calculated from the previous state. If it's calculated from the previous state of some *other* state variable, you might want to combine them into one object and [use a reducer.](/learn/extracting-state-logic-into-a-reducer)
+Cependant, si vous opérez plusieurs mises à jour dans le même évènement, les mises à jours peuvent être utiles. Elles sont également utiles s'il n'est pas pratique d'accèder à la variable d'état elle-même (vous pourrez rencontrer ce cas en optimisant les rendus).
+
+Si vous préfèrez la consistance plutôt qu'une syntaxe un peu moins verbeuse, il est raisonnable de toujours écrire une mise à jour si l'état que vous mettez à jour est calculé à partir de l'état précédent. S'il est calculé depuis l'état précédent d'une *autre* variable d'état, vous pourrez peut-être les combiner en une seul objet et [utiliser un reducer.](/learn/extracting-state-logic-into-a-reducer)
 
 </DeepDive>
 
