@@ -72,7 +72,7 @@ Vous pouvez tout à fait utiliser React sans framework ; c’est d'ailleurs ain
 
 En voici les raisons.
 
-Même si, au départ, vous n’avez pas besoin d’un gestionnaire de routes ou de charger des données, vous finirez sans doute par ajouter des bibliothèques pour ça. Au fur et à mesure que votre bundle JavaScript grandit avec chaque nouvelle fonctionnalité, vous devrez peut-être trouver un moyen de découper le code pour chaque route individuellement. Lorsque vos besoins en matière de chargement de données se complexifieront, vous risquez de rencontrer des cascades de chargements réseau client-serveur qui ralentiront considérablement votre appli. Lorsque votre public comprendra davantage d’utilisateurs avec de faibles bandes passantes et des appareils bas de gamme, vous aurez probablement besoin de générer du HTML à partir de vos composants pour afficher le contenu plus tôt--soit sur le serveur, soit en amont lors du *build*. Modifier votre configuration pour exécuter une partie de votre code sur le serveur ou au *build peut s'avérer très délicat.
+Même si, au départ, vous n’avez pas besoin d’un gestionnaire de routes ou de charger des données, vous finirez sans doute par ajouter des bibliothèques pour ça. Au fur et à mesure que votre bundle JavaScript grandit avec chaque nouvelle fonctionnalité, vous devrez peut-être trouver un moyen de découper le code pour chaque route individuellement. Lorsque vos besoins en matière de chargement de données se complexifieront, vous risquez de rencontrer des cascades de chargements réseau client-serveur qui ralentiront considérablement votre appli. Lorsque votre public comprendra davantage d’utilisateurs avec de faibles bandes passantes et des appareils bas de gamme, vous aurez probablement besoin de générer du HTML à partir de vos composants pour afficher le contenu plus tôt (soit sur le serveur, soit en amont lors du *build*). Modifier votre configuration pour exécuter une partie de votre code sur le serveur ou au *build peut s'avérer très délicat.
 
 **Ces problèmes ne sont pas spécifiques à React. C’est pourquoi Svelte a SvelteKit, Vue a Nuxt, etc**. Pour résoudre ces problèmes par vous-même, il vous faudrait intégrer votre *bundler* à votre gestionnaire de routes et à votre bibliothèque de chargement de données. Il n’est pas difficile d'obtenir un premier jet, mais la création d’une appli qui se charge rapidement même lorsqu'elle grandit fortement au fil du temps, c'est une affaire pleine de subtilités. Vous voudrez envoyer le minimum de code applicatif, mais en un seul aller-retour client-serveur, en parallèle avec toutes les données requises pour la page. Vous souhaiterez probablement que la page soit interactive avant même que votre code JavaScript ne soit exécuté, afin de prendre en charge l’amélioration progressive. Vous souhaiterez peut-être générer un dossier de fichiers HTML entièrement statiques pour vos pages de marketing, qui pourront être hébergés n’importe où et fonctionneront même avec JavaScript désactivé. La mise en place de ces possibilités demande énormément de travail.
 
@@ -104,25 +104,25 @@ L’App Router de Next.js est **actuellement en beta et n’est pas recommandé 
 
 Le *bundler* dans l'App Router de Next.js implémente entièrement la [spécification officielle des composants serveurs React](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). Ça vous permet de mélanger des composants exécutés au *build*, côté serveur et interactivement côté client dans une seule et même arborescence React.
 
-Par example, vous pouvez écrire un composant serveur React en tant que fonction `async` qui lit à partir d’une base de données ou d’un fichier. Vous pouvez alors transmettre ces données aux composants interactifs :
+Par example, vous pouvez écrire un composant serveur React en tant que fonction `async` qui lit à partir d’une base de données ou d’un fichier. Vous pouvez alors transmettre ces données aux composants interactifs côté client :
 
 ```js
 // Ce composant s’exécute *seulement* côté serveur (ou pendant le build).
 async function Talks({ confId }) {
   // 1. Vous êtes sur le serveur, vous pouvez donc communiquer avec votre couche de données.
-  // Un point d'accès API n'est pas nécessaire.
+  // Un point d’accès API n’est pas nécessaire.
   const talks = await db.Talks.findAll({ confId });
 
   // 2. Ajoutez toute la logique de rendu que vous voulez.
   // Ça n’alourdira pas votre bundle JavaScript.
   const videos = talks.map(talk => talk.video);
 
-  // 3. Transmettez les données aux composants qui s'exécuteront dans le navigateur.
+  // 3. Transmettez les données aux composants qui s’exécuteront dans le navigateur.
   return <SearchableVideoList videos={videos} />;
 }
 ```
 
-L’App Router de Next.js intègre également [le chargement de données avec Suspense](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). Ça vous permet de spécifier un état de chargement (comme une interface de substitution) pour différentes parties de votre interface utilisateur directement dans votre arborescence React : 
+L’App Router de Next.js intègre également [le chargement de données avec Suspense](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). Ça vous permet de spécifier un état de chargement (comme une interface de substitution) pour différentes parties de votre interface utilisateur directement dans votre arborescence React :
 
 ```js
 <Suspense fallback={<TalksLoading />}>
