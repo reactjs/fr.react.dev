@@ -195,7 +195,7 @@ li {
 
 #### Gérer une liste de refs grâce à une fonction de rappel ref {/*how-to-manage-a-list-of-refs-using-a-ref-callback*/}
 
-Dans les exemples précédents, nous utilisions un nombre prédéfini de refs.  Il arrive pourant que vous ayez besoin d'une ref pour chaque élément d'une liste, sans savoir à l'avance combien d'éléments sont présents.  L'approche ci-après **ne marcherait pas** :
+Dans les exemples précédents, nous utilisions un nombre prédéfini de refs.  Vous pourriez pourtant avoir besoin d'une ref pour chaque élément d'une liste, sans savoir à l'avance combien d'éléments sont présents.  L'approche ci-après **ne marcherait pas** :
 
 ```js
 <ul>
