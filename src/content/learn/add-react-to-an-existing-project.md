@@ -1,5 +1,5 @@
 ---
-title: Ajouter React à un Projet Existant
+title: Ajouter React à un projet existant
 ---
 
 <Intro>
