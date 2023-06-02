@@ -25,7 +25,7 @@
       "path": "/learn/installation",
       "routes": [
         {
-          "title": "Start a New React Project",
+          "title": "Créer un nouveau projet React",
           "path": "/learn/start-a-new-react-project"
         },
         {
