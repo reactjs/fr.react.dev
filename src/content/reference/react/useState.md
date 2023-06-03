@@ -27,7 +27,7 @@ import { useState } from 'react';
 
 function MyComponent() {
   const [age, setAge] = useState(28);
-  const [name, setName] = useState('Taylor');
+  const [name, setName] = useState('Clara');
   const [todos, setTodos] = useState(() => createTodos());
   // ...
 ```
@@ -46,7 +46,7 @@ La convention est de nommer les variables d'états de cette manière : `[somethi
 `useState` retourne un tableau avec exactement deux valeurs :
 
 1. L'état courant. Pendant le premier rendu, il sera le même que l'`initialState` que vous avez passé en entrée.
-2. La [fonction `set`](#setstate). Elle vous permet de mettre à jour l'état avec une valeur différente et de déclencher un nouveau rendu.
+2. La [fonction de mise à jour](#setstate). Elle vous permet de mettre à jour l'état avec une valeur différente et de déclencher un nouveau rendu.
 
 #### Limitations {/*caveats*/}
 
@@ -55,15 +55,15 @@ La convention est de nommer les variables d'états de cette manière : `[somethi
 
 ---
 
-### Les fonctions `set`, comme `setSomething(nextState)` {/*setstate*/}
+### Les fonctions de mise à jour, comme `setSomething(nextState)` {/*setstate*/}
 
-La fonction `set` retournée par `useState` permet de mettre à jour l'état avec une valeur différente et de déclencher un nouveau rendu. Vous pouvez directement passer le prochain état, ou une fonction qui le calcule à l'aide de l'état précédent :
+La fonction de mise à jour retournée par `useState` permet de mettre à jour l'état avec une valeur différente et de déclencher un nouveau rendu. Vous pouvez directement passer le prochain état, ou une fonction qui le calcule à l'aide de l'état précédent :
 
 ```js
 const [name, setName] = useState('Edward');
 
 function handleClick() {
-  setName('Taylor');
+  setName('Clara');
   setAge(a => a + 1);
   // ...
 ```
@@ -71,21 +71,21 @@ function handleClick() {
 #### Paramètres {/*setstate-parameters*/}
 
 * `nextState`: La valeur désirée de l'état. Elle peut être une valeur de n'importe quel type, mais il existe un comportement spécial pour les fonctions.
-  * Si vous passez une fonction en tant que `nextState`, elle sera traitée comme une _fonction de mise à jour_ (*updater function, NdT*). Elle doit être pure, doit prendre l'état en attente comme seul argument, et doit retourner le prochain état. React mettra votre fonction de mise à jour dans une file et fera un nouveau rendu de votre composant. Pendant le prochain rendu, React va calculer le prochain état en appliquant toutes les fonctions de mises à jour à l'état précédent. [Voir un exemple ci-dessous](#updating-state-based-on-the-previous-state).
+  * Si vous passez une fonction en tant que `nextState`, elle sera traitée comme une _fonction de mise à jour_ (*updater function, NdT*). Elle doit être pure, doit prendre l'état en attente comme seul argument, et doit retourner le prochain état. React mettra votre fonction de mise à jour dans une file d'attente et fera un nouveau rendu de votre composant. Pendant le prochain rendu, React va calculer le prochain état en appliquant toutes les fonctions de mises à jour à l'état précédent. [Voir un exemple ci-dessous](#updating-state-based-on-the-previous-state).
 
 #### Valeur renvoyée {/*setstate-returns*/}
 
-Les fonctions `set` n'ont pas de valeur de retour.
+Les fonctions de mise à jour n'ont pas de valeur de retour.
 
 #### Limitations {/*setstate-caveats*/}
 
-* La fonction `set` **ne met à jour que les variables d'état pour le *prochain* rendu**. Si vous lisez la variable d'état après avoir appelé la fonction `set`, [vous obtiendrez la même ancienne valeur](#ive-updated-the-state-but-logging-gives-me-the-old-value) qui était sur votre écran avant l'appel.
+* La fonction de mise à jour **ne met à jour que les variables d'état pour le *prochain* rendu**. Si vous lisez la variable d'état après avoir appelé la fonction de mise à jour, [vous obtiendrez la même ancienne valeur](#ive-updated-the-state-but-logging-gives-me-the-old-value) qui était sur votre écran avant l'appel.
 
 * Si la nouvelle valeur que vous donnez est identique au `state` actuel, en comparant au moyen de [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is), React **ne fera pas un nouveau rendu de ce composant et de ses enfants**. Il s'agit d'une optimisation. Même si, dans certains cas, React a tout de même besoin d'appeler votre composant sans faire de rendu de ses enfants, ça ne devrait pas affecter votre code.
 
-* React [met à jour les états par lots](/learn/queueing-a-series-of-state-updates). Il met à jour l'écran après que tous les gestionnaires d'évènements aient été lancés et qu'ils aient appelés leurs fonctions `set`. Ça évite des rendu inutiles pour un unique évènement. Dans de rares cas où vous avez besoin de forcer React à mettre à jour l'écran plus tôt, par exemple pour accéder au DOM, vous pouvez utiliser [`flushSync`](/reference/react-dom/flushSync).
+* React [met à jour les états par lots](/learn/queueing-a-series-of-state-updates). Il met à jour l'écran après que tous les gestionnaires d'évènements aient été lancés et qu'ils aient appelé leurs fonctions de mise à jour. Ça évite des rendu inutiles pour un unique évènement. Dans de rares cas où vous avez besoin de forcer React à mettre à jour l'écran plus tôt, par exemple pour accéder au DOM, vous pouvez utiliser [`flushSync`](/reference/react-dom/flushSync).
 
-* Appeler la fonction `set` *pendant le rendu* est autorisé seulement dans le composant en train d'être rendu. React ignorera son retour et essayera immédiatement de faire un nouveau rendu avec le nouvel état. Ce modèle est rarement nécessaire, mais vous pouvez l'utiliser pour **stocker des informations des précédents rendus**. [Voir un exemple ci-dessous](#storing-information-from-previous-renders).
+* Appeler la fonction de mise à jour *pendant le rendu* est autorisé seulement dans le composant en train d'être rendu. React ignorera son retour et essayera immédiatement de faire un nouveau rendu avec le nouvel état. Ce modèle est rarement nécessaire, mais vous pouvez l'utiliser pour **stocker des informations des précédents rendus**. [Voir un exemple ci-dessous](#storing-information-from-previous-renders).
 
 * En mode Strict, React **appellera votre fonction d'initialisation deux fois** dans le but de vous aider à [trouver les impuretés accidentelles](#my-initializer-or-updater-function-runs-twice). Ce comportement est uniquement présent en mode développement et n'affecte pas la production. Si votre fonction de mise à jour est pure (ce qui devrait être le cas), ça ne devrait pas affecter le comportement. Le résultat d'un des appels sera ignoré.
 
@@ -97,12 +97,12 @@ Les fonctions `set` n'ont pas de valeur de retour.
 
 Appelez `useState` à la racine de votre composant pour déclarer une ou plusieurs [variables d'état](/learn/state-a-components-memory).
 
-```js [[1, 4, "age"], [2, 4, "setAge"], [3, 4, "42"], [1, 5, "name"], [2, 5, "setName"], [3, 5, "'Taylor'"]]
+```js [[1, 4, "age"], [2, 4, "setAge"], [3, 4, "42"], [1, 5, "name"], [2, 5, "setName"], [3, 5, "'Clara'"]]
 import { useState } from 'react';
 
 function MyComponent() {
   const [age, setAge] = useState(42);
-  const [name, setName] = useState('Taylor');
+  const [name, setName] = useState('Clara');
   // ...
 ```
 
@@ -111,9 +111,9 @@ La convention est de nommer les variables d'états de cette manière : `[somethi
 `useState` retourne un tableau avec exactement deux valeurs :
 
 1. L'<CodeStep step={1}>état courant</CodeStep> de cette variable d'état, initialement le même que l'<CodeStep step={3}>état initial</CodeStep> que vous avez passé en entrée.
-2. La <CodeStep step={2}>fonction `set`</CodeStep> qui vous permet de le changer avec n'importe quelle valeur lors d'une interaction.
+2. La <CodeStep step={2}>fonction de mise à jour</CodeStep> qui vous permet de le changer avec n'importe quelle valeur lors d'une interaction.
 
-Pour mettre à jour ce qu'il y a sur l'écran, appelez la fonction `set` avec le prochain autre état :
+Pour mettre à jour ce qu'il y a sur l'écran, appelez la fonction de mise à jour avec le prochain autre état :
 
 ```js [[2, 2, "setName"]]
 function handleClick() {
@@ -125,12 +125,12 @@ React stockera ce prochain état, fera un nouveau rendu de votre composant avec 
 
 <Pitfall>
 
-Appeler la fonction `set` [**ne change pas** l'état actuel dans le code en train d'être exécuté](#ive-updated-the-state-but-logging-gives-me-the-old-value) :
+Appeler la fonction de mise à jour [**ne change pas** l'état actuel dans le code en train d'être exécuté](#ive-updated-the-state-but-logging-gives-me-the-old-value) :
 
 ```js {3}
 function handleClick() {
   setName('Robin');
-  console.log(name); // Toujours "Taylor" !
+  console.log(name); // Toujours "Clara" !
 }
 ```
 
@@ -246,7 +246,7 @@ Vous pouvez déclarer plus d'une variable d'état dans le même composant. Chaqu
 import { useState } from 'react';
 
 export default function Form() {
-  const [name, setName] = useState('Taylor');
+  const [name, setName] = useState('Clara');
   const [age, setAge] = useState(42);
 
   return (
@@ -288,7 +288,7 @@ function handleClick() {
 }
 ```
 
-Cependant, après un click, `age` ne va valoir que `43`, plutôt que `45` ! C'est parce qu'appeler la fonction `set` [ne met pas à jour](/learn/state-as-a-snapshot) la variable d'état `age` dans le code en cours d'exécution. Donc, chaque appel à `setAge(age + 1)` devient `setAge(43)`.
+Cependant, après un click, `age` ne va valoir que `43`, plutôt que `45` ! C'est parce qu'appeler la fonction de mise à jour [ne met pas à jour](/learn/state-as-a-snapshot) la variable d'état `age` dans le code en cours d'exécution. Donc, chaque appel à `setAge(age + 1)` devient `setAge(43)`.
 
 Pour résoudre ce problème, **vous devez passer une *fonction de mise à jour*** à `setAge` au lieu du prochain état :
 
@@ -302,13 +302,13 @@ function handleClick() {
 
 Ici, `a => a + 1` est votre fonction de mise à jour. Elle prend l'<CodeStep step={1}>état en attente</CodeStep> et calcule à partir de celui-ci le <CodeStep step={2}>prochain état</CodeStep>.
 
-React met vos fonctions de mise à jour dans une [file](/learn/queueing-a-series-of-state-updates). Ensuite, pendant le prochain rendu, il va les appeler dans le même ordre :
+React met vos fonctions de mise à jour dans une [file d'attente](/learn/queueing-a-series-of-state-updates). Ensuite, pendant le prochain rendu, il va les appeler dans le même ordre :
 
 1. `a => a + 1` recevra un état en attente valant `42` et va retourner un prochain état valant `43`.
 1. `a => a + 1` recevra un état en attente valant `43` et va retourner un prochain état valant `44`.
 1. `a => a + 1` recevra un état en attente valant `44` et va retourner un prochain état valant `45`.
 
-Il n'y a pas d'autres mises à jour en file, React stockera donc à la fin `45` comme étant l'état courant.
+Il n'y a pas d'autres mises à jour en file d'attente, React stockera donc à la fin `45` comme étant l'état courant.
 
 Par convention, il est commun de nommer l'argument de l'état en attente selon la première lettre du nom de la variable d'état, comme `a` pour `age`. Cependant, vous pouvez également le nommer `prevAge`, ou quelque chose d'autre que vous trouvez plus clair.
 
