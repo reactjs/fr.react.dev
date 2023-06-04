@@ -33,7 +33,7 @@ const ThemeContext = createContext('light');
 
 #### Paramètres {/*parameters*/}
 
-* `defaultValue` : la valeur utilisée lorsqu'il n'y a pas de contexte adapté fourni au-dessus du composant qui lit ce contexte. Si vous n'avez pas de valeur par défaut appropriée, indiquez `null`. La valeur par défaut est vue comme un « dernier recours ». Elle est statique et ne change jamais au fil du temps.
+* `defaultValue` : la valeur utilisée lorsqu'il n'y a pas de contexte adapté fourni au-dessus du composant qui lit ce contexte. Si vous n'avez pas de valeur par défaut appropriée, indiquez `null`. La valeur par défaut est vue comme un « dernier recours ». Elle est statique et ne change jamais au fil du temps.
 
 #### Valeur renvoyée {/*returns*/}
 
@@ -84,7 +84,7 @@ function Button() {
   );
 }
 ```
-Bien que cette ancienne méthode fonctionne toujours, **privilégiez la lecture d'un contexte à l'aide de [`useContext()`](/reference/react/useContext) dans du nouveau code :**
+Bien que cette ancienne méthode fonctionne toujours, **privilégiez la lecture d'un contexte à l'aide de [`useContext()`](/reference/react/useContext) dans du nouveau code :**
 ```js
 function Button() {
   // ✅ Méthode recommandée
@@ -116,7 +116,7 @@ const ThemeContext = createContext('light');
 const AuthContext = createContext(null);
 ```
 
-`createContext` renvoie un <CodeStep step={1}>objet contexte</CodeStep>. Les composants peuvent lire le contexte en le passant à [`useContext()`](/reference/react/useContext) :
+`createContext` renvoie un <CodeStep step={1}>objet contexte</CodeStep>. Les composants peuvent lire le contexte en le passant à [`useContext()`](/reference/react/useContext) :
 
 
 ```js [[1, 2, "ThemeContext"], [1, 7, "AuthContext"]]
@@ -209,7 +209,7 @@ function App() {
 
 ### Je ne parviens pas à modifier la valeur du contexte {/*i-cant-find-a-way-to-change-the-context-value*/}
 
-Un code comme celui-ci spécifie la *valeur par défaut* du contexte :
+Un code comme celui-ci spécifie la *valeur par défaut* du contexte :
 
 ```js
 const ThemeContext = createContext('light');
@@ -218,5 +218,3 @@ const ThemeContext = createContext('light');
 Cette valeur ne change jamais. React utilise cette valeur uniquement comme une valeur de secours si aucun fournisseur correspondant n'est trouvé au-dessus du composant lecteur.
 
 Pour mettre à jour le contexte au fil du temps, [intégrez un état local et enveloppez vos composants avec un fournisseur de contexte](/reference/react/useContext#updating-data-passed-via-context).
-
-
