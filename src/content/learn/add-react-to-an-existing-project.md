@@ -24,7 +24,7 @@ Voici comment nous vous recommandons de procéder :
 2. **Indiquez `/some-app` comme *chemin de base*** dans la configuration de votre framework (voici comment faire avec [Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath) ou [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
 3. **Configurez votre serveur ou un proxy** de manière à ce que toutes les requêtes sous `/some-app/` soient traitées par votre application React.
 
-Ça garantit que la partie React de votre application peut [bénéficier des bonnes pratiques](/learn/start-a-new-react-project#can-i-use-react-without-a-framework) intégrées à ces frameworks.
+Ça garantit que la partie React de votre application peut [bénéficier de tout un tas de bonnes pratiques](/learn/start-a-new-react-project#can-i-use-react-without-a-framework) intégrées à ces frameworks.
 
 De nombreux frameworks basés sur React sont des frameworks full-stack qui permettent à votre application React de tirer parti du serveur. Cependant, vous pouvez utiliser la même approche même si vous ne pouvez pas ou ne souhaitez pas exécuter JavaScript côté serveur. Dans ce cas, servez plutôt l'export HTML/CSS/JS ([`next export`](https://nextjs.org/docs/advanced-features/static-html-export) pour Next.js, résultat par défaut pour Gatsby) à l'emplacement `/some-app/`.
 
@@ -80,7 +80,7 @@ root.render(<h1>Bonjour tout le monde</h1>);
 
 </Sandpack>
 
-Si tout le contenu de votre page a été remplacé par un "Bonjour tout le monde", tout fonctionne ! Continuez à lire.
+Si tout le contenu de votre page a été remplacé par un « Bonjour tout le monde », ça signifie que tout fonctionne ! Continuez à lire.
 
 <Note>
 
