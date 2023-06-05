@@ -328,11 +328,11 @@ Si vous préfèrez la consistance plutôt qu'une syntaxe un peu moins verbeuse, 
 
 </DeepDive>
 
-<Recipes titleText="The difference between passing an updater and passing the next state directly" titleId="examples-updater">
+<Recipes titleText="La différence entre passer une fonction de mise à jour et passer directement le prochain état" titleId="examples-updater">
 
-#### Passing the updater function {/*passing-the-updater-function*/}
+#### Passer la fonction de mise à jour {/*passing-the-updater-function*/}
 
-This example passes the updater function, so the "+3" button works.
+Cet exemple passe la fonction de mise à jour, donc le bouton "+3" fonctionne.
 
 <Sandpack>
 
@@ -348,7 +348,7 @@ export default function Counter() {
 
   return (
     <>
-      <h1>Your age: {age}</h1>
+      <h1>Votre âge : {age}</h1>
       <button onClick={() => {
         increment();
         increment();
@@ -371,9 +371,9 @@ h1 { display: block; margin: 10px; }
 
 <Solution />
 
-#### Passing the next state directly {/*passing-the-next-state-directly*/}
+#### Passer directement le prochain état {/*passing-the-next-state-directly*/}
 
-This example **does not** pass the updater function, so the "+3" button **doesn't work as intended**.
+Cet exemple **ne passe pas** la fonction de mise à jour, donc le bouton "+3" **ne fonctionne pas comme prévu**.
 
 <Sandpack>
 
@@ -389,7 +389,7 @@ export default function Counter() {
 
   return (
     <>
-      <h1>Your age: {age}</h1>
+      <h1>Votre âge : {age}</h1>
       <button onClick={() => {
         increment();
         increment();
@@ -416,32 +416,32 @@ h1 { display: block; margin: 10px; }
 
 ---
 
-### Updating objects and arrays in state {/*updating-objects-and-arrays-in-state*/}
+### Mettre à jour des objets et des tableaux dans un état {/*updating-objects-and-arrays-in-state*/}
 
-You can put objects and arrays into state. In React, state is considered read-only, so **you should *replace* it rather than *mutate* your existing objects**. For example, if you have a `form` object in state, don't mutate it:
+Vous pouvez insérer des objets et des tableaux dans un état. En React, un état est considéré comme en lecture seule, **vous devez donc *replacer* vos objets existants plutôt que les *muter***. Par exemple, si vous avez un objet `form` dans un état, ne le mutez pas :
 
 ```js
-// 🚩 Don't mutate an object in state like this:
-form.firstName = 'Taylor';
+// 🚩 Ne mutez pas un objet dans un état comme ceci :
+form.firstName = 'Clara';
 ```
 
-Instead, replace the whole object by creating a new one:
+À la place, replacez l'objet entier en en créant un nouveau :
 
 ```js
-// ✅ Replace state with a new object
+// ✅ Remplacez l'état avec un nouvel objet 
 setForm({
   ...form,
-  firstName: 'Taylor'
+  firstName: 'Clara'
 });
 ```
 
-Read [updating objects in state](/learn/updating-objects-in-state) and [updating arrays in state](/learn/updating-arrays-in-state) to learn more.
+Lire [mettre à jour des objets dans un état](/learn/updating-objects-in-state) et [mettre à jour des tableaux dans un état](/learn/updating-arrays-in-state) pour en savoir plus.
 
-<Recipes titleText="Examples of objects and arrays in state" titleId="examples-objects">
+<Recipes titleText="Exemples d'objets et de tableaux dans un état" titleId="examples-objects">
 
-#### Form (object) {/*form-object*/}
+#### Formulaire (objet) {/*form-object*/}
 
-In this example, the `form` state variable holds an object. Each input has a change handler that calls `setForm` with the next state of the entire form. The `{ ...form }` spread syntax ensures that the state object is replaced rather than mutated.
+Dans cet exemple, la variable d'état `form` contient un objet. Chaque champ de saisie possède un gestionnaire de changement qui appelle `setForm` avec le prochain état du formulaire tout entier. La syntaxe de décomposition `{...form}` permet de s'assurer que l'état de l'objet est remplacé, plutôt que muté.
 
 <Sandpack>
 
@@ -458,7 +458,7 @@ export default function Form() {
   return (
     <>
       <label>
-        First name:
+        Prénom :
         <input
           value={form.firstName}
           onChange={e => {
@@ -470,7 +470,7 @@ export default function Form() {
         />
       </label>
       <label>
-        Last name:
+        Nom de famille :
         <input
           value={form.lastName}
           onChange={e => {
@@ -482,7 +482,7 @@ export default function Form() {
         />
       </label>
       <label>
-        Email:
+        Mail :
         <input
           value={form.email}
           onChange={e => {
@@ -512,9 +512,9 @@ input { margin-left: 5px; }
 
 <Solution />
 
-#### Form (nested object) {/*form-nested-object*/}
+#### Formulaire (objet imbriqué) {/*form-nested-object*/}
 
-In this example, the state is more nested. When you update nested state, you need to create a copy of the object you're updating, as well as any objects "containing" it on the way upwards. Read [updating a nested object](/learn/updating-objects-in-state#updating-a-nested-object) to learn more.
+Dans cet exemple, l'état est imbriqué (*nested, NdT*). Lorsque vous mettez à jour un état imbriqué, vous avez besoin de créer une copie de l'objet que vous mettez à jour, ainsi que de tous les objets hiérarchiquement plus hauts le "contenant". Lire [mettre à jour un objet imbriqué](/learn/updating-objects-in-state#updating-a-nested-object) pour en savoir plus.
 
 <Sandpack>
 
@@ -571,28 +571,28 @@ export default function Form() {
   return (
     <>
       <label>
-        Name:
+        Nom :
         <input
           value={person.name}
           onChange={handleNameChange}
         />
       </label>
       <label>
-        Title:
+        Titre :
         <input
           value={person.artwork.title}
           onChange={handleTitleChange}
         />
       </label>
       <label>
-        City:
+        Ville :
         <input
           value={person.artwork.city}
           onChange={handleCityChange}
         />
       </label>
       <label>
-        Image:
+        Image :
         <input
           value={person.artwork.image}
           onChange={handleImageChange}
@@ -600,10 +600,10 @@ export default function Form() {
       </label>
       <p>
         <i>{person.artwork.title}</i>
-        {' by '}
+        {' par '}
         {person.name}
         <br />
-        (located in {person.artwork.city})
+        (basé à {person.artwork.city})
       </p>
       <img 
         src={person.artwork.image} 
@@ -624,9 +624,9 @@ img { width: 200px; height: 200px; }
 
 <Solution />
 
-#### List (array) {/*list-array*/}
+#### Liste (tableau) {/*list-array*/}
 
-In this example, the `todos` state variable holds an array. Each button handler calls `setTodos` with the next version of that array. The `[...todos]` spread syntax, `todos.map()` and `todos.filter()` ensure the state array is replaced rather than mutated.
+Dans cet exemple, la variable d'état `todos` contient un tableau. Chaque gestionnaire de bouton appelle `setTodos` avec la prochaine version de ce tableau. La syntaxe de décomposition `[...todos]`, `todos.map()` et `todos.filter()` permettent de remplacer l'état du tableau, plutôt que de le muter.
 
 <Sandpack>
 
@@ -702,7 +702,7 @@ export default function AddTodo({ onAddTodo }) {
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   )
 }
@@ -746,7 +746,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Sauvegarder
         </button>
       </>
     );
@@ -755,7 +755,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Éditer
         </button>
       </>
     );
@@ -774,7 +774,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
@@ -791,9 +791,9 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution />
 
-#### Writing concise update logic with Immer {/*writing-concise-update-logic-with-immer*/}
+#### Écrire la logique d'une mise à jour de manière concise avec Immer {/*writing-concise-update-logic-with-immer*/}
 
-If updating arrays and objects without mutation feels tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code. Immer lets you write concise code as if you were mutating objects, but under the hood it performs immutable updates:
+Si le fait de mettre à jour des tableaux et des objets sans mutation vous paraît fastidieux, vous pouvez utiliser une librairie pour réduire le code répétitif, comme [Immer](https://github.com/immerjs/use-immer). Immer vous permet d'écrire du code concis comme si vous étiez en train de muter des objets, mais, en réalité, il réalise des mises à jour immutables :
 
 <Sandpack>
 
@@ -822,8 +822,8 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Bucket List Art</h1>
+      <h2>Ma liste d'œuvre d'arts à voir :</h2>
       <ItemList
         artworks={list}
         onToggle={handleToggle} />
