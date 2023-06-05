@@ -84,13 +84,8 @@ Lors des mises à jour, la <CodeStep step={2}>valeur différée</CodeStep> sera 
 
 Cet exemple part du principe que vous utilisez une source de donnée compatible avec Suspense :
 
-<<<<<<< HEAD
-- Le chargement de données fourni par des frameworks intégrant Suspense tels que [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) ou [Next.js](https://nextjs.org/docs/advanced-features/react-18)
+- Le chargement de données fourni par des frameworks intégrant Suspense tels que [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) et [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Le chargement à la demande de composants avec [`lazy`](/reference/react/lazy)
-=======
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
->>>>>>> ca93140eb98a7ff4364a719075fccea980c55b55
 
 [Apprenez-en davantage sur Suspense et ses limitations](/reference/react/Suspense).
 
