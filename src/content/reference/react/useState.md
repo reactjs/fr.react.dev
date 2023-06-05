@@ -882,9 +882,9 @@ function ItemList({ artworks, onToggle }) {
 
 ---
 
-### Avoiding recreating the initial state {/*avoiding-recreating-the-initial-state*/}
+### Éviter de récréer l'état initial {/*avoiding-recreating-the-initial-state*/}
 
-React saves the initial state once and ignores it on the next renders.
+React sauvegarde l'état initial et l'ignore pendant le prochain rendu.
 
 ```js
 function TodoList() {
@@ -892,9 +892,9 @@ function TodoList() {
   // ...
 ```
 
-Although the result of `createInitialTodos()` is only used for the initial render, you're still calling this function on every render. This can be wasteful if it's creating large arrays or performing expensive calculations.
+Même si le résultat de `createInitialTodos()` est utilisé seulement pour le rendu initial, vous appelez tout de même cette fonction à chaque rendu. Ça peut gâcher les performances de votre application si vous créez de grands tableaux ou si vous lancez des calculs coûteux. 
 
-To solve this, you may **pass it as an _initializer_ function** to `useState` instead:
+Pour résoudre cette problématique, vous pouvez à la place **passer une fonction _d'initialisation_** à `useState` :
 
 ```js
 function TodoList() {
@@ -902,15 +902,15 @@ function TodoList() {
   // ...
 ```
 
-Notice that you’re passing `createInitialTodos`, which is the *function itself*, and not `createInitialTodos()`, which is the result of calling it. If you pass a function to `useState`, React will only call it during initialization.
+Notez que vous passez `createInitialTodos`, qui est la *fonction elle-même*, et non pas `createInitialTodos()`, qui est le résultat de l'appel. Si vous passez une fonction à `useState`, React ne l'appelera que pendant l'initialisation.
 
-React may [call your initializers twice](#my-initializer-or-updater-function-runs-twice) in development to verify that they are [pure.](/learn/keeping-components-pure)
+React pourrait [appeler vos fonctions d'initialisations deux fois](#my-initializer-or-updater-function-runs-twice) afin de vérifier qu'elles soient [pures.](/learn/keeping-components-pure)
 
-<Recipes titleText="The difference between passing an initializer and passing the initial state directly" titleId="examples-initializer">
+<Recipes titleText="La différence entre passer une fonction d'initialisation et directement passer l'état initial" titleId="examples-initializer">
 
-#### Passing the initializer function {/*passing-the-initializer-function*/}
+#### Passer la fonction d'initialisation {/*passing-the-initializer-function*/}
 
-This example passes the initializer function, so the `createInitialTodos` function only runs during initialization. It does not run when component re-renders, such as when you type into the input.
+Cet exemple passe la fonction d'initialisation pour que la fonction `createInitialTodos` ne soit lancée que pendant l'initialisation. Elle ne se lance pas quand le composant effectue un nouveau rendu, comme lorsque vous tapez dans le champ de saisie.
 
 <Sandpack>
 
@@ -944,7 +944,7 @@ export default function TodoList() {
           id: todos.length,
           text: text
         }, ...todos]);
-      }}>Add</button>
+      }}>Ajouter</button>
       <ul>
         {todos.map(item => (
           <li key={item.id}>
@@ -961,9 +961,9 @@ export default function TodoList() {
 
 <Solution />
 
-#### Passing the initial state directly {/*passing-the-initial-state-directly*/}
+#### Directement passer l'état initial {/*passing-the-initial-state-directly*/}
 
-This example **does not** pass the initializer function, so the `createInitialTodos` function runs on every render, such as when you type into the input. There is no observable difference in behavior, but this code is less efficient.
+Cet exemple **ne passe pas** la fonction d'initialisation, donc la fonction `createInitialTodos` se lance à chaque rendu, comme lorsque vous tapez dans le champ de saisie. Il n'y a pas de différence de comportement remarquable, mais le code est moins efficace.
 
 <Sandpack>
 
@@ -997,7 +997,7 @@ export default function TodoList() {
           id: todos.length,
           text: text
         }, ...todos]);
-      }}>Add</button>
+      }}>Ajouter</button>
       <ul>
         {todos.map(item => (
           <li key={item.id}>
@@ -1018,13 +1018,13 @@ export default function TodoList() {
 
 ---
 
-### Resetting state with a key {/*resetting-state-with-a-key*/}
+### Réinitialiser l'état avec une clé {/*resetting-state-with-a-key*/}
 
-You'll often encounter the `key` attribute when [rendering lists.](/learn/rendering-lists) However, it also serves another purpose.
+Vous pourriez parfois rencontrer un attribut `key` lors du [rendu de listes](/learn/rendering-lists). Cependant, il sert à autre chose.
 
-You can **reset a component's state by passing a different `key` to a component.** In this example, the Reset button changes the `version` state variable, which we pass as a `key` to the `Form`. When the `key` changes, React re-creates the `Form` component (and all of its children) from scratch, so its state gets reset.
+Vous pouvez **réinitialiser l'état d'un composant en lui passant une `key` différente**. Dans cet exemple, le bouton Réinitialiser change la variable d'état `version`, laquelle étant passée dans une `key` à `Form`. Quand la `key` change, React re-crée le composant `Form` (et tous ses enfants) depuis le début, donc son état est réinitialisé.
 
-Read [preserving and resetting state](/learn/preserving-and-resetting-state) to learn more.
+Lire [préserver et réinitialiser l'état](/learn/preserving-and-resetting-state) pour en savoir plus.
 
 <Sandpack>
 
@@ -1040,14 +1040,14 @@ export default function App() {
 
   return (
     <>
-      <button onClick={handleReset}>Reset</button>
+      <button onClick={handleReset}>Réinitialiser</button>
       <Form key={version} />
     </>
   );
 }
 
 function Form() {
-  const [name, setName] = useState('Taylor');
+  const [name, setName] = useState('Clara');
 
   return (
     <>
@@ -1055,7 +1055,7 @@ function Form() {
         value={name}
         onChange={e => setName(e.target.value)}
       />
-      <p>Hello, {name}.</p>
+      <p>Bonjour, {name}.</p>
     </>
   );
 }
@@ -1069,19 +1069,19 @@ button { display: block; margin-bottom: 20px; }
 
 ---
 
-### Storing information from previous renders {/*storing-information-from-previous-renders*/}
+### Stocker les informations des rendus précédents {/*storing-information-from-previous-renders*/}
 
-Usually, you will update state in event handlers. However, in rare cases you might want to adjust state in response to rendering -- for example, you might want to change a state variable when a prop changes.
+La plupart du temps, vous mettrez à jour les états dans des gestionnaires d'évènements. Cependant, dans de rares cas, vous pourriez peut-être vouloir ajouter l'état en fonction du rendu -- par exemple, vous pourriez peut-être vouloir changer une variable d'état quand une propriété change.
 
-In most cases, you don't need this:
+Dans la plupart des cas, vous n'avez pas besoin de ça :
 
-* **If the value you need can be computed entirely from the current props or other state, [remove that redundant state altogether.](/learn/choosing-the-state-structure#avoid-redundant-state)** If you're worried about recomputing too often, the [`useMemo` Hook](/reference/react/useMemo) can help.
-* If you want to reset the entire component tree's state, [pass a different `key` to your component.](#resetting-state-with-a-key)
-* If you can, update all the relevant state in the event handlers.
+* **Si la valeur dont vous avez besoin peut être totalement calculée à partir des propriétés actuelles ou d'un autre état, [supprimez complètement ces états redondants](/learn/choosing-the-state-structure#avoid-redundant-state)**. Si effectuer de nouveaux calculs trop fréquemment vous dérange, le [Hook `useMemo`](/reference/react/useMemo) peut vous aider.   
+* Si vous voulez réinitialiser l'entièreté de l'arbre d'un composant, [passez une `key` différente à votre composant](#resetting-state-with-a-key).
+* Si vous le pouvez, mettez à jour tous les états correspondants dans des gestionnaires d'évènements.
 
-In the rare case that none of these apply, there is a pattern you can use to update state based on the values that have been rendered so far, by calling a `set` function while your component is rendering.
+Dans de rares autres cas, il existe un modèle que vous pouvez utiliser pour mettre à jour un état selon les états qui ont été rendus jusqu'ici, en appelant une fonction de mise à jour pendant que votre composant est en cours du rendu.
 
-Here's an example. This `CountLabel` component displays the `count` prop passed to it:
+Voici un exemple. Ce composant `CountLabel` affiche une propriété `count` qui lui est passé :
 
 ```js CountLabel.js
 export default function CountLabel({ count }) {
@@ -1089,7 +1089,7 @@ export default function CountLabel({ count }) {
 }
 ```
 
-Say you want to show whether the counter has *increased or decreased* since the last change. The `count` prop doesn't tell you this -- you need to keep track of its previous value. Add the `prevCount` state variable to track it. Add another state variable called `trend` to hold whether the count has increased or decreased. Compare `prevCount` with `count`, and if they're not equal, update both `prevCount` and `trend`. Now you can show both the current count prop and *how it has changed since the last render*.
+Mettons que vous vouliez montrer si le compteur a *augmenté ou diminué* depuis le dernier changement. La propriété `count` ne vous permet pas de savoir ceci -- vous avez besoin de garder une trace de sa dernière valeur. Ajoutez la variable d'état `prevCount` afin de garder une trace de sa dernière valeur. Ajoutez une autre variable d'état appelée `trend` qui permet de savoir si le compteur a augmenté ou diminué. Comparez `prevCount` avec `count`, et s'ils ne sont pas égaux, mettez à jour `prevCount` et `trend`. Vous pouvez maintenant montrer la propriété du compteur courante et *comment elle a changé depuis le dernier rendu*.
 
 <Sandpack>
 
@@ -1102,10 +1102,10 @@ export default function App() {
   return (
     <>
       <button onClick={() => setCount(count + 1)}>
-        Increment
+        Incrémenter
       </button>
       <button onClick={() => setCount(count - 1)}>
-        Decrement
+        Décrémenter
       </button>
       <CountLabel count={count} />
     </>
@@ -1121,12 +1121,12 @@ export default function CountLabel({ count }) {
   const [trend, setTrend] = useState(null);
   if (prevCount !== count) {
     setPrevCount(count);
-    setTrend(count > prevCount ? 'increasing' : 'decreasing');
+    setTrend(count > prevCount ? 'augmenté' : 'diminué');
   }
   return (
     <>
       <h1>{count}</h1>
-      {trend && <p>The count is {trend}</p>}
+      {trend && <p>Le compteur a {trend}</p>}
     </>
   );
 }
@@ -1138,34 +1138,34 @@ button { margin-bottom: 10px; }
 
 </Sandpack>
 
-Note that if you call a `set` function while rendering, it must be inside a condition like `prevCount !== count`, and there must be a call like `setPrevCount(count)` inside of the condition. Otherwise, your component would re-render in a loop until it crashes. Also, you can only update the state of the *currently rendering* component like this. Calling the `set` function of *another* component during rendering is an error. Finally, your `set` call should still [update state without mutation](#updating-objects-and-arrays-in-state) -- this doesn't mean you can break other rules of [pure functions.](/learn/keeping-components-pure)
+Notez que si vous appelez une fonction de mise à jour pendant le rendu, elle doit être dans une condition, comme `prevCount !== count`, et il doit y avoir un appel dans la condition, comme `setPrevCount(count)`. Sinon, votre composant effectuera des rendus en boucle jusqu'à crash. De plus, vous pouvez seulement mettre à jour l'état du composant *en cours de rendu* de cette manière. Appeler la fonction de mise à jour d'un *autre* composant pendant le rendu est une erreur. Finalement, votre appel de mise à jour devrait toujours [mettre à jour l'état sans mutation](#updating-objects-and-arrays-in-state) -- cela ne veut pas dire que vous pouvez enfreindre les autres règles des [fonctions pures](/learn/keeping-components-pure).
 
-This pattern can be hard to understand and is usually best avoided. However, it's better than updating state in an effect. When you call the `set` function during render, React will re-render that component immediately after your component exits with a `return` statement, and before rendering the children. This way, children don't need to render twice. The rest of your component function will still execute (and the result will be thrown away). If your condition is below all the Hook calls, you may add an early `return;` to restart rendering earlier.
+Cette méthode peut être difficile à comprendre et est la plupart du temps à éviter. Cependant, c'est toujours mieux que de mettre à jour un état dans un effet. Lorsque vous appelez une fonction de mise à jour pendant le rendu, React va effectuer un autre rendu de ce composant immédiatement après que votre composant se soit terminé grâce à un `return`, et avant d'effectuer un rendu de ses enfants. De cette manière, les enfants n'ont pas besoin d'effectuer deux rendus. Le reste de votre composant va toujours s'effectuer (et le résultat va être jeté). Si votre composant est en-dessous de tous les appels à des Hook, vous devez ajouter un `return;` en avance pour redémarrer plus tôt le rendu.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Dépannage {/*troubleshooting*/}
 
-### I've updated the state, but logging gives me the old value {/*ive-updated-the-state-but-logging-gives-me-the-old-value*/}
+### J'ai mis à jour l'état, mais le logging m'affiche toujours l'ancienne valeur {/*ive-updated-the-state-but-logging-gives-me-the-old-value*/}
 
-Calling the `set` function **does not change state in the running code**:
+Appeler la fonction de mise à jour **ne change pas l'état dans le code en cours de lancement** :
 
 ```js {4,5,8}
 function handleClick() {
   console.log(count);  // 0
 
-  setCount(count + 1); // Request a re-render with 1
-  console.log(count);  // Still 0!
+  setCount(count + 1); // Demander un nouveau rendu avec 1
+  console.log(count);  // Toujours 0 !
 
   setTimeout(() => {
-    console.log(count); // Also 0!
+    console.log(count); // Encore 0 !
   }, 5000);
 }
 ```
 
-This is because [states behaves like a snapshot.](/learn/state-as-a-snapshot) Updating state requests another render with the new state value, but does not affect the `count` JavaScript variable in your already-running event handler.
+C'est parce que l'[état se comporte comme une snapshot](/learn/state-as-a-snapshot). Mettre à jour l'état déclenche un autre rendu avec la nouvelle variable d'état, mais cela n'affecte pas la variable JavaScript `count` dans le gestionnaire d'évènements en train de s'exécuter.
 
-If you need to use the next state, you can save it in a variable before passing it to the `set` function:
+Si vous avez besoin du prochain état, vous pouvez le sauvegarder dans une variable avant de le passer dans la fonction de mise à jour :
 
 ```js
 const nextCount = count + 1;
@@ -1177,19 +1177,19 @@ console.log(nextCount); // 1
 
 ---
 
-### I've updated the state, but the screen doesn't update {/*ive-updated-the-state-but-the-screen-doesnt-update*/}
+### J'ai mis à jour l'état, mais l'écran ne se met pas à jour {/*ive-updated-the-state-but-the-screen-doesnt-update*/}
 
-React will **ignore your update if the next state is equal to the previous state,** as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. This usually happens when you change an object or an array in state directly:
+React va **ignorer votre mise à jour si le prochain état est égal à l'état précédent**, en comparant au moyen de [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Ça arrive la plupart du temps lorsque vous changez un objet ou un tableau directement dans l'état :
 
 ```js
-obj.x = 10;  // 🚩 Wrong: mutating existing object
-setObj(obj); // 🚩 Doesn't do anything
+obj.x = 10;  // 🚩 Faux : mutation d'un objet existant
+setObj(obj); // 🚩 Ne fait rien
 ```
 
-You mutated an existing `obj` object and passed it back to `setObj`, so React ignored the update. To fix this, you need to ensure that you're always [_replacing_ objects and arrays in state instead of _mutating_ them](#updating-objects-and-arrays-in-state):
+Vous avez muté un objet `obj` existant et vous l'avez re-passé à `setObj`, donc React ignore la mise à jour. Pour résoudre cela, vous devez vous assurer que vous [_remplacez toujours les objets et les tableaux dans l'état plutôt que les _muter_](#updating-objects-and-arrays-in-state) :
 
 ```js
-// ✅ Correct: creating a new object
+// ✅ Correct : créer un nouvel objet
 setObj({
   ...obj,
   x: 10
