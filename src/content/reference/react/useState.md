@@ -121,7 +121,7 @@ function handleClick() {
 }
 ```
 
-React stockera ce prochain état, fera un nouveau rendu de votre composant avec les nouvelles valeurs, et mettra à jour l'interface utilisateur *(UI, NdT)*
+React stockera ce prochain état, fera un nouveau rendu de votre composant avec les nouvelles valeurs, et mettra à jour l'interface utilisateur *(UI, NdT)*.
 
 <Pitfall>
 
@@ -637,9 +637,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Acheter du lait', done: true },
+  { id: 1, title: 'Manger des tacos', done: false },
+  { id: 2, title: 'Faire infuser du thé', done: false },
 ];
 
 export default function TaskApp() {
@@ -695,7 +695,7 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Ajouter une chose à faire"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
@@ -822,8 +822,8 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Bucket List Art</h1>
-      <h2>Ma liste d'œuvre d'arts à voir :</h2>
+      <h1>Liste d'Art</h1>
+      <h2>Ma liste d'œuvres d'art à voir :</h2>
       <ItemList
         artworks={list}
         onToggle={handleToggle} />
@@ -922,7 +922,7 @@ function createInitialTodos() {
   for (let i = 0; i < 50; i++) {
     initialTodos.push({
       id: i,
-      text: 'Item ' + (i + 1)
+      text: 'Objet ' + (i + 1)
     });
   }
   return initialTodos;
@@ -975,7 +975,7 @@ function createInitialTodos() {
   for (let i = 0; i < 50; i++) {
     initialTodos.push({
       id: i,
-      text: 'Item ' + (i + 1)
+      text: 'Objet ' + (i + 1)
     });
   }
   return initialTodos;
@@ -1079,7 +1079,7 @@ Dans la plupart des cas, vous n'avez pas besoin de ça :
 * Si vous voulez réinitialiser l'entièreté de l'arbre d'un composant, [passez une `key` différente à votre composant](#resetting-state-with-a-key).
 * Si vous le pouvez, mettez à jour tous les états correspondants dans des gestionnaires d'évènements.
 
-Dans de rares autres cas, il existe un modèle que vous pouvez utiliser pour mettre à jour un état selon les états qui ont été rendus jusqu'ici, en appelant une fonction de mise à jour pendant que votre composant est en cours du rendu.
+Dans de rares autres cas, il existe un modèle que vous pouvez utiliser pour mettre à jour un état selon les états qui ont été rendus jusqu'ici, en appelant une fonction de mise à jour pendant que votre composant est en cours de rendu.
 
 Voici un exemple. Ce composant `CountLabel` affiche une propriété `count` qui lui est passé :
 
@@ -1089,7 +1089,7 @@ export default function CountLabel({ count }) {
 }
 ```
 
-Mettons que vous vouliez montrer si le compteur a *augmenté ou diminué* depuis le dernier changement. La propriété `count` ne vous permet pas de savoir ceci -- vous avez besoin de garder une trace de sa dernière valeur. Ajoutez la variable d'état `prevCount` afin de garder une trace de sa dernière valeur. Ajoutez une autre variable d'état appelée `trend` qui permet de savoir si le compteur a augmenté ou diminué. Comparez `prevCount` avec `count`, et s'ils ne sont pas égaux, mettez à jour `prevCount` et `trend`. Vous pouvez maintenant montrer la propriété du compteur courante et *comment elle a changé depuis le dernier rendu*.
+Mettons que vous vouliez montrer si le compteur a *augmenté ou diminué* depuis le dernier changement. La propriété `count` ne vous permet pas de savoir ça -- vous avez besoin de garder une trace de sa dernière valeur. Ajoutez la variable d'état `prevCount` afin de garder une trace de sa dernière valeur. Ajoutez une autre variable d'état appelée `trend` qui permet de savoir si le compteur a augmenté ou diminué. Comparez `prevCount` avec `count`, et, s'ils ne sont pas égaux, mettez à jour `prevCount` et `trend`. Vous pouvez maintenant montrer la propriété du compteur courante et *comment elle a changé depuis le dernier rendu*.
 
 <Sandpack>
 
@@ -1138,7 +1138,7 @@ button { margin-bottom: 10px; }
 
 </Sandpack>
 
-Notez que si vous appelez une fonction de mise à jour pendant le rendu, elle doit être dans une condition, comme `prevCount !== count`, et il doit y avoir un appel dans la condition, comme `setPrevCount(count)`. Sinon, votre composant effectuera des rendus en boucle jusqu'à crash. De plus, vous pouvez seulement mettre à jour l'état du composant *en cours de rendu* de cette manière. Appeler la fonction de mise à jour d'un *autre* composant pendant le rendu est une erreur. Finalement, votre appel de mise à jour devrait toujours [mettre à jour l'état sans mutation](#updating-objects-and-arrays-in-state) -- cela ne veut pas dire que vous pouvez enfreindre les autres règles des [fonctions pures](/learn/keeping-components-pure).
+Notez que si vous appelez une fonction de mise à jour pendant le rendu, elle doit être dans une condition, telle que `prevCount !== count`, et il doit y avoir un appel dans la condition, tel que `setPrevCount(count)`. Sinon, votre composant effectuera des rendus en boucle jusqu'à crash. De plus, vous pouvez seulement mettre à jour l'état du composant *en cours de rendu* de cette manière. Appeler la fonction de mise à jour d'un *autre* composant pendant le rendu est une erreur. Finalement, votre appel de mise à jour devrait toujours [mettre à jour l'état sans mutation](#updating-objects-and-arrays-in-state) -- cela ne veut pas dire que vous pouvez enfreindre les autres règles des [fonctions pures](/learn/keeping-components-pure).
 
 Cette méthode peut être difficile à comprendre et est la plupart du temps à éviter. Cependant, c'est toujours mieux que de mettre à jour un état dans un effet. Lorsque vous appelez une fonction de mise à jour pendant le rendu, React va effectuer un autre rendu de ce composant immédiatement après que votre composant se soit terminé grâce à un `return`, et avant d'effectuer un rendu de ses enfants. De cette manière, les enfants n'ont pas besoin d'effectuer deux rendus. Le reste de votre composant va toujours s'effectuer (et le résultat va être jeté). Si votre composant est en-dessous de tous les appels à des Hook, vous devez ajouter un `return;` en avance pour redémarrer plus tôt le rendu.
 
@@ -1186,7 +1186,7 @@ obj.x = 10;  // 🚩 Faux : mutation d'un objet existant
 setObj(obj); // 🚩 Ne fait rien
 ```
 
-Vous avez muté un objet `obj` existant et vous l'avez re-passé à `setObj`, donc React ignore la mise à jour. Pour résoudre cela, vous devez vous assurer que vous [_remplacez toujours les objets et les tableaux dans l'état plutôt que les _muter_](#updating-objects-and-arrays-in-state) :
+Vous avez muté un objet `obj` existant et vous l'avez re-passé à `setObj`, donc React ignore la mise à jour. Pour résoudre cela, vous devez vous assurer que vous [remplacez toujours les objets et les tableaux dans l'état plutôt que les _muter_](#updating-objects-and-arrays-in-state) :
 
 ```js
 // ✅ Correct : créer un nouvel objet
@@ -1198,78 +1198,77 @@ setObj({
 
 ---
 
-### I'm getting an error: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
+### J'ai une erreur : "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
 
-You might get an error that says: `Too many re-renders. React limits the number of renders to prevent an infinite loop.` Typically, this means that you're unconditionally setting state *during render*, so your component enters a loop: render, set state (which causes a render), render, set state (which causes a render), and so on. Very often, this is caused by a mistake in specifying an event handler:
+Vous pourriez peut-être avoir une erreur disant : `Too many re-renders. React limits the number of renders to prevent an infinite loop`. La plupart du temps, cela signifie que vous mettez à jour un état de manière non conditionnelle *pendant le rendu*, donc votre composant rentre dans une boucle : rendu, mise à jour de l'état (qui cause un rendu), rendu, mise à jour de l'état (qui cause un rendu), etc. Peu souvent, c'est causé par une erreur en spécifiant le gestionnaire d'évènement : 
 
 ```js {1-2}
-// 🚩 Wrong: calls the handler during render
+// 🚩 Faux : appelle le gestionnaire pendant le rendu
 return <button onClick={handleClick()}>Click me</button>
 
-// ✅ Correct: passes down the event handler
+// ✅ Correct : passe le gestionnaire d'évènement 
 return <button onClick={handleClick}>Click me</button>
 
-// ✅ Correct: passes down an inline function
+// ✅ Correct : passe une fonction en ligne
 return <button onClick={(e) => handleClick(e)}>Click me</button>
 ```
 
-If you can't find the cause of this error, click on the arrow next to the error in the console and look through the JavaScript stack to find the specific `set` function call responsible for the error.
+Si vous n'arrivez pas à trouver le cause de cette erreur, cliquez, dans la console, sur la flèche à côté de l'erreur, et regardez dans votre pile JavaScript afin de trouver la fonction de mise à jour responsable de cette erreur.
 
 ---
 
-### My initializer or updater function runs twice {/*my-initializer-or-updater-function-runs-twice*/}
+### Ma fonction d'initialisation ou ma fonction de mise à jour se lance deux fois {/*my-initializer-or-updater-function-runs-twice*/}
 
-In [Strict Mode](/reference/react/StrictMode), React will call some of your functions twice instead of once:
+En [mode Strict](/reference/react/StrictMode), React va appeler certaines de vos fonctions deux fois plutôt qu'une :
 
 ```js {2,5-6,11-12}
 function TodoList() {
-  // This component function will run twice for every render.
+  // La fonction de ce composant va se lancer deux fois pendant le rendu.
 
   const [todos, setTodos] = useState(() => {
-    // This initializer function will run twice during initialization.
+    // Cette fonction d'initialisation va se lancer deux fois pendant le rendu.
     return createTodos();
   });
 
   function handleClick() {
     setTodos(prevTodos => {
-      // This updater function will run twice for every click.
+      // Cette fonction de mise à jour va se lancer deux fois à chaque click.
       return [...prevTodos, createTodo()];
     });
   }
   // ...
 ```
 
-This is expected and shouldn't break your code.
+C'est voulu, et ça ne devrait pas casser votre code.
 
-This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component, initializer, and updater functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes.
+Ce comportement, **uniquement présent en développement**, vous aide à [garder vos composants purs](/learn/keeping-components-pure). React utilise le résultat d'un des appels, et ignore le résultat de l'autre. Tant que vos composants, vos fonctions d'initialisation, et vos fonctions de mise à jour sont pures, ça ne devrait pas affecter votre logique. Cependant, si elles sont accidentellement impures, ça vous aide à remarquer vos erreurs. 
 
-For example, this impure updater function mutates an array in state:
+Par exemple, cette fonction de mise à jour impure mute un tableau dans un état :
 
 ```js {2,3}
 setTodos(prevTodos => {
-  // 🚩 Mistake: mutating state
+  // 🚩 Erreur : muter un état
   prevTodos.push(createTodo());
 });
 ```
-
-Because React calls your updater function twice, you'll see the todo was added twice, so you'll know that there is a mistake. In this example, you can fix the mistake by [replacing the array instead of mutating it](#updating-objects-and-arrays-in-state):
+Comme React a appelé votre fonction de mise à jour à deux reprises, vous verrez que le `todo` a été appelé deux fois, et vous saurez qu'il y a une erreur. Dans cet exemple, vous pouvez résoudre l'erreur en [remplaçant le tableau, plutôt que de le muter](#updating-objects-and-arrays-in-state) :
 
 ```js {2,3}
 setTodos(prevTodos => {
-  // ✅ Correct: replacing with new state
+  // ✅ Correct : remplacer avec le nouvel état
   return [...prevTodos, createTodo()];
 });
 ```
 
-Now that this updater function is pure, calling it an extra time doesn't make a difference in behavior. This is why React calling it twice helps you find mistakes. **Only component, initializer, and updater functions need to be pure.** Event handlers don't need to be pure, so React will never call your event handlers twice.
+Maintenant que cette fonction de mise à jour est pure, l'appeler une autre fois ne fait aucune différence de comportement. C'est pour cette raison que l'appel à deux reprises de React vous aide à trouver des erreurs. **Seulement les composants, les fonctions d'initialisation et les fonctions de mise à jour doivent être pures**. Les gestionnaires d'évènements n'ont pas besoin d'être purs, donc React ne les appellera jamais deux fois.
 
-Read [keeping components pure](/learn/keeping-components-pure) to learn more.
+Lire [garder les composants purs](/learn/keeping-components-pure) pour en savoir plus.
 
 ---
 
-### I'm trying to set state to a function, but it gets called instead {/*im-trying-to-set-state-to-a-function-but-it-gets-called-instead*/}
+### J'essaye de mettre à jour un état avec une fonction, mais elle est appelée à la place {/*im-trying-to-set-state-to-a-function-but-it-gets-called-instead*/}
 
-You can't put a function into state like this:
+Vous ne pouvez pas mettre une fonction dans un état comme ceci :
 
 ```js
 const [fn, setFn] = useState(someFunction);
@@ -1279,7 +1278,7 @@ function handleClick() {
 }
 ```
 
-Because you're passing a function, React assumes that `someFunction` is an [initializer function](#avoiding-recreating-the-initial-state), and that `someOtherFunction` is an [updater function](#updating-state-based-on-the-previous-state), so it tries to call them and store the result. To actually *store* a function, you have to put `() =>` before them in both cases. Then React will store the functions you pass.
+Comme vous passez une fonction, React part de principe que `someFunction` est une [fonction d'initialisation](#avoiding-recreating-the-initial-state), et que `someOtherFunction` est une [fonction de mise à jour](#updating-state-based-on-the-previous-state), et donc essaye de les appeler et de stocker leurs résultats. Pour réellement *stocker* une fonction, dans les deux cas, vous devez placer en amont `() =>`. Dans ce cas, React stockera les fonctions que vous passez.
 
 ```js {1,4}
 const [fn, setFn] = useState(() => someFunction);
