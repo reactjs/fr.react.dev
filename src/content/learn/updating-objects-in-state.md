@@ -119,7 +119,7 @@ onPointerMove={e => {
 Avec `setPosition`, vous indiquez à React :
 
 * Remplace `position` par ce nouvel objet
-* Et rends ce composant à nouveau
+* Et refais le rendu ce composant
 
 Remarquez comment le point rouge suit maintenant votre curseur lorsque vous le touchez ou le survolez dans la zone de prévisualisation :
 
@@ -170,7 +170,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 #### La mutation locale est acceptable {/*local-mutation-is-fine*/}
 
-Le code suivant pose problème car il modifie un objet *existants* dans l’état :
+Le code suivant pose problème car il modifie un objet *existant* dans l’état :
 
 ```js
 position.x = e.clientX;
@@ -480,8 +480,8 @@ Ou, écrit en une seule instruction :
 setPerson({
   ...person, // Copiez les autres champs
   artwork: { // mais remplacez l’œuvre d’art
-    ...person.artwork, // par la même
-    city: ’New Delhi’ // mais à New Delhi !
+    ...person.artwork, // par la même œuvre d’art
+    city: 'New Delhi' // mais à New Delhi !
   }
 });
 ```
@@ -626,7 +626,7 @@ let obj2 = {
 };
 ```
 
-L’objet obj1 n’est pas à l’« intérieur » de obj2. Par exemple, obj3 pourrait également « pointer » vers obj1 :
+L’objet `obj1` n’est pas à l’« intérieur » de `obj2`. Par exemple, `obj3` pourrait également « pointer » vers `obj1` :
 
 ```js
 let obj1 = {
@@ -646,7 +646,7 @@ let obj3 = {
 };
 ```
 
-Si vous modifiez obj3.artwork.city, ça affectera à la fois obj2.artwork.city et obj1.city. C’est parce que obj3.artwork, obj2.artwork et obj1 sont le même objet. C’est difficile à voir si l’on considère les objets comme « imbriqués ». Il s’agit plutôt d’objets distincts qui « pointent » les uns vers les autres à l’aide de propriétés.
+Si vous modifiez `obj3.artwork.city`, ça affectera à la fois `obj2.artwork.city` et `obj1.city`. C’est parce que `obj3.artwork`, `obj2.artwork` et `obj1` sont le même objet. C’est difficile à voir si l’on considère les objets comme « imbriqués ». Il s’agit plutôt d’objets distincts qui « pointent » les uns vers les autres à l’aide de propriétés.
 
 </DeepDive>  
 
@@ -673,7 +673,7 @@ Le `draft` fourni par Immer est un type spécial d’objet, appelé [Proxy](http
 Pour essayer Immer :
 
 1. Exécuter `npm install use-immer` pour ajouter Immer en tant que dépendance.
-2. Remplacer `import { useState } from ’react’` par `import { useImmer } from ’use-immer’`.
+2. Remplacer `import { useState } from 'react'` par `import { useImmer } from 'use-immer'`.
 
 Voici l’exemple ci-dessus converti en Immer :
 
@@ -787,6 +787,7 @@ img { width: 200px; height: 200px; }
 ```
 
 </Sandpack>
+
 Remarquez à quel point les gestionnaires d’événements sont devenus plus concis. Vous pouvez mélanger et combiner `useState` et `useImmer` dans un seul composant autant que vous le souhaitez. Immer est un excellent moyen de garder les gestionnaires de mise à jour concis, surtout s’il y a des niveaux d’imbrication dans votre état, et que la copie des objets conduit à un code répétitif.
 
 <DeepDive>
@@ -798,24 +799,22 @@ Il y a plusieurs raisons :
 * **Débogage :** Si vous utilisez `console.log` et que vous ne mutez pas l’état, vos anciens logs ne seront pas écrasés par les changements d’état les plus récents. Vous pouvez donc voir clairement comment l’état a changé entre les rendus.
 * **Optimisations :** Les [stratégies d’optimisation](/reference/react/memo) courantes de React reposent sur la suppression du travail si les props ou l’état précédents sont identiques aux suivants. Si vous ne mutez jamais l’état, il est très rapide de vérifier s’il y a eu des changements. Si `prevObj === obj`, vous pouvez être sûr que rien n’a pu changer à l’intérieur de celui-ci.
 * **Nouvelles fonctionnalités :** Les nouvelles fonctionnalités de React que nous développons reposent sur le fait que l’état est [traité comme un instantané](/learn/state-as-a-snapshot). Si vous mutez des versions précédentes de l’état, ça peut vous empêcher d’utiliser les nouvelles fonctionnalités.
-* **Changements de besoin :** Certaines fonctionnalités de l’application, comme la mise en œuvre d’Annuler/Refaire, l’affichage d’un historique des modifications ou la possibilité de réinitialiser un formulaire avec des valeurs antérieures, sont plus faciles à réaliser lorsque rien n’est muté. Ça est dû au fait que vous pouvez conserver des copies passées de l’état en mémoire et les réutiliser lorsque ça est approprié. Si vous commencez avec une approche mutative, il peut être difficile d’ajouter ces fonctionnalités ultérieurement.
-* **Implémentation plus simple :** Parce que React ne repose pas sur la mutation, il n’a pas besoin de faire quoi que ce soit de spécial avec vos objets. Il n’a pas besoin de s’approprier leurs propriétés, de les envelopper toujours dans des proxies ou de faire d’autres travaux à l’initialisation, comme le font de nombreuses solutions « réactives ». C’est également la raison pour laquelle React vous permet de mettre n’importe quel objet dans l’état, quelle que soit sa taille, sans problèmes de performances ou de correction supplémentaires.
+* **Changements de besoin :** Certaines fonctionnalités de l’application, comme l’implémentation d’actions pour annuler/refaire *(Undo/Redo, NdT)*, l’affichage d’un historique des modifications ou la possibilité de réinitialiser un formulaire avec des valeurs antérieures, sont plus faciles à réaliser lorsque rien n’est muté. Ceci est dû au fait que vous pouvez conserver des copies passées de l’état en mémoire et les réutiliser lorsque ça est approprié. Si vous commencez avec une approche mutative, il peut être difficile d’ajouter ces fonctionnalités ultérieurement.
+* **Implémentation plus simple :** Puisque React ne repose pas sur la mutation, il n’a pas besoin de faire quoi que ce soit de spécial avec vos objets. Il n’a pas besoin de trafiquer leurs propriétés, de toujours les envelopper dans des proxies ou de réaliser d’autres actions à l’initialisation, comme le font de nombreuses solutions « réactives ». C’est également la raison pour laquelle React vous permet de mettre n’importe quel objet dans l’état, quelle que soit sa taille, sans problèmes de performances ou de correction supplémentaires.
 
-En pratique, vous pouvez souvent « vous en sortir » en mutant l’état dans React, mais nous vous conseillons fortement de ne pas le faire afin de pouvoir utiliser les nouvelles fonctionnalités de React développées dans cette optique. Les futurs contributeurs et peut-être même vous-même vous en seront reconnaissants !
+En pratique, vous pouvez souvent « vous en sortir » en mutant l’état dans React, mais nous vous conseillons fortement de ne pas le faire afin de pouvoir utiliser les nouvelles fonctionnalités de React développées dans cette optique. Les futurs contributeurs, et peut-être vous-même, vous en seront reconnaissants !
 
 </DeepDive>
 
 <Recap>
 
-* Considérez tout l’état de React comme immuable.
-* Lorsque vous stockez des objets dans l
-
-’état, les muter ne déclenchera pas de rendus et modifiera l’état dans les « instantanés » de rendu précédents.
+* Traitez tous les états dans React comme étant immuables.
+* Lorsque vous stockez des objets dans l’état, les muter ne déclenchera pas de rendus et modifiera l’état dans les « instantanés » de rendu précédents.
 * Au lieu de muter un objet, créez une *nouvelle* version de celui-ci et déclenchez un nouveau rendu en définissant l’état sur cette nouvelle version.
-* Vous pouvez utiliser la syntaxe de décomposition d’objet `{...obj, something: ’newValue’}` pour créer des copies d’objets.
+* Vous pouvez utiliser la syntaxe de décomposition d’objet `{...obj, something: 'newValue'}` pour créer des copies d’objets.
 * La syntaxe de décomposition est superficielle : elle ne copie qu’un niveau de profondeur.
 * Pour mettre à jour un objet imbriqué, vous devez créer des copies depuis l’endroit où vous effectuez la mise à jour.
-* Pour réduire le code de copie répétitif, utilisez Immer.
+* Pour réduire la duplication de code, utilisez Immer.
 
 </Recap>
 
@@ -823,7 +822,7 @@ En pratique, vous pouvez souvent « vous en sortir » en mutant l’état dans R
 
 <Challenges>
 
-#### Corrigez les mises à jour incorrectes de l’état {/*fix-incorrect-state-updates*/}
+#### Corriger les mises à jour incorrectes de l’état {/*fix-incorrect-state-updates*/}
 
 Ce formulaire comporte quelques bugs. Cliquez sur le bouton qui augmente le score plusieurs fois. Remarquez qu’il n’augmente pas. Ensuite, modifiez le prénom et remarquez que le score a soudainement « rattrapé » vos modifications. Enfin, modifiez le nom de famille et remarquez que le score a complètement disparu.
 
@@ -965,17 +964,17 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-Le problème avec `handlePlusClick` était qu’il modifiait l’objet `player`. Par conséquent, React ne savait pas qu’il devait effectuer un nouveau rendu et n’a pas mis à jour le score à l’écran. C’est pourquoi, lorsque vous avez modifié le prénom, l’état a été mis à jour, déclenchant un nouveau rendu qui a également mis à jour le score à l’écran.
+Le problème avec `handlePlusClick` était qu’il modifiait l’objet `player`. Par conséquent, React ne savait pas qu’il devait effectuer un nouveau rendu et n’a pas mis à jour le score à l’écran. C’est pourquoi, lorsque vous avez modifié le prénom, l’état a été mis à jour, déclenchant un nouveau rendu qui a *aussi* mis à jour le score à l’écran.
 
 Le problème avec `handleLastNameChange` était qu’il ne copiait pas les champs existants de `...player` dans le nouvel objet. C’est pourquoi le score a été perdu après avoir modifié le nom de famille.
 
 </Solution>
 
-#### Trouvez et corrigez la mutation {/*find-and-fix-the-mutation*/}
+#### Trouver et corriger la mutation {/*find-and-fix-the-mutation*/}
 
 Il y a une boîte déplaçable sur un arrière-plan fixe. Vous pouvez changer la couleur de la boîte en utilisant le menu déroulant.
 
-Mais il y a un bug. Si vous déplacez d’abord la boîte, puis changez sa couleur, l’arrière-plan (qui ne doit pas bouger !) va « sauter » jusqu’à la position de la boîte. Mais ça ne devrait pas se produire : la propriété `position` du composant `Background` est définie sur `initialPosition`, qui est `{ x: 0, y: 0 }`. Pourquoi l’arrière-plan bouge-t-il après le changement de couleur ?
+Mais il y a un bug. Si vous déplacez d’abord la boîte, puis changez sa couleur, l’arrière-plan (qui n’est pas censé bouger !) va « sauter » jusqu’à la position de la boîte. Mais ça ne devrait pas se produire : la propriété `position` du composant `Background` est définie sur `initialPosition`, qui est `{ x: 0, y: 0 }`. Pourquoi l’arrière-plan bouge-t-il après le changement de couleur ?
 
 Trouvez le bug et corrigez-le.
 
