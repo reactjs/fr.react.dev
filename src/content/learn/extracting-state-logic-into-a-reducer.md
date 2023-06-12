@@ -4,14 +4,14 @@ title: Extraire la logique d'état dans un réducteur
 
 <Intro>
 
-Les composants comportant beaucoup mises à jour d'état réparties à traver de nombreux gestionnaires d'événements peuvent devenir encombrants. Dans ces circonstances, vous pouvez consolider toute la logique de mise à jour de l'état dans une seule fonction, appelée _réducteur_.
+Les composants ayant beaucoup de mises à jour d'état réparties parmi de nombreux gestionnaires d'événements peuvent devenir difficiles à maîtriser. Dans ces circonstances, vous pouvez consolider toute la logique de mise à jour d'état dans une seule fonction, appelée _réducteur_.
 
 </Intro>
 
 <YouWillLearn>
 
-- Ce qu'est une fonction de réducteur
-- Comment remplacer `useState` avec `useReducer`
+- Ce qu'est une fonction de réduction
+- Comment remplacer `useState` par `useReducer`
 - Quand utiliser un réducteur
 - Comment l'écrire correctement
 
@@ -19,7 +19,7 @@ Les composants comportant beaucoup mises à jour d'état réparties à traver de
 
 ## Consolider la logique d'état avec un réducteur {/*consolidate-state-logic-with-a-reducer*/}
 
-Au fur et  mesure que vos composants gagnent en complexité, il devient difficile de voir d'un coup d'œil les différentes façons dont l'état d'un composant est mis à jour. Par exemple, le composant `TaskApp` ci-dessous contient un tableau de `tasks` dans un état et utilise trois gestionnaires d'événements différents pour créer, supprimer ou éditer des tâches :
+Plus vos composants deviennent complexes, plus il est difficile de voir d'un coup d'œil les différentes façons dont leur état est mis à jour. Par exemple, le composant `TaskApp` ci-dessous contient un tableau de `tasks` dans un état et utilise trois gestionnaires d'événements différents pour créer, supprimer ou éditer ces tâches :
 
 <Sandpack>
 
@@ -179,7 +179,7 @@ li {
 
 </Sandpack>
 
-Chaque gestionnaire d'événement appelle `setTasks` afin de mettre à jour l'état. Avec l'évolution de ce composant, la quantité de logique qui l'entoure grandit également. Pour réduire cette complexité et garder votre logique en un seul endroit facile d'accès, vous pouvez déplacer cette logique d'état dans une seule fonction **appelée « réducteur »** à l'extérieur du composant.
+Chaque gestionnaire d'événement appelle `setTasks` afin de mettre à jour l'état. Avec l'évolution de ce composant, la quantité de logique qui l'entoure grandit également. Pour réduire cette complexité et garder votre logique en un seul endroit facile d'accès, vous pouvez la déplacer dans une fonction unique à l'extérieur du composant, **appelée « réducteur »**.
 
 Les réducteurs sont une autre façon de gérer l'état. Vous pouvez migrer de `useState` à `useReducer` en trois étapes :
 
@@ -226,7 +226,7 @@ Supprimez toute la logique de définition d'état. Il vous reste ces trois gesti
 - `handleChangeTask(task)` est appelé quand l'utilisateur change de tâche ou appuie sur « Enregistrer ».
 - `handleDeleteTask(taskId)` est appelé quand l'utilisateur appuie sur « Supprimer ».
 
-La gestion de l'état avec des réducteurs est légèrement différente que lorsque l'état est définit directement. Plutôt que de dire à React « quoi faire » en définissant l'état, vous spécifiez « ce que l'utilisateur vient de faire » en émettant des « actions » à partir de vos gestionnaires d'événements (la logique de mise à jour de l'état se situe ailleurs). Ainsi, au lieu de « définir `tasks` » *via* un gestionnaire d'événement, vous émettez une action « ajout / mis à jour / suppression d'une tâche ». Ça décrit mieux l'intention de l'utilisateur.
+La gestion de l'état avec des réducteurs est légèrement différente que lorsque l'état est définit directement. Plutôt que de dire à React « quoi faire » en définissant l'état, vous spécifiez « ce que l'utilisateur vient de faire » en émettant des « actions » à partir de vos gestionnaires d'événements (la logique de mise à jour de l'état se situe ailleurs). Ainsi, au lieu de « définir `tasks` » *via* un gestionnaire d'événement, vous *dispatchez* une action « ajout / mis à jour / suppression d'une tâche ». Ça décrit mieux l'intention de l'utilisateur.
 
 ```js
 function handleAddTask(text) {
@@ -252,7 +252,7 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-L'object que vous passez à `dispatch` est appelé une « action » :
+L'objet que vous passez à `dispatch` est appelé une « action » :
 
 ```js {3-7}
 function handleDeleteTask(taskId) {
@@ -266,13 +266,13 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-C'est un objet JavaScript ordinaire. Vous décidez ce que vous y mettez, mais généralement il doit contenir just les informations sur _ce qui vient d'arriver_ (you ajouterez la fonction `dispatch` vous-même dans une prochaine étape).
+C'est un objet JavaScript ordinaire. Vous décidez ce que vous y mettez, mais généralement il ne doit contenir que les informations sur _ce qui vient d'arriver_ (vous ajouterez la fonction `dispatch` vous-même dans une prochaine étape).
 
 <Note>
 
 Un objet action peut avoir n'importe quelle forme.
 
-Par convention, il est courant d'attribuer une chaine de caractères `type` qui décrit ce qui s'est passé, et d'ajouter les informations complémentaires dans d'autres champs. Le `type` est spécifique à un composant, donc dans cet exemple, `'added'` ou `'added_task'` conviendrait. Choisissez un nom qui explique ce qui s'est passé !
+Par convention, il est courant d'attribuer une chaîne de caractères `type` qui décrit ce qui s'est passé, et d'ajouter les informations complémentaires dans d'autres champs. Le `type` est spécifique à un composant, donc dans cet exemple, `'added'` ou `'added_task'` conviendrait. Choisissez un nom qui explique ce qui s'est passé !
 
 ```js
 dispatch({
@@ -296,11 +296,11 @@ function yourReducer(state, action) {
 
 React va définir l'état avec ce que renvoie le réducteur.
 
-Pour déplacer votre logique de définition d'état des gestionnaires d'événements à une fonction de réduction, vous ferez dans cet exemple :
+Pour déplacer votre logique de définition d'état des gestionnaires d'événements à une fonction de réduction dans cet exemple, vous :
 
-1. Déclarez l'état courant (`tasks`) comme premier argument.
-2. Déclarez l'objet `action` comme second argument.
-3. Renvoyez le _prochain_ état depuis le réducteur (à partir duquel React fixera l'état).
+1. Déclarerez l'état courant (`tasks`) comme premier argument.
+2. Déclarerez l'objet `action` comme second argument.
+3. Renverrez le _prochain_ état depuis le réducteur (à partir duquel React fixera l'état).
 
 Voici toute la logique de définition d'état une fois migrée vers une fonction de réduction :
 
@@ -335,7 +335,7 @@ Puisque la fonction de réduction prend l'état (`tasks`) comme argument, vous p
 
 <Note>
 
-Le code plus haut utilise des instructions `if` / `else`, mais on utilisera [l'instruction `switch`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/switch) au sein des réducteurs. Le résultat est le même, mais il peut être plus facile de lire des instructions `switch` d'un coup d'œil.
+Le code plus haut utilise des instructions `if` / `else`, mais nous utiliserons [l'instruction `switch`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/switch) au sein des réducteurs. Le résultat est le même, mais il est sans doute plus facile de lire des instructions `switch` d'un coup d'œil.
 
 Nous les utiliserons dans le reste de cette documentation de cette façon :
 
@@ -371,7 +371,7 @@ function tasksReducer(tasks, action) {
 }
 ```
 
-Nous recommandons d'enrober chaque bloc `case` entre des accolades `{` et `}` afin qu'il n'y ait pas d'interférences entre les variables d'éclarées dans chaque `case` distinct. De plus, un `case` doit généralement se terminer par un `return`. Si vous l'oubliez, le code va « continuera » sur le `case` suivant, ce qui peut entraîner des erreurs !
+Nous recommandons d'enrober chaque bloc `case` entre des accolades `{` et `}` afin qu'il n'y ait pas d'interférences entre les variables d'éclarées dans chacun des `case`. De plus, un `case` doit généralement se terminer par un `return`. Si vous l'oubliez, le code va « continuer » sur le `case` suivant, ce qui peut entraîner des erreurs !
 
 Si vous n'êtes pas à l'aise avec les instructions `switch`, vous pouvez tout à fait utiliser des `if` / `else`.
 
@@ -392,9 +392,9 @@ const sum = arr.reduce(
 ); // 1 + 2 + 3 + 4 + 5
 ```
 
-La fonction que vous passez à `reduce` est appelée « réducteur ». Elle prend le _résultat en cours_ and l'_élément courant_, puis renvoie le _prochain résultat_. Les réducteurs React sont un exemple de la même idée : ils prennent _l'état en cours_ et une _action_, puis renvoient le _prochain état_. De cette façon, ils accumulent dans l'état les actions au fil du temps.
+La fonction que vous passez à `reduce` est appelée « réducteur ». Elle prend le _résultat en cours_ et l'_élément courant_, puis renvoie le _prochain résultat_. Les réducteurs React sont un exemple de la même idée : ils prennent _l'état en cours_ et une _action_, puis renvoient le _prochain état_. De cette façon, ils accumulent avec le temps les actions au sein de l'état.
 
-Vous pouvez même utiliser la méthode `reduce()` avec un `initialState` et un tableau d'`actions` pour calculer l'état final en lui passant votre fonction de réduction :
+Vous pouvez aussi utiliser la méthode `reduce()` avec un `initialState` et un tableau d'`actions` pour calculer l'état final en lui passant votre fonction de réduction :
 
 <Sandpack>
 
@@ -459,7 +459,7 @@ Vous n'aurez probablement pas besoin de le faire vous-même, mais c'est similair
 
 ### Étape 3 : utilisez le réducteur depuis votre composant {/*step-3-use-the-reducer-from-your-component*/}
 
-Enfin, vous devez connecter le `tasksReducer` à votre composant. Importez le Hook `useReducer` depuis React :
+Pour finir, vous devez connecter le `tasksReducer` à votre composant. Importez le Hook `useReducer` depuis React :
 
 ```js
 import { useReducer } from 'react';
@@ -477,7 +477,7 @@ par `useReducer` de cette façon :
 const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 ```
 
-Le Hook `useReducer` est similaire à `useState` — vous devez passer un état initial and il renvoie une valeur d'état et un moyen de le redéfinir (dans ce cas, la fonction de *dispatch*). Toutefois, c'est un peu différent.
+Le Hook `useReducer` est similaire à `useState` — vous devez lui passer un état initial and il renvoie une valeur d'état et un moyen de le redéfinir (dans ce cas, la fonction de *dispatch*). Toutefois, c'est un peu différent.
 
 Le Hook `useReducer` prend deux arguments :
 
@@ -861,30 +861,30 @@ li {
 
 </Sandpack>
 
-La logique des composants peut être plus simple à lire quand vous séparer les responsabilités de cette façon. Maintenant les gestionnaires d'événements ne spécifient plus que _ce qui s'est passé_ pour *dispatcher* les actions, et la fonction de réduction détermine _comment l'état se met à jour_ en réponse à ces actions.
+La logique des composants peut être plus simple à lire quand vous séparez les responsabilités de cette façon. Maintenant les gestionnaires d'événements spécifient seulement _ce qui s'est passé_ en *dispatchant* les actions, et la fonction de réduction détermine _comment l'état se met à jour_ en réponse à celles-ci.
 
 ## Comparaison de `useState` et `useReducer` {/*comparing-usestate-and-usereducer*/}
 
 Les réducteurs ne sont pas sans inconvénients ! Voici quelques éléments de comparaison :
 
-- **Taille du code** : généralement, avec un `useState`, vous devez écrire moi de code au début. Avec `useReducer`, vous devez écrire à la fois la fonction de réduction _et_ les actions de *dispatch*. Cependant, `useReducer` peut aider à réduire le code si de nombreux gestionnaires d'événements modifient l'état d'une façon similaire.
+- **Taille du code** : avec un `useState`, vous devez généralement écrire moins de code au début. Avec `useReducer`, vous devez écrire à la fois la fonction de réduction _et_ les actions de *dispatch*. Cependant, `useReducer` peut aider à réduire le code si de nombreux gestionnaires d'événements modifient l'état d'une façon similaire.
 - **Lisibilité** : `useState` est très facile à lire lorsque les mises à jour d'état sont simples. Quand ça se complique, elles peuvent gonfler le code de votre composant et le rendre difficile à analyser. Dans ce cas, `useReducer` vous permet de séparer proprement le _comment_ de la logique de _ce qui est arrivé_ des gestionnaires d'événements.
-- **Débogage** : quand vous avez un bug avec un `useState`, il peut être difficile de dire _où_ l'état a été définit incorrectement et _pourquoi_. Avec un `useReducer`, vous pouvez ajouter des messages dans la console dans votre réducteur pour voir chaque mise à jour d'état and _pourquoi_ elles ont lieu (en rapport à quelle `action`). Si chaque `action` est correcte, vous saurez que le problème se trouve dans la logique de réduction elle-même. Cependant, vous devez parcourir plus de code qu'avec `useState`.
-- **Tests** : un réducteur est une fonction pure qui ne dépend pas de votre composant. Ça signifie que vous pouvez l'exporter et la tester en isolation. Bien qu'il soit généralement préférable de tester des composants dans un environnement plus réaliste, pour une logique de mise à jour d'état plus complexe, il peut être utilise de vérifier que votre réducteur renvoie un état particulier pour un état initial et une action particuliers.
+- **Débogage** : quand vous avez un bug avec un `useState`, il peut être difficile de dire _où_ l'état a été définit incorrectement et _pourquoi_. Avec un `useReducer`, vous pouvez ajouter des messages dans la console dans votre réducteur pour voir chaque mise à jour d'état et _pourquoi_ elles ont lieu (en rapport à quelle `action`). Si chaque `action` est correcte, vous saurez que le problème se trouve dans la logique de réduction elle-même. En revanche, vous devez parcourir plus de code qu'avec `useState`.
+- **Tests** : un réducteur est une fonction pure qui ne dépend pas de votre composant. Ça signifie que vous pouvez l'exporter et la tester en isolation. Bien qu'il soit généralement préférable de tester des composants dans un environnement plus réaliste, pour une logique de mise à jour d'état plus complexe, il peut être utile de vérifier que votre réducteur renvoie un état particulier pour un état initial et une action particuliers.
 - **Préférence personnelle** : certaines personnes aiment les réducteurs, d'autres non. Ce n'est pas grave. C'est une question de préférence. Vous pouvez toujours convertir un `useState` en un `useReducer` et inversement : ils sont équivalents !
 
-Nous recommandons d'utiliser un réducteur si vous rencontrez souvent des bugs à cause de mauvaises mises à jour de l'état dans certains composants et que vous souhaitez introduire plus de structure dans son code. Vous n'êtes pas obligé d'utiliser les réducteurs pour tout : n'hésitez pas à les mélanger ! Vous pouvez aussi utiliser `useState` et `useReducer` dans le même composant.
+Nous recommandons d'utiliser un réducteur si vous rencontrez souvent des bugs à cause de mauvaises mises à jour d'état dans certains composants et que vous souhaitez introduire plus de structure dans son code. Vous n'êtes pas obligé d'utiliser les réducteurs pour tout : n'hésitez pas à les mélanger ! Vous pouvez aussi utiliser `useState` et `useReducer` dans le même composant.
 
 ## Écrire les réducteurs correctement {/*writing-reducers-well*/}
 
 Gardez ces deux points à l'esprit quand vous écrivez des réducteurs :
 
-- **Les réducteurs doivent être purs**. Tout comme les [fonctions de mise à jour d'état](/learn/queueing-a-series-of-state-updates), les réducteurs sont exécutés durant le rendu (les actions sont mises en attente jusqu'au rendu suivant) ! Ça signifie que les réducteurs [doivent être purs](/learn/keeping-components-pure) — les mêmes entrées résultent toujours dans les mêmes sorties. Ils ne doivent pas envoyer de requêtes, planifier des *timeouts* ou effectuer des effets secondaires (des opérations qui impactent des éléments extérieurs au composant). Ils doivent mettre à jour des [objets](/learn/updating-objects-in-state) et [des tableaux](/learn/updating-arrays-in-state) sans modifications.
+- **Les réducteurs doivent être purs**. Tout comme les [fonctions de mise à jour d'état](/learn/queueing-a-series-of-state-updates), les réducteurs sont exécutés pendant le rendu (les actions sont mises en attente jusqu'au rendu suivant) ! Ça signifie que les réducteurs [doivent être purs](/learn/keeping-components-pure) — les mêmes entrées résultent toujours dans les mêmes sorties. Ils ne doivent pas envoyer de requêtes, planifier des *timeouts* ou effectuer des effets secondaires (des opérations qui impactent des éléments extérieurs au composant). Ils doivent mettre à jour des [objets](/learn/updating-objects-in-state) et [des tableaux](/learn/updating-arrays-in-state) sans modifications.
 - **Chaque action décrit une interaction utilisateur unique, même si ça entraîne plusieurs modifications des données**. Par exemple, si un utilisateur appuie sur le bouton « Réinitialiser » d'un formulaire comportant cinq champs gérés par un réducteur, il sera plus logique de *dispatcher* une seule action `reset_form` plutôt que cinq actions `set_field` distinctes. Si vous enregistrez chaque action dans un réducteur, cet enregistrement doit être suffisament clair pour vous permettre de reconstruire les interactions ou les réponses qui se sont produites dans le bon ordre. Ça aide au débogage !
 
 ## Écrire des réducteurs concis avec Immer {/*writing-concise-reducers-with-immer*/}
 
-Tout comme [mettre à jour des objets](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) et [des tableaux](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer) dans un état ordinaire, vous pouvez utiliser la bibliothèque Immer pour rendre les réducteurs plus concis. Ici,[`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) vous permetez de modifier l'état avec une instruction `push` ou `arr[i] =` :
+Tout comme [mettre à jour des objets](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) et [des tableaux](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer) dans un état ordinaire, vous pouvez utiliser la bibliothèque Immer pour rendre les réducteurs plus concis. Ici, [`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) vous permet de modifier l'état avec une instruction `push` ou `arr[i] =` :
 
 <Sandpack>
 
@@ -1087,12 +1087,12 @@ Les réducteurs doivent être purs, donc ils ne doivent pas modifier l'état. Ce
 
 - Pour convertir `useState` vers `useReducer` :
   1. *Dispatchez* les actions depuis des gestionnaires d'événements.
-  2. Écrivez une fonction de réduction qui renvoie le prochain état pour un état et une action donnés.
+  2. Écrivez une fonction de réduction qui renvoie le prochain état en fonction d'un état et d'une action donnés.
   3. Remplacez `useState` par `useReducer`.
 - Les réducteurs vous obligent à écrire un peu plus de code, mais ils facilitent le débogage et les tests.
 - Les réducteurs doivent être purs.
 - Chaque action décrit une interaction utilisateur unique.
-- Utilisez Immer si vous souhaitez écrire des réducteurs dans un style de modification.
+- Utilisez Immer si vous souhaitez écrire des réducteurs avec un style de modification.
 
 </Recap>
 
@@ -1255,7 +1255,7 @@ textarea {
 
 <Solution>
 
-Depuis le code du réducteur, vous pouvez déduire que les actions doivent ressembler à ceci :
+Avec le code du réducteur, vous pouvez déduire que les actions doivent ressembler à ceci :
 
 ```js
 // Quand l'utilisateur choisit "Alice"
@@ -1553,7 +1553,7 @@ textarea {
 
 <Solution>
 
-Il existe plusieurs façons de faire dans le gestionnaire d'événement du bouton « Envoyer ». L'une d'elle consiste à afficher une alerte et *dispatcher* une action `edited_message` avec un `message` vide :
+Il existe plusieurs façons de procéder dans le gestionnaire d'événement du bouton « Envoyer ». L'une d'elle consiste à afficher une alerte et *dispatcher* une action `edited_message` avec un `message` vide :
 
 <Sandpack>
 
@@ -1699,9 +1699,9 @@ textarea {
 
 </Sandpack>
 
-Ça fonctionne et vide le champ quand vous appuyez sur « Envoyer ».
+Ça fonctionne et le champ de saisie se vide quand vous appuyez sur « Envoyer ».
 
-Cependant, _du point de vue de l'utilisateur_, envoyer un message est une action différent de celle de l'édition du champ. Pour faire cette distinction, vous pouvez plutôt créer un _nouvelle_ action appelée `sent_message`, et la gérer séparément dans le réducteur :
+Cependant, _du point de vue de l'utilisateur_, envoyer un message est une action différente de celle de l'édition du champ. Pour faire cette distinction, vous pouvez plutôt créer un _nouvelle_ action appelée `sent_message`, et la gérer séparément dans le réducteur :
 
 <Sandpack>
 
@@ -1871,7 +1871,7 @@ case 'changed_selection': {
   };
 ```
 
-En effet, vous ne souhaitez pas partager un seul brouillon de message entre plusieurs destinataires. Cependant, il serait préférable que votre appli « se souvienne » des brouillons pour chaque contact séparément, les restaurant quand vous changez de contact.
+En effet, vous ne souhaitez pas partager un seul brouillon de message entre plusieurs destinataires. Néanmoins, il serait préférable que votre appli « se souvienne » des brouillons pour chaque contact séparément, les restaurant quand vous changez de contact.
 
 Votre tâche consiste à modifier la façon dont l'état est structuré afin de mémoriser le brouillon _pour chaque contact_. Vous aurez besoin d'appliquer quelques changements au réducteur, à l'état initial ainsi qu'aux composants.
 
@@ -2069,7 +2069,7 @@ case 'edited_message': {
 }
 ```
 
-Vous voudrez aussi mettre à jour le composant `Messenger` pour lire le message pour le contact sélectionné :
+Vous devrez aussi mettre à jour le composant `Messenger` pour lire le message du contact sélectionné :
 
 ```js
 const message = state.messages[state.selectedId];
@@ -2234,13 +2234,13 @@ textarea {
 
 </Sandpack>
 
-Notament, vous n'avez pas eu besoin de modifier les gestionnaires d'événements pour implémenter ce comportement différent. Sans réducteur, vous auriez dû changer chaque gestionnaire d'événement qui met à jour l'état.
+Notez que vous n'avez pas eu besoin de modifier les gestionnaires d'événements pour implémenter ce comportement différent. Sans réducteur, vous auriez dû changer chaque gestionnaire d'événement qui met à jour l'état.
 
 </Solution>
 
 #### Implémentez `useReducer` de zéro {/*implement-usereducer-from-scratch*/}
 
-Dans les exemples précédents, vous avez importé le Hook `useReducer` de React. Cette fois, vous allez implémenter _le Hook `useReducer` vous-même_ ! Voici un bout de code pour démarrer. Ça ne devrait pas prendre plus de 10 lignes de code.
+Dans les exemples précédents, vous avez importé le Hook `useReducer` de React. Cette fois, vous allez implémenter _le Hook `useReducer` vous-même_ ! Voici un bout de code pour démarrer. Ça ne devrait pas vous prendre plus de 10 lignes de code.
 
 Pour tester vos modifications, essayez de taper dans le champ de saisie ou choisissez un contact.
 
@@ -2436,7 +2436,7 @@ textarea {
 
 <Solution>
 
-*Dispatcher* une action appelle un réducteur avec l'état actuel et l'action, puis conserve le résultat comme prochain état. Voilà à quoi ça ressemble dans le code :
+*Dispatcher* une action appelle un réducteur avec l'état actuel et l'action, puis conserve le résultat comme le prochain état. Voici à quoi ça ressemble dans le code :
 
 <Sandpack>
 
