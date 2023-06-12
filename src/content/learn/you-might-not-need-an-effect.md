@@ -1439,11 +1439,7 @@ Ce serait chouette s’il y avait un moyen de dire à React que lorsque `savedCo
 
 <Solution>
 
-<<<<<<< HEAD
 Découpez le composant `EditContact` en deux.  Déplacez tout l’état du formulaire dans le composant interne `EditForm`.  Exportez le composant principal `EditContact` et faites-lui passer `savedContact.id` comme `key` au composant interne `EditForm`.  Grâce à ça, le composant interne `EditForm` réinitialisera tout son état de formulaire et recréera le DOM chaque fois que vous choisissez un contact différent.
-=======
-Split the `EditContact` component in two. Move all the form state into the inner `EditForm` component. Export the outer `EditContact` component, and make it pass `savedContact.id` as the `key` to the inner `EditForm` component. As a result, the inner `EditForm` component resets all of the form state and recreates the DOM whenever you select a different contact.
->>>>>>> 9a1e1c61fcdaf7177e89494bd70bfdc7900e37ad
 
 <Sandpack>
 
