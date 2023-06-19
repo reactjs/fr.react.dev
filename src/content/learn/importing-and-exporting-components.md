@@ -1,26 +1,26 @@
 ---
-title: Importing and Exporting Components
+title: Importer et exporter des composants
 ---
 
 <Intro>
 
-The magic of components lies in their reusability: you can create components that are composed of other components. But as you nest more and more components, it often makes sense to start splitting them into different files. This lets you keep your files easy to scan and reuse components in more places.
+La magie des composants réside dans leur réutilisabilité : vous pouvez créer des composants qui sont composés d’autres composants. Mais plus vous imbriquez de composants, plus il devient judicieux de les répartir en différents fichiers. Ça vous permet de garder vos fichiers faciles à analyser et de réutiliser les composants à davantage d’endroits.
 
 </Intro>
 
 <YouWillLearn>
 
-* What a root component file is
-* How to import and export a component
-* When to use default and named imports and exports
-* How to import and export multiple components from one file
-* How to split components into multiple files
+* Qu’est-ce qu’un fichier de composant racine
+* Comment importer et exporter un composant
+* Quand utiliser les imports/exports par défaut et nommés
+* Comment importer et exporter plusieurs composants à partir d’un seul fichier
+* Comment découper les composants en plusieurs fichiers
 
 </YouWillLearn>
 
-## The root component file {/*the-root-component-file*/}
+## Le fichier de composant racine {/*the-root-component-file*/}
 
-In [Your First Component](/learn/your-first-component), you made a `Profile` component and a `Gallery` component that renders it:
+Dans [Votre premier composant](/learn/your-first-component), vous avez créé un composant `Profile`, ainsi qu'un second composant `Gallery` qui l'affiche :
 
 <Sandpack>
 
@@ -37,7 +37,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Scientifiques de renom</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -52,17 +52,17 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-These currently live in a **root component file,** named `App.js` in this example. In [Create React App](https://create-react-app.dev/), your app lives in `src/App.js`. Depending on your setup, your root component could be in another file, though. If you use a framework with file-based routing, such as Next.js, your root component will be different for every page.
+Ces composants sont actuellement déclarés dans un **fichier de composant racine**, nommé `App.js` dans cet exemple. Si vous utilisez [Create React App](https://create-react-app.dev/), votre appli se trouve dans `src/App.js`. Selon votre configuration, votre composant racine pourrait toutefois être dans un autre fichier. Si vous utilisez un framework avec un système de routage basé sur les fichiers, comme par exemple Next.js, votre composant racine sera différent pour chaque page.
 
-## Exporting and importing a component {/*exporting-and-importing-a-component*/}
+## Exporter et importer un composant {/*exporting-and-importing-a-component*/}
 
-What if you want to change the landing screen in the future and put a list of science books there? Or place all the profiles somewhere else? It makes sense to move `Gallery` and `Profile` out of the root component file. This will make them more modular and reusable in other files. You can move a component in three steps:
+Et si vous souhaitiez changer l’écran d’accueil à l’avenir et y mettre une liste de livres de science ? Ou encore placer tous les profils ailleurs ? Il est logique de déplacer `Gallery` et `Profile` en dehors du fichier de composant racine. Ça les rendra plus modulaires et réutilisables par d’autres fichiers. Vous pouvez déplacer un composant en trois étapes :
 
-1. **Make** a new JS file to put the components in.
-2. **Export** your function component from that file (using either [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) or [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports) exports).
-3. **Import** it in the file where you’ll use the component (using the corresponding technique for importing [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#importing_defaults) or [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) exports).
+1. **Créez** un nouveau fichier JS pour y mettre les composants.
+2. **Exportez** votre fonction composant à partir de ce fichier (en utilisant soit les exports [par défaut](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/export#utilisation_dexports_par_d%C3%A9faut) soit les exports [nommés](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/export#utilisation_dexports_nomm%C3%A9s)).
+3. **Importez-la** dans le fichier qui utilisera le composant (en utilisant la technique correspondante pour importer les exports [par défaut](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/import#importation_des_d%C3%A9fauts) ou [nommés](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/import#importer_un_seul_export_depuis_un_module)).
 
-Here both `Profile` and `Gallery` have been moved out of `App.js` into a new file called `Gallery.js`. Now you can change `App.js` to import `Gallery` from `Gallery.js`:
+À présent que les deux composants `Profile` et `Gallery` ont été déplacés du fichier `App.js` vers un nouveau fichier `Gallery.js`, Vous pouvez modifier `App.js` pour importer le composant `Gallery` depuis `Gallery.js` :
 
 <Sandpack>
 
@@ -89,7 +89,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Scientifiques de renom</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -104,60 +104,59 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Notice how this example is broken down into two component files now:
+Voyez comme cet exemple est désormais découpé en deux fichiers de composants :
 
 1. `Gallery.js`:
-     - Defines the `Profile` component which is only used within the same file and is not exported.
-     - Exports the `Gallery` component as a **default export.**
+     * Définit le composant `Profile` qui n’est utilisé qu'au sein de ce même fichier et n’est pas exporté.
+     * Exporte le composant `Gallery` en tant qu’**export par défaut**.
 2. `App.js`:
-     - Imports `Gallery` as a **default import** from `Gallery.js`.
-     - Exports the root `App` component as a **default export.**
-
+     * Importe `Gallery` en tant qu’**import par défaut** depuis `Gallery.js`.
+     * Exporte le composant racine `App` en tant qu’**export par défaut**.
 
 <Note>
 
-You may encounter files that leave off the `.js` file extension like so:
+Il se peut que vous rencontriez des fichiers qui omettent l’extension `.js` comme ceci :
 
-```js 
+```js
 import Gallery from './Gallery';
 ```
 
-Either `'./Gallery.js'` or `'./Gallery'` will work with React, though the former is closer to how [native ES Modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) work.
+`'./Gallery.js'` ou `'./Gallery'` fonctionneront tous les deux avec React, bien que la première syntaxe soit plus proche du fonctionnement des [modules ES natifs](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Modules).
 
 </Note>
 
 <DeepDive>
 
-#### Default vs named exports {/*default-vs-named-exports*/}
+#### Exports par défaut vs. exports nommés {/*default-vs-named-exports*/}
 
-There are two primary ways to export values with JavaScript: default exports and named exports. So far, our examples have only used default exports. But you can use one or both of them in the same file. **A file can have no more than one _default_ export, but it can have as many _named_ exports as you like.**
+Il existe deux façons principales d’exporter des valeurs avec JavaScript : les exports par défaut et les exports nommés. Jusqu’à présent, nos exemples n’ont utilisé que des exports par défaut. Mais vous pouvez utiliser l’un ou l’autre, ou les deux, dans le même fichier. **Un fichier ne peut avoir qu’un seul export *par défaut*, mais il peut avoir autant d’exports *nommés* que vous le souhaitez.**
 
-![Default and named exports](/images/docs/illustrations/i_import-export.svg)
+![Exports par défaut et nommés](/images/docs/illustrations/i_import-export.svg)
 
-How you export your component dictates how you must import it. You will get an error if you try to import a default export the same way you would a named export! This chart can help you keep track:
+La manière dont vous exportez votre composant dicte la manière dont vous devez l’importer. Vous obtiendrez une erreur si vous essayez d’importer un export par défaut de la même manière que vous le feriez pour un export nommé ! Ce tableau peut vous aider à vous y retrouver :
 
-| Syntax           | Export statement                           | Import statement                          |
+| Syntaxe           | Déclaration d’export                           | Déclaration d’import                          |
 | -----------      | -----------                                | -----------                               |
-| Default  | `export default function Button() {}` | `import Button from './Button.js';`     |
-| Named    | `export function Button() {}`         | `import { Button } from './Button.js';` |
+| Par défaut  | `export default function Button() {}` | `import Button from './Button.js';`     |
+| Nommé    | `export function Button() {}`         | `import { Button } from './Button.js';` |
 
-When you write a _default_ import, you can put any name you want after `import`. For example, you could write `import Banana from './Button.js'` instead and it would still provide you with the same default export. In contrast, with named imports, the name has to match on both sides. That's why they are called _named_ imports!
+Lorsque vous utilisez un *import par défaut*, vous pouvez mettre n’importe quel nom après `import`. Par exemple, vous pourriez écrire `import Banana from './Button.js'` et ça vous fournirait toujours le même export par défaut. En revanche, avec les imports nommés, le nom doit correspondre des deux côtés. C'est pour ça qu'on parle d'imports *nommés*.
 
-**People often use default exports if the file exports only one component, and use named exports if it exports multiple components and values.** Regardless of which coding style you prefer, always give meaningful names to your component functions and the files that contain them. Components without names, like `export default () => {}`, are discouraged because they make debugging harder.
+**On utilise souvent les exports par défaut si le fichier n’exporte qu’un seul composant, et les exports nommés si l'on souhaite exporter plusieurs composants et valeurs.** Quel que soit le style de développement que vous préférez, donnez toujours des noms descriptifs à vos fonctions composants et aux fichiers qui les contiennent. Les composants anonymes, du genre `export default () => {}`, sont à proscrire car ils rendent le débogage plus difficile.
 
 </DeepDive>
 
-## Exporting and importing multiple components from the same file {/*exporting-and-importing-multiple-components-from-the-same-file*/}
+## Exporter et importer plusieurs composants depuis le même fichier {/*exporting-and-importing-multiple-components-from-the-same-file*/}
 
-What if you want to show just one `Profile` instead of a gallery? You can export the `Profile` component, too. But `Gallery.js` already has a *default* export, and you can't have _two_ default exports. You could create a new file with a default export, or you could add a *named* export for `Profile`. **A file can only have one default export, but it can have numerous named exports!**
+Et si vous vouliez afficher un seul `Profile` au lieu d’une galerie ? Vous pouvez également exporter le composant `Profile`. Mais `Gallery.js` a déjà un export *par défaut*, et vous ne pouvez pas en avoir *deux* dans un même fichier. Dans ce cas, vous pouvez créer un nouveau fichier avec un export par défaut, ou ajouter un export *nommé* pour le composant `Profile`. **Un fichier ne peut avoir qu’un seul export par défaut, mais il peut avoir de nombreux exports nommés !**
 
 <Note>
 
-To reduce the potential confusion between default and named exports, some teams choose to only stick to one style (default or named), or avoid mixing them in a single file. Do what works best for you!
+Pour réduire la confusion potentielle entre les exports par défaut et nommés, certaines équipes choisissent de ne s’en tenir qu’à un seul style (par défaut ou nommé), ou évitent simplement de les mélanger dans un seul fichier. Faites ce qui vous convient le mieux !
 
 </Note>
 
-First, **export** `Profile` from `Gallery.js` using a named export (no `default` keyword):
+Tout d’abord, **exportez** `Profile` depuis `Gallery.js` en utilisant un export nommé (sans le mot-clé `default`) :
 
 ```js
 export function Profile() {
@@ -165,13 +164,13 @@ export function Profile() {
 }
 ```
 
-Then, **import** `Profile` from `Gallery.js` to `App.js` using a named import (with the curly braces):
+Puis, **importez** `Profile` depuis `Gallery.js` dans `App.js` en utilisant un import nommé (avec les accolades) :
 
 ```js
 import { Profile } from './Gallery.js';
 ```
 
-Finally, **render** `<Profile />` from the `App` component:
+Enfin, **affichez** `<Profile />` depuis le composant `App` :
 
 ```js
 export default function App() {
@@ -179,7 +178,7 @@ export default function App() {
 }
 ```
 
-Now `Gallery.js` contains two exports: a default `Gallery` export, and a named `Profile` export. `App.js` imports both of them. Try editing `<Profile />` to `<Gallery />` and back in this example:
+Désormais, `Gallery.js` contient deux exports : un export par défaut `Gallery`, et un export nommé `Profile`. `App.js` importe à présent les deux. Essayez de passer de `<Profile />` à `<Gallery />` et inversement dans cet exemple :
 
 <Sandpack>
 
@@ -207,7 +206,7 @@ export function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Scientifiques de renom</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -222,24 +221,24 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Now you're using a mix of default and named exports:
+Vous utilisez à présent un mélange d’exports par défaut et nommés :
 
 * `Gallery.js`:
-  - Exports the `Profile` component as a **named export called `Profile`.**
-  - Exports the `Gallery` component as a **default export.**
+  * Exporte le composant `Profile` en tant qu’**export nommé appelé `Profile`**.
+  * Exporte le composant `Gallery` en tant qu’**export par défaut**.
 * `App.js`:
-  - Imports `Profile` as a **named import called `Profile`** from `Gallery.js`.
-  - Imports `Gallery` as a **default import** from `Gallery.js`.
-  - Exports the root `App` component as a **default export.**
+  * Importe `Profile` en tant qu’**import nommé appelé `Profile`** depuis `Gallery.js`.
+  * Importe `Gallery` en tant qu’**import par défaut** depuis `Gallery.js`.
+  * Exporte le composant racine `App` en tant qu’**export par défaut**.
 
 <Recap>
 
-On this page you learned:
+Dans cette page, vous avez appris :
 
-* What a root component file is
-* How to import and export a component
-* When and how to use default and named imports and exports
-* How to export multiple components from the same file
+* Ce qu'est un fichier de composant racine
+* Comment importer et exporter un composant
+* Quand et comment utiliser les imports/exports par défaut et nommés
+* Comment importer plusieurs composants depuis le même fichier
 
 </Recap>
 
@@ -247,22 +246,22 @@ On this page you learned:
 
 <Challenges>
 
-#### Split the components further {/*split-the-components-further*/}
+#### Découper davantage les composants {/*split-the-components-further*/}
 
-Currently, `Gallery.js` exports both `Profile` and `Gallery`, which is a bit confusing.
+Pour le moment, `Gallery.js` exporte à la fois `Profile` et `Gallery`, ce qui est un peu déroutant.
 
-Move the `Profile` component to its own `Profile.js`, and then change the `App` component to render both `<Profile />` and `<Gallery />` one after another.
+Déplacez le composant `Profile` vers son propre fichier `Profile.js`, puis modifiez le composant `App` pour qu’il affiche à la fois `<Profile />` et `<Gallery />` l'un après l’autre.
 
-You may use either a default or a named export for `Profile`, but make sure that you use the corresponding import syntax in both `App.js` and `Gallery.js`! You can refer to the table from the deep dive above:
+Vous pouvez utiliser soit un export par défaut, soit un export nommé pour le composant `Profile`, mais assurez-vous d’utiliser la syntaxe d’importation correspondante dans `App.js` et `Gallery.js` ! N'hésitez pas à vous référer au tableau de la partie « En détail » vue plus tôt :
 
-| Syntax           | Export statement                           | Import statement                          |
+| Syntaxe           | Déclaration d’export                           | Déclaration d’import                          |
 | -----------      | -----------                                | -----------                               |
-| Default  | `export default function Button() {}` | `import Button from './Button.js';`     |
-| Named    | `export function Button() {}`         | `import { Button } from './Button.js';` |
+| Par défaut  | `export default function Button() {}` | `import Button from './Button.js';`     |
+| Nommé    | `export function Button() {}`         | `import { Button } from './Button.js';` |
 
 <Hint>
 
-Don't forget to import your components where they are called. Doesn't `Gallery` use `Profile`, too?
+N’oubliez pas d’importer vos composants là où ils sont appelés. `Gallery` n’utilise-t-il pas lui aussi `Profile` ?
 
 </Hint>
 
@@ -282,7 +281,7 @@ export default function App() {
 ```
 
 ```js Gallery.js active
-// Move me to Profile.js!
+// Déplace-moi vers Profile.js !
 export function Profile() {
   return (
     <img
@@ -295,7 +294,7 @@ export function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Scientifiques de renom</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -313,11 +312,11 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-After you get it working with one kind of exports, make it work with the other kind.
+Après avoir réussi à faire fonctionner votre composant avec un type d’export, faites-le fonctionner avec l’autre type.
 
 <Solution>
 
-This is the solution with named exports:
+Voici la solution avec les exports nommés :
 
 <Sandpack>
 
@@ -341,7 +340,7 @@ import { Profile } from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Scientifiques de renom</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -367,7 +366,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-This is the solution with default exports:
+Voici la solution avec les exports par défaut :
 
 <Sandpack>
 
@@ -391,7 +390,7 @@ import Profile from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Scientifiques de renom</h1>
       <Profile />
       <Profile />
       <Profile />

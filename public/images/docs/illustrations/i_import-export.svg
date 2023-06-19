@@ -69,10 +69,10 @@
     <text class="e" transform="translate(86.99 62.68)">Component.js</text>
     <rect class="f" x="68.11" y="76" width="164.75" height="40" rx="4.83"/>
     <rect class="f" x="68.11" y="124.33" width="164.75" height="40" rx="4.83"/>
-    <text class="g" transform="translate(69.21 355.13)">one default export</text>
+    <text class="g" transform="translate(69.21 355.13)">un export par défaut</text>
   </g>
   <g>
-    <text class="g" transform="translate(295.2 355.13)">multiple named exports</text>
+    <text class="g" transform="translate(295.2 355.13)">plusieurs exports nommés</text>
     <rect class="h" x="294.5" y="33.55" width="212" height="292.45"/>
     <g>
       <rect class="i" x="315.75" y="185.55" width="164.75" height="97.45" rx="4.83"/>
@@ -95,6 +95,6 @@
       <rect class="b" x="565.11" y="185.28" width="164.75" height="115.45" rx="4.83"/>
       <text class="c" transform="translate(577.31 212.64)">export default <tspan class="d"><tspan x="0.56" y="16.8">function </tspan><tspan x="0" y="33.6">FriendsList() { </tspan><tspan x="0" y="50.4" xml:space="preserve"> ... </tspan><tspan x="0" y="67.2">}</tspan></tspan></text>
     </g>
-    <text class="g" transform="translate(577.2 355.18)">named export(s)<tspan x="-26.49" y="21.6">and one default export</tspan></text>
+    <text class="g" transform="translate(577.2 355.18)">exports nommés<tspan x="-26.49" y="21.6">et un export par défaut</tspan></text>
   </g>
 </svg>
