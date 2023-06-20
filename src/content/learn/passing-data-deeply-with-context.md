@@ -877,7 +877,7 @@ D'une manière générale, si certaines informations sont nécessaires pour des 
 
 <Challenges>
 
-#### Remplacez la percolation de props par un contexte {/*replace-prop-drilling-with-context*/}
+#### Remplacer la percolation de props par un contexte {/*replace-prop-drilling-with-context*/}
 
 Dans cet exemple, le fait d'activer la case à cocher change la prop `imageSize` passée à chaque `<PlaceImage>`. L'état de cette case à cocher est conservé dans le composant racine `App`, mais chaque `<PlaceImage>` doit en être informé.
 
