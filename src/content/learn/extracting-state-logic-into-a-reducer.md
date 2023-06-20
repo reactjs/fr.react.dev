@@ -4,7 +4,7 @@ title: Extraire la logique d'état dans un réducteur
 
 <Intro>
 
-Les composants ayant beaucoup de mises à jour d'état réparties parmi de nombreux gestionnaires d'événements peuvent devenir difficiles à maîtriser. Dans ces circonstances, vous pouvez consolider toute la logique de mise à jour d'état dans une seule fonction, appelée _réducteur_.
+Les composants avec beaucoup de mises à jour d'état dispersées dans de nombreux gestionnaires d'événements peuvent devenir difficiles à maîtriser. Dans ces circonstances, vous pouvez consolider toute la logique de mise à jour d'état dans une seule fonction, appelée _réducteur_.
 
 </Intro>
 
@@ -19,7 +19,7 @@ Les composants ayant beaucoup de mises à jour d'état réparties parmi de nombr
 
 ## Consolider la logique d'état avec un réducteur {/*consolidate-state-logic-with-a-reducer*/}
 
-Plus vos composants deviennent complexes, plus il est difficile de voir d'un coup d'œil les différentes façons dont leur état est mis à jour. Par exemple, le composant `TaskApp` ci-dessous contient un tableau de `tasks` dans un état et utilise trois gestionnaires d'événements différents pour créer, supprimer ou éditer ces tâches :
+Plus vos composants deviennent complexes, plus il est difficile de voir d'un coup d'œil les différentes façons dont leurs états sont mis à jour. Par exemple, le composant `TaskApp` ci-dessous contient un tableau de `tasks` dans un état et utilise trois gestionnaires d'événements différents pour créer, supprimer ou éditer ces tâches :
 
 <Sandpack>
 
@@ -272,7 +272,7 @@ C'est un objet JavaScript ordinaire. Vous décidez ce que vous y mettez, mais g�
 
 Un objet action peut avoir n'importe quelle forme.
 
-Par convention, il est courant d'attribuer une chaîne de caractères `type` qui décrit ce qui s'est passé, et d'ajouter les informations complémentaires dans d'autres champs. Le `type` est spécifique à un composant, donc dans cet exemple, `'added'` ou `'added_task'` conviendrait. Choisissez un nom qui explique ce qui s'est passé !
+Par convention, il est courant d'attribuer une chaîne de caractères `type` qui décrit ce qui s'est passé, et d'ajouter les informations complémentaires dans d'autres champs. Le `type` est spécifique à un composant, donc `'added'` ou `'added_task'` conviendraient pour cet exemple. Choisissez un nom qui explique ce qui s'est passé !
 
 ```js
 dispatch({
@@ -1098,7 +1098,7 @@ Les réducteurs doivent être purs, donc ils ne doivent pas modifier l'état. Ce
 
 <Challenges>
 
-#### *Dispatchez* des actions depuis des gestionnaires d'événements {/*dispatch-actions-from-event-handlers*/}
+#### *Dispatcher* des actions depuis des gestionnaires d'événements {/*dispatch-actions-from-event-handlers*/}
 
 Pour l'instant, les gestionnaires d'événements dans `ContactList.js` et `Chat.js` contiennent des commentaires `// TODO`. C'est pour ça que taper dans le champ de saisie ne marche pas, et cliquer sur les boutons ne change pas le destinataire sélectionné.
 
@@ -1219,7 +1219,7 @@ export default function Chat({contact, message, dispatch}) {
         placeholder={'Discuter avec ' + contact.name}
         onChange={(e) => {
           // TODO : dispatcher edited_message
-          // (Lire la valeur d'entrée dans e.target.value)
+          // (Lire la valeur d’entrée dans e.target.value)
         }}
       />
       <br />
@@ -1258,13 +1258,13 @@ textarea {
 Avec le code du réducteur, vous pouvez déduire que les actions doivent ressembler à ceci :
 
 ```js
-// Quand l'utilisateur choisit "Alice"
+// Quand l’utilisateur choisit "Alice"
 dispatch({
   type: 'changed_selection',
   contactId: 1,
 });
 
-// Quand l'utilisateur tape « Bonjour ! »
+// Quand l’utilisateur tape « Bonjour ! »
 dispatch({
   type: 'edited_message',
   message: 'Bonjour !',
@@ -1409,7 +1409,7 @@ textarea {
 
 </Solution>
 
-#### Videz la saisie après l'envoi d'un message {/*clear-the-input-on-sending-a-message*/}
+#### Vider la saisie après l'envoi d'un message {/*clear-the-input-on-sending-a-message*/}
 
 Pour l'instant, appuyer sur « Envoyer » ne fait rien du tout. Ajoutez un gestionnaire d'événement au bouton « Envoyer » qui va :
 
@@ -1858,7 +1858,7 @@ Avec l'une ou l'autre des solutions, il est important que vous ne placiez *pas* 
 
 </Solution>
 
-#### Restaurez les valeurs de saisie au changement d'onglet {/*restore-input-values-when-switching-between-tabs*/}
+#### Restaurer les valeurs de saisie au changement d'onglet {/*restore-input-values-when-switching-between-tabs*/}
 
 Dans cet exemple, changer de destinataires vide toujours le champ de saisie :
 
@@ -2054,10 +2054,10 @@ textarea {
 Vous devrez mettre à jour le réducteur pour conserver et mettre à jour un message distinct pour chaque contact :
 
 ```js
-// Quans la saisir est éditée
+// Quand la saisie est modifiée
 case 'edited_message': {
   return {
-    // Garder le reste de l'état, comme la sélection
+    // Garder le reste de l’état, comme la sélection
     ...state,
     messages: {
       // Garder les messages des autres contacts
@@ -2238,7 +2238,7 @@ Notez que vous n'avez pas eu besoin de modifier les gestionnaires d'événements
 
 </Solution>
 
-#### Implémentez `useReducer` de zéro {/*implement-usereducer-from-scratch*/}
+#### Implémenter `useReducer` de zéro {/*implement-usereducer-from-scratch*/}
 
 Dans les exemples précédents, vous avez importé le Hook `useReducer` de React. Cette fois, vous allez implémenter _le Hook `useReducer` vous-même_ ! Voici un bout de code pour démarrer. Ça ne devrait pas vous prendre plus de 10 lignes de code.
 
