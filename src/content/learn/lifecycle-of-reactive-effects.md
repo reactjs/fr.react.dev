@@ -121,7 +121,7 @@ function ChatRoom({ roomId /* "travel" */ }) {
 }
 ```
 
-Réfléchissez à ce qui doit se passer ensuite. L'utilisateur voit que le salon `"travel"` est séléctionné dans l'interface. Cependant, l'Effet exécuté précédemment est toujours connecté au salon `"general"`. **La prop `roomId` a changé et ce qu'a fait votre Effet plus tôt (se connecter au salon `"general"`) ne correspond plus à ce qui se trouve dans l'interface utilisateur**.
+Réfléchissez à ce qui doit se passer ensuite. L'utilisateur voit que le salon `"travel"` est sélectionné dans l'interface. Cependant, l'Effet exécuté précédemment est toujours connecté au salon `"general"`. **La prop `roomId` a changé et ce qu'a fait votre Effet à l'époque (se connecter au salon `"general"`) ne correspond plus à ce que l'interface affiche**.
 
 À ce stade, vous attendez deux choses de React :
 
@@ -257,10 +257,10 @@ export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connexion au salon « ' + roomId + ' » depuis ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Déconnexion du salon « ' + roomId + ' » depuis ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -275,9 +275,9 @@ button { margin-left: 10px; }
 
 Remarquez ces trois messages lorsque le composant est monté pour la première fois :
 
-1. `✅ Connexion au salon « general » depuis https://localhost:1234...` *(seulement en phase de développement)*
-1. `❌ Déconnexion du salon « general » depuis https://localhost:1234.` *(seulement en phase de développement)*
-1. `✅ Connexion au salon « general » depuis https://localhost:1234...`
+1. `✅ Connexion au salon « general » sur https://localhost:1234...` *(seulement en phase de développement)*
+1. `❌ Déconnexion du salon « general » sur https://localhost:1234.` *(seulement en phase de développement)*
+1. `✅ Connexion au salon « general » sur https://localhost:1234...`
 
 Les deux premiers messages n'apparaissent qu'en phase de développement. Dans ce contexte, React monte toujours les composants deux fois.
 
@@ -453,10 +453,10 @@ export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connexion au salon « ' + roomId + ' » depuis ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Déconnexion du salon « ' + roomId + ' » depuis ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -533,10 +533,10 @@ export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connexion au salon « ' + roomId + ' » depuis ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Déconnexion du salon « ' + roomId + ' » depuis ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -652,10 +652,10 @@ export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connexion au salon « ' + roomId + ' » depuis ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Déconnexion du salon « ' + roomId + ' » depuis ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -843,10 +843,10 @@ export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connexion au salon « ' + roomId + ' » depuis ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Déconnexion du salon « ' + roomId + ' » depuis ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -918,10 +918,10 @@ export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connexion au salon « ' + roomId + ' » depuis ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Déconnexion du salon « ' + roomId + ' » depuis ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
