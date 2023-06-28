@@ -27,7 +27,7 @@ Les Effets ont un cycle de vie différent de celui des composants. Les composant
 Chaque composant React suit le même cycle de vie :
 
 - Un composant _est monté_ lorsqu'il est ajouté à l'écran.
-- Un composant _se met à jour_ quand il reçoit de nouveaux props ou états, généralement à la suite d'une interaction.
+- Un composant _se met à jour_ quand il reçoit de nouvelles props ou variables d'état, généralement à la suite d'une interaction.
 - Un composant _est démonté_ quand il est retiré de l'écran.
 
 **C'est une bonne façon de réfléchir aux composants, mais _pas_ aux Effets**. Voyez plutôt chaque Effet indépendamment du cycle de vie de vos composants. Un Effet décrit la façon de [synchroniser un système extérieur](/learn/synchronizing-with-effects) avec les props et états actuels. Au fur et à mesure que votre code change, la synchronisation sera plus ou moins fréquente.
@@ -161,7 +161,7 @@ Grâce à ça, vous êtes désormais connecté·e au même salon que celui chois
 
 Chaque fois que votre composant refera son rendu avec un `roomId` différent, votre Effet se resynchronisera. Disons par exemple que l'utilisateur change le `roomId` de `"travel"` à `"music"`. React **arrêtera une nouvelle fois de synchroniser** votre Effet en appelant la fonction de nettoyage (qui se déconnectera du salon `"travel"`). Puis, il **recommencera à se synchroniser** en exécutant le code avec la nouvelle prop `roomId` (qui se connectera au salon `"music"`).
 
-Enfin, lorsque votre utilisateur changera d'écran, `ChatRoom` se démontera. Il devient alors inutile de rester connecté. React **arrêtera de synchroniser** votre Effet une dernière fois et vous déconnectera du salon `"music"`.
+Enfin, lorsque votre utilisateur changera d'écran, `ChatRoom` sera démonté. Il deviendra alors inutile de rester connecté. React **cessera de synchroniser** votre Effet une dernière fois et vous déconnectera du salon `"music"`.
 
 ### Penser du point de vue de l'Effet {/*thinking-from-the-effects-perspective*/}
 
@@ -275,9 +275,9 @@ button { margin-left: 10px; }
 
 Remarquez ces trois messages lorsque le composant est monté pour la première fois :
 
-1. `✅ Connexion au salon « general » sur https://localhost:1234...` *(seulement en phase de développement)*
-1. `❌ Déconnexion du salon « general » sur https://localhost:1234.` *(seulement en phase de développement)*
-1. `✅ Connexion au salon « general » sur https://localhost:1234...`
+1. `✅ Connexion au salon « general » sur https://localhost:1234...` *(seulement en développement)*
+2. `❌ Déconnexion du salon « general » sur https://localhost:1234.` *(seulement en développement)*
+3. `✅ Connexion au salon « general » sur https://localhost:1234...`
 
 Les deux premiers messages n'apparaissent qu'en phase de développement. Dans ce contexte, React monte toujours les composants deux fois.
 
@@ -294,7 +294,7 @@ Vous vous demandez peut-être comment React a su que votre Effet devait se resyn
 ```js {1,3,8}
 function ChatRoom({ roomId }) { // La prop roomId peut changer au cours du temps
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Cet Effet lit roomId 
+    const connection = createConnection(serverUrl, roomId); // Cet Effet lit roomId
     connection.connect();
     return () => {
       connection.disconnect();
@@ -306,7 +306,7 @@ function ChatRoom({ roomId }) { // La prop roomId peut changer au cours du temps
 Voici comment ça fonctionne :
 
 1. Vous saviez que `roomId` est une prop, ce qui veut dire qu'elle peut changer avec le temps.
-2. Vous saviez que votre Effet lit `roomId` (donc sa logique dépend d'une valeur qui peut changer avec le temps).
+2. Vous saviez que votre Effet lit `roomId` (de sorte que sa logique dépend d'une valeur susceptible de changer avec le temps).
 3. C'est pourquoi vous l'avez spécifié dans les dépendances de votre Effet (afin qu'il se resynchronise quand `roomId` change).
 
 Chaque fois que votre composant refera son rendu, React regardera le tableau des dépendances que vous avez fourni. Si l'une des valeurs de ce tableau est différente de celle passée lors du précédent rendu, React resynchronisera votre Effet.
@@ -353,7 +353,7 @@ Dans le code ci-dessus, supprimer un Effet ne casserait pas la logique de l'autr
 
 ## Les Effets « réagissent » aux valeurs réactives {/*effects-react-to-reactive-values*/}
 
-Votre Effet lit deux variables (`serverUrl` et `roomId`), mais vous n'avez spécifié que `roomId` comme dépendance :
+Votre Effet lit deux variables (`serverUrl` et `roomId`), mais vous n'avez spécifié que `roomId` au sein du tableau des dépendances :
 
 ```js {5,10}
 const serverUrl = 'https://localhost:1234';
@@ -393,7 +393,7 @@ function ChatRoom({ roomId }) { // Les props changent au cours du temps
 }
 ```
 
-En ajoutant `serverUrl` comme dépendance, vous vous assurez que l'Effet se resynchronise après sa modification.
+En ajoutant `serverUrl` comme dépendance, vous vous assurez que l'Effet se resynchronise après la modification de l'URL.
 
 Dans ce bac à sable, essayez de changer le salon de discussion sélectionné, ou modifiez l'URL du serveur :
 
@@ -696,7 +696,7 @@ Dans certains cas, React *sait* qu'une valeur ne change jamais, même si elle es
 
 ### Que faire quand vous ne voulez pas resynchroniser {/*what-to-do-when-you-dont-want-to-re-synchronize*/}
 
-Dans l'exemple précédent, vous avez corrigé l'erreur du *linter* en ajoutant `roomId` et `serverUrl` comme dépendances.
+Dans l'exemple précédent, vous avez corrigé l'erreur du *linter* en ajoutant `roomId` et `serverUrl` dans le tableau des dépendances.
 
 **Cependant, vous pourriez plutôt « prouver » au *linter* que ces valeurs ne sont pas réactives**, c'est-à-dire qu'elle *ne peuvent pas* changer à la suite d'un nouveau rendu. Par exemple, si `serverUrl` et `roomId` ne dépendent pas du rendu et ont toujours les mêmes valeurs, vous pouvez les extraire du composant. Ainsi, elles n'ont plus besoin d'être des dépendances :
 
@@ -737,7 +737,7 @@ function ChatRoom() {
 
 **Vous ne pouvez pas « choisir » vos dépendances.** Vos dépendances doivent inclure chaque [valeur réactive](#all-variables-declared-in-the-component-body-are-reactive) que vous lisez dans l'Effet. C'est imposé par le *linter*. Ça peut parfois aboutir à des problèmes comme des boucles infinies et des resynchronisations trop fréquentes de votre Effet. Ne corrigez pas ces erreurs en supprimant le *linter* ! Voici ce que vous devriez plutôt essayer :
 
-* **Vérifiez que votre Effet représente un processus de sychronisation indépendant.** Si votre Effet ne synchronise rien du tout, [il est peut-être inutile](/learn/you-might-not-need-an-effect). S'il synchronise plusieurs choses indépendantes, [découpez-le](#each-effect-represents-a-separate-synchronization-process).
+* **Vérifiez que votre Effet représente un processus de sychronisation indépendant.** Si votre Effet ne synchronise rien du tout, [il est peut-être inutile](/learn/you-might-not-need-an-effect). S'il synchronise au contraire plusieurs choses indépendantes, [découpez-le](#each-effect-represents-a-separate-synchronization-process).
 
 * **Si vous voulez lire les dernières valeurs des props ou de l'état sans « réagir » et resynchroniser l'Effet**, vous pouvez découper votre Effet en une partie réactive (que vous garderez dans l'Effet) et une partie non réactive (que vous extrairez dans ce que l'on appelle un _Événement d'Effet_). [À propos de la séparation des événements et des Effets](/learn/separating-events-from-effects).
 
@@ -757,7 +757,7 @@ useEffect(() => {
 }, []);
 ```
 
-Dans les [pages](/learn/separating-events-from-effects) [suivantes](/learn/removing-effect-dependencies), vous apprendrez comment corriger ce code sans enfreindre les règles. Ça en vaut toujours la peine !
+Dans les [pages](/learn/separating-events-from-effects) [suivantes](/learn/removing-effect-dependencies), vous apprendrez comment corriger ce code sans enfreindre les règles. Ça en vaut toujours la peine !
 
 </Pitfall>
 
@@ -769,7 +769,7 @@ Dans les [pages](/learn/separating-events-from-effects) [suivantes](/learn/remov
 - Quand vous écrivez et relisez des Effets, pensez du point de vue de chaque Effet individuellement (comment démarrer et arrêter sa synchronisation), plutôt que du point de vue du composant (comment il est monté, se met à jour ou est démonté).
 - Les valeurs déclarées à l'intérieur du corps du composant sont « réactives ».
 - Les valeurs réactives doivent resynchroniser l'Effet car elles peuvent changer au cours du temps.
-- Le *linter* vérifie que toutes les valeurs réactives utilisées à l'intérieur de l'Effet sont spécifiées dans ses dépendances.
+- Le *linter* vérifie que toutes les valeurs réactives utilisées à l'intérieur de l'Effet sont spécifiées dans son tableau de dépendances.
 - Toutes les erreurs signalées par le *linter* sont légitimes. Il y a toujours une façon de corriger le code sans enfreindre les règles.
 
 </Recap>
@@ -970,7 +970,7 @@ export default function App() {
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         Le point peut se déplacer
       </label>
@@ -1028,7 +1028,7 @@ export default function App() {
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         Le point peut se déplacer
       </label>
@@ -1084,7 +1084,7 @@ export default function App() {
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         Le point peut se déplacer
       </label>
@@ -1156,7 +1156,7 @@ export default function App() {
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         Le point peut se déplacer
       </label>
@@ -1221,7 +1221,7 @@ export default function App() {
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         Le point peut se déplacer
       </label>
@@ -1280,7 +1280,7 @@ export default function App() {
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         Le point peut se déplacer
       </label>
@@ -1519,7 +1519,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-Il est vrai que `createConnection` est une dépendance. Toutefois, ce code est un peu fragile car quelqu'un pourrait changer le composant `App` pour transmettre une fonction définie à la volée comme valeur pour cette prop. Dans ce cas, sa valeur serait différente à chaque fois que le composant `App` fait son rendu, donc l'Effet pourrait se resynchroniser trop souvent. Pour éviter ça, vous pouvez plutôt transmettre `isEncrypted` :
+Il est vrai que `createConnection` est une dépendance. Toutefois, ce code est un peu fragile car quelqu'un pourrait changer le composant `App` pour transmettre une fonction définie à la volée comme valeur pour cette prop. Dans ce cas, sa valeur serait différente à chaque fois que le composant `App` fait son rendu, donc l'Effet pourrait se resynchroniser trop souvent. Pour éviter ça, vous pouvez plutôt transmettre `isEncrypted` :
 
 <Sandpack>
 
@@ -1712,7 +1712,7 @@ async function fetchPlanets() {
         name: 'Vénus'
       }, {
         id: 'mars',
-        name: 'Mars'        
+        name: 'Mars'
       }]);
     }, 1000);
   });
@@ -1736,7 +1736,7 @@ async function fetchPlaces(planetId) {
           name: 'Espagne'
         }, {
           id: 'vietnam',
-          name: 'Viêt Nam'        
+          name: 'Viêt Nam'
         }]);
       } else if (planetId === 'venus') {
         resolve([{
@@ -1747,7 +1747,7 @@ async function fetchPlaces(planetId) {
           name: 'Diana Chasma'
         }, {
           id: 'kumsong-vallis',
-          name: 'Kŭmsŏng Vallis'        
+          name: 'Kŭmsŏng Vallis'
         }]);
       } else if (planetId === 'mars') {
         resolve([{
@@ -1880,7 +1880,7 @@ async function fetchPlanets() {
         name: 'Vénus'
       }, {
         id: 'mars',
-        name: 'Mars'        
+        name: 'Mars'
       }]);
     }, 1000);
   });
@@ -1904,7 +1904,7 @@ async function fetchPlaces(planetId) {
           name: 'Espagne'
         }, {
           id: 'vietnam',
-          name: 'Viêt Nam'        
+          name: 'Viêt Nam'
         }]);
       } else if (planetId === 'venus') {
         resolve([{
@@ -1915,7 +1915,7 @@ async function fetchPlaces(planetId) {
           name: 'Diana Chasma'
         }, {
           id: 'kumsong-vallis',
-          name: 'Kŭmsŏng Vallis'        
+          name: 'Kŭmsŏng Vallis'
         }]);
       } else if (planetId === 'mars') {
         resolve([{
@@ -2043,7 +2043,7 @@ async function fetchPlanets() {
         name: 'Vénus'
       }, {
         id: 'mars',
-        name: 'Mars'        
+        name: 'Mars'
       }]);
     }, 1000);
   });
@@ -2067,7 +2067,7 @@ async function fetchPlaces(planetId) {
           name: 'Espagne'
         }, {
           id: 'vietnam',
-          name: 'Viêt Nam'        
+          name: 'Viêt Nam'
         }]);
       } else if (planetId === 'venus') {
         resolve([{
@@ -2078,7 +2078,7 @@ async function fetchPlaces(planetId) {
           name: 'Diana Chasma'
         }, {
           id: 'kumsong-vallis',
-          name: 'Kŭmsŏng Vallis'        
+          name: 'Kŭmsŏng Vallis'
         }]);
       } else if (planetId === 'mars') {
         resolve([{
