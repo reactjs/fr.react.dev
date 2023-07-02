@@ -11,7 +11,7 @@ L’état peut contenir n’importe quel type de valeur JavaScript, y compris de
 <YouWillLearn>
 
 - Comment mettre à jour correctement un objet dans l’état de React
-- Comment mettre à jour un objet imbriqué sans le muter
+- Comment mettre à jour un objet imbriqué sans le modifier
 - Qu’est-ce que l’immutabilité, et comment la préserver
 - Comment rendre la copie d’objet moins répétitive avec Immer
 
@@ -103,7 +103,7 @@ onPointerMove={e => {
 }}
 ```
 
-Ce code modifie l’objet assigné à `position` depuis [le rendu précédent.](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) Mais sans utiliser la fonction de définition de l’état, React ne se rend pas compte que l’objet a changé. Par conséquent, React ne réagit pas. Ce serait comme essayer de changer la commande après avoir déjà mangé le repas. Bien que la mutation de l’état puisse fonctionner dans certains cas, il est recommandé de ne pas le faire. Vous devez considérer la valeur de l’état à laquelle vous avez accès lors d’un rendu comme étant en lecture seule.
+Ce code modifie l’objet assigné à `position` depuis [le rendu précédent.](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) Mais sans utiliser la fonction de définition de l’état, React ne se rend pas compte que l’objet a changé. Par conséquent, React ne réagit pas. Ce serait comme essayer de changer une commande après avoir déjà mangé le repas. Bien que la mutation de l’état puisse fonctionner dans certains cas, il est recommandé de ne pas le faire. Vous devez considérer la valeur de l’état à laquelle vous avez accès lors d’un rendu comme étant en lecture seule.
 
 Pour effectivement [déclencher un nouveau rendu](/learn/state-as-a-snapshot#setting-state-triggers-renders) dans cet exemple, **créez un nouvel objet et passez-le à la fonction de définition de l’état :**
 
@@ -195,7 +195,7 @@ setPosition({
 });
 ```
 
-La mutation pose problème uniquement lorsque vous modifiez des objets *existants* qui se trouvent déjà dans l’état. Muter un objet que vous venez de créer est acceptable car *aucun autre code ne le référence encore*. Le modifier ne risque pas d’affecter accidentellement quelque chose qui en dépend. C’est ce qu’on appelle une « mutation locale ». Vous pouvez même effectuer une mutation locale [pendant le rendu.](/learn/keeping-components-pure#local-mutation-your-components-little-secret) C'est très pratique et tout à fait acceptable !
+La mutation pose problème uniquement lorsque vous modifiez des objets *existants* qui se trouvent déjà dans l’état. Muter un objet que vous venez de créer est acceptable car *aucun autre code ne le référence encore*. Le modifier ne risque pas d’affecter accidentellement quelque chose qui en dépend. C’est ce qu’on appelle une « mutation locale ». Vous pouvez même effectuer une mutation locale [pendant le rendu.](/learn/keeping-components-pure#local-mutation-your-components-little-secret) C’est très pratique et tout à fait acceptable !
 
 </DeepDive>
 
@@ -279,13 +279,13 @@ La façon fiable d’obtenir le comportement que vous recherchez est de créer u
 
 ```js
 setPerson({
-  firstName: e.target.value, // Nouveau prénom à partir de l’entrée
+  firstName: e.target.value, // Nouveau prénom venant du champ de saisie
   lastName: person.lastName,
   email: person.email
 });
 ```
 
-Vous pouvez utiliser la syntaxe de [décomposition des objets](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Syntaxe_d%C3%A9composition#d%C3%A9composition_dun_objet) *(spread syntax, NdT)* `...` afin de ne pas avoir à copier chaque propriété séparément.
+Vous pouvez utiliser la syntaxe de [décomposition des objets](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals) *(spread syntax, NdT)* `...` afin de ne pas avoir à copier chaque propriété séparément.
 
 ```js
 setPerson({
@@ -371,7 +371,7 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-Notez que la syntaxe de décomposition `...` est "superficielle» - elle ne copie que les éléments au premier niveau. Ça la rend rapide, mais ça signifie également que si vous souhaitez mettre à jour une propriété imbriquée, vous devrez l’utiliser plusieurs fois.
+Notez que la syntaxe de décomposition `...` est « superficielle » - elle ne copie que les éléments au premier niveau. Ça la rend rapide, mais ça signifie également que si vous souhaitez mettre à jour une propriété imbriquée, vous devrez l’utiliser plusieurs fois.
 
 <DeepDive>
 
@@ -466,7 +466,7 @@ Si vous souhaitez mettre à jour `person.artwork.city`, il est facile de le fair
 person.artwork.city = 'New Delhi';
 ```
 
-Mais en React, l’état doit être traité comme immuable ! Pour modifier `city`, vous devez d’abord produire le nouvel objet `artwork` (pré-rempli avec les données de l’objet précédent), puis produire le nouvel objet `person` qui pointe vers le nouvel `artwork` :
+Mais avec React, l’état doit être traité comme immuable ! Pour modifier `city`, vous devez d’abord produire le nouvel objet `artwork` (pré-rempli avec les données de l’objet précédent), puis produire le nouvel objet `person` qui pointe vers le nouvel `artwork` :
 
 ```js
 const nextArtwork = { ...person.artwork, city: 'New Delhi' };
@@ -652,7 +652,7 @@ Si vous modifiez `obj3.artwork.city`, ça affectera à la fois `obj2.artwork.cit
 
 ### Écrire une logique de mise à jour concise avec Immer {/*write-concise-update-logic-with-immer*/}
 
-Si votre état est profondément imbriqué, vous envisagerez peut-être de [l’aplanir](/learn/choosing-the-state-structure#avoid-deeply-nested-state). Mais si vous ne voulez pas modifier la structure de votre état, vous préférerez peut-être un raccourci pour les *spreads* imbriqués. [Immer](https://github.com/immerjs/use-immer) est une bibliothèque populaire qui vous permet d’écrire votre code en utilisant la syntaxe pratique mais mutante et se charge de produire les copies pour vous. Avec Immer, le code que vous écrivez semble « enfreindre les règles » et muter un objet :
+Si votre état est profondément imbriqué, vous envisagerez peut-être de [l’aplanir](/learn/choosing-the-state-structure#avoid-deeply-nested-state). Mais si vous ne voulez pas modifier la structure de votre état, vous préférerez peut-être un raccourci pour les *décompositions* imbriquées. [Immer](https://github.com/immerjs/use-immer) est une bibliothèque populaire qui vous permet d’écrire votre code en utilisant une syntaxe pratique mais modifiante et se charge de produire les copies pour vous. Avec Immer, le code que vous écrivez semble « enfreindre les règles » et modifier un objet :
 
 ```js
 updatePerson(draft => {
@@ -672,7 +672,7 @@ Le `draft` fourni par Immer est un type spécial d’objet, appelé [Proxy](http
 
 Pour essayer Immer :
 
-1. Exécuter `npm install use-immer` pour ajouter Immer en tant que dépendance.
+1. Exécuter `npm install use-immer` pour ajouter Immer en tant que dépendance
 2. Remplacer `import { useState } from 'react'` par `import { useImmer } from 'use-immer'`.
 
 Voici l’exemple ci-dessus converti en Immer :
@@ -797,24 +797,24 @@ Remarquez à quel point les gestionnaires d’événements sont devenus plus con
 Il y a plusieurs raisons :
 
 * **Débogage :** Si vous utilisez `console.log` et que vous ne mutez pas l’état, vos anciens logs ne seront pas écrasés par les changements d’état les plus récents. Vous pouvez donc voir clairement comment l’état a changé entre les rendus.
-* **Optimisations :** Les [stratégies d’optimisation](/reference/react/memo) courantes de React reposent sur la suppression du travail si les props ou l’état précédents sont identiques aux suivants. Si vous ne mutez jamais l’état, il est très rapide de vérifier s’il y a eu des changements. Si `prevObj === obj`, vous pouvez être sûr que rien n’a pu changer à l’intérieur de celui-ci.
-* **Nouvelles fonctionnalités :** Les nouvelles fonctionnalités de React que nous développons reposent sur le fait que l’état est [traité comme un instantané](/learn/state-as-a-snapshot). Si vous mutez des versions précédentes de l’état, ça peut vous empêcher d’utiliser les nouvelles fonctionnalités.
-* **Changements de besoin :** Certaines fonctionnalités de l’application, comme l’implémentation d’actions pour annuler/refaire *(Undo/Redo, NdT)*, l’affichage d’un historique des modifications ou la possibilité de réinitialiser un formulaire avec des valeurs antérieures, sont plus faciles à réaliser lorsque rien n’est muté. Ceci est dû au fait que vous pouvez conserver des copies passées de l’état en mémoire et les réutiliser lorsque ça est approprié. Si vous commencez avec une approche mutative, il peut être difficile d’ajouter ces fonctionnalités ultérieurement.
-* **Implémentation plus simple :** Puisque React ne repose pas sur la mutation, il n’a pas besoin de faire quoi que ce soit de spécial avec vos objets. Il n’a pas besoin de trafiquer leurs propriétés, de toujours les envelopper dans des proxies ou de réaliser d’autres actions à l’initialisation, comme le font de nombreuses solutions « réactives ». C’est également la raison pour laquelle React vous permet de mettre n’importe quel objet dans l’état, quelle que soit sa taille, sans problèmes de performances ou de correction supplémentaires.
+* **Optimisations :** Les [stratégies d’optimisation](/reference/react/memo) courantes de React reposent sur la possibilité de sauter des étapes si les propriétés ou l’état précédents sont identiques aux suivants. Si vous ne modifiez jamais l’état, il est très rapide de vérifier s’il y a eu des changements. Si `prevObj === obj`, vous pouvez être certain qu’aucun changement n’a pu se produire à l’intérieur de celui-ci.
+* **Nouvelles fonctionnalités :** Les nouvelles fonctionnalités de React que nous développons reposent sur le fait que l’état est [traité comme un instantané](/learn/state-as-a-snapshot). Si vous modifiez des versions précédentes de l’état, ça peut vous empêcher d’utiliser les nouvelles fonctionnalités.
+* **Changements de besoin :** Certaines fonctionnalités d’application, comme l’implémentation d’actions pour annuler/refaire *(Undo/Redo, NdT)*, l’affichage d’un historique des modifications ou la possibilité de réinitialiser un formulaire à des valeurs antérieures, sont plus faciles à réaliser lorsque rien n’est modifié. Ceci est dû au fait que vous pouvez conserver en mémoire des copies passées de l’état et les réutiliser lorsque c’est approprié. Si vous adoptez une approche modifiante dès le départ, il peut être difficile d’ajouter ultérieurement des fonctionnalités de ce type.
+* **Implémentation plus simple :** Puisque React ne repose pas sur la mutation, il n’a pas besoin de faire quoi que ce soit de spécial avec vos objets. Il n’a pas besoin de trafiquer leurs propriétés, de toujours les envelopper dans des proxies ou de réaliser d’autres actions à l’initialisation, comme le font de nombreuses solutions « réactives ». C’est également la raison pour laquelle React vous permet de mettre n’importe quel objet dans l’état, quelle que soit sa taille, sans problèmes de performances ou d’exactitude.
 
-En pratique, vous pouvez souvent « vous en sortir » en mutant l’état dans React, mais nous vous conseillons fortement de ne pas le faire afin de pouvoir utiliser les nouvelles fonctionnalités de React développées dans cette optique. Les futurs contributeurs, et peut-être vous-même, vous en seront reconnaissants !
+En pratique, vous pouvez souvent « vous en sortir » en modifiant l’état dans React, mais nous vous conseillons fortement de ne pas le faire afin de pouvoir utiliser les nouvelles fonctionnalités de React développées dans cette optique. Les futurs contributeurs, et peut-être vous-même, vous en seront reconnaissants !
 
 </DeepDive>
 
 <Recap>
 
 * Traitez tous les états dans React comme étant immuables.
-* Lorsque vous stockez des objets dans l’état, les muter ne déclenchera pas de rendus et modifiera l’état dans les « instantanés » de rendu précédents.
-* Au lieu de muter un objet, créez une *nouvelle* version de celui-ci et déclenchez un nouveau rendu en définissant l’état sur cette nouvelle version.
+* Lorsque vous stockez des objets dans l’état, les modifier ne déclenchera pas de rendus et modifiera l’état dans les « instantanés » de rendu précédents.
+* Au lieu de modifier un objet, créez une *nouvelle* version de celui-ci et déclenchez un nouveau rendu en définissant l’état sur cette nouvelle version.
 * Vous pouvez utiliser la syntaxe de décomposition d’objet `{...obj, something: 'newValue'}` pour créer des copies d’objets.
 * La syntaxe de décomposition est superficielle : elle ne copie qu’un niveau de profondeur.
-* Pour mettre à jour un objet imbriqué, vous devez créer des copies depuis l’endroit où vous effectuez la mise à jour.
-* Pour réduire la duplication de code, utilisez Immer.
+* Pour mettre à jour un objet imbriqué, vous devez créer des copies à partir de l’endroit où vous effectuez la mise à jour, en remontant jusqu’au plus haut niveau de l’objet.
+* Pour réduire le code requis pour créer des copies d’objet, utilisez Immer.
 
 </Recap>
 
@@ -1132,7 +1132,7 @@ select { margin-bottom: 10px; }
 
 Le problème était dans la mutation à l’intérieur de `handleMove`. Elle modifiait `shape.position`, mais il s’agit du même objet que celui pointé par `initialPosition`. C’est pourquoi la forme et l’arrière-plan se déplacent tous les deux. (C’est une mutation, donc le changement ne se reflète à l’écran que lorsqu’une mise à jour non liée - le changement de couleur - déclenche un nouveau rendu.)
 
-La solution consiste à supprimer la mutation de `handleMove` et à utiliser la syntaxe de décomposition pour copier la forme. Notez que `+=` est une mutation, vous devez donc la réécrire en utilisant une opération `+` normale.
+La solution consiste à supprimer la mutation de `handleMove` et à utiliser la syntaxe de décomposition pour copier la forme. Notez que `+=` est une mutation, vous devez donc la réécrire en utilisant une opération `+` classique.
 
 <Sandpack>
 
@@ -1287,7 +1287,7 @@ select { margin-bottom: 10px; }
 
 #### Mettre à jour un objet avec Immer {/*update-an-object-with-immer*/}
 
-Il s’agit du même exemple bogué que précédemment. Cette fois, corrigez la mutation en utilisant Immer. Pour vous faciliter la tâche, `useImmer` est déjà importé, vous devez donc modifier la variable d’état `shape` pour l’utiliser.
+Il s’agit du même exemple comportant des bugs que dans l’exercice précédent. Cette fois, corrigez la mutation en utilisant Immer. Pour vous faciliter la tâche, `useImmer` est déjà importé, vous devez donc modifier la variable d’état `shape` pour l’utiliser.
 
 <Sandpack>
 
@@ -1454,7 +1454,7 @@ select { margin-bottom: 10px; }
 
 <Solution>
 
-Voici la solution réécrite avec Immer. Remarquez comment les gestionnaires d’événements sont écrits de manière mutable, mais le bug ne se produit pas. C’est parce qu’en interne, Immer ne mute jamais les objets existants.
+Voici la solution réécrite avec Immer. Remarquez comment les gestionnaires d’événements sont écrits de manière modifiable, mais le bug ne se produit pas. C’est parce qu’en interne, Immer ne modifie jamais les objets existants.
 
 <Sandpack>
 
