@@ -255,7 +255,7 @@ Lisez **[Rendu et Commit](/learn/render-and-commit)** pour apprendre sur le cycl
 
 </LearnMore>
 
-## L’état comme un instantané {/*state-as-a-snapshot*/}
+## L’état est un instantané {/*state-as-a-snapshot*/}
 
 Contrairement aux variables JavaScript classiques, une variable d’état dans React se comporte davantage comme une photo instantanée. Lui affecter une nouvelle valeur ne change pas la variable d’état que vous avez déjà, mais déclenche plutôt un nouveau rendu. Ça peut surprendre au début !
 
