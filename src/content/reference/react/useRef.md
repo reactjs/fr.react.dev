@@ -4,7 +4,7 @@ title: useRef
 
 <Intro>
 
-`useRef` est un Hook React qui vous permet de référencer une valeur qui n'est pas nécessaire au rendu.
+`useRef` est un Hook React qui vous permet de référencer une valeur qui n'est pas nécessaire au code du rendu lui-même.
 
 ```js
 const ref = useRef(initialValue)
@@ -41,7 +41,7 @@ function MyComponent() {
 
 `useRef` renvoie un objet doté d'une unique propriété :
 
-* `current` : elle vaut initialement la `initialValue` que vous avez passée. Vous pourrez ensuite la modifier. Si vous passez l'objet `ref` à React en tant que prop `ref` sur un neud JSX, React définira tout seul la propriété `current`.
+* `current` : elle vaut initialement la `initialValue` que vous avez passée. Vous pourrez ensuite la modifier. Si vous passez l'objet `ref` à React en tant que prop `ref` d'un nœud JSX, React définira automatiquement sa propriété `current`.
 
 Lors des rendus ultérieurs, `useRef` renverra le même objet.
 
@@ -72,7 +72,7 @@ function Stopwatch() {
 
 Lors des rendus ultérieurs, `useRef` renverra le même objet.  Vous pouvez en modifier la propriété `current` pour stocker une information que vous relirez plus tard.  Ça vous rappelle peut-être [l'état](/reference/react/useState), mais il y a une différence fondamentale.
 
-**Modifier une ref ne redéclenche pas le rendu.**  Ça signifie que les refs sont idéales pour stocker des informations qui n'affectent pas le résultat visuel de votre composant. Par exemple, si vous devez stocker un [identifiant de timer](https://developer.mozilla.org/fr/docs/Web/API/setInterval) et le récupérer plus tard, mettez-le dans une ref.  Pour mettre à jour la valeur d'une ref, vous devez modifier manuellement sa <CodeStep step={2}>propriété `current`</CodeStep> :
+**Modifier une ref ne redéclenche pas le rendu.**  Ça signifie que les refs sont idéales pour stocker des informations qui n'affectent pas le résultat visuel de votre composant. Par exemple, si vous devez stocker un [identifiant de timer](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) et le récupérer plus tard, mettez-le dans une ref.  Pour mettre à jour la valeur d'une ref, vous devez modifier manuellement sa <CodeStep step={2}>propriété `current`</CodeStep> :
 
 ```js [[2, 5, "intervalRef.current"]]
 function handleStartClick() {
@@ -83,7 +83,7 @@ function handleStartClick() {
 }
 ```
 
-Par la suite, vous pouvez lire l'ID du timer depuis la ref afin de [décommissionner le timer](https://developer.mozilla.org/fr/docs/Web/API/clearInterval) :
+Par la suite, vous pouvez lire l'identifiant du timer depuis la ref afin de [décommissionner le timer](https://developer.mozilla.org/fr/docs/Web/API/clearInterval) :
 
 ```js [[2, 2, "intervalRef.current"]]
 function handleStopClick() {
@@ -98,13 +98,13 @@ En utilisant une ref, vous garantissez que :
 * La modifier **ne déclenche pas un nouveau rendu** (contrairement aux variables d'état, qui déclenchent un nouveau rendu).
 * **L'information reste locale** à chaque instance de votre composant (contrairement aux variables extérieures, qui sont partagées).
 
-Modifier une ref ne déclenche pas de nouveau rendu, de sorte que les refs sont inadaptées au stockage d'information que vous souhaitez afficher à l'écran. Utiliser plutôt des variables d'état pour ça. Apprenez comment [choisir entre `useRef` et `useState`](/learn/referencing-values-with-refs#differences-between-refs-and-state).
+Modifier une ref ne déclenche pas de nouveau rendu, de sorte que les refs sont inadaptées au stockage d'information que vous souhaitez afficher à l'écran. Utilisez plutôt des variables d'état pour ça. Apprenez comment [choisir entre `useRef` et `useState`](/learn/referencing-values-with-refs#differences-between-refs-and-state).
 
 <Recipes titleText="Exemples de référencements de valeurs avec useRef" titleId="examples-value">
 
 #### Compteur de clics {/*click-counter*/}
 
-Ce composant utilise une ref pour garder le compte du nombre de fois où un bouton a été cliqué.  Notez qu'on peut parfaitement utiliser une ref plutôt qu'une variable d'état dans ce cas, puisque le compteur n'est lu et écrit qu'au sein d'un gestionnaire d'événement.
+Ce composant utilise une ref pour garder le compte du nombre de fois qu'un bouton a été cliqué.  Notez qu'on peut parfaitement utiliser une ref plutôt qu'une variable d'état dans ce cas, puisque le compteur n'est lu et écrit qu'au sein d'un gestionnaire d'événement.
 
 <Sandpack>
 
@@ -135,7 +135,7 @@ Si vous affichiez `{ref.current}` dans le JSX, le nombre ne serait pas mis à jo
 
 #### Chronomètre {/*a-stopwatch*/}
 
-Cet exemple utilise une combinaison d'états et de refs. Tant `startTime` que `now` sont des variables d'état, parce qu'elles sont utilisées par le rendu. Mais nous devons aussi garder trace de [l'ID du timer](https://developer.mozilla.org/fr/docs/Web/API/setInterval) pour pouvoir l'arrêter lorsqu'on appuie sur le bouton.  Dans la mesure où cet ID de timer n'est pas utilisé par le rendu, il est préférable de le conserver dans une ref et de le mettre à jour manuellement.
+Cet exemple utilise une combinaison d'états et de refs. Tant `startTime` que `now` sont des variables d'état, parce qu'elles sont utilisées par le rendu. Mais nous devons aussi garder trace de [l'identifiant du timer](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) pour pouvoir l'arrêter lorsqu'on appuie sur le bouton.  Dans la mesure où cet identifiant de timer n'est pas utilisé par le rendu, il est préférable de le conserver dans une ref et de le mettre à jour manuellement.
 
 <Sandpack>
 
@@ -192,7 +192,7 @@ export default function Stopwatch() {
 
 React s'attend à ce que le corps de votre composant [se comporte comme une fonction pure](/learn/keeping-components-pure) :
 
-* Si les entrées ([props](/learn/passing-props-to-a-component), [état](/learn/state-a-components-memory), et [contexte](/learn/passing-data-deeply-with-context)) sont les mêmes, il devrait renvoyer exactement le même JSX.
+* Si les entrées (les [props](/learn/passing-props-to-a-component), l'[état](/learn/state-a-components-memory) et le [contexte](/learn/passing-data-deeply-with-context)) sont les mêmes, votre composant devrait renvoyer exactement le même JSX.
 * L'appeler dans un ordre différent ou avec des arguments différents ne devrait pas affecter les résultats des autres appels.
 
 Lire ou écrire une ref **lors du rendu** va à l'encontre de ces attentes.
@@ -228,7 +228,7 @@ function MyComponent() {
 
 Si vous *devez* lire [ou écrire](/reference/react/useState#storing-information-from-previous-renders) quelque chose durant le rendu, [utilisez plutôt un état](/reference/react/useState).
 
-Lorsque vous enfreignez ces règles, votre composant resterait peut-être opérationnel, mais la plupart des nouvelles fonctionnalités que nous sommes en train d'ajouter à React dépendent de ces attentes.  Apprenez comment [garder vos composants purs](/learn/keeping-components-pure#where-you-_can_-cause-side-effects).
+Lorsque vous enfreignez ces règles, votre composant restera peut-être opérationnel, mais la plupart des nouvelles fonctionnalités que nous sommes en train d'ajouter à React dépendent de ces attentes.  Apprenez plutôt comment [garder vos composants purs](/learn/keeping-components-pure#where-you-_can_-cause-side-effects).
 
 </Pitfall>
 
@@ -236,7 +236,7 @@ Lorsque vous enfreignez ces règles, votre composant resterait peut-être opéra
 
 ### Manipuler le DOM avec une ref {/*manipulating-the-dom-with-a-ref*/}
 
-Il est particulièrement courant d'utiliser une ref pour manipuler le [DOM](https://developer.mozilla.org/fr/docs/Web/API/HTML_DOM_API). React a une prise en charge native pour ça.
+Il est particulièrement courant d'utiliser une ref pour manipuler le [DOM](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API). React prend nativement en charge ce cas de figure.
 
 Commencez par déclarer un <CodeStep step={1}>objet ref</CodeStep> avec une <CodeStep step={3}>valeur initiale</CodeStep> à `null` :
 
@@ -265,7 +265,7 @@ Une fois que React a créé le nœud DOM et l'a mis à l'écran, React définira
 
 React remettra la propriété `current` à `null` lorsque le nœud sera retiré de l'écran.
 
-Découvrez plus en détails la [manipulatino du DOM avec des refs](/learn/manipulating-the-dom-with-refs).
+Découvrez plus en détails la [manipulation du DOM avec des refs](/learn/manipulating-the-dom-with-refs).
 
 <Recipes titleText="Exemples de manipulation du DOM avec useRef" titleId="examples-dom">
 
@@ -395,7 +395,7 @@ li {
 
 #### Lecture / pause d'une vidéo {/*playing-and-pausing-a-video*/}
 
-Cet exemple utilise une ref pour appeler les méthodes [`play()`](https://developer.mozilla.org/fr/docs/Web/API/HTMLMediaElement/play) et [`pause()`](https://developer.mozilla.org/fr/docs/Web/API/HTMLMediaElement/pause) d'un nœud DOM `<video>`.
+Cet exemple utilise une ref pour appeler les méthodes [`play()`](https://developer.mozilla.org/fr/docs/Web/API/HTMLMediaElement/play) et [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) d'un nœud DOM `<video>`.
 
 <Sandpack>
 
