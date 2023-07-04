@@ -4,7 +4,7 @@ title: useImperativeHandle
 
 <Intro>
 
-`useImperativeHandle` is a React Hook that lets you customize the handle exposed as a [ref.](/learn/manipulating-the-dom-with-refs)
+`useImperativeHandle` est un Hook React qui vous permet de personnaliser la référence exposée comme [ref](/learn/manipulating-the-dom-with-refs).
 
 ```js
 useImperativeHandle(ref, createHandle, dependencies?)
@@ -16,11 +16,11 @@ useImperativeHandle(ref, createHandle, dependencies?)
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `useImperativeHandle(ref, createHandle, dependencies?)` {/*useimperativehandle*/}
 
-Call `useImperativeHandle` at the top level of your component to customize the ref handle it exposes:
+Appelez `useImperativeHandle` au niveau racine de votre composant pour personnaliser la ref qu'il expose :
 
 ```js
 import { forwardRef, useImperativeHandle } from 'react';
@@ -28,33 +28,33 @@ import { forwardRef, useImperativeHandle } from 'react';
 const MyInput = forwardRef(function MyInput(props, ref) {
   useImperativeHandle(ref, () => {
     return {
-      // ... your methods ...
+      // ... vos méthodes ...
     };
   }, []);
   // ...
 ```
 
-[See more examples below.](#usage)
+[Voir d'autres exemples ci-dessous](#usage).
 
-#### Parameters {/*parameters*/}
+#### Paramètres {/*parameters*/}
 
-* `ref`: The `ref` you received as the second argument from the [`forwardRef` render function.](/reference/react/forwardRef#render-function)
+* `ref` : la `ref` que vous avez reçue comme second argument depuis la [fonction de rendu de `forwardRef`](/reference/react/forwardRef#render-function).
 
-* `createHandle`: A function that takes no arguments and returns the ref handle you want to expose. That ref handle can have any type. Usually, you will return an object with the methods you want to expose.
+* `createHandle` : une fonction ne prenant aucun argument, qui renvoie la ref que vous souhaitez effectivement exposer.  Cette ref peut être de n'importe quel type.  En général, vous renverrez un objet avec les méthodes que vous souhaitez exposer.
 
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `createHandle` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If a re-render resulted in a change to some dependency, or if you omitted this argument, your `createHandle` function will re-execute, and the newly created handle will be assigned to the ref.
+* `dependencies` **optionnelles** : la liste des valeurs réactives référencées par le code de `createHandle`.  Les valeurs réactives comprennent les props, les variables d'état et toutes les variables et fonctions déclarées localement dans le corps de votre composant.  Si votre *linter* est [configuré pour React](/learn/editor-setup#linting), il vérifiera que chaque valeur réactive concernée est bien spécifiée comme dépendance.  La liste des dépendances doit avoir un nombre constant d'éléments et utiliser un littéral défini à la volée, du genre `[dep1, dep2, dep3]`. React comparera chaque dépendance à sa valeur précédente au moyen de la comparaison [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Si un nouveau rendu résulte d'une modification à une dépendance, ou si vous avez omis cet argument, la fonction `createHandle` sera réexécutée et la référence fraîchement créée sera affectée à la ref.
 
-#### Returns {/*returns*/}
+#### Valeur renvoyée {/*returns*/}
 
-`useImperativeHandle` returns `undefined`.
+`useImperativeHandle` renvoie `undefined`.
 
 ---
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
-### Exposing a custom ref handle to the parent component {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
+### Fournir une référence personnalisée au composant parent {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
 
-By default, components don't expose their DOM nodes to parent components. For example, if you want the parent component of `MyInput` to [have access](/learn/manipulating-the-dom-with-refs) to the `<input>` DOM node, you have to opt in with [`forwardRef`:](/reference/react/forwardRef)
+Par défaut, les composants n'exposent pas leurs nœuds DOM aux composants parents. Par exemple, si vous souhaitez que le composant parent de `MyInput` [ait accès](/learn/manipulating-the-dom-with-refs) au nœud DOM `<input>`, vous devez le permettre explicitement avec [`forwardRef`](/reference/react/forwardRef) :
 
 ```js {4}
 import { forwardRef } from 'react';
@@ -64,7 +64,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-With the code above, [a ref to `MyInput` will receive the `<input>` DOM node.](/reference/react/forwardRef#exposing-a-dom-node-to-the-parent-component) However, you can expose a custom value instead. To customize the exposed handle, call `useImperativeHandle` at the top level of your component:
+Dans le code ci-avant, [une ref à `MyInput` recevra le nœud DOM `<input>`](/reference/react/forwardRef#exposing-a-dom-node-to-the-parent-component).  Cependant, vous pouvez plutôt exposer une valeur personnalisée. Pour définir vous-même la référence à exposer, appelez `useImperativeHandle` au niveau racine de votre composant :
 
 ```js {4-8}
 import { forwardRef, useImperativeHandle } from 'react';
@@ -72,7 +72,7 @@ import { forwardRef, useImperativeHandle } from 'react';
 const MyInput = forwardRef(function MyInput(props, ref) {
   useImperativeHandle(ref, () => {
     return {
-      // ... your methods ...
+      // ... vos méthodes ...
     };
   }, []);
 
@@ -80,9 +80,9 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-Note that in the code above, the `ref` is no longer forwarded to the `<input>`.
+Remarquez que dans le code ci-avant, la `ref` n'est plus transmise au `<input>`.
 
-For example, suppose you don't want to expose the entire `<input>` DOM node, but you want to expose two of its methods: `focus` and `scrollIntoView`. To do this, keep the real browser DOM in a separate ref. Then use `useImperativeHandle` to expose a handle with only the methods that you want the parent component to call:
+Supposons par exemple que vous ne souhaitiez pas exposer l'intégralité du nœud DOM `<input>`, mais seulement deux de ses méthodes : `focus` et `scrollIntoView`. Pour y parvenir, conservez le véritable nœud DOM dans une ref distincte, puis utilisez `useImperativeHandle` pour exposer un objet avec seulement les méthodes que vous souhaitez permettre au composant parent d'appeler :
 
 ```js {7-14}
 import { forwardRef, useRef, useImperativeHandle } from 'react';
@@ -105,7 +105,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-Now, if the parent component gets a ref to `MyInput`, it will be able to call the `focus` and `scrollIntoView` methods on it. However, it will not have full access to the underlying `<input>` DOM node.
+Désormais, si le composant parent récupère une ref sur `MyInput`, il ne pourra plus appeler que ses méthodes `focus` et `scrollIntoView`.  Il n'aura pas un accès complet au nœud DOM `<input>` sous-jacent.
 
 <Sandpack>
 
@@ -118,15 +118,15 @@ export default function Form() {
 
   function handleClick() {
     ref.current.focus();
-    // This won't work because the DOM node isn't exposed:
+    // Ça ne marcherait pas, car le nœud DOM n'est pas exposé :
     // ref.current.style.opacity = 0.5;
   }
 
   return (
     <form>
-      <MyInput label="Enter your name:" ref={ref} />
+      <MyInput label="Saisissez votre nom :" ref={ref} />
       <button type="button" onClick={handleClick}>
-        Edit
+        Modifier
       </button>
     </form>
   );
@@ -166,9 +166,9 @@ input {
 
 ---
 
-### Exposing your own imperative methods {/*exposing-your-own-imperative-methods*/}
+### Exposer vos propres méthodes impératives {/*exposing-your-own-imperative-methods*/}
 
-The methods you expose via an imperative handle don't have to match the DOM methods exactly. For example, this `Post` component exposes a `scrollAndFocusAddComment` method via an imperative handle. This lets the parent `Page` scroll the list of comments *and* focus the input field when you click the button:
+Les méthodes que vous exposez *via* un objet impératif n'ont pas l'obligation de correspondre à des méthodes du DOM. Par exemple, ce composant `Post` expose une méthode `scrollAndFocusAddComment` *via* un objet impératif.  Elle permet au `Page` parent de faire défiler la liste des commentaires *et* d'activer le champ de saisie lorsque vous cliquez sur le bouton :
 
 <Sandpack>
 
@@ -186,7 +186,7 @@ export default function Page() {
   return (
     <>
       <button onClick={handleClick}>
-        Write a comment
+        Rédiger un commentaire
       </button>
       <Post ref={postRef} />
     </>
@@ -215,7 +215,7 @@ const Post = forwardRef((props, ref) => {
   return (
     <>
       <article>
-        <p>Welcome to my blog!</p>
+        <p>Bienvenue sur mon blog !</p>
       </article>
       <CommentList ref={commentsRef} />
       <AddComment ref={addCommentRef} />
@@ -261,7 +261,7 @@ export default CommentList;
 import { forwardRef, useRef, useImperativeHandle } from 'react';
 
 const AddComment = forwardRef(function AddComment(props, ref) {
-  return <input placeholder="Add comment..." ref={ref} />;
+  return <input placeholder="Ajouter un commentaire..." ref={ref} />;
 });
 
 export default AddComment;
@@ -281,8 +281,8 @@ export default AddComment;
 
 <Pitfall>
 
-**Do not overuse refs.** You should only use refs for *imperative* behaviors that you can't express as props: for example, scrolling to a node, focusing a node, triggering an animation, selecting text, and so on.
+**N'abusez pas des refs.**  Vous ne devriez utiliser des refs que pour des comportements *impératifs* qui ne peuvent pas être exprimés par des props : faire défiler jusqu'à un nœud, activer un nœud, déclencher une animation, sélectionner un texte, et ainsi de suite.
 
-**If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
+**Si vous pouvez exprimer quelque chose sous forme de prop, n'utilisez pas une ref.**  Par exemple, plutôt que d'exposer un objet impératif du genre `{ open, close }` depuis un composant `Modal`, préférez proposer une prop `isOpen` pour une utilisation du style `<Modal isOpen={isOpen} />`. [Les Effets](/learn/synchronizing-with-effects) peuvent vous aider à exposer des comportements impératifs au travers de props.
 
 </Pitfall>
