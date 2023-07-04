@@ -10,8 +10,8 @@ Vous trouvez peut-être que les variables d'état ressemblent à des variables J
 
 <YouWillLearn>
 
-* Comment modifier l'état déclenche un nouveau rendu
-* Comment et comment l'état est mis à jour
+* Comment une modification d'état déclenche un nouveau rendu
+* Comment et quand l'état est mis à jour
 * Pourquoi l'état n'est pas mis à jour immédiatement après que vous l'avez modifié
 * Comment les gestionnaires d'événements accèdent à un « instantané » de l'état
 
@@ -19,7 +19,7 @@ Vous trouvez peut-être que les variables d'état ressemblent à des variables J
 
 ## Modifier l'état déclenche un rendu {/*setting-state-triggers-renders*/}
 
-Vous pourriez croire que l'interface utilisateur (UI) évolue en réaction directe à des événements utilisateurs tels qu'un clic. Dans React, les choses sont un peu différentes de ce modèle mental.  Dans la page précédente, vous avons vu que [modifier l'état demande un nouveau rendu](/learn/render-and-commit#step-1-trigger-a-render) à React. Ça signifie que pour que l'interface réagisse à l'événement, vous devez *mettre à jour l'état*.
+Vous pourriez croire que l'interface utilisateur (UI) évolue en réaction directe à des événements utilisateurs tels qu'un clic. Dans React, les choses sont un peu différentes de ce modèle mental.  Dans la page précédente, nous avons vu que [modifier l'état demande un nouveau rendu](/learn/render-and-commit#step-1-trigger-a-render) à React. Ça signifie que pour que l'interface réagisse à l'événement, vous devez *mettre à jour l'état*.
 
 Dans cet exemple, lorsque vous appuyez sur « Envoyer », `setIsSent(true)` demande à React de refaire un rendu de l'UI :
 
@@ -73,7 +73,7 @@ Examinons de plus près la relation entre l'état et le rendu.
 
 [« Faire le rendu »](/learn/render-and-commit#step-2-react-renders-your-components) signifie que React appelle votre composant, qui est une fonction. Le JSX que cette fonction renvoie est comme une photo instantanée de l'UI à ce moment précis.  Ses props, ses gestionnaires d'événements et ses variables locales ont tous été calculés **en utilisant l'état au moment du rendu**.
 
-Contrairement à une photo ou une image de film, « l'instantané » de l'UI que vous renvoyez est interactif. Il comprend des éléments de logique tels que les gestionnaires d'événements qui décrivent ce qui doit arriver en réaction à des interactions. React met à jour l'écran pour refléter cet instantané et le connecte aux gestionnaires d'événements.  Résultat, cliquer sur le bouton déclenchera le gestionnaire de clic défini dans votre JSX.
+Contrairement à une photo ou une image de film, « l'instantané » de l'UI que vous renvoyez est interactif. Il comprend des éléments de logique tels que les gestionnaires d'événements qui décrivent ce qui doit arriver suite à des interactions. React met à jour l'écran pour refléter cet instantané et le connecte aux gestionnaires d'événements.  Résultat, cliquer sur le bouton déclenchera le gestionnaire de clic défini dans votre JSX.
 
 Lorsque React refait le rendu d'un composant :
 
@@ -87,7 +87,7 @@ Lorsque React refait le rendu d'un composant :
     <Illustration caption="L’arborescence du DOM est mise à jour" src="/images/docs/illustrations/i_render3.png" />
 </IllustrationBlock>
 
-Dans son rôle de mémoire du composant, l'état n'est pas comme une variable classique qui disparaît après que votre fonction a renvoyé son résultat. En réalité, l'état « vit » dans React lui-même — un peu comme sur une étagère ! — hors de votre fonction. Lorsque React appelle votre composant, il lui fournit un instantané de l'état pour ce rendu spécifique. Votre composant renvoit un instantané de l'UI avec un jeu tout frais de props et de gestionnaires d'événements dans son JSX, tous calculés **en utilisant les valeurs de l'état pour ce rendu** !
+Dans son rôle de mémoire du composant, l'état n'est pas comme une variable classique qui disparaît après que votre fonction a renvoyé son résultat. En réalité, l'état « vit » dans React lui-même — un peu comme sur une étagère ! — hors de votre fonction. Lorsque React appelle votre composant, il lui fournit un instantané de l'état pour ce rendu spécifique. Votre composant renvoie un instantané de l'UI avec un jeu tout frais de props et de gestionnaires d'événements dans son JSX, tous calculés **en utilisant les valeurs de l'état pour ce rendu** !
 
 <IllustrationBlock sequential>
   <Illustration caption="Vous demandez à React de mettre à jour l’état" src="/images/docs/illustrations/i_state-snapshot1.png" />
@@ -95,7 +95,7 @@ Dans son rôle de mémoire du composant, l'état n'est pas comme une variable cl
   <Illustration caption="React passe un instantané de la valeur de l’état à votre composant" src="/images/docs/illustrations/i_state-snapshot3.png" />
 </IllustrationBlock>
 
-Voici une petite expérience pour vous montrer comment ça fonctionne. Dans cet exemple, vous vous attendez peut-être à ce que cliquer sur le bouton « +3 » incrément le compteur trois fois parce qu'il appelle `setNumber(number + 1)` trois fois.
+Voici une petite expérience pour vous montrer comment ça fonctionne. Dans cet exemple, vous vous attendez peut-être à ce que cliquer sur le bouton « +3 » incrémente le compteur trois fois parce qu'il appelle `setNumber(number + 1)` trois fois.
 
 Voyez ce qui se passe lorsque vous cliquez sur le bouton « +3 » :
 
@@ -150,7 +150,7 @@ Voici ce que le gestionnaire de clic de ce bouton dit à React de faire :
 
 Même si vous appelez `setNumber(number + 1)` trois fois, dans le gestionnaire d'événement *de ce rendu* `number` est toujours à `0`, de sorte que vous le définissez à `1` trois fois. C'est pourquoi, après que le gestionnaire d'événement a terminé, React refait le rendu du composant avec `number` égal à `1` plutôt qu'à `3`.
 
-Vous pouvez aussi visualiser ça mentalement en substituant les variables d'état par leurs valeurs dans votre code.  Puisque la variable d'état `number` est à `0` *pour ce rendu*, son gestionnaire d'événement a l'aspect suivant :
+Vous pouvez visualiser ça mentalement en substituant les variables d'état par leurs valeurs dans votre code.  Puisque la variable d'état `number` est à `0` *pour ce rendu*, son gestionnaire d'événement a l'aspect suivant :
 
 ```js
 <button onClick={() => {
@@ -170,7 +170,7 @@ Au prochain rendu, `number` est à `1`, de sorte que le gestionnaire de clic pou
 }}>+3</button>
 ```
 
-C'est pourquoi cliquer à nouveau sur le bouton amènera le compteur à `2`, puis à `3` au clic suivant, et ainsi de suite.
+C'est pourquoi re-cliquer sur le bouton amènera le compteur à `2`, puis à `3` au clic suivant, et ainsi de suite.
 
 ## L'état au fil du temps {/*state-over-time*/}
 
@@ -210,7 +210,7 @@ setNumber(0 + 5);
 alert(0);
 ```
 
-Mais si vous mettiez un timer sur l'alert, de sorte qu'il ne se déclenche _qu'après_ que le composant a refait un rendu ? Dirait-il « 0 » ou « 5 » ? Devinez !
+Mais si vous mettiez un timer sur l'alerte, de sorte qu'elle ne se déclenche _qu'après_ que le composant a refait un rendu ? Dirait-elle « 0 » ou « 5 » ? Devinez !
 
 <Sandpack>
 
@@ -241,7 +241,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Surpris·e ?  En utilisant la méthode de substitution, on voit bien que c'est « l'instantané » de l'état qui est passé à l'alerte :
+Ça vous surprend ?  En utilisant la méthode de substitution, on voit bien que c'est « l'instantané » de l'état qui est passé à l'alerte :
 
 ```js
 setNumber(0 + 5);
@@ -257,7 +257,7 @@ L'état stocké dans React a peut-être changé lorsque l'alerte finit par être
 Voici un exemple qui illustre en quoi ça réduit le potentiel d'erreur de chronologie dans vos gestionnaires d'événements.  Vous trouverez ci-dessous un formulaire qui envoie un message avec un retard de cinq secondes. Imaginez le scénario suivant :
 
 1. Vous appuyez sur le bouton « Envoyer » pour envoyer « Bonjour » à Alice.
-2. Avant que les cinq secondes ne soient écoulées, vous modifier le champ « Destinataire » à « Bob ».
+2. Avant que les cinq secondes ne soient écoulées, vous modifiez le champ « Destinataire » à « Bob ».
 
 À quel affichage vous attendez-vous ? Afficherait-il « Vous avez dit Bonjour à Alice » ? Ou plutôt « Vous avez dit Bonjour à Bob » ? Essayez de deviner sur base de ce que vous savez, puis tentez la manipulation :
 
@@ -315,9 +315,9 @@ Et si vous souhaitiez plutôt lire la dernière valeur à jour d'un état avant 
 * React stocke l'état hors de votre composant, comme sur une étagère.
 * Lorsque vous appelez `useState`, React vous donne une photo instantanée de l'état *pour ce rendu*.
 * Les variables et gestionnaires d'événements ne « survivent » pas d'un rendu à l'autre.  Chaque rendu a ses propres gestionnaires d'événements.
-* Chaque rendu (et les fonctions qu'il contient) « verra » toujours l'instantané de l'état que React a fourni à *ce* rendu.
+* Chaque rendu (et les fonctions qu'il contient) « verra » toujours l'instantané de l'état que React a fourni à *ce rendu spécifique*.
 * Vous pouvez mentalement substituer l'état dans les gestionnaires d'événements, comme lorsque vous pensez au JSX produit par le rendu.
-* Les gestionnaires d'événements créés par le passé voient les valeurs d'état spécifiques au rendu qui les a créés.
+* Les gestionnaires d'événements créés par le passé continuent à voir les valeurs d'état spécifiques au rendu qui les a créés.
 
 </Recap>
 
@@ -404,7 +404,7 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-Que vous le placiez avant ou après l'appel à `setWalk` ne change rien.  La valeur de `walk` pour ce rendu est figée. Appeler `setWalk` ne la changera que pour le *prochain* rendu, et n'affectera pas les gestionnaires d'événements du rendu précédent.
+Que vous le placiez avant ou après l'appel à `setWalk` ne change rien.  La valeur de `walk` pour ce rendu est figée. Appeler `setWalk` ne la changera que pour le *prochain* rendu, et n'affectera pas les gestionnaires d'événements du rendu courant.
 
 Cette ligne peut sembler contre-intuitive à première vue :
 
@@ -412,7 +412,7 @@ Cette ligne peut sembler contre-intuitive à première vue :
 alert(walk ? 'Stop arrive' : 'Traversez arrive');
 ```
 
-Mais elle a plus de sens si vous l'interprétez comme ceci : « Si la signal affiche “Traversez maintenant”, le message devrait dire “Stop arrive” ». La variable `walk` au sein du gestionnaire d'événement correspond à la valeur de `walk` pour le rendu courant, elle n'a pas changé.
+Mais elle a plus de sens si vous l'interprétez comme ceci : « Si le signal affiche “Traversez maintenant”, le message devrait dire “Stop arrive” ». La variable `walk` au sein du gestionnaire d'événement correspond à la valeur de `walk` pour le rendu courant, elle n'a pas changé.
 
 Vous pouvez vérifier que c'est correct en appliquant la méthode de substitution. Lorsque `walk` est `true`, vous obtenez :
 
