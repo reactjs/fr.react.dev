@@ -695,7 +695,7 @@ export const LevelContext = createContext(0);
 
 </Sandpack>
 
-Désormais, `Heading` et `Section` lisent le `LevelContext` pour déterminer à quelle « profondeur » ils se trouvent. `Section` enrobe ses enfants dans un `LevelContext` pour spécifier que tout son contenu est à un niveau « plus profond ».
+Désormais, `Heading` et `Section` lisent le `LevelContext` pour déterminer à quelle « profondeur » ils se trouvent. `Section` enrobe ses enfants dans un `LevelContext` pour spécifier que tout son contenu se situe à un niveau « plus profond ».
 
 <Note>
 
@@ -705,7 +705,7 @@ Cet exemple utilise des niveaux d'en-têtes parce qu'ils montrent visuellement c
 
 ## Le contexte traverse les composants intermédiaires {/*context-passes-through-intermediate-components*/}
 
-Vous pouvez insérer autant de composants que vous voulez entre le composant qui fournit le contexte et celui qui l'utilise. Ça inclut aussi bien les composants natifs comme `<div>` que ceux que vous pourriez créer vous-même.
+Vous pouvez insérer autant de composants que vous le souhaitez entre le composant qui fournit le contexte et celui qui l'utilise. Ça inclut aussi bien les composants natifs comme `<div>` que ceux que vous pourriez créer vous-même.
 
 Dans cet exemple, le même composant `Post` (avec une bordure en pointillés) est rendu à deux niveaux d'imbrication différents. Remarquez que le `<Heading>` à l'intérieur obtient automatiquement son niveau depuis la `<Section>` la plus proche :
 
@@ -842,7 +842,7 @@ En CSS, des propriétés distinctes comme `color` et `background-color` ne sont 
 
 ## Avant d'utiliser un contexte {/*before-you-use-context*/}
 
-Il est très tentant d'utiliser des contextes ! Toutefois, il est aussi très facile d'en abuser. **Ce n'est pas parce que vous devez propager des props sur plusieurs niveaux que vous devez mettre ces informations dans un contexte**.
+Il est souvent très tentant de recourir à des contextes ! Toutefois, il est aussi très facile d'en abuser. **Ce n'est pas parce que vous devez propager des props sur plusieurs niveaux que vous devez mettre ces informations dans un contexte**.
 
 Voici certaines alternatives à considérer avant d'utiliser un contexte :
 
@@ -963,27 +963,27 @@ export const places = [{
   description: 'La tradition de choisir des couleurs vives pour les maisons remonte à la fin du XXe siècle.',
   imageId: 'K9HVAGH'
 }, {
-  id: 1, 
+  id: 1,
   name: 'Rainbow Village à Taichung, Taiwan',
   description: "Pour sauver les maisons de la démolition, Huang Yung-Fu, un résident de la région, a peint l'ensemble des 1 200 maisons en 1924.",
   imageId: '9EAYZrt'
 }, {
-  id: 2, 
+  id: 2,
   name: 'Macromural de Pachuca, Mexique',
   description: "L'une des plus grandes fresques murales du monde recouvre les maisons d'un quartier à flanc de colline.",
   imageId: 'DgXHVwu'
 }, {
-  id: 3, 
+  id: 3,
   name: 'Selarón Staircase à Rio de Janeiro, Brésil',
   description: "Ce monument a été créé par Jorge Selarón, un artiste d'origine chilienne, en guise d’« hommage au people du Brésil ».",
   imageId: 'aeO3rpI'
 }, {
-  id: 4, 
+  id: 4,
   name: 'Burano, Italie',
   description: 'Les maisons sont peintes selon un système de couleurs spécifique datant du XVIe siècle.',
   imageId: 'kxsph5C'
 }, {
-  id: 5, 
+  id: 5,
   name: 'Chefchaouen, Maroc',
   description: "Plusieurs théories expliquent pourquoi les maisons sont peintes en bleu, notamment parce que cette couleur repousserait les moustiques ou qu'elle symboliserait le ciel et le paradis.",
   imageId: 'rTqKo46'
@@ -1007,9 +1007,9 @@ export function getImageUrl(place) {
 
 ```css
 ul { list-style-type: none; padding: 0px 10px; }
-li { 
-  margin-bottom: 10px; 
-  display: grid; 
+li {
+  margin-bottom: 10px;
+  display: grid;
   grid-template-columns: auto 1fr;
   gap: 20px;
   align-items: center;
@@ -1102,27 +1102,27 @@ export const places = [{
   description: 'La tradition de choisir des couleurs vives pour les maisons remonte à la fin du XXe siècle.',
   imageId: 'K9HVAGH'
 }, {
-  id: 1, 
+  id: 1,
   name: 'Rainbow Village à Taichung, Taiwan',
   description: "Pour sauver les maisons de la démolition, Huang Yung-Fu, un résident de la région, a peint l'ensemble des 1 200 maisons en 1924.",
   imageId: '9EAYZrt'
 }, {
-  id: 2, 
+  id: 2,
   name: 'Macromural de Pachuca, Mexique',
   description: "L'une des plus grandes fresques murales du monde recouvre les maisons d'un quartier à flanc de colline.",
   imageId: 'DgXHVwu'
 }, {
-  id: 3, 
+  id: 3,
   name: 'Selarón Staircase à Rio de Janeiro, Brésil',
   description: "Ce monument a été créé par Jorge Selarón, un artiste d'origine chilienne, en guise d’« hommage au people du Brésil ».",
   imageId: 'aeO3rpI'
 }, {
-  id: 4, 
+  id: 4,
   name: 'Burano, Italie',
   description: 'Les maisons sont peintes selon un système de couleurs spécifique datant du XVIe siècle.',
   imageId: 'kxsph5C'
 }, {
-  id: 5, 
+  id: 5,
   name: 'Chefchaouen, Maroc',
   description: "Plusieurs théories expliquent pourquoi les maisons sont peintes en bleu, notamment parce que cette couleur repousserait les moustiques ou qu'elle symboliserait le ciel et le paradis.",
   imageId: 'rTqKo46'
@@ -1146,9 +1146,9 @@ export function getImageUrl(place) {
 
 ```css
 ul { list-style-type: none; padding: 0px 10px; }
-li { 
-  margin-bottom: 10px; 
-  display: grid; 
+li {
+  margin-bottom: 10px;
+  display: grid;
   grid-template-columns: auto 1fr;
   gap: 20px;
   align-items: center;
