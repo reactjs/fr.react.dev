@@ -4,7 +4,7 @@ title: useDebugValue
 
 <Intro>
 
-`useDebugValue` is a React Hook that lets you add a label to a custom Hook in [React DevTools.](/learn/react-developer-tools)
+`useDebugValue` est un Hook React permettant d'ajouter une étiquette visible dans [React DevTools](/learn/react-developer-tools) à un Hook personnalisé.
 
 ```js
 useDebugValue(value, format?)
@@ -16,34 +16,34 @@ useDebugValue(value, format?)
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `useDebugValue(value, format?)` {/*usedebugvalue*/}
 
-Call `useDebugValue` at the top level of your [custom Hook](/learn/reusing-logic-with-custom-hooks) to display a readable debug value:
+Appelez `useDebugValue` à la racine de votre [hook personnalisé](/learn/reusing-logic-with-custom-hooks) pour afficher une valeur de débogage visible :
 
 ```js
 import { useDebugValue } from 'react';
 
 function useOnlineStatus() {
   // ...
-  useDebugValue(isOnline ? 'Online' : 'Offline');
+  useDebugValue(isOnline ? 'En ligne' : 'Déconnecté');
   // ...
 }
 ```
 
-[See more examples below.](#usage)
+[Voir d’autres exemples ci-dessous.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Paramètres {/*parameters*/}
 
-* `value`: The value you want to display in React DevTools. It can have any type.
-* **optional** `format`: A formatting function. When the component is inspected, React DevTools will call the formatting function with the `value` as the argument, and then display the returned formatted value (which may have any type). If you don't specify the formatting function, the original `value` itself will be displayed.
+* `value`: La valeur que vous souhaitez afficher dans React DevTools. Elle peut être de n'importe quel type.
+* **optional** `format` : Une fonction de formatage. Lorsque le composant est inspecté, React DevTools appellera la fonction de formatage avec la `valeur` comme argument, puis affichera la valeur formatée renvoyée (qui peut avoir n'importe quel type). Si vous ne spécifiez pas la fonction de formatage, la `value` originale sera affichée.
 
-#### Returns {/*returns*/}
+#### Valeur renvoyée {/*returns*/}
 
-`useDebugValue` does not return anything.
+`useDebugValue` ne renvoie aucune valeur.
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
 ### Adding a label to a custom Hook {/*adding-a-label-to-a-custom-hook*/}
 
