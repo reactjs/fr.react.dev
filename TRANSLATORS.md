@@ -24,6 +24,16 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
   </thead>
   <tbody>
     <tr>
+      <td><a href="https://github.com/adevinwild">adil</a></td>
+      <td><a href="https://twitter.com/adevinwild">@adevinwild</a></td>
+      <td>
+        <ul>
+          <li><a href="https://fr.react.dev/reference/react/apis">Référence : <code>react</code> APIs</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/reference/react/createContext"><code>createContext</code></a></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
       <td><a href="https://github.com/Ameliegre">Amélie Grenier</a></td>
       <td></td>
       <td>
@@ -50,13 +60,20 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
         <ul>
           <li><a href="https://fr.react.dev">Page d'accueil</a> (<em>above-the-fold</em> pour le moment)</li>
           <li><a href="https://fr.react.dev/learn">Démarrage rapide</a></li>
+          <li><a href="https://fr.react.dev/learn/installation">Installation</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/learn/describing-the-ui">Décrire l’UI</a></li>
+          <li><a href="https://fr.react.dev/learn/your-first-component">Votre premier composant</a></li>
           <li><a href="https://fr.react.dev/learn/render-and-commit">Rendu et Commit</a></li>
+          <li><a href="https://fr.react.dev/learn/state-as-a-snapshot">L’état est un instantané</a></li>
+          <li><a href="https://fr.react.dev/learn/queueing-a-series-of-state-updates">Cumuler les mises à jour d’un même état</a></li>
           <li><a href="https://fr.react.dev/learn/escape-hatches">Échappatoires</a></li>
           <li><a href="https://fr.react.dev/learn/referencing-values-with-refs">Référencer des valeurs avec les refs</a></li>
           <li><a href="https://fr.react.dev/learn/manipulating-the-dom-with-refs">Manipuler le DOM avec des refs</a></li>
           <li><a href="https://fr.react.dev/learn/synchronizing-with-effects">Synchroniser grâce aux Effets</a></li>
-          <li><a href="https://fr.react.dev/learn/removing-effect-dependencies">Alléger les dépendances des Effets</li>
           <li><a href="https://fr.react.dev/learn/you-might-not-need-an-effect">Vous n’avez pas forcément besoin d’un Effet</a></li>
+          <li><a href="https://fr.react.dev/learn/removing-effect-dependencies">Alléger les dépendances des Effets</a></li>
+          <li><a href="https://fr.react.dev/reference/react/useImperativeHandle"><code>useImperactiveHandle</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/useRef"><code>useRef</code></a></li>
         </ul>
       </td>
     </tr>
@@ -65,7 +82,17 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td><a href="https://twitter.com/emmanuel_dal">@emmanuel_dal</a></td>
       <td>
         <ul>
+          <li><a href="http://fr.react.dev/learn/start-a-new-react-project">Créer un nouveau projet avec React</a></li>
           <li><a href="https://fr.react.dev/reference/react">Référence : Hooks</a></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/hakimLyon">Hakim Gueye</a></td>
+      <td></td>
+      <td>
+        <ul>
+          <li><a href="http://fr.react.dev/learn/add-react-to-an-existing-project">Ajouter React à un projet existant</a></li>
         </ul>
       </td>
     </tr>
@@ -94,6 +121,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td>
         <ul>
           <li><a href="https://fr.react.dev/reference/react/useDeferredValue"><code>useDeferredValue</code></li>
+          <li><a href="https://fr.react.dev/reference/react/useState"><code>useState</code></li>
         </ul>
       </td>
     </tr>
@@ -103,6 +131,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td>
         <ul>
           <li><a href=https://fr.react.dev/learn/adding-interactivity">Ajouter de l'interactivité</a></li>
+          <li><a href=https://fr.react.dev/learn/reacting-to-input-with-state">Réagir à la saisie avec un état</a></li>
         </ul>
       </td>
     </tr>
@@ -120,6 +149,8 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td></td>
       <td>
         <ul>
+          <li><a href=https://fr.react.dev/learn/extracting-state-logic-into-a-reducer">Extraire la logique d’état dans un réducteur</a></li>
+          <li><a href=https://fr.react.dev/learn/passing-data-deeply-with-context">Transmettre des données en profondeur avec le contexte</a></li>
           <li><a href=https://fr.react.dev/learn/separating-events-from-effects">Séparer les événements des Effets</a></li>
           <li><a href=https://fr.react.dev/learn/reusing-logic-with-custom-hooks">Réutiliser de la logique grâce aux Hooks personnalisés</a></li>
         </ul>
@@ -132,6 +163,15 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
         <ul>
           <li><a href="https://fr.react.dev/learn/managing-state">Gérer l’état</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/learn/reacting-to-input-with-state">Réagir à la saisie avec un état</a></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/YannBirba">Yann Birba</a></td>
+      <td><a href="https://twitter.com/yann_birba">@yann_birba</a></td>
+      <td>
+        <ul>
+          <li><a href="http://fr.react.dev/learn/importing-and-exporting-components">Importer et exporter des composants</a></li>
         </ul>
       </td>
     </tr>
@@ -1049,4 +1089,4 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
 
 ---
 
-_Dernière mise à jour : 25/04/2019_
+_Dernière mise à jour : 05/07/2023_
