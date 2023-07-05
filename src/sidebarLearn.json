@@ -1,10 +1,10 @@
 {
-  "title": "Learn React",
+  "title": "Apprendre React",
   "path": "/learn",
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET STARTED"
+      "sectionHeader": "DÉMARRAGE"
     },
     {
       "title": "Démarrage rapide",
@@ -44,7 +44,7 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "LEARN REACT"
+      "sectionHeader": "APPRENDRE REACT"
     },
     {
       "title": "Décrire l’UI",
@@ -52,7 +52,7 @@
       "path": "/learn/describing-the-ui",
       "routes": [
         {
-          "title": "Your First Component",
+          "title": "Votre premier composant",
           "path": "/learn/your-first-component"
         },
         {
@@ -60,27 +60,27 @@
           "path": "/learn/importing-and-exporting-components"
         },
         {
-          "title": "Writing Markup with JSX",
+          "title": "Écrire du balisage avec JSX",
           "path": "/learn/writing-markup-with-jsx"
         },
         {
-          "title": "JavaScript in JSX with Curly Braces",
+          "title": "JavaScript dans JSX grâce aux accolades",
           "path": "/learn/javascript-in-jsx-with-curly-braces"
         },
         {
-          "title": "Passing Props to a Component",
+          "title": "Passer des props à un composant",
           "path": "/learn/passing-props-to-a-component"
         },
         {
-          "title": "Conditional Rendering",
+          "title": "Affichage conditionnel",
           "path": "/learn/conditional-rendering"
         },
         {
-          "title": "Rendering Lists",
+          "title": "Afficher des listes",
           "path": "/learn/rendering-lists"
         },
         {
-          "title": "Keeping Components Pure",
+          "title": "Garder les composants purs",
           "path": "/learn/keeping-components-pure"
         }
       ]
@@ -123,7 +123,9 @@
     {
       "title": "Gérer l'état",
       "path": "/learn/managing-state",
-      "tags": ["intermediate"],
+      "tags": [
+        "intermediate"
+      ],
       "routes": [
         {
           "title": "Réagir à la saisie avec un état",
@@ -158,7 +160,9 @@
     {
       "title": "Échappatoires",
       "path": "/learn/escape-hatches",
-      "tags": ["advanced"],
+      "tags": [
+        "advanced"
+      ],
       "routes": [
         {
           "title": "Référencer des valeurs avec les refs",
