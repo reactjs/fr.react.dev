@@ -4,7 +4,7 @@ title: Décrire l'UI
 
 <Intro>
 
-React est une bibliothèque JavaScript pour afficher des interfaces utilisateurs (UI). L'UI est construite à partir de petites briques telles que des boutons, des textes ou des images. React vous permet de les combiner sous forme de *composants* réutilisables et imbricables. Des sites web aux applis mobiles, tout ce qui figure sur un écran peut être découpé en composants.  Dans ce chapitre, vous apprendrez à créer, personnaliser et affiche conditionnellement des composants React.
+React est une bibliothèque JavaScript pour afficher des interfaces utilisateurs (UI). L'UI est construite à partir de petites briques telles que des boutons, des textes ou des images. React vous permet de les combiner sous forme de *composants* réutilisables et imbricables. Des sites web aux applis mobiles, tout ce qui figure sur un écran peut être découpé en composants.  Dans ce chapitre, vous apprendrez à créer, personnaliser et afficher conditionnellement des composants React.
 
 </Intro>
 
@@ -12,7 +12,7 @@ React est une bibliothèque JavaScript pour afficher des interfaces utilisateurs
 
 * [Comment écrire votre premier composant React](/learn/your-first-component)
 * [Quand et comment créer des fichiers multi-composants](/learn/importing-and-exporting-components)
-* [Comment ajouter au balisage au JavaScript grâce à JSX](/learn/writing-markup-with-jsx)
+* [Comment ajouter du balisage au JavaScript grâce à JSX](/learn/writing-markup-with-jsx)
 * [Comment utiliser les accolades avec JSX pour utiliser pleinement JavaScript dans vos composants](/learn/javascript-in-jsx-with-curly-braces)
 * [Comment configurer les composants grâce aux props](/learn/passing-props-to-a-component)
 * [Comment afficher des composants conditionnellement](/learn/conditional-rendering)
@@ -117,7 +117,7 @@ Lisez **[Importer et exporter des composants](/learn/importing-and-exporting-com
 
 ## Écrire du balisage avec JSX {/*writing-markup-with-jsx*/}
 
-Chaque composant React est une fonction JavaScript qui peut contenir du balisage que React retranscrit dans le navigateur. Les composants React utilisent une extension de syntaxe appelée JSX pour représenter ce balisage. JSX ressemble beaucoup à HTML, mais il est un peu plus stricte et peut afficher des informations dynamiques.
+Chaque composant React est une fonction JavaScript qui peut contenir du balisage que React retranscrit dans le navigateur. Les composants React utilisent une extension de syntaxe appelée JSX pour représenter ce balisage. JSX ressemble beaucoup à HTML, mais sa syntaxe est un peu plus stricte et permet d'afficher des informations dynamiques.
 
 Si nous copions du balisage HTML existant dans un composant React, ça ne marchera pas toujours :
 
@@ -210,7 +210,7 @@ export default function TodoList() {
       />
       <ul>
         <li>Améliorer le visiophone</li>
-        <li>Préparer les cours d'aéronautique</li>
+        <li>Préparer les cours d’aéronautique</li>
         <li>Travailler sur un moteur à alcool</li>
       </ul>
     </div>
@@ -234,7 +234,7 @@ Lisez **[JavaScript dans JSX grâce aux accolades](/learn/javascript-in-jsx-with
 
 ## Passer des props à un composant {/*passing-props-to-a-component*/}
 
-Les composants React utilisent des *props* pour communiquer entre eux. Chaque composant parent peut passer des informations à ses composants enfants en leur fournissant des props. Les props vous rappellent peut-êtr les attributs HTML, mais vous pouvez y passer n'importe quelle valeur JavaScript, y compris des objets, des tableaux, des fonctions et même du JSX !
+Les composants React utilisent des *props* pour communiquer entre eux. Chaque composant parent peut passer des informations à ses composants enfants en leur fournissant des props. Les props vous rappellent peut-être les attributs HTML, mais vous pouvez y passer n'importe quelle valeur JavaScript, y compris des objets, des tableaux, des fonctions et même du JSX !
 
 <Sandpack>
 
@@ -315,7 +315,7 @@ Lisez **[Passer des props à un composant](/learn/passing-props-to-a-component)*
 
 ## Affichage conditionnel {/*conditional-rendering*/}
 
-Vos composants devront souvent produire des afficheges distincts en fonction de certaines conditions.  Dans React, vous pouvez produire du JSX conditionnellement en utilisant des syntaxes JavaScript telles que les instructions `if` et les opérateurs `&&` et `? :`.
+Vos composants devront souvent produire des affichages distincts en fonction de certaines conditions.  Dans React, vous pouvez produire du JSX conditionnellement en utilisant des syntaxes JavaScript telles que les instructions `if` et les opérateurs `&&` et `? :`.
 
 Dans cet exemple, on utilise l'opérateur JavaScript `&&` pour afficher conditionnellement une coche :
 
@@ -333,7 +333,7 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Liste d'affaires de Sally Ride</h1>
+      <h1>Liste d’affaires de Sally Ride</h1>
       <ul>
         <Item
           isPacked={true}
@@ -381,7 +381,7 @@ export default function List() {
         alt={person.name}
       />
       <p>
-        <b>{person.name}:</b>
+        <b>{person.name} :</b>
         {' ' + person.profession + ' '}
         célèbre pour {person.accomplishment}
       </p>
@@ -466,7 +466,7 @@ Lisez **[Afficher des listes](/learn/rendering-lists)** pour apprendre comment a
 Certaines fonctions JavaScript sont *pures*. Une fonction pure :
 
 * **S'occupe de ses affaires.** Elle ne modifie aucun objet ou variable qui existaient avant son appel.
-* **Aux mêmes entrées, produit la même sortie.** Pour un jeu d'entrées données, une fonction pure renverra toujours le même résultat.
+* **Pour les mêmes entrées, produit la même sortie.** Pour un jeu d'entrées données, une fonction pure renverra toujours le même résultat.
 
 En écrivant rigoureusement vos composants comme des fonctions pures, vous éviterez une catégorie entière de bugs ahurissants et de comportements imprévisibles au fil de la croissance de votre base de code. Voici un exemple de composant impur :
 
@@ -494,7 +494,7 @@ export default function TeaSet() {
 
 </Sandpack>
 
-Vous pouvez rendre ce composant pur en lui passant une prop plutôt que de modifier une variable pré-existante :
+Pour rendre ce composant pur, vous pouvez lui passer l'information comme prop plutôt que de modifier une variable pré-existante :
 
 <Sandpack>
 
