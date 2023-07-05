@@ -4,7 +4,7 @@ title: Penser en React
 
 <Intro>
 
-React peut changer votre façon de penser aux designs que vous observez et aux applis que vous construisez. Lorsque vous construirez une interface utilisateur (UI) avec React, vous commencerez par la décomposer en éléments appelés *composants*. Ensuite, vous décrirez les différents états visuels de chaque composant. Enfin, vous brancherez vos composants ensemble de façon à ce que les données circulent entre eux.  Dans ce tutoriel, nous allons vous guider à travers le processus mental de construction d'un tableau de données produit filtrable en utilisant React.
+React peut changer votre façon de penser aux designs que vous observez et aux applis que vous construisez. Lorsque vous construirez une interface utilisateur (UI) avec React, vous commencerez par la décomposer en éléments appelés *composants*. Ensuite, vous décrirez les différents états visuels de chaque composant. Enfin, vous brancherez vos composants ensemble de façon à ce que les données circulent entre eux.  Dans ce tutoriel, nous allons vous guider à travers le processus mental de construction d'un tableau de données de produits filtrable, en utilisant React.
 
 </Intro>
 
@@ -35,7 +35,7 @@ Pour implémenter cette UI en React, vous allez généralement devoir suivre les
 
 Commencez par dessiner des boîtes autour de chaque composant et sous-composant sur la maquette, et nommez-les.  Si vous travaillez avec un·e designer, iel aura peut-être déjà nommé ces composants dans ses outils de design : demandez-lui !
 
-En fonction de votre propre vécu, vous pouvez imaginer la découpe du design en composant selon divers axes :
+En fonction de votre propre vécu, vous pouvez aborder la découpe du design en composants selon divers axes :
 
 - **Programmatique** : utilisez les mêmes techniques d'arbitrage que si vous deviez créer une nouvelle fonction ou un nouvel objet.  Une de ces techniques réside dans le [principe de responsabilité unique](https://fr.wikipedia.org/wiki/Principe_de_responsabilit%C3%A9_unique), qui veut qu'un composant ne doive idéalement faire qu'une seule chose. S'il se retrouve à grandir, il devrait sans doute être décomposé en sous-composants plus simples.
 - **CSS** : réfléchissez aux endroits pour lesquels vous définiriez un sélecteur de classe. (Ceci dit, les composants sont un peu moins granulaires.)
@@ -75,7 +75,7 @@ Maintenant que vous avez identifié les composants de la maquette, déterminez l
 
 À présent que vous avez votre hiérarchie de composants, il est temps d'implémenter votre appli.  L'approche la plus directe consiste à construire une version qui affiche l'UI à partir du modèle de données, sans en gérer l'interactivité… pour le moment !  Il est souvent plus facile de construire une version statique d'abord et d'ajouter l'interactivité ensuite.  Construire une version statique nécessite beaucoup de saisie mais peu de réflexion, alors qu'ajouter de l'interactivité nécessite beaucoup de réflexion mais peu de saisie.
 
-Pour construire une version statique de votre appli qui affiche votre modèle de données, vous aurez besoin de construire des [composants](/learn/your-first-component) qui en réutilisent d'autres et leur passent des données grâce aux [props](/learn/passing-props-to-a-component). Les props sont un moyen de passer des données du parent aux enfants. (Si vous êtes à l'aise avec la notion d'[état](/learn/state-a-components-memory), n'utilisez pas d'état pour construire cette version statique.  L'état est réservé à l'interactivité, c'est-à-dire à des données qui changent avec le temps.  Puisque vous construisez une version statique de l'appli, vous n'en avez pas besoin.)
+Pour construire une version statique de votre appli qui affiche votre modèle de données, vous aurez besoin de construire des [composants](/learn/your-first-component) qui en réutilisent d'autres et leur passent des données grâce aux [props](/learn/passing-props-to-a-component). Les props sont un moyen de passer des données du parent aux enfants. (Si vous êtes à l'aise avec la notion d'[état](/learn/state-a-components-memory), n'utilisez pas d'état pour construire cette version statique.  L'état est réservé à l'interactivité, c'est-à-dire à des données qui changent avec le temps.  Vous construisez une version statique : vous n'en avez pas besoin.)
 
 Vous pouvez construire l'appli soit « de haut en bas », en commençant par construire les composants les plus en haut de la hiérarchie (tels que `FilterableProductTable`), soit « de bas en haut », en commençant par les composants de niveau inférieur (tels que `ProductRow`).  Dans des contextes simples, il est généralement plus facile de procéder de haut en bas, et sur les projets plus complexes, il est plus aisé de procéder de bas en haut.
 
@@ -239,7 +239,7 @@ Au bout du compte, seuls le texte de la recherche et l'état de la case à coche
 
 #### Props vs. état {/*props-vs-state*/}
 
-React propose deux types de données de « modèle » : les props et l'état. Les deux diffèrent drastiquement :
+React propose deux types de données de « modèle » : les props et l'état. Ces deux types diffèrent de façon drastique :
 
 - [Les **props** sont comme des arguments que vous passez](/learn/passing-props-to-a-component) à une fonction.  Elles permettent au composant parent de passer des données à un composant enfant et de personnaliser ainsi son apparence.  Par exemple, un `Form` pourrait passer une prop `color` à un `Button`.
 - [L'**état** est comme la mémoire du composant](/learn/state-a-components-memory). Il permet au composant de garder trace de certaines informations et de les modifier en réaction à des interactions.  Par exemple, un `Button` pourrait vouloir garder trace de son état `isHovered`.
@@ -259,9 +259,9 @@ Pour chaque élément d'état de votre application :
 3. Décidez où l'état devrait vivre :
     1. Le plus souvent, vous pourrez mettre l'état directement dans leur ancêtre commun.
     2. Vous pouvez aussi le mettre dans un composant au-dessus de leur ancêtre commun.
-    3. Si vous ne trouverez aucun composant dans lequel il semble logique de placer l'état, créez un nouveau composant spécifiquement pour contenir l'état, et insérez-le dans l'arborescence juste au-dessus de leur ancêtre commun.
+    3. Si vous ne trouvez aucun composant dans lequel il semble logique de placer l'état, créez un nouveau composant spécifiquement pour contenir l'état, et insérez-le dans l'arborescence juste au-dessus de leur ancêtre commun.
 
-Lors de l'étape précédente, ous avez trouvé deux éléments d'état pour cette application : le texte de la recherche et l'état de la case à cocher.  Dans notre exemple, ils apparaissent toujours ensemble, de sorte qu'il semble lorsque de les placer au même endroit.
+Lors de l'étape précédente, vous avez trouvé deux éléments d'état pour cette application : le texte de la recherche et l'état de la case à cocher.  Dans notre exemple, ils apparaissent toujours ensemble, de sorte qu'il semble logique de les placer au même endroit.
 
 Déroulons notre stratégie pour eux :
 
@@ -441,7 +441,7 @@ Remarquez que la saisie dans le formulaire ne marche pas encore.  On voit une er
 
 <ConsoleBlock level="error">
 
-You provided a \`value\` prop to a form field without an \`onChange\` handler. This will render a read-only field.
+You provided a \`value\` prop to a form field without an \`onChange\` handler. This will render a read-only field. […]
 
 </ConsoleBlock>
 
@@ -465,9 +465,9 @@ Cependant, vous n'avez pas encore ajouté de code pour réagir aux actions de l'
 
 Pour le moment, votre appli s'affiche correctement avec les props et l'état qui circulent le long de son arborescence.  Mais pour modifier l'état suite à des saisies utilisateur, vous allez devoir permettre un flux de données dans l'autre sens : les composants de formulaire enfouis dans l'arbre vont avoir besoin de mettre à jour l'état de `FilterableProductTable`.
 
-React impose que ce flux de données soit explicite, ce qui nécessite un peu plus de frappe que les liaisons de données bidirectionnelles.  Si vous essayez de saisir quelque chose dans la recherche, ou de cocher la case dans l'exemple ci-dessus, vous verrez que React ignore vos saisies. C'est voulu. En écrivant `<input value={filterText} />`, vous avez calé la prop `value` de l'`input` pour qu'elle reflète toujours l'état `filterText` passé depuis `FilterableProductTable`. Puisque l'état `filterText` n'est jamais modifié, le champ ne change jamais de valeur.
+React impose que ce flux de données soit explicite, ce qui nécessite un peu plus de code qu'avec des liaisons de données bidirectionnelles.  Si vous essayez de saisir quelque chose dans la recherche, ou de cocher la case dans l'exemple ci-dessus, vous verrez que React ignore vos saisies. C'est voulu. En écrivant `<input value={filterText} />`, vous avez calé la prop `value` de l'`input` pour qu'elle reflète toujours l'état `filterText` passé depuis `FilterableProductTable`. Puisque l'état `filterText` n'est jamais modifié, le champ ne change jamais de valeur.
 
-Vous souhaitez que chaque fois que l'utilisateur modifie les champs du formulaire, l'état soit mis à jour pour refléter ces changements. L'état appartient à `FilterableProductTable`, de sorte que seul ce composant peut appeler `setFilterText` et `setInStockOnly`. Pour permettre à `SearchBar` de mettre à jour l'état de `FilterableProductTable`, vous allez devoir lui passer des fonctions `SearchBar` :
+Vous souhaitez que chaque fois que l'utilisateur modifie les champs du formulaire, l'état soit mis à jour pour refléter ces changements. L'état appartient à `FilterableProductTable`, de sorte que seul ce composant peut appeler `setFilterText` et `setInStockOnly`. Pour permettre à `SearchBar` de mettre à jour l'état de `FilterableProductTable`, vous allez devoir passer des fonctions à `SearchBar` :
 
 ```js {2,3,10,11}
 function FilterableProductTable({ products }) {
@@ -483,7 +483,7 @@ function FilterableProductTable({ products }) {
         onInStockOnlyChange={setInStockOnly} />
 ```
 
-Au sein de `Searchbar`, ajoutez des gestionnaires d'événements `onChange` et utilisez-les pour modifier l'état du parent :
+Au sein de `SearchBar`, ajoutez des gestionnaires d'événements `onChange` à vos champs et utilisez-les pour modifier l'état du parent :
 
 ```js {5}
 <input
