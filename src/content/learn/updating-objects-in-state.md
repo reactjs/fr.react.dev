@@ -45,7 +45,7 @@ Techniquement, il est possible de modifier le contenu de *l’objet lui-même*. 
 position.x = 5;
 ```
 
-Cependant, bien que des objets dans un état React soient techniquement modifiables, vous devez les traiter *comme s’ils étaient immuables* — au même titre que les nombres, les booléens et les chaînes de caractères. Au lieu de les muter, vous devriez toujours les remplacer.
+Cependant, bien que des objets dans un état React soient techniquement modifiables, vous devez les traiter *comme s’ils étaient immuables* — au même titre que les nombres, les booléens et les chaînes de caractères. Au lieu de les modifier, vous devriez toujours les remplacer.
 
 ## Traiter l’état comme en lecture seule {/*treat-state-as-read-only*/}
 
@@ -417,7 +417,7 @@ export default function Form() {
         />
       </label>
       <label>
-        Email :
+        E-mail :
         <input
           name="email"
           value={person.email}
@@ -796,7 +796,7 @@ Remarquez à quel point les gestionnaires d’événements sont devenus plus con
 
 Il y a plusieurs raisons :
 
-* **Débogage :** si vous utilisez `console.log` et que vous ne mutez pas l’état, vos anciens logs ne seront pas écrasés par les changements d’état plus récents. Vous pouvez donc voir clairement comment l’état a changé entre les rendus.
+* **Débogage :** si vous utilisez `console.log` et que vous ne modifiez pas l’état, vos anciens logs ne seront pas écrasés par les changements d’état plus récents. Vous pouvez donc voir clairement comment l’état a changé entre les rendus.
 * **Optimisations :** les [stratégies d’optimisation](/reference/react/memo) courantes de React reposent sur la possibilité de sauter des étapes si les propriétés ou l’état précédents sont identiques aux suivants. Si vous ne modifiez jamais l’état, vérifier s’il y a eu des changements peut être très rapide. Si `prevObj === obj`, vous pouvez être certain·e qu’aucun changement n’a pu se produire à l’intérieur de celui-ci.
 * **Nouvelles fonctionnalités :** les nouvelles fonctionnalités de React que nous développons reposent sur le fait que l’état est [traité comme un instantané](/learn/state-as-a-snapshot). Si vous modifiez des versions précédentes de l’état, ça peut vous empêcher d’utiliser les nouvelles fonctionnalités.
 * **Changements de besoin :** certaines fonctionnalités d’application, comme l’implémentation d’actions pour annuler/rétablir, l’affichage d’un historique des modifications ou la possibilité de réinitialiser un formulaire à des valeurs antérieures, sont plus faciles à réaliser lorsque rien n’est modifié. Ceci est dû au fait que vous pouvez conserver en mémoire des copies passées de l’état et les réutiliser lorsque c’est pertinent. Si vous adoptez une approche modifiante dès le départ, il peut être difficile d’ajouter ultérieurement ce type de fonctionnalités.
