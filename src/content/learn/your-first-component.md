@@ -31,11 +31,11 @@ Sur le Web, HTML nous permet de créer des documents riches et structurés grâc
 </article>
 ```
 
-Ce balisage représente cet article `<article>`, son en-tête `<h1>`, et une table des matières (abrégée) au moyen d'une liste ordonnée `<ol>`. Ce type de balisage, combiné à CSS pour en contrôler l'apparence et à JavaScript pour gérer son interactivité, constitue le socle de toute barre latérale, avatar, boîte de dialogue, liste déroulante — en fait absolument tout morceau d'UI que vous voyez sur le Web.
+Ce balisage représente cet article `<article>`, son en-tête `<h1>`, et une table des matières (abrégée) au moyen d'une liste ordonnée `<ol>`. Ce type de balisage, combiné à CSS pour en contrôler l'apparence et à JavaScript pour gérer son interactivité, constitue le socle de toute barre latérale, avatar, boîte de dialogue, liste déroulante… en fait absolument tout morceau d'UI que vous voyez sur le Web.
 
-React vous permet de combiner votre balisage et ses codes CSS et JavaScript associés pour en faire des « composants » personnalisés, **des éléments d'UI réutilisables pour votre appli**. Le code de la table des matières que vous avez vu ci-dessus pourrait devenir un composant `<TableOfContents />` que vous pourriez afficher sur chaque page. Sous le capot, il utilise toujours les mêmes balises HTML telles que `<article>`, `<h1>`, etc.
+React vous permet de combiner votre balisage et ses codes CSS et JavaScript associés pour en faire des « composants » personnalisés, **des éléments d'UI réutilisables pour votre appli**. Le code de la table des matières que vous avez vu ci-dessus pourrait devenir un composant `<TableOfContents />` que vous pourriez afficher sur chaque page. Sous le capot, il utiliserait toujours les mêmes balises HTML telles que `<article>`, `<h1>`, `<ol>`, etc.
 
-Tout comme avec les balises HTML, vous pouvez composer, ordonner et imbriquer les composants pour concevoir des pages entières. Par exemple, la page de documentation que vous êtes en train de lire est faite de composants React :
+Tout comme avec les balises HTML, vous pouvez composer, ordonner et imbriquer les composants pour concevoir des pages entières. Par exemple, la page de documentation que vous êtes en train de lire est constituée de composants React :
 
 ```js
 <PageLayout>
@@ -51,11 +51,11 @@ Tout comme avec les balises HTML, vous pouvez composer, ordonner et imbriquer le
 </PageLayout>
 ```
 
-Au fil de la croissance de votre projet, vous remarquerez que nombre de vos blocs visuels peuvent être assemblés en réutilisant des composants que vous avez déjà écrit, ce qui accélère votre développement. Notre table des matières ci-dessus pourrait être ajoutée à n'importe quel écran avec un `<TableOfContents />` ! Vous pouvez même démarrer un projet avec des milliers de composants partagés par la communauté *open source* de React, tels que [Chakra UI](https://chakra-ui.com/) et [Material UI](https://material-ui.com/).
+Au fil de la croissance de votre projet, vous remarquerez que nombre de vos blocs visuels peuvent être assemblés en réutilisant des composants que vous avez déjà écrits, ce qui accélère votre développement. Notre table des matières ci-dessus pourrait être ajoutée à n'importe quel écran avec un `<TableOfContents />` ! Vous pouvez même démarrer un projet avec des milliers de composants partagés par la communauté *open source* de React, tels que [Chakra UI](https://chakra-ui.com/) et [Material UI](https://material-ui.com/).
 
 ## Définir un composant {/*defining-a-component*/}
 
-Traditionnellement, lorsqu'ils créent des pages web, les développeurs web écrient le balisage de leur contenu puis ajoutent de l'interactivité en le saupoudrant de JavaScript.  Ça fonctionnait très bien lorsque l'interactivité n'était qu'un bonus appréciable sur le Web.  Aujourd'hui, c'est une exigence de base pour de nombreux sites et pour toutes les applis. React met l'interactivité à l'honneur tout en utilisant les mêmes technologies de fond : **un composant React est une fonction JavaScript que vous pouvez *saupoudrer de balisage***.  Voici à quoi ça ressemble (l'exemple ci-dessous est modifiable).
+Traditionnellement, lorsqu'ils créent des pages web, les développeurs web écrivent le balisage de leur contenu puis ajoutent de l'interactivité en le saupoudrant de JavaScript.  Ça fonctionnait très bien lorsque l'interactivité n'était qu'un bonus appréciable sur le Web.  Aujourd'hui, c'est une exigence de base pour de nombreux sites et pour toutes les applis. React met l'interactivité à l'honneur tout en utilisant les mêmes technologies de fond : **un composant React est une fonction JavaScript que vous pouvez *saupoudrer de balisage***.  Voici à quoi ça ressemble (l'exemple ci-dessous est modifiable).
 
 <Sandpack>
 
@@ -114,7 +114,7 @@ return (
 
 <Pitfall>
 
-Sans ces parenthèses, tout code sur les lignes qui suivent un `return` seul [serait ignoré](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi) !
+Sans ces parenthèses, tout code qui suit un `return` seul sur sa ligne [serait ignoré](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi) !
 
 </Pitfall>
 
@@ -178,7 +178,7 @@ Puisque les composants `Profile` sont affichés au sein de `Gallery` (et même p
 
 <Pitfall>
 
-Les composants peuvent afficher d'autres composants, mais **vous ne devez jamais imbriquer leurs définitions** :
+Les composants peuvent afficher d'autres composants, mais **faites bien attention à ne jamais imbriquer leurs définitions** :
 
 ```js {2-5}
 export default function Gallery() {
@@ -211,7 +211,7 @@ Lorsqu'un composant enfant a besoin de données venant d'un parent, [passez-les 
 
 #### Des composants jusqu'au bout {/*components-all-the-way-down*/}
 
-Votre application React commence avec un composant « racine ».  En général, il est créé automatiquement lorsque vous démarrez un nouveau projet. Par exemple, si vous utilisez [CodeSandbox](https://codesandbox.io/) ou [Create React App](https://create-react-app.dev/), le composant racine est défini dans `src/App.js`. Si vous utilise le framework [Next.js](https://nextjs.org/), le composant racine est défini dans `pages/index.js`. Dans les exemples qui précédaient, vous avez exporté des composants racines.
+Votre application React commence avec un composant « racine ».  En général, il est créé automatiquement lorsque vous démarrez un nouveau projet. Par exemple, si vous utilisez [CodeSandbox](https://codesandbox.io/) ou [Create React App](https://create-react-app.dev/), le composant racine est défini dans `src/App.js`. Si vous utilisez le framework [Next.js](https://nextjs.org/), le composant racine est défini dans `pages/index.js`. Dans les exemples qui précédaient, vous avez exporté des composants racines.
 
 La plupart des applis React utilisent des composants « jusqu'au bout ». Ça signifie que vous utiliserez des composants non seulement pour des éléments réutilisables tels que des boutons, mais aussi pour des blocs plus importants tels que des barres latérales, des listes, et au final des pages complètes !  Les composants sont un moyen pratique d'organiser le code et le balisage de l'UI, même si certains ne seront utilisés qu'une fois.
 
