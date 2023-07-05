@@ -504,7 +504,7 @@ Lisez **[Préserver et réinitialiser l'état](/learn/preserving-and-resetting-s
 
 ## Extraire la logique d'état dans un réducteur {/*extracting-state-logic-into-a-reducer*/}
 
-Les composants comportant de nombreuses mises à jour d'état réparties entre de nombreux gestionnaires d'événements peuvent devenir intimidants. Dans un tel cas, vous pouvez consolider toute la logique de mise à jour de l'état en-dehors de votre composant dans une seule fonction, appelée « réducteur » _(reducer, NdT)_. Vos gestionnaires d'événements deviennent concis car ils ne spécifient que les « actions » de l’utilisateur. Au bas du fichier, la fonction du réducteur spécifie comment l'état doit être mis à jour en réponse à chaque action !
+Les composants comportant de nombreuses mises à jour d'état réparties entre de nombreux gestionnaires d'événements peuvent devenir intimidants. Dans un tel cas, vous pouvez consolider toute la logique de mise à jour de l'état en-dehors de votre composant dans une seule fonction, appelée « réducteur » *(reducer, NdT)*. Vos gestionnaires d'événements deviennent concis car ils ne spécifient que les « actions » de l’utilisateur. Au bas du fichier, la fonction du réducteur spécifie comment l'état doit être mis à jour en réponse à chaque action !
 
 <Sandpack>
 
@@ -1017,4 +1017,4 @@ Lisez **[Mise à l'échelle en combinant réducteur et contexte](/learn/scaling-
 
 Allez sur [Réagir à la saisie avec un état](/learn/reacting-to-input-with-state) pour commencer à lire ce chapitre page par page !
 
-Ou alors, si vous êtes déjà à l’aise avec ces sujets, pourquoi ne pas explorer les [Échappatoires](/learn/escape-hatches)?
+Ou alors, si vous êtes déjà à l’aise avec ces sujets, pourquoi ne pas explorer les [échappatoires](/learn/escape-hatches)?

@@ -311,7 +311,6 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-
 <LearnMore path="/learn/state-as-a-snapshot">
 
 Lisez **[L’état comme un instantané](/learn/state-as-a-snapshot)** pour comprendre pourquoi un état semble « fixe » et immuable à l’intérieur des gestionnaires d’événements.
@@ -799,4 +798,4 @@ Lisez **[Mettre à jour les tableaux d’un état](/learn/updating-arrays-in-sta
 
 Allez sur [Réagir aux événements](/learn/responding-to-events) pour commencer à lire ce chapitre page par page !
 
-Ou alors, si vous êtes déjà à l’aise avec ces sujets, pourquoi ne pas explorer comment [Gérer l’état](/learn/managing-state) ?
+Ou alors, si vous êtes déjà à l’aise avec ces sujets, pourquoi ne pas explorer comment [gérer l’état](/learn/managing-state) ?
