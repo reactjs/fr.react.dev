@@ -13,7 +13,7 @@ React a été conçu dès le départ pour une adoption progressive.  Vous pouvez
 * [Comment commencer un nouveau projet React](/learn/start-a-new-react-project)
 * [Comment ajouter React à un projet existant](/learn/add-react-to-an-existing-project)
 * [Comment configurer votre éditeur](/learn/editor-setup)
-* [Comment installer les Outils de Développement React](/learn/react-developer-tools)
+* [Comment installer les Outils de développement React](/learn/react-developer-tools)
 
 </YouWillLearn>
 
@@ -25,7 +25,7 @@ Vous n'avez pas besoin d'installer quoi que ce soit pour jouer avec React.  Essa
 
 ```js
 function Greeting({ name }) {
-  return <h1>Bonjour, {name}</h1>;
+  return <h1>Bonjour {name}</h1>;
 }
 
 export default function App() {
