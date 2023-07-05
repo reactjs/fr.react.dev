@@ -60,6 +60,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
         <ul>
           <li><a href="https://fr.react.dev">Page d'accueil</a> (<em>above-the-fold</em> pour le moment)</li>
           <li><a href="https://fr.react.dev/learn">Démarrage rapide</a></li>
+          <li><a href="https://fr.react.dev/learn/thinking-in-react">Penser en React</a></li>
           <li><a href="https://fr.react.dev/learn/installation">Installation</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/learn/describing-the-ui">Décrire l’UI</a></li>
           <li><a href="https://fr.react.dev/learn/your-first-component">Votre premier composant</a></li>
