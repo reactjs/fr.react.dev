@@ -87,7 +87,7 @@ export default function AddTask({onAddTask}) {
   return (
     <>
       <input
-        placeholder="Ajouter une tâche"
+        placeholder="Ajouter"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
@@ -140,7 +140,7 @@ function Task({task, onChange, onDelete}) {
     taskContent = (
       <>
         {task.text}
-        <button onClick={() => setIsEditing(true)}>Éditer</button>
+        <button onClick={() => setIsEditing(true)}>Modifier</button>
       </>
     );
   }
@@ -489,6 +489,7 @@ Il renvoie :
 1. Une valeur d'état.
 2. Une fonction *dispatch* (pour « *dispatcher* » les actions de l'utilisateur vers le réducteur).
 
+Tout est câblé maintenant ! Ici, le réducteur est déclaré à la fin du fichier de composant :
 
 <Sandpack>
 
@@ -567,9 +568,9 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  {id: 0, text: 'Visiter le musée de Kafka', done: true},
+  {id: 0, text: 'Visiter le musée Franz-Kafka', done: true},
   {id: 1, text: 'Voir un spectacle de marionnettes', done: false},
-  {id: 2, text: 'Faire une photo du mur de Lennon', done: false},
+  {id: 2, text: 'Prendre une photo du mur John Lennon', done: false},
 ];
 ```
 
@@ -581,7 +582,7 @@ export default function AddTask({onAddTask}) {
   return (
     <>
       <input
-        placeholder="Ajouter une tâche"
+        placeholder="Ajouter"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
@@ -634,7 +635,7 @@ function Task({task, onChange, onDelete}) {
     taskContent = (
       <>
         {task.text}
-        <button onClick={() => setIsEditing(true)}>Éditer</button>
+        <button onClick={() => setIsEditing(true)}>Modifier</button>
       </>
     );
   }
@@ -723,9 +724,9 @@ export default function TaskApp() {
 
 let nextId = 3;
 const initialTasks = [
-  {id: 0, text: 'Visiter le musée de Kafka', done: true},
+  {id: 0, text: 'Visiter le musée Franz-Kafka', done: true},
   {id: 1, text: 'Voir un spectacle de marionnettes', done: false},
-  {id: 2, text: 'Faire une photo du mur de Lennon', done: false},
+  {id: 2, text: 'Prendre une photo du mur John Lennon', done: false},
 ];
 ```
 
@@ -769,7 +770,7 @@ export default function AddTask({onAddTask}) {
   return (
     <>
       <input
-        placeholder="Ajouter une tâche"
+        placeholder="Ajouter"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
@@ -822,7 +823,7 @@ function Task({task, onChange, onDelete}) {
     taskContent = (
       <>
         {task.text}
-        <button onClick={() => setIsEditing(true)}>Éditer</button>
+        <button onClick={() => setIsEditing(true)}>Modifier</button>
       </>
     );
   }
@@ -957,9 +958,9 @@ export default function TaskApp() {
 
 let nextId = 3;
 const initialTasks = [
-  {id: 0, text: 'Visiter le musée de Kafka', done: true},
+  {id: 0, text: 'Visiter le musée Franz-Kafka', done: true},
   {id: 1, text: 'Voir un spectacle de marionnettes', done: false},
-  {id: 2, text: 'Faire une photo du mur de Lennon', done: false},
+  {id: 2, text: 'Prendre une photo du mur John Lennon', done: false},
 ];
 ```
 
@@ -971,7 +972,7 @@ export default function AddTask({onAddTask}) {
   return (
     <>
       <input
-        placeholder="Ajouter une tâche"
+        placeholder="Ajouter"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
@@ -1024,7 +1025,7 @@ function Task({task, onChange, onDelete}) {
     taskContent = (
       <>
         {task.text}
-        <button onClick={() => setIsEditing(true)}>Éditer</button>
+        <button onClick={() => setIsEditing(true)}>Modifier</button>
       </>
     );
   }
@@ -1153,7 +1154,7 @@ export default function Messenger() {
 }
 
 const contacts = [
-  {id: 0, name: 'Taylor', email: 'taylor@mail.com'},
+  {id: 0, name: 'Clara', email: 'clara@mail.com'},
   {id: 1, name: 'Alice', email: 'alice@mail.com'},
   {id: 2, name: 'Bob', email: 'bob@mail.com'},
 ];
@@ -1271,6 +1272,7 @@ dispatch({
 });
 ```
 
+Voici l'exemple mis à jour afin pour envoyer les messages correspondants :
 
 <Sandpack>
 
@@ -1302,7 +1304,7 @@ export default function Messenger() {
 }
 
 const contacts = [
-  {id: 0, name: 'Taylor', email: 'taylor@mail.com'},
+  {id: 0, name: 'Clara', email: 'clara@mail.com'},
   {id: 1, name: 'Alice', email: 'alice@mail.com'},
   {id: 2, name: 'Bob', email: 'bob@mail.com'},
 ];
@@ -1446,7 +1448,7 @@ export default function Messenger() {
 }
 
 const contacts = [
-  {id: 0, name: 'Taylor', email: 'taylor@mail.com'},
+  {id: 0, name: 'Clara', email: 'clara@mail.com'},
   {id: 1, name: 'Alice', email: 'alice@mail.com'},
   {id: 2, name: 'Bob', email: 'bob@mail.com'},
 ];
@@ -1585,7 +1587,7 @@ export default function Messenger() {
 }
 
 const contacts = [
-  {id: 0, name: 'Taylor', email: 'taylor@mail.com'},
+  {id: 0, name: 'Clara', email: 'clara@mail.com'},
   {id: 1, name: 'Alice', email: 'alice@mail.com'},
   {id: 2, name: 'Bob', email: 'bob@mail.com'},
 ];
@@ -1733,7 +1735,7 @@ export default function Messenger() {
 }
 
 const contacts = [
-  {id: 0, name: 'Taylor', email: 'taylor@mail.com'},
+  {id: 0, name: 'Clara', email: 'clara@mail.com'},
   {id: 1, name: 'Alice', email: 'alice@mail.com'},
   {id: 2, name: 'Bob', email: 'bob@mail.com'},
 ];
@@ -1883,7 +1885,7 @@ Vous pouvez changer la structure de votre état ainsi :
 export const initialState = {
   selectedId: 0,
   messages: {
-    0: 'Bonjour, Taylor', // Brouillon pour contactId = 0
+    0: 'Bonjour, Clara', // Brouillon pour contactId = 0
     1: 'Bonjour, Alice', // Brouillon pour contactId = 1
   },
 };
@@ -1930,7 +1932,7 @@ export default function Messenger() {
 }
 
 const contacts = [
-  {id: 0, name: 'Taylor', email: 'taylor@mail.com'},
+  {id: 0, name: 'Clara', email: 'clara@mail.com'},
   {id: 1, name: 'Alice', email: 'alice@mail.com'},
   {id: 2, name: 'Bob', email: 'bob@mail.com'},
 ];
@@ -2106,7 +2108,7 @@ export default function Messenger() {
 }
 
 const contacts = [
-  {id: 0, name: 'Taylor', email: 'taylor@mail.com'},
+  {id: 0, name: 'Clara', email: 'clara@mail.com'},
   {id: 1, name: 'Alice', email: 'alice@mail.com'},
   {id: 2, name: 'Bob', email: 'bob@mail.com'},
 ];
@@ -2116,7 +2118,7 @@ const contacts = [
 export const initialState = {
   selectedId: 0,
   messages: {
-    0: 'Bonjour, Taylor',
+    0: 'Bonjour, Clara',
     1: 'Bonjour, Alice',
     2: 'Bonjour, Bob',
   },
@@ -2294,7 +2296,7 @@ export default function Messenger() {
 }
 
 const contacts = [
-  {id: 0, name: 'Taylor', email: 'taylor@mail.com'},
+  {id: 0, name: 'Clara', email: 'clara@mail.com'},
   {id: 1, name: 'Alice', email: 'alice@mail.com'},
   {id: 2, name: 'Bob', email: 'bob@mail.com'},
 ];
@@ -2304,7 +2306,7 @@ const contacts = [
 export const initialState = {
   selectedId: 0,
   messages: {
-    0: 'Bonjour, Taylor',
+    0: 'Bonjour, Clara',
     1: 'Bonjour, Alice',
     2: 'Bonjour, Bob',
   },
@@ -2468,7 +2470,7 @@ export default function Messenger() {
 }
 
 const contacts = [
-  {id: 0, name: 'Taylor', email: 'taylor@mail.com'},
+  {id: 0, name: 'Clara', email: 'clara@mail.com'},
   {id: 1, name: 'Alice', email: 'alice@mail.com'},
   {id: 2, name: 'Bob', email: 'bob@mail.com'},
 ];
@@ -2478,7 +2480,7 @@ const contacts = [
 export const initialState = {
   selectedId: 0,
   messages: {
-    0: 'Bonjour, Taylor',
+    0: 'Bonjour, Clara',
     1: 'Bonjour, Alice',
     2: 'Bonjour, Bob',
   },
