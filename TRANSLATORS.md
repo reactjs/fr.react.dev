@@ -64,6 +64,8 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/learn/installation">Installation</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/learn/describing-the-ui">Décrire l’UI</a></li>
           <li><a href="https://fr.react.dev/learn/your-first-component">Votre premier composant</a></li>
+          <li><a href="https://fr.react.dev/learn/keeping-components-pure">Garder les composants purs</a></li>
+          <li><a href="https://fr.react.dev/learn/state-a-components-memory">L’état : la mémoire d’un composant</a></li>
           <li><a href="https://fr.react.dev/learn/render-and-commit">Rendu et Commit</a></li>
           <li><a href="https://fr.react.dev/learn/state-as-a-snapshot">L’état est un instantané</a></li>
           <li><a href="https://fr.react.dev/learn/queueing-a-series-of-state-updates">Cumuler les mises à jour d’un même état</a></li>

@@ -4,7 +4,7 @@ title: Garder les composants purs
 
 <Intro>
 
-Certaines fonctions JavaScript sont *pures*. Les fonctions pures se contentent de réaliser un calcul, rien de plus. En écrivant rigoureusement vos composants sous forme de fonctions pures, vous éviterez une catégorie entière de bugs ahurissants et de comportements imprévisibles au fil de la croissance de votre base de code. Pour en bénéficier, il y a toutefois quelques règles à suivre.
+Certaines fonctions JavaScript sont *pures*. Les fonctions pures se contentent de réaliser un calcul, rien de plus. En écrivant rigoureusement vos composants sous forme de fonctions pures, vous éviterez une catégorie entière de bugs ahurissants et de comportements imprévisibles au fil de la croissance de votre base de code. Pour en bénéficier, il vous faut toutefois suivre quelques règles.
 
 </Intro>
 
@@ -12,7 +12,7 @@ Certaines fonctions JavaScript sont *pures*. Les fonctions pures se contentent d
 
 - Ce qu'est la pureté d'une fonction, et en quoi elle vous aide à éviter les bugs
 - Comment garder vos composants purs en ne modifiant rien pendant la phase de rendu
-- Comment utilise rle mode strict pour détecter les erreurs dans vos composants
+- Comment utiliser le mode strict pour détecter les erreurs dans vos composants
 
 </YouWillLearn>
 
@@ -23,7 +23,7 @@ En informatique (en particulier dans le monde de la programmation fonctionnelle)
 - **Elle s'occupe de ses affaires.** Elle ne modifie aucun objet ou variable qui existaient avant son appel.
 - **Pour les mêmes entrées, elle produit la même sortie.** Pour un jeu d'entrées données, une fonction pure renverra toujours le même résultat.
 
-Vous avez peut-être déjà l'habitude d'un cas concret de fonctions pures : les formules mathématiques.
+Vous avez peut-être déjà l'habitude d'une catégorie de fonctions pures : les formules mathématiques.
 
 Prenons la formule suivante : <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
 
@@ -117,7 +117,7 @@ export default function TeaSet() {
 
 Ce composant lit et écrit une variable `guest` déclarée hors de sa fonction.  Ça signifie **qu'appeler ce composant plusieurs fois produira un JSX différent !**  En prime, si *d'autres* composants lisent `guest`, eux aussi produiront un JSX différent, selon le moment de leur rendu ! Tout le système devient imprévisible.
 
-Pour en revenir à notre formule <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, désormais même si <Math><MathI>x</MathI> = 2</Math>, nous n'avons plus la certitude que <Math><MathI>y</MathI> = 4</Math>. Nos tests pourraient échouer, nos utilisateurs être désarçonnés, les avions pourraient tomber comme des pierres… Vous voyez bien que ça donnerait des bugs insondables !
+Pour en revenir à notre formule <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, désormais même si <Math><MathI>x</MathI> = 2</Math>, nous n'avons plus la certitude que <Math><MathI>y</MathI> = 4</Math>. Nos tests pourraient échouer, nos utilisateurs pourraient être désarçonnés, les avions pourraient tomber comme des pierres… Vous voyez bien que ça donnerait des bugs insondables !
 
 Vous pouvez corriger ce composant en [passant plutôt `guest` comme prop](/learn/passing-props-to-a-component) :
 
@@ -151,11 +151,11 @@ De façon générale, vous ne devriez pas exiger un ordre particulier de rendu p
 
 Même si vous ne les avez pas encore toutes utilisées à ce stade, sachez que dans React il existe trois types d'entrées que vous pouvez lire lors d'un rendu : [les props](/learn/passing-props-to-a-component), [l'état](/learn/state-a-components-memory), et [le contexte](/learn/passing-data-deeply-with-context).  Vous devriez toujours considérer ces trois entités comme étant en lecture seule.
 
-Lorsque vous souhaitez *modifier* quelque chose en réponse à une interaction utilisateur, vous devriez [mettre à jour l'état](/learn/state-a-components-memory) plutôt que d'écrire dans une variable.  Vous ne decriez jamais modifier des variables ou objets pré-existants lors du rendu de votre composant.
+Lorsque vous souhaitez *modifier* quelque chose en réaction à une interaction utilisateur, vous devriez [mettre à jour l'état](/learn/state-a-components-memory) plutôt que d'écrire dans une variable.  Vous ne devriez jamais modifier des variables ou objets pré-existants lors du rendu de votre composant.
 
 React propose un « mode strict » dans lequel il appelle chaque fonction composant deux fois pendant le développement. **En appelant chaque fonction composant deux fois, le mode strict vous aide à repérer les composants qui enfreignent ces règles.**
 
-Avez-vous remarqué que le premier exemple affichait « invité #2 », « invité #4 » et « invité #6 » au lieu de « invité #1 », « invité #2 » et « invité #3 » ?  La fonction d'origine était impure, de sorte que l'appelait deux fois cassait son fonctionnement.  Mais la fonction corrigée, qui est pure, fonctionne même si elle est systématiquement appelée deux fois. **Les fonctions pures font juste un calcul, aussi les appeler deux fois ne change rien**, tout comme appeler `double(2)` deux fois ne change pas son résultat, et résoudre <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> deux fois ne change pas la valeur de <MathI>y</MathI>. Mêmes entrées, même sorties. Toujours.
+Avez-vous remarqué que le premier exemple affichait « invité #2 », « invité #4 » et « invité #6 » au lieu de « invité #1 », « invité #2 » et « invité #3 » ?  La fonction d'origine était impure, de sorte que l'appeler deux fois cassait son fonctionnement.  Mais la fonction corrigée, qui est pure, fonctionne même si elle est systématiquement appelée deux fois. **Les fonctions pures font juste un calcul, aussi les appeler deux fois ne change rien**, tout comme appeler `double(2)` deux fois ne change pas son résultat, et résoudre <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> deux fois ne change pas la valeur de <MathI>y</MathI>. Mêmes entrées, même sorties. Toujours.
 
 Le mode strict n'a aucun effet en production, il ne ralentira donc pas votre appli pour vos utilisateurs.  Pour activer le mode strict, enrobez votre composant racine dans un `<React.StrictMode>`. Certains frameworks mettent ça en place par défaut.
 
@@ -163,7 +163,7 @@ Le mode strict n'a aucun effet en production, il ne ralentira donc pas votre app
 
 ### Les mutations locales : les petits secrets de votre composant {/*local-mutation-your-components-little-secret*/}
 
-Dans l'exemple ci-avant, le problème venait de ce que le composant modifiait une variable *pré-existante* pendant son rendu.  On parle alors souvent de **« mutation »** pour rendre ça un peu plus effrayant.  Les fonctions pures ne modifient pas les variables hors de leur portée, ni les objets créés avant l'appel : ça les rendrait impures !
+Dans l'exemple ci-avant, le problème venait de ce que le composant modifiait une variable *pré-existante* pendant son rendu.  On parle alors souvent de **« mutation »** pour rendre ça un peu plus effrayant.  Les fonctions pures ne modifient pas les variables hors de leur portée, ni les objets créés avant l'appel : si elles le faisaient, ça les rendrait impures !
 
 En revanche, **il est parfaitement acceptable de modifier les variables ou objets que vous *venez* de créer pendant le rendu.**  Dans l'exemple qui suit, vous créez un tableau `[]`, l'affectez à une variable `cups` puis y ajoutez une douzaine de tasses à coups de `push` :
 
@@ -191,11 +191,11 @@ Mais là, tout va bien parce que vous les avez créés *pendant ce même rendu*,
 
 ## Les endroits où vous *pouvez* causer des effets de bord {/*where-you-can-cause-side-effects*/}
 
-S'il est vrai que la programmation fonctionnelle s'appuie fortement sur la pureté, à un moment, quelque part, *quelque chose* va devoir changer. C'est un peu l'objetif d'un programme ! Ces modifications (mettre à jour l'affichage, démarrer une animation, modifier des données) sont appelées des **effets de bord**.  C'est ce qui arrive *« à côté »*, et non au sein du rendu.
+S'il est vrai que la programmation fonctionnelle s'appuie fortement sur la pureté, à un moment, quelque part, *quelque chose* va devoir changer. C'est un peu l'objectif d'un programme ! Ces modifications (mettre à jour l'affichage, démarrer une animation, modifier des données) sont appelées des **effets de bord**.  C'est ce qui arrive *« à côté »*, et non au sein du rendu.
 
 Dans React, **les effets de bord résident généralement dans des [gestionnaires d'événements](/learn/responding-to-events)**. Les gestionnaires d'événements sont des fonctions que React exécute lorsque vous faites une action donnée — par exemple lorsque vous cliquez sur un bouton. Même si les gestionnaires d'événements sont définis *au sein de* votre composant, il ne sont pas exécutés *pendant* le rendu ! **Du coup, les gestionnaires d'événements n'ont pas besoin d'être purs.**
 
-Si vous avez épuisé toutes les autres options et ne pouvez pas trouver un gestionnaire d'événement adéquattpour votre effet de bord, vous pouvez tout de même en associer un au JSX que vous renvoyez en appelant [`useEffect`](/reference/react/useEffect) dans votre composant. Ça dit à React de l'exécuter plus tard, après le rendu, lorsque les effets de bord seront autorisés. **Ceci dit, cette approche doit être votre dernier recours.**
+Si vous avez épuisé toutes les autres options et ne pouvez pas trouver un gestionnaire d'événement adéquat pour votre effet de bord, vous pouvez tout de même en associer un au JSX que vous renvoyez en appelant [`useEffect`](/reference/react/useEffect) dans votre composant. Ça dit à React de l'exécuter plus tard, après le rendu, lorsque les effets de bord seront autorisés. **Ceci dit, cette approche doit être votre dernier recours.**
 
 Lorsque c'est possible, essayez d'exprimer votre logique rien qu'avec le rendu. Vous serez surpris·e de tout ce que ça permet de faire !
 
@@ -205,7 +205,7 @@ Lorsque c'est possible, essayez d'exprimer votre logique rien qu'avec le rendu. 
 
 Écrire des fonctions pures nécessite de la pratique et de la discipline.  Mais ça ouvre aussi des opportunités merveilleuses :
 
-- Vos composants peuvent être exécutés dans différents environnements — par exemple sur le serveur !  Puisqu'ils renvoient toujours le même résultat pour les mêmes entrées, un composant peut servir à de nombreuses requêtes utilisateur.
+- Vos composants peuvent être exécutés dans différents environnements — par exemple sur le serveur !  Puisqu'il renvoie toujours le même résultat pour les mêmes entrées, un composant peut servir à de nombreuses requêtes utilisateur.
 - Vous pouvez améliorer les performances en [sautant le rendu](/reference/react/memo) des composants dont les entrées n'ont pas changé.  C'est sans risque parce que les fonctions pures renvoient toujours les mêmes résultats, on peut donc les mettre en cache.
 - Si certaines données changent au cours du rendu d'une arborescence profonde de composants, React peut redémarrer le rendu sans perdre son temps à finir celui en cours, désormais obsolète.  La pureté permet de stopper le calcul à tout moment, sans risque.
 
@@ -216,7 +216,7 @@ Toutes les nouvelles fonctionnalités de React que nous sommes en train de const
 <Recap>
 
 - Un composant doit être pur, ce qui signifie que :
-  - **Il s'occupe de ses affaires.** Elle ne modifie aucun objet ou variable qui existaient avant son rendu.
+  - **Il s'occupe de ses affaires.** Il ne modifie aucun objet ou variable qui existaient avant son rendu.
   - **Pour les mêmes entrées, il produit la même sortie.** Pour un jeu d'entrées données, un composant renverra toujours le même JSX.
 - Le rendu peut survenir à tout moment, aussi les composants ne doivent pas dépendre de leurs positions respectives dans la séquence de rendu.
 - Vous ne devriez pas modifier les entrées utilisées par vos composants pour leur rendu. Ça concerne les props, l'état et le contexte. Pour mettre à jour l'affichage, [mettez à jour l'état](/learn/state-a-components-memory) plutôt que de modifier des objets pré-existants.
@@ -360,13 +360,13 @@ body > * {
 
 </Sandpack>
 
-Dans cet exemple, l'effet de bord (modifier le DOM) était totalement superflu. Vous aviez juste besoin de renvoyer le bon JSX.
+Dans cet exemple, l'effet de bord (à savoir modifier le DOM) était totalement superflu. Vous aviez juste besoin de renvoyer le bon JSX.
 
 </Solution>
 
 #### Réparer un profil {/*fix-a-broken-profile*/}
 
-Deux composants `Profile` sont affiché côte à côte avec des données différentes.  Appuyez sur le bouton « Replier » du premier, puis sur « Déplier ». Vous remarquerez que les deux profils affichent désormais la même personne.  Il y a comme un os !
+Deux composants `Profile` sont affichés côte à côte avec des données différentes.  Appuyez sur le bouton « Replier » du premier, puis sur « Déplier ». Vous remarquerez que les deux profils affichent désormais la même personne.  Il y a un os !
 
 Trouvez l'origine du bug et corrigez-le.
 
@@ -473,7 +473,7 @@ h1 { margin: 5px; font-size: 18px; }
 
 <Solution>
 
-Le souci vient de ce que le composant `Profile` modifie une variable pré-existante appelée `currentPerson`, et que les composants `Header` et `Avatar` la lisent. Du coup, *tous les trois* sont impurs et leurs comportements sont difficiles à prévoir.
+Le souci vient de ce que le composant `Profile` modifie une variable pré-existante appelée `currentPerson`, et que les composants `Header` et `Avatar` la lisent. Du coup, *tous les trois* sont impurs et leurs comportements sont imprévisibles.
 
 Pour corriger ce bug, supprimez la variable `currentPerson`.  Passez plutôt toute l'information de `Profile` à `Header` et `Avatar` *via* des props. Vous devrez ajouter la prop `person` aux deux composants pour pouvoir la passer jusqu'en bas.
 
@@ -575,9 +575,9 @@ Rappelez-vous que React ne garantit pas un ordre d'exécution particulier pour l
 
 #### Réparer une liste d'histoires {/*fix-a-broken-story-tray*/}
 
-Le PDG de votre société vous demande d'ajouter une « liste d'histoires » à votre appli d'horloge en ligne, et vous ne pouvez pas lui dire non. Vous avez écrit un composant `StoryTray` qui accepte une liste de `stories`, suivies par un « Créer une histoire » factice.
+Le PDG de votre société vous demande d'ajouter une « liste d'histoires » à votre appli d'horloge en ligne, et vous ne pouvez pas lui dire non. Vous avez écrit un composant `StoryTray` qui accepte une liste de `stories`, suivies par un emplacement « Créer une histoire ».
 
-Vous avez implémenté ce dernier en ajoutant un histoire factice supplémentaire à la fin du tableau `stories` que vous avez reçu en props. Mais pour une raison obscure, « Créer une histoire » apparaît plusieurs fois. Corrigez le problème.
+Vous avez implémenté ce dernier en ajoutant une pseudo-histoire supplémentaire à la fin du tableau `stories` que vous avez reçu en props. Mais pour une raison obscure, « Créer une histoire » apparaît plusieurs fois. Corrigez le problème.
 
 <Sandpack>
 
@@ -674,9 +674,9 @@ li {
 
 <Solution>
 
-Remarquez que chaque fois que l'horloge change, « Ajouter une histoire » est ajoutée *deux fois*. C'est un indice que la mutation est dans notre rendu : le mode strict appelle les composants deux fois pour rendre ce type de soucis plus facile à remarquer.
+Remarquez que chaque fois que l'horloge change, « Créer une histoire » est ajoutée *deux fois*. C'est un indice que la mutation est dans notre rendu : le mode strict appelle les composants deux fois pour rendre ce type de soucis plus facile à remarquer.
 
-La fonction `StoryTray` n'est pas pure. En appelant `push` sur le tableau `stories` reçu (une prop !), elle modifie un objet créé *avant* que `StoryTray` ait commencé son rendu.  Ça donne un bug et un comportement difficile à prévoir.
+La fonction `StoryTray` n'est pas pure. En appelant `push` sur le tableau `stories` reçu (une prop !), elle modifie un objet créé *avant* que `StoryTray` ait commencé son rendu.  Ça donne un bug et un comportement imprévisible.
 
 Le correctif le plus simple consiste à ne pas toucher au tableau du tout, et à ajouter « Créer une histoire » séparément :
 
@@ -858,7 +858,7 @@ li {
 
 La mutation reste alors locale, et la fonction de rendu reste pure.  Toutefois, vous devez rester vigilant·e : par exemple, si vous tentiez de modifier un élément du tableau, il vous faudrait d'abord cloner ces éléments eux aussi.
 
-Il est utile de savoir quelles opérations sur tableaux sont mutatives, et quelles opérations ne le sont pas. Par eemple, `push`, `pop`, `reverse` et `sort` modifieront le tableau d'origine, tandis que `slice`, `filter` et `map` en créerons un nouveau.
+Il est utile de savoir quelles opérations sur tableaux sont mutatives, et quelles opérations ne le sont pas. Par exemple, `push`, `pop`, `reverse` et `sort` modifieront le tableau d'origine, tandis que `slice`, `filter` et `map` en créeront un nouveau.
 
 </Solution>
 
