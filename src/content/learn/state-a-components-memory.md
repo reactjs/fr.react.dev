@@ -1,25 +1,25 @@
 ---
-title: "State: A Component's Memory"
+title: "L’état : la mémoire d’un composant"
 ---
 
 <Intro>
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" should put a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state*.
+Les composants ont souvent besoin de changer ce qu'ils suite à une interaction.  Une saisie dans un formulaire devrait mettre à jour la valeur du champ, cliquer sur « Suivant » sur un carrousel d'images devrait modifier l'image affichée, cliquer sur « Acheter » devrait ajouter le produit au panier.  Les composants ont besoin de « se souvenir » de certaines informations : la valeur actuelle du champ, l'image active, le panier.  Dans React, ce type de mémoire spécifique au composant est appelée *état*.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to add a state variable with the [`useState`](/reference/react/useState) Hook
-* What pair of values the `useState` Hook returns
-* How to add more than one state variable
-* Why state is called local
+* Comment ajouter une variable d'état avec le Hook [`useState`](/reference/react/useState)
+* Quelle paire de valeurs le Hook `useState` renvoie
+* Comment ajouter plus d'une variable d'état
+* Pourquoi on parle d'état *local*
 
 </YouWillLearn>
 
-## When a regular variable isn’t enough {/*when-a-regular-variable-isnt-enough*/}
+## Quand une variable classique ne suffit pas {/*when-a-regular-variable-isnt-enough*/}
 
-Here's a component that renders a sculpture image. Clicking the "Next" button should show the next sculpture by changing the `index` to `1`, then `2`, and so on. However, this **won't work** (you can try it!):
+Voici un composant qui affiche une image de sculpture. Cliquer sur le bouton « Suivant » derait afficher la sculpture suivante en passant l'`index` à `1`, puis `2` et ainsi de suite.  Pourtant, ça **ne fonctionne pas** (essayez !) :
 
 <Sandpack>
 
@@ -37,17 +37,17 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleClick}>
-        Next
+        Suivant
       </button>
       <h2>
-        <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        <i>{sculpture.name} </i>
+        par {sculpture.artist}
       </h2>
-      <h3>  
-        ({index + 1} of {sculptureList.length})
+      <h3>
+        ({index + 1} sur {sculptureList.length})
       </h3>
-      <img 
-        src={sculpture.url} 
+      <img
+        src={sculpture.url}
         alt={sculpture.alt}
       />
       <p>
@@ -62,75 +62,75 @@ export default function Gallery() {
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
+  description: 'Bien que Colvin soit principalement connue pour ses thèmes abstraits qui font allusion à des symboles préhispaniques, cette sculpture gigantesque, un hommage à la neurochirurgie, est l’une de ses pièces d’art public les plus reconnaissables.',
   url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'  
+  alt: 'Une statue en bronze de deux mains croisées tenant délicatement un cerveau humain du bout des doigts.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
+  description: 'Cette immense fleur argentée (de 23 mètres de haut ou 75 pieds) est située à Buenos Aires. Elle est conçue pour bouger, en fermant ses pétales le soir ou lors de vents forts, et en les ouvrant le matin.',
   url: 'https://i.imgur.com/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
+  alt: 'Une sculpture de fleur métallique gigantesque avec des pétales réfléchissants, semblables à des miroirs, et des étamines solides.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
+  description: 'Wilson était connu pour ses préoccupations d’égalité, de justice sociale, ainsi que les qualités essentielles et spirituelles de l’humanité. Ce bronze massif (de 2,13 mètres de hauteur ou 7 pieds) représente ce qu’il a décrit comme « une présence noire symbolique imprégnée d’un sens d’humanité universelle ».',
   url: 'https://i.imgur.com/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
+  alt: 'La sculpture représentant une tête humaine semble être toujours présente et solennelle. Elle rayonne de calme et de sérénité.'
 }, {
   name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
+  artist: 'Artiste inconnu·e',
+  description: 'Sur l’île de Pâques, il y a 1 000 moaïs, ou statues monumentales encore existantes, créées par les premiers habitants Rapa Nui, que certains croient représenter des ancêtres divinisés.',
   url: 'https://i.imgur.com/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
+  alt: 'Trois bustes de pierre monumentaux avec des têtes démesurément grandes et des visages sombres.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
+  description: 'Les Nanas sont des créatures triomphantes, symboles de féminité et de maternité. Initialement, Saint Phalle utilisait des tissus et des objets trouvés pour les Nanas, et plus tard, elle a introduit du polyester pour obtenir un effet plus vibrant.',
   url: 'https://i.imgur.com/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
+  alt: 'Une grande sculpture en mosaïque d’une figure féminine fantaisiste dansant dans un costume coloré rayonnant de joie.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
+  description: 'Cette sculpture abstraite en bronze fait partie de la série « La Famille de l’Homme » située au parc de sculptures de Yorkshire. Hepworth a choisi de ne pas créer des représentations littérales du monde, mais a développé des formes abstraites inspirées des personnes et des paysages.',
   url: 'https://i.imgur.com/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
+  alt: 'Une sculpture haute composée de trois éléments empilés rappelant une figure humaine.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
+  description: "Descendant de quatre générations de sculpteurs sur bois, le travail de Fakeye mélangeait des thèmes yorubas traditionnels et contemporains.",
   url: 'https://i.imgur.com/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
+  alt: 'Une sculpture en bois complexe représentant un guerrier au visage concentré sur un cheval orné de motifs.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
+  description: "Szapocznikow est connue pour ses sculptures du corps fragmenté en tant que métaphore de la fragilité et de l’impermanence de la jeunesse et de la beauté. Cette sculpture représente deux ventres très réalistes empilés l’un sur l’autre, chacun mesurant environ cinq pieds (1,5m) de hauteur.",
   url: 'https://i.imgur.com/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
+  alt: 'La sculpture rappelle une cascade de plis, très différente des ventres dans les sculptures classiques.'
 }, {
   name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
+  artist: 'Artiste inconnu·e',
+  description: 'L’Armée de terre cuite est une collection de sculptures en terre cuite représentant les armées de Qin Shi Huang, le premier empereur de Chine. L’armée était composée de plus de 8 000 soldats, 130 chars tirés par 520 chevaux et 150 chevaux montés par des cavaliers.',
   url: 'https://i.imgur.com/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
+  alt: '12 sculptures de guerriers solennels en terre cuite, chacun avec une expression faciale et une armure uniques.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
+  description: 'Nevelson était connue pour récupérer des objets dans les débris de la ville de New York, qu’elle assemblerait plus tard en constructions monumentales. Dans celle-ci, elle a utilisé des pièces disparates telles qu’un pied de lit, un bâton de jonglage et un fragment de siège, les clouant et les collant dans des boîtes qui reflètent l’influence de l’abstraction géométrique de l’espace et de la forme du cubisme.',
   url: 'https://i.imgur.com/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
+  alt: 'Une sculpture mate en noir où les éléments individuels sont initialement indiscernables.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
+  description: 'Shettar fusionne le traditionnel et le moderne, le naturel et l’industriel. Son art se concentre sur la relation entre l’homme et la nature. Son travail a été décrit comme étant captivant à la fois de manière abstraite et figurative, défiant la gravité, et une « synthèse fine de matériaux improbables »."',
   url: 'https://i.imgur.com/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
+  alt: 'Une sculpture pâle en forme de fil de fer fixée au mur en béton et descendant jusqu’au sol. Elle semble légère.'
 }, {
   name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
+  artist: 'Zoo de Taipei',
+  description: 'Le zoo de Taipei a commandé des sculptures installées sur une place, représentant des hippopotames submergés en train de jouer.',
   url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
+  alt: 'Un groupe de sculptures d’hippopotames en bronze émergeant du trottoir en pavés comme s’ils nageaient.'
 }];
 ```
 
@@ -151,46 +151,46 @@ button {
 
 </Sandpack>
 
-The `handleClick` event handler is updating a local variable, `index`. But two things prevent that change from being visible:
+Le gestionnaire d'événement `handleClick` met à jour une variable locale, `index`.  Mais deux choses empêchent cette modification d'être affichée :
 
-1. **Local variables don't persist between renders.** When React renders this component a second time, it renders it from scratch—it doesn't consider any changes to the local variables.
-2. **Changes to local variables won't trigger renders.** React doesn't realize it needs to render the component again with the new data.
+1. **Les variables locales ne persistent pas d'un rendu à l'autre.**  Lorsque React refait le rendu de ce composant, il recommence de zéro — il ne prend pas en compte les modifications aux variables locales.
+2. **Modifier des variables locales ne déclenche pas de rendu.**  React ne réalise pas qu'il doit refaire le rendu du composant avec les nouvelles données.
 
-To update a component with new data, two things need to happen:
+Pour mettre à jour un composant avec de nouvelles données, on a besoin de deux choses :
 
-1. **Retain** the data between renders.
-2. **Trigger** React to render the component with new data (re-rendering).
+1. **Conserver** les données d'un rendu à l'autre.
+2. **Déclencher** un rendu React du composant avec ces nouvelles données (refaire le rendu).
 
-The [`useState`](/reference/react/useState) Hook provides those two things:
+Le Hook [`useState`](/reference/react/useState) remplit ce contrat :
 
-1. A **state variable** to retain the data between renders.
-2. A **state setter function** to update the variable and trigger React to render the component again.
+1. Une **variable d'état** pour conserver la donnée d'un rendu à l'autre.
+2. Une **fonction de mise à jour d'état** pour modifier la variable et indiquer à React de refaire le rendu du composant.
 
-## Adding a state variable {/*adding-a-state-variable*/}
+## Ajouter une variable d'état {/*adding-a-state-variable*/}
 
-To add a state variable, import `useState` from React at the top of the file:
+Pour ajouter une variable d'état, importez `useState` depuis React en haut de votre fichier :
 
 ```js
 import { useState } from 'react';
 ```
 
-Then, replace this line:
+Puis remplacez cette ligne :
 
 ```js
 let index = 0;
 ```
 
-with
+…par celle-ci :
 
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-`index` is a state variable and `setIndex` is the setter function.
+`index` est une variable d'état et `setIndex` est sa fonction de mise à jour.
 
-> The `[` and `]` syntax here is called [array destructuring](https://javascript.info/destructuring-assignment) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
+> La syntaxe de crochets `[` et `]` employée ici s'appelle une [déstructuration de tableau](https://fr.javascript.info/destructuring-assignment) *(certains traduisent « décomposition », dans un amalgame avec d'autres aspects comme le spread, NdT)*, elle nous permet de lire plusieurs valeurs depuis un tableau. Le tableau renvoyé par `useState` contient toujours exactement deux éléments.
 
-This is how they work together in `handleClick`:
+Voici comment les utiliser dans `handleClick` :
 
 ```js
 function handleClick() {
@@ -198,7 +198,7 @@ function handleClick() {
 }
 ```
 
-Now clicking the "Next" button switches the current sculpture:
+À présent, cliquer sur le bouton « Suivant » change bel et bien la sculpture active :
 
 <Sandpack>
 
@@ -217,17 +217,17 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleClick}>
-        Next
+        Suivant
       </button>
       <h2>
-        <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        <i>{sculpture.name} </i>
+        par {sculpture.artist}
       </h2>
-      <h3>  
-        ({index + 1} of {sculptureList.length})
+      <h3>
+        ({index + 1} sur {sculptureList.length})
       </h3>
-      <img 
-        src={sculpture.url} 
+      <img
+        src={sculpture.url}
         alt={sculpture.alt}
       />
       <p>
@@ -242,75 +242,75 @@ export default function Gallery() {
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
+  description: 'Bien que Colvin soit principalement connue pour ses thèmes abstraits qui font allusion à des symboles préhispaniques, cette sculpture gigantesque, un hommage à la neurochirurgie, est l’une de ses pièces d’art public les plus reconnaissables.',
   url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'  
+  alt: 'Une statue en bronze de deux mains croisées tenant délicatement un cerveau humain du bout des doigts.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
+  description: 'Cette immense fleur argentée (de 23 mètres de haut ou 75 pieds) est située à Buenos Aires. Elle est conçue pour bouger, en fermant ses pétales le soir ou lors de vents forts, et en les ouvrant le matin.',
   url: 'https://i.imgur.com/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
+  alt: 'Une sculpture de fleur métallique gigantesque avec des pétales réfléchissants, semblables à des miroirs, et des étamines solides.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
+  description: 'Wilson était connu pour ses préoccupations d’égalité, de justice sociale, ainsi que les qualités essentielles et spirituelles de l’humanité. Ce bronze massif (de 2,13 mètres de hauteur ou 7 pieds) représente ce qu’il a décrit comme « une présence noire symbolique imprégnée d’un sens d’humanité universelle ».',
   url: 'https://i.imgur.com/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
+  alt: 'La sculpture représentant une tête humaine semble être toujours présente et solennelle. Elle rayonne de calme et de sérénité.'
 }, {
   name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
+  artist: 'Artiste inconnu·e',
+  description: 'Sur l’île de Pâques, il y a 1 000 moaïs, ou statues monumentales encore existantes, créées par les premiers habitants Rapa Nui, que certains croient représenter des ancêtres divinisés.',
   url: 'https://i.imgur.com/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
+  alt: 'Trois bustes de pierre monumentaux avec des têtes démesurément grandes et des visages sombres.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
+  description: 'Les Nanas sont des créatures triomphantes, symboles de féminité et de maternité. Initialement, Saint Phalle utilisait des tissus et des objets trouvés pour les Nanas, et plus tard, elle a introduit du polyester pour obtenir un effet plus vibrant.',
   url: 'https://i.imgur.com/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
+  alt: 'Une grande sculpture en mosaïque d’une figure féminine fantaisiste dansant dans un costume coloré rayonnant de joie.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
+  description: 'Cette sculpture abstraite en bronze fait partie de la série « La Famille de l’Homme » située au parc de sculptures de Yorkshire. Hepworth a choisi de ne pas créer des représentations littérales du monde, mais a développé des formes abstraites inspirées des personnes et des paysages.',
   url: 'https://i.imgur.com/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
+  alt: 'Une sculpture haute composée de trois éléments empilés rappelant une figure humaine.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
+  description: "Descendant de quatre générations de sculpteurs sur bois, le travail de Fakeye mélangeait des thèmes yorubas traditionnels et contemporains.",
   url: 'https://i.imgur.com/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
+  alt: 'Une sculpture en bois complexe représentant un guerrier au visage concentré sur un cheval orné de motifs.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
+  description: "Szapocznikow est connue pour ses sculptures du corps fragmenté en tant que métaphore de la fragilité et de l’impermanence de la jeunesse et de la beauté. Cette sculpture représente deux ventres très réalistes empilés l’un sur l’autre, chacun mesurant environ cinq pieds (1,5m) de hauteur.",
   url: 'https://i.imgur.com/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
+  alt: 'La sculpture rappelle une cascade de plis, très différente des ventres dans les sculptures classiques.'
 }, {
   name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
+  artist: 'Artiste inconnu·e',
+  description: 'L’Armée de terre cuite est une collection de sculptures en terre cuite représentant les armées de Qin Shi Huang, le premier empereur de Chine. L’armée était composée de plus de 8 000 soldats, 130 chars tirés par 520 chevaux et 150 chevaux montés par des cavaliers.',
   url: 'https://i.imgur.com/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
+  alt: '12 sculptures de guerriers solennels en terre cuite, chacun avec une expression faciale et une armure uniques.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
+  description: 'Nevelson était connue pour récupérer des objets dans les débris de la ville de New York, qu’elle assemblerait plus tard en constructions monumentales. Dans celle-ci, elle a utilisé des pièces disparates telles qu’un pied de lit, un bâton de jonglage et un fragment de siège, les clouant et les collant dans des boîtes qui reflètent l’influence de l’abstraction géométrique de l’espace et de la forme du cubisme.',
   url: 'https://i.imgur.com/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
+  alt: 'Une sculpture mate en noir où les éléments individuels sont initialement indiscernables.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
+  description: 'Shettar fusionne le traditionnel et le moderne, le naturel et l’industriel. Son art se concentre sur la relation entre l’homme et la nature. Son travail a été décrit comme étant captivant à la fois de manière abstraite et figurative, défiant la gravité, et une « synthèse fine de matériaux improbables »."',
   url: 'https://i.imgur.com/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
+  alt: 'Une sculpture pâle en forme de fil de fer fixée au mur en béton et descendant jusqu’au sol. Elle semble légère.'
 }, {
   name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
+  artist: 'Zoo de Taipei',
+  description: 'Le zoo de Taipei a commandé des sculptures installées sur une place, représentant des hippopotames submergés en train de jouer.',
   url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
+  alt: 'Un groupe de sculptures d’hippopotames en bronze émergeant du trottoir en pavés comme s’ils nageaient.'
 }];
 ```
 
@@ -331,57 +331,57 @@ button {
 
 </Sandpack>
 
-### Meet your first Hook {/*meet-your-first-hook*/}
+### Dites bonjour à votre premier Hook {/*meet-your-first-hook*/}
 
-In React, `useState`, as well as any other function starting with "`use`", is called a Hook.
+Dans React, `useState` est ce qu'on appelle un Hook, comme toute autre fonction dont le nom commence par « `use` ».
 
-*Hooks* are special functions that are only available while React is [rendering](/learn/render-and-commit#step-1-trigger-a-render) (which we'll get into in more detail on the next page). They let you "hook into" different React features.
+Les *Hooks* sont des fonctions spéciales qui ne sont utilisables que pendant la phase de [rendu](/learn/render-and-commit#step-1-trigger-a-render) de React (on reviendra plus en détails sur ce sujet dans la prochaine page). Ils vous permettent de « vous accrocher » à certaines fonctionnalités de React.
 
-State is just one of those features, but you will meet the other Hooks later.
+L'état n'est que l'une de ces fonctionnalités, mais vous découvrirez d'autres Hooks prochainement.
 
 <Pitfall>
 
-**Hooks—functions starting with `use`—can only be called at the top level of your components or [your own Hooks.](/learn/reusing-logic-with-custom-hooks)** You can't call Hooks inside conditions, loops, or other nested functions. Hooks are functions, but it's helpful to think of them as unconditional declarations about your component's needs. You "use" React features at the top of your component similar to how you "import" modules at the top of your file.
+**Les Hooks — les fonctions dont le nom commence par `use` — ne peuvent être appelés que depuis la racine de vos composants ou de [vos propres Hooks](/learn/reusing-logic-with-custom-hooks).**  Vous ne pouvez pas appeler des Hooks au sein de conditions, de boucles ou de fonctions imbriquées. Les Hooks restent des fonctions, mais il peut être utile de les envisager comme des déclarations inconditionnelles des besoins de votre composant. Vous « utilisez » des fonctionnalités de React à la racine de votre composant, de la même façon que vous « importez » des modules au tout début de votre fichier.
 
 </Pitfall>
 
-### Anatomy of `useState` {/*anatomy-of-usestate*/}
+### Anatomie de `useState` {/*anatomy-of-usestate*/}
 
-When you call [`useState`](/reference/react/useState), you are telling React that you want this component to remember something:
+Lorsque vous appelez [`useState`](/reference/react/useState), vous dites à React que vous aimeriez que votre composant se souvienne de quelque chose :
 
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-In this case, you want React to remember `index`.
+Dans ce cas précis, vous aimeriez que React se souvienne de `index`.
 
 <Note>
 
-The convention is to name this pair like `const [something, setSomething]`. You could name it anything you like, but conventions make things easier to understand across projects.
+La convention consiste à nommer la paire quelque chose comme `const [something, setSomething]`.  Vous pouvez les nommer comme bon vous semble, mais les conventions facilitent la compréhension d'un projet à l'autre.
 
 </Note>
 
-The only argument to `useState` is the **initial value** of your state variable. In this example, the `index`'s initial value is set to `0` with `useState(0)`. 
+Le seul argument de `useState` est la **valeur initiale** de votre variable d'état.  Dans cet exemple, la valeur initiale d'`index` est définie à `0` avec `useState(0)`.
 
-Every time your component renders, `useState` gives you an array containing two values:
+Chaque fois que votre composant fait son rendu, `useState` vous fournit un tableau contenant deux valeurs :
 
-1. The **state variable** (`index`) with the value you stored.
-2. The **state setter function** (`setIndex`) which can update the state variable and trigger React to render the component again.
+1. La **variable d'état** (`index`) avec la valeur que vous avez stockée.
+2. La **fonction de mise à jour d'état** (`setIndex`) capable de mettre à jour la variable d'état puis de demander à React de refaire le rendu du composant.
 
-Here's how that happens in action:
+Voici comment ça se passe concrètement :
 
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-1. **Your component renders the first time.** Because you passed `0` to `useState` as the initial value for `index`, it will return `[0, setIndex]`. React remembers `0` is the latest state value.
-2. **You update the state.** When a user clicks the button, it calls `setIndex(index + 1)`. `index` is `0`, so it's `setIndex(1)`. This tells React to remember `index` is `1` now and triggers another render.
-3. **Your component's second render.** React still sees `useState(0)`, but because React *remembers* that you set `index` to `1`, it returns `[1, setIndex]` instead.
-4. And so on!
+1. **Votre composant fait son rendu initial.** Comme vous avez passé `0` à `useState` en tant que valeur initiale pour `index`, la fonction renverra `[0, setIndex]`. React se souvient de `0` comme valeur à jour de l'état.
+2. **Vous mettez à jour l'état.** Lorsqu'un utilisateur clique sur le bouton, ça appelle `setIndex(index + 1)`. Puisque `index` vaut `0`, ça appelle donc `setIndex(1)`.  Ça indique à React de se souvenir qu'`index` vaut désormais `1` et de refaire un rendu.
+3. **Votre composant fait son deuxième rendu.**  React voit toujours `useState(0)`, mais comme React *se souvient* que vous avez mis `index` à `1`, il renvoie bien `[1, setIndex]` cette fois-là.
+4. Et ainsi de suite !
 
-## Giving a component multiple state variables {/*giving-a-component-multiple-state-variables*/}
+## Utiliser plusieurs variables d'état dans un composant {/*giving-a-component-multiple-state-variables*/}
 
-You can have as many state variables of as many types as you like in one component. This component has two state variables, a number `index` and a boolean `showMore` that's toggled when you click "Show details":
+Vous pouvez avoir autant de variables d'état que nécessaire dans un même composant, avec les types que vous voulez.  Le composant ci-après a deux variables d'état : un nombre `index` et un booléen `showMore` qui est basculé lorsque vous cliquez sur « Afficher les détails » :
 
 <Sandpack>
 
@@ -405,21 +405,21 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleNextClick}>
-        Next
+        Suivant
       </button>
       <h2>
-        <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        <i>{sculpture.name} </i>
+        par {sculpture.artist}
       </h2>
-      <h3>  
-        ({index + 1} of {sculptureList.length})
+      <h3>
+        ({index + 1} sur {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
+        {showMore ? 'Masquer' : 'Afficher'} les détails
       </button>
       {showMore && <p>{sculpture.description}</p>}
-      <img 
-        src={sculpture.url} 
+      <img
+        src={sculpture.url}
         alt={sculpture.alt}
       />
     </>
@@ -431,75 +431,75 @@ export default function Gallery() {
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
+  description: 'Bien que Colvin soit principalement connue pour ses thèmes abstraits qui font allusion à des symboles préhispaniques, cette sculpture gigantesque, un hommage à la neurochirurgie, est l’une de ses pièces d’art public les plus reconnaissables.',
   url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'  
+  alt: 'Une statue en bronze de deux mains croisées tenant délicatement un cerveau humain du bout des doigts.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
+  description: 'Cette immense fleur argentée (de 23 mètres de haut ou 75 pieds) est située à Buenos Aires. Elle est conçue pour bouger, en fermant ses pétales le soir ou lors de vents forts, et en les ouvrant le matin.',
   url: 'https://i.imgur.com/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
+  alt: 'Une sculpture de fleur métallique gigantesque avec des pétales réfléchissants, semblables à des miroirs, et des étamines solides.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
+  description: 'Wilson était connu pour ses préoccupations d’égalité, de justice sociale, ainsi que les qualités essentielles et spirituelles de l’humanité. Ce bronze massif (de 2,13 mètres de hauteur ou 7 pieds) représente ce qu’il a décrit comme « une présence noire symbolique imprégnée d’un sens d’humanité universelle ».',
   url: 'https://i.imgur.com/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
+  alt: 'La sculpture représentant une tête humaine semble être toujours présente et solennelle. Elle rayonne de calme et de sérénité.'
 }, {
   name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
+  artist: 'Artiste inconnu·e',
+  description: 'Sur l’île de Pâques, il y a 1 000 moaïs, ou statues monumentales encore existantes, créées par les premiers habitants Rapa Nui, que certains croient représenter des ancêtres divinisés.',
   url: 'https://i.imgur.com/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
+  alt: 'Trois bustes de pierre monumentaux avec des têtes démesurément grandes et des visages sombres.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
+  description: 'Les Nanas sont des créatures triomphantes, symboles de féminité et de maternité. Initialement, Saint Phalle utilisait des tissus et des objets trouvés pour les Nanas, et plus tard, elle a introduit du polyester pour obtenir un effet plus vibrant.',
   url: 'https://i.imgur.com/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
+  alt: 'Une grande sculpture en mosaïque d’une figure féminine fantaisiste dansant dans un costume coloré rayonnant de joie.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
+  description: 'Cette sculpture abstraite en bronze fait partie de la série « La Famille de l’Homme » située au parc de sculptures de Yorkshire. Hepworth a choisi de ne pas créer des représentations littérales du monde, mais a développé des formes abstraites inspirées des personnes et des paysages.',
   url: 'https://i.imgur.com/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
+  alt: 'Une sculpture haute composée de trois éléments empilés rappelant une figure humaine.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
+  description: "Descendant de quatre générations de sculpteurs sur bois, le travail de Fakeye mélangeait des thèmes yorubas traditionnels et contemporains.",
   url: 'https://i.imgur.com/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
+  alt: 'Une sculpture en bois complexe représentant un guerrier au visage concentré sur un cheval orné de motifs.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
+  description: "Szapocznikow est connue pour ses sculptures du corps fragmenté en tant que métaphore de la fragilité et de l’impermanence de la jeunesse et de la beauté. Cette sculpture représente deux ventres très réalistes empilés l’un sur l’autre, chacun mesurant environ cinq pieds (1,5m) de hauteur.",
   url: 'https://i.imgur.com/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
+  alt: 'La sculpture rappelle une cascade de plis, très différente des ventres dans les sculptures classiques.'
 }, {
   name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
+  artist: 'Artiste inconnu·e',
+  description: 'L’Armée de terre cuite est une collection de sculptures en terre cuite représentant les armées de Qin Shi Huang, le premier empereur de Chine. L’armée était composée de plus de 8 000 soldats, 130 chars tirés par 520 chevaux et 150 chevaux montés par des cavaliers.',
   url: 'https://i.imgur.com/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
+  alt: '12 sculptures de guerriers solennels en terre cuite, chacun avec une expression faciale et une armure uniques.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
+  description: 'Nevelson était connue pour récupérer des objets dans les débris de la ville de New York, qu’elle assemblerait plus tard en constructions monumentales. Dans celle-ci, elle a utilisé des pièces disparates telles qu’un pied de lit, un bâton de jonglage et un fragment de siège, les clouant et les collant dans des boîtes qui reflètent l’influence de l’abstraction géométrique de l’espace et de la forme du cubisme.',
   url: 'https://i.imgur.com/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
+  alt: 'Une sculpture mate en noir où les éléments individuels sont initialement indiscernables.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
+  description: 'Shettar fusionne le traditionnel et le moderne, le naturel et l’industriel. Son art se concentre sur la relation entre l’homme et la nature. Son travail a été décrit comme étant captivant à la fois de manière abstraite et figurative, défiant la gravité, et une « synthèse fine de matériaux improbables »."',
   url: 'https://i.imgur.com/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
+  alt: 'Une sculpture pâle en forme de fil de fer fixée au mur en béton et descendant jusqu’au sol. Elle semble légère.'
 }, {
   name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
+  artist: 'Zoo de Taipei',
+  description: 'Le zoo de Taipei a commandé des sculptures installées sur une place, représentant des hippopotames submergés en train de jouer.',
   url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
+  alt: 'Un groupe de sculptures d’hippopotames en bronze émergeant du trottoir en pavés comme s’ils nageaient.'
 }];
 ```
 
@@ -520,19 +520,19 @@ button {
 
 </Sandpack>
 
-It is a good idea to have multiple state variables if their state is unrelated, like `index` and `showMore` in this example. But if you find that you often change two state variables together, it might be easier to combine them into one. For example, if you have a form with many fields, it's more convenient to have a single state variable that holds an object than state variable per field. Read [Choosing the State Structure](/learn/choosing-the-state-structure) for more tips.
+Il est judicieux d'utiliser plusieurs variables d'état si leurs données sont sans rapport, comme `index` et `showMore` dans cet exemple. Mais si vous réalisez que vous modifiez souvent deux variables ensemble, il peut être plus pratique de les combiner en une seule. Par exemple, si vous avez un formulaire avec de nombreux champs, il peut être confortable d'utiliser une seule variable d'état contenant un objet, plutôt qu'une variable d'état par champ. Lisez [Choisir la structure de l’état](/learn/choosing-the-state-structure) pour mieux décider ce genre de choses.
 
 <DeepDive>
 
-#### How does React know which state to return? {/*how-does-react-know-which-state-to-return*/}
+#### Comment React sait-il quelle partie de l'état renvoyer ? {/*how-does-react-know-which-state-to-return*/}
 
-You might have noticed that the `useState` call does not receive any information about *which* state variable it refers to. There is no "identifier" that is passed to `useState`, so how does it know which of the state variables to return? Does it rely on some magic like parsing your functions? The answer is no.
+Vous avez peut-être remarqué que l'appel à `useState` ne prend aucune information indiquant *quelle* variable d'état vous manipulez. Il n'y a pas « d'identifiant » qui soit passé à `useState`, alosr comment sait-elle de quelle variable d'état vous avez besoin en retour ?  Y'a-t-il une sorte d'analyse magique de vos fonctions ? Eh bien, pas du tout.
 
-Instead, to enable their concise syntax, Hooks **rely on a stable call order on every render of the same component.** This works well in practice because if you follow the rule above ("only call Hooks at the top level"), Hooks will always be called in the same order. Additionally, a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) catches most mistakes.
+Pour permettre cette syntaxe d'utilisation concise, les Hooks préfèrent **se reposer sur un ordre d'appel stable pour tous les rendus du composant**.  Ça fonctionne très bien en pratique, car du moment que vous respectez la règle évoquée précédemment (« n'appelez les Hooks que depuis la racine »), les mêmes Hooks seront toujours appelés dans le même ordre. Qui plus est, un [plugin de *linter*](https://www.npmjs.com/package/eslint-plugin-react-hooks) vous rattrape par le col dans le cas contraire.
 
-Internally, React holds an array of state pairs for every component. It also maintains the current pair index, which is set to `0` before rendering. Each time you call `useState`, React gives you the next state pair and increments the index. You can read more about this mechanism in [React Hooks: Not Magic, Just Arrays.](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
+En interne, React maintient un tableau de paires d'état pour chaque instance de composant. Il maintient aussi l'index de la paire actuelle, qui démarre à zéro avant le rendu. Chaque fois que vous appelez `useState`, React vous donne la prochaine paire d'état et incrémente cet index. Vous pouvez en apprendre davantage sur ce mécanisme dans *[React Hooks: Not Magic, Just Arrays](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)* (en anglais) et apprendre en quoi seule cette approche permet de déployer toute la puissance des Hooks dans [Pourquoi les Hooks React dépendent-ils de l'ordre d'appel ?](https://overreacted.io/fr/why-do-hooks-rely-on-call-order/).
 
-This example **doesn't use React** but it gives you an idea of how `useState` works internally:
+L'exemple ci-après **n'utilise pas React** mais vous donne une idée de comment `useState` fonctionne en interne :
 
 <Sandpack>
 
@@ -540,37 +540,37 @@ This example **doesn't use React** but it gives you an idea of how `useState` wo
 let componentHooks = [];
 let currentHookIndex = 0;
 
-// How useState works inside React (simplified).
+// Version simplifiée du fonctionnement de useState au sein de React.
 function useState(initialState) {
   let pair = componentHooks[currentHookIndex];
   if (pair) {
-    // This is not the first render,
-    // so the state pair already exists.
-    // Return it and prepare for next Hook call.
+    // On n’est pas sur le rendu initial, donc la paire
+    // existe déjà.  On la renvoie et on prépare le prochain
+    // appel au Hook.
     currentHookIndex++;
     return pair;
   }
 
-  // This is the first time we're rendering,
-  // so create a state pair and store it.
+  // On est sur le rendu initial, donc on crée la
+  // paire d’état et on la stocke.
   pair = [initialState, setState];
 
   function setState(nextState) {
-    // When the user requests a state change,
-    // put the new value into the pair.
+    // Quand l’utilisateur demande un changement d’état,
+    // on met à jour la paire avec la nouvelle valeur.
     pair[0] = nextState;
     updateDOM();
   }
 
-  // Store the pair for future renders
-  // and prepare for the next Hook call.
+  // Stockage de la paire pour les futurs rendus
+  // et préparation du prochain appel au Hook.
   componentHooks[currentHookIndex] = pair;
   currentHookIndex++;
   return pair;
 }
 
 function Gallery() {
-  // Each useState() call will get the next pair.
+  // Chaque appel à useState() obtiendra la prochaine paire.
   const [index, setIndex] = useState(0);
   const [showMore, setShowMore] = useState(false);
 
@@ -583,14 +583,14 @@ function Gallery() {
   }
 
   let sculpture = sculptureList[index];
-  // This example doesn't use React, so
-  // return an output object instead of JSX.
+  // Cet exemple n’utilise pas React, donc on
+  // renvoie un objet en sortie plutôt que du JSX.
   return {
     onNextClick: handleNextClick,
     onMoreClick: handleMoreClick,
-    header: `${sculpture.name} by ${sculpture.artist}`,
-    counter: `${index + 1} of ${sculptureList.length}`,
-    more: `${showMore ? 'Hide' : 'Show'} details`,
+    header: `${sculpture.name} par ${sculpture.artist}`,
+    counter: `${index + 1} sur ${sculptureList.length}`,
+    more: `${showMore ? 'Masquer' : 'Afficher'} les détails`,
     description: showMore ? sculpture.description : null,
     imageSrc: sculpture.url,
     imageAlt: sculpture.alt
@@ -598,13 +598,13 @@ function Gallery() {
 }
 
 function updateDOM() {
-  // Reset the current Hook index
-  // before rendering the component.
+  // Réinitialisation de l’index du Hook courant avant
+  // de refaire le rendu du composant.
   currentHookIndex = 0;
   let output = Gallery();
 
-  // Update the DOM to match the output.
-  // This is the part React does for you.
+  // Mise à jour du DOM pour refléter la sortie.
+  // C’est la partie que React fait pour vous.
   nextButton.onclick = output.onNextClick;
   header.textContent = output.header;
   moreButton.onclick = output.onMoreClick;
@@ -627,84 +627,84 @@ let image = document.getElementById('image');
 let sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
+  description: 'Bien que Colvin soit principalement connue pour ses thèmes abstraits qui font allusion à des symboles préhispaniques, cette sculpture gigantesque, un hommage à la neurochirurgie, est l’une de ses pièces d’art public les plus reconnaissables.',
   url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'  
+  alt: 'Une statue en bronze de deux mains croisées tenant délicatement un cerveau humain du bout des doigts.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
+  description: 'Cette immense fleur argentée (de 23 mètres de haut ou 75 pieds) est située à Buenos Aires. Elle est conçue pour bouger, en fermant ses pétales le soir ou lors de vents forts, et en les ouvrant le matin.',
   url: 'https://i.imgur.com/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
+  alt: 'Une sculpture de fleur métallique gigantesque avec des pétales réfléchissants, semblables à des miroirs, et des étamines solides.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
+  description: 'Wilson était connu pour ses préoccupations d’égalité, de justice sociale, ainsi que les qualités essentielles et spirituelles de l’humanité. Ce bronze massif (de 2,13 mètres de hauteur ou 7 pieds) représente ce qu’il a décrit comme « une présence noire symbolique imprégnée d’un sens d’humanité universelle ».',
   url: 'https://i.imgur.com/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
+  alt: 'La sculpture représentant une tête humaine semble être toujours présente et solennelle. Elle rayonne de calme et de sérénité.'
 }, {
   name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
+  artist: 'Artiste inconnu·e',
+  description: 'Sur l’île de Pâques, il y a 1 000 moaïs, ou statues monumentales encore existantes, créées par les premiers habitants Rapa Nui, que certains croient représenter des ancêtres divinisés.',
   url: 'https://i.imgur.com/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
+  alt: 'Trois bustes de pierre monumentaux avec des têtes démesurément grandes et des visages sombres.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
+  description: 'Les Nanas sont des créatures triomphantes, symboles de féminité et de maternité. Initialement, Saint Phalle utilisait des tissus et des objets trouvés pour les Nanas, et plus tard, elle a introduit du polyester pour obtenir un effet plus vibrant.',
   url: 'https://i.imgur.com/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
+  alt: 'Une grande sculpture en mosaïque d’une figure féminine fantaisiste dansant dans un costume coloré rayonnant de joie.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
+  description: 'Cette sculpture abstraite en bronze fait partie de la série « La Famille de l’Homme » située au parc de sculptures de Yorkshire. Hepworth a choisi de ne pas créer des représentations littérales du monde, mais a développé des formes abstraites inspirées des personnes et des paysages.',
   url: 'https://i.imgur.com/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
+  alt: 'Une sculpture haute composée de trois éléments empilés rappelant une figure humaine.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
+  description: "Descendant de quatre générations de sculpteurs sur bois, le travail de Fakeye mélangeait des thèmes yorubas traditionnels et contemporains.",
   url: 'https://i.imgur.com/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
+  alt: 'Une sculpture en bois complexe représentant un guerrier au visage concentré sur un cheval orné de motifs.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
+  description: "Szapocznikow est connue pour ses sculptures du corps fragmenté en tant que métaphore de la fragilité et de l’impermanence de la jeunesse et de la beauté. Cette sculpture représente deux ventres très réalistes empilés l’un sur l’autre, chacun mesurant environ cinq pieds (1,5m) de hauteur.",
   url: 'https://i.imgur.com/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
+  alt: 'La sculpture rappelle une cascade de plis, très différente des ventres dans les sculptures classiques.'
 }, {
   name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
+  artist: 'Artiste inconnu·e',
+  description: 'L’Armée de terre cuite est une collection de sculptures en terre cuite représentant les armées de Qin Shi Huang, le premier empereur de Chine. L’armée était composée de plus de 8 000 soldats, 130 chars tirés par 520 chevaux et 150 chevaux montés par des cavaliers.',
   url: 'https://i.imgur.com/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
+  alt: '12 sculptures de guerriers solennels en terre cuite, chacun avec une expression faciale et une armure uniques.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
+  description: 'Nevelson était connue pour récupérer des objets dans les débris de la ville de New York, qu’elle assemblerait plus tard en constructions monumentales. Dans celle-ci, elle a utilisé des pièces disparates telles qu’un pied de lit, un bâton de jonglage et un fragment de siège, les clouant et les collant dans des boîtes qui reflètent l’influence de l’abstraction géométrique de l’espace et de la forme du cubisme.',
   url: 'https://i.imgur.com/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
+  alt: 'Une sculpture mate en noir où les éléments individuels sont initialement indiscernables.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
+  description: 'Shettar fusionne le traditionnel et le moderne, le naturel et l’industriel. Son art se concentre sur la relation entre l’homme et la nature. Son travail a été décrit comme étant captivant à la fois de manière abstraite et figurative, défiant la gravité, et une « synthèse fine de matériaux improbables »."',
   url: 'https://i.imgur.com/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
+  alt: 'Une sculpture pâle en forme de fil de fer fixée au mur en béton et descendant jusqu’au sol. Elle semble légère.'
 }, {
   name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
+  artist: 'Zoo de Taipei',
+  description: 'Le zoo de Taipei a commandé des sculptures installées sur une place, représentant des hippopotames submergés en train de jouer.',
   url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
+  alt: 'Un groupe de sculptures d’hippopotames en bronze émergeant du trottoir en pavés comme s’ils nageaient.'
 }];
 
-// Make UI match the initial state.
+// Synchroniser l’UI avec l'état initial.
 updateDOM();
 ```
 
 ```html public/index.html
 <button id="nextButton">
-  Next
+  Suivant
 </button>
 <h3 id="header"></h3>
 <button id="moreButton"></button>
@@ -724,15 +724,15 @@ button { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-You don't have to understand it to use React, but you might find this a helpful mental model.
+Vous n'avez pas besoin de le comprendre pour utiliser React, mais vous trouverez peut-être ce modèle mental utile.
 
 </DeepDive>
 
-## State is isolated and private {/*state-is-isolated-and-private*/}
+## L'état est isolé et privé {/*state-is-isolated-and-private*/}
 
-State is local to a component instance on the screen. In other words, **if you render the same component twice, each copy will have completely isolated state!** Changing one of them will not affect the other.
+L'état est local à l'instance du composant à l'écran. En d'autres termes, **si vous affichez le même composant deux fois, chaque copie aura son propre état, complètement isolé !**  Modifier l'un des deux ne touchera pas à l'autre.
 
-In this example, the `Gallery` component from earlier is rendered twice with no changes to its logic. Try clicking the buttons inside each of the galleries. Notice that their state is independent:
+Dans cet exemple, le composant `Gallery` vu plus tôt est affiché deux fois, sans aucun changement dans son code. Essayez de cliquer sur les boutons de chacune des deux galeries.  Vous pouvez constater que leurs états sont bel et bien indépendants :
 
 <Sandpack>
 
@@ -770,21 +770,21 @@ export default function Gallery() {
   return (
     <section>
       <button onClick={handleNextClick}>
-        Next
+        Suivant
       </button>
       <h2>
-        <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        <i>{sculpture.name} </i>
+        par {sculpture.artist}
       </h2>
-      <h3>  
-        ({index + 1} of {sculptureList.length})
+      <h3>
+        ({index + 1} sur {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
+        {showMore ? 'Masquer' : 'Afficher'} les détails
       </button>
       {showMore && <p>{sculpture.description}</p>}
-      <img 
-        src={sculpture.url} 
+      <img
+        src={sculpture.url}
         alt={sculpture.alt}
       />
     </section>
@@ -796,75 +796,75 @@ export default function Gallery() {
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
+  description: 'Bien que Colvin soit principalement connue pour ses thèmes abstraits qui font allusion à des symboles préhispaniques, cette sculpture gigantesque, un hommage à la neurochirurgie, est l’une de ses pièces d’art public les plus reconnaissables.',
   url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'  
+  alt: 'Une statue en bronze de deux mains croisées tenant délicatement un cerveau humain du bout des doigts.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
+  description: 'Cette immense fleur argentée (de 23 mètres de haut ou 75 pieds) est située à Buenos Aires. Elle est conçue pour bouger, en fermant ses pétales le soir ou lors de vents forts, et en les ouvrant le matin.',
   url: 'https://i.imgur.com/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
+  alt: 'Une sculpture de fleur métallique gigantesque avec des pétales réfléchissants, semblables à des miroirs, et des étamines solides.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
+  description: 'Wilson était connu pour ses préoccupations d’égalité, de justice sociale, ainsi que les qualités essentielles et spirituelles de l’humanité. Ce bronze massif (de 2,13 mètres de hauteur ou 7 pieds) représente ce qu’il a décrit comme « une présence noire symbolique imprégnée d’un sens d’humanité universelle ».',
   url: 'https://i.imgur.com/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
+  alt: 'La sculpture représentant une tête humaine semble être toujours présente et solennelle. Elle rayonne de calme et de sérénité.'
 }, {
   name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
+  artist: 'Artiste inconnu·e',
+  description: 'Sur l’île de Pâques, il y a 1 000 moaïs, ou statues monumentales encore existantes, créées par les premiers habitants Rapa Nui, que certains croient représenter des ancêtres divinisés.',
   url: 'https://i.imgur.com/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
+  alt: 'Trois bustes de pierre monumentaux avec des têtes démesurément grandes et des visages sombres.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
+  description: 'Les Nanas sont des créatures triomphantes, symboles de féminité et de maternité. Initialement, Saint Phalle utilisait des tissus et des objets trouvés pour les Nanas, et plus tard, elle a introduit du polyester pour obtenir un effet plus vibrant.',
   url: 'https://i.imgur.com/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
+  alt: 'Une grande sculpture en mosaïque d’une figure féminine fantaisiste dansant dans un costume coloré rayonnant de joie.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
+  description: 'Cette sculpture abstraite en bronze fait partie de la série « La Famille de l’Homme » située au parc de sculptures de Yorkshire. Hepworth a choisi de ne pas créer des représentations littérales du monde, mais a développé des formes abstraites inspirées des personnes et des paysages.',
   url: 'https://i.imgur.com/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
+  alt: 'Une sculpture haute composée de trois éléments empilés rappelant une figure humaine.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
+  description: "Descendant de quatre générations de sculpteurs sur bois, le travail de Fakeye mélangeait des thèmes yorubas traditionnels et contemporains.",
   url: 'https://i.imgur.com/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
+  alt: 'Une sculpture en bois complexe représentant un guerrier au visage concentré sur un cheval orné de motifs.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
+  description: "Szapocznikow est connue pour ses sculptures du corps fragmenté en tant que métaphore de la fragilité et de l’impermanence de la jeunesse et de la beauté. Cette sculpture représente deux ventres très réalistes empilés l’un sur l’autre, chacun mesurant environ cinq pieds (1,5m) de hauteur.",
   url: 'https://i.imgur.com/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
+  alt: 'La sculpture rappelle une cascade de plis, très différente des ventres dans les sculptures classiques.'
 }, {
   name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
+  artist: 'Artiste inconnu·e',
+  description: 'L’Armée de terre cuite est une collection de sculptures en terre cuite représentant les armées de Qin Shi Huang, le premier empereur de Chine. L’armée était composée de plus de 8 000 soldats, 130 chars tirés par 520 chevaux et 150 chevaux montés par des cavaliers.',
   url: 'https://i.imgur.com/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
+  alt: '12 sculptures de guerriers solennels en terre cuite, chacun avec une expression faciale et une armure uniques.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
+  description: 'Nevelson était connue pour récupérer des objets dans les débris de la ville de New York, qu’elle assemblerait plus tard en constructions monumentales. Dans celle-ci, elle a utilisé des pièces disparates telles qu’un pied de lit, un bâton de jonglage et un fragment de siège, les clouant et les collant dans des boîtes qui reflètent l’influence de l’abstraction géométrique de l’espace et de la forme du cubisme.',
   url: 'https://i.imgur.com/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
+  alt: 'Une sculpture mate en noir où les éléments individuels sont initialement indiscernables.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
+  description: 'Shettar fusionne le traditionnel et le moderne, le naturel et l’industriel. Son art se concentre sur la relation entre l’homme et la nature. Son travail a été décrit comme étant captivant à la fois de manière abstraite et figurative, défiant la gravité, et une « synthèse fine de matériaux improbables »."',
   url: 'https://i.imgur.com/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
+  alt: 'Une sculpture pâle en forme de fil de fer fixée au mur en béton et descendant jusqu’au sol. Elle semble légère.'
 }, {
   name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
+  artist: 'Zoo de Taipei',
+  description: 'Le zoo de Taipei a commandé des sculptures installées sur une place, représentant des hippopotames submergés en train de jouer.',
   url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
+  alt: 'Un groupe de sculptures d’hippopotames en bronze émergeant du trottoir en pavés comme s’ils nageaient.'
 }];
 ```
 
@@ -891,33 +891,31 @@ button {
 
 </Sandpack>
 
-This is what makes state different from regular variables that you might declare at the top of your module. State is not tied to a particular function call or a place in the code, but it's "local" to the specific place on the screen. You rendered two `<Gallery />` components, so their state is stored separately.
+Voilà le cœur de la différence entre des variables d'état et des variables classiques que vous auriez pu déclarer à la racine de votre module. L'état n'est pas lié à un appel de fonction particulier ou à un endroit dans votre code, il est « local » à un emplacement précis à l'écran. Vous avez affiché deux composants `<Gallery />`, leurs états sont donc stockés séparément.
 
-Also notice how the `Page` component doesn't "know" anything about the `Gallery` state or even whether it has any. Unlike props, **state is fully private to the component declaring it.** The parent component can't change it. This lets you add state to any component or remove it without impacting the rest of the components.
+Remarquez aussi que le composant `Page` ne « connaît » rien de l'état du composant `Gallery`, il ne sait en fait même pas s'il a un état.  Contrairement aux props, **l'état est totalement privé pour le composant qui le déclare.**  Le composant parent ne peut pas le modifier. Ça vous permet d'ajouter ou de retirer de l'état dans n'importe quel composant sans impacter les autres.
 
-What if you wanted both galleries to keep their states in sync? The right way to do it in React is to *remove* state from child components and add it to their closest shared parent. The next few pages will focus on organizing state of a single component, but we will return to this topic in [Sharing State Between Components.](/learn/sharing-state-between-components)
+Et si vous vouliez que les deux galeries conservent un état synchronisé ? En React, la bonne manière d'y parvenir consisterait à *retirer* l'état des composants enfants pour le déplacer vers leur plus proche ancêtre commun.  Dans les prochaines pages, nous nous concentrerons sur l'organisation de l'état au sein d'un seul composant, mais nous reviendrons sur ce sujet dans [Partager l’état entre des composants](/learn/sharing-state-between-components).
 
 <Recap>
 
-* Use a state variable when a component needs to "remember" some information between renders.
-* State variables are declared by calling the `useState` Hook.
-* Hooks are special functions that start with `use`. They let you "hook into" React features like state.
-* Hooks might remind you of imports: they need to be called unconditionally. Calling Hooks, including `useState`, is only valid at the top level of a component or another Hook.
-* The `useState` Hook returns a pair of values: the current state and the function to update it.
-* You can have more than one state variable. Internally, React matches them up by their order.
-* State is private to the component. If you render it in two places, each copy gets its own state.
+* Utilisez une variable d'état quand un composant doit « se souvenir » d'une information d'un rendu à l'autre.
+* Les variables d'état sont déclarées en appelant le Hook `useState`.
+* Les Hooks sont des fonctions spéciales dont le nom commence par `use`.  Ils vous permettent de « vous accrocher » à certaines fonctionnalités de React, telles que l'état local.
+* Les Hooks vous rappellent peut-être les imports : ils doivent être appelés inconditionnellement.  Appeler des Hooks, y compris `useState`, n'est autorisé qu'à la racine d'un composant ou d'un autre Hook.
+* Le Hook `useState` renvoie une paire de valeurs : la valeur courante de l'état et la fonction pour la mettre à jour.
+* Vous pouvez avoir plusieurs varaibles d'état. En interne, React maintient la correspondance au moyen de leur ordre d'appel.
+* L'état est privé au composant. Si vous affichez un composant à deux endroits, chaque instance a son propre état.
 
 </Recap>
 
-
-
 <Challenges>
 
-#### Complete the gallery {/*complete-the-gallery*/}
+#### Compléter la galerie {/*complete-the-gallery*/}
 
-When you press "Next" on the last sculpture, the code crashes. Fix the logic to prevent the crash. You may do this by adding extra logic to event handler or by disabling the button when the action is not possible.
+Lorsque vous appuyez sur « Suivant » alors que la dernière sculpture est affiché, le code plante. Corrigez la logique pour éviter ça. Vous pouvez y parvenir en ajoutant du code au gestionnaire d'événement, ou en désactivant le bouton quand l'action devient impossible.
 
-After fixing the crash, add a "Previous" button that shows the previous sculpture. It shouldn't crash on the first sculpture.
+Après avoir corrigé le crash, ajoutez un bouton « Précédent » qui permet de revenir en arrière.  Il ne devrait pas planter sur la première sculpture.
 
 <Sandpack>
 
@@ -941,21 +939,21 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleNextClick}>
-        Next
+        Suivant
       </button>
       <h2>
-        <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        <i>{sculpture.name} </i>
+        par {sculpture.artist}
       </h2>
-      <h3>  
-        ({index + 1} of {sculptureList.length})
+      <h3>
+        ({index + 1} sur {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
+        {showMore ? 'Masquer' : 'Afficher'} les détails
       </button>
       {showMore && <p>{sculpture.description}</p>}
-      <img 
-        src={sculpture.url} 
+      <img
+        src={sculpture.url}
         alt={sculpture.alt}
       />
     </>
@@ -967,75 +965,75 @@ export default function Gallery() {
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
+  description: 'Bien que Colvin soit principalement connue pour ses thèmes abstraits qui font allusion à des symboles préhispaniques, cette sculpture gigantesque, un hommage à la neurochirurgie, est l’une de ses pièces d’art public les plus reconnaissables.',
   url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'  
+  alt: 'Une statue en bronze de deux mains croisées tenant délicatement un cerveau humain du bout des doigts.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
+  description: 'Cette immense fleur argentée (de 23 mètres de haut ou 75 pieds) est située à Buenos Aires. Elle est conçue pour bouger, en fermant ses pétales le soir ou lors de vents forts, et en les ouvrant le matin.',
   url: 'https://i.imgur.com/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
+  alt: 'Une sculpture de fleur métallique gigantesque avec des pétales réfléchissants, semblables à des miroirs, et des étamines solides.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
+  description: 'Wilson était connu pour ses préoccupations d’égalité, de justice sociale, ainsi que les qualités essentielles et spirituelles de l’humanité. Ce bronze massif (de 2,13 mètres de hauteur ou 7 pieds) représente ce qu’il a décrit comme « une présence noire symbolique imprégnée d’un sens d’humanité universelle ».',
   url: 'https://i.imgur.com/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
+  alt: 'La sculpture représentant une tête humaine semble être toujours présente et solennelle. Elle rayonne de calme et de sérénité.'
 }, {
   name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
+  artist: 'Artiste inconnu·e',
+  description: 'Sur l’île de Pâques, il y a 1 000 moaïs, ou statues monumentales encore existantes, créées par les premiers habitants Rapa Nui, que certains croient représenter des ancêtres divinisés.',
   url: 'https://i.imgur.com/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
+  alt: 'Trois bustes de pierre monumentaux avec des têtes démesurément grandes et des visages sombres.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
+  description: 'Les Nanas sont des créatures triomphantes, symboles de féminité et de maternité. Initialement, Saint Phalle utilisait des tissus et des objets trouvés pour les Nanas, et plus tard, elle a introduit du polyester pour obtenir un effet plus vibrant.',
   url: 'https://i.imgur.com/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
+  alt: 'Une grande sculpture en mosaïque d’une figure féminine fantaisiste dansant dans un costume coloré rayonnant de joie.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
+  description: 'Cette sculpture abstraite en bronze fait partie de la série « La Famille de l’Homme » située au parc de sculptures de Yorkshire. Hepworth a choisi de ne pas créer des représentations littérales du monde, mais a développé des formes abstraites inspirées des personnes et des paysages.',
   url: 'https://i.imgur.com/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
+  alt: 'Une sculpture haute composée de trois éléments empilés rappelant une figure humaine.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
+  description: "Descendant de quatre générations de sculpteurs sur bois, le travail de Fakeye mélangeait des thèmes yorubas traditionnels et contemporains.",
   url: 'https://i.imgur.com/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
+  alt: 'Une sculpture en bois complexe représentant un guerrier au visage concentré sur un cheval orné de motifs.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
+  description: "Szapocznikow est connue pour ses sculptures du corps fragmenté en tant que métaphore de la fragilité et de l’impermanence de la jeunesse et de la beauté. Cette sculpture représente deux ventres très réalistes empilés l’un sur l’autre, chacun mesurant environ cinq pieds (1,5m) de hauteur.",
   url: 'https://i.imgur.com/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
+  alt: 'La sculpture rappelle une cascade de plis, très différente des ventres dans les sculptures classiques.'
 }, {
   name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
+  artist: 'Artiste inconnu·e',
+  description: 'L’Armée de terre cuite est une collection de sculptures en terre cuite représentant les armées de Qin Shi Huang, le premier empereur de Chine. L’armée était composée de plus de 8 000 soldats, 130 chars tirés par 520 chevaux et 150 chevaux montés par des cavaliers.',
   url: 'https://i.imgur.com/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
+  alt: '12 sculptures de guerriers solennels en terre cuite, chacun avec une expression faciale et une armure uniques.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
+  description: 'Nevelson était connue pour récupérer des objets dans les débris de la ville de New York, qu’elle assemblerait plus tard en constructions monumentales. Dans celle-ci, elle a utilisé des pièces disparates telles qu’un pied de lit, un bâton de jonglage et un fragment de siège, les clouant et les collant dans des boîtes qui reflètent l’influence de l’abstraction géométrique de l’espace et de la forme du cubisme.',
   url: 'https://i.imgur.com/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
+  alt: 'Une sculpture mate en noir où les éléments individuels sont initialement indiscernables.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
+  description: 'Shettar fusionne le traditionnel et le moderne, le naturel et l’industriel. Son art se concentre sur la relation entre l’homme et la nature. Son travail a été décrit comme étant captivant à la fois de manière abstraite et figurative, défiant la gravité, et une « synthèse fine de matériaux improbables »."',
   url: 'https://i.imgur.com/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
+  alt: 'Une sculpture pâle en forme de fil de fer fixée au mur en béton et descendant jusqu’au sol. Elle semble légère.'
 }, {
   name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
+  artist: 'Zoo de Taipei',
+  description: 'Le zoo de Taipei a commandé des sculptures installées sur une place, représentant des hippopotames submergés en train de jouer.',
   url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
+  alt: 'Un groupe de sculptures d’hippopotames en bronze émergeant du trottoir en pavés comme s’ils nageaient.'
 }];
 ```
 
@@ -1059,7 +1057,7 @@ img { width: 120px; height: 120px; }
 
 <Solution>
 
-This adds a guarding condition inside both event handlers and disables the buttons when needed:
+Ajoutez une condition de garde-fou dans les deux gestionnaires d'événements et désactivez les boutons quand c'est nécessaire :
 
 <Sandpack>
 
@@ -1097,27 +1095,27 @@ export default function Gallery() {
         onClick={handlePrevClick}
         disabled={!hasPrev}
       >
-        Previous
+        Précédent
       </button>
       <button
         onClick={handleNextClick}
         disabled={!hasNext}
       >
-        Next
+        Suivant
       </button>
       <h2>
-        <i>{sculpture.name} </i> 
-        by {sculpture.artist}
+        <i>{sculpture.name} </i>
+        par {sculpture.artist}
       </h2>
-      <h3>  
-        ({index + 1} of {sculptureList.length})
+      <h3>
+        ({index + 1} sur {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
+        {showMore ? 'Masquer' : 'Afficher'} les détails
       </button>
       {showMore && <p>{sculpture.description}</p>}
-      <img 
-        src={sculpture.url} 
+      <img
+        src={sculpture.url}
         alt={sculpture.alt}
       />
     </>
@@ -1129,75 +1127,75 @@ export default function Gallery() {
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
+  description: 'Bien que Colvin soit principalement connue pour ses thèmes abstraits qui font allusion à des symboles préhispaniques, cette sculpture gigantesque, un hommage à la neurochirurgie, est l’une de ses pièces d’art public les plus reconnaissables.',
   url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'  
+  alt: 'Une statue en bronze de deux mains croisées tenant délicatement un cerveau humain du bout des doigts.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
+  description: 'Cette immense fleur argentée (de 23 mètres de haut ou 75 pieds) est située à Buenos Aires. Elle est conçue pour bouger, en fermant ses pétales le soir ou lors de vents forts, et en les ouvrant le matin.',
   url: 'https://i.imgur.com/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
+  alt: 'Une sculpture de fleur métallique gigantesque avec des pétales réfléchissants, semblables à des miroirs, et des étamines solides.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
+  description: 'Wilson était connu pour ses préoccupations d’égalité, de justice sociale, ainsi que les qualités essentielles et spirituelles de l’humanité. Ce bronze massif (de 2,13 mètres de hauteur ou 7 pieds) représente ce qu’il a décrit comme « une présence noire symbolique imprégnée d’un sens d’humanité universelle ».',
   url: 'https://i.imgur.com/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
+  alt: 'La sculpture représentant une tête humaine semble être toujours présente et solennelle. Elle rayonne de calme et de sérénité.'
 }, {
   name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
+  artist: 'Artiste inconnu·e',
+  description: 'Sur l’île de Pâques, il y a 1 000 moaïs, ou statues monumentales encore existantes, créées par les premiers habitants Rapa Nui, que certains croient représenter des ancêtres divinisés.',
   url: 'https://i.imgur.com/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
+  alt: 'Trois bustes de pierre monumentaux avec des têtes démesurément grandes et des visages sombres.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
+  description: 'Les Nanas sont des créatures triomphantes, symboles de féminité et de maternité. Initialement, Saint Phalle utilisait des tissus et des objets trouvés pour les Nanas, et plus tard, elle a introduit du polyester pour obtenir un effet plus vibrant.',
   url: 'https://i.imgur.com/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
+  alt: 'Une grande sculpture en mosaïque d’une figure féminine fantaisiste dansant dans un costume coloré rayonnant de joie.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
+  description: 'Cette sculpture abstraite en bronze fait partie de la série « La Famille de l’Homme » située au parc de sculptures de Yorkshire. Hepworth a choisi de ne pas créer des représentations littérales du monde, mais a développé des formes abstraites inspirées des personnes et des paysages.',
   url: 'https://i.imgur.com/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
+  alt: 'Une sculpture haute composée de trois éléments empilés rappelant une figure humaine.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
+  description: "Descendant de quatre générations de sculpteurs sur bois, le travail de Fakeye mélangeait des thèmes yorubas traditionnels et contemporains.",
   url: 'https://i.imgur.com/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
+  alt: 'Une sculpture en bois complexe représentant un guerrier au visage concentré sur un cheval orné de motifs.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
+  description: "Szapocznikow est connue pour ses sculptures du corps fragmenté en tant que métaphore de la fragilité et de l’impermanence de la jeunesse et de la beauté. Cette sculpture représente deux ventres très réalistes empilés l’un sur l’autre, chacun mesurant environ cinq pieds (1,5m) de hauteur.",
   url: 'https://i.imgur.com/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
+  alt: 'La sculpture rappelle une cascade de plis, très différente des ventres dans les sculptures classiques.'
 }, {
   name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
+  artist: 'Artiste inconnu·e',
+  description: 'L’Armée de terre cuite est une collection de sculptures en terre cuite représentant les armées de Qin Shi Huang, le premier empereur de Chine. L’armée était composée de plus de 8 000 soldats, 130 chars tirés par 520 chevaux et 150 chevaux montés par des cavaliers.',
   url: 'https://i.imgur.com/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
+  alt: '12 sculptures de guerriers solennels en terre cuite, chacun avec une expression faciale et une armure uniques.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
+  description: 'Nevelson était connue pour récupérer des objets dans les débris de la ville de New York, qu’elle assemblerait plus tard en constructions monumentales. Dans celle-ci, elle a utilisé des pièces disparates telles qu’un pied de lit, un bâton de jonglage et un fragment de siège, les clouant et les collant dans des boîtes qui reflètent l’influence de l’abstraction géométrique de l’espace et de la forme du cubisme.',
   url: 'https://i.imgur.com/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
+  alt: 'Une sculpture mate en noir où les éléments individuels sont initialement indiscernables.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
+  description: 'Shettar fusionne le traditionnel et le moderne, le naturel et l’industriel. Son art se concentre sur la relation entre l’homme et la nature. Son travail a été décrit comme étant captivant à la fois de manière abstraite et figurative, défiant la gravité, et une « synthèse fine de matériaux improbables »."',
   url: 'https://i.imgur.com/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
+  alt: 'Une sculpture pâle en forme de fil de fer fixée au mur en béton et descendant jusqu’au sol. Elle semble légère.'
 }, {
   name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
+  artist: 'Zoo de Taipei',
+  description: 'Le zoo de Taipei a commandé des sculptures installées sur une place, représentant des hippopotames submergés en train de jouer.',
   url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
+  alt: 'Un groupe de sculptures d’hippopotames en bronze émergeant du trottoir en pavés comme s’ils nageaient.'
 }];
 ```
 
@@ -1219,13 +1217,13 @@ img { width: 120px; height: 120px; }
 
 </Sandpack>
 
-Notice how `hasPrev` and `hasNext` are used *both* for the returned JSX and inside the event handlers! This handy pattern works because event handler functions ["close over"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) any variables declared while rendering.
+Remarquez que `hasPrev` et `hasNext` sont utilisés *à la fois* dans le JSX renvoyé et au sein des gestionnaires d'événements ! Cette approche bien pratique fonctionne parce que les fonctions des gestionnaires d'événements bénéficient par [« fermeture lexicale »](https://developer.mozilla.org/fr/docs/Web/JavaScript/Closures) des variables déclarées lors du rendu.
 
 </Solution>
 
-#### Fix stuck form inputs {/*fix-stuck-form-inputs*/}
+#### Dégeler le champ de formulaire {/*fix-stuck-form-inputs*/}
 
-When you type into the input fields, nothing appears. It's like the input values are "stuck" with empty strings. The `value` of the first `<input>` is set to always match the `firstName` variable, and the `value` for the second `<input>` is set to always match the `lastName` variable. This is correct. Both inputs have `onChange` event handlers, which try to update the variables based on the latest user input (`e.target.value`). However, the variables don't seem to "remember" their values between re-renders. Fix this by using state variables instead.
+Lorsque vous tapez au clavier quelque chose dans les champs de saisie, rien n'y apparaît. C'est comme si vos champs étaient « figés » sur leurs valeurs vides. La `value` du premier `<input>` est définie de façon à toujours correspondre à la variable `firstName`, et la `value` du second `<input>` est calée pour toujours correspondre à la variable `lastName`.  Ça, c'est bon.  Les deux champs ont des gestionnaires d'événements `onChange`, qui essaient de mettre à jour les variables sur base de la dernière saisie en date (`e.target.value`). Pourtant, ces variables ne semblent pas « se souvenir » de leurs valeurs d'un rendu à l'autre. Corrigez ça en utilisant plutôt des variables d'état.
 
 <Sandpack>
 
@@ -1250,23 +1248,23 @@ export default function Form() {
   return (
     <form onSubmit={e => e.preventDefault()}>
       <input
-        placeholder="First name"
+        placeholder="Prénom"
         value={firstName}
         onChange={handleFirstNameChange}
       />
       <input
-        placeholder="Last name"
+        placeholder="Nom"
         value={lastName}
         onChange={handleLastNameChange}
       />
-      <h1>Hi, {firstName} {lastName}</h1>
-      <button onClick={handleReset}>Reset</button>
+      <h1>Salut {firstName} {lastName}</h1>
+      <button onClick={handleReset}>Réinitialiser</button>
     </form>
   );
 }
 ```
 
-```css 
+```css
 h1 { margin-top: 10px; }
 ```
 
@@ -1274,7 +1272,7 @@ h1 { margin-top: 10px; }
 
 <Solution>
 
-First, import `useState` from React. Then replace `firstName` and `lastName` with state variables declared by calling `useState`. Finally, replace every `firstName = ...` assignment with `setFirstName(...)`, and do the same for `lastName`. Don't forget to update `handleReset` too so that the reset button works.
+Commencez par importer `useState` depuis React. Ensuite, remplacez `firstName` et `lastName` par des variables d'état déclarées en appelant `useState`.  Pour finir, remplacez chaque affectation `firstName =  …` par `setFirstName(…)`, et faites de même pour `lastName`.  N'oubliez pas de mettre à jour `handleReset` pour que le bouton de réinitialisation fonctionne.
 
 <Sandpack>
 
@@ -1301,23 +1299,23 @@ export default function Form() {
   return (
     <form onSubmit={e => e.preventDefault()}>
       <input
-        placeholder="First name"
+        placeholder="Prénom"
         value={firstName}
         onChange={handleFirstNameChange}
       />
       <input
-        placeholder="Last name"
+        placeholder="Nom"
         value={lastName}
         onChange={handleLastNameChange}
       />
-      <h1>Hi, {firstName} {lastName}</h1>
-      <button onClick={handleReset}>Reset</button>
+      <h1>Salut {firstName} {lastName}</h1>
+      <button onClick={handleReset}>Réinitialiser</button>
     </form>
   );
 }
 ```
 
-```css 
+```css
 h1 { margin-top: 10px; }
 ```
 
@@ -1325,13 +1323,13 @@ h1 { margin-top: 10px; }
 
 </Solution>
 
-#### Fix a crash {/*fix-a-crash*/}
+#### Corriger un crash {/*fix-a-crash*/}
 
-Here is a small form that is supposed to let the user leave some feedback. When the feedback is submitted, it's supposed to display a thank-you message. However, it crashes with an error message saying "Rendered fewer hooks than expected". Can you spot the mistake and fix it?
+Voici un petit formulaire qui est censé permettre à l'utilisateur de nous faire part de ses retours.  Lorsque le formulaire est envoyé, il est supposé afficher un message de remerciement. Pourtant, il plante avec un message d'erreur qui dit *“Rendered fewer hooks than expected”*(« Moins de Hooks que prévu lors du rendu », NdT)*.  Saurez-vous repérer l'origine du problème et la corriger ?
 
 <Hint>
 
-Are there any limitations on _where_ Hooks may be called? Does this component break any rules? Check if there are any comments disabling the linter checks--this is where the bugs often hide!
+Y'a-t-il des limitations sur les *endroits* où un Hook peut être appelé ? Ce composant enfreint-il des règles ? Regardez s'il n'y aurait pas des commentaires qui désactivent des vérifications du *linter* — c'est souvent là que les bugs se cachent !
 
 </Hint>
 
@@ -1343,7 +1341,7 @@ import { useState } from 'react';
 export default function FeedbackForm() {
   const [isSent, setIsSent] = useState(false);
   if (isSent) {
-    return <h1>Thank you!</h1>;
+    return <h1>Merci !</h1>;
   } else {
     // eslint-disable-next-line
     const [message, setMessage] = useState('');
@@ -1359,7 +1357,7 @@ export default function FeedbackForm() {
           onChange={e => setMessage(e.target.value)}
         />
         <br />
-        <button type="submit">Send</button>
+        <button type="submit">Envoyer</button>
       </form>
     );
   }
@@ -1370,9 +1368,9 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Hooks can only be called at the top level of the component function. Here, the first `isSent` definition follows this rule, but the `message` definition is nested in a condition.
+Les Hooks ne peuvent être appelés qu'à la racine de votre fonction composant.  Ici la première définition (`isSent`) obéit à cette règle, mais celle de `definition` figure au sein d'une condition.
 
-Move it out of the condition to fix the issue:
+Sortez-la de la condition pour corriger le problème :
 
 <Sandpack>
 
@@ -1384,7 +1382,7 @@ export default function FeedbackForm() {
   const [message, setMessage] = useState('');
 
   if (isSent) {
-    return <h1>Thank you!</h1>;
+    return <h1>Merci !</h1>;
   } else {
     return (
       <form onSubmit={e => {
@@ -1398,7 +1396,7 @@ export default function FeedbackForm() {
           onChange={e => setMessage(e.target.value)}
         />
         <br />
-        <button type="submit">Send</button>
+        <button type="submit">Envoyer</button>
       </form>
     );
   }
@@ -1407,9 +1405,9 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-Remember, Hooks must be called unconditionally and always in the same order!
+Souvenez-vous : les Hooks doivent être appelés inconditionnellement et toujours dans le même ordre !
 
-You could also remove the unnecessary `else` branch to reduce the nesting. However, it's still important that all calls to Hooks happen *before* the first `return`.
+Vous pouvez aussi retirer la branche `else` superflue pour réduire l'indentation.  Cependant, il reste nécessaire que tous les appels aux Hooks aient lieu *avant* le premier `return`.
 
 <Sandpack>
 
@@ -1421,7 +1419,7 @@ export default function FeedbackForm() {
   const [message, setMessage] = useState('');
 
   if (isSent) {
-    return <h1>Thank you!</h1>;
+    return <h1>Merci !</h1>;
   }
 
   return (
@@ -1436,7 +1434,7 @@ export default function FeedbackForm() {
         onChange={e => setMessage(e.target.value)}
       />
       <br />
-      <button type="submit">Send</button>
+      <button type="submit">Envoyer</button>
     </form>
   );
 }
@@ -1444,19 +1442,19 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-Try moving the second `useState` call after the `if` condition and notice how this breaks it again.
+Essayez de déplacer le second appel à `useState` après la condition `if` et voyez comme ça crashe à nouveau.
 
-If your linter is [configured for React](/learn/editor-setup#linting), you should see a lint error when you make a mistake like this. If you don't see an error when you try the faulty code locally, you need to set up linting for your project. 
+Si votre *linter* est [configuré pour React](/learn/editor-setup#linting), vous verrez une erreur de *linting* lorsque vous faites ce genre de bévue.  Si vous ne voyez pas d'erreur quand vous essayez ce code en local, c'est qu'il vous faut configurer le *linting* pour votre projet.
 
 </Solution>
 
-#### Remove unnecessary state {/*remove-unnecessary-state*/}
+#### Retirer l'état superflu {/*remove-unnecessary-state*/}
 
-When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
+Lorsque vous cliquez sur le bouton, cet exemple devrait demander à l'utilisateur son nom et afficher une alerte pour le saluer.  Vous avez essayé de recourir à un état pour vous souvenir de son nom, mais pour une raison ou une autre ça affiche toujours « Bonjour ! ».
 
-To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/state-as-a-snapshot) later.)
+Pour corriger ce code, retirez la variable d'état superflue. (Nous explorerons les [raison de ce problème](/learn/state-as-a-snapshot) prochainement.)
 
-Can you explain why this state variable was unnecessary?
+Pouvez-vous expliquez en quoi cette variable d'état est superflue ?
 
 <Sandpack>
 
@@ -1467,13 +1465,13 @@ export default function FeedbackForm() {
   const [name, setName] = useState('');
 
   function handleClick() {
-    setName(prompt('What is your name?'));
-    alert(`Hello, ${name}!`);
+    setName(prompt('Comment vous appelez-vous ?'));
+    alert(`Bonjour ${name} !`);
   }
 
   return (
     <button onClick={handleClick}>
-      Greet
+      Saluer
     </button>
   );
 }
@@ -1483,7 +1481,7 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Here is a fixed version that uses a regular `name` variable declared in the function that needs it:
+Voici une version corrigée qui utilise une variable `name` classique, déclarée dans la fonction qui en a besoin :
 
 <Sandpack>
 
@@ -1492,13 +1490,13 @@ import { useState } from 'react';
 
 export default function FeedbackForm() {
   function handleClick() {
-    const name = prompt('What is your name?');
-    alert(`Hello, ${name}!`);
+    const name = prompt('Comment vous appelez-vous ?');
+    alert(`Bonjour ${name} !`);
   }
 
   return (
     <button onClick={handleClick}>
-      Greet
+      Saluer
     </button>
   );
 }
@@ -1506,7 +1504,7 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-A state variable is only necessary to keep information between re-renders of a component. Within a single event handler, a regular variable will do fine. Don't introduce state variables when a regular variable works well.
+Une variable d'état n'est nécessaire que pour persister une information d'un rendu à l'autre pour un composant.  Au sein d'un unique gestionnaire d'événement, une variable classique suffira amplement.  N'ajoutez pas de variables d'état quand une variable classique suffirait.
 
 </Solution>
 
