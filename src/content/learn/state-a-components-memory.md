@@ -4,7 +4,7 @@ title: "L’état : la mémoire d’un composant"
 
 <Intro>
 
-Les composants ont souvent besoin de changer ce qu'ils suite à une interaction.  Une saisie dans un formulaire devrait mettre à jour la valeur du champ, cliquer sur « Suivant » sur un carrousel d'images devrait modifier l'image affichée, cliquer sur « Acheter » devrait ajouter le produit au panier.  Les composants ont besoin de « se souvenir » de certaines informations : la valeur actuelle du champ, l'image active, le panier.  Dans React, ce type de mémoire spécifique au composant est appelée *état*.
+Les composants ont souvent besoin de changer ce qu'ils affichent suite à une interaction.  Une saisie dans un formulaire devrait mettre à jour la valeur du champ, cliquer sur « Suivant » sur un carrousel d'images devrait modifier l'image affichée, cliquer sur « Acheter » devrait ajouter le produit au panier.  Les composants ont besoin de « se souvenir » de certaines informations : la valeur actuelle du champ, l'image active, le panier.  Dans React, ce type de mémoire spécifique au composant est appelée *état*.
 
 </Intro>
 
@@ -153,7 +153,7 @@ button {
 
 Le gestionnaire d'événement `handleClick` met à jour une variable locale, `index`.  Mais deux choses empêchent cette modification d'être affichée :
 
-1. **Les variables locales ne persistent pas d'un rendu à l'autre.**  Lorsque React refait le rendu de ce composant, il recommence de zéro — il ne prend pas en compte les modifications aux variables locales.
+1. **Les variables locales ne persistent pas d'un rendu à l'autre.**  Lorsque React refait le rendu de ce composant, il recommence à zéro — il ne prend pas en compte les modifications aux variables locales.
 2. **Modifier des variables locales ne déclenche pas de rendu.**  React ne réalise pas qu'il doit refaire le rendu du composant avec les nouvelles données.
 
 Pour mettre à jour un composant avec de nouvelles données, on a besoin de deux choses :
@@ -164,7 +164,7 @@ Pour mettre à jour un composant avec de nouvelles données, on a besoin de deux
 Le Hook [`useState`](/reference/react/useState) remplit ce contrat :
 
 1. Une **variable d'état** pour conserver la donnée d'un rendu à l'autre.
-2. Une **fonction de mise à jour d'état** pour modifier la variable et indiquer à React de refaire le rendu du composant.
+2. Une **fonction de mise à jour d'état** pour modifier la variable et indiquer à React qu'il doit désormais refaire le rendu du composant.
 
 ## Ajouter une variable d'état {/*adding-a-state-variable*/}
 
@@ -188,7 +188,7 @@ const [index, setIndex] = useState(0);
 
 `index` est une variable d'état et `setIndex` est sa fonction de mise à jour.
 
-> La syntaxe de crochets `[` et `]` employée ici s'appelle une [déstructuration de tableau](https://fr.javascript.info/destructuring-assignment) *(certains traduisent « décomposition », dans un amalgame avec d'autres aspects comme le spread, NdT)*, elle nous permet de lire plusieurs valeurs depuis un tableau. Le tableau renvoyé par `useState` contient toujours exactement deux éléments.
+> La syntaxe de crochets `[` et `]` employée ici s'appelle une [déstructuration de tableau](https://fr.javascript.info/destructuring-assignment) *(certains traduisent « décomposition », dans un amalgame avec d'autres aspects comme le spread, NdT)*, elle nous permet de lire plusieurs valeurs depuis un tableau. Le tableau renvoyé par `useState` contient toujours exactement deux éléments (on parle de « paire »).
 
 Voici comment les utiliser dans `handleClick` :
 
@@ -333,7 +333,7 @@ button {
 
 ### Dites bonjour à votre premier Hook {/*meet-your-first-hook*/}
 
-Dans React, `useState` est ce qu'on appelle un Hook, comme toute autre fonction dont le nom commence par « `use` ».
+Dans React, `useState` est ce qu'on appelle un Hook, au même titre que toute autre fonction dont le nom commence par « `use` ».
 
 Les *Hooks* sont des fonctions spéciales qui ne sont utilisables que pendant la phase de [rendu](/learn/render-and-commit#step-1-trigger-a-render) de React (on reviendra plus en détails sur ce sujet dans la prochaine page). Ils vous permettent de « vous accrocher » à certaines fonctionnalités de React.
 
@@ -526,13 +526,13 @@ Il est judicieux d'utiliser plusieurs variables d'état si leurs données sont s
 
 #### Comment React sait-il quelle partie de l'état renvoyer ? {/*how-does-react-know-which-state-to-return*/}
 
-Vous avez peut-être remarqué que l'appel à `useState` ne prend aucune information indiquant *quelle* variable d'état vous manipulez. Il n'y a pas « d'identifiant » qui soit passé à `useState`, alosr comment sait-elle de quelle variable d'état vous avez besoin en retour ?  Y'a-t-il une sorte d'analyse magique de vos fonctions ? Eh bien, pas du tout.
+Vous avez peut-être remarqué que l'appel à `useState` ne prend aucune information indiquant *quelle* variable d'état vous manipulez. Il n'y a pas « d'identifiant » qui passé à `useState`, alors comment sait-elle de quelle variable d'état vous avez besoin en retour ?  Y'a-t-il une sorte d'analyse magique de vos fonctions ? Eh bien, pas du tout.
 
 Pour permettre cette syntaxe d'utilisation concise, les Hooks préfèrent **se reposer sur un ordre d'appel stable pour tous les rendus du composant**.  Ça fonctionne très bien en pratique, car du moment que vous respectez la règle évoquée précédemment (« n'appelez les Hooks que depuis la racine »), les mêmes Hooks seront toujours appelés dans le même ordre. Qui plus est, un [plugin de *linter*](https://www.npmjs.com/package/eslint-plugin-react-hooks) vous rattrape par le col dans le cas contraire.
 
 En interne, React maintient un tableau de paires d'état pour chaque instance de composant. Il maintient aussi l'index de la paire actuelle, qui démarre à zéro avant le rendu. Chaque fois que vous appelez `useState`, React vous donne la prochaine paire d'état et incrémente cet index. Vous pouvez en apprendre davantage sur ce mécanisme dans *[React Hooks: Not Magic, Just Arrays](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)* (en anglais) et apprendre en quoi seule cette approche permet de déployer toute la puissance des Hooks dans [Pourquoi les Hooks React dépendent-ils de l'ordre d'appel ?](https://overreacted.io/fr/why-do-hooks-rely-on-call-order/).
 
-L'exemple ci-après **n'utilise pas React** mais vous donne une idée de comment `useState` fonctionne en interne :
+L'exemple ci-après **n'utilise pas React** mais vous permet de vous faire une idée de comment `useState` fonctionne en interne :
 
 <Sandpack>
 
@@ -724,13 +724,13 @@ button { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-Vous n'avez pas besoin de le comprendre pour utiliser React, mais vous trouverez peut-être ce modèle mental utile.
+Vous n'avez pas besoin de comprendre ce code d'illustration pour utiliser React, mais vous trouverez peut-être ce modèle mental utile.
 
 </DeepDive>
 
 ## L'état est isolé et privé {/*state-is-isolated-and-private*/}
 
-L'état est local à l'instance du composant à l'écran. En d'autres termes, **si vous affichez le même composant deux fois, chaque copie aura son propre état, complètement isolé !**  Modifier l'un des deux ne touchera pas à l'autre.
+L'état est local à l'instance du composant à l'écran. En d'autres termes, **si vous affichez le même composant deux fois, chaque copie aura son propre état, complètement isolé !**  Modifier l'un des deux laissera l'autre état complètement intact.
 
 Dans cet exemple, le composant `Gallery` vu plus tôt est affiché deux fois, sans aucun changement dans son code. Essayez de cliquer sur les boutons de chacune des deux galeries.  Vous pouvez constater que leurs états sont bel et bien indépendants :
 
@@ -895,7 +895,7 @@ Voilà le cœur de la différence entre des variables d'état et des variables c
 
 Remarquez aussi que le composant `Page` ne « connaît » rien de l'état du composant `Gallery`, il ne sait en fait même pas s'il a un état.  Contrairement aux props, **l'état est totalement privé pour le composant qui le déclare.**  Le composant parent ne peut pas le modifier. Ça vous permet d'ajouter ou de retirer de l'état dans n'importe quel composant sans impacter les autres.
 
-Et si vous vouliez que les deux galeries conservent un état synchronisé ? En React, la bonne manière d'y parvenir consisterait à *retirer* l'état des composants enfants pour le déplacer vers leur plus proche ancêtre commun.  Dans les prochaines pages, nous nous concentrerons sur l'organisation de l'état au sein d'un seul composant, mais nous reviendrons sur ce sujet dans [Partager l’état entre des composants](/learn/sharing-state-between-components).
+Et si vous vouliez que les deux galeries conservent un état synchronisé ? Avec React, la bonne manière d'y parvenir consisterait à *retirer* l'état des composants enfants pour le déplacer vers leur plus proche ancêtre commun.  Dans les prochaines pages, nous nous concentrerons sur l'organisation de l'état au sein d'un seul composant, mais nous reviendrons sur ce sujet dans [Partager l’état entre des composants](/learn/sharing-state-between-components).
 
 <Recap>
 
@@ -903,9 +903,9 @@ Et si vous vouliez que les deux galeries conservent un état synchronisé ? En 
 * Les variables d'état sont déclarées en appelant le Hook `useState`.
 * Les Hooks sont des fonctions spéciales dont le nom commence par `use`.  Ils vous permettent de « vous accrocher » à certaines fonctionnalités de React, telles que l'état local.
 * Les Hooks vous rappellent peut-être les imports : ils doivent être appelés inconditionnellement.  Appeler des Hooks, y compris `useState`, n'est autorisé qu'à la racine d'un composant ou d'un autre Hook.
-* Le Hook `useState` renvoie une paire de valeurs : la valeur courante de l'état et la fonction pour la mettre à jour.
-* Vous pouvez avoir plusieurs varaibles d'état. En interne, React maintient la correspondance au moyen de leur ordre d'appel.
-* L'état est privé au composant. Si vous affichez un composant à deux endroits, chaque instance a son propre état.
+* Le Hook `useState` renvoie une paire de valeurs : la valeur courante de l'état et la fonction qui la met à jour.
+* Vous pouvez avoir plusieurs variables d'état. En interne, React maintient la correspondance au moyen de leur ordre d'appel.
+* L'état est privé au composant. Si vous affichez un composant à deux endroits, chaque instance dispose de son propre état.
 
 </Recap>
 
@@ -913,7 +913,7 @@ Et si vous vouliez que les deux galeries conservent un état synchronisé ? En 
 
 #### Compléter la galerie {/*complete-the-gallery*/}
 
-Lorsque vous appuyez sur « Suivant » alors que la dernière sculpture est affiché, le code plante. Corrigez la logique pour éviter ça. Vous pouvez y parvenir en ajoutant du code au gestionnaire d'événement, ou en désactivant le bouton quand l'action devient impossible.
+Lorsque vous appuyez sur « Suivant » alors que la dernière sculpture est affichée, le code plante. Corrigez la logique pour éviter ça. Vous pouvez y parvenir en ajoutant du code au gestionnaire d'événement, ou en désactivant le bouton quand l'action devient impossible.
 
 Après avoir corrigé le crash, ajoutez un bouton « Précédent » qui permet de revenir en arrière.  Il ne devrait pas planter sur la première sculpture.
 
@@ -1057,7 +1057,7 @@ img { width: 120px; height: 120px; }
 
 <Solution>
 
-Ajoutez une condition de garde-fou dans les deux gestionnaires d'événements et désactivez les boutons quand c'est nécessaire :
+Ajoutez une condition de garde-fou dans les deux gestionnaires d'événements et profitez-en pour désactiver les boutons quand c'est nécessaire :
 
 <Sandpack>
 
@@ -1325,7 +1325,7 @@ h1 { margin-top: 10px; }
 
 #### Corriger un crash {/*fix-a-crash*/}
 
-Voici un petit formulaire qui est censé permettre à l'utilisateur de nous faire part de ses retours.  Lorsque le formulaire est envoyé, il est supposé afficher un message de remerciement. Pourtant, il plante avec un message d'erreur qui dit *“Rendered fewer hooks than expected”*(« Moins de Hooks que prévu lors du rendu », NdT)*.  Saurez-vous repérer l'origine du problème et la corriger ?
+Voici un petit formulaire censé permettre à l'utilisateur de nous faire part de ses retours.  Lorsque le formulaire est envoyé, il est supposé afficher un message de remerciement. Pourtant, il plante avec un message d'erreur *“Rendered fewer hooks than expected”* *(« Moins de Hooks que prévu lors du rendu », NdT)*.  Saurez-vous repérer l'origine du problème et la corriger ?
 
 <Hint>
 
@@ -1368,7 +1368,7 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Les Hooks ne peuvent être appelés qu'à la racine de votre fonction composant.  Ici la première définition (`isSent`) obéit à cette règle, mais celle de `definition` figure au sein d'une condition.
+Les Hooks ne peuvent être appelés qu'à la racine de votre fonction composant.  Ici la première définition (`isSent`) obéit à cette règle, mais celle de `message` figure au sein d'une condition.
 
 Sortez-la de la condition pour corriger le problème :
 
@@ -1450,11 +1450,11 @@ Si votre *linter* est [configuré pour React](/learn/editor-setup#linting), vous
 
 #### Retirer l'état superflu {/*remove-unnecessary-state*/}
 
-Lorsque vous cliquez sur le bouton, cet exemple devrait demander à l'utilisateur son nom et afficher une alerte pour le saluer.  Vous avez essayé de recourir à un état pour vous souvenir de son nom, mais pour une raison ou une autre ça affiche toujours « Bonjour ! ».
+Dans cet exemple, cliquer sur le bouton devrait demander à l'utilisateur son nom et le saluer dans une alerte.  Vous avez essayé de recourir à un état pour vous souvenir du nom, mais pour une raison ou une autre ça affiche toujours « Bonjour ! ».
 
-Pour corriger ce code, retirez la variable d'état superflue. (Nous explorerons les [raison de ce problème](/learn/state-as-a-snapshot) prochainement.)
+Pour corriger ce code, retirez la variable d'état superflue. (Nous explorerons les [raisons de ce problème](/learn/state-as-a-snapshot) prochainement.)
 
-Pouvez-vous expliquez en quoi cette variable d'état est superflue ?
+Sauriez-vous expliquer en quoi cette variable d'état est superflue ?
 
 <Sandpack>
 
