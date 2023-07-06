@@ -88,8 +88,8 @@ Une manière courante d’optimiser la performance de réaffichage consiste à s
 
 Pour éviter les calculs coûteux et les réaffichages inutiles, utilisez l’un de ces Hooks :
 
-- [`useMemo`](/reference/react/useMemo) vous permet de mettre en cache le résultat d’un calcul coûteux.
-- [`useCallback`](/reference/react/useCallback) vous permet de mettre en cache la définition d’une fonction avant de la passer à un composant optimisé.
+* [`useMemo`](/reference/react/useMemo) vous permet de mettre en cache le résultat d’un calcul coûteux.
+* [`useCallback`](/reference/react/useCallback) vous permet de mettre en cache la définition d’une fonction avant de la passer à un composant optimisé.
 
 ```js
 function TodoList({ todos, tab, theme }) {
@@ -102,8 +102,8 @@ Parfois, vous ne pouvez pas éviter le réaffichage parce que la vue doit effect
 
 Pour établir des priorités de rendu, utilisez un de ces Hooks :
 
-- [`useTransition`](/reference/react/useTransition) permet de marquer une transition d’état local comme non bloquante ce qui autorise d’autres mises à jour à l’interrompre.
-- [`useDeferredValue`](/reference/react/useDeferredValue) vous permet de différer la mise à jour d’une partie non critique de l’UI et de laisser les autres parties se mettre à jour en premier.
+* [`useTransition`](/reference/react/useTransition) permet de marquer une transition d’état local comme non bloquante ce qui autorise d’autres mises à jour à l’interrompre.
+* [`useDeferredValue`](/reference/react/useDeferredValue) vous permet de différer la mise à jour d’une partie non critique de l’UI et de laisser les autres parties se mettre à jour en premier.
 
 ---
 
@@ -111,9 +111,9 @@ Pour établir des priorités de rendu, utilisez un de ces Hooks :
 
 Ces Hooks sont majoritairement utiles aux auteur·e·s de bibliothèque et ne sont pas couramment utilisés dans du code applicatif.
 
-- [`useDebugValue`](/reference/react/useDebugValue) vous permet de personnaliser le libellé que React Devtools affiche pour votre propre Hook.
-- [`useId`](/reference/react/useId) permet à un composant de s’associer un ID unique. Généralement utilisé avec les API d’accessibilité.
-- [`useSyncExternalStore`](/reference/react/useSyncExternalStore) permet à un composant de s’abonner à une source de données extérieure.
+* [`useDebugValue`](/reference/react/useDebugValue) vous permet de personnaliser le libellé que les outils de développement React affichent pour votre propre Hook.
+* [`useId`](/reference/react/useId) permet à un composant de s’associer un ID unique. Généralement utilisé avec les API d’accessibilité.
+* [`useSyncExternalStore`](/reference/react/useSyncExternalStore) permet à un composant de s’abonner à une source de données extérieure.
 
 ---
 

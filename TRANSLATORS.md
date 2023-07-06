@@ -114,6 +114,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td><a href="https://twitter.com/MatteoGauthier_">@MatteoGauthier_</a></td>
       <td>
         <ul>
+          <li><a href="https://fr.react.dev/reference/react/useDebugValue"><code>useDebugValue</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useId"><code>useId</code></a></li>
         </ul>
       </td>
