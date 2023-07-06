@@ -1,24 +1,24 @@
 ---
-title: Scaling Up with Reducer and Context
+title: Mise à l'échelle en combinant réducteur et contexte
 ---
 
 <Intro>
 
-Reducers let you consolidate a component's state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
+Les réducteurs vous permettent de consolider la logique de mise à jour de l'état d'un composant. Le contexte vous offre la possibilité de transmettre de l'information en profondeur à d'autres composants. Vous pouvez les combiner afin de gérer l'état d'un écran complexe.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to combine a reducer with context
-* How to avoid passing state and dispatch through props
-* How to keep context and state logic in a separate file
+* Comment combiner un réducteur avec un contexte
+* Comment éviter de passer l'état et le *dispatcher* par les props
+* Comment garder le contexte et la logique d'état dans un fichier séparé
 
 </YouWillLearn>
 
-## Combining a reducer with context {/*combining-a-reducer-with-context*/}
+## Combiner un réducteur avec un contexte {/*combining-a-reducer-with-context*/}
 
-In this example from [the introduction to reducers](/learn/extracting-state-logic-into-a-reducer), the state is managed by a reducer. The reducer function contains all of the state update logic and is declared at the bottom of this file:
+Dans cet exemple venant de [l'introduction aux réducteurs](/learn/extracting-state-logic-into-a-reducer), l'état est géré par un réducteur. Cette fonction contient toute la logique de mise à jour de l'état et est déclarée à la fin de ce fichier :
 
 <Sandpack>
 
@@ -57,7 +57,7 @@ export default function TaskApp() {
 
   return (
     <>
-      <h1>Day off in Kyoto</h1>
+      <h1>Jour de repos à Kyoto</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -99,9 +99,9 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  { id: 0, text: 'Le chemin du philosophe', done: true },
+  { id: 1, text: 'Visiter le temple', done: false },
+  { id: 2, text: 'Boire du thé matcha', done: false }
 ];
 ```
 
@@ -113,14 +113,14 @@ export default function AddTask({ onAddTask }) {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Ajouter une tâche"
         value={text}
         onChange={e => setText(e.target.value)}
       />
       <button onClick={() => {
         setText('');
         onAddTask(text);
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   )
 }
@@ -164,7 +164,7 @@ function Task({ task, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Enregistrer
         </button>
       </>
     );
@@ -173,7 +173,7 @@ function Task({ task, onChange, onDelete }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Éditer
         </button>
       </>
     );
@@ -192,7 +192,7 @@ function Task({ task, onChange, onDelete }) {
       />
       {taskContent}
       <button onClick={() => onDelete(task.id)}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
@@ -207,9 +207,9 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-A reducer helps keep the event handlers short and concise. However, as your app grows, you might run into another difficulty. **Currently, the `tasks` state and the `dispatch` function are only available in the top-level `TaskApp` component.** To let other components read the list of tasks or change it, you have to explicitly [pass down](/learn/passing-props-to-a-component) the current state and the event handlers that change it as props.
+Un réducteur permet de garder les gestionnaires d'événements concis. Vous pouvez cependant rencontrer une autre difficulté à mesure que votre appli grandit. **Pour le moment, l'état `tasks` et le fonction `dispatch` ne sont disponible qu'au niveau du composant racine `TaskApp`.** Pour que les autres composants puisse lire ou modifier la liste de tâches, vous devez explicitement [transmettre](/learn/passing-props-to-a-component) l'état courant et les gestionnaires d'événements qui le modifient en tant que props.
 
-For example, `TaskApp` passes a list of tasks and the event handlers to `TaskList`:
+Par exemple, `TaskApp` passe une liste de tâches et les gestionnaires d'événements à `TaskList` :
 
 ```js
 <TaskList
@@ -219,7 +219,7 @@ For example, `TaskApp` passes a list of tasks and the event handlers to `TaskLis
 />
 ```
 
-And `TaskList` passes the event handlers to `Task`:
+Et `TaskList` passe les gestionnaires d'événements à `Task` :
 
 ```js
 <Task
@@ -229,17 +229,17 @@ And `TaskList` passes the event handlers to `Task`:
 />
 ```
 
-In a small example like this, this works well, but if you have tens or hundreds of components in the middle, passing down all state and functions can be quite frustrating!
+Ça fonctionne bien pour un petit exemple comme celui-ci, mais si vous avez des dizaines voire des centaines de composants au milieu, transmettre les états et gestionnaires d'événements peut être plutôt frustrant !
 
-This is why, as an alternative to passing them through props, you might want to put both the `tasks` state and the `dispatch` function [into context.](/learn/passing-data-deeply-with-context) **This way, any component below `TaskApp` in the tree can read the tasks and dispatch actions without the repetitive "prop drilling".**
+C'est pourquoi, plutôt que de les passer *via* les props, vous pourriez mettre l'état `tasks` et la fonction `dispatch` [dans un contexte](/learn/passing-data-deeply-with-context). **De cette façon, tous les composants en dessous de `TaskApp` dans l'arbre peuvent lire les tâches et les actions de *dispatch* sans la « percolation des props ».**
 
-Here is how you can combine a reducer with context:
+Voici comment vous pouvez combiner un réducteur avec un contexte :
 
-1. **Create** the context.
-2. **Put** state and dispatch into context.
-3. **Use** context anywhere in the tree.
+1. **Créez** le contexte.
+2. **Mettez** l'état et la fonction de *dispatch* dans le contexte.
+3. **Utilisez** le contexte n'importe où dans l'arbre.
 
-### Step 1: Create the context {/*step-1-create-the-context*/}
+### Étape 1 : créer le contexte {/*step-1-create-the-context*/}
 
 The `useReducer` Hook returns the current `tasks` and the `dispatch` function that lets you update them:
 
@@ -291,7 +291,7 @@ export default function TaskApp() {
 
   return (
     <>
-      <h1>Day off in Kyoto</h1>
+      <h1>Jour de repos à Kyoto</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -333,9 +333,9 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  { id: 0, text: 'Le chemin du philosophe', done: true },
+  { id: 1, text: 'Visiter le temple', done: false },
+  { id: 2, text: 'Boire du thé matcha', done: false }
 ];
 ```
 
@@ -354,14 +354,14 @@ export default function AddTask({ onAddTask }) {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Ajouter une tâche"
         value={text}
         onChange={e => setText(e.target.value)}
       />
       <button onClick={() => {
         setText('');
         onAddTask(text);
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   )
 }
@@ -405,7 +405,7 @@ function Task({ task, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Enregistrer
         </button>
       </>
     );
@@ -414,7 +414,7 @@ function Task({ task, onChange, onDelete }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Éditer
         </button>
       </>
     );
@@ -433,7 +433,7 @@ function Task({ task, onChange, onDelete }) {
       />
       {taskContent}
       <button onClick={() => onDelete(task.id)}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
@@ -450,7 +450,7 @@ ul, li { margin: 0; padding: 0; }
 
 Here, you're passing `null` as the default value to both contexts. The actual values will be provided by the `TaskApp` component.
 
-### Step 2: Put state and dispatch into context {/*step-2-put-state-and-dispatch-into-context*/}
+### Étape 2: Put state and dispatch into context {/*step-2-put-state-and-dispatch-into-context*/}
 
 Now you can import both contexts in your `TaskApp` component. Take the `tasks` and `dispatch` returned by `useReducer()` and [provide them](/learn/passing-data-deeply-with-context#step-3-provide-the-context) to the entire tree below:
 
@@ -511,7 +511,7 @@ export default function TaskApp() {
   return (
     <TasksContext.Provider value={tasks}>
       <TasksDispatchContext.Provider value={dispatch}>
-        <h1>Day off in Kyoto</h1>
+        <h1>Jour de repos à Kyoto</h1>
         <AddTask
           onAddTask={handleAddTask}
         />
@@ -554,9 +554,9 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  { id: 0, text: 'Le chemin du philosophe', done: true },
+  { id: 1, text: 'Visiter le temple', done: false },
+  { id: 2, text: 'Boire du thé matcha', done: false }
 ];
 ```
 
@@ -575,14 +575,14 @@ export default function AddTask({ onAddTask }) {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Ajouter une tâche"
         value={text}
         onChange={e => setText(e.target.value)}
       />
       <button onClick={() => {
         setText('');
         onAddTask(text);
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   )
 }
@@ -626,7 +626,7 @@ function Task({ task, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Enregistrer
         </button>
       </>
     );
@@ -635,7 +635,7 @@ function Task({ task, onChange, onDelete }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Éditer
         </button>
       </>
     );
@@ -654,7 +654,7 @@ function Task({ task, onChange, onDelete }) {
       />
       {taskContent}
       <button onClick={() => onDelete(task.id)}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
@@ -671,14 +671,14 @@ ul, li { margin: 0; padding: 0; }
 
 In the next step, you will remove prop passing.
 
-### Step 3: Use context anywhere in the tree {/*step-3-use-context-anywhere-in-the-tree*/}
+### Étape 3: Use context anywhere in the tree {/*step-3-use-context-anywhere-in-the-tree*/}
 
 Now you don't need to pass the list of tasks or the event handlers down the tree:
 
 ```js {4-5}
 <TasksContext.Provider value={tasks}>
   <TasksDispatchContext.Provider value={dispatch}>
-    <h1>Day off in Kyoto</h1>
+    <h1>Jour de repos à Kyoto</h1>
     <AddTask />
     <TaskList />
   </TasksDispatchContext.Provider>
@@ -709,7 +709,7 @@ export default function AddTask() {
         id: nextId++,
         text: text,
       });
-    }}>Add</button>
+    }}>Ajouter</button>
     // ...
 ```
 
@@ -732,7 +732,7 @@ export default function TaskApp() {
   return (
     <TasksContext.Provider value={tasks}>
       <TasksDispatchContext.Provider value={dispatch}>
-        <h1>Day off in Kyoto</h1>
+        <h1>Jour de repos à Kyoto</h1>
         <AddTask />
         <TaskList />
       </TasksDispatchContext.Provider>
@@ -768,9 +768,9 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  { id: 0, text: 'Le chemin du philosophe', done: true },
+  { id: 1, text: 'Visiter le temple', done: false },
+  { id: 2, text: 'Boire du thé matcha', done: false }
 ];
 ```
 
@@ -791,7 +791,7 @@ export default function AddTask() {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Ajouter une tâche"
         value={text}
         onChange={e => setText(e.target.value)}
       />
@@ -802,7 +802,7 @@ export default function AddTask() {
           id: nextId++,
           text: text,
         }); 
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   );
 }
@@ -846,7 +846,7 @@ function Task({ task }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Enregistrer
         </button>
       </>
     );
@@ -855,7 +855,7 @@ function Task({ task }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Éditer
         </button>
       </>
     );
@@ -882,7 +882,7 @@ function Task({ task }) {
           id: task.id
         });
       }}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
@@ -942,7 +942,7 @@ import { TasksProvider } from './TasksContext.js';
 export default function TaskApp() {
   return (
     <TasksProvider>
-      <h1>Day off in Kyoto</h1>
+      <h1>Jour de repos à Kyoto</h1>
       <AddTask />
       <TaskList />
     </TasksProvider>
@@ -999,9 +999,9 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  { id: 0, text: 'Le chemin du philosophe', done: true },
+  { id: 1, text: 'Visiter le temple', done: false },
+  { id: 2, text: 'Boire du thé matcha', done: false }
 ];
 ```
 
@@ -1015,7 +1015,7 @@ export default function AddTask() {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Ajouter une tâche"
         value={text}
         onChange={e => setText(e.target.value)}
       />
@@ -1026,7 +1026,7 @@ export default function AddTask() {
           id: nextId++,
           text: text,
         }); 
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   );
 }
@@ -1070,7 +1070,7 @@ function Task({ task }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Enregistrer
         </button>
       </>
     );
@@ -1079,7 +1079,7 @@ function Task({ task }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Éditer
         </button>
       </>
     );
@@ -1106,7 +1106,7 @@ function Task({ task }) {
           id: task.id
         });
       }}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
@@ -1152,7 +1152,7 @@ import { TasksProvider } from './TasksContext.js';
 export default function TaskApp() {
   return (
     <TasksProvider>
-      <h1>Day off in Kyoto</h1>
+      <h1>Jour de repos à Kyoto</h1>
       <AddTask />
       <TaskList />
     </TasksProvider>
@@ -1218,9 +1218,9 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  { id: 0, text: 'Le chemin du philosophe', done: true },
+  { id: 1, text: 'Visiter le temple', done: false },
+  { id: 2, text: 'Boire du thé matcha', done: false }
 ];
 ```
 
@@ -1234,7 +1234,7 @@ export default function AddTask() {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Ajouter une tâche"
         value={text}
         onChange={e => setText(e.target.value)}
       />
@@ -1245,7 +1245,7 @@ export default function AddTask() {
           id: nextId++,
           text: text,
         }); 
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   );
 }
@@ -1289,7 +1289,7 @@ function Task({ task }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Enregistrer
         </button>
       </>
     );
@@ -1298,7 +1298,7 @@ function Task({ task }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Éditer
         </button>
       </>
     );
@@ -1325,7 +1325,7 @@ function Task({ task }) {
           id: task.id
         });
       }}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
