@@ -20,7 +20,7 @@ useDebugValue(value, format?)
 
 ### `useDebugValue(value, format?)` {/*usedebugvalue*/}
 
-Appelez `useDebugValue` à la racine de votre [Hook personnalisé](/learn/reusing-logic-with-custom-hooks) pour afficher une valeur de débogage lisible :
+Appelez `useDebugValue` à la racine de votre [Hook personnalisé](/learn/reusing-logic-with-custom-hooks) pour afficher une valeur de débogage lisible :
 
 ```js
 import { useDebugValue } from 'react';
@@ -111,7 +111,7 @@ N'ajoutez pas de valeurs de débogage à chaque Hook personnalisé. Cette métho
 
 ### Différer le formatage d'une valeur de débogage {/*deferring-formatting-of-a-debug-value*/}
 
-Vous pouvez également transmettre une fonction de formatage comme deuxième argument à `useDebugValue` :
+Vous pouvez transmettre une fonction de formatage comme deuxième argument à `useDebugValue` :
 
 ```js [[1, 1, "date", 18], [2, 1, "date.toDateString()"]]
 useDebugValue(date, date => date.toDateString());
