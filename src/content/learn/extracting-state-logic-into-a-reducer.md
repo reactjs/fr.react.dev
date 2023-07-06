@@ -381,7 +381,7 @@ Si vous n'êtes pas à l'aise avec les instructions `switch`, vous pouvez tout �
 
 #### D'où vient le terme « réducteur » ? {/*why-are-reducers-called-this-way*/}
 
-Bien que les réducteurs peuvent « réduire » la taille du code dans votre composant, ils sont en réalité appelés ainsi d'après l'opération [`reduce()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) que vous pouvez exécuter sur les tableaux.
+Bien que les réducteurs puissent « réduire » la taille du code dans votre composant, ils sont en réalité appelés ainsi en référence à l'opération [`reduce()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) que vous pouvez exécuter sur les tableaux.
 
 L'opération `reduce()` permet de prendre un tableau puis « d'accumuler » une seule valeur à partir de plusieurs :
 
