@@ -11,14 +11,14 @@ Les réducteurs vous permettent de consolider la logique de mise à jour de l'é
 <YouWillLearn>
 
 * Comment combiner un réducteur avec un contexte
-* Comment éviter de passer l'état et le *dispatcher* par les props
-* Comment garder le contexte et la logique d'état dans un fichier séparé
+* Comment éviter de passer l'état et le *dispatcher* au travers des props
+* Comment regrouper le contexte et la logique d'état dans un fichier séparé
 
 </YouWillLearn>
 
 ## Combiner un réducteur avec un contexte {/*combining-a-reducer-with-context*/}
 
-Dans cet exemple venant de [l'introduction aux réducteurs](/learn/extracting-state-logic-into-a-reducer), l'état est géré par un réducteur. Cette fonction contient toute la logique de mise à jour de l'état et est déclarée à la fin de ce fichier :
+Dans cet exemple provenant de [l'introduction aux réducteurs](/learn/extracting-state-logic-into-a-reducer), l'état est géré par un réducteur. Cette fonction contient toute la logique de mise à jour de l'état et est déclarée à la fin de ce fichier :
 
 <Sandpack>
 
@@ -207,7 +207,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Un réducteur permet de garder les gestionnaires d'événements concis. Vous pouvez cependant rencontrer une autre difficulté à mesure que votre appli grandit. **Pour le moment, l'état `tasks` et le fonction `dispatch` ne sont disponible qu'au niveau du composant racine `TaskApp`.** Pour que les autres composants puisse lire ou modifier la liste de tâches, vous devez explicitement [transmettre](/learn/passing-props-to-a-component) l'état courant et les gestionnaires d'événements qui le modifient en tant que props.
+Un réducteur permet de garder les gestionnaires d'événements concis. Vous pouvez cependant rencontrer une autre difficulté à mesure que votre appli grandit. **Pour le moment, l'état `tasks` et le fonction `dispatch` ne sont disponibles qu'au niveau du composant racine `TaskApp`.** Pour que les autres composants puissent lire ou modifier la liste de tâches, vous devez explicitement [transmettre](/learn/passing-props-to-a-component) *via* les props l'état courant et les gestionnaires d'événements qui le modifient.
 
 Par exemple, `TaskApp` passe une liste de tâches et les gestionnaires d'événements à `TaskList` :
 
@@ -229,7 +229,7 @@ Et `TaskList` passe les gestionnaires d'événements à `Task` :
 />
 ```
 
-Ça fonctionne bien pour un petit exemple comme celui-ci, mais si vous avez des dizaines voire des centaines de composants au milieu, transmettre les états et gestionnaires d'événements peut être plutôt frustrant !
+Ça fonctionne bien pour un petit exemple comme celui-là, mais si vous avez des dizaines voire des centaines de composants au milieu, transmettre les états et gestionnaires d'événements peut s'avérer plutôt frustrant !
 
 C'est pourquoi, plutôt que de les passer *via* les props, vous pourriez mettre l'état `tasks` et la fonction `dispatch` [dans un contexte](/learn/passing-data-deeply-with-context). **De cette façon, tous les composants en dessous de `TaskApp` dans l'arbre peuvent lire les tâches et les actions de *dispatch* sans la « percolation des props ».**
 
@@ -252,7 +252,7 @@ Pour les passer à travers l'arbre, vous aller [créer](/learn/passing-data-deep
 - `TasksContext` fournit la liste actuelle des tâches.
 - `TasksDispatchContext` fournit la fonction qui permet aux composants de *dispatcher* les actions.
 
-Exportez-les à partir d'un fichier dédié de façon à pouvoir les importer ultérieurement depuis d'autres fichiers :
+Exportez-les à partir d'un fichier dédié de façon à pouvoir les importer ultérieurement dans d'autres fichiers :
 
 <Sandpack>
 
@@ -450,7 +450,7 @@ ul, li { margin: 0; padding: 0; }
 
 Ici, vous passez `null` comme valeur par défaut aux deux contextes. Les valeurs réelles seront fournies par le composant `TaskApp`.
 
-### Étape 2 : placer l'état et le dispatch dans le context {/*step-2-put-state-and-dispatch-into-context*/}
+### Étape 2 : placer l'état et le *dispatch* dans le contexte {/*step-2-put-state-and-dispatch-into-context*/}
 
 Vous pouvez maintenant importer les deux contextes dans votre composant `TaskApp`. Prenez les `tasks` et `dispatch` renvoyées par le `useReducer()` et [fournissez-les](/learn/passing-data-deeply-with-context#step-3-provide-the-context) à l'arbre entier en dessous :
 
@@ -673,7 +673,7 @@ Vous arrêterez d'utiliser les props dans la prochaine étape.
 
 ### Étape 3 : utiliser un contexte n'importe où dans l'arbre {/*step-3-use-context-anywhere-in-the-tree*/}
 
-Vous n'avez désormais plus besoin de passer la liste des tâches ou les gestionnaires d'événements à travers l'arbre :
+Vous n'avez désormais plus besoin de passer la liste de tâches ou les gestionnaires d'événements à travers l'arbre :
 
 ```js {4-5}
 <TasksContext.Provider value={tasks}>
@@ -685,7 +685,7 @@ Vous n'avez désormais plus besoin de passer la liste des tâches ou les gestion
 </TasksContext.Provider>
 ```
 
-Au lieu de ça, tout composant qui a besoin de la liste des tâches peut la lire depuis le `TaskContext` :
+Au lieu de ça, un composant qui a besoin de la liste de tâches peut la lire depuis le `TaskContext` :
 
 ```js {2}
 export default function TaskList() {
@@ -693,7 +693,7 @@ export default function TaskList() {
   // ...
 ```
 
-Pour mettre à jour la liste des tâches, un composant peut lire la fonction `dispatch` depuis le contexte et l'appeler :
+Pour mettre à jour la liste de tâches, un composant peut lire la fonction `dispatch` depuis le contexte et l'appeler :
 
 ```js {3,9-13}
 export default function AddTask() {
@@ -901,7 +901,7 @@ ul, li { margin: 0; padding: 0; }
 
 ## Déplacer tout le câblage dans un seul fichier {/*moving-all-wiring-into-a-single-file*/}
 
-Vous n'êtes pas obligé de le faire, mais vous pouvez encore désencombrer les composants en déplaçant le réducteur et le contexte dans un seul fichier. Pour le moment, `TasksContext.js` ne contient que les deux déclarations de contexte :
+Vous n'êtes pas obligé de le faire, mais vous pouvez encore alléger les composants en déplaçant le réducteur et le contexte dans un seul fichier. Pour le moment, `TasksContext.js` ne contient que les deux déclarations de contexte :
 
 ```js
 import { createContext } from 'react';
@@ -910,11 +910,11 @@ export const TasksContext = createContext(null);
 export const TasksDispatchContext = createContext(null);
 ```
 
-Ce fichier est sur le point d'être encombré ! Vous allez déplacer le réducteur dans ce même fichier. Ensuite, vous allez y déclarer un nouveau composant `TasksProvider`. Ce composant va relier toutes les pièces du puzzle :
+Ce fichier va très vite grandir ! Vous allez déplacer le réducteur dans ce fichier. Ensuite, vous allez y déclarer un nouveau composant `TasksProvider`. Ce composant va relier toutes les pièces du puzzle :
 
 1. Il gérera l'état avec un réducteur.
-2. Il fournira les deux contextes aux composants plus bas.
-3. Il [prendra les `children` comme props](/learn/passing-props-to-a-component#passing-jsx-as-children) afin que vous puissiez lui donner du JSX.
+2. Il fournira les deux contextes aux composants en dessous.
+3. Il [prendra les `children` en tant que props](/learn/passing-props-to-a-component#passing-jsx-as-children) afin que vous puissiez lui donner du JSX.
 
 ```js
 export function TasksProvider({ children }) {
@@ -1140,7 +1140,7 @@ const tasks = useTasks();
 const dispatch = useTasksDispatch();
 ```
 
-Ça ne change en rien le comportement, mais ça vous laisse l'opportunité de diviser davantage ces contextes ou d'ajouter de la logique à ces fonctions. **Tout le câblage du contexte et du réducteur se trouve désormais dans `TasksContext.js`. Ça permet aux composants de rester propres et épurés, et ainsi focalisés sur ce qu'ils doivent afficher plutôt que de savoir où chercher les données :**
+Ça ne change en rien le comportement, mais ça vous laisse l'opportunité de diviser davantage ces contextes ou d'ajouter de la logique à ces fonctions. **Tout le câblage du contexte et du réducteur se trouvent désormais dans `TasksContext.js`. Ça laisse les composants propres et épurés, et ils peuvent ainsi se concentrer sur ce qu'ils doivent afficher plutôt que de savoir où chercher les données :**
 
 <Sandpack>
 
@@ -1353,11 +1353,11 @@ Au fur et à mesure que votre appli grandit, il se peut que vous ayez de nombreu
 <Recap>
 
 - Vous pouvez combiner le réducteur avec le contexte pour permettre à n'importe quel composant de lire et mettre à jour l'état qui se trouve au dessus de lui.
-- Pour fournir l'état et la fonction de dispatch aux composants en dessous :
-  1. Créer deux contextes (pour l'état et pour les fonctions de dispatch).
+- Pour fournir l'état et la fonction de *dispatch* aux composants en dessous :
+  1. Créez deux contextes (l'un pour l'état et l'autre pour les fonctions de *dispatch*).
   2. Fournissez ces deux contextes à partir du composant qui utilise le réducteur.
   3. Utilisez l'un ou l'autre des contextes pour les composants qui ont besoin de les lire.
-- Vous pouvez désencombrer les composants en déplaçant tout le câblage dans un seul fichier.
+- Vous avez la possibilité d'alléger les composants en déplaçant tout le câblage dans un seul fichier.
   - Vous pouvez exporter un composant tel que `TasksProvider` qui fournit le contexte.
   - Vous pouvez également exporter des Hooks personnalisés comme `useTasks` et `useTasksDispatch` pour les lire.
 - Vous pouvez disposer de nombreuses paires contexte-réducteur comme ça dans votre appli.
