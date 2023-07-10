@@ -99,7 +99,7 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Le chemin du philosophe', done: true },
+  { id: 0, text: 'La promenade du philosophe', done: true },
   { id: 1, text: 'Visiter le temple', done: false },
   { id: 2, text: 'Boire du thé matcha', done: false }
 ];
@@ -333,7 +333,7 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Le chemin du philosophe', done: true },
+  { id: 0, text: 'La promenade du philosophe', done: true },
   { id: 1, text: 'Visiter le temple', done: false },
   { id: 2, text: 'Boire du thé matcha', done: false }
 ];
@@ -554,7 +554,7 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Le chemin du philosophe', done: true },
+  { id: 0, text: 'La promenade du philosophe', done: true },
   { id: 1, text: 'Visiter le temple', done: false },
   { id: 2, text: 'Boire du thé matcha', done: false }
 ];
@@ -768,7 +768,7 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Le chemin du philosophe', done: true },
+  { id: 0, text: 'La promenade du philosophe', done: true },
   { id: 1, text: 'Visiter le temple', done: false },
   { id: 2, text: 'Boire du thé matcha', done: false }
 ];
@@ -999,7 +999,7 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Le chemin du philosophe', done: true },
+  { id: 0, text: 'La promenade du philosophe', done: true },
   { id: 1, text: 'Visiter le temple', done: false },
   { id: 2, text: 'Boire du thé matcha', done: false }
 ];
@@ -1218,7 +1218,7 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Le chemin du philosophe', done: true },
+  { id: 0, text: 'La promenade du philosophe', done: true },
   { id: 1, text: 'Visiter le temple', done: false },
   { id: 2, text: 'Boire du thé matcha', done: false }
 ];
