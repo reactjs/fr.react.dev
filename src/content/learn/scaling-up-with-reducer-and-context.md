@@ -241,7 +241,7 @@ Voici comment vous pouvez combiner un réducteur avec un contexte :
 
 ### Étape 1 : créer le contexte {/*step-1-create-the-context*/}
 
-Le Hook `useReducer` renvoie les `tasks` courantes et la fonction `dispatch` qui vous permet de les mettre à jour :
+Le Hook `useReducer` renvoie les `tasks` courantes, ainsi que la fonction `dispatch` qui vous permet de les mettre à jour :
 
 ```js
 const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
@@ -673,7 +673,7 @@ Vous cesserez d'utiliser les props dans la prochaine étape.
 
 ### Étape 3 : utiliser un contexte n'importe où dans l'arbre {/*step-3-use-context-anywhere-in-the-tree*/}
 
-Vous n'avez désormais plus besoin de passer la liste de tâches ou les gestionnaires d'événements à travers l'arbre :
+Vous n'avez désormais plus besoin de passer la liste de tâches ou les gestionnaires d'événements à travers l'arbre à coups de props :
 
 ```js {4-5}
 <TasksContext.Provider value={tasks}>
@@ -693,7 +693,7 @@ export default function TaskList() {
   // ...
 ```
 
-Pour mettre à jour la liste de tâches, un composant peut lire la fonction `dispatch` depuis le contexte et l'appeler :
+Pour mettre à jour la liste de tâches, un composant peut lire la fonction `dispatch` depuis le contexte approprié, puis l'appeler :
 
 ```js {3,9-13}
 export default function AddTask() {
@@ -713,7 +713,7 @@ export default function AddTask() {
     // ...
 ```
 
-**Le composant `TaskApp` ne transmet aucun gestionnaire d'événement vers le bas et la `TaskList` ne transmet pas non plus de gestionnaire d'événement au composant `Task`.** Chaque composant lit le contexte dont il a besoin :
+**Le composant `TaskApp` ne transmet aucun gestionnaire d'événement à ses enfants, et la `TaskList` ne transmet pas non plus de gestionnaire d'événement au composant `Task`.** Chaque composant lit le contexte dont il a besoin :
 
 <Sandpack>
 
@@ -801,7 +801,7 @@ export default function AddTask() {
           type: 'added',
           id: nextId++,
           text: text,
-        }); 
+        });
       }}>Ajouter</button>
     </>
   );
@@ -901,7 +901,7 @@ ul, li { margin: 0; padding: 0; }
 
 ## Déplacer toute cette plomberie dans un seul fichier {/*moving-all-wiring-into-a-single-file*/}
 
-Vous n'êtes pas obligé·e de le faire, mais vous pouvez encore alléger les composants en déplaçant le réducteur et le contexte dans un seul fichier. Pour le moment, `TasksContext.js` ne contient que les deux déclarations de contexte :
+Ça n'a rien d'obligatoire, mais vous pouvez encore alléger les composants en déplaçant le réducteur et le contexte dans un unique fichier distinct. Pour le moment, `TasksContext.js` ne contient que les deux déclarations de contexte :
 
 ```js
 import { createContext } from 'react';
@@ -1025,7 +1025,7 @@ export default function AddTask() {
           type: 'added',
           id: nextId++,
           text: text,
-        }); 
+        });
       }}>Ajouter</button>
     </>
   );
@@ -1244,7 +1244,7 @@ export default function AddTask() {
           type: 'added',
           id: nextId++,
           text: text,
-        }); 
+        });
       }}>Ajouter</button>
     </>
   );
@@ -1359,8 +1359,7 @@ Au fur et à mesure que votre appli grandit, il se peut que vous ayez de nombreu
   3. Utilisez l'un ou l'autre des contextes pour les composants qui ont besoin de les lire.
 - Vous avez la possibilité d'alléger les composants en déplaçant toute la plomberie dans un seul fichier.
   - Vous pouvez exporter un composant tel que `TasksProvider` qui fournit le contexte.
-  - Vous pouvez également exporter des Hooks personnalisés comme `useTasks` et `useTasksDispatch` pour les lire.
+  - Vous pouvez également exporter des Hooks personnalisés tels que `useTasks` et `useTasksDispatch` pour lire vos contextes spécifiques.
 - Vous pouvez disposer de nombreuses paires contexte-réducteur comme ça dans votre appli.
 
 </Recap>
-
