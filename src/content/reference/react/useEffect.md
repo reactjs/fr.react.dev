@@ -72,11 +72,11 @@ function ChatRoom({ roomId }) {
 
 ## Utilisation {/*usage*/}
 
-### Connexion à un système extérieur {/*connecting-to-an-external-system*/}
+### Se connecter à un système extérieur {/*connecting-to-an-external-system*/}
 
-Some components need to stay connected to the network, some browser API, or a third-party library, while they are displayed on the page. These systems aren't controlled by React, so they are called *external.*
+Certains composants ont besoin de rester connectés au réseau, ou à des API du navigateur, ou à des bibliothèques tierces, tout le temps qu'ils sont à l'écran. Ces systèmes ne sont pas gérés par React, on les qualifie donc de systèmes *extérieurs*.
 
-To [connect your component to some external system,](/learn/synchronizing-with-effects) call `useEffect` at the top level of your component:
+Pour [connecter votre composant à un système extérieur](/learn/synchronizing-with-effects), appelez `useEffect` au niveau racine de votre composant :
 
 ```js [[1, 8, "const connection = createConnection(serverUrl, roomId);"], [1, 9, "connection.connect();"], [2, 11, "connection.disconnect();"], [3, 13, "[serverUrl, roomId]"]]
 import { useEffect } from 'react';
@@ -86,55 +86,55 @@ function ChatRoom({ roomId }) {
   const [serverUrl, setServerUrl] = useState('https://localhost:1234');
 
   useEffect(() => {
-  	const connection = createConnection(serverUrl, roomId);
+    const connection = createConnection(serverUrl, roomId);
     connection.connect();
-  	return () => {
+    return () => {
       connection.disconnect();
-  	};
+    };
   }, [serverUrl, roomId]);
   // ...
 }
 ```
 
-You need to pass two arguments to `useEffect`:
+Vous devez passer deux arguments à `useEffect` :
 
-1. A *setup function* with <CodeStep step={1}>setup code</CodeStep> that connects to that system.
-   - It should return a *cleanup function* with <CodeStep step={2}>cleanup code</CodeStep> that disconnects from that system.
-2. A <CodeStep step={3}>list of dependencies</CodeStep> including every value from your component used inside of those functions.
+1. Une *fonction de mise en place* avec du <CodeStep step={1}>code de mise en place</CodeStep> qui vous connecte au système.
+   - Elle devrait renvoyer une *fonction de nettoyage* avec du <CodeStep step={2}>code de nettoyage</CodeStep> qui vous déconnecte du système.
+2. Une <CodeStep step={3}>liste de dépendances</CodeStep> comprenant chaque valeur issue de votre composant que ces fonctions utilisent.
 
-**React calls your setup and cleanup functions whenever it's necessary, which may happen multiple times:**
+**React appellera vos fonctions de mise en place et de nettoyage chaque fois que nécessaire, ce qui peut survenir plusieurs fois :**
 
-1. Your <CodeStep step={1}>setup code</CodeStep> runs when your component is added to the page *(mounts)*.
-2. After every re-render of your component where the <CodeStep step={3}>dependencies</CodeStep> have changed:
-   - First, your <CodeStep step={2}>cleanup code</CodeStep> runs with the old props and state.
-   - Then, your <CodeStep step={1}>setup code</CodeStep> runs with the new props and state.
-3. Your <CodeStep step={2}>cleanup code</CodeStep> runs one final time after your component is removed from the page *(unmounts).*
+1. Votre <CodeStep step={1}>code de mise en place</CodeStep> est exécuté quand votre composant est ajouté à la page *(montage)*.
+2. Après chaque nouveau rendu de votre composant, si les <CodeStep step={3}>dépendances</CodeStep> ont changé :
+   - D'abord, votre <CodeStep step={2}>code de nettoyage</CodeStep> est exécuté avec les anciennes props et états.
+   - Ensuite, votre <CodeStep step={1}>code de mise en place</CodeStep> est exécuté avec les nouvelles props et états.
+3. Votre <CodeStep step={2}>code de nettoyage</CodeStep> est exécuté une dernière fois lorsque votre composant est retiré de la page *(démontage)*.
 
-**Let's illustrate this sequence for the example above.**
+**Illustrons cette séquence pour l'exemple ci-avant.**
 
-When the `ChatRoom` component above gets added to the page, it will connect to the chat room with the initial `serverUrl` and `roomId`. If either `serverUrl` or `roomId` change as a result of a re-render (say, if the user picks a different chat room in a dropdown), your Effect will *disconnect from the previous room, and connect to the next one.* When the `ChatRoom` component is removed from the page, your Effect will disconnect one last time.
+Lorsque le composant `ChatRoom` ci-dessus sera ajouté à la page, il se connectera au salon de discussion en utilisant les valeurs initiales de `serverUrl` et `roomId`.  Si l'une ou l'autre de ces deux valeurs change suite à un nouveau rendu (peut-être l'utilisateur a-t-il choisi un autre salon dans la liste déroulante), votre Effet *se déconnectera du salon précédent, puis se connecter au nouveau salon*. Lorsque le composant `ChatRoom` sera retiré de la page, votre Effet se déconnectera une dernière fois.
 
-**To [help you find bugs,](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) in development React runs <CodeStep step={1}>setup</CodeStep> and <CodeStep step={2}>cleanup</CodeStep> one extra time before the <CodeStep step={1}>setup</CodeStep>.** This is a stress-test that verifies your Effect's logic is implemented correctly. If this causes visible issues, your cleanup function is missing some logic. The cleanup function should stop or undo whatever the setup function was doing. The rule of thumb is that the user shouldn't be able to distinguish between the setup being called once (as in production) and a *setup* → *cleanup* → *setup* sequence (as in development). [See common solutions.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+**Pour [vous aider à repérer des bugs](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed), en développement React exécutera un premier cycle de <CodeStep step={1}>mise en place</CodeStep> et de <CodeStep step={2}>nettoyage</CodeStep>, avant d'exécuter normalement la <CodeStep step={1}>mise en place</CodeStep> nominale.**  C'est une mise à l'épreuve pour vérifier que la logique de votre Effet est implémentée correctement. Si ça entraîne des problèmes, c'est que votre code de nettoyage est manquant ou incomplet. La fonction de nettoyage devrait arrêter ou défaire ce que la fonction de mise en place a initié. La règle à suivre est simple : l'utilisateur ne devrait pas pouvoir faire la différence entre une exécution unique de la mise en place (comme en production) et une séquence *mise en place* → *nettoyage* → *mise en place* (comme en développement). [Explorez les solutions courantes](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development).
 
-**Try to [write every Effect as an independent process](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) and [think about a single setup/cleanup cycle at a time.](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective)** It shouldn't matter whether your component is mounting, updating, or unmounting. When your cleanup logic correctly "mirrors" the setup logic, your Effect is resilient to running setup and cleanup as often as needed.
+**Essayez [d'écrire chaque Effet comme un processus autonome](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) et de [réfléchir à un seul cycle de mise en place / nettoyage à la fois](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective).**  Le fait que votre composant soit en train d'être monté, de se mettre à jour ou d'être démonté ne devrait avoir aucune importance.  Lorsque votre logique de nettoyage reflète correctement celle de mise en place, votre Effet n'aura aucun problème avec des exécutions multiples de la mise en place et du nettoyage.
 
 <Note>
 
-An Effect lets you [keep your component synchronized](/learn/synchronizing-with-effects) with some external system (like a chat service). Here, *external system* means any piece of code that's not controlled by React, such as:
+Un Effet vous permet de [garder votre composant synchronisé](/learn/synchronizing-with-effects) avec un système extérieur (tels qu'un service de discussion). Dans ce contexte, *système extérieur* désigne n'importe quel bout de code qui n'est pas géré par React, par exemple :
 
-* A timer managed with <CodeStep step={1}>[`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)</CodeStep> and <CodeStep step={2}>[`clearInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval)</CodeStep>.
-* An event subscription using <CodeStep step={1}>[`window.addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)</CodeStep> and <CodeStep step={2}>[`window.removeEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener)</CodeStep>.
-* A third-party animation library with an API like <CodeStep step={1}>`animation.start()`</CodeStep> and <CodeStep step={2}>`animation.reset()`</CodeStep>.
+* Un timer géré par <CodeStep step={1}>[`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)</CodeStep> et <CodeStep step={2}>[`clearInterval()`](https://developer.mozilla.org/fr/docs/Web/API/clearInterval)</CodeStep>.
+* Un abonnement sur événement grâce à <CodeStep step={1}>[`window.addEventListener()`](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener)</CodeStep> et <CodeStep step={2}>[`window.removeEventListener()`](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/removeEventListener)</CodeStep>.
+* Une bibliothèque d'animations tierce avec une API du genre <CodeStep step={1}>`animation.start()`</CodeStep> et <CodeStep step={2}>`animation.reset()`</CodeStep>.
 
-**If you're not connecting to any external system, [you probably don't need an Effect.](/learn/you-might-not-need-an-effect)**
+**Si vous ne vous connectez pas à un système extérieur, [vous n'avez sans doute pas besoin d'un Effet](/learn/you-might-not-need-an-effect).**
 
 </Note>
 
-<Recipes titleText="Examples of connecting to an external system" titleId="examples-connecting">
+<Recipes titleText="Exemples de connexion à un système extérieur" titleId="examples-connecting">
 
-#### Connecting to a chat server {/*connecting-to-a-chat-server*/}
+#### Se connecter à un serveur de discussion {/*connecting-to-a-chat-server*/}
 
-In this example, the `ChatRoom` component uses an Effect to stay connected to an external system defined in `chat.js`. Press "Open chat" to make the `ChatRoom` component appear. This sandbox runs in development mode, so there is an extra connect-and-disconnect cycle, as [explained here.](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) Try changing the `roomId` and `serverUrl` using the dropdown and the input, and see how the Effect re-connects to the chat. Press "Close chat" to see the Effect disconnect one last time.
+Dans cet exemple, le composant `ChatRoom` utilise un Effet pour rester connecté à un système extérieur défini dans `chat.js`.  Appuyez sur « Ouvrir le salon » pour que le composant `ChatRoom` apparaisse.  Ce bac à sable est en mode développement, il y aura donc un cycle supplémentaire de connexion-déconnexion, comme [expliqué ici](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed).  Essayez de changer `roomId` et `serverUrl` en utilisant la liste déroulante et le champ de saisie, et voyez comme l'Effet se reconnecte au salon.  Appuyez sur « Fermer le salon » pour vous déconnecter une dernière fois.
 
 <Sandpack>
 
@@ -156,13 +156,13 @@ function ChatRoom({ roomId }) {
   return (
     <>
       <label>
-        Server URL:{' '}
+        URL du serveur :{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
     </>
   );
 }
@@ -173,18 +173,18 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">Général</option>
+          <option value="travel">Voyage</option>
+          <option value="music">Musique</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Fermer le salon' : 'Ouvrir le salon'}
       </button>
       {show && <hr />}
       {show && <ChatRoom roomId={roomId} />}
@@ -195,13 +195,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -216,9 +216,9 @@ button { margin-left: 10px; }
 
 <Solution />
 
-#### Listening to a global browser event {/*listening-to-a-global-browser-event*/}
+#### Écouter un événement global du navigateur {/*listening-to-a-global-browser-event*/}
 
-In this example, the external system is the browser DOM itself. Normally, you'd specify event listeners with JSX, but you can't listen to the global [`window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) object this way. An Effect lets you connect to the `window` object and listen to its events. Listening to the `pointermove` event lets you track the cursor (or finger) position and update the red dot to move with it.
+Dans cet exemple, le système extérieur est le DOM navigateur lui-même.  En temps normal, vous définiriez des gestionnaires d'événements en JSX, mais vous ne pouvez pas écouter des événements de l'objet global [`window`](https://developer.mozilla.org/fr/docs/Web/API/Window) de cette façon.  Un Effet vous permet de vous connecter à l'objet `window` et d'écouter ses événements.  En vous abonnant à l'événement `pointermove`, vous pouvez surveiller la position du curseur (ou du doigt) et mettre à jour le point rouge pour bouger avec lui.
 
 <Sandpack>
 
@@ -265,9 +265,9 @@ body {
 
 <Solution />
 
-#### Triggering an animation {/*triggering-an-animation*/}
+#### Déclencher une animation {/*triggering-an-animation*/}
 
-In this example, the external system is the animation library in `animation.js`. It provides a JavaScript class called `FadeInAnimation` that takes a DOM node as an argument and exposes `start()` and `stop()` methods to control the animation. This component [uses a ref](/learn/manipulating-the-dom-with-refs) to access the underlying DOM node. The Effect reads the DOM node from the ref and automatically starts the animation for that node when the component appears.
+Dans cet exemple, le système extérieur est la bibliothèque d'animation dans `animation.js`.  Elle fournit une classe JavaScript appelée `FadeInAnimation` qui prend un nœud DOM comme argument et expose des méthodes `start()` et `stop()` pour contrôler l'animation.  Ce composant [utilise une ref](/learn/manipulating-the-dom-with-refs) pour accéder au nœud DOM sous-jacent.  L'Effet lit le nœud DOM depuis la ref et démarre automatiquement l'animation pour ce nœud lorsque le composant apparaît.
 
 <Sandpack>
 
@@ -298,7 +298,7 @@ function Welcome() {
         backgroundImage: 'radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)'
       }}
     >
-      Welcome
+      Bienvenue
     </h1>
   );
 }
@@ -308,7 +308,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Remove' : 'Show'}
+        {show ? 'Retirer' : 'Afficher'}
       </button>
       <hr />
       {show && <Welcome />}
@@ -325,11 +325,11 @@ export class FadeInAnimation {
   start(duration) {
     this.duration = duration;
     if (this.duration === 0) {
-      // Jump to end immediately
+      // Sauter à la fin
       this.onProgress(1);
     } else {
       this.onProgress(0);
-      // Start animating
+      // Commencer l'animation
       this.startTime = performance.now();
       this.frameId = requestAnimationFrame(() => this.onFrame());
     }
@@ -339,7 +339,7 @@ export class FadeInAnimation {
     const progress = Math.min(timePassed / this.duration, 1);
     this.onProgress(progress);
     if (progress < 1) {
-      // We still have more frames to paint
+      // Il nous reste des étapes à afficher
       this.frameId = requestAnimationFrame(() => this.onFrame());
     }
   }
@@ -364,9 +364,9 @@ html, body { min-height: 300px; }
 
 <Solution />
 
-#### Controlling a modal dialog {/*controlling-a-modal-dialog*/}
+#### Contrôler une boîte de dialogue modale {/*controlling-a-modal-dialog*/}
 
-In this example, the external system is the browser DOM. The `ModalDialog` component renders a [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element. It uses an Effect to synchronize the `isOpen` prop to the [`showModal()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) and [`close()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close) method calls.
+Dans cet exemple, le système extérieur est le DOM navigateur. Le composant `ModalDialog` utilise un élément [`<dialog>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/dialog). Il utilise un Effet pour synchroniser la prop `isOpen` avec les appels aux méthodes [`'showModal()'](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) et [`close()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close).
 
 <Sandpack>
 
@@ -379,14 +379,14 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Open dialog
+        Ouvrir le dialogue
       </button>
       <ModalDialog isOpen={show}>
-        Hello there!
+        Salut !
         <br />
         <button onClick={() => {
           setShow(false);
-        }}>Close</button>
+        }}>Fermer</button>
       </ModalDialog>
     </>
   );
@@ -424,9 +424,9 @@ body {
 
 <Solution />
 
-#### Tracking element visibility {/*tracking-element-visibility*/}
+#### Surveiller la visibilité d'un élément {/*tracking-element-visibility*/}
 
-In this example, the external system is again the browser DOM. The `App` component displays a long list, then a `Box` component, and then another long list. Scroll the list down. Notice that when the `Box` component appears in the viewport, the background color changes to black. To implement this, the `Box` component uses an Effect to manage an [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). This browser API notifies you when the DOM element is visible in the viewport.
+Dans cet exemple, le système extérieur est encore le DOM navigateur. Le composant `App` affiche une longue liste, puis un composant `Box`, puis une autre longue liste.  Faites défiler la liste.  Voyez comment, lorsque le composant `Box` apparaît à l'écran, la couleur de fond passe au noir.  Pour implémenter ça, le composant `Box` utilise un Effet pour gérer un [`IntersectionObserver`](https://developer.mozilla.org/fr/docs/Web/API/Intersection_Observer_API). Cette API navigateur vous notifie lorsque l'élément DOM est visible dans la zone de rendu de la fenêtre.
 
 <Sandpack>
 
@@ -448,7 +448,7 @@ export default function App() {
 function LongSection() {
   const items = [];
   for (let i = 0; i < 50; i++) {
-    items.push(<li key={i}>Item #{i} (keep scrolling)</li>);
+    items.push(<li key={i}>Élément #{i} (continuez à défiler)</li>);
   }
   return <ul>{items}</ul>
 }
@@ -501,6 +501,8 @@ export default function Box() {
 ---
 
 ### Enrober vos Effets dans des Hooks personnalisés {/*wrapping-effects-in-custom-hooks*/}
+
+
 
 Effects are an ["escape hatch":](/learn/escape-hatches) you use them when you need to "step outside React" and when there is no better built-in solution for your use case. If you find yourself often needing to manually write Effects, it's usually a sign that you need to extract some [custom Hooks](/learn/reusing-logic-with-custom-hooks) for common behaviors your components rely on.
 
@@ -560,13 +562,13 @@ function ChatRoom({ roomId }) {
   return (
     <>
       <label>
-        Server URL:{' '}
+        URL du serveur :{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
     </>
   );
 }
@@ -577,18 +579,18 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">Général</option>
+          <option value="travel">Voyage</option>
+          <option value="music">Musique</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Fermer le salon' : 'Ouvrir le salon'}
       </button>
       {show && <hr />}
       {show && <ChatRoom roomId={roomId} />}
@@ -1173,13 +1175,13 @@ function ChatRoom({ roomId }) {
   return (
     <>
       <label>
-        Server URL:{' '}
+        URL du serveur :{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
       <label>
         Your message:{' '}
         <input value={message} onChange={e => setMessage(e.target.value)} />
@@ -1194,17 +1196,17 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">Général</option>
+          <option value="travel">Voyage</option>
+          <option value="music">Musique</option>
         </select>
         <button onClick={() => setShow(!show)}>
-          {show ? 'Close chat' : 'Open chat'}
+          {show ? 'Fermer le salon' : 'Ouvrir le salon'}
         </button>
       </label>
       {show && <hr />}
@@ -1272,7 +1274,7 @@ function ChatRoom() {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
       <label>
         Your message:{' '}
         <input value={message} onChange={e => setMessage(e.target.value)} />
@@ -1286,7 +1288,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Fermer le salon' : 'Ouvrir le salon'}
       </button>
       {show && <hr />}
       {show && <ChatRoom />}
@@ -1347,13 +1349,13 @@ function ChatRoom({ roomId }) {
   return (
     <>
       <label>
-        Server URL:{' '}
+        URL du serveur :{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
       <label>
         Your message:{' '}
         <input value={message} onChange={e => setMessage(e.target.value)} />
@@ -1368,17 +1370,17 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">Général</option>
+          <option value="travel">Voyage</option>
+          <option value="music">Musique</option>
         </select>
         <button onClick={() => setShow(!show)}>
-          {show ? 'Close chat' : 'Open chat'}
+          {show ? 'Fermer le salon' : 'Ouvrir le salon'}
         </button>
       </label>
       {show && <hr />}
@@ -1523,7 +1525,7 @@ function ChatRoom({ roomId }) {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
       <input value={message} onChange={e => setMessage(e.target.value)} />
     </>
   );
@@ -1534,14 +1536,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">Général</option>
+          <option value="travel">Voyage</option>
+          <option value="music">Musique</option>
         </select>
       </label>
       <hr />
@@ -1633,7 +1635,7 @@ function ChatRoom({ roomId }) {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
       <input value={message} onChange={e => setMessage(e.target.value)} />
     </>
   );
@@ -1644,14 +1646,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez le salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">Général</option>
+          <option value="travel">Voyage</option>
+          <option value="music">Musique</option>
         </select>
       </label>
       <hr />
