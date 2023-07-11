@@ -502,11 +502,9 @@ export default function Box() {
 
 ### Enrober vos Effets dans des Hooks personnalisés {/*wrapping-effects-in-custom-hooks*/}
 
+Les Effets sont une [« échappatoire »](/learn/escape-hatches) : vous vous en servez pour « sortir de React », et lorsqu'il n'y a pas de meilleure solution disponible pour votre cas de figure.  Si vous vous retrouvez à souvent écrire manuellement des Effets, c'est généralement le signe que vous devriez en extraire certains sous forme de [Hooks personnalisés](/learn/reusing-logic-with-custom-hooks) pour les comportements courants dont vous équipez vos composants.
 
-
-Effects are an ["escape hatch":](/learn/escape-hatches) you use them when you need to "step outside React" and when there is no better built-in solution for your use case. If you find yourself often needing to manually write Effects, it's usually a sign that you need to extract some [custom Hooks](/learn/reusing-logic-with-custom-hooks) for common behaviors your components rely on.
-
-For example, this `useChatRoom` custom Hook "hides" the logic of your Effect behind a more declarative API:
+Par exemple, ce Hook personnalisé `useChatRoom` « masque » la logique de votre Effet derrière une API plus déclarative.
 
 ```js {1,11}
 function useChatRoom({ serverUrl, roomId }) {
@@ -522,7 +520,7 @@ function useChatRoom({ serverUrl, roomId }) {
 }
 ```
 
-Then you can use it from any component like this:
+Vous pouvez dès lors les utiliser dans n'importe quel composant, comme ceci :
 
 ```js {4-7}
 function ChatRoom({ roomId }) {
@@ -535,15 +533,15 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-There are also many excellent custom Hooks for every purpose available in the React ecosystem.
+L'écosystème React propose de nombreux excellents Hooks personnalisés pour tous les besoins :
 
-[Learn more about wrapping Effects in custom Hooks.](/learn/reusing-logic-with-custom-hooks)
+[Apprenez à enrober vos Effets dans des Hooks personnalisés](/learn/reusing-logic-with-custom-hooks).
 
-<Recipes titleText="Examples of wrapping Effects in custom Hooks" titleId="examples-custom-hooks">
+<Recipes titleText="Exemples d'enrobage d'Effets sous forme de Hooks personnalisés">
 
-#### Custom `useChatRoom` Hook {/*custom-usechatroom-hook*/}
+#### Hook `useChatRoom` personnalisé {/*custom-usechatroom-hook*/}
 
-This example is identical to one of the [earlier examples,](#examples-connecting) but the logic is extracted to a custom Hook.
+Cet exemple est identique à un des [exemples précédents](#examples-connecting), mais sa logique est extraite dans un Hook personnalisé.
 
 <Sandpack>
 
@@ -616,13 +614,13 @@ export function useChatRoom({ serverUrl, roomId }) {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -637,9 +635,9 @@ button { margin-left: 10px; }
 
 <Solution />
 
-#### Custom `useWindowListener` Hook {/*custom-usewindowlistener-hook*/}
+#### Hook `useWindowListener` personnalisé {/*custom-usewindowlistener-hook*/}
 
-This example is identical to one of the [earlier examples,](#examples-connecting) but the logic is extracted to a custom Hook.
+Cet exemple est identique à un des [exemples précédents](#examples-connecting), mais sa logique est extraite dans un Hook personnalisé.
 
 <Sandpack>
 
@@ -694,9 +692,9 @@ body {
 
 <Solution />
 
-#### Custom `useIntersectionObserver` Hook {/*custom-useintersectionobserver-hook*/}
+#### Hook `useIntersectionObserver` personnalisé {/*custom-useintersectionobserver-hook*/}
 
-This example is identical to one of the [earlier examples,](#examples-connecting) but the logic is partially extracted to a custom Hook.
+Cet exemple est identique à un des [exemples précédents](#examples-connecting), mais sa logique est extraite dans un Hook personnalisé.
 
 <Sandpack>
 
@@ -718,7 +716,7 @@ export default function App() {
 function LongSection() {
   const items = [];
   for (let i = 0; i < 50; i++) {
-    items.push(<li key={i}>Item #{i} (keep scrolling)</li>);
+    items.push(<li key={i}>Élément #{i} (continuez à défiler)</li>);
   }
   return <ul>{items}</ul>
 }
@@ -787,6 +785,8 @@ export function useIntersectionObserver(ref) {
 ---
 
 ### Contrôler un widget non géré par React {/*controlling-a-non-react-widget*/}
+
+
 
 Sometimes, you want to keep an external system synchronized to some prop or state of your component.
 
