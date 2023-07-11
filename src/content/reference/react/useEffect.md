@@ -786,11 +786,9 @@ export function useIntersectionObserver(ref) {
 
 ### Contrôler un widget non géré par React {/*controlling-a-non-react-widget*/}
 
+Il peut arriver que vous souhaitiez garder un système extérieur synchroniser avec un prop ou un état de votre composant.
 
-
-Sometimes, you want to keep an external system synchronized to some prop or state of your component.
-
-For example, if you have a third-party map widget or a video player component written without React, you can use an Effect to call methods on it that make its state match the current state of your React component. This Effect creates an instance of a `MapWidget` class defined in `map-widget.js`. When you change the `zoomLevel` prop of the `Map` component, the Effect calls the `setZoom()` on the class instance to keep it synchronized:
+Imaginons par exemple que vous ayez un widget tiers de cartographie, ou un composant de lecture vidéo écrit sans React ; vous pouvez utiliser un Effet pour en appeler les méthodes afin que son état soit raccord avec l'état local de votre composant React.  L'Effet ci-dessous crée une instance de la classe `MapWidget` définie dans `map-widget.js`.  Lorsque vous modifiez la prop `zoomLevel` du composant `Map`, l'Effet appelle la méthode `setZoom()` sur l'instance pour la garder synchronisée !
 
 <Sandpack>
 
@@ -820,9 +818,9 @@ export default function App() {
   const [zoomLevel, setZoomLevel] = useState(0);
   return (
     <>
-      Zoom level: {zoomLevel}x
+      Niveau de zoom : {zoomLevel}x
       <button onClick={() => setZoomLevel(zoomLevel + 1)}>+</button>
-      <button onClick={() => setZoomLevel(zoomLevel - 1)}>-</button>
+      <button onClick={() => setZoomLevel(zoomLevel - 1)}>−</button>
       <hr />
       <Map zoomLevel={zoomLevel} />
     </>
@@ -890,7 +888,7 @@ button { margin: 5px; }
 
 </Sandpack>
 
-In this example, a cleanup function is not needed because the `MapWidget` class manages only the DOM node that was passed to it. After the `Map` React component is removed from the tree, both the DOM node and the `MapWidget` class instance will be automatically garbage-collected by the browser JavaScript engine.
+Dans cet exemple, nous n'avons pas besoin d'une fonction de nettoyage parce que la classe `MapWidget` ne gère que le nœud DOM qui lui a été passé.  Après que le composant React `Map` aura été retiré de l'arborescence, tant le nœud DOM que l'instance de `MapWidget` seront automatiquement nettoyés par le *garbage collector* du moteur JavaScript du navigateur.
 
 ---
 
