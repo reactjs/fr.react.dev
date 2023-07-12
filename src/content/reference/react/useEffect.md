@@ -1416,7 +1416,7 @@ button { margin-left: 5px; }
 
 ### Mettre à jour l'état sur base d'un état précédent, au sein d'un Effet {/*updating-state-based-on-previous-state-from-an-effect*/}
 
-When you want to update state based on previous state from an Effect, you might run into a problem:
+Lorsque vous souhaitez mettre à jour l'état sur base d'un état précédent depuis un Effet, vous risquez de rencontrer un problème :
 
 ```js {6,9}
 function Counter() {
@@ -1424,17 +1424,17 @@ function Counter() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCount(count + 1); // You want to increment the counter every second...
+      setCount(count + 1); // Vous souhaitez incrémenter le compteur à chaque seconde...
     }, 1000)
     return () => clearInterval(intervalId);
-  }, [count]); // 🚩 ... but specifying `count` as a dependency always resets the interval.
+  }, [count]); // 🚩 ... mais préciser `count` comme dépendance réinitialise l'intervalle à chaque fois.
   // ...
 }
 ```
 
-Since `count` is a reactive value, it must be specified in the list of dependencies. However, that causes the Effect to cleanup and setup again every time the `count` changes. This is not ideal.
+Dans la mesure où `count` est une valeur réactive, elle doit figurer dans la liste des dépendances. Pourtant, ça force l'Effet à se nettoyer et se remettre en place chaque fois que `count` change.  C'est loin d'être idéal.
 
-To fix this, [pass the `c => c + 1` state updater](/reference/react/useState#updating-state-based-on-the-previous-state) to `setCount`:
+Pour corriger ça, [passez une fonction de mise à jour d'état `c => c + 1`](/reference/react/useState#updating-state-based-on-the-previous-state) à `setCount` :
 
 <Sandpack>
 
@@ -1446,10 +1446,10 @@ export default function Counter() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCount(c => c + 1); // ✅ Pass a state updater
+      setCount(c => c + 1); // ✅ Passe une fonction de mise à jour
     }, 1000);
     return () => clearInterval(intervalId);
-  }, []); // ✅ Now count is not a dependency
+  }, []); // ✅ count n’est plus une dépendance
 
   return <h1>{count}</h1>;
 }
@@ -1469,14 +1469,14 @@ body {
 
 </Sandpack>
 
-Now that you're passing `c => c + 1` instead of `count + 1`, [your Effect no longer needs to depend on `count`.](/learn/removing-effect-dependencies#are-you-reading-some-state-to-calculate-the-next-state) As a result of this fix, it won't need to cleanup and setup the interval again every time the `count` changes.
+Maintenant que vous passez `c => c + 1` au lieu de `count + 1`, [votre Effet n'a plus besoin de dépendre de `count`](/learn/removing-effect-dependencies#are-you-reading-some-state-to-calculate-the-next-state).  En conséquence, il n'aura plus besoin de nettoyer et remettre en place l'intervalle chaque fois que `count` change.
 
 ---
 
 
 ### Supprimer des dépendances objets superflues {/*removing-unnecessary-object-dependencies*/}
 
-If your Effect depends on an object or a function created during rendering, it might run too often. For example, this Effect re-connects after every render because the `options` object is [different for every render:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
+Si votre Effet dépend d'un objet ou d'une fonction créée lors du rendu, il s'exécutera sans doute trop souvent. Par exemple, cet Effet se reconnecte à chaque rendu parce que l'objet `options` [est un objet différent à chaque rendu](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally) :
 
 ```js {6-9,12,15}
 const serverUrl = 'https://localhost:1234';
@@ -1484,20 +1484,20 @@ const serverUrl = 'https://localhost:1234';
 function ChatRoom({ roomId }) {
   const [message, setMessage] = useState('');
 
-  const options = { // 🚩 This object is created from scratch on every re-render
+  const options = { // 🚩 Cet objet est (re)créé à chaque rendu
     serverUrl: serverUrl,
     roomId: roomId
   };
 
   useEffect(() => {
-    const connection = createConnection(options); // It's used inside the Effect
+    const connection = createConnection(options); // L’Effet l’utilise
     connection.connect();
     return () => connection.disconnect();
-  }, [options]); // 🚩 As a result, these dependencies are always different on a re-render
+  }, [options]); // 🚩 Les dépendances sont donc différentes à chaque rendu
   // ...
 ```
 
-Avoid using an object created during rendering as a dependency. Instead, create the object inside the Effect:
+Évitez d'utiliser un objet créé lors du rendu comme dépendance.  Préférez créer cet objet au sein de l'Effet :
 
 <Sandpack>
 
@@ -1552,13 +1552,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -1571,21 +1571,22 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Now that you create the `options` object inside the Effect, the Effect itself only depends on the `roomId` string.
+Maintenant que vous créez l'objet `options` au sein de l'Effet, l'Effet lui-même ne dépend plus que de la chaîne de caractères `roomId`.
 
-With this fix, typing into the input doesn't reconnect the chat. Unlike an object which gets re-created, a string like `roomId` doesn't change unless you set it to another value. [Read more about removing dependencies.](/learn/removing-effect-dependencies)
+Grâce à ce correctif, modifier la saisie ne reconnecte pas la discussion.  Contrairement à un objet créé de frais à chaque fois, un texte comme `roomId` ne change pas tant qu'on n'en modifie pas la valeur. [Apprenez-en davantage sur l'allègement des dépendances](/learn/removing-effect-dependencies).
 
 ---
 
 ### Supprimer des dépendances fonctions superflues {/*removing-unnecessary-function-dependencies*/}
 
-If your Effect depends on an object or a function created during rendering, it might run too often. For example, this Effect re-connects after every render because the `createOptions` function is [different for every render:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
+Si votre Effet dépend d'un objet ou d'une fonction créée lors du rendu, il s'exécutera sans doute trop souvent. Par exemple, cet Effet se reconnecte à chaque rendu parce que la fonction `createOptions` [est une fonction différente à chaque rendu](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally) :
+
 
 ```js {4-9,12,16}
 function ChatRoom({ roomId }) {
   const [message, setMessage] = useState('');
 
-  function createOptions() { // 🚩 This function is created from scratch on every re-render
+  function createOptions() { // 🚩 Cette fonction est (re)créée à chaque rendu
     return {
       serverUrl: serverUrl,
       roomId: roomId
@@ -1593,17 +1594,17 @@ function ChatRoom({ roomId }) {
   }
 
   useEffect(() => {
-    const options = createOptions(); // It's used inside the Effect
+    const options = createOptions(); // L’Effet l’utilise
     const connection = createConnection();
     connection.connect();
     return () => connection.disconnect();
-  }, [createOptions]); // 🚩 As a result, these dependencies are always different on a re-render
+  }, [createOptions]); // 🚩 Les dépendances sont donc différentes à chaque rendu
   // ...
 ```
 
-By itself, creating a function from scratch on every re-render is not a problem. You don't need to optimize that. However, if you use it as a dependency of your Effect, it will cause your Effect to re-run after every re-render.
+En soi, créer une fonction de zéro à chaque rendu n'est pas un problème. Vous n'avez pas besoin d'optimiser ça. En revanche, si vous l'utilisez comme dépendance d'un Effet, elle forcera votre Effet à être ré-exécuté à chaque rendu.
 
-Avoid using a function created during rendering as a dependency. Instead, declare it inside the Effect:
+Évitez d'utiliser une fonction créée lors du rendu comme dépendance.  Déclarez-la plutôt au sein de l'Effet :
 
 <Sandpack>
 
@@ -1662,13 +1663,13 @@ export default function App() {
 
 ```js chat.js
 export function createConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -1681,7 +1682,9 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Now that you define the `createOptions` function inside the Effect, the Effect itself only depends on the `roomId` string. With this fix, typing into the input doesn't reconnect the chat. Unlike a function which gets re-created, a string like `roomId` doesn't change unless you set it to another value. [Read more about removing dependencies.](/learn/removing-effect-dependencies)
+Maintenant que vous déclarez la fonction `createOptions` au sein de l'Effet, l'Effet lui-même ne dépend plus que de la chaîne de caractères `roomId`.
+
+Grâce à ce correctif, modifier la saisie ne reconnecte pas la discussion.  Contrairement à une fonction créée de frais à chaque fois, un texte comme `roomId` ne change pas tant qu'on n'en modifie pas la valeur. [Apprenez-en davantage sur l'allègement des dépendances](/learn/removing-effect-dependencies).
 
 ---
 
@@ -1689,24 +1692,24 @@ Now that you define the `createOptions` function inside the Effect, the Effect i
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+Cette section décrit une **API expérimentale : elle n’a donc pas encore été livrée** dans une version stable de React.
 
 </Wip>
 
-By default, when you read a reactive value from an Effect, you have to add it as a dependency. This ensures that your Effect "reacts" to every change of that value. For most dependencies, that's the behavior you want.
+Par défaut, lorsque vous lisez une valeur réactive depuis un Effet, vous devez l'ajouter comme dépendance. Ça garantir que votre Effet « réagit » à chaque modification de cette valeur.  Pour la plupart des dépendances, c'est bien le comportement que vous souhaitez.
 
-**However, sometimes you'll want to read the *latest* props and state from an Effect without "reacting" to them.** For example, imagine you want to log the number of the items in the shopping cart for every page visit:
+**Toutefois, il peut arriver que vous souhaitiez lire les *dernières* valeurs à jour de props ou d'états depuis un Effet, sans pour autant y « réagir ».**  Imaginons par exemple que vous souhaitiez afficher en console le nombre d'éléments dans le panier d'achats à chaque visite de la page :
 
 ```js {3}
 function Page({ url, shoppingCart }) {
   useEffect(() => {
     logVisit(url, shoppingCart.length);
-  }, [url, shoppingCart]); // ✅ All dependencies declared
+  }, [url, shoppingCart]); // ✅ Toutes les dépendances sont déclarées
   // ...
 }
 ```
 
-**What if you want to log a new page visit after every `url` change, but *not* if only the `shoppingCart` changes?** You can't exclude `shoppingCart` from dependencies without breaking the [reactivity rules.](#specifying-reactive-dependencies) However, you can express that you *don't want* a piece of code to "react" to changes even though it is called from inside an Effect. [Declare an *Effect Event*](/learn/separating-events-from-effects#declaring-an-effect-event) with the [`useEffectEvent`](/reference/react/experimental_useEffectEvent) Hook, and move the code reading `shoppingCart` inside of it:
+**Et si vous vouliez afficher une visite de page après chaque modification de `url`, mais *pas* lorsque seul `shoppingCart` change ?**  Vous ne pouvez pas exclure `shoppingCart` de vos dépendances sans enfreindre les [règles de la réactivité](#specifying-reactive-dependencies).  En revanche, vous pouvez exprimer que vous *ne souhaitez pas* qu'un bout de votre code « réagisse » aux changemeents, même s'il est appelé depuis un Effet. [Déclarez un *Événement d'Effet*](/learn/separating-events-from-effects#declaring-an-effect-event) avec le Hook [`useEffectEvent`](/reference/react/experimental_useEffectEvent), et déplacez le code qui consulte `shoppingCart` à l'intérieur :
 
 ```js {2-4,7,8}
 function Page({ url, shoppingCart }) {
@@ -1716,23 +1719,23 @@ function Page({ url, shoppingCart }) {
 
   useEffect(() => {
     onVisit(url);
-  }, [url]); // ✅ All dependencies declared
+  }, [url]); // ✅ Toutes les dépendances sont déclarées
   // ...
 }
 ```
 
-**Effect Events are not reactive and must always be omitted from dependencies of your Effect.** This is what lets you put non-reactive code (where you can read the latest value of some props and state) inside of them. By reading `shoppingCart` inside of `onVisit`, you ensure that `shoppingCart` won't re-run your Effect.
+**Les Événements d'Effets ne sont pas réactifs et doivent toujours être omis des dépendances de votre Effet.**  C'est ce qui vous permet d'y mettre du code non réactif (qui peut donc lire la dernière valeur en date de props ou d'états).  En lisant `shoppingCart` au sein de `onVisit`, vous garantissez que `shoppingCart` ne redéclenchera pas votre Effet.
 
-[Read more about how Effect Events let you separate reactive and non-reactive code.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
+[Découvrez en quoi les Événements d'Effets vous permettent de séparer les codes réactif et non réactif](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events).
 
 
 ---
 
 ### Afficher un contenu différent côté serveur et côté client {/*displaying-different-content-on-the-server-and-the-client*/}
 
-If your app uses server rendering (either [directly](/reference/react-dom/server) or via a [framework](/learn/start-a-new-react-project#production-grade-react-frameworks)), your component will render in two different environments. On the server, it will render to produce the initial HTML. On the client, React will run the rendering code again so that it can attach your event handlers to that HTML. This is why, for [hydration](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) to work, your initial render output must be identical on the client and the server.
+Si votre appli utilise du rendu côté serveur (que ce soit [en direct](/reference/react-dom/server) ou *via* un [framework](/learn/start-a-new-react-project#production-grade-react-frameworks)), votre composant fera son rendu dans deux environnements différents. Côté serveur, son rendu produira le HTML initial. Côté client, React exécutera à nouveau le code de rendu pour pouvoir inscrire les gestionnaires d'événements à ce HTML. C'est pourquoi, afin que [l'hydratation](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) puisse fonctionner, votre résultat de rendu initial doit être identique côté client et côté serveur.
 
-In rare cases, you might need to display different content on the client. For example, if your app reads some data from [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), it can't possibly do that on the server. Here is how you could implement this:
+Dans de rares cas, vous pourriez avoir besoin de produire des contenus distincts côté client. Disons par exemple que votre appli lit certaines données depuis [`localStorage`](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage), il ne peut clairement pas faire ça côté serveur.  Voici comment vous implémenteriez ça :
 
 ```js
 function MyComponent() {
@@ -1743,16 +1746,16 @@ function MyComponent() {
   }, []);
 
   if (didMount) {
-    // ... return client-only JSX ...
+    // ... renvoi du JSX pour le client seulement ...
   }  else {
-    // ... return initial JSX ...
+    // ... renvoi du JSX initial ...
   }
 }
 ```
 
-While the app is loading, the user will see the initial render output. Then, when it's loaded and hydrated, your Effect will run and set `didMount` to `true`, triggering a re-render. This will switch to the client-only render output. Effects don't run on the server, so this is why `didMount` was `false` during the initial server render.
+Penant que l'appli charge, l'utilisateur voit le résultat du rendu initial. Puis, lorsqu'elle sera chargée et hydratée, votre Effet sera exécuté et définira `didMount` à `true`, ce qui déclenchera un nouveau rendu. On basculera alors sur le résultat de rendu pour le client seulement. Les Effets ne sont pas exécutés côté serveur, c'est pourquoi `didMount` resterait à `false` lors du rendu initial.
 
-Use this pattern sparingly. Keep in mind that users with a slow connection will see the initial content for quite a bit of time--potentially, many seconds--so you don't want to make jarring changes to your component's appearance. In many cases, you can avoid the need for this by conditionally showing different things with CSS.
+N'abusez pas de cette astuce.  Gardez à l'esprit que les utilisateurs avec des connexions lentes verront le contenu initial pendant un bon bout de temps — jusqu'à plusieurs secondes — et qu'il faudrait donc éviter d'appliquer au final des changements trop drastiques dans l'apparence de votre composant.  Le plus souvent, vous pourrez éviter de recourir à cette approche en utilisant des affichages conditionnels *via* CSS.
 
 ---
 
