@@ -1761,29 +1761,29 @@ N'abusez pas de cette astuce.  Gardez à l'esprit que les utilisateurs avec des 
 
 ## Dépannage {/*troubleshooting*/}
 
-### My Effect runs twice when the component mounts {/*my-effect-runs-twice-when-the-component-mounts*/}
+### Mon Effet est exécuté deux fois au montage du composant {/*my-effect-runs-twice-when-the-component-mounts*/}
 
-When Strict Mode is on, in development, React runs setup and cleanup one extra time before the actual setup.
+Lorsque le mode strict est activé, en développement, React exécutera une première fois la mise en place et le nettoyage, avant la mise en place effective.
 
-This is a stress-test that verifies your Effect’s logic is implemented correctly. If this causes visible issues, your cleanup function is missing some logic. The cleanup function should stop or undo whatever the setup function was doing. The rule of thumb is that the user shouldn’t be able to distinguish between the setup being called once (as in production) and a setup → cleanup → setup sequence (as in development).
+C'est une mise à l'épreuve pour vérifier que la logique de votre Effet est implémentée correctement. Si ça entraîne des problèmes, c'est que votre code de nettoyage est manquant ou incomplet. La fonction de nettoyage devrait arrêter ou défaire ce que la fonction de mise en place a initié. La règle à suivre est simple : l'utilisateur ne devrait pas pouvoir faire la différence entre une exécution unique de la mise en place (comme en production) et une séquence *mise en place* → *nettoyage* → *mise en place* (comme en développement).
 
-Read more about [how this helps find bugs](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) and [how to fix your logic.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+Découvrez [en quoi ça vous aide à repérer des bugs](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) et [comment corriger votre code](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development).
 
 ---
 
-### My Effect runs after every re-render {/*my-effect-runs-after-every-re-render*/}
+### Mon Effet est exécuté après chaque rendu {/*my-effect-runs-after-every-re-render*/}
 
-First, check that you haven't forgotten to specify the dependency array:
+Commencez par vérifier que vous n'avez pas oublié de spécifier le tableau des dépendances :
 
 ```js {3}
 useEffect(() => {
   // ...
-}); // 🚩 No dependency array: re-runs after every render!
+}); // 🚩 Aucun tableau de dépendance : exécuté après chaque rendu !
 ```
 
-If you've specified the dependency array but your Effect still re-runs in a loop, it's because one of your dependencies is different on every re-render.
+Si vous avez spécifié un tableau de dépendances et que votre Effet persiste à s'exécuter en boucle, c'est parce qu'une de vos dépendances est différente à chaque rendu.
 
-You can debug this problem by manually logging your dependencies to the console:
+Vous pouvez déboguer ce problème en affichant vos dépendances en console :
 
 ```js {5}
   useEffect(() => {
@@ -1793,58 +1793,58 @@ You can debug this problem by manually logging your dependencies to the console:
   console.log([serverUrl, roomId]);
 ```
 
-You can then right-click on the arrays from different re-renders in the console and select "Store as a global variable" for both of them. Assuming the first one got saved as `temp1` and the second one got saved as `temp2`, you can then use the browser console to check whether each dependency in both arrays is the same:
+Vous pouvez alors cliquer bouton droit, dans la console, sur les tableaux issus de différents rendus et sélectionner « Stocker objet en tant que variable globale » pour chacun d'entre eux.  En supposant que vous avez stocké le premier en tant que `temp1` et le second en tant que `temp2`, vous pouvez alors utiliser la console du navigateur pour vérifier si chaque dépendance des tableaux est identique :
 
 ```js
-Object.is(temp1[0], temp2[0]); // Is the first dependency the same between the arrays?
-Object.is(temp1[1], temp2[1]); // Is the second dependency the same between the arrays?
-Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
+Object.is(temp1[0], temp2[0]); // La première dépendance est-elle inchangée ?
+Object.is(temp1[1], temp2[1]); // La deuxième dépendance est-elle inchangée ?
+Object.is(temp1[2], temp2[2]); // ... et ainsi de suite pour chaque dépendance ...
 ```
 
-When you find the dependency that is different on every re-render, you can usually fix it in one of these ways:
+Lorsque vous aurez repéré la dépendance qui diffère d'un rendu à l'autre, vous pouvez généralement corriger ça de l'une des manières suivantes :
 
-- [Updating state based on previous state from an Effect](#updating-state-based-on-previous-state-from-an-effect)
-- [Removing unnecessary object dependencies](#removing-unnecessary-object-dependencies)
-- [Removing unnecessary function dependencies](#removing-unnecessary-function-dependencies)
-- [Reading the latest props and state from an Effect](#reading-the-latest-props-and-state-from-an-effect)
+- [Mettre à jour l'état sur base d'un état précédent, au sein d'un Effet](#updating-state-based-on-previous-state-from-an-effect)
+- [Supprimer des dépendances objets superflues](#removing-unnecessary-object-dependencies)
+- [Supprimer des dépendances fonctions superflues](#removing-unnecessary-function-dependencies)
+- [Lire les dernières props et états à jour depuis un Effet](#reading-the-latest-props-and-state-from-an-effect)
 
-As a last resort (if these methods didn't help), wrap its creation with [`useMemo`](/reference/react/useMemo#memoizing-a-dependency-of-another-hook) or [`useCallback`](/reference/react/useCallback#preventing-an-effect-from-firing-too-often) (for functions).
-
----
-
-### My Effect keeps re-running in an infinite cycle {/*my-effect-keeps-re-running-in-an-infinite-cycle*/}
-
-If your Effect runs in an infinite cycle, these two things must be true:
-
-- Your Effect is updating some state.
-- That state leads to a re-render, which causes the Effect's dependencies to change.
-
-Before you start fixing the problem, ask yourself whether your Effect is connecting to some external system (like DOM, network, a third-party widget, and so on). Why does your Effect need to set state? Does it synchronize with that external system? Or are you trying to manage your application's data flow with it?
-
-If there is no external system, consider whether [removing the Effect altogether](/learn/you-might-not-need-an-effect) would simplify your logic.
-
-If you're genuinely synchronizing with some external system, think about why and under what conditions your Effect should update the state. Has something changed that affects your component's visual output? If you need to keep track of some data that isn't used by rendering, a [ref](/reference/react/useRef#referencing-a-value-with-a-ref) (which doesn't trigger re-renders) might be more appropriate. Verify your Effect doesn't update the state (and trigger re-renders) more than needed.
-
-Finally, if your Effect is updating the state at the right time, but there is still a loop, it's because that state update leads to one of the Effect's dependencies changing. [Read how to debug dependency changes.](/reference/react/useEffect#my-effect-runs-after-every-re-render)
+En tout dernier recours (si aucune de ces approches n'a résolu le souci), enrobez la création de la dépendance avec [`useMemo`](/reference/react/useMemo#memoizing-a-dependency-of-another-hook) ou [`useCallback`](/reference/react/useCallback#preventing-an-effect-from-firing-too-often) (pour les fonctions).
 
 ---
 
-### My cleanup logic runs even though my component didn't unmount {/*my-cleanup-logic-runs-even-though-my-component-didnt-unmount*/}
+### Mon Effet n'arrête pas de se re-exécuter {/*my-effect-keeps-re-running-in-an-infinite-cycle*/}
 
-The cleanup function runs not only during unmount, but before every re-render with changed dependencies. Additionally, in development, React [runs setup+cleanup one extra time immediately after component mounts.](#my-effect-runs-twice-when-the-component-mounts)
+Si votre Effet s'exécute en boucle infinie, deux choses devraient se passer :
 
-If you have cleanup code without corresponding setup code, it's usually a code smell:
+- Votre Effet met à jour un état.
+- Cet état entraîne un nouveau rendu, qui modifie les dépendances de votre Effet.
+
+Avant de vous attaquer à la résolution de ce problème, demandez-vous si votre Effet se connecte à un système extérieur (tel que le DOM, le réseau, un widget tiers, etc.). Pourquoi votre Effet a-t-il besoin de modifier l'état ? Se synchronise-t-il avec un système extérieur ? Ou essayez-vous de gérer le flux de données de votre application avec ça ?
+
+S'il n'y a pas de système extérieur, envisagez de [retirer carrément l'Effet](/learn/you-might-not-need-an-effect) pour simplifier votre logique.
+
+Si vous vous synchronisez effectivement avec un système extérieur, réfléchissez aux conditions dans lesquelles votre Effet devrait mettre à jour l'état. Quelque chose a-t-il changé qui impacte le résultat visuel de votre composant ? Si vous devez surveiller certaines données inutilisées par le rendu, une [ref](/reference/react/useRef#referencing-a-value-with-a-ref) (qui ne redéclenche pas de rendu) serait peut-être plus appropriée.  Vérifiez que votre Effet ne met pas à jour l'Effet (entraînant un nouveau rendu) plus que nécessaire.
+
+Pour finir, si votre Effet met à jour l'état au bon moment, mais qu'il y a tout de même une boucle, c'est sans doute parce que la mise à jour de l'état entraîne la modification d'une des dépendances de l'Effet. [Voyez comment déboguer les modifications de dépendances](#my-effect-runs-after-every-re-render).
+
+---
+
+### Ma logique de nettoyage est exécutée alors que mon composant n'a pas été démonté {/*my-cleanup-logic-runs-even-though-my-component-didnt-unmount*/}
+
+La fonction de nettoyage n'est pas exécutée seulement lors du démontage, mais avant chaque nouveau rendu dont les dépendances ont changé.  Qui plus est, en développement, React [exécute la mise en place et le nettoyage une fois de plus juste avant le démontage du composant](#my-effect-runs-twice-when-the-component-mounts).
+
+Si vous avez du code de nettoyage sans code de mise en place correspondant c'est généralement mauvaise signe :
 
 ```js {2-5}
 useEffect(() => {
-  // 🔴 Avoid: Cleanup logic without corresponding setup logic
+  // 🔴 À éviter : code de nettoyage sans mise en place correspondante
   return () => {
     doSomething();
   };
 }, []);
 ```
 
-Your cleanup logic should be "symmetrical" to the setup logic, and should stop or undo whatever setup did:
+Votre code de nettoyage devrait refléter celui de mise en place, qu'il devrait arrêter ou défaire :
 
 ```js {2-3,5}
   useEffect(() => {
@@ -1856,10 +1856,10 @@ Your cleanup logic should be "symmetrical" to the setup logic, and should stop o
   }, [serverUrl, roomId]);
 ```
 
-[Learn how the Effect lifecycle is different from the component's lifecycle.](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect)
+[Apprenez en quoi le cycle de vie des Effets diffère de celui des composants](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect).
 
 ---
 
-### My Effect does something visual, and I see a flicker before it runs {/*my-effect-does-something-visual-and-i-see-a-flicker-before-it-runs*/}
+### Mon Effet fait un truc visuel, et l'affichage vacille avant son exécution {/*my-effect-does-something-visual-and-i-see-a-flicker-before-it-runs*/}
 
-If your Effect must block the browser from [painting the screen,](/learn/render-and-commit#epilogue-browser-paint) replace `useEffect` with [`useLayoutEffect`](/reference/react/useLayoutEffect). Note that **this shouldn't be needed for the vast majority of Effects.** You'll only need this if it's crucial to run your Effect before the browser paint: for example, to measure and position a tooltip before the user sees it.
+Si votre Effet doit empêcher le navigateur de [rafraîchir immédiatement l'affichage à l'écran](/learn/render-and-commit#epilogue-browser-paint), remplacez `useEffect` par [`useLayoutEffect`](/reference/react/useLayoutEffect). Remarquez que **ça ne devrait concerner qu'une toute petite minorité de cas**.  Vous n'aurez besoin de ça que lorsqu'il est crucial que votre Effet soit exécuté avant le rafraîchissement par le navigateur ; par exemple, pour mesurer et positionner une infobulle avant que l'utilisateur ne la voie.
