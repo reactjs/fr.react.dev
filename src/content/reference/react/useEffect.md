@@ -4,7 +4,7 @@ title: useEffect
 
 <Intro>
 
-`useEffect` est un Hook React qui vous permet de [synchroniser un composant avec un système extérieur](/learn/synchronizing-with-effects).
+`useEffect` est un Hook React qui vous permet de [synchroniser un composant React avec un système extérieur](/learn/synchronizing-with-effects).
 
 ```js
 useEffect(setup, dependencies?)
@@ -44,7 +44,7 @@ function ChatRoom({ roomId }) {
 
 #### Paramètres {/*parameters*/}
 
-* `setup` : la fonction contenant la logique de votre Effet.  Votre fonctino de mise en place peut par ailleurs renvoyer une fonction de *nettoyage*.  Quand votre composant est ajouté au DOM, React exécutera votre fonction de mise en place.  Après chaque nouveau rendu dont les dépendances ont changé, React commencera par exécuter votre fonction de nettoyage (si vous en avez fourni une) avec les anciennes valeurs, puis exécutera votre fonction de mise en place avec les nouvelles valeurs.  Une fois votre composant retiré du DOM, React exécutera votre fonction de nettoyage.
+* `setup` : la fonction contenant la logique de votre Effet.  Votre fonction de mise en place peut par ailleurs renvoyer une fonction de *nettoyage*.  Quand votre composant sera ajouté au DOM, React exécutera votre fonction de mise en place.  Après chaque nouveau rendu dont les dépendances ont changé, React commencera par exécuter votre fonction de nettoyage (si vous en avez fourni une) avec les anciennes valeurs, puis exécutera votre fonction de mise en place avec les nouvelles valeurs.  Une fois votre composant retiré du DOM, React exécutera votre fonction de nettoyage une dernière fois.
 
 * `dependencies` **optionnelles** : la liste des valeurs réactives référencées par le code de `setup`.  Les valeurs réactives comprennent les props, les variables d'état et toutes les variables et fonctions déclarées localement dans le corps de votre composant.  Si votre *linter* est [configuré pour React](/learn/editor-setup#linting), il vérifiera que chaque valeur réactive concernée est bien spécifiée comme dépendance.  La liste des dépendances doit avoir un nombre constant d'éléments et utiliser un littéral défini à la volée, du genre `[dep1, dep2, dep3]`. React comparera chaque dépendance à sa valeur précédente au moyen de la comparaison [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is).  Si vous omettez cet argument, votre Effet sera re-exécuté après chaque rendu du composant. [Découvrez la différence entre passer un tableau de dépendances, un tableau vide ou aucun tableau](#examples-dependencies).
 
@@ -56,13 +56,13 @@ function ChatRoom({ roomId }) {
 
 * `useEffect` est un Hook, vous pouvez donc uniquement l’appeler **à la racine de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l’appeler à l’intérieur de boucles ou de conditions. Si nécessaire, extrayez un nouveau composant et déplacez l'état dans celui-ci.
 
-* Si vous **ne cherchez pas à synchroniser avec un système extérieur**, [vous n'avez probablement pas besoin d'un Effet](/learn/you-might-not-need-an-effect).
+* Si vous **ne cherchez pas à synchroniser avec un système extérieur**, c'est que [vous n'avez probablement pas besoin d'un Effet](/learn/you-might-not-need-an-effect).
 
 * Quand le mode strict est activé, React **appellera une fois de plus votre cycle mise en place + nettoyage, uniquement en développement**, avant la première mise en place réelle.  C'est une mise à l'épreuve pour vérifier que votre logique de nettoyage reflète bien votre logique de mise en place, et décommissionne ou défait toute la mise en place effectuée.  Si ça entraîne des problèmes, [écrivez une fonction de nettoyage](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development).
 
 * Si certaines de vos dépendances sont des objets ou fonctions définies au sein de votre composant, il existe un risque qu'elles **entraînent des exécutions superflues de votre Effet**.  Pour corriger ça, retirez les dépendances superflues sur des [objets](#removing-unnecessary-object-dependencies) et [fonctions](#removing-unnecessary-function-dependencies).  Vous pouvez aussi [extraire les mises à jour d'état](#updating-state-based-on-previous-state-from-an-effect) et la [logique non réactive](#reading-the-latest-props-and-state-from-an-effect) hors de votre Effet.
 
-* Si votre Effet ne découlait pas d'une interaction (telle qu'un clic), React laissera le navigateur **rafraîchir l'affichage à l'écran avant d'exécuter votre Effet**. Si votre Effet a des aspects visuels (par exemple, il positionne une infobulle) et que le retard est perceptible (par exemple, l'affichage est intermittent), remplacez `useEffect` par `useLayoutEffect`(/reference/react/useLayoutEffect).
+* Si votre Effet ne découlait pas d'une interaction (telle qu'un clic), React laissera le navigateur **rafraîchir l'affichage à l'écran avant d'exécuter votre Effet**. Si votre Effet a des aspects visuels (par exemple, il positionne une infobulle) et que le retard est perceptible (par exemple, l'affichage vacille), remplacez `useEffect` par [`useLayoutEffect`](/reference/react/useLayoutEffect).
 
 * Même si votre Effet est déclenché par une interaction (telle qu'un clic), **le navigateur est susceptible de rafraîchir l'affichage avant d'avoir traité les mises à jour d'état au sein de votre Effet**.  C'est généralement ce que vous souhaitez.  Cependant, si vous devez empêcher le navigateur de rafraîchir l'affichage tout de suite, remplacez `useEffect` par [`useLayoutEffect`](/reference/react/useLayoutEffect).
 
@@ -76,7 +76,7 @@ function ChatRoom({ roomId }) {
 
 Certains composants ont besoin de rester connectés au réseau, ou à des API du navigateur, ou à des bibliothèques tierces, tout le temps qu'ils sont à l'écran. Ces systèmes ne sont pas gérés par React, on les qualifie donc de systèmes *extérieurs*.
 
-Pour [connecter votre composant à un système extérieur](/learn/synchronizing-with-effects), appelez `useEffect` au niveau racine de votre composant :
+Afin de [connecter votre composant à un système extérieur](/learn/synchronizing-with-effects), appelez `useEffect` au niveau racine de votre fonction composant :
 
 ```js [[1, 8, "const connection = createConnection(serverUrl, roomId);"], [1, 9, "connection.connect();"], [2, 11, "connection.disconnect();"], [3, 13, "[serverUrl, roomId]"]]
 import { useEffect } from 'react';
@@ -106,21 +106,21 @@ Vous devez passer deux arguments à `useEffect` :
 
 1. Votre <CodeStep step={1}>code de mise en place</CodeStep> est exécuté quand votre composant est ajouté à la page *(montage)*.
 2. Après chaque nouveau rendu de votre composant, si les <CodeStep step={3}>dépendances</CodeStep> ont changé :
-   - D'abord, votre <CodeStep step={2}>code de nettoyage</CodeStep> est exécuté avec les anciennes props et états.
-   - Ensuite, votre <CodeStep step={1}>code de mise en place</CodeStep> est exécuté avec les nouvelles props et états.
-3. Votre <CodeStep step={2}>code de nettoyage</CodeStep> est exécuté une dernière fois lorsque votre composant est retiré de la page *(démontage)*.
+   - D'abord, votre <CodeStep step={2}>code de nettoyage</CodeStep> est exécuté avec les anciennes props et valeurs d'états.
+   - Ensuite, votre <CodeStep step={1}>code de mise en place</CodeStep> est exécuté avec les nouvelles props et valeurs d'états.
+3. Votre <CodeStep step={2}>code de nettoyage</CodeStep> est exécuté une dernière fois lorsque votre composant est retiré de l'arborescence de la page *(démontage)*.
 
-**Illustrons cette séquence pour l'exemple ci-avant.**
+**Illustrons cette séquence pour l'exemple précédent.**
 
-Lorsque le composant `ChatRoom` ci-dessus sera ajouté à la page, il se connectera au salon de discussion en utilisant les valeurs initiales de `serverUrl` et `roomId`.  Si l'une ou l'autre de ces deux valeurs change suite à un nouveau rendu (peut-être l'utilisateur a-t-il choisi un autre salon dans la liste déroulante), votre Effet *se déconnectera du salon précédent, puis se connecter au nouveau salon*. Lorsque le composant `ChatRoom` sera retiré de la page, votre Effet se déconnectera une dernière fois.
+Lorsque le composant `ChatRoom` ci-dessus sera ajouté à la page, il se connectera au salon de discussion en utilisant les valeurs initiales de `serverUrl` et `roomId`.  Si l'une ou l'autre de ces deux valeurs change suite à un nouveau rendu (peut-être l'utilisateur a-t-il choisi un autre salon dans la liste déroulante), votre Effet *se déconnectera du salon précédent, puis se connectera au nouveau salon*. Lorsque le composant `ChatRoom` sera retiré de la page, votre Effet se déconnectera une dernière fois.
 
-**Pour [vous aider à repérer des bugs](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed), en développement React exécutera un premier cycle de <CodeStep step={1}>mise en place</CodeStep> et de <CodeStep step={2}>nettoyage</CodeStep>, avant d'exécuter normalement la <CodeStep step={1}>mise en place</CodeStep> nominale.**  C'est une mise à l'épreuve pour vérifier que la logique de votre Effet est implémentée correctement. Si ça entraîne des problèmes, c'est que votre code de nettoyage est manquant ou incomplet. La fonction de nettoyage devrait arrêter ou défaire ce que la fonction de mise en place a initié. La règle à suivre est simple : l'utilisateur ne devrait pas pouvoir faire la différence entre une exécution unique de la mise en place (comme en production) et une séquence *mise en place* → *nettoyage* → *mise en place* (comme en développement). [Explorez les solutions courantes](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development).
+**Pour [vous aider à repérer des bugs](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed), en développement React exécutera un premier cycle de <CodeStep step={1}>mise en place</CodeStep> et de <CodeStep step={2}>nettoyage</CodeStep>, avant d'exécuter la <CodeStep step={1}>mise en place</CodeStep> nominale.**  C'est une mise à l'épreuve pour vérifier que la logique de votre Effet est implémentée correctement. Si ça entraîne des problèmes, c'est que votre code de nettoyage est manquant ou incomplet. La fonction de nettoyage devrait arrêter ou défaire ce que la fonction de mise en place a initié. La règle à suivre est simple : l'utilisateur ne devrait pas pouvoir faire la différence entre une exécution unique de la mise en place (comme en production) et une séquence *mise en place* → *nettoyage* → *mise en place* (comme en développement). [Explorez les solutions courantes](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development).
 
-**Essayez [d'écrire chaque Effet comme un processus autonome](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) et de [réfléchir à un seul cycle de mise en place / nettoyage à la fois](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective).**  Le fait que votre composant soit en train d'être monté, de se mettre à jour ou d'être démonté ne devrait avoir aucune importance.  Lorsque votre logique de nettoyage reflète correctement celle de mise en place, votre Effet n'aura aucun problème avec des exécutions multiples de la mise en place et du nettoyage.
+**Essayez [d'écrire chaque Effet comme un processus autonome](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) et de [réfléchir à un seul cycle de mise en place / nettoyage à la fois](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective).**  Le fait que votre composant soit en train d'être monté, de se mettre à jour ou d'être démonté ne devrait avoir aucune importance.  Lorsque votre logique de nettoyage reflète correctement celle de mise en place, votre Effet n'a aucun problème avec des exécutions multiples de ses codes de mise en place et de nettoyage.
 
 <Note>
 
-Un Effet vous permet de [garder votre composant synchronisé](/learn/synchronizing-with-effects) avec un système extérieur (tels qu'un service de discussion). Dans ce contexte, *système extérieur* désigne n'importe quel bout de code qui n'est pas géré par React, par exemple :
+Un Effet vous permet de [garder votre composant synchronisé](/learn/synchronizing-with-effects) avec un système extérieur (tel qu'un service de discussion). Dans ce contexte, *système extérieur* désigne n'importe quel bout de code qui n'est pas géré par React, par exemple :
 
 * Un timer géré par <CodeStep step={1}>[`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)</CodeStep> et <CodeStep step={2}>[`clearInterval()`](https://developer.mozilla.org/fr/docs/Web/API/clearInterval)</CodeStep>.
 * Un abonnement sur événement grâce à <CodeStep step={1}>[`window.addEventListener()`](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener)</CodeStep> et <CodeStep step={2}>[`window.removeEventListener()`](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/removeEventListener)</CodeStep>.
@@ -366,7 +366,7 @@ html, body { min-height: 300px; }
 
 #### Contrôler une boîte de dialogue modale {/*controlling-a-modal-dialog*/}
 
-Dans cet exemple, le système extérieur est le DOM navigateur. Le composant `ModalDialog` utilise un élément [`<dialog>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/dialog). Il utilise un Effet pour synchroniser la prop `isOpen` avec les appels aux méthodes [`'showModal()'](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) et [`close()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close).
+Dans cet exemple, le système extérieur est le DOM navigateur. Le composant `ModalDialog` utilise un élément [`<dialog>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/dialog). Il utilise un Effet pour synchroniser la prop `isOpen` avec les appels aux méthodes [`showModal()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) et [`close()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close).
 
 <Sandpack>
 
@@ -426,7 +426,7 @@ body {
 
 #### Surveiller la visibilité d'un élément {/*tracking-element-visibility*/}
 
-Dans cet exemple, le système extérieur est encore le DOM navigateur. Le composant `App` affiche une longue liste, puis un composant `Box`, puis une autre longue liste.  Faites défiler la liste.  Voyez comment, lorsque le composant `Box` apparaît à l'écran, la couleur de fond passe au noir.  Pour implémenter ça, le composant `Box` utilise un Effet pour gérer un [`IntersectionObserver`](https://developer.mozilla.org/fr/docs/Web/API/Intersection_Observer_API). Cette API navigateur vous notifie lorsque l'élément DOM est visible dans la zone de rendu de la fenêtre.
+Dans cet exemple, le système extérieur est encore le DOM navigateur. Le composant `App` affiche une longue liste, puis un composant `Box`, et enfin une autre longue liste.  Faites défiler la liste vers le bas.  Voyez comment, lorsque le composant `Box` apparaît finalement à l'écran, la couleur de fond passe au noir.  Pour implémenter ça, le composant `Box` utilise un Effet pour gérer un [`IntersectionObserver`](https://developer.mozilla.org/fr/docs/Web/API/Intersection_Observer_API). Cette API navigateur vous notifie lorsque l'élément DOM est visible dans la zone de rendu de la fenêtre.
 
 <Sandpack>
 
@@ -504,7 +504,7 @@ export default function Box() {
 
 Les Effets sont une [« échappatoire »](/learn/escape-hatches) : vous vous en servez pour « sortir de React », et lorsqu'il n'y a pas de meilleure solution disponible pour votre cas de figure.  Si vous vous retrouvez à souvent écrire manuellement des Effets, c'est généralement le signe que vous devriez en extraire certains sous forme de [Hooks personnalisés](/learn/reusing-logic-with-custom-hooks) pour les comportements courants dont vous équipez vos composants.
 
-Par exemple, ce Hook personnalisé `useChatRoom` « masque » la logique de votre Effet derrière une API plus déclarative.
+Par exemple, ce Hook personnalisé `useChatRoom` « masque » toute la logique de votre Effet derrière une API plus déclarative.
 
 ```js {1,11}
 function useChatRoom({ serverUrl, roomId }) {
@@ -520,7 +520,7 @@ function useChatRoom({ serverUrl, roomId }) {
 }
 ```
 
-Vous pouvez dès lors les utiliser dans n'importe quel composant, comme ceci :
+Vous pouvez dès lors l'utiliser dans n'importe quel composant, comme ceci :
 
 ```js {4-7}
 function ChatRoom({ roomId }) {
@@ -533,11 +533,11 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-L'écosystème React propose de nombreux excellents Hooks personnalisés pour tous les besoins :
+L'écosystème React propose de nombreux excellents Hooks personnalisés pour tous les besoins.
 
 [Apprenez à enrober vos Effets dans des Hooks personnalisés](/learn/reusing-logic-with-custom-hooks).
 
-<Recipes titleText="Exemples d'enrobage d'Effets sous forme de Hooks personnalisés">
+<Recipes titleText="Exemples d’enrobage d’Effets sous forme de Hooks personnalisés">
 
 #### Hook `useChatRoom` personnalisé {/*custom-usechatroom-hook*/}
 
@@ -786,7 +786,7 @@ export function useIntersectionObserver(ref) {
 
 ### Contrôler un widget non géré par React {/*controlling-a-non-react-widget*/}
 
-Il peut arriver que vous souhaitiez garder un système extérieur synchroniser avec un prop ou un état de votre composant.
+Il peut arriver que vous souhaitiez garder un système extérieur synchronisé avec la valeur d'une prop ou d'un état de votre composant.
 
 Imaginons par exemple que vous ayez un widget tiers de cartographie, ou un composant de lecture vidéo écrit sans React ; vous pouvez utiliser un Effet pour en appeler les méthodes afin que son état soit raccord avec l'état local de votre composant React.  L'Effet ci-dessous crée une instance de la classe `MapWidget` définie dans `map-widget.js`.  Lorsque vous modifiez la prop `zoomLevel` du composant `Map`, l'Effet appelle la méthode `setZoom()` sur l'instance pour la garder synchronisée !
 
@@ -896,7 +896,7 @@ Dans cet exemple, nous n'avons pas besoin d'une fonction de nettoyage parce que 
 
 Vous pouvez utiliser un Effet pour charger des données pour votre composant.  Remarquez que [si vous utilisez un framework](/learn/start-a-new-react-project#production-grade-react-frameworks), il sera nettement préférable d'utiliser les mécanismes de chargement de données de votre framework plutôt que le faire manuellement dans des Effets, notamment pour des questions de performances.
 
-Si vous souhaitez charger des données manuellement depuis votre Effet, votre code pourrait ressembler à ceci :
+Si vous souhaitez charger des données manuellement depuis votre Effet, votre code ressemblera à ceci :
 
 ```js
 import { useState, useEffect } from 'react';
@@ -1031,7 +1031,7 @@ export async function fetchBio(person) {
 
 </Sandpack>
 
-Implémenter le chargement de données directement dans les Effets devient vite répétitif et complexifie l'ajout ultérieur d'optimisations telles que la mise en cache ou le rendu côté serveur. [Il est plus facile d'utiliser un Hook personnalisé — qu'il soit de vous ou soit maintenu par la communauté](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks).
+Implémenter le chargement de données directement dans les Effets devient vite répétitif et complexifie l'ajout ultérieur d'optimisations telles que la mise en cache ou le rendu côté serveur. [Il est plus facile d'utiliser un Hook personnalisé — qu'il soit de vous ou maintenu par la communauté](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks).
 
 <DeepDive>
 
@@ -1057,7 +1057,7 @@ Vous pouvez continuer à charger les données directement dans les Effets si auc
 
 ### Spécifier les dépendances réactives {/*specifying-reactive-dependencies*/}
 
-**Notez que vous ne pouvez pas « choisir » les dépendances de votre Effet.** Chaque <CodeStep step={2}>valeur réactive</CodeStep> utilisée par le code de votre Effet doit être déclarée dans votre liste de dépendances, qui découle donc du code environnant :
+**Remarquez bien que vous ne pouvez pas « choisir » les dépendances de votre Effet.** Chaque <CodeStep step={2}>valeur réactive</CodeStep> utilisée par le code de votre Effet doit être déclarée dans votre liste de dépendances, laquelle découle donc du code environnant :
 
 ```js [[2, 1, "roomId"], [2, 2, "serverUrl"], [2, 5, "serverUrl"], [2, 5, "roomId"], [2, 8, "serverUrl"], [2, 8, "roomId"]]
 function ChatRoom({ roomId }) { // C’est une valeur réactive
@@ -1072,7 +1072,7 @@ function ChatRoom({ roomId }) { // C’est une valeur réactive
 }
 ```
 
-If either `serverUrl` or `roomId` change, your Effect will reconnect to the chat using the new values.
+Si `serverUrl` ou `roomId` change, votre Effet se reconnectera à la discussion en utilisant leurs valeurs à jour.
 
 **[Les valeurs réactives](/learn/lifecycle-of-reactive-effects#all-variables-declared-in-the-component-body-are-reactive) comprennent les props et toutes les variables et fonctions déclarées directement au sein de votre composant.** Dans la mesure où `roomId` et `serverUrl`sont des valeurs réactives, vous ne pouvez pas les retirer de la liste des dépendances. Si vous tentiez de les retirer et que [votre *linter* est correctement configuré pour React](/learn/editor-setup#linting), il vous l'interdirait :
 
@@ -1104,7 +1104,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-À présent que `serverUrl` n'est plus une valeur réactive (et ne peut plus changer d'un rendu à l'autre), elle n'a plus besoin d'être déclarée comme dépendance. **Si le code votre Effet n'utilise aucune valeur réactive, sa liste de dépendances devrait être vide (`[]`) :**
+À présent que `serverUrl` n'est plus une valeur réactive (et ne peut plus changer d'un rendu à l'autre), elle n'a plus besoin d'être déclarée comme dépendance. **Si le code de votre Effet n'utilise aucune valeur réactive, sa liste de dépendances devrait être vide (`[]`) :**
 
 ```js {1,2,9}
 const serverUrl = 'https://localhost:1234'; // Ce n’est plus une valeur réactive
@@ -1120,7 +1120,7 @@ function ChatRoom() {
 }
 ```
 
-[Un Effet avec des dépendances vides](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) n'est pas re-exécuté lorsque les props ou l'état de votre composant changent.
+[Un Effet avec des dépendances vides](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) n'est pas re-exécuté lorsque les valeurs des props ou de l'état de votre composant changent.
 
 <Pitfall>
 
@@ -1138,7 +1138,7 @@ useEffect(() => {
 
 </Pitfall>
 
-<Recipes titleText="Exemples de définition de dépendances réactives" titleId="examples-dependencies">
+<Recipes titleText="Exemples de définitions de dépendances réactives" titleId="examples-dependencies">
 
 #### Passer un tableau de dépendances {/*passing-a-dependency-array*/}
 
@@ -1150,7 +1150,7 @@ useEffect(() => {
 }, [a, b]); // Re-exécuté si a ou b ont changé
 ```
 
-Dans l'exemple ci-dessous, `serverUrl` et `roomId` sont des [valeurs réactives](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values), qui doivent donc toutes les deux être listées comme dépendances.  Du coup, sélectionner un autre salon dans la liste déroulante ou modifier l'URL du serveur dans le champ de saisie entraînent une reconnexion de la discussion.  En revanche, puisque `message` n'est pas utilisé par l'Effet (et n'est donc pas une dépendance), modifier le message n'entraîne pas de reconnexion.
+Dans l'exemple ci-dessous, `serverUrl` et `roomId` sont des [valeurs réactives](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values), qui doivent donc toutes les deux être listées comme dépendances.  Du coup, sélectionner un autre salon dans la liste déroulante ou modifier l'URL du serveur dans le champ de saisie entraînera une reconnexion de la discussion.  En revanche, puisque `message` n'est pas utilisé par l'Effet (et n'est donc pas une dépendance), modifier le message n'entraîne pas de reconnexion.
 
 <Sandpack>
 
@@ -1315,7 +1315,7 @@ export function createConnection(serverUrl, roomId) {
 
 #### Ne pas passer de dépendances du tout {/*passing-no-dependency-array-at-all*/}
 
-Si vous ne passez aucun tableau de dépendances, votre Effet sera exécuté **après chaque rendu (initial et ultérieur)** de votre composant.
+Si vous ne passez aucun tableau de dépendances, votre Effet sera exécuté **après chaque rendu (rendu initial comme rendus ultérieurs)** de votre composant.
 
 ```js {3}
 useEffect(() => {
@@ -1476,7 +1476,7 @@ Maintenant que vous passez `c => c + 1` au lieu de `count + 1`, [votre Effet n'a
 
 ### Supprimer des dépendances objets superflues {/*removing-unnecessary-object-dependencies*/}
 
-Si votre Effet dépend d'un objet ou d'une fonction créée lors du rendu, il s'exécutera sans doute trop souvent. Par exemple, cet Effet se reconnecte à chaque rendu parce que l'objet `options` [est un objet différent à chaque rendu](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally) :
+Si votre Effet dépend d'un objet ou d'une fonction créée lors du rendu, il s'exécutera sans doute trop souvent. Par exemple, cet Effet se reconnecte à chaque rendu parce que l'objet `options` [est en réalité un objet différent à chaque rendu](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally) :
 
 ```js {6-9,12,15}
 const serverUrl = 'https://localhost:1234';
@@ -1602,7 +1602,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-En soi, créer une fonction de zéro à chaque rendu n'est pas un problème. Vous n'avez pas besoin d'optimiser ça. En revanche, si vous l'utilisez comme dépendance d'un Effet, elle forcera votre Effet à être ré-exécuté à chaque rendu.
+En soi, créer une fonction à chaque rendu n'est pas un problème. Vous n'avez pas besoin d'optimiser ça. Mais si vous l'utilisez comme dépendance d'un Effet, elle forcera votre Effet à être ré-exécuté à chaque rendu.
 
 Évitez d'utiliser une fonction créée lors du rendu comme dépendance.  Déclarez-la plutôt au sein de l'Effet :
 
@@ -1696,7 +1696,7 @@ Cette section décrit une **API expérimentale : elle n’a donc pas encore ét
 
 </Wip>
 
-Par défaut, lorsque vous lisez une valeur réactive depuis un Effet, vous devez l'ajouter comme dépendance. Ça garantir que votre Effet « réagit » à chaque modification de cette valeur.  Pour la plupart des dépendances, c'est bien le comportement que vous souhaitez.
+Par défaut, lorsque vous lisez une valeur réactive depuis un Effet, vous devez l'ajouter comme dépendance. Ça garantit que votre Effet « réagit » à chaque modification de cette valeur.  Pour la plupart des dépendances, c'est bien le comportement que vous souhaitez.
 
 **Toutefois, il peut arriver que vous souhaitiez lire les *dernières* valeurs à jour de props ou d'états depuis un Effet, sans pour autant y « réagir ».**  Imaginons par exemple que vous souhaitiez afficher en console le nombre d'éléments dans le panier d'achats à chaque visite de la page :
 
@@ -1709,7 +1709,7 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
-**Et si vous vouliez afficher une visite de page après chaque modification de `url`, mais *pas* lorsque seul `shoppingCart` change ?**  Vous ne pouvez pas exclure `shoppingCart` de vos dépendances sans enfreindre les [règles de la réactivité](#specifying-reactive-dependencies).  En revanche, vous pouvez exprimer que vous *ne souhaitez pas* qu'un bout de votre code « réagisse » aux changemeents, même s'il est appelé depuis un Effet. [Déclarez un *Événement d'Effet*](/learn/separating-events-from-effects#declaring-an-effect-event) avec le Hook [`useEffectEvent`](/reference/react/experimental_useEffectEvent), et déplacez le code qui consulte `shoppingCart` à l'intérieur :
+**Et si vous vouliez afficher une visite de page après chaque modification de `url`, mais *pas* lorsque seul `shoppingCart` change ?**  Vous ne pouvez pas exclure `shoppingCart` de vos dépendances sans enfreindre les [règles de la réactivité](#specifying-reactive-dependencies).  En revanche, vous pouvez exprimer que vous *ne souhaitez pas* qu'un bout de votre code « réagisse » aux changements, même s'il est appelé depuis un Effet. [Déclarez un *Événement d'Effet*](/learn/separating-events-from-effects#declaring-an-effect-event) avec le Hook [`useEffectEvent`](/reference/react/experimental_useEffectEvent), et déplacez le code qui consulte `shoppingCart` à l'intérieur :
 
 ```js {2-4,7,8}
 function Page({ url, shoppingCart }) {
@@ -1753,7 +1753,7 @@ function MyComponent() {
 }
 ```
 
-Penant que l'appli charge, l'utilisateur voit le résultat du rendu initial. Puis, lorsqu'elle sera chargée et hydratée, votre Effet sera exécuté et définira `didMount` à `true`, ce qui déclenchera un nouveau rendu. On basculera alors sur le résultat de rendu pour le client seulement. Les Effets ne sont pas exécutés côté serveur, c'est pourquoi `didMount` resterait à `false` lors du rendu initial.
+Pendant que l'appli charge, l'utilisateur voit le résultat du rendu initial. Puis, lorsqu'elle sera chargée et hydratée, votre Effet sera exécuté et définira `didMount` à `true`, ce qui déclenchera un nouveau rendu. On basculera alors sur le résultat de rendu pour le client seulement. Les Effets ne sont pas exécutés côté serveur, c'est pourquoi `didMount` resterait à `false` lors du rendu initial.
 
 N'abusez pas de cette astuce.  Gardez à l'esprit que les utilisateurs avec des connexions lentes verront le contenu initial pendant un bon bout de temps — jusqu'à plusieurs secondes — et qu'il faudrait donc éviter d'appliquer au final des changements trop drastiques dans l'apparence de votre composant.  Le plus souvent, vous pourrez éviter de recourir à cette approche en utilisant des affichages conditionnels *via* CSS.
 
@@ -1808,7 +1808,7 @@ Lorsque vous aurez repéré la dépendance qui diffère d'un rendu à l'autre, v
 - [Supprimer des dépendances fonctions superflues](#removing-unnecessary-function-dependencies)
 - [Lire les dernières props et états à jour depuis un Effet](#reading-the-latest-props-and-state-from-an-effect)
 
-En tout dernier recours (si aucune de ces approches n'a résolu le souci), enrobez la création de la dépendance avec [`useMemo`](/reference/react/useMemo#memoizing-a-dependency-of-another-hook) ou [`useCallback`](/reference/react/useCallback#preventing-an-effect-from-firing-too-often) (pour les fonctions).
+En tout dernier recours (si aucune de ces approches n'a résolu le souci), enrobez la création de la dépendance avec [`useMemo`](/reference/react/useMemo#memoizing-a-dependency-of-another-hook) (ou [`useCallback`](/reference/react/useCallback#preventing-an-effect-from-firing-too-often) pour les fonctions).
 
 ---
 
@@ -1823,7 +1823,7 @@ Avant de vous attaquer à la résolution de ce problème, demandez-vous si votre
 
 S'il n'y a pas de système extérieur, envisagez de [retirer carrément l'Effet](/learn/you-might-not-need-an-effect) pour simplifier votre logique.
 
-Si vous vous synchronisez effectivement avec un système extérieur, réfléchissez aux conditions dans lesquelles votre Effet devrait mettre à jour l'état. Quelque chose a-t-il changé qui impacte le résultat visuel de votre composant ? Si vous devez surveiller certaines données inutilisées par le rendu, une [ref](/reference/react/useRef#referencing-a-value-with-a-ref) (qui ne redéclenche pas de rendu) serait peut-être plus appropriée.  Vérifiez que votre Effet ne met pas à jour l'Effet (entraînant un nouveau rendu) plus que nécessaire.
+Si vous vous synchronisez effectivement avec un système extérieur, réfléchissez aux conditions dans lesquelles votre Effet devrait mettre à jour l'état. Quelque chose a-t-il changé qui impacte le résultat visuel de votre composant ? Si vous devez surveiller certaines données inutilisées par le rendu, une [ref](/reference/react/useRef#referencing-a-value-with-a-ref) (qui ne redéclenche pas de rendu) serait peut-être plus appropriée.  Vérifiez que votre Effet ne met pas à jour l'état (entraînant un nouveau rendu) plus que nécessaire.
 
 Pour finir, si votre Effet met à jour l'état au bon moment, mais qu'il y a tout de même une boucle, c'est sans doute parce que la mise à jour de l'état entraîne la modification d'une des dépendances de l'Effet. [Voyez comment déboguer les modifications de dépendances](#my-effect-runs-after-every-re-render).
 
@@ -1831,9 +1831,9 @@ Pour finir, si votre Effet met à jour l'état au bon moment, mais qu'il y a tou
 
 ### Ma logique de nettoyage est exécutée alors que mon composant n'a pas été démonté {/*my-cleanup-logic-runs-even-though-my-component-didnt-unmount*/}
 
-La fonction de nettoyage n'est pas exécutée seulement lors du démontage, mais avant chaque nouveau rendu dont les dépendances ont changé.  Qui plus est, en développement, React [exécute la mise en place et le nettoyage une fois de plus juste avant le démontage du composant](#my-effect-runs-twice-when-the-component-mounts).
+La fonction de nettoyage n'est pas exécutée seulement lors du démontage, mais avant chaque nouveau rendu dont les dépendances ont changé.  Qui plus est, en développement, React [exécute la mise en place et le nettoyage une fois de plus juste après le montage du composant](#my-effect-runs-twice-when-the-component-mounts).
 
-Si vous avez du code de nettoyage sans code de mise en place correspondant c'est généralement mauvaise signe :
+Si vous avez du code de nettoyage qui ne correspond à aucun code de mise en place, c'est généralement mauvaise signe :
 
 ```js {2-5}
 useEffect(() => {
