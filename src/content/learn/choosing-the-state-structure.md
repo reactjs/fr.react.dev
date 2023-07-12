@@ -1,53 +1,53 @@
 ---
-title: Choosing the State Structure
+title: Choisir la structure de l'état
 ---
 
 <Intro>
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. Here are some tips you should consider when structuring state.
+Bien structurer l’état peut créer une différence entre un composant agréable à modifier et débugger, et un qui est une source constante de bugs. Voici des conseils que vous devriez prendre en compte pour structurer l’état.
 
 </Intro>
 
 <YouWillLearn>
 
-* When to use a single vs multiple state variables
-* What to avoid when organizing state
-* How to fix common issues with the state structure
+* Quand utiliser état unique ou multiple
+* Les choses à éviter en organisant l’état
+* Résoudre des problèmes connus avec la structure de l’état
 
 </YouWillLearn>
 
-## Principles for structuring state {/*principles-for-structuring-state*/}
+## Les principes pour structurer l’état {/*principles-for-structuring-state*/}
 
-When you write a component that holds some state, you'll have to make choices about how many state variables to use and what the shape of their data should be. While it's possible to write correct programs even with a suboptimal state structure, there are a few principles that can guide you to make better choices:
+Quand vous créez un comoposant qui contient des états, vous devrez faire des choix sur le nombre de variables d’état à utiliser et quelle sera la forme de leurs données. Même si il est possible d’écrire des programmes corrects avec une structure d’état peu optimale, il y a quelques principes qui peuvent vous guider pour faire des meilleurs choix :
 
-1. **Group related state.** If you always update two or more state variables at the same time, consider merging them into a single state variable.
-2. **Avoid contradictions in state.** When the state is structured in a way that several pieces of state may contradict and "disagree" with each other, you leave room for mistakes. Try to avoid this.
-3. **Avoid redundant state.** If you can calculate some information from the component's props or its existing state variables during rendering, you should not put that information into that component's state.
-4. **Avoid duplication in state.** When the same data is duplicated between multiple state variables, or within nested objects, it is difficult to keep them in sync. Reduce duplication when you can.
-5. **Avoid deeply nested state.** Deeply hierarchical state is not very convenient to update. When possible, prefer to structure state in a flat way.
+1. **Les états de groupe.** Si vous actualisez tout le temps deux variables d’état ou plus à la fois, essayez de les fusionner en une seule variable d’état.
+2. **Evitez les contradictions dans l’état.** Quand l’état est stucturé d’une manière où plusieurs parties d’état peuvent être contradictoires et en "désaccord" entre elles, des erreurs peuvent s’induire. Essayez d’éviter cela.
+3. **Evitez les états redondants.** Si vous pouvez calculer des informations à partir des props du composant ou d’une de ses variables d'état pendant l’affichage, vous ne devriez pas mettre ces informations dans un état du composant.
+4. **Evitez la duplication d’états.** Quand la même donnée est dupliquée entre plusieurs variables d’état ou dans des objets imbriqués, c’est difficile de les garder synchronisées. Réduisez la duplication quand vous le pouvez.
+5. **Evitez les états fortement imbriqués** Un état fortement hiérarchisé n’est pas très pratique à actualiser. Quand c’est possible, priorisez une stucture d'état plate.
 
-The goal behind these principles is to *make state easy to update without introducing mistakes*. Removing redundant and duplicate data from state helps ensure that all its pieces stay in sync. This is similar to how a database engineer might want to ["normalize" the database structure](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) to reduce the chance of bugs. To paraphrase Albert Einstein, **"Make your state as simple as it can be--but no simpler."**
+Le but derrière ces principes est de *rendre l’état simple à actualiser sans ajouter d’erreurs*. Retirer des données redondantes et dupliquées de l’état aide à s’assurer que toutes ses parties restent synchronisées. C’est similaire à comment un ingénieur de bases de données souhaite ["normaliser" la structure de la base de données](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) pour réduire les risques de bugs. Pour reprendre Albert Einstein, **"Créez votre état le plus simple qu’il puisse être, mais pas plus."**
 
-Now let's see how these principles apply in action.
+Maintenant voyons comment ces principes s’appliquent concrètement.
 
-## Group related state {/*group-related-state*/}
+## Les états de groupe {/*group-related-state*/}
 
-You might sometimes be unsure between using a single or multiple state variables.
+Vous hésitez peut-être quelques fois entre utiliser une variable d’état simple ou multiple.
 
-Should you do this?
+Devriez-vous faire ça ?
 
 ```js
 const [x, setX] = useState(0);
 const [y, setY] = useState(0);
 ```
 
-Or this?
+Ou ça ?
 
 ```js
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Technically, you can use either of these approaches. But **if some two state variables always change together, it might be a good idea to unify them into a single state variable.** Then you won't forget to always keep them in sync, like in this example where moving the cursor updates both coordinates of the red dot:
+Techniquement, vous pouvez ces deux approches. Mais **si deux variables changent d’état toujours ensemble, une bonne idée serait de les unir en une seule variable d’état.** Vous n’oublirez pas par la suite de toujours les garder synchronisées, comme dans cet exemple où les mouvements du curseur actualisent les 2 coordonnées du point rouge.
 
 <Sandpack>
 
@@ -93,17 +93,17 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Another case where you'll group data into an object or an array is when you don't know how many pieces of state you'll need. For example, it's helpful when you have a form where the user can add custom fields.
+Un autre cas où vous pouvez regrouper des données dans un objet ou une liste est lorsque vous ne savez pas combien de parties d'état vous aurez besoin. Par exemple, c’est utile quand vous avez un questionnaire dans lequel l’utilisateur peut ajouter des champs personnalisés.
 
 <Pitfall>
 
-If your state variable is an object, remember that [you can't update only one field in it](/learn/updating-objects-in-state) without explicitly copying the other fields. For example, you can't do `setPosition({ x: 100 })` in the above example because it would not have the `y` property at all! Instead, if you wanted to set `x` alone, you would either do `setPosition({ ...position, x: 100 })`, or split them into two state variables and do `setX(100)`.
+Si votre variable d’état est un objet, souvenez vous que [vous ne pouvez actualiser qu’un seul de ses champs](/learn/updating-objects-in-state) sans explicitement copier les autres champs. Par exemple, vous ne pouvez pas faire `setPosition({ x: 100 })` dans l’exemple ci-dessus car om n’y aurait plus du tout la variable `y` ! À la place, si vous vouliez définir `x` tout seul, vous feriez soit `setPosition({ ...position, x: 100 })`, soit la séparation en deux variables d’état et `setX(100)`.
 
 </Pitfall>
 
-## Avoid contradictions in state {/*avoid-contradictions-in-state*/}
+## Evitez les contradictions dans l’état {/*avoid-contradictions-in-state*/}
 
-Here is a hotel feedback form with `isSending` and `isSent` state variables:
+Voici un questionnaire de satisfaction d’hôtel avec les variables d’état `isSending` et `isSent` :
 
 <Sandpack>
 
@@ -124,12 +124,12 @@ export default function FeedbackForm() {
   }
 
   if (isSent) {
-    return <h1>Thanks for feedback!</h1>
+    return <h1>Merci pour votre retour !</h1>
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>How was your stay at The Prancing Pony?</p>
+      <p>Comment était votre séjour au Prancing Pony ?</p>
       <textarea
         disabled={isSending}
         value={text}
@@ -140,14 +140,14 @@ export default function FeedbackForm() {
         disabled={isSending}
         type="submit"
       >
-        Send
+        Envoyer
       </button>
-      {isSending && <p>Sending...</p>}
+      {isSending && <p>Envoi...</p>}
     </form>
   );
 }
 
-// Pretend to send a message.
+// Prétend envoyer un message.
 function sendMessage(text) {
   return new Promise(resolve => {
     setTimeout(resolve, 2000);
@@ -157,9 +157,9 @@ function sendMessage(text) {
 
 </Sandpack>
 
-While this code works, it leaves the door open for "impossible" states. For example, if you forget to call `setIsSent` and `setIsSending` together, you may end up in a situation where both `isSending` and `isSent` are `true` at the same time. The more complex your component is, the harder it is to understand what happened.
+Même si ce code marche, il laisse la place à des états "impossibles". Par exemple, si vous oubliez d’appeler `setIsSent` et `setIsSending` ensemble, vous pouvez finir dans une situation où les deux variables `isSending` et `isSent` sont à `true` au même moment. Plus votre composant est complexe, plus il est dur de comprendre ce qu’il s’est passé.
 
-**Since `isSending` and `isSent` should never be `true` at the same time, it is better to replace them with one `status` state variable that may take one of *three* valid states:** `'typing'` (initial), `'sending'`, and `'sent'`:
+**Comme `isSending` et `isSent` ne doivent jamais être à `true` au même moment, il est mieux de les remplacer avec une variable d’état de `statut` qui peut prendre l’un des *trois* états valides :** `'typing'` (initial), `'sending'`, et `'sent'` :
 
 <Sandpack>
 
@@ -181,12 +181,12 @@ export default function FeedbackForm() {
   const isSent = status === 'sent';
 
   if (isSent) {
-    return <h1>Thanks for feedback!</h1>
+    return <h1>Merci pour votre retour !</h1>
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>How was your stay at The Prancing Pony?</p>
+      <p>Comment était votre séjour au Prancing Pony ?</p>
       <textarea
         disabled={isSending}
         value={text}
@@ -197,14 +197,14 @@ export default function FeedbackForm() {
         disabled={isSending}
         type="submit"
       >
-        Send
+        Envoyer
       </button>
-      {isSending && <p>Sending...</p>}
+      {isSending && <p>Envoi...</p>}
     </form>
   );
 }
 
-// Pretend to send a message.
+// Prétend envoyer un message.
 function sendMessage(text) {
   return new Promise(resolve => {
     setTimeout(resolve, 2000);
@@ -214,20 +214,20 @@ function sendMessage(text) {
 
 </Sandpack>
 
-You can still declare some constants for readability:
+Vous pouvez toujours déclarer des constantes pour plus de lisibilité :
 
 ```js
 const isSending = status === 'sending';
 const isSent = status === 'sent';
 ```
 
-But they're not state variables, so you don't need to worry about them getting out of sync with each other.
+Mais ce ne sont pas des variables d’état, donc vous ne devez pas vous inquiéter sur leur potentielle désynchronisation.
 
-## Avoid redundant state {/*avoid-redundant-state*/}
+## Evitez les états redondants. {/*avoid-redundant-state*/}
 
-If you can calculate some information from the component's props or its existing state variables during rendering, you **should not** put that information into that component's state.
+Si vous pouvez calculer des informations depuis les props d'un composant ou une de ses variables d’état existantes pendant l’affichage vous ne **devriez pas** mettre cette information dans l’état du composant
 
-For example, take this form. It works, but can you find any redundant state in it?
+Par exemple, prenez ce questionnaire. Il marche, mais pouvez-vous trouver des états redondants dans celui-ci ?
 
 <Sandpack>
 
@@ -251,23 +251,23 @@ export default function Form() {
 
   return (
     <>
-      <h2>Let’s check you in</h2>
+      <h2>Enregistrons votre arrivée</h2>
       <label>
-        First name:{' '}
+        Prénom :{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Nom :{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Votre ticket sera délivré à : <b>{fullName}</b>
       </p>
     </>
   );
@@ -280,9 +280,9 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-This form has three state variables: `firstName`, `lastName`, and `fullName`. However, `fullName` is redundant. **You can always calculate `fullName` from `firstName` and `lastName` during render, so remove it from state.**
+Ce questionnaire possède trois variables d’état : `firstName`, `lastName` et `fullName`. Cependant, `fullName` est redondant. **Vous pouvez toujours calculer `fullName` depuis `firstName` et `lastName` pendant l’affichage, donc retirez-le de l’état.**
 
-This is how you can do it:
+Voilà comment vous pouvez faire :
 
 <Sandpack>
 
@@ -305,23 +305,23 @@ export default function Form() {
 
   return (
     <>
-      <h2>Let’s check you in</h2>
+      <h2>Enregistrons votre arrivée</h2>
       <label>
-        First name:{' '}
+        Prénom :{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Nom :{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Votre ticket sera délivré à : <b>{fullName}</b>
       </p>
     </>
   );
@@ -334,50 +334,52 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Here, `fullName` is *not* a state variable. Instead, it's calculated during render:
+Ici, `fullName` n’est *pas* une variable d’état. À la place, elle est évaluée pendant l’affichage :
 
 ```js
 const fullName = firstName + ' ' + lastName;
 ```
 
-As a result, the change handlers don't need to do anything special to update it. When you call `setFirstName` or `setLastName`, you trigger a re-render, and then the next `fullName` will be calculated from the fresh data.
+Par conséquent, les gestionnaires de changement n’auront rien à faire pour l’actualiser. Quand vous appelez `setFirstName` ou `setLastName`, vous déclenchez une actualisation de l’affichage, et le prochain `fullName` sera calculé avec les nouvelles données.
 
 <DeepDive>
 
-#### Don't mirror props in state {/*don-t-mirror-props-in-state*/}
+#### Ne dupliquez pas les props dans l’état {/*don-t-mirror-props-in-state*/}
 
-A common example of redundant state is code like this:
+Un exemple commun d’état redondant est un code de ce type :
 
 ```js
 function Message({ messageColor }) {
   const [color, setColor] = useState(messageColor);
+}
 ```
 
-Here, a `color` state variable is initialized to the `messageColor` prop. The problem is that **if the parent component passes a different value of `messageColor` later (for example, `'red'` instead of `'blue'`), the `color` *state variable* would not be updated!** The state is only initialized during the first render.
+Ici, la variable d’état `color` est initialisée à la valeur de la prop `messageColor`. Le problème est que **si le composant parent passe une valeur différente dans `messageColor` plus tard (par exemple, `'rouge'` au lieu de `'bleu'`), la variable d’état `color` ne serait pas mise à jour !** L’état est initialisé seulement durant le premier rendu.
 
-This is why "mirroring" some prop in a state variable can lead to confusion. Instead, use the `messageColor` prop directly in your code. If you want to give it a shorter name, use a constant:
+C’est pourquoi la duplication de certaines props dans des variables d’état peut amener à la confusion. À la place, utilisez la prop `messageColor` directement dans votre code. Si vous voulez lui donner un nom plus court, utilisez une constante :
 
 ```js
 function Message({ messageColor }) {
   const color = messageColor;
+}
 ```
 
-This way it won't get out of sync with the prop passed from the parent component.
-
-"Mirroring" props into state only makes sense when you *want* to ignore all updates for a specific prop. By convention, start the prop name with `initial` or `default` to clarify that its new values are ignored:
+De cette manière, le composant ne sera pas désynchronisé avec la prop passée par le composant parent.
+Dupliquer les props dans l’état fait sens uniquement quand vous *voulez* ignorer toutes les mises à jour d’une prop spécifique. Par convention, commencez le nom de la prop par `initial` ou `default` pour préciser que ses nouvelles valeurs seront ignorées :
 
 ```js
 function Message({ initialColor }) {
-  // The `color` state variable holds the *first* value of `initialColor`.
-  // Further changes to the `initialColor` prop are ignored.
+  // La variable d’état `couleur` contient la *première* valeur de `initialColor`.
+  // Les prochains changements à la prop `initialColor` sont ignorées.
   const [color, setColor] = useState(initialColor);
+}
 ```
 
 </DeepDive>
 
-## Avoid duplication in state {/*avoid-duplication-in-state*/}
+## Evitez la duplication d’états {/*avoid-duplication-in-state*/}
 
-This menu list component lets you choose a single travel snack out of several:
+Ce composant-liste vous laisse choisir un seul voyage parmis plusieurs :
 
 <Sandpack>
 
@@ -385,9 +387,9 @@ This menu list component lets you choose a single travel snack out of several:
 import { useState } from 'react';
 
 const initialItems = [
-  { title: 'pretzels', id: 0 },
-  { title: 'crispy seaweed', id: 1 },
-  { title: 'granola bar', id: 2 },
+  { title: 'bretzels', id: 0 },
+  { title: 'algues croustillantes', id: 1 },
+  { title: 'paquet de princes', id: 2 },
 ];
 
 export default function Menu() {
@@ -398,7 +400,7 @@ export default function Menu() {
 
   return (
     <>
-      <h2>What's your travel snack?</h2>
+      <h2>Quel est votre goûter de voyage ?</h2>
       <ul>
         {items.map(item => (
           <li key={item.id}>
@@ -406,11 +408,11 @@ export default function Menu() {
             {' '}
             <button onClick={() => {
               setSelectedItem(item);
-            }}>Choose</button>
+            }}>Choisir</button>
           </li>
         ))}
       </ul>
-      <p>You picked {selectedItem.title}.</p>
+      <p>Vous avez choisi {selectedItem.title}.</p>
     </>
   );
 }
@@ -422,9 +424,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Currently, it stores the selected item as an object in the `selectedItem` state variable. However, this is not great: **the contents of the `selectedItem` is the same object as one of the items inside the `items` list.** This means that the information about the item itself is duplicated in two places.
+Actuellement, il stocke l’objet selectionné dans la variable d’état `selectedItem`. Cependant, ce n’est pas optimal : **le contenu de `selectedItem` est le même objet que l’un des objets dans la liste `items`.** Cela signifie que les informations sur l’objet lui-même sont dupliquées en deux endroits.
 
-Why is this a problem? Let's make each item editable:
+Pourquoi est-ce un problème ? Rendons chaque objet modifiable :
 
 <Sandpack>
 
@@ -432,9 +434,9 @@ Why is this a problem? Let's make each item editable:
 import { useState } from 'react';
 
 const initialItems = [
-  { title: 'pretzels', id: 0 },
-  { title: 'crispy seaweed', id: 1 },
-  { title: 'granola bar', id: 2 },
+  { title: 'bretzels', id: 0 },
+  { title: 'algues croustillantes', id: 1 },
+  { title: 'paquet de princes', id: 2 },
 ];
 
 export default function Menu() {
@@ -458,7 +460,7 @@ export default function Menu() {
 
   return (
     <>
-      <h2>What's your travel snack?</h2> 
+      <h2>Quel est votre goûter de voyage ?</h2> 
       <ul>
         {items.map((item, index) => (
           <li key={item.id}>
@@ -471,11 +473,11 @@ export default function Menu() {
             {' '}
             <button onClick={() => {
               setSelectedItem(item);
-            }}>Choose</button>
+            }}>Choisir</button>
           </li>
         ))}
       </ul>
-      <p>You picked {selectedItem.title}.</p>
+      <p>Vous avez choisi {selectedItem.title}.</p>
     </>
   );
 }
@@ -487,9 +489,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Notice how if you first click "Choose" on an item and *then* edit it, **the input updates but the label at the bottom does not reflect the edits.** This is because you have duplicated state, and you forgot to update `selectedItem`.
+Notez que si vous cliquez sur "Choisir" en premier sur un objet *puis* l’éditez, **la saisie se met à jour, mais le label en bas est différent des modifications.** C’est parce que vous avez un état dupliqué, et vous avez oublié de mettre à jour `selectedItem`.
 
-Although you could update `selectedItem` too, an easier fix is to remove duplication. In this example, instead of a `selectedItem` object (which creates a duplication with objects inside `items`), you hold the `selectedId` in state, and *then* get the `selectedItem` by searching the `items` array for an item with that ID:
+Même si vous pourriez mettre à jour `selectedItem` également, une correction plus simple serait de retirer la duplication. Dans cet exemple, au lieu d’un objet `selectedItem` (qui crée une duplication des objets dans `items`), vous gardez le `selectedId` dans l’état, et *ensuite* obtenez le `selectedItem` en cherchant dans la liste `items` pour un objet avec cet ID :
 
 <Sandpack>
 
@@ -497,9 +499,9 @@ Although you could update `selectedItem` too, an easier fix is to remove duplica
 import { useState } from 'react';
 
 const initialItems = [
-  { title: 'pretzels', id: 0 },
-  { title: 'crispy seaweed', id: 1 },
-  { title: 'granola bar', id: 2 },
+  { title: 'bretzels', id: 0 },
+  { title: 'algues croustillantes', id: 1 },
+  { title: 'paquet de princes', id: 2 },
 ];
 
 export default function Menu() {
@@ -525,7 +527,7 @@ export default function Menu() {
 
   return (
     <>
-      <h2>What's your travel snack?</h2>
+      <h2>Quel est votre goûter de voyage ?</h2>
       <ul>
         {items.map((item, index) => (
           <li key={item.id}>
@@ -538,11 +540,11 @@ export default function Menu() {
             {' '}
             <button onClick={() => {
               setSelectedId(item.id);
-            }}>Choose</button>
+            }}>Choisir</button>
           </li>
         ))}
       </ul>
-      <p>You picked {selectedItem.title}.</p>
+      <p>Vous avez choisi {selectedItem.title}.</p>
     </>
   );
 }
@@ -554,25 +556,26 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-(Alternatively, you may hold the selected index in state.)
+(Autrement, vous pouvez garder l’index sélectionné dans l’état.)
 
-The state used to be duplicated like this:
+L’état était dupliqué de cette façon :
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedItem = {id: 0, title: 'pretzels'}`
 
-But after the change it's like this:
+Mais après les changements, il est ainsi :
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedId = 0`
 
-The duplication is gone, and you only keep the essential state!
+La duplication est finie, et vous gardez seulement l’état essentiel !
 
-Now if you edit the *selected* item, the message below will update immediately. This is because `setItems` triggers a re-render, and `items.find(...)` would find the item with the updated title. You didn't need to hold *the selected item* in state, because only the *selected ID* is essential. The rest could be calculated during render.
+Maintenant si vous modifiez l’objet *selectionné*, le message en dessous sera mis à jour immédiatement. C’est parce que `setItems` déclenche un rendu, et `items.find(...)` doit trouver l’objet avec le titre mis à jour. Vous n’aviez pas besoin de garder *l’objet selectionné* dans l’état, parce que seulement l’*ID sélectionné* est essentiel. Le reste pourrait être calculé pendant le rendu.
 
-## Avoid deeply nested state {/*avoid-deeply-nested-state*/}
+## Evitez les états fortement imbriqués {/*avoid-deeply-nested-state*/}
 
-Imagine a travel plan consisting of planets, continents, and countries. You might be tempted to structure its state using nested objects and arrays, like in this example:
+
+Imaginez un plan de voyage composé de planètes, de continents et de pays. Vous serez sûrement tentés de structurer son état en utlisant des listes et des objets imbriqués, comme dans cet exemple :
 
 <Sandpack>
 
@@ -601,7 +604,7 @@ export default function TravelPlan() {
   const planets = plan.childPlaces;
   return (
     <>
-      <h2>Places to visit</h2>
+      <h2>Endroits à visiter</h2>
       <ol>
         {planets.map(place => (
           <PlaceTree key={place.id} place={place} />
@@ -618,17 +621,17 @@ export const initialTravelPlan = {
   title: '(Root)',
   childPlaces: [{
     id: 1,
-    title: 'Earth',
+    title: 'Terre',
     childPlaces: [{
       id: 2,
-      title: 'Africa',
+      title: 'Afrique',
       childPlaces: [{
         id: 3,
         title: 'Botswana',
         childPlaces: []
       }, {
         id: 4,
-        title: 'Egypt',
+        title: 'Egypte',
         childPlaces: []
       }, {
         id: 5,
@@ -640,31 +643,31 @@ export const initialTravelPlan = {
         childPlaces: []
       }, {
         id: 7,
-        title: 'Morocco',
+        title: 'Maroc',
         childPlaces: []
       }, {
         id: 8,
-        title: 'Nigeria',
+        title: 'Nigéria',
         childPlaces: []
       }, {
         id: 9,
-        title: 'South Africa',
+        title: 'Afrique du Sud',
         childPlaces: []
       }]
     }, {
       id: 10,
-      title: 'Americas',
+      title: 'Amérique',
       childPlaces: [{
         id: 11,
-        title: 'Argentina',
+        title: 'Argentine',
         childPlaces: []
       }, {
         id: 12,
-        title: 'Brazil',
+        title: 'Brésil',
         childPlaces: []
       }, {
         id: 13,
-        title: 'Barbados',
+        title: 'Barbade',
         childPlaces: []
       }, {
         id: 14,
@@ -672,15 +675,15 @@ export const initialTravelPlan = {
         childPlaces: []
       }, {
         id: 15,
-        title: 'Jamaica',
+        title: 'Jamaïque',
         childPlaces: []
       }, {
         id: 16,
-        title: 'Mexico',
+        title: 'Mexique',
         childPlaces: []
       }, {
         id: 17,
-        title: 'Trinidad and Tobago',
+        title: 'Trinidad et Tobago',
         childPlaces: []
       }, {
         id: 18,
@@ -689,10 +692,10 @@ export const initialTravelPlan = {
       }]
     }, {
       id: 19,
-      title: 'Asia',
+      title: 'Asie',
       childPlaces: [{
         id: 20,
-        title: 'China',
+        title: 'Chine',
         childPlaces: []
       }, {
         id: 21,
@@ -700,19 +703,19 @@ export const initialTravelPlan = {
         childPlaces: []
       }, {
         id: 22,
-        title: 'India',
+        title: 'Inde',
         childPlaces: []
       }, {
         id: 23,
-        title: 'Singapore',
+        title: 'Singapour',
         childPlaces: []
       }, {
         id: 24,
-        title: 'South Korea',
+        title: 'Corée du Sud',
         childPlaces: []
       }, {
         id: 25,
-        title: 'Thailand',
+        title: 'Thaïlande',
         childPlaces: []
       }, {
         id: 26,
@@ -724,7 +727,7 @@ export const initialTravelPlan = {
       title: 'Europe',
       childPlaces: [{
         id: 28,
-        title: 'Croatia',
+        title: 'Croatie',
         childPlaces: [],
       }, {
         id: 29,
@@ -732,11 +735,11 @@ export const initialTravelPlan = {
         childPlaces: [],
       }, {
         id: 30,
-        title: 'Germany',
+        title: 'Allemagne',
         childPlaces: [],
       }, {
         id: 31,
-        title: 'Italy',
+        title: 'Italie',
         childPlaces: [],
       }, {
         id: 32,
@@ -744,39 +747,39 @@ export const initialTravelPlan = {
         childPlaces: [],
       }, {
         id: 33,
-        title: 'Spain',
+        title: 'Espagne',
         childPlaces: [],
       }, {
         id: 34,
-        title: 'Turkey',
+        title: 'Turquie',
         childPlaces: [],
       }]
     }, {
       id: 35,
-      title: 'Oceania',
+      title: 'Océanie',
       childPlaces: [{
         id: 36,
-        title: 'Australia',
+        title: 'Australie',
         childPlaces: [],
       }, {
         id: 37,
-        title: 'Bora Bora (French Polynesia)',
+        title: 'Bora Bora (Polynésie Française)',
         childPlaces: [],
       }, {
         id: 38,
-        title: 'Easter Island (Chile)',
+        title: 'ïle de Pâques (Chili)',
         childPlaces: [],
       }, {
         id: 39,
-        title: 'Fiji',
+        title: 'Fidji',
         childPlaces: [],
       }, {
         id: 40,
-        title: 'Hawaii (the USA)',
+        title: 'Hawaï (USA)',
         childPlaces: [],
       }, {
         id: 41,
-        title: 'New Zealand',
+        title: 'Nouvelle Zélande',
         childPlaces: [],
       }, {
         id: 42,
@@ -786,7 +789,7 @@ export const initialTravelPlan = {
     }]
   }, {
     id: 43,
-    title: 'Moon',
+    title: 'Lune',
     childPlaces: [{
       id: 44,
       title: 'Rheita',
@@ -818,11 +821,11 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-Now let's say you want to add a button to delete a place you've already visited. How would you go about it? [Updating nested state](/learn/updating-objects-in-state#updating-a-nested-object) involves making copies of objects all the way up from the part that changed. Deleting a deeply nested place would involve copying its entire parent place chain. Such code can be very verbose.
+Maintenant disons que vous voulez ajouter un bouton pour supprimer un endroit que vous avez déjà visité. Comment feriez-vous ? [Actualiser des états imbriqués](/learn/updating-objects-in-state#updating-a-nested-object) inclus de faire des copies d’objets depuis l’endroit qui a changé. Supprimer un endroit imbriqué profondément consisterait à copier tout son chemin d’emplacement. Un tel code peut être très long. 
 
-**If the state is too nested to update easily, consider making it "flat".** Here is one way you can restructure this data. Instead of a tree-like structure where each `place` has an array of *its child places*, you can have each place hold an array of *its child place IDs*. Then store a mapping from each place ID to the corresponding place.
+**Si l’état est trop imbriqué pour s’actualiser facilement, préférez le faire "plat".** C’est une manière pour restructurer cette donnée. Au lieu d’une structure arborescente où chaque `place` a une liste des *emplacements de ses enfants*, chaque endroit peut posséder une liste de *l’ID des emplacements de ses enfants*. Stockez une corrélation depuis chaque ID de `place` à la `place` correspondant.
 
-This data restructuring might remind you of seeing a database table:
+Cette restructuration des données pourrait vous rappeler une table de base de données :
 
 <Sandpack>
 
@@ -857,7 +860,7 @@ export default function TravelPlan() {
   const planetIds = root.childIds;
   return (
     <>
-      <h2>Places to visit</h2>
+      <h2>Endroits à visiter</h2>
       <ol>
         {planetIds.map(id => (
           <PlaceTree
@@ -881,12 +884,12 @@ export const initialTravelPlan = {
   },
   1: {
     id: 1,
-    title: 'Earth',
+    title: 'Terre',
     childIds: [2, 10, 19, 27, 35]
   },
   2: {
     id: 2,
-    title: 'Africa',
+    title: 'Afrique',
     childIds: [3, 4, 5, 6 , 7, 8, 9]
   }, 
   3: {
@@ -896,7 +899,7 @@ export const initialTravelPlan = {
   },
   4: {
     id: 4,
-    title: 'Egypt',
+    title: 'Egypte',
     childIds: []
   },
   5: {
@@ -911,37 +914,37 @@ export const initialTravelPlan = {
   }, 
   7: {
     id: 7,
-    title: 'Morocco',
+    title: 'Maroc',
     childIds: []
   },
   8: {
     id: 8,
-    title: 'Nigeria',
+    title: 'Nigéria',
     childIds: []
   },
   9: {
     id: 9,
-    title: 'South Africa',
+    title: 'Afrique du Sud',
     childIds: []
   },
   10: {
     id: 10,
-    title: 'Americas',
+    title: 'Amerique',
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
   },
   11: {
     id: 11,
-    title: 'Argentina',
+    title: 'Argentine',
     childIds: []
   },
   12: {
     id: 12,
-    title: 'Brazil',
+    title: 'Brésil',
     childIds: []
   },
   13: {
     id: 13,
-    title: 'Barbados',
+    title: 'Barbade',
     childIds: []
   }, 
   14: {
@@ -951,17 +954,17 @@ export const initialTravelPlan = {
   },
   15: {
     id: 15,
-    title: 'Jamaica',
+    title: 'Jamaïque',
     childIds: []
   },
   16: {
     id: 16,
-    title: 'Mexico',
+    title: 'Mexique',
     childIds: []
   },
   17: {
     id: 17,
-    title: 'Trinidad and Tobago',
+    title: 'Trinidad et Tobago',
     childIds: []
   },
   18: {
@@ -971,12 +974,12 @@ export const initialTravelPlan = {
   },
   19: {
     id: 19,
-    title: 'Asia',
+    title: 'Asie',
     childIds: [20, 21, 22, 23, 24, 25, 26],   
   },
   20: {
     id: 20,
-    title: 'China',
+    title: 'Chine',
     childIds: []
   },
   21: {
@@ -986,22 +989,22 @@ export const initialTravelPlan = {
   },
   22: {
     id: 22,
-    title: 'India',
+    title: 'Inde',
     childIds: []
   },
   23: {
     id: 23,
-    title: 'Singapore',
+    title: 'Singapour',
     childIds: []
   },
   24: {
     id: 24,
-    title: 'South Korea',
+    title: 'Corée du Sud',
     childIds: []
   },
   25: {
     id: 25,
-    title: 'Thailand',
+    title: 'Thaïlande',
     childIds: []
   },
   26: {
@@ -1016,7 +1019,7 @@ export const initialTravelPlan = {
   },
   28: {
     id: 28,
-    title: 'Croatia',
+    title: 'Croatie',
     childIds: []
   },
   29: {
@@ -1026,12 +1029,12 @@ export const initialTravelPlan = {
   },
   30: {
     id: 30,
-    title: 'Germany',
+    title: 'Allemagne',
     childIds: []
   },
   31: {
     id: 31,
-    title: 'Italy',
+    title: 'Italie',
     childIds: []
   },
   32: {
@@ -1041,47 +1044,47 @@ export const initialTravelPlan = {
   },
   33: {
     id: 33,
-    title: 'Spain',
+    title: 'Espagne',
     childIds: []
   },
   34: {
     id: 34,
-    title: 'Turkey',
+    title: 'Turquie',
     childIds: []
   },
   35: {
     id: 35,
-    title: 'Oceania',
+    title: 'Océanie',
     childIds: [36, 37, 38, 39, 40, 41, 42],   
   },
   36: {
     id: 36,
-    title: 'Australia',
+    title: 'Australie',
     childIds: []
   },
   37: {
     id: 37,
-    title: 'Bora Bora (French Polynesia)',
+    title: 'Bora Bora (Polynésie Française)',
     childIds: []
   },
   38: {
     id: 38,
-    title: 'Easter Island (Chile)',
+    title: 'Ile de Pâques (Chili)',
     childIds: []
   },
   39: {
     id: 39,
-    title: 'Fiji',
+    title: 'Fidji',
     childIds: []
   },
   40: {
     id: 40,
-    title: 'Hawaii (the USA)',
+    title: 'Hawaï (USA)',
     childIds: []
   },
   41: {
     id: 41,
-    title: 'New Zealand',
+    title: 'Nouvelle Zélande',
     childIds: []
   },
   42: {
@@ -1091,7 +1094,7 @@ export const initialTravelPlan = {
   },
   43: {
     id: 43,
-    title: 'Moon',
+    title: 'Lune',
     childIds: [44, 45, 46]
   },
   44: {
@@ -1129,14 +1132,14 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-**Now that the state is "flat" (also known as "normalized"), updating nested items becomes easier.**
+**Maintenant que l’état est "plat" (aussi dit "normalisé"), actualiser les éléments imbriqués devient plus simple**
 
-In order to remove a place now, you only need to update two levels of state:
+Afin d’enlever un endroit désormais vous avez seulement besoin d’actualiser deux niveaux d’état:
 
-- The updated version of its *parent* place should exclude the removed ID from its `childIds` array.
-- The updated version of the root "table" object should include the updated version of the parent place.
+- La version actualisée de son endroit *parent* devrait exclure l’ID enlevé de sa liste `childIds`.
+- La version actualisée du "tableau" d’objet *root* devrait inclure la version actualisée de l’endroit parent.
 
-Here is an example of how you could go about it:
+Voici un exemple de commment vous devriez commencer:
 
 <Sandpack>
 
@@ -1149,17 +1152,17 @@ export default function TravelPlan() {
 
   function handleComplete(parentId, childId) {
     const parent = plan[parentId];
-    // Create a new version of the parent place
-    // that doesn't include this child ID.
+    // Créez une nouvelle version de son endroit parent
+    // cela n’inclut pas l’ID de son enfant.
     const nextParent = {
       ...parent,
       childIds: parent.childIds
         .filter(id => id !== childId)
     };
-    // Update the root state object...
+    // Actulisez l’état de l’objet d’origine...
     setPlan({
       ...plan,
-      // ...so that it has the updated parent.
+      // ...pour qu’il ait le parent actualisé
       [parentId]: nextParent
     });
   }
@@ -1168,7 +1171,7 @@ export default function TravelPlan() {
   const planetIds = root.childIds;
   return (
     <>
-      <h2>Places to visit</h2>
+      <h2>Endroits à visiter</h2>
       <ol>
         {planetIds.map(id => (
           <PlaceTree
@@ -1193,7 +1196,7 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
       <button onClick={() => {
         onComplete(parentId, id);
       }}>
-        Complete
+        Compléter
       </button>
       {childIds.length > 0 &&
         <ol>
@@ -1222,12 +1225,12 @@ export const initialTravelPlan = {
   },
   1: {
     id: 1,
-    title: 'Earth',
+    title: 'Terre',
     childIds: [2, 10, 19, 27, 35]
   },
   2: {
     id: 2,
-    title: 'Africa',
+    title: 'Afrique',
     childIds: [3, 4, 5, 6 , 7, 8, 9]
   }, 
   3: {
@@ -1237,7 +1240,7 @@ export const initialTravelPlan = {
   },
   4: {
     id: 4,
-    title: 'Egypt',
+    title: 'Egypte',
     childIds: []
   },
   5: {
@@ -1252,37 +1255,37 @@ export const initialTravelPlan = {
   }, 
   7: {
     id: 7,
-    title: 'Morocco',
+    title: 'Maroc',
     childIds: []
   },
   8: {
     id: 8,
-    title: 'Nigeria',
+    title: 'Nigéria',
     childIds: []
   },
   9: {
     id: 9,
-    title: 'South Africa',
+    title: 'Afrique du Sud',
     childIds: []
   },
   10: {
     id: 10,
-    title: 'Americas',
+    title: 'Amérique',
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
   },
   11: {
     id: 11,
-    title: 'Argentina',
+    title: 'Argentine',
     childIds: []
   },
   12: {
     id: 12,
-    title: 'Brazil',
+    title: 'Brésil',
     childIds: []
   },
   13: {
     id: 13,
-    title: 'Barbados',
+    title: 'Barbade',
     childIds: []
   }, 
   14: {
@@ -1292,17 +1295,17 @@ export const initialTravelPlan = {
   },
   15: {
     id: 15,
-    title: 'Jamaica',
+    title: 'Jamaïque',
     childIds: []
   },
   16: {
     id: 16,
-    title: 'Mexico',
+    title: 'Mexique',
     childIds: []
   },
   17: {
     id: 17,
-    title: 'Trinidad and Tobago',
+    title: 'Trinidad et Tobago',
     childIds: []
   },
   18: {
@@ -1312,12 +1315,12 @@ export const initialTravelPlan = {
   },
   19: {
     id: 19,
-    title: 'Asia',
+    title: 'Asie',
     childIds: [20, 21, 22, 23, 24, 25, 26],   
   },
   20: {
     id: 20,
-    title: 'China',
+    title: 'Chine',
     childIds: []
   },
   21: {
@@ -1327,22 +1330,22 @@ export const initialTravelPlan = {
   },
   22: {
     id: 22,
-    title: 'India',
+    title: 'Inde',
     childIds: []
   },
   23: {
     id: 23,
-    title: 'Singapore',
+    title: 'Singapour',
     childIds: []
   },
   24: {
     id: 24,
-    title: 'South Korea',
+    title: 'Corée du Sud',
     childIds: []
   },
   25: {
     id: 25,
-    title: 'Thailand',
+    title: 'Thaïlande',
     childIds: []
   },
   26: {
@@ -1357,7 +1360,7 @@ export const initialTravelPlan = {
   },
   28: {
     id: 28,
-    title: 'Croatia',
+    title: 'Croatie',
     childIds: []
   },
   29: {
@@ -1367,12 +1370,12 @@ export const initialTravelPlan = {
   },
   30: {
     id: 30,
-    title: 'Germany',
+    title: 'Allemagne',
     childIds: []
   },
   31: {
     id: 31,
-    title: 'Italy',
+    title: 'Italie',
     childIds: []
   },
   32: {
@@ -1382,47 +1385,47 @@ export const initialTravelPlan = {
   },
   33: {
     id: 33,
-    title: 'Spain',
+    title: 'Espagne',
     childIds: []
   },
   34: {
     id: 34,
-    title: 'Turkey',
+    title: 'Turquie',
     childIds: []
   },
   35: {
     id: 35,
-    title: 'Oceania',
+    title: 'Océanie',
     childIds: [36, 37, 38, 39, 40, 41,, 42],   
   },
   36: {
     id: 36,
-    title: 'Australia',
+    title: 'Australie',
     childIds: []
   },
   37: {
     id: 37,
-    title: 'Bora Bora (French Polynesia)',
+    title: 'Bora Bora (Polynésie Française)',
     childIds: []
   },
   38: {
     id: 38,
-    title: 'Easter Island (Chile)',
+    title: 'Ile de Pâques (Chili)',
     childIds: []
   },
   39: {
     id: 39,
-    title: 'Fiji',
+    title: 'Fidji',
     childIds: []
   },
   40: {
     id: 40,
-    title: 'Hawaii (the USA)',
+    title: 'Hawaï (USA)',
     childIds: []
   },
   41: {
     id: 41,
-    title: 'New Zealand',
+    title: 'Nouvelle Zélande',
     childIds: []
   },
   42: {
@@ -1432,7 +1435,7 @@ export const initialTravelPlan = {
   },
   43: {
     id: 43,
-    title: 'Moon',
+    title: 'Lune',
     childIds: [44, 45, 46]
   },
   44: {
@@ -1474,13 +1477,13 @@ button { margin: 10px; }
 
 </Sandpack>
 
-You can nest state as much as you like, but making it "flat" can solve numerous problems. It makes state easier to update, and it helps ensure you don't have duplication in different parts of a nested object.
+Vous pouvez imbriquer des états autant que vous le voulez, mais les rendre "plats" peut résoudre beaucoup de problèmes. Cela rend les états plus simple à actualiser, et cela aide à être sûr que vous n’avez pas de duplication dans les différentes parties d’un objet imbriqué.
 
 <DeepDive>
 
-#### Improving memory usage {/*improving-memory-usage*/}
+#### Améliorer l’utilisation de mémoire {/*improving-memory-usage*/}
 
-Ideally, you would also remove the deleted items (and their children!) from the "table" object to improve memory usage. This version does that. It also [uses Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) to make the update logic more concise.
+Idéalement, vous voudrez aussi enlever les éléments supprimés (et leurs enfants !) depuis l’objet "tableau" pour améliorer l’utilisation de la mémoire. Cette version fait cela. Cela utilise également [Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) pour faire de la logique d’actualisation plus courte.
 
 <Sandpack>
 
@@ -1493,12 +1496,12 @@ export default function TravelPlan() {
 
   function handleComplete(parentId, childId) {
     updatePlan(draft => {
-      // Remove from the parent place's child IDs.
+      // Enlevez des parents l’ID des endroits enfants
       const parent = draft[parentId];
       parent.childIds = parent.childIds
         .filter(id => id !== childId);
 
-      // Forget this place and all its subtree.
+      // Oubliez cet endroit et toute sa descendence. 
       deleteAllChildren(childId);
       function deleteAllChildren(id) {
         const place = draft[id];
@@ -1512,7 +1515,7 @@ export default function TravelPlan() {
   const planetIds = root.childIds;
   return (
     <>
-      <h2>Places to visit</h2>
+      <h2>Endroits à visiter</h2>
       <ol>
         {planetIds.map(id => (
           <PlaceTree
@@ -1537,7 +1540,7 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
       <button onClick={() => {
         onComplete(parentId, id);
       }}>
-        Complete
+        Compléter
       </button>
       {childIds.length > 0 &&
         <ol>
@@ -1566,12 +1569,12 @@ export const initialTravelPlan = {
   },
   1: {
     id: 1,
-    title: 'Earth',
+    title: 'Terre',
     childIds: [2, 10, 19, 27, 35]
   },
   2: {
     id: 2,
-    title: 'Africa',
+    title: 'Afrique',
     childIds: [3, 4, 5, 6 , 7, 8, 9]
   }, 
   3: {
@@ -1581,7 +1584,7 @@ export const initialTravelPlan = {
   },
   4: {
     id: 4,
-    title: 'Egypt',
+    title: 'Egypte',
     childIds: []
   },
   5: {
@@ -1596,37 +1599,37 @@ export const initialTravelPlan = {
   }, 
   7: {
     id: 7,
-    title: 'Morocco',
+    title: 'Maroc',
     childIds: []
   },
   8: {
     id: 8,
-    title: 'Nigeria',
+    title: 'Nigéria',
     childIds: []
   },
   9: {
     id: 9,
-    title: 'South Africa',
+    title: 'Afrique du Sud',
     childIds: []
   },
   10: {
     id: 10,
-    title: 'Americas',
+    title: 'Amérique',
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
   },
   11: {
     id: 11,
-    title: 'Argentina',
+    title: 'Argentine',
     childIds: []
   },
   12: {
     id: 12,
-    title: 'Brazil',
+    title: 'Brésil',
     childIds: []
   },
   13: {
     id: 13,
-    title: 'Barbados',
+    title: 'Barbade',
     childIds: []
   }, 
   14: {
@@ -1636,17 +1639,17 @@ export const initialTravelPlan = {
   },
   15: {
     id: 15,
-    title: 'Jamaica',
+    title: 'Jamaïque',
     childIds: []
   },
   16: {
     id: 16,
-    title: 'Mexico',
+    title: 'Mexique',
     childIds: []
   },
   17: {
     id: 17,
-    title: 'Trinidad and Tobago',
+    title: 'Trinidad et Tobago',
     childIds: []
   },
   18: {
@@ -1656,12 +1659,12 @@ export const initialTravelPlan = {
   },
   19: {
     id: 19,
-    title: 'Asia',
+    title: 'Asie',
     childIds: [20, 21, 22, 23, 24, 25, 26],   
   },
   20: {
     id: 20,
-    title: 'China',
+    title: 'Chine',
     childIds: []
   },
   21: {
@@ -1671,22 +1674,22 @@ export const initialTravelPlan = {
   },
   22: {
     id: 22,
-    title: 'India',
+    title: 'Inde',
     childIds: []
   },
   23: {
     id: 23,
-    title: 'Singapore',
+    title: 'Singapour',
     childIds: []
   },
   24: {
     id: 24,
-    title: 'South Korea',
+    title: 'Corée du Sud',
     childIds: []
   },
   25: {
     id: 25,
-    title: 'Thailand',
+    title: 'Thaïlande',
     childIds: []
   },
   26: {
@@ -1701,7 +1704,7 @@ export const initialTravelPlan = {
   },
   28: {
     id: 28,
-    title: 'Croatia',
+    title: 'Croatie',
     childIds: []
   },
   29: {
@@ -1711,12 +1714,12 @@ export const initialTravelPlan = {
   },
   30: {
     id: 30,
-    title: 'Germany',
+    title: 'Allemagne',
     childIds: []
   },
   31: {
     id: 31,
-    title: 'Italy',
+    title: 'Italie',
     childIds: []
   },
   32: {
@@ -1726,47 +1729,47 @@ export const initialTravelPlan = {
   },
   33: {
     id: 33,
-    title: 'Spain',
+    title: 'Espagne',
     childIds: []
   },
   34: {
     id: 34,
-    title: 'Turkey',
+    title: 'Turquie',
     childIds: []
   },
   35: {
     id: 35,
-    title: 'Oceania',
+    title: 'Océanie',
     childIds: [36, 37, 38, 39, 40, 41,, 42],   
   },
   36: {
     id: 36,
-    title: 'Australia',
+    title: 'Australie',
     childIds: []
   },
   37: {
     id: 37,
-    title: 'Bora Bora (French Polynesia)',
+    title: 'Bora Bora (Polynésie Française)',
     childIds: []
   },
   38: {
     id: 38,
-    title: 'Easter Island (Chile)',
+    title: 'Ile de Pâques (Chili)',
     childIds: []
   },
   39: {
     id: 39,
-    title: 'Fiji',
+    title: 'Fidji',
     childIds: []
   },
   40: {
     id: 40,
-    title: 'Hawaii (the USA)',
+    title: 'Hawaï (USA)',
     childIds: []
   },
   41: {
     id: 41,
-    title: 'New Zealand',
+    title: 'Nouvelle Zélande',
     childIds: []
   },
   42: {
@@ -1776,7 +1779,7 @@ export const initialTravelPlan = {
   },
   43: {
     id: 43,
-    title: 'Moon',
+    title: 'Lune',
     childIds: [44, 45, 46]
   },
   44: {
@@ -1838,25 +1841,25 @@ button { margin: 10px; }
 
 </DeepDive>
 
-Sometimes, you can also reduce state nesting by moving some of the nested state into the child components. This works well for ephemeral UI state that doesn't need to be stored, like whether an item is hovered.
+Parfois, vous pouvez aussi réduire l’état d’imbrication en déplaçant des états imbriqués dans les composants enfants. Cela fonctionne bien pour les états UI éphémères qui n’ont pas besoin d’être stockés, comme quand un objet est survolé.
 
 <Recap>
 
-* If two state variables always update together, consider merging them into one. 
-* Choose your state variables carefully to avoid creating "impossible" states.
-* Structure your state in a way that reduces the chances that you'll make a mistake updating it.
-* Avoid redundant and duplicate state so that you don't need to keep it in sync.
-* Don't put props *into* state unless you specifically want to prevent updates.
-* For UI patterns like selection, keep ID or index in state instead of the object itself.
-* If updating deeply nested state is complicated, try flattening it.
+* Si deux variables d’état s’actualisent toujours ensemble, pensez à les fusionner en une seule.
+* Choississez votre variable d’état précautionneusement pour éviter de créer des "états" impossibles.
+* Structurez votre état de manière à réduire les chances que vous fassiez une erreur en l’actualisant.
+* Evitez les états dupliqués et redondants pour que vous n’ayez pas besoin de le garder synchronnisés.
+* Ne mettez pas des props *dans* un état sauf si vous voulez spécifiquement prévenir les mises à jours.
+* Pour les évènements d’UI tels que la sélection, gardez l’ID ou index dans l’état plutôt que l’objet lui-même.
+* Si actualiser profondément l’état imbriqué est compliqué, essayez de l’aplatir.
 
 </Recap>
 
 <Challenges>
 
-#### Fix a component that's not updating {/*fix-a-component-thats-not-updating*/}
+#### Réparer un composant qui ne s’actualise pas {/*fix-a-component-thats-not-updating*/}
 
-This `Clock` component receives two props: `color` and `time`. When you select a different color in the select box, the `Clock` component receives a different `color` prop from its parent component. However, for some reason, the displayed color doesn't update. Why? Fix the problem.
+Ce composant `Clock` reçoit deux props : `color` et `time`. Quand vous sélectionnez une couleur différente dans la boîte de sélection, le composant `Clock` reçoit une prop `color` différente de son composant parent. Cependant, la couleur affichée ne s'actualise pas. Pourquoi ? Réglez le problème.
 
 <Sandpack>
 
@@ -1894,7 +1897,7 @@ export default function App() {
   return (
     <div>
       <p>
-        Pick a color:{' '}
+        Choisissez une couleur :{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
           <option value="lightcoral">lightcoral</option>
           <option value="midnightblue">midnightblue</option>
@@ -1911,7 +1914,7 @@ export default function App() {
 
 <Solution>
 
-The issue is that this component has `color` state initialized with the initial value of the `color` prop. But when the `color` prop changes, this does not affect the state variable! So they get out of sync. To fix this issue, remove the state variable altogether, and use the `color` prop directly.
+Le problème est que ce composant a un état `color` initialisé avec la valeur initiale de la prop `color`. Mais quand la prop change, cela n’affecte pas la variable d’état ! Donc elles se désynchronisent. Pour régler ce problème, retirez les variables d’état entièrement, et utilisez la prop `color` directement.
 
 <Sandpack>
 
@@ -1948,7 +1951,7 @@ export default function App() {
   return (
     <div>
       <p>
-        Pick a color:{' '}
+        Choisissez une couleur :{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
           <option value="lightcoral">lightcoral</option>
           <option value="midnightblue">midnightblue</option>
@@ -1963,7 +1966,7 @@ export default function App() {
 
 </Sandpack>
 
-Or, using the destructuring syntax:
+Ou, avec la syntaxe de destructuration :
 
 <Sandpack>
 
@@ -2000,7 +2003,7 @@ export default function App() {
   return (
     <div>
       <p>
-        Pick a color:{' '}
+        Choisissez une couleur :{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
           <option value="lightcoral">lightcoral</option>
           <option value="midnightblue">midnightblue</option>
@@ -2017,13 +2020,13 @@ export default function App() {
 
 </Solution>
 
-#### Fix a broken packing list {/*fix-a-broken-packing-list*/}
+#### Réparer une liste de matériel cassée {/*fix-a-broken-packing-list*/}
 
-This packing list has a footer that shows how many items are packed, and how many items there are overall. It seems to work at first, but it is buggy. For example, if you mark an item as packed and then delete it, the counter will not be updated correctly. Fix the counter so that it's always correct.
+Cette liste de matériel possède un pied de page qui affiche combien d’objets sont prêts, et combien d’objets il y a en tout. Il a l’air de marcher au début, mais il est bugué. Par exemple, si vous cochez un objet, puis le supprimez, le compteur ne sera pas mis à jour correctement. Réparez le compteur pour qu’il soit toujours correct.
 
 <Hint>
 
-Is any state in this example redundant?
+Y a-t-il un état redondant dans cet exemple ?
 
 </Hint>
 
@@ -2036,9 +2039,9 @@ import PackingList from './PackingList.js';
 
 let nextId = 3;
 const initialItems = [
-  { id: 0, title: 'Warm socks', packed: true },
-  { id: 1, title: 'Travel journal', packed: false },
-  { id: 2, title: 'Watercolors', packed: false },
+  { id: 0, title: 'Chaussettes chaudes', packed: true },
+  { id: 1, title: 'Journal de voyage', packed: false },
+  { id: 2, title: 'Aquarelles', packed: false },
 ];
 
 export default function TravelPlan() {
@@ -2091,7 +2094,7 @@ export default function TravelPlan() {
         onDeleteItem={handleDeleteItem}
       />
       <hr />
-      <b>{packed} out of {total} packed!</b>
+      <b>{packed} sur {total} emballés !</b>
     </>
   );
 }
@@ -2105,14 +2108,14 @@ export default function AddItem({ onAddItem }) {
   return (
     <>
       <input
-        placeholder="Add item"
+        placeholder="Ajouter un objet"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddItem(title);
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   )
 }
@@ -2145,7 +2148,7 @@ export default function PackingList({
             {item.title}
           </label>
           <button onClick={() => onDeleteItem(item.id)}>
-            Delete
+            Supprimer
           </button>
         </li>
       ))}
@@ -2164,7 +2167,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Although you could carefully change each event handler to update the `total` and `packed` counters correctly, the root problem is that these state variables exist at all. They are redundant because you can always calculate the number of items (packed or total) from the `items` array itself. Remove the redundant state to fix the bug:
+Même si vous pourriez changer chaque gestionnaire d'évènements pour actualiser les compteurs `total` et `packed` correctement, le problème principal est que ces variables d’état existent. Elles sont redondantes parce que vous pouvez toujours calculer le nombre d’objets (emballés ou total) depuis la liste `items` elle même. Retirez l’état redondant pour résoudre le problème :
 
 <Sandpack>
 
@@ -2175,9 +2178,9 @@ import PackingList from './PackingList.js';
 
 let nextId = 3;
 const initialItems = [
-  { id: 0, title: 'Warm socks', packed: true },
-  { id: 1, title: 'Travel journal', packed: false },
-  { id: 2, title: 'Watercolors', packed: false },
+  { id: 0, title: 'Chaussettes chaudes', packed: true },
+  { id: 1, title: 'Journal de voyage', packed: false },
+  { id: 2, title: 'Aquarelles', packed: false },
 ];
 
 export default function TravelPlan() {
@@ -2226,7 +2229,7 @@ export default function TravelPlan() {
         onDeleteItem={handleDeleteItem}
       />
       <hr />
-      <b>{packed} out of {total} packed!</b>
+      <b>{packed} sur {total} emballés !</b>
     </>
   );
 }
@@ -2240,14 +2243,14 @@ export default function AddItem({ onAddItem }) {
   return (
     <>
       <input
-        placeholder="Add item"
+        placeholder="Ajouter un objet"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddItem(title);
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   )
 }
@@ -2280,7 +2283,7 @@ export default function PackingList({
             {item.title}
           </label>
           <button onClick={() => onDeleteItem(item.id)}>
-            Delete
+            Supprimer
           </button>
         </li>
       ))}
@@ -2297,15 +2300,15 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Notice how the event handlers are only concerned with calling `setItems` after this change. The item counts are now calculated during the next render from `items`, so they are always up-to-date.
+Notez comme les gestionnaires d’évènements sont seulement utiles à appeler `setItems` après ce changement. Les compteurs d’objets seront maintenant calculés pendant le prochain rendu depuis la liste `items`, et seront donc toujours à jour.
 
 </Solution>
 
-#### Fix the disappearing selection {/*fix-the-disappearing-selection*/}
+#### Réparer une sélection qui disparait {/*fix-the-disappearing-selection*/}
 
-There is a list of `letters` in state. When you hover or focus a particular letter, it gets highlighted. The currently highlighted letter is stored in the `highlightedLetter` state variable. You can "star" and "unstar" individual letters, which updates the `letters` array in state.
+Il y a une liste `letters` dans l’état. Quand vous survolez ou cliquez sur une lettre en particulier, elle se met en surbrillance. Le courrier actuellement en surbrillance est stocké dans la variable d’état `highlightedLetter`. Vous pouvez marquer chaque courrier comme "favori" ou "normal", ce qui met à jour la liste `letters` dans l’état.
 
-This code works, but there is a minor UI glitch. When you press "Star" or "Unstar", the highlighting disappears for a moment. However, it reappears as soon as you move your pointer or switch to another letter with keyboard. Why is this happening? Fix it so that the highlighting doesn't disappear after the button click.
+Ce code marche, mais il y a un bug mineur d’UI. Quand vous appuyez sur "Favori" ou "Retirer", la surbrillance disparait pour un moment. Cependant, elle réaparait dès que vous bougez votre souris ou bougez vers un autre courrier avec le clavier. Pourquoi est-ce que cela se produit ? Réparez le code pour que la surbrillance ne disparaisse pas après le clic sur le bouton.
 
 <Sandpack>
 
@@ -2337,7 +2340,7 @@ export default function MailClient() {
 
   return (
     <>
-      <h2>Inbox</h2>
+      <h2>Boîte de réception</h2>
       <ul>
         {letters.map(letter => (
           <Letter
@@ -2378,7 +2381,7 @@ export default function Letter({
       <button onClick={() => {
         onToggleStar(letter);
       }}>
-        {letter.isStarred ? 'Unstar' : 'Star'}
+        {letter.isStarred ? 'Retirer' : 'Favori'}
       </button>
       {letter.subject}
     </li>
@@ -2389,15 +2392,15 @@ export default function Letter({
 ```js data.js
 export const initialLetters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Prêt pour l’aventure ?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Enregistrez-vous !',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Le festival démarre dans seulement SEPT jours !',
   isStarred: false,
 }];
 ```
@@ -2412,9 +2415,9 @@ li { border-radius: 5px; }
 
 <Solution>
 
-The problem is that you're holding the letter object in `highlightedLetter`. But you're also holding the same information in the `letters` array. So your state has duplication! When you update the `letters` array after the button click, you create a new letter object which is different from `highlightedLetter`. This is why `highlightedLetter === letter` check becomes `false`, and the highlight disappears. It reappears the next time you call `setHighlightedLetter` when the pointer moves.
+Le problème est que vous stockez l’objet *letter* dans `highlightedLetter`. Mais vous gardez cette même information dans la liste `letters`. Donc votre état a des duplications ! Quand vous mettez à jour la liste `letters` après le clic sur le bouton, vous créez un nouveau courrier qui est différent de `highlightedLetter`. C’est pourquoi l’expression `highlightedLetter === letter` devient `false` et la surbrillance disparait. Elle réaparait au prochain appel de `setHighlightedLetter` quand la souris se déplace.
 
-To fix the issue, remove the duplication from state. Instead of storing *the letter itself* in two places, store the `highlightedId` instead. Then you can check `isHighlighted` for each letter with `letter.id === highlightedId`, which will work even if the `letter` object has changed since the last render.
+Pour régler ce problème, retirez la duplication de l’état. Au lieu de stocker *le courrier lui-même* à deux endroits, stockez le `highlightedId` plutôt. Maintenant vous pouvez vérifier `isHighlighted` pour chaque courrier avec `letter.id === highlightedId`, qui va marcher même si l’objet `letter` a changé depuis le dernier rendu.
 
 <Sandpack>
 
@@ -2446,7 +2449,7 @@ export default function MailClient() {
 
   return (
     <>
-      <h2>Inbox</h2>
+      <h2>Boîte de réception</h2>
       <ul>
         {letters.map(letter => (
           <Letter
@@ -2487,7 +2490,7 @@ export default function Letter({
       <button onClick={() => {
         onToggleStar(letter.id);
       }}>
-        {letter.isStarred ? 'Unstar' : 'Star'}
+        {letter.isStarred ? 'Retirer' : 'Favori'}
       </button>
       {letter.subject}
     </li>
@@ -2498,15 +2501,15 @@ export default function Letter({
 ```js data.js
 export const initialLetters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Prêt pour l’aventure ?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Enregistrez-vous !',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Le festival démarre dans seulement SEPT jours !',
   isStarred: false,
 }];
 ```
@@ -2521,15 +2524,15 @@ li { border-radius: 5px; }
 
 </Solution>
 
-#### Implement multiple selection {/*implement-multiple-selection*/}
+#### Implémenter une sélection multiple {/*implement-multiple-selection*/}
 
-In this example, each `Letter` has an `isSelected` prop and an `onToggle` handler that marks it as selected. This works, but the state is stored as a `selectedId` (either `null` or an ID), so only one letter can get selected at any given time.
+Dans cet exemple, chaque `Letter` a une prop `isSelected` et un gestionnaire `onToggle` qui la définit comme sélectionnée. Ca marche, mais l’état est stocké comme un `selectedId` (soit `null` ou un ID), donc seulement un courrier peut être sélectionné à la fois.
 
-Change the state structure to support multiple selection. (How would you structure it? Think about this before writing the code.) Each checkbox should become independent from the others. Clicking a selected letter should uncheck it. Finally, the footer should show the correct number of the selected items.
+Changez la structure de l’état pour gérer la sélection multiple. (Comment le structureriez-vous ? Pensez à ça avant d’écrire le code.) Chaque case doit devenir indépendante des autres. Cliquer sur un courrier sélectionné doit le décocher. Enfin, le bas de page doit afficher le nombre correct d’objets sélectionnés.
 
 <Hint>
 
-Instead of a single selected ID, you might want to hold an array or a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of selected IDs in state.
+Au lieu d’un simple ID sélectionné, vous voulez plutôt enregistrer une liste ou un [Set](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set) des ID sélectionnés dans l’état.
 
 </Hint>
 
@@ -2543,24 +2546,24 @@ import Letter from './Letter.js';
 export default function MailClient() {
   const [selectedId, setSelectedId] = useState(null);
 
-  // TODO: allow multiple selection
+  // A FAIRE : autoriser la sélection multiple
   const selectedCount = 1;
 
   function handleToggle(toggledId) {
-    // TODO: allow multiple selection
+    // A FAIRE : autoriser la sélection multiple
     setSelectedId(toggledId);
   }
 
   return (
     <>
-      <h2>Inbox</h2>
+      <h2>Boîte de réception</h2>
       <ul>
         {letters.map(letter => (
           <Letter
             key={letter.id}
             letter={letter}
             isSelected={
-              // TODO: allow multiple selection
+              // A FAIRE : autoriser la sélection multiple
               letter.id === selectedId
             }
             onToggle={handleToggle}
@@ -2569,7 +2572,7 @@ export default function MailClient() {
         <hr />
         <p>
           <b>
-            You selected {selectedCount} letters
+            Vous avez sélectionné {selectedCount} courriers
           </b>
         </p>
       </ul>
@@ -2606,15 +2609,15 @@ export default function Letter({
 ```js data.js
 export const letters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Prêt pour l’aventure ?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Enregistrez-vous !',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Le festival démarre dans seulement SEPT jours !',
   isStarred: false,
 }];
 ```
@@ -2630,7 +2633,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 <Solution>
 
-Instead of a single `selectedId`, keep a `selectedIds` *array* in state. For example, if you select the first and the last letter, it would contain `[0, 2]`. When nothing is selected, it would be an empty `[]` array:
+À la place d’un simple `selectedId`, enregistrez une *liste* `selectedIds` dans l’état. Par exemple, si vous sélectionnez le premier et le dernier courriers, elle contiendrait `[0, 2]`. Quand rien n’est sélectionné, elle contiendrait une liste vide `[]` :
 
 <Sandpack>
 
@@ -2645,14 +2648,14 @@ export default function MailClient() {
   const selectedCount = selectedIds.length;
 
   function handleToggle(toggledId) {
-    // Was it previously selected?
+    // Etait-il sélectionné précédemment ?
     if (selectedIds.includes(toggledId)) {
-      // Then remove this ID from the array.
+      // Puis retirez l’ID de la liste.
       setSelectedIds(selectedIds.filter(id =>
         id !== toggledId
       ));
     } else {
-      // Otherwise, add this ID to the array.
+      // Sinon, ajoutez cet ID dans la liste.
       setSelectedIds([
         ...selectedIds,
         toggledId
@@ -2662,7 +2665,7 @@ export default function MailClient() {
 
   return (
     <>
-      <h2>Inbox</h2>
+      <h2>Boîte de réception</h2>
       <ul>
         {letters.map(letter => (
           <Letter
@@ -2677,7 +2680,7 @@ export default function MailClient() {
         <hr />
         <p>
           <b>
-            You selected {selectedCount} letters
+            Vous avez sélectionné {selectedCount} courriers
           </b>
         </p>
       </ul>
@@ -2714,15 +2717,15 @@ export default function Letter({
 ```js data.js
 export const letters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Prêt pour l’aventure ?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Enregistrez-vous !',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Le festival démarre dans seulement SEPT jours !',
   isStarred: false,
 }];
 ```
@@ -2736,9 +2739,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-One minor downside of using an array is that for each item, you're calling `selectedIds.includes(letter.id)` to check whether it's selected. If the array is very large, this can become a performance problem because array search with [`includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) takes linear time, and you're doing this search for each individual item.
+Un inconvénient mineur d’utiliser une liste est que pour chaque objet, vous appelez `selectedIds.includes(letter.id)` pour vérifier si il est sélectionné. Si la liste est très grande, cela peut devenir un problème de performances car une recherche de liste avec [`includes()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) prend un temps linéair, et vous effectuez cette recherche pour chaque objet.
 
-To fix this, you can hold a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) in state instead, which provides a fast [`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) operation:
+Pour régler ça, vous pouvez enregistrer un [Set](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set) dans l’état à la place, qui fournit une fonction [`has()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set/has) rapide :
 
 <Sandpack>
 
@@ -2755,7 +2758,7 @@ export default function MailClient() {
   const selectedCount = selectedIds.size;
 
   function handleToggle(toggledId) {
-    // Create a copy (to avoid mutation).
+    // Créez une copie (pour éviter la mutation).
     const nextIds = new Set(selectedIds);
     if (nextIds.has(toggledId)) {
       nextIds.delete(toggledId);
@@ -2767,7 +2770,7 @@ export default function MailClient() {
 
   return (
     <>
-      <h2>Inbox</h2>
+      <h2>Boîte de réception</h2>
       <ul>
         {letters.map(letter => (
           <Letter
@@ -2782,7 +2785,7 @@ export default function MailClient() {
         <hr />
         <p>
           <b>
-            You selected {selectedCount} letters
+            Vous avez sélectionné {selectedCount} courriers
           </b>
         </p>
       </ul>
@@ -2819,15 +2822,15 @@ export default function Letter({
 ```js data.js
 export const letters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Prêt pour l’aventure ?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Enregistrez-vous !',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Le festival démarre dans seulement SEPT jours !',
   isStarred: false,
 }];
 ```
@@ -2841,9 +2844,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-Now each item does a `selectedIds.has(letter.id)` check, which is very fast.
+Maintenant chaque objet effectue une vérification `selectedIds.has(letter.id)`, ce qui est très rapide.
 
-Keep in mind that you [should not mutate objects in state](/learn/updating-objects-in-state), and that includes Sets, too. This is why the `handleToggle` function creates a *copy* of the Set first, and then updates that copy.
+Gardez en tête que vous [ne devez pas muter des objets dans l’état](/learn/updating-objects-in-state), et cela inclut les Sets aussi. C’est pourquoi la fonction `handleToggle` crée une *copie* de ce Set d’abord, puis met à jour cette copie.
 
 </Solution>
 
