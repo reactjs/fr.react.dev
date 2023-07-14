@@ -39,9 +39,9 @@ title: <Suspense>
 
 ## Utilisation {/*usage*/}
 
-### Displaying a fallback while content is loading {/*displaying-a-fallback-while-content-is-loading*/}
+### Afficher une UI de secours pendant le chargement du contenu {/*displaying-a-fallback-while-content-is-loading*/}
 
-You can wrap any part of your application with a Suspense boundary:
+Vous pouvez enrober n'importe quelle partie de votre application dans un périmètre Suspense :
 
 ```js [[1, 1, "<Loading />"], [2, 2, "<Albums />"]]
 <Suspense fallback={<Loading />}>
@@ -49,9 +49,9 @@ You can wrap any part of your application with a Suspense boundary:
 </Suspense>
 ```
 
-React will display your <CodeStep step={1}>loading fallback</CodeStep> until all the code and data needed by <CodeStep step={2}>the children</CodeStep> has been loaded.
+React affichera le <CodeStep step={1}>contenu de secours</CodeStep> jusqu'à ce que le code et les données nécessaires aux <CodeStep step={2}>enfants</CodeStep> aient fini de se charger.
 
-In the example below, the `Albums` component *suspends* while fetching the list of albums. Until it's ready to render, React switches the closest Suspense boundary above to show the fallback--your `Loading` component. Then, when the data loads, React hides the `Loading` fallback and renders the `Albums` component with data.
+Dans l'exemple ci-dessous, le composant `Albums` *suspend* pendant qu'il charge la liste des albums.  Jusqu'à ce qu'il soit prêt à s'afficher, React bascule sur le plus proche périmètre Suspense parent pour en afficher le contenu de secours : votre composant `Loading`.  Ensuite, une fois les données chargées, React masquera le contenu de secours `Loading` et affichera le composant `Albums` avec ses données.
 
 <Sandpack>
 
@@ -81,14 +81,14 @@ export default function App() {
       <ArtistPage
         artist={{
           id: 'the-beatles',
-          name: 'The Beatles',
+          name: 'Les Beatles',
         }}
       />
     );
   } else {
     return (
       <button onClick={() => setShow(true)}>
-        Open The Beatles artist page
+        Ouvrir la page artiste des Beatles
       </button>
     );
   }
@@ -111,18 +111,18 @@ export default function ArtistPage({ artist }) {
 }
 
 function Loading() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Chargement...</h2>;
 }
 ```
 
 ```js Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez une framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -137,8 +137,10 @@ export default function Albums({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer avec une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -164,9 +166,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Note : la façon de charger vos données dépend du framework
+// que vous utilisez en complément de Suspense.
+// Normalement, la logique de cache serait fournie par le framework.
 
 let cache = new Map();
 
@@ -186,7 +188,7 @@ async function getData(url) {
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -205,7 +207,7 @@ async function getAlbums() {
     year: 1969
   }, {
     id: 10,
-    title: 'The Beatles',
+    title: 'Les Beatles',
     year: 1968
   }, {
     id: 9,
@@ -237,7 +239,7 @@ async function getAlbums() {
     year: 1964
   }, {
     id: 2,
-    title: 'With The Beatles',
+    title: 'With Les Beatles',
     year: 1963
   }, {
     id: 1,
@@ -251,24 +253,24 @@ async function getAlbums() {
 
 <Note>
 
-**Only Suspense-enabled data sources will activate the Suspense component.** They include:
+**Seules les sources de données compatibles Suspense activeront le composant Suspense.** Elles comprennent :
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Le chargement de données fourni par des frameworks intégrant Suspense tels que [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) et [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
+- Le chargement à la demande du code de composants avec [`lazy`](/reference/react/lazy)
 
-Suspense **does not** detect when data is fetched inside an Effect or event handler.
+Suspense **ne détecte pas** le chargement de données depuis un Effet ou un gestionnaire d'événement.
 
-The exact way you would load data in the `Albums` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
+Les modalités exactes de votre chargement de données dans le composant `Albums` ci-dessus dépenderont de votre framework.  Si vous utilisez un framework intégrant Suspense, vous trouverez tous les détails dans sa documentations sur le chargement de données.
 
-Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
+Le chargement de données compatible avec Suspense sans recourir à un framework spécifique n'est pas encore pris en charge.  Les spécifications d'implémentation d'une source de données intégrant Suspense sont encore instables et non documentées.  Une API officielle pour intégrer les sources de données avec Suspense sera publiée dans une future version ed React.
 
 </Note>
 
 ---
 
-### Revealing content together at once {/*revealing-content-together-at-once*/}
+### Révéler plusieurs contenus d'un coup {/*revealing-content-together-at-once*/}
 
-By default, the whole tree inside Suspense is treated as a single unit. For example, even if *only one* of these components suspends waiting for some data, *all* of them together will be replaced by the loading indicator:
+Par défaut, toute l'arborescence à l'intérieur de Suspense est considérée comme une unité indivisible.  Par exemple, même si *un seul* de ses composants suspendait en attendant des données, *tous* les composants seraient remplacés par un indicateur de chargement :
 
 ```js {2-5}
 <Suspense fallback={<Loading />}>
@@ -279,9 +281,9 @@ By default, the whole tree inside Suspense is treated as a single unit. For exam
 </Suspense>
 ```
 
-Then, after all of them are ready to be displayed, they will all appear together at once.
+Ensuite, une fois que tous les composants sont prêts à être affichés, ils apparaitraient tous d'un bloc.
 
-In the example below, both `Biography` and `Albums` fetch some data. However, because they are grouped under a single Suspense boundary, these components always "pop in" together at the same time.
+Dans l'exemple ci-dessous, les composants `Biography` et `Albums` chargent des données.  Cependant, puisqu'ils appartiennent à un même périmètre Suspense, ces composants « apparaissent » toujours en même temps, d'un bloc.
 
 <Sandpack>
 
@@ -311,14 +313,14 @@ export default function App() {
       <ArtistPage
         artist={{
           id: 'the-beatles',
-          name: 'The Beatles',
+          name: 'Les Beatles',
         }}
       />
     );
   } else {
     return (
       <button onClick={() => setShow(true)}>
-        Open The Beatles artist page
+        Ouvrir la page artiste des Beatles
       </button>
     );
   }
@@ -346,7 +348,7 @@ export default function ArtistPage({ artist }) {
 }
 
 function Loading() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Chargement...</h2>;
 }
 ```
 
@@ -363,11 +365,11 @@ export default function Panel({ children }) {
 ```js Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez une framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -378,8 +380,10 @@ export default function Biography({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer avec une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -407,11 +411,11 @@ function use(promise) {
 ```js Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez une framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -426,8 +430,10 @@ export default function Albums({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer avec une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -453,9 +459,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Note : la façon de charger vos données dépend du framework
+// que vous utilisez en complément de Suspense.
+// Normalement, la logique de cache serait fournie par le framework.
 
 let cache = new Map();
 
@@ -477,19 +483,19 @@ async function getData(url) {
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 1500);
   });
 
-  return `The Beatles were an English rock band,
-    formed in Liverpool in 1960, that comprised
+  return `Les Beatles étaient un groupe de rock anglais,
+    formé à Liverpool en 1960, qui était composé de
     John Lennon, Paul McCartney, George Harrison
-    and Ringo Starr.`;
+    et Ringo Starr.`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -508,7 +514,7 @@ async function getAlbums() {
     year: 1969
   }, {
     id: 10,
-    title: 'The Beatles',
+    title: 'Les Beatles',
     year: 1968
   }, {
     id: 9,
@@ -540,7 +546,7 @@ async function getAlbums() {
     year: 1964
   }, {
     id: 2,
-    title: 'With The Beatles',
+    title: 'With Les Beatles',
     year: 1963
   }, {
     id: 1,
@@ -563,7 +569,7 @@ async function getAlbums() {
 
 </Sandpack>
 
-Components that load data don't have to be direct children of the Suspense boundary. For example, you can move `Biography` and `Albums` into a new `Details` component. This doesn't change the behavior. `Biography` and `Albums` share the same closest parent Suspense boundary, so their reveal is coordinated together.
+Les composants qui chargent de  données n'ont pas besoin d'être des enfants directs du périmètre Suspense. Par exemple, vous pouvez déplacer `Biography` et `Albums` dans un nouveau composant `Details`.  Ça ne changera rien au comportement. `Biography` et `Albums` partagent le même périmètre Suspense parent le plus proche, de sorte qu'ils seront forcément révélés ensemble.
 
 ```js {2,8-11}
 <Suspense fallback={<Loading />}>
@@ -584,9 +590,9 @@ function Details({ artistId }) {
 
 ---
 
-### Revealing nested content as it loads {/*revealing-nested-content-as-it-loads*/}
+### Révéler des contenus imbriqués au fil du chargement {/*revealing-nested-content-as-it-loads*/}
 
-When a component suspends, the closest parent Suspense component shows the fallback. This lets you nest multiple Suspense components to create a loading sequence. Each Suspense boundary's fallback will be filled in as the next level of content becomes available. For example, you can give the album list its own fallback:
+Lorsqu'un composant suspend, le plus proche composant Suspense parent affiche le contenu de secours.  Ça vous permet d'imbriquer plusieurs composants Suspense pour créer des séquences de chargement. Pour chaque périmètre Suspense, le contenu de secours sera remplacé lorsque le niveau suivant de contenu deviendra disponible. Par exemple, vous pouvez donner son propre contenu de secours à la liste des albums :
 
 ```js {3,7}
 <Suspense fallback={<BigSpinner />}>
@@ -599,14 +605,14 @@ When a component suspends, the closest parent Suspense component shows the fallb
 </Suspense>
 ```
 
-With this change, displaying the `Biography` doesn't need to "wait" for the `Albums` to load.
+Avec ce changement, l'affichage de `Biography` n'a plus besoin « d'attendre » que `Albums` se charge.
 
-The sequence will be:
+La séquence sera :
 
-1. If `Biography` hasn't loaded yet, `BigSpinner` is shown in place of the entire content area.
-1. Once `Biography` finishes loading, `BigSpinner` is replaced by the content.
-1. If `Albums` hasn't loaded yet, `AlbumsGlimmer` is shown in place of `Albums` and its parent `Panel`.
-1. Finally, once `Albums` finishes loading, it replaces `AlbumsGlimmer`.
+1. Si `Biography` n'est pas encore chargée, `BigSpinner` est affichée à la place de l'intégralité du contenu.
+2. Une fois que `Biography` est chargée, `BigSpinner` est remplacée par le contenu.
+3. Si `Albums` n'est pas encore chargé, `AlbumsGlimmer` est affiché à la place d'`Albums` et de son parent `Panel`.
+4. Pour finir, une fois `Albums` chargé, il remplace `AlbumsGlimmer`.
 
 <Sandpack>
 
@@ -636,14 +642,14 @@ export default function App() {
       <ArtistPage
         artist={{
           id: 'the-beatles',
-          name: 'The Beatles',
+          name: 'Les Beatles',
         }}
       />
     );
   } else {
     return (
       <button onClick={() => setShow(true)}>
-        Open The Beatles artist page
+        Ouvrir la page artiste des Beatles
       </button>
     );
   }
@@ -673,7 +679,7 @@ export default function ArtistPage({ artist }) {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Chargement...</h2>;
 }
 
 function AlbumsGlimmer() {
@@ -700,11 +706,11 @@ export default function Panel({ children }) {
 ```js Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez une framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -715,8 +721,10 @@ export default function Biography({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer avec une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -744,11 +752,11 @@ function use(promise) {
 ```js Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez une framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -763,8 +771,10 @@ export default function Albums({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer avec une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -790,9 +800,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Note : la façon de charger vos données dépend du framework
+// que vous utilisez en complément de Suspense.
+// Normalement, la logique de cache serait fournie par le framework.
 
 let cache = new Map();
 
@@ -814,19 +824,19 @@ async function getData(url) {
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band,
-    formed in Liverpool in 1960, that comprised
+  return `Les Beatles étaient un groupe de rock anglais,
+    formé à Liverpool en 1960, qui était composé de
     John Lennon, Paul McCartney, George Harrison
-    and Ringo Starr.`;
+    et Ringo Starr.`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -845,7 +855,7 @@ async function getAlbums() {
     year: 1969
   }, {
     id: 10,
-    title: 'The Beatles',
+    title: 'Les Beatles',
     year: 1968
   }, {
     id: 9,
@@ -877,7 +887,7 @@ async function getAlbums() {
     year: 1964
   }, {
     id: 2,
-    title: 'With The Beatles',
+    title: 'With Les Beatles',
     year: 1963
   }, {
     id: 1,
@@ -917,13 +927,15 @@ async function getAlbums() {
 
 </Sandpack>
 
-Suspense boundaries let you coordinate which parts of your UI should always "pop in" together at the same time, and which parts should progressively reveal more content in a sequence of loading states. You can add, move, or delete Suspense boundaries in any place in the tree without affecting the rest of your app's behavior.
+Les périmètres Suspense vous permettent de coordonnée les parties de votre UI qui devraient toujours « débarquer » ensemble, et celles qui devraient révéler progressivement davantage de contenu selon une séquence d'états de chargement. Vous pouvez ajouter, déplacer ou retirer des périmètres Suspense à n'importe quel endroit de l'arbre sans affecter le comportement du reste de l'appli.
 
-Don't put a Suspense boundary around every component. Suspense boundaries should not be more granular than the loading sequence that you want the user to experience. If you work with a designer, ask them where the loading states should be placed--it's likely that they've already included them in their design wireframes.
+Ne mettez pas un périmètre Suspense autour de chaque composant. Les périmètres Suspense ne devraient pas être plus granulaires que la séquence de chargement que vous souhaitez proposer à l'utilisateur.  Si vous travaillez avec des designers, demandez-leur où les états de chargement devraient être proposés — ils ont sans doute déjà prévu ça dans leurs maquettes.
 
 ---
 
-### Showing stale content while fresh content is loading {/*showing-stale-content-while-fresh-content-is-loading*/}
+FIXME:RESUME L10N
+
+### Afficher du contenu périmé pendant que le contenu frais charge {/*showing-stale-content-while-fresh-content-is-loading*/}
 
 In this example, the `SearchResults` component suspends while fetching the search results. Type `"a"`, wait for the results, and then edit it to `"ab"`. The results for `"a"` will get replaced by the loading fallback.
 
@@ -953,10 +965,10 @@ export default function App() {
   return (
     <>
       <label>
-        Search albums:
+        Rechercher des albums :{' '}
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Chargement...</h2>}>
         <SearchResults query={query} />
       </Suspense>
     </>
@@ -967,11 +979,11 @@ export default function App() {
 ```js SearchResults.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez une framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -979,7 +991,7 @@ export default function SearchResults({ query }) {
   }
   const albums = use(fetchData(`/search?q=${query}`));
   if (albums.length === 0) {
-    return <p>No matches for <i>"{query}"</i></p>;
+    return <p>Aucun résultat pour <i>« {query} »</i></p>;
   }
   return (
     <ul>
@@ -992,8 +1004,10 @@ export default function SearchResults({ query }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer avec une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -1019,9 +1033,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Note : la façon de charger vos données dépend du framework
+// que vous utilisez en complément de Suspense.
+// Normalement, la logique de cache serait fournie par le framework.
 
 let cache = new Map();
 
@@ -1041,7 +1055,7 @@ async function getData(url) {
 }
 
 async function getSearchResults(query) {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
@@ -1060,7 +1074,7 @@ async function getSearchResults(query) {
     year: 1969
   }, {
     id: 10,
-    title: 'The Beatles',
+    title: 'Les Beatles',
     year: 1968
   }, {
     id: 9,
@@ -1092,7 +1106,7 @@ async function getSearchResults(query) {
     year: 1964
   }, {
     id: 2,
-    title: 'With The Beatles',
+    title: 'With Les Beatles',
     year: 1963
   }, {
     id: 1,
@@ -1126,10 +1140,10 @@ export default function App() {
   return (
     <>
       <label>
-        Search albums:
+        Rechercher des albums :{' '}
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Chargement...</h2>}>
         <SearchResults query={deferredQuery} />
       </Suspense>
     </>
@@ -1180,10 +1194,10 @@ export default function App() {
   return (
     <>
       <label>
-        Search albums:
+        Rechercher des albums :{' '}
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Chargement...</h2>}>
         <div style={{ opacity: isStale ? 0.5 : 1 }}>
           <SearchResults query={deferredQuery} />
         </div>
@@ -1196,11 +1210,11 @@ export default function App() {
 ```js SearchResults.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez une framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function SearchResults({ query }) {
   if (query === '') {
@@ -1208,7 +1222,7 @@ export default function SearchResults({ query }) {
   }
   const albums = use(fetchData(`/search?q=${query}`));
   if (albums.length === 0) {
-    return <p>No matches for <i>"{query}"</i></p>;
+    return <p>Aucun résultat pour <i>« {query} »</i></p>;
   }
   return (
     <ul>
@@ -1221,8 +1235,10 @@ export default function SearchResults({ query }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer avec une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -1248,9 +1264,9 @@ function use(promise) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Note : la façon de charger vos données dépend du framework
+// que vous utilisez en complément de Suspense.
+// Normalement, la logique de cache serait fournie par le framework.
 
 let cache = new Map();
 
@@ -1270,7 +1286,7 @@ async function getData(url) {
 }
 
 async function getSearchResults(query) {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
@@ -1289,7 +1305,7 @@ async function getSearchResults(query) {
     year: 1969
   }, {
     id: 10,
-    title: 'The Beatles',
+    title: 'Les Beatles',
     year: 1968
   }, {
     id: 9,
@@ -1321,7 +1337,7 @@ async function getSearchResults(query) {
     year: 1964
   }, {
     id: 2,
-    title: 'With The Beatles',
+    title: 'With Les Beatles',
     year: 1963
   }, {
     id: 1,
@@ -1354,7 +1370,7 @@ Both deferred values and [transitions](#preventing-already-revealed-content-from
 
 ---
 
-### Preventing already revealed content from hiding {/*preventing-already-revealed-content-from-hiding*/}
+### Empêcher le masquage de contenu déjà révélé {/*preventing-already-revealed-content-from-hiding*/}
 
 When a component suspends, the closest parent Suspense boundary switches to showing the fallback. This can lead to a jarring user experience if it was already displaying some content. Try pressing this button:
 
@@ -1406,7 +1422,7 @@ function Router() {
       <ArtistPage
         artist={{
           id: 'the-beatles',
-          name: 'The Beatles',
+          name: 'Les Beatles',
         }}
       />
     );
@@ -1419,7 +1435,7 @@ function Router() {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Chargement...</h2>;
 }
 ```
 
@@ -1428,7 +1444,7 @@ export default function Layout({ children }) {
   return (
     <div className="layout">
       <section className="header">
-        Music Browser
+        Musicothèque
       </section>
       <main>
         {children}
@@ -1442,7 +1458,7 @@ export default function Layout({ children }) {
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
-      Open The Beatles artist page
+      Ouvrir la page artiste des Beatles
     </button>
   );
 }
@@ -1482,11 +1498,11 @@ function AlbumsGlimmer() {
 ```js Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez une framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -1501,8 +1517,10 @@ export default function Albums({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer avec une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -1530,11 +1548,11 @@ function use(promise) {
 ```js Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez une framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -1545,8 +1563,10 @@ export default function Biography({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer avec une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -1582,9 +1602,9 @@ export default function Panel({ children }) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Note : la façon de charger vos données dépend du framework
+// que vous utilisez en complément de Suspense.
+// Normalement, la logique de cache serait fournie par le framework.
 
 let cache = new Map();
 
@@ -1606,19 +1626,19 @@ async function getData(url) {
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band,
-    formed in Liverpool in 1960, that comprised
+  return `Les Beatles étaient un groupe de rock anglais,
+    formé à Liverpool en 1960, qui était composé de
     John Lennon, Paul McCartney, George Harrison
-    and Ringo Starr.`;
+    et Ringo Starr.`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -1637,7 +1657,7 @@ async function getAlbums() {
     year: 1969
   }, {
     id: 10,
-    title: 'The Beatles',
+    title: 'Les Beatles',
     year: 1968
   }, {
     id: 9,
@@ -1669,7 +1689,7 @@ async function getAlbums() {
     year: 1964
   }, {
     id: 2,
-    title: 'With The Beatles',
+    title: 'With Les Beatles',
     year: 1963
   }, {
     id: 1,
@@ -1793,7 +1813,7 @@ function Router() {
       <ArtistPage
         artist={{
           id: 'the-beatles',
-          name: 'The Beatles',
+          name: 'Les Beatles',
         }}
       />
     );
@@ -1806,7 +1826,7 @@ function Router() {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Chargement...</h2>;
 }
 ```
 
@@ -1815,7 +1835,7 @@ export default function Layout({ children }) {
   return (
     <div className="layout">
       <section className="header">
-        Music Browser
+        Musicothèque
       </section>
       <main>
         {children}
@@ -1829,7 +1849,7 @@ export default function Layout({ children }) {
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
-      Open The Beatles artist page
+      Ouvrir la page artiste des Beatles
     </button>
   );
 }
@@ -1869,11 +1889,11 @@ function AlbumsGlimmer() {
 ```js Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez une framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -1888,8 +1908,10 @@ export default function Albums({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer avec une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -1917,11 +1939,11 @@ function use(promise) {
 ```js Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez une framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -1932,8 +1954,10 @@ export default function Biography({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer avec une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -1969,9 +1993,9 @@ export default function Panel({ children }) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Note : la façon de charger vos données dépend du framework
+// que vous utilisez en complément de Suspense.
+// Normalement, la logique de cache serait fournie par le framework.
 
 let cache = new Map();
 
@@ -1993,19 +2017,19 @@ async function getData(url) {
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band,
-    formed in Liverpool in 1960, that comprised
+  return `Les Beatles étaient un groupe de rock anglais,
+    formé à Liverpool en 1960, qui était composé de
     John Lennon, Paul McCartney, George Harrison
-    and Ringo Starr.`;
+    et Ringo Starr.`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -2024,7 +2048,7 @@ async function getAlbums() {
     year: 1969
   }, {
     id: 10,
-    title: 'The Beatles',
+    title: 'Les Beatles',
     year: 1968
   }, {
     id: 9,
@@ -2122,7 +2146,7 @@ Suspense-enabled routers are expected to wrap the navigation updates into transi
 
 ---
 
-### Indicating that a transition is happening {/*indicating-that-a-transition-is-happening*/}
+### Indiquer qu'une transition est en cours {/*indicating-that-a-transition-is-happening*/}
 
 In the above example, once you click the button, there is no visual indication that a navigation is in progress. To add an indicator, you can replace [`startTransition`](/reference/react/startTransition) with [`useTransition`](/reference/react/useTransition) which gives you a boolean `isPending` value. In the example below, it's used to change the website header styling while a transition is happening:
 
@@ -2190,7 +2214,7 @@ function Router() {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Chargement...</h2>;
 }
 ```
 
@@ -2201,7 +2225,7 @@ export default function Layout({ children, isPending }) {
       <section className="header" style={{
         opacity: isPending ? 0.7 : 1
       }}>
-        Music Browser
+        Musicothèque
       </section>
       <main>
         {children}
@@ -2215,7 +2239,7 @@ export default function Layout({ children, isPending }) {
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
-      Open The Beatles artist page
+      Ouvrir la page artiste des Beatles
     </button>
   );
 }
@@ -2255,11 +2279,11 @@ function AlbumsGlimmer() {
 ```js Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez une framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -2274,8 +2298,10 @@ export default function Albums({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer avec une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -2303,11 +2329,11 @@ function use(promise) {
 ```js Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez une framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -2318,8 +2344,10 @@ export default function Biography({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer avec une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -2355,10 +2383,9 @@ export default function Panel({ children }) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
-
+// Note : la façon de charger vos données dépend du framework
+// que vous utilisez en complément de Suspense.
+// Normalement, la logique de cache serait fournie par le framework.
 let cache = new Map();
 
 export function fetchData(url) {
@@ -2379,7 +2406,7 @@ async function getData(url) {
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
@@ -2391,7 +2418,7 @@ async function getBio() {
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -2500,7 +2527,7 @@ main {
 
 ---
 
-### Resetting Suspense boundaries on navigation {/*resetting-suspense-boundaries-on-navigation*/}
+### Réinitialiser les périmètres Suspense à la navigation {/*resetting-suspense-boundaries-on-navigation*/}
 
 During a transition, React will avoid hiding already revealed content. However, if you navigate to a route with different parameters, you might want to tell React it is *different* content. You can express this with a `key`:
 
@@ -2514,7 +2541,7 @@ However, now imagine you're navigating between two different user profiles. In t
 
 ---
 
-### Providing a fallback for server errors and server-only content {/*providing-a-fallback-for-server-errors-and-server-only-content*/}
+### Fournir une UI de secours pour les erreurs serveur et le contenu réservé au serveur {/*providing-a-fallback-for-server-errors-and-server-only-content*/}
 
 If you use one of the [streaming server rendering APIs](/reference/react-dom/server) (or a framework that relies on them), React will also use your `<Suspense>` boundaries to handle errors on the server. If a component throws an error on the server, React will not abort the server render. Instead, it will find the closest `<Suspense>` component above it and include its fallback (such as a spinner) into the generated server HTML. The user will see a spinner at first.
 
