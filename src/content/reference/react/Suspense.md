@@ -2565,23 +2565,23 @@ Le HTML produit par le serveur incluera l'indicateur de chargement. IL sera remp
 
 ## Dépannage {/*troubleshooting*/}
 
-### How do I prevent the UI from being replaced by a fallback during an update? {/*preventing-unwanted-fallbacks*/}
+### Comment puis-je empêcher l'UI d'être remplacée par le contenu de secours lors d'une mise à jour ? {/*preventing-unwanted-fallbacks*/}
 
-Replacing visible UI with a fallback creates a jarring user experience. This can happen when an update causes a component to suspend, and the nearest Suspense boundary is already showing content to the user.
+Le remplacement d'une UI visible par un contenu de secours produit une expérience utilisateur désagréable.  Ça peut arriver lorsqu'une mise à jour entraîne la suspension d'un composant, et que le périmètre Suspense le plus proche affiche déjà du contenu à l'utilisateur.
 
-To prevent this from happening, [mark the update as non-urgent using `startTransition`](#preventing-already-revealed-content-from-hiding). During a transition, React will wait until enough data has loaded to prevent an unwanted fallback from appearing:
+Pour empêcher ça, [indiquez que la mise à jour est non urgente grâce à `startTransion`](#preventing-already-revealed-content-from-hiding). Pendant la transition, React attendra jusqu'à ce qu'assez de données aient été chargées pour éviter d'afficher un contenu de secours indésirable :
 
 ```js {2-3,5}
 function handleNextPageClick() {
-  // If this update suspends, don't hide the already displayed content
+  // Si cette mise à jour suspend, ne masque pas du contenu déjà visible
   startTransition(() => {
     setCurrentPage(currentPage + 1);
   });
 }
 ```
 
-This will avoid hiding existing content. However, any newly rendered `Suspense` boundaries will still immediately display fallbacks to avoid blocking the UI and let the user see the content as it becomes available.
+Ça évitera de masquer du contenu déjà visible.  En revanche, tout nouveau périmètre `Suspense` affichera tout de même immédiatement son contenu de secours pour éviter de bloquer l'UI, et affichera le contenu à l'utilisateur lorsque celui-ci deviendra disponible.
 
-**React will only prevent unwanted fallbacks during non-urgent updates**. It will not delay a render if it's the result of an urgent update. You must opt in with an API like [`startTransition`](/reference/react/startTransition) or [`useDeferredValue`](/reference/react/useDeferredValue).
+**React n'empêchera l'affichage de contenus de secours indésirables que pour les mises à jour non urgentes.**  Il ne retardera pas le rendu s'il est le résultat d'une mise à jour urgente. Vous devez explicitement utiliser une API telle que [`startTransition`](/reference/react/startTransition) ou [`useDeferredValue`](/reference/react/useDeferredValue).
 
-If your router is integrated with Suspense, it should wrap its updates into [`startTransition`](/reference/react/startTransition) automatically.
+Si votre routeur est intégré avec Suspense, il est censé enrober automatiquement ses mises à jour avec [`startTransition`](/reference/react/startTransition).
