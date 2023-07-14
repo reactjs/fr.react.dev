@@ -54,7 +54,7 @@ function ChatRoom({ roomId }) {
 
 #### Limitations {/*caveats*/}
 
-* `useEffect` est un Hook, vous pouvez donc uniquement l’appeler **à la racine de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l’appeler à l’intérieur de boucles ou de conditions. Si nécessaire, extrayez un nouveau composant et déplacez l'état dans celui-ci.
+* `useEffect` est un Hook, vous pouvez donc uniquement l’appeler **à la racine de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l’appeler à l’intérieur de boucles ou de conditions. Si nécessaire, extrayez un nouveau composant et déplacez l'Effet dans celui-ci.
 
 * Si vous **ne cherchez pas à synchroniser avec un système extérieur**, c'est que [vous n'avez probablement pas besoin d'un Effet](/learn/you-might-not-need-an-effect).
 
