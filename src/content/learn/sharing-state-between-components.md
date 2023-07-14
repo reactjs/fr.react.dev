@@ -57,7 +57,7 @@ export default function Accordion() {
         With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
       </Panel>
       <Panel title="Étymologie">
-        Le nom vient de <span lang="kk-KZ">алма</span>, le mot Kazakh pour « pomme » et est souvent traduite par « pleine de pommes ». En réalité, la région entourant Almaty est considérée comme le berceau ancestral de la pomme, et le <i lang="la">Malus sieversii</i> sauvage est considéré comme un probable candidat pour être l'ancêtre de la pomme domestique moderne.
+        Le nom vient de <span lang="kk-KZ">алма</span>, le mot kazakh pour « pomme » ; il est souvent traduit par « pleine de pommes ». En fait, la région entourant Almaty est considérée comme le berceau ancestral de la pomme, et la <i lang="la">Malus sieversii</i> sauvage est considérée comme une probable candidate pour être l'ancêtre de la pomme domestique moderne.
       </Panel>
     </>
   );
@@ -141,7 +141,7 @@ export default function Accordion() {
         Avec une population d'environ 2 millions d'habitants, Almaty est la plus grande ville du Kazakhstan. De 1929 à 1997, elle en a été la capitale.
       </Panel>
       <Panel title="Étymologie" isActive={true}>
-        Le nom vient de <span lang="kk-KZ">алма</span>, le mot Kazakh pour « pomme » et est souvent traduite par « pleine de pommes ». En réalité, la région entourant Almaty est considérée comme le berceau ancestral de la pomme, et le <i lang="la">Malus sieversii</i> sauvage est considéré comme un probable candidat pour être l'ancêtre de la pomme domestique moderne.
+        Le nom vient de <span lang="kk-KZ">алма</span>, le mot kazakh pour « pomme » ; il est souvent traduit par « pleine de pommes ». En fait, la région entourant Almaty est considérée comme le berceau ancestral de la pomme, et la <i lang="la">Malus sieversii</i> sauvage est considérée comme une probable candidate pour être l'ancêtre de la pomme domestique moderne.
       </Panel>
     </>
   );
@@ -230,7 +230,7 @@ export default function Accordion() {
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-        Le nom vient de <span lang="kk-KZ">алма</span>, le mot Kazakh pour « pomme » et est souvent traduite par « pleine de pommes ». En réalité, la région entourant Almaty est considérée comme le berceau ancestral de la pomme, et le <i lang="la">Malus sieversii</i> sauvage est considéré comme un probable candidat pour être l'ancêtre de la pomme domestique moderne.
+        Le nom vient de <span lang="kk-KZ">алма</span>, le mot kazakh pour « pomme » ; il est souvent traduit par « pleine de pommes ». En fait, la région entourant Almaty est considérée comme le berceau ancestral de la pomme, et la <i lang="la">Malus sieversii</i> sauvage est considérée comme une probable candidate pour être l'ancêtre de la pomme domestique moderne.
       </Panel>
     </>
   );
@@ -509,7 +509,7 @@ export const foods = [{
 }, {
   id: 1,
   name: 'Dal',
-  description: "La façon la plus courant de préparer le dal est sous la forme d'une soupe à laquelle on peut ajouter des oignons, des tomates et diverses épices."
+  description: "Le dal est généralement préparé sous forme d'une soupe à laquelle on peut ajouter des oignons, des tomates et diverses épices."
 }, {
   id: 2,
   name: 'Pierogi',
@@ -521,7 +521,7 @@ export const foods = [{
 }, {
   id: 4,
   name: 'Dim sum',
-  description: 'Le dim sum est un large éventail de petits plats que les cantonais dégustent traditionnellement dans les restaurants pour le petit-déjeuner et le déjeuner.'
+  description: 'Le dim sum est un large éventail de petits plats que les Cantonais dégustent traditionnellement dans les restaurants pour le petit-déjeuner et le déjeuner.'
 }];
 ```
 
@@ -602,7 +602,7 @@ export const foods = [{
 }, {
   id: 1,
   name: 'Dal',
-  description: "La façon la plus courant de préparer le dal est sous la forme d'une soupe à laquelle on peut ajouter des oignons, des tomates et diverses épices."
+  description: "Le dal est généralement préparé sous forme d'une soupe à laquelle on peut ajouter des oignons, des tomates et diverses épices."
 }, {
   id: 2,
   name: 'Pierogi',
@@ -614,7 +614,7 @@ export const foods = [{
 }, {
   id: 4,
   name: 'Dim sum',
-  description: 'Le dim sum est un large éventail de petits plats que les cantonais dégustent traditionnellement dans les restaurants pour le petit-déjeuner et le déjeuner.'
+  description: 'Le dim sum est un large éventail de petits plats que les Cantonais dégustent traditionnellement dans les restaurants pour le petit-déjeuner et le déjeuner.'
 }];
 ```
 
