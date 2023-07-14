@@ -71,11 +71,11 @@ function Tooltip() {
 
 ## Utilisation {/*usage*/}
 
-### Mesurer la mise en page avant que le navigateur ne rafraîchisse l'affichage à l'écran {/*measuring-layout-before-the-browser-repaints-the-screen*/}
+### Mesurer la mise en page avant que le navigateur ne rafraîchisse l'écran {/*measuring-layout-before-the-browser-repaints-the-screen*/}
 
 La plupart des composants n'ont pas besoin de connaître leur position ou leurs dimensions à l'écran pour déterminer ce qu'ils affichent.  Ils renvoient simplement du JSX, après quoi le navigateur calcule leur *mise en page* (position et taille) et rafraîchit l'écran.
 
-Parfois cependant, ça ne suffit pas.  Imaginez une infobulle qui doit apparaître à côté d'un élément quand on le survole.  S'il y a suffisamment de place, l'infobulle devrait apparaître au-dessus de l'élément, mais si c'est trop étroit, elle devrait apparaître en dessous.  Pour afficher l'infobulle dans la bonne position d'entrée de jeu, vous aurez besoin de connaître sa hauteur (afin de déterminer si elle tiendra au-dessus).
+Parfois cependant, ça ne suffit pas.  Imaginez une infobulle qui doit apparaître à côté d'un élément quand on survole ce dernier.  S'il y a suffisamment de place, l'infobulle devrait apparaître au-dessus de l'élément, mais si c'est trop étroit, elle devrait apparaître en dessous.  Pour afficher l'infobulle dans la bonne position d'entrée de jeu, vous aurez besoin de connaître sa hauteur (afin de déterminer si elle tiendra au-dessus).
 
 Pour y parvenir, vous devrez faire un rendu en deux temps :
 
@@ -83,12 +83,12 @@ Pour y parvenir, vous devrez faire un rendu en deux temps :
 2. Mesurer sa hauteur et décider où la placer.
 3. Faire *à nouveau* le rendu de l'infobulle au bon endroit.
 
-**Tout ça doit se passer avant que le navigateur n'ait rafraîchi l'affichage.**  Vous ne voulez pas que l'utilisateur voie l'infobulle se déplacer.  Appelez `useLayoutEffect` pour mesurer la mise en page avant le rafraîchissement de l'écran :
+**Tout ça doit se passer avant que le navigateur ait rafraîchi l'affichage.**  Vous ne voulez surtout pas que l'utilisateur voie l'infobulle se déplacer.  Appelez `useLayoutEffect` pour mesurer la mise en page avant le rafraîchissement de l'écran :
 
 ```js {5-8}
 function Tooltip() {
   const ref = useRef(null);
-  const [tooltipHeight, setTooltipHeight] = useState(0); // Vous ne connaissez pas encore sa véritable hauteur
+  const [tooltipHeight, setTooltipHeight] = useState(0); // Vous ne connaissez pas encore sa hauteur
 
   useLayoutEffect(() => {
     const { height } = ref.current.getBoundingClientRect();
@@ -104,10 +104,10 @@ Voici comment ça fonctionne, étape par étape :
 1. `Tooltip` fait un premier rendu avec `tooltipHeight = 0` (du coup l'infobulle est peut-être mal positionnée).
 2. React met tout ça dans le DOM et exécute le code dans `useLayoutEffect`.
 3. Votre `useLayoutEffect` [mesure la hauteur](https://developer.mozilla.org/fr/docs/Web/API/Element/getBoundingClientRect) du contenu de l'infobulle et déclenche immédiatement un nouveau rendu.
-4. `Tooltip` refait son rendu avec la véritable `tooltipHeight` (du coup l'infobulle est correctement positionnée).
+4. `Tooltip` refait son rendu avec la véritable hauteur dans `tooltipHeight` (du coup l'infobulle est correctement positionnée).
 5. React met à jour le DOM, et le navigateur peut enfin afficher l'infobulle.
 
-Survolez les boutons ci-dessous pour voir comment l'infobulle ajuste sa position selon la place dont elle dispose :
+Survolez les boutons ci-dessous pour voir de quelle façon l'infobulle ajuste sa position en fonction de la place dont elle dispose :
 
 <Sandpack>
 
@@ -251,13 +251,13 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 </Sandpack>
 
-Remarque que même si le composant `Tooltip` a besoin de faire un rendu en deux temps (une première fois avec `tooltipHeight` initialisée à `0`, puis avec la véritable hauteur mesurée), vous ne voyez que le résultat final. C'est pourquoi vous devez utiliser `useLayoutEffect` plutôt que [`useEffect`](/reference/react/useEffect) dans cet exemple. Examinons les différences en détails ci-dessous.
+Remarquez que même si le composant `Tooltip` a besoin de faire un rendu en deux temps (une première fois avec `tooltipHeight` initialisée à `0`, puis avec la véritable hauteur mesurée), vous ne voyez que le résultat final. C'est pourquoi vous devez utiliser `useLayoutEffect` plutôt que [`useEffect`](/reference/react/useEffect) dans cet exemple. Examinons les différences en détails ci-dessous.
 
 <Recipes titleText="useLayoutEffect vs. useEffect" titleId="examples">
 
 #### `useLayoutEffect` empêche le navigateur de rafraîchir l'affichage {/*uselayouteffect-blocks-the-browser-from-repainting*/}
 
-React garantit que le code au sein de `useLayoutEffect` et que toutes les mises à jour d'état qui y sont demandées seront traités **avant que le navigateur ne rafraîchisse l'affichage à l'écran**.  Ça vous permet de faire un rendu de l'infobulle, la mesurer, et refaire un rendu de l'infobulle sans que l'utilisateur puisse remarquer le premier rendu supplémentaire.  En d'autres termes, `useLayoutEffect` empêche le navigateur de rafraîchir l'affichage.
+React garantit que le code au sein de `useLayoutEffect` et toutes les mises à jour d'état qui y sont demandées seront traités **avant que le navigateur ne rafraîchisse l'affichage à l'écran**.  Ça vous permet de faire un rendu de l'infobulle, la mesurer, et refaire un rendu de l'infobulle sans que l'utilisateur puisse remarquer le premier rendu supplémentaire.  En d'autres termes, `useLayoutEffect` empêche le navigateur de rafraîchir l'affichage.
 
 <Sandpack>
 
@@ -402,9 +402,9 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 <Solution />
 
-#### `useEffect` ne bloque pas la navigateur {/*useeffect-does-not-block-the-browser*/}
+#### `useEffect` ne bloque pas le navigateur {/*useeffect-does-not-block-the-browser*/}
 
-Voici le même exemple, mais en utilisant [`useEffect`](/reference/react/useEffect) plutôt que `useLayoutEffect`. Si vous êtes sur un appareil un peu lent (ou ralentissez artificiellement le processeur dans les outils de développement de votre navigateur), vous remarquerez peut-être un « vacillement » occasionnel de l'infobulle, qui s'affichera d'abord brièvement à sa position initiale avant d'opter pour la position appropriée.
+Voici le même exemple, mais en utilisant [`useEffect`](/reference/react/useEffect) plutôt que `useLayoutEffect`. Si vous êtes sur un appareil un peu lent, vous remarquerez peut-être un « vacillement » occasionnel de l'infobulle, qui s'affichera d'abord brièvement à sa position initiale avant d'opter pour la position appropriée.
 
 <Sandpack>
 
@@ -696,7 +696,7 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 </Sandpack>
 
-Modifiez cet exemple pour utiliser `useLayoutEffect`, et constatez qu'il empêche le rafraichissement même si le rendu est ralenti.
+Modifiez maintenant cet exemple pour utiliser `useLayoutEffect` (pensez à ajuster l'import), et constatez qu'il empêche le rafraichissement même si le rendu est ralenti.
 
 <Solution />
 
@@ -722,20 +722,20 @@ L'objectif de `useLayoutEffect` consiste à permettre à votre composant [d'util
 2. Mesurer la mise en page *avant que le navigateur ne rafraîchisse l'écran*.
 3. Faire le rendu final en utilisant les infos de mise en page obtenues.
 
-Lorsque vous ou votre framework utilisez le [rendu côté serveur](/reference/react-dom/server), votre appli React produit du HTML côté serveur pour le rendu initial.  Ça vous permet d'afficher ce HTML initial avant que le code JavaScript ne soit chargé.
+Lorsque vous ou votre framework utilisez le [rendu côté serveur](/reference/react-dom/server), votre appli React produit du HTML côté serveur pour le rendu initial.  Ça permet d'afficher ce HTML initial avant que le code JavaScript ne soit chargé.
 
 Le problème est que côté serveur, il n'y a aucune information de mise en page.
 
-Dans [l'exemple précédent](#measuring-layout-before-the-browser-repaints-the-screen), l'appel à `useLayoutEffect` dans le composant `Tooltip` lui permet de se positionner correctement (au-dessus ou en dessous du contenu), en fonction de la hauteur de son contenu.  Si vous tentiez d'afficher `Tooltip` au sein du HTML initial produit par le serveur, il serait impossible d'en déterminer la hauteur.  Côté serveur, il n'y a pas encore de mise en page !  Du coup, même si vous en faisiez le rendu côté serveur, sa position « sursautera » côté client après que le JavaScript aura été chargé et exécuté.
+Dans [l'exemple précédent](#measuring-layout-before-the-browser-repaints-the-screen), l'appel à `useLayoutEffect` dans le composant `Tooltip` lui permet de se positionner correctement (au-dessus ou en dessous du contenu), en fonction de la hauteur de son contenu.  Si vous tentiez d'afficher `Tooltip` au sein du HTML initial produit par le serveur, il serait impossible d'en déterminer la hauteur.  Côté serveur, il n'y a pas encore de mise en page !  Du coup, même si vous en faites le rendu côté serveur, sa position « sursautera » côté client après que le JavaScript aura été chargé et exécuté.
 
-En général, les composants qui re basent sur des infos de mise en page n'ont de toutes façons pas besoin d'être rendus côté serveur.  Par exemple, ça n'a probablement pas de sens d'afficher un `Tooltip` lors du rendu initial.  Il est déclenché par une interaction utilisateur.
+En général, les composants qui reposent sur des infos de mise en page n'ont de toutes façons pas besoin d'être rendus côté serveur.  Par exemple, ça n'a probablement pas de sens d'afficher un `Tooltip` lors du rendu initial.  Il est déclenché par une interaction utilisateur.
 
 Quoi qu'il en soit, si vous rencontrez ce problème, vous avez quelques options :
 
 - Remplacez `useLayoutEffec` par [`useEffect`](/reference/react/useEffect).  Ça dit à React qu'il peut afficher le rendu initial sans bloquer le rafraîchissement (puisque le HTML d'origine deviendra visible avant que votre Effet ne soit exécuté).
 
-- Vous pouvez aussi [indiquer que votre composant est côté client uniquement](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content).  Ça indique à React qu'il faudra en remplacer le contenu jusqu'au périmètre [`<Suspense>`](/reference/react/Suspense) le plus proche par un contenu de secours (par exemple un *spinner* ou un squelette structurel) pendant le rendu côté serveur.
+- Vous pouvez aussi [indiquer que votre composant est réservé au côté client](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content).  Ça indique à React qu'il faudra en remplacer le contenu jusqu'au périmètre [`<Suspense>`](/reference/react/Suspense) le plus proche par un contenu de secours (par exemple un *spinner* ou un squelette structurel) pendant le rendu côté serveur.
 
-- Vous pouvez encore ne faire le rendu d'un composant qui recourt à `useLayoutEffect` qu'après l'hydratation.  Maintenez un état booléen `isMounted` initialisé à `false`, que vous mettrez à `true` au sein d'un appel à `useEffect`.  Votre logique de rendu peut alors ressembler à `return isMounted ? <RealContent /> : <FallbackContent />`. Côté serveur et pendant l'hydratation, l'utilisateur verra le `FallbackContent` qui lui n'appellera pas `useLayoutEffect`. Puis React le remplacera par `RealContent` qui s'exécute côté client uniquement et pourra inclure des appels à `useLayoutEffect`.
+- Vous pouvez encore ne faire le rendu d'un composant qui recourt à `useLayoutEffect` qu'après l'hydratation.  Maintenez un état booléen `isMounted` initialisé à `false`, que vous mettrez à `true` au sein d'un appel à `useEffect`.  Votre logique de rendu peut alors ressembler à `return isMounted ? <RealContent /> : <FallbackContent />`. Côté serveur et pendant l'hydratation, l'utilisateur verra le `FallbackContent` qui, lui, n'appellera pas `useLayoutEffect`. Puis React le remplacera par `RealContent` qui s'exécute côté client uniquement et pourra inclure des appels à `useLayoutEffect`.
 
-- Si vous synchronisez votre composant avec un stockage de données extérieur et vous appuyez sur `useLayoutEffect` pour des raisons autres que la mesure de la mise en page, envisagez d'utiliser plutôt [`useSyncExternalStore`](/reference/react/useSyncExternalStore) qui lui [prend en charge le rendu côté serveur](/reference/react/useSyncExternalStore#adding-support-for-server-rendering).
+- Si vous synchronisez votre composant avec un stockage de données extérieur et vous appuyez sur `useLayoutEffect` pour des raisons autres que la mesure de la mise en page, envisagez d'utiliser plutôt [`useSyncExternalStore`](/reference/react/useSyncExternalStore) qui, lui, [prend en charge le rendu côté serveur](/reference/react/useSyncExternalStore#adding-support-for-server-rendering).
