@@ -23,7 +23,7 @@ Dans cet exemple, un composant parent `Accordion` affiche deux `Panel` distincts
   - `Panel`
   - `Panel`
 
-Chaque composant `Panel` a une variable d'état booléenne `isActive` qui définit si son contenu est visible ou non.
+Chaque composant `Panel` a une variable d'état booléenne `isActive` qui définit si le contenu du panneau est visible ou non.
 
 Appuyez sur le bouton Afficher pour les deux panneaux :
 
@@ -74,7 +74,7 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Constatez que le fait d'appuyer sur le bouton d'un des panneaux n'affecte pas l'autre panneau — ils sont indépendants.
+Constatez que le fait d'appuyer sur le bouton d'un des panneaux n'affecte pas l'affichage de l'autre panneau : ils sont indépendants.
 
 <DiagramGroup>
 
@@ -179,7 +179,7 @@ Modifiez les valeurs de `isActive` codées en dur dans le composant `Accordion` 
 
 Faire remonter l'état change souvent la nature de ce que vous y stockez.
 
-Dans cet exemple, un seul panneau doit être actif à un instant donné. Ça signifie que le parent commun `Accordion` doit garder trace de *quel* panneau est actif. Pour la variable d'état, il pourrait utiliser un nombre représentant l'index du `Panel` actif plutôt qu'un `boolean` : 
+Dans cet exemple, un seul panneau doit être actif à un instant donné. Ça signifie que le parent commun `Accordion` doit garder trace de *quel* panneau est actif. Pour la variable d'état, il pourrait utiliser un nombre représentant l'index du `Panel` actif plutôt qu'un `boolean` :
 
 ```js
 const [activeIndex, setActiveIndex] = useState(0);
@@ -206,7 +206,7 @@ Le fait d'appuyer sur le bouton « Afficher » dans l'un ou l'autre des `Panel
 </>
 ```
 
-Le `<button>` à l'intérieur du `Panel` va maintenant utiliser la prop `onShow` comme gestionnaire d'événement du clic :
+Le `<button>` à l'intérieur du `Panel` va maintenant utiliser la prop `onShow` comme gestionnaire d'événement pour le clic :
 
 <Sandpack>
 
@@ -432,7 +432,7 @@ label { display: block; }
 
 Dans cet exemple, la `SearchBar` dispose de son propre état `query` qui contrôle le champ de saisie. Son composant parent `FilterableList` affiche une `List` d'éléments, mais ne tient pas compte de la recherche.
 
-Utilisez la fonction `filterItems(foods, query)` pour filtrer la liste selon la requête de recherche. Pour tester vos modifications, vérifiez que le fait de taper « s » dans le champ de filtre réduit la liste à « Sushi », « Shish kebab » et « Dim sum ».
+Utilisez la fonction `filterItems(foods, query)` pour filtrer la liste selon la requête de recherche. Pour tester vos modifications, vérifiez que le fait de taper « s » dans le champ de filtre réduit la liste aux éléments « Sushi », « Shish kebab » et « Dim sum ».
 
 Remarquez que `filterItems` est déjà implémentée et importée afin que vous n'ayez pas à l'écrire vous-même !
 
@@ -529,7 +529,7 @@ export const foods = [{
 
 <Solution>
 
-Il faut faire remonter l'état `query` dans le composant `FilterableList`. Il faut ensuite appeler `filterItems(foods, query)` pour obtenir la liste filtrée et la passer à la `List`. Les modifications du champ de requête se reflètent désormais dans la liste : 
+Il faut faire remonter l'état `query` dans le composant `FilterableList`. Il faut ensuite appeler `filterItems(foods, query)` pour obtenir la liste filtrée et la passer à la `List`. Les modifications du champ de requête se reflètent désormais dans la liste :
 
 <Sandpack>
 
@@ -572,7 +572,7 @@ function SearchBar({ query, onChange }) {
 function List({ items }) {
   return (
     <table>
-      <tbody> 
+      <tbody>
         {items.map(food => (
           <tr key={food.id}>
             <td>{food.name}</td>
