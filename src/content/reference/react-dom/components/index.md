@@ -153,13 +153,13 @@ Si vous utilisez dans votre rendu une balise avec un tiret, comme dans `<my-elem
 - Toutes les props des éléments personnalisés sont séralisées sous forme de chaînes de caractères, et sont systématiquement définies en tant qu'attributs.
 - Les éléments personnalisés utilisent  `class` plutôt que `className` et `for` plutôt que `htmlFor`.
 
-Si vous utilisez un élément HTML natif du navigateur avec un attribut [`is`](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/is), il sera traité comme un élément personnalisé.
+Si vous utilisez un élément HTML natif du navigateur doté d'un attribut [`is`](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/is), il sera traité de la même façon qu'un élément personnalisé.
 
 <Note>
 
 [Une future version de React prendra plus largement en charge les éléments personnalisés](https://github.com/facebook/react/issues/11347#issuecomment-1122275286).
 
-Vous pouvez l'essayer en mettant à niveau vos modules React vers la version expérimentale la plus récente :
+Vous pouvez l'essayer en mettant à niveau vos modules React vers la version expérimentale publiée la plus récente :
 
 - `react@experimental`
 - `react-dom@experimental`
