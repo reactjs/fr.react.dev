@@ -4,7 +4,7 @@ title: <Suspense>
 
 <Intro>
 
-`<Suspense>` vous permet d'afficher un contenu de secours en attendant que ses enfants aient fini de charger.
+`<Suspense>` vous permet d'afficher un contenu de secours en attendant que ses composants enfants aient fini de se charger.
 
 
 ```js
@@ -25,13 +25,13 @@ title: <Suspense>
 
 #### Props {/*props*/}
 
-* `children` : l'interface utilisateur (UI) que vous souhaitez effectivement afficher à terme.  Si `children` suspend pendant son rendu, ce périmètre Suspense basculera le rendu de `fallback`.
-* `fallback` : une UI alternative à afficher au lieu de l'UI finale si celle-ci n'a pas fini de charger.  Ça peut être n'importe quel nœud React valide, mais en pratique une UI de secours est une vue de remplacement légère, telle qu'un *spinner* ou un squelette structurel.  Suspense basculera automatiquement de `fallback` vers `children` quand les données seront prêtes.  Si `fallback` suspend pendant son rendu, ça activera le périmètre Suspense parent le plus proche.
+* `children` : l'interface utilisateur (UI) que vous souhaitez effectivement afficher à terme.  Si `children` suspend pendant son rendu, ce périmètre Suspense basculera le rendu sur `fallback`.
+* `fallback` : une UI alternative à afficher au lieu de l'UI finale si celle-ci n'a pas fini de se charger.  Ça peut être n'importe quel nœud React valide, mais en pratique une UI de secours est une vue de remplacement légère, telle qu'un *spinner* ou un squelette structurel.  Suspense basculera automatiquement de `fallback` vers `children` quand les données seront prêtes.  Si `fallback` suspend pendant son rendu, ça activera le périmètre Suspense parent le plus proche.
 
 #### Limitations {/*caveats*/}
 
 - React ne préserve pas l'état pour les rendus suspendus avant d'avoir pu faire un premier montage.  Une fois le composant chargé, React retentera un rendu de l'arborescence suspendue à partir de zéro.
-- Si Suspense affichait du contenu pour l'arborescence, puis est suspendu à nouveau, le `fallback` sera affiché à nouveau à moins que la mise à jour à l'origine à l'origine de la suspension ait utilisé [`startTransition`](/reference/react/startTransition) ou [`useDeferredValue`](/reference/react/useDeferredValue).
+- Si Suspense affichait du contenu pour l'arborescence, puis est suspendu à nouveau, le `fallback` sera affiché à nouveau à moins que la mise à jour à l'origine de la suspension ait utilisé [`startTransition`](/reference/react/startTransition) ou [`useDeferredValue`](/reference/react/useDeferredValue).
 - Si React a besoin de cacher le contenu déjà visible parce qu'il suspend à nouveau, il nettoiera les [Effets de layout](/reference/react/useLayoutEffect) pour l'arborescence du contenu.  Lorsque le contenu est de nouveau prêt à être affiché, React recommencera à traiter les Effets de rendu.  Ça garantit que les Effets qui mesurent la mise en page du DOM n'essaient pas de le faire pendant que le contenu est masqué.
 - React inclut des optimisations sous le capot telles que le *rendu serveur streamé* ou *l'hydratation sélective* qui sont compatibles avec Suspense. Lisez [un survol architectural](https://github.com/reactwg/react-18/discussions/37) et regardez [cette présentation technique](https://www.youtube.com/watch?v=pj5N-Khihgc) pour en savoir plus. *(Les deux ressources sont en anglais, NdT)*
 
@@ -81,7 +81,7 @@ export default function App() {
       <ArtistPage
         artist={{
           id: 'the-beatles',
-          name: 'Les Beatles',
+          name: 'The Beatles',
         }}
       />
     );
@@ -207,7 +207,7 @@ async function getAlbums() {
     year: 1969
   }, {
     id: 10,
-    title: 'Les Beatles',
+    title: 'The Beatles',
     year: 1968
   }, {
     id: 9,
@@ -215,7 +215,7 @@ async function getAlbums() {
     year: 1967
   }, {
     id: 8,
-    title: 'Sgt. Pepper\'s Lonely Hearts Club Band',
+    title: 'Sgt. Pepper’s Lonely Hearts Club Band',
     year: 1967
   }, {
     id: 7,
@@ -235,11 +235,11 @@ async function getAlbums() {
     year: 1964
   }, {
     id: 3,
-    title: 'A Hard Day\'s Night',
+    title: 'A Hard Day’s Night',
     year: 1964
   }, {
     id: 2,
-    title: 'With Les Beatles',
+    title: 'With The Beatles',
     year: 1963
   }, {
     id: 1,
@@ -253,16 +253,16 @@ async function getAlbums() {
 
 <Note>
 
-**Seules les sources de données compatibles Suspense activeront le composant Suspense.** Elles comprennent :
+**Seules les sources de données compatibles Suspense activeront le composant Suspense.** Ces sources de données comprennent :
 
 - Le chargement de données fourni par des frameworks intégrant Suspense tels que [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) et [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Le chargement à la demande du code de composants avec [`lazy`](/reference/react/lazy)
 
 Suspense **ne détecte pas** le chargement de données depuis un Effet ou un gestionnaire d'événement.
 
-Les modalités exactes de votre chargement de données dans le composant `Albums` ci-dessus dépenderont de votre framework.  Si vous utilisez un framework intégrant Suspense, vous trouverez tous les détails dans sa documentations sur le chargement de données.
+Les modalités exactes de votre chargement de données dans le composant `Albums` ci-dessus dépenderont de votre framework.  Si vous utilisez un framework intégrant Suspense, vous trouverez tous les détails dans sa documentation sur le chargement de données.
 
-Le chargement de données compatible avec Suspense sans recourir à un framework spécifique n'est pas encore pris en charge.  Les spécifications d'implémentation d'une source de données intégrant Suspense sont encore instables et non documentées.  Une API officielle pour intégrer les sources de données avec Suspense sera publiée dans une future version ed React.
+Le chargement de données compatible avec Suspense sans recourir à un framework spécifique n'est pas encore pris en charge.  Les spécifications d'implémentation d'une source de données intégrant Suspense sont encore instables et non documentées.  Une API officielle pour intégrer les sources de données avec Suspense sera publiée dans une future version de React.
 
 </Note>
 
@@ -281,7 +281,7 @@ Par défaut, toute l'arborescence à l'intérieur de Suspense est considérée c
 </Suspense>
 ```
 
-Ensuite, une fois que tous les composants sont prêts à être affichés, ils apparaitraient tous d'un bloc.
+Ensuite, une fois que tous les composants sont prêts à être affichés, ils apparaitront tous d'un bloc.
 
 Dans l'exemple ci-dessous, les composants `Biography` et `Albums` chargent des données.  Cependant, puisqu'ils appartiennent à un même périmètre Suspense, ces composants « apparaissent » toujours en même temps, d'un bloc.
 
@@ -313,7 +313,7 @@ export default function App() {
       <ArtistPage
         artist={{
           id: 'the-beatles',
-          name: 'Les Beatles',
+          name: 'The Beatles',
         }}
       />
     );
@@ -514,7 +514,7 @@ async function getAlbums() {
     year: 1969
   }, {
     id: 10,
-    title: 'Les Beatles',
+    title: 'The Beatles',
     year: 1968
   }, {
     id: 9,
@@ -522,7 +522,7 @@ async function getAlbums() {
     year: 1967
   }, {
     id: 8,
-    title: 'Sgt. Pepper\'s Lonely Hearts Club Band',
+    title: 'Sgt. Pepper’s Lonely Hearts Club Band',
     year: 1967
   }, {
     id: 7,
@@ -542,11 +542,11 @@ async function getAlbums() {
     year: 1964
   }, {
     id: 3,
-    title: 'A Hard Day\'s Night',
+    title: 'A Hard Day’s Night',
     year: 1964
   }, {
     id: 2,
-    title: 'With Les Beatles',
+    title: 'With The Beatles',
     year: 1963
   }, {
     id: 1,
@@ -569,7 +569,7 @@ async function getAlbums() {
 
 </Sandpack>
 
-Les composants qui chargent de  données n'ont pas besoin d'être des enfants directs du périmètre Suspense. Par exemple, vous pouvez déplacer `Biography` et `Albums` dans un nouveau composant `Details`.  Ça ne changera rien au comportement. `Biography` et `Albums` partagent le même périmètre Suspense parent le plus proche, de sorte qu'ils seront forcément révélés ensemble.
+Les composants qui chargent des données n'ont pas besoin d'être des enfants directs du périmètre Suspense. Par exemple, vous pouvez déplacer `Biography` et `Albums` dans un nouveau composant `Details` : ça ne changera rien au comportement. `Biography` et `Albums` partagent le même périmètre Suspense parent le plus proche, de sorte qu'ils seront forcément révélés ensemble.
 
 ```js {2,8-11}
 <Suspense fallback={<Loading />}>
@@ -605,12 +605,12 @@ Lorsqu'un composant suspend, le plus proche composant Suspense parent affiche le
 </Suspense>
 ```
 
-Avec ce changement, l'affichage de `Biography` n'a plus besoin « d'attendre » que `Albums` se charge.
+Avec ce changement, l'affichage de `Biography` n'a plus besoin « d'attendre » qu'`Albums` se charge.
 
 La séquence sera :
 
-1. Si `Biography` n'est pas encore chargée, `BigSpinner` est affichée à la place de l'intégralité du contenu.
-2. Une fois que `Biography` est chargée, `BigSpinner` est remplacée par le contenu.
+1. Si `Biography` n'est pas encore chargé, `BigSpinner` est affiché à la place de l'intégralité du contenu.
+2. Une fois que `Biography` est chargé, `BigSpinner` est remplacé par le contenu.
 3. Si `Albums` n'est pas encore chargé, `AlbumsGlimmer` est affiché à la place d'`Albums` et de son parent `Panel`.
 4. Pour finir, une fois `Albums` chargé, il remplace `AlbumsGlimmer`.
 
@@ -642,7 +642,7 @@ export default function App() {
       <ArtistPage
         artist={{
           id: 'the-beatles',
-          name: 'Les Beatles',
+          name: 'The Beatles',
         }}
       />
     );
@@ -855,7 +855,7 @@ async function getAlbums() {
     year: 1969
   }, {
     id: 10,
-    title: 'Les Beatles',
+    title: 'The Beatles',
     year: 1968
   }, {
     id: 9,
@@ -863,7 +863,7 @@ async function getAlbums() {
     year: 1967
   }, {
     id: 8,
-    title: 'Sgt. Pepper\'s Lonely Hearts Club Band',
+    title: 'Sgt. Pepper’s Lonely Hearts Club Band',
     year: 1967
   }, {
     id: 7,
@@ -883,11 +883,11 @@ async function getAlbums() {
     year: 1964
   }, {
     id: 3,
-    title: 'A Hard Day\'s Night',
+    title: 'A Hard Day’s Night',
     year: 1964
   }, {
     id: 2,
-    title: 'With Les Beatles',
+    title: 'With The Beatles',
     year: 1963
   }, {
     id: 1,
@@ -927,7 +927,7 @@ async function getAlbums() {
 
 </Sandpack>
 
-Les périmètres Suspense vous permettent de coordonnée les parties de votre UI qui devraient toujours « débarquer » ensemble, et celles qui devraient révéler progressivement davantage de contenu selon une séquence d'états de chargement. Vous pouvez ajouter, déplacer ou retirer des périmètres Suspense à n'importe quel endroit de l'arbre sans affecter le comportement du reste de l'appli.
+Les périmètres Suspense vous permettent de coordonner les parties de votre UI qui devraient toujours « débarquer » ensemble, et celles qui devraient révéler progressivement davantage de contenu selon une séquence d'états de chargement. Vous pouvez ajouter, déplacer ou retirer des périmètres Suspense à n'importe quel endroit de l'arbre sans affecter le comportement du reste de l'appli.
 
 Ne mettez pas un périmètre Suspense autour de chaque composant. Les périmètres Suspense ne devraient pas être plus granulaires que la séquence de chargement que vous souhaitez proposer à l'utilisateur.  Si vous travaillez avec des designers, demandez-leur où les états de chargement devraient être proposés — ils ont sans doute déjà prévu ça dans leurs maquettes.
 
@@ -963,7 +963,7 @@ export default function App() {
   return (
     <>
       <label>
-        Rechercher des albums :{' '}
+        Rechercher des albums :
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
       <Suspense fallback={<h2>Chargement...</h2>}>
@@ -1072,7 +1072,7 @@ async function getSearchResults(query) {
     year: 1969
   }, {
     id: 10,
-    title: 'Les Beatles',
+    title: 'The Beatles',
     year: 1968
   }, {
     id: 9,
@@ -1080,7 +1080,7 @@ async function getSearchResults(query) {
     year: 1967
   }, {
     id: 8,
-    title: 'Sgt. Pepper\'s Lonely Hearts Club Band',
+    title: 'Sgt. Pepper’s Lonely Hearts Club Band',
     year: 1967
   }, {
     id: 7,
@@ -1100,11 +1100,11 @@ async function getSearchResults(query) {
     year: 1964
   }, {
     id: 3,
-    title: 'A Hard Day\'s Night',
+    title: 'A Hard Day’s Night',
     year: 1964
   }, {
     id: 2,
-    title: 'With Les Beatles',
+    title: 'With The Beatles',
     year: 1963
   }, {
     id: 1,
@@ -1138,7 +1138,7 @@ export default function App() {
   return (
     <>
       <label>
-        Rechercher des albums :{' '}
+        Rechercher des albums :
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
       <Suspense fallback={<h2>Chargement...</h2>}>
@@ -1191,7 +1191,7 @@ export default function App() {
   return (
     <>
       <label>
-        Rechercher des albums :{' '}
+        Rechercher des albums :
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
       <Suspense fallback={<h2>Chargement...</h2>}>
@@ -1302,7 +1302,7 @@ async function getSearchResults(query) {
     year: 1969
   }, {
     id: 10,
-    title: 'Les Beatles',
+    title: 'The Beatles',
     year: 1968
   }, {
     id: 9,
@@ -1310,7 +1310,7 @@ async function getSearchResults(query) {
     year: 1967
   }, {
     id: 8,
-    title: 'Sgt. Pepper\'s Lonely Hearts Club Band',
+    title: 'Sgt. Pepper’s Lonely Hearts Club Band',
     year: 1967
   }, {
     id: 7,
@@ -1330,11 +1330,11 @@ async function getSearchResults(query) {
     year: 1964
   }, {
     id: 3,
-    title: 'A Hard Day\'s Night',
+    title: 'A Hard Day’s Night',
     year: 1964
   }, {
     id: 2,
-    title: 'With Les Beatles',
+    title: 'With The Beatles',
     year: 1963
   }, {
     id: 1,
@@ -1361,7 +1361,7 @@ input { margin: 10px; }
 
 <Note>
 
-Les valeurs différées ainsi que les [transitions](#preventing-already-revealed-content-from-hiding) vous permettent d'éviter l'affichage du contenu de secours Suspense en leur préférant des indicateurs de chargement.  Les transitions marquent l'ensemble de leur mise à jour comme non urgente, elles sont donc généralement utilisées par les frameworks et les bibliothèques de routage pour la navigation.  Les valeurs différées sont elles surtout utiles dans du code applicatif lorsque vous souhaitez indiquer qu'une partie de l'UI est non urgente, pour lui permettre d'être temporairement « en retard » sur le reste de l'UI.
+Les valeurs différées ainsi que les [transitions](#preventing-already-revealed-content-from-hiding) vous permettent d'éviter d'afficher le contenu de secours Suspense en lui préférant une indication de chargement.  Les transitions marquent l'ensemble de leur mise à jour comme non urgente, elles sont donc généralement utilisées par les frameworks et les bibliothèques de routage pour la navigation.  Les valeurs différées sont elles surtout utiles dans du code applicatif lorsque vous souhaitez indiquer qu'une partie de l'UI est non urgente, pour lui permettre d'être temporairement « en retard » sur le reste de l'UI.
 
 </Note>
 
@@ -1419,7 +1419,7 @@ function Router() {
       <ArtistPage
         artist={{
           id: 'the-beatles',
-          name: 'Les Beatles',
+          name: 'The Beatles',
         }}
       />
     );
@@ -1654,7 +1654,7 @@ async function getAlbums() {
     year: 1969
   }, {
     id: 10,
-    title: 'Les Beatles',
+    title: 'The Beatles',
     year: 1968
   }, {
     id: 9,
@@ -1662,7 +1662,7 @@ async function getAlbums() {
     year: 1967
   }, {
     id: 8,
-    title: 'Sgt. Pepper\'s Lonely Hearts Club Band',
+    title: 'Sgt. Pepper’s Lonely Hearts Club Band',
     year: 1967
   }, {
     id: 7,
@@ -1682,11 +1682,11 @@ async function getAlbums() {
     year: 1964
   }, {
     id: 3,
-    title: 'A Hard Day\'s Night',
+    title: 'A Hard Day’s Night',
     year: 1964
   }, {
     id: 2,
-    title: 'With Les Beatles',
+    title: 'With The Beatles',
     year: 1963
   }, {
     id: 1,
@@ -1810,7 +1810,7 @@ function Router() {
       <ArtistPage
         artist={{
           id: 'the-beatles',
-          name: 'Les Beatles',
+          name: 'The Beatles',
         }}
       />
     );
@@ -2045,7 +2045,7 @@ async function getAlbums() {
     year: 1969
   }, {
     id: 10,
-    title: 'Les Beatles',
+    title: 'The Beatles',
     year: 1968
   }, {
     id: 9,
@@ -2053,7 +2053,7 @@ async function getAlbums() {
     year: 1967
   }, {
     id: 8,
-    title: 'Sgt. Pepper\'s Lonely Hearts Club Band',
+    title: 'Sgt. Pepper’s Lonely Hearts Club Band',
     year: 1967
   }, {
     id: 7,
@@ -2073,7 +2073,7 @@ async function getAlbums() {
     year: 1964
   }, {
     id: 3,
-    title: 'A Hard Day\'s Night',
+    title: 'A Hard Day’s Night',
     year: 1964
   }, {
     id: 2,
@@ -2145,7 +2145,7 @@ Les routeurs intégrant Suspense sont censés enrober par défaut leurs navigati
 
 ### Indiquer qu'une transition est en cours {/*indicating-that-a-transition-is-happening*/}
 
-Dans l'exemple précédent, une fois que vous avez cliqué sur le bouton, aucun indicateur visuel ne vous informe qu'une navigation est en cours. Pour ajouter un indicateur, vous pouvez remplacer [`startTransition`](/reference/react/startTransition) par [`useTransition`](/reference/react/useTransition), qui vous donne une valeur booléenne `isPending`. Dans l'exemple qui suit, on l'utilise pour modifier le style de l'en-tête du site pendant qu'une transition est en cours :
+Dans l'exemple précédent, une fois que vous avez cliqué sur le bouton, aucune indication visuelle ne vous informe qu'une navigation est en cours. Pour ajouter une indication, vous pouvez remplacer [`startTransition`](/reference/react/startTransition) par [`useTransition`](/reference/react/useTransition), qui vous donne une valeur booléenne `isPending`. Dans l'exemple qui suit, on l'utilise pour modifier le style de l'en-tête du site pendant qu'une transition est en cours :
 
 <Sandpack>
 
@@ -2442,7 +2442,7 @@ async function getAlbums() {
     year: 1967
   }, {
     id: 8,
-    title: 'Sgt. Pepper\'s Lonely Hearts Club Band',
+    title: 'Sgt. Pepper’s Lonely Hearts Club Band',
     year: 1967
   }, {
     id: 7,
@@ -2462,7 +2462,7 @@ async function getAlbums() {
     year: 1964
   }, {
     id: 3,
-    title: 'A Hard Day\'s Night',
+    title: 'A Hard Day’s Night',
     year: 1964
   }, {
     id: 2,
@@ -2538,11 +2538,11 @@ En revanche, imaginez maintenant que vous naviguiez entre deux profils utilisate
 
 ---
 
-### Fournir une UI de secours pour les erreurs serveur et le contenu réservé au serveur {/*providing-a-fallback-for-server-errors-and-server-only-content*/}
+### Fournir une UI de secours pour les erreurs serveur et le contenu 100% client {/*providing-a-fallback-for-server-errors-and-server-only-content*/}
 
-Si vous utilisez une des [API de rendu serveur streamé](/reference/react-dom/server) (ou un framework qui repose dessus), React utilisera vos périmètres `<Suspense>` également pour le traitement des erreurs survenant côté serveur.  Si un composant lève une erreur côté serveur, React n'abandonnera pas le rendu serveur. Il cherchera plutôt le composant parent `<Suspense>` le plus proche et incluera son contenu de secours (tel qu'un *spinner*) dans le HTML généré par le serveur.  L'utilisateur verra le *spinner* pour commencer.
+Si vous utilisez une des [API de rendu serveur streamé](/reference/react-dom/server) (ou un framework qui repose dessus), React capitalisera sur vos périmètres `<Suspense>` pour le traitement des erreurs survenant côté serveur.  Si un composant lève une erreur côté serveur, React n'abandonnera pas le rendu serveur. Il cherchera plutôt le composant parent `<Suspense>` le plus proche et incluera son contenu de secours (tel qu'un *spinner*) dans le HTML généré par le serveur.  L'utilisateur verra le *spinner* pour commencer.
 
-Côté client, React tentera de refaire le rendu de ce composant. Si le client rencontre également des erreurs, React lèvera une erreur et affichera le [périmètre d'erreur](/reference/react/Component#static-getderivedstatefromerror) le plus proche.  En revanche, si le rendu côté client fonctionne, React n'affichera pas l'erreur à l'utilisateur puisque le contenu a finalement pu être affiché avec succès.
+Côté client, React tentera de refaire le rendu de ce composant. Si le client rencontre également des erreurs, React lèvera une erreur et affichera le [périmètre d'erreur](/reference/react/Component#static-getderivedstatefromerror) le plus proche.  En revanche, si le rendu côté client fonctionne, React n'affichera aucune erreur à l'utilisateur, puisqu'au final le contenu aura bien pu être affiché.
 
 Vous pouvez tirer parti de ça pour exclure certains composants du rendu serveur.  Il vous suffit de lever une erreur lorsque vous faites le rendu côté serveur, et de les enrober dans un périmètre `<Suspense>` pour remplacer leur HTML par un contenu de secours :
 
@@ -2559,7 +2559,7 @@ function Chat() {
 }
 ```
 
-Le HTML produit par le serveur incluera l'indicateur de chargement. IL sera remplacé par le composant `Chat` coté client.
+Le HTML produit par le serveur incluera l'indicateur de chargement. Il sera ensuite remplacé par le composant `Chat` coté client.
 
 ---
 
@@ -2569,7 +2569,7 @@ Le HTML produit par le serveur incluera l'indicateur de chargement. IL sera remp
 
 Le remplacement d'une UI visible par un contenu de secours produit une expérience utilisateur désagréable.  Ça peut arriver lorsqu'une mise à jour entraîne la suspension d'un composant, et que le périmètre Suspense le plus proche affiche déjà du contenu à l'utilisateur.
 
-Pour empêcher ça, [indiquez que la mise à jour est non urgente grâce à `startTransion`](#preventing-already-revealed-content-from-hiding). Pendant la transition, React attendra jusqu'à ce qu'assez de données aient été chargées pour éviter d'afficher un contenu de secours indésirable :
+Pour empêcher ça, [indiquez que la mise à jour est non urgente grâce à `startTransition`](#preventing-already-revealed-content-from-hiding). Pendant la transition, React attendra jusqu'à ce qu'assez de données aient été chargées, afin d'éviter l'affichage d'un contenu de secours indésirable :
 
 ```js {2-3,5}
 function handleNextPageClick() {
@@ -2584,4 +2584,4 @@ function handleNextPageClick() {
 
 **React n'empêchera l'affichage de contenus de secours indésirables que pour les mises à jour non urgentes.**  Il ne retardera pas le rendu s'il est le résultat d'une mise à jour urgente. Vous devez explicitement utiliser une API telle que [`startTransition`](/reference/react/startTransition) ou [`useDeferredValue`](/reference/react/useDeferredValue).
 
-Si votre routeur est intégré avec Suspense, il est censé enrober automatiquement ses mises à jour avec [`startTransition`](/reference/react/startTransition).
+Remarquez que si votre routeur est intégré avec Suspense, il est censé enrober automatiquement ses mises à jour avec [`startTransition`](/reference/react/startTransition).
