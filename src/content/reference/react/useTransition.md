@@ -42,7 +42,7 @@ function TabContainer() {
 `useTransition` renvoie un tableau avec exactement deux éléments :
 
 1. Le drapeau `isPending` qui vous indique si la transition est en cours.
-2. La [fonction `startTransition`](#starttransition) qui vous permet de marquer une mise à jour d'état comme étant une transition.
+2. La [fonction `startTransition`](#starttransition) qui vous permet de marquer une mise à jour d'état comme transition.
 
 ---
 
@@ -106,9 +106,9 @@ function TabContainer() {
 `useTransition` renvoie un tableau avec exactement deux éléments :
 
 1. Le <CodeStep step={1}>drapeau `isPending`</CodeStep> qui vous indique si la transition est en cours.
-2. La <CodeStep step={2}>fonction `startTransition`</CodeStep> qui vous permet de marquer une mise à jour d'état comme étant une transition.
+2. La <CodeStep step={2}>fonction `startTransition`</CodeStep> qui vous permet de marquer une mise à jour d'état comme transition.
 
-Vous pouvez marquer une mise à jour d'état comme étant une transition comme ceci :
+Vous pouvez marquer une mise à jour d'état comme étant une transition de la façon suivante :
 
 ```js {6,8}
 function TabContainer() {
@@ -124,7 +124,7 @@ function TabContainer() {
 }
 ```
 
-Les transitions vous permettent de conserver des mises à jour d'interface utilisateur réactives même sur des appareils lents.
+Les transitions vous permettent de conserver la réactivité des mises à jour d'interface utilisateur, même sur des appareils lents.
 
 Avec une transition, votre UI reste réactive pendant le rendu. Par exemple, si l'utilisateur clique sur un onglet mais ensuite change d'avis et va sur un autre onglet, il peut le faire sans devoir d'abord attendre que le premier onglet ait fini son rendu.
 
@@ -413,7 +413,7 @@ b { display: inline-block; margin-right: 10px; }
 
 ### Mettre à jour le composant parent dans une transition {/*updating-the-parent-component-in-a-transition*/}
 
-Vous pouvez tout aussi bien mettre à jour l'état du composant parent depuis un appel à `useTransition`.  Par exemple, le composant `TabButton` enrobe a logique de son `onClick` avec une transition :
+Vous pouvez tout aussi bien mettre à jour l'état du composant parent depuis un appel à `useTransition`.  Par exemple, le composant `TabButton` enrobe la logique de son `onClick` avec une transition :
 
 ```js {8-10}
 export default function TabButton({ children, isActive, onClick }) {
@@ -433,7 +433,7 @@ export default function TabButton({ children, isActive, onClick }) {
 }
 ```
 
-Puisque le composant parent met à jour son état au sein du gestionnaire d'événement `onClick`, cette mise à jour d'état sera marquée comme étant une transition.  C'est pourquoi, comme dans l'exemple précédent, vous pouvez cliquer sur « Articles » puis immédiatement sur « Contact ».  Le changement d'onglet est marqué comme une transition : il ne bloque donc pas les interactions utilisateur.
+Puisque le composant parent met à jour son état au sein du gestionnaire d'événement `onClick`, cette mise à jour d'état sera marquée comme étant une transition.  C'est pourquoi, comme dans l'exemple précédent, vous pouvez cliquer sur « Articles » puis immédiatement sur « Contact ».  Le changement d'onglet est marqué comme étant une transition : il ne bloque donc pas les interactions utilisateur.
 
 <Sandpack>
 
@@ -563,7 +563,7 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-### Afficher une indication visuelle pendant la transition {/*displaying-a-pending-visual-state-during-the-transition*/}ç {/*afficher-une-indication-visuelle-pendant-la-transition-displaying-a-pending-visual-state-during-the-transitionç*/}
+### Afficher une indication visuelle pendant la transition {/*displaying-a-pending-visual-state-during-the-transition*/}
 
 Vous pouvez utiliser la valeur booléenne `isPending` renvoyée par `useTransition` pour indiquer à l'utilisateur qu'une transition est en cours.  Par exemple, le bouton d'onglet peut avoir un état visuel spécial « en cours » :
 
@@ -899,7 +899,7 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-Marquer le conteneur d'onglets dans son intégralité pour afficher un indicateur de chargement entraîne une expérience utilisateur désagréable.  Si vous ajoutez `useTransition` à `TabButton`, vous pouvez plutôt manifester l'attente encours dans le bouton d'onglet.
+Masquer le conteneur d'onglets dans son intégralité pour afficher un indicateur de chargement entraîne une expérience utilisateur désagréable.  Si vous ajoutez `useTransition` à `TabButton`, vous pouvez plutôt manifester l'attente en cours dans le bouton d'onglet.
 
 Remarquez que cliquer sur « Articles » ne remplace plus l'ensemble du conteneur d'onglets avec un *spinner* :
 
@@ -1124,8 +1124,8 @@ function Router() {
 
 Nous recommandons ça pour deux raisons :
 
-- [Les transitions sont interruptibles](#marking-a-state-update-as-a-non-blocking-transition), ce qui permet à l'utilisateur de cliquer pour aller ailleurs sans avoir attendre la fin du rendu de son premier choix.
-- [Les transitions évitent les indicateurs de chargement indésirables](#preventing-unwanted-loading-indicators), ce qui vous permet d'éviter de produire des « clignotements » désagréables lors de la navigation.
+- [Les transitions sont interruptibles](#marking-a-state-update-as-a-non-blocking-transition), ce qui permet à l'utilisateur de cliquer pour aller ailleurs sans devoir attendre la fin du rendu de son premier choix.
+- [Les transitions évitent les indicateurs de chargement indésirables](#preventing-unwanted-loading-indicators), ce qui vous évite de produire des « clignotements » désagréables lors de la navigation.
 
 Voici un petit exemple de routeur très simplifié utilisant les transitions pour ses navigations.
 
@@ -1541,7 +1541,7 @@ C'est parce que les transitions sont non bloquantes, alors que la mise à jour d
 
 ### React ne traite pas ma mise à jour d'état comme étant une transition {/*react-doesnt-treat-my-state-update-as-a-transition*/}
 
-Lorsque vous enrobez une mise à jour d'état dans une transition, assurez-vous qu'elle survient *pendant* l'appel à `startTransition` :
+Lorsque vous enrobez une mise à jour d'état dans une transition, assurez-vous qu'elle survient effectivement *pendant* l'appel à `startTransition` :
 
 ```js
 startTransition(() => {
@@ -1552,7 +1552,7 @@ startTransition(() => {
 
 La fonction que vous passez à `startTransition` doit être synchrone.
 
-Vous ne pouvez pas marquer une mise à jour comme étant une transition de cette façon-là :
+Vous ne pouvez pas marquer une mise à jour comme étant une transition avec ce genre de code :
 
 ```js
 startTransition(() => {
@@ -1574,7 +1574,7 @@ setTimeout(() => {
 }, 1000);
 ```
 
-Dans le même esprit, vous ne pouvez pas marquer une mise à jour comme étant une transition de cette façon-ci :
+Dans le même esprit, vous ne pouvez pas marquer une mise à jour comme étant une transition avec du code ressemblant à ça :
 
 ```js
 startTransition(async () => {
@@ -1598,7 +1598,7 @@ startTransition(() => {
 
 ### Je veux appeler `useTransition` ailleurs que dans un composant {/*i-want-to-call-usetransition-from-outside-a-component*/}
 
-Vous ne pouvez pas appeler `useTransition` hors d'un composant parce qu  c'est un Hook.  Pour ce type de besoin, préférez la fonction autonome [`startTransition`](/reference/react/startTransition).   Son fonctionnement est identique, à ceci près qu'elle ne fournit pas l'indicateur `isPending`.
+Vous ne pouvez pas appeler `useTransition` hors d'un composant parce que c'est un Hook.  Pour ce type de besoin, préférez la fonction autonome [`startTransition`](/reference/react/startTransition).   Son fonctionnement est identique, à ceci près qu'elle ne fournit pas l'indicateur `isPending`.
 
 ---
 
@@ -1630,9 +1630,9 @@ function startTransition(scope) {
 
 function setState() {
   if (isInsideTransition) {
-    // ... planifie une mise à jour d'état en tant que transition ...
+    // ... planifie une mise à jour d’état en tant que transition ...
   } else {
-    // ... planifie une mise à jour d'état urgente ...
+    // ... planifie une mise à jour d’état urgente ...
   }
 }
 ```
