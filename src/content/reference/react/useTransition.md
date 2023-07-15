@@ -1515,15 +1515,15 @@ Les routeurs [compatibles Suspense](/reference/react/Suspense) sont censés enro
 
 ## Dépannage {/*troubleshooting*/}
 
-### Updating an input in a transition doesn't work {/*updating-an-input-in-a-transition-doesnt-work*/}
+### Mettre à jour un champ depuis une transition ne fonctionne pas {/*updating-an-input-in-a-transition-doesnt-work*/}
 
-You can't use a transition for a state variable that controls an input:
+Vous ne pouvez pas utiliser une transition pour mettre à jour une variable d'état qui contrôle un champ :
 
 ```js {4,10}
 const [text, setText] = useState('');
 // ...
 function handleChange(e) {
-  // ❌ Can't use transitions for controlled input state
+  // ❌ Les transitions ne peuvent enrober des mises à jour d'état qui contrôlent des champs
   startTransition(() => {
     setText(e.target.value);
   });
@@ -1532,79 +1532,79 @@ function handleChange(e) {
 return <input value={text} onChange={handleChange} />;
 ```
 
-This is because transitions are non-blocking, but updating an input in response to the change event should happen synchronously. If you want to run a transition in response to typing, you have two options:
+C'est parce que les transitions sont non bloquantes, alors que la mise à jour d'un champ en réaction à un événement de modification doit survenir de façon synchrone.  Si vous souhaitez exécuter une transition en réponse à une saisie, vous avez deux options :
 
-1. You can declare two separate state variables: one for the input state (which always updates synchronously), and one that you will update in a transition. This lets you control the input using the synchronous state, and pass the transition state variable (which will "lag behind" the input) to the rest of your rendering logic.
-2. Alternatively, you can have one state variable, and add [`useDeferredValue`](/reference/react/useDeferredValue) which will "lag behind" the real value. It will trigger non-blocking re-renders to "catch up" with the new value automatically.
+1. Vous pouvez déclarer deux variables d'état distinctes : une pour l'état du champ (qui sera toujours mise à jour de façon synchrone), et une que vous mettrez à jour au sein d'une transition.  Ça vous permet de contrôler le champ avec l'état synchrone, tout en passant la variable d'état en transition (qui est susceptible de « retarder » par rapport à la saisie) au reste de votre logique de rendu.
+2. Sinon, vous pouvez n'avoir qu'une variable d'état et utiliser [`useDeferredValue`](/reference/react/useDeferredValue) qui vous permettra d'être « en retard » sur la véritable valeur.  Ça déclenchera automatiquement des rendus non bloquants pour « rattraper » la nouvelle valeur.
 
 ---
 
-### React doesn't treat my state update as a transition {/*react-doesnt-treat-my-state-update-as-a-transition*/}
+### React ne traite pas ma mise à jour d'état comme étant une transition {/*react-doesnt-treat-my-state-update-as-a-transition*/}
 
-When you wrap a state update in a transition, make sure that it happens *during* the `startTransition` call:
+Lorsque vous enrobez une mise à jour d'état dans une transition, assurez-vous qu'elle survient *pendant* l'appel à `startTransition` :
 
 ```js
 startTransition(() => {
-  // ✅ Setting state *during* startTransition call
+  // ✅ L’état est mis à jour *pendant* l’appel à startTransition
   setPage('/about');
 });
 ```
 
-The function you pass to `startTransition` must be synchronous.
+La fonction que vous passez à `startTransition` doit être synchrone.
 
-You can't mark an update as a transition like this:
+Vous ne pouvez pas marquer une mise à jour comme étant une transition de cette façon-là :
 
 ```js
 startTransition(() => {
-  // ❌ Setting state *after* startTransition call
+  // ❌ L’état est mis à jour *après* l’appel à startTransition
   setTimeout(() => {
     setPage('/about');
   }, 1000);
 });
 ```
 
-Instead, you could do this:
+Faites plutôt ceci :
 
 ```js
 setTimeout(() => {
   startTransition(() => {
-    // ✅ Setting state *during* startTransition call
+    // ✅ L’état est mis à jour *pendant* l’appel à startTransition
     setPage('/about');
   });
 }, 1000);
 ```
 
-Similarly, you can't mark an update as a transition like this:
+Dans le même esprit, vous ne pouvez pas marquer une mise à jour comme étant une transition de cette façon-ci :
 
 ```js
 startTransition(async () => {
   await someAsyncFunction();
-  // ❌ Setting state *after* startTransition call
+  // ❌ L’état est mis à jour *après* l’appel à startTransition
   setPage('/about');
 });
 ```
 
-However, this works instead:
+En revanche, ce type de code fonctionne :
 
 ```js
 await someAsyncFunction();
 startTransition(() => {
-  // ✅ Setting state *during* startTransition call
+  // ✅ L’état est mis à jour *pendant* l’appel à startTransition
   setPage('/about');
 });
 ```
 
 ---
 
-### I want to call `useTransition` from outside a component {/*i-want-to-call-usetransition-from-outside-a-component*/}
+### Je veux appeler `useTransition` ailleurs que dans un composant {/*i-want-to-call-usetransition-from-outside-a-component*/}
 
-You can't call `useTransition` outside a component because it's a Hook. In this case, use the standalone [`startTransition`](/reference/react/startTransition) method instead. It works the same way, but it doesn't provide the `isPending` indicator.
+Vous ne pouvez pas appeler `useTransition` hors d'un composant parce qu  c'est un Hook.  Pour ce type de besoin, préférez la fonction autonome [`startTransition`](/reference/react/startTransition).   Son fonctionnement est identique, à ceci près qu'elle ne fournit pas l'indicateur `isPending`.
 
 ---
 
-### The function I pass to `startTransition` executes immediately {/*the-function-i-pass-to-starttransition-executes-immediately*/}
+### La fonction que je passe à `startTransition` est exécutée immédiatement {/*the-function-i-pass-to-starttransition-executes-immediately*/}
 
-If you run this code, it will print 1, 2, 3:
+Si vous exécutez ce code, ça affichera 1, 2, 3 :
 
 ```js {1,3,6}
 console.log(1);
@@ -1615,10 +1615,10 @@ startTransition(() => {
 console.log(3);
 ```
 
-**It is expected to print 1, 2, 3.** The function you pass to `startTransition` does not get delayed. Unlike with the browser `setTimeout`, it does not run the callback later. React executes your function immediately, but any state updates scheduled *while it is running* are marked as transitions. You can imagine that it works like this:
+**C'est censé afficher 1, 2, 3.**  La fonction que vous passez à `startTransition` ne doit pas être différée.  Contrairement au `setTimeout` du navigateur, la fonction de rappel n'est pas appelée plus tard.  React exécute votre fonction immédiatement, mais les mises à jour d'état que vous y demandez *pendant son exécution* sont marquées comme étant des transitions.  Vous pouvez vous imaginer le fonctionnement suivant :
 
 ```js
-// A simplified version of how React works
+// Version simplifiée du fonctionnement de React
 
 let isInsideTransition = false;
 
@@ -1630,9 +1630,9 @@ function startTransition(scope) {
 
 function setState() {
   if (isInsideTransition) {
-    // ... schedule a transition state update ...
+    // ... planifie une mise à jour d'état en tant que transition ...
   } else {
-    // ... schedule an urgent state update ...
+    // ... planifie une mise à jour d'état urgente ...
   }
 }
 ```
