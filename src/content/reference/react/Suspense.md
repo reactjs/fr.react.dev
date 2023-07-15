@@ -2137,7 +2137,7 @@ Une transition n'attend pas que *tout* le contenu soit chargé. Elle attend seul
 
 <Note>
 
-Les routeurs intégrant Suspense sont censés enrober par défaut leurs navigations dans des transitions.
+Les routeurs compatibles Suspense sont censés enrober par défaut leurs navigations dans des transitions.
 
 </Note>
 
@@ -2534,7 +2534,7 @@ Pendant une transition, React évitera de masquer du contenu déjà révélé. C
 
 Imaginez que vous naviguiez au sein d'une page de profil utilisateur, et que quelque chose suspende.  Si cette mise à jour est enrobée dans une transition, elle ne déclenchera pas de contenu de secours pour le contenu déjà visible.  C'est bien le comportement attendu.
 
-En revanche, imaginez maintenant que vous naviguiez entre deux profils utilisateurs différents.  Dans ce cas, afficher le contenu de secours aurait du sens. Par exemple, le fil des publications d'un utilisateur constitue un *contenu différent* de celui d'un autre utilisateur.  En spécifiant une `key`, vous garantissez que React traitera les fils de publications d'utilisateurs différents comme des composants différents, et réinitialisera les périmètres Suspense lors de la navigation.  Les routeurs intégrant Suspense sont censés le faire automatiquement.
+En revanche, imaginez maintenant que vous naviguiez entre deux profils utilisateurs différents.  Dans ce cas, afficher le contenu de secours aurait du sens. Par exemple, le fil des publications d'un utilisateur constitue un *contenu différent* de celui d'un autre utilisateur.  En spécifiant une `key`, vous garantissez que React traitera les fils de publications d'utilisateurs différents comme des composants différents, et réinitialisera les périmètres Suspense lors de la navigation.  Les routeurs compatibles Suspense sont censés le faire automatiquement.
 
 ---
 

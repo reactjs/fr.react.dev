@@ -4,7 +4,7 @@ title: useTransition
 
 <Intro>
 
-`useTransition` is a React Hook that lets you update the state without blocking the UI.
+`useTransition` est un Hook React qui vous permet de mettre à jour l'état sans bloquer l'UI.
 
 ```js
 const [isPending, startTransition] = useTransition()
@@ -16,11 +16,11 @@ const [isPending, startTransition] = useTransition()
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `useTransition()` {/*usetransition*/}
 
-Call `useTransition` at the top level of your component to mark some state updates as transitions.
+Appelez `useTransition` au niveau racine de votre composant pour marquer certaines mises à jour d'état comme étant des transitions.
 
 ```js
 import { useTransition } from 'react';
@@ -31,24 +31,24 @@ function TabContainer() {
 }
 ```
 
-[See more examples below.](#usage)
+[Voir d'autres exemples ci-dessous](#usage).
 
-#### Parameters {/*parameters*/}
+#### Paramètres {/*parameters*/}
 
-`useTransition` does not take any parameters.
+`useTransition` ne prend aucun argument.
 
-#### Returns {/*returns*/}
+#### Valeur renvoyée {/*returns*/}
 
-`useTransition` returns an array with exactly two items:
+`useTransition` renvoie un tableau avec exactement deux éléments :
 
-1. The `isPending` flag that tells you whether there is a pending transition.
-2. The [`startTransition` function](#starttransition) that lets you mark a state update as a transition.
+1. Le drapeau `isPending` qui vous indique si la transition est en cours.
+2. La [fonction `startTransition`](#starttransition) qui vous permet de marquer une mise à jour d'état comme étant une transition.
 
 ---
 
-### `startTransition` function {/*starttransition*/}
+### La fonction `startTransition` {/*starttransition*/}
 
-The `startTransition` function returned by `useTransition` lets you mark a state update as a transition.
+La fonction `startTransition` renvoyée par `useTransition` vous permet de marquer une mise à jour d'état comme étant une transition.
 
 ```js {6,8}
 function TabContainer() {
@@ -64,35 +64,35 @@ function TabContainer() {
 }
 ```
 
-#### Parameters {/*starttransition-parameters*/}
+#### Paramètres {/*starttransition-parameters*/}
 
-* `scope`: A function that updates some state by calling one or more [`set` functions.](/reference/react/useState#setstate) React immediately calls `scope` with no parameters and marks all state updates scheduled synchronously during the `scope` function call as transitions. They will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](#preventing-unwanted-loading-indicators)
+* `scope` : une fonction qui met à jour l'état en appelant au moins une [fonction `set`](/reference/react/useState#setstate).  React appelle immédiatement `scope` sans argument et marque toutes les mises à jour d'état demandées durant l'exécution synchrone de `scope` comme des transitions.  Elles seront [non bloquantes](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) et [n'afficheront pas d'indicateurs de chargement indésirables](/reference/react/useTransition#preventing-unwanted-loading-indicators).
 
-#### Returns {/*starttransition-returns*/}
+#### Valeur renvoyée {/*starttransition-returns*/}
 
-`startTransition` does not return anything.
+`startTransition` ne renvoie rien.
 
-#### Caveats {/*starttransition-caveats*/}
+#### Limitations {/*starttransition-caveats*/}
 
-* `useTransition` is a Hook, so it can only be called inside components or custom Hooks. If you need to start a transition somewhere else (for example, from a data library), call the standalone [`startTransition`](/reference/react/startTransition) instead.
+* `useTransition` est un Hook, il ne peut donc être appelé qu'au sein de composants ou de Hooks personnalisés.  Si vous avez besoin de démarrer une transition à un autre endroit (par exemple, depuis une bibliothèque de gestion de données), utilisez plutôt la fonction autonome [`startTransition`](/reference/react/startTransition).
 
-* You can wrap an update into a transition only if you have access to the `set` function of that state. If you want to start a transition in response to some prop or a custom Hook value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
+* Vous pouvez enrober une mise à jour dans une transition uniquement si vous avez accès à la fonction `set` de l'état en question.  Si vous souhaitez démarrer une transition en réaction à une prop ou à la valeur renvoyée par un Hook personnalisé, utilisez plutôt [`useDeferredValue`](/reference/react/useDeferredValue).
 
-* The function you pass to `startTransition` must be synchronous. React immediately executes this function, marking all state updates that happen while it executes as transitions. If you try to perform more state updates later (for example, in a timeout), they won't be marked as transitions.
+* La fonction que vous passez à `startTransition` doit être synchrone.  React exécute cette fonction immédiatement, et marque toutes les mises à jour demandées lors de son exécution comme des transitions.  Si vous essayez de faire des mises à jour d'état plus tard (par exemple avec un timer), elles ne seront pas marquées comme des transitions.
 
-* A state update marked as a transition will be interrupted by other state updates. For example, if you update a chart component inside a transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart component after handling the input update.
+* Une mise à jour d'état marquée comme une transition pourra être interrompue par d'autres mises à jour d'état.  Par exemple, si vous mettez à jour un composant de graphe au sein d'une transition, mais commencez alors une saisie dans un champ texte tandis que le graphe est en train de refaire son rendu, React redémarrera le rendu du composant graphe après avoir traité la mise à jour d'état du champ.
 
-* Transition updates can't be used to control text inputs.
+* Les mises à jour en transition ne peuvent pas être utilisées pour contrôler des champs textuels.
 
-* If there are multiple ongoing transitions, React currently batches them together. This is a limitation that will likely be removed in a future release.
+* Si plusieurs transitions sont en cours, React les regroupe pour le moment.  Cette limitation sera sans doute levée dans une future version.
 
 ---
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
-### Marking a state update as a non-blocking transition {/*marking-a-state-update-as-a-non-blocking-transition*/}
+### Marquer une mise à jour d'état comme étant une transition non bloquante {/*marking-a-state-update-as-a-non-blocking-transition*/}
 
-Call `useTransition` at the top level of your component to mark state updates as non-blocking *transitions*.
+Appelez `useTransition` au niveau racine de votre composant pour marquer des mises à jour d'état comme étant des *transitions* non bloquantes.
 
 ```js [[1, 4, "isPending"], [2, 4, "startTransition"]]
 import { useState, useTransition } from 'react';
@@ -103,12 +103,12 @@ function TabContainer() {
 }
 ```
 
-`useTransition` returns an array with exactly two items:
+`useTransition` renvoie un tableau avec exactement deux éléments :
 
-1. The <CodeStep step={1}>`isPending` flag</CodeStep> that tells you whether there is a pending transition.
-2. The <CodeStep step={2}>`startTransition` function</CodeStep> that lets you mark a state update as a transition.
+1. Le <CodeStep step={1}>drapeau `isPending`</CodeStep> qui vous indique si la transition est en cours.
+2. La <CodeStep step={2}>fonction `startTransition`</CodeStep> qui vous permet de marquer une mise à jour d'état comme étant une transition.
 
-You can then mark a state update as a transition like this:
+Vous pouvez marquer une mise à jour d'état comme étant une transition comme ceci :
 
 ```js {6,8}
 function TabContainer() {
@@ -124,17 +124,17 @@ function TabContainer() {
 }
 ```
 
-Transitions let you keep the user interface updates responsive even on slow devices.
+Les transitions vous permettent de conserver des mises à jour d'interface utilisateur réactives même sur des appareils lents.
 
-With a transition, your UI stays responsive in the middle of a re-render. For example, if the user clicks a tab but then change their mind and click another tab, they can do that without waiting for the first re-render to finish.
+Avec une transition, votre UI reste réactive pendant le rendu. Par exemple, si l'utilisateur clique sur un onglet mais ensuite change d'avis et va sur un autre onglet, il peut le faire sans devoir d'abord attendre que le premier onglet ait fini son rendu.
 
-<Recipes titleText="The difference between useTransition and regular state updates" titleId="examples">
+<Recipes titleText="La différence entre useTransition et des mises à jour d’état classiques" titleId="examples">
 
-#### Updating the current tab in a transition {/*updating-the-current-tab-in-a-transition*/}
+#### Changer l'onglet actif au sein d'une transition {/*updating-the-current-tab-in-a-transition*/}
 
-In this example, the "Posts" tab is **artificially slowed down** so that it takes at least a second to render.
+Dans cet exemple, l'onglet « Articles » est **artificiellement ralenti** pour que son rendu prenne au moins une seconde.
 
-Click "Posts" and then immediately click "Contact". Notice that this interrupts the slow render of "Posts". The "Contact" tab shows immediately. Because this state update is marked as a transition, a slow re-render did not freeze the user interface.
+Cliquez sur « Articles » puis cliquez immédiatement sur « Contact ». Remarquez que ça interrompt le rendu lent d'« Articles ». L'onglet « Contact » est affiché immédiatement.  Puisque la mise à jour d'état est marquée comme une transition, un rendu lent ne gèle pas pour autant l'interface utilisateur.
 
 <Sandpack>
 
@@ -151,7 +151,7 @@ export default function TabContainer() {
 
   function selectTab(nextTab) {
     startTransition(() => {
-      setTab(nextTab);      
+      setTab(nextTab);
     });
   }
 
@@ -161,13 +161,13 @@ export default function TabContainer() {
         isActive={tab === 'about'}
         onClick={() => selectTab('about')}
       >
-        About
+        À propos
       </TabButton>
       <TabButton
         isActive={tab === 'posts'}
         onClick={() => selectTab('posts')}
       >
-        Posts (slow)
+        Articles (lent)
       </TabButton>
       <TabButton
         isActive={tab === 'contact'}
@@ -205,7 +205,7 @@ export default function TabButton({ children, isActive, onClick }) {
 ```js AboutTab.js
 export default function AboutTab() {
   return (
-    <p>Welcome to my profile!</p>
+    <p>Bienvenue sur mon profil !</p>
   );
 }
 ```
@@ -214,8 +214,8 @@ export default function AboutTab() {
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
-  // Log once. The actual slowdown is inside SlowPost.
-  console.log('[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />');
+  // Un seul log. La lenteur réside en fait dans SlowPost.
+  console.log('[ARTIFICIELLEMENT LENT] Rendu de 500 <SlowPost />');
 
   let items = [];
   for (let i = 0; i < 500; i++) {
@@ -231,12 +231,13 @@ const PostsTab = memo(function PostsTab() {
 function SlowPost({ index }) {
   let startTime = performance.now();
   while (performance.now() - startTime < 1) {
-    // Do nothing for 1 ms per item to emulate extremely slow code
+    // Ne rien faire pendant 1 ms par élément pour simuler
+    // du code extrêmement lent.
   }
 
   return (
     <li className="item">
-      Post #{index + 1}
+      Article #{index + 1}
     </li>
   );
 }
@@ -249,7 +250,7 @@ export default function ContactTab() {
   return (
     <>
       <p>
-        You can find me online here:
+        Vous me trouverez en ligne ici :
       </p>
       <ul>
         <li>admin@mysite.com</li>
@@ -269,11 +270,11 @@ b { display: inline-block; margin-right: 10px; }
 
 <Solution />
 
-#### Updating the current tab without a transition {/*updating-the-current-tab-without-a-transition*/}
+#### Changer l'onglet actif sans transitions {/*updating-the-current-tab-without-a-transition*/}
 
-In this example, the "Posts" tab is also **artificially slowed down** so that it takes at least a second to render. Unlike in the previous example, this state update is **not a transition.**
+Dans cet exemple, l'onglet « Articles » est toujours **artificiellement ralenti** pour que son rendu prenne au moins une seconde. Mais contrairement à l'exemple précédent, la mise à jour d'état ne figure **pas dans une transition**.
 
-Click "Posts" and then immediately click "Contact". Notice that the app freezes while rendering the slowed down tab, and the UI becomes unresponsive. This state update is not a transition, so a slow re-render freezed the user interface.
+Cliquez sur « Articles » puis cliquez immédiatement sur « Contact ». Remarquez que l'appli gèle pendant le rendu de l'onglet lent, et que l'UI ne répond plus. La mise à jour d'état ne figure pas dans une transition, de sorte que le rendu lent gèle l'interface utilisateur.
 
 <Sandpack>
 
@@ -297,13 +298,13 @@ export default function TabContainer() {
         isActive={tab === 'about'}
         onClick={() => selectTab('about')}
       >
-        About
+        À propos
       </TabButton>
       <TabButton
         isActive={tab === 'posts'}
         onClick={() => selectTab('posts')}
       >
-        Posts (slow)
+        Articles (lent)
       </TabButton>
       <TabButton
         isActive={tab === 'contact'}
@@ -341,7 +342,7 @@ export default function TabButton({ children, isActive, onClick }) {
 ```js AboutTab.js
 export default function AboutTab() {
   return (
-    <p>Welcome to my profile!</p>
+    <p>Bienvenue sur mon profil !</p>
   );
 }
 ```
@@ -350,8 +351,8 @@ export default function AboutTab() {
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
-  // Log once. The actual slowdown is inside SlowPost.
-  console.log('[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />');
+  // Un seul log. La lenteur réside en fait dans SlowPost.
+  console.log('[ARTIFICIELLEMENT LENT] Rendu de 500 <SlowPost />');
 
   let items = [];
   for (let i = 0; i < 500; i++) {
@@ -367,12 +368,13 @@ const PostsTab = memo(function PostsTab() {
 function SlowPost({ index }) {
   let startTime = performance.now();
   while (performance.now() - startTime < 1) {
-    // Do nothing for 1 ms per item to emulate extremely slow code
+    // Ne rien faire pendant 1 ms par élément pour simuler
+    // du code extrêmement lent.
   }
 
   return (
     <li className="item">
-      Post #{index + 1}
+      Article #{index + 1}
     </li>
   );
 }
@@ -385,7 +387,7 @@ export default function ContactTab() {
   return (
     <>
       <p>
-        You can find me online here:
+        Vous me trouverez en ligne ici :
       </p>
       <ul>
         <li>admin@mysite.com</li>
@@ -409,9 +411,9 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-### Updating the parent component in a transition {/*updating-the-parent-component-in-a-transition*/}
+### Mettre à jour le composant parent dans une transition {/*updating-the-parent-component-in-a-transition*/}
 
-You can update a parent component's state from the `useTransition` call, too. For example, this `TabButton` component wraps its `onClick` logic in a transition:
+Vous pouvez tout aussi bien mettre à jour l'état du composant parent depuis un appel à `useTransition`.  Par exemple, le composant `TabButton` enrobe a logique de son `onClick` avec une transition :
 
 ```js {8-10}
 export default function TabButton({ children, isActive, onClick }) {
@@ -431,7 +433,7 @@ export default function TabButton({ children, isActive, onClick }) {
 }
 ```
 
-Because the parent component updates its state inside the `onClick` event handler, that state update gets marked as a transition. This is why, like in the earlier example, you can click on "Posts" and then immediately click "Contact". Updating the selected tab is marked as a transition, so it does not block user interactions.
+Puisque le composant parent met à jour son état au sein du gestionnaire d'événement `onClick`, cette mise à jour d'état sera marquée comme étant une transition.  C'est pourquoi, comme dans l'exemple précédent, vous pouvez cliquer sur « Articles » puis immédiatement sur « Contact ».  Le changement d'onglet est marqué comme une transition : il ne bloque donc pas les interactions utilisateur.
 
 <Sandpack>
 
@@ -450,13 +452,13 @@ export default function TabContainer() {
         isActive={tab === 'about'}
         onClick={() => setTab('about')}
       >
-        About
+        À propos
       </TabButton>
       <TabButton
         isActive={tab === 'posts'}
         onClick={() => setTab('posts')}
       >
-        Posts (slow)
+        Articles (lent)
       </TabButton>
       <TabButton
         isActive={tab === 'contact'}
@@ -496,7 +498,7 @@ export default function TabButton({ children, isActive, onClick }) {
 ```js AboutTab.js
 export default function AboutTab() {
   return (
-    <p>Welcome to my profile!</p>
+    <p>Bienvenue sur mon profil !</p>
   );
 }
 ```
@@ -505,8 +507,8 @@ export default function AboutTab() {
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
-  // Log once. The actual slowdown is inside SlowPost.
-  console.log('[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />');
+  // Un seul log. La lenteur réside en fait dans SlowPost.
+  console.log('[ARTIFICIELLEMENT LENT] Rendu de 500 <SlowPost />');
 
   let items = [];
   for (let i = 0; i < 500; i++) {
@@ -522,12 +524,13 @@ const PostsTab = memo(function PostsTab() {
 function SlowPost({ index }) {
   let startTime = performance.now();
   while (performance.now() - startTime < 1) {
-    // Do nothing for 1 ms per item to emulate extremely slow code
+    // Ne rien faire pendant 1 ms par élément pour simuler
+    // du code extrêmement lent.
   }
 
   return (
     <li className="item">
-      Post #{index + 1}
+      Article #{index + 1}
     </li>
   );
 }
@@ -540,7 +543,7 @@ export default function ContactTab() {
   return (
     <>
       <p>
-        You can find me online here:
+        Vous me trouverez en ligne ici :
       </p>
       <ul>
         <li>admin@mysite.com</li>
@@ -560,9 +563,9 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-### Displaying a pending visual state during the transition {/*displaying-a-pending-visual-state-during-the-transition*/}
+### Afficher une indication visuelle pendant la transition {/*displaying-a-pending-visual-state-during-the-transition*/}ç {/*afficher-une-indication-visuelle-pendant-la-transition-displaying-a-pending-visual-state-during-the-transitionç*/}
 
-You can use the `isPending` boolean value returned by `useTransition` to indicate to the user that a transition is in progress. For example, the tab button can have a special "pending" visual state:
+Vous pouvez utiliser la valeur booléenne `isPending` renvoyée par `useTransition` pour indiquer à l'utilisateur qu'une transition est en cours.  Par exemple, le bouton d'onglet peut avoir un état visuel spécial « en cours » :
 
 ```js {4-6}
 function TabButton({ children, isActive, onClick }) {
@@ -574,7 +577,7 @@ function TabButton({ children, isActive, onClick }) {
   // ...
 ```
 
-Notice how clicking "Posts" now feels more responsive because the tab button itself updates right away:
+Remarquez que le clic sur « Articles » semble désormais plus réactif parce que le bouton d'onglet lui-même se met à jour immédiatement :
 
 <Sandpack>
 
@@ -593,13 +596,13 @@ export default function TabContainer() {
         isActive={tab === 'about'}
         onClick={() => setTab('about')}
       >
-        About
+        À propos
       </TabButton>
       <TabButton
         isActive={tab === 'posts'}
         onClick={() => setTab('posts')}
       >
-        Posts (slow)
+        Articles (lent)
       </TabButton>
       <TabButton
         isActive={tab === 'contact'}
@@ -642,7 +645,7 @@ export default function TabButton({ children, isActive, onClick }) {
 ```js AboutTab.js
 export default function AboutTab() {
   return (
-    <p>Welcome to my profile!</p>
+    <p>Bienvenue sur mon profil !</p>
   );
 }
 ```
@@ -651,8 +654,8 @@ export default function AboutTab() {
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
-  // Log once. The actual slowdown is inside SlowPost.
-  console.log('[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />');
+  // Un seul log. La lenteur réside en fait dans SlowPost.
+  console.log('[ARTIFICIELLEMENT LENT] Rendu de 500 <SlowPost />');
 
   let items = [];
   for (let i = 0; i < 500; i++) {
@@ -668,12 +671,13 @@ const PostsTab = memo(function PostsTab() {
 function SlowPost({ index }) {
   let startTime = performance.now();
   while (performance.now() - startTime < 1) {
-    // Do nothing for 1 ms per item to emulate extremely slow code
+    // Ne rien faire pendant 1 ms par élément pour simuler
+    // du code extrêmement lent.
   }
 
   return (
     <li className="item">
-      Post #{index + 1}
+      Article #{index + 1}
     </li>
   );
 }
@@ -686,7 +690,7 @@ export default function ContactTab() {
   return (
     <>
       <p>
-        You can find me online here:
+        Vous me trouverez en ligne ici :
       </p>
       <ul>
         <li>admin@mysite.com</li>
@@ -707,9 +711,9 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-### Preventing unwanted loading indicators {/*preventing-unwanted-loading-indicators*/}
+### Empêcher les indicateurs de chargement indésirables {/*preventing-unwanted-loading-indicators*/}
 
-In this example, the `PostsTab` component fetches some data using a [Suspense-enabled](/reference/react/Suspense) data source. When you click the "Posts" tab, the `PostsTab` component *suspends*, causing the closest loading fallback to appear:
+Dans cet exemple, le composant `PostsTab` charge des données en utilisant une source de données [compatible Suspense](/reference/react/Suspense).  Lorsque vous cliquez sur l'onglet « Articles », le composant `PostsTab` *suspend*, entraînant l'affichage du plus proche contenu de secours :
 
 <Sandpack>
 
@@ -723,18 +727,18 @@ import ContactTab from './ContactTab.js';
 export default function TabContainer() {
   const [tab, setTab] = useState('about');
   return (
-    <Suspense fallback={<h1>🌀 Loading...</h1>}>
+    <Suspense fallback={<h1>🌀 Chargement...</h1>}>
       <TabButton
         isActive={tab === 'about'}
         onClick={() => setTab('about')}
       >
-        About
+        À propos
       </TabButton>
       <TabButton
         isActive={tab === 'posts'}
         onClick={() => setTab('posts')}
       >
-        Posts
+        Articles
       </TabButton>
       <TabButton
         isActive={tab === 'contact'}
@@ -769,7 +773,7 @@ export default function TabButton({ children, isActive, onClick }) {
 ```js AboutTab.js hidden
 export default function AboutTab() {
   return (
-    <p>Welcome to my profile!</p>
+    <p>Bienvenue sur mon profil !</p>
   );
 }
 ```
@@ -804,8 +808,10 @@ function Post({ title }) {
 
 export default PostsTab;
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer par une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -823,7 +829,7 @@ function use(promise) {
       reason => {
         promise.status = 'rejected';
         promise.reason = reason;
-      },      
+      },
     );
     throw promise;
   }
@@ -835,7 +841,7 @@ export default function ContactTab() {
   return (
     <>
       <p>
-        You can find me online here:
+        Vous me trouverez en ligne ici :
       </p>
       <ul>
         <li>admin@mysite.com</li>
@@ -848,9 +854,9 @@ export default function ContactTab() {
 
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Note : la façon de charger vos données dépend du framework
+// que vous utilisez en complément de Suspense.
+// Normalement, la logique de cache serait fournie par le framework.
 
 let cache = new Map();
 
@@ -870,7 +876,7 @@ async function getData(url) {
 }
 
 async function getPosts() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 1000);
   });
@@ -878,7 +884,7 @@ async function getPosts() {
   for (let i = 0; i < 500; i++) {
     posts.push({
       id: i,
-      title: 'Post #' + (i + 1)
+      title: 'Article #' + (i + 1)
     });
   }
   return posts;
@@ -893,9 +899,9 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-Hiding the entire tab container to show a loading indicator leads to a jarring user experience. If you add `useTransition` to `TabButton`, you can instead indicate display the pending state in the tab button instead.
+Marquer le conteneur d'onglets dans son intégralité pour afficher un indicateur de chargement entraîne une expérience utilisateur désagréable.  Si vous ajoutez `useTransition` à `TabButton`, vous pouvez plutôt manifester l'attente encours dans le bouton d'onglet.
 
-Notice that clicking "Posts" no longer replaces the entire tab container with a spinner:
+Remarquez que cliquer sur « Articles » ne remplace plus l'ensemble du conteneur d'onglets avec un *spinner* :
 
 <Sandpack>
 
@@ -909,18 +915,18 @@ import ContactTab from './ContactTab.js';
 export default function TabContainer() {
   const [tab, setTab] = useState('about');
   return (
-    <Suspense fallback={<h1>🌀 Loading...</h1>}>
+    <Suspense fallback={<h1>🌀 Chargement...</h1>}>
       <TabButton
         isActive={tab === 'about'}
         onClick={() => setTab('about')}
       >
-        About
+        À propos
       </TabButton>
       <TabButton
         isActive={tab === 'posts'}
         onClick={() => setTab('posts')}
       >
-        Posts
+        Articles
       </TabButton>
       <TabButton
         isActive={tab === 'contact'}
@@ -963,7 +969,7 @@ export default function TabButton({ children, isActive, onClick }) {
 ```js AboutTab.js hidden
 export default function AboutTab() {
   return (
-    <p>Welcome to my profile!</p>
+    <p>Bienvenue sur mon profil !</p>
   );
 }
 ```
@@ -998,8 +1004,10 @@ function Post({ title }) {
 
 export default PostsTab;
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer par une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -1017,7 +1025,7 @@ function use(promise) {
       reason => {
         promise.status = 'rejected';
         promise.reason = reason;
-      },      
+      },
     );
     throw promise;
   }
@@ -1029,7 +1037,7 @@ export default function ContactTab() {
   return (
     <>
       <p>
-        You can find me online here:
+        Vous me trouverez en ligne ici :
       </p>
       <ul>
         <li>admin@mysite.com</li>
@@ -1042,9 +1050,9 @@ export default function ContactTab() {
 
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Note : la façon de charger vos données dépend du framework
+// que vous utilisez en complément de Suspense.
+// Normalement, la logique de cache serait fournie par le framework.
 
 let cache = new Map();
 
@@ -1064,7 +1072,7 @@ async function getData(url) {
 }
 
 async function getPosts() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 1000);
   });
@@ -1072,7 +1080,7 @@ async function getPosts() {
   for (let i = 0; i < 500; i++) {
     posts.push({
       id: i,
-      title: 'Post #' + (i + 1)
+      title: 'Article #' + (i + 1)
     });
   }
   return posts;
@@ -1087,19 +1095,19 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-[Read more about using transitions with Suspense.](/reference/react/Suspense#preventing-already-revealed-content-from-hiding)
+[Apprenez-en davantage sur l'utilisation des transitions avec Suspense](/reference/react/Suspense#preventing-already-revealed-content-from-hiding).
 
 <Note>
 
-Transitions will only "wait" long enough to avoid hiding *already revealed* content (like the tab container). If the Posts tab had a [nested `<Suspense>` boundary,](/reference/react/Suspense#revealing-nested-content-as-it-loads) the transition would not "wait" for it.
+Les transitions « n'attendront » que le temps nécessaire pour éviter de masquer du contenu *déjà révélé* (comme le conteneur d'onglets).  Si l'onglet Articles avait un [périmètre `<Suspense>` imbriqué](/reference/react/Suspense#revealing-nested-content-as-it-loads), la transition « n'attendrait » pas ce dernier.
 
 </Note>
 
 ---
 
-### Building a Suspense-enabled router {/*building-a-suspense-enabled-router*/}
+### Construire un routeur compatible Suspense {/*building-a-suspense-enabled-router*/}
 
-If you're building a React framework or a router, we recommend marking page navigations as transitions.
+Si vous construisez un framework React ou un routeur, nous vous recommandons de marquer toutes les navigations de pages comme étant des transitions.
 
 ```js {3,6,8}
 function Router() {
@@ -1114,12 +1122,12 @@ function Router() {
   // ...
 ```
 
-This is recommended for two reasons:
+Nous recommandons ça pour deux raisons :
 
-- [Transitions are interruptible,](#marking-a-state-update-as-a-non-blocking-transition) which lets the user click away without waiting for the re-render to complete.
-- [Transitions prevent unwanted loading indicators,](#preventing-unwanted-loading-indicators) which lets the user avoid jarring jumps on navigation.
+- [Les transitions sont interruptibles](#marking-a-state-update-as-a-non-blocking-transition), ce qui permet à l'utilisateur de cliquer pour aller ailleurs sans avoir attendre la fin du rendu de son premier choix.
+- [Les transitions évitent les indicateurs de chargement indésirables](#preventing-unwanted-loading-indicators), ce qui vous permet d'éviter de produire des « clignotements » désagréables lors de la navigation.
 
-Here is a tiny simplified router example using transitions for navigations.
+Voici un petit exemple de routeur très simplifié utilisant les transitions pour ses navigations.
 
 <Sandpack>
 
@@ -1185,7 +1193,7 @@ function Router() {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Chargement...</h2>;
 }
 ```
 
@@ -1196,7 +1204,7 @@ export default function Layout({ children, isPending }) {
       <section className="header" style={{
         opacity: isPending ? 0.7 : 1
       }}>
-        Music Browser
+        Musicothèque
       </section>
       <main>
         {children}
@@ -1210,7 +1218,7 @@ export default function Layout({ children, isPending }) {
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
-      Open The Beatles artist page
+      Ouvrir la page artiste des Beatles
     </button>
   );
 }
@@ -1250,11 +1258,11 @@ function AlbumsGlimmer() {
 ```js Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -1269,8 +1277,10 @@ export default function Albums({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer par une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -1288,7 +1298,7 @@ function use(promise) {
       reason => {
         promise.status = 'rejected';
         promise.reason = reason;
-      },      
+      },
     );
     throw promise;
   }
@@ -1298,11 +1308,11 @@ function use(promise) {
 ```js Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
+// Note : ce composant est écrit au moyen d'une API expérimentale
+// qui n'est pas encore disponible dans une version stable de React.
 
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
+// Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
+// essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -1313,8 +1323,10 @@ export default function Biography({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
+// Ceci est une solution de contournement pour permettre à la
+// démo de fonctionner.
+// TODO: remplacer par une véritable implémentation une fois
+// le bug corrigé.
 function use(promise) {
   if (promise.status === 'fulfilled') {
     return promise.value;
@@ -1332,7 +1344,7 @@ function use(promise) {
       reason => {
         promise.status = 'rejected';
         promise.reason = reason;
-      },      
+      },
     );
     throw promise;
   }
@@ -1350,9 +1362,9 @@ export default function Panel({ children }) {
 ```
 
 ```js data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Note : la façon de charger vos données dépend du framework
+// que vous utilisez en complément de Suspense.
+// Normalement, la logique de cache serait fournie par le framework.
 
 let cache = new Map();
 
@@ -1374,19 +1386,19 @@ async function getData(url) {
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
-    and Ringo Starr.`;
+  return `Les Beatles étaient un groupe de rock anglais,
+    formé à Liverpool en 1960, qui était composé de
+    John Lennon, Paul McCartney, George Harrison
+    et Ringo Starr.`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Ajoute un délai artificiel pour rendre l’attente perceptible.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -1413,7 +1425,7 @@ async function getAlbums() {
     year: 1967
   }, {
     id: 8,
-    title: 'Sgt. Pepper\'s Lonely Hearts Club Band',
+    title: 'Sgt. Pepper’s Lonely Hearts Club Band',
     year: 1967
   }, {
     id: 7,
@@ -1433,7 +1445,7 @@ async function getAlbums() {
     year: 1964
   }, {
     id: 3,
-    title: 'A Hard Day\'s Night',
+    title: 'A Hard Day’s Night',
     year: 1964
   }, {
     id: 2,
@@ -1495,13 +1507,13 @@ main {
 
 <Note>
 
-[Suspense-enabled](/reference/react/Suspense) routers are expected to wrap the navigation updates into transitions by default.
+Les routeurs [compatibles Suspense](/reference/react/Suspense) sont censés enrober par défaut leurs mises à jour de navigation dans des transitions.
 
 </Note>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Dépannage {/*troubleshooting*/}
 
 ### Updating an input in a transition doesn't work {/*updating-an-input-in-a-transition-doesnt-work*/}
 
