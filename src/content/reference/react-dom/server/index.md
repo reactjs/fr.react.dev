@@ -1,49 +1,49 @@
 ---
-title: Server React DOM APIs
+title: API React DOM côté serveur
 ---
 
 <Intro>
 
-The `react-dom/server` APIs let you render React components to HTML on the server. These APIs are only used on the server at the top level of your app to generate the initial HTML. A [framework](/learn/start-a-new-react-project#production-grade-react-frameworks) may call them for you. Most of your components don't need to import or use them.
+Les API `react-dom/server` vous permettent de produire le HTML de vos composants React côté serveur. Ces API ne sont utilisées que côté serveur, à la racine de votre appli, pour générer le HTML initial. Un [framework](/learn/start-a-new-react-project#production-grade-react-frameworks) pourrait les appeler pour vous.  La plupart de vos composants n'auront pas besoin de les importer, encore moins de les utiliser.
 
 </Intro>
 
 ---
 
-## Server APIs for Node.js Streams {/*server-apis-for-nodejs-streams*/}
+## API côté serveur pour les flux Node.js {/*server-apis-for-nodejs-streams*/}
 
-These methods are only available in the environments with [Node.js Streams:](https://nodejs.org/api/stream.html)
+Ces méthodes sont uniquement disponibles pour les environnements dotés de [flux Node.js](https://nodejs.org/api/stream.html) :
 
-* [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) renders a React tree to a pipeable [Node.js Stream.](https://nodejs.org/api/stream.html)
-* [`renderToStaticNodeStream`](/reference/react-dom/server/renderToStaticNodeStream) renders a non-interactive React tree to a [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
-
----
-
-## Server APIs for Web Streams {/*server-apis-for-web-streams*/}
-
-These methods are only available in the environments with [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), which includes browsers, Deno, and some modern edge runtimes:
-
-* [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) renders a React tree to a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+* [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) fait le rendu d'un arbre React dans un [flux Node.js](https://nodejs.org/api/stream.html) consommable par une *pipeline*.
+* [`renderToStaticNodeStream`](/reference/react-dom/server/renderToStaticNodeStream) fait le rendu d'un arbre React non interactif dans un [flux Node.js en lecture](https://nodejs.org/api/stream.html#readable-streams).
 
 ---
 
-## Server APIs for non-streaming environments {/*server-apis-for-non-streaming-environments*/}
+## API côté serveur pour les flux web {/*server-apis-for-web-streams*/}
 
-These methods can be used in the environments that don't support streams:
+Ces méthodes sont uniquement disponibles pour les environnements dotés de [flux web](https://developer.mozilla.org/docs/Web/API/Streams_API), ce qui inclut les navigateurs, Deno, et quelques moteurs JavaScript très récents :
 
-* [`renderToString`](/reference/react-dom/server/renderToString) renders a React tree to a string.
-* [`renderToStaticMarkup`](/reference/react-dom/server/renderToStaticMarkup) renders a non-interactive React tree to a string.
-
-They have limited functionality compared to the streaming APIs.
+* [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) fait le rendu d'un arbre React dans un [flux web en lecture](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream).
 
 ---
 
-## Deprecated server APIs {/*deprecated-server-apis*/}
+## API côté serveur pour les environnements sans flux {/*server-apis-for-non-streaming-environments*/}
+
+Ces méthodes peuvent être utilisés dans les environnements qui ne prennent pas les flux en charge :
+
+* [`renderToString`](/reference/react-dom/server/renderToString) produit le HTML d'un arbre React sous forme d'une chaîne de caractères.
+* [`renderToStaticMarkup`](/reference/react-dom/server/renderToStaticMarkup) produit le HTML non interactif d'un arbre React sous forme d'une chaîne de caractères.
+
+Leurs fonctionnalités sont limitées par rapport aux API à base de flux.
+
+---
+
+## API côté serveur dépréciées {/*deprecated-server-apis*/}
 
 <Deprecated>
 
-These APIs will be removed in a future major version of React.
+Ces API seront retirées d'une future version majeure de React.
 
 </Deprecated>
 
-* [`renderToNodeStream`](/reference/react-dom/server/renderToNodeStream) renders a React tree to a [Node.js Readable stream.](https://nodejs.org/api/stream.html#readable-streams) (Deprecated.)
+* [`renderToNodeStream`](/reference/react-dom/server/renderToNodeStream) fait le rendu d'un arbre React dans un [flux Node.js en lecture](https://nodejs.org/api/stream.html#readable-streams) (dépréciée).
