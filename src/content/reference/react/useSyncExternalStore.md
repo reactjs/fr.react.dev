@@ -4,7 +4,7 @@ title: useSyncExternalStore
 
 <Intro>
 
-`useSyncExternalStore` is a React Hook that lets you subscribe to an external store.
+`useSyncExternalStore` est un Hook React qui vous permet de vous abonner à une source de données extérieure.
 
 ```js
 const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)
@@ -16,11 +16,11 @@ const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)` {/*usesyncexternalstore*/}
 
-Call `useSyncExternalStore` at the top level of your component to read a value from an external data store.
+Appelez `useSyncExternalStore` à la racine de votre composant pour lire une valeur provenant d'une source de données extérieure.
 
 ```js
 import { useSyncExternalStore } from 'react';
@@ -32,43 +32,43 @@ function TodosApp() {
 }
 ```
 
-It returns the snapshot of the data in the store. You need to pass two functions as arguments:
+Il renvoie un instantané de cette donnée issue de la source.  Vous aurez besoin de passer deux fonctions comme arguments :
 
-1. The `subscribe` function should subscribe to the store and return a function that unsubscribes.
-2. The `getSnapshot` function should read a snapshot of the data from the store.
+1. La fonction `subscribe` est censée s'abonner à la source et renvoyer une fonction de désabonnement.
+2. La fonction `getSnapshot` est censée lire un instantané de la donnée souhaitée au sein de la source.
 
-[See more examples below.](#usage)
+[Voir d'autres exemples ci-dessous](#usage).
 
-#### Parameters {/*parameters*/}
+#### Paramètres {/*parameters*/}
 
-* `subscribe`: A function that takes a single `callback` argument and subscribes it to the store. When the store changes, it should invoke the provided `callback`. This will cause the component to re-render. The `subscribe` function should return a function that cleans up the subscription.
+* `subscribe` : une fonction acceptant un unique argument `callback` qui s'abonne à la source de données. Lorsque la source évolue, elle est censée invoquer `callback`.  Ça permettra au composant de refaire un rendu. La fonction `subscribe` est censée renvoyer une fonction qui procède au désabonnement associé.
 
-* `getSnapshot`: A function that returns a snapshot of the data in the store that's needed by the component. While the store has not changed, repeated calls to `getSnapshot` must return the same value. If the store changes and the returned value is different (as compared by [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React re-renders the component.
+* `getSnapshot` : une fonction qui renvoie un instantané de la donnée requise par le composant au sein de la source.  Tant que la source n'évolue pas, des appels répétés à `getSnapshot` sont censés renvoyer la même valeur. Si la source évolue et que la valeur renvoyée diffère soudain (en comparant à l'aide de [`Object.is`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React refait un rendu du composant.
 
-* **optional** `getServerSnapshot`: A function that returns the initial snapshot of the data in the store. It will be used only during server rendering and during hydration of server-rendered content on the client. The server snapshot must be the same between the client and the server, and is usually serialized and passed from the server to the client. If you omit this argument, rendering the component on the server will throw an error.
+* `getServerSnapshot` **optionnelle** : une fonction qui renvoie un premier instantané de la donnée au sein de la source.  Elle ne sera utilisée que pour le rendu côté serveur, et pendant la phase d'hydratation du contenu fourni par le serveur une fois côté client.  L'instantané serveur doit être identique qu'il soit exécuté côté serveur ou côté client : il est donc généralement sérialisé et passé du serveur au client. Si vous omettez cet argument, toute tentative de rendu côté serveur de votre composant lèvera une erreur.
 
-#### Returns {/*returns*/}
+#### Valeur renvoyée {/*returns*/}
 
-The current snapshot of the store which you can use in your rendering logic.
+L'instantané actuel de la valeur issue de la source, que vous pouvez utiliser pour votre logique de rendu.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
-* The store snapshot returned by `getSnapshot` must be immutable. If the underlying store has mutable data, return a new immutable snapshot if the data has changed. Otherwise, return a cached last snapshot.
+* L'instantané de la source renvoyé par `getSnapshot` doit être immuable.  Si la source de données sous-jacente a des données modifiables, renvoyez une copie immuable comme instantané lorsque la donnée change. À défaut, renvoyez une version mise en cache de l'instantané précédent.
 
-* If a different `subscribe` function is passed during a re-render, React will re-subscribe to the store using the newly passed `subscribe` function. You can prevent this by declaring `subscribe` outside the component.
+* Si une fonction `subscribe` différente est passée lors d'un nouveau rendu, React se réabonnera à la source de données en utilisant cette nouvelle fonction `subscribe`.  Vous pouvez éviter ça en déclarant `subscribe` hors du composant.
 
 ---
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
-### Subscribing to an external store {/*subscribing-to-an-external-store*/}
+### S'abonner à une source de données extérieure {/*subscribing-to-an-external-store*/}
 
-Most of your React components will only read data from their [props,](/learn/passing-props-to-a-component) [state,](/reference/react/useState) and [context.](/reference/react/useContext) However, sometimes a component needs to read some data from some store outside of React that changes over time. This includes:
+La plupart des composants React n'ont besoin de lire des données que depuis leurs [props](/learn/passing-props-to-a-component), leur [état](/reference/react/useState) et leur [contexte](/reference/react/useContext).  Néanmoins, il arrive parfois qu'un composant ait besoin de lire des données dont la source est extérieure à React, données qui évoluent avec le temps.  Ça inclut notamment :
 
-* Third-party state management libraries that hold state outside of React.
-* Browser APIs that expose a mutable value and events to subscribe to its changes.
+* Les bibliothèques tierces de gestion d'état applicatif, qui stockent leur état hors de React.
+* Les API navigateur qui exposent une valeur modifiable et des événements pour s'abonner à ses modifications.
 
-Call `useSyncExternalStore` at the top level of your component to read a value from an external data store.
+Appelez `useSyncExternalStore` à la racine de votre composant pour lire une valeur depuis une source de données extérieure.
 
 ```js [[1, 5, "todosStore.subscribe"], [2, 5, "todosStore.getSnapshot"], [3, 5, "todos", 0]]
 import { useSyncExternalStore } from 'react';
@@ -80,14 +80,14 @@ function TodosApp() {
 }
 ```
 
-It returns the <CodeStep step={3}>snapshot</CodeStep> of the data in the store. You need to pass two functions as arguments:
+Elle renvoie un <CodeStep step={3}>instantané</CodeStep> de la donnée issue de la source.  Vous devrez lui passer deux arguments fonctions :
 
-1. The <CodeStep step={1}>`subscribe` function</CodeStep> should subscribe to the store and return a function that unsubscribes.
-2. The <CodeStep step={2}>`getSnapshot` function</CodeStep> should read a snapshot of the data from the store.
+1. La fonction <CodeStep step={1}>`subscribe`</CodeStep> est censée s'abonner à la source et renvoyer une fonction de désabonnement.
+2. La fonction <CodeStep step={2}>`getSnapshot`</CodeStep> est censée lire un instantané de la donnée souhaitée au sein de la source.
 
-React will use these functions to keep your component subscribed to the store and re-render it on changes.
+React utilisera ces fonctions pour garder votre composant abonné à la source et refaire un rendu lorsque la donnée change.
 
-For example, in the sandbox below, `todosStore` is implemented as an external store that stores data outside of React. The `TodosApp` component connects to that external store with the `useSyncExternalStore` Hook. 
+Par exemple, dans le bac à sable ci-dessous, `todosStore` est implementé *via* une source de données extérieure, dont l'état est stocké hors de React. Le composant `TodosApp` se connecte à cette source extérieure avec le Hook `useSyncExternalStore`.
 
 <Sandpack>
 
@@ -99,7 +99,7 @@ export default function TodosApp() {
   const todos = useSyncExternalStore(todosStore.subscribe, todosStore.getSnapshot);
   return (
     <>
-      <button onClick={() => todosStore.addTodo()}>Add todo</button>
+      <button onClick={() => todosStore.addTodo()}>Ajouter une tâche</button>
       <hr />
       <ul>
         {todos.map(todo => (
@@ -112,19 +112,20 @@ export default function TodosApp() {
 ```
 
 ```js todoStore.js
-// This is an example of a third-party store
-// that you might need to integrate with React.
+// Voici un exemple de source de données tierce
+// que vous pourriez avoir besoin d'intégrer dans React.
 
-// If your app is fully built with React,
-// we recommend using React state instead.
+// Si votre appli est intégralement construite avec
+// React, nous vous recommandons de plutôt utiliser
+// l'état local React pour ça.
 
 let nextId = 0;
-let todos = [{ id: nextId++, text: 'Todo #1' }];
+let todos = [{ id: nextId++, text: 'Tâche #1' }];
 let listeners = [];
 
 export const todosStore = {
   addTodo() {
-    todos = [...todos, { id: nextId++, text: 'Todo #' + nextId }]
+    todos = [...todos, { id: nextId++, text: 'Tâche #' + nextId }]
     emitChange();
   },
   subscribe(listener) {
@@ -149,17 +150,17 @@ function emitChange() {
 
 <Note>
 
-When possible, we recommend using built-in React state with [`useState`](/reference/react/useState) and [`useReducer`](/reference/react/useReducer) instead. The `useSyncExternalStore` API is mostly useful if you need to integrate with existing non-React code.
+Autant que possible, nous vous recommandons de plutôt utiliser l'état local React avec [`useState`](/reference/react/useState) et [`useReducer`](/reference/react/useReducer). L'API `useSyncExternalStore` est surtout utile pour vous intégrer avec du code existant non basé sur React.
 
 </Note>
 
 ---
 
-### Subscribing to a browser API {/*subscribing-to-a-browser-api*/}
+### S'abonner à une API navigateur {/*subscribing-to-a-browser-api*/}
 
-Another reason to add `useSyncExternalStore` is when you want to subscribe to some value exposed by the browser that changes over time. For example, suppose that you want your component to display whether the network connection is active. The browser exposes this information via a property called [`navigator.onLine`.](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine)
+`useSyncExternalStore` est également bien utile pour vous abonner à une valeur exposée par le navigateur et susceptible de changer au fil du temps. Supposez par exemple que vous souhaitiez que votre composant affiche l'état actif ou non de la connexion réseau.  Le navigateur expose cette information au travers d'une propriété [`navigator.onLine`](https://developer.mozilla.org/docs/Web/API/Navigator/onLine).
 
-This value can change without React's knowledge, so you should read it with `useSyncExternalStore`.
+Cette valeur peut changer sans que React le sache, vous devriez donc la lire avec `useSyncExternalStore`.
 
 ```js
 import { useSyncExternalStore } from 'react';
@@ -170,7 +171,7 @@ function ChatIndicator() {
 }
 ```
 
-To implement the `getSnapshot` function, read the current value from the browser API:
+Pour implémenter la fonction `getSnapshot`, lisez la valeur actuelle *via* l'API navigateur :
 
 ```js
 function getSnapshot() {
@@ -178,7 +179,7 @@ function getSnapshot() {
 }
 ```
 
-Next, you need to implement the `subscribe` function. For example, when `navigator.onLine` changes, the browser fires the [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) and [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) events on the `window` object. You need to subscribe the `callback` argument to the corresponding events, and then return a function that cleans up the subscriptions:
+Vous devez ensuite implémenter la fonction `subscribe`.  Il se trouve que lorsque `navigation.onLine` change, le navigateur déclenche l'événement [`online`](https://developer.mozilla.org/docs/Web/API/Window/online_event) ou [`offline`](https://developer.mozilla.org/docs/Web/API/Window/offline_event) sur l'objet `window`. Vous devez abonner l'argument `callback` à ces événements, et renvoyer une fonction qui fait le désabonnement correspondant :
 
 ```js
 function subscribe(callback) {
@@ -191,8 +192,7 @@ function subscribe(callback) {
 }
 ```
 
-Now React knows how to read the value from the external `navigator.onLine` API and how to subscribe to its changes. Disconnect your device from the network and notice that the component re-renders in response:
-
+À présent React sait comment lire cette valeur depuis l'API extérieure `navigation.onLine`, et comment s'abonner pour être au courant de ses changements.  Déconnectez votre appareil du réseau et remarquez que le composant réagit en se rafraîchissant :
 <Sandpack>
 
 ```js
@@ -200,7 +200,7 @@ import { useSyncExternalStore } from 'react';
 
 export default function ChatIndicator() {
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  return <h1>{isOnline ? '✅ Online' : '❌ Disconnected'}</h1>;
+  return <h1>{isOnline ? '✅ En ligne' : '❌ Déconnecté'}</h1>;
 }
 
 function getSnapshot() {
@@ -221,11 +221,11 @@ function subscribe(callback) {
 
 ---
 
-### Extracting the logic to a custom Hook {/*extracting-the-logic-to-a-custom-hook*/}
+### Extraire la logique dans un Hook personnalisé {/*extracting-the-logic-to-a-custom-hook*/}
 
-Usually you won't write `useSyncExternalStore` directly in your components. Instead, you'll typically call it from your own custom Hook. This lets you use the same external store from different components.
+En temps normal vous n'appellerez pas `useSyncExternalStore` directement dans vos composants.  Vous l'enroberez généralement plutôt dans votre propre Hook personnalisé.  Ça vous permet d'utiliser la même source de données extérieure depuis plusieurs composants.
 
-For example, this custom `useOnlineStatus` Hook tracks whether the network is online:
+Par exemple, ce Hook personnalisé `useOnlineStatus` surveille l'état connecté ou non du réseau :
 
 ```js {3,6}
 import { useSyncExternalStore } from 'react';
@@ -244,7 +244,7 @@ function subscribe(callback) {
 }
 ```
 
-Now different components can call `useOnlineStatus` without repeating the underlying implementation:
+Grâce à ça, plusieurs composants distincts peuvent utiliser `useOnlineStatus` sans avoir à répéter l'implémentation sous-jacente :
 
 <Sandpack>
 
@@ -253,19 +253,19 @@ import { useOnlineStatus } from './useOnlineStatus.js';
 
 function StatusBar() {
   const isOnline = useOnlineStatus();
-  return <h1>{isOnline ? '✅ Online' : '❌ Disconnected'}</h1>;
+  return <h1>{isOnline ? '✅ En ligne' : '❌ Déconnecté'}</h1>;
 }
 
 function SaveButton() {
   const isOnline = useOnlineStatus();
 
   function handleSaveClick() {
-    console.log('✅ Progress saved');
+    console.log('✅ Progression enregistrée');
   }
 
   return (
     <button disabled={!isOnline} onClick={handleSaveClick}>
-      {isOnline ? 'Save progress' : 'Reconnecting...'}
+      {isOnline ? 'Enregistrer la progression' : 'Reconnexion...'}
     </button>
   );
 }
@@ -306,14 +306,14 @@ function subscribe(callback) {
 
 ---
 
-### Adding support for server rendering {/*adding-support-for-server-rendering*/}
+### Prendre en charge le rendu côté serveur {/*adding-support-for-server-rendering*/}
 
-If your React app uses [server rendering,](/reference/react-dom/server) your React components will also run outside the browser environment to generate the initial HTML. This creates a few challenges when connecting to an external store:
+Si votre appli React utilise le [rendu côté serveur](/reference/react-dom/server), vos composants React seront aussi exécutés hors d'un environnement navigateur pour générer le HTML initial.  Ça complexifie un peu la connexion à la source de données extérieure :
 
-- If you're connecting to a browser-only API, it won't work because it does not exist on the server.
-- If you're connecting to a third-party data store, you'll need its data to match between the server and client.
+* Si vous vous connectez à une API strictement navigateur, ça ne marchera pas car elle n'existera pas, par définition, côté serveur.
+* Si vous vous connectez à une source de données tierce, vous aurez besoin que ses données correspondent côté serveur et côté client.
 
-To solve these issues, pass a `getServerSnapshot` function as the third argument to `useSyncExternalStore`:
+Pour pouvoir résoudre ces problématiques, passez une fonction `getServerSnapshot` comme troisième argument à `useSyncExternalStore` :
 
 ```js {4,12-14}
 import { useSyncExternalStore } from 'react';
@@ -328,7 +328,7 @@ function getSnapshot() {
 }
 
 function getServerSnapshot() {
-  return true; // Always show "Online" for server-generated HTML
+  return true; // Toujours dire « En ligne » pour le HTML généré côté serveur
 }
 
 function subscribe(callback) {
@@ -336,60 +336,62 @@ function subscribe(callback) {
 }
 ```
 
-The `getServerSnapshot` function is similar to `getSnapshot`, but it runs only in two situations:
+La fonction `getServerSnapshot` est similaire à `getSnapshot`, mais elle n'est exécutée que dans deux cas :
 
-- It runs on the server when generating the HTML.
-- It runs on the client during [hydration](/reference/react-dom/client/hydrateRoot), i.e. when React takes the server HTML and makes it interactive.
+* Côté serveur pour générer le HTML.
+* Côté client lors de [l'hydratation](/reference/react-dom/client/hydrateRoot), c'est-à-dire lorsque React reprend la main sur le HTML renvoyé par le serveur pour le rendre interactif.
 
-This lets you provide the initial snapshot value which will be used before the app becomes interactive. If there is no meaningful initial value for the server rendering, omit this argument to [force rendering on the client.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content)
+Ça vous permet de fournir une valeur initiale de l'instantané que vous pourrez utiliser avant que l'appli devienne interactive.  Si vous n'avez pas de valeur initiale pertinente à fournir lors du rendu côté serveur, omettez cet argument pour [forcer le rendu côté client](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content).
 
 <Note>
 
-Make sure that `getServerSnapshot` returns the same exact data on the initial client render as it returned on the server. For example, if `getServerSnapshot` returned some prepopulated store content on the server, you need to transfer this content to the client. One way to do this is to emit a `<script>` tag during server rendering that sets a global like `window.MY_STORE_DATA`, and read from that global on the client in `getServerSnapshot`. Your external store should provide instructions on how to do that.
+Assurez-vous que `getServerSnapshot` renvoie exactement la même valeur lors du rendu client initial et lors du rendu côté serveur.  Par exemple, si `getServerSnapshot` renvoie un contenu prérempli de la source de données côté serveur, vous devez transférer ce contenu au client.  Une façon d'y parvenir consiste à émettre une balise `<script>` pendant le rendu côté serveur qui définit une globale du genre `window.MY_STORE_DATA`, puis de lire cette globale côté client au sein de `getServerSnapshot`. Votre source de donneés extérieure documente probablement comment faire ça.
 
 </Note>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Dépannage {/*troubleshooting*/}
 
-### I'm getting an error: "The result of `getSnapshot` should be cached" {/*im-getting-an-error-the-result-of-getsnapshot-should-be-cached*/}
+### Je reçois une erreur : “The result of `getSnapshot` should be cached” {/*im-getting-an-error-the-result-of-getsnapshot-should-be-cached*/}
 
-This error means your `getSnapshot` function returns a new object every time it's called, for example:
+*(« Le résultat de `getSnapshot` devrait être mis en cache », NdT.)*
+
+Cette erreur signifie que la fonction `getSnapshot` renvoie un nouvel objet à chaque fois qu'on l'appelle :
 
 ```js {2-5}
 function getSnapshot() {
-  // 🔴 Do not return always different objects from getSnapshot
+  // 🔴 Ne renvoyez pas un nouvel objet à chaque fois depuis getSnapshot
   return {
     todos: myStore.todos
   };
 }
 ```
 
-React will re-render the component if `getSnapshot` return value is different from the last time. This is why, if you always return a different value, you will enter an infinite loop and get this error.
+React refera le rendu du composant si la valeur renvoyée par `getSnapshot` diffère de celle du dernier appel. C'est pourquoi, si vous renvoyez à chaque fois une nouvelle valeur, vous aboutirez à un cycle infini de rendus et obtiendrez cette erreur.
 
-Your `getSnapshot` object should only return a different object if something has actually changed. If your store contains immutable data, you can return that data directly:
+Votre fonction `getSnapshot` ne devrait renvoyer un objet différent que si quelque chose a vraiment changé.  Si votre source de données contient des données immuables, vous pouvez les renvoyer directement :
 
 ```js {2-3}
 function getSnapshot() {
-  // ✅ You can return immutable data
+  // ✅ Vous pouvez renvoyer directement des données immuables
   return myStore.todos;
 }
 ```
 
-If your store data is mutable, your `getSnapshot` function should return an immutable snapshot of it. This means it *does* need to create new objects, but it shouldn't do this for every single call. Instead, it should store the last calculated snapshot, and return the same snapshot as the last time if the data in the store has not changed. How you determine whether mutable data has changed depends on your mutable store.
+Si les données de votre source sont modifiables, votre fonction `getSnapshot` devrait en renvoyer un instantané immuable.  Ça implique en effet qu'elle *doive* créer de nouveaux objets, mais pas à chaque appel.  Elle devrait plutôt stocker le dernier instantané produit, et renvoyer ce même instantané jusqu'à ce que la donnée à la source ait changé.  Les détails de détection de ce changement varient selon la source exploitée.
 
 ---
 
-### My `subscribe` function gets called after every re-render {/*my-subscribe-function-gets-called-after-every-re-render*/}
+### Ma fonction `subscribe` est appelée après chaque rendu {/*my-subscribe-function-gets-called-after-every-re-render*/}
 
-This `subscribe` function is defined *inside* a component so it is different on every re-render:
+La fonction `subscribe` est définie *au sein* du composant, du coup elle diffère à chaque rendu :
 
 ```js {4-7}
 function ChatIndicator() {
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
-  // 🚩 Always a different function, so React will resubscribe on every re-render
+
+  // 🚩 Toujours une fonction différente, donc React se réabonne à chaque rendu
   function subscribe() {
     // ...
   }
@@ -397,8 +399,8 @@ function ChatIndicator() {
   // ...
 }
 ```
-  
-React will resubscribe to your store if you pass a different `subscribe` function between re-renders. If this causes performance issues and you'd like to avoid resubscribing, move the `subscribe` function outside:
+
+React se réabonnera à votre source de données dès que vous passez une fonction `subscribe` différente d'un rendu à l'autre.  Si ça nuit aux performances et que vous souhaitez éviter un réabonnement, sortez la fonction `subscribe` du composant :
 
 ```js {6-9}
 function ChatIndicator() {
@@ -406,19 +408,19 @@ function ChatIndicator() {
   // ...
 }
 
-// ✅ Always the same function, so React won't need to resubscribe
+// ✅ Toujours la même fonction, donc React ne se réabonne pas
 function subscribe() {
   // ...
 }
 ```
 
-Alternatively, wrap `subscribe` into [`useCallback`](/reference/react/useCallback) to only resubscribe when some argument changes:
+Vous pouvez aussi enrober `subscribe` dans un appel à [`useCallback`](/reference/react/useCallback) pour ne vous réabonner que lorsqu'une dépendance change :
 
 ```js {4-8}
 function ChatIndicator({ userId }) {
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
-  // ✅ Same function as long as userId doesn't change
+
+  // ✅ Même fonction tant que userId ne change pas
   const subscribe = useCallback(() => {
     // ...
   }, [userId]);
