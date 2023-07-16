@@ -4,7 +4,7 @@ title: useReducer
 
 <Intro>
 
-`useReducer` is a React Hook that lets you add a [reducer](/learn/extracting-state-logic-into-a-reducer) to your component.
+`useReducer` est un Hook React qui vous permet d'ajouter un [réducteur](/learn/extracting-state-logic-into-a-reducer) à votre composant.
 
 ```js
 const [state, dispatch] = useReducer(reducer, initialArg, init?)
@@ -16,7 +16,7 @@ const [state, dispatch] = useReducer(reducer, initialArg, init?)
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `useReducer(reducer, initialArg, init?)` {/*usereducer*/}
 
@@ -36,20 +36,20 @@ function MyComponent() {
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Paramètres {/*parameters*/}
 
 * `reducer`: The reducer function that specifies how the state gets updated. It must be pure, should take the state and action as arguments, and should return the next state. State and action can be of any types. 
 * `initialArg`: The value from which the initial state is calculated. It can be a value of any type. How the initial state is calculated from it depends on the next `init` argument.
 * **optional** `init`: The initializer function that should return the initial state. If it's not specified, the initial state is set to `initialArg`. Otherwise, the initial state is set to the result of calling `init(initialArg)`.
 
-#### Returns {/*returns*/}
+#### Valeur renvoyée {/*returns*/}
 
 `useReducer` returns an array with exactly two values:
 
 1. The current state. During the first render, it's set to `init(initialArg)` or `initialArg` (if there's no `init`).
 2. The [`dispatch` function](#dispatch) that lets you update the state to a different value and trigger a re-render.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
 * `useReducer` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
 * In Strict Mode, React will **call your reducer and initializer twice** in order to [help you find accidental impurities.](#my-reducer-or-initializer-function-runs-twice) This is development-only behavior and does not affect production. If your reducer and initializer are pure (as they should be), this should not affect your logic. The result from one of the calls is ignored.
@@ -70,15 +70,15 @@ function handleClick() {
 
 React will set the next state to the result of calling the `reducer` function you've provided with the current `state` and the action you've passed to `dispatch`.
 
-#### Parameters {/*dispatch-parameters*/}
+#### Paramètres {/*dispatch-parameters*/}
 
 * `action`: The action performed by the user. It can be a value of any type. By convention, an action is usually an object with a `type` property identifying it and, optionally, other properties with additional information.
 
-#### Returns {/*dispatch-returns*/}
+#### Valeur renvoyée {/*dispatch-returns*/}
 
 `dispatch` functions do not have a return value.
 
-#### Caveats {/*setstate-caveats*/}
+#### Limitations {/*setstate-caveats*/}
 
 * The `dispatch` function **only updates the state variable for the *next* render**. If you read the state variable after calling the `dispatch` function, [you will still get the old value](#ive-dispatched-an-action-but-logging-gives-me-the-old-state-value) that was on the screen before your call.
 
