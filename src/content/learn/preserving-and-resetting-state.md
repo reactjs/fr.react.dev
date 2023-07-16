@@ -10,10 +10,10 @@ L'état est isolé entre les composants. React garde en mémoire quel état appa
 
 <YouWillLearn>
 
-* Comment React « voit » les structures des composants.
-* Quand React choisit de préserver ou de réinitialiser l'état.
-* Comment forcer React à réinitialiser l'état d'un composant.
-* Comment les clés et les types affectent la préservation de l'état.
+* Comment React « voit » les structures des composants
+* Quand React choisit de préserver ou de réinitialiser l'état
+* Comment forcer React à réinitialiser l'état d'un composant
+* Comment les clés et les types déterminent si l'état est préservé ou non
 
 </YouWillLearn>
 
@@ -21,13 +21,13 @@ L'état est isolé entre les composants. React garde en mémoire quel état appa
 
 Les navigateurs utilisent différentes structures arborescentes pour modéliser l'UI. Le [DOM](https://developer.mozilla.org/fr/docs/Web/API/Document_Object_Model/Introduction) représente les éléments HTML, le [CSSOM](https://developer.mozilla.org/fr/docs/Web/API/CSS_Object_Model) fait la même chose pour le CSS. Il existe même un [arbre d'accessibilité](https://developer.mozilla.org/fr/docs/Glossary/Accessibility_tree) !
 
-React utilise également des structures arborescentes pour gérer et modéliser l'UI que vous faites. React crée des **arbres d'UI** à partir de votre JSX. Ensuite, React DOM met à jour les éléments du DOM du navigateur pour qu'ils correspondent à cet arbre de l'UI (React Native retranscrit ces arbres en composants spécifiques aux plateformes mobiles).
+React utilise également des structures arborescentes pour gérer et modéliser l'UI que vous réalisez. React crée des **arbres d'UI** à partir de votre JSX. Ensuite, React DOM met à jour les éléments DOM du navigateur pour qu'ils correspondent à cet arbre de l'UI (React Native retranscrit ces arbres en composants spécifiques aux plateformes mobiles).
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagramme avec trois sections réparties horizontalement. Dans la première section, il y a trois rectangles empilés verticalement, appelés 'Component A', 'Component B' et 'Component C'. La transition vers le volet suivant est faite par une flèche avec le logo React au-dessus et appelée 'React'. La section du milieu contient un arbre de composants dont la racine est appelée 'A', avec deux enfants 'B' et 'C'. La section suivante est à nouveau transposée en utilisant une flèche avec le logo 'React' au dessus. La troisième et dernière section est une représentation schématisée d'un navigateur contenant un arbre de 8 nœuds, dont seul un sous-ensemble est surligné (indiquant le sous-arbre de la section du milieu).">
+<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagramme avec trois sections réparties horizontalement. Dans la première section, il y a trois rectangles empilés verticalement, appelés « Composant A », « Composant B » et « Composant C ». La transition vers le volet suivant est faite par une flèche avec le logo React au-dessus et appelée « React ». La section du milieu contient un arbre de composants dont la racine est appelée « A », avec deux enfants « B » et « C ». La section suivante est à nouveau atteinte en utilisant une flèche avec le logo « React » au-dessus. La troisième et dernière section est une représentation schématisée d'un navigateur contenant un arbre de 8 nœuds, dont seul un sous-ensemble est surligné (indiquant le sous-arbre de la section du milieu).">
 
-À partir des composants, React créé un arbre d'UI que React DOM utilise pour faire le rendu du DOM.
+À partir des composants, React crée un arbre d'UI que React DOM utilise pour faire le rendu du DOM.
 
 </Diagram>
 
@@ -101,7 +101,7 @@ label {
 
 </Sandpack>
 
-Voici comment les visualiser dans un arbre :
+Voici comment les visualiser sous forme d'arbre :
 
 <DiagramGroup>
 
@@ -113,11 +113,11 @@ L'arbre de React
 
 </DiagramGroup>
 
-**Il s'agit de deux compteurs distincts car chacun d'eux est rendu sur sa propre position dans l'arbre.** Généralement, vous n'avez pas besoin de penser à ces positions pour utiliser React, mais il peut être utile de savoir comment ça fonctionne.
+**Il s'agit de deux compteurs distincts car chacun d'eux a sa propre position dans l'arbre.** Généralement, vous n'avez pas besoin de penser à ces positions pour utiliser React, mais il peut être utile de comprendre comment ça fonctionne.
 
-Dans React, chaque composant à l'écran a son propre état complétement isolé. Par exemple, si vous faites le rendu de deux composants `Counter` l'un à côté de l'autre, chacun d'eux aura ses propres variables d'état indépendantes de `score` et d'`hover`.
+Dans React, chaque composant à l'écran a son propre état complétement isolé. Par exemple, si vous affichez deux composants `Counter` l'un à côté de l'autre, chacun d'eux aura ses propres variables d'état indépendantes de `score` et d'`hover`.
 
-Cliquez sur chaque compteur et voyez comment ils n'affectent pas l'autre :
+Cliquez sur chaque compteur et constatez qu'ils ne s'affectent pas l'un l'autre :
 
 <Sandpack>
 
@@ -182,14 +182,14 @@ Comme vous pouvez le voir, quand un compteur est mis à jour, seul l'état de ce
 
 <Diagram name="preserving_state_increment" height={248} width={441} alt="Diagramme avec un arbre de composants React. Le nœud racine est appelé 'div' et a deux enfants. L'enfant à gauche est appelé 'Counter' et contient un bulle d'état appelée 'count' ayant une valeur à 0. L'enfant à droite est appelé 'Counter' et contient une bulle d'état appelée 'count' avec une valeur à 1. La bulle d'état de l'enfant à droite est surlignée en jaune afin d'indiquer que sa valeur a été mise à jour.">
 
-Mise à jour de l'état
+Mise à jour de l’état
 
 </Diagram>
 
 </DiagramGroup>
 
 
-React conservera l'état tant que vous ferez le rendu du même composant à la même position. Pour le voir, incrémentez les deux compteurs, puis supprimez le deuxième composant en décochant « Afficher le deuxième compteur », en enfin remettez-le en cochant à nouveau la case :
+React conservera l'état tant que vous afficherez le même composant à la même position. Pour vous en rendre compte, incrémentez les deux compteurs, puis supprimez le deuxième composant en décochant « Afficher le deuxième compteur », et enfin remettez-le en cochant à nouveau la case :
 
 <Sandpack>
 
@@ -263,13 +263,13 @@ label {
 
 </Sandpack>
 
-Remarquez qu'au moment où vous arrêtez le rendu du deuxième compteur son état disparaît complétement. Lorsque React supprime un composant, il supprime également son état.
+Remarquez qu'au moment où vous cessez d'afficher le deuxième compteur, son état disparaît complètement. Lorsque React supprime un composant, il supprime également son état.
 
 <DiagramGroup>
 
 <Diagram name="preserving_state_remove_component" height={253} width={422} alt="Diagramme avec un arbre de composants React. Le nœud racine est appelé 'div' et a deux enfants. L'enfant à gauche est appelé 'Counter' et contient une bulle d'état appelée 'count' avec une valeur à 0. L'enfant à droite est manquant, et à sa place est affichée une image avec des étincelles indiquant qu'il a été supprimé de l'arbre.">
 
-Supprimer un composant
+Suppression d’un composant
 
 </Diagram>
 
@@ -281,17 +281,17 @@ Lorsque vous cochez « Afficher le deuxième compteur », un deuxième `Counte
  
 <Diagram name="preserving_state_add_component" height={258} width={500} alt="Diagramme d'un arbre de composants React. Le nœud racine est appelé 'div' et a deux enfants. L'enfant à gauche est appelé 'Counter' et contient une bulle d'état appelée 'count' avec une valeur à 0. L'enfant à droite est appelé 'Counter' et contient une bulle d'état 'count' valant 0. Tout le nœud de l'enfant à droite est surligné en jaune, indiquant qu'il vient juste d'être ajouté à l'arbre.">
 
-Ajout d'un composant
+Ajout d’un composant
 
 </Diagram>
 
 </DiagramGroup>
 
-**React préserve l'état d'un composant tant qu'il est affiché sur sa position dans l'arbre de l'UI.** S'il est supprimé, ou si un composant différent est affiché sur la même position, alors React se débarrasse de son état.
+**React préserve l'état d'un composant tant qu'il est affiché à sa position dans l'arbre de l'UI.** S'il est supprimé, ou si un composant différent est affiché à la même position, alors React se débarrasse de son état.
 
 ## Le même composant à la même position préserve son état {/*same-component-at-the-same-position-preserves-state*/}
 
-Dans cet exemple, il y a deux balises différentes `<Counter />` :
+Dans cet exemple, il y a deux balises `<Counter />` différentes :
 
 <Sandpack>
 
@@ -376,24 +376,24 @@ label {
 
 </Sandpack>
 
-Quand vous cocher ou décochez la case, l'état du compteur n'est pas réinitialisé. Que `isFancy` soit à `true` ou à `false`, vous avez toujours un `<Counter />` comme premier enfant du `div` renvoyé par le composant racine `App` :
+Quand vous cochez ou décochez la case, l'état du compteur n'est pas réinitialisé. Que `isFancy` soit à `true` ou à `false`, vous avez toujours un `<Counter />` comme premier enfant du `div` renvoyé par le composant racine `App` :
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_same_component" height={461} width={600} alt="Diagramme avec deux sections séparées par une flèche allant de l'une à l'autre. Chaque section affiche une structure de composants avec un parent appelé 'App', contenant une bulle d'état appelée 'isFancy'. Ce composant a un enfant appelé 'div', qui amène à une bulle de prop contenent 'isFancy' (qui est affichée en violet) qui est donnée plus bas à l'enfant unique. Le dernier enfant est appelé 'Counter' et contient une bulle d'état appelée 'count' dont la valeur est à 3 dans les deux diagrammes. Dans la section de gauche du diagramme, il n'y a rien de surligné et la valeur de l'état 'isFancy' du parent est à false. Dans la section de droite, la valeur de l'état 'isFancy' a été changée à true, et est surlignée en jaune, de la même façon que la bulle plus bas, qui a aussi sa valeur 'isFancy' à true.">
+<Diagram name="preserving_state_same_component" height={461} width={600} alt="Diagramme avec deux sections séparées par une flèche allant de l'une à l'autre. Chaque section affiche une structure de composants avec un parent appelé 'App', contenant une bulle d'état appelée 'isFancy'. Ce composant a un enfant appelé 'div', qui amène à une bulle de prop contenant 'isFancy' (qui est affichée en violet), laquelle est donnée plus bas à l'enfant unique. Le dernier enfant est appelé 'Counter' et contient une bulle d'état appelée 'count' dont la valeur est à 3 dans les deux diagrammes. Dans la section de gauche du diagramme, il n'y a rien de surligné et la valeur de l'état 'isFancy' du parent est à false. Dans la section de droite, la valeur de l'état 'isFancy' a été changée à true, et est surlignée en jaune, de la même façon que la bulle plus bas, qui a aussi sa valeur 'isFancy' à true.">
 
-Mettre à jour l'état de `App` ne remet pas à jour le `Counter` parce que ce dernier reste sur la même position
+Mettre à jour l’état de `App` ne remet pas à jour le `Counter` parce que ce dernier reste à la même position
 
 </Diagram>
 
 </DiagramGroup>
 
 
-C'est le même composant sur la même position, donc du point de vue de React, il s'agit du même compteur.
+C'est le même composant à la même position, donc du point de vue de React, il s'agit du même compteur.
 
 <Pitfall>
 
-Souvenez-vous qu'**il s'agit de la position dans l'arbre de l'UI — et non dans le JSX — qui importe à React** ! Ce composant a deux clauses `return` avec des balises JSX différentes de `<Counter />` à l'intérieur et l'extérieur du `if` :
+Souvenez-vous que **c'est la position dans l'arbre de l'UI — et non dans le JSX — qui importe à React** ! Ce composant a deux clauses `return` avec des balises JSX différentes de `<Counter />` à l'intérieur et l'extérieur du `if` :
 
 <Sandpack>
 
@@ -491,15 +491,15 @@ label {
 
 </Sandpack>
 
-Vous pourriez supposer que l'état se mette à jour quand vous cochez la case, mais ce n'est pas le cas ! Ça s'explique par le fait que **les deux balises `<Counter />` sont affichées à la même position**. React ne sait pas où vous placez les conditions dans votre fonction. Tout ce qu'il « voit » c'est l'arbre qui est renvoyé.
+Vous pourriez supposer que l'état est réinitialisé quand vous cochez la case, mais ce n'est pas le cas ! C'est parce que **les deux balises `<Counter />` sont affichées à la même position**. React ne sait pas où vous placez les conditions dans votre fonction. Tout ce qu'il « voit » c'est l'arbre qui est renvoyé.
 
-Dans les deux cas, le composant `App` renvoie un `<div>` avec un `<Counter />` comme premier enfant. Pour React, ces deux compteurs ont la même « adresse » : le premier enfant du premier enfant de la racine. C'est ainsi que React les associe entre le rendu précédent et le suivant, peu importe la façon dont vous structurez votre logique.
+Dans les deux cas, le composant `App` renvoie un `<div>` avec un `<Counter />` comme premier enfant. Pour React, ces deux compteurs ont la même « adresse » : le premier enfant du premier enfant de la racine. C'est ainsi que React les associe d'un rendu à l'autre, peu importe la façon dont vous structurez votre logique.
 
 </Pitfall>
 
 ## Des composants différents à la même position réinitialisent l'état {/*different-components-at-the-same-position-reset-state*/}
 
-Dans cet exemple, cliquez sur la case remplacera `<Counter>` par un `<p>`:
+Dans cet exemple, cliquer sur la case remplacera `<Counter>` par un `<p>` :
 
 <Sandpack>
 
@@ -576,7 +576,7 @@ label {
 
 </Sandpack>
 
-Vous échangez ici deux types de composants _différents_ sur la même position. À l'origine, le premier enfant du `<div>` contenait un `Counter`. Ensuite, comme vous l'avez échangé avec un `p`, React a supprimé le `Counter` de l'UI et détruit son état.
+Vous basculez ici entre deux types de composants _différents_ à la même position. À l'origine, le premier enfant du `<div>` contenait un `Counter`. Ensuite, comme vous l'avez échangé avec un `p`, React a supprimé le `Counter` de l'UI et détruit son état.
 
 <DiagramGroup>
 
@@ -687,7 +687,7 @@ label {
 
 </Sandpack>
 
-L'état du compteur se réinitialise quand vous cliquez sur la case. Bien que vous fassiez le rendu d'un `Counter`, le premier enfant du `div` passe d'un `div` à une `section`. Lorsque l'enfant `div` a été retiré du DOM, tout l'arbre en dessous de lui (ce qui inclut le `Counter` et son état) a également été détruit.
+L'état du compteur se réinitialise quand vous cliquez sur la case. Bien que vous affichiez un `Counter`, le premier enfant du `div` passe d'un `div` à une `section`. Lorsque l'enfant `div` a été retiré du DOM, tout l'arbre en dessous de lui (ce qui inclut le `Counter` et son état) a également été détruit.
 
 <DiagramGroup>
 
@@ -709,7 +709,7 @@ En revenant en arrière, le `div` est supprimé et la nouvelle `section` est ajo
 
 </DiagramGroup>
 
-De manière générale, **si vous voulez préserver l'état entre les rendus, la structure de votre arbre doit « se ressembler »** d'un rendu à l'autre. Si la structure est différente, l'état sera détruit car React détruit l'état quand il enlève un composant de l'arbre.
+De manière générale, **si vous voulez préserver l'état entre les rendus, la structure de votre arbre doit « correspondre »** d'un rendu à l'autre. Si la structure est différente, l'état sera détruit car React détruit l'état quand il enlève un composant de l'arbre.
 
 <Pitfall>
 
@@ -750,13 +750,13 @@ export default function MyComponent() {
 </Sandpack>
 
 
-Chaque fois que vous appuyez sur le bouton, l'état du champ de saisie disparaît ! C'est parce qu'une fonction `MyTextField` *différente* est créé à chaque rendu de `MyComponent`. Comme vous faites le rendu d'un composant *différent* à la même position, React réinitialise tout l'état en-dessous. Ça amène des bugs et des problèmes de performances. Pour éviter ce problème, **déclarez toujours les fonctions de composants au niveau le plus haut, et n'imbriquez pas leurs définitions**.
+Chaque fois que vous appuyez sur le bouton, l'état du champ de saisie disparaît ! C'est parce qu'une fonction `MyTextField` *différente* est créée à chaque rendu de `MyComponent`. Puisque vous affichez composant *différent* à la même position, React réinitialise tout l'état en dessous. Ça cause des bugs et des problèmes de performances. Pour éviter ce problème, **déclarez toujours les fonctions de composants au niveau racine, et n'imbriquez pas leurs définitions**.
 
 </Pitfall>
 
-## Réinitialiser l'état sur la même position {/*resetting-state-at-the-same-position*/}
+## Réinitialiser l'état à la même position {/*resetting-state-at-the-same-position*/}
 
-Par défaut, React préserve l'état d'un composant tant que celui-ci conserve sa position. Généralement, c'est exactement ce que vous voulez, c'est donc logique qu'il s'agisse du comportement par défaut. Cependant, il peut arriver que vous vouliez réinitialiser l'état d'un composant. Regardez cette appli qui permet à deux joueurs de conserver leur score pendant leur tour :
+Par défaut, React préserve l'état d'un composant tant que celui-ci conserve sa position. Généralement, c'est exactement ce que vous voulez, c'est donc logique qu'il s'agisse du comportement par défaut. Cependant, il peut arriver que vous vouliez réinitialiser l'état d'un composant. Regardez cette appli qui permet à deux joueurs de surveiller leur score pendant leur tour :
 
 <Sandpack>
 
@@ -828,17 +828,17 @@ h1 {
 
 Pour le moment, le score est conservé quand vous changez de joueur. Les deux `Counter` apparaissent à la même position, donc React les voit comme *le même* `Counter` dont la prop `person` a changé.
 
-Conceptuellement, dans cette appli, ils doivent être considérés comme deux compteurs distincts. Ils doivent apparaître à la même place dans l'UI, mais l'un est pour Clara, l'autre pour Sarah.
+Conceptuellement, dans cette appli, ils doivent être considérés comme deux compteurs distincts. Ils apparaissent certes à la même place dans l'UI, mais l'un est pour Clara, l'autre pour Sarah.
 
 Il y a deux façons de réinitialiser l'état lorsqu'on passe de l'un à l'autre :
 
-1. Faire le rendu des composants dans deux positions différentes.
+1. Afficher les composants à deux positions différentes.
 2. Donner explicitement à chaque composant une identité avec `key`.
 
 
-### Option 1 : faire le rendu d'un composant à différentes positions {/*option-1-rendering-a-component-in-different-positions*/}
+### Option 1 : changer la position du composant {/*option-1-rendering-a-component-in-different-positions*/}
 
-Si vous souhaitez rendre ces deux `Counter` indépendants, vous pouvez faire leur rendu dans deux positions différentes :
+Si vous souhaitez rendre ces deux `Counter` indépendants, vous pouvez les afficher à deux positions différentes :
 
 <Sandpack>
 
@@ -920,15 +920,15 @@ h1 {
 
 </Diagram>
 
-<Diagram name="preserving_state_diff_position_p2" height={375} width={504} alt="Diagramme d'un arbre de composants React. Le parent est appelé 'Scoreboard' avec une bulle d'état appelée isPlayerA qui vaut 'false'. La bulle d'état est surlignée en jaune, indiquant qu'elle a changé. L'enfant à gauche est remplacé par une image avec des étincelles, indiquant qu'il a été supprimé, et il y a désormais un nouvel enfant à droite, surligné en jaune indiquant qu'il a été ajouté. Le nouvel enfant est appelée 'Counter' et contient une bulle d'état appelée 'count' avec une valeur à 0.">
+<Diagram name="preserving_state_diff_position_p2" height={375} width={504} alt="Diagramme d'un arbre de composants React. Le parent est appelé 'Scoreboard' avec une bulle d'état appelée isPlayerA qui vaut 'false'. La bulle d'état est surlignée en jaune, indiquant qu'elle a changé. L'enfant à gauche est remplacé par une image avec des étincelles, indiquant qu'il a été supprimé, et il y a désormais un nouvel enfant à droite, surligné en jaune indiquant qu'il a été ajouté. Le nouvel enfant est appelé 'Counter' et contient une bulle d'état appelée 'count' avec une valeur à 0.">
 
-Appuyer sur « Joueur suivant »
+Appui sur « Joueur suivant »
 
 </Diagram>
 
 <Diagram name="preserving_state_diff_position_p3" height={375} width={504} alt=" Un diagramme d'un arbre de composants React. Le parent est appelé 'Scoreboard' avec une bulle d'état appelée isPlayerA qui vaut 'true'. La bulle d'état est surlignée en jaune, indiquant qu'elle a changé. Il y a un nouvel enfant à gauche, surligné en jaune pour indiquer qu'il a été ajouté. Ce nouvel enfant est appelé 'Counter' et contient une bulle d'état appelée 'count' avec une valeur à 0. L'enfant à droite est remplacé par une image avec des étincelles, indiquant qu'il a été supprimé.">
 
-Appuyer à nouveau sur « Joueur suivant »
+Nouvel appui sur « Joueur suivant »
 
 </Diagram>
 
@@ -936,15 +936,15 @@ Appuyer à nouveau sur « Joueur suivant »
 
 Chaque état de `Counter` est supprimé dès que ce dernier est retiré du DOM. C'est pour ça qu'il est réinitialisé à chaque fois que vous appuyez sur le bouton.
 
-Cette solution est pratique quand vous n'avez qu'un petit nombre de composants indépendants à afficher à la même place. Dans cet exemple, vous n'en avez que deux, ce n'est donc pas compliqué de faire leurs rendus séparément dans le JSX.
+Cette solution est pratique quand vous n'avez qu'un petit nombre de composants indépendants à afficher à la même position dans l'arbre. Dans cet exemple, vous n'en avez que deux, ce n'est donc pas compliqué de faire leurs rendus séparément dans le JSX.
 
 ### Option 2 : réinitialiser l'état avec une clé {/*option-2-resetting-state-with-a-key*/}
 
 Il existe une méthode plus générique pour réinitialiser l'état d'un composant.
 
-Vous avez peut-être déjà vu les `key` lors du [rendu des listes](/learn/rendering-lists#keeping-list-items-in-order-with-key). Ces clés ne sont pas réservées aux listes ! Vous pouvez les utiliser pour aider React à faire la distinction entre les composants. Par défaut, React utilise l'ordre dans un parent (« premier compteur », « deuxième compteur ») pour différencier les composants. Toutefois, les clés vous permettent de dire à React qu'il ne s'agit pas simplement d'un *premier* compteur ou d'un *deuxième* compteur, mais plutôt un compteur spécifique — par exemple le compteur de *Clara*. De cette façon, React reconnaitra le compteur de *Clara* où qu'il apparaisse dans l'arbre.
+Vous avez peut-être déjà vu les `key` lors de [l'affichage des listes](/learn/rendering-lists#keeping-list-items-in-order-with-key). Ces clés ne sont pas réservées aux listes ! Vous pouvez les utiliser pour aider React à faire la distinction entre n'importe quels composants. Par défaut, React utilise l'ordre dans un parent (« premier compteur », « deuxième compteur ») pour différencier les composants. Les clés vous permettent de dire à React qu'il ne s'agit pas simplement d'un *premier* compteur ou d'un *deuxième* compteur, mais plutôt un compteur spécifique — par exemple le compteur de *Clara*. De cette façon, React reconnaîtra le compteur de *Clara* où qu'il apparaisse dans l'arbre.
 
-Dans cet exemple, les deux `<Counter />` ne partagent pas leur état, bien qu'ils apparaissent à la même place dans le JSX :
+Dans cet exemple, les deux `<Counter />` ne partagent pas leur état, bien qu'ils apparaissent à la même position dans le JSX :
 
 <Sandpack>
 
@@ -1014,7 +1014,7 @@ h1 {
 
 </Sandpack>
 
-Remplacer Clara par Sarah ne préverse pas l'état. C'est parce que **vous leur avez donné des `key` différentes :**
+Remplacer Clara par Sarah ne préserve pas l'état. C'est parce que **vous leur avez donné des `key` différentes :**
 
 ```js
 {isPlayerA ? (
@@ -1024,7 +1024,7 @@ Remplacer Clara par Sarah ne préverse pas l'état. C'est parce que **vous leur 
 )}
 ```
 
-Le fait de spécifier une `key` indique à React de l'utiliser également comme élément de position, plutôt que son ordre au sein du parent. Ainsi, même si vous faites le rendu à la même position dans le JSX, React les voit comme deux compteurs distincts qui ne partageront jamais leur état. À chaque fois qu'un compteur apparaît à l'écran, son état est créé. À chaque fois qu'il est supprimé, son état est supprimé. Passer de l'un à l'autre réinitialise leur état, et ainsi de suite.
+Le fait de spécifier une `key` indique à React de l'utiliser également comme élément de position, plutôt que son ordre au sein du parent. Ainsi, même si vous faites le rendu à la même position dans le JSX, React les voit comme deux compteurs distincts qui ne partageront jamais leur état. À chaque fois qu'un compteur apparaît à l'écran, son état est créé. À chaque fois qu'il est supprimé, son état est supprimé. Passer de l'un à l'autre réinitialise leur état, encore et encore.
 
 <Note>
 
@@ -1034,7 +1034,7 @@ Retenez que les clés ne sont pas uniques au niveau global. Elles spécifient un
 
 ### Réinitialiser un formulaire avec une clé {/*resetting-a-form-with-a-key*/}
 
-Réinitialiser un état avec une clé est particulièrement utile quand on manipule des formulaires.
+Réinitialiser un état avec une clé s'avère particulièrement utile quand on manipule des formulaires.
 
 Dans cette appli de discussions, le composant `<Chat>` contient l'état du champ de saisie :
 
@@ -1131,7 +1131,7 @@ textarea {
 
 </Sandpack>
 
-Essayez de saisir quelque chose dans le champ, puis appuyez sur « Alice » ou « Bob » pour choisir un destinataire différent. Vous noterez que le champ de saisie est conservé parce que le `<Chat>` est rendu à la même position dans l'arbre.
+Essayez de saisir quelque chose dans le champ, puis appuyez sur « Alice » ou « Bob » pour choisir un destinataire différent. Vous noterez que le champ de saisie est conservé parce que le `<Chat>` est affiché à la même position dans l'arbre.
 
 **Dans beaucoup d'applis, c'est le comportement désiré, mais pas dans cette appli de discussion !** Vous ne souhaitez pas qu'un utilisateur envoie un message qu'il a déjà tapé à la mauvaise personne à la suite d'un clic malencontreux. Pour corriger ça, ajoutez une `key` :
 
@@ -1252,9 +1252,9 @@ Quelle que soit votre stratégie, une discussion _avec Alice_ est conceptuelleme
 
 <Recap>
 
-- React conserve l'état tant que le même composant est rendu à la même position.
+- React conserve l'état tant que le même composant est affiché à la même position.
 - L'état n'est pas conservé dans les balises JSX. Il est associé à la position dans l'arbre où vous placez ce JSX.
-- Vous pouvez forcer un sous-arbre à réinitialiser son état en donnant une clé différente.
+- Vous pouvez forcer un sous-arbre à réinitialiser son état en lui donnant une clé différente.
 - N'imbriquez pas les définitions de composants ou vous allez accidentellement réinitialiser leur état.
 
 </Recap>
@@ -1263,9 +1263,9 @@ Quelle que soit votre stratégie, une discussion _avec Alice_ est conceptuelleme
 
 <Challenges>
 
-#### Corriger une saisie qui disparait {/*fix-disappearing-input-text*/}
+#### Corriger une saisie qui disparaît {/*fix-disappearing-input-text*/}
 
-Cet exemple montre un message quand vous appuyez sur le bouton. Cependant, appuyer sur ce bouton vide aussi le champ de saisie. Pourquoi ça arrive ? Corrigez ça pour que le champ de saisie ne se vide pas quand on appuie sur le bouton.
+Cet exemple affiche un message quand vous appuyez sur le bouton. Cependant, appuyer sur ce bouton vide aussi le champ de saisie par accident. Pourquoi ? Corrigez ça pour que le champ de saisie ne se vide pas quand on appuie sur le bouton.
 
 <Sandpack>
 
@@ -1314,9 +1314,9 @@ textarea { display: block; margin: 10px 0; }
 
 <Solution>
 
-Le problème est lié au fait que le `Form` est rendu à des positions différentes. Dans la branche du `if`, c'est le second enfant du `<div>`, mais c'est le premier enfant dans la branche `else`. De fait, le type du composant sur chaque position change. Dans un cas, la première position reçoit un `p` puis un `Form`, alors que le second cas, elle reçoit un `Form` puis un `bouton`. React réinitialise l'état à chaque fois que le type du composant change.
+Le problème vient de ce que le `Form` est affiché à des positions différentes. Dans la branche du `if`, c'est le second enfant du `<div>`, mais c'est le premier enfant dans la branche `else`. Du coup, le type du composant à chaque position change. Dans un cas, la première position reçoit un `p` puis un `Form`, alors que dans l'autre cas, elle reçoit un `Form` puis un `button`. React réinitialise l'état à chaque fois que le type du composant change.
 
-La solution la plus simple est de réunir les branches de façon à ce que `Form` soit toujours rendu à la même position :
+La solution la plus simple consiste à réunir les branches de façon à ce que `Form` soit toujours affiché à la même position :
 
 <Sandpack>
 
@@ -1410,15 +1410,15 @@ textarea { display: block; margin: 10px 0; }
 
 </Sandpack>
 
-De cette façon, `Form` est toujours le second enfant, il conserve donc sa position et garde son état. Cette approche est moins intuitive et introduit un risque si quelqu'un vient à supprimer ce `null`.
+De cette façon, `Form` est toujours le second enfant, il conserve donc sa position et garde son état. Cette approche est toutefois moins intuitive et introduit le risque que quelqu'un vienne supprimer ce `null`.
 
 </Solution>
 
 #### Échanger deux champs du formulaire {/*swap-two-form-fields*/}
 
-Ce formulaire vous permet de saisir le prénom et le nom. Il y a également une case à coche contrôlant le champ qui vient en premier. Si vous cochez la case, le champ « nom » apparaît avant le champ « prénom ».
+Ce formulaire vous permet de saisir le prénom et le nom. Il y a également une case à cocher contrôlant quel champ vient en premier. Si vous cochez la case, le champ « nom » apparaît avant le champ « prénom ».
 
-Ça fonctionne presque, mais il y a un bug. Si vous remplissez le « prénom » puis cochez la case, le texte restera dans le premier champ (qui est désormais « nom »). Corrigez ça pour que le champ de texte se déplace *aussi* quand vous changez l'ordre.
+Ça fonctionne presque, mais il y a un bug. Si vous remplissez le « prénom » puis cochez la case, le texte restera dans le premier champ (qui est désormais « nom »). Corrigez ça pour que le texte du champ se déplace *aussi* quand vous changez l'ordre.
 
 <Hint>
 
@@ -1550,7 +1550,7 @@ label { display: block; margin: 10px 0; }
 
 #### Réinitialiser un formulaire de détails {/*reset-a-detail-form*/}
 
-C'est une liste modifiable de contacts. Vous pouvez éditer les détails du contact sélectionné, puis soit cliquer sur « Enregistrer » pour les mettre à jour, soit « Annuler » pour annuler vos modifications.
+Voici une liste modifiable de contacts. Vous pouvez modifier les détails du contact sélectionné, puis cliquer soit sur « Enregistrer » pour les mettre à jour, soit sur « Annuler » pour annuler vos modifications.
 
 Lorsque vous choisissez un contact différent (par exemple Alice), l'état se met à jour mais le formulaire conserve les détails du contact précédent. Corrigez ça afin que le formulaire se réinitialise lorsque le contact sélectionné change.
 
@@ -1704,7 +1704,7 @@ button {
 
 <Solution>
 
-Donnez `key={selectedId}` au composant `EditContact`. De cette façon, changer de contact réinitialisera le formulaire :
+Ajoutez `key={selectedId}` au composant `EditContact`. De cette façon, changer de contact réinitialisera le formulaire :
 
 <Sandpack>
 
@@ -1888,7 +1888,7 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleClick}>
-        Suivant
+        Suivante
       </button>
       <h3>
         Image {index + 1} sur {images.length}
@@ -1933,7 +1933,7 @@ img { width: 150px; height: 150px; }
 
 <Solution>
 
-Vous pouvez fournir une `key` à la balise `<img>`. Lorsque cette `key`change, React recréera de zéro le nœud DOM `<img>`. Ça causera un bref flash lorsque chaque image se charge, ce n'est donc pas quelque chose de souhaitable pour chaque image de votre appli. Cependant, ça a un intérêt si vous voulez garandir que l'image corresponde effectivement au texte.
+Vous pouvez fournir une `key` à la balise `<img>`. Lorsque cette `key`change, React recréera de zéro le nœud DOM `<img>`. Ça causera un bref flash lorsque chaque image se chargera, ce n'est donc pas quelque chose de souhaitable pour chaque image de votre appli. Cependant, ça a un intérêt si vous voulez garantir que l'image corresponde effectivement au texte.
 
 <Sandpack>
 
@@ -1956,7 +1956,7 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleClick}>
-        Suivant
+        Suivante
       </button>
       <h3>
         Image {index + 1} sur {images.length}
@@ -2001,11 +2001,11 @@ img { width: 150px; height: 150px; }
 
 </Solution>
 
-#### Corrigez un état mal placé dans la liste {/*fix-misplaced-state-in-the-list*/}
+#### Corriger un état mal placé dans la liste {/*fix-misplaced-state-in-the-list*/}
 
-Dans cette liste, chaque `Contact` a un état qui détermine si son bouton « Voir l'e-mail » correspondant a été appuyé. Appuyez sur « Voir l'e-mail » d'Alice, puis cochez la case « Afficher dans l'ordre inverse ». Vous constaterez que c'est l'e-mail de _Clara_ qui est désormais déplié, alors que celui d'Alice — qui a été déplacé en bas de liste — apparait replié.
+Dans cette liste, chaque `Contact` a un état qui détermine si son bouton « Voir l'e-mail » a été appuyé. Appuyez sur « Voir l'e-mail » pour Alice, puis cochez la case « Afficher dans l'ordre inverse ». Vous constaterez que c'est l'e-mail de _Clara_ qui est désormais déplié, alors que celui d'Alice — qui a été déplacée en bas de liste — apparait replié.
 
-Corrigez ça afin que l'état déplié soit associé à chaque contact, quelque soit l'ordre d'affichage choisi.
+Corrigez ça afin que l'état déplié soit associé à chaque contact, quel que soit l'ordre d'affichage choisi.
 
 <Sandpack>
 
@@ -2031,7 +2031,7 @@ export default function ContactList() {
             setReverse(e.target.checked)
           }}
         />{' '}
-        Afficher dans l'ordre inverse
+        Afficher dans l’ordre inverse
       </label>
       <ul>
         {displayedContacts.map((contact, i) =>
@@ -2065,7 +2065,7 @@ export default function Contact({ contact }) {
       <button onClick={() => {
         setExpanded(!expanded);
       }}>
-        {expanded ? 'Cacher' : 'Afficher'} l'e-mail
+        {expanded ? 'Cacher' : 'Afficher'} l’e-mail
       </button>
     </>
   );
@@ -2095,7 +2095,7 @@ button {
 
 <Solution>
 
-Le problème de cet exemple c'est qu'il utilisait l'index en tant que `key` :
+Le problème de cet exemple, c'est qu'il utilisait l'index en tant que `key` :
 
 ```js
 {displayedContacts.map((contact, i) =>
@@ -2130,7 +2130,7 @@ export default function ContactList() {
             setReverse(e.target.checked)
           }}
         />{' '}
-        Afficher dans l'ordre inverse
+        Afficher dans l’ordre inverse
       </label>
       <ul>
         {displayedContacts.map(contact =>
@@ -2164,7 +2164,7 @@ export default function Contact({ contact }) {
       <button onClick={() => {
         setExpanded(!expanded);
       }}>
-        {expanded ? 'Cacher' : 'Afficher'} l'e-mail
+        {expanded ? 'Cacher' : 'Afficher'} l’e-mail
       </button>
     </>
   );
