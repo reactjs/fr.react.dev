@@ -36,7 +36,7 @@ import { hydrate } from 'react-dom';
 hydrate(reactNode, domNode);
 ```
 
-React s'attachera au HTML existant au sein de `domNode`, et prendra en main la gestion du fragment DOM concerné.  Une appli intégralement construite avec reaxt n'aura généralement besoin que d'un appel `hydrate`, sur son composant racine.
+React s'attachera au HTML existant au sein de `domNode`, et prendra en main la gestion du fragment DOM concerné.  Une appli intégralement construite avec React n'aura généralement besoin que d'un appel à `hydrate`, pour son composant racine.
 
 [Voir d'autres exemples ci-dessous](#usage).
 
@@ -46,7 +46,7 @@ React s'attachera au HTML existant au sein de `domNode`, et prendra en main la g
 
 * `domNode` : un [élément DOM](https://developer.mozilla.org/docs/Web/API/Element) que le serveur a utilisé comme élément racine dans son rendu.
 
-* `callback` **optionnel** : une fonction. Si elle est passée, React l'appellera après que le composant a été hydraté.
+* `callback` **optionnel** : une fonction. Si elle est passée, React l'appellera immédiatement après que le composant a été hydraté.
 
 #### Valeur renvoyée {/*returns*/}
 
@@ -57,7 +57,7 @@ React s'attachera au HTML existant au sein de `domNode`, et prendra en main la g
 * `hydrate`  s'attend à ce que le contenu produit soit identique à celui du rendu côté serveur.  React peut colmater les différences de contenu textuel, mais tout écart doit être vu comme un bug et corrigé.
 * En mode développement, React vous avertira de tout écart de correspondance durant l'hydratation.  Vous n'avez aucune garantie que les différences d'attributs seront résolues.  C'est important pour des raisons de performances parce que dans la plupart des applis, les écarts sont rares, aussi valider tout le balisage serait d'une lourdeur prohibitive.
 * Vous n'aurez sans doute besoin que d'un appel à `hydrate` dans votre appli.  Si vous utilisez un framework, il le fera peut-être pour vous.
-* Si votre appli est entièrement côté client, sans HTML déjà généré par le serveur, appeler `hydrate()` n'est pas autorisé. Utilisez plutôt [render()](/reference/react-dom/render) (pour React 17 et antérieur) ou [createRoot()](/reference/react-dom/client/createRoot) (pour React 18+).
+* Si votre appli est entièrement côté client, sans HTML déjà généré par le serveur, appeler `hydrate()` n'est pas autorisé. Utilisez plutôt [`render()`](/reference/react-dom/render) (pour React 17 et antérieur) ou [`createRoot()`](/reference/react-dom/client/createRoot) (pour React 18+).
 
 ---
 
@@ -111,7 +111,7 @@ Pour en savoir plus sur l'hydratation, consultez la documentation d'[`hydrateRoo
 
 ---
 
-### Supprimer les incohérences d'hydratation incontournables {/*suppressing-unavoidable-hydration-mismatch-errors*/}
+### Ignorer les incohérences d'hydratation incontournables {/*suppressing-unavoidable-hydration-mismatch-errors*/}
 
 Si un attribut ou contenu textuel d'un seul élément est forcément différent entre le serveur et le client (par exemple, un horodatage), vous pouvez réduire au silence l'avertissement d'écart à l'hydratation.
 
@@ -147,7 +147,7 @@ export default function App() {
 
 </Sandpack>
 
-Ça ne marche qu'à un niveau de profondeur, et c'est vraiment à voir comme une échappatoire.  N'en abusez pas.  À moins qu'il ne s'agisse de contenu textuel, Reaxt n'essaiera tout de même pas de corriger le tir, ça peut donc rester incohérent jusqu'à des mises à jour ultérieures.
+Ça ne marche qu'à un niveau de profondeur, et c'est vraiment à voir comme une échappatoire.  N'en abusez pas.  À moins qu'il ne s'agisse de contenu textuel, React n'essaiera toujours pas de corriger le tir, ça peut donc rester incohérent jusqu'à des mises à jour ultérieures.
 
 ---
 
@@ -162,7 +162,7 @@ Si vous cherchez explicitement à produire un contenu différent sur le serveur 
   Le contenu HTML au sein de <div id="root">...</div>
   a été généré à partir de App par react-dom/server.
 -->
-<div id="root"><h1>Is Server</h1></div>
+<div id="root"><h1>Côté serveur</h1></div>
 ```
 
 ```js index.js
