@@ -46,7 +46,7 @@ React s'attachera au HTML existant au sein de `domNode`, et prendra en main la g
 
 * `domNode` : un [élément DOM](https://developer.mozilla.org/docs/Web/API/Element) que le serveur a utilisé comme élément racine dans son rendu.
 
-* `callback` **optionnel** : une fonction. Si elle est passée, React l'appellera immédiatement après que le composant a été hydraté.
+* `callback` **optionnel** : une fonction. Si elle est passée, React l'appellera immédiatement après que le composant aura été hydraté.
 
 #### Valeur renvoyée {/*returns*/}
 
