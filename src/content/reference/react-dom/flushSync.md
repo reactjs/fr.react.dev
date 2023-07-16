@@ -10,7 +10,7 @@ Le recours à `flushSync` est rare et peut nuire aux performances de votre appli
 
 <Intro>
 
-`flushSync` vous permet de forcer React à traiter toutes les mises à jour d'état figurant dans sa fonction de rappel immédiatement, de façon synchrone.  Elle garantit que le DOM est mis à jour immédiatement.
+`flushSync` vous permet de forcer React à traiter toutes les mises à jour d'état figurant dans sa fonction de rappel immédiatement, de façon synchrone.  Elle garantit que le DOM est ensuite mis à jour immédiatement.
 
 ```js
 flushSync(callback)
@@ -52,7 +52,7 @@ La plupart du temps, vous devriez éviter `flushSync`. Ne l'utilisez qu'en derni
 
 * `flushSync` peut nuire fortement aux performances. Ne l'utilisez qu'avec parcimonie.
 * `flushSync` peut forcer des périmètres Suspense en attente à afficher leur contenu de secours.
-* `flushSync` peut exécuter des effets en attente et d'appliquer leurs mises à jour d'état de façon synchrone avant de terminer.
+* `flushSync` peut exécuter des effets en attente et appliquer leurs mises à jour d'état de façon synchrone avant de terminer.
 * `flushSync` peut traiter des mises à jour d'état en attente demandées hors de la fonction de rappel si celles-ci sont nécessaires aux mises à jour demandées dans la fonction de rappel. Par exemple, si certaines mises à jour sont en attente suite à un clic, React risque de devoir les traiter avant de traiter celles issues de la fonction de rappel.
 
 ---
@@ -72,7 +72,7 @@ flushSync(() => {
 
 Ça garantit qu'en atteignant la prochaine ligne de code, React aura déjà mis à jour le DOM.
 
-**Il est rare de recourir à `flushSync`, et ça nuit souvent fortement aux performances de votre apli.**  Si votre appli n'utilise que des API React et n'intègre pas de bibliothèques tierces, il ne devrait y avoir aucune raison d'utiliser `flushSync`.
+**Il est rare de recourir à `flushSync`, et ça nuit souvent fortement aux performances de votre appli.**  Si votre appli n'utilise que des API React et n'intègre pas de bibliothèques tierces, il ne devrait y avoir aucune raison d'utiliser `flushSync`.
 
 Ceci dit, ça peut être utile quand vous intégrez du code tiers, tel que des API navigateur.
 
