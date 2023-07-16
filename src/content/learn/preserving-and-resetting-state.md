@@ -105,7 +105,7 @@ Voici comment les visualiser sous forme d'arbre :
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_tree" height={248} width={395} alt="Diagramme d'un arbre de composants React. Le nœud racine est appelé 'div' et a deux enfants. Chacun d'eux est appelé 'Counter' et contient une bulle d'état appelée 'count' dont la valeur est à 0.">
+<Diagram name="preserving_state_tree" height={248} width={395} alt="Diagramme d'un arbre de composants React. Le nœud racine est appelé « div » et a deux enfants. Chacun d'eux est appelé « Counter » et contient une bulle d'état appelée « count » dont la valeur est à 0.">
 
 L'arbre de React
 
@@ -180,7 +180,7 @@ Comme vous pouvez le voir, quand un compteur est mis à jour, seul l'état de ce
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_increment" height={248} width={441} alt="Diagramme avec un arbre de composants React. Le nœud racine est appelé 'div' et a deux enfants. L'enfant à gauche est appelé 'Counter' et contient un bulle d'état appelée 'count' ayant une valeur à 0. L'enfant à droite est appelé 'Counter' et contient une bulle d'état appelée 'count' avec une valeur à 1. La bulle d'état de l'enfant à droite est surlignée en jaune afin d'indiquer que sa valeur a été mise à jour.">
+<Diagram name="preserving_state_increment" height={248} width={441} alt="Diagramme avec un arbre de composants React. Le nœud racine est appelé « div » et a deux enfants. L'enfant à gauche est appelé « Counter » et contient un bulle d'état appelée « count » ayant une valeur à 0. L'enfant à droite est appelé « Counter » et contient une bulle d'état appelée « count » avec une valeur à 1. La bulle d'état de l'enfant à droite est surlignée en jaune afin d'indiquer que sa valeur a été mise à jour.">
 
 Mise à jour de l’état
 
@@ -267,7 +267,7 @@ Remarquez qu'au moment où vous cessez d'afficher le deuxième compteur, son ét
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_remove_component" height={253} width={422} alt="Diagramme avec un arbre de composants React. Le nœud racine est appelé 'div' et a deux enfants. L'enfant à gauche est appelé 'Counter' et contient une bulle d'état appelée 'count' avec une valeur à 0. L'enfant à droite est manquant, et à sa place est affichée une image avec des étincelles indiquant qu'il a été supprimé de l'arbre.">
+<Diagram name="preserving_state_remove_component" height={253} width={422} alt="Diagramme avec un arbre de composants React. Le nœud racine est appelé « div » et a deux enfants. L'enfant à gauche est appelé « Counter » et contient une bulle d'état appelée « count » avec une valeur à 0. L'enfant à droite est manquant, et à sa place est affichée une image avec des étincelles indiquant qu'il a été supprimé de l'arbre.">
 
 Suppression d’un composant
 
@@ -279,7 +279,7 @@ Lorsque vous cochez « Afficher le deuxième compteur », un deuxième `Counte
 
 <DiagramGroup>
  
-<Diagram name="preserving_state_add_component" height={258} width={500} alt="Diagramme d'un arbre de composants React. Le nœud racine est appelé 'div' et a deux enfants. L'enfant à gauche est appelé 'Counter' et contient une bulle d'état appelée 'count' avec une valeur à 0. L'enfant à droite est appelé 'Counter' et contient une bulle d'état 'count' valant 0. Tout le nœud de l'enfant à droite est surligné en jaune, indiquant qu'il vient juste d'être ajouté à l'arbre.">
+<Diagram name="preserving_state_add_component" height={258} width={500} alt="Diagramme d'un arbre de composants React. Le nœud racine est appelé « div » et a deux enfants. L'enfant à gauche est appelé « Counter » et contient une bulle d'état appelée « count » avec une valeur à 0. L'enfant à droite est appelé « Counter » et contient une bulle d'état « count » valant 0. Tout le nœud de l'enfant à droite est surligné en jaune, indiquant qu'il vient juste d'être ajouté à l'arbre.">
 
 Ajout d’un composant
 
@@ -380,7 +380,7 @@ Quand vous cochez ou décochez la case, l'état du compteur n'est pas réinitial
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_same_component" height={461} width={600} alt="Diagramme avec deux sections séparées par une flèche allant de l'une à l'autre. Chaque section affiche une structure de composants avec un parent appelé 'App', contenant une bulle d'état appelée 'isFancy'. Ce composant a un enfant appelé 'div', qui amène à une bulle de prop contenant 'isFancy' (qui est affichée en violet), laquelle est donnée plus bas à l'enfant unique. Le dernier enfant est appelé 'Counter' et contient une bulle d'état appelée 'count' dont la valeur est à 3 dans les deux diagrammes. Dans la section de gauche du diagramme, il n'y a rien de surligné et la valeur de l'état 'isFancy' du parent est à false. Dans la section de droite, la valeur de l'état 'isFancy' a été changée à true, et est surlignée en jaune, de la même façon que la bulle plus bas, qui a aussi sa valeur 'isFancy' à true.">
+<Diagram name="preserving_state_same_component" height={461} width={600} alt="Diagramme avec deux sections séparées par une flèche allant de l'une à l'autre. Chaque section affiche une structure de composants avec un parent appelé « App », contenant une bulle d'état appelée « isFancy ». Ce composant a un enfant appelé « div », qui amène à une bulle de prop contenant « isFancy » (qui est affichée en violet), laquelle est donnée plus bas à l'enfant unique. Le dernier enfant est appelé « Counter » et contient une bulle d'état appelée « count » dont la valeur est à 3 dans les deux diagrammes. Dans la section de gauche du diagramme, il n'y a rien de surligné et la valeur de l'état « isFancy » du parent est à false. Dans la section de droite, la valeur de l'état « isFancy » a été changée à true, et est surlignée en jaune, de la même façon que la bulle plus bas, qui a aussi sa valeur « isFancy » à true.">
 
 Mettre à jour l’état de `App` ne remet pas à jour le `Counter` parce que ce dernier reste à la même position
 
@@ -580,7 +580,7 @@ Vous basculez ici entre deux types de composants _différents_ à la même posit
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_pt1" height={290} width={753} alt="Diagramme avec trois sections, avec une flèche allant d'une section à une autre. La première section contient un composant React appelé 'div' avec un seul enfant 'Counter' contenant une bulle d'état appelée 'count', avec une valeur à 3. La section du milieu a le même parent 'div', mais le composant enfant a maintenant été supprimé, indiqué par une image avec des étincelles. La troisième section a toujours le même parent 'div', mais avec un nouvel enfant appelé 'p', surligné en jaune.">
+<Diagram name="preserving_state_diff_pt1" height={290} width={753} alt="Diagramme avec trois sections, avec une flèche allant d'une section à une autre. La première section contient un composant React appelé « div » avec un seul enfant « Counter » contenant une bulle d'état appelée « count », avec une valeur à 3. La section du milieu a le même parent « div », mais le composant enfant a maintenant été supprimé, indiqué par une image avec des étincelles. La troisième section a toujours le même parent « div », mais avec un nouvel enfant appelé « p », surligné en jaune.">
 
 Quand `Counter` est changé en `p`, le `Counter` est supprimé et le `p` est ajouté
 
@@ -590,7 +590,7 @@ Quand `Counter` est changé en `p`, le `Counter` est supprimé et le `p` est ajo
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_pt2" height={290} width={753} alt="Diagramme avec trois sections, avec une flèche allant d'une section à une autre. La première section contient un composant React appelé 'p'. La section du milieu a le même parent 'div', mais le composant enfant a maintenant été supprimé, indiqué par une image avec des étincelles. La troisième section a toujours le même parent 'div', mais avec un nouvel enfant appelé 'Counter' contenant une bulle d'état 'count' de valeur 0, surligné en jaune.">
+<Diagram name="preserving_state_diff_pt2" height={290} width={753} alt="Diagramme avec trois sections, avec une flèche allant d'une section à une autre. La première section contient un composant React appelé « p ». La section du milieu a le même parent « div », mais le composant enfant a maintenant été supprimé, indiqué par une image avec des étincelles. La troisième section a toujours le même parent « div », mais avec un nouvel enfant appelé « Counter » contenant une bulle d'état « count » de valeur 0, surligné en jaune.">
 
 En revenant en arrière, le `p` est supprimé et le `Counter` est ajouté
 
@@ -691,7 +691,7 @@ L'état du compteur se réinitialise quand vous cliquez sur la case. Bien que vo
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagramme avec trois sections, avec une flèche allant d'une section à l'autre. La première section contient un composant React appelé 'div' avec un seul enfant appelé 'section', qui lui-même n'a qu'un seul enfant appelé 'Counter', qui dispose d'une bulle d'état appelé 'count' dont la valeur est à 3. La section du milieu a le même parent 'div', mais les composants enfants ont maintenant été supprimés, indiqué par une image avec des étincelles. La troisième section a toujours le même parent 'div', mais avec un nouvel enfant appelé 'div' surligné en jaune, ainsi qu'un nouvel enfant appelé 'Counter' contenant une bulle d'état appelée 'count' avec une valeur à 0, le tout surligné en jaune.">
+<Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagramme avec trois sections, avec une flèche allant d'une section à l'autre. La première section contient un composant React appelé « div » avec un seul enfant appelé « section », qui lui-même n'a qu'un seul enfant appelé « Counter », qui dispose d'une bulle d'état appelée « count » dont la valeur est à 3. La section du milieu a le même parent « div », mais les composants enfants ont maintenant été supprimés, indiqué par une image avec des étincelles. La troisième section a toujours le même parent « div », mais avec un nouvel enfant appelé « div » surligné en jaune, ainsi qu'un nouvel enfant appelé « Counter » contenant une bulle d'état appelée « count » avec une valeur à 0, le tout surligné en jaune.">
 
 Quand la `section` change pour un `div`, la `section` est supprimée est le nouveau `div` est ajouté
 
@@ -701,7 +701,7 @@ Quand la `section` change pour un `div`, la `section` est supprimée est le nouv
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_same_pt2" height={350} width={794} alt="Diagramme avec trois sections, avec une flèche allant d'une section à l'autre. La première section contient un composant React appelé 'div' avec un seul enfant appelé 'div', qui lui-même n'a qu'un seul enfant appelé 'Counter', qui dispose d'une bulle d'état appelé 'count' dont la valeur est à 0. La section du milieu a le même parent 'div', mais les composants enfants ont maintenant été supprimés, indiqué par une image avec des étincelles. La troisième section a toujours le même parent 'div', mais avec un nouvel enfant appelé 'section' surligné en jaune, ainsi qu'un nouvel enfant appelé 'Counter' contenant une bulle d'état appelée 'count' de valeur 0, le tout surligné en jaune.">
+<Diagram name="preserving_state_diff_same_pt2" height={350} width={794} alt="Diagramme avec trois sections, avec une flèche allant d'une section à l'autre. La première section contient un composant React appelé « div » avec un seul enfant appelé « div », qui lui-même n'a qu'un seul enfant appelé « Counter », qui dispose d'une bulle d'état appelé « count » dont la valeur est à 0. La section du milieu a le même parent « div », mais les composants enfants ont maintenant été supprimés, indiqué par une image avec des étincelles. La troisième section a toujours le même parent « div », mais avec un nouvel enfant appelé « section » surligné en jaune, ainsi qu'un nouvel enfant appelé « Counter » contenant une bulle d'état appelée « count » de valeur 0, le tout surligné en jaune.">
 
 En revenant en arrière, le `div` est supprimé et la nouvelle `section` est ajoutée
 
@@ -914,19 +914,19 @@ h1 {
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_position_p1" height={375} width={504} alt="Diagramme d'un arbre de composants React. Le parent est appelé 'Scoreboard' avec une bulle d'état appelée isPlayerA qui vaut 'true'. Le seul enfant, placé à gauche, est appelé Counter, avec une bulle d'état appelée 'count' dont la valeur est à 0. L'enfant à gauche est entièrement surligné en jaune, indiquant qu'il a été ajouté.">
+<Diagram name="preserving_state_diff_position_p1" height={375} width={504} alt="Diagramme d'un arbre de composants React. Le parent est appelé « Scoreboard » avec une bulle d'état appelée « isPlayerA » qui vaut true. Le seul enfant, placé à gauche, est appelé « Counter », avec une bulle d'état appelée « count » dont la valeur est à 0. L'enfant à gauche est entièrement surligné en jaune, indiquant qu'il a été ajouté.">
 
 État initial
 
 </Diagram>
 
-<Diagram name="preserving_state_diff_position_p2" height={375} width={504} alt="Diagramme d'un arbre de composants React. Le parent est appelé 'Scoreboard' avec une bulle d'état appelée isPlayerA qui vaut 'false'. La bulle d'état est surlignée en jaune, indiquant qu'elle a changé. L'enfant à gauche est remplacé par une image avec des étincelles, indiquant qu'il a été supprimé, et il y a désormais un nouvel enfant à droite, surligné en jaune indiquant qu'il a été ajouté. Le nouvel enfant est appelé 'Counter' et contient une bulle d'état appelée 'count' avec une valeur à 0.">
+<Diagram name="preserving_state_diff_position_p2" height={375} width={504} alt="Diagramme d'un arbre de composants React. Le parent est appelé « Scoreboard » avec une bulle d'état appelée « isPlayerA » qui vaut false. La bulle d'état est surlignée en jaune, indiquant qu'elle a changé. L'enfant à gauche est remplacé par une image avec des étincelles, indiquant qu'il a été supprimé, et il y a désormais un nouvel enfant à droite, surligné en jaune indiquant qu'il a été ajouté. Le nouvel enfant est appelé « Counter » et contient une bulle d'état appelée « count » avec une valeur à 0.">
 
 Appui sur « Joueur suivant »
 
 </Diagram>
 
-<Diagram name="preserving_state_diff_position_p3" height={375} width={504} alt=" Un diagramme d'un arbre de composants React. Le parent est appelé 'Scoreboard' avec une bulle d'état appelée isPlayerA qui vaut 'true'. La bulle d'état est surlignée en jaune, indiquant qu'elle a changé. Il y a un nouvel enfant à gauche, surligné en jaune pour indiquer qu'il a été ajouté. Ce nouvel enfant est appelé 'Counter' et contient une bulle d'état appelée 'count' avec une valeur à 0. L'enfant à droite est remplacé par une image avec des étincelles, indiquant qu'il a été supprimé.">
+<Diagram name="preserving_state_diff_position_p3" height={375} width={504} alt="Diagramme d'un arbre de composants React. Le parent est appelé « Scoreboard » avec une bulle d'état appelée « isPlayerA » qui vaut true. La bulle d'état est surlignée en jaune, indiquant qu'elle a changé. Il y a un nouvel enfant à gauche, surligné en jaune pour indiquer qu'il a été ajouté. Ce nouvel enfant est appelé « Counter » et contient une bulle d'état appelée « count » avec une valeur à 0. L'enfant à droite est remplacé par une image avec des étincelles, indiquant qu'il a été supprimé.">
 
 Nouvel appui sur « Joueur suivant »
 
@@ -1242,7 +1242,7 @@ textarea {
 
 Dans une véritable appli de discussion, vous souhaiterez probablement récupérer l'état de la saisie lorsque l'utilisateur resélectionne le destinataire précédent. Il existe plusieurs manières de garder « vivant » l'état d'un composant qui n'est plus visible :
 
-- Vous pouvez afficher _tous_ les chats plutôt que le seul chat actif, mais en masquant les autres avec du CSS. Les chats ne seraient pas supprimés de l'arbre, de sorte que leur état local serait préservé. Cette solution fonctionne très bien pour des UI simples. Cependant, ça peut devenir très lent si les arbres cachés sont grands et contiennent de nombreux nœuds DOM.
+- Vous pouvez afficher _toutes_ les discussions plutôt que seulement celle qui est active, mais en masquant les autres avec du CSS. Les discussions ne seraient pas supprimés de l'arbre, de sorte que leur état local serait préservé. Cette solution fonctionne très bien pour des UI simples. Cependant, ça peut devenir très lent si les arbres cachés sont grands et contiennent de nombreux nœuds DOM.
 - Vous pouvez [faire remonter l'état](/learn/sharing-state-between-components) et conserver dans le composant parent le message en attente pour chaque destinataire. De cette façon, le fait que les composants enfants soient supprimés importe peu car c'est le parent qui conserve les informations importantes. C'est la solution la plus courante.
 - Vous pouvez aussi utiliser une source différente en plus de l'état React. Par exemple, vous souhaitez sans doute qu'un brouillon du message persiste même si l'utilisateur ferme accidentellement la page. Pour implémenter ça, vous pouvez faire en sorte que le composant `Chat` intialise son état en lisant le [`localStorage`](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage) et y sauve également les brouillons.
 
@@ -1859,7 +1859,7 @@ button {
 
 #### Effacer une image au chargement {/*clear-an-image-while-its-loading*/}
 
-Lorsque vous appuyez sur « Suivant », le navigateur commence à charger l'image suivante. Cependant, comme elle est affichée dans la même balise `<img>`, l'image précédente reste toujours affichée par défaut jusqu'à ce que la suivante soit chargée. Ça peut être un problème s'il est important que le texte corresponde toujours à l'image. Changez ça afin que l'image précédente soit immédiatement effacée dès que vous appuyez sur « Suivant ».
+Lorsque vous appuyez sur « Suivante », le navigateur commence à charger l'image suivante. Cependant, comme elle est affichée dans la même balise `<img>`, l'image précédente reste toujours affichée par défaut jusqu'à ce que la suivante soit chargée. Ça peut être un problème s'il est important que le texte corresponde toujours à l'image. Changez ça afin que l'image précédente soit immédiatement effacée dès que vous appuyez sur « Suivante ».
 
 <Hint>
 
