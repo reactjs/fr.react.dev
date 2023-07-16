@@ -32,24 +32,24 @@ function TodosApp() {
 }
 ```
 
-Il renvoie un instantané de cette donnée issue de la source.  Vous devrez passer deux fonctions comme arguments :
+Il renvoie un instantané de cette donnée issue de la source.  Vous aurez besoin de passer deux fonctions comme arguments :
 
-1. La fonction `subscribe` est censé s'abonner à la source et renvoyer une fonction de désabonnement.
-2. La fonction `getSnapshot` est censée lire un instantanée de la donnée souhaitée au sein de la source.
+1. La fonction `subscribe` est censée s'abonner à la source et renvoyer une fonction de désabonnement.
+2. La fonction `getSnapshot` est censée lire un instantané de la donnée souhaitée au sein de la source.
 
 [Voir d'autres exemples ci-dessous](#usage).
 
 #### Paramètres {/*parameters*/}
 
-* `subscribe` : une fonction acceptant un unique argument `callback` argument qui s'abonne à la source de données. Lorsque la source évolue, elle est censée invoquer le `callback` fourni.  Ça permettra au composant de faire un nouveau rendu. La fonction `subscribe` est censée renvoyer une fonction qui procède au désabonnement associé.
+* `subscribe` : une fonction acceptant un unique argument `callback` qui s'abonne à la source de données. Lorsque la source évolue, elle est censée invoquer `callback`.  Ça permettra au composant de refaire un rendu. La fonction `subscribe` est censée renvoyer une fonction qui procède au désabonnement associé.
 
-* `getSnapshot` : une fonction qui renvoie un instantané de la donnée requise par le composant au sein de la source.  Tant que la source n'évolue pas, des appels répétés à `getSnapshot` sont censés renvoyés la même valeur. Si la source évolue et que la valeur renvoyée diffère soudain (en comparant à l'aide de [`Object.is`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React refait un rendu du composant.
+* `getSnapshot` : une fonction qui renvoie un instantané de la donnée requise par le composant au sein de la source.  Tant que la source n'évolue pas, des appels répétés à `getSnapshot` sont censés renvoyer la même valeur. Si la source évolue et que la valeur renvoyée diffère soudain (en comparant à l'aide de [`Object.is`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React refait un rendu du composant.
 
-* `getServerSnapshot` **optionnelle** : une fonction qui renvoie un premier instantané de la donnée au sein de la source.  Elle ne sera utilisée que pour le rendu côté serveur, et pendant la phase d'hydratation du contenu fourni par le serveur une fois côté client.  L'instantané serveur doit être identique qu'il soit exécuté côté serveur ou côté client, il est généralement séréalisé et passé du serveur au client. Si vous omettez cet argument, toute tentative de rendu côté serveur de votre composant lèvera une erreur.
+* `getServerSnapshot` **optionnelle** : une fonction qui renvoie un premier instantané de la donnée au sein de la source.  Elle ne sera utilisée que pour le rendu côté serveur, et pendant la phase d'hydratation du contenu fourni par le serveur une fois côté client.  L'instantané serveur doit être identique qu'il soit exécuté côté serveur ou côté client : il est donc généralement sérialisé et passé du serveur au client. Si vous omettez cet argument, toute tentative de rendu côté serveur de votre composant lèvera une erreur.
 
 #### Valeur renvoyée {/*returns*/}
 
-L'instantané actuel issu de la soruce, que vous pouvez utiliser pour votre logique de rendu.
+L'instantané actuel de la valeur issue de la source, que vous pouvez utiliser pour votre logique de rendu.
 
 #### Limitations {/*caveats*/}
 
@@ -80,10 +80,10 @@ function TodosApp() {
 }
 ```
 
-Elle renvoie un <CodeStep step={3}>instantané</CodeStep> de la données issue de la source.  Vous devrez passez deux fonctions comme arguments :
+Elle renvoie un <CodeStep step={3}>instantané</CodeStep> de la donnée issue de la source.  Vous devrez lui passer deux arguments fonctions :
 
-1. La fonction <CodeStep step={1}>`subscribe`</CodeStep> est censé s'abonner à la source et renvoyer une fonction de désabonnement.
-2. La fonction <CodeStep step={2}>`getSnapshot`</CodeStep> est censée lire un instantanée de la donnée souhaitée au sein de la source.
+1. La fonction <CodeStep step={1}>`subscribe`</CodeStep> est censée s'abonner à la source et renvoyer une fonction de désabonnement.
+2. La fonction <CodeStep step={2}>`getSnapshot`</CodeStep> est censée lire un instantané de la donnée souhaitée au sein de la source.
 
 React utilisera ces fonctions pour garder votre composant abonné à la source et refaire un rendu lorsque la donnée change.
 
@@ -115,9 +115,9 @@ export default function TodosApp() {
 // Voici un exemple de source de données tierce
 // que vous pourriez avoir besoin d'intégrer dans React.
 
-// Si votre appli est intégralement construite avec React,
-// nous vous recommandons de plutôt utiliser l'état local
-// React pour ça.
+// Si votre appli est intégralement construite avec
+// React, nous vous recommandons de plutôt utiliser
+// l'état local React pour ça.
 
 let nextId = 0;
 let todos = [{ id: nextId++, text: 'Tâche #1' }];
@@ -150,7 +150,7 @@ function emitChange() {
 
 <Note>
 
-Autant que possible, nous vous recommandons de plutôt utiliser l'état local React avec [`useState`](/reference/react/useState) et [`useReducer`](/reference/react/useReducer). L'API `useSyncExternalStore` est surtout utile pour vous intégrer avec du code existant non React.
+Autant que possible, nous vous recommandons de plutôt utiliser l'état local React avec [`useState`](/reference/react/useState) et [`useReducer`](/reference/react/useReducer). L'API `useSyncExternalStore` est surtout utile pour vous intégrer avec du code existant non basé sur React.
 
 </Note>
 
@@ -160,7 +160,7 @@ Autant que possible, nous vous recommandons de plutôt utiliser l'état local Re
 
 `useSyncExternalStore` est également bien utile pour vous abonner à une valeur exposée par le navigateur et susceptible de changer au fil du temps. Supposez par exemple que vous souhaitiez que votre composant affiche l'état actif ou non de la connexion réseau.  Le navigateur expose cette information au travers d'une propriété [`navigator.onLine`](https://developer.mozilla.org/docs/Web/API/Navigator/onLine).
 
-Cette valeur peut changer sans que React soit au courant, vous devriez donc la lire avec `useSyncExternalStore`.
+Cette valeur peut changer sans que React le sache, vous devriez donc la lire avec `useSyncExternalStore`.
 
 ```js
 import { useSyncExternalStore } from 'react';
@@ -179,7 +179,7 @@ function getSnapshot() {
 }
 ```
 
-Vous devez ensuite implémenter la fonction `subscribe`.  Il se trouve que lorsque `navigation.onLine` change, le navigateur déclenche soit l'événement [`online`](https://developer.mozilla.org/docs/Web/API/Window/online_event) soit l'événement [`offline`](https://developer.mozilla.org/docs/Web/API/Window/offline_event) sur l'objet `window`. Vous devez abonner l'argument `callback` à ces événements, et renvoyer une fonction qui fait le désabonnement correspondant :
+Vous devez ensuite implémenter la fonction `subscribe`.  Il se trouve que lorsque `navigation.onLine` change, le navigateur déclenche l'événement [`online`](https://developer.mozilla.org/docs/Web/API/Window/online_event) ou [`offline`](https://developer.mozilla.org/docs/Web/API/Window/offline_event) sur l'objet `window`. Vous devez abonner l'argument `callback` à ces événements, et renvoyer une fonction qui fait le désabonnement correspondant :
 
 ```js
 function subscribe(callback) {
@@ -244,7 +244,7 @@ function subscribe(callback) {
 }
 ```
 
-Avec ça, plusieurs composants distincts peuvent utiliser `useOnlineStatus` sans répéter l'implémentation sous-jacente :
+Grâce à ça, plusieurs composants distincts peuvent utiliser `useOnlineStatus` sans avoir à répéter l'implémentation sous-jacente :
 
 <Sandpack>
 
@@ -310,10 +310,10 @@ function subscribe(callback) {
 
 Si votre appli React utilise le [rendu côté serveur](/reference/react-dom/server), vos composants React seront aussi exécutés hors d'un environnement navigateur pour générer le HTML initial.  Ça complexifie un peu la connexion à la source de données extérieure :
 
-* Si vous vous connectez à une API strictement navigateur, ça ne marchera pas car elle n'existera pas côté serveur.
+* Si vous vous connectez à une API strictement navigateur, ça ne marchera pas car elle n'existera pas, par définition, côté serveur.
 * Si vous vous connectez à une source de données tierce, vous aurez besoin que ses données correspondent côté serveur et côté client.
 
-Pour résoudre ces questions, passez une fonction `getServerSnapshot` comme troisième argument à `useSyncExternalStore` :
+Pour pouvoir résoudre ces problématiques, passez une fonction `getServerSnapshot` comme troisième argument à `useSyncExternalStore` :
 
 ```js {4,12-14}
 import { useSyncExternalStore } from 'react';
@@ -336,16 +336,16 @@ function subscribe(callback) {
 }
 ```
 
-La fonction `getServerSnapshot` est similaire à `getSnapshot`, mais elle n'est exécutée que dans deux cas de figure :
+La fonction `getServerSnapshot` est similaire à `getSnapshot`, mais elle n'est exécutée que dans deux cas :
 
 * Côté serveur pour générer le HTML.
-* Côté client lors de [l'hydratation](/reference/react-dom/client/hydrateRoot), c'est-à-dire lorsque React prend le HTML renvoyé par le serveur et le rend interactif.
+* Côté client lors de [l'hydratation](/reference/react-dom/client/hydrateRoot), c'est-à-dire lorsque React reprend la main sur le HTML renvoyé par le serveur pour le rendre interactif.
 
 Ça vous permet de fournir une valeur initiale de l'instantané que vous pourrez utiliser avant que l'appli devienne interactive.  Si vous n'avez pas de valeur initiale pertinente à fournir lors du rendu côté serveur, omettez cet argument pour [forcer le rendu côté client](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content).
 
 <Note>
 
-Assurez-vous que `getServerSnapshot` renvoie exactement la même valeur lors du rendu client initial que côté serveur.  Par exemple, si `getServerSnapshot` renvoie un contenu prérempli del a source de données côté serveur, vous devez transférer ce contenu au client.  Une façon d'y parvenir consiste à émettre une balise `<script>` pendant le rendu côté serveur qui définit une globale du genre `window.MY_STORE_DATA`, puis de lire cette globale côté client au sein de `getServerSnapshot`. Votre source de donneés extérieure documente probablement comment faire ça.
+Assurez-vous que `getServerSnapshot` renvoie exactement la même valeur lors du rendu client initial et lors du rendu côté serveur.  Par exemple, si `getServerSnapshot` renvoie un contenu prérempli de la source de données côté serveur, vous devez transférer ce contenu au client.  Une façon d'y parvenir consiste à émettre une balise `<script>` pendant le rendu côté serveur qui définit une globale du genre `window.MY_STORE_DATA`, puis de lire cette globale côté client au sein de `getServerSnapshot`. Votre source de donneés extérieure documente probablement comment faire ça.
 
 </Note>
 
@@ -357,7 +357,7 @@ Assurez-vous que `getServerSnapshot` renvoie exactement la même valeur lors du 
 
 *(« Le résultat de `getSnapshot` devrait être mis en cache », NdT.)*
 
-Cette erreur signifie que la fonction `getSnapshot` renvoie un nouvel objet à chaque fois qu'on l'appelle, par exemple :
+Cette erreur signifie que la fonction `getSnapshot` renvoie un nouvel objet à chaque fois qu'on l'appelle :
 
 ```js {2-5}
 function getSnapshot() {
@@ -414,7 +414,7 @@ function subscribe() {
 }
 ```
 
-Vous pouvez aussi enrober `subscribe` dans [`useCallback`](/reference/react/useCallback) pour ne vous réabonner que lorsqu'une dépendance change :
+Vous pouvez aussi enrober `subscribe` dans un appel à [`useCallback`](/reference/react/useCallback) pour ne vous réabonner que lorsqu'une dépendance change :
 
 ```js {4-8}
 function ChatIndicator({ userId }) {
