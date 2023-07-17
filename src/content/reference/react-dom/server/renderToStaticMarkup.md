@@ -4,7 +4,7 @@ title: renderToStaticMarkup
 
 <Intro>
 
-`renderToStaticMarkup` renders a non-interactive React tree to an HTML string.
+`renderToStaticMarkup` produit le HTML non interactif d'un arbre React.
 
 ```js
 const html = renderToStaticMarkup(reactNode)
@@ -16,11 +16,11 @@ const html = renderToStaticMarkup(reactNode)
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `renderToStaticMarkup(reactNode)` {/*rendertostaticmarkup*/}
 
-On the server, call `renderToStaticMarkup` to render your app to HTML.
+Côté serveur, appelez `renderToStaticMarkup` pour produire le HTML de votre appli.
 
 ```js
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -28,50 +28,50 @@ import { renderToStaticMarkup } from 'react-dom/server';
 const html = renderToStaticMarkup(<Page />);
 ```
 
-It will produce non-interactive HTML output of your React components.
+Elle renverra le HTML non interactif de vos composants React.
 
-[See more examples below.](#usage)
+[Voir d'autres exemples ci-dessous](#usage).
 
-#### Parameters {/*parameters*/}
+#### Paramètres {/*parameters*/}
 
-* `reactNode`: A React node you want to render to HTML. For example, a JSX node like `<Page />`.
+* `reactNode` : un nœud React dont vous voulez obtenir le HTML. Ça pourrait par exemple être un nœud JSX tel que `<Page />`.
 
-#### Returns {/*returns*/}
+#### Valeur renvoyée {/*returns*/}
 
-An HTML string.
+Une chaîne de caractères HTML.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
-* `renderToStaticMarkup` output cannot be hydrated.
+* Le résultat de `renderToStaticMarkup` ne peut pas être hydraté.
 
-* `renderToStaticMarkup` has limited Suspense support. If a component suspends, `renderToStaticMarkup` immediately sends its fallback as HTML.
+* `renderToStaticMarkup` ne prend que partiellement en charge Suspense. Si un composant suspend, `renderToStaticMarkup` utilisera immédiatement le HTML de son contenu de secours.
 
-* `renderToStaticMarkup` works in the browser, but using it in the client code is not recommended. If you need to render a component to HTML in the browser, [get the HTML by rendering it into a DOM node.](/reference/react-dom/server/renderToString#removing-rendertostring-from-the-client-code)
+* `renderToStaticMarkup` fonctionne dans un navigateur, mais il est déconseillé de l'utiliser dans du code client. Si vous devez obtenir le HTML d'un composant dans un navigateur, [récupérez le HTML de son rendu dans un nœud DOM](/reference/react-dom/server/renderToString#removing-rendertostring-from-the-client-code).
 
 ---
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
-### Rendering a non-interactive React tree as HTML to a string {/*rendering-a-non-interactive-react-tree-as-html-to-a-string*/}
+### Produire le HTML non interactif d'un arbre React {/*rendering-a-non-interactive-react-tree-as-html-to-a-string*/}
 
-Call `renderToStaticMarkup` to render your app to an HTML string which you can send with your server response:
+Appelez `renderToStaticMarkup` pour produire le HTML de votre appli, que vous pourrez alors renvoyer dans votre réponse serveur :
 
 ```js {5-6}
 import { renderToStaticMarkup } from 'react-dom/server';
 
-// The route handler syntax depends on your backend framework
+// La syntaxe du gestionnaire de routes dépend de votre framework côté serveur
 app.use('/', (request, response) => {
   const html = renderToStaticMarkup(<Page />);
   response.send(html);
 });
 ```
 
-This will produce the initial non-interactive HTML output of your React components.
+Ça produira le HTML initial, non interactif, de vos composants React.
 
 <Pitfall>
 
-This method renders **non-interactive HTML that cannot be hydrated.**  This is useful if you want to use React as a simple static page generator, or if you're rendering completely static content like emails.
+Cette méthode produit **du HTML non interactif qui ne pourra pas être hydraté**.  C'est pratique si vous souhaitez utiliser React comme un simple générateur de pages statiques, ou si vous affichez des contenus totalement statiques tels que des e-mails.
 
-Interactive apps should use [`renderToString`](/reference/react-dom/server/renderToString) on the server and [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) on the client.
+Les applis interactives devraient plutôt utiliser [`renderToString`](/reference/react-dom/server/renderToString) côté serveur, couplé à [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) côté client.
 
 </Pitfall>
