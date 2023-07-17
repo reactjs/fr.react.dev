@@ -4,7 +4,7 @@ title: renderToStaticNodeStream
 
 <Intro>
 
-`renderToStaticNodeStream` fait le rendu non interactif d'un arbre React dans un [flux Node.js en lecture](https://nodejs.org/api/stream.html#readable-streams).
+`renderToStaticNodeStream` fait le rendu non interactif d'une arborescence React dans un [flux Node.js en lecture](https://nodejs.org/api/stream.html#readable-streams).
 
 ```js
 const stream = renderToStaticNodeStream(reactNode)
@@ -43,19 +43,19 @@ Un [flux Node.js en lecture](https://nodejs.org/api/stream.html#readable-streams
 
 #### Limitations {/*caveats*/}
 
-* Le résultat de `renderToStaticNodeStream`` ne peut pas être hydraté.
+* Le résultat de `renderToStaticNodeStream` ne peut pas être hydraté.
 
 * Cette méthode attendra que tous les [périmètres Suspense](/reference/react/Suspense) aboutissent avant de renvoyer quelque contenu que ce soit.
 
-* À partir de React 18, cette méthode mettra en tampon toute sa sortie, elle n'a donc pas à proprement parler les avantages du *streaming*.
+* À partir de React 18, cette méthode met en tampon toute sa sortie, elle n'a donc pas à proprement parler les avantages du *streaming*.
 
-* Le flux renvoyé est un flux d'octets encodés en UTF-8. Si vous avez besoin d'un flux avec un autre encodage, regardez les projets tels qu'[iconv-lite](https://www.npmjs.com/package/iconv-lite), qui fournissent des flux de transformation pour le transcodage de textes.
+* Le flux renvoyé est encodé en UTF-8. Si vous avez besoin d'un flux avec un autre encodage, regardez les projets tels qu'[iconv-lite](https://www.npmjs.com/package/iconv-lite), qui fournissent des flux de transformation pour le transcodage de textes.
 
 ---
 
 ## Utilisation {/*usage*/}
 
-### Faire le rendu d'un arbre React en HTML statique dans un flux Node.js en lecture {/*rendering-a-react-tree-as-static-html-to-a-nodejs-readable-stream*/}
+### Produire le HTML statique d'un arbre React dans un flux Node.js en lecture {/*rendering-a-react-tree-as-static-html-to-a-nodejs-readable-stream*/}
 
 Appelez `renderToStaticNodeStream` pour obtenir un [flux Node.js en lecture](https://nodejs.org/api/stream.html#readable-streams) que vous pourrez connecter *(pipe, NdT)* à votre réponse serveur :
 
