@@ -1,24 +1,24 @@
 ---
-title: Responding to Events
+title: Réagir aux événements
 ---
 
 <Intro>
 
-React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to interactions like clicking, hovering, focusing form inputs, and so on.
+React vous permet d’ajouter des *gestionnaires d’événements* à votre JSX. Les gestionnaires d’événements sont vos propres fonctions qui seront déclenchées en réponse aux interactions de l’utilisateur telles que des clics, survols, activations de champs de saisie de formulaires, etc.
 
 </Intro>
 
 <YouWillLearn>
 
-* Different ways to write an event handler
-* How to pass event handling logic from a parent component
-* How events propagate and how to stop them
+* Différentes façons d’écrire un gestionnaire d’événement
+* Comment passer la logique de gestion d’événement depuis un composant parent
+* Comment les événements se propagent et comment les arrêter
 
 </YouWillLearn>
 
-## Adding event handlers {/*adding-event-handlers*/}
+## Ajouter des gestionnaires d’événements {/*adding-event-handlers*/}
 
-To add an event handler, you will first define a function and then [pass it as a prop](/learn/passing-props-to-a-component) to the appropriate JSX tag. For example, here is a button that doesn't do anything yet:
+Pour ajouter un gestionnaire d’événement, vous devrez d’abord définir une fonction et [la passer en tant que prop](/learn/passing-props-to-a-component) à la balise JSX appropriée. Par exemple, voici un bouton qui ne fait rien pour le moment :
 
 <Sandpack>
 
@@ -26,7 +26,7 @@ To add an event handler, you will first define a function and then [pass it as a
 export default function Button() {
   return (
     <button>
-      I don't do anything
+      Je ne fais rien
     </button>
   );
 }
@@ -34,23 +34,23 @@ export default function Button() {
 
 </Sandpack>
 
-You can make it show a message when a user clicks by following these three steps:
+Vous pouvez lui faire afficher un message au clic de l'utilisateur en suivant ces trois étapes :
 
-1. Declare a function called `handleClick` *inside* your `Button` component.
-2. Implement the logic inside that function (use `alert` to show the message).
-3. Add `onClick={handleClick}` to the `<button>` JSX.
+1. Déclarez une fonction appelée `handleClick` *dans* votre composant `Button`.
+2. Implémentez la logique de cette fonction (utilisez `alert` pour afficher le message).
+3. Ajoutez `onClick={handleClick}` au `<button>` du JSX.
 
 <Sandpack>
 
 ```js
 export default function Button() {
   function handleClick() {
-    alert('You clicked me!');
+    alert('Vous avez cliqué !');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me
+      Cliquez ici
     </button>
   );
 }
@@ -62,77 +62,79 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-You defined the `handleClick` function and then [passed it as a prop](/learn/passing-props-to-a-component) to `<button>`.  `handleClick` is an **event handler.** Event handler functions:
+Vous avez défini la fonction `handleClick` puis l’avez [passée en tant que prop](/learn/passing-props-to-a-component) à `<button>`. `handleClick` est un **gestionnaire d’événement**. Les gestionnaires d’événements sont des fonctions qui :
 
-* Are usually defined *inside* your components.
-* Have names that start with `handle`, followed by the name of the event.
+* Sont généralement définies au sein de vos composants.
+* Ont des noms qui commencent par `handle`, suivi du nom de l’événement.
 
-By convention, it is common to name event handlers as `handle` followed by the event name. You'll often see `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, and so on.
+Par convention, on nomme souvent les gestionnaires d’événements en utilisant `handle` suivi du nom de l’événement. Vous verrez souvent `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, etc.
 
-Alternatively, you can define an event handler inline in the JSX:
+Vous pouvez aussi définir un gestionnaire d’événement en ligne dans le JSX :
 
 ```jsx
 <button onClick={function handleClick() {
-  alert('You clicked me!');
+  alert('Vous avez cliqué !');
 }}>
 ```
 
-Or, more concisely, using an arrow function:
+Ou vous pouvez être plus concis en utilisant une fonction fléchée :
 
 ```jsx
 <button onClick={() => {
-  alert('You clicked me!');
+  alert('Vous avez cliqué !');
 }}>
 ```
 
-All of these styles are equivalent. Inline event handlers are convenient for short functions.
+Tous ces styles sont équivalents. Les gestionnaires d’événements en ligne sont notamment pratiques pour les fonctions courtes.
 
 <Pitfall>
 
-Functions passed to event handlers must be passed, not called. For example:
+Vous devez *passer* une fonction comme gestionnaire d’événement, vous ne devez pas *l’appeler*.
 
-| passing a function (correct)     | calling a function (incorrect)     |
+Par exemple :
+
+| Passer une fonction (correct)     | Appeler une fonction (incorrect)     |
 | -------------------------------- | ---------------------------------- |
 | `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
 
-The difference is subtle. In the first example, the `handleClick` function is passed as an `onClick` event handler. This tells React to remember it and only call your function when the user clicks the button.
+La différence est subtile. Dans le premier exemple, on passe la fonction `handleClick` comme gestionnaire d’événement à `onClick`. Ça indique à React de la mémoriser et d’appeler votre fonction uniquement lorsque l’utilisateur clique sur le bouton.
 
-In the second example, the `()` at the end of `handleClick()` fires the function *immediately* during [rendering](/learn/render-and-commit), without any clicks. This is because JavaScript inside the [JSX `{` and `}`](/learn/javascript-in-jsx-with-curly-braces) executes right away.
+Dans le deuxième exemple, on appelle la fonction `handleClick()` (avec `()` à la fin), ce qui déclenche la fonction immédiatement pendant [le rendu](/learn/render-and-commit), sans aucun clic. C’est parce que le code JavaScript à l’intérieur des [accolades `{` et `}` du JSX](/learn/javascript-in-jsx-with-curly-braces) s’exécute immédiatement.
 
-When you write code inline, the same pitfall presents itself in a different way:
+Quand vous écrivez du code en ligne, le même écueil se présente de manière différente :
 
-| passing a function (correct)            | calling a function (incorrect)    |
+| Passer une fonction (correct)            | Appeler une fonction (incorrect)    |
 | --------------------------------------- | --------------------------------- |
 | `<button onClick={() => alert('...')}>` | `<button onClick={alert('...')}>` |
 
 
-Passing inline code like this won't fire on click—it fires every time the component renders:
+Le code suivant passé en ligne à `onClick` ne se déclenchera pas lors du clic, mais à chaque fois que le composant fera son rendu :
 
 ```jsx
-// This alert fires when the component renders, not when clicked!
-<button onClick={alert('You clicked me!')}>
+// alert se déclenchera à chaque rendu, pas au clic sur le bouton !
+<button onClick={alert('Vous avez cliqué !')}>
 ```
 
-If you want to define your event handler inline, wrap it in an anonymous function like so:
+Si vous souhaitez définir votre gestionnaire d’événement en ligne, enrobez-le dans une fonction anonyme de la manière suivante :
 
 ```jsx
-<button onClick={() => alert('You clicked me!')}>
+<button onClick={() => alert('Vous avez cliqué !')}>
 ```
 
-Rather than executing the code inside with every render, this creates a function to be called later.
+Au lieu d’exécuter le code à chaque rendu, ça crée une fonction à appeler ultérieurement.
 
-In both cases, what you want to pass is a function:
+Dans les deux cas, ce que vous souhaitez passer est une fonction :
 
-* `<button onClick={handleClick}>` passes the `handleClick` function.
-* `<button onClick={() => alert('...')}>` passes the `() => alert('...')` function.
+* La fonction `handleClick` est passée à `<button onClick={handleClick}>`.
+* La fonction `() => alert('...')` est passée à `<button onClick={() => alert('...')}>`.
 
-[Read more about arrow functions.](https://javascript.info/arrow-functions-basics)
+Lisez [Les fonctions fléchées](https://fr.javascript.info/arrow-functions-basics) pour en apprendre davantage.
 
 </Pitfall>
 
-### Reading props in event handlers {/*reading-props-in-event-handlers*/}
+### Lire les props dans les gestionnaires d’événements {/*reading-props-in-event-handlers*/}
 
-Because event handlers are declared inside of a component, they have access to the component's props. Here is a button that, when clicked, shows an alert with its `message` prop:
+Puisque les gestionnaires d’événements sont déclarés à l’intérieur d’un composant, ils ont accès aux props du composant. Voici un bouton qui, lorsqu'on clique dessus, affiche une `alert` avec sa prop `message` :
 
 <Sandpack>
 
@@ -148,11 +150,11 @@ function AlertButton({ message, children }) {
 export default function Toolbar() {
   return (
     <div>
-      <AlertButton message="Playing!">
-        Play Movie
+      <AlertButton message="Lecture en cours !">
+        Voir le film
       </AlertButton>
-      <AlertButton message="Uploading!">
-        Upload Image
+      <AlertButton message="Téléversement en cours !">
+        Téléverser une image
       </AlertButton>
     </div>
   );
@@ -165,13 +167,13 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-This lets these two buttons show different messages. Try changing the messages passed to them.
+Ça permet à ces deux boutons d’afficher des messages différents. Essayez de modifier les messages qui leur sont passés.
 
-### Passing event handlers as props {/*passing-event-handlers-as-props*/}
+### Passer des gestionnaires d’événements en tant que props {/*passing-event-handlers-as-props*/}
 
-Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image. 
+Souvent, vous souhaiterez que le composant parent spécifie le gestionnaire d’événement d’un composant enfant. Prenons l’exemple des boutons : en fonction de l’endroit où vous utilisez un composant `Button`, vous voudrez peut-être exécuter une fonction différente, par exemple voir un film ou téléverser une image.
 
-To do this, pass a prop the component receives from its parent as the event handler like so:
+Pour ça, vous devez passer une prop reçue du composant parent en tant que gestionnaire d’événement, comme ceci :
 
 <Sandpack>
 
@@ -186,20 +188,20 @@ function Button({ onClick, children }) {
 
 function PlayButton({ movieName }) {
   function handlePlayClick() {
-    alert(`Playing ${movieName}!`);
+    alert(`${movieName} en cours de lecture !`);
   }
 
   return (
     <Button onClick={handlePlayClick}>
-      Play "{movieName}"
+      Voir « {movieName} »
     </Button>
   );
 }
 
 function UploadButton() {
   return (
-    <Button onClick={() => alert('Uploading!')}>
-      Upload Image
+    <Button onClick={() => alert('Téléversement en cours !')}>
+      Téléverser une image
     </Button>
   );
 }
@@ -207,7 +209,7 @@ function UploadButton() {
 export default function Toolbar() {
   return (
     <div>
-      <PlayButton movieName="Kiki's Delivery Service" />
+      <PlayButton movieName="Kiki la petite sorcière" />
       <UploadButton />
     </div>
   );
@@ -220,22 +222,22 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-Here, the `Toolbar` component renders a `PlayButton` and an `UploadButton`:
+Dans cet exemple, le composant `Toolbar` affiche un `PlayButton` et un `UploadButton` :
 
-- `PlayButton` passes `handlePlayClick` as the `onClick` prop to the `Button` inside.
-- `UploadButton` passes `() => alert('Uploading!')` as the `onClick` prop to the `Button` inside.
+- Dans `PlayButton`, on passe `handlePlayClick` à la prop `onClick` du `Button` qu'il contient.
+- Dans `UploadButton`, on passe `() => alert('Téléversement en cours !')` à la prop `onClick` du `Button` qu'il contient.
 
-Finally, your `Button` component accepts a prop called `onClick`. It passes that prop directly to the built-in browser `<button>` with `onClick={onClick}`. This tells React to call the passed function on click.
+Enfin, votre composant `Button` accepte une prop appelée `onClick` qu’il passe ensuite au composant natif `<button>` avec `onClick={onClick}`. Ça indique à React d’appeler la fonction lors du clic.
 
-If you use a [design system](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), it's common for components like buttons to contain styling but not specify behavior. Instead, components like `PlayButton` and `UploadButton` will pass event handlers down.
+Si vous utilisez un [Design System](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), il est courant que des composants tels que les boutons contiennent des styles mais ne spécifient pas de comportement. À la place, des composants tels que `PlayButton` et `UploadButton` transmettront leurs gestionnaires d’événements.
 
-### Naming event handler props {/*naming-event-handler-props*/}
+### Nommer les props de gestionnaires d’événements {/*naming-event-handler-props*/}
 
-Built-in components like `<button>` and `<div>` only support [browser event names](/reference/react-dom/components/common#common-props) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
+Les composants natifs tels que `<button>` et `<div>` ne prennent en charge que les [événements navigateur](/reference/react-dom/components/common#common-props) comme `onClick`. Cependant, lorsque vous créez vos propres composants, vous pouvez nommer les props de gestionnaires d’événements comme vous le souhaitez.
 
-By convention, event handler props should start with `on`, followed by a capital letter.
+Par convention, les noms des props de gestionnaires d’événements devraient commencer par `on`, suivi d’une lettre majuscule.
 
-For example, the `Button` component's `onClick` prop could have been called `onSmash`:
+Par exemple, on aurait pu nommer la prop `onClick` du composant `Button` `onSmash` :
 
 <Sandpack>
 
@@ -251,11 +253,11 @@ function Button({ onSmash, children }) {
 export default function App() {
   return (
     <div>
-      <Button onSmash={() => alert('Playing!')}>
-        Play Movie
+      <Button onSmash={() => alert('Lecture en cours !')}>
+        Voir le film
       </Button>
-      <Button onSmash={() => alert('Uploading!')}>
-        Upload Image
+      <Button onSmash={() => alert('Téléversement en cours !')}>
+        Téléverser une image
       </Button>
     </div>
   );
@@ -268,9 +270,9 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-In this example, `<button onClick={onSmash}>` shows that the browser `<button>` (lowercase) still needs a prop called `onClick`, but the prop name received by your custom `Button` component is up to you!
+Dans cet exemple, `<button onClick={onSmash}>` montre que le `<button>` (en minuscules) natif a toujours besoin d’une prop `onClick` mais le nom de la prop de votre composant `Button` vous appartient !
 
-When your component supports multiple interactions, you might name event handler props for app-specific concepts. For example, this `Toolbar` component receives `onPlayMovie` and `onUploadImage` event handlers:
+Lorsque votre composant prend en charge plusieurs interactions, vous pouvez nommer les props de gestionnaires d’événements en fonction des utilisations spécifiques à votre application. Par exemple, ce composant `Toolbar` reçoit les gestionnaires d’événements `onPlayMovie` et `onUploadImage` :
 
 <Sandpack>
 
@@ -278,8 +280,8 @@ When your component supports multiple interactions, you might name event handler
 export default function App() {
   return (
     <Toolbar
-      onPlayMovie={() => alert('Playing!')}
-      onUploadImage={() => alert('Uploading!')}
+      onPlayMovie={() => alert('Lecture en cours !')}
+      onUploadImage={() => alert('Téléversement en cours !')}
     />
   );
 }
@@ -288,10 +290,10 @@ function Toolbar({ onPlayMovie, onUploadImage }) {
   return (
     <div>
       <Button onClick={onPlayMovie}>
-        Play Movie
+        Voir le film
       </Button>
       <Button onClick={onUploadImage}>
-        Upload Image
+        Téléverser une image
       </Button>
     </div>
   );
@@ -312,19 +314,19 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
-  
+Remarquez que le composant `App` n’a pas besoin de savoir *ce que fera* `Toolbar` avec `onPlayMovie` ou `onUploadImage`. C’est un détail d’implémentation de `Toolbar`. Ici, `Toolbar` les transmet en tant que gestionnaires `onClick` à ses `Button`s, mais il pourrait également les déclencher ultérieurement avec un raccourci clavier. Nommer les props d’après des interactions spécifiques à l’application telles que `onPlayMovie` vous donne de la flexibilité pour modifier leur utilisation ultérieurement.
+
 <Note>
 
-Make sure that you use the appropriate HTML tags for your event handlers. For example, to handle clicks, use [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<div onClick={handleClick}>`. Using a real browser `<button>` enables built-in browser behaviors like keyboard navigation. If you don't like the default browser styling of a button and want to make it look more like a link or a different UI element, you can achieve it with CSS. [Learn more about writing accessible markup.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
-  
+Assurez-vous d’utiliser les balises HTML appropriées pour vos gestionnaires d’événements. Par exemple, utilisez [`<button onClick={handleClick}>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/button) au lieu de `<div onClick={handleClick}>` pour gérer les clics. Utiliser un composant `<button>` natif permet de bénéficier des comportements natifs du navigateur, tels que la navigation au clavier. Si vous n’aimez pas le style par défaut d’un bouton natif et que vous souhaitez le faire ressembler davantage à un lien ou à un autre élément d’UI, vous pouvez faire ça en CSS. [Apprenez-en davantage sur l'écriture de balisage accessible](https://developer.mozilla.org/fr/docs/Learn/Accessibility/HTML).
+
 </Note>
 
-## Event propagation {/*event-propagation*/}
+## Propagation d’événements {/*event-propagation*/}
 
-Event handlers will also catch events from any children your component might have. We say that an event "bubbles" or "propagates" up the tree: it starts with where the event happened, and then goes up the tree.
+Les gestionnaires d’événements réagiront également aux événements provenant de tous les enfants que votre composant pourrait avoir. On dit que l’événement « bouillonne » ou « se propage » dans l’arbre : il commence à l’endroit où l’événement s’est produit, puis remonte dans l’arborescence.
 
-This `<div>` contains two buttons. Both the `<div>` *and* each button have their own `onClick` handlers. Which handlers do you think will fire when you click a button?
+L’élément `<div>` suivant *et* ses deux boutons ont leur propre gestionnaire d’événement `onClick`. D’après vous, quels gestionnaires d’événements se déclencheront lorsque vous cliquerez sur un bouton ?
 
 <Sandpack>
 
@@ -332,13 +334,13 @@ This `<div>` contains two buttons. Both the `<div>` *and* each button have their
 export default function Toolbar() {
   return (
     <div className="Toolbar" onClick={() => {
-      alert('You clicked on the toolbar!');
+      alert('Vous avez cliqué sur la barre d’outils !');
     }}>
-      <button onClick={() => alert('Playing!')}>
-        Play Movie
+      <button onClick={() => alert('Lecture en cours !')}>
+        Voir le film
       </button>
-      <button onClick={() => alert('Uploading!')}>
-        Upload Image
+      <button onClick={() => alert('Téléversement en cours !')}>
+        Téléverser une image
       </button>
     </div>
   );
@@ -355,19 +357,19 @@ button { margin: 5px; }
 
 </Sandpack>
 
-If you click on either button, its `onClick` will run first, followed by the parent `<div>`'s `onClick`. So two messages will appear. If you click the toolbar itself, only the parent `<div>`'s `onClick` will run.
+Si vous cliquez sur l’un des boutons, son `onClick` sera exécuté en premier, suivi de l’`onClick` de l’élément parent `<div>`. Ainsi, deux messages vont apparaître. Si vous cliquez sur la barre d’outils elle-même, seul l’`onClick` de l’élément `<div>` sera exécuté.
 
 <Pitfall>
 
-All events propagate in React except `onScroll`, which only works on the JSX tag you attach it to.
+Tous les événements se propagent dans React, sauf `onScroll`, qui fonctionne uniquement sur l'élément JSX auquel il est attaché.
 
 </Pitfall>
 
-### Stopping propagation {/*stopping-propagation*/}
+### Arrêter la propagation {/*stopping-propagation*/}
 
-Event handlers receive an **event object** as their only argument. By convention, it's usually called `e`, which stands for "event". You can use this object to read information about the event.
+Les gestionnaires d’événements reçoivent un **objet événement** comme seul argument. Par convention, il est généralement appelé `e`, ce qui signifie *“event”* *(« événement », NdT)*. Vous pouvez utiliser cet objet pour obtenir des informations sur l’événement.
 
-That event object also lets you stop the propagation. If you want to prevent an event from reaching parent components, you need to call `e.stopPropagation()` like this `Button` component does:
+Cet objet événement vous permet également d’arrêter la propagation. Si vous souhaitez empêcher un événement de se propager vers les composants parents, vous devez appeler `e.stopPropagation()`, comme le fait le composant `Button` :
 
 <Sandpack>
 
@@ -386,13 +388,13 @@ function Button({ onClick, children }) {
 export default function Toolbar() {
   return (
     <div className="Toolbar" onClick={() => {
-      alert('You clicked on the toolbar!');
+      alert('Vous avez cliqué sur la barre d’outils !');
     }}>
-      <Button onClick={() => alert('Playing!')}>
-        Play Movie
+      <Button onClick={() => alert('Lecture en cours !')}>
+        Voir le film
       </Button>
-      <Button onClick={() => alert('Uploading!')}>
-        Upload Image
+      <Button onClick={() => alert('Téléversement en cours !')}>
+        Téléverser une image
       </Button>
     </div>
   );
@@ -409,43 +411,43 @@ button { margin: 5px; }
 
 </Sandpack>
 
-When you click on a button:
+Quand vous cliquez sur un bouton :
 
-1. React calls the `onClick` handler passed to `<button>`. 
-2. That handler, defined in `Button`, does the following:
-   * Calls `e.stopPropagation()`, preventing the event from bubbling further.
-   * Calls the `onClick` function, which is a prop passed from the `Toolbar` component.
-3. That function, defined in the `Toolbar` component, displays the button's own alert.
-4. Since the propagation was stopped, the parent `<div>`'s `onClick` handler does *not* run.
+1. React appelle le gestionnaire `onClick` passé au `<button>` natif.
+2. Ce gestionnaire, défini dans `Button`, effectue les actions suivantes :
+   * Appelle `e.stopPropagation()`, ce qui interrompt la propagation de l’événement.
+   * Appelle la fonction `onClick`, qui est une prop transmise depuis le composant `Toolbar`.
+3. Cette fonction, définie dans le composant `Toolbar`, affiche l’`alert` spécifique au bouton.
+4. Étant donné que la propagation a été arrêtée, le gestionnaire `onClick` de l’élément parent `<div>` *ne s’exécute pas*.
 
-As a result of `e.stopPropagation()`, clicking on the buttons now only shows a single alert (from the `<button>`) rather than the two of them (from the `<button>` and the parent toolbar `<div>`). Clicking a button is not the same thing as clicking the surrounding toolbar, so stopping the propagation makes sense for this UI.
+L’appel à `e.stopPropagation()` fait que cliquer sur les boutons n’affiche désormais qu’une seule `alert` (du `<button>`) au lieu de deux (du `<button>` et de l’élément parent `<div>` de la barre d’outils). Cliquer sur un bouton ne revient pas à cliquer sur la barre d’outils qui l’enrobe. Il est donc logique d’arrêter la propagation dans cette UI.
 
 <DeepDive>
 
-#### Capture phase events {/*capture-phase-events*/}
+#### Événements de la phase de capture {/*capture-phase-events*/}
 
-In rare cases, you might need to catch all events on child elements, *even if they stopped propagation*. For example, maybe you want to log every click to analytics, regardless of the propagation logic. You can do this by adding `Capture` at the end of the event name:
+Dans de rares cas, vous pourriez avoir besoin de capturer tous les événements sur les éléments enfants, *même s’ils ont arrêté la propagation*. Par exemple, vous souhaitez peut-être envoyer des logs dans un outil d’analyse à chaque clic, indépendamment de la logique de propagation. Vous pouvez le faire en ajoutant `Capture` à la fin du nom de l’événement :
 
 ```js
-<div onClickCapture={() => { /* this runs first */ }}>
+<div onClickCapture={() => { /* ça s’exécute en premier */ }}>
   <button onClick={e => e.stopPropagation()} />
   <button onClick={e => e.stopPropagation()} />
 </div>
 ```
 
-Each event propagates in three phases: 
+Chaque événement se propage en trois phases :
 
-1. It travels down, calling all `onClickCapture` handlers.
-2. It runs the clicked element's `onClick` handler. 
-3. It travels upwards, calling all `onClick` handlers.
+1. Il descend depuis la racine, appelant tous les gestionnaires `onClickCapture`.
+2. Il exécute le gestionnaire `onClick` de l’élément cliqué.
+3. Il remonte, appelant tous les gestionnaires `onClick`.
 
-Capture events are useful for code like routers or analytics, but you probably won't use them in app code.
+Les événements de capture sont utiles pour du code tel que les systèmes de routage ou les outils d’analyse, mais vous ne les utiliserez probablement pas dans du code applicatif.
 
 </DeepDive>
 
-### Passing handlers as alternative to propagation {/*passing-handlers-as-alternative-to-propagation*/}
+### Passer des gestionnaires d’événements au lieu de propager {/*passing-handlers-as-alternative-to-propagation*/}
 
-Notice how this click handler runs a line of code _and then_ calls the `onClick` prop passed by the parent:
+Vous remarquerez ci-dessous que le gestionnaire du clic exécute une ligne de code _puis_ appelle la prop `onClick` passée par le parent :
 
 ```js {4,5}
 function Button({ onClick, children }) {
@@ -460,22 +462,22 @@ function Button({ onClick, children }) {
 }
 ```
 
-You could add more code to this handler before calling the parent `onClick` event handler, too. This pattern provides an *alternative* to propagation. It lets the child component handle the event, while also letting the parent component specify some additional behavior. Unlike propagation, it's not automatic. But the benefit of this pattern is that you can clearly follow the whole chain of code that executes as a result of some event.
+Vous pourriez ajouter davantage de code à ce gestionnaire avant d’appeler le gestionnaire d’événement `onClick` du parent. Cette approche offre une *alternative* à la propagation. Elle permet au composant enfant de gérer l’événement tout en permettant au composant parent de spécifier un comportement supplémentaire. Contrairement à la propagation, ce n’est pas automatique. Mais l’avantage de ce concept tient à ce que vous pouvez suivre clairement l’ensemble de la chaîne de code qui s’exécute en réaction à un événement.
 
-If you rely on propagation and it's difficult to trace which handlers execute and why, try this approach instead.
+Essayez plutôt cette approche si vous vous appuyez sur la propagation d’événements et qu’il est difficile de retracer quels gestionnaires sont exécutés et pourquoi.
 
-### Preventing default behavior {/*preventing-default-behavior*/}
+### Empêcher le comportement par défaut {/*preventing-default-behavior*/}
 
-Some browser events have default behavior associated with them. For example, a `<form>` submit event, which happens when a button inside of it is clicked, will reload the whole page by default:
+Certains événements natifs du navigateur ont un comportement par défaut qui leur est associé. Par exemple, lorsqu’un bouton à l’intérieur d’un élément `<form>` est cliqué, l’événement de soumission (`submit`) du formulaire se déclenche et, par défaut, provoque le rechargement complet de la page :
 
 <Sandpack>
 
 ```js
 export default function Signup() {
   return (
-    <form onSubmit={() => alert('Submitting!')}>
+    <form onSubmit={() => alert('Envoi en cours !')}>
       <input />
-      <button>Send</button>
+      <button>Envoyer</button>
     </form>
   );
 }
@@ -487,7 +489,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-You can call `e.preventDefault()` on the event object to stop this from happening:
+Vous pouvez appeler `e.preventDefault()` sur l’objet événement pour empêcher ça :
 
 <Sandpack>
 
@@ -496,10 +498,10 @@ export default function Signup() {
   return (
     <form onSubmit={e => {
       e.preventDefault();
-      alert('Submitting!');
+      alert('Envoi en cours !');
     }}>
       <input />
-      <button>Send</button>
+      <button>Envoyer</button>
     </form>
   );
 }
@@ -511,28 +513,28 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Don't confuse `e.stopPropagation()` and `e.preventDefault()`. They are both useful, but are unrelated:
+Ne confondez pas `e.stopPropagation()` et `e.preventDefault()`. Ils sont tous les deux utiles, mais ils sont sans rapport :
 
-* [`e.stopPropagation()`](https://developer.mozilla.org/docs/Web/API/Event/stopPropagation) stops the event handlers attached to the tags above from firing.
-* [`e.preventDefault()` ](https://developer.mozilla.org/docs/Web/API/Event/preventDefault) prevents the default browser behavior for the few events that have it.
+* [`e.stopPropagation()`](https://developer.mozilla.org/docs/Web/API/Event/stopPropagation) est utilisé pour arrêter la propagation de l’événement vers les éléments parents.
+* [`e.preventDefault()` ](https://developer.mozilla.org/docs/Web/API/Event/preventDefault) est utilisé pour empêcher le comportement par défaut associé à un événement natif du navigateur.
 
-## Can event handlers have side effects? {/*can-event-handlers-have-side-effects*/}
+## Les gestionnaires d’événements peuvent-ils avoir des effets de bord ? {/*can-event-handlers-have-side-effects*/}
 
-Absolutely! Event handlers are the best place for side effects.
+Absolument ! Les gestionnaires d’événements sont l’endroit idéal pour les effets de bord.
 
-Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a component's memory.](/learn/state-a-components-memory) You will learn all about it on the next page.
+Contrairement aux fonctions de rendu, les gestionnaires d’événements n’ont pas besoin d’être [purs](/learn/keeping-components-pure). Ce sont donc d'excellents endroits pour *changer* des trucs, par exemple modifier la valeur d’une saisie en réponse à une frappe, ou modifier une liste en réponse à un appui sur un bouton. Ceci dit, pour modifier des informations, vous avez d’abord besoin d’un moyen de les stocker. En React, ça se fait en utilisant [l’état, la mémoire d’un composant](/learn/state-a-components-memory). Vous apprendrez tout ça dans la page suivante.
 
 <Recap>
 
-* You can handle events by passing a function as a prop to an element like `<button>`.
-* Event handlers must be passed, **not called!** `onClick={handleClick}`, not `onClick={handleClick()}`.
-* You can define an event handler function separately or inline.
-* Event handlers are defined inside a component, so they can access props.
-* You can declare an event handler in a parent and pass it as a prop to a child.
-* You can define your own event handler props with application-specific names.
-* Events propagate upwards. Call `e.stopPropagation()` on the first argument to prevent that.
-* Events may have unwanted default browser behavior. Call `e.preventDefault()` to prevent that.
-* Explicitly calling an event handler prop from a child handler is a good alternative to propagation.
+* Vous pouvez gérer les événements en passant la fonction gestionnaire en tant que prop à un élément comme `<button>`.
+* Les gestionnaires d’événements doivent être passés, **pas appelés !** Utilisez `onClick={handleClick}`, pas `onClick={handleClick()}`.
+* Vous pouvez définir une fonction de gestion d’événement hors du JSX ou en ligne.
+* Les gestionnaires d’événements sont définis au sein du composant, ce qui leur permet d’accéder à ses props et son état local.
+* Vous pouvez déclarer un gestionnaire d’événement dans un composant parent et le passer en tant que prop à un enfant.
+* Vous pouvez définir vos propres noms de gestionnaires d’événements spécifiques à l’application.
+* Les événements se propagent vers le haut. Appelez `e.stopPropagation()` sur le premier argument pour empêcher ça.
+* Les événements peuvent avoir des comportements navigateur par défaut que vous ne souhaitez pas. Appelez `e.preventDefault()` pour les empêcher.
+* Appeler explicitement une prop de gestionnaire d’événement depuis un gestionnaire d’événement enfant est une bonne alternative à la propagation.
 
 </Recap>
 
@@ -540,9 +542,9 @@ Unlike rendering functions, event handlers don't need to be [pure](/learn/keepin
 
 <Challenges>
 
-#### Fix an event handler {/*fix-an-event-handler*/}
+#### Réparer un gestionnaire d’événement {/*fix-an-event-handler*/}
 
-Clicking this button is supposed to switch the page background between white and black. However, nothing happens when you click it. Fix the problem. (Don't worry about the logic inside `handleClick`—that part is fine.)
+Cliquer sur ce bouton est censé alterner la couleur de l’arrière-plan de la page entre blanc et noir. Cependant, rien ne se produit lorsque vous cliquez dessus. Corrigez le problème. (Ne vous inquiétez pas de la logique à l’intérieur de `handleClick` - cette partie est correcte).
 
 <Sandpack>
 
@@ -559,7 +561,7 @@ export default function LightSwitch() {
 
   return (
     <button onClick={handleClick()}>
-      Toggle the lights
+      Basculer la lumière
     </button>
   );
 }
@@ -569,7 +571,7 @@ export default function LightSwitch() {
 
 <Solution>
 
-The problem is that `<button onClick={handleClick()}>` _calls_ the `handleClick` function while rendering instead of _passing_ it. Removing the `()` call so that it's `<button onClick={handleClick}>` fixes the issue:
+Le problème tient à ce que `<button onClick={handleClick()}>` _appelle_ la fonction `handleClick` lors du rendu au lieu de la _passer_ en tant que prop. On résout le problème en supprimant l’appel `()` pour que ça devienne `<button onClick={handleClick}>` :
 
 <Sandpack>
 
@@ -586,7 +588,7 @@ export default function LightSwitch() {
 
   return (
     <button onClick={handleClick}>
-      Toggle the lights
+      Basculer la lumière
     </button>
   );
 }
@@ -594,7 +596,7 @@ export default function LightSwitch() {
 
 </Sandpack>
 
-Alternatively, you could wrap the call into another function, like `<button onClick={() => handleClick()}>`:
+Vous pourriez aussi enrober l’appel dans une autre fonction, par exemple `<button onClick={() => handleClick()}>` :
 
 <Sandpack>
 
@@ -611,7 +613,7 @@ export default function LightSwitch() {
 
   return (
     <button onClick={() => handleClick()}>
-      Toggle the lights
+      Basculer la lumière
     </button>
   );
 }
@@ -621,11 +623,11 @@ export default function LightSwitch() {
 
 </Solution>
 
-#### Wire up the events {/*wire-up-the-events*/}
+#### Connecter les événements {/*wire-up-the-events*/}
 
-This `ColorSwitch` component renders a button. It's supposed to change the page color. Wire it up to the `onChangeColor` event handler prop it receives from the parent so that clicking the button changes the color.
+Ce composant `ColorSwitch` affiche un bouton. Il est censé changer la couleur de la page. Connectez-le à la prop `onChangeColor` de gestionnaire d'événement qu'il reçoit de son composant parent, de sorte que la couleur change losqu'on clique sur le bouton.
 
-After you do this, notice that clicking the button also increments the page click counter. Your colleague who wrote the parent component insists that `onChangeColor` does not increment any counters. What else might be happening? Fix it so that clicking the button *only* changes the color, and does _not_ increment the counter.
+Après avoir effectué cette modification, vous remarquerez que le clic du bouton incrémente également le compteur de clics de la page. Votre collègue, qui a écrit le composant parent, vous certifie que `onChangeColor` n’incrémente aucun compteur. Que pourrait-il se passer d’autre ? Corrigez ça afin qu'un clic sur le bouton change uniquement la couleur, mais n’incrémente _pas_ le compteur.
 
 <Sandpack>
 
@@ -635,7 +637,7 @@ export default function ColorSwitch({
 }) {
   return (
     <button>
-      Change color
+      Changer la couleur
     </button>
   );
 }
@@ -669,7 +671,7 @@ export default function App() {
       <ColorSwitch onChangeColor={handleChangeColor} />
       <br />
       <br />
-      <h2>Clicks on the page: {clicks}</h2>
+      <h2>Nombre de clics sur la page : {clicks}</h2>
     </div>
   );
 }
@@ -679,9 +681,9 @@ export default function App() {
 
 <Solution>
 
-First, you need to add the event handler, like `<button onClick={onChangeColor}>`.
+Tout d’abord, vous devez ajouter le gestionnaire d’événement : `<button onClick={onChangeColor}>`.
 
-However, this introduces the problem of the incrementing counter. If `onChangeColor` does not do this, as your colleague insists, then the problem is that this event propagates up, and some handler above does it. To solve this problem, you need to stop the propagation. But don't forget that you should still call `onChangeColor`.
+Cependant, ça introduit le problème de l’incrémentation du compteur. Si le problème ne vient pas de `onChangeColor`, comme le jure votre collègue, alors c’est que cet événement se propage vers le haut et qu’un autre gestionnaire situé au-dessus le fait. Pour résoudre ce problème, vous devez arrêter la propagation de l’événement. Mais n’oubliez pas que vous devez toujours appeler `onChangeColor`.
 
 <Sandpack>
 
@@ -694,7 +696,7 @@ export default function ColorSwitch({
       e.stopPropagation();
       onChangeColor();
     }}>
-      Change color
+      Changer la couleur
     </button>
   );
 }
@@ -728,7 +730,7 @@ export default function App() {
       <ColorSwitch onChangeColor={handleChangeColor} />
       <br />
       <br />
-      <h2>Clicks on the page: {clicks}</h2>
+      <h2>Nombre de clics sur la page : {clicks}</h2>
     </div>
   );
 }
