@@ -27,7 +27,7 @@ React utilise également des structures arborescentes pour gérer et modéliser 
 
 <Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagramme avec trois sections réparties horizontalement. Dans la première section, il y a trois rectangles empilés verticalement, appelés « Composant A », « Composant B » et « Composant C ». La transition vers le volet suivant est faite par une flèche avec le logo React au-dessus et appelée « React ». La section du milieu contient un arbre de composants dont la racine est appelée « A », avec deux enfants « B » et « C ». La section suivante est à nouveau atteinte en utilisant une flèche avec le logo « React » au-dessus. La troisième et dernière section est une représentation schématisée d'un navigateur contenant un arbre de 8 nœuds, dont seul un sous-ensemble est surligné (indiquant le sous-arbre de la section du milieu).">
 
-À partir des composants, React crée un arbre d'UI que React DOM utilise pour faire le rendu du DOM.
+À partir des composants, React crée un arbre d'UI utilisé par React DOM pour le rendu du DOM.
 
 </Diagram>
 
@@ -201,7 +201,7 @@ export default function App() {
   return (
     <div>
       <Counter />
-      {showB && <Counter />} 
+      {showB && <Counter />}
       <label>
         <input
           type="checkbox"
@@ -278,7 +278,7 @@ Suppression d’un composant
 Lorsque vous cochez « Afficher le deuxième compteur », un deuxième `Counter` avec son état associé sont initialisés de zéro (`score = 0`), puis ajoutés au DOM.
 
 <DiagramGroup>
- 
+
 <Diagram name="preserving_state_add_component" height={258} width={500} alt="Diagramme d'un arbre de composants React. Le nœud racine est appelé « div » et a deux enfants. L'enfant à gauche est appelé « Counter » et contient une bulle d'état appelée « count » avec une valeur à 0. L'enfant à droite est appelé « Counter » et contient une bulle d'état « count » valant 0. Tout le nœud de l'enfant à droite est surligné en jaune, indiquant qu'il vient juste d'être ajouté à l'arbre.">
 
 Ajout d’un composant
@@ -303,9 +303,9 @@ export default function App() {
   return (
     <div>
       {isFancy ? (
-        <Counter isFancy={true} /> 
+        <Counter isFancy={true} />
       ) : (
-        <Counter isFancy={false} /> 
+        <Counter isFancy={false} />
       )}
       <label>
         <input
@@ -511,9 +511,9 @@ export default function App() {
   return (
     <div>
       {isPaused ? (
-        <p>À bientôt !</p> 
+        <p>À bientôt !</p>
       ) : (
-        <Counter /> 
+        <Counter />
       )}
       <label>
         <input
@@ -611,7 +611,7 @@ export default function App() {
     <div>
       {isFancy ? (
         <div>
-          <Counter isFancy={true} /> 
+          <Counter isFancy={true} />
         </div>
       ) : (
         <section>
@@ -838,7 +838,7 @@ Il y a deux façons de réinitialiser l'état lorsqu'on passe de l'un à l'autre
 
 ### Option 1 : changer la position du composant {/*option-1-rendering-a-component-in-different-positions*/}
 
-Si vous souhaitez rendre ces deux `Counter` indépendants, vous pouvez les afficher à deux positions différentes :
+Si vous souhaitez rendre ces deux `Counter` indépendants, vous pouvez choisir de les afficher à deux positions différentes :
 
 <Sandpack>
 
@@ -909,7 +909,7 @@ h1 {
 
 </Sandpack>
 
-* Initialement, `isPlayerA` vaut `true`. Ainsi la première position contient l'état de `Counter` et la seconde est vide.
+* Initialement, `isPlayerA` vaut `true`. Ainsi la première position contient l'état de `Counter`, tandis que la seconde position est vide.
 * Quand vous cliquez sur le bouton « Joueur suivant », la première position se vide et la seconde contient désormais un `Counter`.
 
 <DiagramGroup>
@@ -1243,7 +1243,7 @@ textarea {
 Dans une véritable appli de discussion, vous souhaiterez probablement récupérer l'état de la saisie lorsque l'utilisateur resélectionne le destinataire précédent. Il existe plusieurs manières de garder « vivant » l'état d'un composant qui n'est plus visible :
 
 - Vous pouvez afficher _toutes_ les discussions plutôt que seulement celle qui est active, mais en masquant les autres avec du CSS. Les discussions ne seraient pas supprimés de l'arbre, de sorte que leur état local serait préservé. Cette solution fonctionne très bien pour des UI simples. Cependant, ça peut devenir très lent si les arbres cachés sont grands et contiennent de nombreux nœuds DOM.
-- Vous pouvez [faire remonter l'état](/learn/sharing-state-between-components) et conserver dans le composant parent le message en attente pour chaque destinataire. De cette façon, le fait que les composants enfants soient supprimés importe peu car c'est le parent qui conserve les informations importantes. C'est la solution la plus courante.
+- Vous pouvez [faire remonter l'état](/learn/sharing-state-between-components) et conserver dans le composant parent le message en attente pour chaque destinataire. De cette façon, le fait que les composants enfants soient supprimés importe peu, car c'est en réalité le parent qui conserve les informations importantes. C'est la solution la plus courante.
 - Vous pouvez aussi utiliser une source différente en plus de l'état React. Par exemple, vous souhaitez sans doute qu'un brouillon du message persiste même si l'utilisateur ferme accidentellement la page. Pour implémenter ça, vous pouvez faire en sorte que le composant `Chat` intialise son état en lisant le [`localStorage`](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage) et y sauve également les brouillons.
 
 Quelle que soit votre stratégie, une discussion _avec Alice_ est conceptuellement différente d'une autre _avec Bob_, il est donc naturel de donner une `key` à l'arbre `<Chat>` en fonction du destinataire actuel.
@@ -1418,7 +1418,7 @@ De cette façon, `Form` est toujours le second enfant, il conserve donc sa posit
 
 Ce formulaire vous permet de saisir le prénom et le nom. Il y a également une case à cocher contrôlant quel champ vient en premier. Si vous cochez la case, le champ « nom » apparaît avant le champ « prénom ».
 
-Ça fonctionne presque, mais il y a un bug. Si vous remplissez le « prénom » puis cochez la case, le texte restera dans le premier champ (qui est désormais « nom »). Corrigez ça pour que le texte du champ se déplace *aussi* quand vous changez l'ordre.
+Ça fonctionne presque, mais il y a un bug. Si vous remplissez le « prénom » puis cochez la case, le texte restera dans le premier champ (qui est désormais « nom »). Corrigez ça pour que le texte du champ se déplace *lui aussi* lorsque vous changez l'ordre des champs.
 
 <Hint>
 
@@ -1446,7 +1446,7 @@ export default function App() {
   if (reverse) {
     return (
       <>
-        <Field label="Nom" /> 
+        <Field label="Nom" />
         <Field label="Prénom" />
         {checkbox}
       </>
@@ -1454,11 +1454,11 @@ export default function App() {
   } else {
     return (
       <>
-        <Field label="Prénom" /> 
+        <Field label="Prénom" />
         <Field label="Nom" />
         {checkbox}
       </>
-    );    
+    );
   }
 }
 
@@ -1508,7 +1508,7 @@ export default function App() {
   if (reverse) {
     return (
       <>
-        <Field key="lastName" label="Nom" /> 
+        <Field key="lastName" label="Nom" />
         <Field key="firstName" label="Prénom" />
         {checkbox}
       </>
@@ -1516,11 +1516,11 @@ export default function App() {
   } else {
     return (
       <>
-        <Field key="firstName" label="Prénom" /> 
+        <Field key="firstName" label="Prénom" />
         <Field key="lastName" label="Nom" />
         {checkbox}
       </>
-    );    
+    );
   }
 }
 
@@ -2192,7 +2192,7 @@ button {
 
 </Sandpack>
 
-L'état est associé à la position dans l'arbre. Une `key` vous permet de spécifier une position nommée au lieu de vous fier à l'ordre.
+L'état est associé à la position dans l'arbre. Une `key` vous permet de spécifier une position nommée au lieu de vous fier à l'ordre des éléments.
 
 </Solution>
 
