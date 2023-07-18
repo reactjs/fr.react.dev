@@ -4,35 +4,35 @@ title: Choisir la structure de l'état
 
 <Intro>
 
-Bien structurer l’état peut créer une différence entre un composant agréable à modifier et débugger, et un qui est une source constante de bugs. Voici des conseils que vous devriez prendre en compte pour structurer l’état.
+Bien structurer l’état peut faire toute la différence entre un composant agréable à modifier et déboguer, et un composant qui est une source constante de bugs. Voici des conseils que vous devriez prendre en compte pour structurer vos états.
 
 </Intro>
 
 <YouWillLearn>
 
-* Quand utiliser état unique ou multiple
-* Les choses à éviter en organisant l’état
-* Résoudre des problèmes connus avec la structure de l’état
+* Quand utiliser une vs. plusieurs variables d'état
+* Les pièges à éviter en organisant l’état
+* Comment résoudre les problèmes courants de structure de l’état
 
 </YouWillLearn>
 
-## Les principes pour structurer l’état {/*principles-for-structuring-state*/}
+## Principes de structuration d’état {/*principles-for-structuring-state*/}
 
-Quand vous créez un comoposant qui contient des états, vous devrez faire des choix sur le nombre de variables d’état à utiliser et quelle sera la forme de leurs données. Même si il est possible d’écrire des programmes corrects avec une structure d’état peu optimale, il y a quelques principes qui peuvent vous guider pour faire des meilleurs choix :
+Quand vous créez un composant qui contient des états, vous devez faire des choix sur le nombre de variables d’état à utiliser et la forme de leurs données. Même s'il est possible d’écrire des programmes corrects avec une structure d’état sous-optimale, il y a quelques principes qui peuvent vous guider pour faire de meilleurs choix :
 
-1. **Les états de groupe.** Si vous actualisez tout le temps deux variables d’état ou plus à la fois, essayez de les fusionner en une seule variable d’état.
-2. **Evitez les contradictions dans l’état.** Quand l’état est stucturé d’une manière où plusieurs parties d’état peuvent être contradictoires et en "désaccord" entre elles, des erreurs peuvent s’induire. Essayez d’éviter cela.
-3. **Evitez les états redondants.** Si vous pouvez calculer des informations à partir des props du composant ou d’une de ses variables d'état pendant l’affichage, vous ne devriez pas mettre ces informations dans un état du composant.
-4. **Evitez la duplication d’états.** Quand la même donnée est dupliquée entre plusieurs variables d’état ou dans des objets imbriqués, c’est difficile de les garder synchronisées. Réduisez la duplication quand vous le pouvez.
-5. **Evitez les états fortement imbriqués** Un état fortement hiérarchisé n’est pas très pratique à actualiser. Quand c’est possible, priorisez une stucture d'état plate.
+1. **Regroupez les états associés.** Si vous mettez tout le temps à jour plusieurs variables d’état à la fois, essayez de les fusionner en une seule variable d’état.
+2. **Évitez les contradictions dans l’état.** Quand l’état est structuré de sorte que plusieurs parties d’état puissent être contradictoires, des erreurs peuvent survenir. Essayez d’éviter ça.
+3. **Évitez les états redondants.** Si vous pouvez calculer des informations à partir des props du composant ou de ses variables d'état existantes pendant le rendu, vous ne devriez pas mettre ces informations dans un état du composant.
+4. **Évitez la duplication d’états.** Quand la même donnée est dupliquée entre plusieurs variables d’état ou dans des objets imbriqués, il est difficile de les garder synchronisées. Réduisez la duplication quand vous le pouvez.
+5. **Évitez les états fortement imbriqués.** Un état fortement hiérarchisé n’est pas très pratique à mettre à jour. Quand c’est possible, priorisez une structure d'état plate.
 
-Le but derrière ces principes est de *rendre l’état simple à actualiser sans ajouter d’erreurs*. Retirer des données redondantes et dupliquées de l’état aide à s’assurer que toutes ses parties restent synchronisées. C’est similaire à comment un ingénieur de bases de données souhaite ["normaliser" la structure de la base de données](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) pour réduire les risques de bugs. Pour reprendre Albert Einstein, **"Créez votre état le plus simple qu’il puisse être, mais pas plus."**
+Ces principes visent à *rendre l’état simple à actualiser sans créer d’erreurs*. Retirer les données redondantes et dupliquées de l’état aide à s’assurer que toutes ses parties restent synchronisées. C’est un peu comme un ingénieur de bases de données qui souhaite ["normaliser" la structure de la base de données](https://learn.microsoft.com/fr-fr/office/troubleshoot/access/database-normalization-description) pour réduire les risques de bugs. Pour paraphraser Albert Einstein : **« Faites que votre état soit le plus simple possible — mais pas plus simple. »**
 
 Maintenant voyons comment ces principes s’appliquent concrètement.
 
-## Les états de groupe {/*group-related-state*/}
+## Regrouper les états associés {/*group-related-state*/}
 
-Vous hésitez peut-être quelques fois entre utiliser une variable d’état simple ou multiple.
+Vous hésitez peut-être parfois entre utiliser une ou plusieurs variables d’état.
 
 Devriez-vous faire ça ?
 
@@ -47,7 +47,7 @@ Ou ça ?
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Techniquement, vous pouvez ces deux approches. Mais **si deux variables changent d’état toujours ensemble, une bonne idée serait de les unir en une seule variable d’état.** Vous n’oublirez pas par la suite de toujours les garder synchronisées, comme dans cet exemple où les mouvements du curseur actualisent les 2 coordonnées du point rouge.
+Techniquement, les deux approches sont possibles. Mais **si deux variables d’état changent toujours ensemble, ce serait une bonne idée de les réunir en une seule variable d’état.** Vous n’oublierez ainsi pas ensuite de les garder synchronisées, comme dans cet exemple où les mouvements du curseur mettent à jour les deux coordonnées du point rouge.
 
 <Sandpack>
 
@@ -93,15 +93,15 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Un autre cas où vous pouvez regrouper des données dans un objet ou une liste est lorsque vous ne savez pas combien de parties d'état vous aurez besoin. Par exemple, c’est utile quand vous avez un questionnaire dans lequel l’utilisateur peut ajouter des champs personnalisés.
+Une autre situation dans laquelle vous pouvez regrouper des données dans un objet ou une liste, c'est lorsque vous ne savez pas à l'avance de combien d'éléments d'état vous aurez besoin. Par exemple, c’est utile pour un formulaire dans lequel l’utilisateur peut ajouter des champs personnalisés.
 
 <Pitfall>
 
-Si votre variable d’état est un objet, souvenez vous que [vous ne pouvez actualiser qu’un seul de ses champs](/learn/updating-objects-in-state) sans explicitement copier les autres champs. Par exemple, vous ne pouvez pas faire `setPosition({ x: 100 })` dans l’exemple ci-dessus car om n’y aurait plus du tout la variable `y` ! À la place, si vous vouliez définir `x` tout seul, vous feriez soit `setPosition({ ...position, x: 100 })`, soit la séparation en deux variables d’état et `setX(100)`.
+Si votre variable d’état est un objet, souvenez-vous que [vous ne pouvez pas mettre à jour qu’un seul champ](/learn/updating-objects-in-state) sans explicitement copier les autres champs. Par exemple, vous ne pouvez pas faire `setPosition({ x: 100 })` dans l’exemple ci-dessus car il n’y aurait plus du tout la variable `y` ! Au lieu de ça, si vous vouliez définir `x` tout seul, soit vous feriez `setPosition({ ...position, x: 100 })`, soit vous découperiez l'information en deux variables d’état et `setX(100)`.
 
 </Pitfall>
 
-## Evitez les contradictions dans l’état {/*avoid-contradictions-in-state*/}
+## Évitez les contradictions dans l’état {/*avoid-contradictions-in-state*/}
 
 Voici un questionnaire de satisfaction d’hôtel avec les variables d’état `isSending` et `isSent` :
 
@@ -129,7 +129,7 @@ export default function FeedbackForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>Comment était votre séjour au Prancing Pony ?</p>
+      <p>Comment était votre séjour au Poney Vagabond ?</p>
       <textarea
         disabled={isSending}
         value={text}
@@ -159,7 +159,7 @@ function sendMessage(text) {
 
 Même si ce code marche, il laisse la place à des états "impossibles". Par exemple, si vous oubliez d’appeler `setIsSent` et `setIsSending` ensemble, vous pouvez finir dans une situation où les deux variables `isSending` et `isSent` sont à `true` au même moment. Plus votre composant est complexe, plus il est dur de comprendre ce qu’il s’est passé.
 
-**Comme `isSending` et `isSent` ne doivent jamais être à `true` au même moment, il est mieux de les remplacer avec une variable d’état de `statut` qui peut prendre l’un des *trois* états valides :** `'typing'` (initial), `'sending'`, et `'sent'` :
+**Comme `isSending` et `isSent` ne doivent jamais être à `true` au même moment, il est préférable de les remplacer par une variable d’état de `statut` qui peut prendre l’un des *trois* états valides :** `'typing'` (initial), `'sending'`, et `'sent'` :
 
 <Sandpack>
 
@@ -186,7 +186,7 @@ export default function FeedbackForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>Comment était votre séjour au Prancing Pony ?</p>
+      <p>Comment était votre séjour au Poney Vagabond ?</p>
       <textarea
         disabled={isSending}
         value={text}
@@ -214,20 +214,20 @@ function sendMessage(text) {
 
 </Sandpack>
 
-Vous pouvez toujours déclarer des constantes pour plus de lisibilité :
+Vous pouvez toujours déclarer quelques constantes pour plus de lisibilité :
 
 ```js
 const isSending = status === 'sending';
 const isSent = status === 'sent';
 ```
 
-Mais ce ne sont pas des variables d’état, donc vous ne devez pas vous inquiéter sur leur potentielle désynchronisation.
+Mais ce ne sont pas des variables d’état, vous n'avez donc pas à vous soucier de leur désynchronisation.
 
-## Evitez les états redondants. {/*avoid-redundant-state*/}
+## Évitez les états redondants. {/*avoid-redundant-state*/}
 
-Si vous pouvez calculer des informations depuis les props d'un composant ou une de ses variables d’état existantes pendant l’affichage vous ne **devriez pas** mettre cette information dans l’état du composant
+Si vous pouvez calculer certaines informations depuis les props d’un composant ou une de ses variables d’état existantes pendant le rendu, vous ne **devez pas** mettre ces informations dans l’état du composant
 
-Par exemple, prenez ce questionnaire. Il marche, mais pouvez-vous trouver des états redondants dans celui-ci ?
+Par exemple, prenez ce questionnaire. Il marche, mais pouvez-vous y trouver un état redondant ?
 
 <Sandpack>
 
@@ -280,9 +280,9 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Ce questionnaire possède trois variables d’état : `firstName`, `lastName` et `fullName`. Cependant, `fullName` est redondant. **Vous pouvez toujours calculer `fullName` depuis `firstName` et `lastName` pendant l’affichage, donc retirez-le de l’état.**
+Ce questionnaire possède trois variables d’état : `firstName`, `lastName` et `fullName`. Cependant, `fullName` est redondant. **Vous pouvez toujours calculer `fullName` depuis `firstName` et `lastName` pendant le rendu, donc retirez-le de l’état.**
 
-Voilà comment vous pouvez faire :
+Voici comment vous pouvez faire :
 
 <Sandpack>
 
@@ -334,13 +334,13 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Ici, `fullName` n’est *pas* une variable d’état. À la place, elle est évaluée pendant l’affichage :
+Ici, `fullName` n’est *pas* une variable d’état. À la place, elle est évaluée pendant le rendu :
 
 ```js
 const fullName = firstName + ' ' + lastName;
 ```
 
-Par conséquent, les gestionnaires de changement n’auront rien à faire pour l’actualiser. Quand vous appelez `setFirstName` ou `setLastName`, vous déclenchez une actualisation de l’affichage, et le prochain `fullName` sera calculé avec les nouvelles données.
+Par conséquent, les gestionnaires de changement n’auront rien à faire pour le mettre à jour. Lorsque vous appelez `setFirstName` ou `setLastName`, vous déclenchez un nouveau rendu, et le prochain `fullName` sera calculé à partir des nouvelles données.
 
 <DeepDive>
 
@@ -354,9 +354,9 @@ function Message({ messageColor }) {
 }
 ```
 
-Ici, la variable d’état `color` est initialisée à la valeur de la prop `messageColor`. Le problème est que **si le composant parent passe une valeur différente dans `messageColor` plus tard (par exemple, `'rouge'` au lieu de `'bleu'`), la variable d’état `color` ne serait pas mise à jour !** L’état est initialisé seulement durant le premier rendu.
+Ici, la prop `messageColor` est passée comme valeur initiale de la variable d’état `color`. Le problème est que **si le composant parent transmet une valeur différente dans `messageColor` plus tard (par exemple, `'rouge'` au lieu de `'bleu'`), la variable d’état `color` ne sera pas mise à jour !** L’état est seulement initialisé durant le premier rendu.
 
-C’est pourquoi la duplication de certaines props dans des variables d’état peut amener à la confusion. À la place, utilisez la prop `messageColor` directement dans votre code. Si vous voulez lui donner un nom plus court, utilisez une constante :
+C’est pourquoi la "duplication" de certaines props dans des variables d’état peut mener à la confusion. À la place, utilisez la prop `messageColor` directement dans votre code. Si vous voulez lui donner un nom plus court, utilisez une constante :
 
 ```js
 function Message({ messageColor }) {
@@ -364,22 +364,22 @@ function Message({ messageColor }) {
 }
 ```
 
-De cette manière, le composant ne sera pas désynchronisé avec la prop passée par le composant parent.
-Dupliquer les props dans l’état fait sens uniquement quand vous *voulez* ignorer toutes les mises à jour d’une prop spécifique. Par convention, commencez le nom de la prop par `initial` ou `default` pour préciser que ses nouvelles valeurs seront ignorées :
+De cette manière, le composant ne sera pas désynchronisé avec la prop transmise par le composant parent.
+"Dupliquer" les props dans l’état fait sens uniquement quand vous *voulez* ignorer toutes les mises à jour d’une certaine prop. Par convention, ajoutez `initial` ou `default` au début du nom de la prop pour préciser que ses nouvelles valeurs seront ignorées :
 
 ```js
 function Message({ initialColor }) {
-  // La variable d’état `couleur` contient la *première* valeur de `initialColor`.
-  // Les prochains changements à la prop `initialColor` sont ignorées.
+  // La variable d’état `color` contient la *première* valeur de `initialColor`.
+  // Les prochains changements à la prop `initialColor` seront ignorés.
   const [color, setColor] = useState(initialColor);
 }
 ```
 
 </DeepDive>
 
-## Evitez la duplication d’états {/*avoid-duplication-in-state*/}
+## Évitez la duplication d’états {/*avoid-duplication-in-state*/}
 
-Ce composant-liste vous laisse choisir un seul voyage parmis plusieurs :
+Ce composant de carte de menu vous permet de choisir un seul en-cas de voyage parmi plusieurs :
 
 <Sandpack>
 
@@ -424,7 +424,7 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Actuellement, il stocke l’objet selectionné dans la variable d’état `selectedItem`. Cependant, ce n’est pas optimal : **le contenu de `selectedItem` est le même objet que l’un des objets dans la liste `items`.** Cela signifie que les informations sur l’objet lui-même sont dupliquées en deux endroits.
+Actuellement, il stocke l’élément selectionné en tant qu’objet dans la variable d’état `selectedItem`. Cependant, ce n’est pas optimal : **le contenu de `selectedItem` est le même objet que l’un des éléments de la liste `items`.** Cela signifie que les informations relatives à l’élément sont dupliquées à deux endroits.
 
 Pourquoi est-ce un problème ? Rendons chaque objet modifiable :
 
@@ -489,9 +489,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Notez que si vous cliquez sur "Choisir" en premier sur un objet *puis* l’éditez, **la saisie se met à jour, mais le label en bas est différent des modifications.** C’est parce que vous avez un état dupliqué, et vous avez oublié de mettre à jour `selectedItem`.
+Remarquez que si vous cliquez d’abord sur "Choisir" un élément *puis* que vous le modifiez, **la saisie se met à jour, mais le label en bas est différent des modifications.** C’est parce que vous avez un dupliqué l’état, et vous avez oublié de mettre à jour `selectedItem`.
 
-Même si vous pourriez mettre à jour `selectedItem` également, une correction plus simple serait de retirer la duplication. Dans cet exemple, au lieu d’un objet `selectedItem` (qui crée une duplication des objets dans `items`), vous gardez le `selectedId` dans l’état, et *ensuite* obtenez le `selectedItem` en cherchant dans la liste `items` pour un objet avec cet ID :
+Bien que vous pourriez également mettre à jour `selectedItem`, une solution plus simple consiste à supprimer la duplication. Dans cet exemple, au lieu d’un objet `selectedItem` (ce qui crée une duplication des éléments dans `items`), vous gardez le `selectedId` dans l’état, *puis* obtenez le `selectedItem` en cherchant dans la liste `items` pour un élément avec cet ID :
 
 <Sandpack>
 
@@ -556,7 +556,7 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-(Autrement, vous pouvez garder l’index sélectionné dans l’état.)
+(Vous pouvez également garder l’index sélectionné dans l’état.)
 
 L’état était dupliqué de cette façon :
 
@@ -568,14 +568,14 @@ Mais après les changements, il est ainsi :
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedId = 0`
 
-La duplication est finie, et vous gardez seulement l’état essentiel !
+La duplication est terminée, et vous ne conservez que l’état essentiel !
 
-Maintenant si vous modifiez l’objet *selectionné*, le message en dessous sera mis à jour immédiatement. C’est parce que `setItems` déclenche un rendu, et `items.find(...)` doit trouver l’objet avec le titre mis à jour. Vous n’aviez pas besoin de garder *l’objet selectionné* dans l’état, parce que seulement l’*ID sélectionné* est essentiel. Le reste pourrait être calculé pendant le rendu.
+Maintenant si vous modifiez l’élément *selectionné*, le message en dessous sera mis à jour immédiatement. C’est parce que `setItems` déclenche un nouveau rendu, et `items.find(...)` trouve l’élément dont le titre a été mis à jour. Il n’est pas nécessaire de conserver *l’objet selectionné* dans l’état, car seul l’*ID sélectionné* est essentiel. Le reste peut être calculé lors du rendu.
 
-## Evitez les états fortement imbriqués {/*avoid-deeply-nested-state*/}
+## Évitez les états fortement imbriqués {/*avoid-deeply-nested-state*/}
 
 
-Imaginez un plan de voyage composé de planètes, de continents et de pays. Vous serez sûrement tentés de structurer son état en utlisant des listes et des objets imbriqués, comme dans cet exemple :
+Imaginez un plan de voyage composé de planètes, de continents et de pays. Vous pourriez être tentés de structurer son état à l’aide de listes et d’objets imbriqués, comme dans cet exemple :
 
 <Sandpack>
 
@@ -604,7 +604,7 @@ export default function TravelPlan() {
   const planets = plan.childPlaces;
   return (
     <>
-      <h2>Endroits à visiter</h2>
+      <h2>Lieux à visiter</h2>
       <ol>
         {planets.map(place => (
           <PlaceTree key={place.id} place={place} />
@@ -821,9 +821,9 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-Maintenant disons que vous voulez ajouter un bouton pour supprimer un endroit que vous avez déjà visité. Comment feriez-vous ? [Actualiser des états imbriqués](/learn/updating-objects-in-state#updating-a-nested-object) inclus de faire des copies d’objets depuis l’endroit qui a changé. Supprimer un endroit imbriqué profondément consisterait à copier tout son chemin d’emplacement. Un tel code peut être très long. 
+Imaginons maintenant que vous souhaitez ajouter un bouton pour supprimer un lieu que vous avez déjà visité. Comment procéder ? [La mise à jour d’un état imbriqué](/learn/updating-objects-in-state#updating-a-nested-object) implique de faire des copies des objets en remontant jusqu’à la partie qui a changé. Supprimer un lieu imbriqué profondément consisterait à copier tout son chemin d’emplacement. Un tel code peut être très long. 
 
-**Si l’état est trop imbriqué pour s’actualiser facilement, préférez le faire "plat".** C’est une manière pour restructurer cette donnée. Au lieu d’une structure arborescente où chaque `place` a une liste des *emplacements de ses enfants*, chaque endroit peut posséder une liste de *l’ID des emplacements de ses enfants*. Stockez une corrélation depuis chaque ID de `place` à la `place` correspondant.
+**Si l’état est trop imbriqué pour être mis à jour facilement, envisagez de le rendre "plat".** Voici une façon de restructurer ces données. Au lieu d’une structure arborescente où chaque `lieu` possède une liste des *emplacements de ses enfants*, chaque endroit peut posséder une liste de *l’ID de ses lieux enfants*. Vous pouvez ensuite stocker une correspondance entre chaque ID de lieu et le lieu correspondant.
 
 Cette restructuration des données pourrait vous rappeler une table de base de données :
 
@@ -860,7 +860,7 @@ export default function TravelPlan() {
   const planetIds = root.childIds;
   return (
     <>
-      <h2>Endroits à visiter</h2>
+      <h2>Lieux à visiter</h2>
       <ol>
         {planetIds.map(id => (
           <PlaceTree
@@ -1132,14 +1132,14 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-**Maintenant que l’état est "plat" (aussi dit "normalisé"), actualiser les éléments imbriqués devient plus simple**
+**Maintenant que l’état est "plat" (aussi dit "normalisé"), actualiser des éléments imbriqués devient plus simple**
 
-Afin d’enlever un endroit désormais vous avez seulement besoin d’actualiser deux niveaux d’état:
+Désormais, afin d’enlever un lieu vous avez besoin d’actualiser seulement deux niveaux d’état:
 
-- La version actualisée de son endroit *parent* devrait exclure l’ID enlevé de sa liste `childIds`.
-- La version actualisée du "tableau" d’objet *root* devrait inclure la version actualisée de l’endroit parent.
+- La version actualisée de son lieu *parent* devrait exclure l’ID supprimé de sa liste `childIds`.
+- La version actualisée de la "table" d’objet *root* doit inclure la version mise à jour du lieu parent.
 
-Voici un exemple de commment vous devriez commencer:
+Voici un exemple de commment vous pourriez commencer:
 
 <Sandpack>
 
@@ -1152,7 +1152,7 @@ export default function TravelPlan() {
 
   function handleComplete(parentId, childId) {
     const parent = plan[parentId];
-    // Créez une nouvelle version de son endroit parent
+    // Créez une nouvelle version de son lieu parent
     // cela n’inclut pas l’ID de son enfant.
     const nextParent = {
       ...parent,
@@ -1171,7 +1171,7 @@ export default function TravelPlan() {
   const planetIds = root.childIds;
   return (
     <>
-      <h2>Endroits à visiter</h2>
+      <h2>Lieux à visiter</h2>
       <ol>
         {planetIds.map(id => (
           <PlaceTree
@@ -1477,13 +1477,13 @@ button { margin: 10px; }
 
 </Sandpack>
 
-Vous pouvez imbriquer des états autant que vous le voulez, mais les rendre "plats" peut résoudre beaucoup de problèmes. Cela rend les états plus simple à actualiser, et cela aide à être sûr que vous n’avez pas de duplication dans les différentes parties d’un objet imbriqué.
+Vous pouvez imbriquer des états autant que vous le souhaitez, mais les rendre "plats" peut résoudre beaucoup de problèmes. Cela facilite la mise à jour de l’état, et permet de s’assurer qu’il n’y a pas de duplication dans les différentes parties d’un objet imbriqué.
 
 <DeepDive>
 
-#### Améliorer l’utilisation de mémoire {/*improving-memory-usage*/}
+#### Améliorer l’utilisation de la mémoire {/*improving-memory-usage*/}
 
-Idéalement, vous voudrez aussi enlever les éléments supprimés (et leurs enfants !) depuis l’objet "tableau" pour améliorer l’utilisation de la mémoire. Cette version fait cela. Cela utilise également [Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) pour faire de la logique d’actualisation plus courte.
+Idéalement, vous devriez également enlever les éléments supprimés (et leurs enfants !) depuis l’objet "table" pour améliorer l’utilisation de la mémoire. C’est ce que fait cette version. Elle utilise également [Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) pour rendre la logique de mise à jour plus concise.
 
 <Sandpack>
 
@@ -1515,7 +1515,7 @@ export default function TravelPlan() {
   const planetIds = root.childIds;
   return (
     <>
-      <h2>Endroits à visiter</h2>
+      <h2>Lieux à visiter</h2>
       <ol>
         {planetIds.map(id => (
           <PlaceTree
@@ -1841,17 +1841,17 @@ button { margin: 10px; }
 
 </DeepDive>
 
-Parfois, vous pouvez aussi réduire l’état d’imbrication en déplaçant des états imbriqués dans les composants enfants. Cela fonctionne bien pour les états UI éphémères qui n’ont pas besoin d’être stockés, comme quand un objet est survolé.
+Parfois, vous pouvez aussi réduire l’imbrication des états en déplaçant une partie de l’état imbriqué dans les composants enfants. Cela fonctionne bien pour les états éphémères de l’UI qui n’ont pas besoin d’être stockés, comme le fait de savoir si un élément est survolé.
 
 <Recap>
 
-* Si deux variables d’état s’actualisent toujours ensemble, pensez à les fusionner en une seule.
-* Choississez votre variable d’état précautionneusement pour éviter de créer des "états" impossibles.
-* Structurez votre état de manière à réduire les chances que vous fassiez une erreur en l’actualisant.
-* Evitez les états dupliqués et redondants pour que vous n’ayez pas besoin de le garder synchronnisés.
-* Ne mettez pas des props *dans* un état sauf si vous voulez spécifiquement prévenir les mises à jours.
-* Pour les évènements d’UI tels que la sélection, gardez l’ID ou index dans l’état plutôt que l’objet lui-même.
-* Si actualiser profondément l’état imbriqué est compliqué, essayez de l’aplatir.
+* Si deux variables d’état sont toujours mises à jour ensemble, envisagez de les fusionner en une seule.
+* Choississez soigneusement vos variables d’état pour éviter de créer des "états" impossibles.
+* Structurez votre état de manière à réduire les risques d’erreur lors de sa mise à jour.
+* Evitez les états dupliqués et redondants afin de ne pas avoir à les synchroniser.
+* Ne mettez pas de props *dans* un état à moins que vous ne vouliez spécifiquement empêcher les mises à jour.
+* Pour les évènements d’UI tels que la sélection, conservez l’ID ou l’index dans l’état au lieu de l’objet lui-même.
+* Si la mise à jour d’un état profondément imbriqué est compliquée, essayez de l’aplatir.
 
 </Recap>
 
@@ -1859,7 +1859,7 @@ Parfois, vous pouvez aussi réduire l’état d’imbrication en déplaçant des
 
 #### Réparer un composant qui ne s’actualise pas {/*fix-a-component-thats-not-updating*/}
 
-Ce composant `Clock` reçoit deux props : `color` et `time`. Quand vous sélectionnez une couleur différente dans la boîte de sélection, le composant `Clock` reçoit une prop `color` différente de son composant parent. Cependant, la couleur affichée ne s'actualise pas. Pourquoi ? Réglez le problème.
+Ce composant `Clock` reçoit deux props : `color` et `time`. Lorsque vous sélectionnez une couleur différente dans la boîte de sélection, le composant `Clock` reçoit une prop `color` différente de son composant parent. Cependant, la couleur affichée n’est pas mise à jour. Pourquoi ? Corrigez le problème.
 
 <Sandpack>
 
@@ -1966,7 +1966,7 @@ export default function App() {
 
 </Sandpack>
 
-Ou, avec la syntaxe de destructuration :
+Ou en utilisant la syntaxe de déstructuration :
 
 <Sandpack>
 
@@ -2022,7 +2022,7 @@ export default function App() {
 
 #### Réparer une liste de matériel cassée {/*fix-a-broken-packing-list*/}
 
-Cette liste de matériel possède un pied de page qui affiche combien d’objets sont prêts, et combien d’objets il y a en tout. Il a l’air de marcher au début, mais il est bugué. Par exemple, si vous cochez un objet, puis le supprimez, le compteur ne sera pas mis à jour correctement. Réparez le compteur pour qu’il soit toujours correct.
+Cette liste de matériel possède un pied de page qui indique le nombre d’objets emballés, et le nombre total d’articles. Cela semble fonctionner au début, mais il est bugué. Par exemple, si vous cochez un article, puis le supprimez, le compteur ne sera pas mis à jour correctement. Corrigez le compteur pour qu’il soit toujours correct.
 
 <Hint>
 
@@ -2167,7 +2167,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Même si vous pourriez changer chaque gestionnaire d'évènements pour actualiser les compteurs `total` et `packed` correctement, le problème principal est que ces variables d’état existent. Elles sont redondantes parce que vous pouvez toujours calculer le nombre d’objets (emballés ou total) depuis la liste `items` elle même. Retirez l’état redondant pour résoudre le problème :
+Bien que vous puissiez modifier soigneusement chaque gestionnaire d'évènement pour mettre à jour les compteurs `total` et `packed` correctement, le problème principal est que ces variables d’état existent. Elles sont redondantes car vous pouvez toujours calculer le nombre d’éléments (emballés ou totaux) depuis la liste `items` elle même. Supprimez l’état redondant pour corriger le bug :
 
 <Sandpack>
 
@@ -2300,15 +2300,15 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Notez comme les gestionnaires d’évènements sont seulement utiles à appeler `setItems` après ce changement. Les compteurs d’objets seront maintenant calculés pendant le prochain rendu depuis la liste `items`, et seront donc toujours à jour.
+Notez comme les gestionnaires d’évènements sont seulement utiles pour appeler `setItems` après ce changement. Les compteurs d’objets seront maintenant calculés pendant le prochain rendu depuis la liste `items`, et seront donc toujours à jour.
 
 </Solution>
 
 #### Réparer une sélection qui disparait {/*fix-the-disappearing-selection*/}
 
-Il y a une liste `letters` dans l’état. Quand vous survolez ou cliquez sur une lettre en particulier, elle se met en surbrillance. Le courrier actuellement en surbrillance est stocké dans la variable d’état `highlightedLetter`. Vous pouvez marquer chaque courrier comme "favori" ou "normal", ce qui met à jour la liste `letters` dans l’état.
+Il y a une liste de `letters` dans l’état. Lorsque vous survolez ou cliquez sur un courrier particulier, celui-ci est mis en surbrillance. Le courrier actuellement en surbrillance est stocké dans la variable d’état `highlightedLetter`. Vous pouvez marquer chaque courrier comme "favori" ou "normal", ce qui met à jour la liste `letters` dans l’état.
 
-Ce code marche, mais il y a un bug mineur d’UI. Quand vous appuyez sur "Favori" ou "Retirer", la surbrillance disparait pour un moment. Cependant, elle réaparait dès que vous bougez votre souris ou bougez vers un autre courrier avec le clavier. Pourquoi est-ce que cela se produit ? Réparez le code pour que la surbrillance ne disparaisse pas après le clic sur le bouton.
+Ce code fonctionne, mais il y a un bug mineur d’UI. Quand vous appuyez sur "Favori" ou "Retirer", la surbrillance disparait pendant un moment. Cependant, elle réaparait dès que vous déplacez votre curseur ou passez à un autre courrier avec le clavier. Pourquoi cela se produit-il ? Corrigez le problème pour que la surbrillance ne disparaisse pas après le clic sur le bouton.
 
 <Sandpack>
 
@@ -2415,9 +2415,9 @@ li { border-radius: 5px; }
 
 <Solution>
 
-Le problème est que vous stockez l’objet *letter* dans `highlightedLetter`. Mais vous gardez cette même information dans la liste `letters`. Donc votre état a des duplications ! Quand vous mettez à jour la liste `letters` après le clic sur le bouton, vous créez un nouveau courrier qui est différent de `highlightedLetter`. C’est pourquoi l’expression `highlightedLetter === letter` devient `false` et la surbrillance disparait. Elle réaparait au prochain appel de `setHighlightedLetter` quand la souris se déplace.
+Le problème est que vous stockez l’objet *letter* dans `highlightedLetter`. Mais vous gardez cette même information dans la liste `letters`. Il y a donc duplication dans votre état ! Quand vous mettez à jour la liste `letters` après avoir cliqué sur le bouton, vous créez un nouvel objet courrier qui est différent de `highlightedLetter`. C’est pourquoi l’expression `highlightedLetter === letter` devient `false` et la surbrillance disparait. Elle réaparait la prochaine fois que vous appelez `setHighlightedLetter` lorsque le pointeur se déplace.
 
-Pour régler ce problème, retirez la duplication de l’état. Au lieu de stocker *le courrier lui-même* à deux endroits, stockez le `highlightedId` plutôt. Maintenant vous pouvez vérifier `isHighlighted` pour chaque courrier avec `letter.id === highlightedId`, qui va marcher même si l’objet `letter` a changé depuis le dernier rendu.
+Pour résoudre ce problème, supprimez la duplication de l’état. Au lieu de stocker *le courrier lui-même* à deux endroits, stockez plutôt le `highlightedId`. Ensuite vous pouvez vérifier `isHighlighted` pour chaque courrier avec `letter.id === highlightedId`, ce qui fonctionnera même si l’objet `letter` a changé depuis le dernier rendu.
 
 <Sandpack>
 
@@ -2526,9 +2526,9 @@ li { border-radius: 5px; }
 
 #### Implémenter une sélection multiple {/*implement-multiple-selection*/}
 
-Dans cet exemple, chaque `Letter` a une prop `isSelected` et un gestionnaire `onToggle` qui la définit comme sélectionnée. Ca marche, mais l’état est stocké comme un `selectedId` (soit `null` ou un ID), donc seulement un courrier peut être sélectionné à la fois.
+Dans cet exemple, chaque `Letter` possède une prop `isSelected` et un gestionnaire `onToggle` qui la marque comme étant sélectionnée. Cela fonctionne, mais l’état est stocké sous la forme d’un `selectedId` (soit `null` ou un ID), de sorte qu’un seul courrier peut être sélectionné à la fois.
 
-Changez la structure de l’état pour gérer la sélection multiple. (Comment le structureriez-vous ? Pensez à ça avant d’écrire le code.) Chaque case doit devenir indépendante des autres. Cliquer sur un courrier sélectionné doit le décocher. Enfin, le bas de page doit afficher le nombre correct d’objets sélectionnés.
+Modifiez la structure de l’état pour prendre en charge la sélection multiple. (Comment le structureriez-vous ? Réfléchissez-y avant d’écrire le code.) Chaque case à cocher doit devenir indépendante des autres. Le fait de cliquer sur un courrier sélectionné devrait le décocher. Enfin, le pied de page doit afficher le nombre correct d’éléments sélectionnés.
 
 <Hint>
 
@@ -2572,7 +2572,7 @@ export default function MailClient() {
         <hr />
         <p>
           <b>
-            Vous avez sélectionné {selectedCount} courriers
+            Vous avez sélectionné {selectedCount} courrier(s)
           </b>
         </p>
       </ul>
@@ -2633,7 +2633,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 <Solution>
 
-À la place d’un simple `selectedId`, enregistrez une *liste* `selectedIds` dans l’état. Par exemple, si vous sélectionnez le premier et le dernier courriers, elle contiendrait `[0, 2]`. Quand rien n’est sélectionné, elle contiendrait une liste vide `[]` :
+À la place d’un simple `selectedId`, enregistrez une *liste* `selectedIds` dans l’état. Par exemple, si vous sélectionnez le premier et le dernier courrier, elle contiendrait `[0, 2]`. Quand rien n’est sélectionné, elle contiendrait une liste vide `[]` :
 
 <Sandpack>
 
@@ -2680,7 +2680,7 @@ export default function MailClient() {
         <hr />
         <p>
           <b>
-            Vous avez sélectionné {selectedCount} courriers
+            Vous avez sélectionné {selectedCount} courrier(s)
           </b>
         </p>
       </ul>
@@ -2739,9 +2739,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-Un inconvénient mineur d’utiliser une liste est que pour chaque objet, vous appelez `selectedIds.includes(letter.id)` pour vérifier si il est sélectionné. Si la liste est très grande, cela peut devenir un problème de performances car une recherche de liste avec [`includes()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) prend un temps linéair, et vous effectuez cette recherche pour chaque objet.
+Un petit inconvénient de l’utilisation d’une liste est que pour chaque élément, vous appelez `selectedIds.includes(letter.id)` pour vérifier si il est sélectionné. Si la liste est très grande, cela peut devenir un problème de performances car rechercher dans une liste avec [`includes()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) prend un temps linéaire, et vous effectuez cette recherche pour chaque élément.
 
-Pour régler ça, vous pouvez enregistrer un [Set](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set) dans l’état à la place, qui fournit une fonction [`has()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set/has) rapide :
+Pour résoudre ce problème, vous pouvez enregistrer un [Set](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set) dans l’état à la place, qui permet une fonction [`has()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set/has) rapide :
 
 <Sandpack>
 
@@ -2785,7 +2785,7 @@ export default function MailClient() {
         <hr />
         <p>
           <b>
-            Vous avez sélectionné {selectedCount} courriers
+            Vous avez sélectionné {selectedCount} courrier(s)
           </b>
         </p>
       </ul>
@@ -2844,9 +2844,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-Maintenant chaque objet effectue une vérification `selectedIds.has(letter.id)`, ce qui est très rapide.
+Maintenant chaque élément effectue une vérification `selectedIds.has(letter.id)`, ce qui est très rapide.
 
-Gardez en tête que vous [ne devez pas muter des objets dans l’état](/learn/updating-objects-in-state), et cela inclut les Sets aussi. C’est pourquoi la fonction `handleToggle` crée une *copie* de ce Set d’abord, puis met à jour cette copie.
+Gardez en tête que vous [ne devez pas muter des objets dans l’état](/learn/updating-objects-in-state), et cela inclut les Sets aussi. C’est pourquoi la fonction `handleToggle` crée d’abord une *copie* de ce Set, puis la met à jour.
 
 </Solution>
 
