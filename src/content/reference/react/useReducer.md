@@ -1068,13 +1068,13 @@ Vous pouvez rencontrer l'erreur indiquant `Too many re-renders. React limits the
 
 ```js {1-2}
 // 🚩 Incorrect : appelle le gestionnaire pendant le rendu
-return <button onClick={handleClick()}>Click me</button>
+return <button onClick={handleClick()}>Cliquez ici</button>
 
 // ✅ Correct : passe le gestionnaire d’événement
-return <button onClick={handleClick}>Click me</button>
+return <button onClick={handleClick}>Cliquez ici</button>
 
 // ✅ Correct : passe une fonction en ligne
-return <button onClick={(e) => handleClick(e)}>Click me</button>
+return <button onClick={(e) => handleClick(e)}>Cliquez ici</button>
 ```
 
 Si vous ne trouvez pas la cause de cette erreur, cliquez sur la flèche à côté de l'erreur dans la console et parcourez la pile d'appels JavaScript pour trouver l'appel à la fonction `dispatch` responsable de l'erreur.
