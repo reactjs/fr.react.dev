@@ -32,7 +32,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### Paramètres {/*parameters*/}
 
-* `load` : une fonction qui renvoie une [promesse](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) ou un *thenable* (un objet doté d'une méthode `then` compatible). React n'appellera pas `load` tant que vous ne tenterez pas d'afficher le composant renvoyé. Après que React a appelé `load` pour la première fois, il patientera pour que la promesse s'établisse, puis affichera la valeur accomplie comme composant React. Tant la promesse renvoyée que sa valeur d'accomplissement seront mises en cache, et React ne rappellera pas `load`. Si la promesse rejette, React lèvera (`throw`) la raison du rejet (généralement une `Error`) pour que le périmètre d'erreur le plus proche la gère.
+* `load` : une fonction qui renvoie une [promesse](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) ou un *thenable* (un objet doté d'une méthode `then` compatible). React n'appellera pas `load` tant que vous ne tenterez pas d'afficher le composant renvoyé. Après que React a appelé `load` pour la première fois, il patientera pour que la promesse s'établisse, puis affichera la valeur accomplie comme composant React. Tant la promesse renvoyée que sa valeur accomplie seront mises en cache, et React ne rappellera pas `load`. Si la promesse rejette, React lèvera (`throw`) la raison du rejet (généralement une `Error`) pour que le périmètre d'erreur le plus proche la gère.
 
 #### Valeur renvoyée {/*returns*/}
 
@@ -56,13 +56,13 @@ Vous aurez besoin de renvoyer une [promesse](https://developer.mozilla.org/docs/
 
 ### Charger des composants à la demande avec Suspense {/*suspense-for-code-splitting*/}
 
-En général, vous importez vos composants avec la déclaration statique [`import`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import) :
+En général, vous importez vos composants avec la déclaration statique [`import`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import) :
 
 ```js
 import MarkdownPreview from './MarkdownPreview.js';
 ```
 
-Pour différer le chargement du code de ce composant jusqu'à ce qu'il affiche pour la première fois, remplacez cette importation avec :
+Pour différer le chargement du code de ce composant jusqu'à ce qu'il affiche pour la première fois, remplacez cette importation avec :
 
 ```js
 import { lazy } from 'react';
@@ -81,7 +81,7 @@ Maintenant que le code de votre composant se charge à la demande, vous aurez be
  </Suspense>
 ```
 
-Dans cet exemple, le code de `MarkdownPreview` ne sera pas chargé jusqu'à ce que vous essayiez de l'afficher. Si `MarkdownPreview` n'est pas encore chargé, `Loading` sera affiché à sa place. Essayez de cocher la case :
+Dans cet exemple, le code de `MarkdownPreview` ne sera pas chargé jusqu'à ce que vous essayiez de l'afficher. Si `MarkdownPreview` n'est pas encore chargé, `Loading` sera affiché à sa place. Essayez de cocher la case :
 
 <Sandpack>
 
@@ -175,7 +175,7 @@ body {
 
 </Sandpack>
 
-Cette démo se charge avec un retard artificiel. La prochaine fois que vous décochez et cochez la case, `Preview` sera mis en cache, il n'y aura donc pas d'état de chargement. Pour voir à nouveau l'état de chargement, cliquez sur  "Réinitialiser" dans le bac à sable.
+Cette démo se charge avec un retard artificiel. La prochaine fois que vous décochez et cochez la case, `Preview` sera mis en cache, il n'y aura donc pas d'état de chargement. Pour voir à nouveau l'état de chargement, cliquez sur  « Réinitialiser » dans le bac à sable.
 
 [En savoir plus sur la gestion des états de chargement avec Suspense](/reference/react/Suspense).
 
@@ -197,7 +197,7 @@ function Editor() {
 }
 ```
 
-Déclarez-les toujours plutôt au début de votre module :
+Déclarez-les toujours plutôt au début de votre module :
 
 ```js {3-4}
 import { lazy } from 'react';
