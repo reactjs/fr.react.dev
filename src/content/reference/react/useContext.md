@@ -42,7 +42,7 @@ function MyComponent() {
 
 #### Limitations {/*caveats*/}
 
-* L'appel à `useContext()` dans un composant n'est pas affecté par les fournisseurs renvoyés par le *même* composant. Le `<Context.Provider>` correspondant **doit être *au-dessus*** du composant qui appelle le `useContext()`.
+* L'appel à `useContext()` dans un composant n'est pas affecté par les fournisseurs renvoyés par le *même* composant. Le `<Context.Provider>` correspondant **doit figurer *au-dessus*** du composant qui appelle le Hook `useContext()`.
 * React **fait automatiquement le rendu** de tous les enfants qui utilisent un contexte spécifique, en commençant par le fournisseur qui reçoit une `value` différente. La valeur précédente et la suivante sont comparées avec [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Sauter des rendus avec [`memo`](/reference/react/memo) n'empêche pas les enfants de recevoir une nouvelle valeur de contexte.
 * Le contexte peut être cassé si votre système de construction produit des modules dupliqués en sortie (ce qui peut arriver avec les liens symboliques). Passer quelque chose *via* le contexte ne marche que si le `SomeContext` que vous avez utilisé pour fournir le contexte et le `SomeContext` que vous utilisez pour le lire sont ***exactement* le même objet**, ce qui est déterminé par une comparaison `===`.
 
@@ -60,7 +60,7 @@ import { useContext } from 'react';
 
 function Button() {
   const theme = useContext(ThemeContext);
-  // ... 
+  // ...
 ```
 
 `useContext` renvoie la <CodeStep step={2}>valeur du contexte</CodeStep> pour le <CodeStep step={1}>contexte</CodeStep> que vous avez passé. Pour définir la valeur du contexte, React remonte dans l'arbre des composants à la recherche du **fournisseur de contexte le plus proche** pour ce contexte particulier.
@@ -305,7 +305,7 @@ Remarquez que `value="dark"` passe la chaîne de caractères `"dark"`, mais que 
 
 #### Mettre à jour un objet *via* le contexte {/*updating-an-object-via-context*/}
 
-Dans cet exemple, il y a une variable d'état `currentUser` qui contient un objet. Vous combinez `{ currentUser, setCurrentUser }` en un seul objet que vous transmettez au contexte à l'intérieur de `value={}`. Ça permet à n'importe quel composant plus bas, tel que `LoginButton`, de lire `currentUser` et `setCurrentUser`, et ainsi appeler `setCurrentUser` si nécessaire.
+Dans cet exemple, il y a une variable d'état `currentUser` qui contient un objet. Vous combinez `{ currentUser, setCurrentUser }` en un seul objet que vous transmettez au contexte à l'intérieur de `value={}`. Ça permet à n'importe quel composant situé plus bas dans l'arbre, tel que `LoginButton`, de lire `currentUser` et `setCurrentUser`, et ainsi appeler `setCurrentUser` si nécessaire.
 
 <Sandpack>
 
@@ -845,7 +845,7 @@ export default function AddTask() {
           type: 'added',
           id: nextId++,
           text: text,
-        }); 
+        });
       }}>Ajouter</button>
     </>
   );
@@ -1292,7 +1292,7 @@ export const LevelContext = createContext(0);
 
 Vous pouvez passer n'importe quelle valeur *via* le contexte, y compris des objets et des fonctions.
 
-```js [[2, 10, "{ currentUser, login }"]] 
+```js [[2, 10, "{ currentUser, login }"]]
 function MyApp() {
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -1311,7 +1311,7 @@ function MyApp() {
 
 Ici, la <CodeStep step={2}>valeur de contexte</CodeStep> est un objet JavaScript avec deux propriétés, dont l'une est une fonction. À chaque fois que `MyApp` fait son rendu (par exemple lors d'un changement de route), ce sera un objet *différent* pointant vers une fonction *différente*, React devra donc refaire le rendu de tous les composants situés en profondeur dans l'arbre qui appellent `useContext(AuthContext)`.
 
-Ce n'est pas un problème pour les petites applis. Cependant, il est inutile de faire le rendu si les données sous-jacentes, comme `currentUser`, n'ont pas changé. Pour aider React à tirer parti de ça, vous pouvez enrober la fonction `login` dans un [`useCallback`](/reference/react/useCallback) et la création de l'objet dans un [`useMemo`](/reference/react/useMemo). C'est une optimisation de performances :
+Ce n'est pas un problème pour les petites applis. Cependant, il est inutile de faire le rendu si les données sous-jacentes, comme `currentUser`, n'ont pas changé. Pour aider React à tirer parti de ça, vous pouvez enrober la fonction `login` dans un Hook [`useCallback`](/reference/react/useCallback) et la création de l'objet dans un Hook [`useMemo`](/reference/react/useMemo). C'est une optimisation de performances :
 
 ```js {6,9,11,14,17}
 import { useCallback, useMemo } from 'react';
