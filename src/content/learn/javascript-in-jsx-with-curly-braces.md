@@ -1,25 +1,25 @@
 ---
-title: JavaScript in JSX with Curly Braces
+title: JavaScript dans JSX grâce aux accolades
 ---
 
 <Intro>
 
-JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to open a window to JavaScript.
+JSX vous permet d'écrire du balisage similaire à HTML au sein de votre fichier JavaScript, ce qui regroupe la logique et le contenu associés dans un même endroit.  Vous voudrez régulièrement ajouter un peu de logique JavaScript dans votre balisage, ou y référencer une propriété dynamique.  Dans de tels cas, vous utiliserez des accolades dans votre JSX pour y « ouvrir une fenêtre » vers le monde JavaScript.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to pass strings with quotes
-* How to reference a JavaScript variable inside JSX with curly braces
-* How to call a JavaScript function inside JSX with curly braces
-* How to use a JavaScript object inside JSX with curly braces
+* Comment passer des chaînes de caractères grâce aux apostrophes ou guillemets
+* Comment référencer une variable JavaScript dans du JSX grâce aux accolades
+* Comment appeler une fonction JavaScript dans du JSX grâce aux accolades
+* Comment utiliser un objet JavaScript dans du JSX grâce aux accolades
 
 </YouWillLearn>
 
-## Passing strings with quotes {/*passing-strings-with-quotes*/}
+## Passer des chaînes de caractères grâce aux apostrophes ou guillemets {/*passing-strings-with-quotes*/}
 
-When you want to pass a string attribute to JSX, you put it in single or double quotes:
+Lorsque vous voulez passer une valeur textuelle fixe à un attribut en JSX, vous l'entourez d'apostrophes (`'`) ou de guillemets (`"`) :
 
 <Sandpack>
 
@@ -41,9 +41,9 @@ export default function Avatar() {
 
 </Sandpack>
 
-Here, `"https://i.imgur.com/7vQD0fPs.jpg"` and `"Gregorio Y. Zara"` are being passed as strings.
+Dans cet exemple, `"https://i.imgur.com/7vQD0fPs.jpg"` et `"Gregorio Y. Zara"` sont passées en tant que chaînes de caractères.
 
-But what if you want to dynamically specify the `src` or `alt` text? You could **use a value from JavaScript by replacing `"` and `"` with `{` and `}`**:
+Mais comment feriez-vous pour spécifier dynamiquement les textes pour `src` ou `alt` ? Vous pouvez **utiliser une valeur JavaScript en remplaçant les guillemets (`"`) par des accolades (`{` et `}`)** :
 
 <Sandpack>
 
@@ -67,11 +67,11 @@ export default function Avatar() {
 
 </Sandpack>
 
-Notice the difference between `className="avatar"`, which specifies an `"avatar"` CSS class name that makes the image round, and `src={avatar}` that reads the value of the JavaScript variable called `avatar`. That's because curly braces let you work with JavaScript right there in your markup!
+Remarquez la différence entre `className="avatar"`, qui spécifie une classe CSS `"avatar"` pour arrondir l'image, et `src={avatar}` qui lit la valeur de la variable JavaScript `avatar`.  En effet, les accolades vous permettent de mettre du JavaScript directement dans votre balisage !
 
-## Using curly braces: A window into the JavaScript world {/*using-curly-braces-a-window-into-the-javascript-world*/}
+## Les accolades : une fenêtre vers le monde JavaScript {/*using-curly-braces-a-window-into-the-javascript-world*/}
 
-JSX is a special way of writing JavaScript. That means it’s possible to use JavaScript inside it—with curly braces `{ }`. The example below first declares a name for the scientist, `name`, then embeds it with curly braces inside the `<h1>`:
+JSX n'est qu'une façon particulière d'écrire du JavaScript. Vous pouvez donc y utiliser du JavaScript directement — dans des accolades `{ }`. L'exemple ci-dessous commence par déclarer le nom du scientifique dans `name`, puis l'incorpore dans le `<h1>` grâce aux accolades :
 
 <Sandpack>
 
@@ -79,16 +79,16 @@ JSX is a special way of writing JavaScript. That means it’s possible to use Ja
 export default function TodoList() {
   const name = 'Gregorio Y. Zara';
   return (
-    <h1>{name}'s To Do List</h1>
+    <h1>Liste des tâches de {name}</h1>
   );
 }
 ```
 
 </Sandpack>
 
-Try changing the `name`'s value from `'Gregorio Y. Zara'` to `'Hedy Lamarr'`. See how the list title changes?
+Essayez de modifier la valeur de `name` de `'Gregorio Y. Zara'` vers `'Hedy Lamarr'`. Vous voyez comme le titre de la liste change ?
 
-Any JavaScript expression will work between curly braces, including function calls like `formatDate()`:
+N'importe quelle expression JavaScript fonctionnera au sein des accolades, y compris des appels de fonction comme `formatDate()` :
 
 <Sandpack>
 
@@ -97,32 +97,32 @@ const today = new Date();
 
 function formatDate(date) {
   return new Intl.DateTimeFormat(
-    'en-US',
+    'fr-FR',
     { weekday: 'long' }
   ).format(date);
 }
 
 export default function TodoList() {
   return (
-    <h1>To Do List for {formatDate(today)}</h1>
+    <h1>Liste de tâches pour {formatDate(today)}</h1>
   );
 }
 ```
 
 </Sandpack>
 
-### Where to use curly braces {/*where-to-use-curly-braces*/}
+### Où utiliser les accolades {/*where-to-use-curly-braces*/}
 
-You can only use curly braces in two ways inside JSX:
+Vous ne pouvez utiliser des accolades qu'à deux endroits dans JSX :
 
-1. **As text** directly inside a JSX tag: `<h1>{name}'s To Do List</h1>` works, but `<{tag}>Gregorio Y. Zara's To Do List</{tag}>`  will not.
-2. **As attributes** immediately following the `=` sign: `src={avatar}` will read the `avatar` variable, but `src="{avatar}"` will pass the string `"{avatar}"`.
+1. **Comme texte** directement au sein d'une balise JSX : `<h1>Liste de tâches de {name}</h1>` fonctionne, mais pas `<{tag}>Liste de tâches de Gregorio Y. Zara</{tag}>`.
+2. **Comme attributs** juste après le symbole `=` : `src={avatar}` lira la variable `avatar`, mais `src="{avatar}"` passera juste le texte `"{avatar}"`.
 
-## Using "double curlies": CSS and other objects in JSX {/*using-double-curlies-css-and-other-objects-in-jsx*/}
+## « Double accolades » : les CSS et autres objets dans JSX {/*using-double-curlies-css-and-other-objects-in-jsx*/}
 
-In addition to strings, numbers, and other JavaScript expressions, you can even pass objects in JSX. Objects are also denoted with curly braces, like `{ name: "Hedy Lamarr", inventions: 5 }`. Therefore, to pass a JS object in JSX, you must wrap the object in another pair of curly braces: `person={{ name: "Hedy Lamarr", inventions: 5 }}`.
+En plus des chaînes de caractères, nombres et autres expressions JavaScript, vous pouvez même passer des objets dans JSX. Les littéraux objets sont délimités par des accolades, comme par exemple `{ name: "Hedy Lamarr", inventions: 5 }`. Du coup, pour passer un littéral objet en JSX, vous devez l'enrober par une autre paire d'accolades : `person={{ name: "Hedy Lamarr", inventions: 5 }}`.
 
-You may see this with inline CSS styles in JSX. React does not require you to use inline styles (CSS classes work great for most cases). But when you need an inline style, you pass an object to the `style` attribute:
+Vous rencontrerez peut-être ça pour des styles en ligne en JSX. React n'exige pas que vous utilisez des styles en ligne (les classes CSS marchent très bien la plupart du temps). Mais lorsque vous en avez effectivement besoin, vous passez un objet à l'attribut `style` :
 
 <Sandpack>
 
@@ -133,9 +133,9 @@ export default function TodoList() {
       backgroundColor: 'black',
       color: 'pink'
     }}>
-      <li>Improve the videophone</li>
-      <li>Prepare aeronautics lectures</li>
-      <li>Work on the alcohol-fuelled engine</li>
+      <li>Améliorer le visiophone</li>
+      <li>Préparer les cours d’aéronautique</li>
+      <li>Travailler sur un moteur à alcool</li>
     </ul>
   );
 }
@@ -148,9 +148,9 @@ ul { padding: 20px 20px 20px 40px; margin: 0; }
 
 </Sandpack>
 
-Try changing the values of `backgroundColor` and `color`.
+Essayez de modifier les valeurs de `backgroundColor` et `color`.
 
-You can really see the JavaScript object inside the curly braces when you write it like this:
+On peut mieux voir l'objet JavaScript au sein des accolades lorsqu'on l'écrit comme ceci :
 
 ```js {2-5}
 <ul style={
@@ -161,17 +161,17 @@ You can really see the JavaScript object inside the curly braces when you write 
 }>
 ```
 
-The next time you see `{{` and `}}` in JSX, know that it's nothing more than an object inside the JSX curlies!
+La prochaine fois que vous verrez `{{` et `}}` dans du JSX, sachez que ce n'est rien de plus qu'un littéral objet dans des accolades JSX !
 
 <Pitfall>
 
-Inline `style` properties are written in camelCase. For example, HTML `<ul style="background-color: black">` would be written as `<ul style={{ backgroundColor: 'black' }}>`  in your component.
+Les propriétés `style` en ligne sont écrites en casse Camel. Par exemple, le HTML `<ul style="background-color: black">` s'écrirait `<ul style={{ backgroundColor: 'black' }}>`  dans votre composant.
 
 </Pitfall>
 
-## More fun with JavaScript objects and curly braces {/*more-fun-with-javascript-objects-and-curly-braces*/}
+## Amusons-nous avec les objets JavaScript et les accolades {/*more-fun-with-javascript-objects-and-curly-braces*/}
 
-You can move several expressions into one object, and reference them in your JSX inside curly braces:
+Vous pouvez placer plusieurs expressions dans un même objet, et les référencer dans votre JSX au sein des accolades :
 
 <Sandpack>
 
@@ -187,16 +187,16 @@ const person = {
 export default function TodoList() {
   return (
     <div style={person.theme}>
-      <h1>{person.name}'s Todos</h1>
+      <h1>{Liste des tâches de person.name}</h1>
       <img
         className="avatar"
         src="https://i.imgur.com/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
+        <li>Améliorer le visiophone</li>
+        <li>Préparer les cours d’aéronautique</li>
+        <li>Travailler sur un moteur à alcool</li>
       </ul>
     </div>
   );
@@ -211,7 +211,7 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-In this example, the `person` JavaScript object contains a `name` string and a `theme` object:
+Dans cet exemple, l'objet JavaScript `person` contient une chaîne de caractères `name` et un objet `theme` :
 
 ```js
 const person = {
@@ -223,31 +223,31 @@ const person = {
 };
 ```
 
-The component can use these values from `person` like so:
+Le composant peut utiliser ces propriétés de `person` comme ceci :
 
 ```js
 <div style={person.theme}>
-  <h1>{person.name}'s Todos</h1>
+  <h1>Liste des tâches de {person.name}</h1>
 ```
 
-JSX is very minimal as a templating language because it lets you organize data and logic using JavaScript.
+JSX est très minimal en termes de *templating* parce qu'il vous laisse organiser vos données et votre logique directement en JavaScript.
 
 <Recap>
 
-Now you know almost everything about JSX:
+Vous connaissez désormais presque tout ce que vous avez à savoir sur JSX :
 
-* JSX attributes inside quotes are passed as strings.
-* Curly braces let you bring JavaScript logic and variables into your markup.
-* They work inside the JSX tag content or immediately after `=` in attributes.
-* `{{` and `}}` is not special syntax: it's a JavaScript object tucked inside JSX curly braces.
+* Les attributs JSX entre apostrophes ou guillemets sont passés en tant que chaînes de caractères.
+* Les accolades vous permettent d'incorporer de la logique et des expressions JavaScript dans votre balisage.
+* Elles fonctionnent au sein du contenu d'une balise JSX ou juste après le `=` des attributs.
+* `{{` et `}}` ne constituent pas une syntaxe spéciale : il ne s'agit que d'un littéral objet JavaScript au sein des accolades JSX.
 
 </Recap>
 
 <Challenges>
 
-#### Fix the mistake {/*fix-the-mistake*/}
+#### Réparez l'erreur {/*fix-the-mistake*/}
 
-This code crashes with an error saying `Objects are not valid as a React child`:
+Ce code plante avec un erreur qui dit `Objects are not valid as a React child` *(« Les objets ne sont pas des enfants React valides », NdT)* :
 
 <Sandpack>
 
@@ -263,16 +263,16 @@ const person = {
 export default function TodoList() {
   return (
     <div style={person.theme}>
-      <h1>{person}'s Todos</h1>
+      <h1>Liste des tâches de {person}</h1>
       <img
         className="avatar"
         src="https://i.imgur.com/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
+        <li>Améliorer le visiophone</li>
+        <li>Préparer les cours d’aéronautique</li>
+        <li>Travailler sur un moteur à alcool</li>
       </ul>
     </div>
   );
@@ -287,15 +287,19 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-Can you find the problem?
+Pouvez-vous trouver l'origine du problème ?
 
-<Hint>Look for what's inside the curly braces. Are we putting the right thing there?</Hint>
+<Hint>
+
+Regardez ce qui figure entre les accolades.  Est-ce qu'on y met le bon contenu ?
+
+</Hint>
 
 <Solution>
 
-This is happening because this example renders *an object itself* into the markup rather than a string: `<h1>{person}'s Todos</h1>` is trying to render the entire `person` object! Including raw objects as text content throws an error because React doesn't know how you want to display them.
+Le souci vient de ce que cet exemple tente d'afficher *l'objet lui-même* dans le balisage plutôt qu'un texte : `<h1>Liste des tâches de {person}</h1>` essaie d'afficher l'objet `person` entier ! Inclure des objets bruts dans du contenu textuel lève une erreur parce que React ne sait pas comment vous souhaitez les afficher.
 
-To fix it, replace `<h1>{person}'s Todos</h1>` with `<h1>{person.name}'s Todos</h1>`:
+Pour corriger ça, remplacez `<h1>Liste des tâches de {person}</h1>` par `<h1>Liste des tâches de {person.name}</h1>` :
 
 <Sandpack>
 
@@ -311,16 +315,16 @@ const person = {
 export default function TodoList() {
   return (
     <div style={person.theme}>
-      <h1>{person.name}'s Todos</h1>
+      <h1>Liste des tâches de {person.name}</h1>
       <img
         className="avatar"
         src="https://i.imgur.com/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
+        <li>Améliorer le visiophone</li>
+        <li>Préparer les cours d’aéronautique</li>
+        <li>Travailler sur un moteur à alcool</li>
       </ul>
     </div>
   );
@@ -337,9 +341,9 @@ body > div > div { padding: 20px; }
 
 </Solution>
 
-#### Extract information into an object {/*extract-information-into-an-object*/}
+#### Extrayez l'information d'un objet {/*extract-information-into-an-object*/}
 
-Extract the image URL into the `person` object.
+Extrayez l'URL de l'image depuis l'objet `person` plutôt que de l'inscrire en dur.
 
 <Sandpack>
 
@@ -355,16 +359,16 @@ const person = {
 export default function TodoList() {
   return (
     <div style={person.theme}>
-      <h1>{person.name}'s Todos</h1>
+      <h1>Liste des tâches de {person.name}</h1>
       <img
         className="avatar"
         src="https://i.imgur.com/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
+        <li>Améliorer le visiophone</li>
+        <li>Préparer les cours d’aéronautique</li>
+        <li>Travailler sur un moteur à alcool</li>
       </ul>
     </div>
   );
@@ -381,7 +385,7 @@ body > div > div { padding: 20px; }
 
 <Solution>
 
-Move the image URL into a property called `person.imageUrl` and read it from the `<img>` tag using the curlies:
+Déplacez l'URL de l'image dans une propriété appelée `person.imageUrl` et lisez-la dans la balise `<img>` en utilisant les accolades :
 
 <Sandpack>
 
@@ -398,16 +402,16 @@ const person = {
 export default function TodoList() {
   return (
     <div style={person.theme}>
-      <h1>{person.name}'s Todos</h1>
+      <h1>Liste des tâches de {person.name}</h1>
       <img
         className="avatar"
         src={person.imageUrl}
         alt="Gregorio Y. Zara"
       />
       <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
+        <li>Améliorer le visiophone</li>
+        <li>Préparer les cours d’aéronautique</li>
+        <li>Travailler sur un moteur à alcool</li>
       </ul>
     </div>
   );
@@ -424,13 +428,13 @@ body > div > div { padding: 20px; }
 
 </Solution>
 
-#### Write an expression inside JSX curly braces {/*write-an-expression-inside-jsx-curly-braces*/}
+#### Écrivez une expression entre des accolades JSX {/*write-an-expression-inside-jsx-curly-braces*/}
 
-In the object below, the full image URL is split into four parts: base URL, `imageId`, `imageSize`, and file extension.
+Dans l'objet ci-dessous, l'URL complète de l'image est découpée en quatre parties : l'URL de base, `imageId`, `imageSize` et l'extension de fichier.
 
-We want the image URL to combine these attributes together: base URL (always `'https://i.imgur.com/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`), and file extension (always `'.jpg'`). However, something is wrong with how the `<img>` tag specifies its `src`.
+Nous souhaitons que l'URL de l'image combine ces attributs : URL de base (toujours `'https://i.imgur.com/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`), et l'extension de fichier (toujours `'.jpg'`). Hélas, quelque chose ne va pas dans la façon dont la balise `<img>` spécifie son `src`.
 
-Can you fix it?
+Pouvez-vous réparer ça ?
 
 <Sandpack>
 
@@ -450,16 +454,16 @@ const person = {
 export default function TodoList() {
   return (
     <div style={person.theme}>
-      <h1>{person.name}'s Todos</h1>
+      <h1>Liste des tâches de {person.name}</h1>
       <img
         className="avatar"
         src="{baseUrl}{person.imageId}{person.imageSize}.jpg"
         alt={person.name}
       />
       <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
+        <li>Améliorer le visiophone</li>
+        <li>Préparer les cours d’aéronautique</li>
+        <li>Travailler sur un moteur à alcool</li>
       </ul>
     </div>
   );
@@ -474,15 +478,15 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-To check that your fix worked, try changing the value of `imageSize` to `'b'`. The image should resize after your edit.
+Pour vérifier que votre correctif fonctionne, essayez de modifier la valeur de `imageSize` à `'b'`. L'image devrait se redimensionner après votre changement.
 
 <Solution>
 
-You can write it as `src={baseUrl + person.imageId + person.imageSize + '.jpg'}`.
+Vous pouvez écrire la composition de l'URL comme ceci : `src={baseUrl + person.imageId + person.imageSize + '.jpg'}`.
 
-1. `{` opens the JavaScript expression
-2. `baseUrl + person.imageId + person.imageSize + '.jpg'` produces the correct URL string
-3. `}` closes the JavaScript expression
+1. `{` ouvre l'expression JavaScript
+2. `baseUrl + person.imageId + person.imageSize + '.jpg'` produit la bonne URL
+3. `}` ferme l'expression JavaScript
 
 <Sandpack>
 
@@ -501,16 +505,16 @@ const person = {
 export default function TodoList() {
   return (
     <div style={person.theme}>
-      <h1>{person.name}'s Todos</h1>
+      <h1>Liste des tâches de {person.name}</h1>
       <img
         className="avatar"
         src={baseUrl + person.imageId + person.imageSize + '.jpg'}
         alt={person.name}
       />
       <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
+        <li>Améliorer le visiophone</li>
+        <li>Préparer les cours d’aéronautique</li>
+        <li>Travailler sur un moteur à alcool</li>
       </ul>
     </div>
   );
@@ -525,7 +529,7 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-You can also move this expression into a separate function like `getImageUrl` below:
+Vous pouvez aussi déplacer cette expression dans une fonction séparée genre `getImageUrl` :
 
 <Sandpack>
 
@@ -545,16 +549,16 @@ const person = {
 export default function TodoList() {
   return (
     <div style={person.theme}>
-      <h1>{person.name}'s Todos</h1>
+      <h1>Liste des tâches de {person.name}</h1>
       <img
         className="avatar"
         src={getImageUrl(person)}
         alt={person.name}
       />
       <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
+        <li>Améliorer le visiophone</li>
+        <li>Préparer les cours d’aéronautique</li>
+        <li>Travailler sur un moteur à alcool</li>
       </ul>
     </div>
   );
@@ -580,7 +584,7 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-Variables and functions can help you keep the markup simple!
+Les variables et les fonctions peuvent vous aider à garder un balisage aisément lisible !
 
 </Solution>
 
