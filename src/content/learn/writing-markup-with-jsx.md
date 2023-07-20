@@ -1,24 +1,24 @@
 ---
-title: Writing Markup with JSX
+title: Écrire du balisage avec JSX
 ---
 
 <Intro>
 
-*JSX* est une extension de syntaxe pour JavaScript qui vous permet d'écrire du balisage similaire au HTML au sein d'un fichier JavaScript.  Même s'il existe d'autres façons d'écrire des composants, la plupart des personnes qui développent avec React préfèrent la concision de JSX, et la quasi totalité des bases de code s'en sert.
+*JSX* est une extension de syntaxe pour JavaScript qui vous permet d'écrire du balisage similaire au HTML au sein d'un fichier JavaScript.  Même s'il existe d'autres façons d'écrire des composants, la plupart des personnes qui développent avec React préfèrent la concision de JSX, et la quasi totalité des bases de code s'en servent.
 
 </Intro>
 
 <YouWillLearn>
 
 * Pourquoi React mélange le balisage et la logique de rendu
-* En quoi JSX diffère du HTML
+* En quoi JSX diffère de HTML
 * Comment afficher des informations avec JSX
 
 </YouWillLearn>
 
 ## JSX : mettre du balisage dans JavaScript {/*jsx-putting-markup-into-javascript*/}
 
-Le Web est construit avec HTML, CSS et JavaScript.  Durant de nombreuses années, les devs web séparaient soigneusement le contenu dans HTML, le design dans CSS, et la logique dans JavaScript — bien souvent dans des fichiers distincts !  Le contenu était balisé dans du HTML tandis que la logique de la page vivait dans son coin, dans un bloc JavaScript :
+Le Web est construit avec HTML, CSS et JavaScript.  Durant de nombreuses années, les devs web séparaient soigneusement le contenu dans HTML, le design dans CSS, et la logique dans JavaScript — bien souvent dans des fichiers distincts !  Le contenu était balisé dans du HTML tandis que la logique de la page vivait dans son coin, dans un fichier JavaScript :
 
 <DiagramGroup>
 
@@ -152,7 +152,7 @@ Par exemple, vous pouvez utiliser une `<div>` :
 </div>
 ```
 
-Si vous ne voulez pas ajouter un `<div>` superflu à votre balisage, vous pouvez plutôt écrire `<>` et `</>` :
+Si vous ne voulez pas ajouter une `<div>` superflue à votre balisage, vous pouvez plutôt écrire `<>` et `</>` :
 
 ```js {1,11}
 <>
@@ -168,13 +168,13 @@ Si vous ne voulez pas ajouter un `<div>` superflu à votre balisage, vous pouvez
 </>
 ```
 
-Cette balise vide est ce qu'on appelle un *[Fragment](/reference/react/Fragment)*.  Les fragments vous permettent de grouper des éléments sans laisser de trace dans l'arbre HTML du navigateur.
+Cette balise vide est ce qu'on appelle un *[Fragment](/reference/react/Fragment)*.  Les Fragments vous permettent de grouper des éléments sans laisser de trace dans l'arbre HTML du navigateur.
 
 <DeepDive>
 
 #### Pourquoi faut-il enrober des balises JSX multiples ? {/*why-do-multiple-jsx-tags-need-to-be-wrapped*/}
 
-JSX ressemble à HTML, mais sous le capot il est transformé en objets JavaScript bruts.  Vous ne pouvez pas renvoyer deux objets depuis une fonction sans les enrober dans un tableau.  Ça explique pourquoi vous ne pouvez pas non plus renvoyer deux balises JSX sans les enrober dans une autre balise ou un fragment.
+JSX ressemble à HTML, mais sous le capot il est transformé en objets JavaScript bruts.  Vous ne pouvez pas renvoyer deux objets depuis une fonction sans les enrober dans un tableau.  Ça explique pourquoi vous ne pouvez pas non plus renvoyer deux balises JSX sans les enrober dans une autre balise ou un Fragment.
 
 </DeepDive>
 
