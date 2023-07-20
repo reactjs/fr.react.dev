@@ -4,7 +4,7 @@ title: useContext
 
 <Intro>
 
-`useContext` est un Hook React qui vous permet de lire et de souscrire à un [contexte](/learn/passing-data-deeply-with-context) depuis votre composant.
+`useContext` est un Hook React qui vous permet de lire et de vous abonner à un [contexte](/learn/passing-data-deeply-with-context) depuis votre composant.
 
 ```js
 const value = useContext(SomeContext)
@@ -20,7 +20,7 @@ const value = useContext(SomeContext)
 
 ### `useContext(SomeContext)` {/*usecontext*/}
 
-Appelez `useContext` à la racine de votre composant pour lire est souscrire au [contexte](/learn/passing-data-deeply-with-context).
+Appelez `useContext` à la racine de votre composant pour lire et vous abonner au [contexte](/learn/passing-data-deeply-with-context).
 
 ```js
 import { useContext } from 'react';
@@ -30,7 +30,7 @@ function MyComponent() {
   // ...
 ```
 
-[Voir d'autres exemples plus bas.](#usage)
+[Voir d'autres exemples plus bas](#usage).
 
 #### Paramètres {/*parameters*/}
 
@@ -38,13 +38,13 @@ function MyComponent() {
 
 #### Valeur renvoyée {/*returns*/}
 
-`useContext` renvoie la valeur du contexte pour le composant qui l'appelle. C'est déterminé par la `value` passée par le `SomeContext.Provider` le plus proche au-dessus du composant appelant. S'il n'y a pas un tel fournisseur, alors la valeur renvoyée sera la `defaultValue` que vous avez donnée à [`createContext`](/reference/react/createContext) pour ce contexte. La valeur renvoyée est toujours à jour. React refait toujours le rendu des composants qui lisent les contextes lorsque ces derniers changent.
+`useContext` renvoie la valeur du contexte pour le composant qui l'appelle. C'est déterminé par la `value` passée par le `SomeContext.Provider` le plus proche au-dessus du composant appelant. S'il n'y a pas un tel fournisseur, alors la valeur renvoyée sera la `defaultValue` que vous avez passée à [`createContext`](/reference/react/createContext) pour ce contexte. La valeur renvoyée est toujours à jour. React refait automatiquement le rendu des composants qui lisent un contexte lorsque ce dernier change.
 
 #### Limitations {/*caveats*/}
 
 * L'appel à `useContext()` dans un composant n'est pas affecté par les fournisseurs renvoyés par le *même* composant. Le `<Context.Provider>` correspondant **doit être *au-dessus*** du composant qui appelle le `useContext()`.
 * React **fait automatiquement le rendu** de tous les enfants qui utilisent un contexte spécifique, en commençant par le fournisseur qui reçoit une `value` différente. La valeur précédente et la suivante sont comparées avec [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Sauter des rendus avec [`memo`](/reference/react/memo) n'empêche pas les enfants de recevoir une nouvelle valeur de contexte.
-* Le contexte peut être cassé si votre système de construction produit des modules dupliqués en sortie (ce qui peut arriver avec les liens symboliques). Passer quelque chose *via* le contexte ne marche que si le `SomeContext` que vous avez utilisé pour fournir le contexte et le `SomeContext` que vous utilisez pour le lire sont ***exactement* le même objet**, ce qui est déterminé par une comparaison avec `===`.
+* Le contexte peut être cassé si votre système de construction produit des modules dupliqués en sortie (ce qui peut arriver avec les liens symboliques). Passer quelque chose *via* le contexte ne marche que si le `SomeContext` que vous avez utilisé pour fournir le contexte et le `SomeContext` que vous utilisez pour le lire sont ***exactement* le même objet**, ce qui est déterminé par une comparaison `===`.
 
 ---
 
@@ -63,9 +63,9 @@ function Button() {
   // ... 
 ```
 
-`useContext` renvoie la <CodeStep step={2}>valeur du contexte</CodeStep> pour le <CodeStep step={1}>contexte</CodeStep> que vous avez passé. Pour définir la valeur du contexte, React recherche dans l'arbre des composants le **fournisseur de contexte le plus proche vers le haut** pour ce contexte particulier.
+`useContext` renvoie la <CodeStep step={2}>valeur du contexte</CodeStep> pour le <CodeStep step={1}>contexte</CodeStep> que vous avez passé. Pour définir la valeur du contexte, React remonte dans l'arbre des composants à la recherche du **fournisseur de contexte le plus proche** pour ce contexte particulier.
 
-Pour passer un contexte à un `Button`, il faut enrober ce composant ou l'un de ses parents dans un fournisseur de contexte correspondant :
+Pour passer un contexte à un `Button`, il faut enrober ce composant ou l'un de ses parents dans le fournisseur de contexte correspondant :
 
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
@@ -177,7 +177,7 @@ function Button({ children }) {
 
 ### Mettre à jour les données passées au contexte {/*updating-data-passed-via-context*/}
 
-Vous voudrez souvent que le contexte change avec le temps. Pour mettre à jour le contexte, associez-le à [un état](/reference/react/useState). Déclarez une variable d'état dans le composant parent, et transmettez vers le bas l'état actuel au fournisseur en tant que <CodeStep step={2}>valeur de contexte</CodeStep>.
+Vous voudrez souvent que le contexte change avec le temps. Pour mettre à jour le contexte, associez-le à [un état](/reference/react/useState). Déclarez une variable d'état dans le composant parent, et passez l'état actuel au fournisseur en tant que <CodeStep step={2}>valeur de contexte</CodeStep>.
 
 ```js {2} [[1, 4, "ThemeContext"], [2, 4, "theme"], [1, 11, "ThemeContext"]]
 function MyPage() {
@@ -195,7 +195,7 @@ function MyPage() {
 }
 ```
 
-Désormais, tout `Button` à l'intérieur du fournisseur recevra la valeur actuelle de `theme`. Si vous appelez `setTheme` pour mettre à jour la valeur de `theme` que vous avez passé au fournisseur, tous les `Button` seront rendus avec la nouvelle valeur `"light"`.
+Désormais, tout `Button` à l'intérieur du fournisseur recevra la valeur actuelle de `theme`. Si vous appelez `setTheme` pour mettre à jour la valeur de `theme` que vous avez passée au fournisseur, tous les `Button` referont leurs rendus avec la nouvelle valeur `"light"`.
 
 <Recipes titleText="Exemples de mises à jour du contexte" titleId="examples-basic">
 
@@ -299,7 +299,7 @@ function Button({ children }) {
 
 </Sandpack>
 
-Remarquez que la `value="dark"` passe la chaîne de caractères `"dark"`, mais que `value={theme}` passe la valeur de la variable JavaScript `theme` en utilisant [les accolades de JSX](/learn/javascript-in-jsx-with-curly-braces). Ces accolades vous permettent également de passer des valeurs de contexte qui ne sont pas des chaînes de caractères.
+Remarquez que `value="dark"` passe la chaîne de caractères `"dark"`, mais que `value={theme}` passe la valeur de la variable JavaScript `theme` en utilisant [les accolades de JSX](/learn/javascript-in-jsx-with-curly-braces). Ces accolades vous permettent également de passer des valeurs de contexte qui ne sont pas des chaînes de caractères.
 
 <Solution />
 
@@ -461,7 +461,7 @@ function LoginForm() {
   return (
     <>
       <label>
-        Prénom{': '}
+        Prénom :{' '}
         <input
           required
           value={firstName}
@@ -469,7 +469,7 @@ function LoginForm() {
         />
       </label>
       <label>
-        Nom{': '}
+        Nom :{' '}
         <input
         required
           value={lastName}
@@ -636,7 +636,7 @@ function LoginForm() {
   return (
     <>
       <label>
-        Prénom{': '}
+        Prénom :{' '}
         <input
           required
           value={firstName}
@@ -644,7 +644,7 @@ function LoginForm() {
         />
       </label>
       <label>
-        Nom{': '}
+        Nom :{' '}
         <input
         required
           value={lastName}
@@ -737,7 +737,7 @@ label {
 
 <Solution />
 
-#### Mise à l'échelle avec un contexte et un réducteur {/*scaling-up-with-context-and-a-reducer*/}
+#### Montée à l'échelle avec un contexte et un réducteur {/*scaling-up-with-context-and-a-reducer*/}
 
 Dans les applis plus importantes, il est courant de combiner un contexte avec un [réducteur](/reference/react/useReducer) afin d'extraire des composants la logique associée à certains états. Dans cet exemple, toute la « plomberie » est cachée dans `TasksContext.js`, qui contient un réducteur et deux contextes séparés.
 
@@ -1082,7 +1082,7 @@ Vous pouvez imbriquer et surcharger les fournisseurs autant de fois que nécessa
 
 #### Surcharger un thème {/*overriding-a-theme*/}
 
-Ici, le bouton *à l'intérieur* du `Footer` reçoit une valeur de contexte différente (`"light"`) que les boutons à l'extérieur (`"dark"`).
+Ici, le bouton *à l'intérieur* du `Footer` reçoit une valeur de contexte différente (`"light"`) de celle reçue par les boutons à l'extérieur (`"dark"`).
 
 <Sandpack>
 
@@ -1186,7 +1186,7 @@ footer {
 
 <Solution />
 
-#### Imbriquer automatiquement les en-têtes {/*automatically-nested-headings*/}
+#### Hiérarchiser automatiquement les en-têtes {/*automatically-nested-headings*/}
 
 Vous pouvez « accumuler » l'information quand vous imbriquez des fournisseurs de contexte. Dans cet exemple, le composant `Section` garde une trace du `LevelContext` qui spécifie la profondeur de l'imbrication des sections. Il lit le `LevelContext` depuis une section parente et fournit à ses enfants le nombre `LevelContext` incrémenté de un. En conséquence, le composant `Heading` peut automatiquement décider laquelle des balises `<h1>`, `<h2>`, `<h3>`, … utiliser en fonction du nombre de composants `Section` à l'intérieur desquels il est imbriqué.
 
@@ -1288,7 +1288,7 @@ export const LevelContext = createContext(0);
 
 ---
 
-### Optimiser les rendus en passant des objets et des fonctions {/*optimizing-re-renders-when-passing-objects-and-functions*/}
+### Optimiser les rendus lorsqu'on passe des objets et des fonctions {/*optimizing-re-renders-when-passing-objects-and-functions*/}
 
 Vous pouvez passer n'importe quelle valeur *via* le contexte, y compris des objets et des fonctions.
 
@@ -1309,7 +1309,7 @@ function MyApp() {
 }
 ```
 
-Ici, la <CodeStep step={2}>valeur de contexte</CodeStep> est un objet JavaScript avec deux propriétés, dont l'une est une fonction. À chaque fois que `MyApp` est rendue (par exemple lors d'un changement de route), ce sera un objet *différent* pointant vers une fonction *différente*, React devra donc refaire le rendu de tous les composants situés en profondeur dans l'arbre qui appellent `useContext(AuthContext)`.
+Ici, la <CodeStep step={2}>valeur de contexte</CodeStep> est un objet JavaScript avec deux propriétés, dont l'une est une fonction. À chaque fois que `MyApp` fait son rendu (par exemple lors d'un changement de route), ce sera un objet *différent* pointant vers une fonction *différente*, React devra donc refaire le rendu de tous les composants situés en profondeur dans l'arbre qui appellent `useContext(AuthContext)`.
 
 Ce n'est pas un problème pour les petites applis. Cependant, il est inutile de faire le rendu si les données sous-jacentes, comme `currentUser`, n'ont pas changé. Pour aider React à tirer parti de ça, vous pouvez enrober la fonction `login` dans un [`useCallback`](/reference/react/useCallback) et la création de l'objet dans un [`useMemo`](/reference/react/useMemo). C'est une optimisation de performances :
 
@@ -1337,7 +1337,7 @@ function MyApp() {
 }
 ```
 
-Grâce à ce changement, même si `MyApp` a besoin d'être re-rendue, les composants appelant `useContext(AuthContext)` n'auront pas besoin de l'être, à moins que `currentUser` ait changé.
+Grâce à ce changement, même si `MyApp` a besoin d'un nouveau rendu, les composants appelant `useContext(AuthContext)` pourront se l'épargner, à moins que `currentUser` ait changé.
 
 Apprenez-en davantage sur [`useMemo`](/reference/react/useMemo#skipping-re-rendering-of-components) et [`useCallback`](/reference/react/useCallback#skipping-re-rendering-of-components).
 
@@ -1349,9 +1349,9 @@ Apprenez-en davantage sur [`useMemo`](/reference/react/useMemo#skipping-re-rende
 
 Il y a plusieurs raisons pour ça se produise :
 
-1. Vous faites le rendu de `<SomeContext.Provider>` dans le même composant (ou en-dessous) que celui où vous appelez `useContext()`. Déplacez `<SomeContext.Provider>` *au-dessus et en dehors* du composant appelant `useContext()`.
-2. Vous avez peut-être oublié d'enrober votre composant avec `<SomeContext.Provider>` ou vous l'avez placé dans une partie différente de votre arbre que celle que vous imaginiez. Vérifiez si la hiérarchie est correcte en utilisant [les outils de développement React (*React Developer Tools*)](/learn/react-developer-tools).
-3. Il se peut que vous rencontriez un problème de construction avec vos outils qui fait que le `SomeContext` vu par le composant fournisseur et le `SomeContext` vu par le composant qui le lit sont deux objets différents. Ça peut arriver si vous utilisez des liens symboliques par exemple. Vous pouvez vous en assurer en les assignant à des variables globales comme `window.SomeContext1` et `window.SomeContext2` et en vérifiant le résultat de `window.SomeContext1 === window.SomeContext2` dans la console. Si elles sont différentes, corrigez le problème au niveau de l'outil de construction.
+1. Vous faites le rendu de `<SomeContext.Provider>` dans le même composant (ou en dessous) que celui où vous appelez `useContext()`. Déplacez `<SomeContext.Provider>` *au-dessus et en-dehors* du composant appelant `useContext()`.
+2. Vous avez peut-être oublié d'enrober votre composant avec `<SomeContext.Provider>` ou vous l'avez placé dans une partie différente de votre arbre que celle que vous imaginiez. Vérifiez si la hiérarchie est correcte en utilisant [les outils de développement React](/learn/react-developer-tools).
+3. Il se peut que vous rencontriez un problème de *build* avec vos outils qui fait que le `SomeContext` vu par le composant fournisseur et le `SomeContext` vu par le composant qui le lit sont deux objets différents. Ça peut arriver si vous utilisez des liens symboliques par exemple. Vous pouvez vous en assurer en les affectant à des variables globales comme `window.SomeContext1` et `window.SomeContext2` et en vérifiant le résultat de `window.SomeContext1 === window.SomeContext2` dans la console. Si elles sont différentes, corrigez le problème au niveau de l'outil de *build*.
 
 ### Je reçois `undefined` de mon contexte bien que la valeur par défaut soit différente {/*i-am-always-getting-undefined-from-my-context-although-the-default-value-is-different*/}
 
@@ -1384,4 +1384,4 @@ Dans ces deux cas, vous devriez voir un message d'alerte de React dans la consol
 </ThemeContext.Provider>
 ```
 
-Notez que la [valeur par défault de votre appel à `createContext(defaultValue)`](#specifying-a-fallback-default-value) est seulement utilisée **s'il n'y a pas d'autre fournisseur correspondant au-dessus**. S'il y a un composant `<SomeContext.Provider value={undefined}>` quelque part dans l'arbre du parent, le composant appelant `useContext(SomeContext)` *recevra* `undefined` pour la valeur de contexte.
+Notez que la [valeur par défaut de votre appel à `createContext(defaultValue)`](#specifying-a-fallback-default-value) est seulement utilisée **s'il n'y a pas d'autre fournisseur correspondant au-dessus**. S'il y a un composant `<SomeContext.Provider value={undefined}>` quelque part dans l'arbre parent, le composant qui appelle `useContext(SomeContext)` *recevra* `undefined` pour la valeur de contexte.
