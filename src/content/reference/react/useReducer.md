@@ -46,7 +46,7 @@ function MyComponent() {
 
 `useReducer` renvoie un tableau avec exactement deux valeurs :
 
-1. L'état courant. Lors du premier rendu, il est défini avec `init(initialArg)` ou `initialArg` (s'il n'y a pas d'`init`).
+1. L'état courant. Lors du premier rendu, il est défini avec `init(initialArg)` ou `initialArg` (s'il n'y a pas d'argument `init`).
 2. La [fonction `dispatch`](#dispatch) qui vous permet de mettre à jour l'état vers une valeur différente et ainsi redéclencher un rendu.
 
 #### Limitations {/*caveats*/}
@@ -198,7 +198,7 @@ Les actions peuvent prendre n'importe quelle forme. Par convention, il est coura
 ```js {5,9-12}
 function Form() {
   const [state, dispatch] = useReducer(reducer, { name: 'Clara', age: 42 });
-  
+
   function handleButtonClick() {
     dispatch({ type: 'incremented_age' });
   }
@@ -244,7 +244,7 @@ function reducer(state, action) {
     }
 ```
 
-Lisez [Mettre à jour les objets d'un état](/learn/updating-objects-in-state) et [Mettre à jour les tableaux d'un état](/learn/updating-arrays-in-state) pour en apprendre davantage.
+Lisez nos pages [Mettre à jour les objets d'un état](/learn/updating-objects-in-state) et [Mettre à jour les tableaux d'un état](/learn/updating-arrays-in-state) pour en apprendre davantage.
 
 </Pitfall>
 
@@ -290,7 +290,7 @@ export default function Form() {
     dispatch({
       type: 'changed_name',
       nextName: e.target.value
-    }); 
+    });
   }
 
   return (
@@ -1060,7 +1060,7 @@ Vous pouvez également utiliser un vérificateur de type statique comme TypeScri
 
 ---
 
-### J'obtiens l'erreur “Too many re-renders” {/*im-getting-an-error-too-many-re-renders*/}
+### J'obtiens l'erreur *“Too many re-renders”* {/*im-getting-an-error-too-many-re-renders*/}
 
 *(« Trop de rendus successifs », NdT)*
 
