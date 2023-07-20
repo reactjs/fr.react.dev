@@ -34,12 +34,12 @@ function MyComponent() {
   // ...
 ```
 
-[Voir d'autres exemples ci-dessous.](#usage)
+[Voir d'autres exemples ci-dessous](#usage).
 
 #### Paramètres {/*parameters*/}
 
-* `reducer` : la fonction de réduction qui spécifie comment votre état est mis à jour. Elle doit être pure, prendre l'état et l'action en paramètres et renvoyer le prochain état. L'état et l'action peuvent être de n'importe quel type.
-* `initialArg` : la valeur à partir de laquelle l'état est calculé. Elle peut être de n'importe quel type. La façon dont l'état initial est calculé dépend du paramètre suivant `init`.
+* `reducer` : la fonction de réduction qui spécifie comment votre état est mis à jour. Elle doit être pure, prendre l'état et l'action en paramètres et renvoyer le prochain état. L'état et l'action peuvent être de n'importe quels types.
+* `initialArg` : la valeur à partir de laquelle l'état est calculé. Elle peut être de n'importe quel type. La façon dont l'état initial est calculé dépend du paramètre `init` qui suit.
 * `init` **optionnelle** : la fonction d'initialisation qui doit renvoyer l'état initial. Si elle n'est pas spécifiée, l'état initial est défini avec `initialArg`. Autrement, il est défini en appelant `init(initialArg)`.
 
 #### Valeur renvoyée {/*returns*/}
@@ -47,12 +47,12 @@ function MyComponent() {
 `useReducer` renvoie un tableau avec exactement deux valeurs :
 
 1. L'état courant. Lors du premier rendu, il est défini avec `init(initialArg)` ou `initialArg` (s'il n'y a pas d'`init`).
-2. La [fonction `dispatch`](#dispatch) qui vous permet de mettre à jour l'état avec une valeur différente et ainsi redéclencher un rendu.
+2. La [fonction `dispatch`](#dispatch) qui vous permet de mettre à jour l'état vers une valeur différente et ainsi redéclencher un rendu.
 
 #### Limitations {/*caveats*/}
 
 * `useReducer` est un Hook, vous ne pouvez donc l'appeler **qu'au niveau racine de votre composant** ou dans vos propres Hooks. Vous ne pouvez pas l'appeler dans des boucles ou des conditions. Si vous avez besoin de le faire, extrayez un nouveau composant et déplacez-y l'état.
-* Dans le Mode Strict, React **appellera deux fois votre réducteur et votre fonction d'initialisation** afin de [vous aider à trouver des impuretés accidentelles](#my-reducer-or-initializer-function-runs-twice). Ce comportement est limité au développement et n'affecte pas la production. Si votre réducteur et votre fonction d'initialisation sont pures (comme ils devraient l'être), ça n'impactera pas votre logique. Le résultat de l'un des appels est ignoré.
+* En mode strict, React **appellera deux fois votre réducteur et votre fonction d'initialisation** afin de [vous aider à détecter des impuretés accidentelles](#my-reducer-or-initializer-function-runs-twice). Ce comportement est limité au développement et n'affecte pas la production. Si votre réducteur et votre fonction d'initialisation sont pures (ce qui devrait être le cas), ça n'impactera pas votre logique. Le résultat de l'un des appels est ignoré.
 
 ---
 
@@ -82,9 +82,9 @@ Les fonctions `dispatch` ne renvoient rien.
 
 * La fonction `dispatch` **ne met à jour l'état que pour le *prochain* rendu**. Si vous lisez une variable d'état après avoir appelé la fonction de `dispatch`, [vous aurez encore l'ancienne valeur](#ive-dispatched-an-action-but-logging-gives-me-the-old-state-value) qui était à l'écran avant cet appel.
 
-* Si la nouvelle valeur fournie est identique au `state` actuel, déterminé par une comparaison avec [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is), React **sautera le nouveau rendu du composant et de ses enfants**. C'est une optimisation. React peut toujours appeler votre composant avant d'en ignorer le résultat, mais ça ne devrait pas affecter votre code.
+* Si la nouvelle valeur fournie est identique au `state` actuel, déterminé par une comparaison avec [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is), React **sautera le nouveau rendu du composant et de ses enfants**. C'est une optimisation. React aura peut-être quand même besoin d'appeler votre composant avant d'en ignorer le résultat, mais ça ne devrait pas affecter votre code.
 
-* React [met à jour l'état par lots](/learn/queueing-a-series-of-state-updates). Il met à jour l'écran **une fois que tous les gestionnaires d'événement se sont exécutés** et ont appelé leurs fonctions `set`. Ça évite les rendus multiples à la suite d'un événement unique. Dans les rares cas où vous devez forcer React à mettre à jour l'écran prématurément, par exemple pour accéder au DOM, vous pouvez utiliser [`flushSync`](/reference/react-dom/flushSync).
+* React [met à jour l'état par lots](/learn/queueing-a-series-of-state-updates). Il met à jour l'écran **une fois que tous les gestionnaires d'événements ont été exécutés** et ont appelé leurs fonctions `set`. Ça évite les rendus multiples à la suite d'un événement unique. Dans les rares cas où vous devez forcer React à mettre à jour l'écran prématurément, par exemple pour accéder au DOM, vous pouvez utiliser [`flushSync`](/reference/react-dom/flushSync).
 
 ---
 
@@ -143,7 +143,7 @@ export default function Counter() {
       <button onClick={() => {
         dispatch({ type: 'incremented_age' })
       }}>
-        Incrémenter l'âge
+        Incrémenter l’âge
       </button>
       <p>Bonjour ! Vous avez {state.age} ans.</p>
     </>
@@ -157,7 +157,7 @@ button { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-`useReducer` est très similaire à [`useState`](/reference/react/useState), mais il vous permet de déplacer la logique de mise à jour de l'état des gestionnaires d'événements vers une seule fonction à l'extérieur de votre composant. Apprenez-en davantage [pour choisir entre `useState` et `useReducer`](/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer).
+`useReducer` est très similaire à [`useState`](/reference/react/useState), mais il vous permet de déplacer la logique de mise à jour de l'état depuis les gestionnaires d'événements vers une seule fonction à l'extérieur de votre composant. Apprenez-en davantage sur [comment choisir entre `useState` et `useReducer`](/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer).
 
 ---
 
@@ -212,7 +212,7 @@ function Form() {
   // ...
 ```
 
-Les noms des types d'actions sont locales à votre composant. [Chaque action décrit une seule interaction, même si ça amène à modifier plusieurs fois la donnée.](/learn/extracting-state-logic-into-a-reducer#writing-reducers-well) La forme de l'état est arbitraire, mais ce sera généralement un objet ou un tableau.
+Les noms des types d'actions sont locaux à votre composant. [Chaque action décrit une seule interaction, même si ça amène à modifier plusieurs fois la donnée](/learn/extracting-state-logic-into-a-reducer#writing-reducers-well). L'état peut avoir n'importe quelle forme, mais ce sera généralement un objet ou un tableau.
 
 Lisez [Extraire la logique d'état dans un réducteur](/learn/extracting-state-logic-into-a-reducer) pour en apprendre davantage.
 
@@ -224,13 +224,13 @@ L'état est en lecture seule. Ne modifiez pas les objets ou les tableaux dans l'
 function reducer(state, action) {
   switch (action.type) {
     case 'incremented_age': {
-      // 🚩 Ne modifiez pas l'objet dans l'état de cette façon :
+      // 🚩 Ne modifiez pas l’objet dans l’état de cette façon :
       state.age = state.age + 1;
       return state;
     }
 ```
 
-À la place, renvoyez toujours de nouveaux objets depuis votre réducteur :
+Au lieu de ça, renvoyez toujours de nouveaux objets depuis votre réducteur :
 
 ```js {4-8}
 function reducer(state, action) {
@@ -300,7 +300,7 @@ export default function Form() {
         onChange={handleInputChange}
       />
       <button onClick={handleButtonClick}>
-        Incrémenter l'âge
+        Incrémenter l’âge
       </button>
       <p>Bonjour, {state.name}. Vous avez {state.age} ans.</p>
     </>
@@ -318,7 +318,7 @@ button { display: block; margin-top: 10px; }
 
 #### Liste de tâches (tableau) {/*todo-list-array*/}
 
-Dans cet exemple, le réducteur gère un tableau de tâches. Le tableau doit être mis à jour [sans modification](/learn/updating-arrays-in-state).
+Dans cet exemple, le réducteur gère un tableau de tâches. Le tableau doit être mis à jour [en respectant l'immutabilité](/learn/updating-arrays-in-state).
 
 <Sandpack>
 
@@ -511,7 +511,7 @@ ul, li { margin: 0; padding: 0; }
 
 #### Écrire de la logique concise avec Immer {/*writing-concise-update-logic-with-immer*/}
 
-S'il est fastidieux de mettre à jour les tableaux et les objets sans les modifier, vous pouvez utiliser une bibliothèque comme [Immer](https://github.com/immerjs/use-immer#useimmerreducer) pour réduire le code répétitif. Immer vous permet d'écrire du code plus concis comme si vous changiez les objets, mais sous le capot, il effectue des mises à jour immuables :
+S'il est fastidieux de mettre à jour les tableaux et les objets sans les modifier en place, vous pouvez utiliser une bibliothèque comme [Immer](https://github.com/immerjs/use-immer#useimmerreducer) pour réduire le code répétitif. Immer vous permet d'écrire du code plus concis comme si vous modifiiez directement les objets, mais sous le capot, il effectue des mises à jour respectant l'immutabilité :
 
 <Sandpack>
 
@@ -737,7 +737,7 @@ function TodoList({ username }) {
   // ...
 ```
 
-Bien que le résultat de `createInitialState(username)` soit seulement utilisé pour le premier rendu, vous continuez d'appeler cette fonction à chaque rendu. C'est du gâchis si elle crée de grands tableaux ou effectue des calculs gourmands.
+Bien que le résultat de `createInitialState(username)` soit seulement utilisé pour le premier rendu, vous continuez d'appeler cette fonction à chaque rendu. C'est du gâchis si elle crée de grands tableaux ou effectue des calculs coûteux.
 
 Pour corriger ça, vous pouvez plutôt **la passer comme fonction _d'initialisation_** au `useReducer` en tant que troisième argument.
 
@@ -751,7 +751,7 @@ function TodoList({ username }) {
   // ...
 ```
 
-Remarquez que vous passez `createInitialState`, qui est *elle-même une fonction*, et non `createInitialState()`, qui est le résultat de son exécution. De cette façon, l'état initial n'est pas recréé après l'initialisation.
+Remarquez que vous passez `createInitialState`, à savoir *la fonction elle-même*, et non `createInitialState()`, qui est le résultat de son exécution. De cette façon, l'état initial n'est pas recréé après l'initialisation.
 
 Dans l'exemple ci-dessus, `createInitialState` prend un argument `username`. Si votre fonction d'initialisation n'a besoin d'aucune information pour calculer l'état initial, vous pouvez passez `null` comme second argument à `useReducer`.
 
@@ -759,7 +759,7 @@ Dans l'exemple ci-dessus, `createInitialState` prend un argument `username`. Si 
 
 #### Passer la fonction d'initialisation {/*passing-the-initializer-function*/}
 
-Cet exemple passe la fonction d'initialisation, la fonction `createInitialState` ne s'exécute que durant l'initialisation. Elle ne s'exécute pas lorsque le composant fait de nouveau son rendu, comme lorsque vous tapez dans le champ de saisie.
+Cet exemple passe la fonction d'initialisation, la fonction `createInitialState` ne s'exécute donc que durant l'initialisation. Elle ne s'exécute pas lorsque le composant fait de nouveau son rendu, comme lorsque vous tapez dans le champ de saisie.
 
 <Sandpack>
 
@@ -847,7 +847,7 @@ export default function TodoList({ username }) {
 
 #### Passer l'état initial directement {/*passing-the-initial-state-directly*/}
 
-Cet exemple **ne passe pas** la fonction d'initialisation, donc la fonction `createInitialState` s'exécute à chaque rendu, comme lorsque vous tapez dans le champ de saisie. Il n'y a pas de différence dans le comportement, mais ce code est moins efficace.
+Cet exemple **ne passe pas** la fonction d'initialisation, donc la fonction `createInitialState` s'exécute à chaque rendu, comme lorsque vous tapez dans le champ de saisie. Il n'y a pas de différence perceptible dans le comportement, mais ce code est moins efficace.
 
 <Sandpack>
 
@@ -938,7 +938,7 @@ export default function TodoList({ username }) {
 
 ## Dépannage {/*troubleshooting*/}
 
-### J'ai dispatché une action, mais les journaux m'affichent l'ancienne valeur {/*ive-dispatched-an-action-but-logging-gives-me-the-old-state-value*/}
+### J'ai dispatché une action, mais la console m'affiche l'ancienne valeur {/*ive-dispatched-an-action-but-logging-gives-me-the-old-state-value*/}
 
 Appeler la fonction `dispatch` **ne change pas l'état dans le code qui est en train de s'exécuter** :
 
@@ -955,7 +955,7 @@ function handleClick() {
 }
 ```
 
-C'est parce que [l'état se comporte comme un instantané](/learn/state-as-a-snapshot). Mettre à jour un état nécessite un nouveau rendu avec sa nouvelle valeur, mais n'affecte pas la variable JavaScript `state` dans votre gestionnaire d'événement qui est en cours d'exécution.
+C'est parce que [l'état se comporte comme un instantané](/learn/state-as-a-snapshot). Mettre à jour un état planifie un nouveau rendu avec sa nouvelle valeur, mais n'affecte pas la variable JavaScript `state` dans votre gestionnaire d'événement en cours d'exécution.
 
 Si vous avez besoin de deviner la prochaine valeur de l'état, vous pouvez la calculer en appelant vous-même votre réducteur :
 
@@ -978,7 +978,7 @@ React **ignorera votre mise à jour si le prochain état est égal à l'état pr
 function reducer(state, action) {
   switch (action.type) {
     case 'incremented_age': {
-      // 🚩 Incorrect : modification de l'objet existant
+      // 🚩 Incorrect : modification de l’objet existant
       state.age++;
       return state;
     }
@@ -992,20 +992,20 @@ function reducer(state, action) {
 }
 ```
 
-Vous avez modifié un objet existant de `state` puis l'avez renvoyé, React a ainsi ignoré la mise à jour. Pour corriger ça, vous devez toujours vous assurer que vous [mettez à jour les objets dans l'état](/learn/updating-objects-in-state) et [mettez à jour les tableaux dans l'état](/learn/updating-arrays-in-state) plutôt que de les modifier :
+Vous avez modifié un objet existant de `state` puis l'avez renvoyé, React a ainsi ignoré la mise à jour. Pour corriger ça, vous devez toujours vous assurer que vous [mettez à jour les objets dans l'état](/learn/updating-objects-in-state) et [mettez à jour les tableaux dans l'état](/learn/updating-arrays-in-state) plutôt que de les modifier en place :
 
 ```js {4-8,11-15}
 function reducer(state, action) {
   switch (action.type) {
     case 'incremented_age': {
-      // ✅ Correct : création d'un nouvel objet
+      // ✅ Correct : création d’un nouvel objet
       return {
         ...state,
         age: state.age + 1
       };
     }
     case 'changed_name': {
-      // ✅ Correct : création d'un nouvel objet
+      // ✅ Correct : création d’un nouvel objet
       return {
         ...state,
         name: action.nextName
@@ -1020,14 +1020,14 @@ function reducer(state, action) {
 
 ### Une partie de l'état de mon réducteur devient undefined après le dispatch {/*a-part-of-my-reducer-state-becomes-undefined-after-dispatching*/}
 
-Assurez-vous que chaque branche `case` **copie tous les champs existants** lorsqu'il renvoie le nouvel état :
+Assurez-vous que chaque branche `case` **copie tous les champs existants** lorsqu'elle renvoie le nouvel état :
 
 ```js {5}
 function reducer(state, action) {
   switch (action.type) {
     case 'incremented_age': {
       return {
-        ...state, // N'oubliez pas ceci !
+        ...state, // N’oubliez pas ceci !
         age: state.age + 1
       };
     }
@@ -1040,7 +1040,7 @@ Sans le `...state` ci-dessus, le prochain état renvoyé ne contiendrait que le 
 
 ### Tout l'état de mon réducteur devient undefined après le dispatch {/*my-entire-reducer-state-becomes-undefined-after-dispatching*/}
 
-Si votre état devient `undefined` de manière imprévue, c'est que vous avez probablement oublié de `return` l'état dans l'un de vos cas, ou que le type d'action ne correspond à aucune des instructions `case`. Pour comprendre pourquoi, lancez une erreur à l'extérieur du `switch` :
+Si votre état devient `undefined` de manière imprévue, c'est que vous avez probablement oublié de `return` l'état dans l'un de vos cas, ou que le type d'action ne correspond à aucune des instructions `case`. Pour comprendre pourquoi, levez une erreur à l'extérieur du `switch` :
 
 ```js {10}
 function reducer(state, action) {
@@ -1060,38 +1060,40 @@ Vous pouvez également utiliser un vérificateur de type statique comme TypeScri
 
 ---
 
-### J'obtiens l'erreur « Too many re-renders » {/*im-getting-an-error-too-many-re-renders*/}
+### J'obtiens l'erreur “Too many re-renders” {/*im-getting-an-error-too-many-re-renders*/}
 
-Vous pouvez rencontrer l'erreur indiquant `Too many re-renders. React limits the number of renders to prevent an infinite loop.` (*Trop de nouveaux rendus. React limite le nombre de rendus pour éviter des boucles infinies*, NdT). Ça signifie généralement que vous dispatchez une action inconditionnellement *pendant un rendu* et ainsi votre composant entre dans une boucle : rendu, dispatch (qui occasionne un rendu), rendu, dispatch (qui occasionne un rendu), et ainsi de suite. La cause en est très souvent une erreur dans la spécification d'un gestionnaire d'événement :
+*(« Trop de rendus successifs », NdT)*
+
+Vous pouvez rencontrer l'erreur indiquant `Too many re-renders. React limits the number of renders to prevent an infinite loop.` *(« Trop de rendus successifs. React limite le nombre de rendus pour éviter des boucles infinies », NdT)* Ça signifie généralement que vous dispatchez une action inconditionnellement *pendant un rendu* et ainsi votre composant entre dans une boucle : rendu, dispatch (qui occasionne un rendu), rendu, dispatch (qui occasionne un rendu), et ainsi de suite. Ça vient le plus souvent d'une erreur dans la spécification d'un gestionnaire d'événement :
 
 ```js {1-2}
 // 🚩 Incorrect : appelle le gestionnaire pendant le rendu
 return <button onClick={handleClick()}>Click me</button>
 
-// ✅ Correct : passe le gestionnaire d'événement
+// ✅ Correct : passe le gestionnaire d’événement
 return <button onClick={handleClick}>Click me</button>
 
 // ✅ Correct : passe une fonction en ligne
 return <button onClick={(e) => handleClick(e)}>Click me</button>
 ```
 
-Si vous ne trouvez pas la cause de cette erreur, cliquez sur la flèche à côté de l'erreur dans la console et parcourez la pile JavaScript pour trouver l'appel à la fonction `dispatch` responsable de l'erreur.
+Si vous ne trouvez pas la cause de cette erreur, cliquez sur la flèche à côté de l'erreur dans la console et parcourez la pile d'appels JavaScript pour trouver l'appel à la fonction `dispatch` responsable de l'erreur.
 
 ---
 
 ### Mon réducteur ou ma fonction d'initialisation s'exécute deux fois {/*my-reducer-or-initializer-function-runs-twice*/}
 
-Dans le [Mode Strict](/reference/react/StrictMode), React appellera votre réducteur et votre fonction d'initialisation deux fois. Ça ne devrait pas casser votre code.
+En [mode strict](/reference/react/StrictMode), React appellera votre réducteur et votre fonction d'initialisation deux fois. Ça ne devrait pas casser votre code.
 
 Ce comportement **spécifique au développement** vous aide à [garder les composants purs](/learn/keeping-components-pure). React utilise le résultat de l'un des appels et ignore l'autre. Tant que votre composant, votre fonction d'initialisation et votre réducteur sont purs, ça ne devrait pas affecter votre logique. Si toutefois ils sont malencontreusement impurs, ça vous permettra de détecter les erreurs.
 
-Par exemple, cette fonction de réduction impure modifie un tableau dans l'état :
+Par exemple, cette fonction de réduction impure modifie directement un tableau dans l'état :
 
 ```js {4-6}
 function reducer(state, action) {
   switch (action.type) {
     case 'added_todo': {
-      // 🚩 Erreur : modification de l'état
+      // 🚩 Erreur : modification de l’état
       state.todos.push({ id: nextId++, text: action.text });
       return state;
     }
@@ -1100,13 +1102,13 @@ function reducer(state, action) {
 }
 ```
 
-Comme React appelle deux fois votre fonction de réduction, vous verrez que la liste a été ajoutée deux fois, vous saurez donc qu'il y a un problème. Dans cet exemple, vous pouvez le corriger [en remplaçant le tableau plutôt qu'en le modifiant](/learn/updating-arrays-in-state#adding-to-an-array) :
+Comme React appelle deux fois votre fonction de réduction, vous verrez que la liste a été ajoutée deux fois, vous saurez donc qu'il y a un problème. Dans cet exemple, vous pouvez le corriger [en remplaçant le tableau plutôt que de le modifier en place](/learn/updating-arrays-in-state#adding-to-an-array) :
 
 ```js {4-11}
 function reducer(state, action) {
   switch (action.type) {
     case 'added_todo': {
-      // ✅ Correct : remplacer avec un nouvel état
+      // ✅ Correct : remplacement par un nouvel état
       return {
         ...state,
         todos: [
@@ -1120,6 +1122,6 @@ function reducer(state, action) {
 }
 ```
 
-Maintenant que cette fonction de réduction est pure, l'appeler une fois de plus ne change pas le comportement. C'est pourquoi React vous aide à trouver l'erreur en l'appelant deux fois. **Seuls les composants, les fonctions d'initialisations et les réducteurs doivent être purs.** Les gestionnaires d'événements n'ont pas besoin de l'être, React ne les appellera donc jamais deux fois.
+Maintenant que cette fonction de réduction est pure, l'appeler une fois de plus ne change pas le comportement. C'est pourquoi React vous aide à détecter des erreurs en l'appelant deux fois. **Seuls les composants, les fonctions d'initialisation et les réducteurs doivent être purs.** Les gestionnaires d'événements n'ont pas besoin de l'être, React ne les appellera donc jamais deux fois.
 
 Lisez [Garder les composants purs](/learn/keeping-components-pure) pour en apprendre davantage.
