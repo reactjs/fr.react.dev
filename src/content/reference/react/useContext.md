@@ -53,7 +53,7 @@ function MyComponent() {
 
 ### Transmettre des données en profondeur dans l'arbre {/*passing-data-deeply-into-the-tree*/}
 
-Appelez `useContext` au niveau le plus élevé de votre composant pour lire et souscrire au [contexte](/learn/passing-data-deeply-with-context).
+Appelez `useContext` au niveau le plus élevé de votre composant pour lire et vous abonner au [contexte](/learn/passing-data-deeply-with-context).
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { useContext } from 'react';
@@ -107,7 +107,7 @@ export default function MyApp() {
 function Form() {
   return (
     <Panel title="Bienvenue">
-      <Button>S'enregistrer</Button>
+      <Button>S'inscrire</Button>
       <Button>Se connecter</Button>
     </Panel>
   );
@@ -232,7 +232,7 @@ export default function MyApp() {
 function Form({ children }) {
   return (
     <Panel title="Bienvenue">
-      <Button>S'enregistrer</Button>
+      <Button>S'inscrire</Button>
       <Button>Se connecter</Button>
     </Panel>
   );
