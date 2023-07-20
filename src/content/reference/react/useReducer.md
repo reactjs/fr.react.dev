@@ -983,7 +983,7 @@ function reducer(state, action) {
       return state;
     }
     case 'changed_name': {
-      // 🚩 Incorrect : modification de l'objet existant
+      // 🚩 Incorrect : modification de l’objet existant
       state.name = action.nextName;
       return state;
     }
