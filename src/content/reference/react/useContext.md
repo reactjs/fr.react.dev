@@ -993,7 +993,7 @@ export default function MyApp() {
 function Form({ children }) {
   return (
     <Panel title="Bienvenue">
-      <Button>S'enregistrer</Button>
+      <Button>S'inscrire</Button>
       <Button>Se connecter</Button>
     </Panel>
   );
@@ -1102,7 +1102,7 @@ export default function MyApp() {
 function Form() {
   return (
     <Panel title="Bienvenue">
-      <Button>S'enregistrer</Button>
+      <Button>S'inscrire</Button>
       <Button>Se connecter</Button>
       <ThemeContext.Provider value="light">
         <Footer />
