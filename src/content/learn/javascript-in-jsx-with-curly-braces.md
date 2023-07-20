@@ -10,14 +10,14 @@ JSX vous permet d'écrire du balisage similaire à HTML au sein de votre fichier
 
 <YouWillLearn>
 
-* Comment passer des chaînes de caractères grâce aux apostrophes ou guillemets
+* Comment passer des chaînes de caractères grâce aux guillemets
 * Comment référencer une variable JavaScript dans du JSX grâce aux accolades
 * Comment appeler une fonction JavaScript dans du JSX grâce aux accolades
 * Comment utiliser un objet JavaScript dans du JSX grâce aux accolades
 
 </YouWillLearn>
 
-## Passer des chaînes de caractères grâce aux apostrophes ou guillemets {/*passing-strings-with-quotes*/}
+## Passer des chaînes de caractères grâce aux guillemets {/*passing-strings-with-quotes*/}
 
 Lorsque vous voulez passer une valeur textuelle fixe à un attribut en JSX, vous l'entourez d'apostrophes (`'`) ou de guillemets (`"`) :
 
@@ -43,7 +43,7 @@ export default function Avatar() {
 
 Dans cet exemple, `"https://i.imgur.com/7vQD0fPs.jpg"` et `"Gregorio Y. Zara"` sont passées en tant que chaînes de caractères.
 
-Mais comment feriez-vous pour spécifier dynamiquement les textes pour `src` ou `alt` ? Vous pouvez **utiliser une valeur JavaScript en remplaçant les guillemets (`"`) par des accolades (`{` et `}`)** :
+Mais comment faire pour spécifier dynamiquement les textes pour `src` ou `alt` ? Vous pouvez **utiliser une valeur JavaScript en remplaçant les guillemets (`"`) par des accolades (`{` et `}`)** :
 
 <Sandpack>
 
@@ -171,7 +171,7 @@ Les propriétés `style` en ligne sont écrites en casse Camel. Par exemple, le 
 
 ## Amusons-nous avec les objets JavaScript et les accolades {/*more-fun-with-javascript-objects-and-curly-braces*/}
 
-Vous pouvez placer plusieurs expressions dans un même objet, et les référencer dans votre JSX au sein des accolades :
+Vous pouvez placer plusieurs expressions dans un même objet, et les référencer dans votre JSX au sein de vos paires d'accolades :
 
 <Sandpack>
 
@@ -187,7 +187,7 @@ const person = {
 export default function TodoList() {
   return (
     <div style={person.theme}>
-      <h1>{Liste des tâches de person.name}</h1>
+      <h1>Liste des tâches de {person.name}</h1>
       <img
         className="avatar"
         src="https://i.imgur.com/7vQD0fPs.jpg"
@@ -299,7 +299,7 @@ Regardez ce qui figure entre les accolades.  Est-ce qu'on y met le bon contenu 
 
 Le souci vient de ce que cet exemple tente d'afficher *l'objet lui-même* dans le balisage plutôt qu'un texte : `<h1>Liste des tâches de {person}</h1>` essaie d'afficher l'objet `person` entier ! Inclure des objets bruts dans du contenu textuel lève une erreur parce que React ne sait pas comment vous souhaitez les afficher.
 
-Pour corriger ça, remplacez `<h1>Liste des tâches de {person}</h1>` par `<h1>Liste des tâches de {person.name}</h1>` :
+Pour corriger ça, remplacez le JSX `<h1>Liste des tâches de {person}</h1>` par `<h1>Liste des tâches de {person.name}</h1>` :
 
 <Sandpack>
 
@@ -385,7 +385,7 @@ body > div > div { padding: 20px; }
 
 <Solution>
 
-Déplacez l'URL de l'image dans une propriété appelée `person.imageUrl` et lisez-la dans la balise `<img>` en utilisant les accolades :
+Déplacez l'URL de l'image dans une propriété `imageUrl` au sein de l'objet `person` et utilisez-la dans la balise `<img>` en utilisant les accolades :
 
 <Sandpack>
 
@@ -482,7 +482,7 @@ Pour vérifier que votre correctif fonctionne, essayez de modifier la valeur de 
 
 <Solution>
 
-Vous pouvez écrire la composition de l'URL comme ceci : `src={baseUrl + person.imageId + person.imageSize + '.jpg'}`.
+Vous pouvez écrire la composition de l'URL avec une concaténation JavaScript, comme ceci : `src={baseUrl + person.imageId + person.imageSize + '.jpg'}`.
 
 1. `{` ouvre l'expression JavaScript
 2. `baseUrl + person.imageId + person.imageSize + '.jpg'` produit la bonne URL
