@@ -4,31 +4,31 @@ title: Writing Markup with JSX
 
 <Intro>
 
-*JSX* is a syntax extension for JavaScript that lets you write HTML-like markup inside a JavaScript file. Although there are other ways to write components, most React developers prefer the conciseness of JSX, and most codebases use it.
+*JSX* est une extension de syntaxe pour JavaScript qui vous permet d'écrire du balisage similaire au HTML au sein d'un fichier JavaScript.  Même s'il existe d'autres façons d'écrire des composants, la plupart des personnes qui développent avec React préfèrent la concision de JSX, et la quasi totalité des bases de code s'en sert.
 
 </Intro>
 
 <YouWillLearn>
 
-* Why React mixes markup with rendering logic
-* How JSX is different from HTML
-* How to display information with JSX
+* Pourquoi React mélange le balisage et la logique de rendu
+* En quoi JSX diffère du HTML
+* Comment afficher des informations avec JSX
 
 </YouWillLearn>
 
-## JSX: Putting markup into JavaScript {/*jsx-putting-markup-into-javascript*/}
+## JSX : mettre du balisage dans JavaScript {/*jsx-putting-markup-into-javascript*/}
 
-The Web has been built on HTML, CSS, and JavaScript. For many years, web developers kept content in HTML, design in CSS, and logic in JavaScript—often in separate files! Content was marked up inside HTML while the page's logic lived separately in JavaScript:
+Le Web est construit avec HTML, CSS et JavaScript.  Durant de nombreuses années, les devs web séparaient soigneusement le contenu dans HTML, le design dans CSS, et la logique dans JavaScript — bien souvent dans des fichiers distincts !  Le contenu était balisé dans du HTML tandis que la logique de la page vivait dans son coin, dans un bloc JavaScript :
 
 <DiagramGroup>
 
-<Diagram name="writing_jsx_html" height={237} width={325} alt="HTML markup with purple background and a div with two child tags: p and form. ">
+<Diagram name="writing_jsx_html" height={237} width={325} alt="Du balisage HTML sur un fond mauve, contenant une div et deux balises enfants : p et form.">
 
 HTML
 
 </Diagram>
 
-<Diagram name="writing_jsx_js" height={237} width={325} alt="Three JavaScript handlers with yellow background: onSubmit, onLogin, and onClick.">
+<Diagram name="writing_jsx_js" height={237} width={325} alt="Trois gestionnaires JavaScript sur un fond sable : onSubmit, onLogin et onClick.">
 
 JavaScript
 
@@ -36,53 +36,53 @@ JavaScript
 
 </DiagramGroup>
 
-But as the Web became more interactive, logic increasingly determined content. JavaScript was in charge of the HTML! This is why **in React, rendering logic and markup live together in the same place—components.**
+Mais alors que le Web devenait chaque jour plus interactif, la logique déterminait de plus en plus le contenu. JavaScript devenait responsable du HTML !  C'est pourquoi **en React, la logique de rendu et le balisage vivent ensemble au même endroit : les composants**.
 
 <DiagramGroup>
 
-<Diagram name="writing_jsx_sidebar" height={330} width={325} alt="React component with HTML and JavaScript from previous examples mixed. Function name is Sidebar which calls the function isLoggedIn, highlighted in yellow. Nested inside the function highlighted in purple is the p tag from before, and a Form tag referencing the component shown in the next diagram.">
+<Diagram name="writing_jsx_sidebar" height={330} width={325} alt="Un composant React avec du HTML et du JavaScript mélangeant les exemples précédents.  La nom de la fonction est Sidebar, qui appelle la fonction isLoggedIn, mise en exergue en jaune.  Au sein de la fonction, mis en exergue en mauve, on trouve la balise p déjà rencontrée, et une balise Form qui référence le composant du prochain diagramme.">
 
-`Sidebar.js` React component
+Composant React `Sidebar.js`
 
 </Diagram>
 
-<Diagram name="writing_jsx_form" height={330} width={325} alt="React component with HTML and JavaScript from previous examples mixed. Function name is Form containing two handlers onClick and onSubmit highlighted in yellow. Following the handlers is HTML highlighted in purple. The HTML contains a form element with a nested input element, each with an onClick prop.">
+<Diagram name="writing_jsx_form" height={330} width={325} alt="Un composant React avec du HTML et du JavaScript mélangeant les exemples précédents. Le nom de la fonction est Form, qui contient deux gestionnaires onClick et onSubmit mis en exergue en jaune.  Ils sont suivis par du HTML, mis en exergue en mauve.  Le HTML contient un élément form doté d'une prop onSubmit avec deux éléments input à l'intérieur, chacun doté d'une prop onClick.">
 
-`Form.js` React component
+Composant React `Form.js`
 
 </Diagram>
 
 </DiagramGroup>
 
-Keeping a button's rendering logic and markup together ensures that they stay in sync with each other on every edit. Conversely, details that are unrelated, such as the button's markup and a sidebar's markup, are isolated from each other, making it safer to change either of them on their own.
+Conserver ensemble la logique de rendu d'un bouton et son balisage permet de s'assurer que les deux restent synchronisés à chaque évolution.  Inversement, les détails qui n'ont pas de rapport, comme le balisage du bouton vis-à-vis du balisage de la barre latérale, sont isolés les uns des autres, ce qui évite de modifier l'un par erreur en modifiant l'autre.
 
-Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information. The best way to understand this is to convert some HTML markup to JSX markup.
+Chaque composant React est une fonction JavaScript qui peut contenir du balisage que React affichera à terme dans le navigateur.  Les composants React utilisent une extension de syntaxe appelée JSX qui représente ce balisage.  JSX ressemble beaucoup à HTML, mais il est un peu plus strict et peut afficher des informations dynamiques.  La meilleure façon de comprendre ça consiste à convertir du balisage HTML en balisage JSX.
 
 <Note>
 
-JSX and React are two separate things. They're often used together, but you *can* [use them independently](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) of each other. JSX is a syntax extension, while React is a JavaScript library.
+JSX et React sont techniquement séparés. On les utilise souvent ensemble, mais *il est possible* de [les utiliser indépendamment](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) l'un de l'autre.  JSX est une extension de syntaxe, alors que React est une bibliothèque JavaScript.
 
 </Note>
 
-## Converting HTML to JSX {/*converting-html-to-jsx*/}
+## Convertir du HTML en JSX {/*converting-html-to-jsx*/}
 
-Suppose that you have some (perfectly valid) HTML:
+Supposons que vous ayez du HTML (parfaitement valide) :
 
 ```html
-<h1>Hedy Lamarr's Todos</h1>
-<img 
-  src="https://i.imgur.com/yXOvdOSs.jpg" 
-  alt="Hedy Lamarr" 
+<h1>Liste de tâches de Hedy Lamarr</h1>
+<img
+  src="https://i.imgur.com/yXOvdOSs.jpg"
+  alt="Hedy Lamarr"
   class="photo"
 >
 <ul>
-    <li>Invent new traffic lights
-    <li>Rehearse a movie scene
-    <li>Improve the spectrum technology
+  <li>Inventer de nouveaux feux de circulation
+  <li>Répéter une scène de film
+  <li>Améliorer les techniques de spectrographie
 </ul>
 ```
 
-And you want to put it into your component:
+Et disons que vous souhaitiez le placer dans votre composant :
 
 ```js
 export default function TodoList() {
@@ -92,7 +92,7 @@ export default function TodoList() {
 }
 ```
 
-If you copy and paste it as is, it will not work:
+Si vous le copiez-collez tel quel, ça ne marchera pas :
 
 
 <Sandpack>
@@ -100,17 +100,17 @@ If you copy and paste it as is, it will not work:
 ```js
 export default function TodoList() {
   return (
-    // This doesn't quite work!
-    <h1>Hedy Lamarr's Todos</h1>
-    <img 
-      src="https://i.imgur.com/yXOvdOSs.jpg" 
-      alt="Hedy Lamarr" 
+    // Ça ne marche pas tout à fait !
+    <h1>Liste de tâches de Hedy Lamarr</h1>
+    <img
+      src="https://i.imgur.com/yXOvdOSs.jpg"
+      alt="Hedy Lamarr"
       class="photo"
     >
     <ul>
-      <li>Invent new traffic lights
-      <li>Rehearse a movie scene
-      <li>Improve the spectrum technology
+      <li>Inventer de nouveaux feux de circulation
+      <li>Répéter une scène de film
+      <li>Améliorer les techniques de spectrographie
     </ul>
   );
 }
@@ -122,28 +122,28 @@ img { height: 90px }
 
 </Sandpack>
 
-This is because JSX is stricter and has a few more rules than HTML! If you read the error messages above, they'll guide you to fix the markup, or you can follow the guide below.
+C'est parce que JSX est plus strict et a davantages de règles que HTML ! Si vous lisez les messages d'erreur ci-dessus, ils vous guideront dans le correction du balisage ; vous pouvez aussi lire le guide ci-dessous.
 
 <Note>
 
-Most of the time, React's on-screen error messages will help you find where the problem is. Give them a read if you get stuck!
+La plupart du temps, les messages d'erreur de React à l'écran vous aideront à trouver l'origine du problème. Prenez la peine de les lire !
 
 </Note>
 
-## The Rules of JSX {/*the-rules-of-jsx*/}
+## Les règles de JSX {/*the-rules-of-jsx*/}
 
-### 1. Return a single root element {/*1-return-a-single-root-element*/}
+### 1. Renvoyez un seul élément racine {/*1-return-a-single-root-element*/}
 
-To return multiple elements from a component, **wrap them with a single parent tag.**
+Pour renvoyer plusieurs éléments avec votre composant, **enrobez-les dans une balise parent**.
 
-For example, you can use a `<div>`:
+Par exemple, vous pouvez utiliser une `<div>` :
 
 ```js {1,11}
 <div>
-  <h1>Hedy Lamarr's Todos</h1>
-  <img 
-    src="https://i.imgur.com/yXOvdOSs.jpg" 
-    alt="Hedy Lamarr" 
+  <h1>Liste de tâches de Hedy Lamarr</h1>
+  <img
+    src="https://i.imgur.com/yXOvdOSs.jpg"
+    alt="Hedy Lamarr"
     class="photo"
   >
   <ul>
@@ -152,15 +152,14 @@ For example, you can use a `<div>`:
 </div>
 ```
 
-
-If you don't want to add an extra `<div>` to your markup, you can write `<>` and `</>` instead:
+Si vous ne voulez pas ajouter un `<div>` superflu à votre balisage, vous pouvez plutôt écrire `<>` et `</>` :
 
 ```js {1,11}
 <>
-  <h1>Hedy Lamarr's Todos</h1>
-  <img 
-    src="https://i.imgur.com/yXOvdOSs.jpg" 
-    alt="Hedy Lamarr" 
+  <h1>Liste de tâches de Hedy Lamarr</h1>
+  <img
+    src="https://i.imgur.com/yXOvdOSs.jpg"
+    alt="Hedy Lamarr"
     class="photo"
   >
   <ul>
@@ -169,64 +168,64 @@ If you don't want to add an extra `<div>` to your markup, you can write `<>` and
 </>
 ```
 
-This empty tag is called a *[Fragment.](/reference/react/Fragment)* Fragments let you group things without leaving any trace in the browser HTML tree.
+Cette balise vide est ce qu'on appelle un *[Fragment](/reference/react/Fragment)*.  Les fragments vous permettent de grouper des éléments sans laisser de trace dans l'arbre HTML du navigateur.
 
 <DeepDive>
 
-#### Why do multiple JSX tags need to be wrapped? {/*why-do-multiple-jsx-tags-need-to-be-wrapped*/}
+#### Pourquoi faut-il enrober des balises JSX multiples ? {/*why-do-multiple-jsx-tags-need-to-be-wrapped*/}
 
-JSX looks like HTML, but under the hood it is transformed into plain JavaScript objects. You can't return two objects from a function without wrapping them into an array. This explains why you also can't return two JSX tags without wrapping them into another tag or a Fragment.
+JSX ressemble à HTML, mais sous le capot il est transformé en objets JavaScript bruts.  Vous ne pouvez pas renvoyer deux objets depuis une fonction sans les enrober dans un tableau.  Ça explique pourquoi vous ne pouvez pas non plus renvoyer deux balises JSX sans les enrober dans une autre balise ou un fragment.
 
 </DeepDive>
 
-### 2. Close all the tags {/*2-close-all-the-tags*/}
+### 2. Fermez toutes les balises {/*2-close-all-the-tags*/}
 
-JSX requires tags to be explicitly closed: self-closing tags like `<img>` must become `<img />`, and wrapping tags like `<li>oranges` must be written as `<li>oranges</li>`.
+JSX exige que les balises soient explicitement fermées : les balises auto-fermantes telles que `<img>` doivent utiliser `<img />`, et les balises enrobantes telles que `<li>oranges` doivent utiliser `<li>oranges</li>`.
 
-This is how Hedy Lamarr's image and list items look closed:
+Voici à quoi ressemblent l'image et les tâches de Hedy Lamarr une fois correctement fermées :
 
 ```js {2-6,8-10}
 <>
-  <img 
-    src="https://i.imgur.com/yXOvdOSs.jpg" 
-    alt="Hedy Lamarr" 
+  <img
+    src="https://i.imgur.com/yXOvdOSs.jpg"
+    alt="Hedy Lamarr"
     class="photo"
    />
   <ul>
-    <li>Invent new traffic lights</li>
-    <li>Rehearse a movie scene</li>
-    <li>Improve the spectrum technology</li>
+    <li>Inventer de nouveaux feux de circulation</li>
+    <li>Répéter une scène de film</li>
+    <li>Améliorer les techniques de spectrographie</li>
   </ul>
 </>
 ```
 
-### 3. camelCase <s>all</s> most of the things! {/*3-camelcase-salls-most-of-the-things*/}
+### 3. Utilisez la casseCamel pour (presque) tout ! {/*3-camelcase-salls-most-of-the-things*/}
 
-JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your own components, you will often want to read those attributes into variables. But JavaScript has limitations on variable names. For example, their names can't contain dashes or be reserved words like `class`.
+JSX produit à terme du JavaScript, et les attributs en JSX deviennent des noms de propriétés d'objets JavaScript. Dans vos propres composants vous voudrez souvent lire ces attributs dans des variables. Mais JavaScript limite la syntaxe des noms de variables. Par exemple, ils ne peuvent pas contenir des tirets ou être des mots réservés tels que `class`.
 
-This is why, in React, many HTML and SVG attributes are written in camelCase. For example, instead of `stroke-width` you use `strokeWidth`. Since `class` is a reserved word, in React you write `className` instead, named after the [corresponding DOM property](https://developer.mozilla.org/en-US/docs/Web/API/Element/className):
+C'est pourquoi, en React, de nombreux attributs HTML et SVG sont écrits en casse Camel *(camelCase, NdT)*.  Par exemple, au lieu de `stroke-width` vous écrirez `strokeWidth`.  Puisque `class` est un mot réservé, en React vous écrirez plutôt `className`, nommé d'après la [propriété DOM correspondante](https://developer.mozilla.org/docs/Web/API/Element/className) :
 
 ```js {4}
-<img 
-  src="https://i.imgur.com/yXOvdOSs.jpg" 
-  alt="Hedy Lamarr" 
+<img
+  src="https://i.imgur.com/yXOvdOSs.jpg"
+  alt="Hedy Lamarr"
   className="photo"
 />
 ```
 
-You can [find all these attributes in the list of DOM component props.](/reference/react-dom/components/common) If you get one wrong, don't worry—React will print a message with a possible correction to the [browser console.](https://developer.mozilla.org/docs/Tools/Browser_Console)
+Vous pouvez [consulter tous les attributs dans la liste des props de composants DOM](/reference/react-dom/components/common). Si vous vous trompez sur l'un d'eux, ne vous inquiétez pas : React vous affichera un message avec une suggestion de correction dans la [console du navigateur](https://developer.mozilla.org/docs/Tools/Browser_Console) *(lien en anglais, NdT)*.
 
 <Pitfall>
 
-For historical reasons, [`aria-*`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA) and [`data-*`](https://developer.mozilla.org/docs/Learn/HTML/Howto/Use_data_attributes) attributes are written as in HTML with dashes.
+Pour des raisons historiques, les attributs [`aria-*`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA) et [`data-*`](https://developer.mozilla.org/docs/Learn/HTML/Howto/Use_data_attributes) sont écrits comme en HTML, c'est-à-dire avec des tirets.
 
 </Pitfall>
 
-### Pro-tip: Use a JSX Converter {/*pro-tip-use-a-jsx-converter*/}
+### Astuce : utilisez un convertisseur JSX {/*pro-tip-use-a-jsx-converter*/}
 
-Converting all these attributes in existing markup can be tedious! We recommend using a [converter](https://transform.tools/html-to-jsx) to translate your existing HTML and SVG to JSX. Converters are very useful in practice, but it's still worth understanding what is going on so that you can comfortably write JSX on your own.
+Il est vite fastidieux de convertir tous les attributs d'un balisage existant ! Nous vous conseillons d'utiliser un [convertisseur](https://transform.tools/html-to-jsx) pour produire le JSX correspondant à du HTML et du SVG. Les convertisseurs sont très utiles en pratique, mais ça reste une bonne idée de comprendre ce qui se passe pour que vous puissiez aisément écrire du JSX par vous-même.
 
-Here is your final result:
+Voici notre résultat final :
 
 <Sandpack>
 
@@ -234,16 +233,16 @@ Here is your final result:
 export default function TodoList() {
   return (
     <>
-      <h1>Hedy Lamarr's Todos</h1>
-      <img 
-        src="https://i.imgur.com/yXOvdOSs.jpg" 
-        alt="Hedy Lamarr" 
-        className="photo" 
+      <h1>Liste de tâches de Hedy Lamarr</h1>
+      <img
+        src="https://i.imgur.com/yXOvdOSs.jpg"
+        alt="Hedy Lamarr"
+        className="photo"
       />
       <ul>
-        <li>Invent new traffic lights</li>
-        <li>Rehearse a movie scene</li>
-        <li>Improve the spectrum technology</li>
+        <li>Inventer de nouveaux feux de circulation</li>
+        <li>Répéter une scène de film</li>
+        <li>Améliorer les techniques de spectrographie</li>
       </ul>
     </>
   );
@@ -258,11 +257,11 @@ img { height: 90px }
 
 <Recap>
 
-Now you know why JSX exists and how to use it in components:
+Vous savez désormais pourquoi JSX existe et comment l'utiliser dans les composants :
 
-* React components group rendering logic together with markup because they are related.
-* JSX is similar to HTML, with a few differences. You can use a [converter](https://transform.tools/html-to-jsx) if you need to.
-* Error messages will often point you in the right direction to fixing your markup.
+* Les composants React regroupent la logique de rendu et le balisage parce qu'ils ont un lien étroit.
+* JSX est similaire à HTML, mais avec quelques différences. Vous pouvez utiliser un [convertisseur](https://transform.tools/html-to-jsx) si besoin.
+* Les messages d'erreur vous indiqueront souvent quoi faire pour corriger votre balisage.
 
 </Recap>
 
@@ -270,9 +269,9 @@ Now you know why JSX exists and how to use it in components:
 
 <Challenges>
 
-#### Convert some HTML to JSX {/*convert-some-html-to-jsx*/}
+#### Convertir du HTML en JSX {/*convert-some-html-to-jsx*/}
 
-This HTML was pasted into a component, but it's not valid JSX. Fix it:
+Ce HTML a été copié-collé dans un composant, mais il ne constitue pas du JSX valide. Corrigez-le :
 
 <Sandpack>
 
@@ -280,12 +279,12 @@ This HTML was pasted into a component, but it's not valid JSX. Fix it:
 export default function Bio() {
   return (
     <div class="intro">
-      <h1>Welcome to my website!</h1>
+      <h1>Bienvenue sur mon site !</h1>
     </div>
     <p class="summary">
-      You can find my thoughts here.
+      Vous trouverez mes réflexions ici.
       <br><br>
-      <b>And <i>pictures</b></i> of scientists!
+      <b>Et des <i>photos</b></i> de scientifiques !
     </p>
   );
 }
@@ -308,7 +307,7 @@ export default function Bio() {
 
 </Sandpack>
 
-Whether to do it by hand or using the converter is up to you!
+Que vous le fassiez à la main ou en passant par un convertisseur, ça vous regarde !
 
 <Solution>
 
@@ -319,12 +318,12 @@ export default function Bio() {
   return (
     <div>
       <div className="intro">
-        <h1>Welcome to my website!</h1>
+        <h1>Bienvenue sur mon site !</h1>
       </div>
       <p className="summary">
-        You can find my thoughts here.
+        Vous trouverez mes réflexions ici.
         <br /><br />
-        <b>And <i>pictures</i></b> of scientists!
+        <b>Et des <i>photos</i></b> de scientifiques !
       </p>
     </div>
   );
