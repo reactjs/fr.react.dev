@@ -18,7 +18,7 @@ Bien structurer l’état peut faire toute la différence entre un composant agr
 
 ## Principes de structuration d’état {/*principles-for-structuring-state*/}
 
-Quand vous créez un composant qui contient des états, vous devez faire des choix sur le nombre de variables d’état à utiliser et la forme de leurs données. Même s'il est possible d’écrire des programmes corrects avec une structure d’état sous-optimale, il y a quelques principes qui peuvent vous guider pour faire de meilleurs choix :
+Quand vous créez un composant qui contient des états, vous devez faire des choix sur le nombre de variables d’état à utiliser et la forme de leurs données. Même s'il est possible d’écrire des programmes corrects avec une structure d’état sous-optimale, il y a quelques principes qui peuvent vous guider pour faire de meilleurs choix :
 
 1. **Regroupez les états associés.** Si vous mettez tout le temps à jour plusieurs variables d’état à la fois, essayez de les fusionner en une seule variable d’état.
 2. **Évitez les contradictions dans l’état.** Quand l’état est structuré de sorte que plusieurs parties d’état puissent être contradictoires, des erreurs peuvent survenir. Essayez d’éviter ça.
@@ -34,14 +34,14 @@ Maintenant voyons comment ces principes s’appliquent concrètement.
 
 Vous hésitez peut-être parfois entre utiliser une ou plusieurs variables d’état.
 
-Devriez-vous faire ça ?
+Devriez-vous faire ça ?
 
 ```js
 const [x, setX] = useState(0);
 const [y, setY] = useState(0);
 ```
 
-Ou ça ?
+Ou ça ?
 
 ```js
 const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -97,13 +97,13 @@ Une autre situation dans laquelle vous pouvez regrouper des données dans un obj
 
 <Pitfall>
 
-Si votre variable d’état est un objet, souvenez-vous que [vous ne pouvez pas mettre à jour qu’un seul champ](/learn/updating-objects-in-state) sans explicitement copier les autres champs. Par exemple, vous ne pouvez pas faire `setPosition({ x: 100 })` dans l’exemple ci-dessus car il n’y aurait plus du tout la propriété `y` ! Au lieu de ça, si vous vouliez définir `x` tout seul, soit vous feriez `setPosition({ ...position, x: 100 })`, soit vous découperiez l'information en deux variables d’état et feriez `setX(100)`.
+Si votre variable d’état est un objet, souvenez-vous que [vous ne pouvez pas mettre à jour qu’un seul champ](/learn/updating-objects-in-state) sans explicitement copier les autres champs. Par exemple, vous ne pouvez pas faire `setPosition({ x: 100 })` dans l’exemple ci-dessus car il n’y aurait plus du tout la propriété `y` ! Au lieu de ça, si vous vouliez définir `x` tout seul, soit vous feriez `setPosition({ ...position, x: 100 })`, soit vous découperiez l'information en deux variables d’état et feriez `setX(100)`.
 
 </Pitfall>
 
 ## Évitez les contradictions dans l’état {/*avoid-contradictions-in-state*/}
 
-Voici un questionnaire de satisfaction d’hôtel avec les variables d’état `isSending` et `isSent` :
+Voici un questionnaire de satisfaction d’hôtel avec les variables d’état `isSending` et `isSent` :
 
 <Sandpack>
 
@@ -124,12 +124,12 @@ export default function FeedbackForm() {
   }
 
   if (isSent) {
-    return <h1>Merci pour votre retour !</h1>
+    return <h1>Merci pour votre retour !</h1>
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>Comment était votre séjour au Poney Vagabond ?</p>
+      <p>Comment était votre séjour au Poney Fringant ?</p>
       <textarea
         disabled={isSending}
         value={text}
@@ -157,9 +157,9 @@ function sendMessage(text) {
 
 </Sandpack>
 
-Même si ce code marche, il laisse la place à des états « impossibles ». Par exemple, si vous oubliez d’appeler `setIsSent` et `setIsSending` ensemble, vous pouvez finir dans une situation où les deux variables `isSending` et `isSent` sont à `true` au même moment. Plus votre composant est complexe, plus il est dur de comprendre ce qu’il s’est passé.
+Même si ce code marche, il laisse la place à des états « impossibles ». Par exemple, si vous oubliez d’appeler `setIsSent` et `setIsSending` ensemble, vous pouvez finir dans une situation où les deux variables `isSending` et `isSent` sont à `true` au même moment. Plus votre composant est complexe, plus il est dur de comprendre ce qu’il s’est passé.
 
-**Comme `isSending` et `isSent` ne doivent jamais être à `true` au même moment, il est préférable de les remplacer par une variable d’état `status` qui peut prendre l’un des *trois* états valides :** `'typing'` (initial), `'sending'`, et `'sent'` :
+**Comme `isSending` et `isSent` ne doivent jamais être à `true` au même moment, il est préférable de les remplacer par une variable d’état `status` qui peut prendre l’un des *trois* états valides :** `'typing'` (initial), `'sending'`, et `'sent'` :
 
 <Sandpack>
 
@@ -181,12 +181,12 @@ export default function FeedbackForm() {
   const isSent = status === 'sent';
 
   if (isSent) {
-    return <h1>Merci pour votre retour !</h1>
+    return <h1>Merci pour votre retour !</h1>
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>Comment était votre séjour au Poney Vagabond ?</p>
+      <p>Comment était votre séjour au Poney Fringant ?</p>
       <textarea
         disabled={isSending}
         value={text}
@@ -214,7 +214,7 @@ function sendMessage(text) {
 
 </Sandpack>
 
-Vous pouvez toujours déclarer quelques constantes pour plus de lisibilité :
+Vous pouvez toujours déclarer quelques constantes pour plus de lisibilité :
 
 ```js
 const isSending = status === 'sending';
@@ -227,7 +227,7 @@ Mais ce ne sont pas des variables d’état, vous n'avez donc pas à vous soucie
 
 Si vous pouvez calculer certaines informations depuis les props d’un composant ou une de ses variables d’état existantes pendant le rendu, vous ne **devez pas** mettre ces informations dans l’état du composant
 
-Par exemple, prenez ce formulaire. Il marche, mais pouvez-vous y trouver un état redondant ?
+Par exemple, prenez ce formulaire. Il marche, mais pouvez-vous y trouver un état redondant ?
 
 <Sandpack>
 
@@ -253,21 +253,21 @@ export default function Form() {
     <>
       <h2>Enregistrons votre arrivée</h2>
       <label>
-        Prénom :{' '}
+        Prénom :{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Nom :{' '}
+        Nom :{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Votre ticket sera délivré à : <b>{fullName}</b>
+        Votre billet sera au nom de : <b>{fullName}</b>
       </p>
     </>
   );
@@ -280,9 +280,9 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Ce formulaire possède trois variables d’état : `firstName`, `lastName` et `fullName`. Cependant, `fullName` est redondant. **Vous pouvez toujours calculer `fullName` depuis `firstName` et `lastName` pendant le rendu, donc retirez-le de l’état.**
+Ce formulaire possède trois variables d’état : `firstName`, `lastName` et `fullName`. Cependant, `fullName` est redondant. **Vous pouvez toujours calculer `fullName` depuis `firstName` et `lastName` pendant le rendu, donc retirez-le de l’état.**
 
-Voici comment vous pouvez faire :
+Voici comment vous pouvez faire :
 
 <Sandpack>
 
@@ -307,21 +307,21 @@ export default function Form() {
     <>
       <h2>Enregistrons votre arrivée</h2>
       <label>
-        Prénom :{' '}
+        Prénom :{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Nom :{' '}
+        Nom :{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Votre ticket sera délivré à : <b>{fullName}</b>
+        Votre billet sera au nom de : <b>{fullName}</b>
       </p>
     </>
   );
@@ -334,7 +334,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Ici, `fullName` n’est *pas* une variable d’état. Elle est plutôt évaluée pendant le rendu :
+Ici, `fullName` n’est *pas* une variable d’état. Elle est plutôt évaluée pendant le rendu :
 
 ```js
 const fullName = firstName + ' ' + lastName;
@@ -346,7 +346,7 @@ Par conséquent, les gestionnaires de changement n’auront rien à faire pour l
 
 #### Ne dupliquez pas les props dans l’état {/*don-t-mirror-props-in-state*/}
 
-Un exemple commun d’état redondant recourt à ce genre de code :
+Un exemple commun d’état redondant recourt à ce genre de code :
 
 ```js
 function Message({ messageColor }) {
@@ -354,9 +354,9 @@ function Message({ messageColor }) {
 }
 ```
 
-Ici, la prop `messageColor` est passée comme valeur initiale de la variable d’état `color`. Le problème est que **si le composant parent transmet une valeur différente dans `messageColor` plus tard (par exemple, `'red'` au lieu de `'blue'`), la variable d’état `color` ne sera pas mise à jour** ! L’état est seulement initialisé lors du rendu initial.
+Ici, la prop `messageColor` est passée comme valeur initiale de la variable d’état `color`. Le problème est que **si le composant parent transmet une valeur différente dans `messageColor` plus tard (par exemple, `'red'` au lieu de `'blue'`), la variable d’état `color` ne sera pas mise à jour** ! L’état est seulement initialisé lors du rendu initial.
 
-C’est pourquoi la "duplication" de certaines props dans des variables d’état peut être déroutante. Utilisez de préférence directement la prop `messageColor` dans votre code. Si vous voulez lui donner un nom plus court, utilisez une constante :
+C’est pourquoi la "duplication" de certaines props dans des variables d’état peut être déroutante. Utilisez de préférence directement la prop `messageColor` dans votre code. Si vous voulez lui donner un nom plus court, utilisez une constante :
 
 ```js
 function Message({ messageColor }) {
@@ -365,12 +365,13 @@ function Message({ messageColor }) {
 ```
 
 De cette manière, le composant ne sera pas désynchronisé avec la prop transmise par le composant parent.
-« Dupliquer » les props dans l’état n'est pertinent que lorsque vous *voulez* ignorer toutes les mises à jour d’une certaine prop. Par convention, ajoutez `initial` ou `default` au début du nom de la prop pour préciser que ses nouvelles valeurs seront ignorées :
+
+« Dupliquer » les props dans l’état n'est pertinent que lorsque vous *voulez* ignorer toutes les mises à jour d’une certaine prop. Par convention, ajoutez `initial` ou `default` au début du nom de la prop pour préciser que ses nouvelles valeurs seront ignorées :
 
 ```js
 function Message({ initialColor }) {
   // La variable d’état `color` contient la *première* valeur de `initialColor`.
-  // Les prochains changements à la prop `initialColor` seront ignorés.
+  // Les changements ultérieurs de la prop `initialColor` seront ignorés.
   const [color, setColor] = useState(initialColor);
 }
 ```
@@ -379,7 +380,7 @@ function Message({ initialColor }) {
 
 ## Évitez la duplication d’états {/*avoid-duplication-in-state*/}
 
-Ce composant de carte de menu vous permet de choisir un seul en-cas de voyage parmi plusieurs :
+Ce composant de carte de menu vous permet de choisir un seul en-cas de voyage parmi plusieurs :
 
 <Sandpack>
 
@@ -400,7 +401,7 @@ export default function Menu() {
 
   return (
     <>
-      <h2>Quel est votre goûter de voyage ?</h2>
+      <h2>Quel est votre goûter de voyage ?</h2>
       <ul>
         {items.map(item => (
           <li key={item.id}>
@@ -408,7 +409,7 @@ export default function Menu() {
             {' '}
             <button onClick={() => {
               setSelectedItem(item);
-            }}>Choisir</button>
+            }}>Choisissez</button>
           </li>
         ))}
       </ul>
@@ -424,9 +425,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-À ce stade, il stocke l’élément selectionné en tant qu’objet dans la variable d’état `selectedItem`. Cependant, ce n’est pas optimal : **le contenu de `selectedItem` est le même objet que l’un des éléments de la liste `items`.** Ça signifie que les informations relatives à l’élément sont dupliquées à deux endroits.
+À ce stade, il stocke l’élément selectionné en tant qu’objet dans la variable d’état `selectedItem`. Cependant, ce n’est pas optimal : **le contenu de `selectedItem` est le même objet que l’un des éléments de la liste `items`.** Ça signifie que les informations relatives à l’élément sont dupliquées à deux endroits.
 
-Pourquoi est-ce un problème ? Rendons chaque objet modifiable :
+Pourquoi est-ce un problème ? Rendons chaque objet modifiable :
 
 <Sandpack>
 
@@ -460,7 +461,7 @@ export default function Menu() {
 
   return (
     <>
-      <h2>Quel est votre goûter de voyage ?</h2> 
+      <h2>Quel est votre goûter de voyage ?</h2>
       <ul>
         {items.map((item, index) => (
           <li key={item.id}>
@@ -473,7 +474,7 @@ export default function Menu() {
             {' '}
             <button onClick={() => {
               setSelectedItem(item);
-            }}>Choisir</button>
+            }}>Choisissez</button>
           </li>
         ))}
       </ul>
@@ -491,7 +492,7 @@ button { margin-top: 10px; }
 
 Remarquez que si vous cliquez d’abord sur « Choisissez » un élément *puis* que vous le modifiez, **le champ se met à jour, mais le libellé en bas reste inchangé**. C’est parce que vous avez dupliqué l’état, et que vous avez oublié de mettre à jour `selectedItem`.
 
-Même si vous pourriez également mettre à jour `selectedItem`, une solution plus simple consiste à supprimer la duplication. Dans cet exemple, au lieu d’un objet `selectedItem` (ce qui crée une duplication des éléments dans `items`), vous gardez le `selectedId` dans l’état, *puis* obtenez le `selectedItem` en cherchant dans la liste `items` un élément avec cet ID :
+Même si vous pourriez également mettre à jour `selectedItem`, une solution plus simple consiste à supprimer la duplication. Dans cet exemple, au lieu d’un objet `selectedItem` (ce qui crée une duplication des éléments dans `items`), vous gardez le `selectedId` dans l’état, *puis* obtenez le `selectedItem` en cherchant dans la liste `items` un élément avec cet ID :
 
 <Sandpack>
 
@@ -527,7 +528,7 @@ export default function Menu() {
 
   return (
     <>
-      <h2>Quel est votre goûter de voyage ?</h2>
+      <h2>Quel est votre goûter de voyage ?</h2>
       <ul>
         {items.map((item, index) => (
           <li key={item.id}>
@@ -540,7 +541,7 @@ export default function Menu() {
             {' '}
             <button onClick={() => {
               setSelectedId(item.id);
-            }}>Choisir</button>
+            }}>Choisissez</button>
           </li>
         ))}
       </ul>
@@ -558,24 +559,24 @@ button { margin-top: 10px; }
 
 (Vous pouvez également garder l’index sélectionné dans l’état.)
 
-L’état était dupliqué de cette façon :
+L’état était dupliqué de cette façon :
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedItem = {id: 0, title: 'pretzels'}`
 
-Mais après nos changements, il a la structure suivante :
+Mais après nos changements, il a la structure suivante :
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedId = 0`
 
-La duplication a disparu, et vous ne conservez que l’état essentiel !
+La duplication a disparu, et vous ne conservez que l’état essentiel !
 
 Maintenant si vous modifiez l’élément *sélectionné*, le message en dessous sera mis à jour immédiatement. C’est parce que `setItems` déclenche un nouveau rendu, et `items.find(...)` trouve l’élément dont le titre a été mis à jour. Il n’est pas nécessaire de conserver *l’objet sélectionné* dans l’état, car seul l’*ID sélectionné* est essentiel. Le reste peut être calculé lors du rendu.
 
 ## Évitez les états fortement imbriqués {/*avoid-deeply-nested-state*/}
 
 
-Imaginez un plan de voyage composé de planètes, de continents et de pays. Vous pourriez être tenté·e de structurer son état à l’aide de listes et d’objets imbriqués, comme dans cet exemple :
+Imaginez un plan de voyage composé de planètes, de continents et de pays. Vous pourriez être tenté·e de structurer son état à l’aide de listes et d’objets imbriqués, comme dans cet exemple :
 
 <Sandpack>
 
@@ -683,8 +684,7 @@ export const initialTravelPlan = {
         childPlaces: []
       }, {
         id: 17,
-        title: 'Trinidad et Tobago',
-        childPlaces: []
+        title: 'Trinité-et-Tobté-et-childPlaces: []
       }, {
         id: 18,
         title: 'Venezuela',
@@ -767,7 +767,7 @@ export const initialTravelPlan = {
         childPlaces: [],
       }, {
         id: 38,
-        title: 'ïle de Pâques (Chili)',
+        title: 'Île de Pâques (Chili)',
         childPlaces: [],
       }, {
         id: 39,
@@ -813,7 +813,7 @@ export const initialTravelPlan = {
     }, {
       id: 49,
       title: 'Green Hill',
-      childPlaces: []      
+      childPlaces: []
     }]
   }]
 };
@@ -821,11 +821,11 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-Imaginons maintenant que vous souhaitiez ajouter un bouton pour supprimer un lieu que vous avez déjà visité. Comment procéder ? [La mise à jour d’un état imbriqué](/learn/updating-objects-in-state#updating-a-nested-object) implique de faire des copies des objets en remontant depuis la partie qui a changé. Supprimer un lieu profondément imbriqué consisterait à copier tous les niveaux supérieurs. Un tel code peut être très long. 
+Imaginons maintenant que vous souhaitiez ajouter un bouton pour supprimer un lieu que vous avez déjà visité. Comment procéder ? [La mise à jour d’un état imbriqué](/learn/updating-objects-in-state#updating-a-nested-object) implique de faire des copies des objets en remontant depuis la partie qui a changé. Supprimer un lieu profondément imbriqué consisterait à copier tous les niveaux supérieurs. Un tel code peut être très long.
 
-**Si l’état est trop imbriqué pour être mis à jour facilement, envisagez de « l’aplatir ».** Voici une façon de restructurer ces données. Au lieu d’une structure arborescente où chaque *lieu* possède une liste de *ses lieux enfants*, chaque lieu peut posséder une liste des *ID de ses lieux enfants*. Vous pouvez alors stocker une table de correspondance entre chaque ID de lieu et le lieu correspondant.
+**Si l’état est trop imbriqué pour être mis à jour facilement, envisagez de « l’aplatir ».** Voici une façon de restructurer ces données. Au lieu d’une structure arborescente où chaque *lieu* possède une liste de *ses lieux enfants*, chaque lieu peut posséder une liste des *ID de ses lieux enfants*. Vous pouvez alors stocker une table de correspondance entre chaque ID de lieu et le lieu correspondant.
 
-Cette restructuration des données pourrait vous rappeler une table de base de données :
+Cette restructuration des données pourrait vous rappeler une table de base de données :
 
 <Sandpack>
 
@@ -891,7 +891,7 @@ export const initialTravelPlan = {
     id: 2,
     title: 'Afrique',
     childIds: [3, 4, 5, 6 , 7, 8, 9]
-  }, 
+  },
   3: {
     id: 3,
     title: 'Botswana',
@@ -911,7 +911,7 @@ export const initialTravelPlan = {
     id: 6,
     title: 'Madagascar',
     childIds: []
-  }, 
+  },
   7: {
     id: 7,
     title: 'Maroc',
@@ -930,7 +930,7 @@ export const initialTravelPlan = {
   10: {
     id: 10,
     title: 'Amerique',
-    childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
+    childIds: [11, 12, 13, 14, 15, 16, 17, 18],
   },
   11: {
     id: 11,
@@ -946,7 +946,7 @@ export const initialTravelPlan = {
     id: 13,
     title: 'Barbade',
     childIds: []
-  }, 
+  },
   14: {
     id: 14,
     title: 'Canada',
@@ -964,7 +964,7 @@ export const initialTravelPlan = {
   },
   17: {
     id: 17,
-    title: 'Trinidad et Tobago',
+    title: 'Trinité-et-Tobago',
     childIds: []
   },
   18: {
@@ -975,7 +975,7 @@ export const initialTravelPlan = {
   19: {
     id: 19,
     title: 'Asie',
-    childIds: [20, 21, 22, 23, 24, 25, 26],   
+    childIds: [20, 21, 22, 23, 24, 25, 26],
   },
   20: {
     id: 20,
@@ -1015,7 +1015,7 @@ export const initialTravelPlan = {
   27: {
     id: 27,
     title: 'Europe',
-    childIds: [28, 29, 30, 31, 32, 33, 34],   
+    childIds: [28, 29, 30, 31, 32, 33, 34],
   },
   28: {
     id: 28,
@@ -1055,7 +1055,7 @@ export const initialTravelPlan = {
   35: {
     id: 35,
     title: 'Océanie',
-    childIds: [36, 37, 38, 39, 40, 41, 42],   
+    childIds: [36, 37, 38, 39, 40, 41, 42],
   },
   36: {
     id: 36,
@@ -1152,17 +1152,17 @@ export default function TravelPlan() {
 
   function handleComplete(parentId, childId) {
     const parent = plan[parentId];
-    // Créez une nouvelle version de son lieu parent
-    // cela n’inclut pas l’ID de son enfant.
+    // Créer une nouvelle version du lieu parent
+    // qui n’inclut pas l’ID de son enfant.
     const nextParent = {
       ...parent,
       childIds: parent.childIds
         .filter(id => id !== childId)
     };
-    // Actulisez l’état de l’objet d’origine...
+    // Mettre à jour l’état de l’objet d’origine...
     setPlan({
       ...plan,
-      // ...pour qu’il ait le parent actualisé
+      // ...pour qu’il ait le parent à jour
       [parentId]: nextParent
     });
   }
@@ -1196,7 +1196,7 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
       <button onClick={() => {
         onComplete(parentId, id);
       }}>
-        Compléter
+        C’est fait
       </button>
       {childIds.length > 0 &&
         <ol>
@@ -1232,7 +1232,7 @@ export const initialTravelPlan = {
     id: 2,
     title: 'Afrique',
     childIds: [3, 4, 5, 6 , 7, 8, 9]
-  }, 
+  },
   3: {
     id: 3,
     title: 'Botswana',
@@ -1252,7 +1252,7 @@ export const initialTravelPlan = {
     id: 6,
     title: 'Madagascar',
     childIds: []
-  }, 
+  },
   7: {
     id: 7,
     title: 'Maroc',
@@ -1271,7 +1271,7 @@ export const initialTravelPlan = {
   10: {
     id: 10,
     title: 'Amérique',
-    childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
+    childIds: [11, 12, 13, 14, 15, 16, 17, 18],
   },
   11: {
     id: 11,
@@ -1287,7 +1287,7 @@ export const initialTravelPlan = {
     id: 13,
     title: 'Barbade',
     childIds: []
-  }, 
+  },
   14: {
     id: 14,
     title: 'Canada',
@@ -1305,7 +1305,7 @@ export const initialTravelPlan = {
   },
   17: {
     id: 17,
-    title: 'Trinidad et Tobago',
+    title: 'Trinité-et-Tobago',
     childIds: []
   },
   18: {
@@ -1316,7 +1316,7 @@ export const initialTravelPlan = {
   19: {
     id: 19,
     title: 'Asie',
-    childIds: [20, 21, 22, 23, 24, 25, 26],   
+    childIds: [20, 21, 22, 23, 24, 25, 26],
   },
   20: {
     id: 20,
@@ -1356,7 +1356,7 @@ export const initialTravelPlan = {
   27: {
     id: 27,
     title: 'Europe',
-    childIds: [28, 29, 30, 31, 32, 33, 34],   
+    childIds: [28, 29, 30, 31, 32, 33, 34],
   },
   28: {
     id: 28,
@@ -1396,7 +1396,7 @@ export const initialTravelPlan = {
   35: {
     id: 35,
     title: 'Océanie',
-    childIds: [36, 37, 38, 39, 40, 41,, 42],   
+    childIds: [36, 37, 38, 39, 40, 41,, 42],
   },
   36: {
     id: 36,
@@ -1483,7 +1483,7 @@ Vous pouvez imbriquer des états autant que vous le souhaitez, mais les rendre �
 
 #### Consommer moins de mémoire {/*improving-memory-usage*/}
 
-Idéalement, vous devriez également enlever les éléments supprimés (et leurs enfants !) depuis l’objet « table » pour consommer moins de mémoire. C’est ce que fait cette version. Elle utilise également [Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) pour rendre la logique de mise à jour plus concise.
+Idéalement, vous devriez également enlever les éléments supprimés (et leurs enfants !) depuis l’objet « table » pour consommer moins de mémoire. C’est ce que fait cette version. Elle utilise également [Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) pour rendre la logique de mise à jour plus concise.
 
 <Sandpack>
 
@@ -1496,12 +1496,12 @@ export default function TravelPlan() {
 
   function handleComplete(parentId, childId) {
     updatePlan(draft => {
-      // Enlevez des parents l’ID des endroits enfants
+      // Retirer des ID de lieux enfants du parent.
       const parent = draft[parentId];
       parent.childIds = parent.childIds
         .filter(id => id !== childId);
 
-      // Oubliez cet endroit et toute sa descendence. 
+      // Oublier cet endroit et tout ce qu'il contient.
       deleteAllChildren(childId);
       function deleteAllChildren(id) {
         const place = draft[id];
@@ -1540,7 +1540,7 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
       <button onClick={() => {
         onComplete(parentId, id);
       }}>
-        Compléter
+        C’est fait
       </button>
       {childIds.length > 0 &&
         <ol>
@@ -1576,7 +1576,7 @@ export const initialTravelPlan = {
     id: 2,
     title: 'Afrique',
     childIds: [3, 4, 5, 6 , 7, 8, 9]
-  }, 
+  },
   3: {
     id: 3,
     title: 'Botswana',
@@ -1596,7 +1596,7 @@ export const initialTravelPlan = {
     id: 6,
     title: 'Madagascar',
     childIds: []
-  }, 
+  },
   7: {
     id: 7,
     title: 'Maroc',
@@ -1615,7 +1615,7 @@ export const initialTravelPlan = {
   10: {
     id: 10,
     title: 'Amérique',
-    childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
+    childIds: [11, 12, 13, 14, 15, 16, 17, 18],
   },
   11: {
     id: 11,
@@ -1631,7 +1631,7 @@ export const initialTravelPlan = {
     id: 13,
     title: 'Barbade',
     childIds: []
-  }, 
+  },
   14: {
     id: 14,
     title: 'Canada',
@@ -1649,7 +1649,7 @@ export const initialTravelPlan = {
   },
   17: {
     id: 17,
-    title: 'Trinidad et Tobago',
+    title: 'Trinité-et-Tobago',
     childIds: []
   },
   18: {
@@ -1660,7 +1660,7 @@ export const initialTravelPlan = {
   19: {
     id: 19,
     title: 'Asie',
-    childIds: [20, 21, 22, 23, 24, 25, 26],   
+    childIds: [20, 21, 22, 23, 24, 25, 26],
   },
   20: {
     id: 20,
@@ -1700,7 +1700,7 @@ export const initialTravelPlan = {
   27: {
     id: 27,
     title: 'Europe',
-    childIds: [28, 29, 30, 31, 32, 33, 34],   
+    childIds: [28, 29, 30, 31, 32, 33, 34],
   },
   28: {
     id: 28,
@@ -1740,7 +1740,7 @@ export const initialTravelPlan = {
   35: {
     id: 35,
     title: 'Océanie',
-    childIds: [36, 37, 38, 39, 40, 41,, 42],   
+    childIds: [36, 37, 38, 39, 40, 41,, 42],
   },
   36: {
     id: 36,
@@ -1859,7 +1859,7 @@ Parfois, vous pouvez aussi réduire l’imbrication des états en déplaçant un
 
 #### Réparer un composant qui ne s’actualise pas {/*fix-a-component-thats-not-updating*/}
 
-Ce composant `Clock` reçoit deux props : `color` et `time`. Lorsque vous sélectionnez une couleur différente dans la boîte de sélection, le composant `Clock` reçoit une prop `color` différente depuis son composant parent. Cependant, la couleur affichée n’est pas mise à jour. Pourquoi ? Corrigez le problème.
+Ce composant `Clock` reçoit deux props : `color` et `time`. Lorsque vous sélectionnez une couleur différente dans la boîte de sélection, le composant `Clock` reçoit une prop `color` différente depuis son composant parent. Cependant, la couleur affichée n’est pas mise à jour. Pourquoi ? Corrigez le problème.
 
 <Sandpack>
 
@@ -1897,7 +1897,7 @@ export default function App() {
   return (
     <div>
       <p>
-        Choisissez une couleur :{' '}
+        Choisissez une couleur :{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
           <option value="lightcoral">lightcoral</option>
           <option value="midnightblue">midnightblue</option>
@@ -1914,7 +1914,7 @@ export default function App() {
 
 <Solution>
 
-Le problème, c'est que ce composant a un état `color` initialisé avec la valeur initiale de la prop `color`. Mais quand la prop change, ça n’affecte pas la variable d’état ! Donc elles se désynchronisent. Pour régler ce problème, retirez carrément la variable d’état, et utilisez directement la prop `color`.
+Le problème, c'est que ce composant a un état `color` initialisé avec la valeur initiale de la prop `color`. Mais quand la prop change, ça n’affecte pas la variable d’état ! Donc elles se désynchronisent. Pour régler ce problème, retirez carrément la variable d’état, et utilisez directement la prop `color`.
 
 <Sandpack>
 
@@ -1951,7 +1951,7 @@ export default function App() {
   return (
     <div>
       <p>
-        Choisissez une couleur :{' '}
+        Choisissez une couleur :{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
           <option value="lightcoral">lightcoral</option>
           <option value="midnightblue">midnightblue</option>
@@ -1966,7 +1966,7 @@ export default function App() {
 
 </Sandpack>
 
-Ou en utilisant la syntaxe de déstructuration :
+Ou en utilisant la syntaxe de déstructuration :
 
 <Sandpack>
 
@@ -2003,7 +2003,7 @@ export default function App() {
   return (
     <div>
       <p>
-        Choisissez une couleur :{' '}
+        Choisissez une couleur :{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
           <option value="lightcoral">lightcoral</option>
           <option value="midnightblue">midnightblue</option>
@@ -2026,7 +2026,7 @@ Cette liste d'affaires possède un pied de page qui indique le nombre d'objets d
 
 <Hint>
 
-Y a-t-il un état redondant dans cet exemple ?
+Y a-t-il un état redondant dans cet exemple ?
 
 </Hint>
 
@@ -2084,7 +2084,7 @@ export default function TravelPlan() {
   }
 
   return (
-    <>  
+    <>
       <AddItem
         onAddItem={handleAddItem}
       />
@@ -2094,7 +2094,7 @@ export default function TravelPlan() {
         onDeleteItem={handleDeleteItem}
       />
       <hr />
-      <b>{packed} sur {total} emballés !</b>
+      <b>{packed} sur {total} dans la valise !</b>
     </>
   );
 }
@@ -2167,7 +2167,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Bien que vous puissiez modifier soigneusement chaque gestionnaire d'événement pour mettre à jour correctement les compteurs `total` et `packed`, le problème principal est que ces variables d’état existent. Elles sont redondantes car vous pouvez toujours calculer le nombre d’éléments (emballés ou au total) depuis la liste `items` elle même. Supprimez les états redondants pour corriger le bug :
+Bien que vous puissiez modifier soigneusement chaque gestionnaire d'événement pour mettre à jour correctement les compteurs `total` et `packed`, le problème principal est que ces variables d’état existent. Elles sont redondantes car vous pouvez toujours calculer le nombre d’éléments (emballés ou au total) depuis la liste `items` elle même. Supprimez les états redondants pour corriger le bug :
 
 <Sandpack>
 
@@ -2219,7 +2219,7 @@ export default function TravelPlan() {
   }
 
   return (
-    <>  
+    <>
       <AddItem
         onAddItem={handleAddItem}
       />
@@ -2229,7 +2229,7 @@ export default function TravelPlan() {
         onDeleteItem={handleDeleteItem}
       />
       <hr />
-      <b>{packed} sur {total} emballés !</b>
+      <b>{packed} sur {total} dans la valise !</b>
     </>
   );
 }
@@ -2308,7 +2308,7 @@ Notez comme les gestionnaires d’événements se préoccupent désormais unique
 
 Il y a une liste de `letters` dans l’état. Lorsque vous survolez ou cliquez sur un courrier particulier, celui-ci est mis en surbrillance. Le courrier actuellement en surbrillance est stocké dans la variable d’état `highlightedLetter`. Vous pouvez marquer chaque courrier comme "épinglé" ou "normal", ce qui met à jour la liste `letters` dans l’état.
 
-Ce code fonctionne, mais il y a un bug mineur d’UI. Quand vous appuyez sur « Épingler » ou « Désépingler », la surbrillance disparaît pendant un moment. Cependant, elle réapparaît dès que vous déplacez votre curseur ou passez à un autre courrier avec le clavier. Que se passe-t-il ? Corrigez le problème pour que la surbrillance ne disparaisse pas après le clic sur le bouton.
+Ce code fonctionne, mais il y a un bug mineur d’UI. Quand vous appuyez sur « Épingler » ou « Désépingler », la surbrillance disparaît pendant un moment. Cependant, elle réapparaît dès que vous déplacez votre curseur ou passez à un autre courrier avec le clavier. Que se passe-t-il ? Corrigez le problème pour que la surbrillance ne disparaisse pas après le clic sur le bouton.
 
 <Sandpack>
 
@@ -2372,7 +2372,7 @@ export default function Letter({
         isHighlighted ? 'highlighted' : ''
       }
       onFocus={() => {
-        onHover(letter);        
+        onHover(letter);
       }}
       onPointerMove={() => {
         onHover(letter);
@@ -2392,15 +2392,15 @@ export default function Letter({
 ```js data.js
 export const initialLetters = [{
   id: 0,
-  subject: 'Prêt pour l’aventure ?',
+  subject: 'Prêt pour l’aventure ?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Enregistrez-vous !',
+  subject: 'Enregistrez-vous !',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Le festival démarre dans seulement SEPT jours !',
+  subject: 'Le festival démarre dans seulement SEPT jours !',
   isStarred: false,
 }];
 ```
@@ -2415,7 +2415,7 @@ li { border-radius: 5px; }
 
 <Solution>
 
-Le problème tient à ce que vous stockez l’objet *letter* dans `highlightedLetter`. Mais vous gardez cette même information dans la liste `letters`. Il y a donc duplication dans votre état ! Quand vous mettez à jour la liste `letters` après avoir cliqué sur le bouton, vous créez un nouvel objet courrier qui est différent de `highlightedLetter`. C’est pourquoi l’expression `highlightedLetter === letter` devient `false` et la surbrillance disparait. Elle réapparaît la prochaine fois que vous appelez `setHighlightedLetter` lorsque le pointeur se déplace.
+Le problème tient à ce que vous stockez l’objet *letter* dans `highlightedLetter`. Mais vous gardez cette même information dans la liste `letters`. Il y a donc duplication dans votre état ! Quand vous mettez à jour la liste `letters` après avoir cliqué sur le bouton, vous créez un nouvel objet courrier qui est différent de `highlightedLetter`. C’est pourquoi l’expression `highlightedLetter === letter` devient `false` et la surbrillance disparait. Elle réapparaît la prochaine fois que vous appelez `setHighlightedLetter` lorsque le pointeur se déplace.
 
 Pour résoudre ce problème, supprimez la duplication de l’état. Au lieu de stocker *le courrier lui-même* à deux endroits, stockez plutôt le `highlightedId`. Ensuite vous pouvez vérifier `isHighlighted` pour chaque courrier avec `letter.id === highlightedId`, ce qui fonctionnera même si l’objet `letter` a changé depuis le dernier rendu.
 
@@ -2481,7 +2481,7 @@ export default function Letter({
         isHighlighted ? 'highlighted' : ''
       }
       onFocus={() => {
-        onHover(letter.id);        
+        onHover(letter.id);
       }}
       onPointerMove={() => {
         onHover(letter.id);
@@ -2501,15 +2501,15 @@ export default function Letter({
 ```js data.js
 export const initialLetters = [{
   id: 0,
-  subject: 'Prêt pour l’aventure ?',
+  subject: 'Prêt pour l’aventure ?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Enregistrez-vous !',
+  subject: 'Enregistrez-vous !',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Le festival démarre dans seulement SEPT jours !',
+  subject: 'Le festival démarre dans seulement SEPT jours !',
   isStarred: false,
 }];
 ```
@@ -2528,7 +2528,7 @@ li { border-radius: 5px; }
 
 Dans cet exemple, chaque `Letter` possède une prop `isSelected` et un gestionnaire `onToggle` qui la marque comme étant sélectionnée. Ça fonctionne, mais l’état est stocké sous la forme d’un `selectedId` (soit `null` soit un ID), de sorte qu’un seul courrier peut être sélectionné à la fois.
 
-Modifiez la structure de l’état pour prendre en charge la sélection multiple. (Comment le structureriez-vous ? Réfléchissez-y avant d’écrire le code.) Chaque case à cocher doit devenir indépendante des autres. Le fait de cliquer sur un courrier sélectionné devrait le décocher. Enfin, le pied de page doit afficher le nombre correct d’éléments sélectionnés.
+Modifiez la structure de l’état pour prendre en charge la sélection multiple. (Comment le structureriez-vous ? Réfléchissez-y avant d’écrire le code.) Chaque case à cocher doit devenir indépendante des autres. Le fait de cliquer sur un courrier sélectionné devrait le décocher. Enfin, le pied de page doit afficher le nombre correct d’éléments sélectionnés.
 
 <Hint>
 
@@ -2550,7 +2550,7 @@ export default function MailClient() {
   const selectedCount = 1;
 
   function handleToggle(toggledId) {
-    // TODO : autoriser la sélection multiple
+    // TODO: autoriser la sélection multiple
     setSelectedId(toggledId);
   }
 
@@ -2609,15 +2609,15 @@ export default function Letter({
 ```js data.js
 export const letters = [{
   id: 0,
-  subject: 'Prêt pour l’aventure ?',
+  subject: 'Prêt pour l’aventure ?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Enregistrez-vous !',
+  subject: 'Enregistrez-vous !',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Le festival démarre dans seulement SEPT jours !',
+  subject: 'Le festival démarre dans seulement SEPT jours !',
   isStarred: false,
 }];
 ```
@@ -2633,7 +2633,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 <Solution>
 
-Au lieu d’un simple `selectedId`, enregistrez une *liste* `selectedIds` dans l’état. Par exemple, si vous sélectionnez le premier et le dernier courrier, elle contiendrait `[0, 2]`. Quand rien n’est sélectionné, elle contiendrait une liste vide `[]` :
+Au lieu d’un simple `selectedId`, enregistrez une *liste* `selectedIds` dans l’état. Par exemple, si vous sélectionnez le premier et le dernier courrier, elle contiendrait `[0, 2]`. Quand rien n’est sélectionné, elle contiendrait une liste vide `[]` :
 
 <Sandpack>
 
@@ -2648,14 +2648,14 @@ export default function MailClient() {
   const selectedCount = selectedIds.length;
 
   function handleToggle(toggledId) {
-    // Etait-il sélectionné précédemment ?
+    // Était-il sélectionné avant ?
     if (selectedIds.includes(toggledId)) {
-      // Puis retirez l’ID de la liste.
+      // Alors retirer l’ID de la liste.
       setSelectedIds(selectedIds.filter(id =>
         id !== toggledId
       ));
     } else {
-      // Sinon, ajoutez cet ID dans la liste.
+      // Sinon, ajouter cet ID dans la liste.
       setSelectedIds([
         ...selectedIds,
         toggledId
@@ -2717,15 +2717,15 @@ export default function Letter({
 ```js data.js
 export const letters = [{
   id: 0,
-  subject: 'Prêt pour l’aventure ?',
+  subject: 'Prêt pour l’aventure ?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Enregistrez-vous !',
+  subject: 'Enregistrez-vous !',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Le festival démarre dans seulement SEPT jours !',
+  subject: 'Le festival démarre dans seulement SEPT jours !',
   isStarred: false,
 }];
 ```
@@ -2741,7 +2741,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 Utiliser un tableau présente un léger inconvénient : pour chaque élément, vous appelez `selectedIds.includes(letter.id)` pour vérifier s'il est sélectionné. Si la liste est très grande, ça peut devenir un problème de performances car rechercher dans une liste avec [`includes()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) prend un temps linéaire, et vous effectuez cette recherche pour chaque élément.
 
-Pour résoudre ce problème, vous pouvez plutôt utiliser un [Set](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set) dans l’état, qui fournit une fonction [`has()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set/has) rapide :
+Pour résoudre ce problème, vous pouvez plutôt utiliser un [Set](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set) dans l’état, qui fournit une fonction [`has()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set/has) rapide :
 
 <Sandpack>
 
@@ -2758,7 +2758,7 @@ export default function MailClient() {
   const selectedCount = selectedIds.size;
 
   function handleToggle(toggledId) {
-    // Créez une copie (pour éviter la mutation).
+    // Créer une copie (pour éviter la mutation).
     const nextIds = new Set(selectedIds);
     if (nextIds.has(toggledId)) {
       nextIds.delete(toggledId);
@@ -2822,15 +2822,15 @@ export default function Letter({
 ```js data.js
 export const letters = [{
   id: 0,
-  subject: 'Prêt pour l’aventure ?',
+  subject: 'Prêt pour l’aventure ?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Enregistrez-vous !',
+  subject: 'Enregistrez-vous !',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Le festival démarre dans seulement SEPT jours !',
+  subject: 'Le festival démarre dans seulement SEPT jours !',
   isStarred: false,
 }];
 ```
