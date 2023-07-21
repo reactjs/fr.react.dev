@@ -26,7 +26,7 @@ Quand vous créez un composant qui contient des états, vous devez faire des cho
 4. **Évitez la duplication d’états.** Quand la même donnée est dupliquée entre plusieurs variables d’état ou dans des objets imbriqués, il est difficile de les garder synchronisées. Réduisez la duplication quand vous le pouvez.
 5. **Évitez les états fortement imbriqués.** Un état fortement hiérarchisé n’est pas très pratique à mettre à jour. Quand c’est possible, priorisez une structure d'état plate.
 
-Ces principes visent à *rendre l’état simple à actualiser sans créer d’erreurs*. Retirer les données redondantes et dupliquées de l’état aide à s’assurer que toutes ses parties restent synchronisées. C’est un peu comme un ingénieur de bases de données qui souhaite ["normaliser" la structure de la base de données](https://learn.microsoft.com/fr-fr/office/troubleshoot/access/database-normalization-description) pour réduire les risques de bugs. Pour paraphraser Albert Einstein : **« Faites que votre état soit le plus simple possible — mais pas plus simple. »**
+Ces principes visent à *rendre l’état simple à actualiser sans créer d’erreurs*. Retirer les données redondantes et dupliquées de l’état aide à s’assurer que toutes ses parties restent synchronisées. C’est un peu comme un ingénieur de bases de données qui souhaite [« normaliser » la structure de la base de données](https://learn.microsoft.com/fr-fr/office/troubleshoot/access/database-normalization-description) pour réduire les risques de bugs. Pour paraphraser Albert Einstein : **« Faites que votre état soit le plus simple possible — mais pas plus simple. »**
 
 Maintenant voyons comment ces principes s’appliquent concrètement.
 
@@ -223,7 +223,7 @@ const isSent = status === 'sent';
 
 Mais ce ne sont pas des variables d’état, vous n'avez donc pas à vous soucier de leur désynchronisation.
 
-## Évitez les états redondants. {/*avoid-redundant-state*/}
+## Évitez les états redondants {/*avoid-redundant-state*/}
 
 Si vous pouvez calculer certaines informations depuis les props d’un composant ou une de ses variables d’état existantes pendant le rendu, vous ne **devez pas** mettre ces informations dans l’état du composant
 
@@ -575,7 +575,7 @@ Maintenant si vous modifiez l’élément *selectionné*, le message en dessous 
 ## Évitez les états fortement imbriqués {/*avoid-deeply-nested-state*/}
 
 
-Imaginez un plan de voyage composé de planètes, de continents et de pays. Vous pourriez être tentés de structurer son état à l’aide de listes et d’objets imbriqués, comme dans cet exemple :
+Imaginez un plan de voyage composé de planètes, de continents et de pays. Vous pourriez être tenté·e de structurer son état à l’aide de listes et d’objets imbriqués, comme dans cet exemple :
 
 <Sandpack>
 
@@ -821,9 +821,9 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-Imaginons maintenant que vous souhaitez ajouter un bouton pour supprimer un lieu que vous avez déjà visité. Comment procéder ? [La mise à jour d’un état imbriqué](/learn/updating-objects-in-state#updating-a-nested-object) implique de faire des copies des objets en remontant jusqu’à la partie qui a changé. Supprimer un lieu imbriqué profondément consisterait à copier tout son chemin d’emplacement. Un tel code peut être très long. 
+Imaginons maintenant que vous souhaitiez ajouter un bouton pour supprimer un lieu que vous avez déjà visité. Comment procéder ? [La mise à jour d’un état imbriqué](/learn/updating-objects-in-state#updating-a-nested-object) implique de faire des copies des objets en remontant depuis la partie qui a changé. Supprimer un lieu profondément imbriqué consisterait à copier tous les niveaux supérieurs. Un tel code peut être très long. 
 
-**Si l’état est trop imbriqué pour être mis à jour facilement, envisagez de le rendre "plat".** Voici une façon de restructurer ces données. Au lieu d’une structure arborescente où chaque `lieu` possède une liste des *emplacements de ses enfants*, chaque endroit peut posséder une liste de *l’ID de ses lieux enfants*. Vous pouvez ensuite stocker une correspondance entre chaque ID de lieu et le lieu correspondant.
+**Si l’état est trop imbriqué pour être mis à jour facilement, envisagez de « l'aplatir ».** Voici une façon de restructurer ces données. Au lieu d’une structure arborescente où chaque *lieu* possède une liste de *ses lieux enfants*, chaque lieu peut posséder une liste des *ID de ses lieux enfants*. Vous pouvez alors stocker une table de correspondance entre chaque ID de lieu et le lieu correspondant.
 
 Cette restructuration des données pourrait vous rappeler une table de base de données :
 
@@ -1132,14 +1132,14 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-**Maintenant que l’état est "plat" (aussi dit "normalisé"), actualiser des éléments imbriqués devient plus simple**
+**Maintenant que l’état est « plat » (on pourrait aussi dire « normalisé »), mettre à jour des éléments imbriqués devient plus simple.**
 
-Désormais, afin d’enlever un lieu vous avez besoin d’actualiser seulement deux niveaux d’état:
+Désormais, afin d’enlever un lieu, vous n'avez besoin de mettre à jour que deux niveaux d’état :
 
-- La version actualisée de son lieu *parent* devrait exclure l’ID supprimé de sa liste `childIds`.
-- La version actualisée de la "table" d’objet *root* doit inclure la version mise à jour du lieu parent.
+- La version à jour de son lieu *parent* devrait exclure l’ID supprimé de sa liste `childIds`.
+- La version à jour de la « table » racine d’objets doit inclure la version à jour du lieu parent.
 
-Voici un exemple de commment vous pourriez commencer:
+Voici un exemple de comment vous pourriez procéder :
 
 <Sandpack>
 
@@ -1477,13 +1477,13 @@ button { margin: 10px; }
 
 </Sandpack>
 
-Vous pouvez imbriquer des états autant que vous le souhaitez, mais les rendre "plats" peut résoudre beaucoup de problèmes. Cela facilite la mise à jour de l’état, et permet de s’assurer qu’il n’y a pas de duplication dans les différentes parties d’un objet imbriqué.
+Vous pouvez imbriquer des états autant que vous le souhaitez, mais les rendre « plats » peut résoudre de nombreux problèmes. Ça facilite la mise à jour de l’état, et ça permet de s’assurer qu’il n’y a pas de duplication dans les différentes parties d’un objet imbriqué.
 
 <DeepDive>
 
-#### Améliorer l’utilisation de la mémoire {/*improving-memory-usage*/}
+#### Consommer moins de mémoire {/*improving-memory-usage*/}
 
-Idéalement, vous devriez également enlever les éléments supprimés (et leurs enfants !) depuis l’objet "table" pour améliorer l’utilisation de la mémoire. C’est ce que fait cette version. Elle utilise également [Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) pour rendre la logique de mise à jour plus concise.
+Idéalement, vous devriez également enlever les éléments supprimés (et leurs enfants !) depuis l’objet « table » pour consommer moins de mémoire. C’est ce que fait cette version. Elle utilise également [Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) pour rendre la logique de mise à jour plus concise.
 
 <Sandpack>
 
@@ -1841,16 +1841,16 @@ button { margin: 10px; }
 
 </DeepDive>
 
-Parfois, vous pouvez aussi réduire l’imbrication des états en déplaçant une partie de l’état imbriqué dans les composants enfants. Cela fonctionne bien pour les états éphémères de l’UI qui n’ont pas besoin d’être stockés, comme le fait de savoir si un élément est survolé.
+Parfois, vous pouvez aussi réduire l’imbrication des états en déplaçant une partie de l’état imbriqué dans les composants enfants. C'est bien adapté aux états éphémères de l’UI qui n’ont pas besoin d’être stockés, comme le fait de savoir si un élément est survolé.
 
 <Recap>
 
 * Si deux variables d’état sont toujours mises à jour ensemble, envisagez de les fusionner en une seule.
-* Choississez soigneusement vos variables d’état pour éviter de créer des "états" impossibles.
+* Choisissez soigneusement vos variables d’état pour éviter de créer des états « impossibles ».
 * Structurez votre état de manière à réduire les risques d’erreur lors de sa mise à jour.
 * Evitez les états dupliqués et redondants afin de ne pas avoir à les synchroniser.
 * Ne mettez pas de props *dans* un état à moins que vous ne vouliez spécifiquement empêcher les mises à jour.
-* Pour les évènements d’UI tels que la sélection, conservez l’ID ou l’index dans l’état au lieu de l’objet lui-même.
+* Pour les interactions telles que la sélection d'élément, conservez l’ID ou l’index dans l’état au lieu de l’objet lui-même.
 * Si la mise à jour d’un état profondément imbriqué est compliquée, essayez de l’aplatir.
 
 </Recap>
@@ -2020,7 +2020,7 @@ export default function App() {
 
 </Solution>
 
-#### Réparer une liste de matériel cassée {/*fix-a-broken-packing-list*/}
+#### Réparer une liste d’affaires cassée {/*fix-a-broken-packing-list*/}
 
 Cette liste de matériel possède un pied de page qui indique le nombre d’objets emballés, et le nombre total d’articles. Cela semble fonctionner au début, mais il est bugué. Par exemple, si vous cochez un article, puis le supprimez, le compteur ne sera pas mis à jour correctement. Corrigez le compteur pour qu’il soit toujours correct.
 
@@ -2304,7 +2304,7 @@ Notez comme les gestionnaires d’évènements sont seulement utiles pour appele
 
 </Solution>
 
-#### Réparer une sélection qui disparait {/*fix-the-disappearing-selection*/}
+#### Réparer une sélection qui disparaît {/*fix-the-disappearing-selection*/}
 
 Il y a une liste de `letters` dans l’état. Lorsque vous survolez ou cliquez sur un courrier particulier, celui-ci est mis en surbrillance. Le courrier actuellement en surbrillance est stocké dans la variable d’état `highlightedLetter`. Vous pouvez marquer chaque courrier comme "favori" ou "normal", ce qui met à jour la liste `letters` dans l’état.
 
@@ -2526,7 +2526,7 @@ li { border-radius: 5px; }
 
 #### Implémenter une sélection multiple {/*implement-multiple-selection*/}
 
-Dans cet exemple, chaque `Letter` possède une prop `isSelected` et un gestionnaire `onToggle` qui la marque comme étant sélectionnée. Cela fonctionne, mais l’état est stocké sous la forme d’un `selectedId` (soit `null` ou un ID), de sorte qu’un seul courrier peut être sélectionné à la fois.
+Dans cet exemple, chaque `Letter` possède une prop `isSelected` et un gestionnaire `onToggle` qui la marque comme étant sélectionnée. Ça fonctionne, mais l’état est stocké sous la forme d’un `selectedId` (soit `null` soit un ID), de sorte qu’un seul courrier peut être sélectionné à la fois.
 
 Modifiez la structure de l’état pour prendre en charge la sélection multiple. (Comment le structureriez-vous ? Réfléchissez-y avant d’écrire le code.) Chaque case à cocher doit devenir indépendante des autres. Le fait de cliquer sur un courrier sélectionné devrait le décocher. Enfin, le pied de page doit afficher le nombre correct d’éléments sélectionnés.
 
@@ -2633,7 +2633,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 <Solution>
 
-À la place d’un simple `selectedId`, enregistrez une *liste* `selectedIds` dans l’état. Par exemple, si vous sélectionnez le premier et le dernier courrier, elle contiendrait `[0, 2]`. Quand rien n’est sélectionné, elle contiendrait une liste vide `[]` :
+Au lieu d’un simple `selectedId`, enregistrez une *liste* `selectedIds` dans l’état. Par exemple, si vous sélectionnez le premier et le dernier courrier, elle contiendrait `[0, 2]`. Quand rien n’est sélectionné, elle contiendrait une liste vide `[]` :
 
 <Sandpack>
 
@@ -2739,9 +2739,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-Un petit inconvénient de l’utilisation d’une liste est que pour chaque élément, vous appelez `selectedIds.includes(letter.id)` pour vérifier si il est sélectionné. Si la liste est très grande, cela peut devenir un problème de performances car rechercher dans une liste avec [`includes()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) prend un temps linéaire, et vous effectuez cette recherche pour chaque élément.
+Utiliser un tableau présente un léger inconvénient : pour chaque élément, vous appelez `selectedIds.includes(letter.id)` pour vérifier s'il est sélectionné. Si la liste est très grande, ça peut devenir un problème de performances car rechercher dans une liste avec [`includes()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) prend un temps linéaire, et vous effectuez cette recherche pour chaque élément.
 
-Pour résoudre ce problème, vous pouvez enregistrer un [Set](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set) dans l’état à la place, qui permet une fonction [`has()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set/has) rapide :
+Pour résoudre ce problème, vous pouvez plutôt utiliser un [Set](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set) dans l’état, qui fournit une fonction [`has()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set/has) rapide :
 
 <Sandpack>
 
@@ -2846,7 +2846,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 Maintenant chaque élément effectue une vérification `selectedIds.has(letter.id)`, ce qui est très rapide.
 
-Gardez en tête que vous [ne devez pas muter des objets dans l’état](/learn/updating-objects-in-state), et cela inclut les Sets aussi. C’est pourquoi la fonction `handleToggle` crée d’abord une *copie* de ce Set, puis la met à jour.
+Gardez en tête que vous [ne devez pas modifier des objets dans l’état](/learn/updating-objects-in-state), et ça inclut aussi les Sets. C’est pourquoi la fonction `handleToggle` crée d’abord une *copie* de ce Set, puis la met à jour.
 
 </Solution>
 
