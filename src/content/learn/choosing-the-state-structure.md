@@ -23,7 +23,7 @@ Quand vous créez un composant qui contient des états, vous devez faire des cho
 1. **Regroupez les états associés.** Si vous mettez tout le temps à jour plusieurs variables d’état à la fois, essayez de les fusionner en une seule variable d’état.
 2. **Évitez les contradictions dans l’état.** Quand l’état est structuré de sorte que plusieurs parties d’état puissent être contradictoires, des erreurs peuvent survenir. Essayez d’éviter ça.
 3. **Évitez les états redondants.** Si vous pouvez calculer des informations à partir des props du composant ou de ses variables d'état existantes pendant le rendu, vous ne devriez pas mettre ces informations dans un état du composant.
-4. **Évitez la duplication d’états.** Quand la même donnée est dupliquée entre plusieurs variables d’état ou dans des objets imbriqués, il est difficile de les garder synchronisées. Réduisez la duplication quand vous le pouvez.
+4. **Évitez la duplication d’états.** Lorsque la même donnée est dupliquée entre plusieurs variables d’état ou dans des objets imbriqués, il devient difficile de les garder synchronisées. Réduisez la duplication dans toute la mesure du possible.
 5. **Évitez les états fortement imbriqués.** Un état fortement hiérarchisé n’est pas très pratique à mettre à jour. Quand c’est possible, priorisez une structure d'état plate.
 
 Ces principes visent à *rendre l’état simple à actualiser sans créer d’erreurs*. Retirer les données redondantes et dupliquées de l’état aide à s’assurer que toutes ses parties restent synchronisées. C’est un peu comme un ingénieur de bases de données qui souhaite [« normaliser » la structure de la base de données](https://learn.microsoft.com/fr-fr/office/troubleshoot/access/database-normalization-description) pour réduire les risques de bugs. Pour paraphraser Albert Einstein : **« Faites que votre état soit le plus simple possible — mais pas plus simple. »**
@@ -364,7 +364,7 @@ function Message({ messageColor }) {
 }
 ```
 
-De cette manière, le composant ne sera pas désynchronisé avec la prop transmise par le composant parent.
+De cette manière, le composant ne sera pas désynchronisé avec la prop qui lui aura été transmise par le composant parent.
 
 « Dupliquer » les props dans l’état n'est pertinent que lorsque vous *voulez* ignorer toutes les mises à jour d’une certaine prop. Par convention, ajoutez `initial` ou `default` au début du nom de la prop pour préciser que ses nouvelles valeurs seront ignorées :
 
@@ -1850,7 +1850,7 @@ Parfois, vous pouvez aussi réduire l’imbrication des états en déplaçant un
 * Structurez votre état de manière à réduire les risques d’erreur lors de sa mise à jour.
 * Evitez les états dupliqués et redondants afin de ne pas avoir à les synchroniser.
 * Ne mettez pas de props *dans* un état à moins que vous ne vouliez spécifiquement empêcher les mises à jour.
-* Pour les interactions telles que la sélection d'élément, conservez l’ID ou l’index dans l’état au lieu de l’objet lui-même.
+* Pour les interactions telles que la sélection d'élément, conservez l’ID ou l’index dans l’état au lieu de référencer l’objet lui-même.
 * Si la mise à jour d’un état profondément imbriqué est compliquée, essayez de l’aplatir.
 
 </Recap>
