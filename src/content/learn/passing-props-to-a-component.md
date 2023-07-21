@@ -18,7 +18,7 @@ Les composants React utilisent des *props* pour communiquer entre eux.  Chaque c
 
 </YouWillLearn>
 
-## Props bien connues {/*familiar-props*/}
+## Props standardisées {/*familiar-props*/}
 
 Les props sont des informations que vous passez à une balise JSX. Par exemple, une balise `<img>` compte parmi ses props `className`, `src`, `alt`, `width` et `height` :
 
@@ -170,7 +170,7 @@ body { min-height: 120px; }
 
 Les props vous permettent de réfléchir aux composants parent et enfant indépendamment. Par exemple, vous pouvez modifier les props `person` et `size` au sein de `Profile` sans avoir à vous préoccuper de comment `Avatar` les utilise.  De la même façon, vous pouvez modifier l'utilisation interne de ces props par `Avatar` sans vous préoccuper de `Profile`.
 
-Vous pouvez concevoir les props comme des « molettes » que vous pouvez ajuster. Elles jouent le même rôle que les arguments des fonctions — enfait, les props *sont* le seul argument de votre composant ! Les fonctions composants React ne prennent qu'un argument, qui est l'objet `props` :
+Vous pouvez concevoir les props comme des « molettes » que vous pouvez ajuster. Elles jouent le même rôle que les arguments des fonctions — en fait, les props *sont* le seul argument de votre composant ! Les fonctions composants React ne prennent qu'un argument, qui est l'objet `props` :
 
 ```js
 function Avatar(props) {
@@ -180,11 +180,11 @@ function Avatar(props) {
 }
 ```
 
-Le plus souvent vous n'aurez pas besoin de l'objet `props` lui-même en entier, vous le déstructurerez donc en props individuelles.
+Le plus souvent vous n'aurez pas besoin de l'objet `props` lui-même dans son intégralité, vous le déstructurerez donc en props individuelles.
 
 <Pitfall>
 
-**N'oubliez pas la paire d'accolades `{` et `}`** entre les parenthèses `(` et `)` lorsque vous déclarez les props :
+**N'oubliez pas la paire d'accolades `{` et `}`** entre les parenthèses `(` et `)` lorsque vous déclarez les props dans la signature de votre fonction composant :
 
 ```js
 function Avatar({ person, size }) {
@@ -192,7 +192,7 @@ function Avatar({ person, size }) {
 }
 ```
 
-Cette syntaxe est appelée [« déstructuration »](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) *(le MDN parle de façon discutable de « décomposition », qui amalgame en prime ça et le rest/spread, NdT)* et c'est l'équivalent concis de la lecture des propriétés depuis le paramètre de la fonction :
+Cette syntaxe est appelée [« déstructuration »](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) *(le MDN parle de façon discutable de « décomposition », qu'il amalgame en prime avec le rest/spread, NdT)* et c'est l'équivalent concis de la lecture des propriétés depuis le paramètre de la fonction :
 
 ```js
 function Avatar(props) {
@@ -206,7 +206,7 @@ function Avatar(props) {
 
 ## Spécifier une valeur par défaut pour une prop {/*specifying-a-default-value-for-a-prop*/}
 
-Si vous souhaitez donner une valeur par défaut à une prop pour qu'elle l'exploite lorsque le composant parent ne fournit pas de valeur, vous pouvez le faire dans la déstructuration en ajoutant `=` suivi de la valeur par défaut juste après le nom de la prop :
+Si vous souhaitez donner une valeur par défaut à une prop pour qu'elle l'exploite lorsque le composant parent ne fournit pas de valeur, vous pouvez le faire dans la déstructuration en ajoutant `=` suivi de la valeur par défaut, juste après le nom de la prop :
 
 ```js
 function Avatar({ person, size = 100 }) {
@@ -349,7 +349,7 @@ export function getImageUrl(person, size = 's') {
 
 Tentez de remplacer le `<Avatar>` au sein de `<Card>` avec du texte pour constater que le composant `Card` peut enrober n'importe quel contenu imbriqué.  Il n'a pas besoin de « savoir » ce qui est affiché à l'intérieur de lui.  Vous retrouverez cette approche flexible dans de nombreux endroits.
 
-Vous pouvez concervoir la prop `children` d'un composant comme une sorte de « trou » qui peut être « rempli » par les composants parents avec du JSX quelconque.  Vous utiliserez souvent la prop `children` pour des enrobages visuels : panneaux, grilles, etc.
+Voyez la prop `children` d'un composant comme une sorte de « trou » qui peut être « rempli » par les composants parents avec du JSX quelconque.  Vous utiliserez souvent la prop `children` pour des enrobages visuels : panneaux, grilles, etc.
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='Une Card ressemblant à une pièce de puzzle avec un emplacement pour les pièces « enfants » tels que du texte ou un Avatar' />
 
@@ -407,21 +407,21 @@ export default function App() {
 
 </Sandpack>
 
-Cet exemple illustre le fait qu'**un composant peut recevoir des props différentes au fil du temps**.  Les props ne sont pas toujours figées !  Ici la prop `time` change à chaque seconde, et la prop `color` change lorsque vous sélectionner une autre couleur.  Les props reflètent les données du composant à un instant donné, plutôt que seulement leurs valeurs au démarrage.
+Cet exemple illustre le fait qu'**un composant peut recevoir des props différentes au fil du temps**.  Les props ne sont pas toujours figées !  Ici la prop `time` change à chaque seconde, et la prop `color` change lorsque vous sélectionnez une autre couleur.  Les props reflètent les données du composant à un instant donné, plutôt que seulement leurs valeurs au démarrage.
 
-Cependant, les props sont [immuables](https://fr.wikipedia.org/wiki/Objet_immuable) — un terme informatique qui signifie « non modifiable ».  Lorsqu'un composant a besoin de changer ses props (par exemple, en réponse à une interaction utilisateur ou à de nouvelles données), il doit « demander » à son composant parent de lui passer *des props différentes* — un nouvel objet !  Ses anciennes props seront alors débarrassées, et le moteur JavaScript récupèrera à terme la mémoire associée.
+Cependant, les props sont [immuables](https://fr.wikipedia.org/wiki/Objet_immuable) — un terme qui en informatique signifie « non modifiable ».  Lorsqu'un composant a besoin de changer ses props (par exemple, en réponse à une interaction utilisateur ou à de nouvelles données), il doit « demander » à son composant parent de lui passer *des props différentes* — et donc un nouvel objet !  Ses anciennes props seront alors mises au rebut, et le moteur JavaScript récupèrera à terme la mémoire qui leur était associée.
 
-**N'essayez pas de « changer les props ».** Lorsque vous avez besoin de réagir à une interaction utilisateur (telle qu'un changement de la couleur sélectionné), vous devrez « mettre à jour l'état », ce que vous apprendrez à faire dans [L'état : la mémoire d'un composant](/learn/state-a-components-memory).
+**N'essayez pas de « changer les props ».** Lorsque vous aurez besoin de réagir à une interaction utilisateur (telle qu'un changement de la couleur sélectionnée), vous devrez « mettre à jour l'état », ce que vous apprendrez à faire dans [L'état : la mémoire d'un composant](/learn/state-a-components-memory).
 
 <Recap>
 
-* Pour passer des props, ajoutez-le au JSX, comme pour des attributs HTML.
+* Pour passer des props, ajoutez-les au JSX, comme pour des attributs HTML.
 * Pour lire des props, utilisez une déstructuration comme dans  `function Avatar({ person, size })`.
 * Vous pouvez spécifier une valeur par défaut comme `size = 100`, qui sera utilisée si la prop est manquante ou vaut `undefined`.
 * Vous pouvez transmettre tous les props avec la syntaxe de *spread* JSX `<Avatar {...props} />`, mais n'en abusez pas !
-* Le JSX imbriqué comme dans `<Card><Avatar /></Card>` est fourni *via* la prop `children` du coposant `Card`.
+* Le JSX imbriqué dans votre composant, comme dans `<Card><Avatar /></Card>` est fourni *via* la prop `children` du composant `Card`.
 * Les props sont des instantanés en lecture seule : chaque rendu reçoit une nouvelle version des props.
-* Ne modifiez pas les props. Si vous avez besoin d'interactivité, vous utilisez l'état.
+* Ne modifiez pas les props. Si vous avez besoin d'interactivité, utilisez l'état.
 
 </Recap>
 
@@ -528,7 +528,7 @@ Commencez par extraire le balisage pour un des scientifiques. Puis trouvez les e
 
 <Solution>
 
-Dans cette solution, le composant `Profile` accepte plusieurs props : `imageId` (une chaîne de caractères), `name` (une autre chaîne), `profession` (encore une chaîne), `awards` (un tableau de chaînes), `discovery` (une chaîne) et `imageSize` (un nombre).
+Dans cette solution, le composant `Profile` accepte plusieurs props : `imageId` (une chaîne de caractères), `name` (une chaîne), `profession` (une chaîne), `awards` (un tableau de chaînes), `discovery` (une chaîne) et `imageSize` (un nombre).
 
 Remarquez que la prop `imageSize` a une valeur par défaut, raison pour laquelle on ne la passe pas au composant.
 
@@ -725,13 +725,13 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Même si la syntaxe a un aspet légèrement différent parce qu'on décrit les propriétés d'un objet JavaScript plutôt qu'une collection d'attributs JSX, ces exemples sont globalement équivalents, et vous pouvez choisir l'approche qui vous convient le mieux.
+Même si la syntaxe a un aspect légèrement différent parce qu'on décrit les propriétés d'un objet JavaScript plutôt qu'une collection d'attributs JSX, ces exemples sont au final équivalents, alors choisissez l'approche qui vous convient le mieux.
 
 </Solution>
 
 #### Ajuster la taille d'une image sur base d'une prop {/*adjust-the-image-size-based-on-a-prop*/}
 
-Dans cet exemple, `Avatar` reçoit une prop numérique `size` qui détermine les largeur et hauteur de l'`<img>`.  La prop `size` est définie à `40` dans cet exemple. Pourtant, si vous ouvrez l'image dans un nouvel onglet, vous constaterez que l'image elle-même est plus grande (`160` pixels).  La véritable taille de l'image est déterminée en fonction de la taille de vignette demandée.
+Dans cet exemple, `Avatar` reçoit une prop numérique `size` qui détermine les largeur et hauteur de l'`<img>`.  La prop `size` est définie à `40` dans cet exemple. Pourtant, si vous ouvrez l'image dans un nouvel onglet (cliquez bouton droit dessus pour pouvoir le faire), vous constaterez que l'image elle-même est plus grande (`160` pixels).  La véritable taille de l'image est déterminée en fonction de la taille de vignette demandée.
 
 Modifiez le composant `Avatar` pour demander la taille d'image la plus proche sur base de la prop `size`.  Plus précisement, si la `size` fait moins de `90`, passez `'s'` (pour *“small”*) plutôt que `'b'` (pour *“big”*) à la fonction `getImageUrl`.  Vérifiez que vos modifications fonctionnent en affichant des avatars avec différentes valeurs de la prop `size` et en ouvrant les images dans de nouveaux onglets.
 
@@ -917,7 +917,7 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-Les props vous permettent d'encapsuler ce type de logique à l'intérieur du composant `Avatar` (et de la faire évoluer plus tard si besoin) de façon à ce que tout un chacun puisse utiliser le composant `Avatar` asns réfléchir à la façon dont les images sont requêtées et redimensionnées.
+Les props vous permettent d'encapsuler ce type de logique à l'intérieur du composant `Avatar` (et de la faire évoluer plus tard si besoin) de façon à ce que tout un chacun puisse utiliser le composant `Avatar` sans avoir à réfléchir à la façon dont les images sont requêtées puis redimensionnées.
 
 </Solution>
 
