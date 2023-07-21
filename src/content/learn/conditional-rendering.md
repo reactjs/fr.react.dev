@@ -18,7 +18,7 @@ Vos composants devront souvent produire des affichages distincts en fonction de 
 
 ## Renvoi conditionnel de JSX {/*conditionally-returning-jsx*/}
 
-Disons que vous avez un composant `PackingList` qui affiche plusieurs `Item`s que vous pouvez marquer comme placés ou non dans ses bagages :
+Disons que vous avez un composant `PackingList` qui affiche plusieurs `Item`s que vous pouvez marquer comme placés ou non dans les bagages :
 
 <Sandpack>
 
@@ -104,9 +104,9 @@ Essayez de modifier le balisage renvoyé dans chaque cas, et voyez comme le rés
 
 Notez que vous avez créé des branches logiques en utilisant les instructions `if` et `else` de JavaScript. Dans React, le flux de contrôle (tel que les conditions) est géré par JavaScript.
 
-### Ne rien renvoyer conditionnellement avec `null` {/*conditionally-returning-nothing-with-null*/}
+### Conditionnellement ne rien renvoyer avec `null` {/*conditionally-returning-nothing-with-null*/}
 
-Dans certains cas, vous ne voudrez rien renvoyer du tout. Disons par exemple que vous ne souhaitez pas afficher les objets déjà mis dans vos bagages.  Un composant doi tpourtant bien renvoyer quelque chose. Dans un tel cas, vous pouvez renvoyer `null` :
+Dans certains cas, vous ne voudrez rien renvoyer du tout. Disons par exemple que vous ne souhaitez pas afficher les objets déjà mis dans les bagages.  Un composant doit pourtant bien renvoyer quelque chose. Dans un tel cas, vous pouvez renvoyer `null` :
 
 ```js
 if (isPacked) {
@@ -115,7 +115,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-Si `isPacked` est à `true`, le composant ne renverra rien, `null`.  Autrement, il renverra le JSX à afficher.
+Si `isPacked` est à `true`, le composant ne renverra rien, donc `null`.  Autrement, il renverra le JSX à afficher.
 
 <Sandpack>
 
@@ -156,7 +156,7 @@ En pratique, les composants ne renvoient pas souvent `null` parce que ça peut s
 
 ## Inclure du JSX conditionnellement {/*conditionally-including-jsx*/}
 
-Dans l'exemple précédent, vous contrôliez quel arbre JSX renvoyer (si tant est qu'il y en ait un !) depuis le composant.  Vous avez peut-être remarqué une légère duplication dans l'affichage produit :
+Dans l'exemple précédent, vous contrôliez quel arbre JSX renvoyer (si tant est qu'il y en ait un !) depuis le composant.  Vous avez peut-être remarqué une légère duplication dans l'affichage produit. Ce JSX :
 
 ```js
 <li className="item">{name} ✔</li>
@@ -168,7 +168,7 @@ est très similaire à
 <li className="item">{name}</li>
 ```
 
-Les deux branche conditionnellent renvoient `<li className="item">...</li>` :
+Les deux branches conditionnelles renvoient `<li className="item">...</li>` :
 
 ```js
 if (isPacked) {
@@ -208,11 +208,11 @@ Vous pouvez le lire comme suit : *« si `isPacked` est vrai, alors (`?`) affic
 
 #### Ces deux exemples sont-ils vraiment équivalents ? {/*are-these-two-examples-fully-equivalent*/}
 
-Si vous êtes habitué·e à la programmation orientée objet, vous vous dites peut-être que les deux exemples ci-dessus sont subtilement différents parce que l'un d'eux pourrait créer deux « instances » de `<li>`.  mais les éléments JSX ne sont pas des « instances » parce qu'ils ne contiennent aucun état internes et ne sont pas de véritables nœuds DOM.  Il s'agit de descriptifs légers, comme des plans de construction. De sorte que ces deux exemples sont *effectivement* parfaitement équivalents. La page [Préserver et réinitialiser l’état](/learn/preserving-and-resetting-state) explore en détail ces aspects.
+Si vous êtes habitué·e à la programmation orientée objet, vous vous dites peut-être que les deux exemples ci-dessus sont subtilement différents parce que l'un d'eux pourrait créer deux « instances » de `<li>`.  mais les éléments JSX ne sont pas des « instances » car ils ne contiennent aucun état interne et ne sont pas de véritables nœuds DOM.  Il s'agit de descriptifs légers, comme des plans de construction. De sorte que ces deux exemples sont *effectivement* parfaitement équivalents. La page [Préserver et réinitialiser l’état](/learn/preserving-and-resetting-state) explore en détail ces aspects.
 
 </DeepDive>
 
-Disons maintenant que vous souhaitez enrober le texte d'un objet mis en bagages par une autre balise HTML, telle que `<del>`, pour le biffer.  Vous pouvez ajouter encore davantage de sauts de lignes, de parenthèses, pour qu'il soit plus facile d'imbriquer davantage de JSX dans chacun des cas :
+Disons maintenant que vous souhaitez enrober le texte d'un objet mis en bagages par une autre balise HTML, telle que `<del>`, pour le biffer.  Vous pouvez ajouter des sauts de lignes et des parenthèses, pour qu'il soit plus facile d'imbriquer davantage de JSX dans chacun des cas :
 
 <Sandpack>
 
@@ -256,7 +256,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-Ce style fonctionne bien pour des conditions simples, mais utilisez-le avec modération.  Si vos composants deviennent difficiles à lire en raison de trop de balise conditionnel imbriqué, envisagez d'extraire des composants enfants pour nettoyer tout ça.  Dans React, le balisage fait partie de votre code, vous pouvez donc recourir à des variables et des fonctions pour nettoyer les expressions complexes.
+Ce style fonctionne bien pour des conditions simples, mais utilisez-le avec modération.  Si vos composants deviennent difficiles à lire en raison de trop de balisages conditionnels imbriqués, envisagez d'extraire des composants enfants pour nettoyer tout ça.  Dans React, le balisage fait partie de votre code, vous pouvez donc recourir à des variables et des fonctions pour nettoyer les expressions complexes.
 
 ### L'opérateur logique ET (`&&`) {/*logical-and-operator-*/}
 
@@ -317,7 +317,7 @@ Une [expression `&&` JavaScript](https://developer.mozilla.org/docs/Web/JavaScri
 
 **Ne mettez pas des nombres à gauche de `&&`.**
 
-Pour tester la condition, JavaScript convertit automatiquement l'opérande de gauche en booléen.  Seuelement voilà, si l'opérande de gauche vaut `0`, alors l'expression entière vaudra `0`, et React sera ravi d'afficher `0` plutôt que rien.
+Pour tester la condition, JavaScript convertit automatiquement l'opérande de gauche en booléen.  Seulement voilà, si l'opérande de gauche vaut `0`, alors l'expression entière vaudra `0`, et React sera ravi d'afficher `0` plutôt que rien.
 
 Ainsi, une erreur commune consiste à écrire du code du genre `messageCount && <p>Nouveaux messages</p>`. On peut facilement supposer que ça n'affichera rien si `messageCount` vaut `0`, mais en fait ça affichera le `0` lui-même !
 
@@ -437,7 +437,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-Si vous n'êtes pas à l'aise avec JavaScript, cette variété de styles peut vous sembler intimidante au premier abord.  Ceci dit, les apprendre vous aider à lire et écrire n'importe quel code JavaScript — pas juste des composants React !  Choisissez le style que vous préférez pour commencer, puis revenez sur cette référence si vous oubliez quels autres styles marchent aussi.
+Si vous n'êtes pas à l'aise avec JavaScript, cette variété de styles peut vous sembler intimidante au premier abord.  Ceci dit, apprendre ces différents styles vous aidera à lire et écrire n'importe quel code JavaScript — pas seulement des composants React !  Choisissez le style que vous préférez pour commencer, puis revenez sur cette page si vous oubliez quels autres styles marchent aussi.
 
 <Recap>
 
@@ -454,7 +454,7 @@ Si vous n'êtes pas à l'aise avec JavaScript, cette variété de styles peut vo
 
 #### Afficher un icône pour les objets non traités avec `? :` {/*show-an-icon-for-incomplete-items-with--*/}
 
-Utilisez l'opérateur conditionnel (`cond ? a : b`) pour afficher ❌ si `isPacked` n'est pas `true`.
+Utilisez l'opérateur conditionnel (`cond ? a : b`) pour afficher ❌ si `isPacked` ne vaut pas `true`.
 
 <Sandpack>
 
@@ -534,7 +534,7 @@ export default function PackingList() {
 
 #### Afficher l'importance de l'objet avec `&&` {/*show-the-item-importance-with-*/}
 
-Dans cet exemple, chaque `Item` reçoit une prop d'`importance` numérique.  Utilisez l'opérateur `&&` pour afficher « *(Importance X)* » en italiques, mais seulement pour les objets dont l'importance n'est pas zéro.  Votre liste d'objets devrait à terme ressembler à ceci :
+Dans cet exemple, chaque `Item` reçoit une prop d'`importance` numérique.  Utilisez l'opérateur `&&` pour afficher « *(Importance : X)* » en italiques, mais seulement pour les objets dont l'importance n'est pas zéro.  Votre liste d'objets devrait à terme ressembler à ceci :
 
 * Combinaison spatiale _(Importance : 9)_
 * Casque à feuille d’or
@@ -628,9 +628,9 @@ Dans cette solution, on utilise deux conditions distinctes pour insérer une esp
 
 </Solution>
 
-#### Ramnier une série de `? :` en `if` sur variables {/*refactor-a-series-of---to-if-and-variables*/}
+#### Remanier une série de `? :` en `if` sur variables {/*refactor-a-series-of---to-if-and-variables*/}
 
-Le composant `Drink` utilise une série de conditions `? :` pour afficher diverses informations selon que la prop `name`vaut `"tea"` ou `"coffee"`. Le souci vient de ce que l'information pour chaque boisson est éparpillée à travers de multiples conditions.  Remaniez ce code pour utiliser une seule instruction `if` plutôt que trois conditions `? :`.
+Le composant `Drink` utilise une série de conditions `? :` pour afficher diverses informations selon que la prop `name`vaut `"thé"` ou `"café"`. Le souci vient de ce que l'information pour chaque boisson est éparpillée à travers de multiples conditions.  Remaniez ce code pour utiliser une seule instruction `if` plutôt que trois conditions `? :`.
 
 <Sandpack>
 
