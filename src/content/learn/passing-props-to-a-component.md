@@ -425,13 +425,11 @@ Cependant, les props sont [immuables](https://fr.wikipedia.org/wiki/Objet_immuab
 
 </Recap>
 
-
-
 <Challenges>
 
-#### Extract a component {/*extract-a-component*/}
+#### Extraire un composant {/*extract-a-component*/}
 
-This `Gallery` component contains some very similar markup for two profiles. Extract a `Profile` component out of it to reduce the duplication. You'll need to choose what props to pass to it.
+Ce composant `Gallery` contient un balisage très similaire pour deux profils. Extrayez-en un composant `Profile` pour réduire la duplication. Vous devrez choisir quelles props lui passer.
 
 <Sandpack>
 
@@ -441,7 +439,7 @@ import { getImageUrl } from './utils.js';
 export default function Gallery() {
   return (
     <div>
-      <h1>Notable Scientists</h1>
+      <h1>Scientifiques remarquables</h1>
       <section className="profile">
         <h2>Maria Skłodowska-Curie</h2>
         <img
@@ -453,16 +451,16 @@ export default function Gallery() {
         />
         <ul>
           <li>
-            <b>Profession: </b>
-            physicist and chemist
+            <b>Profession : </b>
+            physicienne et chimiste
           </li>
           <li>
-            <b>Awards: 4 </b>
-            (Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal, Matteucci Medal)
+            <b>Récompenses : 4 </b>
+            (Prix Nobel de Physique, Prix Nobel de Chimie, Médaille Davy, Médaille Matteucci)
           </li>
           <li>
-            <b>Discovered: </b>
-            polonium (element)
+            <b>A découvert : </b>
+            le Polonium (élément)
           </li>
         </ul>
       </section>
@@ -477,16 +475,16 @@ export default function Gallery() {
         />
         <ul>
           <li>
-            <b>Profession: </b>
-            geochemist
+            <b>Profession : </b>
+            géochimiste
           </li>
           <li>
-            <b>Awards: 2 </b>
-            (Miyake Prize for geochemistry, Tanaka Prize)
+            <b>Récompenses : 2 </b>
+            (Prix Miyake de géochimie, Prix Tanaka)
           </li>
           <li>
-            <b>Discovered: </b>
-            a method for measuring carbon dioxide in seawater
+            <b>A découvert : </b>
+            une méthode de mesure du dioxyde de carbone dans l’eau de mer
           </li>
         </ul>
       </section>
@@ -524,15 +522,15 @@ li { margin: 5px; }
 
 <Hint>
 
-Start by extracting the markup for one of the scientists. Then find the pieces that don't match it in the second example, and make them configurable by props.
+Commencez par extraire le balisage pour un des scientifiques. Puis trouvez les endroits qui divergent dans le second exemple, et rendez-les configurables par des props.
 
 </Hint>
 
 <Solution>
 
-In this solution, the `Profile` component accepts multiple props: `imageId` (a string), `name` (a string), `profession` (a string), `awards` (an array of strings), `discovery` (a string), and `imageSize` (a number).
+Dans cette solution, le composant `Profile` accepte plusieurs props : `imageId` (une chaîne de caractères), `name` (une autre chaîne), `profession` (encore une chaîne), `awards` (un tableau de chaînes), `discovery` (une chaîne) et `imageSize` (un nombre).
 
-Note that the `imageSize` prop has a default value, which is why we don't pass it to the component.
+Remarquez que la prop `imageSize` a une valeur par défaut, raison pour laquelle on ne la passe pas au composant.
 
 <Sandpack>
 
@@ -558,13 +556,13 @@ function Profile({
         height={imageSize}
       />
       <ul>
-        <li><b>Profession:</b> {profession}</li>
+        <li><b>Profession :</b> {profession}</li>
         <li>
-          <b>Awards: {awards.length} </b>
+          <b>Récompenses : {awards.length} </b>
           ({awards.join(', ')})
         </li>
         <li>
-          <b>Discovered: </b>
+          <b>A découvert : </b>
           {discovery}
         </li>
       </ul>
@@ -575,27 +573,27 @@ function Profile({
 export default function Gallery() {
   return (
     <div>
-      <h1>Notable Scientists</h1>
+      <h1>Scientifiques remarquables</h1>
       <Profile
         imageId="szV5sdG"
         name="Maria Skłodowska-Curie"
-        profession="physicist and chemist"
-        discovery="polonium (chemical element)"
+        profession="physicienne et chimiste"
+        discovery="le Polonium (élément)"
         awards={[
-          'Nobel Prize in Physics',
-          'Nobel Prize in Chemistry',
-          'Davy Medal',
-          'Matteucci Medal'
+          'Prix Nobel de Physique',
+          'Prix Nobel de Chimie',
+          'Médaille Davy',
+          'Médaille Matteucci'
         ]}
       />
       <Profile
         imageId='YfeOqp2'
         name='Katsuko Saruhashi'
-        profession='geochemist'
-        discovery="a method for measuring carbon dioxide in seawater"
+        profession='géochimiste'
+        discovery="une méthode de mesure du dioxyde de carbone dans l’eau de mer"
         awards={[
-          'Miyake Prize for geochemistry',
-          'Tanaka Prize'
+          'Prix Miyake de géochimie',
+          'Prix Tanaka'
         ]}
       />
     </div>
@@ -630,9 +628,9 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Note how you don't need a separate `awardCount` prop if `awards` is an array. Then you can use `awards.length` to count the number of awards. Remember that props can take any values, and that includes arrays too!
+Remarquez que vous n'avez pas besoin d'une prop distinte `awardCount` si `awards` est un tableau : vous pouvez utiliser `awards.length` pour compter les récompenses.  Souvenez-vous que les props peuvent contenir n'importe quelle valeur, y compris des tableaux !
 
-Another solution, which is more similar to the earlier examples on this page, is to group all information about a person in a single object, and pass that object as one prop:
+Une autre solution, plus semblable aux premiers exemples de cette page, consisterait à regrouper les informations d'une personne dans un objet unique, puis à passer cet objet en tant que prop :
 
 <Sandpack>
 
@@ -654,14 +652,14 @@ function Profile({ person, imageSize = 70 }) {
       />
       <ul>
         <li>
-          <b>Profession:</b> {person.profession}
+          <b>Profession :</b> {person.profession}
         </li>
         <li>
-          <b>Awards: {person.awards.length} </b>
+          <b>Récompenses : {person.awards.length} </b>
           ({person.awards.join(', ')})
         </li>
         <li>
-          <b>Discovered: </b>
+          <b>A découvert : </b>
           {person.discovery}
         </li>
       </ul>
@@ -672,27 +670,27 @@ function Profile({ person, imageSize = 70 }) {
 export default function Gallery() {
   return (
     <div>
-      <h1>Notable Scientists</h1>
+      <h1>Scientifiques remarquables</h1>
       <Profile person={{
         imageId: 'szV5sdG',
         name: 'Maria Skłodowska-Curie',
-        profession: 'physicist and chemist',
-        discovery: 'polonium (chemical element)',
+        profession: 'physicienne et chimiste',
+        discovery: 'le Polonium (élément)',
         awards: [
-          'Nobel Prize in Physics',
-          'Nobel Prize in Chemistry',
-          'Davy Medal',
-          'Matteucci Medal'
+          'Prix Nobel de Physique',
+          'Prix Nobel de Chimie',
+          'Médaille Davy',
+          'Médaille Matteucci'
         ],
       }} />
       <Profile person={{
         imageId: 'YfeOqp2',
         name: 'Katsuko Saruhashi',
-        profession: 'geochemist',
-        discovery: 'a method for measuring carbon dioxide in seawater',
+        profession: 'géochimiste',
+        discovery: 'une méthode de mesure du dioxyde de carbone dans l’eau de mer',
         awards: [
-          'Miyake Prize for geochemistry',
-          'Tanaka Prize'
+          'Prix Miyake de géochimie',
+          'Prix Tanaka'
         ],
       }} />
     </div>
@@ -727,15 +725,15 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Although the syntax looks slightly different because you're describing properties of a JavaScript object rather than a collection of JSX attributes, these examples are mostly equivalent, and you can pick either approach.
+Même si la syntaxe a un aspet légèrement différent parce qu'on décrit les propriétés d'un objet JavaScript plutôt qu'une collection d'attributs JSX, ces exemples sont globalement équivalents, et vous pouvez choisir l'approche qui vous convient le mieux.
 
 </Solution>
 
-#### Adjust the image size based on a prop {/*adjust-the-image-size-based-on-a-prop*/}
+#### Ajuster la taille d'une image sur base d'une prop {/*adjust-the-image-size-based-on-a-prop*/}
 
-In this example, `Avatar` receives a numeric `size` prop which determines the `<img>` width and height. The `size` prop is set to `40` in this example. However, if you open the image in a new tab, you'll notice that the image itself is larger (`160` pixels). The real image size is determined by which thumbnail size you're requesting.
+Dans cet exemple, `Avatar` reçoit une prop numérique `size` qui détermine les largeur et hauteur de l'`<img>`.  La prop `size` est définie à `40` dans cet exemple. Pourtant, si vous ouvrez l'image dans un nouvel onglet, vous constaterez que l'image elle-même est plus grande (`160` pixels).  La véritable taille de l'image est déterminée en fonction de la taille de vignette demandée.
 
-Change the `Avatar` component to request the closest image size based on the `size` prop. Specifically, if the `size` is less than `90`, pass `'s'` ("small") rather than `'b'` ("big") to the `getImageUrl` function. Verify that your changes work by rendering avatars with different values of the `size` prop and opening images in a new tab.
+Modifiez le composant `Avatar` pour demander la taille d'image la plus proche sur base de la prop `size`.  Plus précisement, si la `size` fait moins de `90`, passez `'s'` (pour *“small”*) plutôt que `'b'` (pour *“big”*) à la fonction `getImageUrl`.  Vérifiez que vos modifications fonctionnent en affichant des avatars avec différentes valeurs de la prop `size` et en ouvrant les images dans de nouveaux onglets.
 
 <Sandpack>
 
@@ -786,7 +784,7 @@ export function getImageUrl(person, size) {
 
 <Solution>
 
-Here is how you could go about it:
+Voici comment vous pourriez vous y prendre :
 
 <Sandpack>
 
@@ -848,7 +846,7 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-You could also show a sharper image for high DPI screens by taking [`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) into account:
+Vous pourriez même afficher une image avec un meilleur piqué pour les écrans à forte densité de pixels en prenant en compte [`window.devicePixelRatio`](https://developer.mozilla.org/docs/Web/API/Window/devicePixelRatio) :
 
 <Sandpack>
 
@@ -919,13 +917,13 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-Props let you encapsulate logic like this inside the `Avatar` component (and change it later if needed) so that everyone can use the `<Avatar>` component without thinking about how the images are requested and resized.
+Les props vous permettent d'encapsuler ce type de logique à l'intérieur du composant `Avatar` (et de la faire évoluer plus tard si besoin) de façon à ce que tout un chacun puisse utiliser le composant `Avatar` asns réfléchir à la façon dont les images sont requêtées et redimensionnées.
 
 </Solution>
 
-#### Passing JSX in a `children` prop {/*passing-jsx-in-a-children-prop*/}
+#### Passer du JSX dans la prop `children` {/*passing-jsx-in-a-children-prop*/}
 
-Extract a `Card` component from the markup below, and use the `children` prop to pass different JSX to it:
+Extrayez un composant `Card` du balisage ci-dessous, et utilisez la prop `children` pour lui passer divers contenus JSX :
 
 <Sandpack>
 
@@ -947,8 +945,8 @@ export default function Profile() {
       </div>
       <div className="card">
         <div className="card-content">
-          <h1>About</h1>
-          <p>Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.</p>
+          <h1>À propos</h1>
+          <p>Aklilu Lemma était un scientifique éthiopien renommé qui a découvert le traitement naturel de la bilharziose.</p>
         </div>
       </div>
     </div>
@@ -983,13 +981,13 @@ h1 {
 
 <Hint>
 
-Any JSX you put inside of a component's tag will be passed as the `children` prop to that component.
+Tout JSX que vous placez à l'intérieur d'une balise de composant lui sera passée *via* sa prop `children`.
 
 </Hint>
 
 <Solution>
 
-This is how you can use the `Card` component in both places:
+Voici comment vous pouvez utiliser le composant `Card` aux deux endroits :
 
 <Sandpack>
 
@@ -1018,8 +1016,8 @@ export default function Profile() {
         />
       </Card>
       <Card>
-        <h1>About</h1>
-        <p>Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.</p>
+        <h1>À propos</h1>
+        <p>Aklilu Lemma était un scientifique éthiopien renommé qui a découvert le traitement naturel de la bilharziose.</p>
       </Card>
     </div>
   );
@@ -1051,7 +1049,7 @@ h1 {
 
 </Sandpack>
 
-You can also make `title` a separate prop if you want every `Card` to always have a title:
+Vous pourriez aussi faire de `title` une prop distincte si vous souhaitez que chaque `Card` ait un titre :
 
 <Sandpack>
 
@@ -1079,8 +1077,8 @@ export default function Profile() {
           height={100}
         />
       </Card>
-      <Card title="About">
-        <p>Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.</p>
+      <Card title="À propos">
+        <p>Aklilu Lemma était un scientifique éthiopien renommé qui a découvert le traitement naturel de la bilharziose.</p>
       </Card>
     </div>
   );
