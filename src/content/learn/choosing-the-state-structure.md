@@ -47,7 +47,7 @@ Ou ça ?
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Techniquement, les deux approches sont possibles. Mais **si deux variables d’état changent toujours ensemble, ce serait une bonne idée de les réunir en une seule variable d’état.** Vous n’oublierez ainsi pas ensuite de les garder synchronisées, comme dans cet exemple où les mouvements du curseur mettent à jour les deux coordonnées du point rouge.
+Techniquement, les deux approches sont possibles. Mais **si deux variables d’état changent toujours ensemble, ce serait une bonne idée de les réunir en une seule variable d’état**. Vous n’oublierez ainsi pas ensuite de les garder synchronisées, comme dans cet exemple où les mouvements du curseur mettent à jour les deux coordonnées du point rouge.
 
 <Sandpack>
 
@@ -97,7 +97,7 @@ Une autre situation dans laquelle vous pouvez regrouper des données dans un obj
 
 <Pitfall>
 
-Si votre variable d’état est un objet, souvenez-vous que [vous ne pouvez pas mettre à jour qu’un seul champ](/learn/updating-objects-in-state) sans explicitement copier les autres champs. Par exemple, vous ne pouvez pas faire `setPosition({ x: 100 })` dans l’exemple ci-dessus car il n’y aurait plus du tout la variable `y` ! Au lieu de ça, si vous vouliez définir `x` tout seul, soit vous feriez `setPosition({ ...position, x: 100 })`, soit vous découperiez l'information en deux variables d’état et `setX(100)`.
+Si votre variable d’état est un objet, souvenez-vous que [vous ne pouvez pas mettre à jour qu’un seul champ](/learn/updating-objects-in-state) sans explicitement copier les autres champs. Par exemple, vous ne pouvez pas faire `setPosition({ x: 100 })` dans l’exemple ci-dessus car il n’y aurait plus du tout la propriété `y` ! Au lieu de ça, si vous vouliez définir `x` tout seul, soit vous feriez `setPosition({ ...position, x: 100 })`, soit vous découperiez l'information en deux variables d’état et feriez `setX(100)`.
 
 </Pitfall>
 
@@ -157,9 +157,9 @@ function sendMessage(text) {
 
 </Sandpack>
 
-Même si ce code marche, il laisse la place à des états "impossibles". Par exemple, si vous oubliez d’appeler `setIsSent` et `setIsSending` ensemble, vous pouvez finir dans une situation où les deux variables `isSending` et `isSent` sont à `true` au même moment. Plus votre composant est complexe, plus il est dur de comprendre ce qu’il s’est passé.
+Même si ce code marche, il laisse la place à des états « impossibles ». Par exemple, si vous oubliez d’appeler `setIsSent` et `setIsSending` ensemble, vous pouvez finir dans une situation où les deux variables `isSending` et `isSent` sont à `true` au même moment. Plus votre composant est complexe, plus il est dur de comprendre ce qu’il s’est passé.
 
-**Comme `isSending` et `isSent` ne doivent jamais être à `true` au même moment, il est préférable de les remplacer par une variable d’état de `statut` qui peut prendre l’un des *trois* états valides :** `'typing'` (initial), `'sending'`, et `'sent'` :
+**Comme `isSending` et `isSent` ne doivent jamais être à `true` au même moment, il est préférable de les remplacer par une variable d’état `status` qui peut prendre l’un des *trois* états valides :** `'typing'` (initial), `'sending'`, et `'sent'` :
 
 <Sandpack>
 
@@ -227,7 +227,7 @@ Mais ce ne sont pas des variables d’état, vous n'avez donc pas à vous soucie
 
 Si vous pouvez calculer certaines informations depuis les props d’un composant ou une de ses variables d’état existantes pendant le rendu, vous ne **devez pas** mettre ces informations dans l’état du composant
 
-Par exemple, prenez ce questionnaire. Il marche, mais pouvez-vous y trouver un état redondant ?
+Par exemple, prenez ce formulaire. Il marche, mais pouvez-vous y trouver un état redondant ?
 
 <Sandpack>
 
@@ -280,7 +280,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Ce questionnaire possède trois variables d’état : `firstName`, `lastName` et `fullName`. Cependant, `fullName` est redondant. **Vous pouvez toujours calculer `fullName` depuis `firstName` et `lastName` pendant le rendu, donc retirez-le de l’état.**
+Ce formulaire possède trois variables d’état : `firstName`, `lastName` et `fullName`. Cependant, `fullName` est redondant. **Vous pouvez toujours calculer `fullName` depuis `firstName` et `lastName` pendant le rendu, donc retirez-le de l’état.**
 
 Voici comment vous pouvez faire :
 
@@ -334,7 +334,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Ici, `fullName` n’est *pas* une variable d’état. À la place, elle est évaluée pendant le rendu :
+Ici, `fullName` n’est *pas* une variable d’état. Elle est plutôt évaluée pendant le rendu :
 
 ```js
 const fullName = firstName + ' ' + lastName;
@@ -346,7 +346,7 @@ Par conséquent, les gestionnaires de changement n’auront rien à faire pour l
 
 #### Ne dupliquez pas les props dans l’état {/*don-t-mirror-props-in-state*/}
 
-Un exemple commun d’état redondant est un code de ce type :
+Un exemple commun d’état redondant recourt à ce genre de code :
 
 ```js
 function Message({ messageColor }) {
@@ -354,9 +354,9 @@ function Message({ messageColor }) {
 }
 ```
 
-Ici, la prop `messageColor` est passée comme valeur initiale de la variable d’état `color`. Le problème est que **si le composant parent transmet une valeur différente dans `messageColor` plus tard (par exemple, `'rouge'` au lieu de `'bleu'`), la variable d’état `color` ne sera pas mise à jour !** L’état est seulement initialisé durant le premier rendu.
+Ici, la prop `messageColor` est passée comme valeur initiale de la variable d’état `color`. Le problème est que **si le composant parent transmet une valeur différente dans `messageColor` plus tard (par exemple, `'red'` au lieu de `'blue'`), la variable d’état `color` ne sera pas mise à jour** ! L’état est seulement initialisé lors du rendu initial.
 
-C’est pourquoi la "duplication" de certaines props dans des variables d’état peut mener à la confusion. À la place, utilisez la prop `messageColor` directement dans votre code. Si vous voulez lui donner un nom plus court, utilisez une constante :
+C’est pourquoi la "duplication" de certaines props dans des variables d’état peut être déroutante. Utilisez de préférence directement la prop `messageColor` dans votre code. Si vous voulez lui donner un nom plus court, utilisez une constante :
 
 ```js
 function Message({ messageColor }) {
@@ -365,7 +365,7 @@ function Message({ messageColor }) {
 ```
 
 De cette manière, le composant ne sera pas désynchronisé avec la prop transmise par le composant parent.
-"Dupliquer" les props dans l’état fait sens uniquement quand vous *voulez* ignorer toutes les mises à jour d’une certaine prop. Par convention, ajoutez `initial` ou `default` au début du nom de la prop pour préciser que ses nouvelles valeurs seront ignorées :
+« Dupliquer » les props dans l’état n'est pertinent que lorsque vous *voulez* ignorer toutes les mises à jour d’une certaine prop. Par convention, ajoutez `initial` ou `default` au début du nom de la prop pour préciser que ses nouvelles valeurs seront ignorées :
 
 ```js
 function Message({ initialColor }) {
@@ -424,7 +424,7 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Actuellement, il stocke l’élément selectionné en tant qu’objet dans la variable d’état `selectedItem`. Cependant, ce n’est pas optimal : **le contenu de `selectedItem` est le même objet que l’un des éléments de la liste `items`.** Cela signifie que les informations relatives à l’élément sont dupliquées à deux endroits.
+À ce stade, il stocke l’élément selectionné en tant qu’objet dans la variable d’état `selectedItem`. Cependant, ce n’est pas optimal : **le contenu de `selectedItem` est le même objet que l’un des éléments de la liste `items`.** Ça signifie que les informations relatives à l’élément sont dupliquées à deux endroits.
 
 Pourquoi est-ce un problème ? Rendons chaque objet modifiable :
 
@@ -489,9 +489,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Remarquez que si vous cliquez d’abord sur "Choisir" un élément *puis* que vous le modifiez, **la saisie se met à jour, mais le label en bas est différent des modifications.** C’est parce que vous avez un dupliqué l’état, et vous avez oublié de mettre à jour `selectedItem`.
+Remarquez que si vous cliquez d’abord sur « Choisissez » un élément *puis* que vous le modifiez, **le champ se met à jour, mais le libellé en bas reste inchangé**. C’est parce que vous avez dupliqué l’état, et que vous avez oublié de mettre à jour `selectedItem`.
 
-Bien que vous pourriez également mettre à jour `selectedItem`, une solution plus simple consiste à supprimer la duplication. Dans cet exemple, au lieu d’un objet `selectedItem` (ce qui crée une duplication des éléments dans `items`), vous gardez le `selectedId` dans l’état, *puis* obtenez le `selectedItem` en cherchant dans la liste `items` pour un élément avec cet ID :
+Même si vous pourriez également mettre à jour `selectedItem`, une solution plus simple consiste à supprimer la duplication. Dans cet exemple, au lieu d’un objet `selectedItem` (ce qui crée une duplication des éléments dans `items`), vous gardez le `selectedId` dans l’état, *puis* obtenez le `selectedItem` en cherchant dans la liste `items` un élément avec cet ID :
 
 <Sandpack>
 
@@ -563,14 +563,14 @@ L’état était dupliqué de cette façon :
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedItem = {id: 0, title: 'pretzels'}`
 
-Mais après les changements, il est ainsi :
+Mais après nos changements, il a la structure suivante :
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedId = 0`
 
-La duplication est terminée, et vous ne conservez que l’état essentiel !
+La duplication a disparu, et vous ne conservez que l’état essentiel !
 
-Maintenant si vous modifiez l’élément *selectionné*, le message en dessous sera mis à jour immédiatement. C’est parce que `setItems` déclenche un nouveau rendu, et `items.find(...)` trouve l’élément dont le titre a été mis à jour. Il n’est pas nécessaire de conserver *l’objet selectionné* dans l’état, car seul l’*ID sélectionné* est essentiel. Le reste peut être calculé lors du rendu.
+Maintenant si vous modifiez l’élément *sélectionné*, le message en dessous sera mis à jour immédiatement. C’est parce que `setItems` déclenche un nouveau rendu, et `items.find(...)` trouve l’élément dont le titre a été mis à jour. Il n’est pas nécessaire de conserver *l’objet sélectionné* dans l’état, car seul l’*ID sélectionné* est essentiel. Le reste peut être calculé lors du rendu.
 
 ## Évitez les états fortement imbriqués {/*avoid-deeply-nested-state*/}
 
@@ -823,7 +823,7 @@ export const initialTravelPlan = {
 
 Imaginons maintenant que vous souhaitiez ajouter un bouton pour supprimer un lieu que vous avez déjà visité. Comment procéder ? [La mise à jour d’un état imbriqué](/learn/updating-objects-in-state#updating-a-nested-object) implique de faire des copies des objets en remontant depuis la partie qui a changé. Supprimer un lieu profondément imbriqué consisterait à copier tous les niveaux supérieurs. Un tel code peut être très long. 
 
-**Si l’état est trop imbriqué pour être mis à jour facilement, envisagez de « l'aplatir ».** Voici une façon de restructurer ces données. Au lieu d’une structure arborescente où chaque *lieu* possède une liste de *ses lieux enfants*, chaque lieu peut posséder une liste des *ID de ses lieux enfants*. Vous pouvez alors stocker une table de correspondance entre chaque ID de lieu et le lieu correspondant.
+**Si l’état est trop imbriqué pour être mis à jour facilement, envisagez de « l’aplatir ».** Voici une façon de restructurer ces données. Au lieu d’une structure arborescente où chaque *lieu* possède une liste de *ses lieux enfants*, chaque lieu peut posséder une liste des *ID de ses lieux enfants*. Vous pouvez alors stocker une table de correspondance entre chaque ID de lieu et le lieu correspondant.
 
 Cette restructuration des données pourrait vous rappeler une table de base de données :
 
@@ -1859,7 +1859,7 @@ Parfois, vous pouvez aussi réduire l’imbrication des états en déplaçant un
 
 #### Réparer un composant qui ne s’actualise pas {/*fix-a-component-thats-not-updating*/}
 
-Ce composant `Clock` reçoit deux props : `color` et `time`. Lorsque vous sélectionnez une couleur différente dans la boîte de sélection, le composant `Clock` reçoit une prop `color` différente de son composant parent. Cependant, la couleur affichée n’est pas mise à jour. Pourquoi ? Corrigez le problème.
+Ce composant `Clock` reçoit deux props : `color` et `time`. Lorsque vous sélectionnez une couleur différente dans la boîte de sélection, le composant `Clock` reçoit une prop `color` différente depuis son composant parent. Cependant, la couleur affichée n’est pas mise à jour. Pourquoi ? Corrigez le problème.
 
 <Sandpack>
 
@@ -1914,7 +1914,7 @@ export default function App() {
 
 <Solution>
 
-Le problème est que ce composant a un état `color` initialisé avec la valeur initiale de la prop `color`. Mais quand la prop change, cela n’affecte pas la variable d’état ! Donc elles se désynchronisent. Pour régler ce problème, retirez les variables d’état entièrement, et utilisez la prop `color` directement.
+Le problème, c'est que ce composant a un état `color` initialisé avec la valeur initiale de la prop `color`. Mais quand la prop change, ça n’affecte pas la variable d’état ! Donc elles se désynchronisent. Pour régler ce problème, retirez carrément la variable d’état, et utilisez directement la prop `color`.
 
 <Sandpack>
 
@@ -2022,7 +2022,7 @@ export default function App() {
 
 #### Réparer une liste d’affaires cassée {/*fix-a-broken-packing-list*/}
 
-Cette liste de matériel possède un pied de page qui indique le nombre d’objets emballés, et le nombre total d’articles. Cela semble fonctionner au début, mais il est bugué. Par exemple, si vous cochez un article, puis le supprimez, le compteur ne sera pas mis à jour correctement. Corrigez le compteur pour qu’il soit toujours correct.
+Cette liste d'affaires possède un pied de page qui indique le nombre d'objets déjà dans les bagages, et le nombre total d’objets. Ça semble fonctionner au début, mais il y a des bugs. Par exemple, si vous cochez un article puis le supprimez, le compteur ne sera pas mis à jour correctement. Corrigez le compteur pour qu’il soit toujours juste.
 
 <Hint>
 
@@ -2167,7 +2167,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Bien que vous puissiez modifier soigneusement chaque gestionnaire d'évènement pour mettre à jour les compteurs `total` et `packed` correctement, le problème principal est que ces variables d’état existent. Elles sont redondantes car vous pouvez toujours calculer le nombre d’éléments (emballés ou totaux) depuis la liste `items` elle même. Supprimez l’état redondant pour corriger le bug :
+Bien que vous puissiez modifier soigneusement chaque gestionnaire d'événement pour mettre à jour correctement les compteurs `total` et `packed`, le problème principal est que ces variables d’état existent. Elles sont redondantes car vous pouvez toujours calculer le nombre d’éléments (emballés ou au total) depuis la liste `items` elle même. Supprimez les états redondants pour corriger le bug :
 
 <Sandpack>
 
@@ -2300,15 +2300,15 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Notez comme les gestionnaires d’évènements sont seulement utiles pour appeler `setItems` après ce changement. Les compteurs d’objets seront maintenant calculés pendant le prochain rendu depuis la liste `items`, et seront donc toujours à jour.
+Notez comme les gestionnaires d’événements se préoccupent désormais uniquement d'appeler `setItems`. Les compteurs d’objets seront maintenant calculés pendant le prochain rendu depuis la liste `items`, et seront donc toujours à jour.
 
 </Solution>
 
 #### Réparer une sélection qui disparaît {/*fix-the-disappearing-selection*/}
 
-Il y a une liste de `letters` dans l’état. Lorsque vous survolez ou cliquez sur un courrier particulier, celui-ci est mis en surbrillance. Le courrier actuellement en surbrillance est stocké dans la variable d’état `highlightedLetter`. Vous pouvez marquer chaque courrier comme "favori" ou "normal", ce qui met à jour la liste `letters` dans l’état.
+Il y a une liste de `letters` dans l’état. Lorsque vous survolez ou cliquez sur un courrier particulier, celui-ci est mis en surbrillance. Le courrier actuellement en surbrillance est stocké dans la variable d’état `highlightedLetter`. Vous pouvez marquer chaque courrier comme "épinglé" ou "normal", ce qui met à jour la liste `letters` dans l’état.
 
-Ce code fonctionne, mais il y a un bug mineur d’UI. Quand vous appuyez sur "Favori" ou "Retirer", la surbrillance disparait pendant un moment. Cependant, elle réaparait dès que vous déplacez votre curseur ou passez à un autre courrier avec le clavier. Pourquoi cela se produit-il ? Corrigez le problème pour que la surbrillance ne disparaisse pas après le clic sur le bouton.
+Ce code fonctionne, mais il y a un bug mineur d’UI. Quand vous appuyez sur « Épingler » ou « Désépingler », la surbrillance disparaît pendant un moment. Cependant, elle réapparaît dès que vous déplacez votre curseur ou passez à un autre courrier avec le clavier. Que se passe-t-il ? Corrigez le problème pour que la surbrillance ne disparaisse pas après le clic sur le bouton.
 
 <Sandpack>
 
@@ -2381,7 +2381,7 @@ export default function Letter({
       <button onClick={() => {
         onToggleStar(letter);
       }}>
-        {letter.isStarred ? 'Retirer' : 'Favori'}
+        {letter.isStarred ? 'Désépingler' : 'Épingler'}
       </button>
       {letter.subject}
     </li>
@@ -2415,7 +2415,7 @@ li { border-radius: 5px; }
 
 <Solution>
 
-Le problème est que vous stockez l’objet *letter* dans `highlightedLetter`. Mais vous gardez cette même information dans la liste `letters`. Il y a donc duplication dans votre état ! Quand vous mettez à jour la liste `letters` après avoir cliqué sur le bouton, vous créez un nouvel objet courrier qui est différent de `highlightedLetter`. C’est pourquoi l’expression `highlightedLetter === letter` devient `false` et la surbrillance disparait. Elle réaparait la prochaine fois que vous appelez `setHighlightedLetter` lorsque le pointeur se déplace.
+Le problème tient à ce que vous stockez l’objet *letter* dans `highlightedLetter`. Mais vous gardez cette même information dans la liste `letters`. Il y a donc duplication dans votre état ! Quand vous mettez à jour la liste `letters` après avoir cliqué sur le bouton, vous créez un nouvel objet courrier qui est différent de `highlightedLetter`. C’est pourquoi l’expression `highlightedLetter === letter` devient `false` et la surbrillance disparait. Elle réapparaît la prochaine fois que vous appelez `setHighlightedLetter` lorsque le pointeur se déplace.
 
 Pour résoudre ce problème, supprimez la duplication de l’état. Au lieu de stocker *le courrier lui-même* à deux endroits, stockez plutôt le `highlightedId`. Ensuite vous pouvez vérifier `isHighlighted` pour chaque courrier avec `letter.id === highlightedId`, ce qui fonctionnera même si l’objet `letter` a changé depuis le dernier rendu.
 
@@ -2490,7 +2490,7 @@ export default function Letter({
       <button onClick={() => {
         onToggleStar(letter.id);
       }}>
-        {letter.isStarred ? 'Retirer' : 'Favori'}
+        {letter.isStarred ? 'Désépingler' : 'Épingler'}
       </button>
       {letter.subject}
     </li>
@@ -2546,11 +2546,11 @@ import Letter from './Letter.js';
 export default function MailClient() {
   const [selectedId, setSelectedId] = useState(null);
 
-  // A FAIRE : autoriser la sélection multiple
+  // TODO: autoriser la sélection multiple
   const selectedCount = 1;
 
   function handleToggle(toggledId) {
-    // A FAIRE : autoriser la sélection multiple
+    // TODO : autoriser la sélection multiple
     setSelectedId(toggledId);
   }
 
@@ -2563,7 +2563,7 @@ export default function MailClient() {
             key={letter.id}
             letter={letter}
             isSelected={
-              // A FAIRE : autoriser la sélection multiple
+              // TODO: autoriser la sélection multiple
               letter.id === selectedId
             }
             onToggle={handleToggle}
