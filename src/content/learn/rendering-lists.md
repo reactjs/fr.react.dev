@@ -52,7 +52,7 @@ const people = [
 const listItems = people.map(person => <li>{person}</li>);
 ```
 
-1. **Renvoyez** `listItems` à partir de votre composant, enrobé dans un `<ul>` :
+3. **Renvoyez** `listItems` à partir de votre composant, enrobé dans un `<ul>` :
 
 ```js
 return <ul>{listItems}</ul>;
@@ -137,7 +137,7 @@ const chemists = people.filter(person =>
 );
 ```
 
-1. A présent **transformez** `chemists` avec `map()` :
+2. A présent **transformez** `chemists` avec `map()` :
 
 ```js {1,13}
 const listItems = chemists.map(person =>
@@ -155,7 +155,7 @@ const listItems = chemists.map(person =>
 );
 ```
 
-1. Enfin, **renvoyez** le `listItems` depuis votre composant :
+3. Enfin, **renvoyez** le `listItems` depuis votre composant :
 
 ```js
 return <ul>{listItems}</ul>;
@@ -280,7 +280,7 @@ Warning: Each child in a list should have a unique "key" prop.
 
 *(« Avertissement : chaque enfant d'une liste devrait avoir une prop "key" unique », NdT.)*
 
-Vous devez fournir à chaque élément de tableau un `key` — une chaîne de caractères ou un nombre qui identifie de façon unique cet élément au sein du tableau :
+Vous devez fournir à chaque élément de tableau une `key` — une chaîne de caractères ou un nombre qui identifie de façon unique cet élément au sein du tableau :
 
 ```js
 <li key={person.id}>...</li>
@@ -384,7 +384,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 Que faire lorsque chaque élément de la liste doit produire non pas un, mais plusieurs nœuds DOM ?
 
-La syntaxe concise de [Fragment `<>...</>`](/reference/react/Fragment) ne vous permet pas de passer une clé, vous devez donc soit les regrouper dans une `<div>`, soit utiliser la [syntaxe plus explicite `<Fragment>`](/reference/react/Fragment#rendering-a-list-of-fragments), certes un peu plus longue :
+La syntaxe concise de [Fragment `<>...</>`](/reference/react/Fragment) ne vous permet pas de passer une clé, vous devez donc soit les regrouper dans une `<div>`, soit utiliser la [syntaxe plus explicite `<Fragment>`](/reference/react/Fragment#rendering-a-list-of-fragments), certes un peu plus longue, mais plus explicite :
 
 ```js
 import { Fragment } from 'react';
@@ -768,7 +768,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 Si vous êtes particulièrement attentif·ve, vous avez remarqué qu'avec deux appels à `filter`, on vérifie la profession de chaque personne deux fois.  Vérifier une propriété reste très rapide, donc dans cet exemple ce n'est pas grave.   Mais si votre logique était plus coûteuse que ça, vous pourriez remplacer les appels à `filter` par une boucle qui construit manuellement les tableaux en ne vérifiant chaque personne qu'une fois.
 
-En fait, si `people` ne change jamais, vous pourriez carrément sortir ce code de votre composant. Du point de vue de React, tout ce qui compte, c'est que vous fournissiez un tableau de nœuds JSX au final.  Il ne se préocuppe pas de la façon dont vous produisez ce tableau :
+En fait, si `people` ne change jamais, vous pourriez carrément sortir ce code de votre composant. Du point de vue de React, tout ce qui compte, c'est que vous fournissiez un tableau de nœuds JSX au final.  Il ne se préoccupe pas de la façon dont vous produisez ce tableau :
 
 <Sandpack>
 
@@ -886,7 +886,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Solution>
 
-#### Des listes imbriquées dans un composant {/*nested-lists-in-one-component*/}
+#### Des listes imbriquées {/*nested-lists-in-one-component*/}
 
 Affichez une liste de recettes à partir du tableau fourni ! Pour chaque recette du tableau, affichez son nom dans un `<h2>` et listez ses ingrédients dans un `<ul>`.
 
@@ -1084,7 +1084,7 @@ export const recipes = [{
 
 Dans ce code, `<Recipe {...recipe} key={recipe.id} />` est un raccourci syntaxique qui dit « passe toutes les propriétés de l'objet `recipe` comme props au composant `Recipe` ».  Vous pourriez aussi écrire chaque prop explicitement : `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
 
-**Remarquez que la `key` est spécifié sur le `<Recipe>` lui-même plutôt que sur la `<div>` racine renvoyée par `Recipe`.**  C'est parce que `key` doit figurer directement dans le contexte du tableau environnant.  Précédemment, vous aviez un tableau de `<div>` donc chacune d'elles nécessitait une `key`n mais maintenant vous avez un tableau de `<Recipe>`.  En d'autres termes, quand vous extrayez un composant, n'oubliez pas de conserver la `key` hors du JSX que vous copiez-collez.
+**Remarquez que la `key` est spécifié sur le `<Recipe>` lui-même plutôt que sur la `<div>` racine renvoyée par `Recipe`.**  C'est parce que `key` doit figurer directement dans le contexte du tableau environnant.  Précédemment, vous aviez un tableau de `<div>` donc chacune d'elles nécessitait une `key` mais maintenant vous avez un tableau de `<Recipe>`.  En d'autres termes, quand vous extrayez un composant, n'oubliez pas de conserver la `key` hors du JSX que vous copiez-collez.
 
 </Solution>
 
@@ -1145,7 +1145,7 @@ hr {
 
 </Sandpack>
 
-(C'est un des rares cas où l'utilisation de l'index comme clé serait acceptable parce que les lignes du poème ne changeront jamais.)
+(C'est un des rares cas où l'utilisation de l'index comme clé serait acceptable parce que les lignes du poème ne changeront jamais ni de nombre ni de place.)
 
 <Hint>
 
@@ -1212,7 +1212,7 @@ hr {
 
 Il ne suffit plus d'utiliser l'index de la ligne comme `key` car chaque séparateur et paragraphe font ici partie du même tableau.  En revanche, vous pouvez leur donner à chacun une clé distincte en utilisant un suffixe, par exemple `key={i + '-text'}`.
 
-Une autre approche consisterait à produire une collection de Fragments qui contiennent `<hr />` et `<p>...</p>`. Attention cependant, la syntaxe concise `<>...</>` ne nous permettrait pas de passer des clés, nous devons donc écrire `<Fragment>` explicitement :
+Une autre approche consisterait à produire une collection de Fragments qui contiennent chacun `<hr />` et `<p>...</p>`. Attention cependant, la syntaxe concise `<>...</>` ne nous permettrait pas de passer des clés, nous devons donc écrire `<Fragment>` explicitement :
 
 <Sandpack>
 
