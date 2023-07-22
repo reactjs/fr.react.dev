@@ -442,15 +442,13 @@ Dans cette page, vous avez appris :
 
 </Recap>
 
-
-
 <Challenges>
 
-#### Splitting a list in two {/*splitting-a-list-in-two*/}
+#### Découper une liste en deux {/*splitting-a-list-in-two*/}
 
-This example shows a list of all people.
+Cet exemple affiche une liste de personnes.
 
-Change it to show two separate lists one after another: **Chemists** and **Everyone Else.** Like previously, you can determine whether a person is a chemist by checking if `person.profession === 'chemist'`.
+Modifiez-le pour afficher deux listes distinctes l'une de l'autre : les **Chimistes** et **Tous les autres**.  Comme précédemment, vous pouvez déterminer si une personne est chimiste en testant `person.profession === 'chimiste'`.
 
 <Sandpack>
 
@@ -468,13 +466,13 @@ export default function List() {
       <p>
         <b>{person.name}:</b>
         {' ' + person.profession + ' '}
-        known for {person.accomplishment}
+        célèbre pour {person.accomplishment}
       </p>
     </li>
   );
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>Scientifiques</h1>
       <ul>{listItems}</ul>
     </article>
   );
@@ -485,32 +483,32 @@ export default function List() {
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  profession: 'mathématicienne',
+  accomplishment: 'ses calculs pour vol spatiaux',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  profession: 'chimiste',
+  accomplishment: 'sa découverte du trou dans la couche d’ozone au-dessus de l’Arctique',
   imageId: 'mynHUSa'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  profession: 'physicien',
+  accomplishment: 'sa théorie de l’électromagnétisme',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  profession: 'chimiste',
+  accomplishment: 'ses travaux pionniers sur la cortisone, les stéroïdes et les pilules contraceptives',
   imageId: 'IOjWm71'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  profession: 'astrophysicien',
+  accomplishment: 'son calcul de la masse des naines blanches',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -541,7 +539,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Solution>
 
-You could use `filter()` twice, creating two separate arrays, and then `map` over both of them:
+Vous pourriez utiliser `filter()` deux fois, pour créer deux tableaux distincts, et faire un `map` sur chacun des deux :
 
 <Sandpack>
 
@@ -551,15 +549,15 @@ import { getImageUrl } from './utils.js';
 
 export default function List() {
   const chemists = people.filter(person =>
-    person.profession === 'chemist'
+    person.profession === 'chimiste'
   );
   const everyoneElse = people.filter(person =>
-    person.profession !== 'chemist'
+    person.profession !== 'chimiste'
   );
   return (
     <article>
-      <h1>Scientists</h1>
-      <h2>Chemists</h2>
+      <h1>Scientifiques</h1>
+      <h2>Chimistes</h2>
       <ul>
         {chemists.map(person =>
           <li key={person.id}>
@@ -570,12 +568,12 @@ export default function List() {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              known for {person.accomplishment}
+              célèbre pour {person.accomplishment}
             </p>
           </li>
         )}
       </ul>
-      <h2>Everyone Else</h2>
+      <h2>Tous les autres</h2>
       <ul>
         {everyoneElse.map(person =>
           <li key={person.id}>
@@ -586,7 +584,7 @@ export default function List() {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              known for {person.accomplishment}
+              célèbre pour {person.accomplishment}
             </p>
           </li>
         )}
@@ -600,32 +598,32 @@ export default function List() {
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  profession: 'mathématicienne',
+  accomplishment: 'ses calculs pour vol spatiaux',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  profession: 'chimiste',
+  accomplishment: 'sa découverte du trou dans la couche d’ozone au-dessus de l’Arctique',
   imageId: 'mynHUSa'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  profession: 'physicien',
+  accomplishment: 'sa théorie de l’électromagnétisme',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  profession: 'chimiste',
+  accomplishment: 'ses travaux pionniers sur la cortisone, les stéroïdes et les pilules contraceptives',
   imageId: 'IOjWm71'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  profession: 'astrophysicien',
+  accomplishment: 'son calcul de la masse des naines blanches',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -654,9 +652,9 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-In this solution, the `map` calls are placed directly inline into the parent `<ul>` elements, but you could introduce variables for them if you find that more readable.
+Dans cette solution, les appels à `map` sont placés directement en ligne dans les éléments `<ul>` parents, mais vous pouvez introduire des variables si vous trouvez ça plus lisible.
 
-There is still a bit duplication between the rendered lists. You can go further and extract the repetitive parts into a `<ListSection>` component:
+Il reste quand même un peu de duplication au niveau des listes affichées.  Vous pouvez allez plus loin et extraire les parties répétitives dans un composant `<ListSection>` :
 
 <Sandpack>
 
@@ -678,7 +676,7 @@ function ListSection({ title, people }) {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              known for {person.accomplishment}
+              célèbre pour {person.accomplishment}
             </p>
           </li>
         )}
@@ -689,20 +687,20 @@ function ListSection({ title, people }) {
 
 export default function List() {
   const chemists = people.filter(person =>
-    person.profession === 'chemist'
+    person.profession === 'chimiste'
   );
   const everyoneElse = people.filter(person =>
-    person.profession !== 'chemist'
+    person.profession !== 'chimiste'
   );
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>Scientifiques</h1>
       <ListSection
-        title="Chemists"
+        title="Chimistes"
         people={chemists}
       />
       <ListSection
-        title="Everyone Else"
+        title="Tous les autres"
         people={everyoneElse}
       />
     </article>
@@ -714,32 +712,32 @@ export default function List() {
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  profession: 'mathématicienne',
+  accomplishment: 'ses calculs pour vol spatiaux',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  profession: 'chimiste',
+  accomplishment: 'sa découverte du trou dans la couche d’ozone au-dessus de l’Arctique',
   imageId: 'mynHUSa'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  profession: 'physicien',
+  accomplishment: 'sa théorie de l’électromagnétisme',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  profession: 'chimiste',
+  accomplishment: 'ses travaux pionniers sur la cortisone, les stéroïdes et les pilules contraceptives',
   imageId: 'IOjWm71'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  profession: 'astrophysicien',
+  accomplishment: 'son calcul de la masse des naines blanches',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -768,9 +766,9 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-A very attentive reader might notice that with two `filter` calls, we check each person's profession twice. Checking a property is very fast, so in this example it's fine. If your logic was more expensive than that, you could replace the `filter` calls with a loop that manually constructs the arrays and checks each person once.
+Si vous êtes particulièrement attentif·ve, vous avez remarqué qu'avec deux appels à `filter`, on vérifie la profession de chaque personne deux fois.  Vérifier une propriété reste très rapide, donc dans cet exemple ce n'est pas grave.   Mais si votre logique était plus coûteuse que ça, vous pourriez remplacer les appels à `filter` par une boucle qui construit manuellement les tableaux en ne vérifiant chaque personne qu'une fois.
 
-In fact, if `people` never change, you could move this code out of your component. From React's perspective, all that matters is that you give it an array of JSX nodes in the end. It doesn't care how you produce that array:
+En fait, si `people` ne change jamais, vous pourriez carrément sortir ce code de votre composant. Du point de vue de React, tout ce qui compte, c'est que vous fournissiez un tableau de nœuds JSX au final.  Il ne se préocuppe pas de la façon dont vous produisez ce tableau :
 
 <Sandpack>
 
@@ -781,7 +779,7 @@ import { getImageUrl } from './utils.js';
 let chemists = [];
 let everyoneElse = [];
 people.forEach(person => {
-  if (person.profession === 'chemist') {
+  if (person.profession === 'chimiste') {
     chemists.push(person);
   } else {
     everyoneElse.push(person);
@@ -802,7 +800,7 @@ function ListSection({ title, people }) {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              known for {person.accomplishment}
+              célèbre pour {person.accomplishment}
             </p>
           </li>
         )}
@@ -814,13 +812,13 @@ function ListSection({ title, people }) {
 export default function List() {
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>Scientifiques</h1>
       <ListSection
-        title="Chemists"
+        title="Chimistes"
         people={chemists}
       />
       <ListSection
-        title="Everyone Else"
+        title="Tous les autres"
         people={everyoneElse}
       />
     </article>
@@ -832,32 +830,32 @@ export default function List() {
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  profession: 'mathématicienne',
+  accomplishment: 'ses calculs pour vol spatiaux',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  profession: 'chimiste',
+  accomplishment: 'sa découverte du trou dans la couche d’ozone au-dessus de l’Arctique',
   imageId: 'mynHUSa'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  profession: 'physicien',
+  accomplishment: 'sa théorie de l’électromagnétisme',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  profession: 'chimiste',
+  accomplishment: 'ses travaux pionniers sur la cortisone, les stéroïdes et les pilules contraceptives',
   imageId: 'IOjWm71'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  profession: 'astrophysicien',
+  accomplishment: 'son calcul de la masse des naines blanches',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -888,13 +886,13 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Solution>
 
-#### Nested lists in one component {/*nested-lists-in-one-component*/}
+#### Des listes imbriquées dans un composant {/*nested-lists-in-one-component*/}
 
-Make a list of recipes from this array! For each recipe in the array, display its name as an `<h2>` and list its ingredients in a `<ul>`.
+Affichez une liste de recettes à partir du tableau fourni ! Pour chaque recette du tableau, affichez son nom dans un `<h2>` et listez ses ingrédients dans un `<ul>`.
 
 <Hint>
 
-This will require nesting two different `map` calls.
+Il vous faudra imbriquer deux appels `map` distincts.
 
 </Hint>
 
@@ -906,7 +904,7 @@ import { recipes } from './data.js';
 export default function RecipeList() {
   return (
     <div>
-      <h1>Recipes</h1>
+      <h1>Recettes</h1>
     </div>
   );
 }
@@ -915,16 +913,16 @@ export default function RecipeList() {
 ```js data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: 'Greek Salad',
-  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
+  name: 'Salade grecque',
+  ingredients: ['tomates', 'concombre', 'oignon', 'olives', 'feta']
 }, {
   id: 'hawaiian-pizza',
-  name: 'Hawaiian Pizza',
-  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
+  name: 'Pizza hawaïenne',
+  ingredients: ['pâte à pizza', 'sauce pizza', 'mozzarella', 'jambon', 'ananas']
 }, {
   id: 'hummus',
-  name: 'Hummus',
-  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
+  name: 'Houmous',
+  ingredients: ['pois chiches', 'huile d’olive', 'gousses d’ail', 'citron', 'tahini']
 }];
 ```
 
@@ -932,7 +930,7 @@ export const recipes = [{
 
 <Solution>
 
-Here is one way you could go about it:
+Voici une des façons d'y arriver :
 
 <Sandpack>
 
@@ -942,7 +940,7 @@ import { recipes } from './data.js';
 export default function RecipeList() {
   return (
     <div>
-      <h1>Recipes</h1>
+      <h1>Recettes</h1>
       {recipes.map(recipe =>
         <div key={recipe.id}>
           <h2>{recipe.name}</h2>
@@ -963,28 +961,28 @@ export default function RecipeList() {
 ```js data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: 'Greek Salad',
-  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
+  name: 'Salade grecque',
+  ingredients: ['tomates', 'concombre', 'oignon', 'olives', 'feta']
 }, {
   id: 'hawaiian-pizza',
-  name: 'Hawaiian Pizza',
-  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
+  name: 'Pizza hawaïenne',
+  ingredients: ['pâte à pizza', 'sauce pizza', 'mozzarella', 'jambon', 'ananas']
 }, {
   id: 'hummus',
-  name: 'Hummus',
-  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
+  name: 'Houmous',
+  ingredients: ['pois chiches', 'huile d’olive', 'gousses d’ail', 'citron', 'tahini']
 }];
 ```
 
 </Sandpack>
 
-Each of the `recipes` already includes an `id` field, so that's what the outer loop uses for its `key`. There is no ID you could use to loop over ingredients. However, it's reasonable to assume that the same ingredient won't be listed twice within the same recipe, so its name can serve as a `key`. Alternatively, you could change the data structure to add IDs, or use index as a `key` (with the caveat that you can't safely reorder ingredients).
+Chaque recette dans `recipes` inclut déjà un champ `id`, que vous pouvez utiliser pour les `key` de la boucle principale.  Il n'y a pas d'ID utilisable pour les ingrédients.  Ceci dit, on peut raisonnablement supposer que le même ingrédient n'apparaîtra pas deux fois dans la même recette, de sorte que son nom peut servir de `key`.  Sinon, vous pourriez changer les données pour ajouter des ID, ou utiliser l'index comme `key` (sauf que vous ne pourrez alors plus réordonner les ingrédients de façon fiable).
 
 </Solution>
 
-#### Extracting a list item component {/*extracting-a-list-item-component*/}
+#### Extraire un composant d'élément de liste {/*extracting-a-list-item-component*/}
 
-This `RecipeList` component contains two nested `map` calls. To simplify it, extract a `Recipe` component from it which will accept `id`, `name`, and `ingredients` props. Where do you place the outer `key` and why?
+Ce composant `RecipeList` contient deux appels `map` imbriqués.  Pour le simplifier, extrayez-en un composant `Recipe` qui acceptera des props `id`, `name` et `ingredients`.  Où placer sa `key` et pourquoi ?
 
 <Sandpack>
 
@@ -994,7 +992,7 @@ import { recipes } from './data.js';
 export default function RecipeList() {
   return (
     <div>
-      <h1>Recipes</h1>
+      <h1>Recettes</h1>
       {recipes.map(recipe =>
         <div key={recipe.id}>
           <h2>{recipe.name}</h2>
@@ -1015,16 +1013,16 @@ export default function RecipeList() {
 ```js data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: 'Greek Salad',
-  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
+  name: 'Salade grecque',
+  ingredients: ['tomates', 'concombre', 'oignon', 'olives', 'feta']
 }, {
   id: 'hawaiian-pizza',
-  name: 'Hawaiian Pizza',
-  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
+  name: 'Pizza hawaïenne',
+  ingredients: ['pâte à pizza', 'sauce pizza', 'mozzarella', 'jambon', 'ananas']
 }, {
   id: 'hummus',
-  name: 'Hummus',
-  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
+  name: 'Houmous',
+  ingredients: ['pois chiches', 'huile d’olive', 'gousses d’ail', 'citron', 'tahini']
 }];
 ```
 
@@ -1032,7 +1030,7 @@ export const recipes = [{
 
 <Solution>
 
-You can copy-paste the JSX from the outer `map` into a new `Recipe` component and return that JSX. Then you can change `recipe.name` to `name`, `recipe.id` to `id`, and so on, and pass them as props to the `Recipe`:
+Vous pouvez copier-coller le JSX du `map` principal dans un nouveau composant `Recipe` qui renvoie ce JSX.  Ensuite vous changez `recipe.name` en `name`, `recipe.id` en `id` et ainsi de suite, et les passez comme props à `Recipe` :
 
 <Sandpack>
 
@@ -1057,7 +1055,7 @@ function Recipe({ id, name, ingredients }) {
 export default function RecipeList() {
   return (
     <div>
-      <h1>Recipes</h1>
+      <h1>Recettes</h1>
       {recipes.map(recipe =>
         <Recipe {...recipe} key={recipe.id} />
       )}
@@ -1069,51 +1067,51 @@ export default function RecipeList() {
 ```js data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: 'Greek Salad',
-  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
+  name: 'Salade grecque',
+  ingredients: ['tomates', 'concombre', 'oignon', 'olives', 'feta']
 }, {
   id: 'hawaiian-pizza',
-  name: 'Hawaiian Pizza',
-  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
+  name: 'Pizza hawaïenne',
+  ingredients: ['pâte à pizza', 'sauce pizza', 'mozzarella', 'jambon', 'ananas']
 }, {
   id: 'hummus',
-  name: 'Hummus',
-  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
+  name: 'Houmous',
+  ingredients: ['pois chiches', 'huile d’olive', 'gousses d’ail', 'citron', 'tahini']
 }];
 ```
 
 </Sandpack>
 
-Here, `<Recipe {...recipe} key={recipe.id} />` is a syntax shortcut saying "pass all properties of the `recipe` object as props to the `Recipe` component". You could also write each prop explicitly: `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
+Dans ce code, `<Recipe {...recipe} key={recipe.id} />` est un raccourci syntaxique qui dit « passe toutes les propriétés de l'objet `recipe` comme props au composant `Recipe` ».  Vous pourriez aussi écrire chaque prop explicitement : `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
 
-**Note that the `key` is specified on the `<Recipe>` itself rather than on the root `<div>` returned from `Recipe`.** This is because this `key` is needed directly within the context of the surrounding array. Previously, you had an array of `<div>`s so each of them needed a `key`, but now you have an array of `<Recipe>`s. In other words, when you extract a component, don't forget to leave the `key` outside the JSX you copy and paste.
+**Remarquez que la `key` est spécifié sur le `<Recipe>` lui-même plutôt que sur la `<div>` racine renvoyée par `Recipe`.**  C'est parce que `key` doit figurer directement dans le contexte du tableau environnant.  Précédemment, vous aviez un tableau de `<div>` donc chacune d'elles nécessitait une `key`n mais maintenant vous avez un tableau de `<Recipe>`.  En d'autres termes, quand vous extrayez un composant, n'oubliez pas de conserver la `key` hors du JSX que vous copiez-collez.
 
 </Solution>
 
-#### List with a separator {/*list-with-a-separator*/}
+#### Liste avec séparateur {/*list-with-a-separator*/}
 
-This example renders a famous haiku by Katsushika Hokusai, with each line wrapped in a `<p>` tag. Your job is to insert an `<hr />` separator between each paragraph. Your resulting structure should look like this:
+Cet exemple affiche un célèbre haïku de Katsushika Hokusai, dont chaque ligne est enrobée par une balise `<p>`. Votre tâche consiste à insérer un séparateur `<hr />` entre chaque paragraphe.  La structure finale devrait ressembler à ceci :
 
 ```js
 <article>
-  <p>I write, erase, rewrite</p>
+  <p>J’écris, efface, réécris</p>
   <hr />
-  <p>Erase again, and then</p>
+  <p>Efface à nouveau, puis</p>
   <hr />
-  <p>A poppy blooms.</p>
+  <p>Un coquelicot fleurit.</p>
 </article>
 ```
 
-A haiku only contains three lines, but your solution should work with any number of lines. Note that `<hr />` elements only appear *between* the `<p>` elements, not in the beginning or the end!
+Un haïku contient trois lignes, mais votre solution devrait fonctionner pour un nombre quelconque de lignes.  Remarquez que les éléments `<hr />` n'apparaissent *qu'entre* les éléments `<p>`, donc ni au début ni à la fin !
 
 <Sandpack>
 
 ```js
 const poem = {
   lines: [
-    'I write, erase, rewrite',
-    'Erase again, and then',
-    'A poppy blooms.'
+    'J’écris, efface, réécris',
+    'Efface à nouveau, puis',
+    'Un coquelicot fleurit.'
   ]
 };
 
@@ -1147,33 +1145,33 @@ hr {
 
 </Sandpack>
 
-(This is a rare case where index as a key is acceptable because a poem's lines will never reorder.)
+(C'est un des rares cas où l'utilisation de l'index comme clé serait acceptable parce que les lignes du poème ne changeront jamais.)
 
 <Hint>
 
-You'll either need to convert `map` to a manual loop, or use a fragment.
+Vous aurez besoin soit de convertir le `map` en une boucle manuelle, soit d'utiliser un Fragment.
 
 </Hint>
 
 <Solution>
 
-You can write a manual loop, inserting `<hr />` and `<p>...</p>` into the output array as you go:
+Vous pouvez écrire une boucle manuelle qui insère les `<hr />` et les `<p>...</p>` dans le tableau résultat au fil de l'eau :
 
 <Sandpack>
 
 ```js
 const poem = {
   lines: [
-    'I write, erase, rewrite',
-    'Erase again, and then',
-    'A poppy blooms.'
+    'J’écris, efface, réécris',
+    'Efface à nouveau, puis',
+    'Un coquelicot fleurit.'
   ]
 };
 
 export default function Poem() {
   let output = [];
 
-  // Fill the output array
+  // Remplir le tableau résultat
   poem.lines.forEach((line, i) => {
     output.push(
       <hr key={i + '-separator'} />
@@ -1184,7 +1182,7 @@ export default function Poem() {
       </p>
     );
   });
-  // Remove the first <hr />
+  // Retirer le premier <hr />
   output.shift();
 
   return (
@@ -1212,9 +1210,9 @@ hr {
 
 </Sandpack>
 
-Using the original line index as a `key` doesn't work anymore because each separator and paragraph are now in the same array. However, you can give each of them a distinct key using a suffix, e.g. `key={i + '-text'}`.
+Il ne suffit plus d'utiliser l'index de la ligne comme `key` car chaque séparateur et paragraphe font ici partie du même tableau.  En revanche, vous pouvez leur donner à chacun une clé distincte en utilisant un suffixe, par exemple `key={i + '-text'}`.
 
-Alternatively, you could render a collection of fragments which contain `<hr />` and `<p>...</p>`. However, the `<>...</>` shorthand syntax doesn't support passing keys, so you'd have to write `<Fragment>` explicitly:
+Une autre approche consisterait à produire une collection de Fragments qui contiennent `<hr />` et `<p>...</p>`. Attention cependant, la syntaxe concise `<>...</>` ne nous permettrait pas de passer des clés, nous devons donc écrire `<Fragment>` explicitement :
 
 <Sandpack>
 
@@ -1223,9 +1221,9 @@ import { Fragment } from 'react';
 
 const poem = {
   lines: [
-    'I write, erase, rewrite',
-    'Erase again, and then',
-    'A poppy blooms.'
+    'J’écris, efface, réécris',
+    'Efface à nouveau, puis',
+    'Un coquelicot fleurit.'
   ]
 };
 
@@ -1260,7 +1258,7 @@ hr {
 
 </Sandpack>
 
-Remember, fragments (often written as `<> </>`) let you group JSX nodes without adding extra `<div>`s!
+Souvenez-vous que les Fragments (souvent écrits `<> </>`) vous permettent de regrouper des nœuds JSX sans avoir à ajouter des `<div>` superflues !
 
 </Solution>
 
