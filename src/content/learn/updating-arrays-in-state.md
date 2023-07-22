@@ -18,7 +18,7 @@ Les tableaux sont un autre type d’objet modifiable en JavaScript que vous pouv
 
 ## Mettre à jour des tableaux sans mutation {/*updating-arrays-without-mutation*/}
 
-En JavaScript, les tableaux sont simplement un autre type d'objet. [Tout comme avec les objets](/learn/updating-objects-in-state), **vous devez considérer les tableaux dans l'état React comme étant en lecture seule.** Cela signifie que vous ne devez pas réassigner les éléments à l'intérieur d'un tableau, comme `arr[0] = 'bird'`, et vous ne devez pas non plus utiliser des méthodes qui modifient le tableau, telles que `push()` et `pop()`.
+En JavaScript, les tableaux sont simplement un autre type d'objet. [Tout comme avec les objets](/learn/updating-objects-in-state), **vous devez considérer les tableaux dans l'état React comme étant en lecture seule.** Cela signifie que vous ne devez pas réassigner les éléments à l'intérieur d'un tableau, comme `arr[0] = 'oiseau'`, et vous ne devez pas non plus utiliser des méthodes qui modifient le tableau, telles que `push()` et `pop()`.
 
 Au lieu de ça, chaque fois que vous souhaitez mettre à jour un tableau, vous devez passer un *nouveau* tableau à la fonction de mise à jour de l'état. Pour cela, vous pouvez créer un nouveau tableau à partir de l'original en utilisant des méthodes non modifiantes telles que `filter()` et `map()`. Ensuite, vous pouvez mettre à jour l'état avec le nouveau tableau résultant.
 
@@ -40,13 +40,13 @@ Malheureusement, [`slice`](https://developer.mozilla.org/fr/docs/Web/JavaScript/
 - `slice` vous permet de copier un tableau ou une partie de celui-ci.
 - `splice` **modifie** le tableau (pour insérer ou supprimer des éléments).
 
-En React, vous utiliserez beaucoup plus souvent `slice` (sans le `p` !) car vous ne voulez pas modifier les objets ou les tableaux dans l'état. [Mise à jour des objets](/learn/updating-objects-in-state) explique ce qu'est la mutation et pourquoi elle n'est pas recommandée pour l'état.
+En React, vous utiliserez beaucoup plus souvent `slice` (sans le `p` !) car vous ne voulez pas modifier les objets ou les tableaux dans l'état. [Mise à jour des objets](/learn/updating-objects-in-state) explique ce qu'est la mutation et pourquoi elle est déconseillée pour l'état.
 
 </Pitfall>
 
 ### Ajouter un élément à un tableau {/*adding-to-an-array*/}
 
-`push()` va modifier un tableau, ce que vous ne souhaitez pas faire :
+`push()` modifiera un tableau, ce que vous ne souhaitez pas faire :
 
 <Sandpack>
 
@@ -88,7 +88,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Au lieu de ça, créez un *nouveau* tableau qui contient les éléments existants *et* un nouvel élément à la fin. Il existe plusieurs façons de faire cela, mais la plus simple est d'utiliser [la syntaxe de *spread* de tableaux](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) `...` :
+Au lieu de ça, créez un *nouveau* tableau qui contient les éléments existants *et* un nouvel élément à la fin. Il existe plusieurs façons de le faire, mais la plus simple est d'utiliser [la syntaxe de *spread* de tableaux](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) `...` :
 
 ```js
 setArtists( // Remplace l'état
@@ -141,7 +141,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-L'opérateur de *spread* de tableaux permet également d'ajouter un élément au début du tableau en le plaçant *avant* le `...artists` d'origine :
+La syntaxe de *spread* de tableaux permet également d'ajouter un élément au début du tableau en le plaçant *avant* le `...artists` d'origine :
 
 ```js
 setArtists([
@@ -220,9 +220,9 @@ Dans cet exemple, un tableau contient les coordonnées de deux cercles et d'un c
 import { useState } from 'react';
 
 let initialShapes = [
-  { id: 0, type: 'circle', x: 50, y: 100 },
-  { id: 1, type: 'square', x: 150, y: 100 },
-  { id: 2, type: 'circle', x: 250, y: 100 },
+  { id: 0, type: 'cercle', x: 50, y: 100 },
+  { id: 1, type: 'carré', x: 150, y: 100 },
+  { id: 2, type: 'cercle', x: 250, y: 100 },
 ];
 
 export default function ShapeEditor() {
@@ -232,7 +232,7 @@ export default function ShapeEditor() {
 
   function handleClick() {
     const nextShapes = shapes.map(shape => {
-      if (shape.type === 'square') {
+      if (shape.type === 'carré') {
         // Pas de changement
         return shape;
       } else {
@@ -261,7 +261,7 @@ export default function ShapeEditor() {
           left: shape.x,
           top: shape.y,
           borderRadius:
-            shape.type === 'circle'
+            shape.type === 'cercle'
               ? '50%' : '',
           width: 20,
           height: 20,
@@ -280,7 +280,7 @@ body { height: 300px; }
 
 ### Remplacer des éléments dans un tableau {/*replacing-items-in-an-array*/}
 
-Il est très courant de vouloir remplacer un ou plusieurs éléments dans un tableau. Les affectations telles que `arr[0] = 'bird'` modifient le tableau d'origine, vous devrez donc encore une fois plutôt utiliser `map`.
+Il est très courant de vouloir remplacer un ou plusieurs éléments dans un tableau. Les affectations telles que `arr[0] = 'oiseau'` modifient le tableau d'origine, vous devrez donc encore une fois plutôt utiliser `map`.
 
 Pour remplacer un élément, créez un nouveau tableau avec `map`. À l'intérieur de votre appel à `map`, vous recevrez l'index de l'élément comme deuxième argument. Utilisez-le pour décider s'il faut renvoyer l'élément d'origine (premier argument) ou autre chose :
 
@@ -334,7 +334,7 @@ button { margin: 5px; }
 
 ### Insérer un élément dans un tableau {/*inserting-into-an-array*/}
 
-Parfois, vous souhaiterez peut-être insérer un élément à une position spécifique qui n'est ni au début ni à la fin du tableau. Pour cela, vous pouvez utiliser la syntaxe de *spread* de tableaux `...` combinée avec la méthode `slice()`. La méthode `slice()` vous permet de découper une « tranche » du tableau. Pour insérer un élément, vous créerez un nouveau tableau qui *spread* la « tranche » _avant_ le point d'insertion, puis le nouvel élément, et enfin le reste du tableau d'origine.
+Parfois, vous souhaiterez peut-être insérer un élément à une position spécifique qui n'est ni au début ni à la fin du tableau. Pour cela, vous pouvez utiliser la syntaxe de *spread* de tableaux `...` combinée avec la méthode `slice()`. La méthode `slice()` vous permet de découper une « tranche » du tableau. Pour insérer un élément, vous créerez un nouveau tableau qui contiendra la « tranche » _avant_ le point d'insertion, puis le nouvel élément, et enfin le reste du tableau d'origine.
 
 Dans cet exemple, le bouton Insérer insère toujours à l'index `1` :
 
@@ -452,13 +452,13 @@ nextList[0].seen = true; // Problème : modifie list[0]
 setList(nextList);
 ```
 
-Bien que `nextList` et `list` soient deux tableaux différents, **`nextList[0]` et `list[0]` pointent vers le même objet.** Donc, en modifiant `nextList[0].seen`, vous modifiez également `list[0].seen`. C'est une mutation de l'état, que vous devez éviter ! Vous pouvez résoudre ce problème de la même manière que pour [mettre à jour des objets JavaScript imbriqués](/learn/updating-objects-in-state#updating-a-nested-object) : en copiant les éléments individuels que vous souhaitez changer au lieu de les modifier. Voici comment faire.
+Bien que `nextList` et `list` soient deux tableaux différents, **`nextList[0]` et `list[0]` pointent vers le même objet.** Donc, en modifiant `nextList[0].seen`, vous modifiez également `list[0].seen`. C'est une mutation de l'état, que vous devez éviter ! Vous pouvez résoudre ce problème de la même manière que pour [mettre à jour des objets JavaScript imbriqués](/learn/updating-objects-in-state#updating-a-nested-object) en copiant les éléments individuels que vous souhaitez changer au lieu de les modifier. Voici comment faire.
 
 ## Mettre à jour des objets dans des tableaux {/*updating-objects-inside-arrays*/}
 
 Les objets ne sont pas _vraiment_ « à l'intérieur » des tableaux. Ils peuvent sembler être « à l'intérieur » dans le code, mais chaque objet dans un tableau est une valeur distincte vers laquelle le tableau « pointe ». C'est pourquoi vous devez faire attention lorsque vous modifiez des champs imbriqués tels que `list[0]`. La liste d'œuvres d'art d'une autre personne peut pointer vers le même élément du tableau !
 
-**Lorsque vous mettez à jour un état imbriqué, vous devez créer des copies à partir de l'endroit où vous souhaitez effectuer la mise à jour, en remontant jusqu’au plus haut niveau de l’objet.** Voyons comment cela fonctionne.
+**Lorsque vous mettez à jour un état imbriqué, vous devez créer des copies à partir de l'endroit où vous souhaitez effectuer la mise à jour, en remontant jusqu’au plus haut niveau.** Voyons comment cela fonctionne.
 
 Dans cet exemple, deux listes d'œuvres d'art séparées ont le même état initial. Elles sont censées être isolées, mais à cause d'une mutation, leur état est accidentellement partagé, et cocher une case dans l'une des listes affecte l'autre liste :
 
@@ -549,7 +549,7 @@ artwork.seen = nextSeen; // Problème : modifie un élément existant
 setMyList(myNextList);
 ```
 
-Bien que le tableau `myNextList` lui-même soit nouveau, les *éléments eux-mêmes* sont les mêmes que dans le tableau `myList` d'origine. Donc, en changeant `artwork.seen`, vous modifiez l'artwork *d'origine*. Cet artwork est également dans `yourList`, ce qui provoque le bug. Des bugs comme celui-ci peuvent être difficiles à comprendre, mais heureusement, ils n'ont pas lieu si vous évitez de modifier l'état.
+Bien que le tableau `myNextList` soit nouveau, les *éléments eux-mêmes* sont les mêmes que dans le tableau `myList` d'origine. Donc, en changeant `artwork.seen`, vous modifiez l'œuvre d'art *d'origine*. Cette œuvre d'art est également dans `yourList`, ce qui provoque le bug. Des bugs comme celui-ci peuvent être difficiles à comprendre, mais heureusement, ils n'ont pas lieu si vous évitez de modifier l'état.
 
 **Vous pouvez utiliser `map` pour remplacer un ancien élément par sa nouvelle version sans mutation.**
 
@@ -657,12 +657,12 @@ En général, **vous ne devriez modifier que les objets que vous venez de créer
 
 ### Écrire une logique de mise à jour concise avec Immer {/*write-concise-update-logic-with-immer*/}
 
-Mettre à jour des tableaux imbriqués sans mutation peut devenir un peu répétitif. [Tout comme avec les objets](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
+Mettre à jour des tableaux imbriqués sans mutation peut conduire à du code un peu répétitif. [Tout comme avec les objets](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
 
-- En général, vous ne devriez pas avoir besoin de mettre à jour l'état à plus de quelques niveaux de profondeur. Si vos objets d'état sont très profonds, vous pouvez envisager de [les restructurer différemment](/learn/choosing-the-state-structure#avoid-deeply-nested-state) pour les rendre plats.
-- Si vous ne souhaitez pas changer la structure de votre état, vous pouvez préférerez peut-être utiliser [Immer](https://github.com/immerjs/use-immer), qui vous permet d’écrire votre code en utilisant une syntaxe pratique mais modifiante, et se charge de produire les copies pour vous.
+- En général, vous ne devriez pas avoir besoin de mettre à jour l'état à plus de quelques niveaux de profondeur. Si vos objets d'état sont très profonds, vous pouvez envisager de [les restructurer différemment](/learn/choosing-the-state-structure#avoid-deeply-nested-state) pour les rendre plus plats.
+- Si vous ne souhaitez pas changer la structure de votre état, vous préférerez peut-être utiliser [Immer](https://github.com/immerjs/use-immer), qui vous permet d’écrire votre code en utilisant une syntaxe pratique mais modifiante, et se charge de produire les copies pour vous.
 
-Voici l'exemple de la liste des œuvres à voir réécrit avec Immer :
+Voici l'exemple de la liste des œuvres d'art réécrit avec Immer :
 
 <Sandpack>
 
@@ -772,15 +772,15 @@ updateMyTodos(draft => {
 });
 ```
 
-Cela est possible car vous ne modifiez pas l'état _d'origine_, mais vous modifiez un objet `draft` spécial fourni par Immer. De même, vous pouvez appliquer des méthodes modifiantes telles que `push()` et `pop()` au contenu du `draft`.
+C'est parce que vous ne modifiez pas l'état _d'origine_, mais un objet `draft` spécial fourni par Immer. De même, vous pouvez appliquer des méthodes modifiantes telles que `push()` et `pop()` au contenu du `draft`.
 
 En interne, Immer construit toujours le prochain état à partir de zéro en fonction des changements que vous avez apportés au `draft`. Cela permet de maintenir vos gestionnaires d'événements très concis sans jamais modifier l'état.
 
 <Recap>
 
 - Vous pouvez mettre des tableaux dans l'état, mais vous ne pouvez pas les modifier.
-- Au lieu de modifier un tableau, créez une *nouvelle* version de celui-ci et mettez à jour l'état en conséquence.
-- Vous pouvez utiliser la syntaxe de *spread* `[...arr, newItem]` pour créer des tableaux avec de nouveaux éléments.
+- Au lieu de modifier un tableau, créez une *nouvelle* version de celui-ci et mettez à jour l'état avec cette nouvelle version.
+- Vous pouvez utiliser la syntaxe de *spread* de tableaux `[...arr, newItem]` pour créer des tableaux avec de nouveaux éléments.
 - Vous pouvez utiliser `filter()` et `map()` pour créer de nouveaux tableaux avec des éléments filtrés ou transformés.
 - Vous pouvez utiliser Immer pour garder votre code concis.
 
@@ -850,7 +850,7 @@ button { margin: 5px; }
 
 <Solution>
 
-Vous pouvez utiliser la fonction `map` pour créer un nouveau tableau, puis utiliser la syntaxe de *spread* `...` pour créer une copie de l'objet modifié pour le nouveau tableau :
+Vous pouvez utiliser la fonction `map` pour créer un nouveau tableau, puis utiliser la syntaxe de *spread* d'objets `...` pour créer une copie de l'objet modifié pour le nouveau tableau :
 
 <Sandpack>
 
@@ -1413,7 +1413,7 @@ ul, li { margin: 0; padding: 0; }
 
 #### Corriger les mutations en utilisant Immer {/*fix-the-mutations-using-immer*/}
 
-Il s'agit du même exemple que dans l'exercice précédent. Cette fois-ci, corrigez les mutations en utilisant Immer. Pour vous faciliter la tâche, `useImmer` est déjà importé, donc vous devez modifier la variable d'état `todos` pour l'utiliser.
+Il s'agit du même exemple que dans l'exercice précédent. Cette fois-ci, corrigez les mutations en utilisant Immer. Pour vous faciliter la tâche, `useImmer` est déjà importé, vous devez donc modifier la variable d'état `todos` pour l'utiliser.
 
 <Sandpack>
 
