@@ -31,7 +31,7 @@ Voici un tableau de référence des opérations courantes sur les tableaux. Lors
 | remplacement | `splice`, affectation `arr[i] = ...` | `map` ([exemple](#replacing-items-in-an-array))                           |
 | tri          | `reverse`, `sort`                    | copiez d'abord le tableau ([exemple](#making-other-changes-to-an-array))  |
 
-Vous pouvez également [utiliser Immer](#écrire-une-logique-de-mise-à-jour-concise-avec-immer) qui vous permet d'utiliser des méthodes des deux colonnes.
+Vous pouvez également [utiliser Immer](#write-concise-update-logic-with-immer) qui vous permet d'utiliser des méthodes des deux colonnes.
 
 <Pitfall>
 
@@ -1081,6 +1081,7 @@ button { margin: 5px; }
 #### Corriger les mutations en utilisant des méthodes non modifiantes {/*fix-the-mutations-using-non-mutative-methods*/}
 
 Dans cet exemple, tous les gestionnaires d'événements dans `App.js` utilisent des mutations. Par conséquent, l'édition et la suppression des tâches ne fonctionnent pas. Réécrivez `handleAddTodo`, `handleChangeTodo` et `handleDeleteTodo` en utilisant des méthodes non modifiantes :
+
 <Sandpack>
 
 ```js App.js
@@ -1197,7 +1198,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Enregistrer
+          Sauvegarder
         </button>
       </>
     );
@@ -1364,7 +1365,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Enregistrer
+          Sauvegarder
         </button>
       </>
     );
@@ -1531,7 +1532,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Enregistrer
+          Sauvegarder
         </button>
       </>
     );
@@ -1594,7 +1595,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Avec Immer, vous pouvez écrire du code de manière modifiante, tant que vous ne modifiez que les parties du `draft` que Immer vous fournit. Ici, toutes les mutations sont effectuées sur le `draft` de sorte que le code fonctionne correctement.
+Avec Immer, vous pouvez écrire du code de manière modifiante, tant que vous ne modifiez que les parties du `draft` que Immer vous fournit. Ici, toutes les mutations sont effectuées sur le `draft` de sorte que le code fonctionne correctement:
 
 <Sandpack>
 
@@ -1719,7 +1720,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Enregistrer
+          Sauvegarder
         </button>
       </>
     );
@@ -1904,7 +1905,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Enregistrer
+          Sauvegarder
         </button>
       </>
     );
