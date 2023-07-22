@@ -198,7 +198,7 @@ export default function List() {
 
 </Sandpack>
 
-Cliquez sur le bouton "Supprimer" plusieurs fois et observez son gestionnaire de clics.
+Cliquez sur le bouton « Supprimer » plusieurs fois et observez son gestionnaire de clics.
 
 ```js
 setArtists(
@@ -206,7 +206,7 @@ setArtists(
 );
 ```
 
-Ici, `artists.filter(a => a.id !== artist.id)` signifie "créer un tableau qui se compose des `artists` dont les IDs sont différents de `artist.id`". En d'autres termes, le bouton "Supprimer" de chaque artiste filtre _cet_ artiste du tableau, puis demande un nouveau rendu avec le tableau résultant. Notez que `filter` ne modifie pas le tableau d'origine.
+Ici, `artists.filter(a => a.id !== artist.id)` signifie « créer un tableau qui se compose des `artists` dont les IDs sont différents de `artist.id` ». En d'autres termes, le bouton « Supprimer » de chaque artiste filtre _cet_ artiste du tableau, puis demande un nouveau rendu avec le tableau résultant. Notez que `filter` ne modifie pas le tableau d'origine.
 
 ### Transformer un tableau {/*transforming-an-array*/}
 
@@ -334,7 +334,7 @@ button { margin: 5px; }
 
 ### Insérer un élément dans un tableau {/*inserting-into-an-array*/}
 
-Parfois, vous souhaiterez peut-être insérer un élément à une position spécifique qui n'est ni au début ni à la fin du tableau. Pour cela, vous pouvez utiliser la syntaxe de *spread* de tableaux `...` combinée avec la méthode `slice()`. La méthode `slice()` vous permet de découper une "tranche" du tableau. Pour insérer un élément, vous créerez un nouveau tableau qui *spread* la "tranche" _avant_ le point d'insertion, puis le nouvel élément, et enfin le reste du tableau d'origine.
+Parfois, vous souhaiterez peut-être insérer un élément à une position spécifique qui n'est ni au début ni à la fin du tableau. Pour cela, vous pouvez utiliser la syntaxe de *spread* de tableaux `...` combinée avec la méthode `slice()`. La méthode `slice()` vous permet de découper une « tranche » du tableau. Pour insérer un élément, vous créerez un nouveau tableau qui *spread* la « tranche » _avant_ le point d'insertion, puis le nouvel élément, et enfin le reste du tableau d'origine.
 
 Dans cet exemple, le bouton Insérer insère toujours à l'index `1` :
 
@@ -456,7 +456,7 @@ Bien que `nextList` et `list` soient deux tableaux différents, **`nextList[0]` 
 
 ## Mettre à jour des objets dans des tableaux {/*updating-objects-inside-arrays*/}
 
-Les objets ne sont pas _vraiment_ "à l'intérieur" des tableaux. Ils peuvent sembler être "à l'intérieur" dans le code, mais chaque objet dans un tableau est une valeur distincte vers laquelle le tableau "pointe". C'est pourquoi vous devez faire attention lorsque vous modifiez des champs imbriqués tels que `list[0]`. La liste d'œuvres d'art d'une autre personne peut pointer vers le même élément du tableau !
+Les objets ne sont pas _vraiment_ « à l'intérieur » des tableaux. Ils peuvent sembler être « à l'intérieur » dans le code, mais chaque objet dans un tableau est une valeur distincte vers laquelle le tableau « pointe ». C'est pourquoi vous devez faire attention lorsque vous modifiez des champs imbriqués tels que `list[0]`. La liste d'œuvres d'art d'une autre personne peut pointer vers le même élément du tableau !
 
 **Lorsque vous mettez à jour un état imbriqué, vous devez créer des copies à partir de l'endroit où vous souhaitez effectuer la mise à jour, en remontant jusqu’au plus haut niveau de l’objet.** Voyons comment cela fonctionne.
 
@@ -792,7 +792,7 @@ En interne, Immer construit toujours le prochain état à partir de zéro en fon
 
 #### Mettre à jour un élément dans le panier {/*update-an-item-in-the-shopping-cart*/}
 
-Complétez la logique de `handleIncreaseClick` de manière à ce que lorsque l'on appuie sur "+", le nombre correspondant augmente :
+Complétez la logique de `handleIncreaseClick` de manière à ce que lorsque l'on appuie sur « + », le nombre correspondant augmente :
 
 <Sandpack>
 
@@ -919,7 +919,7 @@ button { margin: 5px; }
 
 #### Supprimer un article du panier {/*remove-an-item-from-the-shopping-cart*/}
 
-Ce panier d'achat dispose d'un bouton "+" fonctionnel, mais le bouton "–" ne fait rien. Vous devez lui ajouter un gestionnaire d'événements pour qu'en appuyant dessus, le `count` du produit correspondant diminue. Si vous appuyez sur "–" lorsque le count est de 1, le produit devrait automatiquement être retiré du panier. Assurez-vous qu'il n'affiche jamais 0.
+Ce panier d'achat dispose d'un bouton « + » fonctionnel, mais le bouton « – » ne fait rien. Vous devez lui ajouter un gestionnaire d'événements pour qu'en appuyant dessus, le `count` du produit correspondant diminue. Si vous appuyez sur « – » lorsque le count est de 1, le produit devrait automatiquement être retiré du panier. Assurez-vous qu'il n'affiche jamais 0.
 
 <Sandpack>
 
