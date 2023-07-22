@@ -444,7 +444,7 @@ export default function List() {
 
 Ici, vous utilisez d'abord la syntaxe de *spread* `[...list]` pour créer une copie du tableau d'origine. Maintenant que vous avez une copie, vous pouvez utiliser des méthodes modifiantes comme `nextList.reverse()` ou `nextList.sort()`, ou même affecter individuellement des éléments avec `nextList[0] = "quelque chose"`.
 
-Cependant, **même si vous copiez un tableau, vous ne pouvez pas modifier directement les éléments existants _à l'intérieur_ de celui-ci.** C'est parce que la copie est superficielle - le nouveau tableau contiendra les mêmes éléments que le tableau d'origine. Ainsi, si vous modifiez un objet à l'intérieur du tableau copié, vous modifierez l'état existant. Par exemple, le code suivant est problématique.
+Cependant, **même si vous copiez un tableau, vous ne pouvez pas modifier directement les éléments existants _à l'intérieur_ de celui-ci.** C'est parce que la copie est superficielle : le nouveau tableau contiendra les mêmes éléments que le tableau d'origine. Ainsi, si vous modifiez un objet à l'intérieur du tableau copié, vous modifierez l'état existant. Par exemple, le code suivant est problématique.
 
 ```js
 const nextList = [...list];
