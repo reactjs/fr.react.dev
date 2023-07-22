@@ -500,7 +500,7 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
+      <h1>Liste de souhaits d'art</h1>
       <h2>Ma liste d'œuvres d'art à voir :</h2>
       <ItemList
         artworks={myList}
@@ -613,7 +613,7 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
+      <h1>Liste de souhaits d'art</h1>
       <h2>Ma liste d'œuvres d'art à voir :</h2>
       <ItemList
         artworks={myList}
@@ -705,7 +705,7 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
+      <h1>Liste de souhaits d'art</h1>
       <h2>Ma liste d'œuvres à voir :</h2>
       <ItemList
         artworks={myList}
