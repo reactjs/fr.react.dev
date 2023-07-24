@@ -19,6 +19,7 @@ import {IconClose} from 'components/Icon/IconClose';
 import {IconHamburger} from 'components/Icon/IconHamburger';
 import {IconSearch} from 'components/Icon/IconSearch';
 import {Logo} from '../../Logo';
+<<<<<<< HEAD
 import NextLink from 'next/link';
 import type {RouteItem} from '../getRouteMeta';
 import {Search} from 'components/Search';
@@ -26,6 +27,11 @@ import {SidebarLink} from '../Sidebar';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import cn from 'classnames';
 import {useRouter} from 'next/router';
+=======
+import {Feedback} from '../Feedback';
+import {SidebarRouteTree} from '../Sidebar';
+import type {RouteItem} from '../getRouteMeta';
+>>>>>>> b9eea4da28db66591ae5935898f98acdf009a0ad
 
 declare global {
   interface Window {
