@@ -220,9 +220,9 @@ Dans cet exemple, un tableau contient les coordonnées de deux cercles et d'un c
 import { useState } from 'react';
 
 let initialShapes = [
-  { id: 0, type: 'cercle', x: 50, y: 100 },
-  { id: 1, type: 'carré', x: 150, y: 100 },
-  { id: 2, type: 'cercle', x: 250, y: 100 },
+  { id: 0, type: 'circle', x: 50, y: 100 },
+  { id: 1, type: 'square', x: 150, y: 100 },
+  { id: 2, type: 'circle', x: 250, y: 100 },
 ];
 
 export default function ShapeEditor() {
@@ -232,7 +232,7 @@ export default function ShapeEditor() {
 
   function handleClick() {
     const nextShapes = shapes.map(shape => {
-      if (shape.type === 'carré') {
+      if (shape.type === 'square') {
         // Pas de changement
         return shape;
       } else {
@@ -261,7 +261,7 @@ export default function ShapeEditor() {
           left: shape.x,
           top: shape.y,
           borderRadius:
-            shape.type === 'cercle'
+            shape.type === 'circle'
               ? '50%' : '',
           width: 20,
           height: 20,
