@@ -4,10 +4,10 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET STARTED"
+      "sectionHeader": "DÉMARRAGE"
     },
     {
-      "title": "Quick Start",
+      "title": "Démarrage rapide",
       "path": "/learn"
     },
     {
@@ -16,10 +16,10 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "LEARN REACT"
+      "sectionHeader": "APPRENDRE REACT"
     },
     {
-      "title": "Describing the UI",
+      "title": "Décrire l’UI",
       "path": "/learn/describing-the-ui"
     },
     {
@@ -27,67 +27,67 @@
       "path": "/learn/adding-interactivity"
     },
     {
-      "title": "Managing State",
+      "title": "Gérer l'état",
       "path": "/learn/managing-state"
     },
     {
-      "title": "Escape Hatches",
+      "title": "Échappatoires",
       "path": "/learn/escape-hatches"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "REACT API"
+      "sectionHeader": "API REACT"
     },
     {
       "title": "Hooks",
       "path": "/reference/react"
     },
     {
-      "title": "Components",
+      "title": "Composants",
       "path": "/reference/react/components"
     },
     {
-      "title": "APIs",
+      "title": "Fonctions",
       "path": "/reference/react/apis"
     },
     {
-      "title": "Legacy APIs",
+      "title": "API React historique",
       "path": "/reference/react/legacy"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "REACT DOM API"
+      "sectionHeader": "API REACT DOM"
     },
     {
-      "title": "Components",
+      "title": "Composants",
       "path": "/reference/react-dom/components"
     },
     {
-      "title": "APIs",
+      "title": "Fonctions",
       "path": "/reference/react-dom"
     },
     {
-      "title": "Client APIs",
+      "title": "Fonctions côté client",
       "path": "/reference/react-dom/client"
     },
     {
-      "title": "Server APIs",
+      "title": "Fonctions côté serveur",
       "path": "/reference/react-dom/server"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET INVOLVED"
+      "sectionHeader": "S’IMPLIQUER"
     },
     {
-      "title": "React Community",
+      "title": "Communauté React",
       "path": "/community"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "STAY INFORMED"
+      "sectionHeader": "RESTER INFORMÉ·E"
     },
     {
-      "title": "React Blog",
+      "title": "Blog React",
       "path": "/blog"
     }
   ]
