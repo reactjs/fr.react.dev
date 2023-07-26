@@ -3,44 +3,29 @@
  */
 
 import {
-<<<<<<< HEAD
-  Fragment,
-=======
-  createContext,
-  memo,
-  useState,
-  useContext,
-  useId,
->>>>>>> b9eea4da28db66591ae5935898f98acdf009a0ad
   Suspense,
   createContext,
   memo,
   useContext,
   useEffect,
-<<<<<<< HEAD
   useId,
-  useReducer,
   useRef,
   useState,
-=======
-  useRef,
->>>>>>> b9eea4da28db66591ae5935898f98acdf009a0ad
   useTransition,
 } from 'react';
 
-import BlogCard from 'components/MDX/BlogCard';
-import ButtonLink from '../ButtonLink';
-import CodeBlock from 'components/MDX/CodeBlock';
+import cn from 'classnames';
 import {ExternalLink} from 'components/ExternalLink';
 import {IconChevron} from 'components/Icon/IconChevron';
-import {IconNavArrow} from 'components/Icon/IconNavArrow';
-import {IconRestart} from '../Icon/IconRestart';
 import {IconSearch} from 'components/Icon/IconSearch';
-import Link from 'components/MDX/Link';
 import {Logo} from 'components/Logo';
+import BlogCard from 'components/MDX/BlogCard';
+import CodeBlock from 'components/MDX/CodeBlock';
+import Link from 'components/MDX/Link';
 import NextLink from 'next/link';
-import cn from 'classnames';
 import sidebarBlog from '../../sidebarBlog.json';
+import ButtonLink from '../ButtonLink';
+import {IconRestart} from '../Icon/IconRestart';
 
 function Section({children, background = null}) {
   return (
