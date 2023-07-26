@@ -3,32 +3,29 @@
  */
 
 import {
-  Fragment,
   Suspense,
   createContext,
   memo,
   useContext,
   useEffect,
   useId,
-  useReducer,
   useRef,
   useState,
   useTransition,
 } from 'react';
 
-import BlogCard from 'components/MDX/BlogCard';
-import ButtonLink from '../ButtonLink';
-import CodeBlock from 'components/MDX/CodeBlock';
+import cn from 'classnames';
 import {ExternalLink} from 'components/ExternalLink';
 import {IconChevron} from 'components/Icon/IconChevron';
-import {IconNavArrow} from 'components/Icon/IconNavArrow';
-import {IconRestart} from '../Icon/IconRestart';
 import {IconSearch} from 'components/Icon/IconSearch';
-import Link from 'components/MDX/Link';
 import {Logo} from 'components/Logo';
+import BlogCard from 'components/MDX/BlogCard';
+import CodeBlock from 'components/MDX/CodeBlock';
+import Link from 'components/MDX/Link';
 import NextLink from 'next/link';
-import cn from 'classnames';
 import sidebarBlog from '../../sidebarBlog.json';
+import ButtonLink from '../ButtonLink';
+import {IconRestart} from '../Icon/IconRestart';
 
 function Section({children, background = null}) {
   return (
@@ -67,14 +64,6 @@ function Para({children}) {
   );
 }
 
-function Left({children}) {
-  return (
-    <div className="px-5 lg:px-0 max-w-4xl lg:text-left text-white text-opacity-80">
-      {children}
-    </div>
-  );
-}
-
 function Center({children}) {
   return (
     <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-white text-opacity-80 flex flex-col items-center justify-center">
@@ -90,19 +79,23 @@ function FullBleed({children}) {
 }
 
 function CurrentTime() {
-  const msPerMinute = 60 * 1000;
-  const date = new Date();
-  let nextMinute = Math.floor(+date / msPerMinute + 1) * msPerMinute;
-
+  const [date, setDate] = useState(new Date());
   const currentTime = date.toLocaleTimeString([], {
     hour: 'numeric',
     minute: 'numeric',
   });
-  let [, forceUpdate] = useReducer((n) => n + 1, 0);
   useEffect(() => {
-    const timeout = setTimeout(forceUpdate, nextMinute - Date.now());
+    const msPerMinute = 60 * 1000;
+    let nextMinute = Math.floor(+date / msPerMinute + 1) * msPerMinute;
+
+    const timeout = setTimeout(() => {
+      if (Date.now() > nextMinute) {
+        setDate(new Date());
+      }
+    }, nextMinute - Date.now());
     return () => clearTimeout(timeout);
   }, [date]);
+
   return <span suppressHydrationWarning>{currentTime}</span>;
 }
 
@@ -834,7 +827,7 @@ function ExampleLayout({
         .filter((s) => s !== null);
       setOverlayStyles(nextOverlayStyles);
     }
-  }, [activeArea]);
+  }, [activeArea, hoverTopOffset]);
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
@@ -1214,7 +1207,7 @@ function useNestedScrollLock(ref) {
       window.removeEventListener('scroll', handleScroll);
       clearInterval(interval);
     };
-  }, []);
+  }, [ref]);
 }
 
 function ExamplePanel({
@@ -1223,7 +1216,6 @@ function ExamplePanel({
   noShadow,
   height,
   contentMarginTop,
-  activeArea,
 }) {
   return (
     <div
