@@ -277,19 +277,19 @@ Si vous êtes bloqué·e, ne vous laissez pas décourager ! Suivez ce tutoriel 
 
 ## Survol {/*overview*/}
 
-Now that you're set up, let's get an overview of React!
+À présent que vous êtes prêt·e, attaquons un survol de React !
 
-### Inspecting the starter code {/*inspecting-the-starter-code*/}
+### Examiner le code de démarrage {/*inspecting-the-starter-code*/}
 
-In CodeSandbox you'll see three main sections:
+Dans CodeSandbox vous trouverez trois sections principales :
 
-![CodeSandbox with starter code](../images/tutorial/react-starter-code-codesandbox.png)
+![CodeSandbox avec le code de démarrage](../images/tutorial/react-starter-code-codesandbox.png)
 
-1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` and a folder called `public`
-1. The _code editor_ where you'll see the source code of your selected file
-1. The _browser_ section where you'll see how the code you've written will be displayed
+1. La section _Files_ contient une liste des fichiers tels que `App.js`, `index.js`, `styles.css` et un dossier nommé `public`
+2. Le _code editor_ affiche le code source du fichier sélectionné
+3. Le _browser_ affiche le résultat du code que vous avez écrit
 
-The `App.js` file should be selected in the _Files_ section. The contents of that file in the _code editor_ should be:
+Le fichier `App.js` devrait être sélectionné dans la section _Files_. Le contenu de ce fichier dans le _code editor_ devrait être le suivant :
 
 ```jsx
 export default function Square() {
@@ -297,15 +297,15 @@ export default function Square() {
 }
 ```
 
-The _browser_ section should be displaying a square with a X in it like this:
+La section _browser_ devrait afficher un carré avec un X à l'intérieur, comme ceci :
 
-![x-filled square](../images/tutorial/x-filled-square.png)
+![Carré avec un X à l’intérieur](../images/tutorial/x-filled-square.png)
 
-Now let's have a look at the files in the starter code.
+Jetons maintenant un coup d'œil au code de démarrage.
 
 #### `App.js` {/*appjs*/}
 
-The code in `App.js` creates a _component_. In React, a component is a piece of reusable code that represents a part of a user interface. Components are used to render, manage, and update the UI elements in your application. Let's look at the component line by line to see what's going on:
+Le code dans `App.js` crée un _composant_. Dans React, un composant est un bout de code réutilisable qui représente une partie de l'interface utilisateur (UI).  Les composants sont utilisés pour afficher, gérer et mettre à jour des éléments d'UI dans votre application.  Examinons ce composant ligne par ligne pour voir ce qui s'y passe :
 
 ```js {1}
 export default function Square() {
@@ -313,7 +313,7 @@ export default function Square() {
 }
 ```
 
-The first line defines a function called `Square`. The `export` JavaScript keyword makes this function accessible outside of this file. The `default` keyword tells other files using your code that it's the main function in your file.
+La première ligne définit une fonction appelée `Square`. Le mot-clé JavaScript `export` rend cette fonction accessible à l'extérieur de ce fichier. Le mot-clé `default` indique aux autres fichiers utilisant votre code qu'il s'agit là de la fonction principale de votre fichier.
 
 ```js {2}
 export default function Square() {
@@ -321,15 +321,15 @@ export default function Square() {
 }
 ```
 
-The second line returns a button. The `return` JavaScript keyword means whatever comes after is returned as a value to the caller of the function. `<button>` is a *JSX element*. A JSX element is a combination of JavaScript code and HTML tags that describes what you'd like to display. `className="square"` is a button property or *prop* that tells CSS how to style the button. `X` is the text displayed inside of the button and `</button>` closes the JSX element to indicate that any following content shouldn't be placed inside the button.
+La deuxième ligne renvoie un bouton. Le mot-clé JavaScript `return` indique que tout ce qui le suit est renvoyé comme valeur à l'appelant de la fonction. `<button>` est un *élément JSX*. Un élément JSX est une combinaison de code JavaScript et de balises similaires à HTML qui décrit ce que vous aimeriez afficher. `className="square"` est une propriété du bouton, ou *prop*, qui indique à CSS comment styler le bouton. `X` est le texte affiché à l'intérieur du bouton et `</button>` ferme l'élément JSX en indiquant que tout ce qui suit ne devrait pas figurer dans le bouton.
 
 #### `styles.css` {/*stylescss*/}
 
-Click on the file labeled `styles.css` in the _Files_ section of CodeSandbox. This file defines the styles for your React app. The first two _CSS selectors_ (`*` and `body`) define the style of large parts of your app while the `.square` selector defines the style of any component where the `className` property is set to `square`. In your code, that would match the button from your Square component in the `App.js` file.
+Cliquez sur le fichier nommé `styles.css` dans la section _Files_ de CodeSandbox.  Ce fichier définit les styles de votre appli React. Les deux premiers _sélecteurs CSS_ (`*` et `body`) définissent le style de larges pans de votre appli, tandis que le sélecteur `.square` définit le style de tout composant dont la propriété `className` sera définie à `square`. Dans votre code, ça correspondrait au bouton de votre composant `Square` dans le fichier `App.js`.
 
 #### `index.js` {/*indexjs*/}
 
-Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. You won't be editing this file during the tutorial but it is the bridge between the component you created in the `App.js` file and the web browser.
+Cliquez sur le fichier nommé `index.js` dans la section _Files_ de CodeSandbox. Vous ne modifierez pas ce fichier pendant ce tutoriel, mais il est la passerelle entre le composant que vous avez créé dans le fichier `App.js` et le navigateur web.
 
 ```jsx
 import { StrictMode } from 'react';
@@ -339,20 +339,20 @@ import './styles.css';
 import App from './App';
 ```
 
-Lines 1-5 brings all the necessary pieces together:
+Les lignes 1 à 5 rassemblent toutes les pièces du puzzle :
 
 * React
-* React's library to talk to web browsers (React DOM)
-* the styles for your components
-* the component you created in `App.js`.
+* La bibliothèque React qui parle aux navigateurs web (React DOM)
+* Les styles de vos composants
+* Le composant que vous avez créé dans `App.js`.
 
-The remainder of the file brings all the pieces together and injects the final product into `index.html` in the `public` folder.
+Le reste du fichier connecte tout ça et injecte le résultat final dans `index.html` au sein du dossier `public`.
 
-### Building the board {/*building-the-board*/}
+### Construire le plateau de jeu {/*building-the-board*/}
 
-Let's get back to `App.js`. This is where you'll spend the rest of the tutorial.
+Revenons à `App.js`.  C'est là que vous passerez le reste de ce tutoriel.
 
-Currently the board is only a single square, but you need nine! If you just try and copy paste your square to make two squares like this:
+À ce stade, le plateau n'est constitué que d'une seule case, mais il vous en faut neuf ! Si vous vous contentez de copier-coller votre carré pour en faire deux, comme ceci :
 
 ```js {2}
 export default function Square() {
@@ -360,7 +360,7 @@ export default function Square() {
 }
 ```
 
-You'll get this error:
+…vous obtiendrez cette erreur :
 
 <ConsoleBlock level="error">
 
@@ -368,7 +368,9 @@ You'll get this error:
 
 </ConsoleBlock>
 
-React components need to return a single JSX element and not multiple adjacent JSX elements like two buttons. To fix this you can use *fragments* (`<>` and `</>`) to wrap multiple adjacent JSX elements like this:
+*(« Des éléments JSX adjacents doivent être enrobés par une balise englobante. Vouliez-vous utiliser un Fragment JSX `<>...</>` ? », NdT.)*
+
+Les composants React doivent ne renvoyer qu'un unique élément JSX, et non plusieurs éléments JSX adjacents, comme nos deux boutons. Pour corriger ça, vous pouvez utiliser des *Fragments* (`<>` et `</>`) pour enrober plusieurs éléments JSX adjacents, comme ceci :
 
 ```js {3-6}
 export default function Square() {
@@ -381,17 +383,17 @@ export default function Square() {
 }
 ```
 
-Now you should see:
+Vous devriez maintenant voir ça :
 
-![two x-filled squares](../images/tutorial/two-x-filled-squares.png)
+![Deux carrés avec des X à l’intérieur](../images/tutorial/two-x-filled-squares.png)
 
-Great! Now you just need to copy-paste a few times to add nine squares and...
+Super ! Maintenant vous n'avez plus qu'à copier-coller davantage pour obtenir neuf carrés…
 
-![nine x-filled squares in a line](../images/tutorial/nine-x-filled-squares.png)
+![Neuf carrés sur une ligne, avec des X à l’intérieur](../images/tutorial/nine-x-filled-squares.png)
 
-Oh no! The squares are all in a single line, not in a grid like you need for our board. To fix this you'll need to group your squares into rows with `div`s and add some CSS classes. While you're at it, you'll give each square a number to make sure you know where each square is displayed.
+Disgrâce ! Les carrés sont tous sur la même ligne, au lieu de former une grille comme nous en avons besoin pour notre plateau.  Pour corriger ça, vous allez devoir grouper vos carrés en ligne avec des `div` et ajouter quelques classes CSS.  Tant que vous y êtes, donnez un numéro à chaque carré pour être sûr·e que vous savez où chaque carré est affiché.
 
-In the `App.js` file, update the `Square` component to look like this:
+Dans le fichier `App.js`, mettez à jour votre composant `Square` pour ressembler à ceci :
 
 ```js {3-19}
 export default function Square() {
@@ -417,11 +419,11 @@ export default function Square() {
 }
 ```
 
-The CSS defined in `styles.css` styles the divs with the `className` of `board-row`. Now that you've grouped your components into rows with the styled `div`s you have your tic-tac-toe board:
+Le CSS défini dans `styles.css` style les `div` dotés de la `className` de valeur `board-row`.  À présent que vous avez groupé vos composants en ligne avec ces `div` mis en page, vous avez votre plateau de tic-tac-toe :
 
-![tic-tac-toe board filled with numbers 1 through 9](../images/tutorial/number-filled-board.png)
+![plateau de tic-tac-toe rempli par les numéros 1 à 9](../images/tutorial/number-filled-board.png)
 
-But you now have a problem. Your component named `Square`, really isn't a square anymore. Let's fix that by changing the name to `Board`:
+Mais nous avons un problème.  Votre composant nommé `Square` n'est plus vraiment un carré tout seul.  Corrigeons ça en changeant son nom pour `Board` :
 
 ```js {1}
 export default function Board() {
@@ -429,7 +431,7 @@ export default function Board() {
 }
 ```
 
-At this point your code should look something like this:
+À ce stade, votre code devrait ressembler à ceci :
 
 <Sandpack>
 
@@ -506,15 +508,15 @@ body {
 
 <Note>
 
-Psssst... That's a lot to type! It's okay to copy and paste code from this page. However, if you're up for a little challenge, we recommend only copying code that you've manually typed at least once yourself.
+Psssst… Ça fait un paquet de saisie de code ! N'hésitez pas à copier-coller le code de cette page.  Ceci dit, si vous vous en sentez la force, nous vous conseillons de ne copier que le code que vous avez déjà tapé manuellement au moins une fois vous-même.
 
 </Note>
 
-### Passing data through props {/*passing-data-through-props*/}
+### Fournir des données avec les props {/*passing-data-through-props*/}
 
-Next, you'll want to change the value of a square from empty to "X" when the user clicks on the square. With how you've built the board so far you would need to copy-paste the code that updates the square nine times (once for each square you have)! Instead of copy-pasting, React's component architecture allows you to create a reusable component to avoid messy, duplicated code.
+Pour l'étape suivante, vous allez vouloir changer la valeur d'un carré de vide à « X » lorsque l'utilisateur clique sur le carré.  Vu comme vous avez construit votre tableau jusqu'ici, il vous faudrait copier-coller le code qui met à jour un carré neuf fois (une fois par carré) !  Plutôt que de le copier-coller, l'architecture de composants de React vous permet de créer un composant réutilisable pour éviter du code dupliqué mal fichu.
 
-First, you are going to copy the line defining your first square (`<button className="square">1</button>`) from your `Board` component into a new `Square` component:
+Pour commencez, copiez la ligne qui définit votre premier carré (`<button className="square">1</button>`) depuis votre composant `Board` vers un nouveau composant `Square` :
 
 ```js {1-3}
 function Square() {
@@ -526,7 +528,7 @@ export default function Board() {
 }
 ```
 
-Then you'll update the Board component to render that `Square` component using JSX syntax:
+Ensuite, mettez à jour le composant `Board  pour afficher un composant `Square` grâce à la syntaxe JSX :
 
 ```js {5-19}
 // ...
@@ -553,15 +555,15 @@ export default function Board() {
 }
 ```
 
-Note how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter.
+Remarquez que contrairement aux `div` du navigateur, vos propres composants `Board` et `Square` doivent avoir un nom qui démarre par une lettre majuscule.
 
-Let's take a look:
+Voyons un peu le résultat :
 
-![one-filled board](../images/tutorial/board-filled-with-ones.png)
+![Un plateau rempli de chiffres un](../images/tutorial/board-filled-with-ones.png)
 
-Oh no! You lost the numbered squares you had before. Now each square says "1". To fix this, you will use *props* to pass the value each square should have from the parent component (`Board`) to its child (`Square`).
+Palsambleu ! Vous avez perdu les carrés numérotés que vous aviez jusque-là.  À présent chaque carré dit « 1 ».  Pour corriger ça, vous allez utiliser des *props* pour passer la valeur que chaque carré devrait avoir depuis le composant parent (`Board`) vers les enfants (`Square`).
 
-Update the `Square` component to read the `value` prop that you'll pass from the `Board`:
+Mettez à jour le composant `Square` pour lire une prop `value` que vous passerez depuis le `Board` :
 
 ```js {1}
 function Square({ value }) {
@@ -569,9 +571,9 @@ function Square({ value }) {
 }
 ```
 
-`function Square({ value })` indicates the Square component can be passed a prop called `value`.
+`function Square({ value })` indique que le composant `Square` peut recevoir une prop nommée `value`.
 
-Now you want to display that `value` instead of `1` inside every square. Try doing it like this:
+Utilisez maintenant la `value` plutôt que `1` dans l'affichage de chaque carré.  Essayez comme ceci :
 
 ```js {2}
 function Square({ value }) {
@@ -579,11 +581,11 @@ function Square({ value }) {
 }
 ```
 
-Oops, this is not what you wanted:
+Zut, ça ne marche pas :
 
-![value-filled board](../images/tutorial/board-filled-with-value.png)
+![Un plateau rempli de « value »](../images/tutorial/board-filled-with-value.png)
 
-You wanted to render the JavaScript variable called `value` from your component, not the word "value". To "escape into JavaScript" from JSX, you need curly braces. Add curly braces around `value` in JSX like so:
+Vous vouliez afficher le contenu de la variable JavaScript nommée `value` au sein de votre composant, pas le mot “value”.  Afin de « vous échapper vers JavaScript » depuis JSX, vous avez besoin d'accolades.  Ajoutez des accolades autour de `value` dans votre JSX, comme ceci :
 
 ```js {2}
 function Square({ value }) {
@@ -591,11 +593,11 @@ function Square({ value }) {
 }
 ```
 
-For now, you should see an empty board:
+Pour le moment, vous devriez voir un plateau vide :
 
-![empty board](../images/tutorial/empty-board.png)
+![Un plateau vide](../images/tutorial/empty-board.png)
 
-This is because the `Board` component hasn't passed the `value` prop to each `Square` component it renders yet. To fix it you'll add the `value` prop to each `Square` component rendered by the `Board` component:
+C'est parce que le composant `Board` ne passe pas encore de prop `value` à chaque composant `Square` qu'il affiche.  Corrigez ça en ajoutant une prop `value` à chaque composant `Square` affiché par le composant `Board` :
 
 ```js {5-7,10-12,15-17}
 export default function Board() {
@@ -621,11 +623,11 @@ export default function Board() {
 }
 ```
 
-Now you should see a grid of numbers again:
+Vous devriez retrouver votre grille numérotée :
 
-![tic-tac-toe board filled with numbers 1 through 9](../images/tutorial/number-filled-board.png)
+![Un plateau de tic-tac-toe rempli des nombres 1 à 9](../images/tutorial/number-filled-board.png)
 
-Your updated code should look like this:
+Votre code à jour devrait ressembler à ceci :
 
 <Sandpack>
 
@@ -704,14 +706,16 @@ body {
 
 </Sandpack>
 
-### Making an interactive component {/*making-an-interactive-component*/}
+### Rendre le composant interactif {/*making-an-interactive-component*/}
 
-Let's fill the `Square` component with an `X` when you click it. Declare a function called `handleClick` inside of the `Square`. Then, add `onClick` to the props of the button JSX element returned from the `Square`:
+Faisons en sorte le composant `Square` se remplisse d'un `X` lorsqu'on clique dessus.
+
+Déclarez une fonction appelée `handleClick` au sein du composant `Square`.  Ensuite, ajoutez la prop `onClick` à l'élément JSX de bouton renvoyé par `Square` :
 
 ```js {2-4,9}
 function Square({ value }) {
   function handleClick() {
-    console.log('clicked!');
+    console.log('cliqué !');
   }
 
   return (
@@ -725,19 +729,19 @@ function Square({ value }) {
 }
 ```
 
-If you click on a square now, you should see a log saying `"clicked!"` in the _Console_ tab at the bottom of the _Browser_ section in CodeSandbox. Clicking the square more than once will log `"clicked!"` again. Repeated console logs with the same message will not create more lines in the console. Instead, you will see an incrementing counter next to your first `"clicked!"` log.
+Si vous cliquez sur un carré désomrais, vous devriez voir un message disant `"cliqué !"` dans l'onglet _Console_ en bas de la section _Browser_ de CodeSandbox. Des clics supplémentaires devraient à nouveau y afficher `"cliqué !"`. Des logs multiples du même message n'ajouteront pas des lignes dans la console : vous verrez plutôt un compteur s'incrémenter à côté du premier message `"cliqué !"`.
 
 <Note>
 
-If you are following this tutorial using your local development environment, you need to open your browser's Console. For example, if you use the Chrome browser, you can view the Console with the keyboard shortcut **Shift + Ctrl + J** (on Windows/Linux) or **Option + ⌘ + J** (on macOS).
+Si vous suivez ce tutoriel dans votre environnement de développement local, vous aurez besoin d'ouvrir la console de votre navigateur. Par exemple, si vous utilisez un navigateur basé Chromium tel que Chrome, Edge ou Brave, vous pouvez ouvrir la console avec le raccourci clavier <kbd></kbd>Maj + Ctrl + J** (sur Windows/Linux) ou **Option + ⌘ + J** (sur macOS).
 
 </Note>
 
-As a next step, you want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use *state*.
+Vous souhaitez maintenant que le composant `Square` « se souvienne » qu'on lui a cliqué dessus, et se remplisse alors avec la marque « X ».  Pour « se souvenir » de choses, les composants utilisent *l'état*.
 
-React provides a special function called `useState` that you can call from your component to let it "remember" things. Let's store the current value of the `Square` in state, and change it when the `Square` is clicked.
+React fournit une fonction spéciale appelée `useState` que vous pouvez appeler depuis votre composant pour qu'il « se souvienne » de choses.  Stockons donc la valeur actuelle de `Square` dans un état, et modifions-la quand on clique sur le `Square`.
 
-Import `useState` at the top of the file. Remove the `value` prop from the `Square` component. Instead, add a new line at the start of the `Square` that calls `useState`. Have it return a state variable called `value`:
+Importez `useState` au début du fichier. Retirez la prop `value` du composant `Square`.  Remplacez-la par une nouvelle ligne au début de la fonction `Square` qui appelle `useState`.  Faites-lui renvoyer une variable d'état appelée `value` :
 
 ```js {1,3,4}
 import { useState } from 'react';
@@ -749,9 +753,9 @@ function Square() {
     //...
 ```
 
-`value` stores the value and `setValue` is a function that can be used to change the value. The `null` passed to `useState` is used as the initial value for this state variable, so `value` here starts off equal to `null`.
+`value` stocke la valeur et `setValue` est une fonction qu'on peut utiliser pour modifier la valeur. Le `null` passé à `useState` est utilisé comme valeur initiale de la variable d'état, de sorte que `value` démarre ici à `null`.
 
-Since the `Square` component no longer accepts props anymore, you'll remove the `value` prop from all nine of the Square components created by the Board component:
+Puis le composant `Square` n'accepte plus de props, vous pouvez retirer les props `value` des neuf composants `Square` créés dans le composant `Board` :
 
 ```js {6-8,11-13,16-18}
 // ...
@@ -778,7 +782,7 @@ export default function Board() {
 }
 ```
 
-Now you'll change `Square` to display an "X" when clicked. Replace the `console.log("clicked!");` event handler with `setValue('X');`. Now your `Square` component looks like this:
+Modifiez maintenant `Square` pour afficher un « X » quand on clique dessus. Remplacez le `console.log("cliqué !");` du gestionnaire d'événement par `setValue('X');`. À présent votre composant `Square` devrait ressembler à ceci :
 
 ```js {5}
 function Square() {
@@ -799,13 +803,13 @@ function Square() {
 }
 ```
 
-By calling this `set` function from an `onClick` handler, you're telling React to re-render that `Square` whenever its `<button>` is clicked. After the update, the `Square`'s `value` will be `'X'`, so you'll see the "X" on the game board. Click on any Square, and "X" should show up:
+En appelant la fonction `set` depuis un gestionnaire `onClick`, vous demandez à React d'afficher à nouveau ce `Square` chaque fois qu'on clique sur le `<button>`.  Après la mise à jour, la `value` dans ce `Square` sera `'X'`, et vous verrez donc un « X » sur le plateau de jeu.  Cliquez sur n'importe quel carré, et un « X » y apparaîtra :
 
-![adding xes to board](../images/tutorial/tictac-adding-x-s.gif)
+![Ajouts de X sur le plateau de jeu](../images/tutorial/tictac-adding-x-s.gif)
 
-Each Square has its own state: the `value` stored in each Square is completely independent of the others. When you call a `set` function in a component, React automatically updates the child components inside too.
+Chaque `Square` a son propre état : la `value` stockée par chaque `Square` est totalement indépendante des autres. Lorsque vous appelez la fonction `set` dans un composant, React met automatiquement à jour ses composants enfants aussi.
 
-After you've made the above changes, your code will look like this:
+Après que vous aurez fait les modifications ci-dessus, votre code derait ressembler à ceci :
 
 <Sandpack>
 
@@ -899,19 +903,19 @@ body {
 
 </Sandpack>
 
-### React Developer Tools {/*react-developer-tools*/}
+### Outils de développement React {/*react-developer-tools*/}
 
-React DevTools let you check the props and the state of your React components. You can find the React DevTools tab at the bottom of the _browser_ section in CodeSandbox:
+Les outils de développement React *(React DevTools, NdT)* vous permettent d'examiner les props et l'état de vos composants React. Vous les trouverez dans l'onglet *React DevTools* en bas de la section _Browser_ de CodeSandbox :
 
-![React DevTools in CodeSandbox](../images/tutorial/codesandbox-devtools.png)
+![Les React DevTools dans CodeSandbox](../images/tutorial/codesandbox-devtools.png)
 
-To inspect a particular component on the screen, use the button in the top left corner of React DevTools:
+Pour examiner un composant spécifique à l'écran, utilisez le bouton en haut à gauche des outils de développement React :
 
-![Selecting components on the page with React DevTools](../images/tutorial/devtools-select.gif)
+![Sélection de composants sur la page dans les outils de développement React](../images/tutorial/devtools-select.gif)
 
 <Note>
 
-For local development, React DevTools is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension. Install it, and the *Components* tab will appear in your browser Developer Tools for sites using React.
+Pour le développement local, les outils de développeemnt React sont disponibles sous forme d'extension navigateur pour [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) et [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil). Installez-les, après quoi l'onglet *Composants* apparaîtra dans les outils de développement de votre navigateur sur les sites utilisant React.
 
 </Note>
 
