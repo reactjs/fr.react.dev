@@ -1,31 +1,33 @@
 ---
-title: 'Tutorial: Tic-Tac-Toe'
+title: 'Tutoriel : Tic-Tac-Toe'
 ---
 
 <Intro>
 
-You will build a small tic-tac-toe game during this tutorial. This tutorial does not assume any existing React knowledge. The techniques you'll learn in the tutorial are fundamental to building any React app, and fully understanding it will give you a deep understanding of React.
+Dans ce tutoriel, vous allez construire un petit jeu de tic-tac-toe.  Ce tutoriel ne requiert aucune connaissance préalable de React. Les techniques que vous apprendrez dans ce tutoriel sont fondamentales pour construire n'importe quelle appli React : bien les comprendre vous donnera une compréhension profonde de React.
 
 </Intro>
 
 <Note>
 
-This tutorial is designed for people who prefer to **learn by doing** and want to quickly try making something tangible. If you prefer learning each concept step by step, start with [Describing the UI.](/learn/describing-the-ui)
+Ce tutoriel est conçu pour les personnes qui préfèrent **apprendre en faisant** et qui veulent essayer de produire rapidement quelque chose de concret. Si vous préférez apprendre chaque concept pas à pas, commencez à la page [Décrire l'UI](/learn/describing-the-ui).
 
 </Note>
 
-The tutorial is divided into several sections:
+Ce tutoriel est découpé en plusieurs sections :
 
-- [Setup for the tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
-- [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-- [Completing the game](#completing-the-game) will teach you **the most common techniques** in React development.
-- [Adding time travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
+- [Se préparer au tutoriel](#setup-for-the-tutorial) vous donnera **un point de départ** pour le tutoriel.
+- [Survol](#overview) vous apprendra **les fondamentaux** de React : composants, props et état.
+- [Finaliser le jeu](#completing-the-game) vous apprendra **les techniques les plus courantes** du développement React.
+- [Voyager dans le temps](#adding-time-travel) vous donnera **une meilleure perception** des avantages uniques de React.
 
-### What are you building? {/*what-are-you-building*/}
+### Qu'allez-vous construire ? {/*what-are-you-building*/}
 
-In this tutorial, you'll build an interactive tic-tac-toe game with React.
+Dans ce tutoriel, vous allez construire un jeu de tic-tac-toe interactif avec React.
 
-You can see what it will look like when you're finished here:
+*(Le tic-tac-toe est souvent appelé « morpion » en français, même si ce dernier n'est en fait pas limité à 3 × 3 cases, NdT.)*
+
+Vous pouvez voir à quoi ça ressemblera une fois terminé ci-dessous :
 
 <Sandpack>
 
@@ -57,9 +59,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Gagnant·e : ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Prochain tour : ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -103,9 +105,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Aller au coup #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Revenir au début';
     }
     return (
       <li key={move}>
@@ -194,15 +196,15 @@ body {
 
 </Sandpack>
 
-If the code doesn't make sense to you yet, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+Si le code vous paraît incompréhensible, ou si des éléments de syntaxe vous semblent étranges, ne vous inquiétez pas ! L'objectif de ce tutoriel, c'est justement de vous aider à comprendre React et sa syntaxe.
 
-We recommend that you check out the tic-tac-toe game above before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
+Nous vous conseillons de manipuler le jeu de tic-tac-toe ci-dessus avant de continuer ce tutoriel.  Une des fonctionnalités que vous pourrez remarquer, c'est la liste numérotée des coups à droite du plateau de jeu.  Elle vous donne un historique de tous les coups joués lors de la partie, mise à jour au fil du temps.
 
-Once you've played around with the finished tic-tac-toe game, keep scrolling. You'll start with a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+Lorsque vous aurez fini de vous amuser avec ce jeu de tic-tac-toe finalisé, reprenez votre lecture de la page.  Pour ce tutoriel, vous commencerez avec un gabarit simple.  Notre prochaine étape consiste à vous préparer pour commencer à construire le jeu.
 
-## Setup for the tutorial {/*setup-for-the-tutorial*/}
+## Se préparer au tutoriel {/*setup-for-the-tutorial*/}
 
-In the live code editor below, click **Fork** in the top-right corner to open the editor in a new tab using the website CodeSandbox. CodeSandbox lets you write code in your browser and preview how your users will see the app you've created. The new tab should display an empty square and the starter code for this tutorial.
+Dans l'éditeur de code interactif ci-dessous, cliquez sur **Fork** en haut à droite pour ouvrir l'éditeur dans un nouvel onglet sur le site web CodeSandbox. CodeSandbox vous permet d'écrire du code dans votre navigateur et de prévisualiser ce que verront les utilisateurs de l'appli que vous aurez créée. Le nouvel onglet devrait afficher un carré vide et le code de démarrage pour ce tutoriel.
 
 <Sandpack>
 
@@ -261,19 +263,19 @@ body {
 
 <Note>
 
-You can also follow this tutorial using your local development environment. To do this, you need to:
+Vous pouvez aussi suivre ce tutoriel dans votre environnement de développement local.  Pour cela, suivez ces étapes :
 
-1. Install [Node.js](https://nodejs.org/en/)
-1. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **File > Export to ZIP** in that menu to download an archive of the files locally
-1. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
-1. Install the dependencies with `npm install`
-1. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
+1. Installez [Node.js](https://nodejs.org/fr/)
+2. Dans l'onglet CodeSandbox ouvert plus tôt, appuyez sur le bouton en haut à gauche pour ouvrir le menu, puis choisissez **File › Export to ZIP** dans ce menu pour télécharger localement une archive des fichiers
+3. Décompressez l'archive puis ouvre un terminal et `cd` dans le dossier que vous venez de décompresser
+4. Installez les dépendances avec `npm install`
+5. Lancer `npm start` pour démarrer un serveur local et suivez les invites pour voir le code s'exécuter dans le navigateur.
 
-If you get stuck, don't let this stop you! Follow along online instead and try a local setup again later.
+Si vous êtes bloqué·e, ne vous laissez pas décourager ! Suivez ce tutoriel en ligne et retentez une mise en place locale plus tard.
 
 </Note>
 
-## Overview {/*overview*/}
+## Survol {/*overview*/}
 
 Now that you're set up, let's get an overview of React!
 
@@ -337,7 +339,7 @@ import './styles.css';
 import App from './App';
 ```
 
-Lines 1-5 brings all the necessary pieces together: 
+Lines 1-5 brings all the necessary pieces together:
 
 * React
 * React's library to talk to web browsers (React DOM)
@@ -551,7 +553,7 @@ export default function Board() {
 }
 ```
 
-Note how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter. 
+Note how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter.
 
 Let's take a look:
 
@@ -913,7 +915,7 @@ For local development, React DevTools is available as a [Chrome](https://chrome.
 
 </Note>
 
-## Completing the game {/*completing-the-game*/}
+## Finaliser le jeu {/*completing-the-game*/}
 
 By this point, you have all the basic building blocks for your tic-tac-toe game. To have a complete game, you now need to alternate placing "X"s and "O"s on the board, and you need a way to determine a winner.
 
@@ -1094,7 +1096,7 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
-Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component: 
+Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component:
 
 ```js {7}
 export default function Board() {
@@ -1568,7 +1570,7 @@ function handleClick(i) {
 }
 ```
 
-To let the players know when the game is over, you can display text such as "Winner: X" or "Winner: O". To do that you'll add a `status` section to the `Board` component. The status will display the winner if the game is over and if the game is ongoing you'll display which player's turn is next:
+To let the players know when the game is over, you can display text such as "Gagnant·e : X" or "Gagnant·e : O". To do that you'll add a `status` section to the `Board` component. The status will display the winner if the game is over and if the game is ongoing you'll display which player's turn is next:
 
 ```js {3-9,13}
 export default function Board() {
@@ -1576,9 +1578,9 @@ export default function Board() {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = "Winner: " + winner;
+    status = "Gagnant·e : " + winner;
   } else {
-    status = "Next player: " + (xIsNext ? "X" : "O");
+    status = "Prochain tour : " + (xIsNext ? "X" : "O");
   }
 
   return (
@@ -1626,9 +1628,9 @@ export default function Board() {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Gagnant·e : ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Prochain tour : ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -1721,7 +1723,7 @@ body {
 
 </Sandpack>
 
-## Adding time travel {/*adding-time-travel*/}
+## Voyager dans le temps {/*adding-time-travel*/}
 
 As a final exercise, let's make it possible to "go back in time" to the previous moves in the game.
 
@@ -1900,9 +1902,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Gagnant·e : ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Prochain tour : ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2049,9 +2051,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Aller au coup #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Revenir au début';
     }
     return (
       <li>
@@ -2105,9 +2107,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Gagnant·e : ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Prochain tour : ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2149,9 +2151,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Aller au coup #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Revenir au début';
     }
     return (
       <li>
@@ -2333,9 +2335,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Gagnant·e : ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Prochain tour : ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2377,9 +2379,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Aller au coup #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Revenir au début';
     }
     return (
       <li key={move}>
@@ -2554,9 +2556,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Gagnant·e : ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Prochain tour : ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2602,9 +2604,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Aller au coup #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Revenir au début';
     }
     return (
       <li key={move}>
@@ -2764,9 +2766,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Gagnant·e : ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Prochain tour : ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2810,9 +2812,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Aller au coup #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Revenir au début';
     }
     return (
       <li key={move}>
