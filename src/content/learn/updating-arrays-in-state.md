@@ -792,7 +792,7 @@ En interne, Immer construit toujours le prochain état à partir de zéro en fon
 
 #### Mettre à jour un élément dans le panier {/*update-an-item-in-the-shopping-cart*/}
 
-Complétez la logique de `handleIncreaseClick` de manière à ce que lorsque l'on appuie sur « + », le nombre correspondant augmente :
+Complétez la logique de `handleIncreaseClick` de manière à ce que lorsqu'on appuie sur « + », le nombre correspondant augmente :
 
 <Sandpack>
 
@@ -917,9 +917,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Supprimer un article du panier {/*remove-an-item-from-the-shopping-cart*/}
+#### Retirer un article du panier {/*remove-an-item-from-the-shopping-cart*/}
 
-Ce panier d'achat dispose d'un bouton « + » fonctionnel, mais le bouton « – » ne fait rien. Vous devez lui ajouter un gestionnaire d'événements pour qu'en appuyant dessus, le `count` du produit correspondant diminue. Si vous appuyez sur « – » lorsque le count est de 1, le produit devrait automatiquement être retiré du panier. Assurez-vous qu'il n'affiche jamais 0.
+Ce panier d'achat dispose d'un bouton « + » fonctionnel, mais le bouton « – » ne fait rien. Vous devez lui ajouter un gestionnaire d'événement pour qu'en appuyant dessus, le `count` du produit correspondant diminue. Si vous appuyez sur « – » lorsque le count est à 1, le produit devrait automatiquement être retiré du panier. Assurez-vous qu'il n'affiche jamais 0.
 
 <Sandpack>
 
@@ -1078,9 +1078,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Corriger les mutations en utilisant des méthodes non modifiantes {/*fix-the-mutations-using-non-mutative-methods*/}
+#### Basculer vers des méthodes non modifiantes {/*fix-the-mutations-using-non-mutative-methods*/}
 
-Dans cet exemple, tous les gestionnaires d'événements dans `App.js` utilisent des mutations. Par conséquent, l'édition et la suppression des tâches ne fonctionnent pas. Réécrivez `handleAddTodo`, `handleChangeTodo` et `handleDeleteTodo` en utilisant des méthodes non modifiantes :
+Dans cet exemple, tous les gestionnaires d'événements dans `App.js` utilisent des modifications en place. Par conséquent, la modification et la suppression des tâches ne fonctionnent pas. Réécrivez `handleAddTodo`, `handleChangeTodo` et `handleDeleteTodo` en utilisant des méthodes non modifiantes :
 
 <Sandpack>
 
@@ -1243,7 +1243,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Dans `handleAddTodo`, vous pouvez utiliser la syntaxe de *spread* de tableaux. Dans `handleChangeTodo`, vous pouvez créer un nouveau tableau avec `map`. Dans `handleDeleteTodo`, vous pouvez créer un nouveau tableau avec `filter`. Maintenant, la liste fonctionne correctement:
+Dans `handleAddTodo`, vous pouvez utiliser la syntaxe de *spread* de tableaux. Dans `handleChangeTodo`, vous pouvez créer un nouveau tableau avec `map`. Dans `handleDeleteTodo`, vous pouvez créer un nouveau tableau avec `filter`. À présent, la liste fonctionne correctement :
 
 <Sandpack>
 
@@ -1411,9 +1411,9 @@ ul, li { margin: 0; padding: 0; }
 </Solution>
 
 
-#### Corriger les mutations en utilisant Immer {/*fix-the-mutations-using-immer*/}
+#### Corriger les modifications en utilisant Immer {/*fix-the-mutations-using-immer*/}
 
-Il s'agit du même exemple que dans l'exercice précédent. Cette fois-ci, corrigez les mutations en utilisant Immer. Pour vous faciliter la tâche, `useImmer` est déjà importé, vous devez donc modifier la variable d'état `todos` pour l'utiliser.
+Il s'agit du même exemple que dans l'exercice précédent. Cette fois-ci, corrigez les modifications en utilisant Immer. Pour vous faciliter la tâche, `useImmer` est déjà importé, vous devez donc modifier la variable d'état `todos` pour l'utiliser.
 
 <Sandpack>
 
@@ -1595,7 +1595,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Avec Immer, vous pouvez écrire du code de manière modifiante, tant que vous ne modifiez que les parties du `draft` que Immer vous fournit. Ici, toutes les mutations sont effectuées sur le `draft` de sorte que le code fonctionne correctement:
+Avec Immer, vous pouvez écrire du code de manière modifiante, tant que vous ne modifiez que des parties du `draft` que Immer vous fournit. Ici, toutes les modifications sont effectuées sur le `draft` de sorte que le code fonctionne correctement :
 
 <Sandpack>
 
@@ -1783,7 +1783,7 @@ ul, li { margin: 0; padding: 0; }
 
 Vous pouvez également combiner les approches modifiantes et non modifiantes avec Immer.
 
-Par exemple, dans cette version, `handleAddTodo` est implémenté en effectuant des mutations sur le `draft` d'Immer, tandis que `handleChangeTodo` et `handleDeleteTodo` utilisent les méthodes non modifiantes `map` et `filter`:
+Par exemple, dans cette version, `handleAddTodo` est implémenté en modifiant le `draft` d'Immer, tandis que `handleChangeTodo` et `handleDeleteTodo` utilisent les méthodes non modifiantes `map` et `filter` :
 
 <Sandpack>
 
