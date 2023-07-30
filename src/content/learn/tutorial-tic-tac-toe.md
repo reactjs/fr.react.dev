@@ -1731,35 +1731,35 @@ body {
 
 ## Voyager dans le temps {/*adding-time-travel*/}
 
-As a final exercise, let's make it possible to "go back in time" to the previous moves in the game.
+À titre d'exercice final, nous allons permettre le « voyage dans le temps » vers des coups précédents de la partie.
 
-### Storing a history of moves {/*storing-a-history-of-moves*/}
+### Stocker un historique des coups {/*storing-a-history-of-moves*/}
 
-If you mutated the `squares` array, implementing time travel would be very difficult.
+Si nous avions modifié directement le tableau `squares`, il aurait été très difficile d'implément le voyage dans le temps.
 
-However, you used `slice()` to create a new copy of the `squares` array after every move, and treated it as immutable. This will allow you to store every past version of the `squares` array, and navigate between the turns that have already happened.
+Heureusement, vous avez utilisé `slice()` pour créer une copie du tableau `squares` à chaque coup, considérant ce tableau comme immuable. Ça va vous permettre de stocker chaque version passée du tableau `squares`, et de naviguer entre les coups qui ont déjà eu lieu.
 
-You'll store the past `squares` arrays in another array called `history`, which you'll store as a new state variable. The `history` array represents all board states, from the first to the last move, and has a shape like this:
+Vous stockerez les tableaux `squares` passés dans un noueau tableau appelé `history`, qui disposera de sa propre variable d'état. Le tableau `history` représente tous les états du plateau, du premier au dernier coup, avec une forme comme celle-ci :
 
 ```jsx
 [
-  // Before first move
+  // Avant le premier coup
   [null, null, null, null, null, null, null, null, null],
-  // After first move
+  // Après le premier coup
   [null, null, null, null, 'X', null, null, null, null],
-  // After second move
+  // Après le deuxième coup
   [null, null, null, null, 'X', null, null, null, 'O'],
   // ...
 ]
 ```
 
-### Lifting state up, again {/*lifting-state-up-again*/}
+### Faire (encore) remonter l'état {/*lifting-state-up-again*/}
 
-You will now write a new top-level component called `Game` to display a list of past moves. That's where you will place the `history` state that contains the entire game history.
+Vous allez maintenant écrire un nouveau composant racine appelé `Game` pour afficher une liste des coups passés. C'est là que vous mettrez l'état `history`, qui contiendra l'intégralité de l'historique de la partie.
 
-Placing the `history` state into the `Game` component will let you remove the `squares` state from its child `Board` component. Just like you "lifted state up" from the `Square` component into the `Board` component, you will now lift it up from the `Board` into the top-level `Game` component. This gives the `Game` component full control over the `Board`'s data and lets it instruct the `Board` to render previous turns from the `history`.
+En plaçant l'état `history` dans le composant `Game`, vous pouvez retirer l'état `squares` de son composant enfant `Board`.  Tout comme vous aviez « fait remonter l'état » du composant `Square` vers le composant `Board`, vous le faites maintenant remonter depuis `Board` vers le composant racine `Game`.  Ce composant `Game` a ainsi le plein contrôle des données de `Board` et peut demander à `Board` d'afficher des coups précédents issus de `history`.
 
-First, add a `Game` component with `export default`. Have it render the `Board` component and some markup:
+Commencez par ajouter un composant `Game` avec `export default`.  Faites-lui afficher un composant `Board` avec un peu de balisage supplémentaire :
 
 ```js {1,5-16}
 function Board() {
@@ -1780,9 +1780,9 @@ export default function Game() {
 }
 ```
 
-Note that you are removing the `export default` keywords before the `function Board() {` declaration and adding them before the `function Game() {` declaration. This tells your `index.js` file to use the `Game` component as the top-level component instead of your `Board` component. The additional `div`s returned by the `Game` component are making room for the game information you'll add to the board later.
+Remarquez que vous avez retiré les mots-clés `export default` situés devant la déclaration `function Board() {` pour pouvoir les ajouter devant la déclaration `function Game() {`.  Ça indique au fichier `index.js` qu'il doit utiliser comme composant racine `Game` plutôt que `Board`. Les `div` supplémentaires renvoyés par le composant `Game` fournissent un endroit où afficher les informations sur la partie que vous ajouterez plus tard.
 
-Add some state to the `Game` component to track which player is next and the history of moves:
+Ajoutez des états au composant `Game` pour garder trace du prochain tour et de l'historique des coups :
 
 ```js {2-3}
 export default function Game() {
@@ -1791,9 +1791,9 @@ export default function Game() {
   // ...
 ```
 
-Notice how `[Array(9).fill(null)]` is an array with a single item, which itself is an array of 9 `null`s.
+Remarquez que `[Array(9).fill(null)]` est un tableau avec un unique élément, lequel est lui-même un tableau de 9 `null`.
 
-To render the squares for the current move, you'll want to read the last squares array from the `history`. You don't need `useState` for this--you already have enough information to calculate it during rendering:
+Pour afficher les cases du coup actuel, lisez le dernier tableau de cases stocké dans `history`. Vous n'avez pas besoin d'un `useState` pour ça : vous avez déjà assez d'informations pour le calculer lors du rendu.
 
 ```js {4}
 export default function Game() {
@@ -1803,7 +1803,7 @@ export default function Game() {
   // ...
 ```
 
-Next, create a `handlePlay` function inside the `Game` component that will be called by the `Board` component to update the game. Pass `xIsNext`, `currentSquares` and `handlePlay` as props to the `Board` component:
+Ensuite, créez une fonction `handlePlay` au sein du composant `Game` qui sera appelée par le composant `Board` pour mettre à jour la partie.  Passez `xIsNext`, `currentSquares` et `handlePlay` comme props au composant `Board` :
 
 ```js {6-8,13}
 export default function Game() {
@@ -1824,7 +1824,7 @@ export default function Game() {
 }
 ```
 
-Let's make the `Board` component fully controlled by the props it receives. Change the `Board` component to take three props: `xIsNext`, `squares`, and a new `onPlay` function that `Board` can call with the updated squares array when a player makes a move. Next, remove the first two lines of the `Board` function that call `useState`:
+Faisons en sorte que le composant `Board` soit pleinement contrôlé par les props qu'il reçoit. Modifiez le composant `Board` pour qu'il accepte trois propriétés : `xIsNext`, `squares`, et la nouvelle fonction `onPlay` que `Board` pourra appeler pour mettre à jour le tableau des cases lorsqu'un joueur joue un coup. Ensuite, retirez les deux premières lignes de la fonction `Board`, qui appelaient `useState` :
 
 ```js {1}
 function Board({ xIsNext, squares, onPlay }) {
@@ -1835,7 +1835,7 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 ```
 
-Now replace the `setSquares` and `setXIsNext` calls in `handleClick` in the `Board` component with a single call to your new `onPlay` function so the `Game` component can update the `Board` when the user clicks a square:
+Remplacez maintenant les appels à `setSquares` et `setXIsNext` dans la fonction `handleClick` du composant `Board` par un appel unique à votre nouvelle fonction `onPlay`, pour que le composant `Game` puisse mettre à jour le `Board` lorsque l'utilisateur clique sur une case :
 
 ```js {12}
 function Board({ xIsNext, squares, onPlay }) {
@@ -1855,11 +1855,11 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 ```
 
-The `Board` component is fully controlled by the props passed to it by the `Game` component. You need to implement the `handlePlay` function in the `Game` component to get the game working again.
+Le composant `Board` est désormais pleinement contrôlé par les props que lui passe le composant `Game`.  Vous devez toutefois encore implémenter la fonction `handlePlay` du composant `Game` pour remettre le jeu en état de marche.
 
-What should `handlePlay` do when called? Remember that Board used to call `setSquares` with an updated array; now it passes the updated `squares` array to `onPlay`.
+Que devrait faire `handlePlay` lorsqu'on l'appelle ? Souvenez-vous que `Board` appelait auparavant `setSquares` avec un tableau mis à jour, alors qu'il appelle désormais `onPlay` avec ce même tableau.
 
-The `handlePlay` function needs to update `Game`'s state to trigger a re-render, but you don't have a `setSquares` function that you can call any more--you're now using the `history` state variable to store this information. You'll want to update `history` by appending the updated `squares` array as a new history entry. You also want to toggle `xIsNext`, just as Board used to do:
+La fonction `handlePlay` doit mettre à jour l'état de `Game` pour déclencher un nouveau rendu, mais nous n'avons plus de fonction `setSquares` disponible — nous utilisons maintenant la variable d'état `history` pour stocker cette information.  Vous aurez besoin de mettre à jour `history` en lui ajoutant le tableau `squares` à jour comme nouvelle entrée d'historique.  Il faudra aussi basculer `xIsNext`, tout comme le faisait `Board` :
 
 ```js {4-5}
 export default function Game() {
@@ -1872,11 +1872,11 @@ export default function Game() {
 }
 ```
 
-Here, `[...history, nextSquares]` creates a new array that contains all the items in `history`, followed by `nextSquares`. (You can read the `...history` [*spread syntax*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) as "enumerate all the items in `history`".)
+Dans ce code, `[...history, nextSquares]` crée un nouveau tableau qui contient tous les éléments existants de `history`, suivis de `nextSquares`. (Vous pouvez lire la [*syntaxe de spread*](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Spread_syntax) `...history` comme « énumère tous les éléments de `history` ».)
 
-For example, if `history` is `[[null,null,null], ["X",null,null]]` and `nextSquares` is `["X",null,"O"]`, then the new `[...history, nextSquares]` array will be `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
+Par exemple, si `history` vaut `[[null,null,null], ["X",null,null]]` et `nextSquares` vaut `["X",null,"O"]`, alors le nouveau tableau `[...history, nextSquares]` vaudra `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
 
-At this point, you've moved the state to live in the `Game` component, and the UI should be fully working, just as it was before the refactor. Here is what the code should look like at this point:
+À ce stade, vous avez déplacé l'état pour qu'il vive dans le composant `Game`, et l'UI devrait à nouveau fonctionner normalement, tout comme avant la refonte.  Voici à quoi devrait ressembler votre code pour le moment :
 
 <Sandpack>
 
@@ -1908,7 +1908,7 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Gagnant·e : ' + winner;
+    status = winner + ' a gagné';
   } else {
     status = 'Prochain tour : ' + (xIsNext ? 'X' : 'O');
   }
@@ -2025,19 +2025,19 @@ body {
 
 </Sandpack>
 
-### Showing the past moves {/*showing-the-past-moves*/}
+### Afficher les coups passés {/*showing-the-past-moves*/}
 
-Since you are recording the tic-tac-toe game's history, you can now display a list of past moves to the player.
+Puisque vous enregistrez l'historique de la partie de tic-tac-toe, vous pouvez maintenant afficher au joueur une liste des coups passés.
 
-React elements like `<button>` are regular JavaScript objects; you can pass them around in your application. To render multiple items in React, you can use an array of React elements.
+Les éléments React tels que `<button>` sont des objets JavaScript bruts ; vous pouvez les passer où bon vous semble dans votre application. Pour afficher une liste d'éléments dans React, vous pouvez utiliser un tableau d'éléments React.
 
-You already have an array of `history` moves in state, so now you need to transform it to an array of React elements. In JavaScript, to transform one array into another, you can use the [array `map` method:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+Vous avez déjà dans votre état un tableau `history` des coups, il vous faut donc le transformer en un tableau d'éléments React.  En JavaScript, transformer un tableau en un autre se fait généralement avec la [méthode `map` des tableaux](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/map) :
 
 ```jsx
 [1, 2, 3].map((x) => x * 2) // [2, 4, 6]
 ```
 
-You'll use `map` to transform your `history` of moves into React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves. Let's `map` over the `history` in the Game component:
+Utilisez `map` pour transformer votre `history` de coups en éléments React représentant des boutons à l'écran, et affichez une liste de boutons pour « revenir » à des coups passés. Faisons un `map` sur `history` dans le composant `Game` :
 
 ```js {11-13,15-27,35}
 export default function Game() {
@@ -2081,7 +2081,7 @@ export default function Game() {
 }
 ```
 
-You can see what your code should look like below. Note that you should see an error in the developer tools console that says: ``Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `Game`.`` You'll fix this error in the next section.
+Vous pouvez voir à quoi ressemble le résultat ci-dessous. Notez que vous devriez voir une erreur dans la console des outils de développement, qui dit ``Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `Game`.`` *(« Avertissement : chaque enfant d'une liste devrait avoir une prop "key" unique. Vérifiez la méthode de rendu de `Game`. », NdT.)* Vous la corrigerez dans la prochaine section.
 
 <Sandpack>
 
@@ -2113,7 +2113,7 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Gagnant·e : ' + winner;
+    status = winner + ' a gagné';
   } else {
     status = 'Prochain tour : ' + (xIsNext ? 'X' : 'O');
   }
@@ -2249,56 +2249,56 @@ body {
 
 </Sandpack>
 
-As you iterate through `history` array inside the function you passed to `map`, the `squares` argument goes through each element of `history`, and the `move` argument goes through each array index: `0`, `1`, `2`, …. (In most cases, you'd need the actual array elements, but to render a list of moves you will only need indexes.)
+Lorsque vous itérez sur le tableau `history` au sein de la fonction que vous avez passé à `map`, l'argument `squares` vaut tour à tour chaque élément de `history`, et l'argument `move` vaut tour à tour chaque index de l'historique : `0`, `1`, `2`, etc. (Dans la plupart des cas, vous auriez besoin des données elles-mêmes, mais pour notre liste de coups nous n'avons besoin que des indices.)
 
-For each move in the tic-tac-toe game's history, you create a list item `<li>` which contains a button `<button>`. The button has an `onClick` handler which calls a function called `jumpTo` (that you haven't implemented yet).
+Pour chaque coup de l'historique de notre partie de tic-tac-toe, vous créez un élément de liste `<li>` qui contient un bouton `<button>`. Le bouton a un gestionnaire `onClick` qui appelle une fonction nommée `jumpTo` (que vous n'avez pas encore écrite).
 
-For now, you should see a list of the moves that occurred in the game and an error in the developer tools console. Let's discuss what the "key" error means.
+Pour le moment, vous devriez voir une liste des coups passés de la partie, ainsi qu'une erreur dans la console de développement.  Parlons de ce que cette erreur de « clé » signifie.
 
-### Picking a key {/*picking-a-key*/}
+### Choisir une clé {/*picking-a-key*/}
 
-When you render a list, React stores some information about each rendered list item. When you update a list, React needs to determine what has changed. You could have added, removed, re-arranged, or updated the list's items.
+Lorsque vous affichez une liste, React stocke quelques informations sur chaque élément de liste affiché. Lorsque vous mettez la liste à jour, React a besoin de déterminer ce qui a changé. Vous pourriez avoir ajouté, retiré, réordonné ou mis à jour les éléments de la liste.
 
-Imagine transitioning from
-
-```html
-<li>Alexa: 7 tasks left</li>
-<li>Ben: 5 tasks left</li>
-```
-
-to
+Imaginez une transition depuis…
 
 ```html
-<li>Ben: 9 tasks left</li>
-<li>Claudia: 8 tasks left</li>
-<li>Alexa: 5 tasks left</li>
+<li>Alexa : 7 tâches restantes</li>
+<li>Ben : 5 tâches restantes</li>
 ```
 
-In addition to the updated counts, a human reading this would probably say that you swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and can't know what you intended, so you need to specify a _key_ property for each list item to differentiate each list item from its siblings. If your data was from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
+…vers
+
+```html
+<li>Ben : 9 tâches restantes</li>
+<li>Claudia : 8 tâches restantes</li>
+<li>Alexa : 5 tâches restantes</li>
+```
+
+En plus des mises à jour de compteurs, un humain qui lirait ça dirait sans doute que vous avez inversé l'ordre d'Alexa et Ben, et inséré Claudia entre Alexa et Ben.  Seulement voilà, React n'est qu'un programme informatique et ne peut pas deviner quelle était votre intention, vous avez donc besoin de spécifier une propriété de _clé_ pour chaque élément de la liste afin de les différencier les uns des autres. Si vos données proviennent d'une base de données, les ID en base d'Alexa, Ben et Claudia pourraient être utilisés comme clés :
 
 ```js {1}
 <li key={user.id}>
-  {user.name}: {user.taskCount} tasks left
+  {user.name} : {user.taskCount} tâches restantes
 </li>
 ```
 
-When a list is re-rendered, React takes each list item's key and searches the previous list's items for a matching key. If the current list has a key that didn't exist before, React creates a component. If the current list is missing a key that existed in the previous list, React destroys the previous component. If two keys match, the corresponding component is moved.
+Quand votre liste est ré-affichée, Reaxct prend la clé de chaque élément de liste et recherche l'élément de la liste précédente avec la même clé. S'il ne le trouve pas, Reaxt crée un composant. Si la liste à jour n'a pas une clé qui existait auparavant, React détruit l'ancien composant correspondant. Si deux clés correspondent, le composant correspondant est déplacé si besoin.
 
-Keys tell React about the identity of each component, which allows React to maintain state between re-renders. If a component's key changes, the component will be destroyed and re-created with a new state.
+Les clés informent React sur l'identité de chaque composant, ce qui lui permet de maintenir l'état d'un rendu à l'autre. Si la clé d'un composant change, il sera détruit puis recréé avec un état réinitialisé.
 
-`key` is a special and reserved property in React. When an element is created, React extracts the `key` property and stores the key directly on the returned element. Even though `key` may look like it is passed as props, React automatically uses `key` to decide which components to update. There's no way for a component to ask what `key` its parent specified.
+`key` est une propriété spéciale réservée par React. Lorsqu'un élément est créé, Reaxct extrait la propriété `key` et la stocke directement dans l'élément renvoyé. Même si `key` semble être passé comme une prop, React l'utilise automatiquement pour déterminer quel composant mettre à jour. Un composant n'a aucun moyen de demander la `key` que son parent a spécifié.
 
-**It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
+**Nous vous conseillons fortement d'affecter des clés appropriées dès que vous construisez des listes dynamiques.**  Si vous n'en avez pas, envisagez de restructurer vos données pour qu'elles en comportent.
 
-If no key is specified, React will report an error and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the error but has the same problems as array indices and is not recommended in most cases.
+Si aucune clé n'est spécifié, React signalera une erreur et utiliser par défaut l'index dans le tableau comme clé. Recourir à l'index en tant que clé pose problème dès que vous essayez de réordonner la liste ou d'y insérer ou retirer des éléments.  Passer explicitement `key={i}` réduit certes l'erreur au silence, mais ne résoud en rien le problème sous-jacent, c'est donc une approche généralement déconseillée.
 
-Keys do not need to be globally unique; they only need to be unique between components and their siblings.
+Les clés n'ont pas besoin d'être uniques au global ; elles doivent juste être uniques au sein de la liste concernée.
 
-### Implementing time travel {/*implementing-time-travel*/}
+### Implémenter le voyage dans le temps {/*implementing-time-travel*/}
 
-In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. Moves will never be re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
+Dans l'historique de la partie de tic-tac-toe, chaque coup passé a un ID unique qui lui est associé : c'est le numéro séquentiel du coup. Les coups ne peuvent jamais être réordonnées, modifiés ou insérés (ailleurs qu'à la fin), il est donc raisonnable d'utiliser l'index du coup comme clé.
 
-In the `Game` function, you can add the key as `<li key={move}>`, and if you reload the rendered game, React's "key" error should disappear:
+Dans la fonction `Game`, vous pouvez ajouter la clé avec `<li key={move}>`, et si vous rechargez le jeu affiché, l'erreur de clé de React devrait disparaître :
 
 ```js {4}
 const moves = history.map((squares, move) => {
@@ -2341,7 +2341,7 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Gagnant·e : ' + winner;
+    status = winner + ' a gagné';
   } else {
     status = 'Prochain tour : ' + (xIsNext ? 'X' : 'O');
   }
@@ -2478,7 +2478,7 @@ body {
 
 </Sandpack>
 
-Before you can implement `jumpTo`, you need the `Game` component to keep track of which step the user is currently viewing. To do this, define a new state variable called `currentMove`, defaulting to `0`:
+Avant de pouvoir implémenter `jumpTo`, il faut que le composant `Game` déterminer le coup que l'utilisateur est en train de consulter. Ajoutez une variable d'état nommée `currentMove`, qui vaudra par défaut `0` :
 
 ```js {4}
 export default function Game() {
@@ -2490,7 +2490,7 @@ export default function Game() {
 }
 ```
 
-Next, update the `jumpTo` function inside `Game` to update that `currentMove`. You'll also set `xIsNext` to `true` if the number that you're changing `currentMove` to is even.
+Mettez alors à jour la fonction `jumpTo` dans `Game` pour mettre à jour `currentMove`. Pensez aussi à mettre `xIsNext` à `true` si le numéro cible de `currentMove` est pair.
 
 ```js {4-5}
 export default function Game() {
@@ -2503,10 +2503,10 @@ export default function Game() {
 }
 ```
 
-You will now make two changes to the `Game`'s `handlePlay` function which is called when you click on a square.
+Il faut maintenant apporter deux modifications à la fonction `handlePlay` de `Game`, appelée lorsqu'on clique sur une case.
 
-- If you "go back in time" and then make a new move from that point, you only want to keep the history up to that point. Instead of adding `nextSquares` after all items (`...` spread syntax) in `history`, you'll add it after all items in `history.slice(0, currentMove + 1)` so that you're only keeping that portion of the old history.
-- Each time a move is made, you need to update `currentMove` to point to the latest history entry.
+- Si vous « revenez en arrière » puis faites un nouveau coup à partir de ce point, vous voulez ne conserver l'historique que jusqu'à ce point. Au lieu d'ajouter ` nextSquares` après tous les éléments (avec la syntaxe de *spread* `...`) de `history`, vous voudrez l'ajouter après les éléments de `history.slice(0, currentMove + 1)`, pour ne garder que cette portion de l'historique d'origine.
+- Chaque fois qu'un coup est joué, il faut mettre à jour `currentMove` pour pointer sur la dernière entrée d'historique.
 
 ```js {2-4}
 function handlePlay(nextSquares) {
@@ -2517,7 +2517,7 @@ function handlePlay(nextSquares) {
 }
 ```
 
-Finally, you will modify the `Game` component to render the currently selected move, instead of always rendering the final move:
+Pour finir, il faut modifier le composant `Game` pour afficher le coup actuellement sélectionné, plutôt que de toujours afficher le dernier coup :
 
 ```js {5}
 export default function Game() {
@@ -2530,7 +2530,7 @@ export default function Game() {
 }
 ```
 
-If you click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
+Si vous cliquez sur n'importe quelle état de l'historique de la partie, le plateau de tic-tac-toe devrait immédiatement afficher l'état du plateau à cette étape-là.
 
 <Sandpack>
 
@@ -2562,7 +2562,7 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Gagnant·e : ' + winner;
+    status = winner + ' a gagné';
   } else {
     status = 'Prochain tour : ' + (xIsNext ? 'X' : 'O');
   }
@@ -2701,11 +2701,11 @@ body {
 
 </Sandpack>
 
-### Final cleanup {/*final-cleanup*/}
+### Nettoyage final {/*final-cleanup*/}
 
-If you look at the code very closely, you may notice that `xIsNext === true` when `currentMove` is even and `xIsNext === false` when `currentMove` is odd. In other words, if you know the value of `currentMove`, then you can always figure out what `xIsNext` should be.
+Si vous observez attentivement le code, vous remarquerez peut-être que `xIsNext === true` quand `currentMove` est pair, et que `xIsNext === false` quand `currentMove` est impair. En d'autre termes, si vous connaissez la valeur de `currentMove`, vous pouvez toujours déduire celle de `xIsNext`.
 
-There's no reason for you to store both of these in state. In fact, always try to avoid redundant state. Simplifying what you store in state reduces bugs and makes your code easier to understand. Change `Game` so that it doesn't store `xIsNext` as a separate state variable and instead figures it out based on the `currentMove`:
+Il n'y a dès lors aucune raison de stocker les deux informations dans l'état. En fait, vous devriez activement chercher à ne rien stocker de redondant dans l'état.  Simplifier ce que vous y stocker réduit les bugs et facilite la compréhension de votre code.  Modifiez `Game` de façon à ce qu'il ne stocke plus `xIsNext` comme une variable d'état distincte, mais le calcule plutôt sur base de `currentMove` :
 
 ```js {4,11,15}
 export default function Game() {
@@ -2727,20 +2727,20 @@ export default function Game() {
 }
 ```
 
-You no longer need the `xIsNext` state declaration or the calls to `setXIsNext`. Now, there's no chance for `xIsNext` to get out of sync with `currentMove`, even if you make a mistake while coding the components.
+Vous n'avez plus besoin de la déclaration de variable d'état `xIsNext`, ni d'appels à `setXIsNext`.  Il n'est du coup plus posisble que `xIsNext` et `currentMove` se désynchronisent, même si vous faisiez une erreur en codant un des composants.
 
-### Wrapping up {/*wrapping-up*/}
+### En résumé {/*wrapping-up*/}
 
-Congratulations! You've created a tic-tac-toe game that:
+Félicitations ! Vous avez créé un jeu de tic-tac-toe qui :
 
-- Lets you play tic-tac-toe,
-- Indicates when a player has won the game,
-- Stores a game's history as a game progresses,
-- Allows players to review a game's history and see previous versions of a game's board.
+- vous permet de jouer au tic-tac-toe,
+- signale lorsqu'un joueur a gagné la partie,
+- stocke l'historique des coups au fil de la progression,
+- permet aux joueurs de revoir l'historique de la partie en affichant les plateaux de chaque coup.
 
-Nice work! We hope you now feel like you have a decent grasp of how React works.
+Beau boulot ! Nous espérons que vous avez désormais l'impression de raisonnablement comprendre comment fonctionne React.
 
-Check out the final result here:
+Le résultat final est ici :
 
 <Sandpack>
 
@@ -2772,7 +2772,7 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Gagnant·e : ' + winner;
+    status = winner + ' a gagné';
   } else {
     status = 'Prochain tour : ' + (xIsNext ? 'X' : 'O');
   }
@@ -2909,12 +2909,12 @@ body {
 
 </Sandpack>
 
-If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game, listed in order of increasing difficulty:
+Si vous avez un peu plus de temps ou souhaitez pratiquer vos compétences React toutes fraîches, voici quelques idées d'améliorations que vous pourriez apporter à ce jeu de tic-tac-toe, par ordre croissant de difficulté :
 
-1. For the current move only, show "You are at move #..." instead of a button.
-1. Rewrite `Board` to use two loops to make the squares instead of hardcoding them.
-1. Add a toggle button that lets you sort the moves in either ascending or descending order.
-1. When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw).
-1. Display the location for each move in the format (row, col) in the move history list.
+1. Pour la coup actuel uniquement, affichez « Vous êtes au coup #… » plutôt qu'un bouton.
+2. Remaniez `Board` pour qu'il utilise deux boucles au lieu de coder les rangées et cases du plateau en dur.
+3. Ajoutez un bouton de bascule qui permet de trier les coups par ordre croissant (du premier au dernier) ou décroissant (du dernier au premier).
+4. Lorsqu'un joueur gagne, mettez en exergue les trois cases qui ont déclenché sa victoire (et si personne ne gagne, affichez un message indiquant un match nul).
+5. Affichez l'emplacement de chaque coup (ligne, colonne) dans l'historique des coups joués.
 
-Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how the same React concepts work when build an app's UI.
+Au cours de ce tutoriel, vous avez abordé des concepts React tels que les éléments, les composants, les props et l'état. À présent que vous avez pu les voir en action dans le cadre de la construction de ce jeu, allez donc lire [Penser en React](/learn/thinking-in-react) pour explorer ces mêmes concepts dans le cadre de la construction de l'UI d'une appli.
