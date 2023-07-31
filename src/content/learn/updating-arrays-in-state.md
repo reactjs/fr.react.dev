@@ -22,7 +22,7 @@ En JavaScript, les tableaux sont des objets comme les autres. [Tout comme avec l
 
 Au lieu de ça, chaque fois que vous souhaitez mettre à jour un tableau, vous devez passer un *nouveau* tableau à la fonction de mise à jour de l'état. Pour cela, vous pouvez créer un nouveau tableau à partir de l'original en utilisant des méthodes non modifiantes telles que `filter()` et `map()`. Ensuite, vous pouvez mettre à jour l'état avec le nouveau tableau résultant.
 
-Voici un tableau de référence des opérations courantes sur les tableaux. Lorsque vous traitez des tableaux dans l'état de React, évitez les méthodes de la colonne de gauche et privilégiez celles de la colonne de droite :
+Voici un tableau de référence des opérations courantes sur les tableaux. Lorsque vous traitez des tableaux dans l'état de React, évitez les méthodes de la colonne de gauche et privilégiez celles de la colonne de droite :
 
 |              | à éviter (modifie le tableau)        | à privilégier (renvoie un nouveau tableau)                                |
 | ------------ | ------------------------------------ | ------------------------------------------------------------------------- |
@@ -35,18 +35,18 @@ Vous pouvez également [utiliser Immer](#write-concise-update-logic-with-immer) 
 
 <Pitfall>
 
-Malheureusement, [`slice`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) et [`splice`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) ont des noms similaires mais sont très différents :
+Malheureusement, [`slice`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) et [`splice`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) ont des noms similaires mais sont très différents :
 
 - `slice` vous permet de copier un tableau ou une partie de celui-ci.
 - `splice` **modifie** le tableau (pour insérer ou supprimer des éléments).
 
-En React, vous utiliserez beaucoup plus souvent `slice` (sans le `p` !) car vous ne voulez pas modifier en place les objets ou les tableaux dans l'état. La page [Mettre à jour les objets d'un état](/learn/updating-objects-in-state) explique ce qu'est la modification en place, et pourquoi elle est déconseillée pour l'état.
+En React, vous utiliserez beaucoup plus souvent `slice` (sans le `p` !) car vous ne voulez pas modifier en place les objets ou les tableaux dans l'état. La page [Mettre à jour les objets d'un état](/learn/updating-objects-in-state) explique ce qu'est la modification en place, et pourquoi elle est déconseillée pour l'état.
 
 </Pitfall>
 
 ### Ajouter un élément à un tableau {/*adding-to-an-array*/}
 
-`push()` modifiera un tableau, ce que vous ne souhaitez pas faire :
+`push()` modifiera un tableau, ce que vous ne souhaitez pas faire :
 
 <Sandpack>
 
@@ -61,7 +61,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Sculpteurs inspirants :</h1>
+      <h1>Sculpteurs inspirants :</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
@@ -88,7 +88,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Au lieu de ça, créez un *nouveau* tableau qui contient les éléments existants *et* un nouvel élément à la fin. Il existe plusieurs façons de le faire, mais la plus simple consiste à utiliser [la syntaxe de *spread* de tableaux](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) `...` :
+Au lieu de ça, créez un *nouveau* tableau qui contient les éléments existants *et* un nouvel élément à la fin. Il existe plusieurs façons de le faire, mais la plus simple consiste à utiliser [la syntaxe de *spread* de tableaux](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) `...` :
 
 ```js
 setArtists( // Remplace l'état
@@ -99,7 +99,7 @@ setArtists( // Remplace l'état
 );
 ```
 
-Maintenant, ça fonctionne correctement :
+Maintenant, ça fonctionne correctement :
 
 <Sandpack>
 
@@ -114,7 +114,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Sculpteurs inspirants :</h1>
+      <h1>Sculpteurs inspirants :</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
@@ -141,7 +141,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-La syntaxe de *spread* de tableaux permet également d'ajouter un élément au début du tableau en le plaçant *avant* le `...artists` d'origine :
+La syntaxe de *spread* de tableaux permet également d'ajouter un élément au début du tableau en le plaçant *avant* le `...artists` d'origine :
 
 ```js
 setArtists([
@@ -150,11 +150,11 @@ setArtists([
 ]);
 ```
 
-De cette manière, l'opérateur de *spread* peut à la fois agir comme `push()`, en ajoutant un élément à la fin d'un tableau, et comme `unshift()`, en ajoutant un élément au début d'un tableau. Essayez-le dans le bac à sable ci-dessus !
+De cette manière, l'opérateur de *spread* peut à la fois agir comme `push()`, en ajoutant un élément à la fin d'un tableau, et comme `unshift()`, en ajoutant un élément au début d'un tableau. Essayez de l'utiliser dans le bac à sable ci-dessus !
 
 ### Retirer un élément d'un tableau {/*removing-from-an-array*/}
 
-Le moyen le plus simple de retirer un élément d'un tableau consiste à le *filtrer*. En d'autres termes, vous allez créer un nouveau tableau qui ne contiendra pas cet élément. Pour cela, utilisez la méthode `filter`, par exemple:
+Le moyen le plus simple de retirer un élément d'un tableau consiste à le *filtrer*. En d'autres termes, vous allez créer un nouveau tableau qui ne contiendra pas cet élément. Pour cela, utilisez la méthode `filter` des tableaux, par exemple:
 
 <Sandpack>
 
@@ -174,7 +174,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Sculpteurs inspirants :</h1>
+      <h1>Sculpteurs inspirants :</h1>
       <ul>
         {artists.map(artist => (
           <li key={artist.id}>
@@ -212,7 +212,7 @@ Ici, `artists.filter(a => a.id !== artist.id)` signifie « crée un tableau com
 
 Si vous souhaitez modifier tout ou partie des éléments du tableau, vous pouvez utiliser `map()` pour créer un **nouveau** tableau. La fonction que vous passerez à `map` décidera quoi faire avec chaque élément en fonction de ses données ou de son index (ou les deux).
 
-Dans cet exemple, un tableau contient les coordonnées de deux cercles et d'un carré. Lorsque vous appuyez sur le bouton, seuls les cercles sont déplacés de 50 pixels vers le bas. On y parvient en produisant un nouveau tableau de données à l'aide de `map()` :
+Dans cet exemple, un tableau contient les coordonnées de deux cercles et d'un carré. Lorsque vous appuyez sur le bouton, seuls les cercles sont déplacés de 50 pixels vers le bas. On y parvient en produisant un nouveau tableau de données à l'aide de `map()` :
 
 <Sandpack>
 
@@ -250,7 +250,7 @@ export default function ShapeEditor() {
   return (
     <>
       <button onClick={handleClick}>
-        Déplacez les cercles vers le bas !
+        Déplacez les cercles vers le bas !
       </button>
       {shapes.map(shape => (
         <div
@@ -282,7 +282,7 @@ body { height: 300px; }
 
 Il est très courant de vouloir remplacer un ou plusieurs éléments dans un tableau. Les affectations telles que `arr[0] = 'oiseau'` modifient le tableau d'origine, vous devrez donc encore une fois plutôt utiliser `map`.
 
-Pour remplacer un élément, créez un nouveau tableau avec `map`. À l'intérieur de votre appel à `map`, vous recevrez l'index de l'élément comme deuxième argument. Utilisez-le pour décider s'il faut renvoyer l'élément d'origine (premier argument) ou autre chose :
+Pour remplacer un élément, créez un nouveau tableau avec `map`. À l'intérieur de votre appel à `map`, vous recevrez l'index de l'élément comme deuxième argument. Utilisez-le pour décider s'il faut renvoyer l'élément d'origine (premier argument) ou autre chose :
 
 <Sandpack>
 
@@ -336,7 +336,7 @@ button { margin: 5px; }
 
 Parfois, vous souhaiterez peut-être insérer un élément à une position spécifique qui n'est ni au début ni à la fin du tableau. Pour cela, vous pouvez utiliser la syntaxe de *spread* de tableaux `...` combinée avec la méthode `slice()`. La méthode `slice()` vous permet de découper une « tranche » du tableau. Pour insérer un élément, vous créerez un nouveau tableau qui contiendra la « tranche » _avant_ le point d'insertion, puis le nouvel élément, et enfin le reste du tableau d'origine.
 
-Dans cet exemple, le bouton Insérer insère toujours à l'index `1` :
+Dans cet exemple, le bouton Insérer insère toujours à l'index `1` :
 
 <Sandpack>
 
@@ -359,11 +359,11 @@ export default function List() {
   function handleClick() {
     const insertAt = 1; // Peut être n’importe quel index
     const nextArtists = [
-      // Éléments avant le point d’insertion :
+      // Éléments avant le point d’insertion :
       ...artists.slice(0, insertAt),
-      // Nouvel élément :
+      // Nouvel élément :
       { id: nextId++, name: name },
-      // Éléments après le point d’insertion :
+      // Éléments après le point d’insertion :
       ...artists.slice(insertAt)
     ];
     setArtists(nextArtists);
@@ -372,7 +372,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Sculpteurs inspirants :</h1>
+      <h1>Sculpteurs inspirants :</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
@@ -402,7 +402,7 @@ Il y a certaines choses que vous ne pouvez pas faire en utilisant seulement la s
 
 **Cependant, vous pouvez d'abord copier le tableau, puis apporter des modifications à cette copie.**
 
-Par exemple :
+Par exemple :
 
 <Sandpack>
 
@@ -444,23 +444,23 @@ export default function List() {
 
 Ici, vous utilisez d'abord la syntaxe de *spread* `[...list]` pour créer une copie du tableau d'origine. Maintenant que vous avez une copie, vous pouvez utiliser des méthodes modifiantes comme `nextList.reverse()` ou `nextList.sort()`, ou même affecter individuellement des éléments avec `nextList[0] = "quelque chose"`.
 
-Cependant, **même si vous copiez un tableau, vous ne pouvez pas modifier directement les éléments existants _à l'intérieur_ de celui-ci.** C'est parce que la copie est superficielle : le nouveau tableau contiendra les mêmes éléments que le tableau d'origine. Ainsi, si vous modifiez un objet à l'intérieur du tableau copié, vous modifiez l'état existant. Par exemple, le code suivant est problématique.
+Cependant, **même si vous copiez un tableau, vous ne pouvez pas modifier directement les éléments existants _à l'intérieur_ de celui-ci.** C'est parce que la copie est superficielle : le nouveau tableau contiendra les mêmes éléments que le tableau d'origine. Ainsi, si vous modifiez un objet à l'intérieur du tableau copié, vous modifiez l'état existant. Par exemple, le code suivant est problématique.
 
 ```js
 const nextList = [...list];
-nextList[0].seen = true; // Problème : modifie list[0]
+nextList[0].seen = true; // Problème : modifie list[0]
 setList(nextList);
 ```
 
-Bien que `nextList` et `list` soient deux tableaux différents, **`nextList[0]` et `list[0]` pointent vers le même objet.** Donc, en modifiant `nextList[0].seen`, vous modifiez également `list[0].seen`. C'est une mutation de l'état, que vous devez éviter ! Vous pouvez résoudre ce problème de la même manière que pour [mettre à jour des objets JavaScript imbriqués](/learn/updating-objects-in-state#updating-a-nested-object) en copiant les éléments individuels que vous souhaitez changer au lieu de les modifier. Voici comment faire.
+Bien que `nextList` et `list` soient deux tableaux différents, **`nextList[0]` et `list[0]` pointent vers le même objet.** Donc, en modifiant `nextList[0].seen`, vous modifiez également `list[0].seen`. C'est une mutation de l'état, que vous devez éviter ! Vous pouvez résoudre ce problème de la même manière que pour [mettre à jour des objets JavaScript imbriqués](/learn/updating-objects-in-state#updating-a-nested-object) en copiant les éléments individuels que vous souhaitez changer au lieu de les modifier. Voici comment faire.
 
 ## Mettre à jour des objets dans des tableaux {/*updating-objects-inside-arrays*/}
 
-Les objets ne sont pas _vraiment_ « à l'intérieur » des tableaux. Ils peuvent sembler être « à l'intérieur » dans le code, mais chaque objet dans un tableau est une valeur distincte vers laquelle le tableau « pointe ». C'est pourquoi vous devez faire attention lorsque vous modifiez des champs imbriqués tels que `list[0]`. La liste d'œuvres d'art d'une autre personne peut pointer vers le même élément du tableau !
+Les objets ne sont pas _vraiment_ « à l'intérieur » des tableaux. Ils peuvent sembler être « à l'intérieur » dans le code, mais chaque objet dans un tableau est une valeur distincte vers laquelle le tableau « pointe ». C'est pourquoi vous devez faire attention lorsque vous modifiez des champs imbriqués tels que `list[0]`. La liste d'œuvres d'art d'une autre personne peut pointer vers le même élément du tableau !
 
 **Lorsque vous mettez à jour un état imbriqué, vous devez créer des copies à partir de l'endroit où vous souhaitez effectuer la mise à jour, en remontant jusqu’au plus haut niveau.** Voyons comment ça fonctionne.
 
-Dans cet exemple, deux listes d'œuvres d'art séparées ont le même état initial. Elles sont censées être isolées, mais à cause d'une modification directe, leur état est accidentellement partagé, et cocher une case dans l'une des listes affecte l'autre liste :
+Dans cet exemple, deux listes d'œuvres d'art séparées ont le même état initial. Elles sont censées être isolées, mais à cause d'une modification directe, leur état est accidentellement partagé, et cocher une case dans l'une des listes affecte l'autre liste :
 
 <Sandpack>
 
@@ -501,11 +501,11 @@ export default function BucketList() {
   return (
     <>
       <h1>Liste d’œuvres d’art</h1>
-      <h2>Ma liste à voir absolument :</h2>
+      <h2>Ma liste à voir absolument :</h2>
       <ItemList
         artworks={myList}
         onToggle={handleToggleMyList} />
-      <h2>Votre liste à voir absolument :</h2>
+      <h2>Votre liste à voir absolument :</h2>
       <ItemList
         artworks={yourList}
         onToggle={handleToggleYourList} />
@@ -540,12 +540,12 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-Le problème se trouve dans du code comme celui-ci :
+Le problème se trouve dans du code comme celui-ci :
 
 ```js
 const myNextList = [...myList];
 const artwork = myNextList.find(a => a.id === artworkId);
-artwork.seen = nextSeen; // Problème : modifie un élément existant
+artwork.seen = nextSeen; // Problème : modifie un élément existant
 setMyList(myNextList);
 ```
 
@@ -567,7 +567,7 @@ setMyList(myList.map(artwork => {
 
 Ici, `...` est la syntaxe de *spread* d'objets utilisée pour [créer une copie d'un objet](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax).
 
-Avec cette approche, aucun des éléments de l'état existant n'est modifié et le bug est corrigé :
+Avec cette approche, aucun des éléments de l'état existant n'est modifié et le bug est corrigé :
 
 <Sandpack>
 
@@ -614,11 +614,11 @@ export default function BucketList() {
   return (
     <>
       <h1>Liste d’œuvres d’art</h1>
-      <h2>Ma liste à voir absolument :</h2>
+      <h2>Ma liste à voir absolument :</h2>
       <ItemList
         artworks={myList}
         onToggle={handleToggleMyList} />
-      <h2>Votre liste à voir absolument :</h2>
+      <h2>Votre liste à voir absolument :</h2>
       <ItemList
         artworks={yourList}
         onToggle={handleToggleYourList} />
@@ -662,7 +662,7 @@ Mettre à jour des tableaux imbriqués sans modification directe peut conduire �
 - En général, vous ne devriez pas avoir besoin de mettre à jour l'état à plus de quelques niveaux de profondeur. Si vos objets d'état sont très profonds, vous pouvez envisager de [les restructurer différemment](/learn/choosing-the-state-structure#avoid-deeply-nested-state) pour les rendre plus plats.
 - Si vous ne souhaitez pas changer la structure de votre état, vous préférerez peut-être utiliser [Immer](https://github.com/immerjs/use-immer), qui vous permet d’écrire votre code en utilisant une syntaxe pratique mais modifiante, et se charge de produire les copies pour vous.
 
-Voici l'exemple de la liste des œuvres d'art réécrit avec Immer :
+Voici l'exemple de la liste des œuvres d'art réécrit avec Immer :
 
 <Sandpack>
 
@@ -706,11 +706,11 @@ export default function BucketList() {
   return (
     <>
       <h1>Liste d’œuvres d’art</h1>
-      <h2>Ma liste à voir absolument :</h2>
+      <h2>Ma liste à voir absolument :</h2>
       <ItemList
         artworks={myList}
         onToggle={handleToggleMyList} />
-      <h2>Votre liste à voir absolument :</h2>
+      <h2>Votre liste à voir absolument :</h2>
       <ItemList
         artworks={yourList}
         onToggle={handleToggleYourList} />
@@ -763,7 +763,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-Notez qu'avec Immer, **une mutation comme `artwork.seen = nextSeen` est désormais autorisée :**
+Notez qu'avec Immer, **une mutation comme `artwork.seen = nextSeen` est désormais autorisée :**
 
 ```js
 updateMyTodos(draft => {
@@ -792,7 +792,7 @@ En interne, Immer construit toujours le prochain état à partir de zéro en fon
 
 #### Mettre à jour un élément dans le panier {/*update-an-item-in-the-shopping-cart*/}
 
-Complétez la logique de `handleIncreaseClick` de manière à ce que lorsqu'on appuie sur « + », le nombre correspondant augmente :
+Complétez la logique de `handleIncreaseClick` de manière à ce que lorsqu'on appuie sur « + », la quantité de produit correspondante augmente :
 
 <Sandpack>
 
@@ -850,7 +850,7 @@ button { margin: 5px; }
 
 <Solution>
 
-Vous pouvez utiliser la fonction `map` pour créer un nouveau tableau, puis utiliser la syntaxe de *spread* d'objets `...` pour créer une copie de l'objet modifié pour le nouveau tableau :
+Vous pouvez utiliser la fonction `map` pour créer un nouveau tableau, puis utiliser la syntaxe de *spread* d'objets `...` pour créer une copie de l'objet modifié pour le nouveau tableau :
 
 <Sandpack>
 
@@ -989,7 +989,7 @@ button { margin: 5px; }
 
 <Solution>
 
-Vous pouvez d'abord utiliser `map` pour créer un nouveau tableau, puis `filter` pour supprimer les produits avec un `count` égal à `0` :
+Vous pouvez d'abord utiliser `map` pour créer un nouveau tableau, puis `filter` pour supprimer les produits avec un `count` égal à `0` :
 
 <Sandpack>
 
@@ -1080,7 +1080,7 @@ button { margin: 5px; }
 
 #### Basculer vers des méthodes non modifiantes {/*fix-the-mutations-using-non-mutative-methods*/}
 
-Dans cet exemple, tous les gestionnaires d'événements dans `App.js` utilisent des modifications en place. Par conséquent, la modification et la suppression des tâches ne fonctionnent pas. Réécrivez `handleAddTodo`, `handleChangeTodo` et `handleDeleteTodo` en utilisant des méthodes non modifiantes :
+Dans cet exemple, tous les gestionnaires d'événements dans `App.js` utilisent des modifications en place. Par conséquent, la modification et la suppression des tâches ne fonctionnent pas. Réécrivez `handleAddTodo`, `handleChangeTodo` et `handleDeleteTodo` en utilisant des méthodes non modifiantes :
 
 <Sandpack>
 
@@ -1595,7 +1595,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Avec Immer, vous pouvez écrire du code de manière modifiante, tant que vous ne modifiez que des parties du `draft` que Immer vous fournit. Ici, toutes les modifications sont effectuées sur le `draft` de sorte que le code fonctionne correctement :
+Avec Immer, vous pouvez écrire du code de manière modifiante, tant que vous ne modifiez que des parties du `draft` que Immer vous fournit. Ici, toutes les modifications sont effectuées sur le `draft` de sorte que le code fonctionne bien :
 
 <Sandpack>
 
