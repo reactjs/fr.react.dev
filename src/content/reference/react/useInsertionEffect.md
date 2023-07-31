@@ -10,11 +10,7 @@ title: useInsertionEffect
 
 <Intro>
 
-<<<<<<< HEAD
-`useInsertionEffect` est une version de [`useEffect`](/reference/react/useEffect) qui est déclenchée avant que React ne mette à jour le DOM.
-=======
-`useInsertionEffect` allows inserting elements into the DOM before any layout effects fire.
->>>>>>> a472775b7c15f41b21865db1698113ca49ca95c4
+`useInsertionEffect` permet l'insertion d'éléments dans le DOM avant que les effets de mise en page ne soient déclenchés.
 
 ```js
 useInsertionEffect(setup, dependencies?)
@@ -30,11 +26,7 @@ useInsertionEffect(setup, dependencies?)
 
 ### `useInsertionEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-<<<<<<< HEAD
-Appelez `useInsertionEffect` pour insérer des styles avant toute modification du DOM :
-=======
-Call `useInsertionEffect` to insert styles before any effects fire that may need to read layout:
->>>>>>> a472775b7c15f41b21865db1698113ca49ca95c4
+Appelez `useInsertionEffect` pour insérer des styles avant que des effets ayant besoin de consulter la mise en page soient déclenchés :
 
 ```js
 import { useInsertionEffect } from 'react';
@@ -52,13 +44,7 @@ function useCSS(rule) {
 
 #### Paramètres {/*parameters*/}
 
-<<<<<<< HEAD
-* `setup` : la fonction contenant la logique de votre Effet.  Votre fonction de mise en place peut par ailleurs renvoyer une fonction de *nettoyage*.  Quand votre composant sera ajouté au DOM, React exécutera votre fonction de mise en place.  Après chaque nouveau rendu dont les dépendances ont changé, React commencera par exécuter votre fonction de nettoyage (si vous en avez fourni une) avec les anciennes valeurs, puis exécutera votre fonction de mise en place avec les nouvelles valeurs.  Une fois votre composant retiré du DOM, React exécutera votre fonction de nettoyage une dernière fois.
-=======
-* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. When your component is added to the DOM, but before any layout effects fire, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. When your component is removed from the DOM, React will run your cleanup function.
- 
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm. If you don't specify the dependencies at all, your Effect will re-run after every re-render of the component.
->>>>>>> a472775b7c15f41b21865db1698113ca49ca95c4
+* `setup` : la fonction contenant la logique de votre Effet.  Votre fonction de mise en place peut par ailleurs renvoyer une fonction de *nettoyage*.  Quand votre composant sera ajouté au DOM, mais avant le déclenchement des effets de mise en page, React exécutera votre fonction de mise en place.  Après chaque nouveau rendu dont les dépendances ont changé, React commencera par exécuter votre fonction de nettoyage (si vous en avez fourni une) avec les anciennes valeurs, puis exécutera votre fonction de mise en place avec les nouvelles valeurs.  Une fois votre composant retiré du DOM, React exécutera votre fonction de nettoyage une dernière fois.
 
 * `dependencies` **optionnelles** : la liste des valeurs réactives référencées par le code de `setup`.  Les valeurs réactives comprennent les props, les variables d'état et toutes les variables et fonctions déclarées localement dans le corps de votre composant.  Si votre *linter* est [configuré pour React](/learn/editor-setup#linting), il vérifiera que chaque valeur réactive concernée est bien spécifiée comme dépendance.  La liste des dépendances doit avoir un nombre constant d'éléments et utiliser un littéral défini à la volée, du genre `[dep1, dep2, dep3]`. React comparera chaque dépendance à sa valeur précédente au moyen de la comparaison [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is).  Si vous omettez cet argument, votre Effet sera re-exécuté après chaque rendu du composant.
 
@@ -66,20 +52,14 @@ function useCSS(rule) {
 
 `useInsertionEffect` renvoie `undefined`.
 
-<<<<<<< HEAD
 #### Limitations {/*caveats*/}
 
 * Les Effets ne sont exécutés que côté client.  Ils sont ignorés lors du rendu côté serveur.
 * Vous ne pouvez pas mettre à jour l'état au sein de `useInsertionEffect`.
-* Au moment où `useInsertionEffect` est exécuté, les refs ne sont pas encore associées, et le DOM n'est pas encore mis à jour.
+* Au moment où `useInsertionEffect` est exécuté, les refs ne sont pas encore associées.
+* `useInsertionEffect` est susceptible d'exécuter votre code avant ou après que le DOM a été mis à jour. Vous ne devriez pas vous baser sur une chronologie spécifique de mise à jour du DOM.
+* Contrairement aux autres types d'Effets, qui exécutent leurs nettoyages pour chaque Effet puis les mises en place pour chaque Effet, `useInsertionEffect` exécutera en séquence le nettoyage et la mise en place un composant à la fois.  Ça entraîne donc un « entrelacement » des exécutions de nettoyage et de mise en place.
 
-=======
-* Effects only run on the client. They don't run during server rendering.
-* You can't update state from inside `useInsertionEffect`.
-* By the time `useInsertionEffect` runs, refs are not attached yet.
-* `useInsertionEffect` may run either before or after the DOM has been updated. You shouldn't rely on the DOM being updated at any particular time.
-* Unlike other types of Effects, which fire cleanup for every Effect and then setup for every Effect, `useInsertionEffect` will fire both cleanup and setup one component at a time. This results in an "interleaving" of the cleanup and setup functions.
->>>>>>> a472775b7c15f41b21865db1698113ca49ca95c4
 ---
 
 ## Utilisation {/*usage*/}
@@ -109,11 +89,7 @@ Si vous utilisez du CSS-en-JS, nous vous recommandons de combiner les deux premi
 
 Le premier problème est incontournable, mais `useInsertionEffect` vous aide à résoudre le second.
 
-<<<<<<< HEAD
-Appelez `useInsertionEffect` pour insérer des styles avant que le DOM soit mis à jour :
-=======
-Call `useInsertionEffect` to insert the styles before any layout effects fire:
->>>>>>> a472775b7c15f41b21865db1698113ca49ca95c4
+Appelez `useInsertionEffect` pour insérer des styles avant que les effets de mise en page soient déclenchés :
 
 ```js {4-11}
 // Dans votre bibliothèque de CSS-en-JS
