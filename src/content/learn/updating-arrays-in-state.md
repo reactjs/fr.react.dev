@@ -1,52 +1,52 @@
 ---
-title: Updating Arrays in State
+title: Mettre à jour les tableaux d'un état
 ---
 
 <Intro>
 
-Arrays are mutable in JavaScript, but you should treat them as immutable when you store them in state. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array.
+Les tableaux sont un type d’objet modifiable en JavaScript que vous pouvez stocker dans un état et que vous devez traiter comme étant en lecture seule. Tout comme avec les objets, lorsque vous souhaitez mettre à jour un tableau stocké dans un état, vous devez en créer un nouveau (ou en copier un existant), puis affecter le nouveau tableau dans l’état.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to add, remove, or change items in an array in React state
-- How to update an object inside of an array
-- How to make array copying less repetitive with Immer
+- Comment ajouter, supprimer ou modifier des éléments dans un tableau dans l'état React
+- Comment mettre à jour un objet à l'intérieur d'un tableau
+- Comment rendre la copie de tableaux moins répétitive avec Immer
 
 </YouWillLearn>
 
-## Updating arrays without mutation {/*updating-arrays-without-mutation*/}
+## Mettre à jour des tableaux sans modification en place {/*updating-arrays-without-mutation*/}
 
-In JavaScript, arrays are just another kind of object. [Like with objects](/learn/updating-objects-in-state), **you should treat arrays in React state as read-only.** This means that you shouldn't reassign items inside an array like `arr[0] = 'bird'`, and you also shouldn't use methods that mutate the array, such as `push()` and `pop()`.
+En JavaScript, les tableaux sont des objets comme les autres. [Tout comme avec les objets](/learn/updating-objects-in-state), **vous devez considérer les tableaux dans l'état React comme étant en lecture seule**. Ça signifie que vous ne devez pas réaffecter les éléments à l'intérieur d'un tableau, comme dans `arr[0] = 'oiseau'`, et vous ne devez pas non plus utiliser des méthodes qui modifient le tableau en place, telles que `push()` et `pop()`.
 
-Instead, every time you want to update an array, you'll want to pass a *new* array to your state setting function. To do that, you can create a new array from the original array in your state by calling its non-mutating methods like `filter()` and `map()`. Then you can set your state to the resulting new array.
+Au lieu de ça, chaque fois que vous souhaitez mettre à jour un tableau, vous devez passer un *nouveau* tableau à la fonction de mise à jour de l'état. Pour cela, vous pouvez créer un nouveau tableau à partir de l'original en utilisant des méthodes non modifiantes telles que `filter()` et `map()`. Ensuite, vous pouvez mettre à jour l'état avec le nouveau tableau résultant.
 
-Here is a reference table of common array operations. When dealing with arrays inside React state, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
+Voici un tableau de référence des opérations courantes sur les tableaux. Lorsque vous traitez des tableaux dans l'état de React, évitez les méthodes de la colonne de gauche et privilégiez celles de la colonne de droite :
 
-|           | avoid (mutates the array)           | prefer (returns a new array)                                        |
-| --------- | ----------------------------------- | ------------------------------------------------------------------- |
-| adding    | `push`, `unshift`                   | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
-| removing  | `pop`, `shift`, `splice`            | `filter`, `slice` ([example](#removing-from-an-array))              |
-| replacing | `splice`, `arr[i] = ...` assignment | `map` ([example](#replacing-items-in-an-array))                     |
-| sorting   | `reverse`, `sort`                   | copy the array first ([example](#making-other-changes-to-an-array)) |
+|              | à éviter (modifie le tableau)        | à privilégier (renvoie un nouveau tableau)                                |
+| ------------ | ------------------------------------ | ------------------------------------------------------------------------- |
+| ajout        | `push`, `unshift`                    | `concat`, syntaxe de *spread* `[...arr]` ([exemple](#adding-to-an-array)) |
+| suppression  | `pop`, `shift`, `splice`             | `filter`, `slice` ([exemple](#removing-from-an-array))                    |
+| remplacement | `splice`, affectation `arr[i] = ...` | `map` ([exemple](#replacing-items-in-an-array))                           |
+| tri          | `reverse`, `sort`                    | copiez d'abord le tableau ([exemple](#making-other-changes-to-an-array))  |
 
-Alternatively, you can [use Immer](#write-concise-update-logic-with-immer) which lets you use methods from both columns.
+Vous pouvez également [utiliser Immer](#write-concise-update-logic-with-immer) qui vous permet d'utiliser des méthodes des deux colonnes.
 
 <Pitfall>
 
-Unfortunately, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) and [`splice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) are named similarly but are very different:
+Malheureusement, [`slice`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) et [`splice`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) ont des noms similaires mais sont très différents :
 
-* `slice` lets you copy an array or a part of it.
-* `splice` **mutates** the array (to insert or delete items).
+- `slice` vous permet de copier un tableau ou une partie de celui-ci.
+- `splice` **modifie** le tableau (pour insérer ou supprimer des éléments).
 
-In React, you will be using `slice` (no `p`!) a lot more often because you don't want to mutate objects or arrays in state. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for state.
+En React, vous utiliserez beaucoup plus souvent `slice` (sans le `p` !) car vous ne voulez pas modifier en place les objets ou les tableaux dans l'état. La page [Mettre à jour les objets d'un état](/learn/updating-objects-in-state) explique ce qu'est la modification en place, et pourquoi elle est déconseillée pour l'état.
 
 </Pitfall>
 
-### Adding to an array {/*adding-to-an-array*/}
+### Ajouter un élément à un tableau {/*adding-to-an-array*/}
 
-`push()` will mutate an array, which you don't want:
+`push()` modifiera un tableau, ce que vous ne souhaitez pas faire :
 
 <Sandpack>
 
@@ -61,7 +61,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Sculpteurs inspirants :</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
@@ -71,7 +71,7 @@ export default function List() {
           id: nextId++,
           name: name,
         });
-      }}>Add</button>
+      }}>Ajouter</button>
       <ul>
         {artists.map(artist => (
           <li key={artist.id}>{artist.name}</li>
@@ -88,18 +88,18 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Instead, create a *new* array which contains the existing items *and* a new item at the end. There are multiple ways to do this, but the easiest one is to use the `...` [array spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) syntax:
+Au lieu de ça, créez un *nouveau* tableau qui contient les éléments existants *et* un nouvel élément à la fin. Il existe plusieurs façons de le faire, mais la plus simple consiste à utiliser [la syntaxe de *spread* de tableaux](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) `...` :
 
 ```js
-setArtists( // Replace the state
-  [ // with a new array
-    ...artists, // that contains all the old items
-    { id: nextId++, name: name } // and one new item at the end
+setArtists( // Remplace l'état
+  [ // par un nouveau tableau
+    ...artists, // qui contient tous les anciens éléments
+    { id: nextId++, name: name } // et un nouvel élément à la fin
   ]
 );
 ```
 
-Now it works correctly:
+Maintenant, ça fonctionne correctement :
 
 <Sandpack>
 
@@ -114,7 +114,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Sculpteurs inspirants :</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
@@ -124,7 +124,7 @@ export default function List() {
           ...artists,
           { id: nextId++, name: name }
         ]);
-      }}>Add</button>
+      }}>Ajouter</button>
       <ul>
         {artists.map(artist => (
           <li key={artist.id}>{artist.name}</li>
@@ -141,20 +141,20 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-The array spread syntax also lets you prepend an item by placing it *before* the original `...artists`:
+La syntaxe de *spread* de tableaux permet également d'ajouter un élément au début du tableau en le plaçant *avant* le `...artists` d'origine :
 
 ```js
 setArtists([
   { id: nextId++, name: name },
-  ...artists // Put old items at the end
+  ...artists // Place les anciens éléments à la fin
 ]);
 ```
 
-In this way, spread can do the job of both `push()` by adding to the end of an array and `unshift()` by adding to the beginning of an array. Try it in the sandbox above!
+De cette manière, l'opérateur de *spread* peut à la fois agir comme `push()`, en ajoutant un élément à la fin d'un tableau, et comme `unshift()`, en ajoutant un élément au début d'un tableau. Essayez de l'utiliser dans le bac à sable ci-dessus !
 
-### Removing from an array {/*removing-from-an-array*/}
+### Retirer un élément d'un tableau {/*removing-from-an-array*/}
 
-The easiest way to remove an item from an array is to *filter it out*. In other words, you will produce a new array that will not contain that item. To do this, use the `filter` method, for example:
+Le moyen le plus simple de retirer un élément d'un tableau consiste à le *filtrer*. En d'autres termes, vous allez créer un nouveau tableau qui ne contiendra pas cet élément. Pour cela, utilisez la méthode `filter` des tableaux, par exemple:
 
 <Sandpack>
 
@@ -174,7 +174,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Sculpteurs inspirants :</h1>
       <ul>
         {artists.map(artist => (
           <li key={artist.id}>
@@ -186,7 +186,7 @@ export default function List() {
                 )
               );
             }}>
-              Delete
+              Supprimer
             </button>
           </li>
         ))}
@@ -198,7 +198,7 @@ export default function List() {
 
 </Sandpack>
 
-Click the "Delete" button a few times, and look at its click handler.
+Cliquez sur le bouton « Supprimer » plusieurs fois et observez son gestionnaire de clics.
 
 ```js
 setArtists(
@@ -206,13 +206,13 @@ setArtists(
 );
 ```
 
-Here, `artists.filter(a => a.id !== artist.id)` means "create an array that consists of those `artists` whose IDs are different from `artist.id`". In other words, each artist's "Delete" button will filter _that_ artist out of the array, and then request a re-render with the resulting array. Note that `filter` does not modify the original array.
+Ici, `artists.filter(a => a.id !== artist.id)` signifie « crée un tableau comprenant les `artists` dont les IDs sont différents de `artist.id` ». En d'autres termes, le bouton « Supprimer » de chaque artiste filtre _cet_ artiste du tableau, puis demande un nouveau rendu avec le tableau résultant. Notez que `filter` ne modifie pas le tableau d'origine.
 
-### Transforming an array {/*transforming-an-array*/}
+### Transformer un tableau {/*transforming-an-array*/}
 
-If you want to change some or all items of the array, you can use `map()` to create a **new** array. The function you will pass to `map` can decide what to do with each item, based on its data or its index (or both).
+Si vous souhaitez modifier tout ou partie des éléments du tableau, vous pouvez utiliser `map()` pour créer un **nouveau** tableau. La fonction que vous passerez à `map` décidera quoi faire avec chaque élément en fonction de ses données ou de son index (ou les deux).
 
-In this example, an array holds coordinates of two circles and a square. When you press the button, it moves only the circles down by 50 pixels. It does this by producing a new array of data using `map()`:
+Dans cet exemple, un tableau contient les coordonnées de deux cercles et d'un carré. Lorsque vous appuyez sur le bouton, seuls les cercles sont déplacés de 50 pixels vers le bas. On y parvient en produisant un nouveau tableau de données à l'aide de `map()` :
 
 <Sandpack>
 
@@ -233,24 +233,24 @@ export default function ShapeEditor() {
   function handleClick() {
     const nextShapes = shapes.map(shape => {
       if (shape.type === 'square') {
-        // No change
+        // Pas de changement
         return shape;
       } else {
-        // Return a new circle 50px below
+        // Renvoie un nouveau cercle décalé de 50px vers le bas
         return {
           ...shape,
           y: shape.y + 50,
         };
       }
     });
-    // Re-render with the new array
+    // Nouveau rendu avec le nouveau tableau
     setShapes(nextShapes);
   }
 
   return (
     <>
       <button onClick={handleClick}>
-        Move circles down!
+        Déplacez les cercles vers le bas !
       </button>
       {shapes.map(shape => (
         <div
@@ -278,11 +278,11 @@ body { height: 300px; }
 
 </Sandpack>
 
-### Replacing items in an array {/*replacing-items-in-an-array*/}
+### Remplacer des éléments dans un tableau {/*replacing-items-in-an-array*/}
 
-It is particularly common to want to replace one or more items in an array. Assignments like `arr[0] = 'bird'` are mutating the original array, so instead you'll want to use `map` for this as well.
+Il est très courant de vouloir remplacer un ou plusieurs éléments dans un tableau. Les affectations telles que `arr[0] = 'oiseau'` modifient le tableau d'origine, vous devrez donc encore une fois plutôt utiliser `map`.
 
-To replace an item, create a new array with `map`. Inside your `map` call, you will receive the item index as the second argument. Use it to decide whether to return the original item (the first argument) or something else:
+Pour remplacer un élément, créez un nouveau tableau avec `map`. À l'intérieur de votre appel à `map`, vous recevrez l'index de l'élément comme deuxième argument. Utilisez-le pour décider s'il faut renvoyer l'élément d'origine (premier argument) ou autre chose :
 
 <Sandpack>
 
@@ -301,10 +301,10 @@ export default function CounterList() {
   function handleIncrementClick(index) {
     const nextCounters = counters.map((c, i) => {
       if (i === index) {
-        // Increment the clicked counter
+        // Incrémente le compteur cliqué
         return c + 1;
       } else {
-        // The rest haven't changed
+        // Les autres n'ont pas changé
         return c;
       }
     });
@@ -332,11 +332,11 @@ button { margin: 5px; }
 
 </Sandpack>
 
-### Inserting into an array {/*inserting-into-an-array*/}
+### Insérer un élément dans un tableau {/*inserting-into-an-array*/}
 
-Sometimes, you may want to insert an item at a particular position that's neither at the beginning nor at the end. To do this, you can use the `...` array spread syntax together with the `slice()` method. The `slice()` method lets you cut a "slice" of the array. To insert an item, you will create an array that spreads the slice _before_ the insertion point, then the new item, and then the rest of the original array.
+Parfois, vous souhaiterez peut-être insérer un élément à une position spécifique qui n'est ni au début ni à la fin du tableau. Pour cela, vous pouvez utiliser la syntaxe de *spread* de tableaux `...` combinée avec la méthode `slice()`. La méthode `slice()` vous permet de découper une « tranche » du tableau. Pour insérer un élément, vous créerez un nouveau tableau qui contiendra la « tranche » _avant_ le point d'insertion, puis le nouvel élément, et enfin le reste du tableau d'origine.
 
-In this example, the Insert button always inserts at the index `1`:
+Dans cet exemple, le bouton Insérer insère toujours à l'index `1` :
 
 <Sandpack>
 
@@ -357,13 +357,13 @@ export default function List() {
   );
 
   function handleClick() {
-    const insertAt = 1; // Could be any index
+    const insertAt = 1; // Peut être n’importe quel index
     const nextArtists = [
-      // Items before the insertion point:
+      // Éléments avant le point d’insertion :
       ...artists.slice(0, insertAt),
-      // New item:
+      // Nouvel élément :
       { id: nextId++, name: name },
-      // Items after the insertion point:
+      // Éléments après le point d’insertion :
       ...artists.slice(insertAt)
     ];
     setArtists(nextArtists);
@@ -372,13 +372,13 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Sculpteurs inspirants :</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
       />
       <button onClick={handleClick}>
-        Insert
+        Insérer
       </button>
       <ul>
         {artists.map(artist => (
@@ -396,13 +396,13 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-### Making other changes to an array {/*making-other-changes-to-an-array*/}
+### Apporter d'autres modifications à un tableau {/*making-other-changes-to-an-array*/}
 
-There are some things you can't do with the spread syntax and non-mutating methods like `map()` and `filter()` alone. For example, you may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods are mutating the original array, so you can't use them directly.
+Il y a certaines choses que vous ne pouvez pas faire en utilisant seulement la syntaxe de *spread* et des méthodes non modifiantes telles que `map()` et `filter()`. Par exemple, vous pourriez vouloir inverser ou trier un tableau. Les méthodes `reverse()` et `sort()` de JavaScript modifient le tableau d'origine, vous ne pouvez donc pas les utiliser directement.
 
-**However, you can copy the array first, and then make changes to it.**
+**Cependant, vous pouvez d'abord copier le tableau, puis apporter des modifications à cette copie.**
 
-For example:
+Par exemple :
 
 <Sandpack>
 
@@ -428,7 +428,7 @@ export default function List() {
   return (
     <>
       <button onClick={handleClick}>
-        Reverse
+        Inverser
       </button>
       <ul>
         {list.map(artwork => (
@@ -442,25 +442,25 @@ export default function List() {
 
 </Sandpack>
 
-Here, you use the `[...list]` spread syntax to create a copy of the original array first. Now that you have a copy, you can use mutating methods like `nextList.reverse()` or `nextList.sort()`, or even assign individual items with `nextList[0] = "something"`.
+Ici, vous utilisez d'abord la syntaxe de *spread* `[...list]` pour créer une copie du tableau d'origine. Maintenant que vous avez une copie, vous pouvez utiliser des méthodes modifiantes comme `nextList.reverse()` ou `nextList.sort()`, ou même affecter individuellement des éléments avec `nextList[0] = "quelque chose"`.
 
-However, **even if you copy an array, you can't mutate existing items _inside_ of it directly.** This is because copying is shallow--the new array will contain the same items as the original one. So if you modify an object inside the copied array, you are mutating the existing state. For example, code like this is a problem.
+Cependant, **même si vous copiez un tableau, vous ne pouvez pas modifier directement les éléments existants _à l'intérieur_ de celui-ci.** C'est parce que la copie est superficielle : le nouveau tableau contiendra les mêmes éléments que le tableau d'origine. Ainsi, si vous modifiez un objet à l'intérieur du tableau copié, vous modifiez l'état existant. Par exemple, le code suivant est problématique.
 
 ```js
 const nextList = [...list];
-nextList[0].seen = true; // Problem: mutates list[0]
+nextList[0].seen = true; // Problème : modifie list[0]
 setList(nextList);
 ```
 
-Although `nextList` and `list` are two different arrays, **`nextList[0]` and `list[0]` point to the same object.** So by changing `nextList[0].seen`, you are also changing `list[0].seen`. This is a state mutation, which you should avoid! You can solve this issue in a similar way to [updating nested JavaScript objects](/learn/updating-objects-in-state#updating-a-nested-object)--by copying individual items you want to change instead of mutating them. Here's how.
+Bien que `nextList` et `list` soient deux tableaux différents, **`nextList[0]` et `list[0]` pointent vers le même objet.** Donc, en modifiant `nextList[0].seen`, vous modifiez également `list[0].seen`. C'est une mutation de l'état, que vous devez éviter ! Vous pouvez résoudre ce problème de la même manière que pour [mettre à jour des objets JavaScript imbriqués](/learn/updating-objects-in-state#updating-a-nested-object) en copiant les éléments individuels que vous souhaitez changer au lieu de les modifier. Voici comment faire.
 
-## Updating objects inside arrays {/*updating-objects-inside-arrays*/}
+## Mettre à jour des objets dans des tableaux {/*updating-objects-inside-arrays*/}
 
-Objects are not _really_ located "inside" arrays. They might appear to be "inside" in code, but each object in an array is a separate value, to which the array "points". This is why you need to be careful when changing nested fields like `list[0]`. Another person's artwork list may point to the same element of the array!
+Les objets ne sont pas _vraiment_ « à l'intérieur » des tableaux. Ils peuvent sembler être « à l'intérieur » dans le code, mais chaque objet dans un tableau est une valeur distincte vers laquelle le tableau « pointe ». C'est pourquoi vous devez faire attention lorsque vous modifiez des champs imbriqués tels que `list[0]`. La liste d'œuvres d'art d'une autre personne peut pointer vers le même élément du tableau !
 
-**When updating nested state, you need to create copies from the point where you want to update, and all the way up to the top level.** Let's see how this works.
+**Lorsque vous mettez à jour un état imbriqué, vous devez créer des copies à partir de l'endroit où vous souhaitez effectuer la mise à jour, en remontant jusqu’au plus haut niveau.** Voyons comment ça fonctionne.
 
-In this example, two separate artwork lists have the same initial state. They are supposed to be isolated, but because of a mutation, their state is accidentally shared, and checking a box in one list affects the other list:
+Dans cet exemple, deux listes d'œuvres d'art séparées ont le même état initial. Elles sont censées être isolées, mais à cause d'une modification directe, leur état est accidentellement partagé, et cocher une case dans l'une des listes affecte l'autre liste :
 
 <Sandpack>
 
@@ -500,12 +500,12 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Liste d’œuvres d’art</h1>
+      <h2>Ma liste à voir absolument :</h2>
       <ItemList
         artworks={myList}
         onToggle={handleToggleMyList} />
-      <h2>Your list of art to see:</h2>
+      <h2>Votre liste à voir absolument :</h2>
       <ItemList
         artworks={yourList}
         onToggle={handleToggleYourList} />
@@ -540,34 +540,34 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-The problem is in code like this:
+Le problème se trouve dans du code comme celui-ci :
 
 ```js
 const myNextList = [...myList];
 const artwork = myNextList.find(a => a.id === artworkId);
-artwork.seen = nextSeen; // Problem: mutates an existing item
+artwork.seen = nextSeen; // Problème : modifie un élément existant
 setMyList(myNextList);
 ```
 
-Although the `myNextList` array itself is new, the *items themselves* are the same as in the original `myList` array. So changing `artwork.seen` changes the *original* artwork item. That artwork item is also in `yourList`, which causes the bug. Bugs like this can be difficult to think about, but thankfully they disappear if you avoid mutating state.
+Bien que le tableau `myNextList` soit nouveau, les *éléments eux-mêmes* sont les mêmes que dans le tableau `myList` d'origine. Donc, en changeant `artwork.seen`, vous modifiez l'œuvre d'art *d'origine*. Cette œuvre d'art est également dans `yourList`, ce qui provoque le bug. Des bugs comme celui-ci peuvent être difficiles à comprendre, mais heureusement, ils n'ont pas lieu si vous évitez de modifier l'état.
 
-**You can use `map` to substitute an old item with its updated version without mutation.**
+**Vous pouvez utiliser `map` pour remplacer un ancien élément par sa nouvelle version sans mutation.**
 
 ```js
 setMyList(myList.map(artwork => {
   if (artwork.id === artworkId) {
-    // Create a *new* object with changes
+    // Crée un *nouvel* objet avec les modifications
     return { ...artwork, seen: nextSeen };
   } else {
-    // No changes
+    // Pas de changement
     return artwork;
   }
 }));
 ```
 
-Here, `...` is the object spread syntax used to [create a copy of an object.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
+Ici, `...` est la syntaxe de *spread* d'objets utilisée pour [créer une copie d'un objet](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax).
 
-With this approach, none of the existing state items are being mutated, and the bug is fixed:
+Avec cette approche, aucun des éléments de l'état existant n'est modifié et le bug est corrigé :
 
 <Sandpack>
 
@@ -590,10 +590,10 @@ export default function BucketList() {
   function handleToggleMyList(artworkId, nextSeen) {
     setMyList(myList.map(artwork => {
       if (artwork.id === artworkId) {
-        // Create a *new* object with changes
+        // Crée un *nouvel* objet avec les modifications
         return { ...artwork, seen: nextSeen };
       } else {
-        // No changes
+        // Pas de changement
         return artwork;
       }
     }));
@@ -602,10 +602,10 @@ export default function BucketList() {
   function handleToggleYourList(artworkId, nextSeen) {
     setYourList(yourList.map(artwork => {
       if (artwork.id === artworkId) {
-        // Create a *new* object with changes
+        // Crée un *nouvel* objet avec les modifications
         return { ...artwork, seen: nextSeen };
       } else {
-        // No changes
+        // Pas de changement
         return artwork;
       }
     }));
@@ -613,12 +613,12 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Liste d’œuvres d’art</h1>
+      <h2>Ma liste à voir absolument :</h2>
       <ItemList
         artworks={myList}
         onToggle={handleToggleMyList} />
-      <h2>Your list of art to see:</h2>
+      <h2>Votre liste à voir absolument :</h2>
       <ItemList
         artworks={yourList}
         onToggle={handleToggleYourList} />
@@ -653,16 +653,16 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-In general, **you should only mutate objects that you have just created.** If you were inserting a *new* artwork, you could mutate it, but if you're dealing with something that's already in state, you need to make a copy.
+En général, **vous ne devriez modifier que les objets que vous venez de créer**. Si vous insérez une *nouvelle* œuvre d'art, vous pouvez la modifier, mais si vous traitez quelque chose qui est déjà dans l'état, vous devez faire une copie.
 
-### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
+### Écrire une logique de mise à jour concise avec Immer {/*write-concise-update-logic-with-immer*/}
 
-Updating nested arrays without mutation can get a little bit repetitive. [Just as with objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
+Mettre à jour des tableaux imbriqués sans modification directe peut conduire à du code un peu répétitif. [Tout comme avec les objets](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) :
 
-- Generally, you shouldn't need to update state more than a couple of levels deep. If your state objects are very deep, you might want to [restructure them differently](/learn/choosing-the-state-structure#avoid-deeply-nested-state) so that they are flat.
-- If you don't want to change your state structure, you might prefer to use [Immer](https://github.com/immerjs/use-immer), which lets you write using the convenient but mutating syntax and takes care of producing the copies for you.
+- En général, vous ne devriez pas avoir besoin de mettre à jour l'état à plus de quelques niveaux de profondeur. Si vos objets d'état sont très profonds, vous pouvez envisager de [les restructurer différemment](/learn/choosing-the-state-structure#avoid-deeply-nested-state) pour les rendre plus plats.
+- Si vous ne souhaitez pas changer la structure de votre état, vous préférerez peut-être utiliser [Immer](https://github.com/immerjs/use-immer), qui vous permet d’écrire votre code en utilisant une syntaxe pratique mais modifiante, et se charge de produire les copies pour vous.
 
-Here is the Art Bucket List example rewritten with Immer:
+Voici l'exemple de la liste des œuvres d'art réécrit avec Immer :
 
 <Sandpack>
 
@@ -705,12 +705,12 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Liste d’œuvres d’art</h1>
+      <h2>Ma liste à voir absolument :</h2>
       <ItemList
         artworks={myList}
         onToggle={handleToggleMyList} />
-      <h2>Your list of art to see:</h2>
+      <h2>Votre liste à voir absolument :</h2>
       <ItemList
         artworks={yourList}
         onToggle={handleToggleYourList} />
@@ -763,7 +763,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-Note how with Immer, **mutation like `artwork.seen = nextSeen` is now okay:**
+Notez qu'avec Immer, **une mutation comme `artwork.seen = nextSeen` est désormais autorisée :**
 
 ```js
 updateMyTodos(draft => {
@@ -772,17 +772,17 @@ updateMyTodos(draft => {
 });
 ```
 
-This is because you're not mutating the _original_ state, but you're mutating a special `draft` object provided by Immer. Similarly, you can apply mutating methods like `push()` and `pop()` to the content of the `draft`.
+C'est parce que vous ne modifiez pas l'état _d'origine_, mais un objet `draft` spécial fourni par Immer. De même, vous pouvez appliquer des méthodes modifiantes telles que `push()` et `pop()` au contenu du `draft`.
 
-Behind the scenes, Immer always constructs the next state from scratch according to the changes that you've done to the `draft`. This keeps your event handlers very concise without ever mutating state.
+En interne, Immer construit toujours le prochain état à partir de zéro en fonction des changements que vous avez apportés au `draft`. Ça permet de garder des gestionnaires d'événements très concis sans jamais modifier l'état directement.
 
 <Recap>
 
-- You can put arrays into state, but you can't change them.
-- Instead of mutating an array, create a *new* version of it, and update the state to it.
-- You can use the `[...arr, newItem]` array spread syntax to create arrays with new items.
-- You can use `filter()` and `map()` to create new arrays with filtered or transformed items.
-- You can use Immer to keep your code concise.
+- Vous pouvez mettre des tableaux dans l'état, mais vous ne pouvez pas les modifier.
+- Au lieu de modifier un tableau, créez une *nouvelle* version de celui-ci et mettez à jour l'état avec cette nouvelle version.
+- Vous pouvez utiliser la syntaxe de *spread* de tableaux `[...arr, newItem]` pour créer des tableaux avec de nouveaux éléments.
+- Vous pouvez utiliser `filter()` et `map()` pour créer de nouveaux tableaux avec des éléments filtrés ou transformés.
+- Vous pouvez utiliser Immer pour garder votre code concis.
 
 </Recap>
 
@@ -790,9 +790,9 @@ Behind the scenes, Immer always constructs the next state from scratch according
 
 <Challenges>
 
-#### Update an item in the shopping cart {/*update-an-item-in-the-shopping-cart*/}
+#### Mettre à jour un élément dans le panier {/*update-an-item-in-the-shopping-cart*/}
 
-Fill in the `handleIncreaseClick` logic so that pressing "+" increases the corresponding number:
+Complétez la logique de `handleIncreaseClick` de manière à ce que lorsqu'on appuie sur « + », la quantité de produit correspondante augmente :
 
 <Sandpack>
 
@@ -805,7 +805,7 @@ const initialProducts = [{
   count: 1,
 }, {
   id: 1,
-  name: 'Cheese',
+  name: 'Fromage',
   count: 5,
 }, {
   id: 2,
@@ -850,7 +850,7 @@ button { margin: 5px; }
 
 <Solution>
 
-You can use the `map` function to create a new array, and then use the `...` object spread syntax to create a copy of the changed object for the new array:
+Vous pouvez utiliser la fonction `map` pour créer un nouveau tableau, puis utiliser la syntaxe de *spread* d'objets `...` pour créer une copie de l'objet modifié pour le nouveau tableau :
 
 <Sandpack>
 
@@ -863,7 +863,7 @@ const initialProducts = [{
   count: 1,
 }, {
   id: 1,
-  name: 'Cheese',
+  name: 'Fromage',
   count: 5,
 }, {
   id: 2,
@@ -917,9 +917,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Remove an item from the shopping cart {/*remove-an-item-from-the-shopping-cart*/}
+#### Retirer un article du panier {/*remove-an-item-from-the-shopping-cart*/}
 
-This shopping cart has a working "+" button, but the "–" button doesn't do anything. You need to add an event handler to it so that pressing it decreases the `count` of the corresponding product. If you press "–" when the count is 1, the product should automatically get removed from the cart. Make sure it never shows 0.
+Ce panier d'achat dispose d'un bouton « + » fonctionnel, mais le bouton « – » ne fait rien. Vous devez lui ajouter un gestionnaire d'événement pour qu'en appuyant dessus, le `count` du produit correspondant diminue. Si vous appuyez sur « – » lorsque le count est à 1, le produit devrait automatiquement être retiré du panier. Assurez-vous qu'il n'affiche jamais 0.
 
 <Sandpack>
 
@@ -932,7 +932,7 @@ const initialProducts = [{
   count: 1,
 }, {
   id: 1,
-  name: 'Cheese',
+  name: 'Fromage',
   count: 5,
 }, {
   id: 2,
@@ -989,7 +989,7 @@ button { margin: 5px; }
 
 <Solution>
 
-You can first use `map` to produce a new array, and then `filter` to remove products with a `count` set to `0`:
+Vous pouvez d'abord utiliser `map` pour créer un nouveau tableau, puis `filter` pour supprimer les produits avec un `count` égal à `0` :
 
 <Sandpack>
 
@@ -1002,7 +1002,7 @@ const initialProducts = [{
   count: 1,
 }, {
   id: 1,
-  name: 'Cheese',
+  name: 'Fromage',
   count: 5,
 }, {
   id: 2,
@@ -1078,9 +1078,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Fix the mutations using non-mutative methods {/*fix-the-mutations-using-non-mutative-methods*/}
+#### Basculer vers des méthodes non modifiantes {/*fix-the-mutations-using-non-mutative-methods*/}
 
-In this example, all of the event handlers in `App.js` use mutation. As a result, editing and deleting todos doesn't work. Rewrite `handleAddTodo`, `handleChangeTodo`, and `handleDeleteTodo` to use the non-mutative methods:
+Dans cet exemple, tous les gestionnaires d'événements dans `App.js` utilisent des modifications en place. Par conséquent, la modification et la suppression des tâches ne fonctionnent pas. Réécrivez `handleAddTodo`, `handleChangeTodo` et `handleDeleteTodo` en utilisant des méthodes non modifiantes :
 
 <Sandpack>
 
@@ -1091,9 +1091,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Acheter du lait', done: true },
+  { id: 1, title: 'Manger des tacos', done: false },
+  { id: 2, title: 'Infuser du thé', done: false },
 ];
 
 export default function TaskApp() {
@@ -1147,14 +1147,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Ajouter une tâche"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   )
 }
@@ -1198,7 +1198,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Sauvegarder
         </button>
       </>
     );
@@ -1207,7 +1207,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Modifier
         </button>
       </>
     );
@@ -1226,7 +1226,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
@@ -1243,7 +1243,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-In `handleAddTodo`, you can use the array spread syntax. In `handleChangeTodo`, you can create a new array with `map`. In `handleDeleteTodo`, you can create a new array with `filter`. Now the list works correctly:
+Dans `handleAddTodo`, vous pouvez utiliser la syntaxe de *spread* de tableaux. Dans `handleChangeTodo`, vous pouvez créer un nouveau tableau avec `map`. Dans `handleDeleteTodo`, vous pouvez créer un nouveau tableau avec `filter`. À présent, la liste fonctionne correctement :
 
 <Sandpack>
 
@@ -1254,9 +1254,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Acheter du lait', done: true },
+  { id: 1, title: 'Manger des tacos', done: false },
+  { id: 2, title: 'Infuser du thé', done: false },
 ];
 
 export default function TaskApp() {
@@ -1314,14 +1314,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Ajouter une tâche"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   )
 }
@@ -1365,7 +1365,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Sauvegarder
         </button>
       </>
     );
@@ -1374,7 +1374,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Modifier
         </button>
       </>
     );
@@ -1393,7 +1393,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
@@ -1411,9 +1411,9 @@ ul, li { margin: 0; padding: 0; }
 </Solution>
 
 
-#### Fix the mutations using Immer {/*fix-the-mutations-using-immer*/}
+#### Corriger les modifications en utilisant Immer {/*fix-the-mutations-using-immer*/}
 
-This is the same example as in the previous challenge. This time, fix the mutations by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `todos` state variable to use it.
+Il s'agit du même exemple que dans l'exercice précédent. Cette fois-ci, corrigez les modifications en utilisant Immer. Pour vous faciliter la tâche, `useImmer` est déjà importé, vous devez donc modifier la variable d'état `todos` pour l'utiliser.
 
 <Sandpack>
 
@@ -1425,9 +1425,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Acheter du lait', done: true },
+  { id: 1, title: 'Manger des tacos', done: false },
+  { id: 2, title: 'Infuser du thé', done: false },
 ];
 
 export default function TaskApp() {
@@ -1481,14 +1481,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Ajouter une tâche"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   )
 }
@@ -1532,7 +1532,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Sauvegarder
         </button>
       </>
     );
@@ -1541,7 +1541,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Modifier
         </button>
       </>
     );
@@ -1560,7 +1560,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
@@ -1595,7 +1595,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-With Immer, you can write code in the mutative fashion, as long as you're only mutating parts of the `draft` that Immer gives you. Here, all mutations are performed on the `draft` so the code works:
+Avec Immer, vous pouvez écrire du code de manière modifiante, tant que vous ne modifiez que des parties du `draft` que Immer vous fournit. Ici, toutes les modifications sont effectuées sur le `draft` de sorte que le code fonctionne bien :
 
 <Sandpack>
 
@@ -1607,9 +1607,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Acheter du lait', done: true },
+  { id: 1, title: 'Manger des tacos', done: false },
+  { id: 2, title: 'Infuser du thé', done: false },
 ];
 
 export default function TaskApp() {
@@ -1669,14 +1669,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Ajouter une tâche"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   )
 }
@@ -1720,7 +1720,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Sauvegarder
         </button>
       </>
     );
@@ -1729,7 +1729,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Modifier
         </button>
       </>
     );
@@ -1748,7 +1748,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
@@ -1781,9 +1781,9 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-You can also mix and match the mutative and non-mutative approaches with Immer.
+Vous pouvez également combiner les approches modifiantes et non modifiantes avec Immer.
 
-For example, in this version `handleAddTodo` is implemented by mutating the Immer `draft`, while `handleChangeTodo` and `handleDeleteTodo` use the non-mutative `map` and `filter` methods:
+Par exemple, dans cette version, `handleAddTodo` est implémenté en modifiant le `draft` d'Immer, tandis que `handleChangeTodo` et `handleDeleteTodo` utilisent les méthodes non modifiantes `map` et `filter` :
 
 <Sandpack>
 
@@ -1795,9 +1795,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Acheter du lait', done: true },
+  { id: 1, title: 'Manger des tacos', done: false },
+  { id: 2, title: 'Infuser du thé', done: false },
 ];
 
 export default function TaskApp() {
@@ -1854,14 +1854,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Ajouter une tâche"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Ajouter</button>
     </>
   )
 }
@@ -1905,7 +1905,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Sauvegarder
         </button>
       </>
     );
@@ -1914,7 +1914,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Modifier
         </button>
       </>
     );
@@ -1933,7 +1933,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Supprimer
       </button>
     </label>
   );
@@ -1966,7 +1966,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-With Immer, you can pick the style that feels the most natural for each separate case.
+Avec Immer, vous pouvez choisir l'approche qui vous semble la plus appropriée selon le cas rencontré.
 
 </Solution>
 
