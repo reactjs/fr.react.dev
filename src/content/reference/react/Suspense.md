@@ -2538,7 +2538,7 @@ En revanche, imaginez maintenant que vous naviguiez entre deux profils utilisate
 
 ---
 
-### Fournir une UI de secours pour les erreurs serveur et le contenu 100% client {/*providing-a-fallback-for-server-errors-and-server-only-content*/}
+### Fournir une UI de secours pour les erreurs serveur et le contenu 100% client {/*providing-a-fallback-for-server-errors-and-client-only-content*/}
 
 Si vous utilisez une des [API de rendu serveur streamé](/reference/react-dom/server) (ou un framework qui repose dessus), React capitalisera sur vos périmètres `<Suspense>` pour le traitement des erreurs survenant côté serveur.  Si un composant lève une erreur côté serveur, React n'abandonnera pas le rendu serveur. Il cherchera plutôt le composant parent `<Suspense>` le plus proche et incluera son contenu de secours (tel qu'un *spinner*) dans le HTML généré par le serveur.  L'utilisateur verra le *spinner* pour commencer.
 
