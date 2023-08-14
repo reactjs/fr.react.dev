@@ -699,6 +699,7 @@ export const initialTravelPlan = {
         childPlaces: []
       }, {
         id: 21,
+<<<<<<< HEAD
         title: 'Hong Kong',
         childPlaces: []
       }, {
@@ -716,36 +717,66 @@ export const initialTravelPlan = {
       }, {
         id: 25,
         title: 'Thaïlande',
+=======
+        title: 'India',
         childPlaces: []
       }, {
-        id: 26,
+        id: 22,
+        title: 'Singapore',
+        childPlaces: []
+      }, {
+        id: 23,
+        title: 'South Korea',
+        childPlaces: []
+      }, {
+        id: 24,
+        title: 'Thailand',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
+        childPlaces: []
+      }, {
+        id: 25,
         title: 'Vietnam',
         childPlaces: []
       }]
     }, {
-      id: 27,
+      id: 26,
       title: 'Europe',
       childPlaces: [{
+<<<<<<< HEAD
         id: 28,
         title: 'Croatie',
+=======
+        id: 27,
+        title: 'Croatia',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
         childPlaces: [],
       }, {
-        id: 29,
+        id: 28,
         title: 'France',
         childPlaces: [],
       }, {
+<<<<<<< HEAD
         id: 30,
         title: 'Allemagne',
         childPlaces: [],
       }, {
         id: 31,
         title: 'Italie',
+=======
+        id: 29,
+        title: 'Germany',
         childPlaces: [],
       }, {
-        id: 32,
+        id: 30,
+        title: 'Italy',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
+        childPlaces: [],
+      }, {
+        id: 31,
         title: 'Portugal',
         childPlaces: [],
       }, {
+<<<<<<< HEAD
         id: 33,
         title: 'Espagne',
         childPlaces: [],
@@ -780,38 +811,79 @@ export const initialTravelPlan = {
       }, {
         id: 41,
         title: 'Nouvelle Zélande',
+=======
+        id: 32,
+        title: 'Spain',
         childPlaces: [],
       }, {
-        id: 42,
+        id: 33,
+        title: 'Turkey',
+        childPlaces: [],
+      }]
+    }, {
+      id: 34,
+      title: 'Oceania',
+      childPlaces: [{
+        id: 35,
+        title: 'Australia',
+        childPlaces: [],
+      }, {
+        id: 36,
+        title: 'Bora Bora (French Polynesia)',
+        childPlaces: [],
+      }, {
+        id: 37,
+        title: 'Easter Island (Chile)',
+        childPlaces: [],
+      }, {
+        id: 38,
+        title: 'Fiji',
+        childPlaces: [],
+      }, {
+        id: 39,
+        title: 'Hawaii (the USA)',
+        childPlaces: [],
+      }, {
+        id: 40,
+        title: 'New Zealand',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
+        childPlaces: [],
+      }, {
+        id: 41,
         title: 'Vanuatu',
         childPlaces: [],
       }]
     }]
   }, {
+<<<<<<< HEAD
     id: 43,
     title: 'Lune',
+=======
+    id: 42,
+    title: 'Moon',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childPlaces: [{
-      id: 44,
+      id: 43,
       title: 'Rheita',
       childPlaces: []
     }, {
-      id: 45,
+      id: 44,
       title: 'Piccolomini',
       childPlaces: []
     }, {
-      id: 46,
+      id: 45,
       title: 'Tycho',
       childPlaces: []
     }]
   }, {
-    id: 47,
+    id: 46,
     title: 'Mars',
     childPlaces: [{
-      id: 48,
+      id: 47,
       title: 'Corn Town',
       childPlaces: []
     }, {
-      id: 49,
+      id: 48,
       title: 'Green Hill',
       childPlaces: []
     }]
@@ -880,12 +952,17 @@ export const initialTravelPlan = {
   0: {
     id: 0,
     title: '(Root)',
-    childIds: [1, 43, 47],
+    childIds: [1, 42, 46],
   },
   1: {
     id: 1,
+<<<<<<< HEAD
     title: 'Terre',
     childIds: [2, 10, 19, 27, 35]
+=======
+    title: 'Earth',
+    childIds: [2, 10, 19, 26, 34]
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
   },
   2: {
     id: 2,
@@ -974,8 +1051,13 @@ export const initialTravelPlan = {
   },
   19: {
     id: 19,
+<<<<<<< HEAD
     title: 'Asie',
     childIds: [20, 21, 22, 23, 24, 25, 26],
+=======
+    title: 'Asia',
+    childIds: [20, 21, 22, 23, 24, 25],   
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
   },
   20: {
     id: 20,
@@ -984,71 +1066,109 @@ export const initialTravelPlan = {
   },
   21: {
     id: 21,
-    title: 'Hong Kong',
+    title: 'India',
     childIds: []
   },
   22: {
     id: 22,
+<<<<<<< HEAD
     title: 'Inde',
+=======
+    title: 'Singapore',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   23: {
     id: 23,
+<<<<<<< HEAD
     title: 'Singapour',
+=======
+    title: 'South Korea',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   24: {
     id: 24,
+<<<<<<< HEAD
     title: 'Corée du Sud',
+=======
+    title: 'Thailand',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   25: {
     id: 25,
+<<<<<<< HEAD
     title: 'Thaïlande',
+=======
+    title: 'Vietnam',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   26: {
     id: 26,
-    title: 'Vietnam',
-    childIds: []
+    title: 'Europe',
+    childIds: [27, 28, 29, 30, 31, 32, 33],   
   },
   27: {
     id: 27,
+<<<<<<< HEAD
     title: 'Europe',
     childIds: [28, 29, 30, 31, 32, 33, 34],
   },
   28: {
     id: 28,
     title: 'Croatie',
+=======
+    title: 'Croatia',
+    childIds: []
+  },
+  28: {
+    id: 28,
+    title: 'France',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   29: {
     id: 29,
-    title: 'France',
+    title: 'Germany',
     childIds: []
   },
   30: {
     id: 30,
+<<<<<<< HEAD
     title: 'Allemagne',
+=======
+    title: 'Italy',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   31: {
     id: 31,
+<<<<<<< HEAD
     title: 'Italie',
+=======
+    title: 'Portugal',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   32: {
     id: 32,
-    title: 'Portugal',
+    title: 'Spain',
     childIds: []
   },
   33: {
     id: 33,
+<<<<<<< HEAD
     title: 'Espagne',
+=======
+    title: 'Turkey',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   34: {
     id: 34,
+<<<<<<< HEAD
     title: 'Turquie',
     childIds: []
   },
@@ -1060,70 +1180,100 @@ export const initialTravelPlan = {
   36: {
     id: 36,
     title: 'Australie',
+=======
+    title: 'Oceania',
+    childIds: [35, 36, 37, 38, 39, 40, 41],   
+  },
+  35: {
+    id: 35,
+    title: 'Australia',
+    childIds: []
+  },
+  36: {
+    id: 36,
+    title: 'Bora Bora (French Polynesia)',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   37: {
     id: 37,
+<<<<<<< HEAD
     title: 'Bora Bora (Polynésie Française)',
+=======
+    title: 'Easter Island (Chile)',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   38: {
     id: 38,
+<<<<<<< HEAD
     title: 'Ile de Pâques (Chili)',
     childIds: []
   },
   39: {
     id: 39,
     title: 'Fidji',
+=======
+    title: 'Fiji',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
-  40: {
+  39: {
     id: 40,
     title: 'Hawaï (USA)',
     childIds: []
   },
+  40: {
+    id: 40,
+    title: 'New Zealand',
+    childIds: []
+  },
   41: {
     id: 41,
+<<<<<<< HEAD
     title: 'Nouvelle Zélande',
+=======
+    title: 'Vanuatu',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   42: {
     id: 42,
-    title: 'Vanuatu',
-    childIds: []
+    title: 'Moon',
+    childIds: [43, 44, 45]
   },
   43: {
     id: 43,
+<<<<<<< HEAD
     title: 'Lune',
     childIds: [44, 45, 46]
+=======
+    title: 'Rheita',
+    childIds: []
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
   },
   44: {
     id: 44,
-    title: 'Rheita',
+    title: 'Piccolomini',
     childIds: []
   },
   45: {
     id: 45,
-    title: 'Piccolomini',
+    title: 'Tycho',
     childIds: []
   },
   46: {
     id: 46,
-    title: 'Tycho',
-    childIds: []
+    title: 'Mars',
+    childIds: [47, 48]
   },
   47: {
     id: 47,
-    title: 'Mars',
-    childIds: [48, 49]
-  },
-  48: {
-    id: 48,
     title: 'Corn Town',
     childIds: []
   },
-  49: {
-    id: 49,
+  48: {
+    id: 48,
     title: 'Green Hill',
     childIds: []
   }
@@ -1221,12 +1371,17 @@ export const initialTravelPlan = {
   0: {
     id: 0,
     title: '(Root)',
-    childIds: [1, 43, 47],
+    childIds: [1, 42, 46],
   },
   1: {
     id: 1,
+<<<<<<< HEAD
     title: 'Terre',
     childIds: [2, 10, 19, 27, 35]
+=======
+    title: 'Earth',
+    childIds: [2, 10, 19, 26, 34]
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
   },
   2: {
     id: 2,
@@ -1315,8 +1470,13 @@ export const initialTravelPlan = {
   },
   19: {
     id: 19,
+<<<<<<< HEAD
     title: 'Asie',
     childIds: [20, 21, 22, 23, 24, 25, 26],
+=======
+    title: 'Asia',
+    childIds: [20, 21, 22, 23, 24, 25],   
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
   },
   20: {
     id: 20,
@@ -1325,71 +1485,109 @@ export const initialTravelPlan = {
   },
   21: {
     id: 21,
-    title: 'Hong Kong',
+    title: 'India',
     childIds: []
   },
   22: {
     id: 22,
+<<<<<<< HEAD
     title: 'Inde',
+=======
+    title: 'Singapore',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   23: {
     id: 23,
+<<<<<<< HEAD
     title: 'Singapour',
+=======
+    title: 'South Korea',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   24: {
     id: 24,
+<<<<<<< HEAD
     title: 'Corée du Sud',
+=======
+    title: 'Thailand',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   25: {
     id: 25,
+<<<<<<< HEAD
     title: 'Thaïlande',
+=======
+    title: 'Vietnam',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   26: {
     id: 26,
-    title: 'Vietnam',
-    childIds: []
+    title: 'Europe',
+    childIds: [27, 28, 29, 30, 31, 32, 33],   
   },
   27: {
     id: 27,
+<<<<<<< HEAD
     title: 'Europe',
     childIds: [28, 29, 30, 31, 32, 33, 34],
   },
   28: {
     id: 28,
     title: 'Croatie',
+=======
+    title: 'Croatia',
+    childIds: []
+  },
+  28: {
+    id: 28,
+    title: 'France',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   29: {
     id: 29,
-    title: 'France',
+    title: 'Germany',
     childIds: []
   },
   30: {
     id: 30,
+<<<<<<< HEAD
     title: 'Allemagne',
+=======
+    title: 'Italy',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   31: {
     id: 31,
+<<<<<<< HEAD
     title: 'Italie',
+=======
+    title: 'Portugal',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   32: {
     id: 32,
-    title: 'Portugal',
+    title: 'Spain',
     childIds: []
   },
   33: {
     id: 33,
+<<<<<<< HEAD
     title: 'Espagne',
+=======
+    title: 'Turkey',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   34: {
     id: 34,
+<<<<<<< HEAD
     title: 'Turquie',
     childIds: []
   },
@@ -1401,70 +1599,103 @@ export const initialTravelPlan = {
   36: {
     id: 36,
     title: 'Australie',
+=======
+    title: 'Oceania',
+    childIds: [35, 36, 37, 38, 39, 40, 41],   
+  },
+  35: {
+    id: 35,
+    title: 'Australia',
+    childIds: []
+  },
+  36: {
+    id: 36,
+    title: 'Bora Bora (French Polynesia)',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   37: {
     id: 37,
+<<<<<<< HEAD
     title: 'Bora Bora (Polynésie Française)',
+=======
+    title: 'Easter Island (Chile)',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   38: {
     id: 38,
+<<<<<<< HEAD
     title: 'Ile de Pâques (Chili)',
+=======
+    title: 'Fiji',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   39: {
     id: 39,
+<<<<<<< HEAD
     title: 'Fidji',
+=======
+    title: 'Hawaii (the USA)',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   40: {
     id: 40,
+<<<<<<< HEAD
     title: 'Hawaï (USA)',
+=======
+    title: 'New Zealand',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   41: {
     id: 41,
+<<<<<<< HEAD
     title: 'Nouvelle Zélande',
+=======
+    title: 'Vanuatu',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   42: {
     id: 42,
-    title: 'Vanuatu',
-    childIds: []
+    title: 'Moon',
+    childIds: [43, 44, 45]
   },
   43: {
     id: 43,
+<<<<<<< HEAD
     title: 'Lune',
     childIds: [44, 45, 46]
+=======
+    title: 'Rheita',
+    childIds: []
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
   },
   44: {
     id: 44,
-    title: 'Rheita',
+    title: 'Piccolomini',
     childIds: []
   },
   45: {
     id: 45,
-    title: 'Piccolomini',
+    title: 'Tycho',
     childIds: []
   },
   46: {
     id: 46,
-    title: 'Tycho',
-    childIds: []
+    title: 'Mars',
+    childIds: [47, 48]
   },
   47: {
     id: 47,
-    title: 'Mars',
-    childIds: [48, 49]
-  },
-  48: {
-    id: 48,
     title: 'Corn Town',
     childIds: []
   },
-  49: {
-    id: 49,
+  48: {
+    id: 48,
     title: 'Green Hill',
     childIds: []
   }
@@ -1565,12 +1796,17 @@ export const initialTravelPlan = {
   0: {
     id: 0,
     title: '(Root)',
-    childIds: [1, 43, 47],
+    childIds: [1, 42, 46],
   },
   1: {
     id: 1,
+<<<<<<< HEAD
     title: 'Terre',
     childIds: [2, 10, 19, 27, 35]
+=======
+    title: 'Earth',
+    childIds: [2, 10, 19, 26, 34]
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
   },
   2: {
     id: 2,
@@ -1659,8 +1895,13 @@ export const initialTravelPlan = {
   },
   19: {
     id: 19,
+<<<<<<< HEAD
     title: 'Asie',
     childIds: [20, 21, 22, 23, 24, 25, 26],
+=======
+    title: 'Asia',
+    childIds: [20, 21, 22, 23, 24, 25,],   
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
   },
   20: {
     id: 20,
@@ -1669,71 +1910,109 @@ export const initialTravelPlan = {
   },
   21: {
     id: 21,
-    title: 'Hong Kong',
+    title: 'India',
     childIds: []
   },
   22: {
     id: 22,
+<<<<<<< HEAD
     title: 'Inde',
+=======
+    title: 'Singapore',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   23: {
     id: 23,
+<<<<<<< HEAD
     title: 'Singapour',
+=======
+    title: 'South Korea',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   24: {
     id: 24,
+<<<<<<< HEAD
     title: 'Corée du Sud',
+=======
+    title: 'Thailand',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   25: {
     id: 25,
+<<<<<<< HEAD
     title: 'Thaïlande',
+=======
+    title: 'Vietnam',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   26: {
     id: 26,
-    title: 'Vietnam',
-    childIds: []
+    title: 'Europe',
+    childIds: [27, 28, 29, 30, 31, 32, 33],   
   },
   27: {
     id: 27,
+<<<<<<< HEAD
     title: 'Europe',
     childIds: [28, 29, 30, 31, 32, 33, 34],
   },
   28: {
     id: 28,
     title: 'Croatie',
+=======
+    title: 'Croatia',
+    childIds: []
+  },
+  28: {
+    id: 28,
+    title: 'France',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   29: {
     id: 29,
-    title: 'France',
+    title: 'Germany',
     childIds: []
   },
   30: {
     id: 30,
+<<<<<<< HEAD
     title: 'Allemagne',
+=======
+    title: 'Italy',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   31: {
     id: 31,
+<<<<<<< HEAD
     title: 'Italie',
+=======
+    title: 'Portugal',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   32: {
     id: 32,
-    title: 'Portugal',
+    title: 'Spain',
     childIds: []
   },
   33: {
     id: 33,
+<<<<<<< HEAD
     title: 'Espagne',
+=======
+    title: 'Turkey',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   34: {
     id: 34,
+<<<<<<< HEAD
     title: 'Turquie',
     childIds: []
   },
@@ -1745,70 +2024,103 @@ export const initialTravelPlan = {
   36: {
     id: 36,
     title: 'Australie',
+=======
+    title: 'Oceania',
+    childIds: [35, 36, 37, 38, 39, 40,, 41],   
+  },
+  35: {
+    id: 35,
+    title: 'Australia',
+    childIds: []
+  },
+  36: {
+    id: 36,
+    title: 'Bora Bora (French Polynesia)',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   37: {
     id: 37,
+<<<<<<< HEAD
     title: 'Bora Bora (Polynésie Française)',
+=======
+    title: 'Easter Island (Chile)',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   38: {
     id: 38,
+<<<<<<< HEAD
     title: 'Ile de Pâques (Chili)',
+=======
+    title: 'Fiji',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   39: {
     id: 39,
+<<<<<<< HEAD
     title: 'Fidji',
+=======
+    title: 'Hawaii (the USA)',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   40: {
     id: 40,
+<<<<<<< HEAD
     title: 'Hawaï (USA)',
+=======
+    title: 'New Zealand',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   41: {
     id: 41,
+<<<<<<< HEAD
     title: 'Nouvelle Zélande',
+=======
+    title: 'Vanuatu',
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
     childIds: []
   },
   42: {
     id: 42,
-    title: 'Vanuatu',
-    childIds: []
+    title: 'Moon',
+    childIds: [43, 44, 45]
   },
   43: {
     id: 43,
+<<<<<<< HEAD
     title: 'Lune',
     childIds: [44, 45, 46]
+=======
+    title: 'Rheita',
+    childIds: []
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
   },
   44: {
     id: 44,
-    title: 'Rheita',
+    title: 'Piccolomini',
     childIds: []
   },
   45: {
     id: 45,
-    title: 'Piccolomini',
+    title: 'Tycho',
     childIds: []
   },
   46: {
     id: 46,
-    title: 'Tycho',
-    childIds: []
+    title: 'Mars',
+    childIds: [47, 48]
   },
   47: {
     id: 47,
-    title: 'Mars',
-    childIds: [48, 49]
-  },
-  48: {
-    id: 48,
     title: 'Corn Town',
     childIds: []
   },
-  49: {
-    id: 49,
+  48: {
+    id: 48,
     title: 'Green Hill',
     childIds: []
   }
