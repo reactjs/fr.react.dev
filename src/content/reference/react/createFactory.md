@@ -10,7 +10,7 @@ Cette API sera retirée d'une future version majeure de React. [Découvrez les a
 
 <Intro>
 
-`createFactory` vous permet de créer une fonction qui produit des éléments React d'un type prédéfini.
+`createFactory` vous permet de créer une fonction qui produira ensuite des éléments React d'un type prédéfini.
 
 ```js
 const factory = createFactory(type)
@@ -26,7 +26,7 @@ const factory = createFactory(type)
 
 ### `createFactory(type)` {/*createfactory*/}
 
-Appelez `createFactory(type)` pour créer une fonction *factory* qui prooduit des éléments React du `type` passé.
+Appelez `createFactory(type)` pour créer une fonction *factory* qui produira ensuite des éléments React du `type` passé.
 
 ```js
 import { createFactory } from 'react';
@@ -64,7 +64,7 @@ Renvoie une fonction *factory*.  Cette fonction *factory* reçoit un objet `prop
 
 Même si la majorité des projets React utilisent [JSX](/learn/writing-markup-with-jsx) pour décrire leurs interfaces utilisateurs (UI), JSX n'est pas obligatoire.  Autrefois, une des manières de décrire l'UI sans recourir à JSX consistait à utiliser `createFactory`.
 
-Appelez `createFactory` pour créer une *fonction factory* pour un type d'élément spécifique, par exemple `'button'` :
+Appelez `createFactory` pour créer une *fonction factory* calée sur un type d'élément spécifique, par exemple la balise native `'button'` :
 
 ```js
 import { createFactory } from 'react';
