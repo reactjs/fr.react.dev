@@ -1078,7 +1078,7 @@ Vous pouvez surcharger le contexte pour une partie de l'arbre en l'enrobant avec
 
 Vous pouvez imbriquer et surcharger les fournisseurs autant de fois que nécessaire.
 
-<Recipes title="Exemples de surcharge de contexte">
+<Recipes titleText="Exemples de surcharge de contexte">
 
 #### Surcharger un thème {/*overriding-a-theme*/}
 

@@ -135,7 +135,7 @@ Le composant `Form` [passe une ref](/reference/react/useRef#manipulating-the-dom
 
 Gardez à l'esprit qu'exposer une ref vers un nœud DOM au sein de votre composant peut vous embêter plus tard si vous souhaitez refondre la structure interne de celui-ci.  Classiquement, vous exposerez des nœuds DOM depuis des composants réutilisables de bas niveau tels que des boutons ou des champs de saisie, mais vous éviterez de le faire pour des composants applicatifs comme un avatar ou un bloc de commentaire.
 
-<Recipes title="Exemples de transmission de ref">
+<Recipes titleText="Exemples de transmission de ref">
 
 #### Activer un champ de saisie {/*focusing-a-text-input*/}
 
