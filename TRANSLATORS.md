@@ -104,6 +104,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react/createFactory"><code>createFactory</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/createRef"><code>createRef</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/isValidElement"><code>isValidElement</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/PureComponent"><code>PureComponent</code></a></li>
         </ul>
       </td>
     </tr>
