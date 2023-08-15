@@ -1,5 +1,5 @@
 ---
-title: Choisir la structure de l'état
+title: Choisir la structure de l’état
 ---
 
 <Intro>

@@ -1,5 +1,5 @@
 ---
-title: Préserver et réinitialiser l'état
+title: Préserver et réinitialiser l’état
 ---
 
 <Intro>

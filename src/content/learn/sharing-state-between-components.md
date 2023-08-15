@@ -1,5 +1,5 @@
 ---
-title: Partager l'état entre des composants
+title: Partager l’état entre des composants
 ---
 
 <Intro>

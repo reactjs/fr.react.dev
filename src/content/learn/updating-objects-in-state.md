@@ -1,5 +1,5 @@
 ---
-title: Mettre à jour les objets d'un état
+title: Mettre à jour les objets d’un état
 ---
 
 <Intro>

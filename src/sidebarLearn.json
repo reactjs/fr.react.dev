@@ -33,7 +33,7 @@
           "path": "/learn/add-react-to-an-existing-project"
         },
         {
-          "title": "Configuration de l'éditeur",
+          "title": "Configuration de l’éditeur",
           "path": "/learn/editor-setup"
         },
         {
@@ -107,7 +107,7 @@
           "path": "/learn/render-and-commit"
         },
         {
-          "title": "L'état est un instantané",
+          "title": "L’état est un instantané",
           "path": "/learn/state-as-a-snapshot"
         },
         {
@@ -115,17 +115,17 @@
           "path": "/learn/queueing-a-series-of-state-updates"
         },
         {
-          "title": "Mettre à jour les objets d'un état",
+          "title": "Mettre à jour les objets d’un état",
           "path": "/learn/updating-objects-in-state"
         },
         {
-          "title": "Mettre à jour les tableaux d'un état",
+          "title": "Mettre à jour les tableaux d’un état",
           "path": "/learn/updating-arrays-in-state"
         }
       ]
     },
     {
-      "title": "Gérer l'état",
+      "title": "Gérer l’état",
       "path": "/learn/managing-state",
       "tags": [
         "intermediate"

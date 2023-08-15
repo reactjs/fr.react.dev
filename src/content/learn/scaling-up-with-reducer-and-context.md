@@ -1,5 +1,5 @@
 ---
-title: Mise à l'échelle en combinant réducteur et contexte
+title: Mise à l’échelle en combinant réducteur et contexte
 ---
 
 <Intro>

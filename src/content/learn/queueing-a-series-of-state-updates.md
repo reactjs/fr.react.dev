@@ -1,5 +1,5 @@
 ---
-title: Cumuler les mises à jour d'un même état
+title: Cumuler les mises à jour d’un même état
 ---
 
 <Intro>

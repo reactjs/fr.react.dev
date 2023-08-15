@@ -1,5 +1,5 @@
 ---
-title: Extraire la logique d'état dans un réducteur
+title: Extraire la logique d’état dans un réducteur
 ---
 
 <Intro>

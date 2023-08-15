@@ -1,5 +1,5 @@
 ---
-title: L'état est un instantané
+title: L’état est un instantané
 ---
 
 <Intro>
