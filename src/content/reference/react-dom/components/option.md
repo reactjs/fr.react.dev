@@ -4,7 +4,7 @@ title: "<option>"
 
 <Intro>
 
-Le [composant natif `<option>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/option) vous permet d'afficher une option dans une liste déroulante [`<select>`](/reference/react-dom/components/select).
+Le [composant natif `<option>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/option) vous permet d'afficher une option dans une liste [`<select>`](/reference/react-dom/components/select).
 
 ```js
 <select>
@@ -42,7 +42,7 @@ Le [composant natif `<option>`](https://developer.mozilla.org/fr/docs/Web/HTML/E
 
 * [`disabled`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/option#disabled) : un booléen. Si `true`, l'option ne sera pas sélectionnable et apparaîtra grisée.
 * [`label`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/option#label) : une chaine de caractères. Indique la signification de l'option. Lorsqu'elle est manquante, le texte de l'option est utilisé.
-* [`value`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/option#value) : la valeur utilisée [quand on soumet le `<select>` parent dans un formulaire](/reference/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form), si cette option est sélectionnée.
+* [`value`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/option#value) : la valeur utilisée [quand on soumet le `<select>` parent dans un formulaire](/reference/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form) et que cette option est sélectionnée dans la liste.
 
 #### Limitations {/*caveats*/}
 
@@ -64,7 +64,7 @@ Utilisez un `<select>` avec une liste de composants `<option>` à l'intérieur p
 export default function FruitPicker() {
   return (
     <label>
-      Choisissez un fruit :
+      Choisissez un fruit :
       <select name="selectedFruit">
         <option value="apple">Pomme</option>
         <option value="banana">Banane</option>
@@ -79,5 +79,4 @@ export default function FruitPicker() {
 select { margin: 5px; }
 ```
 
-</Sandpack>  
-
+</Sandpack>
