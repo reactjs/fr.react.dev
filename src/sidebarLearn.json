@@ -37,15 +37,11 @@
           "path": "/learn/editor-setup"
         },
         {
-<<<<<<< HEAD
-          "title": "Outils de développement React",
-=======
-          "title": "Using TypeScript",
+          "title": "Utiliser TypeScript",
           "path": "/learn/typescript"
         },
         {
-          "title": "React Developer Tools",
->>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
+          "title": "Outils de développement React",
           "path": "/learn/react-developer-tools"
         }
       ]

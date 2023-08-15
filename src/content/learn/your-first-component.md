@@ -211,11 +211,7 @@ Lorsqu'un composant enfant a besoin de données venant d'un parent, [passez-les 
 
 #### Des composants jusqu'au bout {/*components-all-the-way-down*/}
 
-<<<<<<< HEAD
-Votre application React commence avec un composant « racine ».  En général, il est créé automatiquement lorsque vous démarrez un nouveau projet. Par exemple, si vous utilisez [CodeSandbox](https://codesandbox.io/) ou [Create React App](https://create-react-app.dev/), le composant racine est défini dans `src/App.js`. Si vous utilisez le framework [Next.js](https://nextjs.org/), le composant racine est défini dans `pages/index.js`. Dans les exemples qui précédaient, vous avez exporté des composants racines.
-=======
-Your React application begins at a "root" component. Usually, it is created automatically when you start a new project. For example, if you use [CodeSandbox](https://codesandbox.io/) or if you use the framework [Next.js](https://nextjs.org/), the root component is defined in `pages/index.js`. In these examples, you've been exporting root components.
->>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
+Votre application React commence avec un composant « racine ».  En général, il est créé automatiquement lorsque vous démarrez un nouveau projet. Par exemple, si vous utilisez [CodeSandbox](https://codesandbox.io/) ou si vous utilisez le framework [Next.js](https://nextjs.org/), le composant racine est défini dans `pages/index.js`. Dans les exemples qui précédaient, vous avez exporté des composants racines.
 
 La plupart des applis React utilisent des composants « jusqu'au bout ». Ça signifie que vous utiliserez des composants non seulement pour des éléments réutilisables tels que des boutons, mais aussi pour des blocs plus importants tels que des barres latérales, des listes, et au final des pages complètes !  Les composants sont un moyen pratique d'organiser le code et le balisage de l'UI, même si certains ne seront utilisés qu'une fois.
 

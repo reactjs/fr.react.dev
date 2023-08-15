@@ -426,11 +426,7 @@ body {
 
 #### Surveiller la visibilité d'un élément {/*tracking-element-visibility*/}
 
-<<<<<<< HEAD
-Dans cet exemple, le système extérieur est encore le DOM navigateur. Le composant `App` affiche une longue liste, puis un composant `Box`, et enfin une autre longue liste.  Faites défiler la liste vers le bas.  Voyez comment, lorsque le composant `Box` apparaît finalement à l'écran, la couleur de fond passe au noir.  Pour implémenter ça, le composant `Box` utilise un Effet pour gérer un [`IntersectionObserver`](https://developer.mozilla.org/fr/docs/Web/API/Intersection_Observer_API). Cette API navigateur vous notifie lorsque l'élément DOM est visible dans la zone de rendu de la fenêtre.
-=======
-In this example, the external system is again the browser DOM. The `App` component displays a long list, then a `Box` component, and then another long list. Scroll the list down. Notice that when all of the `Box` component is fully visible in the viewport, the background color changes to black. To implement this, the `Box` component uses an Effect to manage an [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). This browser API notifies you when the DOM element is visible in the viewport.
->>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
+Dans cet exemple, le système extérieur est encore le DOM navigateur. Le composant `App` affiche une longue liste, puis un composant `Box`, et enfin une autre longue liste.  Faites défiler la liste vers le bas.  Voyez comment, lorsque le composant `Box` devient entièrement visible à l'écran, la couleur de fond passe au noir.  Pour implémenter ça, le composant `Box` utilise un Effet pour gérer un [`IntersectionObserver`](https://developer.mozilla.org/fr/docs/Web/API/Intersection_Observer_API). Cette API navigateur vous notifie lorsque l'élément DOM est visible dans la zone de rendu de la fenêtre.
 
 <Sandpack>
 
