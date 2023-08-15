@@ -10,7 +10,7 @@ Ces API sont exposées par le module `react`, mais sont déconseillées pour l'�
 
 ---
 
-## API historique {/*legacy-apis*/}
+## API historiques {/*legacy-apis*/}
 
 * [`Children`](/reference/react/Children) vous permet de manipuler et transformer les contenus JSX reçus *via* la prop `children`. [Découvrez les alternatives](/reference/react/Children#alternatives).
 * [`cloneElement`](/reference/react/cloneElement) vous permet de créer un élément React en vous basant sur un élément existant. [Découvrez les alternatives](/reference/react/cloneElement#alternatives).
@@ -23,7 +23,7 @@ Ces API sont exposées par le module `react`, mais sont déconseillées pour l'�
 
 ---
 
-## API dépréciée {/*deprecated-apis*/}
+## API dépréciées {/*deprecated-apis*/}
 
 <Deprecated>
 
