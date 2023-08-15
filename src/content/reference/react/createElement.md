@@ -4,7 +4,7 @@ title: createElement
 
 <Intro>
 
-`createElement` vous permet de créer un élément React. C'est une alternative à l'écriture de [JSX](/learn/writing-markup-with-jsx).
+`createElement` vous permet de créer un élément React. Elle est utile si vous ne voulez pas (ou ne *pouvez* pas) écrire du [JSX](/learn/writing-markup-with-jsx).
 
 ```js
 const element = createElement(type, props, ...children)
@@ -53,13 +53,13 @@ function Greeting({ name }) {
 * `ref` : la `ref` que vous avez passée. Considérée `null` si manquante.
 * `key` : la `key` que vous avez passée, convertie en chaîne de caractères. Considérée `null` si manquante.
 
-En général, vous renverrez l'élément depuis votre composant, ou en ferez l'enfant d'un autre élément. Même si vous pourriez lire les propriétés de l'élément, il vaut mieux traiter tout objet élément comme une boîte noire après sa création, et vous contentez de l'afficher.
+En général, vous renverrez l'élément depuis votre composant, ou en ferez l'enfant d'un autre élément. Même si vous pourriez lire les propriétés de l'élément, il vaut mieux traiter tout objet élément comme une boîte noire après sa création, et vous contenter de l'afficher.
 
 #### Limitations {/*caveats*/}
 
-* Vous devez **traiter les éléments React et leurs props comme [immuaables](https://fr.wikipedia.org/wiki/Objet_immuable)** et ne jamais changer leur contenu après création. En développement, React [gèlera](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) l'élément renvoyé, ainsi que sa propriété `props` (à un niveau de profondeur), pour garantir cet aspect.
+* Vous devez **traiter les éléments React et leurs props comme [immuables](https://fr.wikipedia.org/wiki/Objet_immuable)** et ne jamais changer leur contenu après création. En développement, React [gèlera](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) l'élément renvoyé, ainsi que sa propriété `props` (à un niveau de profondeur), pour garantir cet aspect.
 
-* Quand vous utilisez JSX, **vous devez commencer la nom de la balise par une lettre majuscule afin d'afficher votre propre composant**.  En d'autres termes, `<Something />` est équivalent à `createElement(Something)`, mais `<something />` (minuscules) est équivalent à `createElement('something')` (remarquez qu'il s'agit ici d'une chaîne de caractères, qui sera donc traitée comme une balise HTML native).
+* Quand vous utilisez JSX, **vous devez faire démarrer le nom de la balise par une lettre majuscule afin d'afficher votre propre composant**.  En d'autres termes, `<Something />` est équivalent à `createElement(Something)`, mais `<something />` (minuscules) est équivalent à `createElement('something')` (remarquez qu'il s'agit ici d'une chaîne de caractères, qui sera donc traitée comme une balise HTML native).
 
 * Vous ne devriez **passer les enfants comme arguments multiples à `createElement` que s'ils sont statiquement connus**, comme par exemple `createElement('h1', {}, child1, child2, child3)`. Si vos enfants sont dynamiques, passez leur tableau entier comme troisième argument : `createElement('ul', {}, listItems)`. Ça garantir que React vous [avertira en cas de `key` manquantes](/learn/rendering-lists#keeping-list-items-in-order-with-key) lors de listes dynamiques.  C'est inutile pour les listes statiques puisque leur ordre et leur taille ne changent jamais.
 
@@ -99,7 +99,7 @@ function Greeting({ name }) {
 }
 ```
 
-Pour afficher votre propre composant React, passez une fonctino telle que `Greeting` comme <CodeStep step={1}>type</CodeStep>, plutôt qu'une chaîne de caractères comme `'h1'` :
+Pour afficher votre propre composant React, passez une fonction telle que `Greeting` comme <CodeStep step={1}>type</CodeStep>, plutôt qu'une chaîne de caractères comme `'h1'` :
 
 ```js [[1, 2, "Greeting"], [2, 2, "{ name: 'Clara' }"]]
 export default function App() {
@@ -196,9 +196,9 @@ Un élément est une description légère d'un bout de votre interface utilisate
 }
 ```
 
-**Remarquez que la seule création de l'objet n'affiche pas le composant `Greeting` ni ne crée d'éléments DOM.**
+**Remarquez que la seule création de l'objet ne suffit pas à afficher le composant `Greeting`, et ne crée pas non plus d'éléments DOM.**
 
-Un élément React est plus comme une description — des instructions pour Reaxt, afin qu'il puisse plus tard afficher le composant `Greeting`. En renvoyant cet objet depuis votre composant `App`, vous indiquez à React quoi faire ensuite.
+Un élément React est plus comme une description — des instructions pour React, afin qu'il puisse plus tard afficher le composant `Greeting`. En renvoyant cet objet depuis votre composant `App`, vous indiquez à React quoi faire ensuite.
 
 La création d'éléments a un coût quasi nul, vous n'avez donc pas besoin de l'optimiser ou de chercher activement à l'éviter.
 
