@@ -8,8 +8,6 @@ Ce document vous fournit le détail de leurs travaux, afin de les remercier plus
 
 [Christophe Porteneuve](https://github.com/tdd) pilote l’effort de traduction française : interface avec l’équipe noyau et la responsable des traductions, rédaction des **meilleures pratiques** et du **glossaire**, traduction de **l'infrastructure technique** du site et des pages de service, **accueil** des nouvelles personnes qui demandent à traduire, maintenance de la fiche de progression, **synchro et ajout de trads lors des mises à jour de la VO**, **revue détaillée de l'intégralité des traductions proposées**.
 
-Il est assisté pour ce dernier point par des revues en amont de plusieurs **mainteneurs** pour le français, notamment Jean Burellier, Jérémie Patonnier et Romain Rukse.
-
 ## Traduction (docs 2023+)
 
 Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis à eux ! 🙏🏻**
@@ -28,7 +26,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td><a href="https://twitter.com/adevinwild">@adevinwild</a></td>
       <td>
         <ul>
-          <li><a href="https://fr.react.dev/reference/react/apis">Référence : <code>react</code> APIs</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/reference/react/apis">API React intégrées</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/reference/react/createContext"><code>createContext</code></a></li>
         </ul>
       </td>
@@ -47,7 +45,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td></td>
       <td>
         <ul>
-          <li><a href="https://fr.react.dev/reference/react/components">Référence composants React</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/reference/react/components">Composants fournis par React</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/reference/react/Fragment"><code>&lt;Fragment&gt;</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/Profiler"><code>&lt;Profiler&gt;</code></a></li>
         </ul>
@@ -60,23 +58,47 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
         <ul>
           <li><a href="https://fr.react.dev">Page d'accueil</a> (<em>above-the-fold</em> pour le moment)</li>
           <li><a href="https://fr.react.dev/learn">Démarrage rapide</a></li>
+          <li><a href="https://fr.react.dev/learn/tutorial-tic-tac-toe">Tutoriel : Tic-Tac-Toe</a></li>
           <li><a href="https://fr.react.dev/learn/thinking-in-react">Penser en React</a></li>
           <li><a href="https://fr.react.dev/learn/installation">Installation</a> (accueil chapitre)</li>
-          <li><a href="https://fr.react.dev/learn/describing-the-ui">Décrire l’UI</a></li>
+          <li><a href="https://fr.react.dev/learn/describing-the-ui">Décrire l’UI</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/learn/your-first-component">Votre premier composant</a></li>
+          <li><a href="https://fr.react.dev/learn/writing-markup-with-jsx">Écrire du balisage avec JSX</a></li>
+          <li><a href="https://fr.react.dev/learn/javascript-in-jsx-with-curly-braces">JavaScript dans JSX grâce aux accolades</a></li>
+          <li><a href="https://fr.react.dev/learn/passing-props-to-a-component">Passer des props à un composant</a></li>
+          <li><a href="https://fr.react.dev/learn/conditional-rendering">Affichage conditionnel</a></li>
+          <li><a href="https://fr.react.dev/learn/rendering-lists">Afficher des listes</a></li>
           <li><a href="https://fr.react.dev/learn/keeping-components-pure">Garder les composants purs</a></li>
           <li><a href="https://fr.react.dev/learn/state-a-components-memory">L’état : la mémoire d’un composant</a></li>
           <li><a href="https://fr.react.dev/learn/render-and-commit">Rendu et Commit</a></li>
           <li><a href="https://fr.react.dev/learn/state-as-a-snapshot">L’état est un instantané</a></li>
           <li><a href="https://fr.react.dev/learn/queueing-a-series-of-state-updates">Cumuler les mises à jour d’un même état</a></li>
-          <li><a href="https://fr.react.dev/learn/escape-hatches">Échappatoires</a></li>
+          <li><a href="https://fr.react.dev/learn/escape-hatches">Échappatoires</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/learn/referencing-values-with-refs">Référencer des valeurs avec les refs</a></li>
           <li><a href="https://fr.react.dev/learn/manipulating-the-dom-with-refs">Manipuler le DOM avec des refs</a></li>
           <li><a href="https://fr.react.dev/learn/synchronizing-with-effects">Synchroniser grâce aux Effets</a></li>
           <li><a href="https://fr.react.dev/learn/you-might-not-need-an-effect">Vous n’avez pas forcément besoin d’un Effet</a></li>
           <li><a href="https://fr.react.dev/learn/removing-effect-dependencies">Alléger les dépendances des Effets</a></li>
-          <li><a href="https://fr.react.dev/reference/react/useImperativeHandle"><code>useImperactiveHandle</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/useEffect"><code>useEffect</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/useImperativeHandle"><code>useImperativeHandle</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/useInsertionEffect"><code>useInsertionEffect</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/useLayoutEffect"><code>useLayoutEffect</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useRef"><code>useRef</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/useSyncExternalStore"><code>useSyncExternalStore</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/useTransition"><code>useTransition</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/Suspense"><code>&lt;Suspense&gt;</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/forwardRef"><code>forwardRef</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/startTransition"><code>startTransition</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/components">react-dom : Composants</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/reference/react-dom">API React DOM intégrées</a></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/flushSync"><code>flushSync</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/hydrate"><code>hydrate</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/render"><code>render</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/umountComponentAtNode"><code>umountComponentAtNode</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/client">API React DOM côté client</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/reference/react-dom/server">API React DOM côté serveur</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/reference/react-dom/server/renderToStaticMarkup"><code>renderToStaticMarkup</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/server/renderToStaticNodeStream"><code>renderToStaticNodeStream</code></a></li>
         </ul>
       </td>
     </tr>
@@ -86,7 +108,8 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td>
         <ul>
           <li><a href="http://fr.react.dev/learn/start-a-new-react-project">Créer un nouveau projet avec React</a></li>
-          <li><a href="https://fr.react.dev/reference/react">Référence : Hooks</a></li>
+          <li><a href="https://fr.react.dev/reference/react">Hooks fournis par React</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/reference/react/lazy"><code>lazy</code></a></li>
         </ul>
       </td>
     </tr>
@@ -100,12 +123,12 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       </td>
     </tr>
     <tr>
-      <td><a href="https://github.com/KohdeAvekLeQ ">Kohdé</a></td>
+      <td><a href="https://github.com/LaureRC">Laure Retru-Chavastel</a></td>
       <td></td>
       <td>
         <ul>
-          <li><a href="https://fr.react.dev/learn/managing-state">Gérer l'état</li>
-          <li><a href="https://fr.react.dev/learn/reacting-to-input-with-state">Réagir à la saisie avec un état</li>
+          <li><a href="https://fr.react.dev/learn/updating-objects-in-state">Mettre à jour les objets d’un état</li>
+          <li><a href="https://fr.react.dev/learn/updating-arrays-in-state">Mettre à jour les tableaux d’un état</li>
         </ul>
       </td>
     </tr>
@@ -134,7 +157,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td></td>
       <td>
         <ul>
-          <li><a href=https://fr.react.dev/learn/adding-interactivity">Ajouter de l'interactivité</a></li>
+          <li><a href=https://fr.react.dev/learn/adding-interactivity">Ajouter de l'interactivité</a> (accueil chapitre)</li>
           <li><a href=https://fr.react.dev/learn/reacting-to-input-with-state">Réagir à la saisie avec un état</a></li>
         </ul>
       </td>
@@ -145,6 +168,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td>
         <ul>
           <li><a href=https://fr.react.dev/learn/editor-setup">Configuration de l'éditeur</a></li>
+          <li><a href=https://fr.react.dev/reference/react-dom/components/option"><code>&lt;option&gt;</code></a></li>
         </ul>
       </td>
     </tr>
@@ -153,10 +177,16 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td></td>
       <td>
         <ul>
+          <li><a href=https://fr.react.dev/learn/sharing-state-between-components">Partager l’état entre des composants</a></li>
+          <li><a href=https://fr.react.dev/learn/preserving-and-resetting-state">Préserver et réinitialiser l’état</a></li>
           <li><a href=https://fr.react.dev/learn/extracting-state-logic-into-a-reducer">Extraire la logique d’état dans un réducteur</a></li>
           <li><a href=https://fr.react.dev/learn/passing-data-deeply-with-context">Transmettre des données en profondeur avec le contexte</a></li>
+          <li><a href=https://fr.react.dev/learn/scaling-up-with-reducer-and-context">Mise à l’échelle en combinant réducteur et contexte</a></li>
+          <li><a href=https://fr.react.dev/learn/lifecycle-of-reactive-effects">Cycle de vie des Effets réactifs</a></li>
           <li><a href=https://fr.react.dev/learn/separating-events-from-effects">Séparer les événements des Effets</a></li>
           <li><a href=https://fr.react.dev/learn/reusing-logic-with-custom-hooks">Réutiliser de la logique grâce aux Hooks personnalisés</a></li>
+          <li><a href=https://fr.react.dev/reference/react/useContext"><code>useContext</code></a></li>
+          <li><a href=https://fr.react.dev/reference/react/useReducer"><code>useReducer</code></a></li>
         </ul>
       </td>
     </tr>
@@ -167,6 +197,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
         <ul>
           <li><a href="https://fr.react.dev/learn/managing-state">Gérer l’état</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/learn/reacting-to-input-with-state">Réagir à la saisie avec un état</a></li>
+          <li><a href="https://fr.react.dev/learn/choosing-the-state-structure">Choisir la structure de l'état</a></li>
         </ul>
       </td>
     </tr>
