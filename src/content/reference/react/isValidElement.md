@@ -98,7 +98,7 @@ On a très rarement besoin d'`isValidElement`. Elle est principalement utile lor
 
 #### Éléments React vs. nœuds React {/*react-elements-vs-react-nodes*/}
 
-Lorsque vous écrivez un composant, vous pouvez lui faire renvoyer n'importe quel genre de *nœud React* :
+Lorsque vous écrivez un composant, vous pouvez lui faire renvoyer n'importe quel *nœud React* :
 
 ```js
 function MyComponent() {
@@ -109,13 +109,13 @@ function MyComponent() {
 Un nœud React peut être :
 
 - Un élément React créé avec JSX (tel que `<div />`) ou `createElement('div')`
-- UN portail créé par [`createPortal`](/reference/react-dom/createPortal)
+- Un portail créé par [`createPortal`](/reference/react-dom/createPortal)
 - Une chaîne de caractères
 - Un nombre
 - `true`, `false`, `null` ou `undefined` (qui ne sont pas affichés)
 - Un tableau d'autres nœuds React
 
-**Remarquez que `isValdiElement` vérifie que son argument est un *élément React*, pas un nœud React.** Par exemple, `42` n'est pas un élément React valide. En revanche, c'est un nœud React parfaitement acceptable :
+**Remarquez que `isValdiElement` vérifie que son argument est un *élément React*, pas un nœud React.** Par exemple, `42` ne constitue pas un élément React valide. En revanche, c'est un nœud React parfaitement acceptable :
 
 ```js
 function MyComponent() {
@@ -123,6 +123,6 @@ function MyComponent() {
 }
 ```
 
-C'est pourquoi vous ne devriez pas utiliser `isValidElement` pour vérifier qu'une valeur peut être affichée.
+C'est pourquoi vous ne devriez pas utiliser `isValidElement` pour vérifier qu'une valeur peut être affichée (c'est-à-dire renvoyée par un composant).
 
 </DeepDive>
