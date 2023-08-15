@@ -4,12 +4,12 @@ title: "<option>"
 
 <Intro>
 
-The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
+Le [composant natif `<option>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/option) vous permet d'afficher une option dans une liste [`<select>`](/reference/react-dom/components/select).
 
 ```js
 <select>
-  <option value="someOption">Some option</option>
-  <option value="otherOption">Other option</option>
+  <option value="someOption">Une option</option>
+  <option value="otherOption">Une autre option</option>
 </select>
 ```
 
@@ -19,44 +19,44 @@ The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `<option>` {/*option*/}
 
-The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
+Le [composant natif `<option>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/option) vous permet d'afficher une option dans une liste déroulante [`<select>`](/reference/react-dom/components/select).
 
 ```js
 <select>
-  <option value="someOption">Some option</option>
-  <option value="otherOption">Other option</option>
+  <option value="someOption">Une option</option>
+  <option value="otherOption">Une autre option</option>
 </select>
 ```
 
-[See more examples below.](#usage)
+[Voir d'autres exemples ci-dessous](#usage).
 
 #### Props {/*props*/}
 
-`<option>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<option>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
 
-Additionally, `<option>` supports these props:
+`<option>` prend également en charge les props suivantes :
 
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#disabled): A boolean. If `true`, the option will not be selectable and will appear dimmed.
-* [`label`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#label): A string. Specifies the meaning of the option. If not specified, the text inside the option is used.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#value): The value to be used [when submitting the parent `<select>` in a form](/reference/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form) if this option is selected.
+* [`disabled`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/option#disabled) : un booléen. Si `true`, l'option ne sera pas sélectionnable et apparaîtra grisée.
+* [`label`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/option#label) : une chaine de caractères. Indique la signification de l'option. Lorsqu'elle est manquante, le texte de l'option est utilisé.
+* [`value`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/option#value) : la valeur utilisée [quand on soumet le `<select>` parent dans un formulaire](/reference/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form) et que cette option est sélectionnée dans la liste.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
-* React does not support the `selected` attribute on `<option>`. Instead, pass this option's `value` to the parent [`<select defaultValue>`](/reference/react-dom/components/select#providing-an-initially-selected-option) for an uncontrolled select box, or [`<select value>`](/reference/react-dom/components/select#controlling-a-select-box-with-a-state-variable) for a controlled select.
+* React ne prend pas en charge l'attribut `selected` pour `<option>`. Passez plutôt la `value` de cette option au [`<select defaultValue>`](/reference/react-dom/components/select#providing-an-initially-selected-option) parent pour une liste déroulante non contrôlée, ou [`<select value>`](/reference/react-dom/components/select#controlling-a-select-box-with-a-state-variable) pour une liste déroulante contrôlée.
 
 ---
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
-### Displaying a select box with options {/*displaying-a-select-box-with-options*/}
+### Afficher une liste déroulante avec des options {/*displaying-a-select-box-with-options*/}
 
-Render a `<select>` with a list of `<option>` components inside to display a select box. Give each `<option>` a `value` representing the data to be submitted with the form.
+Utilisez un `<select>` avec une liste de composants `<option>` à l'intérieur pour afficher une liste déroulante. Donnez à chaque `<option>` une `value` qui représente la donnée qui sera soumise avec le formulaire.
 
-[Read more about displaying a `<select>` with a list of `<option>` components.](/reference/react-dom/components/select)
+[Apprenez-en davantage sur l'affichage d'un `<select>` avec une liste de composants `<option>`](/reference/react-dom/components/select).
 
 <Sandpack>
 
@@ -64,10 +64,10 @@ Render a `<select>` with a list of `<option>` components inside to display a sel
 export default function FruitPicker() {
   return (
     <label>
-      Pick a fruit:
+      Choisissez un fruit :
       <select name="selectedFruit">
-        <option value="apple">Apple</option>
-        <option value="banana">Banana</option>
+        <option value="apple">Pomme</option>
+        <option value="banana">Banane</option>
         <option value="orange">Orange</option>
       </select>
     </label>
@@ -79,5 +79,4 @@ export default function FruitPicker() {
 select { margin: 5px; }
 ```
 
-</Sandpack>  
-
+</Sandpack>
