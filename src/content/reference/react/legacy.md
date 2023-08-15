@@ -1,34 +1,34 @@
 ---
-title: "Legacy React APIs"
+title: "API React historique"
 ---
 
 <Intro>
 
-These APIs are exported from the `react` package, but they are not recommended for use in newly written code. See the linked individual API pages for the suggested alternatives.
+Ces API sont exposées par le module `react`, mais sont déconseillées pour l'écriture de nouveau code.  Consultez les pages API individuelles liées ci-dessous pour découvrir les alternatives que nous leur proposons.
 
 </Intro>
 
 ---
 
-## Legacy APIs {/*legacy-apis*/}
+## API historique {/*legacy-apis*/}
 
-* [`Children`](/reference/react/Children) lets you manipulate and transform the JSX received as the `children` prop. [See alternatives.](/reference/react/Children#alternatives)
-* [`cloneElement`](/reference/react/cloneElement) lets you create a React element using another element as a starting point. [See alternatives.](/reference/react/cloneElement#alternatives)
-* [`Component`](/reference/react/Component) lets you define a React component as a JavaScript class. [See alternatives.](/reference/react/Component#alternatives)
-* [`createElement`](/reference/react/createElement) lets you create a React element. Typically, you'll use JSX instead.
-* [`createRef`](/reference/react/createRef) creates a ref object which can contain arbitrary value. [See alternatives.](/reference/react/createRef#alternatives)
-* [`isValidElement`](/reference/react/isValidElement) checks whether a value is a React element. Typically used with [`cloneElement`.](/reference/react/cloneElement)
-* [`PureComponent`](/reference/react/PureComponent) is similar to [`Component`,](/reference/react/Component) but it skip re-renders with same props. [See alternatives.](/reference/react/PureComponent#alternatives)
+* [`Children`](/reference/react/Children) vous permet de manipuler et transformer les contenus JSX reçus *via* la prop `children`. [Découvrez les alternatives](/reference/react/Children#alternatives).
+* [`cloneElement`](/reference/react/cloneElement) vous permet de créer un élément React en vous basant sur un élément existant. [Découvrez les alternatives](/reference/react/cloneElement#alternatives).
+* [`Component`](/reference/react/Component) vous permet de définir un composant React sous forme d'une classe JavaScript ES2015+. [Découvrez les alternatives](/reference/react/Component#alternatives).
+* [`createElement`](/reference/react/createElement) vous permet de créer un élément React. Vous utiliserez plutôt JSX pour ça.
+* [`createRef`](/reference/react/createRef) crée un objet *ref* pouvant contenir une valeur quelconque. [Découvrez les alternatives](/reference/react/createRef#alternatives).
+* [`isValidElement`](/reference/react/isValidElement) vérifie qu'une valeur est un élément React. Généralement utilisé avec [`cloneElement`](/reference/react/cloneElement).
+* [`PureComponent`](/reference/react/PureComponent) est similaire à [`Component`](/reference/react/Component), mais évite un nouveau rendu lorsque les props sont identiques. [Découvrez les alternatives](/reference/react/PureComponent#alternatives).
 
 
 ---
 
-## Deprecated APIs {/*deprecated-apis*/}
+## API dépréciée {/*deprecated-apis*/}
 
 <Deprecated>
 
-These APIs will be removed in a future major version of React.
+Ces API seront retirées d'une future version majeure de React.
 
 </Deprecated>
 
-* [`createFactory`](/reference/react/createFactory) lets you create a function that produces React elements of a certain type.
+* [`createFactory`](/reference/react/createFactory) vous permet de créer une fonction qui produit des éléments React d'un type prédéfini.
