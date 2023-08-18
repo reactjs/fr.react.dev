@@ -167,9 +167,9 @@ function ProductPage({ productId, referrer, theme }) {
 
 <DeepDive>
 
-#### How is useCallback related to useMemo? {/*how-is-usecallback-related-to-usememo*/}
+#### En quoi `useCallback` diffère-t-il de `useMemo` ? {/*how-is-usecallback-related-to-usememo*/}
 
-You will often see [`useMemo`](/reference/react/useMemo) alongside `useCallback`. They are both useful when you're trying to optimize a child component. They let you [memoize](https://en.wikipedia.org/wiki/Memoization) (or, in other words, cache) something you're passing down:
+Vous verrez souvent [`useMemo`](/reference/react/useMemo) utilisé à proximité de `useCallback`. Les deux sont utiles pour optimiser un composant enfant.  Ils vous permettent de [mémoïser](https://fr.wikipedia.org/wiki/M%C3%A9mo%C3%AFsation) (en d'autres termes, de mettre en cache) une valeur que vous souhaitez leur transmettre :
 
 ```js {6-8,10-15,19}
 import { useMemo, useCallback } from 'react';
@@ -177,11 +177,11 @@ import { useMemo, useCallback } from 'react';
 function ProductPage({ productId, referrer }) {
   const product = useData('/product/' + productId);
 
-  const requirements = useMemo(() => { // Calls your function and caches its result
+  const requirements = useMemo(() => { // Appelle votre fonction et met le résultat en cache
     return computeRequirements(product);
   }, [product]);
 
-  const handleSubmit = useCallback((orderDetails) => { // Caches your function itself
+  const handleSubmit = useCallback((orderDetails) => { // Met en cache la fonction elle-même
     post('/product/' + productId + '/buy', {
       referrer,
       orderDetails,
@@ -196,49 +196,48 @@ function ProductPage({ productId, referrer }) {
 }
 ```
 
-The difference is in *what* they're letting you cache:
+La différence réside dans *la valeur* qu'ils vous permettent de mettre en cache :
 
-* **[`useMemo`](/reference/react/useMemo) caches the *result* of calling your function.** In this example, it caches the result of calling `computeRequirements(product)` so that it doesn't change unless `product` has changed. This lets you pass the `requirements` object down without unnecessarily re-rendering `ShippingForm`. When necessary, React will call the function you've passed during rendering to calculate the result.
-* **`useCallback` caches *the function itself.*** Unlike `useMemo`, it does not call the function you provide. Instead, it caches the function you provided so that `handleSubmit` *itself* doesn't change unless `productId` or `referrer` has changed. This lets you pass the `handleSubmit` function down without unnecessarily re-rendering `ShippingForm`. Your code won't run until the user submits the form.
+* **[`useMemo`](/reference/react/useMemo) met en cache le *résultat* d'un appel à votre fonction.**  Dans cet exemple, il met en cache le résultat de l'appel à `computeRequirements(product)`, qui n'est donc plus appelée tant que `product` est inchangé. Ça vous permet de transmettre à vos enfants l'objet `requirements` sans entraîner obligatoirement un nouveau rendu de `ShippingForm`.  Lorsque c'est nécessaire, React rappelle la fonction que vous avez passée lors du rendu pour recalculer le résultat.
+* **`useCallback` met en cache *la fonction elle-même*.**  Contrairement à `useMemo`, elle n'appelle pas la fonction que vous lui passez.  Au lieu de ça, elle met en cache la fonction pour que `handleSubmit` *elle-même* ne change pas tant que `productId` et `referrer` sont stables. Ça vous permet de passer la fonction `handleSubmit` à `ShippingForm` sans nécessairement que ça entraîne son rendu. Le code de la fonction ne sera lui exécuté que lorsque l'utilisateur soumettra le formulaire.
 
-If you're already familiar with [`useMemo`,](/reference/react/useMemo) you might find it helpful to think of `useCallback` as this:
+Si vous êtes déjà à l'aise avec [`useMemo`,](/reference/react/useMemo), vous trouverez peut-être pratique de penser à `useCallback` comme un équivalent du code suivant :
 
 ```js
-// Simplified implementation (inside React)
+// Implémentation simplifiée (code interne de React)
 function useCallback(fn, dependencies) {
   return useMemo(() => fn, dependencies);
 }
 ```
 
-[Read more about the difference between `useMemo` and `useCallback`.](/reference/react/useMemo#memoizing-a-function)
+[Apprenez-en davantage sur la différence entre `useMemo` et `useCallback`](/reference/react/useMemo#memoizing-a-function).
 
 </DeepDive>
 
 <DeepDive>
 
-#### Should you add useCallback everywhere? {/*should-you-add-usecallback-everywhere*/}
+#### Devriez-vous mettre des `useCallback` partout ? {/*should-you-add-usecallback-everywhere*/}
 
-If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
+Si votre appli est comme ce site, l'essentiel des interactions ont un impact assez large (genre remplacer une page ou une section entière), de sorte que la mémoïsation est rarement nécessaire.  En revanche, si votre appli est plus comme un éditeur de dessin, et que la plupart des interactions sont granulaires (comme déplacer des formes), alors la mémoïsation est susceptible de beaucoup vous aider.
 
-Caching a function with `useCallback`  is only valuable in a few cases:
+Mettre en cache une fonction avec `useCallback` n'est utile que dans deux grands cas de figure :
 
-- You pass it as a prop to a component wrapped in [`memo`.](/reference/react/memo) You want to skip re-rendering if the value hasn't changed. Memoization lets your component re-render only if dependencies changed.
-- The function you're passing is later used as a dependency of some Hook. For example, another function wrapped in `useCallback` depends on it, or you depend on this function from [`useEffect.`](/reference/react/useEffect)
+- Vous la passez comme prop à un composant enrobé avec [`memo`](/reference/react/memo).  Vous voulez qu'il puisse éviter de refaire son rendu si la valeur n'a pas changé.  En mémoïsant la fonction, vous limitez ses nouveaux rendus aux cas où les dépendances de votre fonction ont en effet changé.
+- La fonction que vous passez est utilisée plus loin comme dépendance par un Hook.  Par exemple, une autre fonction enrobée par `useCallback` en dépend, ou vous en dépendez pour un [`useEffect`](/reference/react/useEffect).
 
-There is no benefit to wrapping a function in `useCallback` in other cases. There is no significant harm to doing that either, so some teams choose to not think about individual cases, and memoize as much as possible. The downside is that code becomes less readable. Also, not all memoization is effective: a single value that's "always new" is enough to break memoization for an entire component.
+Le reste du temps, enrober une fonction avec `useCallback` n'a pas d'intérêt.  Ça ne va pas gêner non plus, aussi certaines équipes décident de ne pas réfléchir au cas par cas, et mémoïsent autant que possible.  L'inconvénient, c'est que ça nuit à la lisibilité du code.  Par ailleurs, toutes les mémoïsations ne sont pas efficaces.  Il suffit d'une seule valeur « toujours différente » pour casser la mémoïsation de tout un composant.
 
-Note that `useCallback` does not prevent *creating* the function. You're always creating a function (and that's fine!), but React ignores it and gives you back a cached function if nothing changed.
+Remarquez que `useCallback` n'empêche pas la *création* de la fonction.  Vous créez la fonction à chaque rendu (et tout va bien !) mais React l'ignorera et vous renverra la fonction mise en cache si rien n'a changé.
 
-**In practice, you can make a lot of memoization unnecessary by following a few principles:**
+**En pratique, vous pouvez rendre beaucoup de mémoïsations superflues en respectant les principes suivants :**
 
-1. When a component visually wraps other components, let it [accept JSX as children.](/learn/passing-props-to-a-component#passing-jsx-as-children) Then, if the wrapper component updates its own state, React knows that its children don't need to re-render.
-1. Prefer local state and don't [lift state up](/learn/sharing-state-between-components) any further than necessary. Don't keep transient state like forms and whether an item is hovered at the top of your tree or in a global state library.
-1. Keep your [rendering logic pure.](/learn/keeping-components-pure) If re-rendering a component causes a problem or produces some noticeable visual artifact, it's a bug in your component! Fix the bug instead of adding memoization.
-1. Avoid [unnecessary Effects that update state.](/learn/you-might-not-need-an-effect) Most performance problems in React apps are caused by chains of updates originating from Effects that cause your components to render over and over.
-1. Try to [remove unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies) For example, instead of memoization, it's often simpler to move some object or a function inside an Effect or outside the component.
+1. Lorsqu'un composant en enrobe d'autres visuellement, permettez-lui [d'accepter du JSX comme enfant](/learn/passing-props-to-a-component#passing-jsx-as-children). Ainsi, si le composant d'enrobage met à jour son propre état, React saura que ses enfants n'ont pas besoin de refaire leur rendu.
+2. Préférez l'état local et ne faites pas [remonter l'état](/learn/sharing-state-between-components) plus haut que nécessaire.  Ne conservez pas les éléments d'état transients (tels que les champs de formulaire ou l'état de survol d'un élément) à la racine de votre arbre ou dans une bibliothèque de gestion d'état global.
+3. Assurez-vous d'avoir une [logique de rendu pure](/learn/keeping-components-pure).  Si refaire le rendu d'un composant entraîne des problèmes ou produit un artefact visuel perceptible, c'est un bug dans votre composant !  Corrigez le bug plutôt que de tenter de le cacher avec une mémoïsation.
+4. Évitez [les Effets superflus qui mettent à jour l'état](/learn/you-might-not-need-an-effect).  La plupart des problèmes de performance des applis React viennent de chaînes de mise à jour issues d'Effets, qui entraînent de multiples rendus consécutifs de vos composants.
+5. Essayez [d'alléger les dépendances de vos Effets](/learn/removing-effect-dependencies). Par exemple, plutôt que de mémoïser, il est souvent plus simple de déplacer un objet ou une fonction à l'intérieur de l'Effet voire hors de votre composant.
 
-If a specific interaction still feels laggy, [use the React Developer Tools profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) to see which components benefit the most from memoization, and add memoization where needed. These principles make your components easier to debug and understand, so it's good to follow them in any case. In long term, we're researching [doing memoization automatically](https://www.youtube.com/watch?v=lGEMwh32soc) to solve this once and for all.
-
+Si une interaction spécifique continue à sembler pataude, [utilisez le Profiler des outils de développement React](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) pour découvrir quels composants bénéficieraient le plus d'une mémoïsation, et ajoutez-la au cas par cas.  Ces principes facilitent le débogage et la maintenabilité de vos composants, ils sont donc utiles à suivre dans tous les cas.  À plus long terme, nous faisons de la recherche sur les moyens de [mémoïser automatiquement](https://www.youtube.com/watch?v=lGEMwh32soc) pour résoudre ces questions une bonne fois pour toutes.
 </DeepDive>
 
 <Recipes titleText="The difference between useCallback and declaring a function directly" titleId="examples-rerendering">
