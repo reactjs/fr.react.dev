@@ -60,9 +60,9 @@ Lors des rendus ultérieurs, il vous renverra soit la fonction `fn` mise en cach
 
 ### Éviter les rendus superflus de composants {/*skipping-re-rendering-of-components*/}
 
-When you optimize rendering performance, you will sometimes need to cache the functions that you pass to child components. Let's first look at the syntax for how to do this, and then see in which cases it's useful.
+Lorsque vous optimisez la performance de rendu, vous aurez parfois besoin de mettre en cache les fonctions que vous passez à des composants enfants.  Commençons par regarder la syntaxe nécessaire à ça, puis voyons dans quels cas c'est utile.
 
-To cache a function between re-renders of your component, wrap its definition into the `useCallback` Hook:
+Pour mettre en cache une fonction d'un rendu à l'autre au sein de votre composant, enrobez sa définition avec le Hook `useCallback` :
 
 ```js [[3, 4, "handleSubmit"], [2, 9, "[productId, referrer]"]]
 import { useCallback } from 'react';
@@ -77,20 +77,20 @@ function ProductPage({ productId, referrer, theme }) {
   // ...
 ```
 
-You need to pass two things to `useCallback`:
+Vous devez passer deux arguments à `useCallback` :
 
-1. A function definition that you want to cache between re-renders.
-2. A <CodeStep step={2}>list of dependencies</CodeStep> including every value within your component that's used inside your function.
+1. Une définition de fonction que vous souhaitez mettre en cache d'un rendu à l'autre.
+2. Une <CodeStep step={2}>liste de dépendances</CodeStep> comprenant chaque valeur issue de votre composant que cette fonction utilise.
 
-On the initial render, the <CodeStep step={3}>returned function</CodeStep> you'll get from `useCallback` will be the function you passed.
+Lors du rendu initial, la <CodeStep step={3}>fonction renvoyée</CodeStep> par `useCallback` sera la fonction que vous avez passée.
 
-On the following renders, React will compare the <CodeStep step={2}>dependencies</CodeStep> with the dependencies you passed during the previous render. If none of the dependencies have changed (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), `useCallback` will return the same function as before. Otherwise, `useCallback` will return the function you passed on *this* render.
+Lors des rendus suivants, React comparera les <CodeStep step={2}>dépendances</CodeStep> avec celles passées lors du rendu précédent. Si aucune dépendance n'a changé (sur base d'une comparaison avec l'algorithme [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), `useCallback` continuera à utiliser la même fonction. Dans le cas contraire, `useCallback` renverra la fonction que vous venez de lui passer pour le rendu *courant*.
 
-In other words, `useCallback` caches a function between re-renders until its dependencies change.
+En d'autres termes, `useCallback` met en cache une fonction d'un rendu à l'autre jusqu'à ce que ses dépendances changent.
 
-**Let's walk through an example to see when this is useful.**
+**Déroulons un exemple afin de comprendre en quoi c'est utile.**
 
-Say you're passing a `handleSubmit` function down from the `ProductPage` to the `ShippingForm` component:
+Supposons que vous passiez une fonction `handleSubmit` depuis `ProductPage` vers le composant `ShippingForm` :
 
 ```js {5}
 function ProductPage({ productId, referrer, theme }) {
@@ -102,9 +102,9 @@ function ProductPage({ productId, referrer, theme }) {
   );
 ```
 
-You've noticed that toggling the `theme` prop freezes the app for a moment, but if you remove `<ShippingForm />` from your JSX, it feels fast. This tells you that it's worth trying to optimize the `ShippingForm` component.
+Vous avez remarqué que basculer la prop `theme` gèle l'appli pendant un moment, mais si vous retirez `<ShippingForm/>` de votre JSX, il redevient performant.  Ça vous indique qu'il serait bon de tenter d'optimiser le composant `ShippingForm`.
 
-**By default, when a component re-renders, React re-renders all of its children recursively.** This is why, when `ProductPage` re-renders with a different `theme`, the `ShippingForm` component *also* re-renders. This is fine for components that don't require much calculation to re-render. But if you verified a re-render is slow, you can tell `ShippingForm` to skip re-rendering when its props are the same as on last render by wrapping it in [`memo`:](/reference/react/memo)
+**Par défaut, lorsqu'un composant refait son rendu, React refait le rendu de tous ses composants enfants, récursivement.**  C'est pourquoi lorsque `ProductPage` refait son rendu avec un `theme` différent, le composant `ShippingForm` refait *aussi* son rendu.  Ça ne pose aucun problème pour les composants dont le rendu n'est pas trop coûteux.  Mais si vous avez confirmé que son rendu est lent, vous pouvez dire à `ShippingForm` d'éviter de nouveaux rendus lorsque ses props ne changent pas en l'enrobant avec [`memo`](/reference/react/memo) :
 
 ```js {3,5}
 import { memo } from 'react';
@@ -114,11 +114,11 @@ const ShippingForm = memo(function ShippingForm({ onSubmit }) {
 });
 ```
 
-**With this change, `ShippingForm` will skip re-rendering if all of its props are the *same* as on the last render.** This is when caching a function becomes important! Let's say you defined `handleSubmit` without `useCallback`:
+**Avec cet ajustement, `ShippingForm` évitera de refaire son rendu si toutes ses propriétés sont *identiques* depuis le dernier rendu.**  Et c'est là que la mise en cache de fonction devient importante !  Imaginons que vous définissiez `handleSubmit` sans `useCallback` :
 
 ```js {2,3,8,12-13}
 function ProductPage({ productId, referrer, theme }) {
-  // Every time the theme changes, this will be a different function...
+  // Chaque fois que le theme change, cette fonction sera différente...
   function handleSubmit(orderDetails) {
     post('/product/' + productId + '/buy', {
       referrer,
@@ -128,39 +128,40 @@ function ProductPage({ productId, referrer, theme }) {
 
   return (
     <div className={theme}>
-      {/* ... so ShippingForm's props will never be the same, and it will re-render every time */}
+      {/* ... du coup les props de ShippingForm seront toujours différentes,
+          et il refera son rendu à chaque fois. */}
       <ShippingForm onSubmit={handleSubmit} />
     </div>
   );
 }
 ```
 
-**In JavaScript, a `function () {}` or `() => {}` always creates a _different_ function,** similar to how the `{}` object literal always creates a new object. Normally, this wouldn't be a problem, but it means that `ShippingForm` props will never be the same, and your [`memo`](/reference/react/memo) optimization won't work. This is where `useCallback` comes in handy:
+**En JavaScript, une `function () {}` ou `() => {}` crée toujours une fonction _différente_**, de la même façon qu'un littéral objet `{}` crée toujours un nouvel objet. En temps normal ça ne poserait pas problème, mais ici ça signifie que les props de `ShippingForm` ne seront jamais identiques, de sorte que votre optimisation avec [`memo`](/reference/react/memo) ne servira à rien. C'est là que `useCallback` entre en scène :
 
 ```js {2,3,8,12-13}
 function ProductPage({ productId, referrer, theme }) {
-  // Tell React to cache your function between re-renders...
+  // Dit à React de mettre en cache votre fonction d’un rendu à l’autre...
   const handleSubmit = useCallback((orderDetails) => {
     post('/product/' + productId + '/buy', {
       referrer,
       orderDetails,
     });
-  }, [productId, referrer]); // ...so as long as these dependencies don't change...
+  }, [productId, referrer]); // ...du coup tant que ces dépendances ne changent pas...
 
   return (
     <div className={theme}>
-      {/* ...ShippingForm will receive the same props and can skip re-rendering */}
+      {/* ...ShippingForm recevra les mêmes props et ne refera pas son rendu. */}
       <ShippingForm onSubmit={handleSubmit} />
     </div>
   );
 }
 ```
 
-**By wrapping `handleSubmit` in `useCallback`, you ensure that it's the *same* function between the re-renders** (until dependencies change). You don't *have to* wrap a function in `useCallback` unless you do it for some specific reason. In this example, the reason is that you pass it to a component wrapped in [`memo`,](/reference/react/memo) and this lets it skip re-rendering. There are other reasons you might need `useCallback` which are described further on this page.
+**En enrobant `handleSubmit` dans un `useCallback`, vous garantissez qu'il s'agira de la *même* fonction d'un rendu à l'autre** (tant que les dépendances ne changent pas).  Vous n'avez *pas besoin* d'enrober une fonction dans `useCallback` par défaut, sans raison précise.  Dans cet exemple, la raison tient à ce que vous la passez à un composant enrobé par [`memo`](/reference/react/memo), ça lui permet donc d'effectivement éviter des rendus superflus.  Il existe d'autres raisons de recourir à `useCallback`, qui sont détaillées dans la suite de cette page.
 
 <Note>
 
-**You should only rely on `useCallback` as a performance optimization.** If your code doesn't work without it, find the underlying problem and fix it first. Then you may add `useCallback` back.
+**Vous ne devriez recourir à `useCallback` que pour optimiser les performances.**  Si votre code ne fonctionne pas sans lui, trouvez la cause racine et corrigez-la.  Alors seulement envisagez de remettre `useCallback`.
 
 </Note>
 
