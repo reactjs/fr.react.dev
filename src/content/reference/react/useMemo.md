@@ -1163,80 +1163,80 @@ Ces deux exemples sont parfaitement équivalents.  Le seul avantage de `useCallb
 
 ### Mon calcul est exécuté deux fois par rendu {/*my-calculation-runs-twice-on-every-re-render*/}
 
-In [Strict Mode](/reference/react/StrictMode), React will call some of your functions twice instead of once:
+En [mode strict](/reference/react/StrictMode), React appellera certaines de vos fonctions deux fois plutôt qu'une :
 
 ```js {2,5,6}
 function TodoList({ todos, tab }) {
-  // This component function will run twice for every render.
+  // Cette fonction composant sera appelée deux fois par rendu.
 
   const visibleTodos = useMemo(() => {
-    // This calculation will run twice if any of the dependencies change.
+    // Ce calcul sera exécuté deux fois pour tout changement de dépendances.
     return filterTodos(todos, tab);
   }, [todos, tab]);
 
   // ...
 ```
 
-This is expected and shouldn't break your code.
+C'est intentionnel, et ça ne devrait pas casser votre code.
 
-This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component and calculation functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice and fix the mistake.
+Ce comportement **spécifique au développement** vous aide à [garder les composants purs](/learn/keeping-components-pure). React utilise le résultat de l'un des appels et ignore l'autre. Tant que votre composant et votre fonction de calcul sont purs, ça ne devrait pas affecter votre logique. Si toutefois ils sont malencontreusement impurs, ça vous permettra de détecter les erreurs.
 
-For example, this impure calculation function mutates an array you received as a prop:
+Par exemple, cette fonction calcul impure modifie directement un tableau reçu comme prop :
 
 ```js {2-3}
   const visibleTodos = useMemo(() => {
-    // 🚩 Mistake: mutating a prop
-    todos.push({ id: 'last', text: 'Go for a walk!' });
+    // 🚩 Erreur : modification directe (en place) d'une prop
+    todos.push({ id: 'last', text: 'Aller faire un tour !' });
     const filtered = filterTodos(todos, tab);
     return filtered;
   }, [todos, tab]);
 ```
 
-React calls your function twice, so you'd notice the todo is added twice. Your calculation shouldn't change any existing objects, but it's okay to change any *new* objects you created during the calculation. For example, if the `filterTodos` function always returns a *different* array, you can mutate *that* array instead:
+React appelle votre fonction deux fois, afin que vous remarquiez que la tâche est ajoutée deux fois. Votre calcul ne devrait pas modifier des objets existants, mais vous pouvez très bien modifier des *nouveaux* objets créés lors du calcul. Par exemple, si la fonction `filterTodos` renvoie toujours un tableau *différent*, vous pouvez modifier plutôt *ce tableau-là* :
 
 ```js {3,4}
   const visibleTodos = useMemo(() => {
     const filtered = filterTodos(todos, tab);
-    // ✅ Correct: mutating an object you created during the calculation
-    filtered.push({ id: 'last', text: 'Go for a walk!' });
+    // ✅ Correct : modification d'un objet créé lors du calcul
+    filtered.push({ id: 'last', text: 'Aller faire un tour !' });
     return filtered;
   }, [todos, tab]);
 ```
 
-Read [keeping components pure](/learn/keeping-components-pure) to learn more about purity.
+Lisez [Garder les composants purs](/learn/keeping-components-pure) pour en apprendre davantage.
 
-Also, check out the guides on [updating objects](/learn/updating-objects-in-state) and [updating arrays](/learn/updating-arrays-in-state) without mutation.
+Jetez donc aussi un coup d'œil aux guides pour [mettre à jour les objets](/learn/updating-objects-in-state) et [mettre à jour les tableaux](/learn/updating-arrays-in-state) sans les modifier directement.
 
 ---
 
 ### Mon appel à `useMemo` call est censé renvoyer un objet mais renvoie `undefined` {/*my-usememo-call-is-supposed-to-return-an-object-but-returns-undefined*/}
 
-This code doesn't work:
+Ce code ne fonctionne pas 
 
 ```js {1-2,5}
-  // 🔴 You can't return an object from an arrow function with () => {
+  // 🔴 La syntaxe `() => {` ne renvoie pas un objet
   const searchOptions = useMemo(() => {
     matchMode: 'whole-word',
     text: text
   }, [text]);
 ```
 
-In JavaScript, `() => {` starts the arrow function body, so the `{` brace is not a part of your object. This is why it doesn't return an object, and leads to mistakes. You could fix it by adding parentheses like `({` and `})`:
+En JavaScript, `() => {` démarre le corps de la fonction fléchée, de sorte que l'accolade ouvrante `{` ne marque pas le début d'un objet. C'est pourquoi ça ne renvoie pas un objet, entraînant des erreurs.  Vous pourriez corriger ça en enrobant les accolades par des parenthèses, avec `({` et `})` :
 
 ```js {1-2,5}
-  // This works, but is easy for someone to break again
+  // Fonctionne, mais reste facile à casser par un tiers
   const searchOptions = useMemo(() => ({
     matchMode: 'whole-word',
     text: text
   }), [text]);
 ```
 
-However, this is still confusing and too easy for someone to break by removing the parentheses.
+Ceci dit, ça reste suffisamment déroutant pour qu'une autre personne le casse à nouveau en retirant les parenthèses
 
-To avoid this mistake, write a `return` statement explicitly:
+Pour éviter ça, écrivez une instruction `return` explicite :
 
 ```js {1-3,6-7}
-  // ✅ This works and is explicit
+  // ✅ Fonctionne et rend l’intention explicite
   const searchOptions = useMemo(() => {
     return {
       matchMode: 'whole-word',
@@ -1249,55 +1249,55 @@ To avoid this mistake, write a `return` statement explicitly:
 
 ### À chaque rendu de mon composant, le calcul dans `useMemo` est exécuté {/*every-time-my-component-renders-the-calculation-in-usememo-re-runs*/}
 
-Make sure you've specified the dependency array as a second argument!
+Assurez-vous d'avoir spécifié le tableau de dépendances comme second argument !
 
-If you forget the dependency array, `useMemo` will re-run the calculation every time:
+Si vous oubliez le tableau de dépendances, `useMemo` exécutera le calcul à chaque fois :
 
 ```js {2-3}
 function TodoList({ todos, tab }) {
-  // 🔴 Recalculates every time: no dependency array
+  // 🔴 Recalcule à chaque fois, faute de tableau de dépendances
   const visibleTodos = useMemo(() => filterTodos(todos, tab));
   // ...
 ```
 
-This is the corrected version passing the dependency array as a second argument:
+Voici la version corrigée, qui passe bien le tableau de dépendances comme second argument :
 
 ```js {2-3}
 function TodoList({ todos, tab }) {
-  // ✅ Does not recalculate unnecessarily
+  // ✅ Ne fait pas de recalcul superflu
   const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
   // ...
 ```
 
-If this doesn't help, then the problem is that at least one of your dependencies is different from the previous render. You can debug this problem by manually logging your dependencies to the console:
+Si ça n'aide pas, alors le problème vient de ce qu'au moins une de vos dépendances diffère depuis le rendu précédent.  Vous pouvez déboguer ce problème en affichant manuellement vos dépendances dans la console :
 
 ```js
   const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
   console.log([todos, tab]);
 ```
 
-You can then right-click on the arrays from different re-renders in the console and select "Store as a global variable" for both of them. Assuming the first one got saved as `temp1` and the second one got saved as `temp2`, you can then use the browser console to check whether each dependency in both arrays is the same:
+Vous pouvez alors cliquer bouton droit, dans la console, sur les tableaux issus de différents rendus et sélectionner « Stocker objet en tant que variable globale » pour chacun d'entre eux.  En supposant que vous avez stocké le premier en tant que `temp1` et le second en tant que `temp2`, vous pouvez alors utiliser la console du navigateur pour vérifier si chaque dépendance des tableaux est identique :
 
 ```js
-Object.is(temp1[0], temp2[0]); // Is the first dependency the same between the arrays?
-Object.is(temp1[1], temp2[1]); // Is the second dependency the same between the arrays?
-Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
+Object.is(temp1[0], temp2[0]); // La première dépendance est-elle inchangée ?
+Object.is(temp1[1], temp2[1]); // La deuxième dépendance est-elle inchangée ?
+Object.is(temp1[2], temp2[2]); // ... et ainsi de suite pour chaque dépendance ...
 ```
 
-When you find which dependency breaks memoization, either find a way to remove it, or [memoize it as well.](#memoizing-a-dependency-of-another-hook)
+Lorsque vous aurez repéré la dépendance qui casse la mémoïsation, vous pouvez soit tenter de la retirer, soit [la mémoïser aussi](#memoizing-a-dependency-of-another-hook).
 
 ---
 
 ### Je souhaite appeler `useMemo` pour chaque élément d'une liste dans une boucle, mais c'est interdit {/*i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed*/}
 
-Suppose the `Chart` component is wrapped in [`memo`](/reference/react/memo). You want to skip re-rendering every `Chart` in the list when the `ReportList` component re-renders. However, you can't call `useMemo` in a loop:
+Imaginez que le composant `Chart` utilisé ci-dessous soit enrobé par [`memo`](/reference/react/memo).  Vous souhaitez éviter des rendus superflus de chaque `Chart` dans la liste lorsque le composant `ReportList` refait son rendu.  Cependant, vous ne pouvez pas appeler `useMemo` au sein de la boucle :
 
 ```js {5-11}
 function ReportList({ items }) {
   return (
     <article>
       {items.map(item => {
-        // 🔴 You can't call useMemo in a loop like this:
+        // 🔴 Vous n’avez pas le droit d’utiliser `useMemo` dans une boucle comme ceci :
         const data = useMemo(() => calculateReport(item), [item]);
         return (
           <figure key={item.id}>
@@ -1310,7 +1310,7 @@ function ReportList({ items }) {
 }
 ```
 
-Instead, extract a component for each item and memoize data for individual items:
+Au lieu de ça, extrayez un composant pour chaque élément individuel, et mémoïsez les données pour chaque élément :
 
 ```js {5,12-18}
 function ReportList({ items }) {
@@ -1324,7 +1324,7 @@ function ReportList({ items }) {
 }
 
 function Report({ item }) {
-  // ✅ Call useMemo at the top level:
+  // ✅ Appelez `useMemo` au niveau racine :
   const data = useMemo(() => calculateReport(item), [item]);
   return (
     <figure>
@@ -1334,7 +1334,7 @@ function Report({ item }) {
 }
 ```
 
-Alternatively, you could remove `useMemo` and instead wrap `Report` itself in [`memo`.](/reference/react/memo) If the `item` prop does not change, `Report` will skip re-rendering, so `Chart` will skip re-rendering too:
+Une autre solution consisterait à retirer `useMemo` de l'exemple précédent, pour plutôt enrober `Report` lui-même avec un [`memo`](/reference/react/memo).  Ainsi, si la prop `item` ne change pas, `Report` évitera de refaire son rendu, de sorte que `Chart` sera épargné lui aussi :
 
 ```js {5,6,12}
 function ReportList({ items }) {
