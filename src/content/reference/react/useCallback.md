@@ -52,7 +52,7 @@ Lors des rendus ultérieurs, il vous renverra soit la fonction `fn` mise en cach
 
 * `useCallback` est un Hook, vous pouvez donc uniquement l’appeler **à la racine de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l’appeler à l’intérieur de boucles ou de conditions. Si nécessaire, extrayez un nouveau composant et déplacez l'Effet dans celui-ci.
 
-* React **ne libèrera pas la fonction mise en cache s'il n'a pas une raison bien précise de le faire**.  Par exemple, en développement, React videra le cache dès que vous modifiez le fichier de votre composant.  Et tant en développement qu'en production, React videra le cache si votre composant suspend lors du montage initial.  À l'avenir, React est susceptible d'ajouter de nouvelles fonctionnalités qui tireront parti du vidage de cache — si par exemple React prenait un jour nativement en charge la virtualisation des listes, il serait logique qu'il retire du cache les éléments défilant hors de la zone visible de la liste virtualisée.  Ça devrait correspondre à vos attentes si vous concevez `useCallback` comme une optimisation de performance.  Dans le cas contraire, vous voudrez sans doute plutôt recourir à une [variable d'état](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) ou à une [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents).
+* React **ne libèrera pas la fonction mise en cache s'il n'a pas une raison bien précise de le faire**.  Par exemple, en développement, React vide le cache dès que vous modifiez le fichier de votre composant.  Et tant en développement qu'en production, React vide le cache si votre composant suspend lors du montage initial.  À l'avenir, React est susceptible d'ajouter de nouvelles fonctionnalités qui tireront parti du vidage de cache — si par exemple React prenait un jour nativement en charge la virtualisation des listes, il serait logique qu'il retire du cache les éléments défilant hors de la zone visible de la liste virtualisée.  Ça devrait correspondre à vos attentes si vous concevez `useCallback` comme une optimisation de performance.  Dans le cas contraire, vous voudrez sans doute plutôt recourir à une [variable d'état](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) ou à une [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents).
 
 ---
 
@@ -60,7 +60,7 @@ Lors des rendus ultérieurs, il vous renverra soit la fonction `fn` mise en cach
 
 ### Éviter les rendus superflus de composants {/*skipping-re-rendering-of-components*/}
 
-Lorsque vous optimisez la performance de rendu, vous aurez parfois besoin de mettre en cache les fonctions que vous passez à des composants enfants.  Commençons par regarder la syntaxe nécessaire à ça, puis voyons dans quels cas c'est utile.
+Lorsque vous optimisez la performance de rendu, vous aurez parfois besoin de mettre en cache les fonctions que vous passez à des composants enfants.  Commençons par regarder la syntaxe pour y parvenir, puis voyons dans quels cas c'est utile.
 
 Pour mettre en cache une fonction d'un rendu à l'autre au sein de votre composant, enrobez sa définition avec le Hook `useCallback` :
 
@@ -90,7 +90,7 @@ En d'autres termes, `useCallback` met en cache une fonction d'un rendu à l'autr
 
 **Déroulons un exemple afin de comprendre en quoi c'est utile.**
 
-Supposons que vous passiez une fonction `handleSubmit` depuis `ProductPage` vers le composant `ShippingForm` :
+Supposons que vous passiez une fonction `handleSubmit` depuis un composant `ProductPage` vers le composant `ShippingForm` :
 
 ```js {5}
 function ProductPage({ productId, referrer, theme }) {
@@ -102,7 +102,7 @@ function ProductPage({ productId, referrer, theme }) {
   );
 ```
 
-Vous avez remarqué que basculer la prop `theme` gèle l'appli pendant un moment, mais si vous retirez `<ShippingForm/>` de votre JSX, il redevient performant.  Ça vous indique qu'il serait bon de tenter d'optimiser le composant `ShippingForm`.
+En utilisant l'interface, vous avez remarqué que basculer la prop `theme` gèle l'appli pendant un moment, mais si vous retirez `<ShippingForm/>` de votre JSX, il redevient performant.  Ça vous indique qu'il serait bon de tenter d'optimiser le composant `ShippingForm`.
 
 **Par défaut, lorsqu'un composant refait son rendu, React refait le rendu de tous ses composants enfants, récursivement.**  C'est pourquoi lorsque `ProductPage` refait son rendu avec un `theme` différent, le composant `ShippingForm` refait *aussi* son rendu.  Ça ne pose aucun problème pour les composants dont le rendu n'est pas trop coûteux.  Mais si vous avez confirmé que son rendu est lent, vous pouvez dire à `ShippingForm` d'éviter de nouveaux rendus lorsque ses props ne changent pas en l'enrobant avec [`memo`](/reference/react/memo) :
 
@@ -118,7 +118,7 @@ const ShippingForm = memo(function ShippingForm({ onSubmit }) {
 
 ```js {2,3,8,12-13}
 function ProductPage({ productId, referrer, theme }) {
-  // Chaque fois que le theme change, cette fonction sera différente...
+  // Chaque fois que le `theme` change, cette fonction sera différente...
   function handleSubmit(orderDetails) {
     post('/product/' + productId + '/buy', {
       referrer,
@@ -161,7 +161,7 @@ function ProductPage({ productId, referrer, theme }) {
 
 <Note>
 
-**Vous ne devriez recourir à `useCallback` que pour optimiser les performances.**  Si votre code ne fonctionne pas sans lui, trouvez la cause racine et corrigez-la.  Alors seulement envisagez de remettre `useCallback`.
+**Vous ne devriez recourir à `useCallback` que pour optimiser les performances.**  Si votre code ne fonctionne pas sans lui, commencez par débusquer la cause racine puis corrigez-la.  Alors seulement envisagez de remettre `useCallback`.
 
 </Note>
 
@@ -201,7 +201,7 @@ La différence réside dans *la valeur* qu'ils vous permettent de mettre en cach
 * **[`useMemo`](/reference/react/useMemo) met en cache le *résultat* d'un appel à votre fonction.**  Dans cet exemple, il met en cache le résultat de l'appel à `computeRequirements(product)`, qui n'est donc plus appelée tant que `product` est inchangé. Ça vous permet de transmettre à vos enfants l'objet `requirements` sans entraîner obligatoirement un nouveau rendu de `ShippingForm`.  Lorsque c'est nécessaire, React rappelle la fonction que vous avez passée lors du rendu pour recalculer le résultat.
 * **`useCallback` met en cache *la fonction elle-même*.**  Contrairement à `useMemo`, elle n'appelle pas la fonction que vous lui passez.  Au lieu de ça, elle met en cache la fonction pour que `handleSubmit` *elle-même* ne change pas tant que `productId` et `referrer` sont stables. Ça vous permet de passer la fonction `handleSubmit` à `ShippingForm` sans nécessairement que ça entraîne son rendu. Le code de la fonction ne sera lui exécuté que lorsque l'utilisateur soumettra le formulaire.
 
-Si vous êtes déjà à l'aise avec [`useMemo`,](/reference/react/useMemo), vous trouverez peut-être pratique de penser à `useCallback` comme un équivalent du code suivant :
+Si vous êtes déjà à l'aise avec [`useMemo`](/reference/react/useMemo), vous trouverez peut-être pratique de penser à `useCallback` comme un équivalent du code suivant :
 
 ```js
 // Implémentation simplifiée (code interne de React)
@@ -227,9 +227,9 @@ Mettre en cache une fonction avec `useCallback` n'est utile que dans deux grands
 
 Le reste du temps, enrober une fonction avec `useCallback` n'a pas d'intérêt.  Ça ne va pas gêner non plus, aussi certaines équipes décident de ne pas réfléchir au cas par cas, et mémoïsent autant que possible.  L'inconvénient, c'est que ça nuit à la lisibilité du code.  Par ailleurs, toutes les mémoïsations ne sont pas efficaces.  Il suffit d'une seule valeur « toujours différente » pour casser la mémoïsation de tout un composant.
 
-Remarquez que `useCallback` n'empêche pas la *création* de la fonction.  Vous créez la fonction à chaque rendu (et tout va bien !) mais React l'ignorera et vous renverra la fonction mise en cache si rien n'a changé.
+Remarquez que `useCallback` n'empêche pas la *création* de la fonction.  Vous créez la fonction à chaque rendu (et tout va bien !) mais React l'ignorera et vous renverra la fonction mise en cache si aucune dépendance n'a changé.
 
-**En pratique, vous pouvez rendre beaucoup de mémoïsations superflues en respectant les principes suivants :**
+**En pratique, vous pouvez rendre beaucoup de mémoïsations superflues rien qu'en respectant les principes suivants :**
 
 1. Lorsqu'un composant en enrobe d'autres visuellement, permettez-lui [d'accepter du JSX comme enfant](/learn/passing-props-to-a-component#passing-jsx-as-children). Ainsi, si le composant d'enrobage met à jour son propre état, React saura que ses enfants n'ont pas besoin de refaire leur rendu.
 2. Préférez l'état local et ne faites pas [remonter l'état](/learn/sharing-state-between-components) plus haut que nécessaire.  Ne conservez pas les éléments d'état transients (tels que les champs de formulaire ou l'état de survol d'un élément) à la racine de votre arbre ou dans une bibliothèque de gestion d'état global.
@@ -237,7 +237,7 @@ Remarquez que `useCallback` n'empêche pas la *création* de la fonction.  Vous 
 4. Évitez [les Effets superflus qui mettent à jour l'état](/learn/you-might-not-need-an-effect).  La plupart des problèmes de performance des applis React viennent de chaînes de mise à jour issues d'Effets, qui entraînent de multiples rendus consécutifs de vos composants.
 5. Essayez [d'alléger les dépendances de vos Effets](/learn/removing-effect-dependencies). Par exemple, plutôt que de mémoïser, il est souvent plus simple de déplacer un objet ou une fonction à l'intérieur de l'Effet voire hors de votre composant.
 
-Si une interaction spécifique continue à sembler pataude, [utilisez le Profiler des outils de développement React](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) pour découvrir quels composants bénéficieraient le plus d'une mémoïsation, et ajoutez-la au cas par cas.  Ces principes facilitent le débogage et la maintenabilité de vos composants, ils sont donc utiles à suivre dans tous les cas.  À plus long terme, nous faisons de la recherche sur les moyens de [mémoïser automatiquement](https://www.youtube.com/watch?v=lGEMwh32soc) pour résoudre ces questions une bonne fois pour toutes.
+Si une interaction spécifique continue à traîner la patte, [utilisez le Profiler des outils de développement React](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) pour découvrir quels composants bénéficieraient le plus d'une mémoïsation, et ajoutez-en au cas par cas.  Ces principes facilitent le débogage et la maintenabilité de vos composants, ils sont donc utiles à suivre dans tous les cas.  À plus long terme, nous faisons de la recherche sur les moyens de [mémoïser automatiquement](https://www.youtube.com/watch?v=lGEMwh32soc) pour résoudre ces questions une bonne fois pour toutes.
 </DeepDive>
 
 <Recipes titleText="La différence entre useCallback et déclarer une fonction directement" titleId="examples-rerendering">
@@ -246,7 +246,7 @@ Si une interaction spécifique continue à sembler pataude, [utilisez le Profile
 
 Dans cet exemple, le composant `ShippingForm` est **artificiellement ralenti** pour que vous puissiez bien voir ce qui se passe lorsque le rendu d'un composant React est véritablement lent.  Essayez d'incrémenter le compteur et de basculer le thème.
 
-L'incrémentation du compteur semble lente parce qu'elle force le `ShippingForm` ralenti à refaire son rendu.  On pouvait s'y attendre, puisque le compteur a changé, vous devez donc refléter le nouveau choix de l'utiliszateur à l'écran.
+L'incrémentation du compteur semble lente parce qu'elle force le `ShippingForm` ralenti à refaire son rendu.  On pouvait s'y attendre, puisque le compteur a changé, vous devez donc refléter le nouveau choix de l'utilisateur à l'écran.
 
 Essayez maintenant de basculer le thème. **Grâce à la combinaison de `useCallback` et [`memo`](/reference/react/memo), c'est rapide en dépit du ralenti artificiel !** `ShippingForm` a évité un nouveau rendu parce que la fonction `handleSubmit` n'a pas changé, dans la mesure où ni `productId` ni `referrer` (les dépendances déclarées pour le `useCallback`) n'ont changé depuis le dernier rendu.
 
@@ -384,7 +384,7 @@ button[type="button"] {
 
 <Solution />
 
-#### Rendu systématique d'un composant {/*always-re-rendering-a-component*/}
+#### Toujours refaire le rendu d'un composant {/*always-re-rendering-a-component*/}
 
 Dans cet exemple, l'implémentation de `ShippingForm` est toujours **artificiellement ralentie** pour que vous puissiez bien voir ce qui se passe lorsque le rendu d'un composant React est véritablement lent.  Essayez d'incrémenter le compteur et de basculer le thème.
 
@@ -661,7 +661,7 @@ Gardez à l'esprit qu'il vous faut exécuter React en mode production, désactiv
 
 ### Mettre à jour l'état depuis une fonction mémoïsée {/*updating-state-from-a-memoized-callback*/}
 
-Il peut arriver que vous ayez besoin de mettre à jour l'état sur base d'un état antérieur au sein d'une fonction mémoïsée.
+Il peut arriver que vous ayez besoin, au sein d'une fonction mémoïsée, de mettre à jour l'état sur base d'une valeur d'état antérieur.
 
 La fonction `handleAddTodo` ci-dessous spécifie `todos` comme dépendance parce qu'elle s'en sert pour calculer les prochaines tâches :
 
@@ -689,13 +689,13 @@ function TodoList() {
   // ...
 ```
 
-Dans cette version, plutôt que de dépendre de `todos` pour la lire dans le code, vous indiquez plutôt à React *comment* mettre à jour l'état (`todos => [...todos, newTodo]`). [Explorez plus avant les fonctions de mise à jour](/reference/react/useState#updating-state-based-on-the-previous-state).
+Dans cette version, plutôt que de dépendre de `todos` pour la lire dans le code, vous indiquez plutôt à React *comment* mettre à jour l'état (`todos => [...todos, newTodo]`). [Apprenez-en davantage sur les fonctions de mise à jour](/reference/react/useState#updating-state-based-on-the-previous-state).
 
 ---
 
 ### Empêcher les déclenchements intempestifs d'un Effet {/*preventing-an-effect-from-firing-too-often*/}
 
-Vous souhaitez parfois appeler une fonction locale depuis un [Effect](/learn/synchronizing-with-effects) :
+Vous souhaitez parfois appeler une fonction locale depuis un [Effet](/learn/synchronizing-with-effects) :
 
 ```js {4-9,12}
 function ChatRoom({ roomId }) {
@@ -750,7 +750,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Ça garanti que la fonction `createOptions` sera la même d'un rendu à l'autre tant que `roomId` ne change pas. **Ceci dit, il serait encore mieux d'éviter toute dépendance à la fonction.**  Déplacez votre fonction *au sein* de l'Effet :
+Ça garanti que la fonction `createOptions` sera la même d'un rendu à l'autre tant que `roomId` ne changera pas. **Ceci dit, il serait encore préférable d'éviter toute dépendance à la fonction locale.**  Déplacez plutôt votre fonction *au sein* de l'Effet :
 
 ```js {5-10,16}
 function ChatRoom({ roomId }) {
@@ -778,7 +778,7 @@ function ChatRoom({ roomId }) {
 
 ### Optimiser un Hook personnalisé {/*optimizing-a-custom-hook*/}
 
-Si vous écrivez un [Hook personnalisé](/learn/reusing-logic-with-custom-hooks), nous vous conseillons d'enrober toute fonction qu'il renverrait avec `useCallback` :
+Si vous écrivez un [Hook personnalisé](/learn/reusing-logic-with-custom-hooks), nous vous conseillons d'enrober avec `useCallback` toute fonction qu'il serait amené à renvoyer :
 
 ```js {4-6,8-10}
 function useRouter() {
@@ -909,7 +909,7 @@ function Report({ item }) {
 }
 ```
 
-Une autre solution consisterait à retirer `useCallback` de l'exemple précédent, et d'enrober plutôt `Report` lui-même par un [`memo`](/reference/react/memo).  Si la prop `item` ne change pas, `Report` évitera de refaire son rendu, de sorte que `Chart` aussi :
+Une autre solution consisterait à retirer `useCallback` de l'exemple précédent, pour plutôt enrober `Report` lui-même avec un [`memo`](/reference/react/memo).  Ainsi, si la prop `item` ne change pas, `Report` évitera de refaire son rendu, de sorte que `Chart` sera épargné lui aussi :
 
 ```js {5,6-8,15}
 function ReportList({ items }) {
