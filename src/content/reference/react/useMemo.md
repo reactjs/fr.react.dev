@@ -38,7 +38,7 @@ function TodoList({ todos, tab }) {
 
 #### Paramètres {/*parameters*/}
 
-* `calculateValue` : la fonction qui calcule la valeur que vous souhaitez mettre en cache. Elle doit être pure, ne prendre aucun argument, et peut renvoyer n'importe quel type de valeur. React appellera votre fonction lors du rendu initial. Lors des rendus suivants, React vous renverra cette même valeur tant que les `dependencies` n'auront pas changé depuis le rendu précédent. Dans le cas contraire, il appellera `calculateValue`, renverra sa valeur, et la mtockera pour la réutiliser par la suite.
+* `calculateValue` : la fonction qui calcule la valeur que vous souhaitez mettre en cache. Elle doit être pure, ne prendre aucun argument, et peut renvoyer n'importe quel type de valeur. React appellera votre fonction lors du rendu initial. Lors des rendus suivants, React vous renverra cette même valeur tant que les `dependencies` n'auront pas changé depuis le rendu précédent. Dans le cas contraire, il appellera `calculateValue`, renverra sa valeur, et la stockera pour la réutiliser par la suite.
 
 * `dependencies` : la liste des valeurs réactives référencées par le code de `calculateValue`.  Les valeurs réactives comprennent les props, les variables d'état et toutes les variables et fonctions déclarées localement dans le corps de votre composant.  Si votre *linter* est [configuré pour React](/learn/editor-setup#linting), il vérifiera que chaque valeur réactive concernée est bien spécifiée comme dépendance.  La liste des dépendances doit avoir un nombre constant d'éléments et utiliser un littéral défini à la volée, du genre `[dep1, dep2, dep3]`. React comparera chaque dépendance à sa valeur précédente au moyen de la comparaison [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is).
 
@@ -87,7 +87,7 @@ Lors du rendu initial, la <CodeStep step={3}>valeur</CodeStep> renvoyée par `us
 
 Lors des rendus suivants, React comparera les <CodeStep step={2}>dépendances</CodeStep> avec celles passées lors du rendu précédent. Si aucune dépendance n'a changé (sur base d'une comparaison avec l'algorithme [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), `useMemo` continuera à utiliser la même valeur déjà calculée. Dans le cas contraire, React refera le calcul et vous renverra la nouvelle valeur.
 
-En d'autres termes, `useMemo` met en cache un calcul d'un rendu à l'autre jusqu'à ce que ses dépendances changent.
+En d'autres termes, `useMemo` met en cache un calcul de valeur d'un rendu à l'autre jusqu'à ce que ses dépendances changent.
 
 **Déroulons un exemple afin de comprendre en quoi c'est utile.**
 
@@ -100,7 +100,7 @@ function TodoList({ todos, tab, theme }) {
 }
 ```
 
-En temps normal, ça n'est pas un souci car la majorité des calculs sont très rapides. Cependant, si vous filtrez ou transformez un énorme tableau, ou procédez à des calculs coûteux, vous pourriez vouloir éviter de les refaire alors que les données n'ont pas changé. Si tant `todos` que `tab` sont identiques à leurs valeurs du rendu précédent, enrobser le calcul avec `useMemo` comme vu plus haut vous permet de réutiliser les `visibleTodos` déjà calculées pour ces données.
+En temps normal, ça n'est pas un souci car la majorité des calculs sont très rapides. Cependant, si vous filtrez ou transformez un énorme tableau, ou procédez à des calculs coûteux, vous pourriez vouloir éviter de les refaire alors que les données n'ont pas changé. Si tant `todos` que `tab` sont identiques à leurs valeurs du rendu précédent, enrober le calcul avec `useMemo` comme vu plus haut vous permet de réutiliser les `visibleTodos` déjà calculées pour ces données.
 
 Ce type de mise en cache est appelée *[mémoïsation](https://fr.wikipedia.org/wiki/M%C3%A9mo%C3%AFsation)*.
 
@@ -148,13 +148,13 @@ Si votre appli est comme ce site, l'essentiel des interactions ont un impact ass
 
 Optimiser avec `useMemo` n'est utile que dans trois grands cas de figure :
 
-- Le calcul que vous enrobez par `useMemo` est d'un lenteur perceptible, et ses dépendances changent peu.
+- Le calcul que vous enrobez avec `useMemo` est d'une lenteur perceptible, alors même que ses dépendances changent peu.
 - Vous passez la valeur à un composant enrobé avec [`memo`](/reference/react/memo).  Vous voulez qu'il puisse éviter de refaire son rendu si la valeur n'a pas changé.  En mémoïsant le calcul, vous limitez ses nouveaux rendus aux cas où les dépendances de celui-ci ont en effet changé.
 - La fonction que vous passez est utilisée plus loin comme dépendance par un Hook.  Par exemple, un autre calcul enrobé par `useMemo` en dépend, ou vous en dépendez pour un [`useEffect`](/reference/react/useEffect).
 
-Le reste du temps, enrober un calcul avec `useMemo` n'a pas d'intérêt.  Ça ne va pas gêner non plus, aussi certaines équipes décident de ne pas réfléchir au cas par cas, et mémoïsent autant que possible.  L'inconvénient, c'est que ça nuit à la lisibilité du code.  Par ailleurs, toutes les mémoïsations ne sont pas efficaces.  Il suffit d'une seule valeur « toujours différente » pour casser la mémoïsation de tout un composant.
+Le reste du temps, enrober un calcul avec `useMemo` n'a pas d'intérêt.  Ça ne va pas gêner non plus, aussi certaines équipes décident de ne pas réfléchir au cas par cas, et mémoïsent autant que possible.  L'inconvénient, c'est que ça nuit à la lisibilité du code.  Par ailleurs, toutes les mémoïsations ne sont pas efficaces.  Il suffit qu'une seule valeur utilisée soit « toujours différente » pour casser la mémoïsation de tout un composant.
 
-Remarquez que `useCallback` n'empêche pas la *création* de la fonction.  Vous créez la fonction à chaque rendu (et tout va bien !) mais React l'ignorera et vous renverra la fonction mise en cache si aucune dépendance n'a changé.
+Remarquez que `useMemo` n'empêche pas la *création* de la fonction.  Vous créez la fonction à chaque rendu (et tout va bien !) mais React l'ignorera et vous renverra la fonction mise en cache si aucune dépendance n'a changé.
 
 **En pratique, vous pouvez rendre beaucoup de mémoïsations superflues rien qu'en respectant les principes suivants :**
 
@@ -172,9 +172,9 @@ Si une interaction spécifique continue à traîner la patte, [utilisez le Profi
 
 #### Éviter de recalculer avec `useMemo` {/*skipping-recalculation-with-usememo*/}
 
-Dans cet exemple, la fonction `filterTodos` est **artificiellement ralentie** pour que vous puissiez bien voir ce qui se passe lorsqu'une fonction JavaScript que vous appelez est véritablement lente.  Essayez de changer d'onglet ou de basculer le thème.
+Dans cet exemple, la fonction `filterTodos` est **artificiellement ralentie** pour que vous puissiez bien voir ce qui se passe lorsqu'une fonction JavaScript que vous appelez est véritablement lente.  Essayez donc de changer d'onglet ou de basculer le thème actif.
 
-Le changement d'onglet semble lent parce qu'elle force l'exécution de la fonction `filterTodos` ralentie.  On pouvait s'y attendre, puisque l'onglet a changé, le calcul a donc *besoin* d'être refait. (Si vous vous demandez pourquoi il est exécuté deux fois, on vous l'explique [ici](#my-calculation-runs-twice-on-every-re-render).)
+Le changement d'onglet semble lent parce qu'il force l'exécution de la fonction `filterTodos` ralentie.  On pouvait s'y attendre, puisque l'onglet a changé, le calcul a donc *besoin* d'être refait. (Si vous vous demandez pourquoi il est exécuté deux fois, on vous l'explique [ici](#my-calculation-runs-twice-on-every-re-render).)
 
 Essayez maintenant de basculer le thème. **Grâce à `useMemo`, c'est rapide en dépit du ralenti artificiel !** L'appel lent à `filterTodos` est évité parce que ni `todos` ni `tab` (les dépendances déclarées pour le `useMemo`) n'ont changé depuis le dernier rendu.
 
@@ -543,7 +543,7 @@ label {
 
 Bien souvent, du code sans mémoïsation fonctionnera bien. Si vos interactions sont suffisamment rapides, ne vous embêtez pas à mémoïser.
 
-Vous pouvez tenter d'augmenter le nombre de tâches dans `utils.js` et de voir si le comportement change.  Ce calcul spécifique n'était déjà pas bien coûteux à la base, mais si le nombre de tâche augmente de manière significative, l'essentiel du coût viendra des nouveaux rendus plutôt que du filtrage.  Continuez à lire pour découvrir comment optimiser les rendus superflus avec `useMemo`.
+Vous pouvez tenter d'augmenter le nombre de tâches dans `utils.js` et de voir si le comportement change.  Ce calcul spécifique n'était déjà pas bien coûteux à la base, mais si le nombre de tâches devait augmenter significativement, l'essentiel du coût viendrait des nouveaux rendus plutôt que du filtrage.  Continuez à lire pour découvrir comment optimiser les rendus superflus avec `useMemo`.
 
 <Solution />
 
@@ -594,7 +594,7 @@ export default function TodoList({ todos, tab, theme }) {
 }
 ```
 
-**Dans l'exemple ci-dessus, la fonction `filterTodos` crée toujours un tableau _différente_**, de la même façon qu'un littéral objet `{}` crée toujours un nouvel objet. En temps normal ça ne poserait pas problème, mais ici ça signifie que les props de `List` ne seront jamais identiques, de sorte que votre optimisation avec [`memo`](/reference/react/memo) ne servira à rien. C'est là que `useMemo` entre en scène :
+**Dans l'exemple ci-dessus, la fonction `filterTodos` crée toujours un tableau _différent_**, de la même façon qu'un littéral objet `{}` crée toujours un nouvel objet. En temps normal ça ne poserait pas problème, mais ici ça signifie que les props de `List` ne seront jamais identiques, de sorte que votre optimisation avec [`memo`](/reference/react/memo) ne servira à rien. C'est là que `useMemo` entre en scène :
 
 ```js {2-3,5,9-10}
 export default function TodoList({ todos, tab, theme }) {
@@ -618,7 +618,7 @@ export default function TodoList({ todos, tab, theme }) {
 
 #### Mémoïser des nœuds JSX spécifiques {/*memoizing-individual-jsx-nodes*/}
 
-Plutôt que d'enrober  `List` dans [`memo`](/reference/react/memo), vous pourriez enrober le nœud JSX `<List />` lui-même dans un `useMemo` :
+Plutôt que d'enrober  `List` dans [`memo`](/reference/react/memo), vous pourriez vouloir enrober le nœud JSX `<List />` lui-même dans un `useMemo` :
 
 ```js {3,6}
 export default function TodoList({ todos, tab, theme }) {
@@ -636,9 +636,9 @@ Le comportement serait identique. Si `visibleTodos` n'a pas changé, `List` ne r
 
 Un nœud JSX comme `<List items={visibleTodos} />` est un objet du genre `{ type: List, props: { items: visibleTodos } }`. Créer cet objet a un coût quasiment nul, mais React ne sait pas si son contenu est identique ou non à celui de la dernière fois.  C'est pourquoi, par défaut, React refera le rendu du composant `List`.
 
-En revanche, si React voit exactement le me^me JSX que lors du précédent rendu, il ne tentera pas de refaire le rendu de votre composant. C'est parce que les nœuds JSX sont [immuables](https://fr.wikipedia.org/wiki/Objet_immuable). Un objet de nœud JSX n'aurait pas pu changer avec le temps, React peut donc supposer sereinement qu'il peut sauter le rendu.  Ceci dit, pour que ça fonctionne, il doit s'agir *exactement du même objet nœud en mémoire*, pas simplement d'un objet de structure identique.  C'est à ça que sert `useMemo` dans cet exemple.
+En revanche, si React voit exactement le même JSX que lors du précédent rendu, il ne tentera pas de refaire le rendu de votre composant. C'est parce que les nœuds JSX sont [immuables](https://fr.wikipedia.org/wiki/Objet_immuable). Un objet de nœud JSX n'aurait pas pu changer avec le temps, React peut donc supposer sereinement qu'il peut sauter le rendu.  Ceci dit, pour que ça fonctionne, il doit s'agir *exactement du même objet nœud en mémoire*, pas simplement d'un objet de structure identique.  C'est à ça que sert `useMemo` dans cet exemple.
 
-Enrober manuellement des nœuds JSX avec `useMemo` n'est pas très pratique.  Par exemple, on ne peut pas le faire conditionnellement.  C'est généralement pourquoi vous enroberiez la définition du composant avec [`memo`](/reference/react/memo) plutôt que d'enrober des nœuds JSX individuels.
+Enrober manuellement des nœuds JSX avec `useMemo` n'est pas très pratique.  Par exemple, on ne peut pas le faire conditionnellement.  C'est pourquoi vous enroberez généralement la définition du composant avec [`memo`](/reference/react/memo) plutôt que d'enrober des nœuds JSX individuels.
 
 </DeepDive>
 
@@ -1073,9 +1073,9 @@ function Dropdown({ allItems, text }) {
   // ...
 ```
 
-Dépendre ainsi d'un objet coupe l'herbe sous le pied à la mémoïsation.  Lorsqu'un composant refait son rendu, tout le code directement au sein du corps du composant est exécuté à nouveau. **Les lignes de code qui créent l'objet `searchOptions` sont aussi exécutés pour chaque nouveau rendu.**  Dans la mesure où `searchOptions` est une dépendance dans l'appel à `useMemo`, vu qu'il est différent à chaque fois, les dépendances connues de React seront différentes à chaque fois, et on recalculera `searchItems` à chaque fois.
+Dépendre ainsi d'un objet coupe l'herbe sous le pied à la mémoïsation.  Lorsqu'un composant refait son rendu, tout le code directement au sein du corps du composant est exécuté à nouveau. **Les lignes de code qui créent l'objet `searchOptions` sont aussi exécutées pour chaque nouveau rendu.**  Dans la mesure où `searchOptions` est une dépendance dans l'appel à `useMemo`, vu qu'il est différent à chaque fois, les dépendances connues de React seront différentes à chaque fois, et on recalculera `searchItems` à chaque fois.
 
-Pour corriger ça, vous pourriez mémoïser l'objet `searchOptions` *lui-même* avant de le passer comme dépendance :
+Pour corriger ça, vous pourriez choisir de mémoïser l'objet `searchOptions` *lui-même* avant de le passer comme dépendance à l'autre Hook :
 
 ```js {2-4}
 function Dropdown({ allItems, text }) {
@@ -1106,7 +1106,7 @@ function Dropdown({ allItems, text }) {
 
 ### Mémoïser une fonction {/*memoizing-a-function*/}
 
-Supposons qu'un composant `Form` est enrobsé par [`memo`](/reference/react/memo). Vous souhaitez lui passer une fonction comme prop :
+Supposons qu'un composant `Form` soit enrobé par [`memo`](/reference/react/memo). Vous souhaitez lui passer une fonction comme prop :
 
 ```js {2-7}
 export default function ProductPage({ productId, referrer }) {
@@ -1121,9 +1121,9 @@ export default function ProductPage({ productId, referrer }) {
 }
 ```
 
-Tout comme `{}` crée un nouvel objet à chaque fois, les déclarations de fonctions comme `function() {}` et les expressions comme `() => {}` produisent une fonction *différente* à chaque rendu. En soi, créer ces fonctions n'est pas un problème.  Vous ne devriez pas chercher à l'éviter à tout prix !  En revanche, si le composant `Form` est mémoïsé, vous souhaitez sans doute éviter ses rendus superflus lorsque les props n'ont pas changé.  Une prop qui est *toujours* différente empêcherait *de facto* sa mémoïsation.
+Tout comme `{}` crée un nouvel objet à chaque fois, les déclarations et expressions de fonctions comme `function() {}` et `() => {}` produisent une fonction *différente* à chaque rendu. En soi, créer ces fonctions n'est pas un problème.  Vous ne devriez pas chercher à l'éviter à tout prix !  En revanche, si le composant `Form` est mémoïsé, vous souhaitez sans doute éviter ses rendus superflus lorsque les props n'ont pas changé.  Une prop qui est *toujours* différente empêcherait forcément sa mémoïsation.
 
-Pour mémoïser une fonction avec `useMemo`, votre fonction de calcul aurait besoin de renvoyer une autre fonction :
+Pour mémoïser une fonction avec `useMemo`, la fonction de calcul que vous passez ay Hook aurait besoin de renvoyer la fonction à mémoïser :
 
 ```js {2-3,8-9}
 export default function Page({ productId, referrer }) {
@@ -1209,9 +1209,9 @@ Jetez donc aussi un coup d'œil aux guides pour [mettre à jour les objets](/lea
 
 ---
 
-### Mon appel à `useMemo` call est censé renvoyer un objet mais renvoie `undefined` {/*my-usememo-call-is-supposed-to-return-an-object-but-returns-undefined*/}
+### Mon appel à `useMemo` call est censé renvoyer un objet, mais il renvoie `undefined` {/*my-usememo-call-is-supposed-to-return-an-object-but-returns-undefined*/}
 
-Ce code ne fonctionne pas 
+Ce code ne fonctionne pas :
 
 ```js {1-2,5}
   // 🔴 La syntaxe `() => {` ne renvoie pas un objet
@@ -1231,9 +1231,7 @@ En JavaScript, `() => {` démarre le corps de la fonction fléchée, de sorte qu
   }), [text]);
 ```
 
-Ceci dit, ça reste suffisamment déroutant pour qu'une autre personne le casse à nouveau en retirant les parenthèses
-
-Pour éviter ça, écrivez une instruction `return` explicite :
+Ceci dit, ça reste suffisamment déroutant pour que quelqu'un d'autre le casse à nouveau plus tard, en retirant les parenthèses. Pour éviter ça, écrivez une instruction `return` explicite :
 
 ```js {1-3,6-7}
   // ✅ Fonctionne et rend l’intention explicite
@@ -1310,7 +1308,7 @@ function ReportList({ items }) {
 }
 ```
 
-Au lieu de ça, extrayez un composant pour chaque élément individuel, et mémoïsez les données pour chaque élément :
+Au lieu de ça, extrayez un composant pour chaque élément, et mémoïsez les données individuellement pour chaque élément :
 
 ```js {5,12-18}
 function ReportList({ items }) {
