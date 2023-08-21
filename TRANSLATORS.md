@@ -79,6 +79,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/learn/synchronizing-with-effects">Synchroniser grâce aux Effets</a></li>
           <li><a href="https://fr.react.dev/learn/you-might-not-need-an-effect">Vous n’avez pas forcément besoin d’un Effet</a></li>
           <li><a href="https://fr.react.dev/learn/removing-effect-dependencies">Alléger les dépendances des Effets</a></li>
+          <li><a href="https://fr.react.dev/reference/react/useCallback"><code>useCallback</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useEffect"><code>useEffect</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useImperativeHandle"><code>useImperativeHandle</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useInsertionEffect"><code>useInsertionEffect</code></a></li>
