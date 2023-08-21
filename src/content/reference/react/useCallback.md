@@ -240,15 +240,15 @@ Remarquez que `useCallback` n'empêche pas la *création* de la fonction.  Vous 
 Si une interaction spécifique continue à sembler pataude, [utilisez le Profiler des outils de développement React](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) pour découvrir quels composants bénéficieraient le plus d'une mémoïsation, et ajoutez-la au cas par cas.  Ces principes facilitent le débogage et la maintenabilité de vos composants, ils sont donc utiles à suivre dans tous les cas.  À plus long terme, nous faisons de la recherche sur les moyens de [mémoïser automatiquement](https://www.youtube.com/watch?v=lGEMwh32soc) pour résoudre ces questions une bonne fois pour toutes.
 </DeepDive>
 
-<Recipes titleText="The difference between useCallback and declaring a function directly" titleId="examples-rerendering">
+<Recipes titleText="La différence entre useCallback et déclarer une fonction directement" titleId="examples-rerendering">
 
-#### Skipping re-rendering with `useCallback` and `memo` {/*skipping-re-rendering-with-usecallback-and-memo*/}
+#### Éviter les rendus superflus avec `useCallback` et `memo` {/*skipping-re-rendering-with-usecallback-and-memo*/}
 
-In this example, the `ShippingForm` component is **artificially slowed down** so that you can see what happens when a React component you're rendering is genuinely slow. Try incrementing the counter and toggling the theme.
+Dans cet exemple, le composant `ShippingForm` est **artificiellement ralenti** pour que vous puissiez bien voir ce qui se passe lorsque le rendu d'un composant React est véritablement lent.  Essayez d'incrémenter le compteur et de basculer le thème.
 
-Incrementing the counter feels slow because it forces the slowed down `ShippingForm` to re-render. That's expected because the counter has changed, and so you need to reflect the user's new choice on the screen.
+L'incrémentation du compteur semble lente parce qu'elle force le `ShippingForm` ralenti à refaire son rendu.  On pouvait s'y attendre, puisque le compteur a changé, vous devez donc refléter le nouveau choix de l'utiliszateur à l'écran.
 
-Next, try toggling the theme. **Thanks to `useCallback` together with [`memo`](/reference/react/memo), it’s fast despite the artificial slowdown!** `ShippingForm` skipped re-rendering because the `handleSubmit` function has not changed. The `handleSubmit` function has not changed because both `productId` and `referrer` (your `useCallback` dependencies) haven't changed since last render.
+Essayez maintenant de basculer le thème. **Grâce à la combinaison de `useCallback` et [`memo`](/reference/react/memo), c'est rapide en dépit du ralenti artificiel !** `ShippingForm` a évité un nouveau rendu parce que la fonction `handleSubmit` n'a pas changé, dans la mesure où ni `productId` ni `referrer` (les dépendances déclarées pour le `useCallback`) n'ont changé depuis le dernier rendu.
 
 <Sandpack>
 
@@ -266,7 +266,7 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Dark mode
+        Mode sombre
       </label>
       <hr />
       <ProductPage
@@ -299,7 +299,7 @@ export default function ProductPage({ productId, referrer, theme }) {
 }
 
 function post(url, data) {
-  // Imagine this sends a request...
+  // Imaginez que ça envoie une requête...
   console.log('POST /' + url);
   console.log(data);
 }
@@ -311,10 +311,10 @@ import { memo, useState } from 'react';
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
   const [count, setCount] = useState(1);
 
-  console.log('[ARTIFICIALLY SLOW] Rendering <ShippingForm />');
+  console.log('[ARTIFICIELLEMENT LENT] Rendu de <ShippingForm />');
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Do nothing for 500 ms to emulate extremely slow code
+    // Ne rien faire pendant 500 ms pour simuler du code extrêmement lent
   }
 
   function handleSubmit(e) {
@@ -329,26 +329,26 @@ const ShippingForm = memo(function ShippingForm({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <p><b>Note: <code>ShippingForm</code> is artificially slowed down!</b></p>
+      <p><b>Remarque : <code>ShippingForm</code> est artificiellement ralenti !</b></p>
       <label>
-        Number of items:
+        Nombre d’éléments :
         <button type="button" onClick={() => setCount(count - 1)}>–</button>
         {count}
         <button type="button" onClick={() => setCount(count + 1)}>+</button>
       </label>
       <label>
-        Street:
+        Rue :
         <input name="street" />
       </label>
       <label>
-        City:
+        Ville :
         <input name="city" />
       </label>
       <label>
-        Postal code:
+        Code postal :
         <input name="zipCode" />
       </label>
-      <button type="submit">Submit</button>
+      <button type="submit">Envoyer</button>
     </form>
   );
 });
@@ -384,11 +384,11 @@ button[type="button"] {
 
 <Solution />
 
-#### Always re-rendering a component {/*always-re-rendering-a-component*/}
+#### Rendu systématique d'un composant {/*always-re-rendering-a-component*/}
 
-In this example, the `ShippingForm` implementation is also **artificially slowed down** so that you can see what happens when some React component you're rendering is genuinely slow. Try incrementing the counter and toggling the theme.
+Dans cet exemple, l'implémentation de `ShippingForm` est toujours **artificiellement ralentie** pour que vous puissiez bien voir ce qui se passe lorsque le rendu d'un composant React est véritablement lent.  Essayez d'incrémenter le compteur et de basculer le thème.
 
-Unlike in the previous example, toggling the theme is also slow now! This is because **there is no `useCallback` call in this version,** so `handleSubmit` is always a new function, and the slowed down `ShippingForm` component can't skip re-rendering.
+Contrairement à l'exemple précédent, la bascule du thème est désormais lente, elle aussi ! C'est parce **qu'il n'y a pas d'appel à `useCallback` dans cette version**, de sorte qu'`handleSubmit` est toujours une nouvelle fonction, ce qui empêche le composant `ShippingForm` ralenti de sauter un nouveau rendu.
 
 <Sandpack>
 
@@ -406,7 +406,7 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Dark mode
+        Mode sombre
       </label>
       <hr />
       <ProductPage
@@ -438,7 +438,7 @@ export default function ProductPage({ productId, referrer, theme }) {
 }
 
 function post(url, data) {
-  // Imagine this sends a request...
+  // Imaginez que ça envoie une requête...
   console.log('POST /' + url);
   console.log(data);
 }
@@ -450,10 +450,10 @@ import { memo, useState } from 'react';
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
   const [count, setCount] = useState(1);
 
-  console.log('[ARTIFICIALLY SLOW] Rendering <ShippingForm />');
+  console.log('[ARTIFICIELLEMENT LENT] Rendu de <ShippingForm />');
   let startTime = performance.now();
   while (performance.now() - startTime < 500) {
-    // Do nothing for 500 ms to emulate extremely slow code
+    // Ne rien faire pendant 500 ms pour simuler du code extrêmement lent
   }
 
   function handleSubmit(e) {
@@ -468,26 +468,26 @@ const ShippingForm = memo(function ShippingForm({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <p><b>Note: <code>ShippingForm</code> is artificially slowed down!</b></p>
+      <p><b>Remarque : <code>ShippingForm</code> est artificiellement ralenti !</b></p>
       <label>
-        Number of items:
+        Nombre d’éléments :
         <button type="button" onClick={() => setCount(count - 1)}>–</button>
         {count}
         <button type="button" onClick={() => setCount(count + 1)}>+</button>
       </label>
       <label>
-        Street:
+        Rue :
         <input name="street" />
       </label>
       <label>
-        City:
+        Ville :
         <input name="city" />
       </label>
       <label>
-        Postal code:
+        Code postal :
         <input name="zipCode" />
       </label>
-      <button type="submit">Submit</button>
+      <button type="submit">Envoyer</button>
     </form>
   );
 });
@@ -521,8 +521,7 @@ button[type="button"] {
 
 </Sandpack>
 
-
-However, here is the same code **with the artificial slowdown removed.** Does the lack of `useCallback` feel noticeable or not?
+Ceci dit, voici le même code **sans le ralentissement artificiel**. Est-ce que vous pouvez percevoir l'absence de `useCallback` ?
 
 <Sandpack>
 
@@ -540,7 +539,7 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Dark mode
+        Mode sombre
       </label>
       <hr />
       <ProductPage
@@ -572,7 +571,7 @@ export default function ProductPage({ productId, referrer, theme }) {
 }
 
 function post(url, data) {
-  // Imagine this sends a request...
+  // Imaginez que ça envoie une requête...
   console.log('POST /' + url);
   console.log(data);
 }
@@ -584,7 +583,7 @@ import { memo, useState } from 'react';
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
   const [count, setCount] = useState(1);
 
-  console.log('Rendering <ShippingForm />');
+  console.log('Rendu de <ShippingForm />');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -599,24 +598,24 @@ const ShippingForm = memo(function ShippingForm({ onSubmit }) {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Number of items:
+        Nombre d’éléments :
         <button type="button" onClick={() => setCount(count - 1)}>–</button>
         {count}
         <button type="button" onClick={() => setCount(count + 1)}>+</button>
       </label>
       <label>
-        Street:
+        Rue :
         <input name="street" />
       </label>
       <label>
-        City:
+        Ville :
         <input name="city" />
       </label>
       <label>
-        Postal code:
+        Code postal :
         <input name="zipCode" />
       </label>
-      <button type="submit">Submit</button>
+      <button type="submit">Envoyer</button>
     </form>
   );
 });
@@ -650,10 +649,9 @@ button[type="button"] {
 
 </Sandpack>
 
+Bien souvent, du code sans mémoïsation fonctionnera bien. Si vos interactions sont suffisamment rapides, ne vous embêtez pas à mémoïser.
 
-Quite often, code without memoization works fine. If your interactions are fast enough, you don't need memoization.
-
-Keep in mind that you need to run React in production mode, disable [React Developer Tools](/learn/react-developer-tools), and use devices similar to the ones your app's users have in order to get a realistic sense of what's actually slowing down your app.
+Gardez à l'esprit qu'il vous faut exécuter React en mode production, désactiver les [outils de développement React](/learn/react-developer-tools), et utiliser des appareils similaires à ceux de vos utilisateurs finaux pour avoir une perception réaliste de ce qui ralentit effectivement votre appli.
 
 <Solution />
 
