@@ -84,6 +84,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react/useImperativeHandle"><code>useImperativeHandle</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useInsertionEffect"><code>useInsertionEffect</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useLayoutEffect"><code>useLayoutEffect</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/useMemo"><code>useMemo</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useRef"><code>useRef</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useSyncExternalStore"><code>useSyncExternalStore</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useTransition"><code>useTransition</code></a></li>
@@ -156,6 +157,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
         <ul>
           <li><a href="https://fr.react.dev/reference/react/useDeferredValue"><code>useDeferredValue</code></li>
           <li><a href="https://fr.react.dev/reference/react/useState"><code>useState</code></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/components/textarea"><code>&lt;textarea&gt;</code></li>
         </ul>
       </td>
     </tr>
