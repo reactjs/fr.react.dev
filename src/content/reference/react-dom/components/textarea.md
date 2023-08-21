@@ -44,25 +44,25 @@ Si votre `<textarea>` n'est pas contrôlée, passez plutôt la prop `defaultValu
 
 Ces props de `<textarea>` sont compatibles avec les zones de texte contrôlées et non contrôlées :
 
-* [`autoComplete`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#autocomplete) : Soit `'on'` ou `'off'`. Spécifie le comportement de l'autocomplétion.
+* [`autoComplete`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#autocomplete) : soit `'on'` ou `'off'`. Spécifie le comportement de l'autocomplétion.
 * [`autoFocus`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#autofocus) : un booléen. Si `true`, React va activer l'élément après le montage _(l'apparition initiale dans le DOM, NdT)_.
 * `children` : `<textarea>` n'accepte pas d'enfants. Pour définir sa valeur initiale, utilisez `defaultValue`.
-* [`cols`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#cols) : Un nombre. Spécifie la largeur par défaut en prenant pour unité la largeur moyenne des caractères. Par défaut, `20`.
-* [`disabled`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#disabled) : Un booléen. Si `true`, la zone de texte ne sera pas interactive et sera grisée.
-* [`form`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#form) : Une chaîne de caractères. Spécifie l'`id` du `<form>` auquel appartient cette zone de texte. S'il est absent, la zone de saisie sera associée au formulaire parent le plus proche.
-* [`maxLength`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#maxlength) : Un nombre. Spécifie la longueur maximale du texte.
-* [`minLength`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#minlength) : Un nombre. Spécifie la longueur minimale du texte.
-* [`name`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#name) : Une chaîne de caractères. Spécifie le nom de cette zone de texte au sein de [l'envoi du formulaire](#reading-the-textarea-value-when-submitting-a-form).
-* `onChange` : Une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Requis pour [les zones de texte contrôlées](#controlling-a-text-area-with-a-state-variable). Se déclenche immédiatement lorsque la valeur de la zone de texte est modifiée par l'utilisateur (par exemple, il se déclenche à chaque frappe). Se comporte comme [l'événement `input`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/input_event) du navigateur.
-* `onChangeCapture` : Une version de `onChange` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
+* [`cols`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#cols) : un nombre. Spécifie la largeur par défaut en prenant pour unité la largeur moyenne des caractères. Par défaut, `20`.
+* [`disabled`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#disabled) : un booléen. Si `true`, la zone de texte ne sera pas interactive et sera grisée.
+* [`form`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#form) : une chaîne de caractères. Spécifie l'`id` du `<form>` auquel appartient cette zone de texte. S'il est absent, la zone de saisie sera associée au formulaire parent le plus proche.
+* [`maxLength`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#maxlength) : un nombre. Spécifie la longueur maximale du texte.
+* [`minLength`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#minlength) : un nombre. Spécifie la longueur minimale du texte.
+* [`name`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#name) : une chaîne de caractères. Spécifie le nom de cette zone de texte au sein de [l'envoi du formulaire](#reading-the-textarea-value-when-submitting-a-form).
+* `onChange` : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Requis pour [les zones de texte contrôlées](#controlling-a-text-area-with-a-state-variable). Se déclenche immédiatement lorsque la valeur de la zone de texte est modifiée par l'utilisateur (par exemple, il se déclenche à chaque frappe). Se comporte comme [l'événement `input`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/input_event) du navigateur.
+* `onChangeCapture` : une version de `onChange` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onInput`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/input_event) : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Se déclenche immédiatement lorsque la valeur de la zone de texte est modifiée par l'utilisateur. Pour des raisons historiques, en React, il est préférable d'utiliser `onChange` à la place, qui fonctionne de manière similaire.
-* `onInputCapture` : Une version de `onInput` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
+* `onInputCapture` : une version de `onInput` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event) : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Se déclenche si une zone de texte échoue à la validation lors de la soumission du formulaire. Contrairement à l'événement natif `invalid`, l'événement React `onInvalid` se propage.
-* `onInvalidCapture` : Une version de `onInvalid` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
+* `onInvalidCapture` : une version de `onInvalid` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event) : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Se déclenche après que la sélection à l'intérieur de la zone de texte a changé. React étend l'événement `onSelect` pour se déclencher également pour une sélection vide et sur les modifications de texte (qui peuvent affecter la sélection).
-* `onSelectCapture` : Une version de `onSelect` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
+* `onSelectCapture` : une version de `onSelect` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`placeholder`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#placeholder) : une chaîne de caractères. Affichée dans une couleur discrète lorsque la valeur de la zone de texte est vide.
-* [`readOnly`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#readonly) : Un booléen. Si `true`, la zone de texte n'est pas modifiable par l'utilisateur.
+* [`readOnly`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#readonly) : un booléen. Si `true`, la zone de texte n'est pas modifiable par l'utilisateur.
 * [`required`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#required) : un booléen. Si `true`, la valeur doit être fournie pour que le formulaire puisse être soumis.
 * [`rows`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#rows) : un nombre. Spécifie la hauteur par défaut en prenant pour unité la hauteur moyenne des caractères. Par défaut, `2`.
 * [`wrap`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea#wrap) : peut être `'hard'`, `'soft'`, ou `'off'`. Spécifie comment les retours à la ligne automatiques sont appliqués lors de la soumission d'un formulaire.
