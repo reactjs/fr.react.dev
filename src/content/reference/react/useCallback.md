@@ -116,7 +116,7 @@ const ShippingForm = memo(function ShippingForm({ onSubmit }) {
 
 **Avec cet ajustement, `ShippingForm` évitera de refaire son rendu si toutes ses propriétés sont *identiques* depuis le dernier rendu.**  Et c'est là que la mise en cache de fonction devient importante !  Imaginons que vous définissiez `handleSubmit` sans `useCallback` :
 
-```js {2,3,8,12-13}
+```js {2,3,8,12-14}
 function ProductPage({ productId, referrer, theme }) {
   // Chaque fois que le `theme` change, cette fonction sera différente...
   function handleSubmit(orderDetails) {
@@ -238,6 +238,7 @@ Remarquez que `useCallback` n'empêche pas la *création* de la fonction.  Vous 
 5. Essayez [d'alléger les dépendances de vos Effets](/learn/removing-effect-dependencies). Par exemple, plutôt que de mémoïser, il est souvent plus simple de déplacer un objet ou une fonction à l'intérieur de l'Effet voire hors de votre composant.
 
 Si une interaction spécifique continue à traîner la patte, [utilisez le Profiler des outils de développement React](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) pour découvrir quels composants bénéficieraient le plus d'une mémoïsation, et ajoutez-en au cas par cas.  Ces principes facilitent le débogage et la maintenabilité de vos composants, ils sont donc utiles à suivre dans tous les cas.  À plus long terme, nous faisons de la recherche sur les moyens de [mémoïser automatiquement](https://www.youtube.com/watch?v=lGEMwh32soc) pour résoudre ces questions une bonne fois pour toutes.
+
 </DeepDive>
 
 <Recipes titleText="La différence entre useCallback et déclarer une fonction directement" titleId="examples-rerendering">
@@ -750,7 +751,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Ça garanti que la fonction `createOptions` sera la même d'un rendu à l'autre tant que `roomId` ne changera pas. **Ceci dit, il serait encore préférable d'éviter toute dépendance à la fonction locale.**  Déplacez plutôt votre fonction *au sein* de l'Effet :
+Ça garantit que la fonction `createOptions` sera la même d'un rendu à l'autre tant que `roomId` ne changera pas. **Ceci dit, il serait encore préférable d'éviter toute dépendance à la fonction locale.**  Déplacez plutôt votre fonction *au sein* de l'Effet :
 
 ```js {5-10,16}
 function ChatRoom({ roomId }) {
