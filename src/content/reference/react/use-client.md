@@ -6,6 +6,7 @@ canary: true
 <Canary>
 
 `'use client'` n'est utile que si vous [utilisez React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) ou créez une bibliothèque compatible avec eux.
+
 </Canary>
 
 
