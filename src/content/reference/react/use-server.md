@@ -5,14 +5,14 @@ canary: true
 
 <Canary>
 
-`'use server'` is needed only if you're [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) or building a library compatible with them.
+`'use server'` n'est utile que si vous [utilisez React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) ou créez une bibliothèque compatible avec eux.
 
 </Canary>
 
 
 <Intro>
 
-`'use server'` marks server-side functions that can be called from client-side code.
+`'use server'` marque les fonctions côté serveur qui peuvent être appelées par du code React côté client.
 
 </Intro>
 
@@ -20,11 +20,11 @@ canary: true
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `'use server'` {/*use-server*/}
 
-Add `'use server';` at the very top of an async function to mark that the function can be executed by the client.
+Ajoutez `'use server';` tout en haut d'une fonction asynchrone pour indiquer que cette fonction peut être appelée par du code côté client.
 
 ```js
 async function addToCart(data) {
@@ -35,21 +35,21 @@ async function addToCart(data) {
 // <ProductDetailPage addToCart={addToCart} />
 ```
 
-This function can be passed to the client. When called on the client, it will make a network request to the server that includes a serialized copy of any arguments passed. If the server function returns a value, that value will be serialized and returned to the client.
+Cette fonction peut être passée au client.  Lorsqu'elle est appelée par le client, elle fera un appel réseau au serveur en lui passant une copie sérialisée des arguments qu'elle a reçus.  Si la fonction serveur renvoie une valeur, celle-ci sera sérialisée et renvoyée au client.
 
-Alternatively, add `'use server';` at the very top of a file to mark all exports within that file as async server functions that can be used anywhere, including imported in client component files.
+Vous pouvez aussi utiliser `'use server';` tout en haut d'un fichier pour indiquer que tous les exports de ce fichier sont des fonctions serveur asynchrones qui peuvent être utilisées depuis n'importe où, y compris par import dans des fichiers de composants côté client.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
-* Remember that parameters to functions marked with `'use server'` are fully client-controlled. For security, always treat them as untrusted input, making sure to validate and escape the arguments as appropriate.
-* To avoid the confusion that might result from mixing client- and server-side code in the same file, `'use server'` can only be used in server-side files; the resulting functions can be passed to client components through props.
-* Because the underlying network calls are always asynchronous, `'use server'` can be used only on async functions.
-* Directives like `'use server'` must be at the very beginning of their function or file, above any other code including imports (comments above directives are OK). They must be written with single or double quotes, not backticks. (The `'use xyz'` directive format somewhat resembles the `useXyz()` Hook naming convention, but the similarity is coincidental.)
+* Gardez à l'esprit que les paramètres des fonctions marquées par `'use server'` sont entièrement contrôlés par le client.  Pour une meilleure sécurité, traitez-les toujours commes des entrées non vérifiées, et assurez-vous de les valider et d'en échapper le contenu lorsque nécessaire.
+* Pour éviter toute confusion qui pourrait résulter du mélange entre codes côté client et côté serveur au sein d'un même fichier, `'use server'` ne peut être utilisée que dans des fichiers côté serveur. Les fonctions résultantes peuvent être passées à des composants côté client *via* leurs props.
+* Puisque les appels réseaux sous-jacents sont intrinsèquement asynchrones, `'use server'` ne peut être utilisée que pour des fonctions asynchrones.
+* Les directives telles que `'use server'` doivent être placées au tout début du fichier, au-dessus de tout import et de quelque autre code que ce soit (à l'exception des commentaires, qui peuvent apparaître avant).  Elles doivent utiliser des apostrophes (`'`) ou guillemets (`"`), pas des apostrophes inverses (<code>\`</code>). (Le format de directive `'use xyz'` n'est pas sans rappeler la convention de nommage `useXyz()` des Hooks, mais c'est là une simple coïncidence.)
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
 <Wip>
 
-This section is incomplete. See also the [Next.js documentation for Server Components](https://beta.nextjs.org/docs/rendering/server-and-client-components).
+Cette section est incomplète. Consultez la [documentation Next.js des Server Components](https://beta.nextjs.org/docs/rendering/server-and-client-components).
 
 </Wip>
