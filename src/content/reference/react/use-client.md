@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-`'use client'` is needed only if you're [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) or building a library compatible with them.
+`'use client'` n'est utile que si vous [utilisez React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) ou créez une bibliothèque compatible avec eux.
 </Canary>
 
 
 <Intro>
 
-`'use client'` marks source files whose components execute on the client.
+`'use client'` marque les fichiers sources dont les composants s'exécutent côté client.
 
 </Intro>
 
@@ -19,11 +19,11 @@ canary: true
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `'use client'` {/*use-client*/}
 
-Add `'use client';` at the very top of a file to mark that the file (including any child components it uses) executes on the client, regardless of where it's imported.
+Ajoutez `'use client';` tout en haut d'un fichier pour indiquer que de fichier (ainsi que tout composant enfant qu'il utilise) s'exécute coté client, indépendamment des endroits qui l'importent.
 
 ```js
 'use client';
@@ -34,24 +34,24 @@ export default function RichTextEditor(props) {
   // ...
 ```
 
-When a file marked `'use client'` is imported from a server component, [compatible bundlers](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) will treat the import as the "cut-off point" between server-only code and client code. Components at or below this point in the module graph can use client-only React features like [`useState`](/reference/react/useState).
+Lorsqu'un fichier marqué avec `'use client'` est importé par un composant côté serveur, [les *bundlers* compatibles](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) traiteront l'import comme un « point de césure » entre le code exclusivement côté serveur et le code côté client.  Les composants qui figurent dans ce module ou dans ses dépendances peuvent utiliser des fonctionnalités React réservées au côté client, telles que [`useState`](/reference/react/useState).
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
-* It's not necessary to add `'use client'` to every file that uses client-only React features, only the files that are imported from server component files. `'use client'` denotes the _boundary_ between server-only and client code; any components further down the tree will automatically be executed on the client. In order to be rendered from server components, components exported from `'use client'` files must have serializable props.
-* When a `'use client'` file is imported from a server file, the imported values can be rendered as a React component or passed via props to a client component. Any other use will throw an exception.
-* When a `'use client'` file is imported from another client file, the directive has no effect. This allows you to write client-only components that are simultaneously usable from server and client components.
-* All the code in `'use client'` file as well as any modules it imports (directly or indirectly) will become a part of the client module graph and must be sent to and executed by the client in order to be rendered by the browser. To reduce client bundle size and take full advantage of the server, move state (and the `'use client'` directives) lower in the tree when possible, and pass rendered server components [as children](/learn/passing-props-to-a-component#passing-jsx-as-children) to client components.
-* Because props are serialized across the server–client boundary, note that the placement of these directives can affect the amount of data sent to the client; avoid data structures that are larger than necessary.
-* Components like a `<MarkdownRenderer>` that use neither server-only nor client-only features should generally not be marked with `'use client'`. That way, they can render exclusively on the server when used from a server component, but they'll be added to the client bundle when used from a client component.
-* Libraries published to npm should include `'use client'` on exported React components that can be rendered with serializable props that use client-only React features, to allow those components to be imported and rendered by server components. Otherwise, users will need to wrap library components in their own `'use client'` files which can be cumbersome and prevents the library from moving logic to the server later. When publishing prebundled files to npm, ensure that `'use client'` source files end up in a bundle marked with `'use client'`, separate from any bundle containing exports that can be used directly on the server.
-* Client components will still run as part of server-side rendering (SSR) or build-time static site generation (SSG), which act as clients to transform React components' initial render output to HTML that can be rendered before JavaScript bundles are downloaded. But they can't use server-only features like reading directly from a database.
-* Directives like `'use client'` must be at the very beginning of a file, above any imports or other code (comments above directives are OK). They must be written with single or double quotes, not backticks. (The `'use xyz'` directive format somewhat resembles the `useXyz()` Hook naming convention, but the similarity is coincidental.)
+* Vous n'avez pas besoin d'ajouter `'use client'` à chaque fichier pour utiliser des fonctionnalités React réservées au côté client, il suffit de le faire pour les fichiers importés par des fichiers de composants côté serveur. `'use client'` dénote une *frontière* entre le code exclusivement côté serveur et le code client ; tout composant plus bas dans l'arbre sera automatiquement exécuté côté client.  Pour qu'ils puissent être exploités par des composants côté serveur, les composants exportés depuis des fichiers `'use client'` doivent avoir des props sérialisables.
+* Lorsqu'un fichier `'use client'` est importé depuis un fichier côté serveur, les valeurs importées peuvent être traitées comme un composant React ou passées comme props à un composant côté client.  Toute autre utilisation lèvera une exception.
+* Lorsqu'un fichier `'use client'` est importé depuis un autre fichier côté client, la directive n'a aucun effet. Ça permet d'écrire des composants côté client qui sont utilisables à la fois par des composants côté serveur et d'autres côté client.
+* Tout le code d'un fichier `'use client'`, ainsi que tous les modules qu'il importe (directement ou indirectement), feront partie du graphe de modules côté client et devront être envoyés pour exécution côté client afin d'être affichés par le navigateur.  Pour réduire la taille du *bundle* et tirer le meilleur parti du serveur, déplacez l'état (et les directives `'use client'`) plus bas dans l'arbre lorsque c'est possible, et passez les composants côté serveur [comme enfants](/learn/passing-props-to-a-component#passing-jsx-as-children) aux composants côté client.
+* Dans la mesure où les props sont sérialisées pour franchir la frontière serveur–client, vous comprendrez que l'emplacement de ces directives peut affecter la quantité de données envoyée au client. Évitez les structures de données inutilement lourdes.
+* Les composants tels que `<MarkdownRenderer>`, qui ne recourent à aucune fonctionnalité strictement côté serveur ou côté client, ne devraient généralement pas être marqués avec `'use client'`. Ainsi, ils peuvent faire leur rendu entièrement côté serveur lorsqu'ils sont utilisés par un composant côté serveur, mais aussi être ajoutés au *bundle* client lorsqu'ils sont utilisés par un composant côté client.
+* Les bibliothèques publiées sur npm devraient inclure `'use client'` dans les composants React qu'elles exportent dont les props sont sérialisables et qui utilisent des fonctionnalités React réservées au côté client, afin que ces composants puissent être importés et exploités par les composants côté serveur. Dans le cas contraire, leurs utilisateurs auraient besoin d'enrober les composants de la bibliothèque dans leurs propres fichiers `'use client'`, ce qui est fastidieux et empêche la bibliothèque de déplacer plus tard une partie de sa logique vers le côté serveur.  Pour la publication de fichier pré-*bundlés* sur npm, assurez-vous que les fichiers sources `'use client'` atterrissent dans un *bundle* marqué avec `'use client'`, distinct de tout *bundle* contenant des exports susceptibles d'e^tre utilisés directement par le serveur.
+* Les composants côté client continueront à être exécutés dans le cadre du rendu côté serveur (SSR, *Server-Side Rendering, NdT*) ou de la génération de sites statiques lors du *build* (SSG, *Static Site Generation, NdT*), qui se comportent comme des clients pour transformer le rendu initial de composants React en HTML apte à être affiché avant que les *bundles* JavaDcript ne soient téléchargés. Ils ne peuvent toutefois pas utiliser de fonctionnalités réservées au côté serveur, telles que la lecture en direct d'une base de données.
+* Les directives telles que `'use client'` doivent être placées au tout début du fichier, au-dessus de tout import et de quelque autre code que ce soit (à l'exception des commentaires, qui peuvent apparaître avant).  Elles doivent utiliser des apostrophes (`'`) ou guillemets (`"`), pas des apostrophes inverses (<code>\`</code>). (Le format de directive `'use xyz'` n'est pas sans rappeler la convention de nommage `useXyz()` des Hooks, mais c'est là une simple coïncidence.)
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
 <Wip>
 
-This section is incomplete. See also the [Next.js documentation for Server Components](https://beta.nextjs.org/docs/rendering/server-and-client-components).
+Cette section est incomplète. Consultez la [documentation Next.js des Server Components](https://beta.nextjs.org/docs/rendering/server-and-client-components).
 
 </Wip>
