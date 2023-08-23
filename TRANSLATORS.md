@@ -61,6 +61,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/learn/tutorial-tic-tac-toe">Tutoriel : Tic-Tac-Toe</a></li>
           <li><a href="https://fr.react.dev/learn/thinking-in-react">Penser en React</a></li>
           <li><a href="https://fr.react.dev/learn/installation">Installation</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/learn/typescript">Utiliser TypeScript</a></li>
           <li><a href="https://fr.react.dev/learn/describing-the-ui">Décrire l’UI</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/learn/your-first-component">Votre premier composant</a></li>
           <li><a href="https://fr.react.dev/learn/writing-markup-with-jsx">Écrire du balisage avec JSX</a></li>
