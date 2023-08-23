@@ -79,7 +79,7 @@ export default App = AppTSX;
 
  <Note>
 
-Les bacs à sable de cette documentation comprennent le code TypeScript, mais n'exécutent pas la vérification de types. Ça signifie que vous pouvez modifier les bacs à sable TypeScript pour apprendre, mais vous ne verrez aucune erreur ni aucun avertissement liés au typage.  Pour bénéficier de la vérification de types, vous opuvez utiliser le [*TypeScript Playground*](https://www.typescriptlang.org/play) ou un bac à sable en ligne aux fonctionnalités plus riches.
+Les bacs à sable de cette documentation comprennent le code TypeScript, mais n'exécutent pas la vérification de types. Ça signifie que vous pouvez modifier les bacs à sable TypeScript pour apprendre, mais vous ne verrez aucune erreur ni aucun avertissement liés au typage.  Pour bénéficier de la vérification de types, vous pouvez utiliser le [*TypeScript Playground*](https://www.typescriptlang.org/play) ou un bac à sable en ligne aux fonctionnalités plus riches.
 
 </Note>
 
@@ -123,7 +123,7 @@ Le type qui décrit les props de votre composant peut être aussi simple ou comp
 
 ## Exemples de typage avec les Hooks {/*example-hooks*/}
 
-Les définitions de types dans `@types/react` incluent le typage des Hooks fournis par React, que vous pouvez donc utiliser sans configuration supplémentaire.  Ces types sont conçus pour s'appuyer sur le code que vous écrviez, vous bénéficierez donc la plupart du temps de [l'inférence de type](https://www.typescriptlang.org/docs/handbook/type-inference.html), de sorte que vous ne devriez pas avoir à leur fournir des types sur-mesure.
+Les définitions de types dans `@types/react` incluent le typage des Hooks fournis par React, que vous pouvez donc utiliser sans configuration supplémentaire.  Ces types sont conçus pour s'appuyer sur le code que vous écrivez, vous bénéficierez donc la plupart du temps de [l'inférence de type](https://www.typescriptlang.org/docs/handbook/type-inference.html), de sorte que vous ne devriez pas avoir à leur fournir des types sur-mesure.
 
 Ceci étant dit, voyons quelques exemples de fourniture explicite de types à des Hooks.
 
@@ -143,7 +143,7 @@ const [enabled, setEnabled] = useState(false);
 const [enabled, setEnabled] = useState<boolean>(false);
 ```
 
-Dans ce cas précis ça n'a guère d'intérêt, mais pour une union par exemple, vous aurez besoin d'un typage explicite. Par exemple, le `status` ci-dessous a un jeu de valeurs restreint :
+Dans ce cas précis ça n'avait guère d'intérêt, mais pour une union par exemple, vous aurez besoin d'un typage explicite. Par exemple, le `status` ci-dessous a un jeu de valeurs restreint :
 
 ```ts
 type Status = "idle" | "loading" | "success" | "error";
@@ -226,7 +226,7 @@ Nous utilisons ici TypeScript à certains endroits stratégiques :
  - `const initialState: State` fournit un type pour l'état initial, qui est aussi le type qu'utilisera `useReducer` par défaut.
  - `stateReducer(state: State, action: CounterAction): State` définit les types des arguments et de la valeur de retour pour la fonction de réduction.
 
-Une alternative plus explicite consisterait à définir le type d'`initialState` en passant un paramètre de type à `useReducer` :
+Pour un style plus explicite, vous pouvez plutôt définir le type d'`initialState` en passant un paramètre de type à `useReducer` :
 
 ```ts
 import { stateReducer, State } from './your-reducer-implementation';
@@ -282,11 +282,11 @@ export default App = AppTSX;
 
 </Sandpack>
 
-Cette technique fonctionne lorsque vous avez une valeur par défaut pertinente — mais il arrive que ça ne soit pas le cas, et que vous utilisez alors `null` comme valeur par défaut.  Le souci, c'est que pour satisfaire le système de typage, vous allez devoir explicitement passer un paramètre de type `ContextShape | null` à `createContext`.
+Cette technique fonctionne lorsque vous avez une valeur par défaut pertinente — mais il arrive que ça ne soit pas le cas, et que vous utilisiez alors `null` comme valeur par défaut.  Le souci, c'est que pour satisfaire le système de typage, vous allez devoir explicitement passer à `createContext` un paramètre de type `ContextShape | null`.
 
 Ça va complexifier votre code en vous forçant à éliminer le `| null` du type pour les consommateurs du contexte.  Nous vous conseillons d'incorporer un *type guard* au sein de votre Hook personnalisé pour vérifier que la valeur existe bien, et lever une exception dans le cas contraire :
 
-```js {5, 16-20}
+```tsx {5, 16-20}
 import { createContext, useContext, useState, useMemo } from 'react';
 
 // C'est un exemple simplifié, imaginez quelque chose de plus riche
@@ -363,7 +363,7 @@ export default function Form() {
   return (
     <>
       <input value={value} onChange={handleChange} />
-      <p>Value: {value}</p>
+      <p>Valeur : {value}</p>
     </>
   );
 }
@@ -371,7 +371,7 @@ export default function Form() {
 
 ## Types utiles {/*useful-types*/}
 
-Le module `@types/react` fournit un vaste ensemble de types ; une fois que vous serez à l'aise avec l'utilisation combinée de React et TypeScript, ça vaut le coup d'y jeter un coup d'œil.  Vous les trouverez dans [le dossier de React sur DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts). Nous allons passer ici en revue les plus courants.
+Le module `@types/react` fournit un vaste ensemble de types ; une fois que vous serez à l'aise avec l'utilisation combinée de React et TypeScript, ça vaut le coup d'explorer son contenu. Vous le trouverez dans [le dossier de React sur DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts). Nous allons passer ici en revue les types les plus courants.
 
 ### Événements DOM {/*typing-dom-events*/}
 
@@ -422,7 +422,7 @@ interface ModalRendererProps {
 }
 ```
 
-C'est là une définition très large des enants. La seconde utilise plutôt le type `React.ReactElement`, qui ne permet que les éléments JSX et non les nœuds primitifs tels que les chaînes de caractères ou les nombres :
+C'est là une définition très large pour les enfants. La seconde utilise plutôt le type `React.ReactElement`, qui ne permet que les éléments JSX et pas les nœuds primitifs tels que les chaînes de caractères ou les nombres :
 
 ```ts
 interface ModalRendererProps {
