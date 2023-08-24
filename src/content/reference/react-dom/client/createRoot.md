@@ -29,24 +29,24 @@ const domNode = document.getElementById('root');
 const root = createRoot(domNode);
 ```
 
-React créera une racine de rendu associée au `domNode`, puis prendra la main sur la gestion du DOM à l'intérieur de celui-ci.  Une fois la racine créée, vous devrez appeler [`root.render`](#root-render) pour afficher un composant React à l'intérieur :
+React créera une racine de rendu associée au `domNode`, puis prendra la main sur la gestion de son DOM.  Une fois la racine créée, vous devrez appeler [`root.render`](#root-render) pour afficher un composant React à l'intérieur :
 
 ```js
 root.render(<App />);
 ```
 
-Une appli entièrement construite en React n'aura généralement qu'un appel à `createRoot` pour son composant racine.  Une page qui « saupoudre » du React dans certaines de ses parties pourrait avoir autant de racines distinctes que nécessaire.
+Une appli entièrement construite en React n'aura généralement qu'un appel à `createRoot` pour son composant racine.  Une page qui « saupoudre » du React dans certaines de ses parties peut avoir autant de racines distinctes que nécessaire.
 
 [Voir d'autres exemples ci-dessous](#usage).
 
 #### Paramètres {/*parameters*/}
 
-* `domNode` : un[élément DOM](https://developer.mozilla.org/fr/docs/Web/API/Element). React créera une racine de rendu pour cet élément DOM et vous permettra d'appeler des méthodes sur cette racine, telles que `render` pour afficher le contenu produit par React.
+* `domNode` : un [élément DOM](https://developer.mozilla.org/fr/docs/Web/API/Element). React créera une racine de rendu pour cet élément DOM et vous permettra d'appeler des méthodes sur cette racine, telles que `render` pour afficher le contenu produit par React.
 
 * `options` **optionnelles** : un objet avec des options pour la racine React.
 
   * `onRecoverableError` **optionnel** : fonction de rappel appelée lorsque React retombe automatiquement sur ses pieds suite à une erreur.
-  * `identifierPrefix` **optionnel** : un préfixe textuel utilisé pour les ID générés par [`useId`](/reference/react/useId). Pratique pour éviter les conflit entre les ID au sein de racines multiples sur une même page.
+  * `identifierPrefix` **optionnel** : un préfixe textuel utilisé pour les ID générés par [`useId`](/reference/react/useId). Pratique pour éviter les conflits entre les ID au sein de racines multiples sur une même page.
 
 #### Valeur renvoyée {/*returns*/}
 
@@ -54,7 +54,7 @@ Une appli entièrement construite en React n'aura généralement qu'un appel à 
 
 #### Limitations {/*caveats*/}
 
-* Si votre appli utilise un rendu côté serveur, vous ne pourrez pas utiliser `createRoot()` : utilisez plutôt [`hydrateRoot()`](/reference/react-dom/client/hydrateRoot).
+* Si votre appli bénéficie d'un premier rendu côté serveur, vous ne pourrez pas utiliser `createRoot()` : utilisez plutôt [`hydrateRoot()`](/reference/react-dom/client/hydrateRoot).
 * Vous n'aurez probablement qu'un seul appel à `createRoot` dans votre appli. Si vous utilisez un framework, il le fait peut-être pour vous.
 * Lorsque vous souhaitez afficher un bout de JSX dans une autre partie du DOM, une partie qui n'est pas un enfant de votre composant (par exemple pour une boîte de dialogue modale ou une infobulle), utilisez [`createPortal`](/reference/react-dom/createPortal) plutôt que `createRoot`.
 
@@ -102,7 +102,7 @@ Une appli entièrement construite avec React n'appellera généralement pas `roo
 
 C'est principalement utile si le nœud DOM de votre racine React (ou un de ses ancêtres) est susceptible d'être retiré du DOM par du code tiers.  Imaginez par exemple une gestion d'onglet basée sur jQuery qui retire les onglets inactifs du DOM. Si un onglet est retiré, tout ce qu'il contient (y compris d'éventuelles racines React) sera également retiré du DOM. Dans un tel cas, vous devez dire à React de « cesser » de gérer le contenu de la racine retirée en appelant `root.unmount`.  Si vous ne le faisiez pas, les composants au sein de la racine retirée ne pourraient pas être nettoyés et libérer leurs ressources globales, telles que des abonnements.
 
-Appeler `root.unmount` démontera tous les composants dans cette racine et « détachera » React du nœud DOM racine, y compris pour la gestion événementielle et les états de l'arbre.
+Un appel à `root.unmount` démontera tous les composants dans cette racine et « détachera » React du nœud DOM racine, y compris pour la gestion événementielle et les états de l'arbre.
 
 #### Paramètres {/*root-unmount-parameters*/}
 
@@ -116,7 +116,7 @@ Appeler `root.unmount` démontera tous les composants dans cette racine et « d
 
 * Appeler `root.unmount` démontera tous les composants dans cette racine et « détachera » React du nœud DOM racine.
 
-* Une fois que vous avez appelé `root.unmount`, vous ne pouvez plus rappeler `root.render` sur cette même racine.  Tenter d'appeler `root.render` sur une racine démontée lèvera une erreur "Cannot update an unmounted root" *(« Impossible de mettre à jour une racine démontée », NdT)*. En revanche, vous pouvez créer une nouvelle racine pour le même nœud DOM une fois que la racine précédente pour ce nœud est démontée.
+* Une fois que vous avez appelé `root.unmount`, vous ne pouvez plus rappeler `root.render` sur cette même racine.  Tenter d'appeler `root.render` sur une racine démontée lèvera une erreur *"Cannot update an unmounted root"* *(« Impossible de mettre à jour une racine démontée », NdT)*. En revanche, vous pouvez créer une nouvelle racine pour le même nœud DOM une fois la racine précédente pour ce nœud démontée.
 
 ---
 
@@ -186,11 +186,11 @@ function Counter() {
 
 **Si votre appli est entièrement construite avec React, vous ne devriez pas avoir besoin de créer davantage de racines, ni de rappeler [`root.render`](#root-render).**
 
-À partir de là, React gèrera le DOM de votre appli entière. Pour ajouter d'autres composants, [imbriquez-les dans le composant `App`](/learn/importing-and-exporting-components). Si vous avez besoin de mettre à jour l'interface utilisateur (UI), chaque composant peut le faire en [utilisant l'état](/reference/react/useState). Si vous souhaitez afficher du contenu complémentaire (comme une boîte de dialogue ou une infobulle) hors du nœud DOM, [affichez-le dans un portail](/reference/react-dom/createPortal).
+À partir de là, React gèrera le DOM de votre appli entière. Pour ajouter d'autres composants, [imbriquez-les dans le composant `App`](/learn/importing-and-exporting-components). Si vous avez besoin de mettre à jour l'interface utilisateur (UI), chaque composant peut le faire en [utilisant l'état](/reference/react/useState). Si vous souhaitez afficher du contenu complémentaire (comme une boîte de dialogue modale ou une infobulle) hors du nœud DOM, [affichez-le dans un portail](/reference/react-dom/createPortal).
 
 <Note>
 
-Lorsque votre HTML est vide, l'utilisateur voit une page vierge jusqu'à ce qe le code JavaScript soit chargé et exécuté :
+Lorsque votre HTML est vide, l'utilisateur voit une page vierge jusqu'à ce que le code JavaScript soit chargé et exécuté :
 
 ```html
 <div id="root"></div>
@@ -202,7 +202,7 @@ Lorsque votre HTML est vide, l'utilisateur voit une page vierge jusqu'à ce qe l
 
 <Pitfall>
 
-**Les applis utilisant le rendu côté serveur ou la génération de site statique doivent appeler [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) plutôt que `createRoot`.** Rect *hydratera* (réutilisera) alors les nœuds DOM de votre HTML plutôt que de les détruire pour les recréer ensuite.
+**Les applis utilisant le rendu côté serveur ou la génération de site statique doivent appeler [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) plutôt que `createRoot`.** React *hydratera* (réutilisera) alors les nœuds DOM de votre HTML plutôt que de les détruire pour les recréer ensuite.
 
 </Pitfall>
 
@@ -212,7 +212,7 @@ Lorsque votre HTML est vide, l'utilisateur voit une page vierge jusqu'à ce qe l
 
 Si votre page [n'est pas entièrement construite avec React](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page), vous pouvez appeler `createRoot` plusieurs fois, pour créer une racine de rendu pour chaque bloc d'UI géré par React.  Vous pouvez alors afficher les contenus de votre choix dans chaque racine en appelant[`root.render`](#root-render).
 
-Ci-dessous, deux composants React distincts sont affichés dans deux nœuds DOM définis dans le fichier `index.html` :
+Dans l'exemple ci-dessous, deux composants React distincts sont affichés dans deux nœuds DOM définis dans le fichier `index.html` :
 
 <Sandpack>
 
@@ -360,7 +360,7 @@ Tant que vous ne le faites pas, rien ne sera affiché.
 
 ---
 
-### J'ai une erreur : "Target container is not a DOM element" {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
+### J'ai une erreur : *"Target container is not a DOM element"* {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
 
 *(« Le conteneur cible n'est pas un élément DOM », NdT)*
 
@@ -384,7 +384,7 @@ Il est aussi fréquent d'obtenir cette erreur en écrivant par mégarde `createR
 
 ---
 
-### J'ai une erreur : "Functions are not valid as a React child." {/*im-getting-an-error-functions-are-not-valid-as-a-react-child*/}
+### J'ai une erreur : *"Functions are not valid as a React child."* {/*im-getting-an-error-functions-are-not-valid-as-a-react-child*/}
 
 *(« Les fonctions ne constituent pas des enfants React valides », NdT)*
 
