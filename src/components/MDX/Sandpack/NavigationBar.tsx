@@ -105,7 +105,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
      */
     if (
       sandpack.editorState === 'dirty' &&
-      confirm('Reset all your edits too?')
+      confirm('Effacer vos modifications aussi ?')
     ) {
       sandpack.resetAllFiles();
     }
