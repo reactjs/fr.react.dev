@@ -353,7 +353,7 @@ Assurez-vous que `getServerSnapshot` renvoie exactement la même valeur lors du 
 
 ## Dépannage {/*troubleshooting*/}
 
-### Je reçois une erreur : “The result of `getSnapshot` should be cached” {/*im-getting-an-error-the-result-of-getsnapshot-should-be-cached*/}
+### J'ai une erreur : “The result of `getSnapshot` should be cached” {/*im-getting-an-error-the-result-of-getsnapshot-should-be-cached*/}
 
 *(« Le résultat de `getSnapshot` devrait être mis en cache », NdT.)*
 

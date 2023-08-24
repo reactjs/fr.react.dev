@@ -712,7 +712,7 @@ Faire un rendu en deux temps et bloquer le navigateur nuit aux performances.  Es
 
 ## Dépannage {/*troubleshooting*/}
 
-### Je reçois une erreur : “`useLayoutEffect` does nothing on the server” {/*im-getting-an-error-uselayouteffect-does-nothing-on-the-server*/}
+### J'ai une erreur : “`useLayoutEffect` does nothing on the server” {/*im-getting-an-error-uselayouteffect-does-nothing-on-the-server*/}
 
 *(« `useLayoutEffect` ne fait rien côté serveur », NdT)*
 
