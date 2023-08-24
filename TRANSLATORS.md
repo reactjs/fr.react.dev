@@ -103,6 +103,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react-dom/umountComponentAtNode"><code>umountComponentAtNode</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/client">API React DOM côté client</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/reference/react-dom/client/createRoot"><code>createRoot</code></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/client/hydrateRoot"><code>hydrateRoot</code></li>
           <li><a href="https://fr.react.dev/reference/react-dom/server">API React DOM côté serveur</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/reference/react-dom/server/renderToStaticMarkup"><code>renderToStaticMarkup</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/server/renderToStaticNodeStream"><code>renderToStaticNodeStream</code></a></li>
