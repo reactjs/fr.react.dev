@@ -35,9 +35,9 @@ React s'attachera au HTML existant à l'intérieur de `domNode`, et prendra la m
 
 #### Paramètres {/*parameters*/}
 
-* `domNode` : un [élément DOM](https://developer.mozilla.org/fr/docs/Web/API/Element) produit comme élément racine côté serveur.
+* `domNode` : un [élément DOM](https://developer.mozilla.org/fr/docs/Web/API/Element) généré comme élément racine côté serveur.
 
-* `reactNode` : un *nœud React* utilisé pour afficher le HTML existant. Ce sera généralement un bout de JSX du genre `<App />`, produit via une méthode `ReactDOM Server` telle que `renderToPipeableStream(<App />)`.
+* `reactNode` : un *nœud React* utilisé pour afficher le HTML existant. Ce sera généralement un bout de JSX du genre `<App />`, généré *via* une méthode [`react-dom/server`](/reference/react-dom/server) telle que `renderToPipeableStream(<App />)`.
 
 * `options` **optionnelles** : un objet avec des options pour la racine React.
 
@@ -128,7 +128,7 @@ hydrateRoot(document.getElementById('root'), <App />);
 
 Ça hydratera le HTML issu du serveur au sein du <CodeStep step={1}>nœud DOM du navigateur</CodeStep> en utilisant le <CodeStep step={2}>composant React</CodeStep> de votre appli. En général, vous ne le ferez qu'une fois au démarrage. Si vous utilisez un framework, il le fait peut-être pour vous sous le capot.
 
-Pour hydrater votre appli, React « attachera » la logique de vos composant au HTML initial généré par le serveur. L'hydratation transforme cet instantané initial du HTML, issu du serveur, en une appli pleinement interactive s'exécutant dans le navigateur.
+Pour hydrater votre appli, React « attachera » la logique de vos composants au HTML initial généré par le serveur. L'hydratation transforme cet instantané initial du HTML, issu du serveur, en une appli pleinement interactive s'exécutant dans le navigateur.
 
 <Sandpack>
 
@@ -179,7 +179,7 @@ Vous ne devriez pas avoir besoin de rappeler `hydrateRoot` ou de l'appeler aille
 
 <Pitfall>
 
-L'arbre React que vous passez à `hydrateRoot` doit produire **le même résultat** que celui produit côté serveur.
+L'arbre React que vous passez à `hydrateRoot` doit produire **le même résultat** que celui issu du HTML généré côté serveur.
 
 C'est important pour l'expérience utilisateur. L'utilisateur passera un peu de temps à regarder le HTML produit par le serveur avant que votre code JavaScript n'ait fini de charger. Le rendu côté serveur donne l'impression que l'appli se charge plus vite, en produisant un instantané du HTML.  Afficher soudainement un contenu différent casse cette perception.  C'est pourquoi le rendu côté serveur doit correspondre au résultat du rendu initial côté client.
 
@@ -187,10 +187,10 @@ Les causes les plus fréquentes d'erreurs d'hydratation sont notamment :
 
 * Des espacements supplémentaires (tels que des sauts de lignes) autour du HTML généré par React au sein du nœud racine.
 * L'utilisation de tests du style `typeof window !== 'undefined'` dans votre code de rendu.
-* Le recours à des API strictement navigateur telles que [`window.matchMedia`](https://developer.mozilla.org/fr/docs/Web/API/Window/matchMedia) dans votre code de rendu.
+* Le recours à des API strictement navigateur, comme par exemple [`window.matchMedia`](https://developer.mozilla.org/fr/docs/Web/API/Window/matchMedia), dans votre code de rendu.
 * L'affichage de données différentes coté serveur et côté client.
 
-React peut se remettre de certaines erreurs d'hydratation, mais **vous devez les corriger comme si c'étaient des bugs**.  Dans le meilleur des cas, elles ralentiront simplement l'hydratation ; plus gravement, elles pourraient entraîner l'association de gestionnaires d'événements aux mauvais éléments.
+React peut se remettre de certaines erreurs d'hydratation, mais **vous devez les corriger comme si c'étaient des bugs**.  Dans le meilleur des cas, elles ralentiront simplement l'hydratation ; mais elles pourraient aussi entraîner l'association de gestionnaires d'événements aux mauvais éléments.
 
 </Pitfall>
 
@@ -218,7 +218,7 @@ function App() {
 }
 ```
 
-Pour hydrater le document entier, passez la variable globale [`document`](https://developer.mozilla.org/fr/docs/Web/API/Window/document) comme premier argument de `hydrateRoot` :
+Pour hydrater le document entier, passez la variable globale [`document`](https://developer.mozilla.org/fr/docs/Web/API/Window/document) comme premier argument dans votre appel à `hydrateRoot` :
 
 ```js {4}
 import { hydrateRoot } from 'react-dom/client';
