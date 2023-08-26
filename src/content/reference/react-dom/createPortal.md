@@ -23,7 +23,7 @@ title: createPortal
 
 ### `createPortal(children, domNode, key?)` {/*createportal*/}
 
-Pour créer un portal, appelez `createPortal`, en passant du JSX et le nœud DOM où il doit être rendu :
+Pour créer un portal, appelez `createPortal`, en passant du JSX et le nœud DOM où il doit être affiché :
 
 ```js
 import { createPortal } from 'react-dom';
@@ -41,11 +41,11 @@ import { createPortal } from 'react-dom';
 
 [Voir plus d'exemples ci-dessous](#usage).
 
-Un portal ne change que l'emplacement physique du nœud DOM. Dans tous les autres cas, le JSX que vous rendez dans un portal agit comme un nœud enfant du composant React qui le rend. Par exemple, l'enfant peut accéder au contexte fourni par l'arbre parent, et les événements remontent des enfants vers les parents selon l'arbre de React.
+Un portal ne change que l'emplacement physique du nœud DOM. Dans tous les autres cas, le JSX que vous affichez dans un portal agit comme un nœud enfant du composant React qui l'affiche. Par exemple, l'enfant peut accéder au contexte fourni par l'arbre parent, et les événements remontent des enfants vers les parents selon l'arbre de React.
 
 #### Paramètres {/*parameters*/}
 
-* `children`: quelque chose qui peut être rendu avec React, comme un morceau de JSX (par exemple `<div />` ou `<UnComposant />`), un [Fragment](/reference/react/Fragment) (`<>...</>`), une chaîne ou un nombre, ou un tableau de ces éléments.
+* `children`: quelque chose qui peut être affiché avec React, comme un morceau de JSX (par exemple `<div />` ou `<UnComposant />`), un [Fragment](/reference/react/Fragment) (`<>...</>`), une chaîne ou un nombre, ou un tableau de ces éléments.
 
 * `domNode`: un nœud DOM, comme ceux retournés par `document.getElementById()`. Le nœud doit déjà exister. Passer un nœud DOM différent lors d'une mise à jour entraînera la recréation du contenu du portal.
 
@@ -53,7 +53,7 @@ Un portal ne change que l'emplacement physique du nœud DOM. Dans tous les autre
 
 #### Valeur renvoyée {/*returns*/}
 
-`createPortal` renvoie un nœud React qui peut être inclus dans le JSX ou renvoyé par un composant React. Si React le voit dans la sortie du rendu, il placera les `children` fournis à l'intérieur du `domNode` fourni.
+`createPortal` renvoie un nœud React qui peut être inclus dans le JSX ou renvoyé par un composant React. Si React le voit dans la sortie de l'affichage, il placera les `children` fournis à l'intérieur du `domNode` fourni.
 
 #### Limitations {/*caveats*/}
 
