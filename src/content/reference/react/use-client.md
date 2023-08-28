@@ -53,6 +53,11 @@ Lorsqu'un fichier marqué avec `'use client'` est importé par un composant côt
 
 <Wip>
 
-Cette section est incomplète. Consultez la [documentation Next.js des Server Components](https://beta.nextjs.org/docs/rendering/server-and-client-components).
+Cette section est en cours de rédaction.
+
+Cette API peut être utilisée par n'importe quel framework prenant en charge les React Server Components. Ces frameworks vous fourniront davantage de documentation.
+
+* [Documentation Next.js](https://nextjs.org/docs/getting-started/react-essentials)
+* D'autres arrivent prochainement
 
 </Wip>
