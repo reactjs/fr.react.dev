@@ -41,7 +41,7 @@ Côté client, appelez [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) 
 
 #### Paramètres {/*parameters*/}
 
-* `reactNode` : un nœud React dont vous souhaitez produire le HTML. Par exemple, un élément JSX tel que `<App />`.
+* `reactNode` : un nœud React dont vous souhaitez produire le HTML. Ça pourrait par exemple être un élément JSX tel que `<App />`.
 
 #### Valeur renvoyée {/*returns*/}
 
@@ -51,7 +51,7 @@ Un [flux Node.js en lecture](https://nodejs.org/api/stream.html#readable-streams
 
 * Cette méthode attendra que toutes les [frontières Suspense](/reference/react/Suspense) aboutissent avant de commencer à produire le moindre rendu.
 
-* À partir de React 18, cette méthode utilise un tampon pour l'ensemble de sa production, de sorte qu'elle n'a aucun des avantages du *streaming*.  C'est pourquoi nous vous conseillons de plutôt migrer vers [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream).
+* À partir de React 18, cette méthode utilise un tampon pour l'ensemble de sa production, de sorte qu'elle n'a aucun des avantages du *streaming*.  C'est pourquoi nous vous conseillons plutôt de migrer vers [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream).
 
 * Le flux renvoyé est encodé en UTF-8. Si vous avez besoin d'un flux avec un autre encodage, regardez les projets tels qu'[iconv-lite](https://www.npmjs.com/package/iconv-lite), qui fournissent des flux de transformation pour le transcodage de textes.
 
