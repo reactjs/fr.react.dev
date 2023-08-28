@@ -49,15 +49,12 @@ Vous pouvez aussi utiliser `'use server';` tout en haut d'un fichier pour indiqu
 ## Utilisation {/*usage*/}
 
 <Wip>
-This section is a work in progress. 
 
-<<<<<<< HEAD
-Cette section est incomplète. Consultez la [documentation Next.js des Server Components](https://beta.nextjs.org/docs/rendering/server-and-client-components).
+Cette section est en cours de rédaction.
+
+Cette API peut être utilisée par n'importe quel framework prenant en charge les React Server Components. Ces frameworks vous fourniront davantage de documentation.
+
+* [Documentation Next.js](https://nextjs.org/docs/getting-started/react-essentials)
+* D'autres arrivent prochainement
 
 </Wip>
-=======
-This API can be used in any framework that supports React Server Components. You may find additional documentation from them.
-* [Next.js documentation](https://nextjs.org/docs/getting-started/react-essentials)
-* More coming soon
-</Wip>
->>>>>>> 3189529259e89240a88c05680849ce4a8c454ed2
