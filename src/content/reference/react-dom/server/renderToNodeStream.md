@@ -49,7 +49,7 @@ Un [flux Node.js en lecture](https://nodejs.org/api/stream.html#readable-streams
 
 #### Limitations {/*caveats*/}
 
-* Cette méthode attendra que toutes les [frontières Suspense](/reference/react/Suspense) aboutissent avant de commencer à produire le moindre rendu.
+* Cette méthode attendra que toutes les [périmètres Suspense](/reference/react/Suspense) aboutissent avant de commencer à produire le moindre rendu.
 
 * À partir de React 18, cette méthode utilise un tampon pour l'ensemble de sa production, de sorte qu'elle n'a aucun des avantages du *streaming*.  C'est pourquoi nous vous conseillons plutôt de migrer vers [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream).
 

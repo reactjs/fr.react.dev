@@ -108,6 +108,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react-dom/server/renderToNodeStream"><code>renderToNodeStream</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/server/renderToStaticMarkup"><code>renderToStaticMarkup</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/server/renderToStaticNodeStream"><code>renderToStaticNodeStream</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/server/renderToString"><code>renderToString</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/legacy">API React historique</a></li>
           <li><a href="https://fr.react.dev/reference/react/createElement"><code>createElement</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/createFactory"><code>createFactory</code></a></li>
