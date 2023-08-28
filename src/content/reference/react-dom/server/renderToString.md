@@ -42,7 +42,7 @@ Côté client, appelez [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) 
 
 * `reactNode` : un nœud React dont vous souhaitez produire le HTML. Ça pourrait par exemple être un élément JSX tel que `<App />`.
 
-#### Returns {/*returns*/}
+#### Valeur renvoyée {/*returns*/}
 
 Une chaîne de caractères contenant le HTML.
 
@@ -109,7 +109,7 @@ const html = renderToString(<MyIcon />);
 console.log(html); // Par exemple "<svg>...</svg>"
 ```
 
-L'import de `react-dom/server` **côté client** augmente pour rien la taille de votre *bundle*, alors évitez ça.  Si vous avez besoin d'obtenir côté client le HTML d'un composant, utilisez [`createRoot`](/reference/react-dom/client/createRoot) puis lisez le HTML depuis le DOM :
+L'import de `react-dom/server` **côté client** augmente pour rien la taille de votre *bundle*, nous vous le déconseillons donc.  Si vous avez besoin d'obtenir côté client le HTML d'un composant, utilisez [`createRoot`](/reference/react-dom/client/createRoot) puis lisez le HTML directement depuis le DOM :
 
 ```js
 import { createRoot } from 'react-dom/client';
@@ -129,10 +129,10 @@ L'appel à [`flushSync`](/reference/react-dom/flushSync) est nécessaire pour qu
 
 ## Dépannage {/*troubleshooting*/}
 
-### Quand un composant suspend, le HTML reflète toujours la version de secours {/*when-a-component-suspends-the-html-always-contains-a-fallback*/}
+### Quand un composant suspend, le HTML reflète la version de secours {/*when-a-component-suspends-the-html-always-contains-a-fallback*/}
 
 `renderToString` ne prend pas pleinement en charge Suspense.
 
 Si un composant suspend (il est par exemple défini *via* [`lazy`](/reference/react/lazy) ou charge des données), `renderToString` n'attendra pas l'aboutissement du traitement. `renderToString` cherchera plutôt le périmètre [`<Suspense>`](/reference/react/Suspense) parent le plus proche et affichera le HTML de sa prop `fallback`. Le contenu n'apparaîtra pas jusqu'à ce que le code client soit chargé.
 
-Pour résoudre ça, utilisez une de nos [solution de *streaming* conseillées](#migrating-from-rendertostring-to-a-streaming-method-on-the-server).  Elles peuvent *streamer* le contenu par morceaux au fil de l'aboutissement des traitements côté serveur, afin que l'utilisateur puisse bénéficier d'un chargement progressif de la page avant mê^me que le code client ne soit chargé.
+Pour résoudre ça, utilisez une de nos [solutions recommandées de *streaming*](#migrating-from-rendertostring-to-a-streaming-method-on-the-server).  Elles peuvent *streamer* le contenu par morceaux au fil de l'aboutissement des traitements côté serveur, afin que l'utilisateur puisse bénéficier d'un chargement progressif de la page avant même que le code client ne soit chargé.
