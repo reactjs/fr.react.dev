@@ -23,7 +23,7 @@ title: createPortal
 
 ### `createPortal(children, domNode, key?)` {/*createportal*/}
 
-Pour créer un portail, appelez `createPortal`, en passant du JSX et le nœud DOM où il doit être affiché :
+Pour créer un portail, appelez `createPortal`, en passant du JSX et le nœud DOM où il doit être affiché :
 
 ```js
 import { createPortal } from 'react-dom';
@@ -67,7 +67,7 @@ Un portail ne change que l'emplacement physique du nœud DOM. Pour tous les autr
 
 Les *portails* permettent à vos composants d'afficher certains de leurs enfants dans un endroit différent du DOM. Ça permet à une partie de votre composant de « s'échapper » de tous les conteneurs dans lesquels elle peut se trouver. Par exemple, un composant peut afficher une boîte de dialogue modale ou une infobulle qui apparaît au-dessus et en-dehors du reste de la page.
 
-Pour créer un portail, affichez le résultat de `createPortal` avec <CodeStep step={1}>du JSX</CodeStep> et le <CodeStep step={2}>nœud DOM où il doit aller</CodeStep> :
+Pour créer un portail, affichez le résultat de `createPortal` avec <CodeStep step={1}>du JSX</CodeStep> et le <CodeStep step={2}>nœud DOM où il doit aller</CodeStep> :
 
 ```js [[1, 8, "<p>Cet enfant est placé dans le corps du document.</p>"], [2, 9, "document.body"]]
 import { createPortal } from 'react-dom';
@@ -85,9 +85,9 @@ function MyComponent() {
 }
 ```
 
-React placera les nœuds DOM pour <CodeStep step={1}>le JSX que vous avez passé</CodeStep> à l'intérieur du <CodeStep step={2}>nœud DOM que vous avez fourni</CodeStep>.
+React placera les nœuds DOM résultant du <CodeStep step={1}>JSX que vous avez passé</CodeStep> à l'intérieur du <CodeStep step={2}>nœud DOM que vous avez fourni</CodeStep>.
 
-Sans portail, le second `<p>` serait placé à l'intérieur de la `<div>` parente, mais le portail l'a "téléporté" dans le [`document.body`](https://developer.mozilla.org/fr/docs/Web/API/Document/body) :
+Sans portail, le second `<p>` serait placé à l'intérieur de la `<div>` parente, mais le portail l'a "téléporté" dans le [`document.body`](https://developer.mozilla.org/fr/docs/Web/API/Document/body) :
 
 <Sandpack>
 
@@ -259,7 +259,7 @@ Les portails peuvent vous être utiles si votre racine React n'est qu'une partie
     <h1>Bienvenue dans mon appli hybride</h1>
     <div class="parent">
       <div class="sidebar">
-        Ceci est un balisage serveur n'appartenant pas à React.  
+        Ceci est un balisage serveur n'appartenant pas à React.
         <div id="sidebar-content"></div>
       </div>
       <div id="root"></div>
@@ -304,7 +304,7 @@ function MainContent() {
 }
 
 function SidebarContent() {
-  return <p>Cette partie est aussi affichée par React !</p>;
+  return <p>Cette partie est aussi affichée par React !</p>;
 }
 ```
 
@@ -341,15 +341,15 @@ p {
 
 ---
 
-### Afficher des composants React dans des nœuds DOM n'appartenant pas à React {/*rendering-react-components-into-non-react-dom-nodes*/}
+### Afficher des composants React dans des nœuds DOM qui ne sont pas gérés par React {/*rendering-react-components-into-non-react-dom-nodes*/}
 
-Vous pouvez aussi utiliser un portail pour gérer le contenu d'un nœud DOM géré en-dehors de React. Par exemple, supposons que vous intégriez un widget de carte réalisé sans React et que vous souhaitiez afficher du contenu React dans une *popup*. Pour ce faire, déclarez une variable d'état `popupContainer` pour stocker le nœud DOM dans lequel vous allez effectuer l'affichage :
+Vous pouvez aussi utiliser un portail pour gérer le contenu d'un nœud DOM géré en-dehors de React. Par exemple, supposons que vous intégriez un widget de carte réalisé sans React et que vous souhaitiez afficher du contenu React dans une *popup*. Pour ce faire, déclarez une variable d'état `popupContainer` pour stocker le nœud DOM dans lequel vous allez effectuer l'affichage :
 
 ```js
 const [popupContainer, setPopupContainer] = useState(null);
 ```
 
-Lorsque vous créez le widget tiers, stockez le nœud DOM renvoyé par le widget afin de pouvoir y afficher du contenu :
+Lorsque vous créez le widget tiers, stockez le nœud DOM renvoyé par le widget afin de pouvoir y afficher du contenu par la suite :
 
 ```js {5-6}
 useEffect(() => {
@@ -362,7 +362,7 @@ useEffect(() => {
 }, []);
 ```
 
-Ça vous permet d'utiliser `createPortal` pour afficher du contenu React dans `popupContainer` une fois qu'il est disponible :
+Ça vous permet d'utiliser `createPortal` pour afficher du contenu React dans `popupContainer` une fois qu'il est disponible :
 
 ```js {3-6}
 return (
