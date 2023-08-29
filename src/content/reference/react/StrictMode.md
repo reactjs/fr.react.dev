@@ -38,7 +38,7 @@ root.render(
 );
 ```
 
-[Voir d'autres exemples plus bas.](#usage)
+[Voir d'autres exemples plus bas](#usage).
 
 Les comportements suivants sont activés en développement par le mode strict :
 
@@ -124,7 +124,7 @@ Dans cet exemple, les vérifications du mode strict ne s'exécuteront pas sur le
 
 ### Corriger les bugs trouvés par le double rendu en développement {/*fixing-bugs-found-by-double-rendering-in-development*/}
 
-[React part du principe que chaque composant que vous écrivez est une fonction pure.](/learn/keeping-components-pure) Ça signifie que vos composants React doivent toujours renvoyer le même JSX pour les mêmes entrées (props, état et contexte).
+[React part du principe que chaque composant que vous écrivez est une fonction pure](/learn/keeping-components-pure). Ça signifie que vos composants React doivent toujours renvoyer le même JSX pour les mêmes entrées (props, état et contexte).
 
 Les composants qui ne respectent pas cette règle peuvent se comporter de façon imprévisible et occasionner des bugs. Pour vous aider à trouver du code accidentellement impur, le mode strict appelle certaines de vos fonctions (seulement celles qui doivent être pures) **deux fois en développement**. Ça inclut :
 
@@ -485,7 +485,7 @@ li {
 
 Sans le mode strict, il était facile de passer à côté du bug jusqu'à ce que vous ajoutiez d'autres rendus. Le mode strict fait apparaître le même bug immédiatement. Ce mode vous aide à trouver les bugs avant que vous ne les poussiez à votre équipe et à vos utilisateurs.
 
-[Apprenez-en davantage sur la façon de garder les composants purs.](/learn/keeping-components-pure)
+[Apprenez-en davantage sur la façon de garder les composants purs](/learn/keeping-components-pure).
 
 <Note>
 
@@ -814,7 +814,7 @@ Remarquez que le nombre de connexions actives dans la console cesse de grandir m
 
 Sans le mode strict, il était facile de passer à côté du fait que l'Effet nécessitait une fonction de nettoyage. En exécutant *initialisation → nettoyage → initialisation* plutôt que *initialisation* de votre Effet en développement, le mode strict a rendu l'absence de fonction de nettoyage plus visible.
 
-[Apprenez-en davantage sur l'implémentation de fonction de nettoyage des Effets.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+[Apprenez-en davantage sur l'implémentation de fonction de nettoyage des Effets](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development).
 
 ---
 
