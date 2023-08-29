@@ -4,7 +4,7 @@ title: memo
 
 <Intro>
 
-`memo` vous permet d’éviter de recalculer le rendu d'un composant quand ses props n’ont pas changé.
+`memo` vous permet d’éviter de recalculer le rendu d'un composant du moment que ses props n’ont pas changé.
 
 ```
 const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
@@ -20,7 +20,7 @@ const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
 
 ### `memo(Component, arePropsEqual?)` {/*memo*/}
 
-Enrobez un composant dans `memo` pour obtenir une version *mémoïsée* de ce composant. Cette version mémoïsée de ce composant ne recalculera généralement pas son rendu lorsque le composant parent refera le sien, du moment que les props du composant mémoïsé restent inchangées. Mais React peut tout de même être amené à le recalculer : la mémoïsation est une optimisation de performance, pas une garantie.
+Enrobez un composant dans `memo` pour obtenir une version *mémoïsée* de ce composant. Cette version mémoïsée de ce composant ne recalculera généralement pas son rendu lorsque le composant parent refera le sien, du moment que les props du composant mémoïsé restent inchangées. Mais React peut tout de même être amené à le recalculer : la mémoïsation est une optimisation de performance, pas une garantie.
 
 ```js
 import { memo } from 'react';
@@ -36,7 +36,7 @@ const SomeComponent = memo(function SomeComponent(props) {
 
 * `Component` : le composant que vous souhaitez mémoïser. La fonction `memo` ne modifie pas ce composant, elle renvoie plutôt un nouveau composant mémoïsé. Tout composant React valide est accepté, y compris les fonctions et composants [`forwardRef`](/reference/react/forwardRef).
 
-* `arePropsEqual` **optionnelle** : une fonction qui accepte deux arguments : les anciennes props du composant et ses nouvelles props. Elle doit retourner `true` si les anciennes et les nouvelles props sont équivalentes, c’est-à-dire si le composant affichera la même chose et se comportera de la même manière avec les nouvelles props qu’avec les anciennes. Dans le cas contraire, elle doit retourner `false`. En général, vous n’aurez pas à spécifier cette fonction. Par défaut, React comparera chaque prop avec [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is).
+* `arePropsEqual` **optionnelle** : une fonction qui accepte deux arguments : les anciennes props du composant et ses nouvelles props. Elle doit retourner `true` si les anciennes et les nouvelles props sont équivalentes, c’est-à-dire si le composant affichera la même chose et se comportera de la même manière avec les nouvelles props qu’avec les anciennes. Dans le cas contraire, elle doit retourner `false`. En général, vous n’aurez pas à spécifier cette fonction. Par défaut, React comparera chaque prop avec [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is).
 
 #### Valeur renvoyée {/*returns*/}
 
@@ -50,7 +50,7 @@ const SomeComponent = memo(function SomeComponent(props) {
 
 React fait normalement le rendu d'un composant à chaque fois que son composant parent fait le sien. Avec `memo`, vous pouvez créer un composant dont React ne recalculera pas nécessairement le rendu lorsque son composant parent fera le sien, tant que ses nouvelles props sont équivalentes aux anciennes. Un tel composant est dit *mémoïsé*.
 
-Pour mémoïser un composant, enrobez-le dans la fonction `memo` et utilisez la valeur qu’il renvoie plutôt que votre composant d’origine :
+Pour mémoïser un composant, enrobez-le dans la fonction `memo` et utilisez la valeur qu’il renvoie plutôt que votre composant d’origine :
 
 ```js
 const Greeting = memo(function Greeting({ name }) {
@@ -116,15 +116,15 @@ Si votre appli est comme ce site, l'essentiel des interactions ont un impact ass
 
 L’optimisation avec `memo` n’est utile que si votre composant refait souvent son rendu avec les mêmes props, alors que sa logique de rendu est coûteuse. Si le rendu de votre composant n'a pas de lenteur perceptible, `memo` est inutile. Gardez à l’esprit que `memo` est parfaitement inutile si les props fournies à votre composant sont *toujours différentes*, par exemple si vous lui passez un objet ou une fonction définis pendant le rendu. C’est pourquoi vous aurez souvent besoin de [`useMemo`](/reference/react/useMemo#skipping-re-rendering-of-components) et [`useCallback`](/reference/react/useCallback#skipping-re-rendering-of-components) conjointement à `memo`.
 
-Le reste du temps, enrober une fonction avec `memo` n’a pas d’intérêt.  Ça ne va pas gêner non plus, aussi certaines équipes décident de ne pas réfléchir au cas par cas, et mémoïsent autant que possible.  L’inconvénient, c’est que ça nuit à la lisibilité du code.  Par ailleurs, toutes les mémoïsations ne sont pas efficaces.  Il suffit d’une seule valeur « toujours différente » pour casser la mémoïsation de tout un composant.
+Le reste du temps, enrober une fonction avec `memo` n’a pas d’intérêt.  Ça ne va pas gêner non plus, aussi certaines équipes décident de ne pas réfléchir au cas par cas, et mémoïsent autant que possible.  L’inconvénient, c’est que ça nuit à la lisibilité du code.  Par ailleurs, toutes les mémoïsations ne sont pas efficaces.  Il suffit d’une seule valeur « toujours différente » pour complètement casser la mémoïsation de tout un composant.
 
 **En pratique, vous pouvez rendre beaucoup de mémoïsations superflues rien qu'en respectant les principes suivants :**
 
 1. Lorsqu’un composant en enrobe d’autres visuellement, permettez-lui [d’accepter du JSX comme enfant](/learn/passing-props-to-a-component#passing-jsx-as-children). Ainsi, si le composant d’enrobage met à jour son propre état, React saura que ses enfants n’ont pas besoin de refaire leur rendu.
 2. Préférez l’état local et ne faites pas [remonter l’état](/learn/sharing-state-between-components) plus haut que nécessaire. Ne conservez pas les éléments d’état transients (tels que les champs de formulaire ou l'état de survol d'un élément) à la racine de votre arbre ou dans une bibliothèque de gestion d’état global.
-3.Assurez-vous d’avoir une [logique de rendu pure](/learn/keeping-components-pure). Si refaire le rendu d’un composant entraîne des problèmes ou produit un artefact visuel perceptible, c’est un bug dans votre composant ! Corrigez le bug plutôt que de tenter de le cacher avec une mémoïsation.
+3.Assurez-vous d’avoir une [logique de rendu pure](/learn/keeping-components-pure). Si refaire le rendu d’un composant entraîne des problèmes ou produit un artefact visuel perceptible, c’est un bug dans votre composant ! Corrigez le bug plutôt que de tenter de le cacher avec une mémoïsation.
 4. Évitez [les Effets superflus qui mettent à jour l’état](/learn/you-might-not-need-an-effect). La plupart des problèmes de performance des applis React viennent de chaînes de mise à jour issues d’Effets, qui entraînent de multiples rendus consécutifs de vos composants.
-5. Essayez [d’alléger les dépendances de vos Effets](/learn/removing-effect-dependencies). Par exemple, plutôt que de mémoïser, il est souvent plus simple de déplacer un objet ou une fonction à l’intérieur de l’Effet voire hors de votre composant.
+5. Essayez [d’alléger les dépendances de vos Effets](/learn/removing-effect-dependencies). Par exemple, plutôt que de mémoïser, il est souvent plus simple de déplacer un objet ou une fonction à l’intérieur de l’Effet, voire carrément hors de votre composant.
 
 Si une interaction spécifique continue à traîner la patte, [utilisez le Profiler des outils de développement React](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) pour découvrir quels composants bénéficieraient le plus d'une mémoïsation, et ajoutez-en au cas par cas.  Ces principes facilitent le débogage et la maintenabilité de vos composants, ils sont donc utiles à suivre dans tous les cas.  À plus long terme, nous faisons de la recherche sur les moyens de [mémoïser automatiquement](https://www.youtube.com/watch?v=lGEMwh32soc) pour résoudre ces questions une bonne fois pour toutes.
 
@@ -222,7 +222,7 @@ export default function MyApp() {
   const [theme, setTheme] = useState('dark');
 
   function handleClick() {
-    setTheme(theme === 'dark' ? 'light' : 'dark'); 
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   }
 
   return (
@@ -272,11 +272,11 @@ Pour que votre composant ne refasse son rendu lorsqu’une _partie_ de certains 
 Lorsque vous utilisez `memo`, votre composant refera son rendu chaque fois qu’une prop n’est pas *superficiellement égale*  à sa valeur précédente. Ça signifie que React compare chaque prop de votre composant avec sa valeur précédente en utilisant [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Notez que `Object.is(3, 3)` est `true`, mais `Object.is({}, {})` est `false`.
 
 
-Pour tirer le meilleur parti de `memo`, réduisez le nombre de fois que les props changent. Par exemple, si la prop est un objet, empêchez le composant parent de recréer cet objet à chaque fois en utilisant la fonction [`useMemo`](/reference/react/useMemo) :
+Pour tirer le meilleur parti de `memo`, réduisez le nombre de fois que les props changent. Par exemple, si la prop est un objet, empêchez le composant parent de recréer cet objet à chaque rendu, en ayant par exemple recours à la fonction [`useMemo`](/reference/react/useMemo) :
 
 ```js {5-8}
 function Page() {
-  const [name, setName] = useState('Taylor');
+  const [name, setName] = useState('Clara');
   const [age, setAge] = useState(42);
 
   const person = useMemo(
@@ -296,7 +296,7 @@ La meilleure façon de réduire les changements de props consiste à s’assurer
 
 ```js {4,7}
 function Page() {
-  const [name, setName] = useState('Taylor');
+  const [name, setName] = useState('Clara');
   const [age, setAge] = useState(42);
   return <Profile name={name} age={age} />;
 }
@@ -306,7 +306,7 @@ const Profile = memo(function Profile({ name, age }) {
 });
 ```
 
-Même les valeurs individuelles peuvent parfois être projetées vers des valeurs qui changent moins fréquemment. Par exemple, ici, un composant accepte un booléen indiquant la présence d’une valeur plutôt que la valeur elle-même :
+Même les valeurs individuelles peuvent parfois être projetées vers des valeurs qui changent moins fréquemment. Par exemple, ici, un composant accepte un booléen indiquant la présence d’une valeur plutôt que la valeur elle-même :
 
 ```js {3}
 function GroupsLanding({ person }) {
