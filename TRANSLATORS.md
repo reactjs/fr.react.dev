@@ -126,6 +126,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="http://fr.react.dev/learn/start-a-new-react-project">Créer un nouveau projet avec React</a></li>
           <li><a href="https://fr.react.dev/reference/react">Hooks fournis par React</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/reference/react/lazy"><code>lazy</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/memo"><code>memo</code></a></li>
         </ul>
       </td>
     </tr>
