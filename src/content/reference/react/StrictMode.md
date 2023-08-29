@@ -499,7 +499,9 @@ Si vous avez installé [les outils de développement React](/learn/react-develop
 
 Le mode strict est également utile pour trouver des bugs dans les [Effets](/learn/synchronizing-with-effects).
 
-Chaque Effet a du code d'initialisation et peut avoir du code de nettoyage. Normalement, React appelle le code d'initialisation quand le composant *est monté* (quand il est ajouté à l'écran), et appelle le code de nettoyage quand celui-ci est *démonté* (il est enlevé de l'écran). React appelle ensuite le nettoyage et l'initialisation à nouveau si l'une des dépendances de l'Effet a changé depuis le dernier rendu.
+Chaque Effet a du code d'initialisation et peut avoir du code de nettoyage. Normalement, React appelle le code d'initialisation quand le composant *est monté* (quand il est ajouté à l'écran), et appelle le code de nettoyage quand le composant est *démonté* (il est enlevé de l'écran). React appelle ensuite le nettoyage et l'initialisation à nouveau si l'une des dépendances de l'Effet a changé depuis le dernier rendu.
+
+Quand le mode strict est activé, React exécutera **un cycle d'initialisation + nettoyage supplémentaire en développement pour chaque Effet**.  Ça peut surprendre, mais ça aide à détecter des bugs subtils qu'il est difficile de repérer manuellement.
 
 **Voici un exemple qui illustre comment la réexécution de l'Effet en mode strict vous aide à trouver des bugs plus rapidement.**
 
