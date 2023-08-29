@@ -41,13 +41,13 @@ import { createPortal } from 'react-dom';
 
 [Voir plus d'exemples ci-dessous](#usage).
 
-Un portail ne change que l'emplacement physique du nœud DOM. Pour tous les autres aspects, le JSX que vous placez dans un portal agit comme un nœud enfant du composant React qui l'affiche. Par exemple, l'enfant peut accéder au contexte fourni par l'arbre parent, et les événements remontent des enfants vers les parents selon l'arbre React.
+Un portail ne change que l'emplacement physique du nœud DOM. Pour tous les autres aspects, le JSX que vous placez dans un portail agit comme un nœud enfant du composant React qui l'affiche. Par exemple, l'enfant peut accéder au contexte fourni par l'arbre parent, et les événements remontent des enfants vers les parents selon l'arbre React.
 
 #### Paramètres {/*parameters*/}
 
 * `children` : quelque chose qui peut être affiché avec React, comme un morceau de JSX (par exemple `<div />` ou `<SomeComponent />`), un [Fragment](/reference/react/Fragment) (`<>...</>`), une chaîne de caractères ou un nombre, ou un tableau de tout ça.
 
-* `domNode`: un nœud DOM, comme ceux retournés par `document.getElementById()`. Le nœud doit déjà exister. Passer un nœud DOM différent lors d'une mise à jour entraînera la recréation du contenu du portal.
+* `domNode`: un nœud DOM, comme ceux retournés par `document.getElementById()`. Le nœud doit déjà exister. Passer un nœud DOM différent lors d'une mise à jour entraînera la recréation du contenu du portail.
 
 * `key` **optionnelle** : une chaîne de caractères ou un nombre, unique, à utiliser comme [clé](/learn/rendering-lists/#keeping-list-items-in-order-with-key) du portail.
 
@@ -67,7 +67,7 @@ Un portail ne change que l'emplacement physique du nœud DOM. Pour tous les autr
 
 Les *portails* permettent à vos composants d'afficher certains de leurs enfants dans un endroit différent du DOM. Ça permet à une partie de votre composant de « s'échapper » de tous les conteneurs dans lesquels elle peut se trouver. Par exemple, un composant peut afficher une boîte de dialogue modale ou une infobulle qui apparaît au-dessus et en-dehors du reste de la page.
 
-Pour créer un portal, affichez le résultat de `createPortal` avec <CodeStep step={1}>du JSX</CodeStep> et le <CodeStep step={2}>nœud DOM où il doit aller</CodeStep> :
+Pour créer un portail, affichez le résultat de `createPortal` avec <CodeStep step={1}>du JSX</CodeStep> et le <CodeStep step={2}>nœud DOM où il doit aller</CodeStep> :
 
 ```js [[1, 8, "<p>Cet enfant est placé dans le corps du document.</p>"], [2, 9, "document.body"]]
 import { createPortal } from 'react-dom';
@@ -87,7 +87,7 @@ function MyComponent() {
 
 React placera les nœuds DOM pour <CodeStep step={1}>le JSX que vous avez passé</CodeStep> à l'intérieur du <CodeStep step={2}>nœud DOM que vous avez fourni</CodeStep>.
 
-Sans portal, le second `<p>` serait placé à l'intérieur de la `<div>` parente, mais le portal l'a "téléporté" dans le [`document.body`](https://developer.mozilla.org/fr/docs/Web/API/Document/body) :
+Sans portail, le second `<p>` serait placé à l'intérieur de la `<div>` parente, mais le portail l'a "téléporté" dans le [`document.body`](https://developer.mozilla.org/fr/docs/Web/API/Document/body) :
 
 <Sandpack>
 
@@ -124,13 +124,13 @@ Observez comment le second paragraphe apparaît visuellement en-dehors de la `<d
 </body>
 ```
 
-Un portail ne change que l'emplacement physique du nœud DOM. Pour tous les autres aspects, le JSX que vous placez dans un portal agit comme un nœud enfant du composant React qui l'affiche. Par exemple, l'enfant peut accéder au contexte fourni par l'arbre parent, et les événements remontent des enfants vers les parents selon l'arbre React.
+Un portail ne change que l'emplacement physique du nœud DOM. Pour tous les autres aspects, le JSX que vous placez dans un portail agit comme un nœud enfant du composant React qui l'affiche. Par exemple, l'enfant peut accéder au contexte fourni par l'arbre parent, et les événements remontent des enfants vers les parents selon l'arbre React.
 
 ---
 
 ### Afficher une boîte de dialogue modale avec un portail {/*rendering-a-modal-dialog-with-a-portal*/}
 
-Vous pouvez utiliser un portal pour créer une boîte de dialogue modale qui flotte au-dessus du reste de la page, même si le composant qui appelle la boîte de dialogue est à l'intérieur d'un conteneur avec `overflow: hidden` ou d'autres styles qui interfèrent avec la boîte de dialogue.
+Vous pouvez utiliser un portail pour créer une boîte de dialogue modale qui flotte au-dessus du reste de la page, même si le composant qui appelle la boîte de dialogue est à l'intérieur d'un conteneur avec `overflow: hidden` ou d'autres styles qui interfèrent avec la boîte de dialogue.
 
 Dans cet exemple, les deux conteneurs ont des styles qui perturbent la boîte de dialogue modale, mais celui qui est affiché *via* un portail n'est pas affecté car, dans le DOM, la boîte de dialogue modale n'est pas contenue dans les éléments JSX parents.
 
@@ -163,7 +163,7 @@ export default function NoPortalExample() {
   return (
     <>
       <button onClick={() => setShowModal(true)}>
-        Afficher la modale sans portal
+        Afficher la modale sans portail
       </button>
       {showModal && (
         <ModalContent onClose={() => setShowModal(false)} />
@@ -183,7 +183,7 @@ export default function PortalExample() {
   return (
     <>
       <button onClick={() => setShowModal(true)}>
-        Afficher la modale avec un portal
+        Afficher la modale avec un portail
       </button>
       {showModal && createPortal(
         <ModalContent onClose={() => setShowModal(false)} />,
@@ -237,7 +237,7 @@ export default function ModalContent({ onClose }) {
 
 <Pitfall>
 
-Il est important de s'assurer que votre application est accessible lors de l'utilisation de portals. Par exemple, vous devrez peut-être gérer le focus du clavier afin que l'utilisateur puisse déplacer le focus dans et hors du portal de manière naturelle.
+Il est important de s'assurer que votre application est accessible lors de l'utilisation de portails. Par exemple, vous devrez peut-être gérer le focus du clavier afin que l'utilisateur puisse déplacer le focus dans et hors du portail de manière naturelle.
 
 Suivez les [bonnes pratiques WAI-ARIA de création de modales](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) lors de la création de modales. Si vous utilisez un module communautaire, assurez-vous qu'il est accessible et qu'il suit ces directives.
 
@@ -343,7 +343,7 @@ p {
 
 ### Afficher des composants React dans des nœuds DOM n'appartenant pas à React {/*rendering-react-components-into-non-react-dom-nodes*/}
 
-Vous pouvez aussi utiliser un portal pour gérer le contenu d'un nœud DOM géré en-dehors de React. Par exemple, supposons que vous intégriez un widget de carte réalisé sans React et que vous souhaitiez afficher du contenu React dans une *popup*. Pour ce faire, déclarez une variable d'état `popupContainer` pour stocker le nœud DOM dans lequel vous allez effectuer l'affichage :
+Vous pouvez aussi utiliser un portail pour gérer le contenu d'un nœud DOM géré en-dehors de React. Par exemple, supposons que vous intégriez un widget de carte réalisé sans React et que vous souhaitiez afficher du contenu React dans une *popup*. Pour ce faire, déclarez une variable d'état `popupContainer` pour stocker le nœud DOM dans lequel vous allez effectuer l'affichage :
 
 ```js
 const [popupContainer, setPopupContainer] = useState(null);
