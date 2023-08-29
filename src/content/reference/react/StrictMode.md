@@ -24,7 +24,7 @@ title: <StrictMode>
 
 ### `<StrictMode>` {/*strictmode*/}
 
-Utilisez `StrictMode` pour activer des comportements de développement et des avertissements supplémentaires pour l'arbre des composants à l'intérieur :
+Utilisez `StrictMode` pour activer des comportements de développement et des avertissements supplémentaires pour l'arbre des composants que vous placez à l'intérieur :
 
 ```js
 import { StrictMode } from 'react';
@@ -42,13 +42,13 @@ root.render(
 
 Les comportements suivants sont activés en développement par le mode strict :
 
-- Vos composants seront [rendus une fois de plus](#fixing-bugs-found-by-double-rendering-in-development) afin de trouver les bugs causés par des rendus impurs.
-- Vos composants [réexécuteront les Effets une fois de plus](#fixing-bugs-found-by-re-running-effects-in-development) afin de détecter les bugs causés par l'absence de nettoyage d'Effet.
+- Vos composants feront [un rendu supplémentaire](#fixing-bugs-found-by-double-rendering-in-development) afin de trouver les bugs causés par des rendus impurs.
+- Vos composants [exécuteront les Effets une fois supplémentaire](#fixing-bugs-found-by-re-running-effects-in-development) afin de détecter les bugs causés par l'absence de nettoyage d'Effet.
 - Vos composants [seront contrôlés pour l'utilisation d'API dépréciées](#fixing-deprecation-warnings-enabled-by-strict-mode).
 
 #### Props {/*props*/}
 
-`StrictMode` n'accepte aucune props.
+`StrictMode` ne prend aucune prop.
 
 #### Limitations {/*caveats*/}
 
@@ -79,15 +79,14 @@ root.render(
 
 Nous recommandons d'enrober toute votre appli dans le mode strict, en particulier pour les nouvelles applis. Si vous utilisez un framework qui appelle [`createRoot`](/reference/react-dom/client/createRoot) à votre place, consultez sa documentation pour savoir comment activer le mode strict.
 
-
 Bien que les vérifications en mode strict **ne s'exécutent que durant le développement**, elles vous aident à trouver des bugs qui existent déjà dans votre code et qui peuvent être difficiles à reproduire de façon fiable en production. Le mode strict vous permet de corriger les bugs avant que vos utilisateurs ne les signalent.
 
 <Note>
 
 Le mode strict active les vérifications suivantes en mode de développement :
 
-- Vos composants seront [rendus une fois de plus](#fixing-bugs-found-by-double-rendering-in-development) afin de trouver les bugs causés par des rendus impurs.
-- Vos composants [réexécuteront les Effets une fois de plus](#fixing-bugs-found-by-re-running-effects-in-development) afin de détecter les bugs causés par l'absence de nettoyage d'Effet.
+- Vos composants feront [un rendu supplémentaire](#fixing-bugs-found-by-double-rendering-in-development) afin de trouver les bugs causés par des rendus impurs.
+- Vos composants [exécuteront les Effets une fois supplémentaire](#fixing-bugs-found-by-re-running-effects-in-development) afin de détecter les bugs causés par l'absence de nettoyage d'Effet.
 - Vos composants [seront contrôlés pour l'utilisation d'API dépréciées](#fixing-deprecation-warnings-enabled-by-strict-mode).
 
 **Ces vérifications ne fonctionnent qu'en phase de développement et n'ont aucun impact sur le *build* de production.**
@@ -129,11 +128,11 @@ Dans cet exemple, les vérifications du mode strict ne s'exécuteront pas sur le
 
 Les composants qui ne respectent pas cette règle peuvent se comporter de façon imprévisible et occasionner des bugs. Pour vous aider à trouver du code accidentellement impur, le mode strict appelle certaines de vos fonctions (seulement celles qui doivent être pures) **deux fois en développement**. Ça inclut :
 
-- Le corps de la fonction de votre composant (seulement la logique de haut niveau, ce qui exclut le code contenu dans les gestionnaires d'événements).
-- Les fonctions que vous donnez à [`useState`](/reference/react/useState), [les fonctions `set`](/reference/react/useState#setstate), [`useMemo`](/reference/react/useMemo) ou [`useReducer`](/reference/react/useReducer).
-- Certaines méthodes des composants écrits avec des classes comme [`constructor`](/reference/react/Component#constructor), [`render`](/reference/react/Component#render), [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) ([voir la liste exhaustive](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects)).
+- Le corps de votre fonction composant (seulement la logique du niveau racine, ce qui exclut le code contenu dans les gestionnaires d'événements).
+- Les fonctions que vous passez à [`useState`](/reference/react/useState), aux [fonctions `set`](/reference/react/useState#setstate), à [`useMemo`](/reference/react/useMemo) ou à [`useReducer`](/reference/react/useReducer).
+- Certaines méthodes des composants à bases de classes comme [`constructor`](/reference/react/Component#constructor), [`render`](/reference/react/Component#render), [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) ([voir la liste complète](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects)).
 
-Si une fonction est pure, l'exécuter deux fois ne change pas son comportement, car une telle fonction produit le même résultat à chaque fois. Cependant, si une fonction est impure (elle modifie par exemple la donnée qu'elle reçoit), l'exécuter deux fois devrait se remarquer (c'est ce qui la rend impure !). Ça vous aide à déceler et corriger les bugs plus rapidement.
+Si une fonction est pure, l'exécuter deux fois ne change pas son comportement, car une telle fonction produit le même résultat à chaque fois. Cependant, si une fonction est impure (elle modifie par exemple la donnée qu'elle reçoit), l'exécuter deux fois devrait se remarquer (c'est ce qui la rend impure !). Ça vous aide à détecter et corriger les bugs plus rapidement.
 
 **Voici un exemple pour illustrer comment le double rendu en mode strict vous aide à trouver des bugs plus rapidement.**
 
@@ -157,7 +156,7 @@ import StoryTray from './StoryTray.js';
 
 let initialStories = [
   { id: 0, label: "L’histoire d’Ankit" },
-  { id: 1, label: "L’histoire de Taylor" },
+  { id: 1, label: "L’histoire de Clara" },
 ];
 
 export default function App() {
@@ -215,7 +214,7 @@ li {
 
 Il y a une erreur dans le code ci-dessus. Il est cependant facile de passer à côté car l'affichage initial semble correct.
 
-Cette erreur devient bien plus notable si le composant `StoryTray` est rendu plusieurs fois. Par exemple, faisons un nouveau rendu de `StoryTray` avec une couleur de fond différente à chaque fois que vous le survolez :
+Cette erreur devient bien plus notable si le composant `StoryTray` fait son rendu plusieurs fois. Par exemple, faisons un nouveau rendu de `StoryTray` avec une couleur de fond différente à chaque fois que vous le survolez :
 
 <Sandpack>
 
@@ -235,7 +234,7 @@ import StoryTray from './StoryTray.js';
 
 let initialStories = [
   { id: 0, label: "L’histoire d’Ankit" },
-  { id: 1, label: "L’histoire de Taylor" },
+  { id: 1, label: "L’histoire de Clara" },
 ];
 
 export default function App() {
@@ -300,18 +299,18 @@ li {
 
 </Sandpack>
 
-Remarquez qu'à chaque fois que vous survolez le composant `StoryTray`, « Créer une histoire » est ajouté à la liste. L'intention du code n'était de l'ajouter qu'une seule fois à la fin. Cependant, `StoryTray` modifie directement le tableau `stories` des props. Chaque fois que `StoryTray` fait son rendu, il ajoute « Créer une histoire » à la fin de ce tableau. En d'autres termes, `StoryTray` n'est pas une fonction pure — l'exécuter plusieurs fois produit des résultats différents.
+Remarquez qu'à chaque fois que vous survolez le composant `StoryTray`, ça ajoute « Créer une histoire » à la liste. Le code ne visait qu'à l'ajouter une seule fois à la fin. Cependant, `StoryTray` modifie directement le tableau `stories` des props. Chaque fois que `StoryTray` fait son rendu, il ajoute « Créer une histoire » à la fin de ce tableau. En d'autres termes, `StoryTray` n'est pas une fonction pure — l'exécuter plusieurs fois produit des résultats différents.
 
 Pour corriger ce problème, vous pouvez faire une copie du tableau et modifier cette copie plutôt que l'original :
 
 ```js {2}
 export default function StoryTray({ stories }) {
-  const items = stories.slice(); // Cloner le tableau
-  // ✅ Bien : ajouter dans un nouveau tableau
+  const items = stories.slice(); // Copier le tableau
+  // ✅ Correct : ajouter dans un nouveau tableau
   items.push({ id: 'create', label: 'Créer une histoire' });
 ```
 
-Ça rendrait [la fonction `StoryTray` pure](/learn/keeping-components-pure). À chaque appel, elle ne modifierait que la copie du tableau et n'affecterait aucun objet ou variable externe. Ça résoud le bug, mais vous avez dû faire en sorte que le composant soit rendu plus souvent avant qu'il ne devienne évident que son comportement n'est pas correct.
+Ça rendrait [la fonction `StoryTray` pure](/learn/keeping-components-pure). À chaque appel, elle ne modifierait que la copie du tableau et n'affecterait aucun objet ou variable externe. Ça résout le bug, mais vous avez dû faire en sorte que le composant fasse plus souvent son rendu avant qu'il ne devienne évident que son comportement n'était pas correct.
 
 **Dans cet exemple, le bug n'était pas évident. Enrobons maintenant le code original (et buggué) dans un `<StrictMode>` :**
 
@@ -338,7 +337,7 @@ import StoryTray from './StoryTray.js';
 
 let initialStories = [
   { id: 0, label: "L’histoire d’Ankit" },
-  { id: 1, label: "L’histoire de Taylor" },
+  { id: 1, label: "L’histoire de Clara" },
 ];
 
 export default function App() {
@@ -394,7 +393,7 @@ li {
 
 </Sandpack>
 
-**Le mode strict appelle *toujours* votre fonction de rendu deux fois, afin que vous puissiez voir le problème directement** (« Créer une histoire » apparaît deux fois). Ça vous permet de détecter ce genre d'erreur plus tôt dans le processus. Lorsque vous corrigez votre composant pour qu'il soit rendu en mode strict, vous corrigez *également* de nombreux bugs potentiels en production, telle que la fonctionnalité de survol précédente :
+**Le mode strict appelle *toujours* votre fonction de rendu deux fois, afin que vous puissiez voir le problème immédiatement** (« Créer une histoire » apparaît deux fois). Ça vous permet de détecter ce genre d'erreur plus tôt dans le processus. Lorsque vous corrigez votre composant pour qu'il fasse des rendus corrects en mode strict, vous corrigez *également* de nombreux bugs potentiels en production, telle que la fonctionnalité de survol précédente :
 
 <Sandpack>
 
@@ -419,7 +418,7 @@ import StoryTray from './StoryTray.js';
 
 let initialStories = [
   { id: 0, label: "L’histoire d’Ankit" },
-  { id: 1, label: "L’histoire de Taylor" },
+  { id: 1, label: "L’histoire de Clara" },
 ];
 
 export default function App() {
@@ -443,7 +442,7 @@ import { useState } from 'react';
 
 export default function StoryTray({ stories }) {
   const [isHover, setIsHover] = useState(false);
-  const items = stories.slice(); // Cloner le tableau
+  const items = stories.slice(); // Copier le tableau
   items.push({ id: 'create', label: 'Créer une histoire' });
   return (
     <ul
@@ -490,7 +489,7 @@ Sans le mode strict, il était facile de passer à côté du bug jusqu'à ce que
 
 <Note>
 
-Si vous avez installé [React DevTools](/learn/react-developer-tools), tous les appels à `console.log` lors du second appel apparaîtront légèrement estompés. React DevTools propose également un paramètre (désactivé par défaut) pour les supprimer complétement.
+Si vous avez installé [les outils de développement React](/learn/react-developer-tools), tous les appels à `console.log` lors du second appel apparaîtront légèrement estompés. Ces outils proposent également un paramètre (désactivé par défaut) pour les masquer complètement.
 
 </Note>
 
@@ -561,9 +560,9 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Il y a un problème avec ce code, mais ce n'est pas forcément évident.
+Il y a un problème avec ce code, mais ça ne saute pas aux yeux.
 
-Pour rendre le problème plus évident, ajoutons une fonctionnalité. Dans l'exemple ci-dessous, `roomId` n'est pas codée en dur. L'utilisateur peut en effet choisir dans une liste déroulante le `roomId` auquel il souhaite se connecter. Appuyez sur « Ouvrir le salon » puis sélectionnez une à une les différents salons de discussion. Surveillez le nombre de connexions actives dans la console :
+Pour rendre le problème plus évident, ajoutons une fonctionnalité. Dans l'exemple ci-dessous, `roomId` n'est pas codé en dur. L'utilisateur peut en effet choisir dans une liste déroulante le `roomId` auquel il souhaite se connecter. Appuyez sur « Ouvrir le salon » puis sélectionnez un à un les différents salons de discussion. Surveillez le nombre de connexions actives dans la console :
 
 <Sandpack>
 
@@ -645,7 +644,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Vous remarquerez que le nombre de connexions ouvertes n'arrête pas de grandir. Dans une vraie appli, ça causerait des problèmes de performances et de réseau. Le problème vient [de l'absence de fonction de nettoyage dans votre Effet](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) :
+Vous remarquerez que le nombre de connexions ouvertes ne cesse de grandir. Dans une véritable appli, ça causerait des problèmes de performances et de réseau. Le problème vient [de l'absence de fonction de nettoyage dans votre Effet](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) :
 
 ```js {4}
   useEffect(() => {
@@ -817,13 +816,13 @@ Sans le mode strict, il était facile de passer à côté du fait que l'Effet n�
 
 ---
 
-### Corriger les alertes de dépréciation acivées par le mode strict {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
+### Corriger les alertes de dépréciation activées par le mode strict {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
 
-React alerte si certains composants quelque part à l'intérieur de l'arbre de `<StrictMode>` utilise l'une de ces APIs dépréciées :
+React alerte si certains composants quelque part à l'intérieur de l'arbre de `<StrictMode>` utilisent l'une de ces API dépréciées :
 
-* [`findDOMNode`](/reference/react-dom/findDOMNode). [Voir les alternatives.](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
-* Les méthodes de classe du cycle de vie `UNSAFE_` telle que [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [Voir les alternatives.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles) 
-* Les anciens contextes ([`childContextTypes`](/reference/react/Component#static-childcontexttypes), [`contextTypes`](/reference/react/Component#static-contexttypes) et [`getChildContext`](/reference/react/Component#getchildcontext)). [Voir les alternatives.](/reference/react/createContext)
-* Les anciennes refs ([`this.refs`](/reference/react/Component#refs)). [Voir les alternatives.](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
+* [`findDOMNode`](/reference/react-dom/findDOMNode). [Voir les alternatives](/reference/react-dom/findDOMNode#alternatives).
+* Les méthodes de cycle de vie `UNSAFE_` des classes telle que [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [Voir les alternatives](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles).
+* Les anciens contextes ([`childContextTypes`](/reference/react/Component#static-childcontexttypes), [`contextTypes`](/reference/react/Component#static-contexttypes) et [`getChildContext`](/reference/react/Component#getchildcontext)). [Voir les alternatives](/reference/react/createContext).
+* Les anciennes refs textuelles ([`this.refs`](/reference/react/Component#refs)). [Voir les alternatives](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage).
 
-Ces APIs sont avant tout utilisées dans les anciens [composants de classe](/reference/react/Component) et n'apparaîssent que rarement dans les applis modernes.
+Ces API sont avant tout utilisées dans les anciens [composants à base de classes](/reference/react/Component) et n'apparaissent que rarement dans les applis modernes.
