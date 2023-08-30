@@ -4,7 +4,7 @@ title: renderToPipeableStream
 
 <Intro>
 
-`renderToPipeableStream` fait le rendu d'un arbre React dans un [flux Node.js](https://nodejs.org/api/stream.html) connectable.
+`renderToPipeableStream` fait le rendu d'un arbre React dans un [flux Node.js](https://nodejs.org/api/stream.html) connectable à d'autres flux de sortie.
 
 ```js
 const { pipe, abort } = renderToPipeableStream(reactNode, options?)
@@ -48,16 +48,16 @@ Côté client, appelez [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) 
 
 * `reactNode` : un nœud React dont vous souhaitez produire le HTML. Ça pourrait par exemple être un élément JSX tel que `<App />`.  C'est censé produire le document entier, de sorte que le composant `App` devrait produire la balise `<html>`.
 
-* `options` **optionnelles** : un objet avec des options de *streaming*.
-  * `bootstrapScriptContent` **optionnel** : s'il est fourni, ce code source sera placé dans une balise `<script>` intégrée.
-  * `bootstrapScripts` **optionnels** : un tableau d'URL sous format texte pour des balises `<script>` à émettre dans la page. Servez-vous en pour inclure le `<script>` qui appellera [`hydrateRoot`](/reference/react-dom/client/hydrateRoot).  Vous pouvez vous en passer si vous ne souhaitez aucune exécution de React côté client.
-  * `bootstrapModules` **optionnels** : comme `bootstrapScripts`, mais émet plutôt des balises [`<script type="module">`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Modules).
+* `options` **optionnelles** : un objet avec des options de streaming.
+  * `bootstrapScriptContent` **optionnel** : s'il est fourni, ce code source sera placé dans une balise `<script>` en ligne du flux de sortie.
+  * `bootstrapScripts` **optionnels** : un tableau d'URL sous format texte pour des balises `<script>` à émettre dans la page. Utilisez-le pour inclure le `<script>` qui appellera [`hydrateRoot`](/reference/react-dom/client/hydrateRoot).  Vous pouvez vous en passer si vous ne souhaitez pas exécuter React côté client.
+  * `bootstrapModules` **optionnels** : joue le même rôle que `bootstrapScripts`, mais émet plutôt des balises [`<script type="module">`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Modules).
   * `identifierPrefix` **optionnel** : un préfixe textuel utilisé pour les ID générés par [`useId`](/reference/react/useId). Pratique pour éviter les conflits entre les ID au sein de racines multiples sur une même page. Doit être le même préfixe que celui passé à[`hydrateRoot`](/reference/react-dom/client/hydrateRoot#parameters).
-  * `namespaceURI` **optionnel** : L'URI textuel de [l'espace de noms racine](https://developer.mozilla.org/fr/docs/Web/API/Document/createElementNS#uri_despaces_de_nom_valides) pour le flux. Par défaut, du HTML standard. Passez `'http://www.w3.org/2000/svg'` pour SVG ou `'http://www.w3.org/1998/Math/MathML'` pour MathML.
+  * `namespaceURI` **optionnel** : l'URI textuel de [l'espace de noms racine](https://developer.mozilla.org/fr/docs/Web/API/Document/createElementNS#uri_despaces_de_nom_valides) pour le flux. Par défaut, celui du HTML standard. Passez `'http://www.w3.org/2000/svg'` pour SVG ou `'http://www.w3.org/1998/Math/MathML'` pour MathML.
   * `nonce` **optionnel** : un [`nonce`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/script#nonce) textuel pour permettre les scripts avec une [*Content-Security-Policy* contenant `script-src`](https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/Content-Security-Policy/script-src).
-  * `onAllReady` **optionnelle** : une fonction de rappel déclenchée lorsque le rendu sera complètement terminé, y compris l'[enveloppe](#specifying-what-goes-into-the-shell) et tout le [contenu](#streaming-more-content-as-it-loads) additionnel. Vous pouvez utiliser ça plutôt qu'`onShellReady` [pour les moteurs d'indexation web et la génération statique](#waiting-for-all-content-to-load-for-crawlers-and-static-generation).  Si vous commencez à *streamer* à ce moment-là, vous n'aurez pas de chargement progressif.  Le flux contiendra le HTML final.
+  * `onAllReady` **optionnelle** : une fonction de rappel déclenchée lorsque le rendu sera complètement terminé, y compris l'[enveloppe](#specifying-what-goes-into-the-shell) et tout le [contenu](#streaming-more-content-as-it-loads) additionnel. Vous pouvez utiliser ça plutôt qu'`onShellReady` [pour les moteurs d'indexation web et la génération statique](#waiting-for-all-content-to-load-for-crawlers-and-static-generation).  Si vous commencez à streamer à ce moment-là, vous n'aurez pas de chargement progressif.  Le flux contiendra le HTML final.
   * `onError` **optionnelle** : une fonction de rappel déclenchée pour toute erreur serveur, qu'elle soit [récupérable](#recovering-from-errors-outside-the-shell) ou [pas](#recovering-from-errors-inside-the-shell). Par défaut, ça fait juste un `console.error`. Si vous l'écrasez pour [journaliser les rapports de plantage](#logging-crashes-on-the-server), assurez-vous de continuer à appeler `console.error`. Vous pouvez aussi vous en servir pour [ajuster le code de réponse HTTP](#setting-the-status-code) avant que l'enveloppe ne soit émise.
-  * `onShellReady` **optionnelle** : une fonction de rappel déclenchée juste après que [l'enveloppe initiale](#specifying-what-goes-into-the-shell) a été produite. Vous pouvez y [définir le code de réponse HTTP](#setting-the-status-code) et y appeler `pipe` pour commencer le *streaming*. React [*streamera* le contenu additionnel](#streaming-more-content-as-it-loads) après l'enveloppe ainsi que les balises `<script>` en ligne qui remplaceront le HTML des contenus de secours ou de chargement par les contenus définitifs.
+  * `onShellReady` **optionnelle** : une fonction de rappel déclenchée juste après que [l'enveloppe initiale](#specifying-what-goes-into-the-shell) a été produite. Vous pouvez y [définir le code de réponse HTTP](#setting-the-status-code) et y appeler `pipe` pour commencer le streaming. React [streamera le contenu additionnel](#streaming-more-content-as-it-loads) après l'enveloppe ainsi que les balises `<script>` en ligne qui remplaceront le HTML des contenus de secours ou de chargement par les contenus définitifs.
   * `onShellError` **optionnelle** : une fonction de rappel déclenchée si le rendu de l'enveloppe initiale rencontre une erreur.  Il reçoit l'erreur en argument.  Pas un octet n'a été émis *via* le flux à ce stade, et ni `onShellReady` ni `onAllReady` ne seront appelés, vous pouvez donc [produire une enveloppe HTML de secours](#recovering-from-errors-inside-the-shell).
   * `progressiveChunkSize` **optionnel** : le nombre d'octets dans un segment d'envoi progressif. [Apprenez-en davantage sur l'heuristique par défaut](https://github.com/facebook/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-server/src/ReactFizzServer.js#L210-L225).
 
@@ -66,8 +66,8 @@ Côté client, appelez [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) 
 
 `renderToPipeableStream` renvoie un objet avec deux méthodes :
 
-* `pipe` envoie le HTML dans le [flux Node.js en écriture](https://nodejs.org/api/stream.html#writable-streams) fourni. Appelez `pipe` dans `onShellReady` pour activer le *streaming*, ou dans `onAllReady` pour les moteurs d'indexation web et la génération statique.
-* `abort` vous permet [d'abandonner le rendu côté serveur](#aborting-server-rendering) et de faire le reste du rendu côté client.
+* `pipe` envoie le HTML dans le [flux Node.js en écriture](https://nodejs.org/api/stream.html#writable-streams) fourni. Appelez `pipe` dans `onShellReady` pour activer le streaming, ou dans `onAllReady` pour les moteurs d'indexation web et la génération statique.
+* `abort` vous permet [d'abandonner le rendu côté serveur](#aborting-server-rendering) pour faire le reste du rendu côté client.
 
 ---
 
@@ -120,7 +120,7 @@ React injectera le [doctype](https://developer.mozilla.org/fr/docs/Glossary/Doct
 ```html [[2, 5, "/main.js"]]
 <!DOCTYPE html>
 <html>
-  <!-- ... HTML de vos components ... -->
+  <!-- ... HTML de vos composants ... -->
 </html>
 <script src="/main.js" async=""></script>
 ```
@@ -161,8 +161,9 @@ export default function App({ assetMap }) {
 
 Côté serveur, faites le rendu de `<App assetMap={assetMap} />` et passez-lui une `assetMap` avec les URL des ressources :
 
-```js {1-5,8,9}
-// Vous devrez récupérer ce JSON depuis votre outil de build, par exemple en lisant son affichage résultat.
+```js {1-6,9-10}
+// Vous devrez récupérer ce JSON depuis votre outil de build,
+// par exemple en lisant son affichage résultat.
 const assetMap = {
   'styles.css': '/styles.123456.css',
   'main.js': '/main.123456.js'
@@ -216,9 +217,9 @@ hydrateRoot(document, <App assetMap={window.assetMap} />);
 
 ---
 
-### *Streamer* plus de contenu au fil du chargement {/*streaming-more-content-as-it-loads*/}
+### Streamer plus de contenu au fil du chargement {/*streaming-more-content-as-it-loads*/}
 
-Le *streaming* permet à l'utilisateur de commencer à voir votre contenu avant même que toutes les données soient chargées côté serveur. Imaginez par exemple une page de profil qui affiche une image de couverture, une barre latérale avec des ami·e·s et leurs photos, et une liste d'articles :
+Le streaming permet à l'utilisateur de commencer à voir votre contenu avant même que toutes les données soient chargées côté serveur. Imaginez par exemple une page de profil qui affiche une image de couverture, une barre latérale avec des ami·e·s et leurs photos, et une liste d'articles :
 
 ```js
 function ProfilePage() {
@@ -254,9 +255,9 @@ function ProfilePage() {
 }
 ```
 
-Ça demande à React de commencer à *streamer* le HTML avant que `Posts` ne charge ses données. React enverra dans un premier etmps le HTML du contenu de secours (`PostsGlimmer`) puis, quand `Posts` aura fini de charger ses données, React enverra le HTML restant ainsi qu'une balise `<script>` intégrée qui remplacera le contenu de secours avec ce HTML. Du point de vue de l'utilisateur, la page apparaîtra d'abord avec le `PostsGlimmer`, qui sera ensuite remplacé par les `Posts`.
+Ça demande à React de commencer à streamer le HTML avant que `Posts` ne charge ses données. React enverra dans un premier temps le HTML du contenu de secours (`PostsGlimmer`) puis, quand `Posts` aura fini de charger ses données, React enverra le HTML restant ainsi qu'une balise `<script>` intégrée qui remplacera le contenu de secours avec ce HTML. Du point de vue de l'utilisateur, la page apparaîtra d'abord avec le `PostsGlimmer`, qui sera ensuite remplacé par les `Posts`.
 
-Vous pouvez même [imbriquer les périmètres `<Suspense>`](/reference/react/Suspense#revealing-nested-content-as-it-loads) pour créer des séquences de chargement plus granulaires :
+Vous pouvez même [imbriquer les périmètres `<Suspense>`](/reference/react/Suspense#revealing-nested-content-as-it-loads) afin de créer des séquences de chargement avec une granularité plus fine :
 
 ```js {5,13}
 function ProfilePage() {
@@ -277,11 +278,11 @@ function ProfilePage() {
 }
 ```
 
-Dans cet exemple, React commencera à *streamer* la page encore plus tôt. Seuls `ProfileLayout` et `ProfileCover` devront terminer d'abord leur rendu, car ils ne sont enrobés dans aucun périmètre `<Suspense>`.  En revanche, si `Sidebar`, `Friends` ou `Photos` ont besoin de charger des données, React enverra le HTML du contenu de secours `BigSpinner` à leur place. Ainsi, au fil de la mise à disposition des données, davantage de contenu continuera à être affiché jusqu'à ce que tout soit enfin visible.
+Dans cet exemple, React commencera à streamer la page encore plus tôt. Seuls `ProfileLayout` et `ProfileCover` devront d'abord terminer leur rendu, car ils ne sont enrobés dans aucun périmètre `<Suspense>`.  En revanche, si `Sidebar`, `Friends` ou `Photos` ont besoin de charger des données, React enverra le HTML du contenu de secours `BigSpinner` à leur place. Ainsi, au fil de la mise à disposition des données, davantage de contenu continuera à être affiché jusqu'à ce que tout soit enfin visible.
 
-Le *streaming* n'a pas besoin d'attendre que React lui-même soit chargé dans le navigateur, ou que votre appli soit devenue interactive. Le contenu HTML généré côté serveur sera envoyé et affiché progressivement avant le chargement de n'importe quelle balise `<script>`.
+Le streaming n'a pas besoin d'attendre que React lui-même soit chargé dans le navigateur, ou que votre appli soit devenue interactive. Le contenu HTML généré côté serveur sera envoyé et affiché progressivement avant le chargement de n'importe quelle balise `<script>`.
 
-[Apprenez-en davantage sur le fonctionnement du *streaming* HTML](https://github.com/reactwg/react-18/discussions/37).
+[Apprenez-en davantage sur le fonctionnement du streaming HTML](https://github.com/reactwg/react-18/discussions/37).
 
 <Note>
 
@@ -332,9 +333,9 @@ Elle détermine le tout premier état de chargement que vos utilisateurs sont su
 </ProfileLayout>
 ```
 
-Si vous enrobez toute l'appli dans un périmètre `<Suspense>` à la racine, l'enveloppe ne contiendra qu'un indicateur de chargement. Ce n'est hélas pas une expérience utilisateur agréable, car voir un gros indicateur de chargement à l'écran peut sembler plus lent et plus irritant que d'attendre un instant pour voir arriver la véritable mise en page.  C'est pourquoi vous voudrez généralement positionner vos périmètres `<Suspense>` de façon à ce que l'enveloppe donne une impression *minimale mais complète* — comme un squelette intégral de la page.
+Si vous enrobez toute l'appli dans un périmètre `<Suspense>` à la racine, l'enveloppe ne contiendra qu'un indicateur de chargement. Ce n'est hélas pas une expérience utilisateur agréable, car voir un gros indicateur de chargement à l'écran peut sembler plus lent et plus irritant que d'attendre un instant pour voir arriver la véritable mise en page.  C'est pourquoi vous voudrez généralement positionner vos périmètres `<Suspense>` de façon à ce que l'enveloppe donne une impression *minimale mais complète* — comme si elle représentait un squelette intégral de la page.
 
-La fonction de rappel `onShellReady` est déclenchée lorsque l'enveloppe entière a fini son rendu.  C'est généralement là que vous commencerez le *streaming* :
+La fonction de rappel `onShellReady` est déclenchée lorsque l'enveloppe entière a fini son rendu.  C'est généralement là que vous commencerez le streaming :
 
 ```js {3-6}
 const { pipe } = renderToPipeableStream(<App />, {
@@ -389,7 +390,7 @@ function ProfilePage() {
 }
 ```
 
-Si une erreur survient lors du rendu de ces composants, React n'aura pas de HTML exploitable à envoyer au client.  Utilisez `onShellError` pour envoyer en dernier recours un HTML de secours se passant du rendu côté serveur  :
+Si une erreur survient lors du rendu de ces composants, React n'aura pas de HTML exploitable à envoyer au client.  Utilisez `onShellError` pour envoyer en dernier recours un HTML de secours qui n'aurait pas besoin d'un rendu côté serveur :
 
 ```js {7-11}
 const { pipe } = renderToPipeableStream(<App />, {
@@ -410,13 +411,13 @@ const { pipe } = renderToPipeableStream(<App />, {
 });
 ```
 
-Si une erreur est survenue lors de la génération de l'enveloppe, tant `onError` que `onShellError` seront déclenchées. Utilisez `onError` pour signaler l'erreur et `onShellError` pour envoyer le document HTML de secours.  Votre HTML de secours ne doit pas nécessairement être une page d'erreur. Vous pourriez plutôt proposer une enveloppe alternative qui affiche votre appli en mode 100% client.
+Si une erreur est survenue lors de la génération de l'enveloppe, tant `onError` que `onShellError` seront déclenchées. Utilisez `onError` pour signaler l'erreur et `onShellError` pour envoyer le document HTML de secours.  Votre HTML de secours n'est d'ailleurs pas nécessairement une page d'erreur. Vous pourriez plutôt proposer une enveloppe alternative qui affiche votre appli en mode 100% client.
 
 ---
 
 ### Se rétablir après une erreur hors de l'enveloppe {/*recovering-from-errors-outside-the-shell*/}
 
-Dans l'exemple qui suit, le composant `<Posts />` est enrobé par `<Suspense>` de sorte qu'il ne fait *pas* partie de l'enveloppe :
+Dans l'exemple qui suit, le composant `<Posts />` est enrobé par `<Suspense>`, ce qui signifie qu'il ne fait *pas* partie de l'enveloppe :
 
 ```js {6}
 function ProfilePage() {
@@ -431,13 +432,13 @@ function ProfilePage() {
 }
 ```
 
-Si une erreur survient dans le composant `Posts` ou un de ses enfants, React [tentera de retomber sur ses pieds](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content) :
+Si une erreur survient au sein du composant `Posts` ou d'un de ses enfants, React [tentera automatiquement de retomber sur ses pieds](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content) :
 
 1. Il émettra le contenu de secours du périmètre `<Suspense>` le plus proche (`PostsGlimmer`) dans le HTML.
 2. Il « laissera tomber » le rendu côté serveur du contenu de `Posts`.
 3. Lorsque le code JavaScript côté client aura fini de charger, React *retentera* le rendu de `Posts`, côté client.
 
-Si la tentative de rendu de `Posts` côté client plante *aussi, React lèvera l'erreur côté client.  Comme pour toutes les erreurs survenant lors du rendu, le [périmètre d'erreur le plus proche](/reference/react/Component#static-getderivedstatefromerror) détermine la façon dont l'erreur sera présentée à l'utilisateur. En pratique, ça signifie que l'utilsiateur verra un indicateur de chargement jusqu'à ce que React soit certain que l'erreur n'est pas récupérable.
+Si la tentative de rendu de `Posts` côté client plante *aussi*, React lèvera l'erreur côté client.  Comme pour toutes les erreurs survenant lors du rendu, le [périmètre d'erreur le plus proche](/reference/react/Component#static-getderivedstatefromerror) détermine la façon dont l'erreur sera présentée à l'utilisateur. En pratique, ça signifie que l'utilisateur verra un indicateur de chargement jusqu'à ce que React soit certain que l'erreur n'est pas récupérable.
 
 Si la tentative de rendu de `Posts` côté client réussit, l'indicateur de chargement issu du serveur sera remplacé par le résultat du rendu côté client. L'utilisateur ne saura pas qu'une erreur est survenue côté serveur. En revanche, les fonctions de rappel `onError` côté serveur et [`onRecoverableError`](/reference/react-dom/client/hydrateRoot#hydrateroot) côté client seront déclenchées pour que vous soyez notifié·e de l'erreur.
 
@@ -445,7 +446,7 @@ Si la tentative de rendu de `Posts` côté client réussit, l'indicateur de char
 
 ### Définir le code de réponse HTTP {/*setting-the-status-code*/}
 
-Le *streaming* a ses compromis.  Vous souhaitez commencer à *streamer* la page aussitôt que possible, pour que l'utilisateur voie du contenu plus tôt.  Seulement, dès que vous commencer à *streamer*, vous ne pouvez plus définir le code de réponse HTTP.
+Le streaming implique des compromis.  Vous souhaitez commencer à streamer la page aussitôt que possible, pour que l'utilisateur voie du contenu plus tôt.  Seulement, dès que vous commencer à streamer, vous ne pouvez plus définir le code de réponse HTTP.
 
 En [découpant votre appli](#specifying-what-goes-into-the-shell) avec d'un côté l'enveloppe (au-dessus de tous les périmètres `<Suspense>`) et de l'autre le reste du contenu, vous avez déjà en partie résolu ce problème.  Si l'enveloppe rencontre une erreur, ça déclenchera la fonction de rappel `onShellError` qui vous permet de définir le code de réponse pour l'erreur.  Dans le cas contraire, vous savez que l'appli devrait être capable de se rétablir côté client, vous pouvez donc envoyer « OK ».
 
@@ -471,7 +472,7 @@ const { pipe } = renderToPipeableStream(<App />, {
 
 Si un composant *hors* de l'enveloppe (par exemple dans un périmètre `<Suspense>`) lève une erreur, React n'arrêtera pas le rendu.  Ça signifie que la fonction de rappel `onError` sera déclenchée, mais que vous verrez aussi le déclenchement d'`onShellReady` plutôt qu'`onShellError`. C'est parce que React tentera de retomber sur ses pieds côté client, [comme décrit plus haut](#recovering-from-errors-outside-the-shell).
 
-Ceci étant dit, si vous préférez, vous pouvez prendre en compte la survenue d'une erreur pour ajuster votre code de réponse :
+Ceci étant dit, si vous préférez, vous pouvez prendre en compte la survenue d'une erreur pour ajuster votre code de réponse HTTP :
 
 ```js {1,6,16}
 let didError = false;
@@ -496,13 +497,13 @@ const { pipe } = renderToPipeableStream(<App />, {
 });
 ```
 
-Ça ne capturera que les erreurs hors de l'enveloppe qui sont survenue pendant le rendu initial de l'enveloppe, ce n'est donc pas exhaustif. Si vous estimez impératif de savoir si une erreur est survenue pourun contenu donné, vous pouvez le déplacer dans l'enveloppe.
+Ça ne capturera que les erreurs hors de l'enveloppe qui sont survenues pendant le rendu initial de l'enveloppe, ce n'est donc pas exhaustif. Si vous estimez impératif de savoir si une erreur est survenue pour un contenu donné, vous pouvez le déplacer dans l'enveloppe.
 
 ---
 
 ### Différencier la gestion selon l'erreur rencontrée {/*handling-different-errors-in-different-ways*/}
 
-Vous pouvez [créer vos propres sous-classes d'`Error`](https://fr.javascript.info/custom-errors) et recourir à l'opérateur [`instanceof`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/instanceof) pour déterminer quelle erreur est survenue. Vous pouvez par exemple définir une `NotFoundError` sur-mesure et la lever depuis votre composant. Alors vos fonctions de rappel `onError`, `onShellReady` et `onShellError` peuvent différencier leur gestion en fonction du type d'erreur :
+Vous pouvez [créer vos propres sous-classes d'`Error`](https://fr.javascript.info/custom-errors) et utiliser l'opérateur [`instanceof`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/instanceof) pour déterminer quelle erreur est survenue. Vous pouvez par exemple définir une `NotFoundError` sur-mesure et la lever depuis votre composant. À partir de là, vos fonctions de rappel `onError`, `onShellReady` et `onShellError` peuvent différencier leur gestion en fonction du type d'erreur :
 
 ```js {2,4-14,19,24,30}
 let didError = false;
@@ -541,13 +542,13 @@ const { pipe } = renderToPipeableStream(<App />, {
 });
 ```
 
-Gardez à l'esprit qu'une fois que vous avez émis l'enveloppe et commencé à *streamer*, vous ne pourrez plus changer le code de réponse HTTP.
+Gardez à l'esprit qu'une fois que vous avez émis l'enveloppe et commencé à streamer, vous ne pourrez plus changer le code de réponse HTTP.
 
 ---
 
 ### Attendre que tout le contenu soit chargé pour les moteurs d'indexation web et la génération statique {/*waiting-for-all-content-to-load-for-crawlers-and-static-generation*/}
 
-Le *streaming* offre une meilleure expérience utilisateur parce que l'utilisateur peut voir le contenu au fur et à mesure de sa mise à disposition.
+Le streaming offre une meilleure expérience utilisateur parce que l'utilisateur peut voir le contenu au fur et à mesure de sa mise à disposition.
 
 Ceci étant, lorsqu'un moteur d'indexation web visite votre page, ou si vous générez ces pages au moment du *build*, vous pourriez vouloir attendre que tout le contenu soit d'abord chargé pour ensuite produire le résultat HTML final, plutôt que de le révéler progressivement.
 
