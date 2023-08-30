@@ -206,6 +206,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href=https://fr.react.dev/learn/reusing-logic-with-custom-hooks">Réutiliser de la logique grâce aux Hooks personnalisés</a></li>
           <li><a href=https://fr.react.dev/reference/react/useContext"><code>useContext</code></a></li>
           <li><a href=https://fr.react.dev/reference/react/useReducer"><code>useReducer</code></a></li>
+          <li><a href=https://fr.react.dev/reference/react/StrictMode"><code>&lt;StrictMode&gt;</code></a></li>
         </ul>
       </td>
     </tr>

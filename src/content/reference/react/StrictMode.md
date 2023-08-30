@@ -5,7 +5,7 @@ title: <StrictMode>
 
 <Intro>
 
-`<StrictMode>` vous permet de détecter des bugs courants dans vos composants pendant le développement.
+`<StrictMode>` vous permet de détecter des bugs courants dans vos composants pendant la phase de développement.
 
 
 ```js
@@ -89,7 +89,7 @@ Le mode strict active les vérifications suivantes en mode de développement :
 - Vos composants [exécuteront les Effets une fois supplémentaire](#fixing-bugs-found-by-re-running-effects-in-development) afin de détecter les bugs causés par l'absence de nettoyage d'Effet.
 - Vos composants [seront contrôlés pour l'utilisation d'API dépréciées](#fixing-deprecation-warnings-enabled-by-strict-mode).
 
-**Ces vérifications ne fonctionnent qu'en phase de développement et n'ont aucun impact sur le *build* de production.**
+**Ces vérifications ne sont effectuées qu'en phase de développement et n'ont aucun impact sur votre *build* de production.**
 
 </Note>
 
@@ -134,7 +134,7 @@ Les composants qui ne respectent pas cette règle peuvent se comporter de façon
 
 Si une fonction est pure, l'exécuter deux fois ne change pas son comportement, car une telle fonction produit le même résultat à chaque fois. Cependant, si une fonction est impure (elle modifie par exemple la donnée qu'elle reçoit), l'exécuter deux fois devrait se remarquer (c'est ce qui la rend impure !). Ça vous aide à détecter et corriger les bugs plus rapidement.
 
-**Voici un exemple pour illustrer comment le double rendu en mode strict vous aide à trouver des bugs plus rapidement.**
+**Voici un exemple qui illustre comment le double rendu en mode strict vous aide à détecter des bugs plus tôt.**
 
 Ce composant `StoryTray` prend un tableau de `stories` et ajoute à la fin un élément « Créer une histoire » :
 
@@ -212,9 +212,9 @@ li {
 
 </Sandpack>
 
-Il y a une erreur dans le code ci-dessus. Il est cependant facile de passer à côté car l'affichage initial semble correct.
+Il y a une erreur dans le code ci-dessus. Il est cependant facile de passer à côté, dans la mesure où l'affichage initial semble correct.
 
-Cette erreur devient bien plus notable si le composant `StoryTray` fait son rendu plusieurs fois. Par exemple, faisons un nouveau rendu de `StoryTray` avec une couleur de fond différente à chaque fois que vous le survolez :
+Cette erreur devient bien plus facile à remarquer lorsque le composant `StoryTray` fait son rendu plusieurs fois. Par exemple, faisons un nouveau rendu de `StoryTray` avec une couleur de fond différente à chaque fois que vous le survolez :
 
 <Sandpack>
 
@@ -310,9 +310,9 @@ export default function StoryTray({ stories }) {
   items.push({ id: 'create', label: 'Créer une histoire' });
 ```
 
-Ça rendrait [la fonction `StoryTray` pure](/learn/keeping-components-pure). À chaque appel, elle ne modifierait que la copie du tableau et n'affecterait aucun objet ou variable externe. Ça résout le bug, mais vous avez dû faire en sorte que le composant fasse plus souvent son rendu avant qu'il ne devienne évident que son comportement n'était pas correct.
+Ça rendrait [la fonction `StoryTray` pure](/learn/keeping-components-pure). À chaque appel, elle ne modifierait que la copie du tableau et n'affecterait aucun objet ou variable externe. Ça résout le bug, mais vous avez dû faire en sorte que le composant fasse plus souvent son rendu pour mettre en évidence le souci dans son comportement.
 
-**Dans cet exemple, le bug n'était pas évident. Enrobons maintenant le code original (et buggué) dans un `<StrictMode>` :**
+**Dans cet exemple, le bug ne sautait pas aux yeux. Enrobons maintenant le code original (avec son bug) dans un composant `<StrictMode>` :**
 
 <Sandpack>
 
@@ -393,7 +393,7 @@ li {
 
 </Sandpack>
 
-**Le mode strict appelle *toujours* votre fonction de rendu deux fois, afin que vous puissiez voir le problème immédiatement** (« Créer une histoire » apparaît deux fois). Ça vous permet de détecter ce genre d'erreur plus tôt dans le processus. Lorsque vous corrigez votre composant pour qu'il fasse des rendus corrects en mode strict, vous corrigez *également* de nombreux bugs potentiels en production, telle que la fonctionnalité de survol précédente :
+**Le mode strict appelle *toujours* votre fonction de rendu deux fois, afin que vous puissiez voir le problème immédiatement** (« Créer une histoire » apparaît deux fois). Ça vous permet de détecter ce genre d'erreur plus tôt dans le processus de développement. Lorsque vous corrigez votre composant pour qu'il fasse des rendus corrects en mode strict, vous corrigez *également* de nombreux bugs potentiels en production, telle que la fonctionnalité de survol précédente :
 
 <Sandpack>
 
@@ -658,7 +658,7 @@ Vous remarquerez que le nombre de connexions ouvertes ne cesse de grandir. Dans 
 
 Maintenant que votre Effet « fait le nettoyage » et supprime les connexions obsolètes, la fuite est réparée. Remarquez cependant que le problème n'est devenu visible qu'une fois de nouvelles fonctionnalités ajoutées (la liste déroulante).
 
-**Dans l'exemple original, le bug n'était pas évident. Enrobez maintenant le code original (et buggué) dans un `<StrictMode>` :**
+**Dans l'exemple original, le bug ne sautait pas aux yeux. Enrobez maintenant le code original (et buggué) dans un composant `<StrictMode>` :**
 
 <Sandpack>
 
@@ -823,7 +823,7 @@ Sans le mode strict, il était facile de passer à côté du fait que l'Effet n�
 React alerte si certains composants quelque part à l'intérieur de l'arbre de `<StrictMode>` utilisent l'une de ces API dépréciées :
 
 * [`findDOMNode`](/reference/react-dom/findDOMNode). [Voir les alternatives](/reference/react-dom/findDOMNode#alternatives).
-* Les méthodes de cycle de vie `UNSAFE_` des classes telle que [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [Voir les alternatives](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles).
+* Les méthodes de cycle de vie `UNSAFE_` des composants à base de classes, telles que [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [Voir les alternatives](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles).
 * Les anciens contextes ([`childContextTypes`](/reference/react/Component#static-childcontexttypes), [`contextTypes`](/reference/react/Component#static-contexttypes) et [`getChildContext`](/reference/react/Component#getchildcontext)). [Voir les alternatives](/reference/react/createContext).
 * Les anciennes refs textuelles ([`this.refs`](/reference/react/Component#refs)). [Voir les alternatives](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage).
 
