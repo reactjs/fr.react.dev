@@ -107,6 +107,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react-dom/server">API React DOM côté serveur</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/reference/react-dom/server/renderToNodeStream"><code>renderToNodeStream</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/server/renderToPipeableStream"><code>renderToPipeableStream</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/server/renderToReadableStream"><code>renderToReadableStream</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/server/renderToStaticMarkup"><code>renderToStaticMarkup</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/server/renderToStaticNodeStream"><code>renderToStaticNodeStream</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/server/renderToString"><code>renderToString</code></a></li>
