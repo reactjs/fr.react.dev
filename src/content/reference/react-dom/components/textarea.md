@@ -199,10 +199,12 @@ export default function EditPost() {
     const form = e.target;
     const formData = new FormData(form);
 
-    // Vous pouvez passer formData directement comme corps de la requête fetch :
+    // Vous pouvez passer formData directement comme
+    // corps de la requête fetch :
     fetch('/some-api', { method: form.method, body: formData });
 
-    // Ou vous pouvez travailler avec comme un objet simple :
+    // Ou vous pouvez travailler avec comme un
+    // objet simple :
     const formJson = Object.fromEntries(formData.entries());
     console.log(formJson);
   }

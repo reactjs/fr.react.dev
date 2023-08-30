@@ -71,8 +71,8 @@ Ces props de `<select>` sont compatibles avec les listes de sélection contrôl�
 - Contrairement à HTML, vous n'avez pas le droit de passer un attribut `selected` aux composants `<option>`. Utilisez plutôt [`<select defaultValue>`](#providing-an-initially-selected-option) pour les listes de sélection non contrôlées et [`<select value>`](#controlling-a-select-box-with-a-state-variable) pour celles qui sont contrôlées.
 - Si une liste de sélection reçoit une prop `value` textuelle, elle sera [traitée comme contrôlée](#controlling-a-select-box-with-a-state-variable).
 - Une liste de sélection ne peut pas être à la fois contrôlée et non contrôlée.
-- Une liste de sélection ne peut pas basculer entre un statut contrôlé et non contrôlé au cours de son existence.
-- Une liste de sélection contrôlée doit avoir un gestionnaire `onChange` qui met à jour sa valeur de façon synchrone.
+- Une liste de sélection ne peut pas basculer entre un statut contrôlé et non contrôlé entre son montage et son démontage.
+- Une liste de sélection contrôlée doit avoir en plus de `value` un gestionnaire `onChange` qui met à jour sa valeur de façon synchrone.
 
 ---
 
@@ -80,7 +80,7 @@ Ces props de `<select>` sont compatibles avec les listes de sélection contrôl�
 
 ### Afficher une liste de sélection d'options {/*displaying-a-select-box-with-options*/}
 
-Utiliser un `<select>` avec une série de composants `<option>` à l'intérieur pour afficher une liste de sélection.  Donnez une `value` à chaque `<option>` pour représenter les données qui seront soumises avec le formulaire.
+Utilisez un `<select>` avec une série de composants `<option>` à l'intérieur pour afficher une liste de sélection.  Donnez une `value` à chaque `<option>` pour représenter les données qui seront soumises avec le formulaire.
 
 <Sandpack>
 
@@ -182,7 +182,7 @@ select { margin: 5px; }
 
 <Pitfall>
 
-Contrairement à HTML, passer un attribut `selected` à une `<option>` individuelle n'est pas pris en charge.
+Contrairement à HTML, passer un attribut `selected` à une `<option>` individuelle n'est pas autorisé.
 
 </Pitfall>
 
@@ -190,7 +190,7 @@ Contrairement à HTML, passer un attribut `selected` à une `<option>` individue
 
 ### Autoriser la sélection multiple {/*enabling-multiple-selection*/}
 
-Passez `multiple={true}` au `<select>` pour permettre à l'utilisateur de sélectionner plusieurs options.  Dans ce cas, si vous précisez aussi une `defaultValue` pour les options initialement sélectionnées, il doit s'agir d'un tableau.
+Passez `multiple={true}` au `<select>` pour permettre à l'utilisateur de sélectionner plusieurs options.  Dans ce cas, si vous précisez aussi une `defaultValue` pour les options initialement sélectionnées (ou une `value` pour les options actuellement sélectionnées), il doit s'agir d'un tableau.
 
 <Sandpack>
 
@@ -237,18 +237,22 @@ export default function EditPost() {
     const form = e.target;
     const formData = new FormData(form);
 
-    // Vous pouvez passer formData directement comme corps de la requête fetch :
+    // Vous pouvez passer formData directement comme
+    // corps de la requête fetch :
     fetch('/some-api', { method: form.method, body: formData });
 
-    // Vous pouvez générer une URL sur cette base, comme le fait
-    // par défaut le navigateur :
+    // Vous pouvez générer une URL sur cette base, comme
+    // le fait par défaut le navigateur :
     console.log(new URLSearchParams(formData).toString());
 
-    // Ou vous pouvez travailler avec comme un objet simple :
+    // Ou vous pouvez travailler avec comme un objet
+    // simple :
     const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson); // (!) Ça ne gère pas les sélections multiples
+    // (!) Ça ne gère pas les sélections multiples
+    console.log(formJson);
 
-    // Ou vous pouvez obtenir un tableau de paires clé-value.
+    // Ou vous pouvez obtenir un tableau de paires
+    // clé-valeur.
     console.log([...formData.entries()]);
   }
 
@@ -291,7 +295,7 @@ label { margin-bottom: 20px; }
 
 <Note>
 
-Donnez un `name` à votre `<select>`, par exemple `<select name="selectedFruit" />`. Le `name` que vous avez spécifié sera utilisé comme clé dans les données du formulaire, par exemple `{ selectedFruit: "orange" }`.
+Donnez un `name` à votre `<select>`, par exemple `<select name="selectedFruit" />`. Le `name` que vous avez spécifié sera utilisé comme clé dans les données du formulaire, par exemple `{ selectedFruit: "orange" }`.
 
 Si vous utilisez `<select multiple={true}>`, le [`FormData`](https://developer.mozilla.org/fr/docs/Web/API/FormData) que vous récupèrerez du formulaire incluera chaque valeur sélectionnée comme une paire clé-valeur distincte.  Examinez attentivement les messages en console de l'exemple ci-dessus.
 
@@ -307,7 +311,7 @@ Par défaut, *n'importe quel* `<button>` à l'intérieur d'un `<form>` va le sou
 
 ### Contrôler une liste de sélection avec une variable d'état {/*controlling-a-select-box-with-a-state-variable*/}
 
-Une liste de sélection comme `<select />` est *non contrôlée*. Même si vous [passez une valeur initiale](#providing-an-initially-selected-option) comme `<select defaultValue="orange" />`, votre JSX ne spécifie que la valeur initiale, il ne contrôle pas la valeur actuelle.
+Une liste de sélection comme `<select />` est *non contrôlée*. Même si vous [passez une valeur initiale](#providing-an-initially-selected-option) comme `<select defaultValue="orange" />`, votre JSX ne spécifie que la ou les valeurs initiales, il ne contrôle pas la ou les valeurs actuelles.
 
 **Pour afficher une liste de sélection _contrôlée_, passez une prop `value` à `<select />`.** React forcera la liste de sélection à toujours avoir la valeur que vous avez passée. Généralement, vous contrôlerez une liste de sélection en déclarant une [variable d'état](/reference/react/useState) :
 
@@ -386,6 +390,6 @@ select { margin-bottom: 10px; display: block; }
 
 **Si vous passez `value` sans `onChange`, il sera impossible de sélectionner une option.** Lorsque vous contrôlez une liste de sélection en passant une `value`, vous *forcez* la liste de sélection à toujours avoir la valeur que vous avez passée. Donc, si vous passez une variable d'état comme `value` mais oubliez de mettre à jour cette variable d'état de manière synchrone au sein du gestionnaire d'événement `onChange`, React réinitialisera la liste de sélection, après tentative de changement, à la `value` que vous avez spécifiée.
 
-Contrairement à HTML, vous n'avez pas le droit de passer un attribut `selected` aux composants `<option>`
+Contrairement à HTML, passer un attribut `selected` aux composants `<option>` n'est pas autorisé.
 
 </Pitfall>
