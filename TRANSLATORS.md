@@ -116,6 +116,14 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react/createRef"><code>createRef</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/isValidElement"><code>isValidElement</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/PureComponent"><code>PureComponent</code></a></li>
+          <li><a href="https://fr.react.dev/community">Communauté</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/community/conferences">Conférences React</a> (partiel)</li>
+          <li><a href="https://fr.react.dev/community/meetups">Meetups React</a> (partiel)</li>
+          <li><a href="https://fr.react.dev/community/videos">Vidéos React</a> (partiel)</li>
+          <li><a href="https://fr.react.dev/community/team">Rencontrez l’équipe</a></li>
+          <li><a href="https://fr.react.dev/community/docs-contributors">Contributeurs aux docs</a></li>
+          <li><a href="https://fr.react.dev/community/acknowledgements">Remerciements</a></li>
+          <li><a href="https://fr.react.dev/blog">Blog</a> (accueil)</li>
         </ul>
       </td>
     </tr>
@@ -1145,4 +1153,4 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
 
 ---
 
-_Dernière mise à jour : 05/07/2023_
+_Dernière mise à jour : 30/08/2023_

@@ -12,31 +12,31 @@
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "React Conferences",
+          "title": "Conférences",
           "path": "/community/conferences"
         },
         {
-          "title": "React Meetups",
+          "title": "Meetups React",
           "path": "/community/meetups"
         },
         {
-          "title": "React Videos",
+          "title": "Vidéos React",
           "path": "/community/videos"
         },
         {
-          "title": "Meet the Team",
+          "title": "Rencontrez l’équipe",
           "path": "/community/team"
         },
         {
-          "title": "Docs Contributors",
+          "title": "Contributeurs aux docs",
           "path": "/community/docs-contributors"
         },
         {
-          "title": "Acknowledgements",
+          "title": "Remerciements",
           "path": "/community/acknowledgements"
         },
         {
-          "title": "Versioning Policy",
+          "title": "Politique de versions",
           "path": "/community/versioning-policy"
         }
       ]

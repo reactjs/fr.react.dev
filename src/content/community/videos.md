@@ -1,10 +1,10 @@
 ---
-title: React Videos
+title: Vidéos React
 ---
 
 <Intro>
 
-Videos dedicated to the discussion of React and the React ecosystem.
+Des vidéos centrées sur React et son écosystème.
 
 </Intro>
 

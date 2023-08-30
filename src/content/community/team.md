@@ -1,18 +1,18 @@
 ---
-title: "Meet the Team"
+title: Rencontrez l’équipe
 ---
 
 <Intro>
 
-React development is led by a dedicated team working full time at Meta. It also receives contributions from people all over the world.
+Le développement de React est piloté par une équipe dédiée travaillant à temps plein chez Meta.  Il reçoit également des contributions par des personnes du monde entier.
 
 </Intro>
 
-## React Core {/*react-core*/}
+## Équipe noyau (React Core) {/*react-core*/}
 
-The React Core team members work full time on the core component APIs, the engine that powers React DOM and React Native, React DevTools, and the React documentation website.
+Les membres de l'équipe noyau travaillent à temps plein sur les API de composants noyaux, le moteur qui propulse React DOM et React Native, les outils de développement React le site de la documentation de React.
 
-Current members of the React team are listed in alphabetical order below.
+Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphabétique.
 
 <TeamMember name="Andrew Clark" permalink="andrew-clark" photo="/images/team/acdlite.jpg" github="acdlite" twitter="acdlite" title="Engineer at Vercel">
     Andrew got started with web development by making sites with WordPress, and eventually tricked himself into doing JavaScript. His favorite pastime is karaoke. Andrew is either a Disney villain or a Disney princess, depending on the day.
@@ -27,7 +27,7 @@ Current members of the React team are listed in alphabetical order below.
 </TeamMember>
 
 <TeamMember name="Dave McCabe" permalink="dave-mccabe" photo="/images/team/dave-mccabe.jpg" github="davidmccabe" twitter="mcc_abe" title="Engineer at Meta">
-    An engineer by trade and outdoorsman at heart, David has long been an innovator in the field of programming-while-sunbathing. Besides surprising his colleagues with unique outdoor video-call backgrounds, he enjoys playing guitar (in sunlit meadows, of course) and martial arts (still indoors, gotta work on that). 
+    An engineer by trade and outdoorsman at heart, David has long been an innovator in the field of programming-while-sunbathing. Besides surprising his colleagues with unique outdoor video-call backgrounds, he enjoys playing guitar (in sunlit meadows, of course) and martial arts (still indoors, gotta work on that).
 </TeamMember>
 
 <TeamMember name="Eli White" permalink="eli-white" photo="/images/team/eli-white.jpg" github="TheSavior" twitter="Eli_White" title="Engineering Manager at Meta">
@@ -59,7 +59,7 @@ Current members of the React team are listed in alphabetical order below.
 </TeamMember>
 
 <TeamMember name="Luna Wei" permalink="luna-wei" photo="/images/team/luna-wei.jpg" github="lunaleaps" twitter="lunaleaps" title="Engineer at Meta">
-    Luna first learnt the fundamentals of python at the age of 6 from her father. Since then, she has been unstoppable. Luna aspires to be a gen z, and the road to success is paved with environmental advocacy, urban gardening and lots of quality time with her Voo-Doo’d (as pictured). 
+    Luna first learnt the fundamentals of python at the age of 6 from her father. Since then, she has been unstoppable. Luna aspires to be a gen z, and the road to success is paved with environmental advocacy, urban gardening and lots of quality time with her Voo-Doo’d (as pictured).
 </TeamMember>
 
 <TeamMember name="Matt Carroll" permalink="matt-carroll" photo="/images/team/matt-carroll.png" github="mattcarrollcode" twitter="mattcarrollcode" title="Developer Advocate at Meta">
@@ -114,6 +114,6 @@ Current members of the React team are listed in alphabetical order below.
     Yuzhi studied Computer Science in school. She liked the instant gratification of seeing code come to life without having to physically be in a laboratory. Now she’s a manager in the React org. Before management, she used to work on the Relay data fetching framework. In her spare time, Yuzhi enjoys optimizing her life via gardening and home improvement projects.
 </TeamMember>
 
-## Past contributors {/*past-contributors*/}
+## Contributeurs historiques {/*past-contributors*/}
 
-You can find the past team members and other people who significantly contributed to React over the years on the [acknowledgements](/community/acknowledgements) page.
+Vous trouverez une liste des membres passés de l'équipe et d'autres personnes ayant significativement contribué à React au fil des ans dans la page des [remerciements](/community/acknowledgements).
