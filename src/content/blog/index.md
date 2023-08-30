@@ -1,10 +1,10 @@
 ---
-title: React Blog
+title: Blog React
 ---
 
 <Intro>
 
-This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first. You can also follow the [@reactjs](https://twitter.com/reactjs) account on Twitter, but you won’t miss anything essential if you only read this blog.
+Ce blog est la source officielle des mises à jour par l'équipe React.  Toute annonce importante, y compris les notes de versions et les avertissements de dépréciation, sera faite ici en premier.  Vous pouvez aussi suivre le compte [@reactjs](https://twitter.com/reactjs) sur Twitter, mais vous êtes sûr·e de ne rien rater d'important si vous ne lisez que ce blog.
 
 </Intro>
 
@@ -62,14 +62,14 @@ The React team is excited to share a few updates:
 
 ---
 
-### All release notes {/*all-release-notes*/}
+### Toutes les notes de versions {/*all-release-notes*/}
 
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) file in the React repository, as well as on the [Releases](https://github.com/facebook/react/releases) page.
+Toute les versions de React ne méritent pas forcément leur propre billet de blog, mais vous pouvez trouver un *changelog* détaillé pour chaque version dans le fichier [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) du dépôt React, ainsi que dans sa page [Releases](https://github.com/facebook/react/releases).
 
 ---
 
-### Older posts {/*older-posts*/}
+### Billets plus anciens {/*older-posts*/}
 
-See the [older posts.](https://reactjs.org/blog/all.html)
+Consultez les [anciens billets](https://legacy.reactjs.org/blog/all.html/).
 
 <div className="h-12"></div>

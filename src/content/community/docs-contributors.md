@@ -1,42 +1,48 @@
 ---
-title: Docs Contributors
+title: Contributeurs aux docs
 ---
 
 <Intro>
 
-React documentation is written and maintained by the [React team](/community/team) and [external contributors.](https://github.com/reactjs/reactjs.org/graphs/contributors) On this page, we'd like to thank a few people who've made significant contributions to this site.
+La documentation de React est écrite et maintenue par [l'équipe React](/community/team) et des [contributeurs externes](https://github.com/reactjs/react.dev/graphs/contributors). Sur cette page, nous aimerions remercier les personnes qui ont significativement contribué à ce site.
 
 </Intro>
 
-## Content {/*content*/}
+## Contenu {/*content*/}
 
-* [Rachel Nabors](https://twitter.com/RachelNabors): editing, writing, illustrating
-* [Dan Abramov](https://twitter.com/dan_abramov): writing, curriculum design
-* [Sylwia Vargas](https://twitter.com/SylwiaVargas): example code
-* [Rick Hanlon](https://twitter.com/rickhanlonii): writing
-* [David McCabe](https://twitter.com/mcc_abe): writing
-* [Sophie Alpert](https://twitter.com/sophiebits): writing
-* [Pete Hunt](https://twitter.com/floydophone): writing
-* [Andrew Clark](https://twitter.com/acdlite): writing
-* [Matt Carroll](https://twitter.com/mattcarrollcode): editing, writing
-* [Natalia Tepluhina](https://twitter.com/n_tepluhina): reviews, advice
-* [Sebastian Markbåge](https://twitter.com/sebmarkbage): feedback
+* [Rachel Nabors](https://twitter.com/RachelNabors) : révisions, rédaction, illustrations
+* [Dan Abramov](https://twitter.com/dan_abramov) : rédaction, conception du curriculum
+* [Sylwia Vargas](https://twitter.com/SylwiaVargas) : codes d'exemple
+* [Rick Hanlon](https://twitter.com/rickhanlonii) : rédaction
+* [David McCabe](https://twitter.com/mcc_abe) : rédaction
+* [Sophie Alpert](https://twitter.com/sophiebits) : rédaction
+* [Pete Hunt](https://twitter.com/floydophone) : rédaction
+* [Andrew Clark](https://twitter.com/acdlite) : rédaction
+* [Matt Carroll](https://twitter.com/mattcarrollcode) : révisions, rédaction
+* [Natalia Tepluhina](https://twitter.com/n_tepluhina) : révisions, avis
+* [Sebastian Markbåge](https://twitter.com/sebmarkbage) : retours
 
 ## Design {/*design*/}
 
-* [Dan Lebowitz](https://twitter.com/lebo): site design
-* [Razvan Gradinar](https://dribbble.com/GradinarRazvan): sandbox design
-* [Maggie Appleton](https://maggieappleton.com/): diagram system
-* [Sophie Alpert](https://twitter.com/sophiebits): color-coded explanations
+* [Dan Lebowitz](https://twitter.com/lebo) : design du site
+* [Razvan Gradinar](https://dribbble.com/GradinarRazvan) : design des bacs à sable
+* [Maggie Appleton](https://maggieappleton.com/) : système de diagrammes
+* [Sophie Alpert](https://twitter.com/sophiebits) : codage par couleurs des explications
 
-## Development {/*development*/}
+## Développement {/*development*/}
 
-* [Jared Palmer](https://twitter.com/jaredpalmer): site development
-* [ThisDotLabs](https://www.thisdot.co/) ([Dane Grant](https://twitter.com/danecando), [Dustin Goodman](https://twitter.com/dustinsgoodman)): site development
-* [CodeSandbox](https://codesandbox.io/) ([Ives van Hoorne](https://twitter.com/CompuIves), [Alex Moldovan](https://twitter.com/alexnmoldovan), [Jasper De Moor](https://twitter.com/JasperDeMoor), [Danilo Woznica](https://twitter.com/danilowoz)): sandbox integration
-* [Dan Abramov](https://twitter.com/dan_abramov): site development
-* [Rick Hanlon](https://twitter.com/rickhanlonii): site development
-* [Harish Kumar](https://www.strek.in/): development and maintenance
-* [Luna Ruan](https://twitter.com/lunaruan): sandbox improvements
+* [Jared Palmer](https://twitter.com/jaredpalmer) : développement du site
+* [ThisDotLabs](https://www.thisdot.co/) ([Dane Grant](https://twitter.com/danecando) et [Dustin Goodman](https://twitter.com/dustinsgoodman)) : développement du site
+* [CodeSandbox](https://codesandbox.io/) ([Ives van Hoorne](https://twitter.com/CompuIves), [Alex Moldovan](https://twitter.com/alexnmoldovan), [Jasper De Moor](https://twitter.com/JasperDeMoor) et [Danilo Woznica](https://twitter.com/danilowoz)) : intégration des bacs à sable
+* [Dan Abramov](https://twitter.com/dan_abramov) : développement du site
+* [Rick Hanlon](https://twitter.com/rickhanlonii) : développement du site
+* [Harish Kumar](https://www.strek.in/) : development et maintenance
+* [Luna Ruan](https://twitter.com/lunaruan) : améliorations des bacs à sable
 
-We'd also like to thank countless alpha testers and community members who gave us feedback along the way.
+Nous aimerions aussi remercier les innombrables testeurs de la première heure et membres de la communautés qui nous ont fourni des retours tout au long de notre travail.
+
+## Traduction {/*translation*/}
+
+Si vous bénéficiez d’une traduction française de qualité et à jour de la documentation officielle React, c’est grâce au travail bénévole d’un nombre significatif de traducteur·rice·s, qui dans certains cas ont fait là leur premier travail de traduction, voire leur première contribution sur GitHub.
+
+[Christophe Porteneuve](https://twitter.com/porteneuve) pilote l’effort de traduction française ; vous pourrez trouver tout le détail des personnes ayant contribué à la traduction et de leurs travaux respectifs dans [ce document](https://github.com/reactjs/fr.react.dev/blob/main/TRANSLATORS.md). Mille merci à elles !
