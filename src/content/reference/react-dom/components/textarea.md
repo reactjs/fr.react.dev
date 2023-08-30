@@ -20,7 +20,7 @@ Le  [composant natif `<textarea>` du navigateur](https://developer.mozilla.org/f
 
 ### `<textarea>` {/*textarea*/}
 
-Pour afficher une zone de texte, utilisez le [composant natif`<textarea>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea).
+Pour afficher une zone de texte, utilisez le [composant natif `<textarea>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea).
 
 ```js
 <textarea name="postContent" />
@@ -199,10 +199,12 @@ export default function EditPost() {
     const form = e.target;
     const formData = new FormData(form);
 
-    // Vous pouvez passer formData directement comme corps de la requête fetch :
+    // Vous pouvez passer formData directement comme
+    // corps de la requête fetch :
     fetch('/some-api', { method: form.method, body: formData });
 
-    // Ou vous pouvez travailler avec comme un objet simple :
+    // Ou vous pouvez travailler avec comme un
+    // objet simple :
     const formJson = Object.fromEntries(formData.entries());
     console.log(formJson);
   }
@@ -244,7 +246,7 @@ Donnez un `name` à votre `<textarea>`, par exemple `<textarea name="postContent
 
 <Pitfall>
 
-Par défaut, *n'importe quel* `<button>` à l'intérieur d'un `<form>` va le soumettre. Cela peut être surprenant ! Si vous avez votre propre composant React `Button`, envisagez de retourner [`<button type="button">`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input/button) au lieu de `<button>`. Ensuite, pour être explicite, utilisez `<button type="submit">` pour les boutons qui *sont* censés soumettre le formulaire.
+Par défaut, *n'importe quel* `<button>` à l'intérieur d'un `<form>` va le soumettre. Cela peut être surprenant ! Si vous avez votre propre composant React `Button`, envisagez de renvoyer [`<button type="button">`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input/button) au lieu de `<button>`. Ensuite, pour être explicite, utilisez `<button type="submit">` pour les boutons qui *sont* censés soumettre le formulaire.
 
 </Pitfall>
 
