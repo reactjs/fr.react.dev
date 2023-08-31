@@ -61,7 +61,7 @@ En général, vous renverrez l'élément depuis votre composant, ou en ferez l'e
 
 * Quand vous utilisez JSX, **vous devez faire démarrer le nom de la balise par une lettre majuscule afin d'afficher votre propre composant**.  En d'autres termes, `<Something />` est équivalent à `createElement(Something)`, mais `<something />` (minuscules) est équivalent à `createElement('something')` (remarquez qu'il s'agit ici d'une chaîne de caractères, qui sera donc traitée comme une balise HTML native).
 
-* Vous ne devriez **passer les enfants comme arguments multiples à `createElement` que s'ils sont statiquement connus**, comme par exemple `createElement('h1', {}, child1, child2, child3)`. Si vos enfants sont dynamiques, passez leur tableau entier comme troisième argument : `createElement('ul', {}, listItems)`. Ça garantir que React vous [avertira en cas de `key` manquantes](/learn/rendering-lists#keeping-list-items-in-order-with-key) lors de listes dynamiques.  C'est inutile pour les listes statiques puisque leur ordre et leur taille ne changent jamais.
+* Vous ne devriez **passer les enfants comme arguments multiples à `createElement` que s'ils sont statiquement connus**, comme par exemple `createElement('h1', {}, child1, child2, child3)`. Si vos enfants sont dynamiques, passez leur tableau entier comme troisième argument : `createElement('ul', {}, listItems)`. Ça garantit que React vous [avertira en cas de `key` manquantes](/learn/rendering-lists#keeping-list-items-in-order-with-key) lors de listes dynamiques.  C'est inutile pour les listes statiques puisque leur ordre et leur taille ne changent jamais.
 
 ---
 
