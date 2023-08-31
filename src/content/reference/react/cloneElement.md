@@ -4,13 +4,13 @@ title: cloneElement
 
 <Pitfall>
 
-Il est rare de recourir à `cloneElement`, qui est susceptible de fragiliser votre code. [Découvrez les alternatives](#alternatives).
+Il est rare de recourir à `cloneElement`, car cette API est susceptible de fragiliser votre code. [Découvrez les alternatives](#alternatives).
 
 </Pitfall>
 
 <Intro>
 
-`cloneElement` vous permet de vous permet de créer un élément React en vous basant sur un élément existant.
+`cloneElement` vous permet de créer un élément React en vous basant sur un élément existant.
 
 ```js
 const clonedElement = cloneElement(element, props, ...children)
@@ -26,7 +26,7 @@ const clonedElement = cloneElement(element, props, ...children)
 
 ### `cloneElement(element, props, ...children)` {/*cloneelement*/}
 
-Appelez `cloneElement` pour créer un élément React basé sur  `element`, mais avec des `props` et `children` distincts :
+Appelez `cloneElement` pour créer un élément React basé sur  `element`, mais avec des `props` (y compris `children`) distincts :
 
 ```js
 import { cloneElement } from 'react';
@@ -40,25 +40,25 @@ const clonedElement = cloneElement(
   'Au revoir'
 );
 
-console.log(clonedElement); // <Row title="Greeting">Au revoir</Row>
+console.log(clonedElement); // <Row title="Greeting" isHighlighted={true}>Au revoir</Row>
 ```
 
 [Voir d'autres exemples ci-dessous](#usage).
 
 #### Paramètres {/*parameters*/}
 
-* `element` : l'argument `element` doit être un élément React valide. Il peut par exemple s'agir d'un nœud JSX tel que `<Something />`, du résultat d'un appel à [`createElement`](/reference/react/createElement) ou du résultat d'un autre appel à `cloneElement`.
+* `element` : l'argument `element` doit être un élément React valide. Il peut par exemple s'agir d'un nœud JSX tel que `<Something />` ou du résultat d'un appel à [`createElement`](/reference/react/createElement) voire d'un autre appel à `cloneElement`.
 
-* `props` : l'argument `props` doit être soit un objet, soit `null`. Si vous passez `null`, l'élément cloné conservera toutes les `element.props` d'origine. Dans le cas contraire, pour chaque prop de l'objet `props`, l'élément renvoyé « favorisera » la valeur issue de `props` plutôt que celle issue d'`element.props`. Le reste des props seront rempleis à partir des `element.props` d'origine. Si vous passez `props.key` ou `props.ref`, elles remplaceront également celles d'origine.
+* `props` : l'argument `props` doit être soit un objet, soit `null`. Si vous passez `null`, l'élément cloné conservera toutes les `element.props` d'origine. Dans le cas contraire, pour chaque prop de l'objet `props`, l'élément renvoyé « favorisera » la valeur issue de `props` plutôt que celle issue d'`element.props`. Le reste des props seront remplies à partir des `element.props` d'origine. Si vous passez `props.key` ou `props.ref`, elles remplaceront également celles d'origine.
 
-* `...children` **optionels** : un nombre quelconque de nœuds enfants. Il peut s'agir de n'importe quel nœuds React, y compris des éléments React, des chaînes de caractères, des nombres, des [portails](/reference/react-dom/createPortal), des nœuds vides (`null`, `undefined`, `true` et `false`) et des tableaux de nœuds React. Si vous ne passez aucun argument `...children`, les `element.props.children` d'origine seront préservés.
+* `...children` **optionels** : un nombre quelconque de nœuds enfants. Il peut s'agir de n'importe quels nœuds React, y compris des éléments React, des chaînes de caractères, des nombres, des [portails](/reference/react-dom/createPortal), des nœuds vides (`null`, `undefined`, `true` et `false`) et des tableaux de nœuds React. Si vous ne passez aucun argument `...children`, les `element.props.children` d'origine seront préservés.
 
 #### Valeur renvoyée {/*returns*/}
 
-`cloneElement` renvoie un objet d'élément React avec quelques propriétés :
+`cloneElement` renvoie un objet descripteur d'élément React avec quelques propriétés :
 
 * `type` : identique à `element.type`.
-* `props` : le résultat d'une fusion superficielle de `element.props` avec les `props` prioritaires que vous auriez passées.
+* `props` : le résultat d'une fusion superficielle de `element.props` avec les `props` prioritaires que vous auriez éventuellement passées.
 * `ref` : la `element.ref` d'origine, à moins qu'elle n'ait été remplacée par `props.ref`.
 * `key` : la `element.key` d'origine, à moins qu'elle n'ait été remplacée par `props.key`.
 
@@ -78,7 +78,7 @@ En général, vous renverrez l'élément depuis votre composant, ou en ferez l'e
 
 ### Surcharger les props d'un élément {/*overriding-props-of-an-element*/}
 
-Pour surcharger les props d'un <CodeStep step={1}>élément React</CodeStep>, passez-le à `cloneElement` avec les <CodeStep step={2}>props que vous voulez remplacer</CodeStep> :
+Pour surcharger les props d'un <CodeStep step={1}>élément React</CodeStep>, passez-le à `cloneElement`, conjointement aux <CodeStep step={2}>props que vous souhaitez remplacer</CodeStep> :
 
 ```js [[1, 5, "<Row title=\\"Greeting\\" />"], [2, 6, "{ isHighlighted: true }"], [3, 4, "clonedElement"]]
 import { cloneElement } from 'react';
@@ -94,7 +94,7 @@ Ici, l'<CodeStep step={3}>élément cloné</CodeStep> sera `<Row title="Greeting
 
 **Déroulons un exemple afin de comprendre en quoi c'est utile.**
 
-Imaginons qu'un composant `List` affiche ses [`children`](/learn/passing-props-to-a-component#passing-jsx-as-children) comme une liste de ligne sélectionnables avec un bouton « Suivant » qui modifie la ligne sélectionnée. Le composant `List` doit pouvoir afficher la `Row` sélectionnée d'une façon différente, il clone donc chaque enfant `<Row>` qu'il reçoit, et y ajoute une prop supplémentaire `isHighlighted: true` ou `isHighlighted: false` :
+Imaginons qu'un composant `List` affiche ses [`children`](/learn/passing-props-to-a-component#passing-jsx-as-children) comme une liste de lignes sélectionnables avec un bouton « Suivant » qui modifie la ligne sélectionnée. Le composant `List` doit pouvoir afficher la `Row` sélectionnée d'une façon différente, il clone donc chaque enfant `<Row>` qu'il reçoit, et y ajoute une prop supplémentaire `isHighlighted: true` ou `isHighlighted: false` :
 
 ```js {6-8}
 export default function List({ children }) {
@@ -236,7 +236,7 @@ En résumé, la `List` a cloné les éléments `<Row />` qu'elle a reçus et leu
 
 <Pitfall>
 
-Le clonage des nœuds enfants complexifie le flux de données dans votre appli. Essayez plutôt une des [alternatives](#alternatives).
+Le clonage des nœuds enfants complexifie le flux de données dans votre appli : vous devriez donc plutôt essayer une des [alternatives](#alternatives).
 
 </Pitfall>
 
@@ -259,7 +259,7 @@ export default function List({ items, renderItem }) {
       })}
 ```
 
-La prop `renderItem` est appelée « prop de rendu » parce que c'est une prop indiquant comment faire le rendu de quelque chose.  Vous pouvez par exemple passer une implémentation de `renderItem` qui produit une `<Row>` avec la valeur `isHighlighted` reçue :
+La prop `renderItem` est appelée « prop de rendu » parce que c'est une prop indiquant *comment* faire le rendu de quelque chose.  Vous pouvez par exemple passer une implémentation de `renderItem` qui produit une `<Row>` avec la valeur `isHighlighted` reçue :
 
 ```js {3,7}
 <List
@@ -403,7 +403,7 @@ Vous pourriez par exemple appeler [`createContext`](/reference/react/createConte
 export const HighlightContext = createContext(false);
 ```
 
-Votre composant `List` puet enrober chaque élément qu'il affiche dans un fournisseur de `HighlightContext` :
+Votre composant `List` peut enrober chaque élément qu'il affiche dans un fournisseur de `HighlightContext` :
 
 ```js {8,10}
 export default function List({ items, renderItem }) {
@@ -420,7 +420,7 @@ export default function List({ items, renderItem }) {
       })}
 ```
 
-Avec cette approche, `Row` n'a même pas besoin de recevoir une prop `isHighlighted`. Il la lit plutôt depuis le contexte :
+Avec cette approche, `Row` n'a même pas besoin de recevoir une prop `isHighlighted`. Il la lit plutôt directement depuis le contexte :
 
 ```js Row.js {2}
 export default function Row({ title }) {
@@ -690,4 +690,4 @@ button {
 
 </Sandpack>
 
-Cette approche est particulièrement utile lorsque vous voulez réutiliser cette logique dans des composants distincts.
+Cette approche est particulièrement utile lorsque vous voulez réutiliser une même logique dans des composants distincts.
