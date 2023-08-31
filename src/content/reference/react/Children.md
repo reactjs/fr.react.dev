@@ -196,7 +196,7 @@ Renvoie un tableau plat des éléments de `children`.
 
 ### Transformer les nœuds enfants {/*transforming-children*/}
 
-To transform the children JSX that your component [receives as the `children` prop,](/learn/passing-props-to-a-component#passing-jsx-as-children) call `Children.map`:
+Pour transformer les enfants JSX que votre composant [reçoit dans sa prop `children`](/learn/passing-props-to-a-component#passing-jsx-as-children), appelez `Children.map` :
 
 ```js {6,10}
 import { Children } from 'react';
@@ -214,33 +214,33 @@ function RowList({ children }) {
 }
 ```
 
-In the example above, the `RowList` wraps every child it receives into a `<div className="Row">` container. For example, let's say the parent component passes three `<p>` tags as the `children` prop to `RowList`:
+Dans l'exemple ci-dessus, la `RowList` enrobe chaque enfant qu'elle reçoit dans un conteneur `<div className="Row">`. Disons par exemple que le composant parent passe trois balises `<p>` dans la prop `children` de `RowList` :
 
 ```js
 <RowList>
-  <p>This is the first item.</p>
-  <p>This is the second item.</p>
-  <p>This is the third item.</p>
+  <p>Voici le premier élément.</p>
+  <p>Voici le deuxième.</p>
+  <p>Et voici le troisième.</p>
 </RowList>
 ```
 
-Then, with the `RowList` implementation above, the final rendered result will look like this:
+Dans ce cas, avec l'implémentation de `RowList` ci-dessus, le rendu final ressemblera à ceci :
 
 ```js
 <div className="RowList">
   <div className="Row">
-    <p>This is the first item.</p>
+    <p>Voici le premier élément.</p>
   </div>
   <div className="Row">
-    <p>This is the second item.</p>
+    <p>Voici le deuxième.</p>
   </div>
   <div className="Row">
-    <p>This is the third item.</p>
+    <p>Et voici le troisième.</p>
   </div>
 </div>
 ```
 
-`Children.map` is similar to [to transforming arrays with `map()`.](/learn/rendering-lists) The difference is that the `children` data structure is considered *opaque.* This means that even if it's sometimes an array, you should not assume it's an array or any other particular data type. This is why you should use `Children.map` if you need to transform it.
+`Children.map` ressemble à une [transformation de tableaux avec `map()`](/learn/rendering-lists).  La différence vient de ce que la structure de données `children` est considérée *opaque*.  Ça signifie que même s'il s'agit parfois d'un tableau, vous ne devriez pas supposer qu'elle en soit effectivement un, ou de n'importe quel autre type particulier d'ailleurs.  C'est pourquoi vous devriez utiliser `Children.map` si vous avez besoin de la transformer.
 
 <Sandpack>
 
@@ -250,9 +250,9 @@ import RowList from './RowList.js';
 export default function App() {
   return (
     <RowList>
-      <p>This is the first item.</p>
-      <p>This is the second item.</p>
-      <p>This is the third item.</p>
+      <p>Voici le premier élément.</p>
+      <p>Voici le deuxième.</p>
+      <p>Et voici le troisième.</p>
     </RowList>
   );
 }
@@ -293,24 +293,24 @@ export default function RowList({ children }) {
 
 <DeepDive>
 
-#### Why is the children prop not always an array? {/*why-is-the-children-prop-not-always-an-array*/}
+#### Pourquoi la prop `children` n'est-elle pas un tableau ? {/*why-is-the-children-prop-not-always-an-array*/}
 
-In React, the `children` prop is considered an *opaque* data structure. This means that you shouldn't rely on how it is structured. To transform, filter, or count children, you should use the `Children` methods.
+Dans React, la prop `children` est vue comme une structure de données *opaque*. Ça signifie que vous ne devriez pas dépendre de sa structure effective.  Pour transformer, filtrer ou compter les nœuds enfants, vous devriez utiliser les méthodes de `Children`.
 
-In practice, the `children` data structure is often represented as an array internally. However, if there is only a single child, then React won't create an extra array since this would lead to unnecessary memory overhead. As long as you use the `Children` methods instead of directly introspecting the `children` prop, your code will not break even if React changes how the data structure is actually implemented.
+En pratique, la structure de données `children` est souvent représentée en interne par un tableau.  Ceci dit, s'il n'y a qu'un seul enfant, React ne créera pas de tableau superflu afin de ménager la mémoire. Tant que vous utilisez les méthodes de `Children` au lieu de manipuler ou inspecter directement la prop `children`, votre code ne cassera pas, même si React modifie l'implémentation effective de la structure de données.
 
-Even when `children` is an array, `Children.map` has useful special behavior. For example, `Children.map` combines the [keys](/learn/rendering-lists#keeping-list-items-in-order-with-key) on the returned elements with the keys on the `children` you've passed to it. This ensures the original JSX children don't "lose" keys even if they get wrapped like in the example above.
+Même lorsque `children` est bien un tableau, `Children.map` a des particularités utiles. Par exemple, `Children.map` combine les [clés](/learn/rendering-lists#keeping-list-items-in-order-with-key) des éléments renvoyés avec celles des `children` que vous lui aviez passés. Ça permet de garantir que les enfants JSX d'origine ne « perdent » pas leurs clés même s'ils sont enrobés comme dans l'exemple ci-dessus.
 
 </DeepDive>
 
 <Pitfall>
 
-The `children` data structure **does not include rendered output** of the components you pass as JSX. In the example below, the `children` received by the `RowList` only contains two items rather than three:
+La structure de données `children` **n'inclut pas le résultat du rendu** des composants que vous passez en JSX.  Dans l'exemple ci-dessous, les `children` reçus par la `RowList` contiennent deux éléments, pas trois :
 
-1. `<p>This is the first item.</p>`
+1. `<p>Voici le premier élément.</p>`
 2. `<MoreRows />`
 
-This is why only two row wrappers are generated in this example:
+C'est pourquoi seulement deux enrobages sont générés dans cet exemple :
 
 <Sandpack>
 
@@ -320,7 +320,7 @@ import RowList from './RowList.js';
 export default function App() {
   return (
     <RowList>
-      <p>This is the first item.</p>
+      <p>Voici le premier élément.</p>
       <MoreRows />
     </RowList>
   );
@@ -329,8 +329,8 @@ export default function App() {
 function MoreRows() {
   return (
     <>
-      <p>This is the second item.</p>
-      <p>This is the third item.</p>
+      <p>Voici le deuxième.</p>
+      <p>Et voici le troisième.</p>
     </>
   );
 }
@@ -369,7 +369,7 @@ export default function RowList({ children }) {
 
 </Sandpack>
 
-**There is no way to get the rendered output of an inner component** like `<MoreRows />` when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+**Il n'y a aucun moyen d'obtenir le résultat du rendu d'un composant imbriqué** tel que `<MoreRows />` lorsqu'on manipule `children`.  C'est pourquoi [il est généralement préférable d'utiliser une des solutions alternatives](#alternatives).
 
 </Pitfall>
 
@@ -377,7 +377,7 @@ export default function RowList({ children }) {
 
 ### Exécuter du code pour chaque enfant {/*running-some-code-for-each-child*/}
 
-Call `Children.forEach` to iterate over each child in the `children` data structure. It does not return any value and is similar to the [array `forEach` method.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) You can use it to run custom logic like constructing your own array.
+Appelez `Children.forEach` pour itérer sur chaque enfant dans la structure de données `children`. Elle ne renvoie aucune valeur et fonctionne de façon similaire à la [méthode `forEach` des tableaux](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach).  Vous pouvez l'utiliser pour exécuter de la logique personnalisée, comme la construction de votre propre tableau.
 
 <Sandpack>
 
@@ -387,9 +387,9 @@ import SeparatorList from './SeparatorList.js';
 export default function App() {
   return (
     <SeparatorList>
-      <p>This is the first item.</p>
-      <p>This is the second item.</p>
-      <p>This is the third item.</p>
+      <p>Voici le premier élément.</p>
+      <p>Voici le deuxième.</p>
+      <p>Et voici le troisième.</p>
     </SeparatorList>
   );
 }
@@ -404,7 +404,7 @@ export default function SeparatorList({ children }) {
     result.push(child);
     result.push(<hr key={index} />);
   });
-  result.pop(); // Remove the last separator
+  result.pop(); // Retrait du dernier séparateur
   return result;
 }
 ```
@@ -413,7 +413,7 @@ export default function SeparatorList({ children }) {
 
 <Pitfall>
 
-As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+Comme mentionné plus haut, il n'y a aucun moyen d'obtenir le résultat du rendu d'un composant imbriqué lorsqu'on manipule `children`.  C'est pourquoi [il est généralement préférable d'utiliser une des solutions alternatives](#alternatives).
 
 </Pitfall>
 
@@ -421,7 +421,7 @@ As mentioned earlier, there is no way to get the rendered output of an inner com
 
 ### Compter les nœuds enfants {/*counting-children*/}
 
-Call `Children.count(children)` to calculate the number of children.
+Appelez `Children.count(children)` pour calculer le nombre de nœuds enfants.
 
 <Sandpack>
 
@@ -431,9 +431,9 @@ import RowList from './RowList.js';
 export default function App() {
   return (
     <RowList>
-      <p>This is the first item.</p>
-      <p>This is the second item.</p>
-      <p>This is the third item.</p>
+      <p>Voici le premier élément.</p>
+      <p>Voici le deuxième.</p>
+      <p>Et voici le troisième.</p>
     </RowList>
   );
 }
@@ -446,7 +446,7 @@ export default function RowList({ children }) {
   return (
     <div className="RowList">
       <h1 className="RowListHeader">
-        Total rows: {Children.count(children)}
+        Nombre de lignes : {Children.count(children)}
       </h1>
       {Children.map(children, child =>
         <div className="Row">
@@ -484,7 +484,7 @@ export default function RowList({ children }) {
 
 <Pitfall>
 
-As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+Comme mentionné plus haut, il n'y a aucun moyen d'obtenir le résultat du rendu d'un composant imbriqué lorsqu'on manipule `children`.  C'est pourquoi [il est généralement préférable d'utiliser une des solutions alternatives](#alternatives).
 
 </Pitfall>
 
@@ -492,7 +492,7 @@ As mentioned earlier, there is no way to get the rendered output of an inner com
 
 ### Convertir les enfants en tableau {/*converting-children-to-an-array*/}
 
-Call `Children.toArray(children)` to turn the `children` data structure into a regular JavaScript array. This lets you manipulate the array with built-in array methods like [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [`sort`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), or [`reverse`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
+Appelez `Children.toArray(children)` pour transformer la structure de données `children` en un véritable tableau JavaScript. Ça vous permet de le manipuler avec les méthodes natives des tableaux telles que [`filter`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [`sort`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) ou [`reverse`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse).
 
 <Sandpack>
 
@@ -502,9 +502,9 @@ import ReversedList from './ReversedList.js';
 export default function App() {
   return (
     <ReversedList>
-      <p>This is the first item.</p>
-      <p>This is the second item.</p>
-      <p>This is the third item.</p>
+      <p>Voici le premier élément.</p>
+      <p>Voici le deuxième.</p>
+      <p>Et voici le troisième.</p>
     </ReversedList>
   );
 }
@@ -524,7 +524,7 @@ export default function ReversedList({ children }) {
 
 <Pitfall>
 
-As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+Comme mentionné plus haut, il n'y a aucun moyen d'obtenir le résultat du rendu d'un composant imbriqué lorsqu'on manipule `children`.  C'est pourquoi [il est généralement préférable d'utiliser une des solutions alternatives](#alternatives).
 
 </Pitfall>
 
@@ -559,13 +559,13 @@ export default function App() {
   return (
     <RowList>
       <Row>
-        <p>This is the first item.</p>
+        <p>Voici le premier élément.</p>
       </Row>
       <Row>
-        <p>This is the second item.</p>
+        <p>Voici le deuxième.</p>
       </Row>
       <Row>
-        <p>This is the third item.</p>
+        <p>Et voici le troisième.</p>
       </Row>
     </RowList>
   );
@@ -618,7 +618,7 @@ export default function App() {
   return (
     <RowList>
       <Row>
-        <p>This is the first item.</p>
+        <p>Voici le premier élément.</p>
       </Row>
       <MoreRows />
     </RowList>
@@ -629,10 +629,10 @@ function MoreRows() {
   return (
     <>
       <Row>
-        <p>This is the second item.</p>
+        <p>Voici le deuxième.</p>
       </Row>
       <Row>
-        <p>This is the third item.</p>
+        <p>Et voici le troisième.</p>
       </Row>
     </>
   );
@@ -690,9 +690,9 @@ import { RowList, Row } from './RowList.js';
 export default function App() {
   return (
     <RowList rows={[
-      { id: 'first', content: <p>This is the first item.</p> },
-      { id: 'second', content: <p>This is the second item.</p> },
-      { id: 'third', content: <p>This is the third item.</p> }
+      { id: 'first', content: <p>Voici le premier élément.</p> },
+      { id: 'second', content: <p>Voici le deuxième.</p> },
+      { id: 'third', content: <p>Et voici le troisième.</p> }
     ]} />
   );
 }
@@ -744,17 +744,17 @@ export default function App() {
       {
         id: 'first',
         header: 'First',
-        content: <p>This is the first item.</p>
+        content: <p>Voici le premier élément.</p>
       },
       {
         id: 'second',
         header: 'Second',
-        content: <p>This is the second item.</p>
+        content: <p>Voici le deuxième.</p>
       },
       {
         id: 'third',
         header: 'Third',
-        content: <p>This is the third item.</p>
+        content: <p>Et voici le troisième.</p>
       }
     ]} />
   );
