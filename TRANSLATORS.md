@@ -113,6 +113,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react-dom/server/renderToStaticNodeStream"><code>renderToStaticNodeStream</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/server/renderToString"><code>renderToString</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/legacy">API React historique</a></li>
+          <li><a href="https://fr.react.dev/reference/react/cloneElement"><code>cloneElement</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/createElement"><code>createElement</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/createFactory"><code>createFactory</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/createRef"><code>createRef</code></a></li>
@@ -126,6 +127,10 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/community/docs-contributors">Contributeurs aux docs</a></li>
           <li><a href="https://fr.react.dev/community/acknowledgements">Remerciements</a></li>
           <li><a href="https://fr.react.dev/blog">Blog</a> (accueil)</li>
+          <li><a href="https://fr.react.dev/warnings/invalid-aria-prop">Avertissement : prop ARIA invalide</a></li>
+          <li><a href="https://fr.react.dev/warnings/invalid-hook-call-warning">Avertissement : règles des Hooks</a></li>
+          <li><a href="https://fr.react.dev/warnings/special-props">Avertissement : props à traitement spécial</a></li>
+          <li><a href="https://fr.react.dev/warnings/unknown-prop">Avertissement : prop inconnue</a></li>
         </ul>
       </td>
     </tr>
