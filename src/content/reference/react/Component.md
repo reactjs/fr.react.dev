@@ -771,32 +771,32 @@ L'optimisation des composants à base de classes avec `shouldComponentUpdate` es
 
 ### `UNSAFE_componentWillMount()` {/*unsafe_componentwillmount*/}
 
-If you define `UNSAFE_componentWillMount`, React will call it immediately after the [`constructor`.](#constructor) It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
+Si vous définissez `UNSAFE_componentWillMount`, React l'appellera immédiatement après le [`constructor`](#constructor).  Cette méthode n'existe plus que pour des raisons historiques et ne devrait pas être utilisée dans du nouveau code.  Utilisez plutôt l'une de ces alternatives :
 
-- To initialize state, declare [`state`](#state) as a class field or set `this.state` inside the [`constructor`.](#constructor)
-- If you need to run a side effect or set up a subscription, move that logic to [`componentDidMount`](#componentdidmount) instead.
+- Pour initialiser l'état, déclarez un champ d'instance [`state`](#state) ou affectez `this.state` dans le [`constructor`](#constructor).
+- Si vous avez besoin d'exécuter un effet de bord ou de souscrire un abonnement, déplacez plutôt cette logique dans [`componentDidMount`](#componentdidmount).
 
-[See examples of migrating away from unsafe lifecycles.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples)
+[Consultez des exemples de migration hors des méthodes historiques de cycle de vie](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples).
 
 #### Paramètres {/*unsafe_componentwillmount-parameters*/}
 
-`UNSAFE_componentWillMount` does not take any parameters.
+`UNSAFE_componentWillMount` ne prend aucun paramètre.
 
 #### Valeur renvoyée {/*unsafe_componentwillmount-returns*/}
 
-`UNSAFE_componentWillMount` should not return anything.
+`UNSAFE_componentWillMount` ne devrait rien renvoyer.
 
 #### Limitations {/*unsafe_componentwillmount-caveats*/}
 
-- `UNSAFE_componentWillMount` will not get called if the component implements [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
+- `UNSAFE_componentWillMount` ne sera pas appelée si le composant implémente [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) ou [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate).
 
-- Despite its naming, `UNSAFE_componentWillMount` does not guarantee that the component *will* get mounted if your app uses modern React features like [`Suspense`.](/reference/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. This is why this method is "unsafe". Code that relies on mounting (like adding a subscription) should go into [`componentDidMount`.](#componentdidmount)
+- En dépit de son nom, `UNSAFE_componentWillMount` ne garantit pas que le composant *sera effectivement monté* si votre appli utilise des fonctionnalités modernes de React telles que  [`Suspense`](/reference/react/Suspense).  Si une tentative de rendu suspend (en raison par exemple du code d'un composant enfant qui ne serait pas encore chargé), React jettera l'arborescence en cours et essaiera de reconstruire le composant de zéro lors de la prochaine tentative.  C'est pourquoi cette méthode n'est « pas fiable » *(“unsafe”, NdT)*. Tout code qui se base sur le montage (comme la souscription d'un abonnement) devrait être placé dans [`componentDidMount`](#componentdidmount).
 
-- `UNSAFE_componentWillMount` is the only lifecycle method that runs during [server rendering.](/reference/react-dom/server) For all practical purposes, it is identical to [`constructor`,](#constructor) so you should use the `constructor` for this type of logic instead.
+- `UNSAFE_componentWillMount` est la seule méthode de cycle de vie qui est exécutée lors d'un [rendu côté serveur](/reference/react-dom/server). Son déclenchement est en pratique identique à celui de [`constructor`](#constructor), vous devriez donc plutôt utiliser `constructor` pour ce type de logique.
 
 <Note>
 
-Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a class component to initialize state is equivalent to passing that state as the initial state to [`useState`](/reference/react/useState) in a function component.
+Appeler [`setState`](#setstate) dans `UNSAFE_componentWillMount` pour initialiser l'état au sein d'un composant à base de classe est équivalent au passage de cet état comme état initial à [`useState`](/reference/react/useState) dans une fonction composant.
 
 </Note>
 
@@ -804,37 +804,37 @@ Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a class co
 
 ### `UNSAFE_componentWillReceiveProps(nextProps, nextContext)` {/*unsafe_componentwillreceiveprops*/}
 
-If you define `UNSAFE_componentWillReceiveProps`, React will call it when the component receives new props. It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
+Si vous définissez `UNSAFE_componentWillReceiveProps`, React l'appellera lorsque le composant recevra des nouvelles props.  Cette méthode n'existe plus que pour des raisons historiques et ne devrait pas être utilisée dans du nouveau code.  Utilisez plutôt l'une de ces alternatives :
 
-- If you need to **run a side effect** (for example, fetch data, run an animation, or reinitialize a subscription) in response to prop changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
-- If you need to **avoid re-computing some data only when a prop changes,** use a [memoization helper](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization) instead.
-- If you need to **"reset" some state when a prop changes,** consider either making a component [fully controlled](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a key](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
-- If you need to **"adjust" some state when a prop changes,** check whether you can compute all the necessary information from props alone during rendering. If you can't, use [`static getDerivedStateFromProps`](/reference/react/Component#static-getderivedstatefromprops) instead.
+- Si vous avez besoin **d'exécuter un effet de bord** (par exemple charger des données, dérouler une animation ou réinitialiser un abonnement) en réaction à des changements de props, déplacez plutôt cette logique dans [`componentDidUpdate`](#componentdidupdate).
+- Si vous souhaitez **ne recaclculer certaines données que lorsque certaines props changent**, utilisez plutôt un [utilitaire de mémoïsation](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+- Si vous essayez de **« réinitialiser » tout l'état quand une prop change**, envisagez de plutôt faire un composant soit [pleinement contrôlé](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) soit [pleinement non contrôlé mais avec une clé](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key).
+- Si vous avez besoin **d'« ajuster » une partie de l'état quand une prop change**, voyez si vous ne pouvez pas plutôt calculer toutes les infos nécessaires à partir des props seules lors du rendu.  Si ce n'est pas possible, préférez [`static getDerivedStateFromProps`](/reference/react/Component#static-getderivedstatefromprops).
 
-[See examples of migrating away from unsafe lifecycles.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props)
+[Consultez des exemples de migration hors des méthodes historiques de cycle de vie](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props).
 
 #### Paramètres {/*unsafe_componentwillreceiveprops-parameters*/}
 
-- `nextProps`: The next props that the component is about to receive from its parent component. Compare `nextProps` to [`this.props`](#props) to determine what changed.
-- `nextContext`: The next props that the component is about to receive from the closest provider. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (legacy).
+* `nextProps` : les prochaines props que le composant va recevoir de son composant parent. Comparez `nextProps` à [`this.props`](#props) pour déterminer ce qui a changé.
+* `nextContext` : le prochain contexte que le composant va recevoir de son plus proche fournisseur de contexte. Comparez `nextContext` à [`this.context`](#state) pour déterminer ce qui a changé. N'est disponible que si vous avez spécifié [`static contextType`](#static-contexttype) (approche plus récente) ou [`static contextTypes`](#static-contexttypes) (approche dépréciée).
 
 #### Valeur renvoyée {/*unsafe_componentwillreceiveprops-returns*/}
 
-`UNSAFE_componentWillReceiveProps` should not return anything.
+`UNSAFE_componentWillReceiveProps` ne devrait rien renvoyer.
 
 #### Limitations {/*unsafe_componentwillreceiveprops-caveats*/}
 
-- `UNSAFE_componentWillReceiveProps` will not get called if the component implements [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
+- `UNSAFE_componentWillReceiveProps` ne sera pas appelée si le composant implémente [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) ou [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate).
 
-- Despite its naming, `UNSAFE_componentWillReceiveProps` does not guarantee that the component *will* receive those props if your app uses modern React features like [`Suspense`.](/reference/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. By the time of the next render attempt, the props might be different. This is why this method is "unsafe". Code that should run only for committed updates (like resetting a subscription) should go into [`componentDidUpdate`.](#componentdidupdate)
+- En dépit de son nom, `UNSAFE_componentWillReceiveProps` ne garantit pas que le composant *recevra effectivement ces props* si votre appli utilise des fonctionnalités modernes de React telles que  [`Suspense`](/reference/react/Suspense).  Si une tentative de rendu suspend (en raison par exemple du code d'un composant enfant qui ne serait pas encore chargé), React jettera l'arborescence en cours et essaiera de reconstruire le composant de zéro lors de la prochaine tentative.  D'ici là, les props pourraient avoir encore changé. C'est pourquoi cette méthode n'est « pas fiable » *(“unsafe”, NdT)*. Tout code qui ne devrait être exécuté que pour des mises à jour confirmées (comme la réinitialisation d'un abonnement) devrait être placé dans [`componentDidUpdate`](#componentdidupdate).
 
-- `UNSAFE_componentWillReceiveProps` does not mean that the component has received *different* props than the last time. You need to compare `nextProps` and `this.props` yourself to check if something changed.
+- `UNSAFE_componentWillReceiveProps` n'implique pas que le composant recevra des props *différentes* de la fois précédente.  Vous devez comparer `nextProps` avec `this.props` vous-même pour vérifier que quelque chose a changé.
 
-- React doesn't call `UNSAFE_componentWillReceiveProps` with initial props during mounting. It only calls this method if some of component's props are going to be updated. For example, calling [`setState`](#setstate) doesn't generally trigger `UNSAFE_componentWillReceiveProps` inside the same component.
+- React n'appelle pas `UNSAFE_componentWillReceiveProps` avec les props initiales lors du montage.  Il n'appelle cette méthode que si tout ou partie des props du composant vont être mises à jour.  Par exemple, appeler [`setState`](#setstate) ne déclenche généralement pas `UNSAFE_componentWillReceiveProps` dans le même composant.
 
 <Note>
 
-Calling [`setState`](#setstate) inside `UNSAFE_componentWillReceiveProps` in a class component to "adjust" state is equivalent to [calling the `set` function from `useState` during rendering](/reference/react/useState#storing-information-from-previous-renders) in a function component.
+Appeler [`setState`](#setstate) dans `UNSAFE_componentWillReceiveProps` pour « ajuster » l'état au sein d'un composant à base de classe est équivalent à [l'appel d'une fonction `set` fournie par `useState` lors du rendu](/reference/react/useState#storing-information-from-previous-renders) dans une fonction composant.
 
 </Note>
 
@@ -842,40 +842,39 @@ Calling [`setState`](#setstate) inside `UNSAFE_componentWillReceiveProps` in a c
 
 ### `UNSAFE_componentWillUpdate(nextProps, nextState)` {/*unsafe_componentwillupdate*/}
 
+Si vous définissez `UNSAFE_componentWillUpdate`, React l'appellera avant de refaire un rendu avec les nouvelles props et le nouvel état.  Cette méthode n'existe plus que pour des raisons historiques et ne devrait pas être utilisée dans du nouveau code.  Utilisez plutôt l'une de ces alternatives :
 
-If you define `UNSAFE_componentWillUpdate`, React will call it before rendering with the new props or state. It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
+- Si vous avez besoin d'exécuter un effet de bord (par exemple charge des données, dérouler une animation ou réinitialiser un abonnement) en réaction à des changements de props ou d'état, déplacez plutôt cette logique dans [`componentDidUpdate`](#componentdidupdate).
+- Si vous avez besoin de lire des informations depuis le DOM (par exemple pour sauvegarder la position de défilement) pour pouvoir l'utiliser ensuite dans [`componentDidUpdate`](#componentdidupdate), lisez-la plutôt depuis [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate).
 
-- If you need to run a side effect (for example, fetch data, run an animation, or reinitialize a subscription) in response to prop or state changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
-- If you need to read some information from the DOM (for example, to save the current scroll position) so that you can use it in [`componentDidUpdate`](#componentdidupdate) later, read it inside [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate) instead.
-
-[See examples of migrating away from unsafe lifecycles.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples)
+[Consultez des exemples de migration hors des méthodes historiques de cycle de vie](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples).
 
 #### Paramètres {/*unsafe_componentwillupdate-parameters*/}
 
-- `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
-- `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#state) to determine what changed.
+* `nextProps` : les prochaines props pour le rendu à venir. Comparez `nextProps` à [`this.props`](#props) pour déterminer ce qui a changé.
+* `nextState` : le prochain état pour le rendu à venir. Comparez `nextState` à [`this.state`](#state) pour déterminer ce qui a changé.
 
 #### Valeur renvoyée {/*unsafe_componentwillupdate-returns*/}
 
-`UNSAFE_componentWillUpdate` should not return anything.
+`UNSAFE_componentWillUpdate` ne devrait rien renvoyer.
 
 #### Limitations {/*unsafe_componentwillupdate-caveats*/}
 
-- `UNSAFE_componentWillUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
+- `UNSAFE_componentWillUpdate` ne sera pas appelée si [`shouldComponentUpdate`](#shouldcomponentupdate) est définie et renvoie `false`.
 
-- `UNSAFE_componentWillUpdate` will not get called if the component implements [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
+- `UNSAFE_componentWillUpdate` ne sera pas appelée si le composant implémente [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) ou [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate).
 
-- It's not supported to call [`setState`](#setstate) (or any method that leads to `setState` being called, like dispatching a Redux action) during `componentWillUpdate`.
+- Il est interdit d'appeler [`setState`](#setstate) (ou toute méthode entraînant un appel à `setState`, tel que le *dispatch* d'une action Redux) au sein de `componentWillUpdate`.
 
-- Despite its naming, `UNSAFE_componentWillUpdate` does not guarantee that the component *will* update if your app uses modern React features like [`Suspense`.](/reference/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. By the time of the next render attempt, the props and state might be different. This is why this method is "unsafe". Code that should run only for committed updates (like resetting a subscription) should go into [`componentDidUpdate`.](#componentdidupdate)
+- En dépit de son nom, `UNSAFE_componentWillUpdate` ne garantit pas que le composant *sera effectivement mis à jour* si votre appli utilise des fonctionnalités modernes de React telles que  [`Suspense`](/reference/react/Suspense).  Si une tentative de rendu suspend (en raison par exemple du code d'un composant enfant qui ne serait pas encore chargé), React jettera l'arborescence en cours et essaiera de reconstruire le composant de zéro lors de la prochaine tentative. D'ici là, les props ou l'état pourraient avoir encore changé. C'est pourquoi cette méthode n'est « pas fiable » *(“unsafe”, NdT)*. Tout code qui ne devrait être exécuté que pour des mises à jour confirmées (comme la réinitialisation d'un abonnement) devrait être placé dans [`componentDidUpdate`](#componentdidupdate).
 
-- `UNSAFE_componentWillUpdate` does not mean that the component has received *different* props or state than the last time. You need to compare `nextProps` with `this.props` and `nextState` with `this.state` yourself to check if something changed.
+- `UNSAFE_componentWillUpdate` n'implique pas que le composant recevra des props ou un état *différents* de la fois précédente.  Vous devez comparer vous-même `nextProps` avec `this.props` et `nextState` avec `this.state` pour vérifier que quelque chose a changé.
 
-- React doesn't call `UNSAFE_componentWillUpdate` with initial props and state during mounting.
+- React n'appellera pas `UNSAFE_componentWillUpdate` avec les props et état initiaux lors du montage.
 
 <Note>
 
-There is no direct equivalent to `UNSAFE_componentWillUpdate` in function components.
+Il n'y a pas d'équivalent direct à `UNSAFE_componentWillUpdate` dans les fonctions composants.
 
 </Note>
 
