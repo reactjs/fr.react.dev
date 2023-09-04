@@ -468,27 +468,27 @@ Dans de nombreux cas, définir `componentDidMount`, `componentDidUpdate` et `com
 
 ### `forceUpdate(callback?)` {/*forceupdate*/}
 
-Forces a component to re-render.
+Force un composant à recalculer son rendu.
 
-Usually, this is not necessary. If your component's [`render`](#render) method only reads from [`this.props`](#props), [`this.state`](#state), or [`this.context`,](#context) it will re-render automatically when you call [`setState`](#setstate) inside your component or one of its parents. However, if your component's `render` method reads directly from an external data source, you have to tell React to update the user interface when that data source changes. That's what `forceUpdate` lets you do.
+Vous n'en avez normalement pas besoin. Si la méthode [`render`](#render) de votre composant se contente de lire [`this.props`](#props), [`this.state`](#state) ou [`this.context`](#context), il refera automatiquement son rendu lorsque vous appelez [`setState`](#setstate) dans votre composant ou dans un de ses parents.  En revanche, si la méthode `render` de votre composant lit directement une source de données extérieure, vous devrez demander à React de mettre à jour l'interface utilisateur lorsque cette source de données change.  C'est ce à quoi sert `forceUpdate`.
 
-Try to avoid all uses of `forceUpdate` and only read from `this.props` and `this.state` in `render`.
+Essayez d'éviter tout utilisation de `forceUpdate` en ne lisant que `this.props` et `this.state` dans `render`.
 
 #### Paramètres {/*forceupdate-parameters*/}
 
-* **optional** `callback` If specified, React will call the `callback` you've provided after the update is committed.
+* `callback` **optionnel** : s'il est précisé, React appellera le `callback` que vous avez précisé une fois la mise à jour retranscrite dans le DOM.
 
 #### Valeur renvoyée {/*forceupdate-returns*/}
 
-`forceUpdate` does not return anything.
+`forceUpdate` ne renvoie rien.
 
 #### Limitations {/*forceupdate-caveats*/}
 
-- If you call `forceUpdate`, React will re-render without calling [`shouldComponentUpdate`.](#shouldcomponentupdate)
+- Si vous appelez `forceUpdate`, React recalculera le rendu sans appeler d'abord [`shouldComponentUpdate`.](#shouldcomponentupdate)
 
 <Note>
 
-Reading an external data source and forcing class components to re-render in response to its changes with `forceUpdate` has been superseded by [`useSyncExternalStore`](/reference/react/useSyncExternalStore) in function components.
+Là où les composants à base de classes lisent une source de données extérieure et forcent avec `forceUpdate` le recalcul de leur rendu lorsque celle-ci change, les fonctions composants utilisent plutôt [`useSyncExternalStore`](/reference/react/useSyncExternalStore).
 
 </Note>
 
@@ -502,15 +502,15 @@ Cette API sera retirée d'une future version majeure de React. [Utilisez plutôt
 
 </Deprecated>
 
-Lets you specify the values for the [legacy context](https://reactjs.org/docs/legacy-context.html) is provided by this component.
+Vous permet de spécifier les valeurs fournies par le composant pour les [contextes historiques](https://legacy.reactjs.org/docs/legacy-context.html).
 
 ---
 
 ### `getSnapshotBeforeUpdate(prevProps, prevState)` {/*getsnapshotbeforeupdate*/}
 
-If you implement `getSnapshotBeforeUpdate`, React will call it immediately before React updates the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle method will be passed as a parameter to [`componentDidUpdate`.](#componentdidupdate)
+Si vous implémentez `getSnapshotBeforeUpdate`, React l'appellera juste avant de mettre à jour le DOM.  Ça permet à votre composant de capturer certaines informations issues du DOM (telles que la position de défilement) avant qu'elles risquent d'évoluer.  Toute valeur renvoyée par cette méthode de cycle de vie sera passée en paramètre à [`componentDidUpdate`](#componentdidupdate).
 
-For example, you can use it in a UI like a chat thread that needs to preserve its scroll position during updates:
+Vous pouvez par exemple l'utiliser dans une UI de type fil de discussion qui aurait besoin de préserver la position de défilement lors des mises à jour :
 
 ```js {7-15,17}
 class ScrollingList extends React.Component {
@@ -520,8 +520,9 @@ class ScrollingList extends React.Component {
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    // Are we adding new items to the list?
-    // Capture the scroll position so we can adjust scroll later.
+    // Ajoute-t-on des nouveaux éléments à la liste ?
+    // Capturons alors la position de défilement pour l’ajuster
+    // par la suite.
     if (prevProps.list.length < this.props.list.length) {
       const list = this.listRef.current;
       return list.scrollHeight - list.scrollTop;
@@ -530,9 +531,11 @@ class ScrollingList extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    // If we have a snapshot value, we've just added new items.
-    // Adjust scroll so these new items don't push the old ones out of view.
-    // (snapshot here is the value returned from getSnapshotBeforeUpdate)
+    // Si nous avons une valeur capturée, c’est qu’on a ajouté
+    // de nouveaux éléments. On ajuste alors le défilement de façon
+    // à ce que les nouceaux éléments ne décalent pas les anciens
+    // hors de la zone visible.
+    // (Ici `snapshot` est la valeur renvoyée `getSnapshotBeforeUpdate`.)
     if (snapshot !== null) {
       const list = this.listRef.current;
       list.scrollTop = list.scrollHeight - snapshot;
@@ -541,31 +544,31 @@ class ScrollingList extends React.Component {
 
   render() {
     return (
-      <div ref={this.listRef}>{/* ...contents... */}</div>
+      <div ref={this.listRef}>{/* ...contenu... */}</div>
     );
   }
 }
 ```
 
-In the above example, it is important to read the `scrollHeight` property directly in `getSnapshotBeforeUpdate`. It is not safe to read it in [`render`](#render), [`UNSAFE_componentWillReceiveProps`](#unsafe_componentwillreceiveprops), or [`UNSAFE_componentWillUpdate`](#unsafe_componentwillupdate) because there is a potential time gap between these methods getting called and React updating the DOM.
+Dans l'exemple ci-dessus, il est vital de lire la propriété `scrollHeight` directement dans `getSnapshotBeforeUpdate`.  On ne pourrait pas la lire de façon fiable dans [`render`](#render), [`UNSAFE_componentWillReceiveProps`](#unsafe_componentwillreceiveprops), ou [`UNSAFE_componentWillUpdate`](#unsafe_componentwillupdate) parce qu'il existe un risque de décalage temporel entre les appels de ces méthodes et la mise à jour du DOM par React.
 
 #### Paramètres {/*getsnapshotbeforeupdate-parameters*/}
 
-* `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
+* `prevProps` : les props avant la mise à jour. Comparez `prevProps` à [`this.props`](#props) pour déterminer ce qui a changé.
 
-* `prevState`: State before the update. Compare `prevState` to [`this.state`](#state) to determine what changed.
+* `prevState` : l'état avant la mise à jour. Comparez `prevState` à [`this.state`](#state) pour déterminer ce qui a changé.
 
 #### Valeur renvoyée {/*getsnapshotbeforeupdate-returns*/}
 
-You should return a snapshot value of any type that you'd like, or `null`. The value you returned will be passed as the third argument to [`componentDidUpdate`.](#componentdidupdate)
+Vous devriez renvoyer une valeur capturée de quelque type que ce soit, ou `null`.  La valeur que vous renvoyez sera passée en troisième argument à [`componentDidUpdate`](#componentdidupdate).
 
 #### Limitations {/*getsnapshotbeforeupdate-caveats*/}
 
-- `getSnapshotBeforeUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
+- `getSnapshotBeforeUpdate` ne sera pas appelée si [`shouldComponentUpdate`](#shouldcomponentupdate) est définie et renvoie `false`.
 
 <Note>
 
-At the moment, there is no equivalent to `getSnapshotBeforeUpdate` for function components. This use case is very uncommon, but if you have the need for it, for now you'll have to write a class component.
+Il n'y a pas encore d'équivalent direct à `getSnapshotBeforeUpdate` dans les fonctions composants.  C'est un cas d'usage très rare, mais si vous en avez absolument besoin, vous devrez pour le moment écrire un composant à base de classe.
 
 </Note>
 
@@ -573,9 +576,9 @@ At the moment, there is no equivalent to `getSnapshotBeforeUpdate` for function 
 
 ### `render()` {/*render*/}
 
-The `render` method is the only required method in a class component.
+La méthode `render` est la seule méthode obligatoire dans un composant à base de classe.
 
-The `render` method should specify what you want to appear on the screen, for example:
+La méthode `render` devrait spécifier ce que vous souhaitez afficher à l'écran, par exemple :
 
 ```js {4-6}
 import { Component } from 'react';
@@ -587,38 +590,38 @@ class Greeting extends Component {
 }
 ```
 
-React may call `render` at any moment, so you shouldn't assume that it runs at a particular time. Usually, the `render` method should return a piece of [JSX](/learn/writing-markup-with-jsx), but a few [other return types](#render-returns) (like strings) are supported. To calculate the returned JSX, the `render` method can read [`this.props`](#props), [`this.state`](#state), and [`this.context`](#context).
+React est susceptible d'appeler `render` à tout moment, mais vous ne devriez pas supposer son exécution à un moment particulier.  En général, la méthode `render` devrait renvoyer un contenu [JSX](/learn/writing-markup-with-jsx), mais certains [autres types de résultats](#render-returns) (comme les chaînes de caractères) sont autorisés. Pour calculer le JSX renvoyé, la méthode `render` peut lire [`this.props`](#props), [`this.state`](#state) et [`this.context`](#context).
 
-You should write the `render` method as a pure function, meaning that it should return the same result if props, state, and context are the same. It also shouldn't contain side effects (like setting up subscriptions) or interact with the browser APIs. Side effects should happen either in event handlers or methods like [`componentDidMount`.](#componentdidmount)
+Vous devriez écrire la méthode `render` sous forme de fonction pure, c'est-à-dire qu'elle devrait toujours renvoyer le même résultat si les props, l'état et le contexte n'ont pas changé.  Elle ne devrait par ailleurs pas contenir d'effets de bords (tels que des souscriptions d'abonnements) ou interagir avec des API du navigateur.  Les effets de bord sont censés survenir soit dans des gestionnaires d'événements, soit dans des méthodes comme[`componentDidMount`](#componentdidmount).
 
 #### Paramètres {/*render-parameters*/}
 
-`render` does not take any parameters.
+`render` ne prend aucun paramètre.
 
 #### Valeur renvoyée {/*render-returns*/}
 
-`render` can return any valid React node. This includes React elements such as `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes.
+`render` peut renvoyer n'importe quel nœud React valide. Ça inclut les éléments React tels que `<div />`, les chaînes de caractères, les nombres, [les portails](/reference/react-dom/createPortal), les nœuds vides (`null`, `undefined`, `true` et `false`) et les tableaux de nœuds React.
 
 #### Limitations {/*render-caveats*/}
 
-- `render` should be written as a pure function of props, state, and context. It should not have side effects.
+- `render` devrait être écrite comme une fonction pure des props, de l'état et du contexte.  Elle ne devrait comporter aucun effet de bord.
 
-- `render` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
+- `render` ne sera pas appelée si [`shouldComponentUpdate`](#shouldcomponentupdate) est définie et renvoie `false`.
 
-- When [Strict Mode](/reference/react/StrictMode) is on, React will call `render` twice in development and then throw away one of the results. This helps you notice the accidental side effects that need to be moved out of the `render` method.
+* En [mode strict](/reference/react/StrictMode), React appellera `render` deux fois en développement et jettera un des résultats.  Ça vous permet de repérer des effets de bords involontaires qui doivent être sortis de `render`.
 
-- There is no one-to-one correspondence between the `render` call and the subsequent `componentDidMount` or `componentDidUpdate` call. Some of the `render` call results may be discarded by React when it's beneficial.
+- Il n'y a pas de correspondance directe entre l'appel à `render` et les appels ultérieurs à `componentDidMount` et `componentDidUpdate`.  Certains résultats d'appels à `render` sont susceptibles d'être ignorés par React lorsque ça présente un avantage.
 
 ---
 
 ### `setState(nextState, callback?)` {/*setstate*/}
 
-Call `setState` to update the state of your React component.
+Appelez `setState` pour mettre à jour l'état de votre composant React.
 
 ```js {8-10}
 class Form extends Component {
   state = {
-    name: 'Taylor',
+    name: 'Clara',
   };
 
   handleNameChange = (e) => {
@@ -639,27 +642,27 @@ class Form extends Component {
 }
 ```
 
-`setState` enqueues changes to the component state. It tells React that this component and its children need to re-render with the new state. This is the main way you'll update the user interface in response to interactions.
+`setState` maintient une file d'attente de modifications à apporter à l'état du composant.  Elle indique à React que ce composant et ses enfants doivent recalculer leur rendu avec un nouvel état.  C'est le principal moyen de mettre à jour l'interface utilisateur en réaction à des interactions.
 
 <Pitfall>
 
-Calling `setState` **does not** change the current state in the already executing code:
+Appeler `setState` **ne change pas** l'état actuel pour le code en cours d'exécution :
 
 ```js {6}
 function handleClick() {
-  console.log(this.state.name); // "Taylor"
+  console.log(this.state.name); // « Clara »
   this.setState({
-    name: 'Robin'
+    name: 'Juliette'
   });
-  console.log(this.state.name); // Still "Taylor"!
+  console.log(this.state.name); // Toujours « Clara » !
 }
 ```
 
-It only affects what `this.state` will return starting from the *next* render.
+Ça affecte uniquement ce que vaudra `this.state` à partir du *prochain* rendu.
 
 </Pitfall>
 
-You can also pass a function to `setState`. It lets you update state based on the previous state:
+Vous pouvez aussi passer une fonction à `setState`.  Ça vous permet de mettre à jour l'état sur base de sa valeur précédente :
 
 ```js {2-6}
   handleIncreaseAge = () => {
@@ -671,31 +674,31 @@ You can also pass a function to `setState`. It lets you update state based on th
   }
 ```
 
-You don't have to do this, but it's handy if you want to update state multiple times during the same event.
+Vous n'êtes pas obligé·e de faire ça, mais c'est pratique lorsque vous souhaitez accumuler plusieurs mises à jour de l'état au sein d'un même événement.
 
 #### Paramètres {/*setstate-parameters*/}
 
-* `nextState`: Either an object or a function.
-  * If you pass an object as `nextState`, it will be shallowly merged into `this.state`.
-  * If you pass a function as `nextState`, it will be treated as an _updater function_. It must be pure, should take the pending state and props as arguments, and should return the object to be shallowly merged into `this.state`. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying all of the queued updaters to the previous state.
+* `nextState` : soit un objet, soit une fonction.
+  * Si vous passez un objet comme `nextState`, il sera superficiellement fusionné dans `this.state`.
+  * Si vous passez une fonction comme `nextState`, elle sera traitée comme une *fonction de mise à jour*.  Elle doit être pure, doit accepter l'état en attente et les props comme arguments, et doit renvoyer un objet qui sera superficiellement fusionné dans `this.state`.  React placera votre fonction de mise à jour dans une file d'attente puis refera le rendu de votre composant. Lors du prochain rendu, React calculera le prochain état en appliquant successivement toutes les fonctions de mise à jour de la file, en commençant avec l'état précédent.
 
-* **optional** `callback`: If specified, React will call the `callback` you've provided after the update is committed.
+* `callback` **optionnel** : s'il est précisé, React appellera le `callback` que vous avez précisé une fois la mise à jour retranscrite dans le DOM.
 
 #### Valeur renvoyée {/*setstate-returns*/}
 
-`setState` does not return anything.
+`setState` ne renvoie rien.
 
 #### Limitations {/*setstate-caveats*/}
 
-- Think of `setState` as a *request* rather than an immediate command to update the component. When multiple components update their state in response to an event, React will batch their updates and re-render them together in a single pass at the end of the event. In the rare case that you need to force a particular state update to be applied synchronously, you may wrap it in [`flushSync`,](/reference/react-dom/flushSync) but this may hurt performance.
+- Pensez à `setState` comme à une *requête* plutôt qu'une commande de mise à jour immédiate du composabt. Lorsque plusieurs composants mettent à jour leurs états en réaction à un événement, React regroupera leurs mises à jour et refera leurs rendus sur une unique passe, à la fin de l'événement.  Pour les rares cas où vous auriez besoin de forcer une mise à jour d'état spécifique à être appliquée de façon synchrone, vous pourriez l'enrober dans [`flushSync`](/reference/react-dom/flushSync), mais ça gâche généralement la performance.
 
-- `setState` does not update `this.state` immediately. This makes reading `this.state` right after calling `setState` a potential pitfall. Instead, use [`componentDidUpdate`](#componentdidupdate) or the setState `callback` argument, either of which are guaranteed to fire after the update has been applied. If you need to set the state based on the previous state, you can pass a function to `nextState` as described above.
+- `setState` ne met pas immédiatement à jour `this.state`.  Il est donc piégeux de lire `this.state` juste après avoir appelé `setState`.  Utilisez plutôt [`componentDidUpdate`](#componentdidupdate) ou l'argument `callback` de `setState`, qui vous garantissent tous les deux une exécutiona près que la mise à jour a été appliquée.  Si vous avez besoin de mettre à jour l'état sur base de l'état précédent, vous pouvez passer une fonction comme `nextState`, comme décrit plus haut.
 
 <Note>
 
-Calling `setState` in class components is similar to calling a [`set` function](/reference/react/useState#setstate) in function components.
+Appeler `setState` dans les composants à base de classe  est similaire à l'appel d'une [fonction `set`](/reference/react/useState#setstate) dans les fonctions composants.
 
-[See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
+[Voyez comment migrer](#migrating-a-component-with-state-from-a-class-to-a-function).
 
 </Note>
 
@@ -703,9 +706,9 @@ Calling `setState` in class components is similar to calling a [`set` function](
 
 ### `shouldComponentUpdate(nextProps, nextState, nextContext)` {/*shouldcomponentupdate*/}
 
-If you define `shouldComponentUpdate`, React will call it to determine whether a re-render can be skipped.
+Si vous définissez `shouldComponentUpdate`, React l'appellera pour déterminer s'il peut sauter un nouveau rendu.
 
-If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped.
+Si vous êtes certain·e de vouloir écrire ça vous-même, vous pouvez comparer `this.props` avec `nextProps` et `this.state` avec `nextState` et renvoyer `false` pour indiquer à React que le recalcul du rendu peut être sauté.
 
 ```js {6-18}
 class Rectangle extends Component {
@@ -721,7 +724,7 @@ class Rectangle extends Component {
       nextProps.size.height === this.props.size.height &&
       nextState.isHovered === this.state.isHovered
     ) {
-      // Nothing has changed, so a re-render is unnecessary
+      // Rien n’a changé, un nouveau rendu est donc superflu
       return false;
     }
     return true;
@@ -732,35 +735,35 @@ class Rectangle extends Component {
 
 ```
 
-React calls `shouldComponentUpdate` before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when [`forceUpdate`](#forceupdate) is used.
+React appelle `shouldComponentUpdate` avant de refaire le rendu lorsque des nouvelles props ou un nouvel état sont fournis.  Ça renvoie par défaut `true`. Cette méthode n'est pas appelée pour le rendu initial, ni lorsque [`forceUpdate`](#forceupdate) est utilisée.
 
 #### Paramètres {/*shouldcomponentupdate-parameters*/}
 
-- `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
-- `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#props) to determine what changed.
-- `nextContext`: The next context that the component is about to render with. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (legacy).
+* `nextProps` : les prochaines props pour le rendu à venir. Comparez `nextProps` à [`this.props`](#props) pour déterminer ce qui a changé.
+* `nextState` : le prochain état pour le rendu à venir. Comparez `nextState` à [`this.state`](#state) pour déterminer ce qui a changé.
+* `nextContext` : le prochain contexte pour le rendu à venir. Comparez `nextContext` à [`this.context`](#state) pour déterminer ce qui a changé. N'est disponible que si vous avez spécifié [`static contextType`](#static-contexttype) (approche plus récente) ou [`static contextTypes`](#static-contexttypes) (approche dépréciée).
 
 #### Valeur renvoyée {/*shouldcomponentupdate-returns*/}
 
-Return `true` if you want the component to re-render. That's the default behavior.
+Renvoie `true` si vous souhaiter que le composant refasse son rendu. C'est le comportement par défaut.
 
-Return `false` to tell React that re-rendering can be skipped.
+Renvoie `false` pour indiquer à React de sauter le recalcul du rendu.
 
 #### Limitations {/*shouldcomponentupdate-caveats*/}
 
-- This method *only* exists as a performance optimization. If your component breaks without it, fix that first.
+- Cette méthode existe *seulement* comme une optimisation des performances. Si votre composant ne fonctionne pas sans elle, corrigez-le d'abord.
 
-- Consider using [`PureComponent`](/reference/react/PureComponent) instead of writing `shouldComponentUpdate` by hand. `PureComponent` shallowly compares props and state, and reduces the chance that you'll skip a necessary update.
+- Envisagez de recourir à [`PureComponent`](/reference/react/PureComponent) plutôt que d'écrire `shouldComponentUpdate` à la main. `PureComponent` fait une comparaison superficielle des props et de l'état, et réduit le risque de sauter une mise à jour utile.
 
-- We do not recommend doing deep equality checks or using `JSON.stringify` in `shouldComponentUpdate`. It makes performance unpredictable and dependent on the data structure of every prop and state. In the best case, you risk introducing multi-second stalls to your application, and in the worst case you risk crashing it.
+- Nous vous déconseillons de faire des comparaisons profondes ou d'utiliser `JSON.stringify` dans `shouldComponentUpdate`. Ça rend la performance imprévisible et dépendante des structures de données de chaque prop et élément d'état.  Au meilleur des cas, vous risquez d'introduire des gels de plusieurs secondes dans votre appli, au pire cas de la faire carrément planter.
 
-- Returning `false` does not prevent child components from re-rendering when *their* state changes.
+- Renvoyer `false` n'empêche pas vos composants enfants de refaire leurs calculs si *leurs* données changent.
 
-- Returning `false` does not *guarantee* that the component will not re-render. React will use the return value as a hint but it may still choose to re-render your component if it makes sense to do for other reasons.
+- Renvoyer `false` ne *garantit* pas que le composant ne refera pas son rendu.  React se servira de votre valeur renvoyée comme d'un conseil, mais reste susceptible d'opter pour un recalcul du rendu si ça lui semble par ailleurs justifié.
 
 <Note>
 
-Optimizing class components with `shouldComponentUpdate` is similar to optimizing function components with [`memo`.](/reference/react/memo) Function components also offer more granular optimization with [`useMemo`.](/reference/react/useMemo)
+L'optimisation des composants à base de classes avec `shouldComponentUpdate` est similaire à l'optimisation des fonctions composants avec [`memo`](/reference/react/memo). Les fonctions composants proposent aussi des optimisations plus granulaires avec[`useMemo`](/reference/react/useMemo).
 
 </Note>
 
