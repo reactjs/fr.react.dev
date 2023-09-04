@@ -240,7 +240,7 @@ Elle est en général utilisée conjointement avec [`static getDerivedStateFromE
 
 <Note>
 
-Il n'y a pas encore d'équivalent direct à `componentDidCatch` dans les fonctions composants.  Si vous souhaitez éviter de créer des composants à base de classes, écrivez un unique composant `ErrorBundary` comme ci-dessus et utilisez-le dans toute votre appli.  Vous pouvez aussi utiliser le module [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) qui fait ça (et davantage) pour vous.
+Il n'y a pas encore d'équivalent direct à `componentDidCatch` dans les fonctions composants.  Si vous souhaitez éviter de créer des composants à base de classes, écrivez un unique composant `ErrorBoundary` comme ci-dessus et utilisez-le dans toute votre appli.  Vous pouvez aussi utiliser le module [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) qui fait ça (et davantage) pour vous.
 
 </Note>
 
@@ -807,7 +807,7 @@ Appeler [`setState`](#setstate) dans `UNSAFE_componentWillMount` pour initialise
 Si vous définissez `UNSAFE_componentWillReceiveProps`, React l'appellera lorsque le composant recevra des nouvelles props.  Cette méthode n'existe plus que pour des raisons historiques et ne devrait pas être utilisée dans du nouveau code.  Utilisez plutôt l'une de ces alternatives :
 
 - Si vous avez besoin **d'exécuter un effet de bord** (par exemple charger des données, dérouler une animation ou réinitialiser un abonnement) en réaction à des changements de props, déplacez plutôt cette logique dans [`componentDidUpdate`](#componentdidupdate).
-- Si vous souhaitez **ne recaclculer certaines données que lorsque certaines props changent**, utilisez plutôt un [utilitaire de mémoïsation](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+- Si vous souhaitez **ne recalculer certaines données que lorsque certaines props changent**, utilisez plutôt un [utilitaire de mémoïsation](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
 - Si vous essayez de **« réinitialiser » tout l'état quand une prop change**, envisagez de plutôt faire un composant soit [pleinement contrôlé](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) soit [pleinement non contrôlé mais avec une clé](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key).
 - Si vous avez besoin **d'« ajuster » une partie de l'état quand une prop change**, voyez si vous ne pouvez pas plutôt calculer toutes les infos nécessaires à partir des props seules lors du rendu.  Si ce n'est pas possible, préférez [`static getDerivedStateFromProps`](/reference/react/Component#static-getderivedstatefromprops).
 
@@ -888,7 +888,7 @@ Cette API sera retirée d'une future version majeure de React. [Utilisez plutôt
 
 </Deprecated>
 
-Lets you specify which [legacy context](https://reactjs.org/docs/legacy-context.html) is provided by this component.
+Vous permet des spécifier quel [contexte historique](https://legacy.reactjs.org/docs/legacy-context.html) est fourni par ce composant.
 
 ---
 
@@ -900,14 +900,13 @@ Cette API sera retirée d'une future version majeure de React. [Utilisez plutôt
 
 </Deprecated>
 
-
-Lets you specify which [legacy context](https://reactjs.org/docs/legacy-context.html) is consumed by this component.
+Vous permet de spécifier quel [contexte historique](https://legacy.reactjs.org/docs/legacy-context.html) est consommé par ce composant.
 
 ---
 
 ### `static contextType` {/*static-contexttype*/}
 
-If you want to read [`this.context`](#context-instance-field) from your class component, you must specify which context it needs to read. The context you specify as the `static contextType` must be a value previously created by [`createContext`.](/reference/react/createContext)
+Si vous souhaitez lire [`this.context`](#context-instance-field) dans votre composant à base de classe, vous devez spécifier le contexte que vous souhaitez lire.  Le contexte que vous spécifiez comme `static contextType` doit être une valeur créée auparavant par[`createContext`](/reference/react/createContext).
 
 ```js {2}
 class Button extends Component {
@@ -927,9 +926,9 @@ class Button extends Component {
 
 <Note>
 
-Reading `this.context` in class components is equivalent to [`useContext`](/reference/react/useContext) in function components.
+La lecture de `this.context` dans les composants à base de classes est équivalente à [`useContext`](/reference/react/useContext) dans les fonctions composants.
 
-[See how to migrate.](#migrating-a-component-with-context-from-a-class-to-a-function)
+[Voyez comment migrer](#migrating-a-component-with-context-from-a-class-to-a-function).
 
 </Note>
 
@@ -937,9 +936,9 @@ Reading `this.context` in class components is equivalent to [`useContext`](/refe
 
 ### `static defaultProps` {/*static-defaultprops*/}
 
-You can define `static defaultProps` to set the default props for the class. They will be used for `undefined` and missing props, but not for `null` props.
+Vous pouvez définir `static defaultProps` pour fournir des valeurs par défaut aux props de la classe.  Elles seront utilisées pour les props manquantes ou valant `undefined`, mais pas pour les props valant `null`.
 
-For example, here is how you define that the `color` prop should default to `'blue'`:
+Voici par exemple comment définir une prop `color` qui devrait valoir `'blue'` par défaut :
 
 ```js {2-4}
 class Button extends Component {
@@ -948,32 +947,32 @@ class Button extends Component {
   };
 
   render() {
-    return <button className={this.props.color}>click me</button>;
+    return <button className={this.props.color}>Cliquez ici</button>;
   }
 }
 ```
 
-If the `color` prop is not provided or is `undefined`, it will be set by default to `'blue'`:
+Si la prop `color` n'est pas fournie ou est à `undefined`, elle sera mise par défaut à `'blue'` :
 
 ```js
 <>
-  {/* this.props.color is "blue" */}
+  {/* this.props.color vaudra "blue" */}
   <Button />
 
-  {/* this.props.color is "blue" */}
+  {/* this.props.color vaudra "blue" */}
   <Button color={undefined} />
 
-  {/* this.props.color is null */}
+  {/* this.props.color vaudra null */}
   <Button color={null} />
 
-  {/* this.props.color is "red" */}
+  {/* this.props.color vaudra "red" */}
   <Button color="red" />
 </>
 ```
 
 <Note>
 
-Defining `defaultProps` in class components is similar to using [default values](/learn/passing-props-to-a-component#specifying-a-default-value-for-a-prop) in function components.
+La définition de `defaultProps` dans les composants à base de classes est équivalente à l'utilisation de [valeurs par défaut](/learn/passing-props-to-a-component#specifying-a-default-value-for-a-prop) dans les fonctions composants.
 
 </Note>
 
@@ -981,7 +980,7 @@ Defining `defaultProps` in class components is similar to using [default values]
 
 ### `static propTypes` {/*static-proptypes*/}
 
-You can define `static propTypes` together with the [`prop-types`](https://www.npmjs.com/package/prop-types) library to declare the types of the props accepted by your component. These types will be checked during rendering and in development only.
+Vous pouvez définir `static propTypes` en utilisant le module[`prop-types`](https://www.npmjs.com/package/prop-types) pour déclarer les types des props acceptées par votre composant.  Ces types seront vérifiés lors du rendu en développement uniquement.
 
 ```js
 import PropTypes from 'prop-types';
@@ -1001,7 +1000,7 @@ class Greeting extends React.Component {
 
 <Note>
 
-We recommend using [TypeScript](https://www.typescriptlang.org/) instead of checking prop types at runtime.
+Nous vous conseillons d'utiliser [TypeScript](https://www.typescriptlang.org/) plutôt que de vérifier vos types de props à l'exécution.
 
 </Note>
 
@@ -1009,27 +1008,27 @@ We recommend using [TypeScript](https://www.typescriptlang.org/) instead of chec
 
 ### `static getDerivedStateFromError(error)` {/*static-getderivedstatefromerror*/}
 
-If you define `static getDerivedStateFromError`, React will call it when a child component (including distant children) throws an error during rendering. This lets you display an error message instead of clearing the UI.
+Si vous définissez `static getDerivedStateFromError`, React l'appellera lorsqu'un composant descendant lèvera une erreur pendant le rendu.  Ça vous permet d'afficher un message d'erreur plutôt que de vider l'UI.
 
-Typically, it is used together with [`componentDidCatch`](#componentdidcatch) which lets you send the error report to some analytics service. A component with these methods is called an *error boundary.*
+Elle est en général utilisée conjointement avec [`componentDidCatch`](#componentdidcatch), qui vous permet d'envoyer un rapport d'erreur à un service de supervision.  Un composant doté de ces méthodes est ce qu'on appelle un *périmètre d'erreur*.
 
-[See an example.](#catching-rendering-errors-with-an-error-boundary)
+[Voir un exemple](#catching-rendering-errors-with-an-error-boundary).
 
 #### Paramètres {/*static-getderivedstatefromerror-parameters*/}
 
-* `error`: The error that was thrown. In practice, it will usually be an instance of [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) but this is not guaranteed because JavaScript allows to [`throw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) any value, including strings or even `null`.
+* `error` : l'erreur qui a été levée.  En pratique il s'agira généralement d'une instance d'[`Error`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Error), mais ce n'est pas garanti parce que JavaScript autorise un [`throw`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/throw) de n'importe quelle valeur, y compris des chaînes de caractères et même `null`.
 
 #### Valeur renvoyée {/*static-getderivedstatefromerror-returns*/}
 
-`static getDerivedStateFromError` should return the state telling the component to display the error message.
+`static getDerivedStateFromError` devrait renvoyer l'état indiquant au composant d'afficher un message d'erreur.
 
 #### Limitations {/*static-getderivedstatefromerror-caveats*/}
 
-* `static getDerivedStateFromError` should be a pure function. If you want to perform a side effect (for example, to call an analytics service), you need to also implement [`componentDidCatch`.](#componentdidcatch)
+* `static getDerivedStateFromError` devrait être une fonction pure. Si vous souhaiter exécuter un effet de bord (comme par exemple un signalement à un service de supervision), vous devez aussi implémenter [`componentDidCatch`](#componentdidcatch).
 
 <Note>
 
-There is no direct equivalent for `static getDerivedStateFromError` in function components yet. If you'd like to avoid creating class components, write a single `ErrorBoundary` component like above and use it throughout your app. Alternatively, use the [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) package which does that.
+Il n'y a pas encore d'équivalent direct à `static getDerivedStateFromError` dans les fonctions composants.  Si vous souhaitez éviter de créer des composants à base de classes, écrivez un unique composant `ErrorBoundary` comme ci-dessus et utilisez-le dans toute votre appli.  Vous pouvez aussi utiliser le module [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) qui fait ça (et davantage) pour vous.
 
 </Note>
 
@@ -1037,9 +1036,9 @@ There is no direct equivalent for `static getDerivedStateFromError` in function 
 
 ### `static getDerivedStateFromProps(props, state)` {/*static-getderivedstatefromprops*/}
 
-If you define `static getDerivedStateFromProps`, React will call it right before calling [`render`,](#render) both on the initial mount and on subsequent updates. It should return an object to update the state, or `null` to update nothing.
+Si vous définissez `static getDerivedStateFromProps`, React l'appellera juste avant d'appeler [`render`](#render), tant au montage initial que lors des mises à jour ultérieures.  Elle devrait renvoyer un objet de mise à jour de l'état, ou `null` pour ne faire aucune mise à jour.
 
-This method exists for [rare use cases](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) where the state depends on changes in props over time. For example, this `Form` component resets the `email` state when the `userID` prop changes:
+Cette méthode existe pour [les rares cas d'usage](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) où l'état dépend de changements de props au fil du temps. Par exemple, le composant `Form` ci-dessous réinitialise son état `email` lorsque la prop `userID` change :
 
 ```js {7-18}
 class Form extends Component {
@@ -1049,9 +1048,9 @@ class Form extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    // Any time the current user changes,
-    // Reset any parts of state that are tied to that user.
-    // In this simple example, that's just the email.
+    // Dès que l’utilisateur actif change, réinitialise
+    // les parties de l’état liées à cet utilisateur.
+    // Dans cet exemple simple, il s’agit juste de l’e-mail.
     if (props.userID !== state.prevUserID) {
       return {
         prevUserID: props.userID,
@@ -1065,42 +1064,42 @@ class Form extends Component {
 }
 ```
 
-Note that this pattern requires you to keep a previous value of the prop (like `userID`) in state (like `prevUserID`).
+Remarquez que cette approche requiert la conservation de la valeur précédente de la prop (comme `userID`) dans l'état (comme ici `prevUserID`).
 
 <Pitfall>
 
-Deriving state leads to verbose code and makes your components difficult to think about. [Make sure you're familiar with simpler alternatives:](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+Dériver ainsi l'état conduit à du code verbeux et rend difficile la compréhension de vos composants. [Assurez-vous de bien connaître les alternatives plus simples](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html) :
 
-- If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) method instead.
-- If you want to **re-compute some data only when a prop changes,** [use a memoization helper instead.](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)
-- If you want to **"reset" some state when a prop changes,** consider either making a component [fully controlled](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a key](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+- Si vous avez besoin **d'exécuter un effet de bord** (par exemple charge des données ou dérouler une animation) en réaction à un changement de prop, utilisez plutôt la méthode [`componentDidUpdate`](#componentdidupdate).
+- Si vous souhaitez **ne recalculer certaines données que lorsque certaines props changent**, utilisez plutôt un [utilitaire de mémoïsation](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+- Si vous essayez de **« réinitialiser » tout l'état quand une prop change**, envisagez de plutôt faire un composant soit [pleinement contrôlé](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) soit [pleinement non contrôlé mais avec une clé](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key).
 
 </Pitfall>
 
 #### Paramètres {/*static-getderivedstatefromprops-parameters*/}
 
-- `props`: The next props that the component is about to render with.
-- `state`: The next state that the component is about to render with.
+* `props` : les prochaines props pour le rendu à venir.
+* `state` : le prochain état pour le rendu à venir.
 
 #### Valeur renvoyée {/*static-getderivedstatefromprops-returns*/}
 
-`static getDerivedStateFromProps` return an object to update the state, or `null` to update nothing.
+`static getDerivedStateFromProps` renvoie un objet pour mettre à jour l'état, ou `null` pour ne rien mettre à jour.
 
 #### Limitations {/*static-getderivedstatefromprops-caveats*/}
 
-- This method is fired on *every* render, regardless of the cause. This is different from [`UNSAFE_componentWillReceiveProps`](#unsafe_cmoponentwillreceiveprops), which only fires when the parent causes a re-render and not as a result of a local `setState`.
+- Cette méthode est déclenchée à *chaque* rendu, peu en importe la raison. Ce n'est pas comme [`UNSAFE_componentWillReceiveProps`](#unsafe_cmoponentwillreceiveprops), qui ne sera déclenchée que lorsque le parent entraîne un nouveau rendu, mais pas suite à un `setState` local.
 
-- This method doesn't have access to the component instance. If you'd like, you can reuse some code between `static getDerivedStateFromProps` and the other class methods by extracting pure functions of the component props and state outside the class definition.
+- Cette méthode n'a pas accès à l'instance du composant. Si vous le souhaitez, vous pouvez réutiliser du code entre `static getDerivedStateFromProps` et les autres méthodes de la classe en extrayant des fonctions pures basées sur les props et l'état du composant hors de la définition de la classe.
 
 <Note>
 
-Implementing `static getDerivedStateFromProps` in a class component is equivalent to [calling the `set` function from `useState` during rendering](/reference/react/useState#storing-information-from-previous-renders) in a function component.
+L'implémentation de `static getDerivedStateFromProps` dans un composant à base de classe est équivalente à [l'appel d'une fonction `set` fournie par `useState` lors du rendu](/reference/react/useState#storing-information-from-previous-renders) dans une fonction composant.
 
 </Note>
 
 ---
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
 ### Defining a class component {/*defining-a-class-component*/}
 
