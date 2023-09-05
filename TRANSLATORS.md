@@ -115,6 +115,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react/legacy">API React historique</a></li>
           <li><a href="https://fr.react.dev/reference/react/Children"><code>Children</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/cloneElement"><code>cloneElement</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/Component"><code>Component</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/createElement"><code>createElement</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/createFactory"><code>createFactory</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/createRef"><code>createRef</code></a></li>

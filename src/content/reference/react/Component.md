@@ -4,18 +4,18 @@ title: Component
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)
+Nous vous conseillons de définir vos composants au moyen de fonctions plutôt que de classes. [Voyez comment migrer](#alternatives).
 
 </Pitfall>
 
 <Intro>
 
-`Component` is the base class for the React components defined as [JavaScript classes.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) Class components are still supported by React, but we don't recommend using them in new code.
+`Component` est la classe de base pour les composants React définis à l'aide de [classes JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes). Les composants à base de classes restent pris en charge par React, mais nous les déconseillons pour tout nouveau code.
 
 ```js
 class Greeting extends Component {
   render() {
-    return <h1>Hello, {this.props.name}!</h1>;
+    return <h1>Salut {this.props.name} !</h1>;
   }
 }
 ```
@@ -26,33 +26,33 @@ class Greeting extends Component {
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `Component` {/*component*/}
 
-To define a React component as a class, extend the built-in `Component` class and define a [`render` method:](#render)
+Pour définir un composant React sous forme de classe, étendez la classe `Component` fournie par React et définissez sa [méthode `render`](#render) :
 
 ```js
 import { Component } from 'react';
 
 class Greeting extends Component {
   render() {
-    return <h1>Hello, {this.props.name}!</h1>;
+    return <h1>Salut {this.props.name} !</h1>;
   }
 }
 ```
 
-Only the `render` method is required, other methods are optional.
+Seule la méthode `render` est requise, les autres méthodes sont optionnelles.
 
-[See more examples below.](#usage)
+[Voir d'autres exemples ci-dessous](#usage).
 
 ---
 
 ### `context` {/*context*/}
 
-The [context](/learn/passing-data-deeply-with-context) of a class component is available as `this.context`. It is only available if you specify *which* context you want to receive using [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (deprecated).
+Le [contexte](/learn/passing-data-deeply-with-context) d'un composant à base de classe est mis à disposition dans `this.context`.  Il n'est disponible que si vous précisez *quel* contexte vous souhaitez récupérer en utilisant [`static contextType`](#static-contexttype) (approche plus récente) ou [`static contextTypes`](#static-contexttypes) (approche dépréciée).
 
-A class component can only read one context at a time.
+Un composant à base de classe ne peut lire qu'un contexte à la fois.
 
 ```js {2,5}
 class Button extends Component {
@@ -73,9 +73,9 @@ class Button extends Component {
 
 <Note>
 
-Reading `this.context` in class components is equivalent to [`useContext`](/reference/react/useContext) in function components.
+La lecture de `this.context` dans des composants à base de classes est équivalente à un appel à [`useContext`](/reference/react/useContext) dans les fonctions composants.
 
-[See how to migrate.](#migrating-a-component-with-context-from-a-class-to-a-function)
+[Voyez comment migrer](#migrating-a-component-with-context-from-a-class-to-a-function).
 
 </Note>
 
@@ -83,23 +83,23 @@ Reading `this.context` in class components is equivalent to [`useContext`](/refe
 
 ### `props` {/*props*/}
 
-The props passed to a class component are available as `this.props`.
+Les props passées à un composant à base de classe sont mises à disposition dans `this.props`.
 
 ```js {3}
 class Greeting extends Component {
   render() {
-    return <h1>Hello, {this.props.name}!</h1>;
+    return <h1>Salut {this.props.name} !</h1>;
   }
 }
 
-<Greeting name="Taylor" />
+<Greeting name="Clara" />
 ```
 
 <Note>
 
-Reading `this.props` in class components is equivalent to [declaring props](/learn/passing-props-to-a-component#step-2-read-props-inside-the-child-component) in function components.
+La lecture de `this.props` dans des composants à base de classes est équivalente à la [déclaration des props](/learn/passing-props-to-a-component#step-2-read-props-inside-the-child-component) dans les fonctions composants.
 
-[See how to migrate.](#migrating-a-simple-component-from-a-class-to-a-function)
+[Voyez comment migrer](#migrating-a-simple-component-from-a-class-to-a-function).
 
 </Note>
 
@@ -109,27 +109,27 @@ Reading `this.props` in class components is equivalent to [declaring props](/lea
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [Use `createRef` instead.](/reference/react/createRef)
+Cette API sera retirée d'une future version majeure de React. [Utilisez plutôt `createRef`](/reference/react/createRef).
 
 </Deprecated>
 
-Lets you access [legacy string refs](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) for this component.
+Vous permet d'accéder à des [refs textuelles historiques](https://legacy.reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) pour ce composant.
 
 ---
 
 ### `state` {/*state*/}
 
-The state of a class component is available as `this.state`. The `state` field must be an object. Do not mutate the state directly. If you wish to change the state, call `setState` with the new state.
+L'état d'un composant à base de classe est mis à disposition dans `this.state`. La champ `state` doit être un objet. Ne modifiez pas l'état directement.  Si vous souhaitez modifier l'état, appelez `setState` avec un objet d'état en argument.
 
 ```js {2-4,7-9,18}
 class Counter extends Component {
   state = {
-    age: 42,
+    age: 31,
   };
 
   handleAgeChange = () => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -137,9 +137,9 @@ class Counter extends Component {
     return (
       <>
         <button onClick={this.handleAgeChange}>
-        Increment age
+        Prendre de l’âge
         </button>
-        <p>You are {this.state.age}.</p>
+        <p>Vous avez {this.state.age} ans.</p>
       </>
     );
   }
@@ -148,9 +148,9 @@ class Counter extends Component {
 
 <Note>
 
-Defining `state` in class components is equivalent to calling [`useState`](/reference/react/useState) in function components.
+La définition de `state` dans les composants à base de classes est équivalente à l'appel de [`useState`](/reference/react/useState) dans les fonctions composants.
 
-[See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
+[Voyez comment migrer](#migrating-a-component-with-state-from-a-class-to-a-function).
 
 </Note>
 
@@ -158,7 +158,7 @@ Defining `state` in class components is equivalent to calling [`useState`](/refe
 
 ### `constructor(props)` {/*constructor*/}
 
-The [constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) runs before your class component *mounts* (gets added to the screen). Typically, a constructor is only used for two purposes in React. It lets you declare state and [bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) your class methods to the class instance:
+Le [constructeur](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes/constructor) est exécuté avant le *montage* (l'ajout dans le DOM) de votre composant. En général, vous n'utilisez un constructeur dans React que pour deux raisons.  Il vous permet de déclarer votre état puis de [lier](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_objects/Function/bind) certaines de vos méthodes à votre instance :
 
 ```js {2-6}
 class Counter extends Component {
@@ -173,7 +173,7 @@ class Counter extends Component {
   }
 ```
 
-If you use modern JavaScript syntax, constructors are rarely needed. Instead, you can rewrite this code above using the [public class field syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) which is supported both by modern browsers and tools like [Babel:](https://babeljs.io/)
+Si vous utilisez une syntaxe JavaScript moderne, vous aurez rarement besoin des constructeurs.  Vous pouvez plutôt réécrire le code ci-dessus en utilisant des [initialiseurs de champs d'instance](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes/Public_class_fields) qui sont pris en charge par tous les navigateurs modernes et par des outils comme [Babel](https://babeljs.io/) :
 
 ```js {2,4}
 class Counter extends Component {
@@ -184,31 +184,31 @@ class Counter extends Component {
   }
 ```
 
-A constructor should not contain any side effects or subscriptions.
+Un constructeur ne devrait contenir aucun effet de bord ni aucun abonnement.
 
-#### Parameters {/*constructor-parameters*/}
+#### Paramètres {/*constructor-parameters*/}
 
-* `props`: The component's initial props.
+* `props` : les props initiales du composant.
 
-#### Returns {/*constructor-returns*/}
+#### Valeur renvoyée {/*constructor-returns*/}
 
-`constructor` should not return anything.
+`constructor` ne devrait rien renvoyer.
 
-#### Caveats {/*constructor-caveats*/}
+#### Limitations {/*constructor-caveats*/}
 
-* Do not run any side effects or subscriptions in the constructor. Instead, use [`componentDidMount`](#componentdidmount) for that.
+* Ne lancez aucun effet de bord et ne souscrivez aucun abonnement dans le constructeur.  Utilisez plutôt [`componentDidMount`](#componentdidmount) pour ça.
 
-* Inside a constructor, you need to call `super(props)` before any other statement. If you don't do that, `this.props` will be `undefined` while the constructor runs, which can be confusing and cause bugs.
+* Dans un constructeur, vous devez impérativement appeler `super(props)` avant toute autre instruction.  Si vous ne le faites pas, `this.props` sera `undefined` pendant l'exécution du constructeur, ce qui peut être déroutant et causer des bugs.
 
-* Constructor is the only place where you can assign [`this.state`](#state) directly. In all other methods, you need to use [`this.setState()`](#setstate) instead. Do not call `setState` in the constructor.
+* Le constructeur est le seul endroit où vous pouvez affecter une valeur directement à [`this.state`](#state).  Dans toutes les autres méthodes, vous devez plutôt utiliser [`this.setState()`](#setstate). En revanche, n'appelez pas `setState` dans le constructeur.
 
-* When you use [server rendering,](/reference/react-dom/server) the constructor will run on the server too, followed by the [`render`](#render) method. However, lifecycle methods like `componentDidMount` or `componentWillUnmount` will not run on the server.
+* Lorsque vous faites du [rendu côté serveur](/reference/react-dom/server), le constructeur sera exécuté côté serveur aussi, suivi de la méthode [`render`](#render). En revanche, les méthodes de cycle de vie telles que `componentDidMount` ou `componentWillUnmount` ne seront pas exécutées côté serveur.
 
-* When [Strict Mode](/reference/react/StrictMode) is on, React will call `constructor` twice in development and then throw away one of the instances. This helps you notice the accidental side effects that need to be moved out of the `constructor`.
+* En [mode strict](/reference/react/StrictMode), React appellera votre `constructor` deux fois en développement, puis jettera une des instances obtenues.  Ce comportement vous permet de repérer des effets de bord involontaires qui doivent être sortis du `constructor`.
 
 <Note>
 
-There is no exact equivalent for `constructor` in function components. To declare state in a function component, call [`useState`.](/reference/react/useState) To avoid recalculating the initial state, [pass a function to `useState`.](/reference/react/useState#avoiding-recreating-the-initial-state)
+Il n'y a pas d'équivalent réel du `constructor` dans les fonctions composants.  Pour déclarer un état dans une fonction composant, utilisez [`useState`](/reference/react/useState).  Pour éviter de recalculer l'état initial, [passez une fonction à `useState`](/reference/react/useState#avoiding-recreating-the-initial-state).
 
 </Note>
 
@@ -216,31 +216,31 @@ There is no exact equivalent for `constructor` in function components. To declar
 
 ### `componentDidCatch(error, info)` {/*componentdidcatch*/}
 
-If you define `componentDidCatch`, React will call it when some child component (including distant children) throws an error during rendering. This lets you log that error to an error reporting service in production.
+Si vous définissez `componentDidCatch`, React l'appellera lorsqu'un composant descendant lèvera une erreur lors du rendu.  Ça vous permettra de signaler l'erreur à un service de supervision en production.
 
-Typically, it is used together with [`static getDerivedStateFromError`](#static-getderivedstatefromerror) which lets you update state in response to an error and display an error message to the user. A component with these methods is called an *error boundary.*
+Elle est en général utilisée conjointement avec [`static getDerivedStateFromError`](#static-getderivedstatefromerror), qui vous permet de mettre à jour l'état en réaction à une erreur afin d'afficher un message d'erreur à l'utilisateur.  Un composant doté de ces méthodes est ce qu'on appelle un *périmètre d'erreur*.
 
-[See an example.](#catching-rendering-errors-with-an-error-boundary)
+[Voir un exemple](#catching-rendering-errors-with-an-error-boundary).
 
-#### Parameters {/*componentdidcatch-parameters*/}
+#### Paramètres {/*componentdidcatch-parameters*/}
 
-* `error`: The error that was thrown. In practice, it will usually be an instance of [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) but this is not guaranteed because JavaScript allows to [`throw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) any value, including strings or even `null`.
+* `error` : l'erreur qui a été levée.  En pratique il s'agira généralement d'une instance d'[`Error`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Error), mais ce n'est pas garanti parce que JavaScript autorise un [`throw`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/throw) de n'importe quelle valeur, y compris des chaînes de caractères et même `null`.
 
-* `info`: An object containing additional information about the error. Its `componentStack` field contains a stack trace with the component that threw, as well as the names and source locations of all its parent components. In production, the component names will be minified. If you set up production error reporting, you can decode the component stack using sourcemaps the same way as you would do for regular JavaScript error stacks.
+* `info` : un objet contenant des informations complémentaires sur l'erreur. Son champ `componentStack` contient une pile d'appel de rendu avec le composant ayant levé l'erreur, ainsi que les noms et emplacements dans le code source de tous ses composants parents. En production, les noms des composants seront minifiés. Si vous mettez en place un signalement d'erreurs en production, vous pouvez décoder la pile d'appels de rendu grâce aux *sourcemaps*, exactement comme pour les piles d'appels d'erreurs JavaScript usuelles.
 
-#### Returns {/*componentdidcatch-returns*/}
+#### Valeur renvoyée {/*componentdidcatch-returns*/}
 
-`componentDidCatch` should not return anything.
+`componentDidCatch` ne devrait rien renvoyer.
 
-#### Caveats {/*componentdidcatch-caveats*/}
+#### Limitations {/*componentdidcatch-caveats*/}
 
-* In the past, it was common to call `setState` inside `componentDidCatch` in order to update the UI and display the fallback error message. This is deprecated in favor of defining [`static getDerivedStateFromError`.](#static-getderivedstatefromerror)
+* Par le passé, on appelait couramment `setState` dans `componentDidCatch` pour mettre à jour l'UI et afficher un message d'erreur de remplacement.  C'est déprécié en faveur d'une définition de [`static getDerivedStateFromError`](#static-getderivedstatefromerror).
 
-* Production and development builds of React slightly differ in the way `componentDidCatch` handles errors. In development, the errors will bubble up to `window`, which means that any `window.onerror` or `window.addEventListener('error', callback)` will intercept the errors that have been caught by `componentDidCatch`. In production, instead, the errors will not bubble up, which means any ancestor error handler will only receive errors not explicitly caught by `componentDidCatch`.
+* Les *builds* de production et de développement diffèrent légèrement dans leur gestion de l'erreur par `componentDidCatch`. En développement, les erreurs se propageront jusqu'à `window`, ce qui signifie que `window.onerror` et `window.addEventListener('error', callback)` intercepteront les erreurs attrapées par `componentDidCatch`. En production, les erreurs ne seront pas propagées, de sorte que les gestionnaires d'erreurs placés plus haut dans l'arbre ne recevront que les erreurs qui n'auront pas été expressément interceptées par `componentDidCatch`.
 
 <Note>
 
-There is no direct equivalent for `componentDidCatch` in function components yet. If you'd like to avoid creating class components, write a single `ErrorBoundary` component like above and use it throughout your app. Alternatively, you can use the [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) package which does that for you.
+Il n'y a pas encore d'équivalent direct à `componentDidCatch` dans les fonctions composants.  Si vous souhaitez éviter de créer des composants à base de classes, écrivez un unique composant `ErrorBoundary` comme ci-dessus et utilisez-le dans toute votre appli.  Vous pouvez aussi utiliser le module [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) qui fait ça (et davantage) pour vous.
 
 </Note>
 
@@ -248,9 +248,9 @@ There is no direct equivalent for `componentDidCatch` in function components yet
 
 ### `componentDidMount()` {/*componentdidmount*/}
 
-If you define the `componentDidMount` method, React will call it when your component is added *(mounted)* to the screen. This is a common place to start data fetching, set up subscriptions, or manipulate the DOM nodes.
+Si vous définissez la méthode `componentDidMount`, React l'appellera lorsque votre composant sera ajouté au DOM (*monté*). C'est l'endroit classique pour démarrer un chargement de données, souscrire des abonnements, ou manipuler des nœuds du DOM.
 
-If you implement `componentDidMount`, you usually need to implement other lifecycle methods to avoid bugs. For example, if `componentDidMount` reads some state or props, you also have to implement [`componentDidUpdate`](#componentdidupdate) to handle their changes, and [`componentWillUnmount`](#componentwillunmount) to clean up whatever `componentDidMount` was doing.
+Si vous implémentez `componentDidMount`, vous aurez généralement besoin d'implémenter d'autres méthodes de cycle de vie pour éviter les bugs. Si par exemple `componentDidMount` lit de l'état et des props, vous devrez aussi implémenter [`componentDidUpdate`](#componentdidupdate) pour en gérer les modifications, et [`componentWillUnmount`](#componentwillunmount) pour nettoyer toute mise en place effectuée par `componentDidMount`.
 
 ```js {6-8}
 class ChatRoom extends Component {
@@ -280,27 +280,27 @@ class ChatRoom extends Component {
 }
 ```
 
-[See more examples.](#adding-lifecycle-methods-to-a-class-component)
+[Voir d'autres exemples](#adding-lifecycle-methods-to-a-class-component).
 
-#### Parameters {/*componentdidmount-parameters*/}
+#### Paramètres {/*componentdidmount-parameters*/}
 
-`componentDidMount` does not take any parameters.
+`componentDidMount` ne prend aucun paramètre.
 
-#### Returns {/*componentdidmount-returns*/}
+#### Valeur renvoyée {/*componentdidmount-returns*/}
 
-`componentDidMount` should not return anything.
+`componentDidMount` ne devrait rien renvoyer.
 
-#### Caveats {/*componentdidmount-caveats*/}
+#### Limitations {/*componentdidmount-caveats*/}
 
-- When [Strict Mode](/reference/react/StrictMode) is on, in development React will call `componentDidMount`, then immediately call [`componentWillUnmount`,](#componentwillunmount) and then call `componentDidMount` again. This helps you notice if you forgot to implement `componentWillUnmount` or if its logic doesn't fully "mirror" what `componentDidMount` does.
+- En [mode strict](/reference/react/StrictMode), en développement React appellera `componentDidMount`, puis appellera immédiatement [`componentWillUnmount`](#componentwillunmount) et rappellera `componentDidMount` une seconde fois. Ça vous aide à remarquer un oubli d'implémentation de `componentWillUnmount`, ou un « miroir » insuffisant dans celle-ci de la logique présente dans `componentDidMount`.
 
-- Although you may call [`setState`](#setstate) immediately in `componentDidMount`, it's best to avoid that when you can. It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the [`render`](#render) will be called twice in this case, the user won't see the intermediate state. Use this pattern with caution because it often causes performance issues. In most cases, you should be able to assign the initial state in the [`constructor`](#constructor) instead. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
+- Même si vous pourriez appeler immédiatement [`setState`](#setstate) dans `componentDidMount`, il est préférable de l'éviter autant que possible.  Ça déclencherait un rendu supplémentaire, qui arriverait toutefois avant que le navigateur n'ait mis à jour l'affichage. Ça garantit que même si la méthode [`render`](#render) est bien appelée deux fois dans un tel cas, l'utilisateur ne verra pas l'état intermédiaire.  Utilisez cette approche avec précaution, parce qu'elle nuit aux performances.  La plupart du temps, vous devriez pouvoir plutôt définir l'état initial dans le [`constructor`](#constructor). Ça reste toutefois utile pour des cas comme les boîtes de dialogue modales et les infobulles, qui nécessitent une mesure de nœud DOM avant de pouvoir afficher quelque chose qui dépend de leur taille ou de leur position.
 
 <Note>
 
-For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/reference/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/reference/react/useLayoutEffect) is a closer match.
+Dans de nombreux cas, définir `componentDidMount`, `componentDidUpdate` et `componentWillUnmount` conjointement dans des composants à base de classes revient à un simple appel à [`useEffect`](/reference/react/useEffect) dans les fonctions composants.  Dans les rares cas où il est important d'exécuter du code avant l'affichage par le navigateur, un meilleur équivalent serait [`useLayoutEffect`](/reference/react/useLayoutEffect).
 
-[See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
+[Voyez comment migrer](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function).
 
 </Note>
 
@@ -308,9 +308,9 @@ For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `com
 
 ### `componentDidUpdate(prevProps, prevState, snapshot?)` {/*componentdidupdate*/}
 
-If you define the `componentDidUpdate` method, React will call it immediately after your component has been re-rendered with updated props or state.  This method is not called for the initial render.
+Si vous définissez la méthode `componentDidUpdate`, React l'appellera immédiatement après que le composant a recalculé son rendu et mis à jour ses props et son état.  Cette méthode n'est pas appelée lors du rendu initial.
 
-You can use it to manipulate the DOM after an update. This is also a common place to do network requests as long as you compare the current props to previous props (e.g. a network request may not be necessary if the props have not changed). Typically, you'd use it together with [`componentDidMount`](#componentdidmount) and [`componentWillUnmount`:](#componentwillunmount)
+Vous pouvez l'utiliser pour manipuler le DOM après une mise à jour. C'est également un endroit courant pour des requêtes réseau, du moment que vous comparez les nouvelles props aux anciennes (une requête réseau pourrait par exemple être superflue si les props n'ont pas bougé).  En général, vous l'utiliserez conjointement à [`componentDidMount`](#componentdidmount) et [`componentWillUnmount`](#componentwillunmount) :
 
 ```js {10-18}
 class ChatRoom extends Component {
@@ -340,45 +340,45 @@ class ChatRoom extends Component {
 }
 ```
 
-[See more examples.](#adding-lifecycle-methods-to-a-class-component)
+[Voir d'autres exemples](#adding-lifecycle-methods-to-a-class-component).
 
+#### Paramètres {/*componentdidupdate-parameters*/}
 
-#### Parameters {/*componentdidupdate-parameters*/}
+* `prevProps` : les props de votre composant avant la mise à jour. Comparez `prevProps` à [`this.props`](#props) pour déterminer ce qui a changé.
 
-* `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
+* `prevState` : l'état de votre composant avant la mise à jour. Comparez `prevState` à [`this.state`](#state) pour déterminer ce qui a changé.
 
-* `prevState`: State before the update. Compare `prevState` to [`this.state`](#state) to determine what changed.
+* `snapshot` : si vous avez implémenté [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate), `snapshot` contiendra la valeur que vous aviez renvoyée depuis cette méthode. Dans les autres cas, ça vaudra `undefined`.
 
-* `snapshot`: If you implemented [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate), `snapshot` will contain the value you returned from that method. Otherwise, it will be `undefined`.
+#### Valeur renvoyée {/*componentdidupdate-returns*/}
 
-#### Returns {/*componentdidupdate-returns*/}
+`componentDidUpdate` ne devrait rien renvoyer.
 
-`componentDidUpdate` should not return anything.
+#### Limitations {/*componentdidupdate-caveats*/}
 
-#### Caveats {/*componentdidupdate-caveats*/}
+- `componentDidUpdate` ne sera pas appelée si [`shouldComponentUpdate`](#shouldcomponentupdate) est définie et renvoie `false`.
 
-- `componentDidUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
+- La logique dans `componentDidUpdate` devrait généralement être entourée de conditions comparant `this.props` et `prevProps`, ainsi que `this.state` et `prevState`. Faute de quoi vous risquez des boucles de rendu infinies.
 
-- The logic inside `componentDidUpdate` should usually be wrapped in conditions comparing `this.props` with `prevProps`, and `this.state` with `prevState`. Otherwise, there's a risk of creating infinite loops.
-
-- Although you may call [`setState`](#setstate) immediately in `componentDidUpdate`, it's best to avoid that when you can. It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the [`render`](#render) will be called twice in this case, the user won't see the intermediate state. This pattern often causes performance issues, but it may be necessary for rare cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
+- Même si vous pourriez appeler immédiatement [`setState`](#setstate) dans `componentDidMount`, il est préférable de l'éviter autant que possible.  Ça déclencherait un rendu supplémentaire, qui arriverait toutefois avant que le navigateur n'ait mis à jour l'affichage. Ça garantit que même si la méthode [`render`](#render) est bien appelée deux fois dans un tel cas, l'utilisateur ne verra pas l'état intermédiaire.  Cette approche peut nuire aux performances, mais reste toutefois utile pour des cas comme les boîtes de dialogue modales et les infobulles, qui nécessitent une mesure de nœud DOM avant de pouvoir afficher quelque chose qui dépend de leur taille ou de leur position.
 
 <Note>
 
-For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/reference/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/reference/react/useLayoutEffect) is a closer match.
+Dans de nombreux cas, définir `componentDidMount`, `componentDidUpdate` et `componentWillUnmount` conjointement dans des composants à base de classes revient à un simple appel à [`useEffect`](/reference/react/useEffect) dans les fonctions composants.  Dans les rares cas où il est important d'exécuter du code avant l'affichage par le navigateur, un meilleur équivalent serait [`useLayoutEffect`](/reference/react/useLayoutEffect).
 
-[See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
+[Voyez comment migrer](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function).
 
 </Note>
+
 ---
 
 ### `componentWillMount()` {/*componentwillmount*/}
 
 <Deprecated>
 
-This API has been renamed from `componentWillMount` to [`UNSAFE_componentWillMount`.](#unsafe_componentwillmount) The old name has been deprecated. In a future major version of React, only the new name will work.
+Cette API a été renommée de `componentWillMount` en [`UNSAFE_componentWillMount`](#unsafe_componentwillmount). L'ancien nom est déprécié.  Dans les futures versions de React, seul le nouveau nom fonctionnera.
 
-Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+Exécutez le [*codemod* `rename-unsafe-lifecycles`](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) pour mettre automatiquement le code de vos composants à jour.
 
 </Deprecated>
 
@@ -388,9 +388,9 @@ Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-co
 
 <Deprecated>
 
-This API has been renamed from `componentWillReceiveProps` to [`UNSAFE_componentWillReceiveProps`.](#unsafe_componentwillreceiveprops) The old name has been deprecated. In a future major version of React, only the new name will work.
+Cette API a été renommée de `componentWillReceiveProps` en [`UNSAFE_componentWillReceiveProps`](#unsafe_componentwillreceiveprops). L'ancien nom est déprécié.  Dans les futures versions de React, seul le nouveau nom fonctionnera.
 
-Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+Exécutez le [*codemod* `rename-unsafe-lifecycles`](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) pour mettre automatiquement le code de vos composants à jour.
 
 </Deprecated>
 
@@ -400,9 +400,9 @@ Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-co
 
 <Deprecated>
 
-This API has been renamed from `componentWillUpdate` to [`UNSAFE_componentWillUpdate`.](#unsafe_componentwillupdate) The old name has been deprecated. In a future major version of React, only the new name will work.
+Cette API a été renommée de `componentWillUpdate` en [`UNSAFE_componentWillUpdate`](#unsafe_componentwillupdate). L'ancien nom est déprécié.  Dans les futures versions de React, seul le nouveau nom fonctionnera.
 
-Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+Exécutez le [*codemod* `rename-unsafe-lifecycles`](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) pour mettre automatiquement le code de vos composants à jour.
 
 </Deprecated>
 
@@ -410,9 +410,9 @@ Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-co
 
 ### `componentWillUnmount()` {/*componentwillunmount*/}
 
-If you define the `componentWillUnmount` method, React will call it before your component is removed *(unmounted)* from the screen. This is a common place to cancel data fetching or remove subscriptions.
+Si vous définissez la méthode `componentWillUnmount`, React l'appellera avant que votre composant soit retiré du DOM (*démonté*).  C'est un endroit courant pour annuler les chargements de données et vous désabonner.
 
-The logic inside `componentWillUnmount` should "mirror" the logic inside [`componentDidMount`.](#componentdidmount) For example, if `componentDidMount` sets up a subscription, `componentWillUnmount` should clean up that subscription. If the cleanup logic in your `componentWillUnmount` reads some props or state, you will usually also need to implement [`componentDidUpdate`](#componentdidupdate) to clean up resources (such as subscriptions) corresponding to the old props and state.
+La logique dans `componentWillUnmount` devrait agir « en miroir » de celle dans [`componentDidMount`](#componentdidmount). Si par exemple `componentDidMount` souscrit un abonnement, `componentWillUnmount` devrait faire le désabonnement associé. Si la logique de nettoyage dans votre `componentWillUnmount` lit des props ou  de l'état, vous aurez généralement besoin d'implémenter également [`componentDidUpdate`](#componentdidupdate) pour nettoyer les ressources (tels que les abonnements) correspondant aux anciennes props et anciens états.
 
 ```js {20-22}
 class ChatRoom extends Component {
@@ -442,25 +442,25 @@ class ChatRoom extends Component {
 }
 ```
 
-[See more examples.](#adding-lifecycle-methods-to-a-class-component)
+[Voir d'autres exemples](#adding-lifecycle-methods-to-a-class-component).
 
-#### Parameters {/*componentwillunmount-parameters*/}
+#### Paramètres {/*componentwillunmount-parameters*/}
 
-`componentWillUnmount` does not take any parameters.
+`componentWillUnmount` ne prend aucun paramètre.
 
-#### Returns {/*componentwillunmount-returns*/}
+#### Valeur renvoyée {/*componentwillunmount-returns*/}
 
-`componentWillUnmount` should not return anything.
+`componentWillUnmount` ne devrait rien renvoyer.
 
-#### Caveats {/*componentwillunmount-caveats*/}
+#### Limitations {/*componentwillunmount-caveats*/}
 
-- When [Strict Mode](/reference/react/StrictMode) is on, in development React will call [`componentDidMount`,](#componentdidmount) then immediately call `componentWillUnmount`, and then call `componentDidMount` again. This helps you notice if you forgot to implement `componentWillUnmount` or if its logic doesn't fully "mirror" what `componentDidMount` does.
+- En [mode strict](/reference/react/StrictMode), en développement React appellera `componentDidMount`, puis appellera immédiatement [`componentWillUnmount`](#componentwillunmount) et rappellera `componentDidMount` une seconde fois. Ça vous aide à remarquer un oubli d'implémentation de `componentWillUnmount`, ou un « miroir » insuffisant dans celle-ci de la logique présente dans `componentDidMount`.
 
 <Note>
 
-For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/reference/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/reference/react/useLayoutEffect) is a closer match.
+Dans de nombreux cas, définir `componentDidMount`, `componentDidUpdate` et `componentWillUnmount` conjointement dans des composants à base de classes revient à un simple appel à [`useEffect`](/reference/react/useEffect) dans les fonctions composants.  Dans les rares cas où il est important d'exécuter du code avant l'affichage par le navigateur, un meilleur équivalent serait [`useLayoutEffect`](/reference/react/useLayoutEffect).
 
-[See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
+[Voyez comment migrer](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function).
 
 </Note>
 
@@ -468,27 +468,27 @@ For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `com
 
 ### `forceUpdate(callback?)` {/*forceupdate*/}
 
-Forces a component to re-render.
+Force un composant à recalculer son rendu.
 
-Usually, this is not necessary. If your component's [`render`](#render) method only reads from [`this.props`](#props), [`this.state`](#state), or [`this.context`,](#context) it will re-render automatically when you call [`setState`](#setstate) inside your component or one of its parents. However, if your component's `render` method reads directly from an external data source, you have to tell React to update the user interface when that data source changes. That's what `forceUpdate` lets you do.
+Vous n'en avez normalement pas besoin. Si la méthode [`render`](#render) de votre composant se contente de lire [`this.props`](#props), [`this.state`](#state) ou [`this.context`](#context), il refera automatiquement son rendu lorsque vous appelez [`setState`](#setstate) dans votre composant ou dans un de ses parents.  En revanche, si la méthode `render` de votre composant lit directement une source de données extérieure, vous devrez demander à React de mettre à jour l'interface utilisateur lorsque cette source de données change.  C'est ce à quoi sert `forceUpdate`.
 
-Try to avoid all uses of `forceUpdate` and only read from `this.props` and `this.state` in `render`.
+Essayez d'éviter tout utilisation de `forceUpdate`, en ne lisant que `this.props` et `this.state` dans `render`.
 
-#### Parameters {/*forceupdate-parameters*/}
+#### Paramètres {/*forceupdate-parameters*/}
 
-* **optional** `callback` If specified, React will call the `callback` you've provided after the update is committed.
+* `callback` **optionnel** : s'il est précisé, React appellera le `callback` que vous avez fourni une fois la mise à jour retranscrite dans le DOM.
 
-#### Returns {/*forceupdate-returns*/}
+#### Valeur renvoyée {/*forceupdate-returns*/}
 
-`forceUpdate` does not return anything.
+`forceUpdate` ne renvoie rien.
 
-#### Caveats {/*forceupdate-caveats*/}
+#### Limitations {/*forceupdate-caveats*/}
 
-- If you call `forceUpdate`, React will re-render without calling [`shouldComponentUpdate`.](#shouldcomponentupdate)
+- Si vous appelez `forceUpdate`, React recalculera le rendu sans appeler d'abord [`shouldComponentUpdate`.](#shouldcomponentupdate)
 
 <Note>
 
-Reading an external data source and forcing class components to re-render in response to its changes with `forceUpdate` has been superseded by [`useSyncExternalStore`](/reference/react/useSyncExternalStore) in function components.
+Là où les composants à base de classes lisent une source de données extérieure pour ensuite forcer avec `forceUpdate` le recalcul de leur rendu lorsque celle-ci change, les fonctions composants utilisent plutôt [`useSyncExternalStore`](/reference/react/useSyncExternalStore).
 
 </Note>
 
@@ -498,21 +498,21 @@ Reading an external data source and forcing class components to re-render in res
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [Use `Context.Provider` instead.](/reference/react/createContext#provider)
+Cette API sera retirée d'une future version majeure de React. [Utilisez plutôt `Context.Provider`](/reference/react/createContext#provider).
 
 </Deprecated>
 
-Lets you specify the values for the [legacy context](https://reactjs.org/docs/legacy-context.html) is provided by this component.
+Vous permet de spécifier les valeurs fournies par le composant pour les [contextes historiques](https://legacy.reactjs.org/docs/legacy-context.html).
 
 ---
 
 ### `getSnapshotBeforeUpdate(prevProps, prevState)` {/*getsnapshotbeforeupdate*/}
 
-If you implement `getSnapshotBeforeUpdate`, React will call it immediately before React updates the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle method will be passed as a parameter to [`componentDidUpdate`.](#componentdidupdate)
+Si vous implémentez `getSnapshotBeforeUpdate`, React l'appellera juste avant de mettre à jour le DOM.  Ça permet à votre composant de capturer certaines informations issues du DOM (telles que la position de défilement) avant qu'elles risquent d'évoluer.  Toute valeur renvoyée par cette méthode de cycle de vie sera passée en paramètre à [`componentDidUpdate`](#componentdidupdate).
 
-For example, you can use it in a UI like a chat thread that needs to preserve its scroll position during updates:
+Vous pouvez par exemple l'utiliser dans une UI de type fil de discussion qui aurait besoin de préserver la position de défilement lors des mises à jour :
 
-```js {7-15,17}
+```js {7-16,18}
 class ScrollingList extends React.Component {
   constructor(props) {
     super(props);
@@ -520,8 +520,9 @@ class ScrollingList extends React.Component {
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    // Are we adding new items to the list?
-    // Capture the scroll position so we can adjust scroll later.
+    // Ajoute-t-on des nouveaux éléments à la liste ?
+    // Capturons alors la position de défilement pour l’ajuster
+    // par la suite.
     if (prevProps.list.length < this.props.list.length) {
       const list = this.listRef.current;
       return list.scrollHeight - list.scrollTop;
@@ -530,9 +531,11 @@ class ScrollingList extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    // If we have a snapshot value, we've just added new items.
-    // Adjust scroll so these new items don't push the old ones out of view.
-    // (snapshot here is the value returned from getSnapshotBeforeUpdate)
+    // Si nous avons une valeur capturée, c’est qu’on a ajouté
+    // de nouveaux éléments. On ajuste alors le défilement de façon
+    // à ce que les nouveaux éléments ne décalent pas les anciens
+    // hors de la zone visible.
+    // (Ici `snapshot` est la valeur renvoyée `getSnapshotBeforeUpdate`.)
     if (snapshot !== null) {
       const list = this.listRef.current;
       list.scrollTop = list.scrollHeight - snapshot;
@@ -541,31 +544,31 @@ class ScrollingList extends React.Component {
 
   render() {
     return (
-      <div ref={this.listRef}>{/* ...contents... */}</div>
+      <div ref={this.listRef}>{/* ...contenu... */}</div>
     );
   }
 }
 ```
 
-In the above example, it is important to read the `scrollHeight` property directly in `getSnapshotBeforeUpdate`. It is not safe to read it in [`render`](#render), [`UNSAFE_componentWillReceiveProps`](#unsafe_componentwillreceiveprops), or [`UNSAFE_componentWillUpdate`](#unsafe_componentwillupdate) because there is a potential time gap between these methods getting called and React updating the DOM.
+Dans l'exemple ci-dessus, il est vital de lire la propriété `scrollHeight` directement dans `getSnapshotBeforeUpdate`.  On ne pourrait pas la lire de façon fiable dans [`render`](#render), [`UNSAFE_componentWillReceiveProps`](#unsafe_componentwillreceiveprops) ou [`UNSAFE_componentWillUpdate`](#unsafe_componentwillupdate) parce qu'il existe un risque de décalage temporel entre les appels de ces méthodes et la mise à jour du DOM par React.
 
-#### Parameters {/*getsnapshotbeforeupdate-parameters*/}
+#### Paramètres {/*getsnapshotbeforeupdate-parameters*/}
 
-* `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
+* `prevProps` : les props de votre composant avant la mise à jour. Comparez `prevProps` à [`this.props`](#props) pour déterminer ce qui a changé.
 
-* `prevState`: State before the update. Compare `prevState` to [`this.state`](#state) to determine what changed.
+* `prevState` : l'état de votre composant avant la mise à jour. Comparez `prevState` à [`this.state`](#state) pour déterminer ce qui a changé.
 
-#### Returns {/*getsnapshotbeforeupdate-returns*/}
+#### Valeur renvoyée {/*getsnapshotbeforeupdate-returns*/}
 
-You should return a snapshot value of any type that you'd like, or `null`. The value you returned will be passed as the third argument to [`componentDidUpdate`.](#componentdidupdate)
+Vous devriez renvoyer une valeur capturée de quelque type que ce soit, voire `null`.  La valeur que vous renvoyez sera passée en troisième argument à [`componentDidUpdate`](#componentdidupdate).
 
-#### Caveats {/*getsnapshotbeforeupdate-caveats*/}
+#### Limitations {/*getsnapshotbeforeupdate-caveats*/}
 
-- `getSnapshotBeforeUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
+- `getSnapshotBeforeUpdate` ne sera pas appelée si [`shouldComponentUpdate`](#shouldcomponentupdate) est définie et renvoie `false`.
 
 <Note>
 
-At the moment, there is no equivalent to `getSnapshotBeforeUpdate` for function components. This use case is very uncommon, but if you have the need for it, for now you'll have to write a class component.
+Il n'y a pas encore d'équivalent direct à `getSnapshotBeforeUpdate` dans les fonctions composants.  C'est un cas d'usage très rare, mais si vous en avez absolument besoin, vous devrez pour le moment écrire un composant à base de classe.
 
 </Note>
 
@@ -573,52 +576,52 @@ At the moment, there is no equivalent to `getSnapshotBeforeUpdate` for function 
 
 ### `render()` {/*render*/}
 
-The `render` method is the only required method in a class component.
+La méthode `render` est la seule méthode obligatoire dans un composant à base de classe.
 
-The `render` method should specify what you want to appear on the screen, for example:
+La méthode `render` devrait spécifier ce que vous souhaitez afficher à l'écran, par exemple :
 
 ```js {4-6}
 import { Component } from 'react';
 
 class Greeting extends Component {
   render() {
-    return <h1>Hello, {this.props.name}!</h1>;
+    return <h1>Salut {this.props.name} !</h1>;
   }
 }
 ```
 
-React may call `render` at any moment, so you shouldn't assume that it runs at a particular time. Usually, the `render` method should return a piece of [JSX](/learn/writing-markup-with-jsx), but a few [other return types](#render-returns) (like strings) are supported. To calculate the returned JSX, the `render` method can read [`this.props`](#props), [`this.state`](#state), and [`this.context`](#context).
+React est susceptible d'appeler `render` à tout moment, aussi vous ne devriez pas supposer son exécution à un moment particulier.  En général, la méthode `render` devrait renvoyer un contenu [JSX](/learn/writing-markup-with-jsx), mais certains [autres types de résultats](#render-returns) (comme les chaînes de caractères) sont autorisés. Pour calculer le JSX renvoyé, la méthode `render` peut lire [`this.props`](#props), [`this.state`](#state) et [`this.context`](#context).
 
-You should write the `render` method as a pure function, meaning that it should return the same result if props, state, and context are the same. It also shouldn't contain side effects (like setting up subscriptions) or interact with the browser APIs. Side effects should happen either in event handlers or methods like [`componentDidMount`.](#componentdidmount)
+Vous devriez écrire la méthode `render` sous forme de fonction pure, c'est-à-dire qu'elle devrait toujours renvoyer le même résultat si les props, l'état et le contexte n'ont pas changé.  Elle ne devrait par ailleurs pas contenir d'effets de bord (tels que des souscriptions d'abonnements) ou interagir avec des API du navigateur.  Les effets de bord sont censés survenir soit dans des gestionnaires d'événements, soit dans des méthodes comme[`componentDidMount`](#componentdidmount).
 
-#### Parameters {/*render-parameters*/}
+#### Paramètres {/*render-parameters*/}
 
-`render` does not take any parameters.
+`render` ne prend aucun paramètre.
 
-#### Returns {/*render-returns*/}
+#### Valeur renvoyée {/*render-returns*/}
 
-`render` can return any valid React node. This includes React elements such as `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes.
+`render` peut renvoyer n'importe quel nœud React valide. Ça inclut les éléments React tels que `<div />`, les chaînes de caractères, les nombres, [les portails](/reference/react-dom/createPortal), les nœuds vides (`null`, `undefined`, `true` et `false`) et les tableaux de nœuds React.
 
-#### Caveats {/*render-caveats*/}
+#### Limitations {/*render-caveats*/}
 
-- `render` should be written as a pure function of props, state, and context. It should not have side effects.
+- `render` devrait être écrite comme une fonction pure des props, de l'état et du contexte.  Elle ne devrait comporter aucun effet de bord.
 
-- `render` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
+- `render` ne sera pas appelée si [`shouldComponentUpdate`](#shouldcomponentupdate) est définie et renvoie `false`.
 
-- When [Strict Mode](/reference/react/StrictMode) is on, React will call `render` twice in development and then throw away one of the results. This helps you notice the accidental side effects that need to be moved out of the `render` method.
+* En [mode strict](/reference/react/StrictMode), React appellera `render` deux fois en développement et jettera un des résultats.  Ça vous permet de repérer des effets de bord involontaires qui doivent être sortis de `render`.
 
-- There is no one-to-one correspondence between the `render` call and the subsequent `componentDidMount` or `componentDidUpdate` call. Some of the `render` call results may be discarded by React when it's beneficial.
+- Il n'y a pas de correspondance directe entre l'appel à `render` et les appels ultérieurs à `componentDidMount` et `componentDidUpdate`.  Certains résultats d'appels à `render` sont susceptibles d'être ignorés par React lorsque ça présente un avantage.
 
 ---
 
 ### `setState(nextState, callback?)` {/*setstate*/}
 
-Call `setState` to update the state of your React component.
+Appelez `setState` pour mettre à jour l'état de votre composant React.
 
 ```js {8-10}
 class Form extends Component {
   state = {
-    name: 'Taylor',
+    name: 'Clara',
   };
 
   handleNameChange = (e) => {
@@ -632,34 +635,34 @@ class Form extends Component {
     return (
       <>
         <input value={this.state.name} onChange={this.handleNameChange} />
-        <p>Hello, {this.state.name}.
+        <p>Salut {this.state.name}.
       </>
     );
   }
 }
 ```
 
-`setState` enqueues changes to the component state. It tells React that this component and its children need to re-render with the new state. This is the main way you'll update the user interface in response to interactions.
+`setState` maintient une file d'attente de modifications à apporter à l'état du composant.  Elle indique à React que ce composant et ses enfants doivent recalculer leur rendu avec un nouvel état.  C'est le principal moyen de mettre à jour l'interface utilisateur suite à des interactions.
 
 <Pitfall>
 
-Calling `setState` **does not** change the current state in the already executing code:
+Appeler `setState` **ne change pas** l'état actuel pour le code en cours d'exécution :
 
 ```js {6}
 function handleClick() {
-  console.log(this.state.name); // "Taylor"
+  console.log(this.state.name); // « Clara »
   this.setState({
-    name: 'Robin'
+    name: 'Juliette'
   });
-  console.log(this.state.name); // Still "Taylor"!
+  console.log(this.state.name); // Toujours « Clara » !
 }
 ```
 
-It only affects what `this.state` will return starting from the *next* render.
+Ça affecte uniquement ce que vaudra `this.state` à partir du *prochain* rendu.
 
 </Pitfall>
 
-You can also pass a function to `setState`. It lets you update state based on the previous state:
+Vous pouvez aussi passer une fonction à `setState`.  Ça vous permet de mettre à jour l'état sur base de sa valeur précédente :
 
 ```js {2-6}
   handleIncreaseAge = () => {
@@ -671,31 +674,31 @@ You can also pass a function to `setState`. It lets you update state based on th
   }
 ```
 
-You don't have to do this, but it's handy if you want to update state multiple times during the same event.
+Vous n'êtes pas obligé·e de faire ça, mais c'est pratique lorsque vous souhaitez accumuler plusieurs mises à jour de l'état au sein d'un même événement.
 
-#### Parameters {/*setstate-parameters*/}
+#### Paramètres {/*setstate-parameters*/}
 
-* `nextState`: Either an object or a function.
-  * If you pass an object as `nextState`, it will be shallowly merged into `this.state`.
-  * If you pass a function as `nextState`, it will be treated as an _updater function_. It must be pure, should take the pending state and props as arguments, and should return the object to be shallowly merged into `this.state`. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying all of the queued updaters to the previous state.
+* `nextState` : soit un objet, soit une fonction.
+  * Si vous passez un objet comme `nextState`, il sera superficiellement fusionné dans `this.state`.
+  * Si vous passez une fonction comme `nextState`, elle sera traitée comme une *fonction de mise à jour*.  Elle doit être pure, doit accepter l'état en attente et les props comme arguments, et doit renvoyer un objet qui sera superficiellement fusionné dans `this.state`.  React placera votre fonction de mise à jour dans une file d'attente puis refera le rendu de votre composant. Lors du prochain rendu, React calculera le prochain état en appliquant successivement toutes les fonctions de mise à jour en attente, en partant de l'état précédent.
 
-* **optional** `callback`: If specified, React will call the `callback` you've provided after the update is committed.
+* `callback` **optionnel** : s'il est précisé, React appellera le `callback` que vous avez fourni une fois la mise à jour retranscrite dans le DOM.
 
-#### Returns {/*setstate-returns*/}
+#### Valeur renvoyée {/*setstate-returns*/}
 
-`setState` does not return anything.
+`setState` ne renvoie rien.
 
-#### Caveats {/*setstate-caveats*/}
+#### Limitations {/*setstate-caveats*/}
 
-- Think of `setState` as a *request* rather than an immediate command to update the component. When multiple components update their state in response to an event, React will batch their updates and re-render them together in a single pass at the end of the event. In the rare case that you need to force a particular state update to be applied synchronously, you may wrap it in [`flushSync`,](/reference/react-dom/flushSync) but this may hurt performance.
+- Pensez à `setState` comme à une *requête* plutôt qu'une commande de mise à jour immédiate du composant. Lorsque plusieurs composants mettent à jour leurs états en réaction à un événement, React regroupe leurs mises à jour et refait leurs rendus en une unique passe, à la fin de l'événement.  Pour les rares cas où vous auriez besoin de forcer une mise à jour d'état spécifique à être appliquée de façon synchrone, vous pourriez l'enrober dans [`flushSync`](/reference/react-dom/flushSync), mais ça gâche généralement la performance.
 
-- `setState` does not update `this.state` immediately. This makes reading `this.state` right after calling `setState` a potential pitfall. Instead, use [`componentDidUpdate`](#componentdidupdate) or the setState `callback` argument, either of which are guaranteed to fire after the update has been applied. If you need to set the state based on the previous state, you can pass a function to `nextState` as described above.
+- `setState` ne met pas immédiatement à jour `this.state`.  Il est donc piégeux de lire `this.state` juste après avoir appelé `setState`.  Utilisez plutôt [`componentDidUpdate`](#componentdidupdate) ou l'argument `callback` de `setState`, qui vous garantissent tous les deux une exécution après que la mise à jour a été appliquée.  Si vous avez besoin de mettre à jour l'état sur base de l'état précédent, vous pouvez passer une fonction pour `nextState`, comme décrit plus haut.
 
 <Note>
 
-Calling `setState` in class components is similar to calling a [`set` function](/reference/react/useState#setstate) in function components.
+Appeler `setState` dans les composants à base de classe  est similaire à l'appel d'une [fonction `set`](/reference/react/useState#setstate) dans les fonctions composants.
 
-[See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
+[Voyez comment migrer](#migrating-a-component-with-state-from-a-class-to-a-function).
 
 </Note>
 
@@ -703,9 +706,9 @@ Calling `setState` in class components is similar to calling a [`set` function](
 
 ### `shouldComponentUpdate(nextProps, nextState, nextContext)` {/*shouldcomponentupdate*/}
 
-If you define `shouldComponentUpdate`, React will call it to determine whether a re-render can be skipped.
+Si vous définissez `shouldComponentUpdate`, React l'appellera pour déterminer s'il peut éviter de calculer un nouveau rendu.
 
-If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped.
+Si vous êtes certain·e de vouloir écrire ça vous-même, vous pouvez comparer `this.props` avec `nextProps` et `this.state` avec `nextState` et renvoyer `false` pour indiquer à React que le recalcul du rendu peut être sauté.
 
 ```js {6-18}
 class Rectangle extends Component {
@@ -721,7 +724,7 @@ class Rectangle extends Component {
       nextProps.size.height === this.props.size.height &&
       nextState.isHovered === this.state.isHovered
     ) {
-      // Nothing has changed, so a re-render is unnecessary
+      // Rien n’a changé, un nouveau rendu est donc superflu
       return false;
     }
     return true;
@@ -732,35 +735,35 @@ class Rectangle extends Component {
 
 ```
 
-React calls `shouldComponentUpdate` before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when [`forceUpdate`](#forceupdate) is used.
+React appelle `shouldComponentUpdate` avant de refaire le rendu lorsque des nouvelles props ou un nouvel état sont fournis.  Ça renvoie par défaut `true`. Cette méthode n'est pas appelée pour le rendu initial, ni lorsque [`forceUpdate`](#forceupdate) est utilisée.
 
-#### Parameters {/*shouldcomponentupdate-parameters*/}
+#### Paramètres {/*shouldcomponentupdate-parameters*/}
 
-- `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
-- `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#props) to determine what changed.
-- `nextContext`: The next context that the component is about to render with. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (legacy).
+* `nextProps` : les prochaines props pour le rendu à venir. Comparez `nextProps` à [`this.props`](#props) pour déterminer ce qui a changé.
+* `nextState` : le prochain état pour le rendu à venir. Comparez `nextState` à [`this.state`](#state) pour déterminer ce qui a changé.
+* `nextContext` : le prochain contexte pour le rendu à venir. Comparez `nextContext` à [`this.context`](#state) pour déterminer ce qui a changé. N'est disponible que si vous avez spécifié [`static contextType`](#static-contexttype) (approche plus récente) ou [`static contextTypes`](#static-contexttypes) (approche dépréciée).
 
-#### Returns {/*shouldcomponentupdate-returns*/}
+#### Valeur renvoyée {/*shouldcomponentupdate-returns*/}
 
-Return `true` if you want the component to re-render. That's the default behavior.
+Renvoie `true` si vous souhaitez que le composant refasse son rendu. C'est le comportement par défaut.
 
-Return `false` to tell React that re-rendering can be skipped.
+Renvoie `false` pour indiquer à React de sauter le recalcul du rendu.
 
-#### Caveats {/*shouldcomponentupdate-caveats*/}
+#### Limitations {/*shouldcomponentupdate-caveats*/}
 
-- This method *only* exists as a performance optimization. If your component breaks without it, fix that first. 
+- Cette méthode existe *seulement* comme une optimisation des performances. Si votre composant ne fonctionne pas sans elle, corrigez-le d'abord.
 
-- Consider using [`PureComponent`](/reference/react/PureComponent) instead of writing `shouldComponentUpdate` by hand. `PureComponent` shallowly compares props and state, and reduces the chance that you'll skip a necessary update.
+- Envisagez de recourir à [`PureComponent`](/reference/react/PureComponent) plutôt que d'écrire `shouldComponentUpdate` à la main. `PureComponent` fait une comparaison superficielle des props et de l'état, et réduit le risque de sauter une mise à jour utile.
 
-- We do not recommend doing deep equality checks or using `JSON.stringify` in `shouldComponentUpdate`. It makes performance unpredictable and dependent on the data structure of every prop and state. In the best case, you risk introducing multi-second stalls to your application, and in the worst case you risk crashing it.
+- Nous vous déconseillons de faire des comparaisons profondes ou d'utiliser `JSON.stringify` dans `shouldComponentUpdate`. Ça rend la performance imprévisible et dépendante des structures de données de chaque prop et élément d'état.  Au meilleur des cas, vous risquez d'introduire des gels de plusieurs secondes dans votre appli, au pire cas de la faire carrément planter.
 
-- Returning `false` does not prevent child components from re-rendering when *their* state changes.
+- Renvoyer `false` n'empêche pas vos composants enfants de refaire leurs calculs si *leurs* données changent.
 
-- Returning `false` does not *guarantee* that the component will not re-render. React will use the return value as a hint but it may still choose to re-render your component if it makes sense to do for other reasons.
+- Renvoyer `false` ne *garantit* pas que le composant sautera son rendu.  React se servira de votre valeur renvoyée comme d'un conseil, mais reste susceptible d'opter pour un recalcul du rendu si ça lui semble par ailleurs justifié.
 
 <Note>
 
-Optimizing class components with `shouldComponentUpdate` is similar to optimizing function components with [`memo`.](/reference/react/memo) Function components also offer more granular optimization with [`useMemo`.](/reference/react/useMemo)
+L'optimisation des composants à base de classes avec `shouldComponentUpdate` est similaire à l'optimisation des fonctions composants avec [`memo`](/reference/react/memo). Les fonctions composants proposent aussi des optimisations plus granulaires avec[`useMemo`](/reference/react/useMemo).
 
 </Note>
 
@@ -768,32 +771,32 @@ Optimizing class components with `shouldComponentUpdate` is similar to optimizin
 
 ### `UNSAFE_componentWillMount()` {/*unsafe_componentwillmount*/}
 
-If you define `UNSAFE_componentWillMount`, React will call it immediately after the [`constructor`.](#constructor) It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
+Si vous définissez `UNSAFE_componentWillMount`, React l'appellera immédiatement après le [`constructor`](#constructor).  Cette méthode n'existe plus que pour des raisons historiques et ne devrait pas être utilisée dans du nouveau code.  Utilisez plutôt l'une de ces alternatives :
 
-- To initialize state, declare [`state`](#state) as a class field or set `this.state` inside the [`constructor`.](#constructor)
-- If you need to run a side effect or set up a subscription, move that logic to [`componentDidMount`](#componentdidmount) instead.
+- Pour initialiser l'état, déclarez un champ d'instance [`state`](#state) ou affectez `this.state` dans le [`constructor`](#constructor).
+- Si vous avez besoin d'exécuter un effet de bord ou de souscrire un abonnement, déplacez plutôt cette logique dans [`componentDidMount`](#componentdidmount).
 
-[See examples of migrating away from unsafe lifecycles.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples)
+[Consultez des exemples de migration des méthodes historiques de cycle de vie](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples).
 
-#### Parameters {/*unsafe_componentwillmount-parameters*/}
+#### Paramètres {/*unsafe_componentwillmount-parameters*/}
 
-`UNSAFE_componentWillMount` does not take any parameters.
+`UNSAFE_componentWillMount` ne prend aucun paramètre.
 
-#### Returns {/*unsafe_componentwillmount-returns*/}
+#### Valeur renvoyée {/*unsafe_componentwillmount-returns*/}
 
-`UNSAFE_componentWillMount` should not return anything.
+`UNSAFE_componentWillMount` ne devrait rien renvoyer.
 
-#### Caveats {/*unsafe_componentwillmount-caveats*/}
+#### Limitations {/*unsafe_componentwillmount-caveats*/}
 
-- `UNSAFE_componentWillMount` will not get called if the component implements [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
+- `UNSAFE_componentWillMount` ne sera pas appelée si le composant implémente [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) ou [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate).
 
-- Despite its naming, `UNSAFE_componentWillMount` does not guarantee that the component *will* get mounted if your app uses modern React features like [`Suspense`.](/reference/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. This is why this method is "unsafe". Code that relies on mounting (like adding a subscription) should go into [`componentDidMount`.](#componentdidmount)
+- En dépit de son nom, `UNSAFE_componentWillMount` ne garantit pas que le composant *sera effectivement monté* si votre appli utilise des fonctionnalités modernes de React telles que [`Suspense`](/reference/react/Suspense).  Si une tentative de rendu suspend (en raison par exemple d'un code de composant enfant qui ne serait pas encore chargé), React jettera l'arborescence en cours et essaiera de reconstruire le composant de zéro lors de la prochaine tentative.  C'est pourquoi cette méthode n'est « pas fiable » *(“unsafe”, NdT)*. Tout code qui se base sur le montage (comme la souscription d'un abonnement) devrait être placé dans [`componentDidMount`](#componentdidmount).
 
-- `UNSAFE_componentWillMount` is the only lifecycle method that runs during [server rendering.](/reference/react-dom/server) For all practical purposes, it is identical to [`constructor`,](#constructor) so you should use the `constructor` for this type of logic instead.
+- `UNSAFE_componentWillMount` est la seule méthode de cycle de vie qui est exécutée lors d'un [rendu côté serveur](/reference/react-dom/server). Son déclenchement est en pratique identique à celui de [`constructor`](#constructor), vous devriez donc plutôt utiliser `constructor` pour ce type de logique.
 
 <Note>
 
-Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a class component to initialize state is equivalent to passing that state as the initial state to [`useState`](/reference/react/useState) in a function component.
+Appeler [`setState`](#setstate) dans `UNSAFE_componentWillMount` au sein d'un composant à base de classe, afin d'initialiser l'état du composant, est équivalent au passage de cet état comme état initial à [`useState`](/reference/react/useState) dans une fonction composant.
 
 </Note>
 
@@ -801,37 +804,37 @@ Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a class co
 
 ### `UNSAFE_componentWillReceiveProps(nextProps, nextContext)` {/*unsafe_componentwillreceiveprops*/}
 
-If you define `UNSAFE_componentWillReceiveProps`, React will call it when the component receives new props. It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
+Si vous définissez `UNSAFE_componentWillReceiveProps`, React l'appellera lorsque le composant recevra des nouvelles props.  Cette méthode n'existe plus que pour des raisons historiques et ne devrait pas être utilisée dans du nouveau code.  Utilisez plutôt l'une de ces alternatives :
 
-- If you need to **run a side effect** (for example, fetch data, run an animation, or reinitialize a subscription) in response to prop changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
-- If you need to **avoid re-computing some data only when a prop changes,** use a [memoization helper](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization) instead.
-- If you need to **"reset" some state when a prop changes,** consider either making a component [fully controlled](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a key](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
-- If you need to **"adjust" some state when a prop changes,** check whether you can compute all the necessary information from props alone during rendering. If you can't, use [`static getDerivedStateFromProps`](/reference/react/Component#static-getderivedstatefromprops) instead.
+- Si vous avez besoin **d'exécuter un effet de bord** (par exemple charger des données, dérouler une animation ou réinitialiser un abonnement) en réaction à des changements de props, déplacez plutôt cette logique dans [`componentDidUpdate`](#componentdidupdate).
+- Si vous souhaitez **ne recalculer certaines données que lorsque certaines props changent**, utilisez plutôt un [utilitaire de mémoïsation](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+- Si vous essayez de **« réinitialiser » tout l'état quand une prop change**, envisagez de plutôt faire un composant soit [pleinement contrôlé](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) soit [pleinement non contrôlé mais avec une clé](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key).
+- Si vous avez besoin **« d'ajuster » une partie de l'état quand une prop change**, voyez si vous ne pouvez pas plutôt calculer toutes les infos nécessaires à partir des props seules lors du rendu.  Si ce n'est pas possible, préférez [`static getDerivedStateFromProps`](/reference/react/Component#static-getderivedstatefromprops).
 
-[See examples of migrating away from unsafe lifecycles.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props)
+[Consultez des exemples de migration des méthodes historiques de cycle de vie](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props).
 
-#### Parameters {/*unsafe_componentwillreceiveprops-parameters*/}
+#### Paramètres {/*unsafe_componentwillreceiveprops-parameters*/}
 
-- `nextProps`: The next props that the component is about to receive from its parent component. Compare `nextProps` to [`this.props`](#props) to determine what changed.
-- `nextContext`: The next props that the component is about to receive from the closest provider. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (legacy).
+* `nextProps` : les prochaines props que le composant va recevoir de son composant parent. Comparez `nextProps` à [`this.props`](#props) pour déterminer ce qui a changé.
+* `nextContext` : le prochain contexte que le composant va recevoir de son plus proche fournisseur de contexte. Comparez `nextContext` à [`this.context`](#state) pour déterminer ce qui a changé. N'est disponible que si vous avez par ailleurs spécifié [`static contextType`](#static-contexttype) (approche plus récente) ou [`static contextTypes`](#static-contexttypes) (approche dépréciée).
 
-#### Returns {/*unsafe_componentwillreceiveprops-returns*/}
+#### Valeur renvoyée {/*unsafe_componentwillreceiveprops-returns*/}
 
-`UNSAFE_componentWillReceiveProps` should not return anything.
+`UNSAFE_componentWillReceiveProps` ne devrait rien renvoyer.
 
-#### Caveats {/*unsafe_componentwillreceiveprops-caveats*/}
+#### Limitations {/*unsafe_componentwillreceiveprops-caveats*/}
 
-- `UNSAFE_componentWillReceiveProps` will not get called if the component implements [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
+- `UNSAFE_componentWillReceiveProps` ne sera pas appelée si le composant implémente [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) ou [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate).
 
-- Despite its naming, `UNSAFE_componentWillReceiveProps` does not guarantee that the component *will* receive those props if your app uses modern React features like [`Suspense`.](/reference/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. By the time of the next render attempt, the props might be different. This is why this method is "unsafe". Code that should run only for committed updates (like resetting a subscription) should go into [`componentDidUpdate`.](#componentdidupdate)
+- En dépit de son nom, `UNSAFE_componentWillReceiveProps` ne garantit pas que le composant *recevra effectivement ces props* si votre appli utilise des fonctionnalités modernes de React telles que [`Suspense`](/reference/react/Suspense).  Si une tentative de rendu suspend (en raison par exemple d'un code de composant enfant qui ne serait pas encore chargé), React jettera l'arborescence en cours et essaiera de reconstruire le composant de zéro lors de la prochaine tentative.  D'ici là, les props pourraient avoir encore changé. C'est pourquoi cette méthode n'est « pas fiable » *(“unsafe”, NdT)*. Tout code qui ne devrait être exécuté que pour des mises à jour confirmées (comme la réinitialisation d'un abonnement) devrait être placé dans [`componentDidUpdate`](#componentdidupdate).
 
-- `UNSAFE_componentWillReceiveProps` does not mean that the component has received *different* props than the last time. You need to compare `nextProps` and `this.props` yourself to check if something changed.
+- `UNSAFE_componentWillReceiveProps` n'implique pas que le composant recevra des props *différentes* de la fois précédente.  Vous devez comparer `nextProps` avec `this.props` vous-même pour vérifier que quelque chose a changé.
 
-- React doesn't call `UNSAFE_componentWillReceiveProps` with initial props during mounting. It only calls this method if some of component's props are going to be updated. For example, calling [`setState`](#setstate) doesn't generally trigger `UNSAFE_componentWillReceiveProps` inside the same component.
+- React n'appelle pas `UNSAFE_componentWillReceiveProps` avec les props initiales lors du montage.  Il n'appelle cette méthode que si tout ou partie des props du composant vont être mises à jour.  Par exemple, un appel à [`setState`](#setstate) ne déclenche généralement pas `UNSAFE_componentWillReceiveProps` au sein du même composant.
 
 <Note>
 
-Calling [`setState`](#setstate) inside `UNSAFE_componentWillReceiveProps` in a class component to "adjust" state is equivalent to [calling the `set` function from `useState` during rendering](/reference/react/useState#storing-information-from-previous-renders) in a function component.
+Appeler [`setState`](#setstate) dans `UNSAFE_componentWillReceiveProps` pour « ajuster » l'état au sein d'un composant à base de classe est équivalent à [l'appel d'une fonction `set` fournie par `useState` lors du rendu](/reference/react/useState#storing-information-from-previous-renders) dans une fonction composant.
 
 </Note>
 
@@ -839,40 +842,39 @@ Calling [`setState`](#setstate) inside `UNSAFE_componentWillReceiveProps` in a c
 
 ### `UNSAFE_componentWillUpdate(nextProps, nextState)` {/*unsafe_componentwillupdate*/}
 
+Si vous définissez `UNSAFE_componentWillUpdate`, React l'appellera avant de refaire un rendu avec les nouvelles props et le nouvel état.  Cette méthode n'existe plus que pour des raisons historiques et ne devrait pas être utilisée dans du nouveau code.  Utilisez plutôt l'une de ces alternatives :
 
-If you define `UNSAFE_componentWillUpdate`, React will call it before rendering with the new props or state. It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
+- Si vous avez besoin d'exécuter un effet de bord (par exemple charger des données, dérouler une animation ou réinitialiser un abonnement) en réaction à des changements de props ou d'état, déplacez plutôt cette logique dans [`componentDidUpdate`](#componentdidupdate).
+- Si vous avez besoin de lire des informations depuis le DOM (par exemple la position de défilement) pour l'utiliser ensuite dans [`componentDidUpdate`](#componentdidupdate), lisez-la plutôt dans [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate).
 
-- If you need to run a side effect (for example, fetch data, run an animation, or reinitialize a subscription) in response to prop or state changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
-- If you need to read some information from the DOM (for example, to save the current scroll position) so that you can use it in [`componentDidUpdate`](#componentdidupdate) later, read it inside [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate) instead.
+[Consultez des exemples de migration des méthodes historiques de cycle de vie](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples).
 
-[See examples of migrating away from unsafe lifecycles.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples)
+#### Paramètres {/*unsafe_componentwillupdate-parameters*/}
 
-#### Parameters {/*unsafe_componentwillupdate-parameters*/}
+* `nextProps` : les prochaines props de votre composant pour le rendu à venir. Comparez `nextProps` à [`this.props`](#props) pour déterminer ce qui a changé.
+* `nextState` : le prochain état de votre composant pour le rendu à venir. Comparez `nextState` à [`this.state`](#state) pour déterminer ce qui a changé.
 
-- `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
-- `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#state) to determine what changed.
+#### Valeur renvoyée {/*unsafe_componentwillupdate-returns*/}
 
-#### Returns {/*unsafe_componentwillupdate-returns*/}
+`UNSAFE_componentWillUpdate` ne devrait rien renvoyer.
 
-`UNSAFE_componentWillUpdate` should not return anything.
+#### Limitations {/*unsafe_componentwillupdate-caveats*/}
 
-#### Caveats {/*unsafe_componentwillupdate-caveats*/}
+- `UNSAFE_componentWillUpdate` ne sera pas appelée si [`shouldComponentUpdate`](#shouldcomponentupdate) est définie et renvoie `false`.
 
-- `UNSAFE_componentWillUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
+- `UNSAFE_componentWillUpdate` ne sera pas appelée si le composant implémente [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) ou [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate).
 
-- `UNSAFE_componentWillUpdate` will not get called if the component implements [`static getDerivedStateFromProps`](#static-getderivedstatefromprops) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
+- Il est interdit d'appeler [`setState`](#setstate) (ou toute méthode entraînant un appel à `setState`, tel que le *dispatch* d'une action Redux) au sein de `componentWillUpdate`.
 
-- It's not supported to call [`setState`](#setstate) (or any method that leads to `setState` being called, like dispatching a Redux action) during `componentWillUpdate`.
+- En dépit de son nom, `UNSAFE_componentWillUpdate` ne garantit pas que le composant *sera effectivement mis à jour* si votre appli utilise des fonctionnalités modernes de React telles que [`Suspense`](/reference/react/Suspense).  Si une tentative de rendu suspend (en raison par exemple d'un code de composant enfant qui ne serait pas encore chargé), React jettera l'arborescence en cours et essaiera de reconstruire le composant de zéro lors de la prochaine tentative. D'ici là, les props ou l'état pourraient avoir encore changé. C'est pourquoi cette méthode n'est « pas fiable » *(“unsafe”, NdT)*. Tout code qui ne devrait être exécuté que pour des mises à jour confirmées (comme la réinitialisation d'un abonnement) devrait être placé dans [`componentDidUpdate`](#componentdidupdate).
 
-- Despite its naming, `UNSAFE_componentWillUpdate` does not guarantee that the component *will* update if your app uses modern React features like [`Suspense`.](/reference/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. By the time of the next render attempt, the props and state might be different. This is why this method is "unsafe". Code that should run only for committed updates (like resetting a subscription) should go into [`componentDidUpdate`.](#componentdidupdate)
+- `UNSAFE_componentWillUpdate` n'implique pas que le composant recevra des props ou un état *différents* de la fois précédente.  Vous devez comparer vous-même `nextProps` avec `this.props` et `nextState` avec `this.state` pour vérifier que quelque chose a changé.
 
-- `UNSAFE_componentWillUpdate` does not mean that the component has received *different* props or state than the last time. You need to compare `nextProps` with `this.props` and `nextState` with `this.state` yourself to check if something changed.
-
-- React doesn't call `UNSAFE_componentWillUpdate` with initial props and state during mounting.
+- React n'appellera pas `UNSAFE_componentWillUpdate` avec les props et état initiaux lors du montage.
 
 <Note>
 
-There is no direct equivalent to `UNSAFE_componentWillUpdate` in function components.
+Il n'y a pas d'équivalent direct à `UNSAFE_componentWillUpdate` dans les fonctions composants.
 
 </Note>
 
@@ -882,11 +884,11 @@ There is no direct equivalent to `UNSAFE_componentWillUpdate` in function compon
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [Use `static contextType` instead.](#static-contexttype)
+Cette API sera retirée d'une future version majeure de React. [Utilisez plutôt `static contextType`](#static-contexttype).
 
 </Deprecated>
 
-Lets you specify which [legacy context](https://reactjs.org/docs/legacy-context.html) is provided by this component.
+Vous permet de spécifier quel [contexte historique](https://legacy.reactjs.org/docs/legacy-context.html) est fourni par ce composant.
 
 ---
 
@@ -894,17 +896,17 @@ Lets you specify which [legacy context](https://reactjs.org/docs/legacy-context.
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [Use `static contextType` instead.](#static-contexttype)
+Cette API sera retirée d'une future version majeure de React. [Utilisez plutôt `static contextType`](#static-contexttype).
 
 </Deprecated>
 
-Lets you specify which [legacy context](https://reactjs.org/docs/legacy-context.html) is consumed by this component.
+Vous permet de spécifier quel [contexte historique](https://legacy.reactjs.org/docs/legacy-context.html) est consommé par ce composant.
 
 ---
 
 ### `static contextType` {/*static-contexttype*/}
 
-If you want to read [`this.context`](#context-instance-field) from your class component, you must specify which context it needs to read. The context you specify as the `static contextType` must be a value previously created by [`createContext`.](/reference/react/createContext)
+Si vous souhaitez lire [`this.context`](#context-instance-field) dans votre composant à base de classe, vous devez spécifier le contexte que vous souhaitez lire.  Le contexte que vous spécifiez comme `static contextType` doit être une valeur créée auparavant par[`createContext`](/reference/react/createContext).
 
 ```js {2}
 class Button extends Component {
@@ -924,9 +926,9 @@ class Button extends Component {
 
 <Note>
 
-Reading `this.context` in class components is equivalent to [`useContext`](/reference/react/useContext) in function components.
+La lecture de `this.context` dans les composants à base de classes est équivalente à [`useContext`](/reference/react/useContext) dans les fonctions composants.
 
-[See how to migrate.](#migrating-a-component-with-context-from-a-class-to-a-function)
+[Voyez comment migrer](#migrating-a-component-with-context-from-a-class-to-a-function).
 
 </Note>
 
@@ -934,9 +936,9 @@ Reading `this.context` in class components is equivalent to [`useContext`](/refe
 
 ### `static defaultProps` {/*static-defaultprops*/}
 
-You can define `static defaultProps` to set the default props for the class. They will be used for `undefined` and missing props, but not for `null` props.
+Vous pouvez définir `static defaultProps` pour fournir des valeurs par défaut aux props de la classe.  Elles seront utilisées pour les props manquantes ou valant `undefined`, mais pas pour les props valant `null`.
 
-For example, here is how you define that the `color` prop should default to `'blue'`:
+Voici par exemple comment définir une prop `color` qui devrait valoir `'blue'` par défaut :
 
 ```js {2-4}
 class Button extends Component {
@@ -945,32 +947,32 @@ class Button extends Component {
   };
 
   render() {
-    return <button className={this.props.color}>click me</button>;
+    return <button className={this.props.color}>Cliquez ici</button>;
   }
 }
 ```
 
-If the `color` prop is not provided or is `undefined`, it will be set by default to `'blue'`:
+Si la prop `color` n'est pas fournie ou est à `undefined`, elle sera mise par défaut à `'blue'` :
 
 ```js
 <>
-  {/* this.props.color is "blue" */}
+  {/* this.props.color vaudra "blue" */}
   <Button />
 
-  {/* this.props.color is "blue" */}
+  {/* this.props.color vaudra "blue" */}
   <Button color={undefined} />
 
-  {/* this.props.color is null */}
+  {/* this.props.color vaudra null */}
   <Button color={null} />
 
-  {/* this.props.color is "red" */}
+  {/* this.props.color vaudra "red" */}
   <Button color="red" />
 </>
 ```
 
 <Note>
 
-Defining `defaultProps` in class components is similar to using [default values](/learn/passing-props-to-a-component#specifying-a-default-value-for-a-prop) in function components.
+La définition de `defaultProps` dans les composants à base de classes est équivalente à l'utilisation de [valeurs par défaut](/learn/passing-props-to-a-component#specifying-a-default-value-for-a-prop) dans les fonctions composants.
 
 </Note>
 
@@ -978,7 +980,7 @@ Defining `defaultProps` in class components is similar to using [default values]
 
 ### `static propTypes` {/*static-proptypes*/}
 
-You can define `static propTypes` together with the [`prop-types`](https://www.npmjs.com/package/prop-types) library to declare the types of the props accepted by your component. These types will be checked during rendering and in development only.
+Vous pouvez définir `static propTypes` en utilisant le module[`prop-types`](https://www.npmjs.com/package/prop-types) pour déclarer les types des props acceptées par votre composant.  Ces types seront vérifiés lors du rendu en développement uniquement.
 
 ```js
 import PropTypes from 'prop-types';
@@ -990,7 +992,7 @@ class Greeting extends React.Component {
 
   render() {
     return (
-      <h1>Hello, {this.props.name}</h1>
+      <h1>Salut {this.props.name}</h1>
     );
   }
 }
@@ -998,7 +1000,7 @@ class Greeting extends React.Component {
 
 <Note>
 
-We recommend using [TypeScript](https://www.typescriptlang.org/) instead of checking prop types at runtime.
+Nous vous conseillons d'utiliser [TypeScript](/learn/typescript) plutôt que de vérifier vos types de props à l'exécution.
 
 </Note>
 
@@ -1006,27 +1008,27 @@ We recommend using [TypeScript](https://www.typescriptlang.org/) instead of chec
 
 ### `static getDerivedStateFromError(error)` {/*static-getderivedstatefromerror*/}
 
-If you define `static getDerivedStateFromError`, React will call it when a child component (including distant children) throws an error during rendering. This lets you display an error message instead of clearing the UI.
+Si vous définissez `static getDerivedStateFromError`, React l'appellera lorsqu'un composant descendant lèvera une erreur pendant le rendu.  Ça vous permet d'afficher un message d'erreur plutôt que d'aboutir à une UI vide.
 
-Typically, it is used together with [`componentDidCatch`](#componentdidcatch) which lets you send the error report to some analytics service. A component with these methods is called an *error boundary.*
+Elle est en général utilisée conjointement avec [`componentDidCatch`](#componentdidcatch), qui vous permet par exemple d'envoyer un rapport d'erreur à un service de supervision.  Un composant doté de ces méthodes est ce qu'on appelle un *périmètre d'erreur*.
 
-[See an example.](#catching-rendering-errors-with-an-error-boundary)
+[Voir un exemple](#catching-rendering-errors-with-an-error-boundary).
 
-#### Parameters {/*static-getderivedstatefromerror-parameters*/}
+#### Paramètres {/*static-getderivedstatefromerror-parameters*/}
 
-* `error`: The error that was thrown. In practice, it will usually be an instance of [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) but this is not guaranteed because JavaScript allows to [`throw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) any value, including strings or even `null`.
+* `error` : l'erreur qui a été levée.  En pratique il s'agira généralement d'une instance d'[`Error`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Error), mais ce n'est pas garanti parce que JavaScript autorise un [`throw`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/throw) de n'importe quelle valeur, y compris des chaînes de caractères et même `null`.
 
-#### Returns {/*static-getderivedstatefromerror-returns*/}
+#### Valeur renvoyée {/*static-getderivedstatefromerror-returns*/}
 
-`static getDerivedStateFromError` should return the state telling the component to display the error message.
+`static getDerivedStateFromError` devrait renvoyer un objet d'état indiquant au composant d'afficher un message d'erreur.
 
-#### Caveats {/*static-getderivedstatefromerror-caveats*/}
+#### Limitations {/*static-getderivedstatefromerror-caveats*/}
 
-* `static getDerivedStateFromError` should be a pure function. If you want to perform a side effect (for example, to call an analytics service), you need to also implement [`componentDidCatch`.](#componentdidcatch)
+* `static getDerivedStateFromError` devrait être une fonction pure. Si vous souhaiter exécuter un effet de bord (comme par exemple un signalement à un service de supervision), vous devez aussi implémenter la méthode [`componentDidCatch`](#componentdidcatch).
 
 <Note>
 
-There is no direct equivalent for `static getDerivedStateFromError` in function components yet. If you'd like to avoid creating class components, write a single `ErrorBoundary` component like above and use it throughout your app. Alternatively, use the [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) package which does that.
+Il n'y a pas encore d'équivalent direct à `static getDerivedStateFromError` dans les fonctions composants.  Si vous souhaitez éviter de créer des composants à base de classes, écrivez un unique composant `ErrorBoundary` comme ci-dessus et utilisez-le dans toute votre appli.  Vous pouvez aussi utiliser le module [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) qui fait ça (et davantage) pour vous.
 
 </Note>
 
@@ -1034,9 +1036,9 @@ There is no direct equivalent for `static getDerivedStateFromError` in function 
 
 ### `static getDerivedStateFromProps(props, state)` {/*static-getderivedstatefromprops*/}
 
-If you define `static getDerivedStateFromProps`, React will call it right before calling [`render`,](#render) both on the initial mount and on subsequent updates. It should return an object to update the state, or `null` to update nothing.
+Si vous définissez `static getDerivedStateFromProps`, React l'appellera juste avant d'appeler [`render`](#render), tant au montage initial que lors des mises à jour ultérieures.  Elle devrait renvoyer un objet de mise à jour de l'état, ou `null` pour ne faire aucune mise à jour.
 
-This method exists for [rare use cases](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) where the state depends on changes in props over time. For example, this `Form` component resets the `email` state when the `userID` prop changes:
+Cette méthode existe pour [les rares cas d'usage](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) où l'état dépend de changements de props au fil du temps. Par exemple, le composant `Form` ci-dessous réinitialise son état `email` lorsque la prop `userID` change :
 
 ```js {7-18}
 class Form extends Component {
@@ -1046,9 +1048,9 @@ class Form extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    // Any time the current user changes,
-    // Reset any parts of state that are tied to that user.
-    // In this simple example, that's just the email.
+    // Dès que l’utilisateur actif change, réinitialise
+    // les parties de l’état liées à cet utilisateur.
+    // Dans cet exemple simple, il s’agit juste de l’e-mail.
     if (props.userID !== state.prevUserID) {
       return {
         prevUserID: props.userID,
@@ -1062,60 +1064,60 @@ class Form extends Component {
 }
 ```
 
-Note that this pattern requires you to keep a previous value of the prop (like `userID`) in state (like `prevUserID`).
+Remarquez que cette approche requiert la conservation de la valeur précédente de la prop (comme `userID`) dans l'état (comme ici `prevUserID`).
 
 <Pitfall>
 
-Deriving state leads to verbose code and makes your components difficult to think about. [Make sure you're familiar with simpler alternatives:](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+Dériver ainsi l'état conduit à du code verbeux et rend difficile la compréhension de vos composants. [Assurez-vous de bien connaître les alternatives plus simples](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html) :
 
-- If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) method instead.
-- If you want to **re-compute some data only when a prop changes,** [use a memoization helper instead.](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)
-- If you want to **"reset" some state when a prop changes,** consider either making a component [fully controlled](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a key](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+- Si vous avez besoin **d'exécuter un effet de bord** (par exemple charger des données ou dérouler une animation) en réaction à un changement de prop, utilisez plutôt la méthode [`componentDidUpdate`](#componentdidupdate).
+- Si vous souhaitez **ne recalculer certaines données que lorsque certaines props changent**, utilisez plutôt un [utilitaire de mémoïsation](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+- Si vous essayez de **« réinitialiser » tout l'état quand une prop change**, envisagez de plutôt faire un composant soit [pleinement contrôlé](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) soit [pleinement non contrôlé mais avec une clé](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key).
 
 </Pitfall>
 
-#### Parameters {/*static-getderivedstatefromprops-parameters*/}
+#### Paramètres {/*static-getderivedstatefromprops-parameters*/}
 
-- `props`: The next props that the component is about to render with.
-- `state`: The next state that the component is about to render with.
+* `props` : les prochaines props pour le rendu à venir.
+* `state` : le prochain état pour le rendu à venir.
 
-#### Returns {/*static-getderivedstatefromprops-returns*/}
+#### Valeur renvoyée {/*static-getderivedstatefromprops-returns*/}
 
-`static getDerivedStateFromProps` return an object to update the state, or `null` to update nothing.
+`static getDerivedStateFromProps` renvoie un objet utilisé pour mettre à jour l'état, ou `null` pour ne rien mettre à jour.
 
-#### Caveats {/*static-getderivedstatefromprops-caveats*/}
+#### Limitations {/*static-getderivedstatefromprops-caveats*/}
 
-- This method is fired on *every* render, regardless of the cause. This is different from [`UNSAFE_componentWillReceiveProps`](#unsafe_cmoponentwillreceiveprops), which only fires when the parent causes a re-render and not as a result of a local `setState`.
+- Cette méthode est déclenchée à *chaque* rendu, peu en importe la raison. Ce n'est pas comme [`UNSAFE_componentWillReceiveProps`](#unsafe_cmoponentwillreceiveprops), qui elle ne serait déclenchée que lorsque le parent entraîne un nouveau rendu, mais pas suite à un `setState` local.
 
-- This method doesn't have access to the component instance. If you'd like, you can reuse some code between `static getDerivedStateFromProps` and the other class methods by extracting pure functions of the component props and state outside the class definition.
+- Cette méthode n'a pas accès à l'instance du composant. Si vous le souhaitez, vous pouvez réutiliser du code entre `static getDerivedStateFromProps` et les autres méthodes de la classe en extrayant des fonctions pures basées sur les props et l'état du composant, que vous placeriez hors de la définition de la classe.
 
 <Note>
 
-Implementing `static getDerivedStateFromProps` in a class component is equivalent to [calling the `set` function from `useState` during rendering](/reference/react/useState#storing-information-from-previous-renders) in a function component.
+L'implémentation de la méthode `static getDerivedStateFromProps` dans un composant à base de classe est équivalente à [l'appel d'une fonction `set` fournie par `useState` lors du rendu](/reference/react/useState#storing-information-from-previous-renders) dans une fonction composant.
 
 </Note>
 
 ---
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
-### Defining a class component {/*defining-a-class-component*/}
+### Définir un composant à base de classe {/*defining-a-class-component*/}
 
-To define a React component as a class, extend the built-in `Component` class and define a [`render` method:](#render)
+Pour définir un composant React sous forme de classe, étendez la classe `Component` fournie par React et définissez sa [méthode `render`](#render) :
 
 ```js
 import { Component } from 'react';
 
 class Greeting extends Component {
   render() {
-    return <h1>Hello, {this.props.name}!</h1>;
+    return <h1>Salut {this.props.name} !</h1>;
   }
 }
 ```
 
-React will call your [`render`](#render) method whenever it needs to figure out what to display on the screen. Usually, you will return some [JSX](/learn/writing-markup-with-jsx) from it. Your `render` method should be a [pure function:](https://en.wikipedia.org/wiki/Pure_function) it should only calculate the JSX.
+React appellera votre méthode [`render`](#render) dès qu'il doit déterminer quoi afficher à l'écran.  Vous y renverrez en général du [JSX](/learn/writing-markup-with-jsx). Votre méthode `render` devrait être une [fonction pure](https://fr.wikipedia.org/wiki/Fonction_pure) : elle devrait se limiter à calculer le JSX.
 
-Similarly to [function components,](/learn/your-first-component#defining-a-component) a class component can [receive information by props](/learn/your-first-component#defining-a-component) from its parent component. However, the syntax for reading props is different. For example, if the parent component renders `<Greeting name="Taylor" />`, then you can read the `name` prop from [`this.props`](#props), like `this.props.name`:
+Tout comme les [fonctions composants](/learn/your-first-component#defining-a-component), un composant à base de classe peut [recevoir des informations *via* ses props](/learn/your-first-component#defining-a-component) depuis son composant parent.  En revanche, la syntaxe de consultation des props est différente. Si par exemple le composant parent fait le rendu de `<Greeting name="Clara" />`, vous pourrez lire la prop `name` depuis [`this.props`](#props), en utilisant `this.props.name` :
 
 <Sandpack>
 
@@ -1124,16 +1126,16 @@ import { Component } from 'react';
 
 class Greeting extends Component {
   render() {
-    return <h1>Hello, {this.props.name}!</h1>;
+    return <h1>Salut {this.props.name} !</h1>;
   }
 }
 
 export default function App() {
   return (
     <>
-      <Greeting name="Sara" />
-      <Greeting name="Cahal" />
-      <Greeting name="Edite" />
+      <Greeting name="Laure" />
+      <Greeting name="Marie" />
+      <Greeting name="Nina" />
     </>
   );
 }
@@ -1141,19 +1143,19 @@ export default function App() {
 
 </Sandpack>
 
-Note that Hooks (functions starting with `use`, like [`useState`](/reference/react/useState)) are not supported inside class components.
+Remarquez que les Hooks (des fonctions dont le nom commence par `use`, telles que [`useState`](/reference/react/useState)) ne sont pas pris en charge par les composants à base de classes.
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-simple-component-from-a-class-to-a-function)
+Nous vous conseillons de définir vos composants au moyen de fonctions plutôt que de classes. [Voyez comment migrer](#migrating-a-simple-component-from-a-class-to-a-function).
 
 </Pitfall>
 
 ---
 
-### Adding state to a class component {/*adding-state-to-a-class-component*/}
+### Ajouter de l'état à un composant à base de classe {/*adding-state-to-a-class-component*/}
 
-To add [state](/learn/state-a-components-memory) to a class, assign an object to a property called [`state`](#state). To update state, call [`this.setState`](#setstate).
+Pour ajouter un [état](/learn/state-a-components-memory) à une classe, affectez un objet à la propriété [`state`](#state). Pour mettre à jour l'état, appelez [`this.setState`](#setstate).
 
 <Sandpack>
 
@@ -1162,8 +1164,8 @@ import { Component } from 'react';
 
 export default class Counter extends Component {
   state = {
-    name: 'Taylor',
-    age: 42,
+    name: 'Clara',
+    age: 31,
   };
 
   handleNameChange = (e) => {
@@ -1174,7 +1176,7 @@ export default class Counter extends Component {
 
   handleAgeChange = () => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -1186,9 +1188,9 @@ export default class Counter extends Component {
           onChange={this.handleNameChange}
         />
         <button onClick={this.handleAgeChange}>
-          Increment age
+          Prendre de l’âge
         </button>
-        <p>Hello, {this.state.name}. You are {this.state.age}.</p>
+        <p>Salut {this.state.name}. Vous avez {this.state.age} ans.</p>
       </>
     );
   }
@@ -1199,25 +1201,25 @@ export default class Counter extends Component {
 button { display: block; margin-top: 10px; }
 ```
 
-</Sandpack> 
+</Sandpack>
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
+Nous vous conseillons de définir vos composants au moyen de fonctions plutôt que de classes. [Voyez comment migrer](#migrating-a-component-with-state-from-a-class-to-a-function).
 
 </Pitfall>
 
 ---
 
-### Adding lifecycle methods to a class component {/*adding-lifecycle-methods-to-a-class-component*/}
+### Ajouter des méthodes de cycle de vie à un composant à base de classe {/*adding-lifecycle-methods-to-a-class-component*/}
 
-There are a few special methods you can define on your class.
+Il existe plusieurs méthodes spéciales que vous pouvez définir sur votre classe.
 
-If you define the [`componentDidMount`](#componentdidmount) method, React will call it when your component is added *(mounted)* to the screen. React will call [`componentDidUpdate`](#componentdidupdate) after your component re-renders due to changed props or state. React will call [`componentWillUnmount`](#componentwillunmount) after your component has been removed *(unmounted)* from the screen.
+Si vous définissez la méthode [`componentDidMount`](#componentdidmount), React l'appellera quand votre composant aura été ajouté au DOM (*monté*). React appellera [`componentDidUpdate`](#componentdidupdate) après que votre composant aura refait son rendu en raison de props ou d'un état modifiés. React appellera [`componentWillUnmount`](#componentwillunmount) juste avant que votre composant ne soit retiré du DOM (*démonté*).
 
-If you implement `componentDidMount`, you usually need to implement all three lifecycles to avoid bugs. For example, if `componentDidMount` reads some state or props, you also have to implement `componentDidUpdate` to handle their changes, and `componentWillUnmount` to clean up whatever `componentDidMount` was doing.
+Si vous implémentez `componentDidMount`, vous aurez généralement besoin d'implémenter ces trois méthodes de cycle de vie pour éviter les bugs. Si par exemple `componentDidMount` lit un état ou des props, vous devrez également implémenter `componentDidUpdate` pour en gérer les évolutions, ainsi que `componentWillUnmount` pour nettoyer toute mise en place effectuée dans `componentDidMount`.
 
-For example, this `ChatRoom` component keeps a chat connection synchronized with props and state:
+Par exemple, ce composant `ChatRoom` conserve une connexion au salon de discussion synchronisée avec les props et l'état :
 
 <Sandpack>
 
@@ -1231,18 +1233,18 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez votre salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Fermer le salon' : 'Ouvrir le salon'}
       </button>
       {show && <hr />}
       {show && <ChatRoom roomId={roomId} />}
@@ -1283,7 +1285,7 @@ export default class ChatRoom extends Component {
       this.state.serverUrl,
       this.props.roomId
     );
-    this.connection.connect();    
+    this.connection.connect();
   }
 
   destroyConnection() {
@@ -1295,7 +1297,7 @@ export default class ChatRoom extends Component {
     return (
       <>
         <label>
-          Server URL:{' '}
+          URL du serveur :{' '}
           <input
             value={this.state.serverUrl}
             onChange={e => {
@@ -1305,7 +1307,7 @@ export default class ChatRoom extends Component {
             }}
           />
         </label>
-        <h1>Welcome to the {this.props.roomId} room!</h1>
+        <h1>Bienvenue dans le salon {this.props.roomId} !</h1>
       </>
     );
   }
@@ -1314,13 +1316,13 @@ export default class ChatRoom extends Component {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -1333,23 +1335,23 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Note that in development when [Strict Mode](/reference/react/StrictMode) is on, React will call `componentDidMount`, immediately call `componentWillUnmount`, and then call `componentDidMount` again. This helps you notice if you forgot to implement `componentWillUnmount` or if its logic doesn't fully "mirror" what `componentDidMount` does.
+Remarquez qu'en développement et lorsque le [mode strict](/reference/react/StrictMode) est actif, React appellera `componentDidMount`, puis appellera immédiatement `componentWillUnmount` et rappellera `componentDidMount` une seconde fois. Ça vous aide à remarquer un oubli d'implémentation de `componentWillUnmount`, ou un « miroir » insuffisant dans celle-ci de la logique de `componentDidMount`.
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
+Nous vous conseillons de définir vos composants au moyen de fonctions plutôt que de classes. [Voyez comment migrer](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function).
 
 </Pitfall>
 
 ---
 
-### Catching rendering errors with an error boundary {/*catching-rendering-errors-with-an-error-boundary*/}
+### Capturer les erreurs de rendu avec un périmètre d'erreur {/*catching-rendering-errors-with-an-error-boundary*/}
 
-By default, if your application throws an error during rendering, React will remove its UI from the screen. To prevent this, you can wrap a part of your UI into an *error boundary*. An error boundary is a special component that lets you display some fallback UI instead of the part that crashed--for example, an error message.
+Par défaut, si votre application lève une erreur lors du rendu, React retirera son UI de l'écran.  Pour éviter ça, vous pouvez enrober tout ou partie de votre UI dans un *périmètre d'erreur*. Un périmètre d'erreur est un composant spécial qui vous permet d'afficher une UI de secours plutôt que la partie plantée : un message d'erreur par exemple.
 
-To implement an error boundary component, you need to provide [`static getDerivedStateFromError`](#static-getderivedstatefromerror) which lets you update state in response to an error and display an error message to the user. You can also optionally implement [`componentDidCatch`](#componentdidcatch) to add some extra logic, for example, to log the error to an analytics service.
+Pour implémenter un composant de périmètre d'erreur, vous devez fournir [`static getDerivedStateFromError`](#static-getderivedstatefromerror) qui vous permet de mettre à jour votre état en réaction à une erreur afin d'afficher un message à l'utilisateur. Vous pouvez aussi, optionnellement, implémenter [`componentDidCatch`](#componentdidcatch) pour ajouter de la logique supplémentaire, comme par exemple un signalement de l'erreur à un service de supervision.
 
-```js {7-10,12-19}
+```js {7-11,13-20}
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -1357,12 +1359,13 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // Met à jour l'état pour que le prochain rendu affiche une
+    // UI de secours.
     return { hasError: true };
   }
 
   componentDidCatch(error, info) {
-    // Example "componentStack":
+    // Exemple de "componentStack" :
     //   in ComponentThatThrows (created by App)
     //   in ErrorBoundary (created by App)
     //   in div (created by App)
@@ -1372,7 +1375,7 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
+      // Vous pouvez afficher n’importe quelle UI de secours
       return this.props.fallback;
     }
 
@@ -1381,21 +1384,21 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-Then you can wrap a part of your component tree with it:
+Vous pouvez alors enrober une partie de votre arbre de composants avec le périmètre :
 
 ```js {1,3}
-<ErrorBoundary fallback={<p>Something went wrong</p>}>
+<ErrorBoundary fallback={<p>Ça sent le pâté…</p>}>
   <Profile />
 </ErrorBoundary>
 ```
 
-If `Profile` or its child component throws an error, `ErrorBoundary` will "catch" that error, display a fallback UI with the error message you've provided, and send a production error report to your error reporting service.
+Si `Profile` ou un de ses composants descendants lève une erreur, `ErrorBoundary` « attrapera » cette erreur, affichera une UI de secours avec le message d'erreur fourni, et enverra un signalement de l'erreur de production à votre service de supervision.
 
-You don't need to wrap every component into a separate error boundary. When you think about the [granularity of error boundaries,](https://www.brandondail.com/posts/fault-tolerance-react) consider where it makes sense to display an error message. For example, in a messaging app, it makes sense to place an error boundary around the list of conversations. It also makes sense to place one around every individual message. However, it wouldn't make sense to place a boundary around every avatar.
+Vous n'avez pas besoin d'enrober chaque composant dans son propre périmètre d'erreur.  Lorsque vous réfléchissez à la [granularité de vos périmètres d'erreurs](https://www.brandondail.com/posts/fault-tolerance-react), pensez aux emplacements logiques pour des messages d'erreurs.  Dans une appli de messagerie par exemple, un périmètre d'erreur naturel se situerait autour de la liste des conversations.  Il serait également envisageable de placer un périmètre autour de chaque message individuel.  En revanche, ça ne servirait à rien d'en placer un autour de chaque avatar.
 
 <Note>
 
-There is currently no way to write an error boundary as a function component. However, you don't have to write the error boundary class yourself. For example, you can use [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) instead.
+Il n'existe pour le moment pas de moyen d'écrire un périmètre d'erreur sous forme de fonction composant.  Ceci dit, vous n'avez pas à écrire votre classe de périmètre d'erreur vous-même. Vous pouvez par exemple utiliser plutôt le module [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary).
 
 </Note>
 
@@ -1403,11 +1406,11 @@ There is currently no way to write an error boundary as a function component. Ho
 
 ## Alternatives {/*alternatives*/}
 
-### Migrating a simple component from a class to a function {/*migrating-a-simple-component-from-a-class-to-a-function*/}
+### Migrer un composant simple d'une classe vers une fonction {/*migrating-a-simple-component-from-a-class-to-a-function*/}
 
-Typically, you will [define components as functions](/learn/your-first-component#defining-a-component) instead.
+Généralement, vous [définirez plutôt vos composants sous forme de fonctions](/learn/your-first-component#defining-a-component).
 
-For example, suppose you're converting this `Greeting` class component to a function:
+Supposons par exemple que vous souhaitiez convertir ce composant à base de classe `Greeting` en une fonction composant :
 
 <Sandpack>
 
@@ -1416,16 +1419,16 @@ import { Component } from 'react';
 
 class Greeting extends Component {
   render() {
-    return <h1>Hello, {this.props.name}!</h1>;
+    return <h1>Salut {this.props.name} !</h1>;
   }
 }
 
 export default function App() {
   return (
     <>
-      <Greeting name="Sara" />
-      <Greeting name="Cahal" />
-      <Greeting name="Edite" />
+      <Greeting name="Laure" />
+      <Greeting name="Marie" />
+      <Greeting name="Nina" />
     </>
   );
 }
@@ -1433,37 +1436,37 @@ export default function App() {
 
 </Sandpack>
 
-Define a function called `Greeting`. This is where you will move the body of your `render` function.
+Définissez pour commencer une fonction nommée `Greeting`.  C'est là que vous allez déplacer le corps de votre méthode `render` :
 
 ```js
 function Greeting() {
-  // ... move the code from the render method here ...
+  // ... déplacez ici le code de votre méthode `render` ...
 }
 ```
 
-Instead of `this.props.name`, define the `name` prop [using the destructuring syntax](/learn/passing-props-to-a-component) and read it directly:
+Plutôt que de lire `this.props.name`, définissez une prop `name` [au moyen d'une déstructuration dans la signature](/learn/passing-props-to-a-component) et lisez-la directement :
 
 ```js
 function Greeting({ name }) {
-  return <h1>Hello, {name}!</h1>;
+  return <h1>Salut {name} !</h1>;
 }
 ```
 
-Here is a complete example:
+Voici l'exemple complet :
 
 <Sandpack>
 
 ```js
 function Greeting({ name }) {
-  return <h1>Hello, {name}!</h1>;
+  return <h1>Salut {name} !</h1>;
 }
 
 export default function App() {
   return (
     <>
-      <Greeting name="Sara" />
-      <Greeting name="Cahal" />
-      <Greeting name="Edite" />
+      <Greeting name="Laure" />
+      <Greeting name="Marie" />
+      <Greeting name="Nina" />
     </>
   );
 }
@@ -1473,9 +1476,9 @@ export default function App() {
 
 ---
 
-### Migrating a component with state from a class to a function {/*migrating-a-component-with-state-from-a-class-to-a-function*/}
+### Migrer un composant avec état d'une classe vers une fonction {/*migrating-a-component-with-state-from-a-class-to-a-function*/}
 
-Suppose you're converting this `Counter` class component to a function:
+Supposons que vous convertissiez ce composant à base de classe `Counter` vers une fonction :
 
 <Sandpack>
 
@@ -1484,8 +1487,8 @@ import { Component } from 'react';
 
 export default class Counter extends Component {
   state = {
-    name: 'Taylor',
-    age: 42,
+    name: 'Clara',
+    age: 31,
   };
 
   handleNameChange = (e) => {
@@ -1496,7 +1499,7 @@ export default class Counter extends Component {
 
   handleAgeChange = (e) => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -1508,9 +1511,9 @@ export default class Counter extends Component {
           onChange={this.handleNameChange}
         />
         <button onClick={this.handleAgeChange}>
-          Increment age
+          Prendre de l’âge
         </button>
-        <p>Hello, {this.state.name}. You are {this.state.age}.</p>
+        <p>Salut {this.state.name}. Vous avez {this.state.age} ans.</p>
       </>
     );
   }
@@ -1523,22 +1526,22 @@ button { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Start by declaring a function with the necessary [state variables:](/reference/react/useState#adding-state-to-a-component)
+Commencez par déclarer une fonction avec les [variables d'état](/reference/react/useState#adding-state-to-a-component) nécessaires :
 
 ```js {4-5}
 import { useState } from 'react';
 
 function Counter() {
-  const [name, setName] = useState('Taylor');
+  const [name, setName] = useState('Clara');
   const [age, setAge] = useState(42);
   // ...
 ```
 
-Next, convert the event handlers:
+Convertissez ensuite les gestionnaires d'événements :
 
 ```js {5-7,9-11}
 function Counter() {
-  const [name, setName] = useState('Taylor');
+  const [name, setName] = useState('Clara');
   const [age, setAge] = useState(42);
 
   function handleNameChange(e) {
@@ -1551,9 +1554,9 @@ function Counter() {
   // ...
 ```
 
-Finally, replace all references starting with `this` with the variables and functions you defined in your component. For example, replace `this.state.age` with `age`, and replace `this.handleNameChange` with `handleNameChange`.
+Pour finir, remplacez toutes les références qui démarrent par `this` avec les variables et fonctions définies dans votre composant.  Remplacez par exemple `this.state.age` par `age` et `this.handleNameChange` par `handleNameChange`.
 
-Here is a fully converted component:
+Voici le composant pleinement converti :
 
 <Sandpack>
 
@@ -1561,7 +1564,7 @@ Here is a fully converted component:
 import { useState } from 'react';
 
 export default function Counter() {
-  const [name, setName] = useState('Taylor');
+  const [name, setName] = useState('Clara');
   const [age, setAge] = useState(42);
 
   function handleNameChange(e) {
@@ -1579,9 +1582,9 @@ export default function Counter() {
         onChange={handleNameChange}
       />
       <button onClick={handleAgeChange}>
-        Increment age
+        Prendre de l’âge
       </button>
-      <p>Hello, {name}. You are {age}.</p>
+      <p>Salut {name}. You are {age}.</p>
     </>
   )
 }
@@ -1595,9 +1598,9 @@ button { display: block; margin-top: 10px; }
 
 ---
 
-### Migrating a component with lifecycle methods from a class to a function {/*migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function*/}
+### Migrer un composant doté de méthodes de cycle de vie d'une classe vers une fonction {/*migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function*/}
 
-Suppose you're converting this `ChatRoom` class component with lifecycle methods to a function:
+Supposons que vous convertissiez ce composant à base de classe `ChatRoom`, doté de méthodes de cycle de vie, vers une fonction :
 
 <Sandpack>
 
@@ -1611,18 +1614,18 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez un salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Ferme le salon' : 'Ouvrir le salon'}
       </button>
       {show && <hr />}
       {show && <ChatRoom roomId={roomId} />}
@@ -1663,7 +1666,7 @@ export default class ChatRoom extends Component {
       this.state.serverUrl,
       this.props.roomId
     );
-    this.connection.connect();    
+    this.connection.connect();
   }
 
   destroyConnection() {
@@ -1675,7 +1678,7 @@ export default class ChatRoom extends Component {
     return (
       <>
         <label>
-          Server URL:{' '}
+          URL du serveur :{' '}
           <input
             value={this.state.serverUrl}
             onChange={e => {
@@ -1685,7 +1688,7 @@ export default class ChatRoom extends Component {
             }}
           />
         </label>
-        <h1>Welcome to the {this.props.roomId} room!</h1>
+        <h1>Bienvenue dans le salon {this.props.roomId} !</h1>
       </>
     );
   }
@@ -1694,13 +1697,13 @@ export default class ChatRoom extends Component {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -1713,11 +1716,11 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-First, verify that your [`componentWillUnmount`](#componentwillunmount) does the opposite of [`componentDidMount`.](#componentdidmount) In the above example, that's true: it disconnects the connection that `componentDidMount` sets up. If such logic is missing, add it first.
+Commencez par vérifier que votre [`componentWillUnmount`](#componentwillunmount) fait bien l'inverse de votre [`componentDidMount`](#componentdidmount).  Dans l'exemple ci-dessus, c'est bien le cas : elle débranche la connexion établie par `componentDidMount`. Si cette logique est manquante, commencez par l'ajouter.
 
-Next, verify that your [`componentDidUpdate`](#componentdidupdate) method handles changes to any props and state you're using in `componentDidMount`. In the above example, `componentDidMount` calls `setupConnection` which reads `this.state.serverUrl` and `this.props.roomId`. This is why `componentDidUpdate` checks whether `this.state.serverUrl` and `this.props.roomId` have changed, and resets the connection if they did. If your `componentDidUpdate` logic is missing or doesn't handle changes to all relevant props and state, fix that first.
+Ensuite, vérifiez que votre méthode [`componentDidUpdate`](#componentdidupdate) gère les changements des props et états que vous utilisez dans `componentDidMount`. Dans l'exemple ci-dessus, `componentDidMount` appelle `setupConnection` qui lit `this.state.serverUrl` et `this.props.roomId`. C'est pourquoi `componentDidUpdate` vérifie si `this.state.serverUrl` ou `this.props.roomId` ont changé, et réinitialise la connexion le cas échéant. Si la logique de votre `componentDidUpdate` est manquante ou ne gère pas les changements à toutes les parties pertinentes des props et de l'état, corrigez d'abord ça.
 
-In the above example, the logic inside the lifecycle methods connects the component to a system outside of React (a chat server). To connect a component to an external system, [describe this logic as a single Effect:](/reference/react/useEffect#connecting-to-an-external-system)
+Dans l'exemple qui précède, la logique dans les méthodes de cycle de vie connecte le composant à un système extérieur à React (un serveur de discussion).  Pour connecter un composant à un système extérieur, [décrivez la logique nécessaire dans un Effet unique](/reference/react/useEffect#connecting-to-an-external-system) :
 
 ```js {6-12}
 import { useState, useEffect } from 'react';
@@ -1737,7 +1740,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-This [`useEffect`](/reference/react/useEffect) call is equivalent to the logic in the lifecycle methods above. If your lifecycle methods do multiple unrelated things, [split them into multiple independent Effects.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things) Here is a complete example you can play with:
+Cet appel à [`useEffect`](/reference/react/useEffect) est équivalent à la logique des méthodes de cycle de vie ci-avant.  Si vos méthodes de cycle de vie s'occupent de plusieurs sujets distincts, [découpez-les en Effets indépendants](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things).  Voici l'exemple complet que vous pouvez manipuler :
 
 <Sandpack>
 
@@ -1751,18 +1754,18 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez un salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Ferme le salon' : 'Ouvrir le salon'}
       </button>
       {show && <hr />}
       {show && <ChatRoom roomId={roomId} />}
@@ -1789,13 +1792,13 @@ export default function ChatRoom({ roomId }) {
   return (
     <>
       <label>
-        Server URL:{' '}
+        URL du serveur :{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
     </>
   );
 }
@@ -1803,13 +1806,13 @@ export default function ChatRoom({ roomId }) {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -1824,15 +1827,15 @@ button { margin-left: 10px; }
 
 <Note>
 
-If your component does not synchronize with any external systems, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+Si votre composant ne se synchronise pas avec un système extérieur, alors [vous n'avez pas forcément besoin d'un Effet](/learn/you-might-not-need-an-effect).
 
 </Note>
 
 ---
 
-### Migrating a component with context from a class to a function {/*migrating-a-component-with-context-from-a-class-to-a-function*/}
+### Migrer un composant avec un contexte d'une classe vers une fonction {/*migrating-a-component-with-context-from-a-class-to-a-function*/}
 
-In this example, the `Panel` and `Button` class components read [context](/learn/passing-data-deeply-with-context) from [`this.context`:](#context)
+Dans l'exemple qui suit, les composants à base de classes `Panel` et `Button` lisent un [contexte](/learn/passing-data-deeply-with-context) en utilisant [`this.context`](#context) :
 
 <Sandpack>
 
@@ -1852,7 +1855,7 @@ class Panel extends Component {
         <h1>{this.props.title}</h1>
         {this.props.children}
       </section>
-    );    
+    );
   }
 }
 
@@ -1872,9 +1875,9 @@ class Button extends Component {
 
 function Form() {
   return (
-    <Panel title="Welcome">
-      <Button>Sign up</Button>
-      <Button>Log in</Button>
+    <Panel title="Bienvenue">
+      <Button>Inscription</Button>
+      <Button>Connexion</Button>
     </Panel>
   );
 }
@@ -1926,7 +1929,7 @@ export default function MyApp() {
 
 </Sandpack>
 
-When you convert them to function components, replace `this.context` with [`useContext`](/reference/react/useContext) calls:
+Lorsque vous convertissez ça en fonctions composants, remplacez votre utilisation de`this.context` par des appels à [`useContext`](/reference/react/useContext) :
 
 <Sandpack>
 
@@ -1958,9 +1961,9 @@ function Button({ children }) {
 
 function Form() {
   return (
-    <Panel title="Welcome">
-      <Button>Sign up</Button>
-      <Button>Log in</Button>
+    <Panel title="Bienvenue">
+      <Button>Inscription</Button>
+      <Button>Connexion</Button>
     </Panel>
   );
 }
