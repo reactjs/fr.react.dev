@@ -292,7 +292,7 @@ class ChatRoom extends Component {
 
 #### Limitations {/*componentdidmount-caveats*/}
 
-- En [mode strict](/reference/react/StrictMode), en développement React appellera `componentDidMount`, puis appellera immédiatement [`componentWillUnmount`](#componentwillunmount) et rappellera `componentDidMount` une seconde fois. Ça vous aider à remarquer un oubli d'implémentation de `componentWillUnmount`, ou un « miroir » insuffisant dans celle-ci de la logique de `componentDidMount`.
+- En [mode strict](/reference/react/StrictMode), en développement React appellera `componentDidMount`, puis appellera immédiatement [`componentWillUnmount`](#componentwillunmount) et rappellera `componentDidMount` une seconde fois. Ça vous aide à remarquer un oubli d'implémentation de `componentWillUnmount`, ou un « miroir » insuffisant dans celle-ci de la logique de `componentDidMount`.
 
 - Même si vous pourriez appeler immédiatement [`setState`](#setstate) dans `componentDidMount`, il est préférable de l'éviter autant que possible.  Ça déclencherait un rendu supplémentaire, qui arriverait toutefois avant que le navigateur n'ait mis à jour l'affichage. Ça garantit que même si la méthode [`render`](#render) est bien appelée deux fois dans un tel cas, l'utilisateur ne verra pas l'état intermédiaire.  Utilisez cette approche avec précaution, parce qu'elle nuit aux performances.  La plupart du temps, vous devriez pouvoir plutôt définir l'état initial dans le [`constructor`](#constructor). Ça reste toutefois utile pour des cas comme les boîtes de dialogue modales et les infobulles, qui nécessitent une mesure de nœud DOM avant de pouvoir afficher quelque chose qui dépend de leur taille ou de leur position.
 
@@ -1101,9 +1101,9 @@ L'implémentation de `static getDerivedStateFromProps` dans un composant à base
 
 ## Utilisation {/*usage*/}
 
-### Defining a class component {/*defining-a-class-component*/}
+### Définir un composant à base de classe {/*defining-a-class-component*/}
 
-To define a React component as a class, extend the built-in `Component` class and define a [`render` method:](#render)
+Pour définir un composant React sous forme de classe, étendez la classe `Component` fournie et définissez sa [méthode `render`](#render) :
 
 ```js
 import { Component } from 'react';
@@ -1115,9 +1115,9 @@ class Greeting extends Component {
 }
 ```
 
-React will call your [`render`](#render) method whenever it needs to figure out what to display on the screen. Usually, you will return some [JSX](/learn/writing-markup-with-jsx) from it. Your `render` method should be a [pure function:](https://en.wikipedia.org/wiki/Pure_function) it should only calculate the JSX.
+React appellera votre méthode [`render`](#render) dès qu'il doit déterminer quoi afficher à l'écran.  Vous y renverrez en général du [JSX](/learn/writing-markup-with-jsx). Votr méthode `render` devrait être une [fonction pure](https://fr.wikipedia.org/wiki/Fonction_pure) : elle devrait se limiter à calculer le JSX.
 
-Similarly to [function components,](/learn/your-first-component#defining-a-component) a class component can [receive information by props](/learn/your-first-component#defining-a-component) from its parent component. However, the syntax for reading props is different. For example, if the parent component renders `<Greeting name="Taylor" />`, then you can read the `name` prop from [`this.props`](#props), like `this.props.name`:
+Tout comme les [fonctions composants](/learn/your-first-component#defining-a-component), un composant à base de classe peut [recevoir des informations *via* ses props](/learn/your-first-component#defining-a-component) depuis son composant parent.  En revanche, la syntaxe de consultation des props est différente. Si par exemple le composant parent fait le rendu de `<Greeting name="Clara" />`, vous pourrez lire la prop `name` depuis [`this.props`](#props), en utilisant `this.props.name` :
 
 <Sandpack>
 
@@ -1133,9 +1133,9 @@ class Greeting extends Component {
 export default function App() {
   return (
     <>
-      <Greeting name="Sara" />
-      <Greeting name="Cahal" />
-      <Greeting name="Edite" />
+      <Greeting name="Laure" />
+      <Greeting name="Marie" />
+      <Greeting name="Nina" />
     </>
   );
 }
@@ -1143,19 +1143,19 @@ export default function App() {
 
 </Sandpack>
 
-Note that Hooks (functions starting with `use`, like [`useState`](/reference/react/useState)) are not supported inside class components.
+Remarquez que les Hooks (des fonctions dont le nom commence par `use`, telles que [`useState`](/reference/react/useState)) ne sont pas pris en charge par les composants à base de classes.
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-simple-component-from-a-class-to-a-function)
+Nous vous conseillons de plutôt définir vos composants sous forme de fonctions. [Voyez comment migrer](#migrating-a-simple-component-from-a-class-to-a-function).
 
 </Pitfall>
 
 ---
 
-### Adding state to a class component {/*adding-state-to-a-class-component*/}
+### Ajouter de l'état à un composant à base de classe {/*adding-state-to-a-class-component*/}
 
-To add [state](/learn/state-a-components-memory) to a class, assign an object to a property called [`state`](#state). To update state, call [`this.setState`](#setstate).
+Pour ajouter un [état](/learn/state-a-components-memory) à une classe, affectez un objet à la propriété [`state`](#state). Pour mettre à jour l'état, appelez [`this.setState`](#setstate).
 
 <Sandpack>
 
@@ -1164,8 +1164,8 @@ import { Component } from 'react';
 
 export default class Counter extends Component {
   state = {
-    name: 'Taylor',
-    age: 42,
+    name: 'Clara',
+    age: 31,
   };
 
   handleNameChange = (e) => {
@@ -1205,21 +1205,21 @@ button { display: block; margin-top: 10px; }
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
+Nous vous conseillons de plutôt définir vos composants sous forme de fonctions. [Voyez comment migrer](#migrating-a-simple-component-from-a-class-to-a-function).
 
 </Pitfall>
 
 ---
 
-### Adding lifecycle methods to a class component {/*adding-lifecycle-methods-to-a-class-component*/}
+### Ajouter des méthoeds de cucle de vie à un composant à base de classe {/*adding-lifecycle-methods-to-a-class-component*/}
 
-There are a few special methods you can define on your class.
+Il existe plusieurs méthodes spéciales que vous pouvez définir sur votre classe.
 
-If you define the [`componentDidMount`](#componentdidmount) method, React will call it when your component is added *(mounted)* to the screen. React will call [`componentDidUpdate`](#componentdidupdate) after your component re-renders due to changed props or state. React will call [`componentWillUnmount`](#componentwillunmount) after your component has been removed *(unmounted)* from the screen.
+Si vous définissez la méthode [`componentDidMount`](#componentdidmount), React l'appellera quand votre composant aura été ajouté au DOM (*monté*). React appellera [`componentDidUpdate`](#componentdidupdate) après que votre composant aura refait son rendu en raison de props ou d'un état modifiés. React appellera [`componentWillUnmount`](#componentwillunmount) juste avant que votre composant ne soit retiré du DOM (*démonté*).
 
-If you implement `componentDidMount`, you usually need to implement all three lifecycles to avoid bugs. For example, if `componentDidMount` reads some state or props, you also have to implement `componentDidUpdate` to handle their changes, and `componentWillUnmount` to clean up whatever `componentDidMount` was doing.
+Si vous implémentez `componentDidMount`, vous aurez généralement besoin d'implémenter ces trois méthodes de cycle de vie pour éviter les bugs. Si par exemple `componentDidMount` lit un état ou des props, vous devrez également implémenter `componentDidUpdate` pour en gérer les évolutions, ainsi que `componentWillUnmount` pour nettoyer toute mise en place effectuée dans `componentDidMount`.
 
-For example, this `ChatRoom` component keeps a chat connection synchronized with props and state:
+Par exemple, ce composant `ChatRoom` conserve une connexion au salon de discussion synchronisée avec les props et l'état :
 
 <Sandpack>
 
@@ -1233,18 +1233,18 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez votre salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Fermer le salon' : 'Ouvrir le salon'}
       </button>
       {show && <hr />}
       {show && <ChatRoom roomId={roomId} />}
@@ -1297,7 +1297,7 @@ export default class ChatRoom extends Component {
     return (
       <>
         <label>
-          Server URL:{' '}
+          URL du serveur :{' '}
           <input
             value={this.state.serverUrl}
             onChange={e => {
@@ -1307,7 +1307,7 @@ export default class ChatRoom extends Component {
             }}
           />
         </label>
-        <h1>Welcome to the {this.props.roomId} room!</h1>
+        <h1>Bienvenue dans le salon {this.props.roomId} !</h1>
       </>
     );
   }
@@ -1316,13 +1316,13 @@ export default class ChatRoom extends Component {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -1335,21 +1335,21 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Note that in development when [Strict Mode](/reference/react/StrictMode) is on, React will call `componentDidMount`, immediately call `componentWillUnmount`, and then call `componentDidMount` again. This helps you notice if you forgot to implement `componentWillUnmount` or if its logic doesn't fully "mirror" what `componentDidMount` does.
+Remarquez qu'en développement et lorsque le [mode strict](/reference/react/StrictMode) est actif, React appellera `componentDidMount`, puis appellera immédiatement `componentWillUnmount` et rappellera `componentDidMount` une seconde fois. Ça vous aide à remarquer un oubli d'implémentation de `componentWillUnmount`, ou un « miroir » insuffisant dans celle-ci de la logique de `componentDidMount`.
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
+Nous vous conseillons de plutôt définir vos composants sous forme de fonctions. [Voyez comment migrer](#migrating-a-simple-component-from-a-class-to-a-function).
 
 </Pitfall>
 
 ---
 
-### Catching rendering errors with an error boundary {/*catching-rendering-errors-with-an-error-boundary*/}
+### Capturer les erreurs de rendu avec un périmètre d'erreur {/*catching-rendering-errors-with-an-error-boundary*/}
 
-By default, if your application throws an error during rendering, React will remove its UI from the screen. To prevent this, you can wrap a part of your UI into an *error boundary*. An error boundary is a special component that lets you display some fallback UI instead of the part that crashed--for example, an error message.
+Par défaut, si votre application lève une erreur lors du rendu, React retirera son UI de l'écran.  Pour éviter ça, vous pouvez enrober tout ou partie de votre UI dans un *périmètre d'erreur*. Un périmètre d'erreur est un composant spécial qui vous permet d'afficher une UI de secours plutôt que la partie plantée : un message d'erreur par exemple.
 
-To implement an error boundary component, you need to provide [`static getDerivedStateFromError`](#static-getderivedstatefromerror) which lets you update state in response to an error and display an error message to the user. You can also optionally implement [`componentDidCatch`](#componentdidcatch) to add some extra logic, for example, to log the error to an analytics service.
+Pour implémenter un composant de périmètre d'erreur, vous devez fournir [`static getDerivedStateFromError`](#static-getderivedstatefromerror) qui vous permet de mettre à jour votre état en réaction à une erreur afin d'afficher un message à l'utilisateur. Vous pouvez aussi, optionnellement, implémenter [`componentDidCatch`](#componentdidcatch) pour ajouter de la logique supplémentaire, comme par exemple un signalement de l'erreur à un service de supervision.
 
 ```js {7-10,12-19}
 class ErrorBoundary extends React.Component {
@@ -1359,12 +1359,13 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // Met à jour l'état pour que le prochain rendu affiche une
+    // UI de secours.
     return { hasError: true };
   }
 
   componentDidCatch(error, info) {
-    // Example "componentStack":
+    // Exemple de "componentStack" :
     //   in ComponentThatThrows (created by App)
     //   in ErrorBoundary (created by App)
     //   in div (created by App)
@@ -1374,7 +1375,7 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
+      // Vous pouvez afficher n’importe quelle UI de secours
       return this.props.fallback;
     }
 
@@ -1383,21 +1384,21 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-Then you can wrap a part of your component tree with it:
+Vous pouvez alors enrober une partie de votre arbre de composants avec le périmètre :
 
 ```js {1,3}
-<ErrorBoundary fallback={<p>Something went wrong</p>}>
+<ErrorBoundary fallback={<p>Ça sent le pâté…</p>}>
   <Profile />
 </ErrorBoundary>
 ```
 
-If `Profile` or its child component throws an error, `ErrorBoundary` will "catch" that error, display a fallback UI with the error message you've provided, and send a production error report to your error reporting service.
+Si `Profile` ou un de ses composants descendants lève une erreur, `ErrorBoundary` « attrapera » cette erreur, affichera une UI de secours avec le message d'erreur fourni, et enverra un sinnalement de l'erreur de production à votre service de supervision.
 
-You don't need to wrap every component into a separate error boundary. When you think about the [granularity of error boundaries,](https://www.brandondail.com/posts/fault-tolerance-react) consider where it makes sense to display an error message. For example, in a messaging app, it makes sense to place an error boundary around the list of conversations. It also makes sense to place one around every individual message. However, it wouldn't make sense to place a boundary around every avatar.
+Vous n'avez pas besoin d'enrober chaque composant dans son propre périmètre d'erreur.  Lorsque vous réfléchissez à la [granularité de vos périmètres d'erreurs](https://www.brandondail.com/posts/fault-tolerance-react), pensez aux emplacements logiques pour des messages d'erreurs.  Dans une appli de messagerie par exemple, un périmètre d'erreur naturel se situerait autour de la liste des conversations.  Il serait également logique de placer un périmètre autour de chaque message individuel.  En revanche, ça ne servirait à rien d'en placer un autour de chaque avatar.
 
 <Note>
 
-There is currently no way to write an error boundary as a function component. However, you don't have to write the error boundary class yourself. For example, you can use [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) instead.
+Il n'existe pour le moment pas de moyen d'écrire un périmètre d'erreur sous forme de fonction composant.  Ceci dit, vous n'avez pas à écrire votre classe de périmètre d'erreur vous-même. Vous pouvez par exemple utiliser plutôt le module [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary).
 
 </Note>
 
