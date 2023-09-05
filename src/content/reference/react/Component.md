@@ -124,7 +124,7 @@ L'état d'un composant à base de classe est mis à disposition dans `this.state
 ```js {2-4,7-9,18}
 class Counter extends Component {
   state = {
-    age: 42,
+    age: 31,
   };
 
   handleAgeChange = () => {
@@ -1406,11 +1406,11 @@ Il n'existe pour le moment pas de moyen d'écrire un périmètre d'erreur sous f
 
 ## Alternatives {/*alternatives*/}
 
-### Migrating a simple component from a class to a function {/*migrating-a-simple-component-from-a-class-to-a-function*/}
+### Migrer un composant simple d'une classe vers une fonction {/*migrating-a-simple-component-from-a-class-to-a-function*/}
 
-Typically, you will [define components as functions](/learn/your-first-component#defining-a-component) instead.
+Généralement, vous [définirez plutôt vos composants sous forme de fonctions](/learn/your-first-component#defining-a-component).
 
-For example, suppose you're converting this `Greeting` class component to a function:
+Supposons par exemple que vous souhaitiez convertir ce composant à base de classe `Greeting` vers une fonction :
 
 <Sandpack>
 
@@ -1426,9 +1426,9 @@ class Greeting extends Component {
 export default function App() {
   return (
     <>
-      <Greeting name="Sara" />
-      <Greeting name="Cahal" />
-      <Greeting name="Edite" />
+      <Greeting name="Laure" />
+      <Greeting name="Marie" />
+      <Greeting name="Nina" />
     </>
   );
 }
@@ -1436,15 +1436,15 @@ export default function App() {
 
 </Sandpack>
 
-Define a function called `Greeting`. This is where you will move the body of your `render` function.
+Définissez une fonction nommée `Greeting`.  C'est là que vous allez déplacer le corps de votre méthode `render` :
 
 ```js
 function Greeting() {
-  // ... move the code from the render method here ...
+  // ... déplacez ici le code de votre méthode `render` ...
 }
 ```
 
-Instead of `this.props.name`, define the `name` prop [using the destructuring syntax](/learn/passing-props-to-a-component) and read it directly:
+Plutôt que de lire `this.props.name`, définissez une prop `name` [avec une déstructuration en signature](/learn/passing-props-to-a-component) et lisez-la directement :
 
 ```js
 function Greeting({ name }) {
@@ -1452,7 +1452,7 @@ function Greeting({ name }) {
 }
 ```
 
-Here is a complete example:
+Voici l'exemple complet :
 
 <Sandpack>
 
@@ -1464,9 +1464,9 @@ function Greeting({ name }) {
 export default function App() {
   return (
     <>
-      <Greeting name="Sara" />
-      <Greeting name="Cahal" />
-      <Greeting name="Edite" />
+      <Greeting name="Laure" />
+      <Greeting name="Marie" />
+      <Greeting name="Nina" />
     </>
   );
 }
@@ -1476,9 +1476,9 @@ export default function App() {
 
 ---
 
-### Migrating a component with state from a class to a function {/*migrating-a-component-with-state-from-a-class-to-a-function*/}
+### Migrer un composant avec état d'une classe vers une fonction {/*migrating-a-component-with-state-from-a-class-to-a-function*/}
 
-Suppose you're converting this `Counter` class component to a function:
+Supposons que vous convertissiez ce composant à base de classe `Counter` vers une fonction :
 
 <Sandpack>
 
@@ -1487,8 +1487,8 @@ import { Component } from 'react';
 
 export default class Counter extends Component {
   state = {
-    name: 'Taylor',
-    age: 42,
+    name: 'Clara',
+    age: 31,
   };
 
   handleNameChange = (e) => {
@@ -1526,22 +1526,22 @@ button { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Start by declaring a function with the necessary [state variables:](/reference/react/useState#adding-state-to-a-component)
+Commencez par déclarer une fonction avec les [variables d'état](/reference/react/useState#adding-state-to-a-component) nécessaires :
 
 ```js {4-5}
 import { useState } from 'react';
 
 function Counter() {
-  const [name, setName] = useState('Taylor');
+  const [name, setName] = useState('Clara');
   const [age, setAge] = useState(42);
   // ...
 ```
 
-Next, convert the event handlers:
+Convertissez ensuite les gestionnaires d'événements :
 
 ```js {5-7,9-11}
 function Counter() {
-  const [name, setName] = useState('Taylor');
+  const [name, setName] = useState('Clara');
   const [age, setAge] = useState(42);
 
   function handleNameChange(e) {
@@ -1554,9 +1554,9 @@ function Counter() {
   // ...
 ```
 
-Finally, replace all references starting with `this` with the variables and functions you defined in your component. For example, replace `this.state.age` with `age`, and replace `this.handleNameChange` with `handleNameChange`.
+Pour finir, remplacez toutes les références qui démarrent par `this` avec les variables et fonctions définies dans votre composant.  Remplacez par exemple `this.state.age` par `age` et `this.handleNameChange` par `handleNameChange`.
 
-Here is a fully converted component:
+Voici le composant pleinement converti :
 
 <Sandpack>
 
@@ -1564,7 +1564,7 @@ Here is a fully converted component:
 import { useState } from 'react';
 
 export default function Counter() {
-  const [name, setName] = useState('Taylor');
+  const [name, setName] = useState('Clara');
   const [age, setAge] = useState(42);
 
   function handleNameChange(e) {
@@ -1598,9 +1598,9 @@ button { display: block; margin-top: 10px; }
 
 ---
 
-### Migrating a component with lifecycle methods from a class to a function {/*migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function*/}
+### Migrer un composant doté de méthodes de cycle de vie d'une classe vers une fonction {/*migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function*/}
 
-Suppose you're converting this `ChatRoom` class component with lifecycle methods to a function:
+Supposons que vous convertissiez ce composant à base de classe `ChatRoom`, doté de méthodes de cycle de vie, vers une fonction :
 
 <Sandpack>
 
@@ -1614,18 +1614,18 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez un salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Ferme le salon' : 'Ouvrir le salon'}
       </button>
       {show && <hr />}
       {show && <ChatRoom roomId={roomId} />}
@@ -1678,7 +1678,7 @@ export default class ChatRoom extends Component {
     return (
       <>
         <label>
-          Server URL:{' '}
+          URL du serveur :{' '}
           <input
             value={this.state.serverUrl}
             onChange={e => {
@@ -1688,7 +1688,7 @@ export default class ChatRoom extends Component {
             }}
           />
         </label>
-        <h1>Welcome to the {this.props.roomId} room!</h1>
+        <h1>Bienvenue dans le salon {this.props.roomId} !</h1>
       </>
     );
   }
@@ -1697,13 +1697,13 @@ export default class ChatRoom extends Component {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -1716,11 +1716,11 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-First, verify that your [`componentWillUnmount`](#componentwillunmount) does the opposite of [`componentDidMount`.](#componentdidmount) In the above example, that's true: it disconnects the connection that `componentDidMount` sets up. If such logic is missing, add it first.
+Commencez par vérifier que votre [`componentWillUnmount`](#componentwillunmount) fait bien l'inverse de votre [`componentDidMount`](#componentdidmount).  Dans l'exemple ci-dessus, c'est bien le cas : elle débranche la cocnnexion établie par `componentDidMount`. Si cette logique est manquante, commencez par l'ajouter.
 
-Next, verify that your [`componentDidUpdate`](#componentdidupdate) method handles changes to any props and state you're using in `componentDidMount`. In the above example, `componentDidMount` calls `setupConnection` which reads `this.state.serverUrl` and `this.props.roomId`. This is why `componentDidUpdate` checks whether `this.state.serverUrl` and `this.props.roomId` have changed, and resets the connection if they did. If your `componentDidUpdate` logic is missing or doesn't handle changes to all relevant props and state, fix that first.
+Ensuite, vérifiez que votre méthode [`componentDidUpdate`](#componentdidupdate) gère les changements des props et états que vous utilisez dans `componentDidMount`. Dans l'exemple ci-dessus, `componentDidMount` appelle `setupConnection` qui lit `this.state.serverUrl` et `this.props.roomId`. C'est pourquoi `componentDidUpdate` vérifie si `this.state.serverUrl` ou `this.props.roomId` ont changé, et réinitialise la connexion le cas échéant. Si la logique de votre `componentDidUpdate` est manquante ou ne gère pas les changements à toutes les parties pertinentes des props et de l'état, commencez par corriger ça.
 
-In the above example, the logic inside the lifecycle methods connects the component to a system outside of React (a chat server). To connect a component to an external system, [describe this logic as a single Effect:](/reference/react/useEffect#connecting-to-an-external-system)
+Dans l'exemple qui précède, la logique dans les méthodes de cycle de vie connecte le composant à un système extérieur à React (un serveur de discussion).  Pour connecter un composant à un système extérieur, [décrivez la logique nécessaire dans un Effet unique](/reference/react/useEffect#connecting-to-an-external-system) :
 
 ```js {6-12}
 import { useState, useEffect } from 'react';
@@ -1740,7 +1740,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-This [`useEffect`](/reference/react/useEffect) call is equivalent to the logic in the lifecycle methods above. If your lifecycle methods do multiple unrelated things, [split them into multiple independent Effects.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things) Here is a complete example you can play with:
+Cet appel à [`useEffect`](/reference/react/useEffect) est équivalent à la logique des méthodes de cycle de vie ci-avant.  Si vos méthodes de cycle de vie s'occupent de plusieurs sujets distincts, [découpez-les en Effets indépendants](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things).  Voici l'exemple complet que vous pouvez manipuler :
 
 <Sandpack>
 
@@ -1754,18 +1754,18 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Choisissez un salon de discussion :{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">général</option>
+          <option value="travel">voyage</option>
+          <option value="music">musique</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Ferme le salon' : 'Ouvrir le salon'}
       </button>
       {show && <hr />}
       {show && <ChatRoom roomId={roomId} />}
@@ -1792,13 +1792,13 @@ export default function ChatRoom({ roomId }) {
   return (
     <>
       <label>
-        Server URL:{' '}
+        URL du serveur :{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Bienvenue dans le salon {roomId} !</h1>
     </>
   );
 }
@@ -1806,13 +1806,13 @@ export default function ChatRoom({ roomId }) {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Une véritable implémentation se connecterait en vrai au serveur
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Connexion au salon « ' + roomId + ' » sur ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Déconnexion du salon « ' + roomId + ' » sur ' + serverUrl);
     }
   };
 }
@@ -1827,15 +1827,15 @@ button { margin-left: 10px; }
 
 <Note>
 
-If your component does not synchronize with any external systems, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+Si votre composant ne se synchronise pas avec un système extérieur, [vous n'avez pas forcément besoin d'un Effet](/learn/you-might-not-need-an-effect).
 
 </Note>
 
 ---
 
-### Migrating a component with context from a class to a function {/*migrating-a-component-with-context-from-a-class-to-a-function*/}
+### Migrer un composant avec un contexte d'une classe vers une fonction {/*migrating-a-component-with-context-from-a-class-to-a-function*/}
 
-In this example, the `Panel` and `Button` class components read [context](/learn/passing-data-deeply-with-context) from [`this.context`:](#context)
+Dans l'exemple qui suit, les composants à bae de classes `Panel` et `Button` lisent un [contexte](/learn/passing-data-deeply-with-context) en utilisant [`this.context`](#context) :
 
 <Sandpack>
 
@@ -1875,9 +1875,9 @@ class Button extends Component {
 
 function Form() {
   return (
-    <Panel title="Welcome">
-      <Button>Sign up</Button>
-      <Button>Log in</Button>
+    <Panel title="Bienvenue">
+      <Button>Inscription</Button>
+      <Button>Connexion</Button>
     </Panel>
   );
 }
@@ -1929,7 +1929,7 @@ export default function MyApp() {
 
 </Sandpack>
 
-When you convert them to function components, replace `this.context` with [`useContext`](/reference/react/useContext) calls:
+Lorsque vous convertissez ça en fonctions composants, remplacez `this.context` par des appels à [`useContext`](/reference/react/useContext) :
 
 <Sandpack>
 
@@ -1961,9 +1961,9 @@ function Button({ children }) {
 
 function Form() {
   return (
-    <Panel title="Welcome">
-      <Button>Sign up</Button>
-      <Button>Log in</Button>
+    <Panel title="Bienvenue">
+      <Button>Inscription</Button>
+      <Button>Connexion</Button>
     </Panel>
   );
 }
