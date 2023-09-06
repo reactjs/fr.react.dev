@@ -129,6 +129,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/community/docs-contributors">Contributeurs aux docs</a></li>
           <li><a href="https://fr.react.dev/community/acknowledgements">Remerciements</a></li>
           <li><a href="https://fr.react.dev/blog">Blog</a> (accueil)</li>
+          <li><a href="https://fr.react.dev/blog/2023/05/03/react-canaries">Blog : React Canaries</a></li>
           <li><a href="https://fr.react.dev/warnings/invalid-aria-prop">Avertissement : prop ARIA invalide</a></li>
           <li><a href="https://fr.react.dev/warnings/invalid-hook-call-warning">Avertissement : règles des Hooks</a></li>
           <li><a href="https://fr.react.dev/warnings/special-props">Avertissement : props à traitement spécial</a></li>

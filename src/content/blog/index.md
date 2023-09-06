@@ -10,9 +10,9 @@ Ce blog est la source officielle des mises à jour par l'équipe React.  Toute a
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<BlogCard title="React Canaries: Incremental Feature Rollout Outside Meta" date="May 3, 2023" url="/blog/2023/05/03/react-canaries">
+<BlogCard title="React Canaries : livraison incrémentale de fonctionnalités hors de Meta" date="3 mai 2023" url="/blog/2023/05/03/react-canaries">
 
-Traditionally, new React features used to only be available at Meta first, and land in the open source releases later. We'd like to offer the React community an option to adopt individual new features as soon as their design is close to final--similar to how Meta uses React internally. We are introducing a new officially supported Canary release channel. It lets curated setups like frameworks decouple adoption of individual React features from the React release schedule.
+Traditionnellement, les nouveautés de React n'étaient d'abord disponibles qu'au sein de Meta, pour arriver plus tard dans les livraisons *open source*.  Nous aimerions offrir à la communauté React un moyen d'adopter individuellement des fonctionnalités plus en amont, alors que leur conception est quasi finalisée —  un peu comme l'utilisation que Meta fait de React en interne.  Nous présentons donc un nouveau canal de livraison officiel appelé Canary.  Il permet à des environnements choisis tels que les frameworks de découpler leur adoption de fonctionnalités React individuelles du planning officiel de sortie de React.
 
 </BlogCard>
 
