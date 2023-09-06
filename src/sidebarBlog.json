@@ -12,8 +12,8 @@
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "React Canaries: Enabling Incremental Feature Rollout Outside Meta",
-          "titleForHomepage": "React Canaries: Incremental Feature Rollout",
+          "title": "React Canaries : livraison incrémentale de fonctionnalités hors de Meta",
+          "titleForHomepage": "React Canaries",
           "icon": "blog",
           "date": "3 mai 2023",
           "path": "/blog/2023/05/03/react-canaries"
