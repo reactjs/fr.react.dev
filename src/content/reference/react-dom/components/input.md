@@ -35,7 +35,7 @@ Pour afficher un champ de saisie, utilisez le [composant natif `<input>` du navi
 Un champ de saisie peut devenir un [champ contrôlé](#controlling-an-input-with-a-state-variable) en lui passant une de ces props :
 
 * [`checked`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#checked) : un booléen. Pour un champ de saisie avec une case à cocher ou un bouton radio, contrôle s'il est sélectionné.
-* [`value`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#value): une chaîne de caractères. Pour un champ de saisie textuel, contrôle son texte (pour un bouton de type radio, spécifie la valeur soumise avec le formulaire).
+* [`value`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#value) : une chaîne de caractères. Pour un champ de saisie textuel, contrôle son texte (pour un bouton radio, spécifie la valeur soumise avec le formulaire).
 
 Lorsque vous passez une de ces valeurs, vous devez également passer un gestionnaire d'événement `onChange` qui met à jour la valeur passée.
 
@@ -46,45 +46,45 @@ Ces props d'`<input>` sont seulement compatibles avec les champs de saisie non c
 
 Ces props d'`<input>` sont compatibles avec les champs de saisie contrôlés comme non contrôlés :
 
-* [`accept`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#accept) : une chaîne de caractères. Spécifie quels types de fichiers sont acceptés par un champ de saisie de `type="file"`.
-* [`alt`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#alt) : une chaîne de caractères. Spécifie le texte alternatif pour un champ de saisie `type="image"`.
-* [`capture`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#capture) : une chaîne de caractères. Spécifie le média (microphone, vidéo ou caméra) capturé par un champ de saisie `type="file"`.
-* [`autoComplete`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#autocomplete) : une chaîne de caractères. Spécifie l'un des [comportements d'autocomplétion](https://developer.mozilla.org/fr/docs/Web/HTML/Attributes/autocomplete#values) possibles.
-* [`autoFocus`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#autofocus) : un booléen. Si `true`, React va activer l'élément après le montage _(l'apparition initiale dans le DOM, NdT)_.
-* [`dirname`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#dirname) : une chaîne de caractères. Spécifie le nom de la donnée du formulaire indiquant la directionnalité de l'élément.
-* [`disabled`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#disabled) : un booléen. Si `true`, le champ de saisie ne sera pas interactif et sera grisé.
-* `children` : `<input>` n'accepte pas d'enfants.
-* [`form`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#form) : une chaîne de caractères. Spécifie l'`id` du `<form>` auquel appartient ce champ de saisie. S'il est absent, le champ de saisie sera associé au formulaire parent le plus proche.
-* [`formAction`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formaction) : une chaîne de caractères. Remplace l'attribut `action` du `<form>` parent pour les champs de `type="submit"` ou `type="image"`.
-* [`formEnctype`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formenctype) : une chaîne de caractères. Remplace l'attribut `enctype` du `<form>` parent pour les champs de saisie `type="submit"` et `type="image"`.
-* [`formMethod`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formmethod) : une chaîne de caractères. Remplace l'attribut `method` du `<form>` parent pour les champs de saisie `type="submit"` et `type="image"`.
-* [`formNoValidate`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formnovalidate) : une chaîne de caractères. Remplace l'attribut `novalidate` du `<form>` parent pour les champs de saisie `type="submit"` et `type="image"`.
-* [`formTarget`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formtarget) : une chaîne de caractères. Remplace l'attribut `target` du `<form>` parent pour les champs de saisie `type="submit"` et `type="image"`.
-* [`height`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#height) : une chaîne de caractères. Spécifie la hauteur de l'image pour le `type="image"`.
-* [`list`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#list) : une chaîne de caractères. Spécifie l'`id` du `<datalist>` avec les options d'autocomplétion.
-* [`max`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#max) : un nombre. Spécifie la valeur maximale pour les champs de saisie numériques et de date.
-* [`maxLength`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#maxlength) : un nombre. Spécifie la longueur maximale pour les champs de saisie textuels et autres.
-* [`min`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#min) : un nombre. Spécifie la valeur minimale pour les champs de saisie numériques et de date.
-* [`minLength`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#minlength) : un nombre. Spécifie la longueur minimale pour les champs de saisie textuels et autres.
-* [`multiple`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#multiple) : un booléen. Spécifie si plusieurs valeurs sont autorisées pour `type="file"` et `type="email"`.
-* [`name`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#name) : une chaîne de caractères. Spécifie le nom de ce champ de saisie au sein de [l'envoi du formulaire](#reading-the-input-values-when-submitting-a-form).
-* `onChange` : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Requis pour [les champs de saisie contrôlés](#controlling-an-input-with-a-state-variable). Se déclenche immédiatement lorsque la valeur du champ de saisie est modifiée par l'utilisateur (par exemple, il se déclenche à chaque frappe). Se comporte comme [l'événement `input`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/input_event) du navigateur.
-* `onChangeCapture` : une version de `onChange` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onInput`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/input_event) : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Se déclenche immédiatement lorsque la valeur du champ de saisie est modifiée par l'utilisateur. Pour des raisons historiques, en React, il est préférable d'utiliser `onChange` à la place, qui fonctionne de manière similaire.
-* `onInputCapture` : une version de `onInput` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event) : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Se déclenche si un champ de saisie échoue à la validation lors de la soumission du formulaire. Contrairement à l'événement natif `invalid`, l'événement React `onInvalid` se propage.
-* `onInvalidCapture` : une version de `onInvalid` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event) : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Se déclenche après que la sélection à l'intérieur du champ de saisie a changé. React étend l'événement `onSelect` pour se déclencher également pour une sélection vide et sur les modifications de texte (qui peuvent affecter la sélection).
-* `onSelectCapture` : une version de `onSelect` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`pattern`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#pattern) : une chaîne de caractères. Spécifie une expression rationnelle qui doit correspondre à la `value` du champ de saisie.
-* [`placeholder`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#placeholder) : une chaîne de caractères. Affichée dans une couleur discrète lorsque la valeur du champ de saisie est vide.
-* [`readOnly`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#readonly) : un booléen. Si `true`, le champ de saisie n'est pas modifiable par l'utilisateur.
-* [`required`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#required) : un booléen. Si `true`, la valeur doit être fournie pour que le formulaire puisse être soumis.
-* [`size`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#size) : un nombre. Similaire à la définition de la largeur, mais l'unité dépend de la nature du champ.
-* [`src`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#src) : une chaîne de caractères. Spécifie la source de l'image pour un champ de saisie `type="image"`.
-* [`step`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#step) : un nombre positif ou une chaîne `'any'`. Spécifie la distance entre les valeurs valides.
-* [`type`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#type) : une chaîne de caractères. L'un des [types de saisie](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#les_diff%C3%A9rents_types_de_champs_input).
-* [`width`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#width) : une chaîne de caractères. Spécifie la largeur de l'image pour un champ de saisie `type="image"`.
+* [`accept`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#accept) : une chaîne de caractères. Spécifie quels types de fichiers sont acceptés par un champ de saisie de `type="file"`.
+* [`alt`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#alt) : une chaîne de caractères. Spécifie le texte alternatif pour un champ de saisie `type="image"`.
+* [`capture`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#capture) : une chaîne de caractères. Spécifie le média (microphone, vidéo ou caméra) capturé par un champ de saisie `type="file"`.
+* [`autoComplete`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#autocomplete) : une chaîne de caractères. Spécifie l'un des [comportements d'autocomplétion](https://developer.mozilla.org/fr/docs/Web/HTML/Attributes/autocomplete#values) possibles.
+* [`autoFocus`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#autofocus) : un booléen. Si `true`, React va activer l'élément après le montage _(l'apparition initiale dans le DOM, NdT)_.
+* [`dirname`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#dirname) : une chaîne de caractères. Spécifie le nom de la donnée du formulaire indiquant la directionnalité de l'élément.
+* [`disabled`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#disabled) : un booléen. Si `true`, le champ de saisie ne sera pas interactif et sera grisé.
+* `children` : `<input>` n'accepte pas d'enfants.
+* [`form`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#form) : une chaîne de caractères. Spécifie l'`id` du `<form>` auquel appartient ce champ de saisie. S'il est absent, le champ de saisie sera associé au formulaire parent le plus proche.
+* [`formAction`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formaction) : une chaîne de caractères. Remplace l'attribut `action` du `<form>` parent pour les champs de `type="submit"` ou `type="image"`.
+* [`formEnctype`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formenctype) : une chaîne de caractères. Remplace l'attribut `enctype` du `<form>` parent pour les champs de saisie de `type="submit"` ou `type="image"`.
+* [`formMethod`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formmethod) : une chaîne de caractères. Remplace l'attribut `method` du `<form>` parent pour les champs de saisie de `type="submit"` ou `type="image"`.
+* [`formNoValidate`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formnovalidate) : une chaîne de caractères. Remplace l'attribut `novalidate` du `<form>` parent pour les champs de saisie de `type="submit"` ou `type="image"`.
+* [`formTarget`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formtarget) : une chaîne de caractères. Remplace l'attribut `target` du `<form>` parent pour les champs de saisie de `type="submit"` ou `type="image"`.
+* [`height`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#height) : une chaîne de caractères. Spécifie la hauteur de l'image pour le `type="image"`.
+* [`list`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#list) : une chaîne de caractères. Spécifie l'`id` du `<datalist>` avec les options d'autocomplétion.
+* [`max`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#max) : un nombre. Spécifie la valeur maximale pour les champs de saisie numériques et de date.
+* [`maxLength`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#maxlength) : un nombre. Spécifie la longueur maximale pour les champs de saisie textuels et autres.
+* [`min`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#min) : un nombre. Spécifie la valeur minimale pour les champs de saisie numériques et de date.
+* [`minLength`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#minlength) : un nombre. Spécifie la longueur minimale pour les champs de saisie textuels et autres.
+* [`multiple`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#multiple) : un booléen. Spécifie si plusieurs valeurs sont autorisées pour `type="file"` ou `type="email"`.
+* [`name`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#name) : une chaîne de caractères. Spécifie le nom de ce champ de saisie au sein de [l'envoi du formulaire](#reading-the-input-values-when-submitting-a-form).
+* `onChange` : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Requis pour [les champs de saisie contrôlés](#controlling-an-input-with-a-state-variable). Se déclenche immédiatement lorsque la valeur du champ de saisie est modifiée par l'utilisateur (par exemple, il se déclenche à chaque frappe). Se comporte comme [l'événement `input`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/input_event) du navigateur.
+* `onChangeCapture` : une version de `onChange` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
+* [`onInput`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/input_event) : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Se déclenche immédiatement lorsque la valeur du champ de saisie est modifiée par l'utilisateur. Pour des raisons historiques, en React, il est préférable d'utiliser `onChange` à la place, qui fonctionne de manière similaire.
+* `onInputCapture` : une version de `onInput` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
+* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event) : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Se déclenche si un champ de saisie échoue à la validation lors de la soumission du formulaire. Contrairement à l'événement natif `invalid`, l'événement React `onInvalid` se propage.
+* `onInvalidCapture` : une version de `onInvalid` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
+* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event) : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Se déclenche après que la sélection à l'intérieur du champ de saisie a changé. React étend l'événement `onSelect` pour se déclencher également pour une sélection vide et sur les modifications de texte (qui peuvent affecter la sélection).
+* `onSelectCapture` : une version de `onSelect` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
+* [`pattern`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#pattern) : une chaîne de caractères. Spécifie une expression rationnelle qui doit correspondre à la `value` du champ de saisie.
+* [`placeholder`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#placeholder) : une chaîne de caractères. Affichée dans une couleur discrète lorsque la valeur du champ de saisie est vide.
+* [`readOnly`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#readonly) : un booléen. Si `true`, le champ de saisie n'est pas modifiable par l'utilisateur.
+* [`required`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#required) : un booléen. Si `true`, la valeur doit être fournie pour que le formulaire puisse être soumis.
+* [`size`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#size) : un nombre. Similaire à la définition de la largeur, mais l'unité dépend de la nature du champ.
+* [`src`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#src) : une chaîne de caractères. Spécifie la source de l'image pour un champ de saisie `type="image"`.
+* [`step`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#step) : un nombre positif ou le texte `'any'`. Spécifie la distance entre les valeurs valides.
+* [`type`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#type) : une chaîne de caractères. L'un des [types de saisie](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#les_diff%C3%A9rents_types_de_champs_input).
+* [`width`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#width) : une chaîne de caractères. Spécifie la largeur de l'image pour un champ de saisie `type="image"`.
 
 #### Limitations {/*caveats*/}
 
@@ -183,7 +183,7 @@ input { margin: 5px; }
 
 ### Passer une valeur initiale à un champ de saisie {/*providing-an-initial-value-for-an-input*/}
 
-Vous pouvez éventuellement spécifier la valeur initiale d'un champ de saisie. Passez-la comme une chaîne de caractères `defaultValue` pour les champs de saisie textuels. Les cases à cocher et les boutons radio spécifient quant à eux la valeur initiale avec le booléen `defaultChecked`.
+Vous pouvez éventuellement spécifier la valeur initiale d'un champ de saisie. Passez-la comme une chaîne de caractères `defaultValue` pour les champs de saisie textuels. Les cases à cocher et les boutons radios spécifient quant à eux la valeur initiale avec le booléen `defaultChecked`.
 
 <Sandpack>
 
