@@ -4,7 +4,7 @@ title: "<input>"
 
 <Intro>
 
-Le [composant natif `<input>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input) vous permet d'afficher différents champs de saisie dans un formulaire.
+Le [composant natif `<input>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input) vous permet d'afficher différents types de champs de saisie dans un formulaire.
 
 ```js
 <input />
@@ -34,33 +34,33 @@ Pour afficher un champ de saisie, utilisez le [composant natif `<input>` du navi
 
 Un champ de saisie peut devenir un [champ contrôlé](#controlling-an-input-with-a-state-variable) en lui passant une de ces props :
 
-* [`checked`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#checked): un booléen. Pour un champ de saisie avec une case à cocher ou un bouton de type radio, contrôle s'il est sélectionné.
-* [`value`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#value): une chaîne de caractères. Pour un champ de saisie textuel, contrôle son texte (pour un bouton de type radio, spécifie la forme des données).
+* [`checked`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#checked) : un booléen. Pour un champ de saisie avec une case à cocher ou un bouton radio, contrôle s'il est sélectionné.
+* [`value`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#value): une chaîne de caractères. Pour un champ de saisie textuel, contrôle son texte (pour un bouton de type radio, spécifie la valeur soumise avec le formulaire).
 
 Lorsque vous passez une de ces valeurs, vous devez également passer un gestionnaire d'événement `onChange` qui met à jour la valeur passée.
 
-Ces props de `<input>` sont seulement compatibles avec les champs de saisie non contrôlées :
+Ces props d'`<input>` sont seulement compatibles avec les champs de saisie non contrôlés :
 
-* [`defaultChecked`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#defaultChecked): un booléen. Spécifie [la valeur initiale](#providing-an-initial-value-for-an-input) pour les champs de saisie `type="checkbox"` et `type="radio"`.
+* [`defaultChecked`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#defaultChecked): un booléen. Spécifie [la valeur initiale](#providing-an-initial-value-for-an-input) pour les champs de saisie de `type="checkbox"` ou`type="radio"`.
 * [`defaultValue`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#defaultValue): une chaîne de caractères. Spécifie [la valeur initiale](#providing-an-initial-value-for-an-input) pour un champ de saisie textuel.
 
-Ces props de `<input>` sont compatibles avec les champs de saisie contrôlés et non contrôlées :
+Ces props d'`<input>` sont compatibles avec les champs de saisie contrôlés comme non contrôlés :
 
-* [`accept`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#accept) : une chaîne de caractères. Spécifie quels types de fichiers sont acceptés par un champ de saisie `type="file"`.
+* [`accept`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#accept) : une chaîne de caractères. Spécifie quels types de fichiers sont acceptés par un champ de saisie de `type="file"`.
 * [`alt`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#alt) : une chaîne de caractères. Spécifie le texte alternatif pour un champ de saisie `type="image"`.
 * [`capture`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#capture) : une chaîne de caractères. Spécifie le média (microphone, vidéo ou caméra) capturé par un champ de saisie `type="file"`.
 * [`autoComplete`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#autocomplete) : une chaîne de caractères. Spécifie l'un des [comportements d'autocomplétion](https://developer.mozilla.org/fr/docs/Web/HTML/Attributes/autocomplete#values) possibles.
 * [`autoFocus`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#autofocus) : un booléen. Si `true`, React va activer l'élément après le montage _(l'apparition initiale dans le DOM, NdT)_.
-* [`dirname`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#dirname) : une chaîne de caractères. Spécifie le nom du champ de saisie pour la directionnalité de l'élément.
+* [`dirname`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#dirname) : une chaîne de caractères. Spécifie le nom de la donnée du formulaire indiquant la directionnalité de l'élément.
 * [`disabled`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#disabled) : un booléen. Si `true`, le champ de saisie ne sera pas interactif et sera grisé.
 * `children` : `<input>` n'accepte pas d'enfants.
 * [`form`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#form) : une chaîne de caractères. Spécifie l'`id` du `<form>` auquel appartient ce champ de saisie. S'il est absent, le champ de saisie sera associé au formulaire parent le plus proche.
-* [`formAction`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formaction) : une chaîne de caractères. Remplace l'attribut `action` du `<form>` parent pour les champs de saisie `type="submit"` et `type="image"`.
+* [`formAction`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formaction) : une chaîne de caractères. Remplace l'attribut `action` du `<form>` parent pour les champs de `type="submit"` ou `type="image"`.
 * [`formEnctype`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formenctype) : une chaîne de caractères. Remplace l'attribut `enctype` du `<form>` parent pour les champs de saisie `type="submit"` et `type="image"`.
 * [`formMethod`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formmethod) : une chaîne de caractères. Remplace l'attribut `method` du `<form>` parent pour les champs de saisie `type="submit"` et `type="image"`.
 * [`formNoValidate`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formnovalidate) : une chaîne de caractères. Remplace l'attribut `novalidate` du `<form>` parent pour les champs de saisie `type="submit"` et `type="image"`.
 * [`formTarget`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formtarget) : une chaîne de caractères. Remplace l'attribut `target` du `<form>` parent pour les champs de saisie `type="submit"` et `type="image"`.
-* [`height`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#height) : une chaîne de caractères. Spécifie la hauteur de l'image pour `type="image"`.
+* [`height`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#height) : une chaîne de caractères. Spécifie la hauteur de l'image pour le `type="image"`.
 * [`list`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#list) : une chaîne de caractères. Spécifie l'`id` du `<datalist>` avec les options d'autocomplétion.
 * [`max`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#max) : un nombre. Spécifie la valeur maximale pour les champs de saisie numériques et de date.
 * [`maxLength`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#maxlength) : un nombre. Spécifie la longueur maximale pour les champs de saisie textuels et autres.
@@ -76,22 +76,22 @@ Ces props de `<input>` sont compatibles avec les champs de saisie contrôlés et
 * `onInvalidCapture` : une version de `onInvalid` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event) : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Se déclenche après que la sélection à l'intérieur du champ de saisie a changé. React étend l'événement `onSelect` pour se déclencher également pour une sélection vide et sur les modifications de texte (qui peuvent affecter la sélection).
 * `onSelectCapture` : une version de `onSelect` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`pattern`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#pattern) : une chaîne de caractères. Spécifie une expression régulière qui doit correspondre à la `value` du champ de saisie.
+* [`pattern`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#pattern) : une chaîne de caractères. Spécifie une expression rationnelle qui doit correspondre à la `value` du champ de saisie.
 * [`placeholder`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#placeholder) : une chaîne de caractères. Affichée dans une couleur discrète lorsque la valeur du champ de saisie est vide.
 * [`readOnly`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#readonly) : un booléen. Si `true`, le champ de saisie n'est pas modifiable par l'utilisateur.
 * [`required`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#required) : un booléen. Si `true`, la valeur doit être fournie pour que le formulaire puisse être soumis.
-* [`size`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#size) : un nombre. Similaire à la définition de la largeur, mais l'unité dépend du contrôle.
+* [`size`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#size) : un nombre. Similaire à la définition de la largeur, mais l'unité dépend de la nature du champ.
 * [`src`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#src) : une chaîne de caractères. Spécifie la source de l'image pour un champ de saisie `type="image"`.
 * [`step`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#step) : un nombre positif ou une chaîne `'any'`. Spécifie la distance entre les valeurs valides.
-* [`type`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#type) : une chaîne de caractères. L'un des [types de saisie](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#input_types).
+* [`type`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#type) : une chaîne de caractères. L'un des [types de saisie](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#les_diff%C3%A9rents_types_de_champs_input).
 * [`width`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#width) : une chaîne de caractères. Spécifie la largeur de l'image pour un champ de saisie `type="image"`.
 
 #### Limitations {/*caveats*/}
 
 - Les cases à cocher ont besoin de `checked` (ou `defaultChecked`), pas de `value` (ou `defaultValue`).
 - Si un champ de saisie reçoit une prop `value` textuelle, il sera [traité comme contrôlé](#controlling-an-input-with-a-state-variable).
-- Si un champ de saisie avec une case à cocher ou un bouton de type radio reçoit une prop `checked` booléenne, il sera [traité comme contrôlé](#controlling-an-input-with-a-state-variable).
-- Un champ de saisie ne peut pas être à la fois contrôlée et non contrôlée.
+- Si un champ de type case à cocher ou bouton radio reçoit une prop `checked` booléenne, il sera [traité comme contrôlé](#controlling-an-input-with-a-state-variable).
+- Un champ de saisie ne peut pas être à la fois contrôlé et non contrôlé.
 - Un champ de saisie ne peut pas basculer entre un statut contrôlé et non contrôlé au cours de son existence.
 - Un champ de saisie contrôlé doit avoir un gestionnaire `onChange` qui met à jour sa valeur.
 
@@ -101,7 +101,7 @@ Ces props de `<input>` sont compatibles avec les champs de saisie contrôlés et
 
 ### Afficher des champs de saisie de différents types {/*displaying-inputs-of-different-types*/}
 
-Pour afficher un champ de saisie, affichez un composant `<input>`. Par défaut, il s'agit d'un champ de saisie textuel. Vous pouvez passer `type="checkbox"` pour une case à cocher, `type="radio"` pour un bouton radio, [ou l'un des autres types de saisie](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#input_types).
+Utilisez un composant `<input>` pour afficher un champ de saisie. Par défaut, il s'agira d'un champ de saisie textuel. Vous pouvez passer `type="checkbox"` pour une case à cocher, `type="radio"` pour un bouton radio, [ou l'un des autres types de saisie](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#les_diff%C3%A9rents_types_de_champs_input).
 
 <Sandpack>
 
@@ -118,7 +118,7 @@ export default function MyForm() {
       </label>
       <hr />
       <p>
-        Bouton de type radio :
+        Bouton radio :
         <label>
           <input type="radio" name="myRadio" value="option1" />
           Option 1
@@ -183,7 +183,7 @@ input { margin: 5px; }
 
 ### Passer une valeur initiale à un champ de saisie {/*providing-an-initial-value-for-an-input*/}
 
-Vous pouvez éventuellement spécifier la valeur initiale d'un champ de saisie. Passez-la comme une chaîne de caractères pour les champs de saisie textuels. Les cases à cocher et les boutons radio doivent spécifier la valeur initiale avec le booléen `defaultChecked`.
+Vous pouvez éventuellement spécifier la valeur initiale d'un champ de saisie. Passez-la comme une chaîne de caractères `defaultValue` pour les champs de saisie textuels. Les cases à cocher et les boutons radio spécifient quant à eux la valeur initiale avec le booléen `defaultChecked`.
 
 <Sandpack>
 
@@ -192,7 +192,7 @@ export default function MyForm() {
   return (
     <>
       <label>
-        Champ de saisie textuel : <input name="myInput" defaultValue="Some initial value" />
+        Champ de saisie textuel : <input name="myInput" defaultValue="Une valeur initiale" />
       </label>
       <hr />
       <label>
@@ -200,7 +200,7 @@ export default function MyForm() {
       </label>
       <hr />
       <p>
-        Bouton de type radio :
+        Bouton radio :
         <label>
           <input type="radio" name="myRadio" value="option1" />
           Option 1
@@ -262,7 +262,7 @@ export default function MyForm() {
   return (
     <form method="post" onSubmit={handleSubmit}>
       <label>
-        Champ de saisie textuel : <input name="myInput" defaultValue="Some initial value" />
+        Champ de saisie textuel : <input name="myInput" defaultValue="Une valeur initiale" />
       </label>
       <hr />
       <label>
@@ -270,7 +270,7 @@ export default function MyForm() {
       </label>
       <hr />
       <p>
-        Bouton de type radio :
+        Bouton radio :
         <label><input type="radio" name="myRadio" value="option1" /> Option 1</label>
         <label><input type="radio" name="myRadio" value="option2" defaultChecked={true} /> Option 2</label>
         <label><input type="radio" name="myRadio" value="option3" /> Option 3</label>
@@ -306,7 +306,7 @@ Par défaut, *n'importe quel* `<button>` à l'intérieur d'un `<form>` va le sou
 
 ### Contrôler un champ de saisie avec une variable d'état {/*controlling-an-input-with-a-state-variable*/}
 
-Un champ de saisie comme `<input />` est *non contrôlée*. Même si vous [passez une valeur initiale](#providing-an-initial-value-for-an-inpuy) comme `<input defaultValue="Texte initial" />`, votre JSX ne spécifie que la valeur initiale, il ne contrôle pas la valeur actuelle.
+Un champ de saisie comme `<input />` est *non contrôlé*. Même si vous [passez une valeur initiale](#providing-an-initial-value-for-an-input) comme `<input defaultValue="Texte initial" />`, votre JSX ne spécifie que la valeur initiale, il ne contrôle pas la valeur actuelle.
 
 **Pour afficher un champ de saisie _contrôlé_, passez une prop `value` à `<input />`.** React forcera le champ de saisie à toujours avoir la valeur que vous avez passée. Généralement, vous contrôlerez un champ de saisie en déclarant une [variable d'état](/reference/react/useState) :
 
@@ -418,11 +418,11 @@ p { font-weight: bold; }
 
 ---
 
-### Optimiser le ré-affichage à chaque frappe sur le clavier {/*optimizing-re-rendering-on-every-keystroke*/}
+### Optimiser le recalcul de rendu à chaque frappe clavier {/*optimizing-re-rendering-on-every-keystroke*/}
 
-Lorsque vous utilisez un champ de saisie contrôlé, vous définissez l'état à chaque frappe. Si le composant contenant votre état affiche de nouveau un grand arbre, ça peut devenir lent. Il existe plusieurs façons d'optimiser les performances de ré-affichage.
+Lorsque vous utilisez un champ de saisie contrôlé, vous modifiez l'état à chaque frappe. Si le composant contenant votre état recalcule le rendu d'un grand arbre, ça peut devenir lent. Il existe plusieurs façons d'optimiser les performances d'un recalcul de rendu.
 
-Par exemple, supposons que vous commencez avec un formulaire qui ré-affiche tout le contenu de la page à chaque frappe :
+Par exemple, supposons que vous commenciez avec un formulaire qui recalcule tout le contenu de la page à chaque frappe :
 
 ```js {5-8}
 function App() {
@@ -460,9 +460,9 @@ function SignupForm() {
 }
 ```
 
-Ça améliore considérablement les performances car maintenant seul `SignupForm` se ré-affiche à chaque frappe.
+Ça améliore considérablement les performances car maintenant seul `SignupForm` se recalcule à chaque frappe.
 
-S'il n'y a aucun moyen d'éviter le ré-affichage (par exemple, si `PageContent` dépend de la valeur de la saisie de recherche), [`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) vous permet de garder le champ de saisie contrôlé réactif même au milieu d'un grand ré-affichage.
+S'il n'y a aucun moyen d'éviter le recalcul (par exemple, si `PageContent` dépend de la valeur de la saisie de recherche), [`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) vous permet de conserver un champ de saisie contrôlé réactif même au sein d'un recalcul coûteux.
 
 ---
 
@@ -523,7 +523,7 @@ You provided a `checked` prop to a form field without an `onChange` handler. Thi
 
 </ConsoleBlock>
 
-Comme le message d'erreur le suggère, si vous ne voulez spécifier que [la valeur *initiale*](#providing-an-initial-value-for-an-input) de la case à cocher, passez plutôt `defaultValue` :
+Comme le message d'erreur le suggère, si vous ne voulez spécifier que [la valeur *initiale*](#providing-an-initial-value-for-an-input) de la case à cocher, passez plutôt `defaultChecked` :
 
 ```js
 // ✅ Correct : case à cocher non contrôlée avec une valeur initiale
@@ -556,7 +556,7 @@ Si la case à cocher est en lecture seule intentionnellement, ajoutez une prop `
 
 Si vous [contrôlez un champ de saisie](#controlling-an-input-with-a-state-variable), vous devez mettre à jour sa variable d'état avec la valeur DOM du champ de saisie pendant le `onChange`.
 
-Vous ne pouvez pas la mettre à jour avec autre chose que `e.target.value` (ou `e.target.checked` pour les cases à cocher) : 
+Vous ne pouvez pas le mettre à jour avec autre chose que `e.target.value` (ou `e.target.checked` pour les cases à cocher) : 
 
 
 ```js
@@ -566,7 +566,7 @@ function handleChange(e) {
 }
 ```
 
-Vous ne pouvez pas la mettre à jour de manière asynchrone :
+Vous ne pouvez pas le mettre à jour de manière asynchrone :
 
 ```js
 function handleChange(e) {
