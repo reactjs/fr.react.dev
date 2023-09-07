@@ -32,19 +32,19 @@ Pour afficher un champ de saisie, utilisez le [composant natif `<input>` du navi
 
 `<input>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
 
-Un champ de saisie peut devenir un [champ contrôlé](#controlling-an-input-with-a-state-variable) en lui passant une de ces props :
+Un champ de saisie peut devenir un [champ contrôlé](#controlling-an-input-with-a-state-variable) en lui passant une de ces props :
 
 * [`checked`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#checked) : un booléen. Pour un champ de saisie avec une case à cocher ou un bouton radio, contrôle s'il est sélectionné.
 * [`value`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#value) : une chaîne de caractères. Pour un champ de saisie textuel, contrôle son texte (pour un bouton radio, spécifie la valeur soumise avec le formulaire).
 
 Lorsque vous passez une de ces valeurs, vous devez également passer un gestionnaire d'événement `onChange` qui met à jour la valeur passée.
 
-Ces props d'`<input>` sont seulement compatibles avec les champs de saisie non contrôlés :
+Ces props d'`<input>` sont seulement compatibles avec les champs de saisie non contrôlés :
 
 * [`defaultChecked`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#defaultChecked): un booléen. Spécifie [la valeur initiale](#providing-an-initial-value-for-an-input) pour les champs de saisie de `type="checkbox"` ou`type="radio"`.
 * [`defaultValue`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#defaultValue): une chaîne de caractères. Spécifie [la valeur initiale](#providing-an-initial-value-for-an-input) pour un champ de saisie textuel.
 
-Ces props d'`<input>` sont compatibles avec les champs de saisie contrôlés comme non contrôlés :
+Ces props d'`<input>` sont compatibles avec les champs de saisie contrôlés comme non contrôlés :
 
 * [`accept`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#accept) : une chaîne de caractères. Spécifie quels types de fichiers sont acceptés par un champ de saisie de `type="file"`.
 * [`alt`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#alt) : une chaîne de caractères. Spécifie le texte alternatif pour un champ de saisie `type="image"`.
@@ -89,8 +89,8 @@ Ces props d'`<input>` sont compatibles avec les champs de saisie contrôlés com
 #### Limitations {/*caveats*/}
 
 - Les cases à cocher ont besoin de `checked` (ou `defaultChecked`), pas de `value` (ou `defaultValue`).
-- Si un champ de saisie reçoit une prop `value` textuelle, il sera [traité comme contrôlé](#controlling-an-input-with-a-state-variable).
-- Si un champ de type case à cocher ou bouton radio reçoit une prop `checked` booléenne, il sera [traité comme contrôlé](#controlling-an-input-with-a-state-variable).
+- Si un champ de saisie reçoit une prop `value` textuelle, il sera [traité comme un champ contrôlé](#controlling-an-input-with-a-state-variable).
+- Si un champ de type case à cocher ou bouton radio reçoit une prop `checked` booléenne, il sera [traité comme un champ contrôlé](#controlling-an-input-with-a-state-variable).
 - Un champ de saisie ne peut pas être à la fois contrôlé et non contrôlé.
 - Un champ de saisie ne peut pas basculer entre un statut contrôlé et non contrôlé au cours de son existence.
 - Un champ de saisie contrôlé doit avoir un gestionnaire `onChange` qui met à jour sa valeur.
@@ -110,15 +110,15 @@ export default function MyForm() {
   return (
     <>
       <label>
-        Champ de saisie textuel : <input name="myInput" />
+        Champ de saisie textuel : <input name="myInput" />
       </label>
       <hr />
       <label>
-        Case à cocher : <input type="checkbox" name="myCheckbox" />
+        Case à cocher : <input type="checkbox" name="myCheckbox" />
       </label>
       <hr />
       <p>
-        Bouton radio :
+        Bouton radio :
         <label>
           <input type="radio" name="myRadio" value="option1" />
           Option 1
@@ -148,7 +148,7 @@ input { margin: 5px; }
 
 ### Fournir une légende pour un champ de saisie {/*providing-a-label-for-an-input*/}
 
-Vous placerez généralement chaque `<input>` à l'intérieur d'une balise [`<label>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/label). Ça indique au navigateur que cette légende est associée à ce champ de saisie. Lorsque l'utilisateur cliquera sur la légende, le navigateur activera le champ de saisie. C'est également essentiel pour l'accessibilité : un lecteur d'écran annoncera la légende lorsque l'utilisateur activera le champ de saisie.
+Vous placerez généralement chaque `<input>` à l'intérieur d'une balise [`<label>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/label). Ça indique au navigateur que cette légende est associée à ce champ de saisie. Lorsque l'utilisateur cliquera sur la légende, le navigateur activera le champ de saisie. C'est également essentiel pour l'accessibilité : un lecteur d'écran annoncera la légende lorsque l'utilisateur activera le champ de saisie.
 
 Si vous ne pouvez pas imbriquer votre `<input>` dans un `<label>`, associez-les en passant le même `id` à `<input id>` et [`<label htmlFor>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor). Pour éviter les conflits entre les instances d'un composant, générez un `id` avec [`useId`](/reference/react/useId).
 
@@ -162,11 +162,11 @@ export default function Form() {
   return (
     <>
       <label>
-        Votre prénom :
+        Votre prénom :
         <input name="firstName" />
       </label>
       <hr />
-      <label htmlFor={ageInputId}>Votre âge :</label>
+      <label htmlFor={ageInputId}>Votre âge :</label>
       <input id={ageInputId} name="age" type="number" />
     </>
   );
@@ -192,15 +192,15 @@ export default function MyForm() {
   return (
     <>
       <label>
-        Champ de saisie textuel : <input name="myInput" defaultValue="Une valeur initiale" />
+        Champ de saisie textuel : <input name="myInput" defaultValue="Une valeur initiale" />
       </label>
       <hr />
       <label>
-        Case à cocher : <input type="checkbox" name="myCheckbox" defaultChecked={true} />
+        Case à cocher : <input type="checkbox" name="myCheckbox" defaultChecked={true} />
       </label>
       <hr />
       <p>
-        Bouton radio :
+        Bouton radio :
         <label>
           <input type="radio" name="myRadio" value="option1" />
           Option 1
@@ -210,7 +210,7 @@ export default function MyForm() {
             type="radio"
             name="myRadio"
             value="option2"
-            defaultChecked={true} 
+            defaultChecked={true}
           />
           Option 2
         </label>
@@ -254,7 +254,7 @@ export default function MyForm() {
     fetch('/some-api', { method: form.method, body: formData });
 
     // Ou vous pouvez travailler avec comme un
-    // objet simple :
+    // objet simple :
     const formJson = Object.fromEntries(formData.entries());
     console.log(formJson);
   }
@@ -262,15 +262,15 @@ export default function MyForm() {
   return (
     <form method="post" onSubmit={handleSubmit}>
       <label>
-        Champ de saisie textuel : <input name="myInput" defaultValue="Une valeur initiale" />
+        Champ de saisie textuel : <input name="myInput" defaultValue="Une valeur initiale" />
       </label>
       <hr />
       <label>
-        Case à cocher : <input type="checkbox" name="myCheckbox" defaultChecked={true} />
+        Case à cocher : <input type="checkbox" name="myCheckbox" defaultChecked={true} />
       </label>
       <hr />
       <p>
-        Bouton radio :
+        Bouton radio :
         <label><input type="radio" name="myRadio" value="option1" /> Option 1</label>
         <label><input type="radio" name="myRadio" value="option2" defaultChecked={true} /> Option 2</label>
         <label><input type="radio" name="myRadio" value="option3" /> Option 3</label>
@@ -298,7 +298,7 @@ Donnez un `name` à votre `<input>`, par exemple `<input name="firstName" defaul
 
 <Pitfall>
 
-Par défaut, *n'importe quel* `<button>` à l'intérieur d'un `<form>` va le soumettre. Cela peut être surprenant ! Si vous avez votre propre composant React `Button`, envisagez de renvoyer [`<button type="button">`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input/button) au lieu de `<button>`. Ensuite, pour être explicite, utilisez `<button type="submit">` pour les boutons qui *sont* censés soumettre le formulaire.
+Par défaut, *n'importe quel* `<button>` à l'intérieur d'un `<form>` va le soumettre. Cela peut être surprenant ! Si vous avez votre propre composant React `Button`, envisagez de renvoyer [`<button type="button">`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input/button) au lieu de `<button>`. Ensuite, pour être explicite, utilisez `<button type="submit">` pour les boutons qui *sont* censés soumettre le formulaire.
 
 </Pitfall>
 
@@ -308,7 +308,7 @@ Par défaut, *n'importe quel* `<button>` à l'intérieur d'un `<form>` va le sou
 
 Un champ de saisie comme `<input />` est *non contrôlé*. Même si vous [passez une valeur initiale](#providing-an-initial-value-for-an-input) comme `<input defaultValue="Texte initial" />`, votre JSX ne spécifie que la valeur initiale, il ne contrôle pas la valeur actuelle.
 
-**Pour afficher un champ de saisie _contrôlé_, passez une prop `value` à `<input />`.** React forcera le champ de saisie à toujours avoir la valeur que vous avez passée. Généralement, vous contrôlerez un champ de saisie en déclarant une [variable d'état](/reference/react/useState) :
+**Pour afficher un champ de saisie _contrôlé_, passez une prop `value` à `<input />`.** React forcera le champ de saisie à toujours avoir la valeur que vous avez passée. Généralement, vous contrôlerez un champ de saisie en déclarant une [variable d'état](/reference/react/useState) :
 
 ```js {2,6,7}
 function Form() {
@@ -317,7 +317,7 @@ function Form() {
   return (
     <input
       value={firstName} // ...force la valeur du champ de saisie à la valeur de la variable d'état...
-      onChange={e => setFirstName(e.target.value)} // // ...et met à jour la variable d'état à chaque frappe !
+      onChange={e => setFirstName(e.target.value)} // // ...et met à jour la variable d'état à chaque frappe !
     />
   );
 }
@@ -331,14 +331,14 @@ function Form() {
   return (
     <>
       <label>
-        Prénom :
+        Prénom :
         <input value={firstName} onChange={e => setFirstName(e.target.value)} />
       </label>
       {firstName !== '' && <p>Votre prénom est {firstName}.</p>}
       ...
 ```
 
-C'est également utile si vous voulez offrir plusieurs façons d'ajuster l'état de la saisie (par exemple, en cliquant sur un bouton) :
+C'est également utile si vous voulez offrir plusieurs façons d'ajuster l'état de la saisie (par exemple, en cliquant sur un bouton) :
 
 
 ```js {3-4,10-11,14}
@@ -349,7 +349,7 @@ function Form() {
   return (
     <>
       <label>
-        Âge :
+        Âge :
         <input
           value={age}
           onChange={e => setAge(e.target.value)}
@@ -374,14 +374,14 @@ export default function Form() {
   return (
     <>
       <label>
-        Prénom :
+        Prénom :
         <input
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
         />
       </label>
       <label>
-        Âge :
+        Âge :
         <input
           value={age}
           onChange={e => setAge(e.target.value)}
@@ -422,7 +422,7 @@ p { font-weight: bold; }
 
 Lorsque vous utilisez un champ de saisie contrôlé, vous modifiez l'état à chaque frappe. Si le composant contenant votre état recalcule le rendu d'un grand arbre, ça peut devenir lent. Il existe plusieurs façons d'optimiser les performances d'un recalcul de rendu.
 
-Par exemple, supposons que vous commenciez avec un formulaire qui recalcule tout le contenu de la page à chaque frappe :
+Par exemple, supposons que vous commenciez avec un formulaire qui recalcule tout le contenu de la page à chaque frappe :
 
 ```js {5-8}
 function App() {
@@ -438,7 +438,7 @@ function App() {
 }
 ```
 
-Puisque `<PageContent />` ne dépend pas de l'état de la saisie, vous pouvez déplacer l'état de la saisie dans son propre composant :
+Puisque `<PageContent />` ne dépend pas de l'état de la saisie, vous pouvez déplacer l'état de la saisie dans son propre composant :
 
 ```js {4,10-17}
 function App() {
@@ -470,10 +470,10 @@ S'il n'y a aucun moyen d'éviter le recalcul (par exemple, si `PageContent` dép
 
 ### Mon champ de saisie réactif ne se met pas à jour lorsque je tape dedans {/*my-text-input-doesnt-update-when-i-type-into-it*/}
 
-Si vous affichez un champ de saisie avec `value` mais sans `onChange`, vous verrez une erreur dans la console :
+Si vous affichez un champ de saisie avec `value` mais sans `onChange`, vous verrez une erreur dans la console :
 
 ```js
-// 🔴 Bug : champ de saisie contrôlé sans gestionnaire onChange
+// 🔴 Bug : champ de saisie contrôlé sans gestionnaire onChange
 <input value={something} />
 ```
 
@@ -483,26 +483,26 @@ You provided a `value` prop to a form field without an `onChange` handler. This 
 
 </ConsoleBlock>
 
-_(« Vous avez fourni une prop `value` à un champ de formulaire sans gestionnaire `onChange`. Ça produira un champ en lecture seule. Si le champ doit être modifiable utilisez `defaultValue`. Sinon, définissez soit `onChange` soit `readOnly`. », NdT)_
+_(« Vous avez fourni une prop `value` à un champ de formulaire sans gestionnaire `onChange`. Ça produira un champ en lecture seule. Si le champ doit être modifiable utilisez `defaultValue`. Sinon, définissez soit `onChange` soit `readOnly`. », NdT)_
 
-Comme le message d'erreur le suggère, si vous ne voulez spécifier que [la valeur initiale](#providing-an-initial-value-for-an-input), passez plutôt `defaultValue` :
+Comme le message d'erreur le suggère, si vous ne voulez spécifier que [la valeur initiale](#providing-an-initial-value-for-an-input), passez plutôt celle-ci à la prop `defaultValue` :
 
 ```js
-// ✅ Correct : champ de saisie non contrôlé avec une valeur initiale
+// ✅ Correct : champ de saisie non contrôlé avec une valeur initiale
 <input defaultValue={something} />
 ```
 
-Si vous voulez [contrôler ce champ de saisie avec une variable d'état](#controlling-an-input-with-a-state-variable), spécifiez un gestionnaire `onChange` :
+Si vous voulez [contrôler ce champ de saisie avec une variable d'état](#controlling-an-input-with-a-state-variable), spécifiez un gestionnaire `onChange` :
 
 ```js
-// ✅ Correct : champ de saisie contrôlé avec onChange
+// ✅ Correct : champ de saisie contrôlé avec onChange
 <input value={something} onChange={e => setSomething(e.target.value)} />
 ```
 
-Si la valeur est en lecture seule intentionnellement, ajoutez une prop `readOnly` pour supprimer l'erreur :
+Si la valeur est en lecture seule intentionnellement, ajoutez une prop `readOnly` pour supprimer l'erreur :
 
 ```js
-// ✅ Correct : champ de saisie en lecture seule sans onChange
+// ✅ Correct : champ de saisie en lecture seule sans onChange
 <input value={something} readOnly={true} />
 ```
 
@@ -510,10 +510,10 @@ Si la valeur est en lecture seule intentionnellement, ajoutez une prop `readOnly
 
 ### Ma case à cocher ne se met pas à jour lorsque je clique dessus {/*my-checkbox-doesnt-update-when-i-click-on-it*/}
 
-Si vous affichez une case à cocher avec `checked` mais sans `onChange`, vous verrez une erreur dans la console :
+Si vous affichez une case à cocher avec `checked` mais sans `onChange`, vous verrez une erreur dans la console :
 
 ```js
-// 🔴 Bug : case à cocher contrôlée sans gestionnaire onChange
+// 🔴 Bug : case à cocher contrôlée sans gestionnaire onChange
 <input type="checkbox" checked={something} />
 ```
 
@@ -523,17 +523,17 @@ You provided a `checked` prop to a form field without an `onChange` handler. Thi
 
 </ConsoleBlock>
 
-Comme le message d'erreur le suggère, si vous ne voulez spécifier que [la valeur *initiale*](#providing-an-initial-value-for-an-input) de la case à cocher, passez plutôt `defaultChecked` :
+Comme le message d'erreur le suggère, si vous ne voulez spécifier que [la valeur *initiale*](#providing-an-initial-value-for-an-input) de la case à cocher, passez plutôt `defaultChecked` :
 
 ```js
-// ✅ Correct : case à cocher non contrôlée avec une valeur initiale
+// ✅ Correct : case à cocher non contrôlée avec une valeur initiale
 <input type="checkbox" defaultChecked={something} />
 ```
 
-Si vous voulez [contrôler cette case à cocher avec une variable d'état](#controlling-an-input-with-a-state-variable), spécifiez un gestionnaire `onChange` :
+Si vous voulez [contrôler cette case à cocher avec une variable d'état](#controlling-an-input-with-a-state-variable), spécifiez un gestionnaire `onChange` :
 
 ```js
-// ✅ Correct : case à cocher contrôlée avec onChange
+// ✅ Correct : case à cocher contrôlée avec onChange
 <input type="checkbox" checked={something} onChange={e => setSomething(e.target.checked)} />
 ```
 
@@ -543,10 +543,10 @@ Vous devez lire `e.target.checked` plutôt que `e.target.value` pour les cases �
 
 </Pitfall>
 
-Si la case à cocher est en lecture seule intentionnellement, ajoutez une prop `readOnly` pour supprimer l'erreur :
+Si la case à cocher est en lecture seule intentionnellement, ajoutez une prop `readOnly` pour supprimer l'erreur :
 
 ```js
-// ✅ Correct : champ de saisie en lecture seule sans onChange
+// ✅ Correct : champ de saisie en lecture seule sans onChange
 <input type="checkbox" checked={something} readOnly={true} />
 ```
 
@@ -556,28 +556,28 @@ Si la case à cocher est en lecture seule intentionnellement, ajoutez une prop `
 
 Si vous [contrôlez un champ de saisie](#controlling-an-input-with-a-state-variable), vous devez mettre à jour sa variable d'état avec la valeur DOM du champ de saisie pendant le `onChange`.
 
-Vous ne pouvez pas le mettre à jour avec autre chose que `e.target.value` (ou `e.target.checked` pour les cases à cocher) : 
+Vous ne pouvez pas le mettre à jour avec autre chose que `e.target.value` (ou `e.target.checked` pour les cases à cocher) :
 
 
 ```js
 function handleChange(e) {
-  // 🔴 Bug : mettre à jour un champ de saisie avec autre chose que e.target.value
+  // 🔴 Bug : mettre à jour un champ de saisie avec autre chose que e.target.value
   setFirstName(e.target.value.toUpperCase());
 }
 ```
 
-Vous ne pouvez pas le mettre à jour de manière asynchrone :
+Vous ne pouvez pas le mettre à jour de manière asynchrone :
 
 ```js
 function handleChange(e) {
-  // 🔴 Bug : mettre à jour un champ de saisie de manière asynchrone
+  // 🔴 Bug : mettre à jour un champ de saisie de manière asynchrone
   setTimeout(() => {
     setFirstName(e.target.value);
   }, 100);
 }
 ```
 
-Pour corriger votre code, mettez à jour de manière synchrone avec `e.target.value` :
+Pour corriger votre code, mettez à jour de manière synchrone avec `e.target.value` :
 
 ```js
 function handleChange(e) {
@@ -586,13 +586,13 @@ function handleChange(e) {
 }
 ```
 
-Si ça ne corrige pas le problème, il est possible que le champ de saisie soit supprimé et réinséré dans le DOM à chaque frappe. Ça peut se produire si vous [réinitialisez accidentellement l'état](/learn/preserving-and-resetting-state) à chaque nouveau rendu. Par exemple, ça peut se produire si le champ de saisie ou l'un de ses parents reçoit toujours un attribut `key` différent, ou si vous imbriquez des définitions de composants (ce qui n'est pas autorisé en React et provoque le remontage du composant « interne » à chaque rendu).
+Si ça ne corrige pas le problème, il est possible que le champ de saisie soit supprimé et réinséré dans le DOM à chaque frappe. Ça peut se produire si vous [réinitialisez accidentellement l'état](/learn/preserving-and-resetting-state) à chaque nouveau rendu. Par exemple, ça peut se produire si le champ de saisie ou l'un de ses parents reçoit toujours un attribut `key` différent, ou si vous imbriquez des définitions de composants (ce qui n'est pas autorisé en React et provoque le remontage du composant « interne » à chaque rendu).
 
 ---
 
-### J'ai une erreur : "A component is changing an uncontrolled input to be controlled" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
+### J'ai une erreur : "A component is changing an uncontrolled input to be controlled" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
 
-_(« Un composant passe un champ non contrôlé en mode contrôlé », NdT)_
+_(« Un composant passe un champ non contrôlé en mode contrôlé », NdT)_
 
 Si vous passez une `value` à un composant, cette valeur doit être une chaîne de caractères tout au long de son cycle de vie.
 
