@@ -185,6 +185,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
         <ul>
           <li><a href="https://fr.react.dev/reference/react/useDeferredValue"><code>useDeferredValue</code></li>
           <li><a href="https://fr.react.dev/reference/react/useState"><code>useState</code></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/components/input"><code>&lt;input&gt;</code></li>
           <li><a href="https://fr.react.dev/reference/react-dom/components/textarea"><code>&lt;textarea&gt;</code></li>
           <li><a href="https://fr.react.dev/reference/react-dom/createPortal"><code>createPortal</code></li>
         </ul>

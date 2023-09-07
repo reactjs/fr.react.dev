@@ -4,7 +4,7 @@ title: "<input>"
 
 <Intro>
 
-The [built-in browser `<input>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) lets you render different kinds of form inputs.
+Le [composant natif `<input>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input) vous permet d'afficher différents types de champs de saisie dans un formulaire.
 
 ```js
 <input />
@@ -16,92 +16,92 @@ The [built-in browser `<input>` component](https://developer.mozilla.org/en-US/d
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `<input>` {/*input*/}
 
-To display an input, render the [built-in browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) component.
+Pour afficher un champ de saisie, utilisez le [composant natif `<input>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input).
 
 ```js
 <input name="myInput" />
 ```
 
-[See more examples below.](#usage)
+[Voir plus d'exemples ci-dessous](#usage).
 
 #### Props {/*props*/}
 
-`<input>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<input>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
 
-You can [make an input controlled](#controlling-an-input-with-a-state-variable) by passing one of these props:
+Un champ de saisie peut devenir un [champ contrôlé](#controlling-an-input-with-a-state-variable) en lui passant une de ces props :
 
-* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): A boolean. For a checkbox input or a radio button, controls whether it is selected.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): A string. For a text input, controls its text. (For a radio button, specifies its form data.)
+* [`checked`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#checked) : un booléen. Pour un champ de saisie avec une case à cocher ou un bouton radio, contrôle s'il est sélectionné.
+* [`value`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#value) : une chaîne de caractères. Pour un champ de saisie textuel, contrôle son texte (pour un bouton radio, spécifie la valeur soumise avec le formulaire).
 
-When you pass either of them, you must also pass an `onChange` handler that updates the passed value.
+Lorsque vous passez une de ces valeurs, vous devez également passer un gestionnaire d'événement `onChange` qui met à jour la valeur passée.
 
-These `<input>` props are only relevant for uncontrolled inputs:
+Ces props d'`<input>` sont seulement compatibles avec les champs de saisie non contrôlés :
 
-* [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): A boolean. Specifies [the initial value](#providing-an-initial-value-for-an-input) for `type="checkbox"` and `type="radio"` inputs.
-* [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): A string. Specifies [the initial value](#providing-an-initial-value-for-an-input) for a text input.
+* [`defaultChecked`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#defaultChecked): un booléen. Spécifie [la valeur initiale](#providing-an-initial-value-for-an-input) pour les champs de saisie de `type="checkbox"` ou`type="radio"`.
+* [`defaultValue`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement#defaultValue): une chaîne de caractères. Spécifie [la valeur initiale](#providing-an-initial-value-for-an-input) pour un champ de saisie textuel.
 
-These `<input>` props are relevant both for uncontrolled and controlled inputs:
+Ces props d'`<input>` sont compatibles avec les champs de saisie contrôlés comme non contrôlés :
 
-* [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#accept): A string. Specifies which filetypes are accepted by a `type="file"` input.
-* [`alt`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#alt): A string. Specifies the alternative image text for a `type="image"` input.
-* [`capture`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#capture): A string. Specifies the media (microphone, video, or camera) captured by a `type="file"` input.
-* [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autocomplete): A string. Specifies one of the possible [autocomplete behaviors.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)
-* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autofocus): A boolean. If `true`, React will focus the element on mount.
-* [`dirname`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#dirname): A string. Specifies the form field name for the element's directionality.
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#disabled): A boolean. If `true`, the input will not be interactive and will appear dimmed.
-* `children`: `<input>` does not accept children.
-* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#form): A string. Specifies the `id` of the `<form>` this input belongs to. If omitted, it's the closest parent form.
-* [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): A string. Overrides the parent `<form action>` for `type="submit"` and `type="image"`.
-* [`formEnctype`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formenctype): A string. Overrides the parent `<form enctype>` for `type="submit"` and `type="image"`.
-* [`formMethod`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formmethod): A string. Overrides the parent `<form method>` for `type="submit"` and `type="image"`.
-* [`formNoValidate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formnovalidate): A string. Overrides the parent `<form noValidate>` for `type="submit"` and `type="image"`.
-* [`formTarget`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formtarget): A string. Overrides the parent `<form target>` for `type="submit"` and `type="image"`.
-* [`height`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#height): A string. Specifies the image height for `type="image"`.
-* [`list`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#list): A string. Specifies the `id` of the `<datalist>` with the autocomplete options.
-* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#max): A number. Specifies the maximum value of numerical and datetime inputs.
-* [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#maxlength): A number. Specifies the maximum length of text and other inputs.
-* [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#min): A number. Specifies the minimum value of numerical and datetime inputs.
-* [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#minlength): A number. Specifies the minimum length of text and other inputs.
-* [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#multiple): A boolean. Specifies whether multiple values are allowed for `<type="file"` and `type="email"`.
-* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): A string. Specifies the name for this input that's [submitted with the form.](#reading-the-input-values-when-submitting-a-form)
-* `onChange`: An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Required for [controlled inputs.](#controlling-an-input-with-a-state-variable) Fires immediately when the input's value is changed by the user (for example, it fires on every keystroke). Behaves like the browser [`input` event.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
-* `onChangeCapture`: A version of `onChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires immediately when the value is changed by the user. For historical reasons, in React it is idiomatic to use `onChange` instead which works similarly.
-* `onInputCapture`: A version of `onInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires if an input fails validation on form submit. Unlike the built-in `invalid` event, the React `onInvalid` event bubbles.
-* `onInvalidCapture`: A version of `onInvalid` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires after the selection inside the `<input>` changes. React extends the `onSelect` event to also fire for empty selection and on edits (which may affect the selection).
-* `onSelectCapture`: A version of `onSelect` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`pattern`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#pattern): A string. Specifies the pattern that the `value` must match.
-* [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#placeholder): A string. Displayed in a dimmed color when the input value is empty.
-* [`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#readonly): A boolean. If `true`, the input is not editable by the user.
-* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#required): A boolean. If `true`, the value must be provided for the form to submit.
-* [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#size): A number. Similar to setting width, but the unit depends on the control.
-* [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#src): A string. Specifies the image source for a `type="image"` input.
-* [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#step): A positive number or an `'any'` string. Specifies the distance between valid values.
-* [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type): A string. One of the [input types.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
-* [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#width):  A string. Specifies the image width for a `type="image"` input.
+* [`accept`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#accept) : une chaîne de caractères. Spécifie quels types de fichiers sont acceptés par un champ de saisie de `type="file"`.
+* [`alt`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#alt) : une chaîne de caractères. Spécifie le texte alternatif pour un champ de saisie `type="image"`.
+* [`capture`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#capture) : une chaîne de caractères. Spécifie le média (microphone, vidéo ou caméra) capturé par un champ de saisie `type="file"`.
+* [`autoComplete`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#autocomplete) : une chaîne de caractères. Spécifie l'un des [comportements d'autocomplétion](https://developer.mozilla.org/fr/docs/Web/HTML/Attributes/autocomplete#values) possibles.
+* [`autoFocus`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#autofocus) : un booléen. Si `true`, React va activer l'élément après le montage _(l'apparition initiale dans le DOM, NdT)_.
+* [`dirname`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#dirname) : une chaîne de caractères. Spécifie le nom de la donnée du formulaire indiquant la directionnalité de l'élément.
+* [`disabled`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#disabled) : un booléen. Si `true`, le champ de saisie ne sera pas interactif et sera grisé.
+* `children` : `<input>` n'accepte pas d'enfants.
+* [`form`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#form) : une chaîne de caractères. Spécifie l'`id` du `<form>` auquel appartient ce champ de saisie. S'il est absent, le champ de saisie sera associé au formulaire parent le plus proche.
+* [`formAction`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formaction) : une chaîne de caractères. Remplace l'attribut `action` du `<form>` parent pour les champs de `type="submit"` ou `type="image"`.
+* [`formEnctype`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formenctype) : une chaîne de caractères. Remplace l'attribut `enctype` du `<form>` parent pour les champs de saisie de `type="submit"` ou `type="image"`.
+* [`formMethod`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formmethod) : une chaîne de caractères. Remplace l'attribut `method` du `<form>` parent pour les champs de saisie de `type="submit"` ou `type="image"`.
+* [`formNoValidate`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formnovalidate) : une chaîne de caractères. Remplace l'attribut `novalidate` du `<form>` parent pour les champs de saisie de `type="submit"` ou `type="image"`.
+* [`formTarget`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formtarget) : une chaîne de caractères. Remplace l'attribut `target` du `<form>` parent pour les champs de saisie de `type="submit"` ou `type="image"`.
+* [`height`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#height) : une chaîne de caractères. Spécifie la hauteur de l'image pour le `type="image"`.
+* [`list`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#list) : une chaîne de caractères. Spécifie l'`id` du `<datalist>` avec les options d'autocomplétion.
+* [`max`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#max) : un nombre. Spécifie la valeur maximale pour les champs de saisie numériques et de date.
+* [`maxLength`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#maxlength) : un nombre. Spécifie la longueur maximale pour les champs de saisie textuels et autres.
+* [`min`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#min) : un nombre. Spécifie la valeur minimale pour les champs de saisie numériques et de date.
+* [`minLength`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#minlength) : un nombre. Spécifie la longueur minimale pour les champs de saisie textuels et autres.
+* [`multiple`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#multiple) : un booléen. Spécifie si plusieurs valeurs sont autorisées pour `type="file"` ou `type="email"`.
+* [`name`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#name) : une chaîne de caractères. Spécifie le nom de ce champ de saisie au sein de [l'envoi du formulaire](#reading-the-input-values-when-submitting-a-form).
+* `onChange` : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Requis pour [les champs de saisie contrôlés](#controlling-an-input-with-a-state-variable). Se déclenche immédiatement lorsque la valeur du champ de saisie est modifiée par l'utilisateur (par exemple, il se déclenche à chaque frappe). Se comporte comme [l'événement `input`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/input_event) du navigateur.
+* `onChangeCapture` : une version de `onChange` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
+* [`onInput`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/input_event) : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Se déclenche immédiatement lorsque la valeur du champ de saisie est modifiée par l'utilisateur. Pour des raisons historiques, en React, il est préférable d'utiliser `onChange` à la place, qui fonctionne de manière similaire.
+* `onInputCapture` : une version de `onInput` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
+* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event) : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Se déclenche si un champ de saisie échoue à la validation lors de la soumission du formulaire. Contrairement à l'événement natif `invalid`, l'événement React `onInvalid` se propage.
+* `onInvalidCapture` : une version de `onInvalid` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
+* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event) : une fonction [gestionnaire d'événement](/reference/react-dom/components/common#event-handler). Se déclenche après que la sélection à l'intérieur du champ de saisie a changé. React étend l'événement `onSelect` pour se déclencher également pour une sélection vide et sur les modifications de texte (qui peuvent affecter la sélection).
+* `onSelectCapture` : une version de `onSelect` qui se déclenche lors de la [phase de capture](/learn/responding-to-events#capture-phase-events).
+* [`pattern`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#pattern) : une chaîne de caractères. Spécifie une expression rationnelle qui doit correspondre à la `value` du champ de saisie.
+* [`placeholder`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#placeholder) : une chaîne de caractères. Affichée dans une couleur discrète lorsque la valeur du champ de saisie est vide.
+* [`readOnly`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#readonly) : un booléen. Si `true`, le champ de saisie n'est pas modifiable par l'utilisateur.
+* [`required`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#required) : un booléen. Si `true`, la valeur doit être fournie pour que le formulaire puisse être soumis.
+* [`size`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#size) : un nombre. Similaire à la définition de la largeur, mais l'unité dépend de la nature du champ.
+* [`src`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#src) : une chaîne de caractères. Spécifie la source de l'image pour un champ de saisie `type="image"`.
+* [`step`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#step) : un nombre positif ou le texte `'any'`. Spécifie la distance entre les valeurs valides.
+* [`type`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#type) : une chaîne de caractères. L'un des [types de saisie](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#les_diff%C3%A9rents_types_de_champs_input).
+* [`width`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#width) : une chaîne de caractères. Spécifie la largeur de l'image pour un champ de saisie `type="image"`.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
-- Checkboxes need `checked` (or `defaultChecked`), not `value` (or `defaultValue`).
-- If a text input receives a string `value` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
-- If a checkbox or a radio button receives a boolean `checked` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
-- An input can't be both controlled and uncontrolled at the same time.
-- An input cannot switch between being controlled or uncontrolled over its lifetime.
-- Every controlled input needs an `onChange` event handler that synchronously updates its backing value.
+- Les cases à cocher ont besoin de `checked` (ou `defaultChecked`), pas de `value` (ou `defaultValue`).
+- Si un champ de saisie reçoit une prop `value` textuelle, il sera [traité comme un champ contrôlé](#controlling-an-input-with-a-state-variable).
+- Si un champ de type case à cocher ou bouton radio reçoit une prop `checked` booléenne, il sera [traité comme un champ contrôlé](#controlling-an-input-with-a-state-variable).
+- Un champ de saisie ne peut pas être à la fois contrôlé et non contrôlé.
+- Un champ de saisie ne peut pas basculer entre un statut contrôlé et non contrôlé au cours de son existence.
+- Un champ de saisie contrôlé doit avoir un gestionnaire `onChange` qui met à jour sa valeur.
 
 ---
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
-### Displaying inputs of different types {/*displaying-inputs-of-different-types*/}
+### Afficher des champs de saisie de différents types {/*displaying-inputs-of-different-types*/}
 
-To display an input, render an `<input>` component. By default, it will be a text input. You can pass `type="checkbox"` for a checkbox, `type="radio"` for a radio button, [or one of the other input types.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
+Utilisez un composant `<input>` pour afficher un champ de saisie. Par défaut, il s'agira d'un champ de saisie textuel. Vous pouvez passer `type="checkbox"` pour une case à cocher, `type="radio"` pour un bouton radio, [ou l'un des autres types de saisie](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#les_diff%C3%A9rents_types_de_champs_input).
 
 <Sandpack>
 
@@ -110,15 +110,15 @@ export default function MyForm() {
   return (
     <>
       <label>
-        Text input: <input name="myInput" />
+        Champ de saisie textuel : <input name="myInput" />
       </label>
       <hr />
       <label>
-        Checkbox: <input type="checkbox" name="myCheckbox" />
+        Case à cocher : <input type="checkbox" name="myCheckbox" />
       </label>
       <hr />
       <p>
-        Radio buttons:
+        Bouton radio :
         <label>
           <input type="radio" name="myRadio" value="option1" />
           Option 1
@@ -146,11 +146,11 @@ input { margin: 5px; }
 
 ---
 
-### Providing a label for an input {/*providing-a-label-for-an-input*/}
+### Fournir une légende pour un champ de saisie {/*providing-a-label-for-an-input*/}
 
-Typically, you will place every `<input>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag. This tells the browser that this label is associated with that input. When the user clicks the label, the browser will automatically focus the input. It's also essential for accessibility: a screen reader will announce the label caption when the user focuses the associated input.
+Vous placerez généralement chaque `<input>` à l'intérieur d'une balise [`<label>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/label). Ça indique au navigateur que cette légende est associée à ce champ de saisie. Lorsque l'utilisateur cliquera sur la légende, le navigateur activera le champ de saisie. C'est également essentiel pour l'accessibilité : un lecteur d'écran annoncera la légende lorsque l'utilisateur activera le champ de saisie.
 
-If you can't nest `<input>` into a `<label>`, associate them by passing the same ID to `<input id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between multiple instances of one component, generate such an ID with [`useId`.](/reference/react/useId)
+Si vous ne pouvez pas imbriquer votre `<input>` dans un `<label>`, associez-les en passant le même `id` à `<input id>` et [`<label htmlFor>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor). Pour éviter les conflits entre les instances d'un composant, générez un `id` avec [`useId`](/reference/react/useId).
 
 <Sandpack>
 
@@ -162,11 +162,11 @@ export default function Form() {
   return (
     <>
       <label>
-        Your first name:
+        Votre prénom :
         <input name="firstName" />
       </label>
       <hr />
-      <label htmlFor={ageInputId}>Your age:</label>
+      <label htmlFor={ageInputId}>Votre âge :</label>
       <input id={ageInputId} name="age" type="number" />
     </>
   );
@@ -181,9 +181,9 @@ input { margin: 5px; }
 
 ---
 
-### Providing an initial value for an input {/*providing-an-initial-value-for-an-input*/}
+### Passer une valeur initiale à un champ de saisie {/*providing-an-initial-value-for-an-input*/}
 
-You can optionally specify the initial value for any input. Pass it as the `defaultValue` string for text inputs. Checkboxes and radio buttons should specify the initial value with the `defaultChecked` boolean instead.
+Vous pouvez éventuellement spécifier la valeur initiale d'un champ de saisie. Passez-la comme une chaîne de caractères `defaultValue` pour les champs de saisie textuels. Les cases à cocher et les boutons radios spécifient quant à eux la valeur initiale avec le booléen `defaultChecked`.
 
 <Sandpack>
 
@@ -192,15 +192,15 @@ export default function MyForm() {
   return (
     <>
       <label>
-        Text input: <input name="myInput" defaultValue="Some initial value" />
+        Champ de saisie textuel : <input name="myInput" defaultValue="Une valeur initiale" />
       </label>
       <hr />
       <label>
-        Checkbox: <input type="checkbox" name="myCheckbox" defaultChecked={true} />
+        Case à cocher : <input type="checkbox" name="myCheckbox" defaultChecked={true} />
       </label>
       <hr />
       <p>
-        Radio buttons:
+        Bouton radio :
         <label>
           <input type="radio" name="myRadio" value="option1" />
           Option 1
@@ -210,7 +210,7 @@ export default function MyForm() {
             type="radio"
             name="myRadio"
             value="option2"
-            defaultChecked={true} 
+            defaultChecked={true}
           />
           Option 2
         </label>
@@ -233,25 +233,28 @@ input { margin: 5px; }
 
 ---
 
-### Reading the input values when submitting a form {/*reading-the-input-values-when-submitting-a-form*/}
+### Lire la valeur d'un champ de saisie lors de la soumission d'un formulaire {/*reading-the-input-values-when-submitting-a-form*/}
 
-Add a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) around your inputs with a [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) inside. It will call your `<form onSubmit>` event handler. By default, the browser will send the form data to the current URL and refresh the page. You can override that behavior by calling `e.preventDefault()`. Read the form data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+Ajoutez un [`<form>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/form) autour de votre champ de saisie avec un [`<button type="submit">`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/button) à l'intérieur. Il appellera votre gestionnaire d'événement `<form onSubmit>`. Par défaut, le navigateur enverra les données du formulaire à l'URL actuelle et rechargera la page. Vous pouvez remplacer ce comportement en appelant `e.preventDefault()`. Lisez les données du formulaire avec [`new FormData(e.target)`](https://developer.mozilla.org/fr/docs/Web/API/FormData).
+
 <Sandpack>
 
 ```js
 export default function MyForm() {
   function handleSubmit(e) {
-    // Prevent the browser from reloading the page
+    // Empêche le navigateur de recharger la page
     e.preventDefault();
 
-    // Read the form data
+    // Lit les données du formulaire
     const form = e.target;
     const formData = new FormData(form);
 
-    // You can pass formData as a fetch body directly:
+    // Vous pouvez passer formData directement comme
+    // corps de la requête à fetch:
     fetch('/some-api', { method: form.method, body: formData });
 
-    // Or you can work with it as a plain object:
+    // Ou vous pouvez travailler avec comme un
+    // objet simple :
     const formJson = Object.fromEntries(formData.entries());
     console.log(formJson);
   }
@@ -259,22 +262,22 @@ export default function MyForm() {
   return (
     <form method="post" onSubmit={handleSubmit}>
       <label>
-        Text input: <input name="myInput" defaultValue="Some initial value" />
+        Champ de saisie textuel : <input name="myInput" defaultValue="Une valeur initiale" />
       </label>
       <hr />
       <label>
-        Checkbox: <input type="checkbox" name="myCheckbox" defaultChecked={true} />
+        Case à cocher : <input type="checkbox" name="myCheckbox" defaultChecked={true} />
       </label>
       <hr />
       <p>
-        Radio buttons:
+        Bouton radio :
         <label><input type="radio" name="myRadio" value="option1" /> Option 1</label>
         <label><input type="radio" name="myRadio" value="option2" defaultChecked={true} /> Option 2</label>
         <label><input type="radio" name="myRadio" value="option3" /> Option 3</label>
       </p>
       <hr />
-      <button type="reset">Reset form</button>
-      <button type="submit">Submit form</button>
+      <button type="reset">Abandonner les modifications</button>
+      <button type="submit">Envoyer le formulaire</button>
     </form>
   );
 }
@@ -289,38 +292,38 @@ input { margin: 5px; }
 
 <Note>
 
-Give a `name` to every `<input>`, for example `<input name="firstName" defaultValue="Taylor" />`. The `name` you specified will be used as a key in the form data, for example `{ firstName: "Taylor" }`.
+Donnez un `name` à votre `<input>`, par exemple `<input name="firstName" defaultValue="Clara" />`. Le `name` que vous avez spécifié sera utilisé comme clé dans les données du formulaire, par exemple `{ firstName: "Clara" }`.
 
 </Note>
 
 <Pitfall>
 
-By default, *any* `<button>` inside a `<form>` will submit it. This can be surprising! If you have your own custom `Button` React component, consider returning [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) instead of `<button>`. Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
+Par défaut, *n'importe quel* `<button>` à l'intérieur d'un `<form>` va le soumettre. Cela peut être surprenant ! Si vous avez votre propre composant React `Button`, envisagez de renvoyer [`<button type="button">`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input/button) au lieu de `<button>`. Ensuite, pour être explicite, utilisez `<button type="submit">` pour les boutons qui *sont* censés soumettre le formulaire.
 
 </Pitfall>
 
 ---
 
-### Controlling an input with a state variable {/*controlling-an-input-with-a-state-variable*/}
+### Contrôler un champ de saisie avec une variable d'état {/*controlling-an-input-with-a-state-variable*/}
 
-An input like `<input />` is *uncontrolled.* Even if you [pass an initial value](#providing-an-initial-value-for-an-input) like `<input defaultValue="Initial text" />`, your JSX only specifies the initial value. It does not control what the value should be right now.
+Un champ de saisie comme `<input />` est *non contrôlé*. Même si vous [passez une valeur initiale](#providing-an-initial-value-for-an-input) comme `<input defaultValue="Texte initial" />`, votre JSX ne spécifie que la valeur initiale, il ne contrôle pas la valeur actuelle.
 
-**To render a _controlled_ input, pass the `value` prop to it (or `checked` for checkboxes and radios).** React will force the input to always have the `value` you passed. Usually, you would do this by declaring a [state variable:](/reference/react/useState)
+**Pour afficher un champ de saisie _contrôlé_, passez une prop `value` à `<input />`.** React forcera le champ de saisie à toujours avoir la valeur que vous avez passée. Généralement, vous contrôlerez un champ de saisie en déclarant une [variable d'état](/reference/react/useState) :
 
 ```js {2,6,7}
 function Form() {
-  const [firstName, setFirstName] = useState(''); // Declare a state variable...
+  const [firstName, setFirstName] = useState(''); // Déclare une variable d’état...
   // ...
   return (
     <input
-      value={firstName} // ...force the input's value to match the state variable...
-      onChange={e => setFirstName(e.target.value)} // ... and update the state variable on any edits!
+      value={firstName} // ...force la valeur du champ de saisie à la valeur de la variable d'état...
+      onChange={e => setFirstName(e.target.value)} // // ...et met à jour la variable d'état à chaque frappe !
     />
   );
 }
 ```
 
-A controlled input makes sense if you needed state anyway--for example, to re-render your UI on every edit:
+C'est utile lorsque vous voulez rafraîchir une partie de l'interface utilisateur à chaque frappe.
 
 ```js {2,9}
 function Form() {
@@ -328,14 +331,15 @@ function Form() {
   return (
     <>
       <label>
-        First name:
+        Prénom :
         <input value={firstName} onChange={e => setFirstName(e.target.value)} />
       </label>
-      {firstName !== '' && <p>Your name is {firstName}.</p>}
+      {firstName !== '' && <p>Votre prénom est {firstName}.</p>}
       ...
 ```
 
-It's also useful if you want to offer multiple ways to adjust the input state (for example, by clicking a button):
+C'est également utile si vous voulez offrir plusieurs façons d'ajuster l'état de la saisie (par exemple, en cliquant sur un bouton) :
+
 
 ```js {3-4,10-11,14}
 function Form() {
@@ -345,18 +349,18 @@ function Form() {
   return (
     <>
       <label>
-        Age:
+        Âge :
         <input
           value={age}
           onChange={e => setAge(e.target.value)}
           type="number"
         />
         <button onClick={() => setAge(ageAsNumber + 10)}>
-          Add 10 years
+          Ajouter 10 ans
         </button>
 ```
 
-The `value` you pass to controlled components should not be `undefined` or `null`. If you need the initial value to be empty (such as with the `firstName` field below), initialize your state variable to an empty string (`''`).
+La `value` que vous passez aux composants contrôlés ne doit pas être `undefined` ou `null`. Si vous avez besoin que la valeur initiale soit vide (comme avec le champ `firstName` ci-dessous), initialisez votre variable d'état avec une chaîne de caractères vide (`''`).
 
 <Sandpack>
 
@@ -370,28 +374,28 @@ export default function Form() {
   return (
     <>
       <label>
-        First name:
+        Prénom :
         <input
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
         />
       </label>
       <label>
-        Age:
+        Âge :
         <input
           value={age}
           onChange={e => setAge(e.target.value)}
           type="number"
         />
         <button onClick={() => setAge(ageAsNumber + 10)}>
-          Add 10 years
+          Ajouter 10 ans
         </button>
       </label>
       {firstName !== '' &&
-        <p>Your name is {firstName}.</p>
+        <p>Votre nom est {firstName}.</p>
       }
       {ageAsNumber > 0 &&
-        <p>Your age is {ageAsNumber}.</p>
+        <p>Votre âge est {ageAsNumber}.</p>
       }
     </>
   );
@@ -408,17 +412,17 @@ p { font-weight: bold; }
 
 <Pitfall>
 
-**If you pass `value` without `onChange`, it will be impossible to type into the input.** When you control an input by passing some `value` to it, you *force* it to always have the value you passed. So if you pass a state variable as a `value` but forget to update that state variable synchronously during the `onChange` event handler, React will revert the input after every keystroke back to the `value` that you specified.
+**Si vous passez `value` sans `onChange`, il sera impossible de réaliser une saisie dans le champ de saisie.** Lorsque vous contrôlez un champ de saisie en passant une `value`, vous *forcez* le champ de saisie à toujours avoir la valeur que vous avez passée. Donc, si vous passez une variable d'état comme `value` mais oubliez de mettre à jour cette variable d'état de manière synchrone au sein du gestionnaire d'événement `onChange`, React réinitialisera le champ de saisie, après chaque frappe, à la `value` que vous avez spécifiée.
 
 </Pitfall>
 
 ---
 
-### Optimizing re-rendering on every keystroke {/*optimizing-re-rendering-on-every-keystroke*/}
+### Optimiser le recalcul de rendu à chaque frappe clavier {/*optimizing-re-rendering-on-every-keystroke*/}
 
-When you use a controlled input, you set the state on every keystroke. If the component containing your state re-renders a large tree, this can get slow. There's a few ways you can optimize re-rendering performance.
+Lorsque vous utilisez un champ de saisie contrôlé, vous modifiez l'état à chaque frappe. Si le composant contenant votre état recalcule le rendu d'un grand arbre, ça peut devenir lent. Il existe plusieurs façons d'optimiser les performances d'un recalcul de rendu.
 
-For example, suppose you start with a form that re-renders all page content on every keystroke:
+Par exemple, supposons que vous commenciez avec un formulaire qui recalcule tout le contenu de la page à chaque frappe :
 
 ```js {5-8}
 function App() {
@@ -434,7 +438,7 @@ function App() {
 }
 ```
 
-Since `<PageContent />` doesn't rely on the input state, you can move the input state into its own component:
+Puisque `<PageContent />` ne dépend pas de l'état de la saisie, vous pouvez déplacer l'état de la saisie dans son propre composant :
 
 ```js {4,10-17}
 function App() {
@@ -456,20 +460,20 @@ function SignupForm() {
 }
 ```
 
-This significantly improves performance because now only `SignupForm` re-renders on every keystroke.
+Ça améliore considérablement les performances car maintenant seul `SignupForm` se recalcule à chaque frappe.
 
-If there is no way to avoid re-rendering (for example, if `PageContent` depends on the search input's value), [`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) lets you keep the controlled input responsive even in the middle of a large re-render.
+S'il n'y a aucun moyen d'éviter le recalcul (par exemple, si `PageContent` dépend de la valeur de la saisie de recherche), [`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) vous permet de conserver un champ de saisie contrôlé réactif même au sein d'un recalcul coûteux.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Dépannage {/*troubleshooting*/}
 
-### My text input doesn't update when I type into it {/*my-text-input-doesnt-update-when-i-type-into-it*/}
+### Mon champ de saisie réactif ne se met pas à jour lorsque je tape dedans {/*my-text-input-doesnt-update-when-i-type-into-it*/}
 
-If you render an input with `value` but no `onChange`, you will see an error in the console:
+Si vous affichez un champ de saisie avec `value` mais sans `onChange`, vous verrez une erreur dans la console :
 
 ```js
-// 🔴 Bug: controlled text input with no onChange handler
+// 🔴 Bug : champ de saisie contrôlé sans gestionnaire onChange
 <input value={something} />
 ```
 
@@ -479,35 +483,37 @@ You provided a `value` prop to a form field without an `onChange` handler. This 
 
 </ConsoleBlock>
 
-As the error message suggests, if you only wanted to [specify the *initial* value,](#providing-an-initial-value-for-an-input) pass `defaultValue` instead:
+_(« Vous avez fourni une prop `value` à un champ de formulaire sans gestionnaire `onChange`. Ça produira un champ en lecture seule. Si le champ doit être modifiable utilisez `defaultValue`. Sinon, définissez soit `onChange` soit `readOnly`. », NdT)_
+
+Comme le message d'erreur le suggère, si vous ne voulez spécifier que [la valeur initiale](#providing-an-initial-value-for-an-input), passez plutôt celle-ci à la prop `defaultValue` :
 
 ```js
-// ✅ Good: uncontrolled input with an initial value
+// ✅ Correct : champ de saisie non contrôlé avec une valeur initiale
 <input defaultValue={something} />
 ```
 
-If you want [to control this input with a state variable,](#controlling-an-input-with-a-state-variable) specify an `onChange` handler:
+Si vous voulez [contrôler ce champ de saisie avec une variable d'état](#controlling-an-input-with-a-state-variable), spécifiez un gestionnaire `onChange` :
 
 ```js
-// ✅ Good: controlled input with onChange
+// ✅ Correct : champ de saisie contrôlé avec onChange
 <input value={something} onChange={e => setSomething(e.target.value)} />
 ```
 
-If the value is intentionally read-only, add a `readOnly` prop to suppress the error:
+Si la valeur est en lecture seule intentionnellement, ajoutez une prop `readOnly` pour supprimer l'erreur :
 
 ```js
-// ✅ Good: readonly controlled input without on change
+// ✅ Correct : champ de saisie en lecture seule sans onChange
 <input value={something} readOnly={true} />
 ```
 
 ---
 
-### My checkbox doesn't update when I click on it {/*my-checkbox-doesnt-update-when-i-click-on-it*/}
+### Ma case à cocher ne se met pas à jour lorsque je clique dessus {/*my-checkbox-doesnt-update-when-i-click-on-it*/}
 
-If you render a checkbox with `checked` but no `onChange`, you will see an error in the console:
+Si vous affichez une case à cocher avec `checked` mais sans `onChange`, vous verrez une erreur dans la console :
 
 ```js
-// 🔴 Bug: controlled checkbox with no onChange handler
+// 🔴 Bug : case à cocher contrôlée sans gestionnaire onChange
 <input type="checkbox" checked={something} />
 ```
 
@@ -517,79 +523,81 @@ You provided a `checked` prop to a form field without an `onChange` handler. Thi
 
 </ConsoleBlock>
 
-As the error message suggests, if you only wanted to [specify the *initial* value,](#providing-an-initial-value-for-an-input) pass `defaultChecked` instead:
+Comme le message d'erreur le suggère, si vous ne voulez spécifier que [la valeur *initiale*](#providing-an-initial-value-for-an-input) de la case à cocher, passez plutôt `defaultChecked` :
 
 ```js
-// ✅ Good: uncontrolled checkbox with an initial value
+// ✅ Correct : case à cocher non contrôlée avec une valeur initiale
 <input type="checkbox" defaultChecked={something} />
 ```
 
-If you want [to control this checkbox with a state variable,](#controlling-an-input-with-a-state-variable) specify an `onChange` handler:
+Si vous voulez [contrôler cette case à cocher avec une variable d'état](#controlling-an-input-with-a-state-variable), spécifiez un gestionnaire `onChange` :
 
 ```js
-// ✅ Good: controlled checkbox with onChange
+// ✅ Correct : case à cocher contrôlée avec onChange
 <input type="checkbox" checked={something} onChange={e => setSomething(e.target.checked)} />
 ```
 
 <Pitfall>
 
-You need to read `e.target.checked` rather than `e.target.value` for checkboxes.
+Vous devez lire `e.target.checked` plutôt que `e.target.value` pour les cases à cocher.
 
 </Pitfall>
 
-If the checkbox is intentionally read-only, add a `readOnly` prop to suppress the error:
+Si la case à cocher est en lecture seule intentionnellement, ajoutez une prop `readOnly` pour supprimer l'erreur :
 
 ```js
-// ✅ Good: readonly controlled input without on change
+// ✅ Correct : champ de saisie en lecture seule sans onChange
 <input type="checkbox" checked={something} readOnly={true} />
 ```
 
 ---
 
-### My input caret jumps to the beginning on every keystroke {/*my-input-caret-jumps-to-the-beginning-on-every-keystroke*/}
+### Le curseur de mon champ de saisie revient au début à chaque frappe {/*my-input-caret-jumps-to-the-beginning-on-every-keystroke*/}
 
-If you [control an input,](#controlling-an-input-with-a-state-variable) you must update its state variable to the input's value from the DOM during `onChange`.
+Si vous [contrôlez un champ de saisie](#controlling-an-input-with-a-state-variable), vous devez mettre à jour sa variable d'état avec la valeur DOM du champ de saisie pendant le `onChange`.
 
-You can't update it to something other than `e.target.value` (or `e.target.checked` for checkboxes):
+Vous ne pouvez pas le mettre à jour avec autre chose que `e.target.value` (ou `e.target.checked` pour les cases à cocher) :
+
 
 ```js
 function handleChange(e) {
-  // 🔴 Bug: updating an input to something other than e.target.value
+  // 🔴 Bug : mettre à jour un champ de saisie avec autre chose que e.target.value
   setFirstName(e.target.value.toUpperCase());
 }
 ```
 
-You also can't update it asynchronously:
+Vous ne pouvez pas le mettre à jour de manière asynchrone :
 
 ```js
 function handleChange(e) {
-  // 🔴 Bug: updating an input asynchronously
+  // 🔴 Bug : mettre à jour un champ de saisie de manière asynchrone
   setTimeout(() => {
     setFirstName(e.target.value);
   }, 100);
 }
 ```
 
-To fix your code, update it synchronously to `e.target.value`:
+Pour corriger votre code, mettez à jour de manière synchrone avec `e.target.value` :
 
 ```js
 function handleChange(e) {
-  // ✅ Updating a controlled input to e.target.value synchronously
+  // ✅ Mettre à jour un champ de saisie contrôlé avec e.target.value de manière synchrone
   setFirstName(e.target.value);
 }
 ```
 
-If this doesn't fix the problem, it's possible that the input gets removed and re-added from the DOM on every keystroke. This can happen if you're accidentally [resetting state](/learn/preserving-and-resetting-state) on every re-render, for example if the input or one of its parents always receives a different `key` attribute, or if you nest component function definitions (which is not supported and causes the "inner" component to always be considered a different tree).
+Si ça ne corrige pas le problème, il est possible que le champ de saisie soit supprimé et réinséré dans le DOM à chaque frappe. Ça peut se produire si vous [réinitialisez accidentellement l'état](/learn/preserving-and-resetting-state) à chaque nouveau rendu. Par exemple, ça peut se produire si le champ de saisie ou l'un de ses parents reçoit toujours un attribut `key` différent, ou si vous imbriquez des définitions de composants (ce qui n'est pas autorisé en React et provoque le remontage du composant « interne » à chaque rendu).
 
 ---
 
-### I'm getting an error: "A component is changing an uncontrolled input to be controlled" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
+### J'ai une erreur : "A component is changing an uncontrolled input to be controlled" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
 
+_(« Un composant passe un champ non contrôlé en mode contrôlé », NdT)_
 
-If you provide a `value` to the component, it must remain a string throughout its lifetime.
+Si vous passez une `value` à un composant, cette valeur doit être une chaîne de caractères tout au long de son cycle de vie.
 
-You cannot pass `value={undefined}` first and later pass `value="some string"` because React won't know whether you want the component to be uncontrolled or controlled. A controlled component should always receive a string `value`, not `null` or `undefined`.
+Si vous passez `value={undefined}` à un composant, puis plus tard `value="quelqueChose"`, React ne saura pas si vous voulez que le composant soit contrôlé ou non. Un composant contrôlé doit toujours recevoir une chaîne de caractères en `value`, pas `null` ni `undefined`.
 
-If your `value` is coming from an API or a state variable, it might be initialized to `null` or `undefined`. In that case, either set it to an empty string (`''`) initially, or pass `value={someValue ?? ''}` to ensure `value` is a string.
+Si votre `value` provient d'une API ou d'une variable d'état, elle peut être initialisée à `null` ou `undefined`. Dans ce cas, définissez-la avec une chaîne vide (`''`) initialement, ou passez `value={someValue ?? ''}` pour vous assurer que `value` est une chaîne de caractères.
 
-Similarly, if you pass `checked` to a checkbox, ensure it's always a boolean.
+De la même manière, si vous passez `checked` à une case à cocher, assurez-vous que c'est toujours un booléen.
