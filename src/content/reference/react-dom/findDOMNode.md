@@ -26,7 +26,7 @@ const domNode = findDOMNode(componentInstance)
 
 ### `findDOMNode(componentInstance)` {/*finddomnode*/}
 
-Appelez `findDOMNode` pour trouver le nœud DOM associé à une instance de [composant React à base de classe](/reference/react/Component) donnée.
+Appelez `findDOMNode` pour trouver le nœud DOM le plus proche associé à une instance de [composant React à base de classe](/reference/react/Component) donnée.
 
 ```js
 import { findDOMNode } from 'react-dom';
@@ -166,7 +166,7 @@ export default AutoselectingInput;
 
 </Sandpack>
 
-Ce code plantera parce que désormais, `findDOMNode(this)` trouvera le nœud DOM `<div>` alors qu'il s'attend à un nœud DOM `<input>`. Pour éviter ce genre de problème, utilisez [`createRef`](/reference/react/createRef) pour gérer un nœud DOM spécifique.
+Ce code plantera parce que désormais, car `findDOMNode(this)` trouvera le nœud DOM `<div>` alors qu'il s'attend à un nœud DOM `<input>`. Pour éviter ce genre de problème, utilisez [`createRef`](/reference/react/createRef) pour gérer un nœud DOM spécifique.
 
 Dans cet exemple, `findDOMNode` n'est plus utilisé. On utilise plutôt `inputRef = createRef(null)` pour définir un champ d'instance. Pour y lire le nœud DOM, vous pouvez utiliser `this.inputRef.current`. Pour le rattacher au JSX, vous mettez dans votre rendu `<input ref={this.inputRef} />`. Ça connecte le code utilisant le nœud DOM à son JSX :
 
@@ -313,7 +313,7 @@ Pour remplacer `findDOMNode` dans cet exemple, les deux composants doivent se co
 1. `AutoSelectingInput` doit déclarer une ref, comme dans [l'exemple précédent](#reading-components-own-dom-node-from-a-ref), et la fournir à `<MyInput>`.
 2. `MyInput` doit être déclaré avec [`forwardRef`](/reference/react/forwardRef) pour prendre cette ref et la transmettre au nœud `<input>`.
 
-C'est ce que fait cette version, qui n'a donc plus besoin de `findDOMNode` :
+C'est ce que fait cette version, qui n'a donc plus besoin de `findDOMNode` :
 
 <Sandpack>
 
@@ -369,7 +369,7 @@ export default MyInput;
 
 </Sandpack>
 
-Voici à quoi ressemblerait ce code avec des fonctions composants au lieu de classes :
+Voici à quoi ressemblerait ce code avec des fonctions composants au lieu de classes :
 
 <Sandpack>
 
