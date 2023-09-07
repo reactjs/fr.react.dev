@@ -4,13 +4,13 @@ title: findDOMNode
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
+Cette API sera retirée d'une future version majeure de React. [Découvrez les alternatives](#alternatives).
 
 </Deprecated>
 
 <Intro>
 
-`findDOMNode` finds the browser DOM node for a React [class component](/reference/react/Component) instance.
+`findDOMNode` trouve le nœud DOM le plus proche associé à une instance de [composant à base de classe](/reference/react/Component).
 
 ```js
 const domNode = findDOMNode(componentInstance)
@@ -22,11 +22,11 @@ const domNode = findDOMNode(componentInstance)
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `findDOMNode(componentInstance)` {/*finddomnode*/}
 
-Call `findDOMNode` to find the browser DOM node for a given React [class component](/reference/react/Component) instance.
+Appelez `findDOMNode` pour trouver le nœud DOM le plus proche associé à une instance de [composant React à base de classe](/reference/react/Component) donnée.
 
 ```js
 import { findDOMNode } from 'react-dom';
@@ -34,34 +34,35 @@ import { findDOMNode } from 'react-dom';
 const domNode = findDOMNode(componentInstance);
 ```
 
-[See more examples below.](#usage)
+[Voir d'autres exemples ci-dessous](#usage).
 
-#### Parameters {/*parameters*/}
+#### Paramètres {/*parameters*/}
 
-* `componentInstance`: An instance of the [`Component`](/reference/react/Component) subclass. For example, `this` inside a class component.
+* `componentInstance` : une instance de la sous-classe de [`Component`](/reference/react/Component). Par exemple, `this` dans un composant à base de classe.
 
 
-#### Returns {/*returns*/}
+#### Valeur renvoyée {/*returns*/}
 
-`findDOMNode` returns the first closest browser DOM node within the given `componentInstance`. When a component renders to `null`, or renders `false`, `findDOMNode` returns `null`. When a component renders to a string, `findDOMNode` returns a text DOM node containing that value.
+`findDOMNode` renvoie le plus proche nœud du DOM du navigateur dans une `componentInstance` donnée. Lorsque le rendu d'un composant renvoie `null` ou `false`, `findDOMNode` renvoie `null`. Lorsque le rendu renvoie une chaîne de caractères, `findDOMNode` renvoie un nœud DOM textuel contenant cette valeur.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
-* A component may return an array or a [Fragment](/reference/react/Fragment) with multiple children. In that case `findDOMNode`, will return the DOM node corresponding to the first non-empty child.
+* Un composant est susceptible de renvoyer un tableau ou un [Fragment](/reference/react/Fragment) avec plusieurs enfants. Dans ce cas `findDOMNode`, renverra le nœud DOM correspondant au premier enfant non vide.
 
-* `findDOMNode` only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a component that has yet to be created), an exception will be thrown.
+* `findDOMNode` fonctionne seulement sur les composants montés (c'est-à-dire les composants qui ont été placés dans le DOM). Si vous essayez de l'appeler sur un composant qui n'a pas encore été monté (comme un appel de `findDOMNode()` dans `render()` sur un composant qui n'a pas encore été créé), une exception sera levée.
 
-* `findDOMNode` only returns the result at the time of your call. If a child component renders a different node later, there is no way for you to be notified of this change.
+* `findDOMNode` renvoie seulement le résultat au moment de votre appel. Si un composant enfant renvoie plus tard un nœud différent, vous n'avez aucun moyen d'être informé·e de ce changement.
 
-* `findDOMNode` accepts a class component instance, so it can't be used with function components.
+* `findDOMNode` accepte une instance de composant à base de classe, il ne peut donc pas être utilisé avec des fonctions composants.
 
 ---
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
-### Finding the root DOM node of a class component {/*finding-the-root-dom-node-of-a-class-component*/}
+### Trouver le nœud DOM racine d'un composant à base de classe {/*finding-the-root-dom-node-of-a-class-component*/}
 
-Call `findDOMNode` with a [class component](/reference/react/Component) instance (usually, `this`) to find the DOM node it has rendered.
+
+Appelez `findDOMNode` avec une instance de [composant à base de classe](/reference/react/Component)  (ce sera généralement `this`) pour trouver le nœud DOM qu'il a affiché.
 
 ```js {3}
 class AutoselectingInput extends Component {
@@ -71,12 +72,12 @@ class AutoselectingInput extends Component {
   }
 
   render() {
-    return <input defaultValue="Hello" />
+    return <input defaultValue="Bonjour" />
   }
 }
 ```
 
-Here, the `input` variable will be set to the `<input>` DOM element. This lets you do something with it. For example, when clicking "Show example" below mounts the input, [`input.select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select) selects all text in the input:
+Ici, la variable `input` sera définie à l'élément DOM `<input>`. Ça vous permet de le manipuler. Par exemple, en cliquant sur « voir l'exemple » ci-dessous, le champ de saisie est monté, puis [`input.select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select) sélectionnera tout le texte dans le champ :
 
 <Sandpack>
 
@@ -89,7 +90,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Voir l’exemple
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -109,7 +110,7 @@ class AutoselectingInput extends Component {
   }
 
   render() {
-    return <input defaultValue="Hello" />
+    return <input defaultValue="Bonjour" />
   }
 }
 
@@ -122,9 +123,9 @@ export default AutoselectingInput;
 
 ## Alternatives {/*alternatives*/}
 
-### Reading component's own DOM node from a ref {/*reading-components-own-dom-node-from-a-ref*/}
+### Lire le nœud DOM du composant à partir d'une ref {/*reading-components-own-dom-node-from-a-ref*/}
 
-Code using `findDOMNode` is fragile because the connection between the JSX node and the code manipulating the corresponding DOM node is not explicit. For example, try wrapping this `<input />` into a `<div>`:
+Un code qui utilise `findDOMNode` est fragile parce que la relation entre le nœud JSX et le code manipulant le nœud DOM correspondant n'est pas explicite. Essayez par exemple d'enrober cet `<input />` dans une `<div>` :
 
 <Sandpack>
 
@@ -137,7 +138,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Voir l’exemple
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -156,7 +157,7 @@ class AutoselectingInput extends Component {
     input.select()
   }
   render() {
-    return <input defaultValue="Hello" />
+    return <input defaultValue="Bonjour" />
   }
 }
 
@@ -165,9 +166,9 @@ export default AutoselectingInput;
 
 </Sandpack>
 
-This will break the code because now, `findDOMNode(this)` finds the `<div>` DOM node, but the code expects an `<input>` DOM node. To avoid these kinds of problems, use [`createRef`](/reference/react/createRef) to manage a specific DOM node.
+Ce code plantera parce que désormais, car `findDOMNode(this)` trouvera le nœud DOM `<div>` alors qu'il s'attend à un nœud DOM `<input>`. Pour éviter ce genre de problème, utilisez [`createRef`](/reference/react/createRef) pour gérer un nœud DOM spécifique.
 
-In this example, `findDOMNode` is no longer used. Instead, `inputRef = createRef(null)` is defined as an instance field on the class. To read the DOM node from it, you can use `this.inputRef.current`. To attach it to the JSX, you render `<input ref={this.inputRef} />`. This connects the code using the DOM node to its JSX:
+Dans cet exemple, `findDOMNode` n'est plus utilisé. On utilise plutôt `inputRef = createRef(null)` pour définir un champ d'instance. Pour y lire le nœud DOM, vous pouvez utiliser `this.inputRef.current`. Pour le rattacher au JSX, vous mettez dans votre rendu `<input ref={this.inputRef} />`. Ça connecte le code utilisant le nœud DOM à son JSX :
 
 <Sandpack>
 
@@ -180,7 +181,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Afficher l’exemple
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -202,7 +203,7 @@ class AutoselectingInput extends Component {
 
   render() {
     return (
-      <input ref={this.inputRef} defaultValue="Hello" />
+      <input ref={this.inputRef} defaultValue="Bonjour" />
     );
   }
 }
@@ -212,7 +213,7 @@ export default AutoselectingInput;
 
 </Sandpack>
 
-In modern React without class components, the equivalent code would call [`useRef`](/reference/react/useRef) instead:
+Dans les versions modernes de React sans les composants à base de classes, le code équivalent appellerait plutôt [`useRef`](/reference/react/useRef) :
 
 <Sandpack>
 
@@ -225,7 +226,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Voir l’exemple
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -245,19 +246,19 @@ export default function AutoselectingInput() {
     input.select();
   }, []);
 
-  return <input ref={inputRef} defaultValue="Hello" />
+  return <input ref={inputRef} defaultValue="Bonjour" />
 }
 ```
 
 </Sandpack>
 
-[Read more about manipulating the DOM with refs.](/learn/manipulating-the-dom-with-refs)
+[Apprenez-en davantage sur la manipulation du DOM avec les refs](/learn/manipulating-the-dom-with-refs).
 
 ---
 
-### Reading a child component's DOM node from a forwarded ref {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
+### Lire un nœud DOM d'un composant enfant à partir d'un ref transmis {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
 
-In this example, `findDOMNode(this)` finds a DOM node that belongs to another component. The `AutoselectingInput` renders `MyInput`, which is your own component that renders a browser `<input>`.
+Dans l'exemple qui suit, `findDOMNode(this)` trouve un nœud DOM qui appartient à un autre composant. Le composant `AutoselectingInput` fait le rendu de `MyInput`, lequel est votre propre composant qui affiche un élément `<input>` natif.
 
 <Sandpack>
 
@@ -270,7 +271,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Voir l’exemple
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -299,20 +300,20 @@ export default AutoselectingInput;
 
 ```js MyInput.js
 export default function MyInput() {
-  return <input defaultValue="Hello" />;
+  return <input defaultValue="Bonjour" />;
 }
 ```
 
 </Sandpack>
 
-Notice that calling `findDOMNode(this)` inside `AutoselectingInput` still gives you the DOM `<input>`--even though the JSX for this `<input>` is hidden inside the `MyInput` component. This seems convenient for the above example, but it leads to fragile code. Imagine that you wanted to edit `MyInput` later and add a wrapper `<div>` around it. This would break the code of `AutoselectingInput` (which expects to find an `<input>`).
+Notez que l'appel de `findDOMNode(this)` à l'intérieur de `AutoselectingInput` vous donne toujours le nœud DOM `<input>` — même si le JSX de ce `<input>` est masqué à l'intérieur du composant `MyInput`. Ça peut sembler pratique dans l'exemple ci-dessus, mais ce code est fragile. Imaginez que vous vouliez modifier `MyInput` plus tard et l'enrober dans une `<div>`. Ça fera planter le code de `AutoselectingInput` (qui s'attend à trouver un `<input>`).
 
-To replace `findDOMNode` in this example, the two components need to coordinate:
+Pour remplacer `findDOMNode` dans cet exemple, les deux composants doivent se coordonner :
 
-1. `AutoSelectingInput` should declare a ref, like [in the earlier example](#reading-components-own-dom-node-from-a-ref), and pass it to `<MyInput>`.
-2. `MyInput` should be declared with [`forwardRef`](/reference/react/forwardRef) to take that ref and forward it down to the `<input>` node.
+1. `AutoSelectingInput` doit déclarer une ref, comme dans [l'exemple précédent](#reading-components-own-dom-node-from-a-ref), et la fournir à `<MyInput>`.
+2. `MyInput` doit être déclaré avec [`forwardRef`](/reference/react/forwardRef) pour prendre cette ref et la transmettre au nœud `<input>`.
 
-This version does that, so it no longer needs `findDOMNode`:
+C'est ce que fait cette version, qui n'a donc plus besoin de `findDOMNode` :
 
 <Sandpack>
 
@@ -325,7 +326,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Afficher l’exemple
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -360,7 +361,7 @@ export default AutoselectingInput;
 import { forwardRef } from 'react';
 
 const MyInput = forwardRef(function MyInput(props, ref) {
-  return <input ref={ref} defaultValue="Hello" />;
+  return <input ref={ref} defaultValue="Bonjour" />;
 });
 
 export default MyInput;
@@ -368,7 +369,7 @@ export default MyInput;
 
 </Sandpack>
 
-Here is how this code would look like with function components instead of classes:
+Voici à quoi ressemblerait ce code avec des fonctions composants au lieu de classes :
 
 <Sandpack>
 
@@ -381,7 +382,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Show example
+        Afficher l’exemple
       </button>
       <hr />
       {show && <AutoselectingInput />}
@@ -402,7 +403,7 @@ export default function AutoselectingInput() {
     input.select();
   }, []);
 
-  return <MyInput ref={inputRef} defaultValue="Hello" />
+  return <MyInput ref={inputRef} defaultValue="Bonjour" />
 }
 ```
 
@@ -410,7 +411,7 @@ export default function AutoselectingInput() {
 import { forwardRef } from 'react';
 
 const MyInput = forwardRef(function MyInput(props, ref) {
-  return <input ref={ref} defaultValue="Hello" />;
+  return <input ref={ref} defaultValue="Bonjour" />;
 });
 
 export default MyInput;
@@ -420,11 +421,11 @@ export default MyInput;
 
 ---
 
-### Adding a wrapper `<div>` element {/*adding-a-wrapper-div-element*/}
+### Ajouter un élément `<div>` d'enrobage {/*adding-a-wrapper-div-element*/}
 
-Sometimes a component needs to know the position and size of its children. This makes it tempting to find the children with `findDOMNode(this)`, and then use DOM methods like [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) for measurements.
+Il arrive qu'un composant ait besoin de connaître la position et la taille de ses enfants. Il est donc tentant de trouver l'enfant avec `findDOMNode(this)`, puis d'utiliser des méthodes DOM telles que [`getBoundingClientRect`](https://developer.mozilla.org/fr/docs/Web/API/Element/getBoundingClientRect) pour faire des mesures.
 
-There is currently no direct equivalent for this use case, which is why `findDOMNode` is deprecated but is not yet removed completely from React. In the meantime, you can try rendering a wrapper `<div>` node around the content as a workaround, and getting a ref to that node. However, extra wrappers can break styling.
+Il n'existe actuellement aucun équivalent direct pour ce cas d'utilisation, c'est pourquoi `findDOMNode` est déprécié mais n'a pas encore été complètement retiré de React. En attendant, vous pouvez essayer d'enrober votre contenu avec un nœud `<div>` comme solution de contournement, puis d'obtenir une ref à ce nœud. Cependant, les enrobages supplémentaires peuvent nuire à l'application des styles.
 
 ```js
 <div ref={someRef}>
@@ -432,4 +433,4 @@ There is currently no direct equivalent for this use case, which is why `findDOM
 </div>
 ```
 
-This also applies to focusing and scrolling to arbitrary children.
+Ça s'applique également à la gestion du focus d'enfants quelconques, ou au défilement vers ces enfants.
