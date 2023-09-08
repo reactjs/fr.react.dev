@@ -1,14 +1,14 @@
 ---
-title: "React Labs: What We've Been Working On – March 2023"
+title: "React Labs : ce sur quoi nous bossons – mars 2023"
 ---
 
-March 22, 2023 by [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Mengdi Chen](https://twitter.com/mengdi_en), [Samuel Susla](https://twitter.com/SamuelSusla), [Sathya Gunasekaran](https://twitter.com/_gsathya), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Andrew Clark](https://twitter.com/acdlite)
+Le 22 mars 2023 par [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Mengdi Chen](https://twitter.com/mengdi_en), [Samuel Susla](https://twitter.com/SamuelSusla), [Sathya Gunasekaran](https://twitter.com/_gsathya), [Sebastian Markbåge](https://twitter.com/sebmarkbage) et [Andrew Clark](https://twitter.com/acdlite).
 
 ---
 
 <Intro>
 
-In React Labs posts, we write about projects in active research and development. We've made significant progress on them since our [last update](https://react.dev/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022), and we'd like to share what we learned.
+Dans les billets React Labs, nous vous parlons de nos projets de recherche et développement actifs.  Depuis notre [dernier bulletin](/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022), nous avons fait des progrès significatifs et nous aimerions partager ce que nous avons appris.
 
 </Intro>
 
@@ -16,43 +16,44 @@ In React Labs posts, we write about projects in active research and development.
 
 ## React Server Components {/*react-server-components*/}
 
-React Server Components (or RSC) is a new application architecture designed by the React team.
+Les React Server Components (ou RSC) sont une nouvelle architecture applicative conçue par l'équipe React.
 
-We've first shared our research on RSC in an [introductory talk](/blog/2020/12/21/data-fetching-with-react-server-components) and an [RFC](https://github.com/reactjs/rfcs/pull/188). To recap them, we are introducing a new kind of component--Server Components--that run ahead of time and are excluded from your JavaScript bundle. Server Components can run during the build, letting you read from the filesystem or fetch static content. They can also run on the server, letting you access your data layer without having to build an API. You can pass data by props from Server Components to the interactive Client Components in the browser.
+Notre premier partage de recherche sur les RSC s'est fait dans un [talk de présentation](/blog/2020/12/21/data-fetching-with-react-server-components) et *via* une [RFC](https://github.com/reactjs/rfcs/pull/188). En résumé, nous présentons un nouveau type de composant — les Composants Serveur — qui sont exécutés en amont et exclus de votre *bundle* JavaScript. Les Composants Serveur peuvent être exécutés pendant le *build*, ce qui leur permet de lire le système de fichiers ou de charger du contenu statique. Ils peuvent aussi être exécuté côté serveur, ce qui permet d'accéder à votre couche de données sans avoir besoin d'une API.  Vous pouvez passer des données *via* les props entre les Composants Serveur et les Composants Client interactifs dans le navigateur.
 
-RSC combines the simple "request/response" mental model of server-centric Multi-Page Apps with the seamless interactivity of client-centric Single-Page Apps, giving you the best of both worlds.
+RSC combine la simplicité du modèle mental requête/réponse, courant dans les applis multi-page *(MPA pour Multi-Page Apps, NdT)* centrées sur le serveur, avec l'interactivité transparente des applis mono-page *(SPA pour Single-Page Apps, NdT)* centrées sur le client, ce qui vous donne le meilleur des deux mondes.
 
-Since our last update, we have merged the [React Server Components RFC](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) to ratify the proposal. We resolved outstanding issues with the [React Server Module Conventions](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md) proposal, and reached consensus with our partners to go with the `"use client"` convention. These documents also act as specification for what an RSC-compatible implementation should support.
+Depuis notre dernier bulletin, nous avons intégré la [RFC des React Server Components](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) afin de ratifier cette proposition..  Nous avons résolu les problèmes en suspens de la proposition de [conventions de modules React serveur](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md), et atteint un consensus avec nos partenaires concernant la convention `"use client"`.  Ces documents jouent aussi le rôle d'une spécification à respecter par les implémentations compatibles de RSC.
 
-The biggest change is that we introduced [`async` / `await`](https://github.com/reactjs/rfcs/pull/229) as the primary way to do data fetching from Server Components. We also plan to support data loading from the client by introducing a new hook called `use` that unwraps Promises. Although we can't support `async / await` in arbitrary components in client-only apps, we plan to add support for it when you structure your client-only app similar to how RSC apps are structured.
+Le plus gros changement survenu tient à l'introduction de [`async` / `await`](https://github.com/reactjs/rfcs/pull/229) comme mécanisme principal de chargement de données dans les Composants Serveur. Nous prévoyons aussi de permettre le chargement de données depuis les clients au moyen d'un nouveau Hook appelé `use` qui repose en interne sur des promesses (`Promise`). Même si nous ne pouvons pas autoriser `async / await` au sein de n'importe quel composant d'une appli 100% côté client, nous prévoyons de le prendre en charge lorsque la structure de votre appli 100% côté client est similaire à celle d'applis basées sur les RSC.
 
-Now that we have data fetching pretty well sorted, we're exploring the other direction: sending data from the client to the server, so that you can execute database mutations and implement forms. We're doing this by letting you pass Server Action functions across the server/client boundary, which the client can then call, providing seamless RPC. Server Actions also give you progressively enhanced forms before JavaScript loads.
+À présent que nous avons suffisamment débroussailé le sujet du chargement de données, nous explorons l'autre direction : l'envoi de données du client vers le serveur, afin que vous puissiez exécuter des modifications de base de données et implémenter des formulaires.  Nous vous permettons pour cela de passer des fonctions d'Actions Serveur à travers la frontière serveur/client, fonctions que le code client peut alors appeler, ce qui fournit une sorte de RPC *(Remote Procedure Call, NdT)* transparent. Les Actions Serveur vous permettent aussi de proposer des formulaires en amélioration progressive pendant le chargement de JavaScript.
 
-React Server Components has shipped in [Next.js App Router](/learn/start-a-new-react-project#nextjs-app-router). This showcases a deep integration of a router that really buys into RSC as a primitive, but it's not the only way to build a RSC-compatible router and framework. There's a clear separation for features provided by the RSC spec and implementation. React Server Components is meant as a spec for components that work across compatible React frameworks.
+Une implémentation des React Server Components a été livrée au travers de [l'*App Router* de Next.js](/learn/start-a-new-react-project#nextjs-app-router).
+C'est un bon exemple d'une intégration profonde d'un routeur qui traite les RSC comme une primitive importante, mais ce n'est pas la seule façon de construire un routeur ou un framework compatibles RSC.  Il existe une distinction claire entre les fonctionnalités que permet la spec des RSC, et leur implémentation. Les React Server Components sont pensés comme une spec de composants qui puisse être prise en charge par n'importe quel framework React compatible.
 
-We generally recommend using an existing framework, but if you need to build your own custom framework, it is possible. Building your own RSC-compatible framework is not as easy as we'd like it to be, mainly due to the deep bundler integration needed. The current generation of bundlers are great for use on the client, but they weren't designed with first-class support for splitting a single module graph between the server and the client. This is why we're now partnering directly with bundler developers to get the primitives for RSC built-in.
+Nous vous conseillons généralement d'utiliser un framework existant, mais si vous devez construire votre propre framework, c'est possible.  Créer votre propre framework compatible RSC n'est pas aussi aisé que nous l'aimerions, principalement en raison d'un exigence d'intégration profonde avec votre *bundler*.  La génération actuelle de *bundlers* est super pour un usage centré sur le client, mais ils n'ont pas été conçus avec une prise en charge de premier plan pour la découpe d'un graphe de modules selon un axe client / serveur.  C'est pourquoi nous avons un partenariat en cours avec les développeurs de *bundlers* afin d'intégrer les primitives nécessaires à RSC.
 
-## Asset Loading {/*asset-loading*/}
+## Chargement de ressources {/*asset-loading*/}
 
-[Suspense](/reference/react/Suspense) lets you specify what to display on the screen while the data or code for your components is still being loaded. This lets your users progressively see more content while the page is loading as well as during the router navigations that load more data and code. However, from the user's perspective, data loading and rendering do not tell the whole story when considering whether new content is ready. By default, browsers load stylesheets, fonts, and images independently, which can lead to UI jumps and consecutive layout shifts.
+[Suspense](/reference/react/Suspense) vous permet de spécifier quoi afficher à l'écran pendant que les données ou le code de vos composants sont encore en train de charger. Ça permet à vos utilisateurs de voir progressivement davantage de contenu au cours du chargement de la page, ainsi que pendant les navigations de routage qui chargent davantage de données ou de code.  Ceci dit, du point de vue de l'utilisateur, le chargement de données et le rendu ne suffisent pas à pleinement représenter la disponibilité de nouveau contenu.  Par défaut, les navigateurs chargent les feuilles de style, les polices de caractères et les images indépendamment, ce qui peut entraîner des décalages subits et désagréables de l'affichage *(layout shifts, NdT)*.
 
-We're working to fully integrate Suspense with the loading lifecycle of stylesheets, fonts, and images, so that React takes them into account to determine whether the content is ready to be displayed. Without any change to the way you author your React components, updates will behave in a more coherent and pleasing manner. As an optimization, we will also provide a manual way to preload assets like fonts directly from components.
+Nous travaillons à intégrer pleinement Suspense avec le cycle de vie du chargement des feuilles de styles, fontes et images, afin que React puisse les prendre en compte pour déterminer si le contenu est prêt à être affiché.  Sans rien changer à votre façon d'écrire vos composants React, ces mises à jour produiront un comportement plus cohérent et agréable.  À titre d'optimisation, nous fournirons également un mécanisme manuel de préchargement de ressources telles que les fontes, directement depuis vos composants.
 
-We are currently implementing these features and will have more to share soon.
+Nous travaillons actuellement sur ces fonctionnalités et nous devrions avoir davantage à vous montrer prochainement.
 
-## Document Metadata {/*document-metadata*/}
+## Métadonnées des documents {/*document-metadata*/}
 
-Different pages and screens in your app may have different metadata like the `<title>` tag, description, and other `<meta>` tags specific to this screen. From the maintenance perspective, it's more scalable to keep this information close to the React component for that page or screen. However, the HTML tags for this metadata need to be in the document `<head>` which is typically rendered in a component at the very root of your app.
+Selon la page ou l'écran de votre appli, vous aurez besoin de métadonnées distinctes telles que la balise `<title>`, la description et d'autres balises `<meta>` spécifiques à un écran donné.  En termes de maintenance, conserver cette information à promixité du composant React pour la page ou l'écran tient mieux la route.  Seulement voilà, les balises HTML pour ces métadonnées doivent être dans le `<head>` du document, qui figure généralement à la racine de votre appli.
 
-Today, people solve this problem with one of the two techniques.
+Pour le moment, les gens utilisent une des deux techniques suivantes pour résoudre ce problème.
 
-One technique is to render a special third-party component that moves `<title>`, `<meta>`, and other tags inside it into the document `<head>`. This works for major browsers but there are many clients which do not run client-side JavaScript, such as Open Graph parsers, and so this technique is not universally suitable.
+La première consiste à faire le rendu d'un composant spécial tierce-partie qui déplace les `<title>`, `<meta>` et autres éléments qu'il contient dans le `<head>` du document. Ça fonctionne pour tous les principaux navigateurs mais de nombreux clients n'exécutent pas JavaScript, comme par exemple les *parsers* Open Graph, de sorte que cette technique n'est pas toujours adaptée.
 
-Another technique is to server-render the page in two parts. First, the main content is rendered and all such tags are collected. Then, the `<head>` is rendered with these tags. Finally, the `<head>` and the main content are sent to the browser. This approach works, but it prevents you from taking advantage of the [React 18's Streaming Server Renderer](/reference/react-dom/server/renderToReadableStream) because you'd have to wait for all content to render before sending the `<head>`.
+L'autre technique consiste à faire un rendu côté serveur de la page en deux passes.  On commence par faire le rendu du contenu principal et y collecter toutes les balises concernées. Ensuite, on fait le rendu du `<head>` avec ces balises.  Pour finir, tant le `<head>` que le contenu principal sont envoyés au navigateur.  Cette approche fonctionne, mais elle vous empêche de tirer parti du [rendu serveur *streamé* de React 18](/reference/react-dom/server/renderToReadableStream), puisqu'il vous faut attendre que tout le contenu ait fini son rendu avant d'envoyer le `<head>`.
 
-This is why we're adding built-in support for rendering `<title>`, `<meta>`, and metadata `<link>` tags anywhere in your component tree out of the box. It would work the same way in all environments, including fully client-side code, SSR, and in the future, RSC. We will share more details about this soon.
+C'est pourquoi nous ajoutons une prise en charge native du rendu des balises de métadonnées `<title>`, `<meta>` et `<link>` partout dans votre arborescence de composants. Elle fonctionnerait de façon identique dans tous les environnements, y compris du code 100% côté client, du SSR, et à l'avenir les RSC. Nous vous en dirons davantage bientôt.
 
-## React Optimizing Compiler {/*react-optimizing-compiler*/}
+## Compilateur optimisant pour React {/*react-optimizing-compiler*/}
 
 Since our previous update we've been actively iterating on the design of [React Forget](/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022#react-compiler), an optimizing compiler for React. We've previously talked about it as an "auto-memoizing compiler", and that is true in some sense. But building the compiler has helped us understand React's programming model even more deeply. A better way to understand React Forget is as an automatic *reactivity* compiler.
 
@@ -72,7 +73,7 @@ As we refactored the compiler over the last few months, we wanted to focus on re
 
 Making plain JavaScript in React components reactive requires a compiler with a deep understanding of semantics so that it can understand exactly what the code is doing. By taking this approach, we're creating a system for reactivity within JavaScript that lets you write product code of any complexity with the full expressivity of the language, instead of being limited to a domain specific language.
 
-## Offscreen Rendering {/*offscreen-rendering*/}
+## Rendu hors de l'écran {/*offscreen-rendering*/}
 
 Offscreen rendering is an upcoming capability in React for rendering screens in the background without additional performance overhead. You can think of it as a version of the [`content-visiblity` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility) that works not only for DOM elements but React components, too. During our research, we've discovered a variety of use cases:
 
@@ -87,7 +88,7 @@ The idea is that you should be able to render any React tree offscreen without c
 
 Since our last update, we've tested an experimental version of prerendering internally at Meta in our React Native apps on Android and iOS, with positive performance results. We've also improved how offscreen rendering works with Suspense — suspending inside an offscreen tree will not trigger Suspense fallbacks. Our remaining work involves finalizing the primitives that are exposed to library developers. We expect to publish an RFC later this year, alongside an experimental API for testing and feedback.
 
-## Transition Tracing {/*transition-tracing*/}
+## Pistage des transitions {/*transition-tracing*/}
 
 The Transition Tracing API lets you detect when [React Transitions](/reference/react/useTransition) become slower and investigate why they may be slow. Following our last update, we have completed the initial design of the API and published an [RFC](https://github.com/reactjs/rfcs/pull/238). The basic capabilities have also been implemented. The project is currently on hold. We welcome feedback on the RFC and look forward to resuming its development to provide a better performance measurement tool for React. This will be particularly useful with routers built on top of React Transitions, like the [Next.js App Router](/learn/start-a-new-react-project#nextjs-app-router).
 

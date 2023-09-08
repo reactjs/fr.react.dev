@@ -16,9 +16,9 @@ Traditionnellement, les nouveautés de React n'étaient d'abord disponibles qu'a
 
 </BlogCard>
 
-<BlogCard title="React Labs: What We've Been Working On – March 2023" date="March 22, 2023" url="/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023">
+<BlogCard title="React Labs : ce sur quoi nous bossons – mars 2023" date="22 mars 2023" url="/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023">
 
-In React Labs posts, we write about projects in active research and development. Since our last update, we've made significant progress on React Server Components, Asset Loading, Optimizing Compiler, Offscreen Rendering, and Transition Tracing, and we'd like to share what we learned.
+Dans les billets React Labs, nous vous parlons de nos projets de recherche et développement actifs.  Depuis notre dernier bulletin, nous avons fait des progrès significatifs sur les React Server Components, le chargement de ressources, un compilateur optimisant, le rendu hors-écran et le pistage des transsitions, et nous aimerions partager ce que nous avons appris.
 
 </BlogCard>
 
