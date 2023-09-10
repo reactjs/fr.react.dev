@@ -831,7 +831,7 @@ function Row({ isSelected }) {
 }
 ```
 
-C'est particulière pratique si vous avez de multiples classes conditionnelles :
+C'est particulièrement pratique si vous avez plusieurs classes conditionnelles :
 
 ```js
 import cn from 'classnames';
@@ -853,11 +853,11 @@ function Row({ isSelected, size }) {
 
 ---
 
-### Manipulating a DOM node with a ref {/*manipulating-a-dom-node-with-a-ref*/}
+### Manipuler un nœud DOM avec une ref {/*manipulating-a-dom-node-with-a-ref*/}
 
-Sometimes, you'll need to get the browser DOM node associated with a tag in JSX. For example, if you want to focus an `<input>` when a button is clicked, you need to call [`focus()`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/focus) on the browser `<input>` DOM node.
+Parfois, vous aurez besoin de récupérer le nœud DOM du navigateur associé à une balise en JSX. Par exemple, si vous voulez mettre le focus sur un `<input>` après qu'un bouton a été cliqué, vous aurez besoin d'appeler [`focus()`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/focus) sur le nœud DOM `<input>` du navigateur.
 
-To obtain the browser DOM node for a tag, [declare a ref](/reference/react/useRef) and pass it as the `ref` attribute to that tag:
+Pour obtenir le nœud DOM du navigateur correspondant à une balise, il faut [déclarer une ref](/reference/react/useRef) et la passer à l'attribut `ref` de cette balise :
 
 ```js {7}
 import { useRef } from 'react';
@@ -870,7 +870,7 @@ export default function Form() {
     // ...
 ```
 
-React will put the DOM node into `inputRef.current` after it's been rendered to the screen.
+React placera le nœud DOM dans la propriété `inputRef.current` une fois qu'il sera rendu à l'écran.
 
 <Sandpack>
 
@@ -888,7 +888,7 @@ export default function Form() {
     <>
       <input ref={inputRef} />
       <button onClick={handleClick}>
-        Focus the input
+        Placer le focus sur le champ
       </button>
     </>
   );
@@ -897,24 +897,24 @@ export default function Form() {
 
 </Sandpack>
 
-Read more about [manipulating DOM with refs](/learn/manipulating-the-dom-with-refs) and [check out more examples.](/reference/react/useRef#examples-dom)
+Apprenez-en davantage à propos de la [manipulatiion du DOM avec les refs](/learn/manipulating-the-dom-with-refs) et [découvrir d'autres exemples](/reference/react/useRef#examples-dom).
 
-For more advanced use cases, the `ref` attribute also accepts a [callback function.](#ref-callback)
+Pour des utilisations plus avancées, l'attribut `ref` accepte églament une [fonction de rappel](#ref-callback).
 
 ---
 
-### Dangerously setting the inner HTML {/*dangerously-setting-the-inner-html*/}
+### Définir le HTML interne de façon risquée {/*dangerously-setting-the-inner-html*/}
 
-You can pass a raw HTML string to an element like so:
+Vous pouvez passer une chaîne de caractère contenant du HTML brut à un élément de cette façon :
 
 ```js
-const markup = { __html: '<p>some raw html</p>' };
+const markup = { __html: '<p>du HTML brut</p>' };
 return <div dangerouslySetInnerHTML={markup} />;
 ```
 
-**This is dangerous. As with the underlying DOM [`innerHTML`](https://developer.mozilla.org/fr/docs/Web/API/Element/innerHTML) property, you must exercise extreme caution! Unless the markup is coming from a completely trusted source, it is trivial to introduce an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability this way.**
+**C'est dangereux. Comme pour la propriété du DOM [`innerHTML`](https://developer.mozilla.org/fr/docs/Web/API/Element/innerHTML), vous devez faire preuve d'une extrême prudence ! À moins que le balisage ne provienne d'une source parfaitement fiable, il est facile d'introduire une vulnérabilité [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) de cette façon.**
 
-For example, if you use a Markdown library that converts Markdown to HTML, you trust that its parser doesn't contain bugs, and the user only sees their own input, you can display the resulting HTML like this:
+Par exemple, si vous utilisez une bibliothèque de Markdown qui convertit le Markdown en HTML, que vous êtes sûr que son parser ne contient pas de bug et que l'utilisateur ne voit que ses propres données, vous pouvez afficher le HTML généré de cette façon : 
 
 <Sandpack>
 
@@ -923,11 +923,11 @@ import { useState } from 'react';
 import MarkdownPreview from './MarkdownPreview.js';
 
 export default function MarkdownEditor() {
-  const [postContent, setPostContent] = useState('_Hello,_ **Markdown**!');
+  const [postContent, setPostContent] = useState('Bonjour_, **Markdown**!');
   return (
     <>
       <label>
-        Enter some markdown:
+        Saisissez du markdown:
         <textarea
           value={postContent}
           onChange={e => setPostContent(e.target.value)}
@@ -946,9 +946,10 @@ import { Remarkable } from 'remarkable';
 const md = new Remarkable();
 
 function renderMarkdownToHTML(markdown) {
-  // This is ONLY safe because the output HTML
-  // is shown to the same user, and because you
-  // trust this Markdown parser to not have bugs.
+  // C'est sûr UNIQUEMENT parce que le HTML généré
+  // est affiché à l'utilisateur, et parce que
+  // vous avez confiance dans le fait que ce
+  // parser de Markdown ne contient pas de bugs.
   const renderedHTML = md.render(markdown);
   return {__html: renderedHTML};
 }
@@ -982,28 +983,28 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 </Sandpack>
 
-To see why rendering arbitrary HTML is dangerous, replace the code above with this:
+Pour comprendre pourquoi le rendu d'un HTML arbitraire est dangereux, remplacez le code plus haut par celui-ci :
 
 ```js {1-4,7,8}
 const post = {
-  // Imagine this content is stored in the database.
-  content: `<img src="" onerror='alert("you were hacked")'>`
+  // Imaginez que ce contenu est stocké en base de données.
+  content: `<img src="" onerror='alert("vous avez été hacké")'>`
 };
 
 export default function MarkdownPreview() {
-  // 🔴 SECURITY HOLE: passing untrusted input to dangerouslySetInnerHTML
+  // 🔴 FAILLE DE SÉCURITÉ : passer une saisie non fiable to dangerouslySetInnerHTML
   const markup = { __html: post.content };
   return <div dangerouslySetInnerHTML={markup} />;
 }
 ```
 
-The code embedded in the HTML will run. A hacker could use this security hole to steal user information or to perform actions on their behalf. **Only use `dangerouslySetInnerHTML` with trusted and sanitized data.**
+Le code intégré dans le HTML sera exécuté. Un hacker pourrait utiliser cette faille de sécurité pour voler des informations de l'utilisateur ou effectuer certaines actions en son nom. **Utilisez seulement `dangerouslySetInnerHTML` avec des données de confiance et assainies**.
 
 ---
 
-### Handling mouse events {/*handling-mouse-events*/}
+### Gérer des événements de la souris {/*handling-mouse-events*/}
 
-This example shows some common [mouse events](#mouseevent-handler) and when they fire.
+Cet exemple montre quelques [événements de souris](#mouseevent-handler) courants et quand ils sont déclenchés.
 
 <Sandpack>
 
@@ -1015,24 +1016,24 @@ export default function MouseExample() {
       onMouseLeave={e => console.log('onMouseLeave (parent)')}
     >
       <button
-        onClick={e => console.log('onClick (first button)')}
-        onMouseDown={e => console.log('onMouseDown (first button)')}
-        onMouseEnter={e => console.log('onMouseEnter (first button)')}
-        onMouseLeave={e => console.log('onMouseLeave (first button)')}
-        onMouseOver={e => console.log('onMouseOver (first button)')}
-        onMouseUp={e => console.log('onMouseUp (first button)')}
+        onClick={e => console.log('onClick (premier bouton)')}
+        onMouseDown={e => console.log('onMouseDown (premier bouton)')}
+        onMouseEnter={e => console.log('onMouseEnter (premier bouton)')}
+        onMouseLeave={e => console.log('onMouseLeave (premier bouton)')}
+        onMouseOver={e => console.log('onMouseOver (premier bouton)')}
+        onMouseUp={e => console.log('onMouseUp (premier bouton)')}
       >
-        First button
+        Premier bouton
       </button>
       <button
-        onClick={e => console.log('onClick (second button)')}
-        onMouseDown={e => console.log('onMouseDown (second button)')}
-        onMouseEnter={e => console.log('onMouseEnter (second button)')}
-        onMouseLeave={e => console.log('onMouseLeave (second button)')}
-        onMouseOver={e => console.log('onMouseOver (second button)')}
-        onMouseUp={e => console.log('onMouseUp (second button)')}
+        onClick={e => console.log('onClick (deuxième bouton)')}
+        onMouseDown={e => console.log('onMouseDown (deuxième bouton)')}
+        onMouseEnter={e => console.log('onMouseEnter (deuxième bouton)')}
+        onMouseLeave={e => console.log('onMouseLeave (deuxième bouton)')}
+        onMouseOver={e => console.log('onMouseOver (deuxième bouton)')}
+        onMouseUp={e => console.log('onMouseUp (deuxième bouton)')}
       >
-        Second button
+        Deuxième bouton
       </button>
     </div>
   );
@@ -1048,9 +1049,9 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling pointer events {/*handling-pointer-events*/}
+### Gérer des événements du pointeur {/*handling-pointer-events*/}
 
-This example shows some common [pointer events](#pointerevent-handler) and when they fire.
+Cet exemple montre quelques [événements de pointeur](#pointerevent-handler) courants et quand ils sont déclenchés.
 
 <Sandpack>
 
@@ -1063,24 +1064,24 @@ export default function PointerExample() {
       style={{ padding: 20, backgroundColor: '#ddd' }}
     >
       <div
-        onPointerDown={e => console.log('onPointerDown (first child)')}
-        onPointerEnter={e => console.log('onPointerEnter (first child)')}
-        onPointerLeave={e => console.log('onPointerLeave (first child)')}
-        onPointerMove={e => console.log('onPointerMove (first child)')}
-        onPointerUp={e => console.log('onPointerUp (first child)')}
+        onPointerDown={e => console.log('onPointerDown (premier enfant)')}
+        onPointerEnter={e => console.log('onPointerEnter (premier enfant)')}
+        onPointerLeave={e => console.log('onPointerLeave (premier enfant)')}
+        onPointerMove={e => console.log('onPointerMove (premier enfant)')}
+        onPointerUp={e => console.log('onPointerUp (premier enfant)')}
         style={{ padding: 20, backgroundColor: 'lightyellow' }}
       >
-        First child
+        Premier enfant
       </div>
       <div
-        onPointerDown={e => console.log('onPointerDown (second child)')}
-        onPointerEnter={e => console.log('onPointerEnter (second child)')}
-        onPointerLeave={e => console.log('onPointerLeave (second child)')}
-        onPointerMove={e => console.log('onPointerMove (second child)')}
-        onPointerUp={e => console.log('onPointerUp (second child)')}
+        onPointerDown={e => console.log('onPointerDown (deuxième enfant)')}
+        onPointerEnter={e => console.log('onPointerEnter (deuxième enfant)')}
+        onPointerLeave={e => console.log('onPointerLeave (deuxième enfant)')}
+        onPointerMove={e => console.log('onPointerMove (deuxième enfant)')}
+        onPointerUp={e => console.log('onPointerUp (deuxième enfant)')}
         style={{ padding: 20, backgroundColor: 'lightblue' }}
       >
-        Second child
+        Deuxième enfant
       </div>
     </div>
   );
@@ -1096,9 +1097,9 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling focus events {/*handling-focus-events*/}
+### Gérer les événéments de focus {/*handling-focus-events*/}
 
-In React, [focus events](#focusevent-handler) bubble. You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from outside of the parent element. The example shows how to detect focusing a child, focusing the parent element, and how to detect focus entering or leaving the whole subtree.
+Avec React, les [événements de focus](#focusevent-handler) remontent dans le DOM. Vous pouvez utiliser `currentTarget` et `relatedTarget` pour différencier si les événements de focus ou de blur proviennent de l'extérieur de l'élément parent. L'exemple montre comment détecter le focus d'un enfant, celui de l'élément parent et comment détecter l'entrée ou la sortie du focus sur l'ensemble du sous-arbre.
 
 <Sandpack>
 
@@ -1109,33 +1110,33 @@ export default function FocusExample() {
       tabIndex={1}
       onFocus={(e) => {
         if (e.currentTarget === e.target) {
-          console.log('focused parent');
+          console.log('focus sur le parent');
         } else {
-          console.log('focused child', e.target.name);
+          console.log("focus sur l'enfant", e.target.name);
         }
         if (!e.currentTarget.contains(e.relatedTarget)) {
-          // Not triggered when swapping focus between children
-          console.log('focus entered parent');
+          // N'est pas déclenché quand on passe d'un enfant à l'autre 
+          console.log('focus entré au niveau du parent');
         }
       }}
       onBlur={(e) => {
         if (e.currentTarget === e.target) {
-          console.log('unfocused parent');
+          console.log('Perte du focus par le parent');
         } else {
-          console.log('unfocused child', e.target.name);
+          console.log("Perte du focus par l'enfant", e.target.name);
         }
         if (!e.currentTarget.contains(e.relatedTarget)) {
-          // Not triggered when swapping focus between children
-          console.log('focus left parent');
+          // N'est pas déclenché quand on passe d'un enfant à l'autre
+          console.log('Le focus quitte le parent');
         }
       }}
     >
       <label>
-        First name:
+        Prénom :
         <input name="firstName" />
       </label>
       <label>
-        Last name:
+        Nom :
         <input name="lastName" />
       </label>
     </div>
@@ -1152,9 +1153,9 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling keyboard events {/*handling-keyboard-events*/}
+### Gérer les évenements du clavier {/*handling-keyboard-events*/}
 
-This example shows some common [keyboard events](#keyboardevent-handler) and when they fire.
+Cet exemple montre quelques [événements du clavier](#keyboardevent-handler) courants et quand ils sont déclenchés.
 
 <Sandpack>
 
@@ -1162,7 +1163,7 @@ This example shows some common [keyboard events](#keyboardevent-handler) and whe
 export default function KeyboardExample() {
   return (
     <label>
-      First name:
+      Prénom :
       <input
         name="firstName"
         onKeyDown={e => console.log('onKeyDown:', e.key, e.code)}
