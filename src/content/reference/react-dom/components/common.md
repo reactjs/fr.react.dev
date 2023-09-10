@@ -4,7 +4,7 @@ title: "Composants communs (par exemple <div>)"
 
 <Intro>
 
-Tous les composants intégrés du navigateur, tel que [`<div>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/div), prennent en charge des props et événements communs.
+Tous les composants intégrés du navigateur, tel que [`<div>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/div), prennent en charge des props et des événements communs.
 
 </Intro>
 
@@ -24,38 +24,38 @@ Tous les composants intégrés du navigateur, tel que [`<div>`](https://develope
 
 #### Props {/*common-props*/}
 
-Ces props React particulières sont supportées pour tous les composants intégrés :
+Ces props React particulières sont supportées par tous les composants intégrés :
 
-* `children` : un nœud React (un élément, une chaîne de caractères, un nombre, [un portail](/reference/react-dom/createPortal), un nœud vide comme `null`, `undefined` et les booléns ou un tableau d'autres nœuds React). Ça spécifie le contenu à l'intérieur d'un composant. Lorsque vous utilisez du JSX, vous spécifiez généralement la prop `children` de manière implicite en imbriquant les balises telles que `<div><span /></div>`.
+* `children` : un nœud React (un élément, une chaîne de caractères, un nombre, [un portail](/reference/react-dom/createPortal), un nœud vide comme `null`, `undefined` et les booléns ou un tableau d'autres nœuds React). Elle spécifie le contenu à l'intérieur d'un composant. Lorsque vous utilisez du JSX, vous spécifiez généralement la prop `children` de manière implicite en imbriquant les balises telles que `<div><span /></div>`.
 
 * `dangerouslySetInnerHTML` : un objet de la forme `{ __html: '<p>some html</p>' }` avec du HTML brut dans une chaîne de caractères. Il surcharge la propriété [`innerHTML`](https://developer.mozilla.org/fr/docs/Web/API/Element/innerHTML) du nœud du DOM et affiche à l'intérieur le HTML donné. Cette méthode doit être utilisée avec une extrême prudence ! Si le HTML contenu n'est pas fiable (par exemple s'il est basé sur des données de l'utilisateur), vous risquez d'introduire une vulnérabilité [XSS](https://fr.wikipedia.org/wiki/Cross-site_scripting). [Apprenez-en davantage sur `dangerouslySetInnerHTML` ici](#dangerously-setting-the-inner-html).
 
-* `ref` : un objet ref provenant de [`useRef`](/reference/react/useRef), de [`createRef`](/reference/react/createRef), d'une [fonction de rappel `ref`](#ref-callback) ou d'une chaîne de caractères pour les [refs historiques](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs). Votre ref sera rempli par l'élément du DOM pour ce nœud. [Apprenez-en davantage sur la manipulation du DOM avec les refs](#manipulating-a-dom-node-with-a-ref).
+* `ref` : un objet ref provenant de [`useRef`](/reference/react/useRef), de [`createRef`](/reference/react/createRef), d'une [fonction de rappel `ref`](#ref-callback) ou d'une chaîne de caractères pour les [refs historiques](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs). Votre ref sera remplie par l'élément du DOM pour ce nœud. [Apprenez-en davantage sur la manipulation du DOM avec les refs](#manipulating-a-dom-node-with-a-ref).
 
 * `suppressContentEditableWarning` : un booléen. S'il est à `true`, supprime l'avertissement que React affiche pour les élements qui ont à la fois des `children` et `contentEditable={true}` (qui ne fonctionnent normalement pas ensemble). Vous pouvez l'utiliser si vous construisez une bibliothèque de champ de saisie qui gère manuellement le contenu du `contentEditable`.
 
-* `suppressHydrationWarning` : un booléen. Si vous utilisez le [rendu côté serveur](/reference/react-dom/server), il y a normalement un avertissement lorsque le serveur et le client font le rendu d'un contenu différent. Dans certains cas rares (comme avec les horodatages), il est très compliqué, voire impossible, de garantir une correspondance exacte. Si vous définissez `suppressHydrationWarning` à `true`, React ne vous alertera plus en cas de non-concordance entre les attributs et le contenu de cet élément. Ça ne fonctionne que sur un seul niveau de profondeur et est destiné à servir d'échappatoire. N'en n'abusez pas. [Apprenez-en davantage sur la suppression des errors d'hydratation ici](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors).
+* `suppressHydrationWarning` : un booléen. Si vous utilisez le [rendu côté serveur](/reference/react-dom/server), il y a normalement un avertissement lorsque le serveur et le client font le rendu d'un contenu différent. Dans certains cas rares (comme avec les horodatages), il est très compliqué, voire impossible, de garantir une correspondance exacte. Si vous définissez `suppressHydrationWarning` à `true`, React ne vous alertera plus en cas de non-concordance entre les attributs et le contenu de cet élément. Ça ne fonctionne que sur un seul niveau de profondeur et est destiné à servir d'échappatoire. N'en n'abusez pas. [Apprenez-en davantage sur la suppression des erreurs d'hydratation ici](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors).
 
-* `style` : un objet contenant des styles CSS, par exemple `{ fontWeight: 'bold', margin: 20 }`. À l'image de la propriété du DOM [`style`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/style), les noms des propriétés CSS doivent être écrites en `camelCase`, par exemple `fontWeight` plutôt que `font-weight`. Vous pouvez passer des valeurs sous forme de chaîne de caractères ou de nombre. Si vous donnez un nombre, tel que `width: 100`, React ajoutera automatiquement `px` (« pixels ») à la valeur, à moins qu'il ne s'agisse d'une [propriété sans unité](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57). Nous recommandons d'utiliser `style` uniquement pour les styles dynamiques pour lesquelles vous ne connaissez pas les valeurs de style à l'avance. Dans les autres cas, utiliser des classes CSS avec `className` est bien plus efficace. [Apprenez-en davantage sur `className` et `style` ici](#applying-css-styles).
+* `style` : un objet contenant des styles CSS, par exemple `{ fontWeight: 'bold', margin: 20 }`. À l'image de la propriété du DOM [`style`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/style), les noms des propriétés CSS doivent être écrites en `camelCase`, comme `fontWeight` à la place de `font-weight`. Vous pouvez passer des valeurs sous forme de chaîne de caractères ou de nombre. Si vous donnez un nombre, tel que `width: 100`, React ajoutera automatiquement `px` (« pixels ») à la valeur, à moins qu'il ne s'agisse d'une [propriété sans unité](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57). Nous recommandons d'utiliser `style` uniquement pour les styles dynamiques pour lesquels vous ne connaissez pas les valeurs de style à l'avance. Dans les autres cas, utiliser des classes CSS avec `className` est bien plus efficace. [Apprenez-en davantage sur `className` et `style` ici](#applying-css-styles).
 
-Ces props standards du DOM sont également supportés pour tous les composants intégrés :
+Ces props standards du DOM sont également supportés par tous les composants intégrés :
 
-* [`accessKey`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/accesskey) : une chaîne de caractères. Il spécifie un raccourci clavier pour l'élément. [Ce n'est généralement pas recommandé](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/accesskey#accessibility_concerns).
-* [`aria-*`](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA/Attributes) : les attributs ARIA vous permettent de spécifier les informations de l'arbre d'accessibilité pour cet élément. Consultez [attributs ARIA](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA/Attributes) pour une référence exhaustive. En React, tous les noms des attributs ARIA sont exactement les mêmes qu'en HTML.
-* [`autoCapitalize`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/autocapitalize) : une chaîne de caractères. Il spécifie la façon dont le texte saisi est automatiquement converti en majuscules ou non.
-* [`className`](https://developer.mozilla.org/fr/docs/Web/API/Element/className) : une chaîne de caractères. Il spécifie le nom de la classe CSS de l'élément. [Apprenez-en davantage sur la façon d'appliquer des styles CSS ici](#applying-css-styles).
+* [`accessKey`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/accesskey) : une chaîne de caractères. Elle spécifie un raccourci clavier pour l'élément. [Ce n'est généralement pas recommandé](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/accesskey#accessibility_concerns).
+* [`aria-*`](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA/Attributes) : les attributs ARIA vous permettent de spécifier les informations de l'arbre d'accessibilité pour cet élément. Consultez [attributs ARIA](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA/Attributes) pour une référence exhaustive. En React, les noms des attributs ARIA sont exactement les mêmes qu'en HTML.
+* [`autoCapitalize`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/autocapitalize) : une chaîne de caractères. Elle spécifie la façon dont le texte saisi est automatiquement converti en majuscules ou non.
+* [`className`](https://developer.mozilla.org/fr/docs/Web/API/Element/className) : une chaîne de caractères. Elle spécifie le nom de la classe CSS de l'élément. [Apprenez-en davantage sur la façon d'appliquer des styles CSS ici](#applying-css-styles).
 * [`contentEditable`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/contenteditable) : un booléen. S'il vaut `true`, le navigateur permet à l'utilisateur d'éditer directement le contenu de l'élément. C'est utilisé pour implémenter des bibliothèques d'éditeurs riches telle que [Lexical](https://lexical.dev/). React avertit quand vous essayez de donner des `children` React à un élément qui dispose de `contentEditable={true}`, parce que React ne sera pas capable de mettre à jour son contenu après les modifications faites par l'utilisateur.
 * [`data-*`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/data-*) : les attributs de données qui vous permettent d'associer des données à l'élément, par exemple `data-fruit="banane"`. Ils sont peu fréquents avec React car vous lisez généralement les données à partir des props ou de l'état.
 * [`dir`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/dir) : `'ltr'` ou `'rtl'`. Ça spécifie la direction du texte de l'élément.
 * [`draggable`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/draggable) : un booléen. Il spécifie si l'élément peut être déplacé ou non. Ça fait partie de [l'API Drag and Drop du HTML](https://developer.mozilla.org/fr/docs/Web/API/HTML_Drag_and_Drop_API).
-* [`enterKeyHint`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/enterKeyHint) : une chaîne de caractères. Il spécifie quelle action correspond à la touche entrée d'un clavier virtuel.
+* [`enterKeyHint`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/enterKeyHint) : une chaîne de caractères. Elle spécifie quelle action correspond à la touche entrée d'un clavier virtuel.
 * [`htmlFor`](https://developer.mozilla.org/fr/docs/Web/API/HTMLLabelElement/htmlFor) : une chaîne de caractères. Pour les [`<label>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/label) et les [`<output>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/output), elle vous permet [d'associer une légende au contrôle](/reference/react-dom/components/input#providing-a-label-for-an-input). C'est équivalent à [l'attribut HTML `for`](https://developer.mozilla.org/fr/docs/Web/HTML/Attributes/for). React utilise le nom de la propriété standard du DOM (`htmlFor`) plutôt que le nom de l'attribut HTML.
 * [`hidden`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/hidden) : un booléen ou une chaîne de caractères. Il spécifie si l'élément doit être caché ou non.
-* [`id`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/id) : une chaîne de caractères. Il spécifie un identifiant unique pour cet élément, qui peut être utilisé afin de le trouver ultérieurement, ou pour le connecter à d'autres éléments. Générez cet identifiant avec [`useId`](/reference/react/useId) pour éviter tout conflit avec des instances multiples d'un même composant.
-* [`is`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/is) : une chaîne de caractères. Lorsqu'il est spécifié, le composant se comporte comme un [élément HTML personnalisé (*custom element*)](/reference/react-dom/components#custom-html-elements).
-* [`inputMode`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/inputmode) : une chaîne de caractères. Il définit le type de clavier à afficher (texte, nombre ou téléphone par exemple).
-* [`itemProp`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/itemprop) : une chaîne de caractères. Il spécifie la propriété qui est utilisée pour les robots d'exploration de données structurelles.
-* [`lang`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/lang) : une chaîne de caractères. Il spéficie la langue de l'élément.
+* [`id`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/id) : une chaîne de caractères. Elle spécifie un identifiant unique pour cet élément, qui peut être utilisé afin de le trouver ultérieurement, ou pour le connecter à d'autres éléments. Générez cet identifiant avec [`useId`](/reference/react/useId) pour éviter tout conflit avec des instances multiples d'un même composant.
+* [`is`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/is) : une chaîne de caractères. Lorsqu'elle est spécifiée, le composant se comporte comme un [élément HTML personnalisé (*custom element*)](/reference/react-dom/components#custom-html-elements).
+* [`inputMode`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/inputmode) : une chaîne de caractères. Elle définit le type de clavier à afficher (texte, nombre ou téléphone par exemple).
+* [`itemProp`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/itemprop) : une chaîne de caractères. Elle spécifie la propriété qui est utilisée pour les robots d'exploration de données structurelles.
+* [`lang`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/lang) : une chaîne de caractères. Elle spéficie la langue de l'élément.
 * [`onAnimationEnd`](https://developer.mozilla.org/fr/docs/Web/API/Element/animationend_event) : un [gestionnaire d'événement `AnimationEvent`](#animationevent-handler). Cet événement est déclenché à la fin d'une animation CSS.
 * `onAnimationEndCapture` : une version de `onAnimationEnd` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onAnimationIteration`](https://developer.mozilla.org/fr/docs/Web/API/Element/animationiteration_event) : un [gestionnaire d'événement `AnimationEvent`](#animationevent-handler). Cet événement est déclenché quand une itération d'une animation CSS se termine, et qu'une nouvelle commence.
@@ -64,7 +64,7 @@ Ces props standards du DOM sont également supportés pour tous les composants i
 * `onAnimationStartCapture` : comme `onAnimationStart`, mais s'exécute pendant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onAuxClick`](https://developer.mozilla.org/fr/docs/Web/API/Element/auxclick_event) : un [gestionnaire d'événement `MouseEvent`](#mouseevent-handler). Cet événement est déclenché quand un bouton non principal a été appuyé.
 * `onAuxClickCapture` : une version de `onAuxClick` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* `onBeforeInput` : un [gestionnaire d'événement `InputEvent`](#inputevent-handler). Cet événement est déclenché avant que la valeur d'un élément modifiable ne soit modifié. React n'utilise *pas* encore l'événement natif [`beforeinput`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/beforeinput_event), et utilise un polyfill pour le simuler à l'aide d'autres événements.
+* `onBeforeInput` : un [gestionnaire d'événement `InputEvent`](#inputevent-handler). Cet événement est déclenché avant que la valeur d'un élément modifiable ne soit modifiée. React n'utilise *pas* encore l'événement natif [`beforeinput`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/beforeinput_event), et utilise un polyfill pour le simuler à l'aide d'autres événements.
 * `onBeforeInputCapture` : une version de `onBeforeInput` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * `onBlur` : un [gestionnaire d'événement `FocusEvent`](#focusevent-handler). Cet événement est déclenché lorsqu'un élément perd le focus. Contrairement à l'événement natif du navigateur [`blur`](https://developer.mozilla.org/fr/docs/Web/API/Element/blur_event), en React l'événement `onBlur` remonte au niveau du DOM.
 * `onBlurCapture` : une version de `onBlur` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
@@ -82,7 +82,7 @@ Ces props standards du DOM sont également supportés pour tous les composants i
 * `onCopyCapture` : une version de `onCopy` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onCut`](https://developer.mozilla.org/fr/docs/Web/API/Element/cut_event) : un [gestionnaire d'événement `ClipboardEvent`](#clipboardevent-handler). Cet événement est déclenché quand l'utilisateur tente de coller quelque chose depuis le presse-papier.
 * `onCutCapture` : une version de `onCut` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* `onDoubleClick` : un [gestionnaire d'événement `MouseEvent`](#mouseevent-handler). Cet événement est déclenché quand l'utilisateur clique deux fois. Ça correspond à [l'événement `dblclick`](https://developer.mozilla.org/fr/docs/Web/API/Element/dblclick_event) du navigateur.
+* `onDoubleClick` : un [gestionnaire d'événement `MouseEvent`](#mouseevent-handler). Cet événement est déclenché quand l'utilisateur double clique. Ça correspond à [l'événement `dblclick`](https://developer.mozilla.org/fr/docs/Web/API/Element/dblclick_event) du navigateur.
 * `onDoubleClickCapture` : une version de `onDoubleClick` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onDrag`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/drag_event) : un [gestionnaire d'événement `DragEvent`](#dragevent-handler). Cet événement est déclenché tant que l'utilisateur déplace quelque chose.
 * `onDragCapture` : une version de `onDrag` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
@@ -98,7 +98,7 @@ Ces props standards du DOM sont également supportés pour tous les composants i
 * `onDropCapture` : une version de `onDrop` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * `onFocus` : un [gestionnaire d'événement `FocusEvent`](#focusevent-handler). Cet événement est déclenché lorsqu'un élément reçoit le focus. Contrairement à l'événement natif du navigateur [`focus`](https://developer.mozilla.org/fr/docs/Web/API/Element/focus_event), en React l'événement `onFocus` remonte au niveau du DOM.
 * `onFocusCapture` : une version de `onFocus` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onGotPointerCapture`](https://developer.mozilla.org/fr/docs/Web/API/Element/gotpointercapture_event) : un [gestionnaire d'événement `PointerEvent`](#pointerevent-handler). Cet événement est déclenché lorsqu'un élément capture le pointeur programmatiquement.
+* [`onGotPointerCapture`](https://developer.mozilla.org/fr/docs/Web/API/Element/gotpointercapture_event) : un [gestionnaire d'événement `PointerEvent`](#pointerevent-handler). Cet événement est déclenché lorsqu'un élément capture programmatiquement le pointeur.
 * `onGotPointerCaptureCapture` : une version de `onGotPointerCapture` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onKeyDown`](https://developer.mozilla.org/fr/docs/Web/API/Element/keydown_event) : un [gestionnaire d'événement `KeyboardEvent` handler](#pointerevent-handler). Cet événement est déclenché quand une touche est pressée.
 * `onKeyDownCapture` : une version de `onKeyDown` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
@@ -111,7 +111,7 @@ Ces props standards du DOM sont également supportés pour tous les composants i
 * [`onMouseDown`](https://developer.mozilla.org/fr/docs/Web/API/Element/mousedown_event) : un [gestionnaire d'événement `MouseEvent`](#mouseevent-handler). Cet événement est déclenché quand le bouton du dispositif de pointeur est pressé.
 * `onMouseDownCapture` : une version de `onMouseDown` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onMouseEnter`](https://developer.mozilla.org/fr/docs/Web/API/Element/mouseenter_event) : un [gestionnaire d'événement `MouseEvent`](#mouseevent-handler). Cet événement est déclenché lorsque le pointeur se déplace dans un élément. Il n'y a pas de phase de capture. À la place, `onMouseLeave` et `onMouseEnter` se propagent de l'élément que l'on quitte à celui sur lequel on arrive.
-* [`onMouseLeave`](https://developer.mozilla.org/fr/docs/Web/API/Element/mouseleave_event : un [gestionnaire d'événement `MouseEvent`](#mouseevent-handler). Cet événement est déclenché lorsque le pointeur se déplace en dehors d'un élément. Il n'y a pas de phase de capture. À la place, `onMouseLeave` et `onMouseEnter` se propagent de l'élément que l'on quitte à celui sur lequel on arrive.
+* [`onMouseLeave`](https://developer.mozilla.org/fr/docs/Web/API/Element/mouseleave_event) : un [gestionnaire d'événement `MouseEvent`](#mouseevent-handler). Cet événement est déclenché lorsque le pointeur se déplace en dehors d'un élément. Il n'y a pas de phase de capture. À la place, `onMouseLeave` et `onMouseEnter` se propagent de l'élément que l'on quitte à celui sur lequel on arrive.
 * [`onMouseMove`](https://developer.mozilla.org/fr/docs/Web/API/Element/mousemove_event) : un [gestionnaire d'événement `MouseEvent`](#mouseevent-handler). Cet événement est déclenché lorsque les coordonnées du pointeur changent.
 * `onMouseMoveCapture` : une version de `onMouseMove` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onMouseOut`](https://developer.mozilla.org/fr/docs/Web/API/Element/mouseout_event) : un [gestionnaire d'événement `MouseEvent`](#mouseevent-handler). Cet événement est déclenché lorsque le pointeur sort d'un élément ou s'il se déplace sur un élément enfant.
@@ -122,8 +122,8 @@ Ces props standards du DOM sont également supportés pour tous les composants i
 * `onPointerCancelCapture` : une version de `onPointerCancel` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onPointerDown`](https://developer.mozilla.org/fr/docs/Web/API/Element/pointerdown_event) : un [gestionnaire d'événement `PointerEvent`](#pointerevent-handler). Cet événement est déclenché quand un pointeur devient actif.
 * `onPointerDownCapture` : une version de `onPointerDown` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onPointerEnter`](https://developer.mozilla.org/fr/docs/Web/API/Element/pointerenter_event) : un [gestionnaire d'événement `PointerEvent`](#pointerevent-handler). Cet événement est déclenché quand un pointeur se déplace à l'intérieur d'un élément. Il n'y a pas de phase de capture. À la place, `onPointerLeave` et `onPointerEnter` se propagent de l'élément que l'on quitte à celui sur leque on arrive.
-* [`onPointerLeave`](https://developer.mozilla.org/fr/docs/Web/API/Element/pointerleave_event) : un [gestionnaire d'événement `PointerEvent`](#pointerevent-handler). Cet événement est déclenché quand un pointeur se déplace en dehors d'un élément. Il n'y a pas de phase de capture. À la place, `onPointerLeave` et `onPointerEnter` se propagent de l'élément que l'on quitte à celui sur leque on arrive.
+* [`onPointerEnter`](https://developer.mozilla.org/fr/docs/Web/API/Element/pointerenter_event) : un [gestionnaire d'événement `PointerEvent`](#pointerevent-handler). Cet événement est déclenché quand un pointeur se déplace à l'intérieur d'un élément. Il n'y a pas de phase de capture. À la place, `onPointerLeave` et `onPointerEnter` se propagent de l'élément que l'on quitte à celui sur lequel on arrive.
+* [`onPointerLeave`](https://developer.mozilla.org/fr/docs/Web/API/Element/pointerleave_event) : un [gestionnaire d'événement `PointerEvent`](#pointerevent-handler). Cet événement est déclenché quand un pointeur se déplace en dehors d'un élément. Il n'y a pas de phase de capture. À la place, `onPointerLeave` et `onPointerEnter` se propagent de l'élément que l'on quitte à celui sur lequel on arrive.
 * [`onPointerMove`](https://developer.mozilla.org/fr/docs/Web/API/Element/pointermove_event) : un [gestionnaire d'événement `PointerEvent`](#pointerevent-handler). Cet événement est déclenché lorsque les coordonnées d'un pointeur changent.
 * `onPointerMoveCapture` : une version de `onPointerMove` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onPointerOut`](https://developer.mozilla.org/fr/docs/Web/API/Element/pointerout_event) : un [gestionnaire d'événement `PointerEvent`](#pointerevent-handler). Cet événement est déclenché lorsqu'un pointeur se déplace en dehors d'un élément, si l'interaction du pointeur est annulée, ainsi [que pour quelques autres raisons](https://developer.mozilla.org/fr/docs/Web/API/Element/pointerout_event).
@@ -134,7 +134,7 @@ Ces props standards du DOM sont également supportés pour tous les composants i
 * `onPasteCapture` : une version de `onPaste` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onScroll`](https://developer.mozilla.org/fr/docs/Web/API/Element/scroll_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque l'utilisateur fait défiler le contenu d'un élément. Cet événement ne remonte pas.
 * `onScrollCapture` : une version de `onScroll` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onSelect`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement/select_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché après la sélection dans un élément éditable tel qu'un champ de saisie. React étend l'événement `onSelect` pour qu'il fonctionne aussi avec les éléments `contentEditable={true}`. React le modifie également pour se déclencher lors de sélection vide et lors de modifications (ce qui peut affecter la sélection).
+* [`onSelect`](https://developer.mozilla.org/fr/docs/Web/API/HTMLInputElement/select_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché après la sélection dans un élément éditable tel qu'un champ de saisie. React étend l'événement `onSelect` pour qu'il fonctionne aussi avec les éléments `contentEditable={true}`. React le modifie également pour se déclencher lors d'une sélection vide et lors de modifications (ce qui peut affecter la sélection).
 * `onSelectCapture` : une version de `onSelect` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onTouchCancel`](https://developer.mozilla.org/fr/docs/Web/API/Element/touchcancel_event) : un [gestionnaire d'événement `TouchEvent`](#touchevent-handler). Cet événement est déclenché lorsque le navigateur annule une interaction de contact.
 * `onTouchCancelCapture` : une version de `onTouchCancel` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
@@ -148,11 +148,11 @@ Ces props standards du DOM sont également supportés pour tous les composants i
 * `onTransitionEndCapture` : une version de `onTransitionEnd` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onWheel`](https://developer.mozilla.org/fr/docs/Web/API/Element/wheel_event) : un [gestionnaire d'événement `WheelEvent`](#wheelevent-handler). Cet événement est déclenché lorsque l'utilisateur fait tourner un bouton de roue.
 * `onWheelCapture` : une version de `onWheel` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`role`](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA/Roles) : une chaîne de caractères. Il explicite le rôle de l'élément pour les techniques d'assistance.
-* [`slot`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/slot) : une chaîne de caractères. Il spécifie le nom de l'emplacement (*slot*) lorsque le shadow DOM est utilisé. En React, un modèle équivalent est typiquement réalisé en passant du JSX dans les props, comme par exemple `<Layout left={<Sidebar />} right={<Content />} />`.
+* [`role`](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA/Roles) : une chaîne de caractères. Elle explicite le rôle de l'élément pour les techniques d'assistance.
+* [`slot`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/slot) : une chaîne de caractères. Elle spécifie le nom de l'emplacement (*slot*) lorsque le shadow DOM est utilisé. En React, un modèle équivalent est typiquement réalisé en passant du JSX dans les props, comme par exemple `<Layout left={<Sidebar />} right={<Content />} />`.
 * [`spellCheck`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/spellcheck) : un booléen ou `null`. Lorsqu'il est définit explicitement à `true` ou `false`, la vérification orthographique est activée ou désactivée.
 * [`tabIndex`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/tabindex) : un nombre. Celui-ci surcharge le comportement par défaut du bouton Tab. [Évitez d'utiliser d'autres valeurs que `-1` et `0`](https://www.tpgi.com/using-the-tabindex-attribute/).
-* [`title`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/title) : une chaîne de caractères. Il spécifie le texte pour l'infobulle de l'élément.
+* [`title`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/title) : une chaîne de caractères. Elle spécifie le texte pour l'infobulle de l'élément.
 * [`translate`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/translate) : `'yes'` ou `'no'`. Le contenu de l'élément n'est pas traduit lorsqu'il vaut `'no'`.
 
 Vous pouvez également passer des attributs personnalisés comme props, par exemple `mycustomprop="uneValeur"`. Ça peut être utile à l'intégration de bibliothèques tierces. Le nom de l'attribut personnalisé doit être en minuscules et ne doit pas commencer par `on`. La valeur sera convertie en chaîne de caractères. Si vous passez `null` ou `undefined`, l'attribut personnalisé sera supprimé.
@@ -164,7 +164,7 @@ Ces événements sont déclenchés pour les éléments [`<form>`](https://develo
 * [`onSubmit`](https://developer.mozilla.org/fr/docs/Web/API/HTMLFormElement/submit_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché quand un formulaire est soumis.
 * `onSubmitCapture` : une version de `onSubmit` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 
-Ces événements sont déclenchés pour les éléments [`<dialog>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/dialog).Contrairement aux événements du navigateur, ceux en React remontent dans le DOM :
+Ces événements sont déclenchés pour les éléments [`<dialog>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/dialog). Contrairement aux événements du navigateur, ceux en React remontent dans le DOM :
 
 * [`onCancel`](https://developer.mozilla.org/fr/docs/Web/API/HTMLDialogElement/cancel_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché quand l'utilisateur tente de fermer la fenêtre de dialogue.
 * `onCancelCapture` : une version de `onCancel` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
@@ -223,7 +223,7 @@ Ces événements sont déclenchés pour les ressources comme [`<audio>`](https:/
 * `onSeekedCapture` : une version de `onSeeked` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onSeeking`](https://developer.mozilla.org/fr/docs/Web/API/HTMLMediaElement/seeking_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsqu'une opération de recherche commence.
 * `onSeekingCapture` : une version de `onSeeking` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onStalled`](https://developer.mozilla.org/fr/docs/Web/API/HTMLMediaElement/stalled_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque le navigateur est en attente de données, mais celles-ci ne se chargent pas.
+* [`onStalled`](https://developer.mozilla.org/fr/docs/Web/API/HTMLMediaElement/stalled_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque le navigateur est en attente de données, mais que celles-ci ne se chargent pas.
 * `onStalledCapture` : une version de `onStalled` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onSuspend`](https://developer.mozilla.org/fr/docs/Web/API/HTMLMediaElement/suspend_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque le chargement de la ressource est suspendu.
 * `onSuspendCapture` : une version de `onSuspend` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
@@ -253,11 +253,11 @@ Au lieu d'un objet ref (tel que celui renvoyé par [`useRef`](/reference/react/u
 
 Quand le nœud DOM `<div>` est ajouté à l'écran, React appelle votre fonction `ref` avec le `node` DOM comme argument. Quand ce nœud DOM `<div>` est enlevé, React apppelle votre fonction `ref` avec `null`.
 
-React appellera aussi votre fonction `ref` à chaque fois que vous passez une fonction `ref` *différente*. Dans l'exemple plus hat, `(node) => { ... }` est une fonction différente à chaque rendu. Lorsque votre composant refait un rendu, la fonction *précédente* sera appelée avec l'argument `null`, et la *prochaine* fonction sera appelée avec le nœud DOM.
+React appellera aussi votre fonction `ref` à chaque fois que vous passez une fonction `ref` *différente*. Dans l'exemple plus haut, `(node) => { ... }` est une fonction différente à chaque rendu. Lorsque votre composant refait un rendu, la fonction *précédente* sera appelée avec l'argument `null`, et la *prochaine* fonction sera appelée avec le nœud DOM.
 
 #### Paramètres {/*ref-callback-parameters*/}
 
-* `node` : un nœud DOM ou `null`. React vous donnera le nœud DOM lors que la ref sera attachée, et `null` lorsqu'elle sera détachée. À moins de passer la même référence de fonction pour `ref` à chaque rendu, la fonction de retour sera détachée et réattachée pendant chaque nouveau rendu du composant.
+* `node` : un nœud DOM ou `null`. React vous donnera le nœud DOM lors que la ref sera attachée, et `null` lorsqu'elle sera détachée. À moins de passer la même référence de fonction pour `ref` à chaque rendu, la fonction de retour sera détachée et réattachée à chaque nouveau rendu du composant.
 
 #### Valeur renvoyée {/*returns*/}
 
@@ -275,7 +275,7 @@ Votre gestionnaire d'événement reçoit un *objet d'événement React*. C'est �
 }} />
 ```
 
-Il est conforme aux même standard que les événements DOM sous-jacents, mais corrige certaines incohérences des navigateurs.
+Il est conforme au même standard que les événements DOM sous-jacents, mais corrige certaines incohérences des navigateurs.
 
 Certains événements React ne correspondent pas directement aux événements natifs des navigateurs. Par exemple, pour `onMouseLeave`, `e.nativeEvent` indiquera un événement `mouseout`. La correspondance spécifique ne fait pas partie de l'API publique et pourrait changer à l'avenir. Si, pour certaines raisons, vous avez besoin de l'événement sous-jacent du navigateur, allez le chercher depuis `e.nativeEvent`.
 
@@ -305,7 +305,7 @@ Les objets d'événements React implémentent certaines méthodes standards [`Ev
 
 Les objets d'événements React propose également ces méthodes :
 
-* `isDefaultPrevented()` : renvoie une valeur booléenne indiquant si `preventDefault` a été appeléee.
+* `isDefaultPrevented()` : renvoie une valeur booléenne indiquant si `preventDefault` a été appelée.
 * `isPropagationStopped()` : renvoie une valeur booléenne indiquant si `stopPropagation` a été appelée.
 * `persist()` : elle n'est pas utilisée avec React DOM. Avec React Native, vous pouvez l'appeler pour lire les propriétés de l'événement après son exécution.
 * `isPersistent()` : elle n'est pas utilisée avec React DOM. Avec React Native, indique si `persist` a été appelée.
@@ -357,7 +357,7 @@ Un type de gestionnaire d'événement pour les événements de l'[API Clipboard]
 
 ---
 
-### Gestionaire `CompositionEvent` {/*compositionevent-handler*/}
+### Gestionnaire `CompositionEvent` {/*compositionevent-handler*/}
 
 Un type de gestionnaire d'événement pour les événements [des méthodes des éditeurs de saisie (IME)](https://developer.mozilla.org/fr/docs/Glossary/Input_method_editor).
 
@@ -387,7 +387,7 @@ Un type de gestionnaire d'événement pour les événements [de l'API Drag and D
     onDragStart={e => console.log('onDragStart')}
     onDragEnd={e => console.log('onDragEnd')}
   >
-    Drag source
+    Source pour le Drag
   </div>
 
   <div
@@ -396,7 +396,7 @@ Un type de gestionnaire d'événement pour les événements [de l'API Drag and D
     onDragOver={e => { e.preventDefault(); console.log('onDragOver'); }}
     onDrop={e => console.log('onDrop')}
   >
-    Drop cible
+    Cible pour le Drop
   </div>
 </>
 ```
@@ -831,7 +831,7 @@ function Row({ isSelected }) {
 }
 ```
 
-C'est particulièrement pratique si vous avez plusieurs classes conditionnelles :
+C'est particulièrement utile si vous avez plusieurs classes conditionnelles :
 
 ```js
 import cn from 'classnames';
@@ -897,7 +897,7 @@ export default function Form() {
 
 </Sandpack>
 
-Apprenez-en davantage à propos de la [manipulatiion du DOM avec les refs](/learn/manipulating-the-dom-with-refs) et [découvrir d'autres exemples](/reference/react/useRef#examples-dom).
+Apprenez-en davantage à propos de la [manipulation du DOM avec les refs](/learn/manipulating-the-dom-with-refs) et [découvrir d'autres exemples](/reference/react/useRef#examples-dom).
 
 Pour des utilisations plus avancées, l'attribut `ref` accepte églament une [fonction de rappel](#ref-callback).
 
@@ -905,7 +905,7 @@ Pour des utilisations plus avancées, l'attribut `ref` accepte églament une [fo
 
 ### Définir le HTML interne de façon risquée {/*dangerously-setting-the-inner-html*/}
 
-Vous pouvez passer une chaîne de caractère contenant du HTML brut à un élément de cette façon :
+Vous pouvez passer une chaîne de caractères contenant du HTML brut à un élément de cette façon :
 
 ```js
 const markup = { __html: '<p>du HTML brut</p>' };
@@ -914,7 +914,7 @@ return <div dangerouslySetInnerHTML={markup} />;
 
 **C'est dangereux. Comme pour la propriété du DOM [`innerHTML`](https://developer.mozilla.org/fr/docs/Web/API/Element/innerHTML), vous devez faire preuve d'une extrême prudence ! À moins que le balisage ne provienne d'une source parfaitement fiable, il est facile d'introduire une vulnérabilité [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) de cette façon.**
 
-Par exemple, si vous utilisez une bibliothèque de Markdown qui convertit le Markdown en HTML, que vous êtes sûr que son parser ne contient pas de bug et que l'utilisateur ne voit que ses propres données, vous pouvez afficher le HTML généré de cette façon : 
+Par exemple, si vous utilisez une bibliothèque de Markdown qui convertit le Markdown en HTML, que vous êtes sûr que son *parser* ne contient pas de bug et que l'utilisateur ne voit que ses propres données, vous pouvez afficher le HTML généré de cette façon : 
 
 <Sandpack>
 
@@ -923,7 +923,7 @@ import { useState } from 'react';
 import MarkdownPreview from './MarkdownPreview.js';
 
 export default function MarkdownEditor() {
-  const [postContent, setPostContent] = useState('Bonjour_, **Markdown**!');
+  const [postContent, setPostContent] = useState('_Bonjour_, **Markdown**!');
   return (
     <>
       <label>
@@ -992,7 +992,7 @@ const post = {
 };
 
 export default function MarkdownPreview() {
-  // 🔴 FAILLE DE SÉCURITÉ : passer une saisie non fiable to dangerouslySetInnerHTML
+  // 🔴 FAILLE DE SÉCURITÉ : passer une saisie non fiable à dangerouslySetInnerHTML
   const markup = { __html: post.content };
   return <div dangerouslySetInnerHTML={markup} />;
 }
@@ -1099,7 +1099,7 @@ input { margin-left: 10px; }
 
 ### Gérer les événéments de focus {/*handling-focus-events*/}
 
-Avec React, les [événements de focus](#focusevent-handler) remontent dans le DOM. Vous pouvez utiliser `currentTarget` et `relatedTarget` pour différencier si les événements de focus ou de blur proviennent de l'extérieur de l'élément parent. L'exemple montre comment détecter le focus d'un enfant, celui de l'élément parent et comment détecter l'entrée ou la sortie du focus sur l'ensemble du sous-arbre.
+Avec React, les [événements de focus](#focusevent-handler) remontent dans le DOM. Vous pouvez utiliser `currentTarget` et `relatedTarget` pour savoir si les événements de focus ou de blur proviennent de l'extérieur de l'élément parent. L'exemple montre comment détecter le focus d'un enfant, celui de l'élément parent et comment détecter l'entrée ou la sortie du focus sur l'ensemble du sous-arbre.
 
 <Sandpack>
 
