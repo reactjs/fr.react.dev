@@ -107,6 +107,24 @@ Pour établir des priorités de rendu, utilisez un de ces Hooks :
 
 ---
 
+## Les Hooks de gestion de ressources {/*resource-hooks*/}
+
+Un composant peut accéder à des *ressources* sans qu'elles fassent partie de son état. Un composant peut par exemple lire un message depuis une promesse, ou lire des informations de styles depuis un contexte.
+
+Pour lire une valeur depuis une ressource, utilisez ce Hook :
+
+- [`use`](/reference/react/use) vous permet de lire une valeur depuis une ressource telle qu'une [promesse](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise) (`Promise`) ou un [contexte](/learn/passing-data-deeply-with-context).
+
+```js
+function MessageComponent({ messagePromise }) {
+  const message = use(messagePromise);
+  const theme = use(ThemeContext);
+  // ...
+}
+```
+
+---
+
 ## Autres Hooks {/*other-hooks*/}
 
 Ces Hooks sont majoritairement utiles aux auteur·e·s de bibliothèque et ne sont pas couramment utilisés dans du code applicatif.

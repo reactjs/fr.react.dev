@@ -32,7 +32,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### Paramètres {/*parameters*/}
 
-* `load` : une fonction qui renvoie une [promesse](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) ou un *thenable* (un objet doté d'une méthode `then` compatible). React n'appellera pas `load` tant que vous ne tenterez pas d'afficher le composant renvoyé. Après que React a appelé `load` pour la première fois, il patientera pour que la promesse s'établisse, puis affichera la valeur accomplie comme composant React. Tant la promesse renvoyée que sa valeur accomplie seront mises en cache, et React ne rappellera pas `load`. Si la promesse rejette, React lèvera (`throw`) la raison du rejet (généralement une `Error`) pour que le périmètre d'erreur le plus proche la gère.
+* `load` : une fonction qui renvoie une [promesse](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) ou un *thenable* (un objet doté d'une méthode `then` compatible). React n'appellera pas `load` tant que vous ne tenterez pas d'afficher le composant renvoyé. Après que React a appelé `load` pour la première fois, il patientera pour que la promesse s'établisse, puis affichera la propriété `,.default` de la valeur accomplie comme composant React. Tant la promesse renvoyée que sa valeur accomplie seront mises en cache, et React ne rappellera pas `load`. Si la promesse rejette, React lèvera (`throw`) la raison du rejet (généralement une `Error`) pour que le périmètre d'erreur le plus proche la gère.
 
 #### Valeur renvoyée {/*returns*/}
 
@@ -48,7 +48,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### Valeur renvoyée {/*load-returns*/}
 
-Vous aurez besoin de renvoyer une [promesse](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) ou un *thenable* (un objet doté d'une méthode `then` compatible). La valeur accomplie doit finalement se comporter comme un composant React valide, tel une qu'une fonction, un composant [`memo`](/reference/react/memo), ou un composant [`forwardRef`](/reference/react/forwardRef).
+Vous aurez besoin de renvoyer une [promesse](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) ou un *thenable* (un objet doté d'une méthode `then` compatible). La valeur accomplie doit finalement posséder une propriété `.default` qui se comporte comme un composant React valide, tel une qu'une fonction, un composant [`memo`](/reference/react/memo), ou un composant [`forwardRef`](/reference/react/forwardRef).
 
 ---
 
@@ -70,7 +70,7 @@ import { lazy } from 'react';
 const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 ```
 
-Ce code s'appuie sur [l'importation dynamique `import()`,](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import), ce qui peut nécessiter une prise en charge de votre *bundler* ou framework.
+Ce code s'appuie sur [l'importation dynamique `import()`,](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import), ce qui peut nécessiter une prise en charge de votre *bundler* ou framework. Pour utiliser cette approche, le composant chargé à la demande que vous importez doit être exporté sous le nom `default` (ce qui est notamment le cas de l'export par défaut).
 
 Maintenant que le code de votre composant se charge à la demande, vous aurez besoin de spécifier ce qui devrait être affiché pendant son chargement. Vous pouvez le faire en enrobant le composant chargé à la demande ou l'un de ses parents dans un périmètre [`<Suspense>`](/reference/react/Suspense) :
 

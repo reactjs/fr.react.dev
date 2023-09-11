@@ -2274,7 +2274,7 @@ Imaginez une transition depuis…
 <li>Alexa : 5 tâches restantes</li>
 ```
 
-En plus des mises à jour de compteurs, un humain qui lirait ça dirait sans doute que vous avez inversé l'ordre d'Alexa et Ben, et inséré Claudia entre Alexa et Ben.  Seulement voilà, React n'est qu'un programme informatique et ne peut pas deviner quelle était votre intention, vous avez donc besoin de spécifier une propriété de _clé_ pour chaque élément de la liste afin de les différencier les uns des autres. Si vos données proviennent d'une base de données, les ID en base d'Alexa, Ben et Claudia pourraient être utilisés comme clés :
+En plus des mises à jour de compteurs, un humain qui lirait ça dirait sans doute que vous avez inversé l'ordre d'Alexa et Ben, et inséré Claudia entre Alexa et Ben.  Seulement voilà, React n'est qu'un programme informatique et ne cherche pas à deviner quelle était votre intention, vous avez donc besoin de spécifier une propriété de _clé_ pour chaque élément de la liste afin de les différencier les uns des autres. Si vos données proviennent d'une base de données, les ID en base d'Alexa, Ben et Claudia pourraient être utilisés comme clés :
 
 ```js {1}
 <li key={user.id}>
