@@ -121,11 +121,7 @@ export default function PrintApp() {
 
 </Sandpack>
 
-<<<<<<< HEAD
 Sans `flushSync`, lorsque la boîte de dialogue s'affiche on verrait encore « En cours d'impression » à « non ».  C'est parce que React regroupe les mises à jour d'état en lots asynchrones, et que la boîte de dialogue serait affichée avant que l'état n'ait été mis à jour.
-=======
-Without `flushSync`, the print dialog will display `isPrinting` as "no". This is because React batches the updates asynchronously and the print dialog is displayed before the state is updated.
->>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
 
 <Pitfall>
 

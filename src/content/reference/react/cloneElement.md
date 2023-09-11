@@ -40,11 +40,7 @@ const clonedElement = cloneElement(
   'Au revoir'
 );
 
-<<<<<<< HEAD
 console.log(clonedElement); // <Row title="Greeting" isHighlighted={true}>Au revoir</Row>
-=======
-console.log(clonedElement); // <Row title="Cabbage" isHighlighted={true}>Goodbye</Row>
->>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
 ```
 
 [Voir d'autres exemples ci-dessous](#usage).

@@ -11,23 +11,19 @@ Vous connaissez une conférence React.js locale ? Ajoutez-la ! (Merci de conse
 ## Conférences à venir {/*upcoming-conferences*/}
 
 ### RedwoodJS Conference 2023 {/*redwoodjs-conference-2023*/}
-September 26 - 29, 2023. Grants Pass, Oregon + remote (hybrid event) 
+September 26 - 29, 2023. Grants Pass, Oregon + remote (hybrid event)
 
-<<<<<<< HEAD
-[Site web](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
-=======
-[Website](https://www.redwoodjsconf.com/) - [Twitter](https://twitter.com/redwoodjs)
+[Site web](https://www.redwoodjsconf.com/) - [Twitter](https://twitter.com/redwoodjs)
 
 ### React Alicante 2023 {/*react-alicante-2023*/}
 September 28 - 30, 2023. Alicante, Spain
 
-[Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante)
+[Site web](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante)
 
 ### React Live 2023 {/*react-live-2023*/}
 September 29, 2023. Amsterdam, Netherlands
 
-[Website](https://reactlive.nl/)
->>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
+[Site web](https://reactlive.nl/)
 
 ### React Native EU 2023 {/*react-native-eu-2023*/}
 September 7 & 8, 2023. Wrocław, Poland
@@ -37,17 +33,17 @@ September 7 & 8, 2023. Wrocław, Poland
 ### RenderCon Kenya 2023 {/*rendercon-kenya-2023*/}
 September 29 - 30, 2023. Nairobi, Kenya
 
-[Website](https://rendercon.org/) - [Twitter](https://twitter.com/renderconke) - [LinkedIn](https://www.linkedin.com/company/renderconke/) - [YouTube](https://www.youtube.com/channel/UC0bCcG8gHUL4njDOpQGcMIA)
+[Site web](https://rendercon.org/) - [Twitter](https://twitter.com/renderconke) - [LinkedIn](https://www.linkedin.com/company/renderconke/) - [YouTube](https://www.youtube.com/channel/UC0bCcG8gHUL4njDOpQGcMIA)
 
 ### React India 2023 {/*react-india-2023*/}
 October 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day
 
 [Site web](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
-### React Brussels 2023  {/*react-brussels-2023*/}
+### React Brussels 2023 {/*react-brussels-2023*/}
 October 13th 2023. In-person in Brussels, Belgium + Remote (hybrid)
 
-[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact)
+[Site web](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact)
 
 ### React Advanced 2023 {/*react-advanced-2023*/}
 October 20 & 23, 2023. In-person in London, UK + remote first interactivity (hybrid event)
@@ -57,7 +53,7 @@ October 20 & 23, 2023. In-person in London, UK + remote first interactivity (hyb
 ### reactjsday 2023 {/*reactjsday-2023*/}
 October 27th 2023. In-person in Verona, Italy and online (hybrid event)
 
-[Website](https://2023.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [Facebook](https://www.facebook.com/GrUSP/) - [YouTube](https://www.youtube.com/c/grusp)
+[Site web](https://2023.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [Facebook](https://www.facebook.com/GrUSP/) - [YouTube](https://www.youtube.com/c/grusp)
 
 
 ### React Summit US 2023 {/*react-summit-us-2023*/}
@@ -70,21 +66,17 @@ December 8 & 12, 2023. In-person in Berlin, Germany + remote first interactivity
 
 [Site web](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Vidéos](https://portal.gitnation.org/events/react-day-berlin-2023)
 
-<<<<<<< HEAD
-## Conférences passées {/*past-conferences*/}
-=======
 ### Render(ATL) 2024 🍑 {/*renderatl-2024-*/}
 June 12 - June 14, 2024. Atlanta, GA, USA
 
-[Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
+[Site web](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
 
-## Past Conferences {/*past-conferences*/}
->>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
+## Conférences passées {/*past-conferences*/}
 
 ### React Rally 2023 🐙 {/*react-rally-2023*/}
 August 17 & 18, 2023. Salt Lake City, UT, USA
 
-[Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
+[Site web](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
 
 ### React Nexus 2023 {/*react-nexus-2023*/}
 July 07 & 08, 2023. Bangalore, India (In-person event)

@@ -934,11 +934,7 @@ Nouvel appui sur « Joueur suivant »
 
 </DiagramGroup>
 
-<<<<<<< HEAD
 Chaque état de `Counter` est supprimé dès que ce dernier est retiré du DOM. C'est pour ça qu'il est réinitialisé à chaque fois que vous appuyez sur le bouton.
-=======
-Each `Counter`'s state gets destroyed each time it's removed from the DOM. This is why they reset every time you click the button.
->>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
 
 Cette solution est pratique quand vous n'avez qu'un petit nombre de composants indépendants à afficher à la même position dans l'arbre. Dans cet exemple, vous n'en avez que deux, ce n'est donc pas compliqué de faire leurs rendus séparément dans le JSX.
 
