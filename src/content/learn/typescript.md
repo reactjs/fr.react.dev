@@ -20,7 +20,11 @@ TypeScript est une solution populaire d'ajout de définitions de types à des ba
 
 ## Installation {/*installation*/}
 
+<<<<<<< HEAD
 Tous les [frameworks React de qualité reconnue](/learn/start-a-new-react-project#production-grade-react-frameworks) prennent en charge TypeScript. Suivez le guide spécifique à votre framework pour l'installation :
+=======
+All [production-grade React frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) offer support for using TypeScript. Follow the framework specific guide for installation:
+>>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
 
 - [Next.js](https://nextjs.org/docs/pages/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)
