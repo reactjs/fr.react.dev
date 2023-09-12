@@ -330,7 +330,7 @@ Un type de gestionnaire d'événement pour les événements des [animations CSS]
 
 #### Paramètres {/*animationevent-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés additionnelles de [`AnimationEvent`](https://developer.mozilla.org/fr/docs/Web/API/AnimationEvent) :
+* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés spécifiques à [`AnimationEvent`](https://developer.mozilla.org/fr/docs/Web/API/AnimationEvent) :
   * [`animationName`](https://developer.mozilla.org/fr/docs/Web/API/AnimationEvent/animationName)
   * [`elapsedTime`](https://developer.mozilla.org/fr/docs/Web/API/AnimationEvent/elapsedTime)
   * [`pseudoElement`](https://developer.mozilla.org/fr/docs/Web/API/AnimationEvent/pseudoElement)
@@ -351,15 +351,15 @@ Un type de gestionnaire d'événement pour les événements de l'[API Clipboard]
 
 #### Paramètres {/*clipboadevent-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés additionnelles de [`ClipboardEvent`](https://developer.mozilla.org/fr/docs/Web/API/ClipboardEvent) :
+* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés spécifiques à [`ClipboardEvent`](https://developer.mozilla.org/docs/Web/API/ClipboardEvent) :
 
-  * [`clipboardData`](https://developer.mozilla.org/fr/docs/Web/API/ClipboardEvent/clipboardData)
+  * [`clipboardData`](https://developer.mozilla.org/docs/Web/API/ClipboardEvent/clipboardData)
 
 ---
 
 ### Gestionnaire `CompositionEvent` {/*compositionevent-handler*/}
 
-Un type de gestionnaire d'événement pour les événements [des méthodes des éditeurs de saisie (IME)](https://developer.mozilla.org/fr/docs/Glossary/Input_method_editor).
+Un type de gestionnaire d'événement pour les événements [des systèmes de composition de texte](https://developer.mozilla.org/fr/docs/Glossary/Input_method_editor) *(IME pour Input Method Editor, NdT)*.
 
 ```js
 <input
@@ -371,14 +371,14 @@ Un type de gestionnaire d'événement pour les événements [des méthodes des �
 
 #### Paramètres {/*compositionevent-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés additionnelles de [`CompositionEvent`](https://developer.mozilla.org/fr/docs/Web/API/CompositionEvent) :
-  * [`data`](https://developer.mozilla.org/fr/docs/Web/API/CompositionEvent/data)
+* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés spécifiques à [`CompositionEvent`](https://developer.mozilla.org/fr/docs/Web/API/CompositionEvent) :
+  * [`data`](https://developer.mozilla.org/docs/Web/API/CompositionEvent/data)
 
 ---
 
 ### Gestionnaire `DragEvent` {/*dragevent-handler*/}
 
-Un type de gestionnaire d'événement pour les événements [de l'API Drag and Drop du HTML](https://developer.mozilla.org/fr/docs/Web/API/HTML_Drag_and_Drop_API).
+Un type de gestionnaire d'événement pour les événements de [l'API HTML de glisser-déposer](https://developer.mozilla.org/fr/docs/Web/API/HTML_Drag_and_Drop_API).
 
 ```js
 <>
@@ -387,7 +387,7 @@ Un type de gestionnaire d'événement pour les événements [de l'API Drag and D
     onDragStart={e => console.log('onDragStart')}
     onDragEnd={e => console.log('onDragEnd')}
   >
-    Source pour le Drag
+    Source pour le glissement
   </div>
 
   <div
@@ -396,39 +396,39 @@ Un type de gestionnaire d'événement pour les événements [de l'API Drag and D
     onDragOver={e => { e.preventDefault(); console.log('onDragOver'); }}
     onDrop={e => console.log('onDrop')}
   >
-    Cible pour le Drop
+    Cible pour le dépôt
   </div>
 </>
 ```
 
 #### Paramètres {/*dragevent-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés additionnelles [`DragEvent`](https://developer.mozilla.org/fr/docs/Web/API/DragEvent) :
-  * [`dataTransfer`](https://developer.mozilla.org/fr/docs/Web/API/DragEvent/dataTransfer).
+* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés spécifiques à [`DragEvent`](https://developer.mozilla.org/docs/Web/API/DragEvent) :
+  * [`dataTransfer`](https://developer.mozilla.org/docs/Web/API/DragEvent/dataTransfer).
 
   Il inclut également les propriétés héritées de [`MouseEvent`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent) :
 
-  * [`altKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/altKey)
-  * [`button`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/button)
-  * [`buttons`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/buttons)
-  * [`ctrlKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/ctrlKey)
-  * [`clientX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/clientX)
-  * [`clientY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/clientY)
-  * [`getModifierState(key)`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/getModifierState)
-  * [`metaKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/metaKey)
-  * [`movementX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/movementX)
-  * [`movementY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/movementY)
-  * [`pageX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/pageX)
-  * [`pageY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/pageY)
-  * [`relatedTarget`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/relatedTarget)
-  * [`screenX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/screenX)
-  * [`screenY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/screenY)
-  * [`shiftKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/shiftKey)
+  * [`altKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/altKey)
+  * [`button`](https://developer.mozilla.org/docs/Web/API/MouseEvent/button)
+  * [`buttons`](https://developer.mozilla.org/docs/Web/API/MouseEvent/buttons)
+  * [`ctrlKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/ctrlKey)
+  * [`clientX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/clientX)
+  * [`clientY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/clientY)
+  * [`getModifierState(key)`](https://developer.mozilla.org/docs/Web/API/MouseEvent/getModifierState)
+  * [`metaKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/metaKey)
+  * [`movementX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementX)
+  * [`movementY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementY)
+  * [`pageX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageX)
+  * [`pageY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageY)
+  * [`relatedTarget`](https://developer.mozilla.org/docs/Web/API/MouseEvent/relatedTarget)
+  * [`screenX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/screenX)
+  * [`screenY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/screenY)
+  * [`shiftKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/shiftKey)
 
-  Il inclut également les propriétés héritées de [`UIEvent`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent) :
+  Il inclut enfin les propriétés héritées de [`UIEvent`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent) :
 
   * [`detail`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/detail)
-  * [`view`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/view)
+  * [`view`](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
 
 ---
 
@@ -447,13 +447,13 @@ Un type de gestionnaire d'événement pour les événements de focus.
 
 #### Paramètres {/*focusevent-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés additionnelles [`FocusEvent`](https://developer.mozilla.org/fr/docs/Web/API/FocusEvent) :
-  * [`relatedTarget`](https://developer.mozilla.org/fr/docs/Web/API/FocusEvent/relatedTarget)
+* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés spécifiques à [`FocusEvent`](https://developer.mozilla.org/fr/docs/Web/API/FocusEvent) :
+  * [`relatedTarget`](https://developer.mozilla.org/docs/Web/API/FocusEvent/relatedTarget)
 
   Il inclut également les propriétés héritées de [`UIEvent`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent) :
 
   * [`detail`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/detail)
-  * [`view`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/view)
+  * [`view`](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
 
 ---
 
@@ -463,7 +463,7 @@ Un gestionnaire d'événement pour les événements génériques.
 
 #### Paramètres {/*event-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) sans propriété additionnelle.
+* `e` : un [objet d'événement React](#react-event-object) sans propriété complémentaire.
 
 ---
 
@@ -477,14 +477,14 @@ Un type de gestionnaire d'événement pour les événements `onBeforeInput`.
 
 #### Paramètres {/*inputevent-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés additionnelles [`InputEvent`](https://developer.mozilla.org/fr/docs/Web/API/InputEvent) :
-  * [`data`](https://developer.mozilla.org/fr/docs/Web/API/InputEvent/data)
+* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés spécifiques à [`InputEvent`](https://developer.mozilla.org/fr/docs/Web/API/InputEvent) :
+  * [`data`](https://developer.mozilla.org/docs/Web/API/InputEvent/data)
 
 ---
 
 ### Gestionnaire `KeyboardEvent` {/*keyboardevent-handler*/}
 
-Un type de gestionnaire d'événement pour les événements du clavier.
+Un type de gestionnaire d'événement pour les événements liés au clavier.
 
 ```js
 <input
@@ -497,31 +497,31 @@ Un type de gestionnaire d'événement pour les événements du clavier.
 
 #### Paramètres {/*keyboardevent-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés additionnelles [`KeyboardEvent`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent) :
-  * [`altKey`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/altKey)
+* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés spécifiques à [`KeyboardEvent`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent) :
+  * [`altKey`](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/altKey)
   * [`charCode`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/charCode)
   * [`code`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/code)
-  * [`ctrlKey`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/ctrlKey)
-  * [`getModifierState(key)`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/getModifierState)
+  * [`ctrlKey`](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/ctrlKey)
+  * [`getModifierState(key)`](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/getModifierState)
   * [`key`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/key)
-  * [`keyCode`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/keyCode)
-  * [`locale`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/locale)
-  * [`metaKey`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/metaKey)
-  * [`location`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/location)
-  * [`repeat`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/repeat)
-  * [`shiftKey`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/shiftKey)
-  * [`which`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent/which)
+  * [`keyCode`](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/keyCode)
+  * [`locale`](https://developer.mozilla.org/fr/docs/Web/API/KeyboardEvent)
+  * [`metaKey`](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/metaKey)
+  * [`location`](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/location)
+  * [`repeat`](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/repeat)
+  * [`shiftKey`](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/shiftKey)
+  * [`which`](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/which)
 
   Il inclut également les propriétés héritées de [`UIEvent`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent) :
 
   * [`detail`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/detail)
-  * [`view`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/view)
+  * [`view`](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
 
 ---
 
 ### Gestionnaire `MouseEvent` {/*mouseevent-handler*/}
 
-Un type de gestionnaire d'événement pour les événements de la souris.
+Un type de gestionnaire d'événement pour les événements liés à la souris.
 
 ```js
 <div
@@ -538,34 +538,34 @@ Un type de gestionnaire d'événement pour les événements de la souris.
 
 #### Paramètres {/*mouseevent-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés additionnelles [`MouseEvent`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent) :
-  * [`altKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/altKey)
-  * [`button`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/button)
-  * [`buttons`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/buttons)
-  * [`ctrlKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/ctrlKey)
-  * [`clientX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/clientX)
-  * [`clientY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/clientY)
-  * [`getModifierState(key)`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/getModifierState)
-  * [`metaKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/metaKey)
-  * [`movementX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/movementX)
-  * [`movementY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/movementY)
-  * [`pageX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/pageX)
-  * [`pageY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/pageY)
-  * [`relatedTarget`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/relatedTarget)
-  * [`screenX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/screenX)
-  * [`screenY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/screenY)
-  * [`shiftKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/shiftKey)
+* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés spécifiques à [`MouseEvent`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent) :
+  * [`altKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/altKey)
+  * [`button`](https://developer.mozilla.org/docs/Web/API/MouseEvent/button)
+  * [`buttons`](https://developer.mozilla.org/docs/Web/API/MouseEvent/buttons)
+  * [`ctrlKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/ctrlKey)
+  * [`clientX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/clientX)
+  * [`clientY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/clientY)
+  * [`getModifierState(key)`](https://developer.mozilla.org/docs/Web/API/MouseEvent/getModifierState)
+  * [`metaKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/metaKey)
+  * [`movementX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementX)
+  * [`movementY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementY)
+  * [`pageX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageX)
+  * [`pageY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageY)
+  * [`relatedTarget`](https://developer.mozilla.org/docs/Web/API/MouseEvent/relatedTarget)
+  * [`screenX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/screenX)
+  * [`screenY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/screenY)
+  * [`shiftKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/shiftKey)
 
   Il inclut également les propriétés héritées de [`UIEvent`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent) :
 
   * [`detail`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/detail)
-  * [`view`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/view)
+  * [`view`](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
 
 ---
 
 ### Gestionnaire `PointerEvent` {/*pointerevent-handler*/}
 
-Un type de gestionnaire d'événement pour les [événements de pointeur](https://developer.mozilla.org/fr/docs/Web/API/Pointer_events).
+Un type de gestionnaire d'événement pour les [événements liés aux pointeurs](https://developer.mozilla.org/fr/docs/Web/API/Pointer_events).
 
 ```js
 <div
@@ -581,41 +581,41 @@ Un type de gestionnaire d'événement pour les [événements de pointeur](https:
 
 #### Paramètres {/*pointerevent-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés additionnelles [`PointerEvent`](https://developer.mozilla.org/fr/docs/Web/API/PointerEvent) :
-  * [`height`](https://developer.mozilla.org/fr/docs/Web/API/PointerEvent/height)
-  * [`isPrimary`](https://developer.mozilla.org/fr/docs/Web/API/PointerEvent/isPrimary)
-  * [`pointerId`](https://developer.mozilla.org/fr/docs/Web/API/PointerEvent/pointerId)
-  * [`pointerType`](https://developer.mozilla.org/fr/docs/Web/API/PointerEvent/pointerType)
-  * [`pressure`](https://developer.mozilla.org/fr/docs/Web/API/PointerEvent/pressure)
-  * [`tangentialPressure`](https://developer.mozilla.org/fr/docs/Web/API/PointerEvent/tangentialPressure)
-  * [`tiltX`](https://developer.mozilla.org/fr/docs/Web/API/PointerEvent/tiltX)
-  * [`tiltY`](https://developer.mozilla.org/fr/docs/Web/API/PointerEvent/tiltY)
-  * [`twist`](https://developer.mozilla.org/fr/docs/Web/API/PointerEvent/twist)
-  * [`width`](https://developer.mozilla.org/fr/docs/Web/API/PointerEvent/width)
+* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés spécifiques à [`PointerEvent`](https://developer.mozilla.org/fr/docs/Web/API/PointerEvent) :
+  * [`height`](https://developer.mozilla.org/docs/Web/API/PointerEvent/height)
+  * [`isPrimary`](https://developer.mozilla.org/docs/Web/API/PointerEvent/isPrimary)
+  * [`pointerId`](https://developer.mozilla.org/docs/Web/API/PointerEvent/pointerId)
+  * [`pointerType`](https://developer.mozilla.org/docs/Web/API/PointerEvent/pointerType)
+  * [`pressure`](https://developer.mozilla.org/docs/Web/API/PointerEvent/pressure)
+  * [`tangentialPressure`](https://developer.mozilla.org/docs/Web/API/PointerEvent/tangentialPressure)
+  * [`tiltX`](https://developer.mozilla.org/docs/Web/API/PointerEvent/tiltX)
+  * [`tiltY`](https://developer.mozilla.org/docs/Web/API/PointerEvent/tiltY)
+  * [`twist`](https://developer.mozilla.org/docs/Web/API/PointerEvent/twist)
+  * [`width`](https://developer.mozilla.org/docs/Web/API/PointerEvent/width)
 
   Il inclut également les propriétés héritées de [`MouseEvent`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent) :
 
-  * [`altKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/altKey)
-  * [`button`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/button)
-  * [`buttons`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/buttons)
-  * [`ctrlKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/ctrlKey)
-  * [`clientX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/clientX)
-  * [`clientY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/clientY)
-  * [`getModifierState(key)`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/getModifierState)
-  * [`metaKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/metaKey)
-  * [`movementX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/movementX)
-  * [`movementY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/movementY)
-  * [`pageX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/pageX)
-  * [`pageY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/pageY)
-  * [`relatedTarget`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/relatedTarget)
-  * [`screenX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/screenX)
-  * [`screenY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/screenY)
-  * [`shiftKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/shiftKey)
+  * [`altKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/altKey)
+  * [`button`](https://developer.mozilla.org/docs/Web/API/MouseEvent/button)
+  * [`buttons`](https://developer.mozilla.org/docs/Web/API/MouseEvent/buttons)
+  * [`ctrlKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/ctrlKey)
+  * [`clientX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/clientX)
+  * [`clientY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/clientY)
+  * [`getModifierState(key)`](https://developer.mozilla.org/docs/Web/API/MouseEvent/getModifierState)
+  * [`metaKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/metaKey)
+  * [`movementX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementX)
+  * [`movementY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementY)
+  * [`pageX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageX)
+  * [`pageY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageY)
+  * [`relatedTarget`](https://developer.mozilla.org/docs/Web/API/MouseEvent/relatedTarget)
+  * [`screenX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/screenX)
+  * [`screenY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/screenY)
+  * [`shiftKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/shiftKey)
 
-  Il inclut également les propriétés héritées de [`UIEvent`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent) :
+  Il inclut enfin les propriétés héritées de [`UIEvent`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent) :
 
   * [`detail`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/detail)
-  * [`view`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/view)
+  * [`view`](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
 
 ---
 
@@ -634,26 +634,25 @@ Un type de gestionnaire d'événement pour les [événements tactiles](https://d
 
 #### Paramètres {/*touchevent-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés additionnelles [`TouchEvent`](https://developer.mozilla.org/fr/docs/Web/API/TouchEvent) :
-  * [`altKey`](https://developer.mozilla.org/fr/docs/Web/API/TouchEvent/altKey)
-  * [`ctrlKey`](https://developer.mozilla.org/fr/docs/Web/API/TouchEvent/ctrlKey)
-  * [`changedTouches`](https://developer.mozilla.org/fr/docs/Web/API/TouchEvent/changedTouches)
-  * [`getModifierState(key)`](https://developer.mozilla.org/fr/docs/Web/API/TouchEvent/getModifierState)
-  * [`metaKey`](https://developer.mozilla.org/fr/docs/Web/API/TouchEvent/metaKey)
-  * [`shiftKey`](https://developer.mozilla.org/fr/docs/Web/API/TouchEvent/shiftKey)
-  * [`touches`](https://developer.mozilla.org/fr/docs/Web/API/TouchEvent/touches)
-  * [`targetTouches`](https://developer.mozilla.org/fr/docs/Web/API/TouchEvent/targetTouches)
+* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés spécifiques à [`TouchEvent`](https://developer.mozilla.org/docs/Web/API/TouchEvent) :
+  * [`altKey`](https://developer.mozilla.org/docs/Web/API/TouchEvent/altKey)
+  * [`ctrlKey`](https://developer.mozilla.org/docs/Web/API/TouchEvent/ctrlKey)
+  * [`changedTouches`](https://developer.mozilla.org/docs/Web/API/TouchEvent/changedTouches)
+  * [`metaKey`](https://developer.mozilla.org/docs/Web/API/TouchEvent/metaKey)
+  * [`shiftKey`](https://developer.mozilla.org/docs/Web/API/TouchEvent/shiftKey)
+  * [`touches`](https://developer.mozilla.org/docs/Web/API/TouchEvent/touches)
+  * [`targetTouches`](https://developer.mozilla.org/docs/Web/API/TouchEvent/targetTouches)
 
   Il inclut également les propriétés héritées de [`UIEvent`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent) :
 
   * [`detail`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/detail)
-  * [`view`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/view)
+  * [`view`](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
 
 ---
 
 ### Gestionnaire `TransitionEvent` {/*transitionevent-handler*/}
 
-Un type de gestionnaire d'événement pour les événements de transition CSS.
+Un type de gestionnaire d'événement pour les événements de transitions CSS.
 
 ```js
 <div
@@ -663,10 +662,10 @@ Un type de gestionnaire d'événement pour les événements de transition CSS.
 
 #### Paramètres {/*transitionevent-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés additionnelles [`TransitionEvent`](https://developer.mozilla.org/fr/docs/Web/API/TransitionEvent) :
-  * [`elapsedTime`](https://developer.mozilla.org/fr/docs/Web/API/TransitionEvent/elapsedTime)
-  * [`propertyName`](https://developer.mozilla.org/fr/docs/Web/API/TransitionEvent/propertyName)
-  * [`pseudoElement`](https://developer.mozilla.org/fr/docs/Web/API/TransitionEvent/pseudoElement)
+* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés spécifiques à [`TransitionEvent`](https://developer.mozilla.org/fr/docs/Web/API/TransitionEvent) :
+  * [`elapsedTime`](https://developer.mozilla.org/docs/Web/API/TransitionEvent/elapsedTime)
+  * [`propertyName`](https://developer.mozilla.org/docs/Web/API/TransitionEvent/propertyName)
+  * [`pseudoElement`](https://developer.mozilla.org/docs/Web/API/TransitionEvent/pseudoElement)
 
 ---
 
@@ -682,15 +681,15 @@ Un type de gestionnaire d'événement pour les événements génériques de l'in
 
 #### Paramètres {/*uievent-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés additionnelles [`UIEvent`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent) :
+* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés spécifiques à [`UIEvent`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent) :
   * [`detail`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/detail)
-  * [`view`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/view)
+  * [`view`](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
 
 ---
 
 ### Gestionnaire `WheelEvent` {/*wheelevent-handler*/}
 
-Un type de gestionnaire d'événement pour les événements `onWheel`.
+Un type de gestionnaire d'événement pour les événements `onWheel` (molette de souris).
 
 ```js
 <div
@@ -700,8 +699,8 @@ Un type de gestionnaire d'événement pour les événements `onWheel`.
 
 #### Paramètres {/*wheelevent-handler-parameters*/}
 
-* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés additionnelles [`WheelEvent`](https://developer.mozilla.org/fr/docs/Web/API/WheelEvent) :
-  * [`deltaMode`](https://developer.mozilla.org/fr/docs/Web/API/WheelEvent/deltaMode)
+* `e` : un [objet d'événement React](#react-event-object) avec ces propriétés spécifiques à [`WheelEvent`](https://developer.mozilla.org/fr/docs/Web/API/WheelEvent) :
+  * [`deltaMode`](https://developer.mozilla.org/docs/Web/API/WheelEvent/deltaMode)
   * [`deltaX`](https://developer.mozilla.org/fr/docs/Web/API/WheelEvent/deltaX)
   * [`deltaY`](https://developer.mozilla.org/fr/docs/Web/API/WheelEvent/deltaY)
   * [`deltaZ`](https://developer.mozilla.org/fr/docs/Web/API/WheelEvent/deltaZ)
@@ -709,27 +708,27 @@ Un type de gestionnaire d'événement pour les événements `onWheel`.
 
   Il inclut également les propriétés héritées de [`MouseEvent`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent) :
 
-  * [`altKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/altKey)
-  * [`button`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/button)
-  * [`buttons`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/buttons)
-  * [`ctrlKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/ctrlKey)
-  * [`clientX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/clientX)
-  * [`clientY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/clientY)
-  * [`getModifierState(key)`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/getModifierState)
-  * [`metaKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/metaKey)
-  * [`movementX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/movementX)
-  * [`movementY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/movementY)
-  * [`pageX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/pageX)
-  * [`pageY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/pageY)
-  * [`relatedTarget`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/relatedTarget)
-  * [`screenX`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/screenX)
-  * [`screenY`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/screenY)
-  * [`shiftKey`](https://developer.mozilla.org/fr/docs/Web/API/MouseEvent/shiftKey)
+  * [`altKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/altKey)
+  * [`button`](https://developer.mozilla.org/docs/Web/API/MouseEvent/button)
+  * [`buttons`](https://developer.mozilla.org/docs/Web/API/MouseEvent/buttons)
+  * [`ctrlKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/ctrlKey)
+  * [`clientX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/clientX)
+  * [`clientY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/clientY)
+  * [`getModifierState(key)`](https://developer.mozilla.org/docs/Web/API/MouseEvent/getModifierState)
+  * [`metaKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/metaKey)
+  * [`movementX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementX)
+  * [`movementY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/movementY)
+  * [`pageX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageX)
+  * [`pageY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/pageY)
+  * [`relatedTarget`](https://developer.mozilla.org/docs/Web/API/MouseEvent/relatedTarget)
+  * [`screenX`](https://developer.mozilla.org/docs/Web/API/MouseEvent/screenX)
+  * [`screenY`](https://developer.mozilla.org/docs/Web/API/MouseEvent/screenY)
+  * [`shiftKey`](https://developer.mozilla.org/docs/Web/API/MouseEvent/shiftKey)
 
-  Il inclut également les propriétés héritées de [`UIEvent`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent) :
+  Il inclut enfin les propriétés héritées de [`UIEvent`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent) :
 
   * [`detail`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/detail)
-  * [`view`](https://developer.mozilla.org/fr/docs/Web/API/UIEvent/view)
+  * [`view`](https://developer.mozilla.org/docs/Web/API/UIEvent/view)
 
 ---
 
