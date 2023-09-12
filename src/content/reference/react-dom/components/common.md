@@ -251,13 +251,13 @@ Au lieu d'un objet ref (tel que celui renvoyé par [`useRef`](/reference/react/u
 
 [Voir un exemple d'utilisation de la fonction de rappel `ref`](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback).
 
-Quand le nœud DOM `<div>` est ajouté à l'écran, React appelle votre fonction `ref` avec le `node` DOM comme argument. Quand ce nœud DOM `<div>` est enlevé, React apppelle votre fonction `ref` avec `null`.
+Quand le nœud DOM `<div>` sera ajouté à l'écran, React appellera votre fonction `ref` avec le `node` DOM comme argument. Quand ce nœud DOM `<div>` sera retiré, React apppellera votre fonction `ref` avec `null`.
 
-React appellera aussi votre fonction `ref` à chaque fois que vous passez une fonction `ref` *différente*. Dans l'exemple plus haut, `(node) => { ... }` est une fonction différente à chaque rendu. Lorsque votre composant refait un rendu, la fonction *précédente* sera appelée avec l'argument `null`, et la *prochaine* fonction sera appelée avec le nœud DOM.
+React appellera aussi votre fonction `ref` à chaque fois que vous passez une fonction `ref` *différente*. Dans l'exemple précédent, `(node) => { ... }` est une fonction différente à chaque rendu. Lorsque votre composant refait un rendu, la fonction *précédente* est appelée avec l'argument `null`, et la fonction *à jour* est appelée avec le nœud DOM.
 
 #### Paramètres {/*ref-callback-parameters*/}
 
-* `node` : un nœud DOM ou `null`. React vous donnera le nœud DOM lors que la ref sera attachée, et `null` lorsqu'elle sera détachée. À moins de passer la même référence de fonction pour `ref` à chaque rendu, la fonction de retour sera détachée et réattachée à chaque nouveau rendu du composant.
+* `node` : un nœud DOM ou `null`. React vous donnera le nœud DOM lorsque la ref sera attachée, et `null` lorsqu'elle sera détachée. À moins de passer la même référence de fonction `ref` à chaque rendu, la fonction de rappel sera détachée et réattachée à chaque rendu du composant.
 
 #### Valeur renvoyée {/*returns*/}
 
@@ -267,52 +267,52 @@ La fonction `ref` ne renvoie rien.
 
 ### Objet d'événement React {/*react-event-object*/}
 
-Votre gestionnaire d'événement reçoit un *objet d'événement React*. C'est également connu sous le nom d'« événement synthétique ».
+Vos gestionnaires d'événements recevront un *objet d'événement React*. On parle aussi parfois « d'événement synthétique ».
 
 ```js
 <button onClick={e => {
-  console.log(e); // Objet événement React
+  console.log(e); // Objet d’événement React
 }} />
 ```
 
-Il est conforme au même standard que les événements DOM sous-jacents, mais corrige certaines incohérences des navigateurs.
+Il respecte le même standard que les événements DOM natifs, mais corrige certaines incohérences des navigateurs.
 
-Certains événements React ne correspondent pas directement aux événements natifs des navigateurs. Par exemple, pour `onMouseLeave`, `e.nativeEvent` indiquera un événement `mouseout`. La correspondance spécifique ne fait pas partie de l'API publique et pourrait changer à l'avenir. Si, pour certaines raisons, vous avez besoin de l'événement sous-jacent du navigateur, allez le chercher depuis `e.nativeEvent`.
+Certains événements React ne correspondent pas directement aux événements natifs des navigateurs. Dans `onMouseLeave` par exemple, `e.nativeEvent` référence un événement `mouseout`. La correspondance spécifique ne fait pas partie de l'API publique et pourrait changer à l'avenir. Si, pour certaines raisons, vous avez besoin de l'événement sous-jacent du navigateur, vous le trouverez dans dans `e.nativeEvent`.
 
 #### Propriétés {/*react-event-object-properties*/}
 
-Les objets d'événements React implémentent certaines propriétés standard des [`Event`](https://developer.mozilla.org/fr/docs/Web/API/Event) :
+Les objets d'événements React implémentent certaines propriétés standard d'[`Event`](https://developer.mozilla.org/fr/docs/Web/API/Event) :
 
-* [`bubbles`](https://developer.mozilla.org/fr/docs/Web/API/Event/bubbles) : un booléen. Il indique si l'événement remonte au niveau du DOM.
+* [`bubbles`](https://developer.mozilla.org/fr/docs/Web/API/Event/bubbles) : un booléen. Il indique si l'événement se propage le long du DOM.
 * [`cancelable`](https://developer.mozilla.org/fr/docs/Web/API/Event/cancelable) : un booléen. Il indique si l'événement peut être annulé.
-* [`currentTarget`](https://developer.mozilla.org/fr/docs/Web/API/Event/currentTarget) : un nœud DOM. Il renvoie le nœud sur lequel est attaché le gestionnaire dans l'arbre React.
+* [`currentTarget`](https://developer.mozilla.org/fr/docs/Web/API/Event/currentTarget) : un nœud DOM. Il renvoie le nœud auquel le gestionnaire d'événement est attaché dans l'arbre React.
 * [`defaultPrevented`](https://developer.mozilla.org/fr/docs/Web/API/Event/defaultPrevented) : un booléen. Il indique si la fonction `preventDefault` a été appelée.
-* [`eventPhase`](https://developer.mozilla.org/fr/docs/Web/API/Event/eventPhase) : un nombre. Il indique la phase sur laquelle se situe actuellement l'événement.
+* [`eventPhase`](https://developer.mozilla.org/fr/docs/Web/API/Event/eventPhase) : un nombre. Il indique la phase dans laquelle se situe actuellement l'événement.
 * [`isTrusted`](https://developer.mozilla.org/fr/docs/Web/API/Event/isTrusted) : un booléen. Il indique si l'événement a été initié par l'utilisateur.
-* [`target`](https://developer.mozilla.org/fr/docs/Web/API/Event/target) : un nœud DOM. Il renvoie le nœud sur lequel l'événement a été déclenché (qui peut être un enfant lointain).
+* [`target`](https://developer.mozilla.org/fr/docs/Web/API/Event/target) : un nœud DOM. Il renvoie le nœud sur lequel l'événement a été déclenché (qui peut être un descendant lointain).
 * [`timeStamp`](https://developer.mozilla.org/fr/docs/Web/API/Event/timeStamp) : un nombre. Il indique le moment où l'événement a été déclenché.
 
-Les objets d'événements React propose également ces propriétés :
+Les objets d'événements React proposent également ces propriétés :
 
-* `nativeEvent` : un [`Event`](https://developer.mozilla.org/fr/docs/Web/API/Event) DOM. Il s'agit de l'objet d'événement du navigateur originel.
+* `nativeEvent` : un [`Event`](https://developer.mozilla.org/fr/docs/Web/API/Event) DOM. Il s'agit de l'objet d'événement originel du navigateur.
 
 #### Méthodes {/*react-event-object-methods*/}
 
-Les objets d'événements React implémentent certaines méthodes standards [`Event`](https://developer.mozilla.org/fr/docs/Web/API/Event) :
+Les objets d'événements React implémentent certaines méthodes standard d'[`Event`](https://developer.mozilla.org/fr/docs/Web/API/Event) :
 
-* [`preventDefault()`](https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault) : empêche l'action par défaut du navigateur pour l'événement.
-* [`stopPropagation()`](https://developer.mozilla.org/fr/docs/Web/API/Event/stopPropagation) : arrête la propagation de l'événement au sein de l'arbre React.
+* [`preventDefault()`](https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault) : empêche l'action par défaut du navigateur pour cet événement.
+* [`stopPropagation()`](https://developer.mozilla.org/fr/docs/Web/API/Event/stopPropagation) : interrompt la propagation de cet événement le long de l'arbre React.
 
-Les objets d'événements React propose également ces méthodes :
+Les objets d'événements React proposent également ces méthodes :
 
 * `isDefaultPrevented()` : renvoie une valeur booléenne indiquant si `preventDefault` a été appelée.
 * `isPropagationStopped()` : renvoie une valeur booléenne indiquant si `stopPropagation` a été appelée.
-* `persist()` : elle n'est pas utilisée avec React DOM. Avec React Native, vous pouvez l'appeler pour lire les propriétés de l'événement après son exécution.
-* `isPersistent()` : elle n'est pas utilisée avec React DOM. Avec React Native, indique si `persist` a été appelée.
+* `persist()` : inutile pour React DOM. Avec React Native, vous pouvez l'appeler pour lire les propriétés de l'événement après son exécution.
+* `isPersistent()` : inutile pour React DOM. Avec React Native, indique si `persist` a été appelée.
 
 #### Limitations {/*react-event-object-caveats*/}
 
-* Les valeurs de `currentTarget`, `eventPhase`, `target` et `type` réflètent les valeurs attendues par votre code React. Sous le capot, React attache les gestionnaires d'événements à la racine, mais ce n'est pas reflété par les objets d'événements React. Par exemple, `e.currentTarget` peut ne pas être le même que le `e.nativeEvent.currentTarget` sous-javent. Pour les événements polyfillés, `e.type` (type de l'événement React) peut différer de `e.nativeEvent.type` (type sous-jacent).
+* Les valeurs de `currentTarget`, `eventPhase`, `target` et `type` réflètent les valeurs attendues par votre code React. Sous le capot, React attache les gestionnaires d'événements à la racine, mais ce n'est pas reflété par les objets d'événements React. Par exemple, `e.currentTarget` peut différer du `e.nativeEvent.currentTarget` sous-jacent. Pour les événements simulés, `e.type` (type de l'événement React) peut aussi différer de `e.nativeEvent.type` (type sous-jacent).
 
 ---
 
