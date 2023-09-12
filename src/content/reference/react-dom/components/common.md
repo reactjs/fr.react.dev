@@ -40,12 +40,12 @@ Ces props spécifiques à React sont prises en charge pour tous les composants n
 
 Ces props standard du DOM sont également prises en charge pour tous les composants natifs :
 
-* [`accessKey`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/accesskey) : une chaîne de caractères. Elle spécifie un raccourci clavier pour l'élément. [Généralement déconseillé](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/accesskey#accessibilité).
+* [`accessKey`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/accesskey) : une chaîne de caractères. Elle spécifie un raccourci clavier pour l'élément. [Son utilisation est généralement déconseillée](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/accesskey#accessibilité).
 * [`aria-*`](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA/Attributes) : les attributs ARIA vous permettent de spécifier les informations de l'arbre d'accessibilité pour cet élément. Consultez [les attributs ARIA](https://developer.mozilla.org/fr/docs/Web/Accessibility/ARIA/Attributes) pour une référence exhaustive. En React, les noms des attributs ARIA sont exactement les mêmes qu'en HTML.
 * [`autoCapitalize`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/autocapitalize) : une chaîne de caractères. Elle spécifie la façon dont le texte saisi bénéficie de conversions automatiques en majuscules (sur des claviers virtuels).
 * [`className`](https://developer.mozilla.org/fr/docs/Web/API/Element/className) : une chaîne de caractères. Elle spécifie le nom de la classe CSS de l'élément. [Apprenez-en davantage sur la façon d'appliquer des styles CSS](#applying-css-styles).
 * [`contentEditable`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/contenteditable) : un booléen. S'il vaut `true`, le navigateur permet à l'utilisateur de modifier directement le contenu de l'élément. C'est utilisé pour implémenter des bibliothèques d'éditeurs riches telle que [Lexical](https://lexical.dev/). React avertit quand vous essayez de donner des `children` React à un élément qui dispose de `contentEditable={true}`, parce que React ne sera pas capable de mettre à jour son contenu après les modifications faites par l'utilisateur.
-* [`data-*`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/data-*) : des attributs sur-mesure qui vous permettent d'associer des données à l'élément, par exemple `data-fruit="banane"`. Ils sont rares en React car vous lisez généralement les données à partir des props ou de l'état.
+* [`data-*`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/data-*) : des attributs sur-mesure qui vous permettent d'associer des données à l'élément, par exemple `data-fruit="banane"`. Ils sont rarement utilisés en React car vous lisez généralement les données à partir des props ou de l'état.
 * [`dir`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/dir) : `'ltr'` ou `'rtl'`. Ça spécifie la direction du texte de l'élément.
 * [`draggable`](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/draggable) : un booléen. Il spécifie si l'élément peut être déplacé ou non. Ça fait partie de [l'API HTML de glisser-déposer](https://developer.mozilla.org/fr/docs/Web/API/HTML_Drag_and_Drop_API).
 * [`enterKeyHint`](https://developer.mozilla.org/docs/Web/API/HTMLElement/enterKeyHint) : une chaîne de caractères. Elle spécifie quelle action correspond à la touche entrée d'un clavier virtuel.
@@ -159,9 +159,9 @@ Vous pouvez également passer des attributs personnalisés comme props, par exem
 
 Ces événements sont déclenchés pour les éléments [`<form>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/form) :
 
-* [`onReset`](https://developer.mozilla.org/fr/docs/Web/API/HTMLFormElement/reset_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché quand un formulaire est réinitialisé.
+* [`onReset`](https://developer.mozilla.org/fr/docs/Web/API/HTMLFormElement/reset_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché quand un formulaire est réinitialisé (ramené à ses valeurs définies par le code HTML).
 * `onResetCapture` : une version de `onReset` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onSubmit`](https://developer.mozilla.org/fr/docs/Web/API/HTMLFormElement/submit_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché quand un formulaire est soumis.
+* [`onSubmit`](https://developer.mozilla.org/fr/docs/Web/API/HTMLFormElement/submit_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché quand un formulaire est soumis pour traitement.
 * `onSubmitCapture` : une version de `onSubmit` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 
 Ces événements sont déclenchés pour les éléments [`<dialog>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/dialog). Contrairement aux événements du navigateur, ceux en React sont propagés le long du DOM :
@@ -178,9 +178,9 @@ Ces événements sont déclenchés pour les éléments [`<details>`](https://dev
 
 Ces événements sont déclenchés pour les éléments [`<img>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/img), [`<iframe>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/iframe), [`<object>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/object), [`<embed>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/embed), [`<link>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/link), et [`<image>` SVG](https://developer.mozilla.org/fr/docs/Web/SVG/Tutorial/SVG_Image_Tag). Contrairement aux événements du navigateur, ceux en React sont propagés le long du DOM :
 
-* `onLoad` : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché quand la ressouce a été chargée.
+* `onLoad` : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché quand la ressouce a été complètement chargée.
 * `onLoadCapture` : une version de `onLoad` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onError`](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/error_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque la ressource n'a pu être chargée.
+* [`onError`](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/error_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque la ressource n'a pas pu être chargée.
 * `onErrorCapture` : une version de `onError` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 
 Ces événements sont déclenchés pour les ressources comme [`<audio>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/audio) et [`<video>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/video). Contrairement aux événements du navigateur, ceux en React sont propagés le long du DOM :
@@ -193,7 +193,7 @@ Ces événements sont déclenchés pour les ressources comme [`<audio>`](https:/
 * `onCanPlayThroughCapture` : une version de `onCanPlayThrough` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onDurationChange`](https://developer.mozilla.org/fr/docs/Web/API/HTMLMediaElement/durationchange_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque la durée du média a changé.
 * `onDurationChangeCapture` : une version de `onDurationChange` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onEmptied`](https://developer.mozilla.org/fr/docs/Web/API/HTMLMediaElement/emptied_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque le média est devenu vide.
+* [`onEmptied`](https://developer.mozilla.org/fr/docs/Web/API/HTMLMediaElement/emptied_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque le média est devenu vide (purge du flux par exemple).
 * `onEmptiedCapture` : une version de `onEmptied` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onEncrypted`](https://w3c.github.io/encrypted-media/#dom-evt-encrypted) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque le navigateur rencontre un média chiffré.
 * `onEncryptedCapture` : une version de `onEncrypted` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
@@ -207,7 +207,7 @@ Ces événements sont déclenchés pour les ressources comme [`<audio>`](https:/
 * `onLoadedMetadataCapture` : une version de `onLoadedMetadata` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onLoadStart`](https://developer.mozilla.org/fr/docs/Web/API/HTMLMediaElement/loadstart_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque le navigateur commence à charger une ressource.
 * `onLoadStartCapture` : une version de `onLoadStart` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onPause`](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/pause_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque le média est mis en pause.
+* [`onPause`](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/pause_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque la lecture du média est mise en pause.
 * `onPauseCapture` : une version de `onPause` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onPlay`](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/play_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché le média n'est plus en pause.
 * `onPlayCapture` : une version de `onPlay` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
@@ -217,7 +217,7 @@ Ces événements sont déclenchés pour les ressources comme [`<audio>`](https:/
 * `onProgressCapture` : une version de `onProgress` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onRateChange`](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/ratechange_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque le débit de lecture change.
 * `onRateChangeCapture` : une version de `onRateChange` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events)
-* `onResize` : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque la taille de la vidéo change.
+* `onResize` : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque les dimensions de la vidéo changent.
 * `onResizeCapture` : une version de `onResize` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onSeeked`](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/seeked_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsqu'un déplacement du pointeur de lecture se termine.
 * `onSeekedCapture` : une version de `onSeeked` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
@@ -229,7 +229,7 @@ Ces événements sont déclenchés pour les ressources comme [`<audio>`](https:/
 * `onSuspendCapture` : une version de `onSuspend` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onTimeUpdate`](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/timeupdate_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque le temps de lecture est mis à jour.
 * `onTimeUpdateCapture` : une version de `onTimeUpdate` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onVolumeChange`](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/volumechange_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque le volume a changé.
+* [`onVolumeChange`](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/volumechange_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque le volume audio a changé.
 * `onVolumeChangeCapture` : une version de `onVolumeChange` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onWaiting`](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/waiting_event) : un [gestionnaire d'événement `Event`](#event-handler). Cet événement est déclenché lorsque la lecture s'est arrêtée suite à un manque de données.
 * `onWaitingCapture` : une version de `onWaiting` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
@@ -237,7 +237,7 @@ Ces événements sont déclenchés pour les ressources comme [`<audio>`](https:/
 #### Limitations {/*common-caveats*/}
 
 - Vous ne pouvez pas passer à la fois `children` et `dangerouslySetInnerHTML`.
-- Certains événements (tels que `onAbort` et `onLoad`) ne sont pas propagés par le navigateur mais le sont en React.
+- Certains événements (tels que `onAbort` et `onLoad`) ne sont pas propagés le long du DOM par le navigateur, mais le sont en React.
 
 ---
 
@@ -267,7 +267,7 @@ La fonction `ref` ne renvoie rien.
 
 ### Objet d'événement React {/*react-event-object*/}
 
-Vos gestionnaires d'événements recevront un *objet d'événement React*. On parle aussi parfois « d'événement synthétique ».
+Vos gestionnaires d'événements recevront un *objet d'événement React*. On parle aussi parfois « d'événement synthétique » React.
 
 ```js
 <button onClick={e => {
@@ -275,7 +275,7 @@ Vos gestionnaires d'événements recevront un *objet d'événement React*. On pa
 }} />
 ```
 
-Il respecte le même standard que les événements DOM natifs, mais corrige certaines incohérences des navigateurs.
+Il respecte le même standard que les événements DOM natifs, mais corrige certaines incohérences d'implémentation d'un navigateurs à l'autr.
 
 Certains événements React ne correspondent pas directement aux événements natifs des navigateurs. Dans `onMouseLeave` par exemple, `e.nativeEvent` référence un événement `mouseout`. La correspondance spécifique ne fait pas partie de l'API publique et pourrait changer à l'avenir. Si, pour certaines raisons, vous avez besoin de l'événement sous-jacent du navigateur, vous le trouverez dans dans `e.nativeEvent`.
 
@@ -753,7 +753,7 @@ Vous écrivez ensuite vos règles CSS dans un fichier CSS séparé :
 
 React n'impose aucune façon particulière d'ajouter des fichiers CSS. Dans les cas les plus simples, vous ajouterez une balise [`<link>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/link) dans votre HTML. Si vous utilisez un outil de *build* ou un framework, consultez sa documentation pour connaître la façon d'ajouter un fichier CSS à votre projet.
 
-Parfois, les valeurs de style dépendent de vos données. Utilisez l'attribut `style` pour passer certains styles dynamiquement :
+Parfois, les valeurs de style que vous souhaitez utiliser dépendent de vos données. Utilisez l'attribut `style` pour passer certains styles dynamiquement :
 
 ```js {3-6}
 <img
@@ -981,7 +981,7 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 </Sandpack>
 
-Pour comprendre pourquoi l'injectino d'un HTML quelconque est dangereuse, remplacez le code plus haut par celui-ci :
+Pour comprendre pourquoi l'injection d'un contenu HTML quelconque est dangereuse, remplacez le code plus haut par celui-ci :
 
 ```js {1-4,7,8}
 const post = {
@@ -1002,7 +1002,7 @@ Le code intégré dans le HTML sera exécuté. Un hacker pourrait utiliser cette
 
 ### Gérer des événements liés à la souris {/*handling-mouse-events*/}
 
-Cet exemple montre quelques [événements liés à la souris](#mouseevent-handler) courants et illustre leurs moments de déclenchement.
+Cet exemple montre quelques [événements liés à la souris](#mouseevent-handler) courants et la chronologie de leurs déclenchements.
 
 <Sandpack>
 
@@ -1049,7 +1049,7 @@ input { margin-left: 10px; }
 
 ### Gérer des événements du pointeur {/*handling-pointer-events*/}
 
-Cet exemple montre quelques [événements liés aux pointeurs](#pointerevent-handler) courants et illustre leurs moments de déclenchement.
+Cet exemple montre quelques [événements liés aux pointeurs](#pointerevent-handler) courants et permet de suivre la chronologie de leurs déclenchements.
 
 <Sandpack>
 
@@ -1153,7 +1153,7 @@ input { margin-left: 10px; }
 
 ### Gérer les événements liés au clavier {/*handling-keyboard-events*/}
 
-Cet exemple montre quelques [événements liés au clavier](#keyboardevent-handler) courants et illustre leurs moments de déclenchement.
+Cet exemple montre quelques [événements liés au clavier](#keyboardevent-handler) courants et la chronologie de leurs déclenchements.
 
 <Sandpack>
 
