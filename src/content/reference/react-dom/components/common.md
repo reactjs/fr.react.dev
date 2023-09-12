@@ -751,9 +751,9 @@ Vous écrivez ensuite vos règles CSS dans un fichier CSS séparé :
 }
 ```
 
-React ne prescrit pas la façon dont vous ajoutez des fichiers CSS. Dans les cas les plus simples, vous ajouterez une balise [`<link>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/link) dans votre HTML. Si vous utilisez un outil de construction ou un framework, consultez sa documentation pour connaître la façon d'ajouter un fichier CSS à votre projet.
+React n'impose aucune façon particulière d'ajouter des fichiers CSS. Dans les cas les plus simples, vous ajouterez une balise [`<link>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/link) dans votre HTML. Si vous utilisez un outil de *build* ou un framework, consultez sa documentation pour connaître la façon d'ajouter un fichier CSS à votre projet.
 
-Parfois, les valeurs de style dépendent de la donnée. Utilisez l'attribut `style` pour passer certains styles dynamiquement :
+Parfois, les valeurs de style dépendent de vos données. Utilisez l'attribut `style` pour passer certains styles dynamiquement :
 
 ```js {3-6}
 <img
@@ -765,8 +765,7 @@ Parfois, les valeurs de style dépendent de la donnée. Utilisez l'attribut `sty
 />
 ```
 
-
-Dans l'exemple ci-dessus, `style={{}}` n'est pas une syntaxe particulière, mais un objet classique `{}` à l'intérieur des [accolades JSX](/learn/javascript-in-jsx-with-curly-braces) `style={ }`. Nous recommandons d'utiliser l'attribut `style` uniquement si vos styles dépendent de variables JavaScript.
+Dans l'exemple ci-dessus, `style={{}}` n'est pas une syntaxe particulière, mais un objet classique `{}` à l'intérieur des [accolades JSX](/learn/javascript-in-jsx-with-curly-braces) `style={ }`. Nous vous conseillons de n'utiliser l'attribut `style` que si vos styles dépendent de variables JavaScript.
 
 <Sandpack>
 
@@ -810,9 +809,9 @@ export default function Avatar({ user }) {
 
 <DeepDive>
 
-#### Comment appliquer plusieurs classes CSS sous conditions ? {/*how-to-apply-multiple-css-classes-conditionally*/}
+#### Comment appliquer conditionnellement plusieurs classes CSS ? {/*how-to-apply-multiple-css-classes-conditionally*/}
 
-Pour conditionner l'application de classes CSS, vous devez produire vous-même la chaîne de caractères `className` en utilisant le JavaScript.
+Pour conditionner l'application de classes CSS, vous devez produire vous-même la chaîne de caractères `className` en utilisant JavaScript.
 
 Par exemple, `className={'row ' + (isSelected ? 'selected': '')}` produira soit `className="row"`, soit `className="row selected"`, selon que `isSelected` est à `true` ou non.
 
@@ -854,9 +853,9 @@ function Row({ isSelected, size }) {
 
 ### Manipuler un nœud DOM avec une ref {/*manipulating-a-dom-node-with-a-ref*/}
 
-Parfois, vous aurez besoin de récupérer le nœud DOM du navigateur associé à une balise en JSX. Par exemple, si vous voulez mettre le focus sur un `<input>` après qu'un bouton a été cliqué, vous aurez besoin d'appeler [`focus()`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/focus) sur le nœud DOM `<input>` du navigateur.
+Vous aurez parfois besoin de récupérer le nœud DOM du navigateur associé à une balise en JSX. Si par exemple vous voulez activer un `<input>` après qu'un bouton a été cliqué, vous aurez besoin d'appeler [`focus()`](https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/focus) sur le nœud DOM `<input>` du navigateur.
 
-Pour obtenir le nœud DOM du navigateur correspondant à une balise, il faut [déclarer une ref](/reference/react/useRef) et la passer à l'attribut `ref` de cette balise :
+Pour obtenir le nœud DOM du navigateur correspondant à une balise, [déclarez une ref](/reference/react/useRef) et passez-la à l'attribut `ref` de cette balise :
 
 ```js {7}
 import { useRef } from 'react';
@@ -869,7 +868,7 @@ export default function Form() {
     // ...
 ```
 
-React placera le nœud DOM dans la propriété `inputRef.current` une fois qu'il sera rendu à l'écran.
+React référencera le nœud DOM depuis la propriété `inputRef.current` une fois le DOM mis à jour.
 
 <Sandpack>
 
@@ -887,7 +886,7 @@ export default function Form() {
     <>
       <input ref={inputRef} />
       <button onClick={handleClick}>
-        Placer le focus sur le champ
+        Activer le champ
       </button>
     </>
   );
@@ -896,24 +895,24 @@ export default function Form() {
 
 </Sandpack>
 
-Apprenez-en davantage à propos de la [manipulation du DOM avec les refs](/learn/manipulating-the-dom-with-refs) et [découvrir d'autres exemples](/reference/react/useRef#examples-dom).
+Apprenez-en davantage sur la [manipulation du DOM avec les refs](/learn/manipulating-the-dom-with-refs) et [découvrez d'autres exemples](/reference/react/useRef#examples-dom).
 
 Pour des utilisations plus avancées, l'attribut `ref` accepte églament une [fonction de rappel](#ref-callback).
 
 ---
 
-### Définir le HTML interne de façon risquée {/*dangerously-setting-the-inner-html*/}
+### Définir le HTML interne (mais c'est risqué) {/*dangerously-setting-the-inner-html*/}
 
-Vous pouvez passer une chaîne de caractères contenant du HTML brut à un élément de cette façon :
+Vous pouvez passer une chaîne de caractères contenant du HTML brut à un élément comme suit :
 
 ```js
 const markup = { __html: '<p>du HTML brut</p>' };
 return <div dangerouslySetInnerHTML={markup} />;
 ```
 
-**C'est dangereux. Comme pour la propriété du DOM [`innerHTML`](https://developer.mozilla.org/fr/docs/Web/API/Element/innerHTML), vous devez faire preuve d'une extrême prudence ! À moins que le balisage ne provienne d'une source parfaitement fiable, il est facile d'introduire une vulnérabilité [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) de cette façon.**
+**C'est dangereux. Comme avec la propriété [`innerHTML`](https://developer.mozilla.org/fr/docs/Web/API/Element/innerHTML) du DOM, vous devez faire preuve d'une extrême prudence ! À moins que le balisage ne provienne d'une source parfaitement fiable, il est facile d'introduire une vulnérabilité [XSS](https://fr.wikipedia.org/wiki/Cross-site_scripting) de cette façon.**
 
-Par exemple, si vous utilisez une bibliothèque de Markdown qui convertit le Markdown en HTML, que vous êtes sûr que son *parser* ne contient pas de bug et que l'utilisateur ne voit que ses propres données, vous pouvez afficher le HTML généré de cette façon :
+Par exemple, si vous utilisez une bibliothèque qui convertit du Markdown en HTML, que vous êtes sûr·e que son *parser* ne contient pas de bug et que l'utilisateur ne voit que ses propres données, vous pouvez afficher le HTML généré de cette façon :
 
 <Sandpack>
 
@@ -926,7 +925,7 @@ export default function MarkdownEditor() {
   return (
     <>
       <label>
-        Saisissez du markdown:
+        Saisissez du Markdown :
         <textarea
           value={postContent}
           onChange={e => setPostContent(e.target.value)}
@@ -945,10 +944,10 @@ import { Remarkable } from 'remarkable';
 const md = new Remarkable();
 
 function renderMarkdownToHTML(markdown) {
-  // C'est sûr UNIQUEMENT parce que le HTML généré
-  // est affiché à l'utilisateur, et parce que
-  // vous avez confiance dans le fait que ce
-  // parser de Markdown ne contient pas de bugs.
+  // C’est fiable UNIQUEMENT parce que le HTML généré
+  // n’est affiché qu’à l’utilisateur qui l’a saisi,
+  // et parce que vous avez confiance dans le fait que
+  // ce parser de Markdown ne contient pas de bugs.
   const renderedHTML = md.render(markdown);
   return {__html: renderedHTML};
 }
@@ -982,28 +981,28 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 </Sandpack>
 
-Pour comprendre pourquoi le rendu d'un HTML arbitraire est dangereux, remplacez le code plus haut par celui-ci :
+Pour comprendre pourquoi l'injectino d'un HTML quelconque est dangereuse, remplacez le code plus haut par celui-ci :
 
 ```js {1-4,7,8}
 const post = {
-  // Imaginez que ce contenu est stocké en base de données.
+  // Imaginez que ce contenu soit stocké en base de données.
   content: `<img src="" onerror='alert("vous avez été hacké")'>`
 };
 
 export default function MarkdownPreview() {
-  // 🔴 FAILLE DE SÉCURITÉ : passer une saisie non fiable à dangerouslySetInnerHTML
+  // 🔴 FAILLE DE SÉCURITÉ : passage d’une saisie non fiable à dangerouslySetInnerHTML
   const markup = { __html: post.content };
   return <div dangerouslySetInnerHTML={markup} />;
 }
 ```
 
-Le code intégré dans le HTML sera exécuté. Un hacker pourrait utiliser cette faille de sécurité pour voler des informations de l'utilisateur ou effectuer certaines actions en son nom. **Utilisez seulement `dangerouslySetInnerHTML` avec des données de confiance et assainies**.
+Le code intégré dans le HTML sera exécuté. Un hacker pourrait utiliser cette faille de sécurité pour voler des informations à l'utilisateur ou effectuer certaines actions en son nom. **Utilisez seulement `dangerouslySetInnerHTML` avec des données de confiance, dûment assainies.**
 
 ---
 
-### Gérer des événements de la souris {/*handling-mouse-events*/}
+### Gérer des événements liés à la souris {/*handling-mouse-events*/}
 
-Cet exemple montre quelques [événements de souris](#mouseevent-handler) courants et quand ils sont déclenchés.
+Cet exemple montre quelques [événements liés à la souris](#mouseevent-handler) courants et illustre leurs moments de déclenchement.
 
 <Sandpack>
 
@@ -1050,7 +1049,7 @@ input { margin-left: 10px; }
 
 ### Gérer des événements du pointeur {/*handling-pointer-events*/}
 
-Cet exemple montre quelques [événements de pointeur](#pointerevent-handler) courants et quand ils sont déclenchés.
+Cet exemple montre quelques [événements liés aux pointeurs](#pointerevent-handler) courants et illustre leurs moments de déclenchement.
 
 <Sandpack>
 
@@ -1098,7 +1097,7 @@ input { margin-left: 10px; }
 
 ### Gérer les événéments de focus {/*handling-focus-events*/}
 
-Avec React, les [événements de focus](#focusevent-handler) remontent dans le DOM. Vous pouvez utiliser `currentTarget` et `relatedTarget` pour savoir si les événements de focus ou de blur proviennent de l'extérieur de l'élément parent. L'exemple montre comment détecter le focus d'un enfant, celui de l'élément parent et comment détecter l'entrée ou la sortie du focus sur l'ensemble du sous-arbre.
+Avec React, les [événements de focus](#focusevent-handler) se propagent le long du DOM. Vous pouvez utiliser `currentTarget` et `relatedTarget` pour savoir si les événements de prise de focus ou de perte de focus proviennent de l'extérieur de l'élément parent. L'exemple montre comment détecter le focus d'un enfant, celui de l'élément parent, et comment détecter l'entrée ou la sortie du focus sur l'ensemble du sous-arbre.
 
 <Sandpack>
 
@@ -1111,22 +1110,22 @@ export default function FocusExample() {
         if (e.currentTarget === e.target) {
           console.log('focus sur le parent');
         } else {
-          console.log("focus sur l'enfant", e.target.name);
+          console.log("focus sur l’enfant", e.target.name);
         }
         if (!e.currentTarget.contains(e.relatedTarget)) {
-          // N'est pas déclenché quand on passe d'un enfant à l'autre
+          // N’est pas déclenché quand on passe d’un enfant à l’autre
           console.log('focus entré au niveau du parent');
         }
       }}
       onBlur={(e) => {
         if (e.currentTarget === e.target) {
-          console.log('Perte du focus par le parent');
+          console.log('perte du focus par le parent');
         } else {
-          console.log("Perte du focus par l'enfant", e.target.name);
+          console.log("perte du focus par l’enfant", e.target.name);
         }
         if (!e.currentTarget.contains(e.relatedTarget)) {
-          // N'est pas déclenché quand on passe d'un enfant à l'autre
-          console.log('Le focus quitte le parent');
+          // N’est pas déclenché quand on passe d’un enfant à l’autre
+          console.log('le focus quitte le parent');
         }
       }}
     >
@@ -1152,9 +1151,9 @@ input { margin-left: 10px; }
 
 ---
 
-### Gérer les évenements du clavier {/*handling-keyboard-events*/}
+### Gérer les événements liés au clavier {/*handling-keyboard-events*/}
 
-Cet exemple montre quelques [événements du clavier](#keyboardevent-handler) courants et quand ils sont déclenchés.
+Cet exemple montre quelques [événements liés au clavier](#keyboardevent-handler) courants et illustre leurs moments de déclenchement.
 
 <Sandpack>
 
