@@ -82,7 +82,7 @@ Nous ne nous attendons pas à ce que les équipes des bibliothèques tierces tes
 
 <Note>
 
-À proprement parler, Canary n'est pas un *nouveau* canal de publication — il s'appelait auparavant Next. Nous avons toutefois décidé de le renommer pour éviter la confusion avec Next.js. Nous l'annonçons comme un *nouveau* canal de publication pour en communiquer les nouvelles attentes, notamment dans la mesure où les Canaries sont désormais une manière officiellement prise en charge d'utiliser React.
+À proprement parler, Canary n'est pas un *nouveau* canal de livraison — il s'appelait auparavant Next. Nous avons toutefois décidé de le renommer pour éviter la confusion avec Next.js. Nous l'annonçons comme un *nouveau* canal de livraison pour en communiquer les nouvelles attentes, notamment dans la mesure où les Canaries sont désormais une manière officiellement prise en charge d'utiliser React.
 
 </Note>
 
