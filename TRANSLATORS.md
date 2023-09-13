@@ -90,6 +90,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react/useSyncExternalStore"><code>useSyncExternalStore</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useTransition"><code>useTransition</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/Suspense"><code>&lt;Suspense&gt;</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/cache"><code>cache</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/forwardRef"><code>forwardRef</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/startTransition"><code>startTransition</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/directives">Directives</a> (accueil chapitre)</li>
