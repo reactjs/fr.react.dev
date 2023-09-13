@@ -5,9 +5,9 @@ canary: true
 
 <Canary>
 
-* `cache` n'est destinée qu'aux [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). Découvrez quels [frameworks](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) prennent en charge les React Server Components.
+* `cache` n'est destinée qu'aux [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). Découvrez quels [frameworks](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) prennent en charge les Composants Serveur.
 
-* `cache` n'est disponible que dans les canaux [Canary](/community/versioning-policy#canary-channel) et [Expérimental](/community/versioning-policy#experimental-channel). Assurez-vous d'en comprendre les limitations avant d'utiliser `cache` en production. Apprenez-en davantage sur les [canaux de livraison React](/community/versioning-policy#all-release-channels).
+* `cache` n'est disponible que dans les canaux de livraison [Canary](/community/versioning-policy#canary-channel) et [Expérimental](/community/versioning-policy#experimental-channel). Assurez-vous d'en comprendre les limitations avant d'utiliser `cache` en production. Apprenez-en davantage sur les [canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
@@ -53,13 +53,13 @@ Lors du premier appel de `getMetrics` avec `data`, `getMetrics` appellera `calcu
 
 #### Valeur renvoyée {/*returns*/}
 
-`cache` renvoie une version de `fn` dotée d'un cache, avec la même signature de type.  Elle n'appelle pas `fn` au passage.
+`cache` renvoie une version de `fn` dotée d'un cache, avec la même signature de type.  Elle n'appelle pas `fn` à ce moment-là.
 
 Lors d'un appel à `cachedFn` avec des arguments donnés, elle vérifiera d'abord si un résultat correspondant existe dans le cache. Si tel est le cas, elle renverra ce résultat. Dans le cas contraire, elle appellera `fn` avec les arguments, mettra le résultat en cache et le renverra. `fn` n'est appelée qu'en cas d'absence de correspondance dans le cache *(cache miss, NdT)*.
 
 <Note>
 
-L'optimisation qui consiste à mettre en cache les valeurs résultats sur base des arguments passés est généralement appelée [_mémoïsation_](https://fr.wikipedia.org/wiki/M%C3%A9mo%C3%AFsation). On dit que la fonction renvoyée par `cache` est une fonction mémoïsée.
+L'optimisation qui consiste à mettre en cache les valeurs résultats sur base des arguments passés est généralement appelée [_mémoïsation_](https://fr.wikipedia.org/wiki/M%C3%A9mo%C3%AFsation). La fonction renvoyée par `cache` est dite « fonction mémoïsée ».
 
 </Note>
 
@@ -92,7 +92,7 @@ function Profile({user}) {
 }
 
 function TeamReport({users}) {
-  for (let user in users) {
+  for (const user of users) {
     const metrics = getUserMetrics(user);
     // ...
   }
@@ -100,15 +100,15 @@ function TeamReport({users}) {
 }
 ```
 
-Si le même objet `user` est affiché dans `Profile` et `TeamReport`n les deux composants peuvent mutualiser le travail et n'appeler `calculateUserMetrics` qu'une fois pour ce `user`.
+Si le même objet `user` est affiché dans `Profile` et `TeamReport`, les deux composants peuvent mutualiser le travail et n'appeler `calculateUserMetrics` qu'une fois pour ce `user`.
 
-Supposons que `Profile` fasse son rendu en premier. Il appellera <CodeStep step={1}>`getUserMetrics`</CodeStep>, qui vérifiera si un résultat existe en cache.  Comme il s'agit du premier appel de `getUserMetrics` pour ce `user`, aucune correspondance ne sera trouvée. `getUserMetrics` appellera alors `calculateUserMetrics` avec ce `user` et mettra le résultat en cache.
+Supposons que `Profile` fasse son rendu en premier. Il appellera <CodeStep step={1}>`getUserMetrics`</CodeStep>, qui vérifiera si un résultat existe en cache.  Comme il s'agit du premier appel de `getUserMetrics` pour ce `user`, elle ne trouvera aucune correspondance. `getUserMetrics` appellera alors effectivement `calculateUserMetrics` avec ce `user` puis mettra le résultat en cache.
 
 Lorsque `TeamReport` affichera sa liste de `users` et atteindra le même objet `user`, il appellera <CodeStep step={2}>`getUserMetrics`</CodeStep> qui lira le résultat depuis son cache.
 
 <Pitfall>
 
-##### Appeler des fonctions mémoïsées distinctes lira des caches distincts {/*pitfall-different-memoized-functions*/}
+#### Appeler des fonctions mémoïsées distinctes lira des caches distincts {/*pitfall-different-memoized-functions*/}
 
 Pour partager un cache, des composants doivent appeler la même fonction mémoïsée.
 
@@ -131,7 +131,7 @@ export function Temperature({cityData}) {
 import {cache} from 'react';
 import {calculateWeekReport} from './report';
 
-// 🚩 Erroné : `getWeekReport` n'est accessible que depuis
+// 🚩 Erroné : `getWeekReport` n’est accessible que depuis
 // le composant `Precipitation`.
 const getWeekReport = cache(calculateWeekReport);
 
@@ -141,11 +141,11 @@ export function Precipitation({cityData}) {
 }
 ```
 
-Dans l'exemple ci-dessus, <CodeStep step={2}>`Precipitation`</CodeStep> et <CodeStep step={1}>`Temperature`</CodeStep> appellent chacun `cache` pour créer une nouvelle fonction mémoïsée, qui dispose à chaque fois de son propre cache.  Si les deux composants s'affichent avec les mêmes `cityData`, ils dupliqueront le travail en appelant à chaque fois `calculateWeekReport`.
+Dans l'exemple ci-dessus, <CodeStep step={2}>`Precipitation`</CodeStep> et <CodeStep step={1}>`Temperature`</CodeStep> appellent chacun `cache` pour créer une nouvelle fonction mémoïsée, qui dispose à chaque fois de son propre cache.  Si les deux composants s'affichent avec les mêmes `cityData`, ils dupliqueront tout de même le travail en appelant à chaque fois `calculateWeekReport`.
 
 Qui plus est, `Temperature` crée une <CodeStep step={1}>nouvelle fonction mémoïsée</CodeStep> à chaque rendu, ce qui ne permet aucun partage de cache.
 
-Pour maximiser les correspondances trouvées et réduire la charge de calcul, les deux composants deraient partager la même fonction mémoïsée pour accéder au même cache.  Définissez plutôt la fonction mémoïsée dans un module dédié qui peut faire l'objet d'un [`import`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/import) dans les divers composants.
+Pour maximiser les correspondances trouvées et réduire la charge de calcul, les deux composants devraient s'assurer de partager la même fonction mémoïsée, pour pouvoir accéder au même cache.  Définissez plutôt la fonction mémoïsée dans un module dédié qui peut faire l'objet d'un [`import`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/import) dans les divers composants.
 
 ```js [[3, 5, "export default cache(calculateWeekReport)"]]
 // getWeekReport.js
@@ -175,13 +175,13 @@ export default function Precipitation({cityData}) {
 }
 ```
 
-Désormais les deux composants appellent la <CodeStep step={3}>même fonction mémoïsée</CodeStep> exportée depuis `./getWeekReport.js` afin de lire et d'écrire dans le même cache.
+Désormais les deux composants appellent la <CodeStep step={3}>même fonction mémoïsée</CodeStep>, exportée depuis `./getWeekReport.js`, afin de lire et d'écrire dans le même cache.
 
 </Pitfall>
 
 ### Partager un instantané de données {/*take-and-share-snapshot-of-data*/}
 
-Pour partager un instantané de données d'un composant à l'autre, appelez `cache` sur une fonction de chargement de données telle que `fetch`.  Lorsque plusieurs composants feront le même chargement de données, seule une requête sera faite, et ses données résultantes mise en cache et partagée à travers plusieurs composants.  Tous les composants utiliseront le même instantané de ces données au sein du rendu côté serveur.
+Pour partager un instantané de données d'un composant à l'autre, appelez `cache` sur une fonction de chargement de données telle que `fetch`.  Lorsque plusieurs composants feront le même chargement de données, seule une requête sera faite, et ses données résultantes mises en cache et partagées à travers plusieurs composants.  Tous les composants utiliseront le même instantané de ces données au sein du rendu côté serveur.
 
 ```js [[1, 4, "city"], [1, 5, "fetchTemperature(city)"], [2, 4, "getTemperature"], [2, 9, "getTemperature"], [1, 9, "city"], [2, 14, "getTemperature"], [1, 14, "city"]]
 import {cache} from 'react';
@@ -228,7 +228,7 @@ async function AnimatedWeatherCard({city}) {
 
 ### Précharger des données {/*preload-data*/}
 
-En mettant en cache un chargement de données de longue durée, vous pouvez démarrer des traitements asynchrones avant de faire le rendu d'un composant.
+En mettant en cache un chargement de données qui prendrait du temps, vous pouvez démarrer des traitements asynchrones avant de faire le rendu d'un composant.
 
 ```jsx [[2, 6, "await getUser(id)"], [1, 17, "getUser(id)"]]
 const getUser = cache(async (id) => {
@@ -259,15 +259,15 @@ function Page({id}) {
 
 Lorsque `Page` fait son rendu, le composant appelle <CodeStep step={1}>`getUser`</CodeStep>, mais remarquez qu'il n'utilise pas les données renvoyées.  Cet appel anticipé à <CodeStep step={1}>`getUser`</CodeStep> déclenche la requête asynchrone à la base de données, qui s'exécute pendant que `Page` fait d'autres calculs puis déclenche le rendu de ses enfants.
 
-Lorsque `Profile` fait son rendu, nous appelons à nouveau <CodeStep step={2}>`getUser`</CodeStep>. Si l'appel initial à <CodeStep step={1}>`getUser`</CodeStep> a fini son chargement et mis en cache les données utilisateur, lorsque `Profile` <CodeStep step={2}>demande ces données puis attend</CodeStep>, il n'a plus qu'à les lire du cache, sans relancer un appel réseau. Si la <CodeStep step={1}>requête de données initiale</CodeStep> n'est pas encore terminée, cette approche de préchargement réduit le délai d'obtention des données.
+Lorsque `Profile` fait son rendu, nous appelons à nouveau <CodeStep step={2}>`getUser`</CodeStep>. Si l'appel initial à <CodeStep step={1}>`getUser`</CodeStep> a fini son chargement et mis en cache les données utilisateur, lorsque `Profile` <CodeStep step={2}>demande ces données puis attend</CodeStep>, il n'a plus qu'à les lire du cache, sans relancer un appel réseau. Si la <CodeStep step={1}>requête de données initiale</CodeStep> n'est pas encore terminée, cette approche de préchargement réduit tout de même le délai d'obtention des données.
 
 <DeepDive>
 
 #### Mettre en cache un traitement asynchrone {/*caching-asynchronous-work*/}
 
-Lorsque vous évaluez une [fonction asynchrone](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/async_function), vous recevez une [Promise](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise) représentant le traitement. La promesse maintient un état pour le traitement (en attente, accompli ou rejeté) ainsi que l'aboutissement du traitement à terme.
+Lorsque vous évaluez une [fonction asynchrone](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/async_function), vous recevez une [Promise](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise) représentant le traitement. La promesse maintient un état pour le traitement (*en attente*, *accompli* ou *rejeté*) ainsi que l'aboutissement du traitement à terme.
 
-Dans cet exemple, la fonction asynchrone <CodeStep step={1}>`fetchData`</CodeStep> renvoie une promesse pour le résultat de l'appel à `fetch`.
+Dans cet exemple, la fonction asynchrone <CodeStep step={1}>`fetchData`</CodeStep> renvoie une promesse pour le résultat de notre appel à `fetch`.
 
 ```js [[1, 1, "fetchData()"], [2, 8, "getData()"], [3, 10, "getData()"]]
 async function fetchData() {
@@ -296,7 +296,7 @@ Si la promesse est déjà établie à ce moment-là, `await` renverra immédiate
 
 <Pitfall>
 
-##### Appeler une fonction mémoïsée hors d'un composant n'utilisera pas le cache {/*pitfall-memoized-call-outside-component*/}
+#### Appeler une fonction mémoïsée hors d'un composant n'utilisera pas le cache {/*pitfall-memoized-call-outside-component*/}
 
 ```jsx [[1, 3, "getUser"]]
 import {cache} from 'react';
@@ -318,7 +318,7 @@ async function DemoProfile() {
 
 React ne fournit un accès au cache pour les fonctions mémoïsées qu'au sein d'un composant. Si vous appelez <CodeStep step={1}>`getUser`</CodeStep> hors d'un composant, il évaluera la fonction mais n'utilisera pas le cache (ni en lecture ni en écriture).
 
-C'est parce que l'accès au cache est fourni via un [contexte](/learn/passing-data-deeply-with-context) qui n'est accessible que depuis les composants.
+C'est parce que l'accès au cache est fourni via un [contexte](/learn/passing-data-deeply-with-context), et que les contextes ne sont accessibles que depuis les composants.
 
 </Pitfall>
 
@@ -326,7 +326,7 @@ C'est parce que l'accès au cache est fourni via un [contexte](/learn/passing-da
 
 #### Comment choisir entre `cache`, [`memo`](/reference/react/memo) et [`useMemo`](/reference/react/useMemo) ? {/*cache-memo-usememo*/}
 
-Toutes ces API proposent de la mémoïsation, mais diffèrent dans ce que vous cherchez à mémoïser, aux destinataires du cache, et aux méthodes d'invalidation de ce cache.
+Toutes ces API proposent de la mémoïsation, mais diffèrent sur ce que vous cherchez à mémoïser, sur les destinataires du cache, et sur les méthodes d'invalidation de ce cache.
 
 #### `useMemo` {/*deep-dive-use-memo*/}
 
@@ -378,7 +378,7 @@ function App() {
 }
 ```
 
-En réécrivant l'exemple précédent pour utiliser `cache`, cette fois la <CodeStep step={3}>deuxième instance de `WeatherReport`</CodeStep> pourra s'éviter une duplication d'effort et lira depuis le même cache que le <CodeStep step={1}>premier `WeatherReport`</CodeStep>. Une autre différence avec l'exemple précédent, c'est que `cache` est également conseillées pour <CodeStep step={2}>mémoïser des chargements de données</CodeStep>, contrairement à `useMemo` qui ne devrait être utilisée que pour des calculs.
+En réécrivant l'exemple précédent pour utiliser `cache`, cette fois la <CodeStep step={3}>deuxième instance de `WeatherReport`</CodeStep> pourra s'éviter une duplication d'effort et lira depuis le même cache que le <CodeStep step={1}>premier `WeatherReport`</CodeStep>. Une autre différence avec l'exemple précédent, c'est que `cache` est également conseillée pour <CodeStep step={2}>mémoïser des chargements de données</CodeStep>, contrairement à `useMemo` qui ne devrait être utilisée que pour des calculs.
 
 Pour le moment, `cache` ne devrait être utilisée que dans des Composants Serveur, et le cache sera invalidé à chaque requête serveur.
 
@@ -419,16 +419,16 @@ Comparé à `useMemo`, `memo` mémoïse le rendu du composant sur base de ses pr
 
 ### Ma fonction mémoïsée est ré-exécutée alors que je l'ai appelée avec les mêmes arguments {/*memoized-function-still-runs*/}
 
-Voyez déjà les pièges déjà signalés.
+Voyez déjà les pièges signalés plus haut :
 
 * [Appeler des fonctions mémoïsées distinctes lira des caches distincts](#pitfall-different-memoized-functions)
 * [Appeler une fonction mémoïsée hors d'un composant n'utilisera pas le cache](#pitfall-memoized-call-outside-component)
 
-Si rien de tout ça ne s'applique, il peut s'agir d'un problème dans la façon dont React vérifie l'existence de quelque chose dans le cache.
+Si rien de tout ça ne s'applique, le problème peut être lié à la façon dont React vérifie l'existence de quelque chose dans le cache.
 
-Si vos arguments ne sont pas des [primitives](https://developer.mozilla.org/fr/docs/Glossary/Primitive) (ex. ce sont des objets, des fonctions, des tableaux), assurez-vous de toujours passer la même référence d'objet.
+Si vos arguments ne sont pas des [primitives](https://developer.mozilla.org/fr/docs/Glossary/Primitive) (ce sont par exemple des objets, des fonctions, des tableaux), assurez-vous de toujours passer la même référence d'objet.
 
-Lors d'un appel à une fonction mémoïsée, React utilisera les arguments passés pour déterminer si un résultat existe déjà dans le cache. React utilisera une comparaison superficielle des arguments pour ce faire.
+Lors d'un appel à une fonction mémoïsée, React utilisera les arguments passés pour déterminer si un résultat existe déjà dans le cache. React utilisera pour ce faire une comparaison superficielle des arguments.
 
 ```js
 import {cache} from 'react';
