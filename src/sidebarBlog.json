@@ -27,14 +27,14 @@
         },
         {
           "title": "Introducing react.dev",
-          "titleForHomepage": "Introducing react.dev",
+          "titleForHomepage": "Découvrez react.dev",
           "icon": "blog",
           "date": "16 mars 2023",
           "path": "/blog/2023/03/16/introducing-react-dev"
         },
         {
           "title": "React Labs: What We've Been Working On – June 2022",
-          "titleForHomepage": "React Labs: June 2022",
+          "titleForHomepage": "React Labs : juin 2022",
           "icon": "labs",
           "date": "15 juin 2022",
           "path": "/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"
