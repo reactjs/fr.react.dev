@@ -50,7 +50,7 @@ Lorsqu'il est appelé avec une promesse, le Hook `use` s'intègre avec [`Suspens
 
 #### Valeur renvoyée {/*returns*/}
 
-Le Hook `use` renvoie la valeur lue depuis la ressource, telle que la valeur accomplie d'une [promesse](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise) ou d'un [contexte](/learn/passing-data-deeply-with-context).
+Le Hook `use` renvoie la valeur lue depuis la ressource, telle que la valeur accomplie d'une [promesse](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise) ou la valeur actuelle d'un [contexte](/learn/passing-data-deeply-with-context).
 
 #### Limitations {/*caveats*/}
 
@@ -71,7 +71,7 @@ import { use } from 'react';
 
 function Button() {
   const theme = use(ThemeContext);
-  // ... 
+  // ...
 ```
 
 `use` renvoie la <CodeStep step={2}>valeur de contexte</CodeStep> pour le <CodeStep step={1}>contexte</CodeStep> que vous avez transmis. Pour déterminer la valeur du contexte, React remonte l'arbre des composants pour trouver le **fournisseur de contexte parent le plus proche** pour ce contexte.
@@ -479,7 +479,7 @@ Pour utiliser la méthode <CodeStep step={1}>`catch`</CodeStep> de la promesse, 
 
 *(« Exception Suspense : ce n'est pas une véritable erreur ! », NdT)*
 
-Vous appelez `use` soit en-dehors d'un composant React ou d'une fonction de Hook, soit dans un bloc try-catch. Pour corriger ce dernier cas, enrobez votre composant dans un périmètre d'erreur ou appelez la fonction `Promise.catch` pour attraper l'erreur et résoudre la promesse avec une valeur différente. [Consultez ces exemples](#dealing-with-rejected-promises).
+Vous appelez probablement `use` soit en-dehors d'un composant React ou d'une fonction de Hook, soit dans un bloc try-catch. Pour corriger ce dernier cas, enrobez votre composant dans un périmètre d'erreur ou appelez la fonction `catch` de la promesse pour attraper l'erreur et résoudre la promesse avec une valeur différente. [Consultez ces exemples](#dealing-with-rejected-promises).
 
 Si vous appelez `use` en-dehors d'un composant React ou d'une fonction de Hook, déplacez l'appel à `use` dans un composant React ou une fonction de Hook.
 
@@ -495,7 +495,7 @@ Appelez plutôt `use` hors de toute fermeture lexicale au sein du composant, lor
 
 ```jsx
 function MessageComponent({messagePromise}) {
-  // ✅ `use` est appelé depuis un composant 
+  // ✅ `use` est appelé depuis un composant
   const message = use(messagePromise);
   // ...
 ```
