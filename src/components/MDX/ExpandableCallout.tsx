@@ -36,7 +36,7 @@ const variantMap = {
       'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
   },
   canary: {
-    title: 'Canari (fonctionnalité expérimentale)',
+    title: 'Canary (fonctionnalité expérimentale)',
     Icon: IconCanary,
     containerClasses:
       'bg-gray-5 dark:bg-gray-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
