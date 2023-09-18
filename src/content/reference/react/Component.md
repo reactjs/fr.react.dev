@@ -815,8 +815,13 @@ Si vous définissez `UNSAFE_componentWillReceiveProps`, React l'appellera lorsqu
 
 #### Paramètres {/*unsafe_componentwillreceiveprops-parameters*/}
 
+<<<<<<< HEAD
 * `nextProps` : les prochaines props que le composant va recevoir de son composant parent. Comparez `nextProps` à [`this.props`](#props) pour déterminer ce qui a changé.
 * `nextContext` : le prochain contexte que le composant va recevoir de son plus proche fournisseur de contexte. Comparez `nextContext` à [`this.context`](#state) pour déterminer ce qui a changé. N'est disponible que si vous avez par ailleurs spécifié [`static contextType`](#static-contexttype) (approche plus récente) ou [`static contextTypes`](#static-contexttypes) (approche dépréciée).
+=======
+- `nextProps`: The next props that the component is about to receive from its parent component. Compare `nextProps` to [`this.props`](#props) to determine what changed.
+- `nextContext`: The next context that the component is about to receive from the closest provider. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (legacy).
+>>>>>>> bdc60c26848820239db732b7218d41f4c2b204af
 
 #### Valeur renvoyée {/*unsafe_componentwillreceiveprops-returns*/}
 
