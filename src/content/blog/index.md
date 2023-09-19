@@ -23,9 +23,9 @@ Dans les billets React Labs, nous vous parlons de nos projets de recherche et d�
 </BlogCard>
 
 
-<BlogCard title="Introducing react.dev" date="March 16, 2023" url="/blog/2023/03/16/introducing-react-dev">
+<BlogCard title="Découvrez react.dev" date="16 mars 2023" url="/blog/2023/03/16/introducing-react-dev">
 
-Today we are thrilled to launch react.dev, the new home for React and its documentation. In this post, we would like to give you a tour of the new site.
+Nous sommes enchantés d'annoncer aujourd'hui la sortie de react.dev, le nouveau site officiel de React et de sa documentation.  Dans ce billet, nous aimerions vous faire faire un tour du nouveau site.
 
 </BlogCard>
 
