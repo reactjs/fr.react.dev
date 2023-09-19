@@ -424,11 +424,7 @@ export default function Form() {
 
   return (
     <form>
-<<<<<<< HEAD
-      <MyInput label="Saisissez votre nom :" ref={ref} />
-=======
-      <MyInput placeholder="Enter your name" ref={ref} />
->>>>>>> bdc60c26848820239db732b7218d41f4c2b204af
+      <MyInput placeholder="Saisissez votre nom :" ref={ref} />
       <button type="button" onClick={handleClick}>
         Modifier
       </button>
