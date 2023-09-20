@@ -86,65 +86,64 @@ Les Composants Serveur sont encore expérimentaux, mais nous pensons pouvoir sor
 
 ### Nouvelle fonctionnalité : traitement par lots automatique {/*new-feature-automatic-batching*/}
 
-Batching is when React groups multiple state updates into a single re-render for better performance. Without automatic batching, we only batched updates inside React event handlers. Updates inside of promises, setTimeout, native event handlers, or any other event were not batched in React by default. With automatic batching, these updates will be batched automatically:
+React regroupe souvent plusieurs mises à jour d'état au sein d'un seul recalcul de rendu pour améliorer les performances : c'est ce qu'on appelle le traitement par lots.  Sans traitement automatique, nous ne regroupions que les mises à jour déclenchées au sein des gestionnaires d'événements React. Celles qui venaient de promesses, de `setTimeout`, de gestionnaires d'événements natifs ou de tout autre contexte n'étaient par défaut pas regroupées par React. Avec le traitement par lots automatique, ces mises à jour seront regroupées… automatiquement :
 
 
 ```js
-// Before: only React events were batched.
+// Avant : seuls les événements React utilisent le regroupement.
 setTimeout(() => {
   setCount(c => c + 1);
   setFlag(f => !f);
-  // React will render twice, once for each state update (no batching)
+  // React fera deux rendus, un pour chaque mise à jour d’état
+  // (pas de regroupement)
 }, 1000);
 
-// After: updates inside of timeouts, promises,
-// native event handlers or any other event are batched.
+// Après : les mises à jour dans les timers, promesses, gestionnaires
+// d’événements natifs et tout autre contexte utilisent le regroupement.
 setTimeout(() => {
   setCount(c => c + 1);
   setFlag(f => !f);
-  // React will only re-render once at the end (that's batching!)
+  // React ne fera qu’un rendu à la fin (traitement par lot !)
 }, 1000);
 ```
 
-For more info, see this post for [Automatic batching for fewer renders in React 18](https://github.com/reactwg/react-18/discussions/21).
+Pour en apprendre davantage, voyez cette discussion sur [le traitement par lots automatique pour entraîner moins de rendus dans React 18](https://github.com/reactwg/react-18/discussions/21).
 
 ### Nouvelle fonctionnalité : transitions {/*new-feature-transitions*/}
 
-A transition is a new concept in React to distinguish between urgent and non-urgent updates.
+Les transitions sont un nouveau concept de React qui permettent de distinguer les mises à jour urgentes des non urgentes.
 
-* **Urgent updates** reflect direct interaction, like typing, clicking, pressing, and so on.
-* **Transition updates** transition the UI from one view to another.
+* **Les mises à jour urgentes** reflètent une interaction directe, telle qu'une saisie, un clic, une touche enfoncée, etc.
+* **Les mises à jour de transition** amènent l'UI d'une vue vers une autre.
 
-Urgent updates like typing, clicking, or pressing, need immediate response to match our intuitions about how physical objects behave. Otherwise they feel "wrong". However, transitions are different because the user doesn’t expect to see every intermediate value on screen.
+Les mises à jour urgentes telles qu'une saisie, un clic ou un enfoncement de touche nécessitent une réponse immédiate pour correspondre au comportement intuitif d'objets physiques, sans quoi elles semblent « factices ».  Les transitions sont différentes parce que l'utilisateur ne s'attend pas à voir chaque valeur intermédiaire à l'écran.
 
-For example, when you select a filter in a dropdown, you expect the filter button itself to respond immediately when you click. However, the actual results may transition separately. A small delay would be imperceptible and often expected. And if you change the filter again before the results are done rendering, you only care to see the latest results.
+Lorsque vous sélectionnez par exemple un filtre dans une liste déroulante, vous vous attendez à ce que le bouton de filtrage lui-même réagisse immédiatement au clic. En revanche, les résultats du filtrage pourraient constituer une transition distincte. Un léger délai serait imperceptible et, le plus souvent, attendu.  Et si vous changez à nouveau le filtre avant même que les résultats aient fini leur rendu, seuls les résultats de ce deuxième filtrage vous intéresseraient.
 
-Typically, for the best user experience, a single user input should result in both an urgent update and a non-urgent one. You can use startTransition API inside an input event to inform React which updates are urgent and which are "transitions":
+En général, la meilleure expérience utilisateur serait celle où une même saisie utilisateur produit à la fois une mise à jour urgente, et une autre non urgente. Vous pouvez utiliser l'API `startTransition` dans votre gestionnaire d'événement de saisie pour indiquer à Reaxt quelles mises à jour sont urgentes et quelles autres sont des « transitions » :
 
 
 ```js
 import { startTransition } from 'react';
 
-// Urgent: Show what was typed
+// Urgent : afficher le texte saisi
 setInputValue(input);
 
-// Mark any state updates inside as transitions
+// Toutes les mises à jour enrobées ici sont des transitions
 startTransition(() => {
-  // Transition: Show the results
+  // Transition : afficher les résultats
   setSearchQuery(input);
 });
 ```
 
+Les mises à jour enrobées par `startTransition` sont traitées comme non urgentes et seront interrompues si des mises à jour plus urgentes, telles que des clics ou touche spressées, arrivent entretemps.  Si une transition est interrompue par l'utilisateur (par exemple en tapant plusieurs caractères d'affilée), React jettera le travail périmé de rendu qui n'avait pas abouti et refera uniquement le rendu de la dernière mise à jour.
 
-Updates wrapped in startTransition are handled as non-urgent and will be interrupted if more urgent updates like clicks or key presses come in. If a transition gets interrupted by the user (for example, by typing multiple characters in a row), React will throw out the stale rendering work that wasn’t finished and render only the latest update.
+* `useTransition` : un Hook pour démarrer des transitions, qui fournit une valeur pour en connaître la progression.
+* `startTransition` : une méthode pour démarrer des transitions lorsque le Hook ne peut pas être utilisé.
 
+Les transitions activent le rendu concurrent, afin de permettre l'interruption des mises à jour. Si le contenu suspend à nouveau, les transitions diront à React de continuer à afficher le contenu existant tant que le rendu d'arrière-plan du contenu de transition est en cours (consultez la [RFC de Suspense](https://github.com/reactjs/rfcs/blob/main/text/0213-suspense-in-react-18.md) pour plus d'infos).
 
-* `useTransition`: a hook to start transitions, including a value to track the pending state.
-* `startTransition`: a method to start transitions when the hook cannot be used.
-
-Transitions will opt in to concurrent rendering, which allows the update to be interrupted. If the content re-suspends, transitions also tell React to continue showing the current content while rendering the transition content in the background (see the [Suspense RFC](https://github.com/reactjs/rfcs/blob/main/text/0213-suspense-in-react-18.md) for more info).
-
-[See docs for transitions here](/reference/react/useTransition).
+[En apprendre davantage sur les transitions](/reference/react/useTransition).
 
 ### Nouvelles fonctionnalités de Suspense {/*new-suspense-features*/}
 
@@ -261,7 +260,7 @@ With Strict Mode in React 18, React will simulate unmounting and remounting the 
 
 ## Comment migrer {/*how-to-upgrade*/}
 
-See [How to Upgrade to React 18](/blog/2022/03/08/react-18-upgrade-guide) for step-by-step instructions and a full list of breaking and notable changes.
+Lisez [Comment migrer vers React 18](/blog/2022/03/08/react-18-upgrade-guide) pour des instructions pas à pas et pour la liste complète des ruptures de compatibilité ascendante *(breaking changes, NdT)* et des évolutions notables.
 
 ## Changelog {/*changelog*/}
 
@@ -309,7 +308,7 @@ See [How to Upgrade to React 18](/blog/2022/03/08/react-18-upgrade-guide) for st
 * Fix `aspectRatio` style not being applied. ([#21100](https://github.com/facebook/react/pull/21100)  by [@gaearon](https://github.com/gaearon))
 * Warn if `renderSubtreeIntoContainer` is called. ([#23355](https://github.com/facebook/react/pull/23355)  by [@acdlite](https://github.com/acdlite))
 
-### React DOM Server {/*react-dom-server-1*/}
+### React DOM (Côté serveur) {/*react-dom-server-1*/}
 
 * Add the new streaming renderer. ([#14144](https://github.com/facebook/react/pull/14144), [#20970](https://github.com/facebook/react/pull/20970), [#21056](https://github.com/facebook/react/pull/21056), [#21255](https://github.com/facebook/react/pull/21255), [#21200](https://github.com/facebook/react/pull/21200), [#21257](https://github.com/facebook/react/pull/21257), [#21276](https://github.com/facebook/react/pull/21276), [#22443](https://github.com/facebook/react/pull/22443), [#22450](https://github.com/facebook/react/pull/22450), [#23247](https://github.com/facebook/react/pull/23247), [#24025](https://github.com/facebook/react/pull/24025), [#24030](https://github.com/facebook/react/pull/24030) by [@sebmarkbage](https://github.com/sebmarkbage))
 * Fix context providers in SSR when handling multiple requests. ([#23171](https://github.com/facebook/react/pull/23171)  by [@frandiox](https://github.com/frandiox))
@@ -319,7 +318,7 @@ See [How to Upgrade to React 18](/blog/2022/03/08/react-18-upgrade-guide) for st
 * Fix a bug in the new server renderer. ([#22617](https://github.com/facebook/react/pull/22617)  by [@shuding](https://github.com/shuding))
 * Ignore function and symbol values inside custom elements on the server. ([#21157](https://github.com/facebook/react/pull/21157)  by [@sebmarkbage](https://github.com/sebmarkbage))
 
-### React DOM Test Utils {/*react-dom-test-utils*/}
+### React DOM (Utilitaires de test) {/*react-dom-test-utils*/}
 
 * Throw when `act` is used in production. ([#21686](https://github.com/facebook/react/pull/21686)  by [@acdlite](https://github.com/acdlite))
 * Support disabling spurious act warnings with `global.IS_REACT_ACT_ENVIRONMENT`. ([#22561](https://github.com/facebook/react/pull/22561)  by [@acdlite](https://github.com/acdlite))
@@ -332,7 +331,7 @@ See [How to Upgrade to React 18](/blog/2022/03/08/react-18-upgrade-guide) for st
 * Track late-mounted roots in Fast Refresh. ([#22740](https://github.com/facebook/react/pull/22740)  by [@anc95](https://github.com/anc95))
 * Add `exports` field to `package.json`. ([#23087](https://github.com/facebook/react/pull/23087)  by [@otakustay](https://github.com/otakustay))
 
-### Server Components (Experimental) {/*server-components-experimental*/}
+### Composants Serveur (Expérimental) {/*server-components-experimental*/}
 
 * Add Server Context support. ([#23244](https://github.com/facebook/react/pull/23244)  by [@salazarm](https://github.com/salazarm))
 * Add `lazy` support. ([#24068](https://github.com/facebook/react/pull/24068)  by [@gnoff](https://github.com/gnoff))
