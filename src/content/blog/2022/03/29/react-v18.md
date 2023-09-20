@@ -147,7 +147,7 @@ Les transitions activent le rendu concurrent, afin de permettre l'interruption d
 
 ### Nouvelles fonctionnalités de Suspense {/*new-suspense-features*/}
 
-Suspense lets you declaratively specify the loading state for a part of the component tree if it's not yet ready to be displayed:
+Suspense vous permet de spécifier déclarativement l'état de chargement d'une partie de l'arbre de composants lorsqu'elle n'est pas prête à être affichée :
 
 ```js
 <Suspense fallback={<Spinner />}>
@@ -155,15 +155,15 @@ Suspense lets you declaratively specify the loading state for a part of the comp
 </Suspense>
 ```
 
-Suspense makes the "UI loading state" a first-class declarative concept in the React programming model. This lets us build higher-level features on top of it.
+Suspense fait de « l'état de chargement de l'UI » un concept déclaratif de plein droit dans le modèle de programmation React. Ça nous permet de bâtir par-dessus des fonctionnalités de plus haut niveau.
 
-We introduced a limited version of Suspense several years ago. However, the only supported use case was code splitting with React.lazy, and it wasn't supported at all when rendering on the server.
+Nous avons fourni une version limitée de Suspense il y a déjà plusieurs années. Cependant, le seul cas d'utilisation pris en charge touchait à la découpe de code avec `React.lazy`, et rien n'existait pour le rendu côté serveur.
 
-In React 18, we've added support for Suspense on the server and expanded its capabilities using concurrent rendering features.
+Dans React 18, nous avons ajouté la prise en charge de Suspense côté serveur, et étendu ses capacités grâce aux fonctionnalités concurrentes.
 
-Suspense in React 18 works best when combined with the transition API. If you suspend during a transition, React will prevent already-visible content from being replaced by a fallback. Instead, React will delay the render until enough data has loaded to prevent a bad loading state.
+Suspense dans React 18 fonctionnera le mieux lorsqu'il est utilisé conjointement avec l'API de transitions.  Si vous suspendez au sein d'une tansition, React empêchera le remplacement du contenu déjà visible par celui de secours. React diffèrera plutôt le rendu jusqu'à ce qu'assez de données aient été chargées pour éviter un état de chargement indésirable.
 
-For more, see the RFC for [Suspense in React 18](https://github.com/reactjs/rfcs/blob/main/text/0213-suspense-in-react-18.md).
+Pour en savoir plus, lisez la RFC de [Suspense dans React 18](https://github.com/reactjs/rfcs/blob/main/text/0213-suspense-in-react-18.md).
 
 ### Nouvelles API de rendu côté client et serveur {/*new-client-and-server-rendering-apis*/}
 
