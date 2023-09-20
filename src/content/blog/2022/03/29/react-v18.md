@@ -8,83 +8,83 @@ March 29, 2022 by [The React Team](/community/team)
 
 <Intro>
 
-React 18 is now available on npm! In our last post, we shared step-by-step instructions for [upgrading your app to React 18](/blog/2022/03/08/react-18-upgrade-guide). In this post, we'll give an overview of what's new in React 18, and what it means for the future.
+React 18 est désormais disponible sur npm ! Dans notre dernier billet, nous vous donnions des instructions pas à pas pour [mettre à jour votre appli sur React 18](/blog/2022/03/08/react-18-upgrade-guide). Dans celui-ci, nous faisons un tour d'horizon des nouveautés de cette version, et de ce qu'elles impliquent pour l'avenir…
 
 </Intro>
 
 ---
 
-Our latest major version includes out-of-the-box improvements like automatic batching, new APIs like startTransition, and streaming server-side rendering with support for Suspense.
+Notre dernière version majeure en date inclut des améliorations automatiques telles que le traitement par lots côté serveur, des API comme `startTransition`, et du rendu streamé côté serveur qui prend même en charge Suspense.
 
-Many of the features in React 18 are built on top of our new concurrent renderer, a behind-the-scenes change that unlocks powerful new capabilities. Concurrent React is opt-in — it's only enabled when you use a concurrent feature — but we think it will have a big impact on the way people build applications.
+Plusieurs fonctionnalités de React 18 reposent sur notre nouveau moteur de rendu concurrent, une évolution en coulisses qui ouvre la porte à de nouvelles possibilités impressionnantes.  L'utilisation de React en mode concurrent se fait sur demande — elle n'est activée que lorsque vous utilisez une fonctionnalité de concurrence – mais nous pensons qu'elle aura un fort impact sur la façon dont les gens construisent leurs applications.
 
-We've spent years researching and developing support for concurrency in React, and we've taken extra care to provide a gradual adoption path for existing users. Last summer, [we formed the React 18 Working Group](/blog/2021/06/08/the-plan-for-react-18) to gather feedback from experts in the community and ensure a smooth upgrade experience for the entire React ecosystem.
+Nous avons consacré des années de recherche et développement à la prise en charge de la concurrence en React, et nous avons pris grand soin de fournir un chemin d'adoption graduelle pour les utilisateurs existants. L'été dernier, [nous avons constitué le groupe de travail React 18](/blog/2021/06/08/the-plan-for-react-18) afin de récolter les retours d'experts issus de la communauté pour garantir une expérience de mise à jour lisse pour l'ensemble de l'écosystème React.
 
-In case you missed it, we shared a lot of this vision at React Conf 2021:
+Au cas où vous seriez passé·e à côté, nous avons largement partagé cette vision à la React Conf 2021 :
 
-* In [the keynote](https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa), we explain how React 18 fits into our mission to make it easy for developers to build great user experiences
-* [Shruti Kapoor](https://twitter.com/shrutikapoor08) [demonstrated how to use the new features in React 18](https://www.youtube.com/watch?v=ytudH8je5ko&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=2)
-* [Shaundai Person](https://twitter.com/shaundai) gave us an overview of [streaming server rendering with Suspense](https://www.youtube.com/watch?v=pj5N-Khihgc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=3)
+* Dans [la plénière d'ouverture](https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa), nous avons expliqué en quoi React 18 s'intègre avec notre mission visant à faciliter le développement d'expériences utilisateurs haut de gamme.
+* [Shruti Kapoor](https://twitter.com/shrutikapoor08) [a fait une démo d'utilisation des nouveautés de React 18](https://www.youtube.com/watch?v=ytudH8je5ko&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=2)
+* [Shaundai Person](https://twitter.com/shaundai) a fait un tour d'horizon du [rendu streamé côté serveur avec Suspense](https://www.youtube.com/watch?v=pj5N-Khihgc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=3)
 
-Below is a full overview of what to expect in this release, starting with Concurrent Rendering.
+Vous trouverez ci-après un tour d'horizon complet de cette nouvelle version, à commencer par le rendu concurrent.
 
 <Note>
 
-For React Native users, React 18 will ship in React Native with the New React Native Architecture. For more information, see the [React Conf keynote here](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).
+Concernant les uti_lisateurs de React Native, React 18 sera livré dans React Native en même temps que la nouvelle architecture de React Native. Pour plus d'informations, regardez la [plénière d'ouverture de React Conf](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).
 
 </Note>
 
-## What is Concurrent React? {/*what-is-concurrent-react*/}
+## Qu'est-ce que « React concurrent » ? {/*what-is-concurrent-react*/}
 
-The most important addition in React 18 is something we hope you never have to think about: concurrency. We think this is largely true for application developers, though the story may be a bit more complicated for library maintainers.
+La nouveauté la plus importante de React 18 tient à quelque chose dont nous espérons que vous n'aurez jamais à vous en soucier : la concurrence. Nous pensons que ce sera largement le cas pour les développeurs d'applications, même si les choses seront sans doute plus nuancées pour les mainteneurs de bibliothèques.
 
-Concurrency is not a feature, per se. It's a new behind-the-scenes mechanism that enables React to prepare multiple versions of your UI at the same time. You can think of concurrency as an implementation detail — it's valuable because of the features that it unlocks. React uses sophisticated techniques in its internal implementation, like priority queues and multiple buffering. But you won't see those concepts anywhere in our public APIs.
+La concurrence n'est pas une fonctionnalité à proprement parler.  C'est un nouveau mécanisme en coulisses qui permet à React de préparer plusieurs versions de votre UI en même temps.  Vous pouvez concevoir la concurrence comme un détail d'implémentation : elle n'a de valeur que par les fonctionnalités qu'elle rend possibles.  Le code de React utilise des techniques sophistiquées telles que les files priorisées et les tampons multiples, mais vous ne trouverez ces notions nulle part dans notre API publique.
 
-When we design APIs, we try to hide implementation details from developers. As a React developer, you focus on *what* you want the user experience to look like, and React handles *how* to deliver that experience. So we don’t expect React developers to know how concurrency works under the hood.
+Lorsque nous concevons une API, nous essayons d'en masquer les détails d'implémentation pour les développeurs. En tant que développeur React, vous êtes censé·e vous concentrer sur *le résultat* de votre expérience utilisateur souhaitée, tandis que React s'occupe de *comment* fournir cette expérience. Nous n'attendons donc pas des développeurs React qu'ils comprennent comment la concurrence fonctionne sous le capot.
 
-However, Concurrent React is more important than a typical implementation detail — it's a foundational update to React's core rendering model. So while it's not super important to know how concurrency works, it may be worth knowing what it is at a high level.
+Ceci dit, React concurrent reste plus important qu'un détail d'implémentation traditionnel ; il constitue un nouveau pilier du modèle de rendu central à React. Aussi, bien qu'il ne soit pas très important de savoir comment la concurrence fonctionne, il pourrait être utile de comprendre ce que c'est, au moins en surface.
 
-A key property of Concurrent React is that rendering is interruptible. When you first upgrade to React 18, before adding any concurrent features, updates are rendered the same as in previous versions of React — in a single, uninterrupted, synchronous transaction. With synchronous rendering, once an update starts rendering, nothing can interrupt it until the user can see the result on screen.
+Un aspect clé de React concurrent, c'est que son processus de rendu est interruptible.  Lorsque vous mettez à jour vers React 18 pour la première fois, avant d'exploiter les fonctionnalités concurrentes, les mises à jour d'état entraînent un rendu de la même façon que dans les précédentes versions de React : au sein d'une unique transaction, synchrone et ininterruptible.  Avec ce rendu synchrone, une fois qu'une mise à jour commence à calculer le rendu, rien ne peut l'interrompre jusqu'à ce que l'utilisateur voie le résultat à l'écran.
 
-In a concurrent render, this is not always the case. React may start rendering an update, pause in the middle, then continue later. It may even abandon an in-progress render altogether. React guarantees that the UI will appear consistent even if a render is interrupted. To do this, it waits to perform DOM mutations until the end, once the entire tree has been evaluated. With this capability, React can prepare new screens in the background without blocking the main thread. This means the UI can respond immediately to user input even if it’s in the middle of a large rendering task, creating a fluid user experience.
+Dans un rendu concurrent, ce n'est pas toujours le cas. React est susceptible de démarrer le rendu d'une mise à jour puis de s'arrêter en plein milieu, pour continuer plus tard. Il pourrait même abandonner complètement le rendu en cours. React garantit que l'UI qui apparaîtra sera cohérente, même si un rendu a été interrompu.  Pour y parvenir, il attend la fin du rendu pour exécuter les mutations du DOM, une fois que l'ensemble de l'arbre a donc été évalué.  Grâce à ça, React peut préparer de nouveaux écrans en arrière-plan, sans bloquer le *thread* principal. Ça signifie que l'UI peut rester réactive aux saisies utilisateur, même si React est en plein dans une tâche de rendu massive, ce qui préserve une expérience utilisateur fluide.
 
-Another example is reusable state. Concurrent React can remove sections of the UI from the screen, then add them back later while reusing the previous state. For example, when a user tabs away from a screen and back, React should be able to restore the previous screen in the same state it was in before. In an upcoming minor, we're planning to add a new component called `<Offscreen>` that implements this pattern. Similarly, you’ll be able to use Offscreen to prepare new UI in the background so that it’s ready before the user reveals it.
+Autre exemple : l'état réutilisable. React concurrent peut retirer des sections entières d'UI de l'écran pour les rajouter plus tard, tout en réutilisant leur état précédent. Lorsqu'un utilisateur clique par exemple sur un nouvel onglet pour revenir ensuite sur celui qui était actif auparavant, React devrait pouvoir en restaurer l'état. Nous prévoyons d'ajouter dans une prochaine version mineure un nouveau composant `<Offscreen>` qui implémente cette approche.  Vous pourrez aussi vous en servir pour préparer de nouvelles UI en arrière-plan afin qu'elles soient déjà prêtes lorsque l'utilisateur demandera leur affichage.
 
-Concurrent rendering is a powerful new tool in React and most of our new features are built to take advantage of it, including Suspense, transitions, and streaming server rendering. But React 18 is just the beginning of what we aim to build on this new foundation.
+Le rendu concurrent est un nouvel outil puissant de React, et la plupart des nouvelles fonctionnalités sont conçues pour en tirer avantage, y compris Suspense, les transitions et le rendu streamé côté serveur. Mais React 18 n'est que le début de ce que nous comptons construire sur cette base.
 
-## Gradually Adopting Concurrent Features {/*gradually-adopting-concurrent-features*/}
+## Adoption graduelle des fonctionnalités concurrentes {/*gradually-adopting-concurrent-features*/}
 
-Technically, concurrent rendering is a breaking change. Because concurrent rendering is interruptible, components behave slightly differently when it is enabled.
+Techniquement, le rendu concurrent constitue une rupture de compatibilité ascendante *(breaking change, NdT)*. Dans la mesure où un rendu concurrent est interruptible, les composants se comportent d'une façon légèrement différente lorsqu'il est activé.
 
-In our testing, we've upgraded thousands of components to React 18. What we've found is that nearly all existing components "just work" with concurrent rendering, without any changes. However, some of them may require some additional migration effort. Although the changes are usually small, you'll still have the ability to make them at your own pace. The new rendering behavior in React 18 is **only enabled in the parts of your app that use new features.**
+Pour nos tests, nous avons migré des milliers de composants sur React 18. Nous avons constaté que presque tous les composants existants continuent à marcher avec le rendu concurrent, sans rien avoir besoin d'y changer.  Cependant, certains d'entre eux risquent de nécessiter un effort supplémentaire de migration. Même si ces changements sont généralement mineurs, vous pourrez quand même les apporter à votre rythme. Le nouveau comportement de rendu de React 18 **n'est activé que dans les parties de votre appli qui utilisent les nouvelles fonctionnalités**.
 
-The overall upgrade strategy is to get your application running on React 18 without breaking existing code. Then you can gradually start adding concurrent features at your own pace. You can use [`<StrictMode>`](/reference/react/StrictMode) to help surface concurrency-related bugs during development. Strict Mode doesn't affect production behavior, but during development it will log extra warnings and double-invoke functions that are expected to be idempotent. It won't catch everything, but it's effective at preventing the most common types of mistakes.
+La stratégie générale de mise à jour consiste à faire tourner votre application avec React 18 sans casser le code existant. Vous pouvez alors commencer à ajouter graduellement des fonctionnalités concurrentes, à votre rythme. Vous pouvez utiliser [`<StrictMode>`](/reference/react/StrictMode) pour vous aider à faire émerger des bugs liés à la concurrence lors du développement. Le mode strict n'a aucun impact sur le comportement en production, mais lors du développement il affichera en console des avertissements supplémentaires, et fera des invocations doubles de fonctions censées être idempotentes (pures).  Ça n'attrapera pas tout, mais ça reste un moyen efficace d'éviter les principaux types d'erreurs.
 
-After you upgrade to React 18, you’ll be able to start using concurrent features immediately. For example, you can use startTransition to navigate between screens without blocking user input. Or useDeferredValue to throttle expensive re-renders.
+Après que vous aurez migré sur React 18, vous pourrez commencer à utiliser les fonctionnalités concurrentes immédiatement.  Vous pourrez par exemple utiliser `startTransition` pour naviguer entre les écrans sans bloquer la saisie utilisateur. Ou `useDeferredValue` pour minimiser le nombre de rendus coûteux.
 
-However, long term, we expect the main way you’ll add concurrency to your app is by using a concurrent-enabled library or framework. In most cases, you won’t interact with concurrent APIs directly. For example, instead of developers calling startTransition whenever they navigate to a new screen, router libraries will automatically wrap navigations in startTransition.
+Ceci dit, sur le plus long terme, nous pensons que le principal moyen d'ajouter de la concurrence à votre appli consistera à utiliser une bibliothèque ou un framework gérant directement ces aspects.  La plupart du temps, vous n'aurez pas à utiliser directement les API de concurrence. Par exemple, plutôt que d'appeler `startTransition` chaque fois qu'ils ont besoin de naviguer vers un nouvel écran, les développeurs pourront se reposer sur leur bibliothèque de routage pour enrober automatiquement les navigations dans un tel appel.
 
-It may take some time for libraries to upgrade to be concurrent compatible. We’ve provided new APIs to make it easier for libraries to take advantage of concurrent features. In the meantime, please be patient with maintainers as we work to gradually migrate the React ecosystem.
+Ça prendra sans doute un peu de temps pour que les bibliothèques se mettent à jour afin de prendre en charge la concurrence. Nous avons fourni de nouvelles API pour faciliter cette évolution des bibliothèques. Dans l'intervalle, faites preuve de patience avec les mainteneurs tandis que nous travaillons tous à faire évoluer l'écosystème de React.
 
-For more info, see our previous post: [How to upgrade to React 18](/blog/2022/03/08/react-18-upgrade-guide).
+Pour en savoir plus, consultez notre précédent billet : [Comment migrer vers React 18](/blog/2022/03/08/react-18-upgrade-guide).
 
-## Suspense in Data Frameworks {/*suspense-in-data-frameworks*/}
+## Suspense dans les frameworks de données {/*suspense-in-data-frameworks*/}
 
-In React 18, you can start using [Suspense](/reference/react/Suspense) for data fetching in opinionated frameworks like Relay, Next.js, Hydrogen, or Remix. Ad hoc data fetching with Suspense is technically possible, but still not recommended as a general strategy.
+Avec React 18, vous pouvez commencer à utiliser [Suspense](/reference/react/Suspense) pour le chargement de données dans des frameworks orientés comme Relay, Next.js, Hydrogen ou Remix. Il reste techniquement possible d'écrire du code sur-mesure de chargement de données avec Suspense, mais ça reste une statégie généralement déconseillée.
 
-In the future, we may expose additional primitives that could make it easier to access your data with Suspense, perhaps without the use of an opinionated framework. However, Suspense works best when it’s deeply integrated into your application’s architecture: your router, your data layer, and your server rendering environment. So even long term, we expect that libraries and frameworks will play a crucial role in the React ecosystem.
+À l'avenir nous exposerons peut-être de nouvelles primitives que vous pourrez utiliser pour accéder à vos données ave Suspense, peut-être sans avoir besoin d'un framework adapté.  Quoi qu'il en soit, Suspense marche le mieux lorsqu'il est profondément intégré dans l'architecture de votre application : dans votre routeur, votre couche de données, et votre environnement de rendu côté serveur.  Du coup, même à long terme, nous estimons que les bibliothèques et frameworks joueront un rôle crucial dans l'écosystème React.
 
-As in previous versions of React, you can also use Suspense for code splitting on the client with React.lazy. But our vision for Suspense has always been about much more than loading code — the goal is to extend support for Suspense so that eventually, the same declarative Suspense fallback can handle any asynchronous operation (loading code, data, images, etc).
+Comme pour les versions précédentes de React, vous pouvez aussi utiliser Suspense pour de la découpe de code *(code splitting, NdT)* coté client avec `React.lazy`.  Mais notre vision pour Suspense a toujours été bien plus large que le seul chargement de code : l'objectif est d'étendre la prise en charge de Suspense afin qu'à terme la même déclaration de contenu de secours Suspense puisse gérer toutes les opérations asynchrones (les chargements de code, de données, d'images, etc.).
 
-## Server Components is Still in Development {/*server-components-is-still-in-development*/}
+## Les Composants Serveur ne sont pas encore prêts {/*server-components-is-still-in-development*/}
 
-[**Server Components**](/blog/2020/12/21/data-fetching-with-react-server-components) is an upcoming feature that allows developers to build apps that span the server and client, combining the rich interactivity of client-side apps with the improved performance of traditional server rendering. Server Components is not inherently coupled to Concurrent React, but it’s designed to work best with concurrent features like Suspense and streaming server rendering.
+Les [**Composants Serveur**](/blog/2020/12/21/data-fetching-with-react-server-components) sont une fonctionnalité future qui permettra aux développeurs de construire des applis à cheval entre le serveur et le client, combinant une interactivité riche côté client avec les performances supérieures du rendu serveur traditionnel.  Les Composants Serveur ne sont pas intrinsèquement liés à React concurrent, mais ils n'atteindront leur plein potentiel qu'avec des fonctionnalités concurrentes telles que Suspense et le rendu streamé côté serveur.
 
-Server Components is still experimental, but we expect to release an initial version in a minor 18.x release. In the meantime, we’re working with frameworks like Next.js, Hydrogen, and Remix to advance the proposal and get it ready for broad adoption.
+Les Composants Serveur sont encore expérimentaux, mais nous pensons pouvoir sortir une version initiale dans une version mineure 18.x. D'ici là, nous collaborons avec des frameworks comme Next.js, Hydrogen et Remix pour faire avancer ce chantier et le préparer à une adoption plus large.
 
-## What's New in React 18 {/*whats-new-in-react-18*/}
+## Les nouveautés de React 18 {/*whats-new-in-react-18*/}
 
-### New Feature: Automatic Batching {/*new-feature-automatic-batching*/}
+### Nouvelle fonctionnalité : traitement par lots automatique {/*new-feature-automatic-batching*/}
 
 Batching is when React groups multiple state updates into a single re-render for better performance. Without automatic batching, we only batched updates inside React event handlers. Updates inside of promises, setTimeout, native event handlers, or any other event were not batched in React by default. With automatic batching, these updates will be batched automatically:
 
@@ -108,7 +108,7 @@ setTimeout(() => {
 
 For more info, see this post for [Automatic batching for fewer renders in React 18](https://github.com/reactwg/react-18/discussions/21).
 
-### New Feature: Transitions {/*new-feature-transitions*/}
+### Nouvelle fonctionnalité : transitions {/*new-feature-transitions*/}
 
 A transition is a new concept in React to distinguish between urgent and non-urgent updates.
 
@@ -146,7 +146,7 @@ Transitions will opt in to concurrent rendering, which allows the update to be i
 
 [See docs for transitions here](/reference/react/useTransition).
 
-### New Suspense Features {/*new-suspense-features*/}
+### Nouvelles fonctionnalités de Suspense {/*new-suspense-features*/}
 
 Suspense lets you declaratively specify the loading state for a part of the component tree if it's not yet ready to be displayed:
 
@@ -166,7 +166,7 @@ Suspense in React 18 works best when combined with the transition API. If you su
 
 For more, see the RFC for [Suspense in React 18](https://github.com/reactjs/rfcs/blob/main/text/0213-suspense-in-react-18.md).
 
-### New Client and Server Rendering APIs {/*new-client-and-server-rendering-apis*/}
+### Nouvelles API de rendu côté client et serveur {/*new-client-and-server-rendering-apis*/}
 
 In this release we took the opportunity to redesign the APIs we expose for rendering on the client and server. These changes allow users to continue using the old APIs in React 17 mode while they upgrade to the new APIs in React 18.
 
@@ -192,7 +192,7 @@ The existing `renderToString` method keeps working but is discouraged.
 
 [See docs for React DOM Server here](/reference/react-dom/server).
 
-### New Strict Mode Behaviors {/*new-strict-mode-behaviors*/}
+### Nouveaux comportements du mode strict {/*new-strict-mode-behaviors*/}
 
 In the future, we’d like to add a feature that allows React to add and remove sections of the UI while preserving state. For example, when a user tabs away from a screen and back, React should be able to immediately show the previous screen. To do this, React would unmount and remount trees using the same component state as before.
 
@@ -225,7 +225,7 @@ With Strict Mode in React 18, React will simulate unmounting and remounting the 
 
 [See docs for ensuring reusable state here](/reference/react/StrictMode#fixing-bugs-found-by-re-running-effects-in-development).
 
-### New Hooks {/*new-hooks*/}
+### Nouveaux Hooks {/*new-hooks*/}
 
 #### useId {/*useid*/}
 
@@ -259,7 +259,7 @@ With Strict Mode in React 18, React will simulate unmounting and remounting the 
 >
 > `useInsertionEffect` is intended to be used by libraries, not application code.
 
-## How to Upgrade {/*how-to-upgrade*/}
+## Comment migrer {/*how-to-upgrade*/}
 
 See [How to Upgrade to React 18](/blog/2022/03/08/react-18-upgrade-guide) for step-by-step instructions and a full list of breaking and notable changes.
 
@@ -339,4 +339,3 @@ See [How to Upgrade to React 18](/blog/2022/03/08/react-18-upgrade-guide) for st
 * Update webpack plugin for webpack 5 ([#22739](https://github.com/facebook/react/pull/22739)  by [@michenly](https://github.com/michenly))
 * Fix a mistake in the Node loader. ([#22537](https://github.com/facebook/react/pull/22537)  by [@btea](https://github.com/btea))
 * Use `globalThis` instead of `window` for edge environments. ([#22777](https://github.com/facebook/react/pull/22777)  by [@huozhi](https://github.com/huozhi))
-
