@@ -227,35 +227,35 @@ Avec le mode strict de React 18, Reaat simule le démontage et le remontage du c
 
 #### useId {/*useid*/}
 
-`useId` is a new hook for generating unique IDs on both the client and server, while avoiding hydration mismatches. It is primarily useful for component libraries integrating with accessibility APIs that require unique IDs. This solves an issue that already exists in React 17 and below, but it's even more important in React 18 because of how the new streaming server renderer delivers HTML out-of-order. [See docs here](/reference/react/useId).
+`useId` est un nouveau Hook permettant de générer des identifiants uniques tant côté client que côté serveur, tout en évitant les écarts d'hydratation. Il est surtout utile pour les bibliothèques de composants s'intégrant avec des API d'accessibilité qui reposent sur des ID uniques.  Ça traite un besoin qui existait de longue date dans React, mais c'est d'autant plus important dans React 18 en raison de la façon dont le nouveau moteur de rendu streamé côté serveur livre son HTML dans un ordre non linéaire. [Voir la documentation](/reference/react/useId).
 
 > Note
 >
-> `useId` is **not** for generating [keys in a list](/learn/rendering-lists#where-to-get-your-key). Keys should be generated from your data.
+> `useId` **ne sert pas** à générer des [clés dans une liste](/learn/rendering-lists#where-to-get-your-key). Les clés devraient être générées à partir de vos données.
 
 #### useTransition {/*usetransition*/}
 
-`useTransition` and `startTransition` let you mark some state updates as not urgent. Other state updates are considered urgent by default. React will allow urgent state updates (for example, updating a text input) to interrupt non-urgent state updates (for example, rendering a list of search results). [See docs here](/reference/react/useTransition)
+`useTransition` et `startTransition` vous permettent d'indiquer que certaines mises à jour d'état ne sont pas urgentes.  Les autres mises à jour d'état sont considérées comme urgentes par défaut.  React permettra aux mises à jour d'état urgentes (par exemple la mise à jour d'un champ de saisie) d'interrompre les mises à jour d'état non urgentes (par exemple le rendu d'une liste de résultats de recherche). [Voir la documentation](/reference/react/useTransition).
 
 #### useDeferredValue {/*usedeferredvalue*/}
 
-`useDeferredValue` lets you defer re-rendering a non-urgent part of the tree. It is similar to debouncing, but has a few advantages compared to it. There is no fixed time delay, so React will attempt the deferred render right after the first render is reflected on the screen. The deferred render is interruptible and doesn't block user input. [See docs here](/reference/react/useDeferredValue).
+`useDeferredValue` vous permet de différer le nouceau rendu d'une partie non urgente de l'arbre de composants.  C'est un peu comme le *debouncing*, mais avec quelques avantages en plus.  Il n'y a pas de délai fixe, aussi React tentera de traiter le rendu différé juste après que le premier rendu aura été affiché à l'écran.  Le rendu différé est interruptible et ne bloque pas les saisies utilisateur. [Voir la documentation](/reference/react/useDeferredValue).
 
 #### useSyncExternalStore {/*usesyncexternalstore*/}
 
-`useSyncExternalStore` is a new hook that allows external stores to support concurrent reads by forcing updates to the store to be synchronous. It removes the need for useEffect when implementing subscriptions to external data sources, and is recommended for any library that integrates with state external to React. [See docs here](/reference/react/useSyncExternalStore).
+`useSyncExternalStore` est un nouveau Hook qui permet à des sources de données extérieures de prendren en charge des letures concurrentes en forçant leurs mises à jour à être synchrones.  Il élimine le besoin de recourir à `useEffect` pour implémenter les abonnements à des sources de données extérieures, et il est recommandé pour toute bibliothèque qui s'intègre avec un état extérieur à React. [Voir la documentation](/reference/react/useSyncExternalStore).
 
 > Note
 >
-> `useSyncExternalStore` is intended to be used by libraries, not application code.
+> `useSyncExternalStore` est davantage destiné au code de bibliothèques qu'à du code applicatif.
 
 #### useInsertionEffect {/*useinsertioneffect*/}
 
-`useInsertionEffect` is a new hook that allows CSS-in-JS libraries to address performance issues of injecting styles in render. Unless you’ve already built a CSS-in-JS library we don’t expect you to ever use this. This hook will run after the DOM is mutated, but before layout effects read the new layout. This solves an issue that already exists in React 17 and below, but is even more important in React 18 because React yields to the browser during concurrent rendering, giving it a chance to recalculate layout. [See docs here](/reference/react/useInsertionEffect).
+`useInsertionEffect` est un nouveau Hook qui permet aux bibliothèques de CSS-en-JS de résoudre les problèmes de performances résultant de l'injections de styles lors du rendu. À moins que vous n'ayez déjà écrit une bibliothèque de CSS-en-JS, nous doutons que vous ayez à vous en servir un jour.  Ce Hook sera exécuté après que le DOM a été mis à jour, mais avant que les Effets de layout ne lisent la nouvelle mise en page.  Ça résout un problème de longue date dans React, mais c'est d'autant plus important dans React 18 parce que React cède le contrôle au navigateur lors du rendu concurrent, lui laissant ainsi une opportunité de recalculer la mise en page. [Voir la documentation](/reference/react/useInsertionEffect).
 
 > Note
 >
-> `useInsertionEffect` is intended to be used by libraries, not application code.
+> `useInsertionEffect`  est davantage destiné au code de bibliothèques qu'à du code applicatif.
 
 ## Comment migrer {/*how-to-upgrade*/}
 
