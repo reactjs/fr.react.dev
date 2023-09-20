@@ -134,6 +134,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023">Blog : React Labs mars 2023</a></li>
           <li><a href="https://fr.react.dev/blog/2023/03/16/introducing-react-dev">Blog : Découvrez react.dev</a></li>
           <li><a href="https://fr.react.dev/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022">Blog : React Labs juin 2022</a></li>
+          <li><a href="https://fr.react.dev/blog/2022/03/29/react-v18">Blog : React v18.0</a></li>
           <li><a href="https://fr.react.dev/warnings/invalid-aria-prop">Avertissement : prop ARIA invalide</a></li>
           <li><a href="https://fr.react.dev/warnings/invalid-hook-call-warning">Avertissement : règles des Hooks</a></li>
           <li><a href="https://fr.react.dev/warnings/special-props">Avertissement : props à traitement spécial</a></li>

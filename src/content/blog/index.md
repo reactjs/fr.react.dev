@@ -36,8 +36,10 @@ React 18 a pris des années, mais il était porteur de précieuses leçons pour 
 
 </BlogCard>
 
-<BlogCard title="React v18.0" date="March 29, 2022" url="/blog/2022/03/29/react-v18">
-React 18 is now available on npm! In our last post, we shared step-by-step instructions for upgrading your app to React 18. In this post, we’ll give an overview of what’s new in React 18, and what it means for the future...
+<BlogCard title="React v18.0" date="29 mars 2022" url="/blog/2022/03/29/react-v18">
+
+React 18 est désormais disponible sur npm ! Dans notre dernier billet, nous vous donnions des instructions pas à pas pour mettre à jour votre appli sur React 18. Dans celui-ci, nous faisons un tour d'horizon des nouveautés de cette version, et de ce qu'elles impliquent pour l'avenir…
+
 </BlogCard>
 
 <BlogCard title="How to Upgrade to React 18" date="March 8, 2022" url="/blog/2022/03/08/react-18-upgrade-guide">
