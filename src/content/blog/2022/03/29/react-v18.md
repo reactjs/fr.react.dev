@@ -193,36 +193,35 @@ La méthode `renderToString` existante reste disponible, mais elle est désormai
 
 ### Nouveaux comportements du mode strict {/*new-strict-mode-behaviors*/}
 
-In the future, we’d like to add a feature that allows React to add and remove sections of the UI while preserving state. For example, when a user tabs away from a screen and back, React should be able to immediately show the previous screen. To do this, React would unmount and remount trees using the same component state as before.
+À l'avenir, nous aimerions ajouter une fonctionnalité permettant à React d'ajouter ou de tirer des sections de l'UI tout en en préservant l'état. Lorsqu'un utilisateur clique par exemple sur un nouvel onglet pour revenir ensuite sur celui qui était actif auparavant, React devrait pouvoir en restaurer l'état.  Pour y parvenir, React démonterait et remonterait ces arbres en utilisant le même état de çcomposant.
 
-This feature will give React apps better performance out-of-the-box, but requires components to be resilient to effects being mounted and destroyed multiple times. Most effects will work without any changes, but some effects assume they are only mounted or destroyed once.
+Cette fonctionnalité améliorerait d'entrée de jeu les performances des applis React, mais exigerait que les Effets des composants résistent bien à des cycles multiples de démontage + remontage. La plupart des Effets fonctionneront sans modification, mais certains Effets supposent qu'ils ne seront montés ou démontés qu'une fois.
 
-To help surface these issues, React 18 introduces a new development-only check to Strict Mode. This new check will automatically unmount and remount every component, whenever a component mounts for the first time, restoring the previous state on the second mount.
+Pour vous aider à débusquer ces soucis, React 18 ajoute une nouvelle vérification en mode développement uniquement dans le mode strict. Elle démonte et remonte automatiquement chaque composant, lorsqu'un composant est monté pour la première fois, et restaure l'état précédent au second montage.
 
-Before this change, React would mount the component and create the effects:
-
-```
-* React mounts the component.
-  * Layout effects are created.
-  * Effects are created.
-```
-
-
-With Strict Mode in React 18, React will simulate unmounting and remounting the component in development mode:
+Avant cet ajustement, React montait le composant et instantiait ses Effets :
 
 ```
-* React mounts the component.
-  * Layout effects are created.
-  * Effects are created.
-* React simulates unmounting the component.
-  * Layout effects are destroyed.
-  * Effects are destroyed.
-* React simulates mounting the component with the previous state.
-  * Layout effects are created.
-  * Effects are created.
+* React monte le composant.
+  * Les Effets de layout sont créés.
+  * Les Effets sont créés.
 ```
 
-[See docs for ensuring reusable state here](/reference/react/StrictMode#fixing-bugs-found-by-re-running-effects-in-development).
+Avec le mode strict de React 18, Reaat simule le démontage et le remontage du composant en mode développement :
+
+```
+* React monte le composant.
+  * Les Effets de layout sont créés.
+  * Les Effets sont créés.
+* React simule le démontage du composant.
+  * Les Effets de layout sont détruits.
+  * Les Effets sont détruits.
+* React simule le remontage du composant avec son état précédent.
+  * Les Effets de layout sont créés.
+  * Les Effets sont créés.
+```
+
+[En apprendre davantage sur ce comportement du mode strict](/reference/react/StrictMode#fixing-bugs-found-by-re-running-effects-in-development).
 
 ### Nouveaux Hooks {/*new-hooks*/}
 
