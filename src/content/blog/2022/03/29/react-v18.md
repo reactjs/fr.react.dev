@@ -167,29 +167,29 @@ Pour en savoir plus, lisez la RFC de [Suspense dans React 18](https://github.com
 
 ### Nouvelles API de rendu côté client et serveur {/*new-client-and-server-rendering-apis*/}
 
-In this release we took the opportunity to redesign the APIs we expose for rendering on the client and server. These changes allow users to continue using the old APIs in React 17 mode while they upgrade to the new APIs in React 18.
+Nous avons saisi l'opportunité de cette version pour repenser les API de rendu que nous exposons pour les côtés client et serveur.  Ces modifications permettent aux utilisateurs de continuer à utiliser les anciennes API en mode React 17, tout en migrant vers les nouvelles API en React 18.
 
-#### React DOM Client {/*react-dom-client*/}
+#### React DOM (côté client) {/*react-dom-client*/}
 
-These new APIs are now exported from `react-dom/client`:
+Ces nouvelles API sont exportées depuis `react-dom/client` :
 
-* `createRoot`: New method to create a root to `render` or `unmount`. Use it instead of `ReactDOM.render`. New features in React 18 don't work without it.
-* `hydrateRoot`: New method to hydrate a server rendered application. Use it instead of  `ReactDOM.hydrate` in conjunction with the new React DOM Server APIs. New features in React 18 don't work without it.
+* `createRoot` : une nouvelle méthode créant une racine de rendu dotée de méthodes `render` et `unmount`. Utilisez-la de préférence à `ReactDOM.render`. Les nouvelles fonctionnalités de React 18 ne marcheront pas sans ça.
+* `hydrateRoot` : une nouvelle méthode d'hydratation d'une appli ayant bénéficié d'un rendu côté serveur. Utilisez-la de préférence à  `ReactDOM.hydrate`, conjointement aux nouvelles API de React DOM côté serveur. Les nouvelles fonctionnalités de React 18 ne marcheront pas sans ça.
 
-Both `createRoot` and `hydrateRoot` accept a new option called `onRecoverableError` in case you want to be notified when React recovers from errors during rendering or hydration for logging. By default, React will use [`reportError`](https://developer.mozilla.org/en-US/docs/Web/API/reportError), or `console.error` in the older browsers.
+Tant `createRoot` qu'`hydrateRoot` acceptent une nouvelle option baptisée `onRecoverableError` si vous souhaitez être notifié·e lorsque React retombe sur ses pieds suite à des erreurs de rendu ou d'hydratation. Par défaut, React utilisera [`reportError`](https://developer.mozilla.org/en-US/docs/Web/API/reportError) ou `console.error` pour les anciens navigateurs.
 
-[See docs for React DOM Client here](/reference/react-dom/client).
+[Consultez la documentation de React DOM côté client](/reference/react-dom/client).
 
-#### React DOM Server {/*react-dom-server*/}
+#### React DOM (côté serveur) {/*react-dom-server*/}
 
-These new APIs are now exported from `react-dom/server` and have full support for streaming Suspense on the server:
+Ces nouvelles API sont exportées depuis `react-dom/server` et prennent pleinement en charge Suspense côté serveur :
 
-* `renderToPipeableStream`: for streaming in Node environments.
-* `renderToReadableStream`: for modern edge runtime environments, such as Deno and Cloudflare workers.
+* `renderToPipeableStream` : pour streamer dans un environnement Node.
+* `renderToReadableStream` : pour les environnements modernes tels que Deno ou les Cloudflare Workers.
 
-The existing `renderToString` method keeps working but is discouraged.
+La méthode `renderToString` existante reste disponible, mais elle est désormais déconseillée.
 
-[See docs for React DOM Server here](/reference/react-dom/server).
+[Consultez la documentation de React DOM côté serveur](/reference/react-dom/server).
 
 ### Nouveaux comportements du mode strict {/*new-strict-mode-behaviors*/}
 
