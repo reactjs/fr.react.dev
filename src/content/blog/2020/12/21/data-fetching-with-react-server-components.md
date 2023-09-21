@@ -1,31 +1,31 @@
 ---
-title: "Introducing Zero-Bundle-Size React Server Components"
+title: "Découvrez les React Server Components qui n'impactent pas votre bundle"
 ---
 
-December 21, 2020 by [Dan Abramov](https://twitter.com/dan_abramov), [Lauren Tan](https://twitter.com/potetotes), [Joseph Savona](https://twitter.com/en_JS), and [Sebastian Markbåge](https://twitter.com/sebmarkbage)
+Le 21 décembre 2020 par [Dan Abramov](https://twitter.com/dan_abramov), [Lauren Tan](https://twitter.com/potetotes), [Joseph Savona](https://twitter.com/en_JS) et [Sebastian Markbåge](https://twitter.com/sebmarkbage)
 
 ---
 
 <Intro>
 
-2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size **React Server Components**.
+2020, c'était long.  Alors que l'année se termine, nous voulions vous partager une sorte de Bulletin Spécial Fêtes sur nos recherches liées aux **React Server Components**, qui n'occupent pas un seul octet dans vos bundles.
 
 </Intro>
 
 ---
 
-To introduce React Server Components, we have prepared a talk and a demo. If you want, you can check them out during the holidays, or later when work picks back up in the new year.
+Pour présenter les React Server Components, nous avons préparé une présentation et une démo.  Si vous le souhaitez, vous pouvez les regarder pendant les fêtes, ou plus tard lorsque le travail reprendra l'an prochain.
 
 <YouTubeIframe src="https://www.youtube.com/embed/TQQPAU21ZUw" />
 
-**React Server Components are still in research and development.** We are sharing this work in the spirit of transparency and to get initial feedback from the React community. There will be plenty of time for that, so **don't feel like you have to catch up right now!**
+**Les React Server Components sont encore en phase de recherche et développement.** Nous partageons ces travaux dans un esprit de transparence et afin de solliciter des premiers retours de la communauté React. Mais on aura tout le temps pour ça, alors **ne vous sentez pas obligé·e de vous tenir à jour dès maintenant !**
 
-If you want to check them out, we recommend going in the following order:
+Si vous voulez vous faire une idée, nous vous conseillons les étapes que voici :
 
-1. **Watch the talk** to learn about React Server Components and see the demo.
+1. **Regardez la présentation** pour apprendre ce que sont les React Server Components et en voir une démo.
 
-2. **[Clone the demo](http://github.com/reactjs/server-components-demo)** to play with React Server Components on your computer.
+2. **[Clonez la démo](http://github.com/reactjs/server-components-demo)** pour jouer avec les React Server Components sur votre ordinateur.
 
-3. **[Read the RFC (with FAQ at the end)](https://github.com/reactjs/rfcs/pull/188)** for a deeper technical breakdown and to provide feedback.
+3. **[Lisez la RFC (et la FAQ sur la fin)](https://github.com/reactjs/rfcs/pull/188)** pour une explication technique plus détaillée et pour nous faire vos éventuels retours.
 
-We are excited to hear from you on the RFC or in replies to the [@reactjs](https://twitter.com/reactjs) Twitter handle. Happy holidays, stay safe, and see you next year!
+Nous avons hâte d'entendre vos retours sur la RFC ou dans les réponses au compte Twitter [@reactjs](https://twitter.com/reactjs). Bonnes fêtes à toutes et tous, portez-vous bien et à l'année prochaine !

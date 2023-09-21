@@ -65,8 +65,10 @@ L'équipe React est ravie de vous donner quelques nouvelles :
 
 </BlogCard>
 
-<BlogCard title="Introducing Zero-Bundle-Size React Server Components" date="December 21, 2020" url="/blog/2020/12/21/data-fetching-with-react-server-components">
-2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size React Server Components. To introduce React Server Components, we have prepared a talk and a demo. If you want, you can check them out during the holidays, or later when work picks back up in the new year...
+<BlogCard title="Découvrez les React Server Components qui n'impactent pas votre bundle" date="21 décembre 2020" url="/blog/2020/12/21/data-fetching-with-react-server-components">
+
+2020, c'était long.  Alors que l'année se termine, nous voulions vous partager une sorte de Bulletin Spécial Fêtes sur nos recherches liées aux React Server Components, qui n'occupent pas un seul octet dans vos bundles.  Pour présenter les React Server Components, nous avons préparé une présentation et une démo.  Si vous le souhaitez, vous pouvez les regarder pendant les fêtes, ou plus tard lorsque le travail reprendra l'an prochain…
+
 </BlogCard>
 
 </div>
