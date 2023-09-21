@@ -66,7 +66,7 @@ Ceci dit, sur le plus long terme, nous pensons que le principal moyen d'ajouter 
 
 Ça prendra sans doute un peu de temps pour que les bibliothèques se mettent à jour afin de prendre en charge la concurrence. Nous avons fourni de nouvelles API pour faciliter cette évolution des bibliothèques. Dans l'intervalle, faites preuve de patience avec les mainteneurs tandis que nous travaillons tou·te·s à faire évoluer l'écosystème de React.
 
-Pour en savoir plus, consultez notre précédent billet : [Comment migrer vers React 18](/blog/2022/03/08/react-18-upgrade-guide).
+Pour en savoir plus, consultez notre précédent billet : [Comment migrer sur React 18](/blog/2022/03/08/react-18-upgrade-guide).
 
 ## Suspense dans les frameworks de données {/*suspense-in-data-frameworks*/}
 

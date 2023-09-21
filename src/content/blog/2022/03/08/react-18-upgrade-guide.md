@@ -1,44 +1,44 @@
 ---
-title: "How to Upgrade to React 18"
+title: "Comment migrer sur React 18"
 ---
 
-March 08, 2022 by [Rick Hanlon](https://twitter.com/rickhanlonii)
+Le 8 mars 2022 par [Rick Hanlon](https://twitter.com/rickhanlonii)
 
 ---
 
 <Intro>
 
-As we shared in the [release post](/blog/2022/03/29/react-v18), React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18.
+Comme nous l'avons annoncé dans le [billet de sortie](/blog/2022/03/29/react-v18), React 18 introduit des fonctionnalités basées sur notre nouveau moteur de rendu concurrent, avec une statégie d'adoption graduelle pour les applications existantes. Dans ce billet, nous vous guidons étape par étape dans votre migration sur React 18.
 
-Please [report any issues](https://github.com/facebook/react/issues/new/choose) you encounter while upgrading to React 18.
+Merci de nous [signaler tout problème](https://github.com/facebook/react/issues/new/choose) que vous rencontreriez en migrant sur React 18.
 
 </Intro>
 
 <Note>
 
-For React Native users, React 18 will ship in a future version of React Native. This is because React 18 relies on the New React Native Architecture to benefit from the new capabilities presented in this blogpost. For more information, see the [React Conf keynote here](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).
+Concernant les utilisateurs de React Native, React 18 sera livré dans une future version de React Native. C'est parce que React 18 repose sur la nouvelle architecture de React Native pour mettre en œuvre les nouvelles fonctionnalités présentées dans ce billet. Pour plus d'informations, regardez la [plénière d'ouverture de la React Conf](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).
 
 </Note>
 
 ---
 
-## Installing {/*installing*/}
+## Installation {/*installing*/}
 
-To install the latest version of React:
+Pour installer la dernière version de React, faites :
 
 ```bash
 npm install react react-dom
 ```
 
-Or if you’re using yarn:
+Ou si vous utilisez Yarn :
 
 ```bash
 yarn add react react-dom
 ```
 
-## Updates to Client Rendering APIs {/*updates-to-client-rendering-apis*/}
+## Évolutions des API de rendu côté client {/*updates-to-client-rendering-apis*/}
 
-When you first install React 18, you will see a warning in the console:
+Lorsque vous installez React &_ pour la première fois, vous verrez cet avertissement dans la console :
 
 <ConsoleBlock level="error">
 
@@ -46,44 +46,46 @@ ReactDOM.render is no longer supported in React 18. Use createRoot instead. Unti
 
 </ConsoleBlock>
 
-React 18 introduces a new root API which provides better ergonomics for managing roots. The new root API also enables the new concurrent renderer, which allows you to opt-into concurrent features.
+*(« ReactDOM.render n'est plus pris en charge dans React 18. Utilisez plutôt createRoot.  Tant que vous ne basculerez pas vers la nouvelle API, votre appli se comportera comme si elle utilisait React 17.  Apprenez-en davantage ici : https://reactjs.org/link/switch-to-createroot », NdT)*
+
+React 18 propose une nouvelle API avec une bien meilleure ergonomie pour gérer les racines applicatives. Cette nouvelle API permet également le recours au nouveau moteur de rendu concurrent, et donc aux fonctionnalités concurrentes.
 
 ```js
-// Before
+// Avant
 import { render } from 'react-dom';
 const container = document.getElementById('app');
 render(<App tab="home" />, container);
 
-// After
+// Après
 import { createRoot } from 'react-dom/client';
 const container = document.getElementById('app');
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
+const root = createRoot(container); // createRoot(container!) si vous utilisez TypeScript
 root.render(<App tab="home" />);
 ```
 
-We’ve also changed `unmountComponentAtNode` to `root.unmount`:
+Nous passons aussi de `unmountComponentAtNode` à `root.unmount` :
 
 ```js
-// Before
+// Avant
 unmountComponentAtNode(container);
 
-// After
+// Après
 root.unmount();
 ```
 
-We've also removed the callback from render, since it usually does not have the expected result when using Suspense:
+La fonction de rappel de `render` a également disparu, dans la mesure où elle n'a généralement pas le résultat attendu lorsqu'on utilise Suspense :
 
 ```js
-// Before
+// Avant
 const container = document.getElementById('app');
 render(<App tab="home" />, container, () => {
-  console.log('rendered');
+  console.log('rendu effectué');
 });
 
-// After
+// Après
 function AppWithCallbackAfterRender() {
   useEffect(() => {
-    console.log('rendered');
+    console.log('rendu effectué');
   });
 
   return <App tab="home" />
@@ -96,57 +98,62 @@ root.render(<AppWithCallbackAfterRender />);
 
 <Note>
 
-There is no one-to-one replacement for the old render callback API — it depends on your use case. See the working group post for [Replacing render with createRoot](https://github.com/reactwg/react-18/discussions/5) for more information.
+Il n'y a pas d'alternative exacte à l'ancienne fonction de rappel de l'API de rendu racine ; tout dépend de votre cas d'utilisation.  Consultez la discussion du groupe de travail sur [le remplacement de `render` par `createRoot`](https://github.com/reactwg/react-18/discussions/5) pour en apprendre davantage.
 
 </Note>
 
-Finally, if your app uses server-side rendering with hydration, upgrade `hydrate` to `hydrateRoot`:
+Pour finir, si votre appli utilise le rendu côté serveur avec l'hydratation, remplacez `hydrate` par `hydrateRoot` :
 
 ```js
-// Before
+// Avant
 import { hydrate } from 'react-dom';
 const container = document.getElementById('app');
 hydrate(<App tab="home" />, container);
 
-// After
+// Après
 import { hydrateRoot } from 'react-dom/client';
 const container = document.getElementById('app');
 const root = hydrateRoot(container, <App tab="home" />);
-// Unlike with createRoot, you don't need a separate root.render() call here.
+// Contrairement à createRoot, vous n’avez ici pas besoin d’un appel
+// distinct à root.render()
 ```
 
-For more information, see the [working group discussion here](https://github.com/reactwg/react-18/discussions/5).
+Pour en apprendre davantage, consultez [cette discussion du groupe de travail](https://github.com/reactwg/react-18/discussions/5).
 
 <Note>
 
-**If your app doesn't work after upgrading, check whether it's wrapped in `<StrictMode>`.** [Strict Mode has gotten stricter in React 18](#updates-to-strict-mode), and not all your components may be resilient to the new checks it adds in development mode. If removing Strict Mode fixes your app, you can remove it during the upgrade, and then add it back (either at the top or for a part of the tree) after you fix the issues that it's pointing out.
+**Si votre appli ne fonctionne plus après la migration, vérifiez si elle est enrobée par `<StrictMode>`.** [Le mode strict est plus strict en React 18](#updates-to-strict-mode), et tous vos composants ne sont pas forcément conformes aux nouvelles vérifications qu'il effectue en mode développement.  Si le retrait du mode strict fait refonctionner votre appli, vous pouvez le retirer pendant la migration puis le rajouter à la fin (soit à la racine soit sur une partie de l'arbre), après que vous aurez corrigé les problèmes qu'il met en lumière.
 
 </Note>
 
-## Updates to Server Rendering APIs {/*updates-to-server-rendering-apis*/}
+## Évolutions des API de rendu côté serveur {/*updates-to-server-rendering-apis*/}
 
-In this release, we’re revamping our `react-dom/server` APIs to fully support Suspense on the server and Streaming SSR. As part of these changes, we're deprecating the old Node streaming API, which does not support incremental Suspense streaming on the server.
+Cette version a repensé les API de `react-dom/server` pour prendre pleinement en charge Suspense côté serveur, ainsi que le rendu streamé côté serveur.  Dans ce cadre, nous déprécions l'ancienne API de streaming basée Node, qui ne permettait pas un streaming incrémental côté serveur grâce à Suspense.
 
-Using this API will now warn:
+Le recours à cette ancienne API entraînera un avertissement :
 
-* `renderToNodeStream`: **Deprecated ⛔️️**
+* `renderToNodeStream` : **déprécié ⛔️️**
 
-Instead, for streaming in Node environments, use:
-* `renderToPipeableStream`: **New ✨**
+Pour des environnements de streaming basés Node, utilisez plutôt :
 
-We're also introducing a new API to support streaming SSR with Suspense for modern edge runtime environments, such as Deno and Cloudflare workers:
-* `renderToReadableStream`: **New ✨**
+* `renderToPipeableStream` : **nouveau ✨**
 
-The following APIs will continue working, but with limited support for Suspense:
-* `renderToString`: **Limited** ⚠️
-* `renderToStaticMarkup`: **Limited** ⚠️
+Nous avons aussi ajouté une nouvelle API permettant le rendu streamé côté serveur avec Suspense pour les moteurs JavaScript plus modernes, tels que Deno ou les Cloudflare Workers :
 
-Finally, this API will continue to work for rendering e-mails:
+* `renderToReadableStream` : **nouveau ✨**
+
+Les API suivantes continuent de fonctionner, mais ne prennent que partiellement Suspense en charge :
+
+* `renderToString` : **limité** ⚠️
+* `renderToStaticMarkup` : **limité** ⚠️
+
+Enfin, cette API continuera à fonctionner pour par exemple produire des e-mails :
+
 * `renderToStaticNodeStream`
 
-For more information on the changes to server rendering APIs, see the working group post on [Upgrading to React 18 on the server](https://github.com/reactwg/react-18/discussions/22), a [deep dive on the new Suspense SSR Architecture](https://github.com/reactwg/react-18/discussions/37), and [Shaundai Person’s](https://twitter.com/shaundai) talk on [Streaming Server Rendering with Suspense](https://www.youtube.com/watch?v=pj5N-Khihgc) at React Conf 2021.
+Pour de plus amples informations sur les évolutions des API de rendu côté serveur, consultez la discussion du groupe de travail sur [la migration sur React 18 côté serveur](https://github.com/reactwg/react-18/discussions/22), une [exploration en profondeur de la nouvelle architecture de SSR avec Suspense](https://github.com/reactwg/react-18/discussions/37), et la présentation de [Shaundai Person](https://twitter.com/shaundai) sur le [rendu streamé côté serveur avec Suspense](https://www.youtube.com/watch?v=pj5N-Khihgc) à la React Conf 2021.
 
-## Updates to TypeScript definitions {/*updates-to-typescript-definitions*/}
+## Évolutions des définitions TypeScript {/*updates-to-typescript-definitions*/}
 
 If your project uses TypeScript, you will need to update your `@types/react` and `@types/react-dom` dependencies to the latest versions. The new types are safer and catch issues that used to be ignored by the type checker. The most notable change is that the `children` prop now needs to be listed explicitly when defining props, for example:
 
@@ -161,7 +168,7 @@ See the [React 18 typings pull request](https://github.com/DefinitelyTyped/Defin
 
 If you find a bug in the typings, please [file an issue](https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/new?category=issues-with-a-types-package) in the DefinitelyTyped repo.
 
-## Automatic Batching {/*automatic-batching*/}
+## Traitement par lots automatique {/*automatic-batching*/}
 
 React 18 adds out-of-the-box performance improvements by doing more batching by default. Batching is when React groups multiple state updates into a single re-render for better performance. Before React 18, we only batched updates inside React event handlers. Updates inside of promises, setTimeout, native event handlers, or any other event were not batched in React by default:
 
@@ -220,7 +227,7 @@ function handleClick() {
 
 For more information, see the [Automatic batching deep dive](https://github.com/reactwg/react-18/discussions/21).
 
-## New APIs for Libraries {/*new-apis-for-libraries*/}
+## Nouvelles API à destination des bibliothèques {/*new-apis-for-libraries*/}
 
 In the React 18 Working Group we worked with library maintainers to create new APIs needed to support concurrent rendering for use cases specific to their use case in areas like styles, and external stores. To support React 18, some libraries may need to switch to one of the following APIs:
 
@@ -229,7 +236,7 @@ In the React 18 Working Group we worked with library maintainers to create new A
 
 React 18 also introduces new APIs for concurrent rendering such as `startTransition`, `useDeferredValue` and `useId`, which we share more about in the [release post](/blog/2022/03/29/react-v18).
 
-## Updates to Strict Mode {/*updates-to-strict-mode*/}
+## Évolutions du mode strict {/*updates-to-strict-mode*/}
 
 In the future, we'd like to add a feature that allows React to add and remove sections of the UI while preserving state. For example, when a user tabs away from a screen and back, React should be able to immediately show the previous screen. To do this, React would unmount and remount trees using the same component state as before.
 
@@ -261,7 +268,7 @@ With Strict Mode in React 18, React will simulate unmounting and remounting the 
 
 For more information, see the Working Group posts for [Adding Reusable State to StrictMode](https://github.com/reactwg/react-18/discussions/19) and [How to support Reusable State in Effects](https://github.com/reactwg/react-18/discussions/18).
 
-## Configuring Your Testing Environment {/*configuring-your-testing-environment*/}
+## Configurer votre environnement de test {/*configuring-your-testing-environment*/}
 
 When you first update your tests to use `createRoot`, you may see this warning in your test console:
 
@@ -286,13 +293,13 @@ Eventually, we expect testing libraries will configure this for you automaticall
 
 [More background on the `act` testing API and related changes](https://github.com/reactwg/react-18/discussions/102) is available in the working group.
 
-## Dropping Support for Internet Explorer {/*dropping-support-for-internet-explorer*/}
+## Arrêt de la prise en charge d'Internet Explorer {/*dropping-support-for-internet-explorer*/}
 
 In this release, React is dropping support for Internet Explorer, which is [going out of support on June 15, 2022](https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge). We’re making this change now because new features introduced in React 18 are built using modern browser features such as microtasks which cannot be adequately polyfilled in IE.
 
 If you need to support Internet Explorer we recommend you stay with React 17.
 
-## Deprecations {/*deprecations*/}
+## Dépréciations {/*deprecations*/}
 
 * `react-dom`: `ReactDOM.render` has been deprecated. Using it will warn and run your app in React 17 mode.
 * `react-dom`: `ReactDOM.hydrate` has been deprecated. Using it will warn and run your app in React 17 mode.
@@ -300,7 +307,7 @@ If you need to support Internet Explorer we recommend you stay with React 17.
 * `react-dom`: `ReactDOM.renderSubtreeIntoContainer` has been deprecated.
 * `react-dom/server`: `ReactDOMServer.renderToNodeStream` has been deprecated.
 
-## Other Breaking Changes {/*other-breaking-changes*/}
+## Autres ruptures de compatibilité ascendante {/*other-breaking-changes*/}
 
 * **Consistent useEffect timing**: React now always synchronously flushes effect functions if the update was triggered during a discrete user input event such as a click or a keydown event. Previously, the behavior wasn't always predictable or consistent.
 * **Stricter hydration errors**: Hydration mismatches due to missing or extra text content are now treated like errors instead of warnings. React will no longer attempt to "patch up" individual nodes by inserting or deleting a node on the client in an attempt to match the server markup, and will revert to client rendering up to the closest `<Suspense>` boundary in the tree. This ensures the hydrated tree is consistent and avoids potential privacy and security holes that can be caused by hydration mismatches.
@@ -308,7 +315,7 @@ If you need to support Internet Explorer we recommend you stay with React 17.
 * **Layout Effects with Suspense**: When a tree re-suspends and reverts to a fallback, React will now clean up layout effects, and then re-create them when the content inside the boundary is shown again. This fixes an issue which prevented component libraries from correctly measuring layout when used with Suspense.
 * **New JS Environment Requirements**: React now depends on modern browsers features including `Promise`, `Symbol`, and `Object.assign`. If you support older browsers and devices such as Internet Explorer which do not provide modern browser features natively or have non-compliant implementations, consider including a global polyfill in your bundled application.
 
-## Other Notable Changes {/*other-notable-changes*/}
+## Autres évolutions notables {/*other-notable-changes*/}
 
 ### React {/*react*/}
 
@@ -325,4 +332,4 @@ If you need to support Internet Explorer we recommend you stay with React 17.
 
 ## Changelog {/*changelog*/}
 
-You can view the [full changelog here](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+Vous pouvez consulter le [changelog complet ici](https://github.com/facebook/react/blob/main/CHANGELOG.md).

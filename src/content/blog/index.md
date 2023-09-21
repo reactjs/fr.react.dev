@@ -42,9 +42,12 @@ React 18 est désormais disponible sur npm ! Dans notre dernier billet, nous vo
 
 </BlogCard>
 
-<BlogCard title="How to Upgrade to React 18" date="March 8, 2022" url="/blog/2022/03/08/react-18-upgrade-guide">
-As we shared in the release post, React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18...
+<BlogCard title="Comment migrer sur React 18" date="8 mars 2022" url="/blog/2022/03/08/react-18-upgrade-guide">
+
+Comme nous l'avons annoncé dans le billet de sortie, React 18 introduit des fonctionnalités basées sur notre nouveau moteur de rendu concurrent, avec une statégie d'adoption graduelle pour les applications existantes. Dans ce billet, nous vous guidons étape par étape dans votre migration sur React 18…
+
 </BlogCard>
+
 
 <BlogCard title="React Conf 2021 Recap" date="December 17, 2021" url="/blog/2021/12/17/react-conf-2021-recap">
 Last week we hosted our 6th React Conf.  In previous years, we’ve used the React Conf stage to deliver industry changing announcements such as React Native and React Hooks. This year, we shared our multi-platform vision for React, starting with the release of React 18 and gradual adoption of concurrent features...
