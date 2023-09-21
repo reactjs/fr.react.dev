@@ -55,12 +55,14 @@ La semaine dernière nous avons hébergé notre 6e React Conf. Les années pass�
 
 </BlogCard>
 
-<BlogCard title="The Plan for React 18" date="June 8, 2021" url="/blog/2021/06/08/the-plan-for-react-18">
-The React team is excited to share a few updates:
+<BlogCard title="Nos plans pour React 18" date="8 juin 2021" url="/blog/2021/06/08/the-plan-for-react-18">
 
-- We’ve started work on the React 18 release, which will be our next major version.
-- We’ve created a Working Group to prepare the community for gradual adoption of new features in React 18.
-- We’ve published a React 18 Alpha so that library authors can try it and provide feedback...
+L'équipe React est ravie de vous donner quelques nouvelles :
+
+- Nous avons commencé à travailler sur React 18, qui sera notre prochaine version majeure.
+- Nous avons créé un groupe de travail pour préparer la communauté à l'adoption graduelle des nouvelles fonctionnalités de React 18.
+- Nous avons publié une React 18 Alpha pour que les mainteneurs de bibliothèques puissent l'essayer et nous faire leurs retours…
+
 </BlogCard>
 
 <BlogCard title="Introducing Zero-Bundle-Size React Server Components" date="December 21, 2020" url="/blog/2020/12/21/data-fetching-with-react-server-components">
