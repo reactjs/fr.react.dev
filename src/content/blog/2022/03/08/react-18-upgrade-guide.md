@@ -38,7 +38,7 @@ yarn add react react-dom
 
 ## Évolutions des API de rendu côté client {/*updates-to-client-rendering-apis*/}
 
-Lorsque vous installez React &_ pour la première fois, vous verrez cet avertissement dans la console :
+Lorsque vous installerez React 18 pour la première fois, vous verrez cet avertissement dans la console :
 
 <ConsoleBlock level="error">
 
@@ -46,9 +46,9 @@ ReactDOM.render is no longer supported in React 18. Use createRoot instead. Unti
 
 </ConsoleBlock>
 
-*(« ReactDOM.render n'est plus pris en charge dans React 18. Utilisez plutôt createRoot.  Tant que vous ne basculerez pas vers la nouvelle API, votre appli se comportera comme si elle utilisait React 17.  Apprenez-en davantage ici : https://reactjs.org/link/switch-to-createroot », NdT)*
+*(« ReactDOM.render n'est plus pris en charge dans React 18. Utilisez plutôt createRoot.  Tant que vous ne basculerez pas vers la nouvelle API, votre appli se comportera comme si elle utilisait React 17.  Apprenez-en davantage ici : https://reactjs.org/link/switch-to-createroot », NdT)*
 
-React 18 propose une nouvelle API avec une bien meilleure ergonomie pour gérer les racines applicatives. Cette nouvelle API permet également le recours au nouveau moteur de rendu concurrent, et donc aux fonctionnalités concurrentes.
+React 18 propose une nouvelle API dotée d'une bien meilleure ergonomie pour gérer les racines applicatives. Cette nouvelle API permet également le recours au nouveau moteur de rendu concurrent, et donc aux fonctionnalités concurrentes.
 
 ```js
 // Avant
@@ -155,7 +155,7 @@ Pour de plus amples informations sur les évolutions des API de rendu côté ser
 
 ## Évolutions des définitions TypeScript {/*updates-to-typescript-definitions*/}
 
-Si votre projet utilise TypeScript, vous devrez mettre à jour vos dépendances `@types/react` et `@types/react-dom` pour leurs dernières versions. Les nouveaux types sont plus fiables et détectent des erreurs auparavant ignorées par la vérification de types. L'évolution la plus visible tient à ce que la prop `children` doit désormais être listée explicitement quand vous définissez vos props, par exemple comme ceci :
+Si votre projet utilise TypeScript, vous devrez mettre à jour vos dépendances `@types/react` et `@types/react-dom` sur leurs dernières versions. Les nouveaux types sont plus fiables et détectent des erreurs auparavant ignorées par la vérification de types. L'évolution la plus visible tient à ce que la prop `children` doit désormais être listée explicitement quand vous définissez vos props, par exemple comme ceci :
 
 ```typescript{3}
 interface MyButtonProps {
@@ -164,13 +164,13 @@ interface MyButtonProps {
 }
 ```
 
-Consultez la [*pull request* des types de React 18](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/56210) pour une liste complète des évolutions de typage. Elle comporte des liens vers des corrections de types dans des bibliothèques dont vous pouvez vous inspirer pour ajuster votre code. Vous pouvez aussi utiliser le [script de migration automatique](https://github.com/eps1lon/types-react-codemod) pour vous aider à adapter votre code applicatif afin de bénéficier des typages plus fiables et plus rapides.
+Consultez la [*pull request* des types de React 18](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/56210) pour une liste complète des évolutions de typage. Elle comporte des liens vers des corrections de types dans des bibliothèques dont vous pouvez vous inspirer pour ajuster votre code. Vous pouvez aussi utiliser le [script de migration automatique](https://github.com/eps1lon/types-react-codemod) pour vous aider à adapter votre code applicatif afin de bénéficier de typages plus fiables et plus rapides.
 
 Si vous remarquez un bug dans les typages, merci de [créer un ticket](https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/new?category=issues-with-a-types-package) sur le dépôt DefinitelyTyped.
 
 ## Traitement par lots automatique {/*automatic-batching*/}
 
-React 18 améliore automatiquement les performances en appliquant plus de traitements par lot par défaut. On parle de traitements par lots lorsque React regroupe souvent plusieurs mises à jour d'état au sein d'un seul recalcul de rendu pour améliorer les performances.  Avant React 18, nous ne regroupions que les mises à jour déclenchées au sein des gestionnaires d'événements React. Celles qui venaient de promesses, de `setTimeout`, de gestionnaires d'événements natifs ou de tout autre déclencheur n'étaient par défaut pas regroupées par React :
+React 18 améliore automatiquement les performances en utilisant plus de traitements par lot par défaut. On parle de traitements par lots lorsque React regroupe plusieurs mises à jour d'état au sein d'un seul recalcul de rendu pour améliorer les performances.  Avant React 18, nous ne regroupions que les mises à jour d'état déclenchées au sein des gestionnaires d'événements React. Celles qui venaient par exemple de promesses, de `setTimeout`, de gestionnaires d'événements natifs ou de tout autre déclencheur n'étaient par défaut pas regroupées par React :
 
 ```js
 // Avant React 18 seuls les événéments React utilisaient le regroupement
@@ -229,10 +229,10 @@ Pour en apprendre davantage, consultez cette [explication détaillée du traitem
 
 ## Nouvelles API à destination des bibliothèques {/*new-apis-for-libraries*/}
 
-Au sein du groupe de travail React 18, nous avons collaboré avec des mainteneurs de bibliothèques pour créer de nouvelles API nécessaire à la prise en charge du rendu concurrent dans des cas d'utilisation spécifiques à leurs domaines, tels que les styles et les sources de données extérieures.  Pour prendre en charge React 18, certaines bibliothèques auront peut-être besoin de basculer vers l'une des API que voici :
+Au sein du groupe de travail React 18, nous avons collaboré avec des mainteneurs de bibliothèques pour créer de nouvelles API nécessaires à la prise en charge du rendu concurrent dans des cas d'utilisation spécifiques à leurs domaines, tels que les styles et les sources de données extérieures.  Pour prendre en charge React 18, certaines bibliothèques auront peut-être besoin de basculer vers l'une des API que voici :
 
 * `useSyncExternalStore` est un nouveau Hook qui permet à des sources de données extérieures de prendre en charge des lectures concurrentes en forçant leurs mises à jour à être synchrones. Cette nouvelle API est conseillée pour toute bibliothèque qui s'intègre avec une source de données extérieure à React.  Pour en apprendre davantage, consultez la [discussion dédiée à useSyncExternalStore](https://github.com/reactwg/react-18/discussions/70) et [les détails de l'API de useSyncExternalStore](https://github.com/reactwg/react-18/discussions/86).
-* `useInsertionEffect` est un nouveau Hook qui permet aux bibliothèques de CSS-en-JS de résoudre les problèmes de performances résultant de l'injection de styles lors du rendu. À moins que vous n'ayez déjà écrit une bibliothèque de CSS-en-JS, nous doutons que vous ayez à vous en servir un jour.  Ce Hook sera exécuté après que le DOM a été mis à jour, mais avant que les Effets de layout ne lisent la nouvelle mise en page.  Ça résout un problème de longue date dans React, mais c'est d'autant plus important dans React 18 parce que React cède le contrôle au navigateur lors du rendu concurrent, lui laissant ainsi une opportunité de recalculer la mise en page. Pur en apprendre davantage, consultez [le guide de migration des bibliothèques concernant `<style>`](https://github.com/reactwg/react-18/discussions/110).
+* `useInsertionEffect` est un nouveau Hook qui permet aux bibliothèques de CSS-en-JS de résoudre les problèmes de performances résultant de l'injection de styles lors du rendu. À moins que vous n'ayez déjà écrit une bibliothèque de CSS-en-JS, nous doutons que vous ayez à vous en servir un jour.  Ce Hook sera exécuté après que le DOM a été mis à jour, mais avant que les Effets de layout ne lisent la nouvelle mise en page.  Ça résout un problème de longue date dans React, mais c'est d'autant plus important dans React 18 parce que React cède le contrôle au navigateur lors du rendu concurrent, lui laissant ainsi une opportunité de recalculer la mise en page. Pour en apprendre davantage, consultez [le guide de migration des bibliothèques concernant `<style>`](https://github.com/reactwg/react-18/discussions/110).
 
 React 18 ajoute également de nouvelles API pour le rendu concurrent telles que `startTransition`, `useDeferredValue` et `useId`, dont nous parlons plus en détail dans le [billet annonçant la sortie](/blog/2022/03/29/react-v18).
 
@@ -270,7 +270,7 @@ Pour en apprendre davantage, consultez les discussions du groupe de travail sur 
 
 ## Configurer votre environnement de test {/*configuring-your-testing-environment*/}
 
-Lorsque vous migrez pour la première fois vos tests pour exploiter `createRoot`, vous verrez peut-être cet avertissement dans la console de test :
+Lorsque vous migrerez pour la première fois vos tests pour exploiter `createRoot`, vous verrez peut-être cet avertissement dans la console de test :
 
 <ConsoleBlock level="error">
 
@@ -291,20 +291,20 @@ Ce drapeau vise à informer React qu'il s'exécute dans un environnement de type
 
 Vous pouvez aussi définir ce drapeau à `false` pour indiquer à React que `act` n'est pas nécessaire. Ça peut être pratique pour des tests de bout en bout *(end-to-end, NdT)* qui simulent un environnement navigateur complet.
 
-À terme, nous pensons que les bibliothèques de test configureront ça automatiquement pour vous. La [prochaine version de React Testing Library prend par exemple React 18 en charge](https://github.com/testing-library/react-testing-library/issues/509#issuecomment-917989936) sans configuration supplémentaire.
+À terme, nous pensons que les bibliothèques de test configureront ça automatiquement pour vous. La [prochaine version de React Testing Library prend par exemple React 18 en charge](https://github.com/testing-library/react-testing-library/issues/509#issuecomment-917989936) sans nécessiter de configuration supplémentaire.
 
-Vous pourrez trouver [plus d'informations sur l'API de test `act` et les évolutions associées](https://github.com/reactwg/react-18/discussions/102) dans le groupe de travail.
+Vous pourrez trouver [plus d'informations sur l'API de test `act` et les évolutions associées](https://github.com/reactwg/react-18/discussions/102) dans les discussions du groupe de travail.
 
 ## Arrêt de la prise en charge d'Internet Explorer {/*dropping-support-for-internet-explorer*/}
 
 Cette version de React cesse de prendre en charge Internet Explorer, qui [atteindra sa fin de vie définitive le 15 juin 2022](https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge). Nous prenons cette mesure dès maintenant parce que certaines nouvelles fonctionnalités de React 18 tirent parti de capacités modernes des navigateurs telles que les microtâches, qui ne peuvent pas être correctement simulées dans IE.
 
-Si vous avez encore besoin de prendre en charge Internet Explorer, nous vous conseillons de rester sur React 17.
+Si vous devez encore prendre en charge Internet Explorer, nous vous conseillons de rester sur React 17.
 
 ## Dépréciations {/*deprecations*/}
 
-* `react-dom` : `ReactDOM.render` est désormais dépréciée. L'utiliser entraînera un averitssement et exécutera votre appli en mode React 17.
-* `react-dom` : `ReactDOM.hydrate` est désormais dépréciée. L'utiliser entraînera un averitssement et exécutera votre appli en mode React 17.
+* `react-dom` : `ReactDOM.render` est désormais dépréciée. L'utiliser entraînera un avertissement et exécutera votre appli en mode React 17.
+* `react-dom` : `ReactDOM.hydrate` est désormais dépréciée. L'utiliser entraînera un avertissement et exécutera votre appli en mode React 17.
 * `react-dom` : `ReactDOM.unmountComponentAtNode` est désormais dépréciée.
 * `react-dom` : `ReactDOM.renderSubtreeIntoContainer` est désormais dépréciée.
 * `react-dom/server` : `ReactDOMServer.renderToNodeStream` est désormais dépréciée.
@@ -312,7 +312,7 @@ Si vous avez encore besoin de prendre en charge Internet Explorer, nous vous con
 ## Autres ruptures de compatibilité ascendante {/*other-breaking-changes*/}
 
 * **Chronologie cohérente pour `useEffect`** : React déroule désormais toujours les fonctions d'Effet de façon synchrone si la mise à jour a été déclenchée lors d'un événement utilisateur unique tel qu'un clic ou une touche pressée. Auparavant, ce comportement n'était pas toujours prévisible ou cohérent.
-* **Erreurs d'hydratation plus strictes** : les incohérentes d'hydratation résultant de contenus manquants ou supplémentaires sont désormais traitées comme des erreurs plutôt que de simples avertissements. React n'essaiera plus de « colmater » les nœuds individuels on insérant ou retirant des nœuds côté client dans une tentative de rapprochement du balisage généré par le serveur, mais optera plutôt pour un rendu côté client jusqu'au plus proche périmètre `<Suspense>` parent dans l'arbre.  Ça permet de garantir que l'arbre hydraté est cohérent tout en évitant des failles potentielles de confidentialité ou de sécurité suite à une hydratation erronée.
+* **Erreurs d'hydratation plus strictes** : les incohérences d'hydratation résultant de contenus manquants ou supplémentaires sont désormais traitées comme des erreurs plutôt que de simples avertissements. React n'essaiera plus de « colmater » les failles en insérant ou retirant des nœuds côté client dans une tentative de rapprochement du balisage généré par le serveur, mais optera plutôt pour un rendu côté client jusqu'au plus proche périmètre `<Suspense>` parent dans l'arbre.  Ça permet de garantir que l'arbre hydraté est cohérent tout en évitant des failles potentielles de confidentialité ou de sécurité suite à une hydratation erronée.
 * **Les arbres Suspense sont toujours cohérents** : si un composant suspend avant qu'il ne soit pleinement ajouté à l'arbre, React ne l'ajoutera pas vu son état incomplet, et ne déclenchera donc pas ses Effets. React jettera plutôt le nouvel arbre entier, attendra que l'opération asynchrone se termine, puis retentera le rendu de zéro. React refera ce rendu de façon concurrente, sans bloquer le navigateur.
 * **Effets de layout avec Suspense** : lorsqu'un arbre suspend à nouveau et revient à son contenu de secours, React nettoiera les Effets de layout et les recréera lorsque le contenu au sein du périmètre sera affiché à nouveau. Ça corrige un problème qui empêchait les bibliothèques de composants de mesurer correctement la mise en page lorsqu'elles étaient utilisées avec Suspense.
 * **Nouvelles exigences d'environnement JS** : React dépend désormais de fonctionnalités natives des navigateurs telles que `Promise`, `Symbol` et `Object.assign`. Si vous souhaitez prendre en charge des anciens navigateurs et appareils (comme par exemple Internet Explorer) qui ne founissent pas ces fonctionnalités natives ou en ont une implémentation défaillante, envisagez d'inclure un polyfill global dans votre *bundle* applicatif.
@@ -323,13 +323,13 @@ Si vous avez encore besoin de prendre en charge Internet Explorer, nous vous con
 
 * **Les composants peuvent désormais produire `undefined`** : React ne vous avertira plus si vous renvoyez `undefined` depuis un composant. Ça apporte de la cohérence entre les valeurs renvoyées autorisées et celles permises au sein d'un arbre de composants.  Nous vous suggérons d'utiliser une règle d'analyse statique (*linter*) pour éviter d'oublier un `return` devant votre JSX.
 * **Les avertissements sur `act` dans les tests sont désormais optionnels** : si vous exécutez des tests de bout en bout *(end-to-end, NdT)*, les avertissements sur `act` sont superflus.  Nous avons ajouté un mécanisme d'activation [sur demande](https://github.com/reactwg/react-18/discussions/102) pour que vous puissiez ne les activer que dans des tests unitaires, pour lesquels ils sont effectivement utiles.
-* **Plus d'avertissement sur `setState` dans les composants démontés** : jusqu'ici React vous avertissait de fuites de mémoire potentielles lorsque vous appeliez `setState` sur un composant démonté. Cet avertissement avait été ajouté par rapport aux abonnements, mais la plupart des gens le rencontraient plutôt dans des scénarios où la modification de l'état était acceptable, et les solutions de contournement ne faisaient qu'empirer les choses. Nous avons [retiré](https://github.com/facebook/react/pull/22114) cet avertissement.
-* **Plus de censure des affichages en console** : lorsque vous utilisez le mode strict, React fait un double rendu de chaque composant pour vous aider à repérer des effets de bord inattendus. Dans React 17, nous censurions les affichages en console de l'un des deux rendus pour faciliter la lecture des logs. Mais suite aux [retours de la communauté](https://github.com/facebook/react/issues/21783) sur la confusion que ça entraînait, nous avons cessé d'occulter ces messages. Si vous avez les outils de développement React installés, vous y verrez plutôt le deuxième jeu de messages apparaître grisé, et une option (inactive par défaut) permet de les retirer complètement.
+* **Fin de l'avertissement sur `setState` dans les composants démontés** : jusqu'ici React vous avertissait de fuites de mémoire potentielles lorsque vous appeliez `setState` sur un composant démonté. Cet avertissement avait été ajouté par rapport aux abonnements, mais la plupart des gens le rencontraient plutôt dans des scénarios où la modification de l'état était acceptable, et les solutions de contournement ne faisaient qu'empirer les choses. Nous avons [retiré](https://github.com/facebook/react/pull/22114) cet avertissement.
+* **Arrêt de la censure des affichages en console** : lorsque vous utilisez le mode strict, React fait un double rendu de chaque composant pour vous aider à repérer des effets de bord inattendus. Dans React 17, nous censurions les affichages en console de l'un des deux rendus pour faciliter la lecture des journaux. Mais suite aux [retours de la communauté](https://github.com/facebook/react/issues/21783) sur la confusion que ça entraînait, nous avons cessé d'occulter ces messages. Si vous avez les outils de développement React installés, vous y verrez plutôt le deuxième jeu de messages apparaître grisé, et une option (inactive par défaut) permet de les retirer complètement.
 * **Consommation mémoire améliorée** : React nettoie désormais davantage de champs internes au démontage, réduisant ainsi l'impact de fuites de mémoires éventuelles dans votre application.
 
 ### React DOM (Côté serveur) {/*react-dom-server*/}
 
-* **`renderToStgring`** : cette méthode ne lèvera plus d'erreur lors d'une suspension côté serveur. Elle émettra plutôt le HTML de secours du périmètre `<Suspense>` parent le plus proche, après quoi React retentera le rendu côté client du même contenu.  Nous recommandons toutefois d'utiliser plutôt des API comme `renderToPipeableStream` ou `renderToReadableStream`.
+* **`renderToString`** : cette méthode ne lèvera plus d'erreur lors d'une suspension côté serveur. Elle émettra plutôt le HTML de secours du périmètre `<Suspense>` parent le plus proche, après quoi React retentera le rendu côté client du même contenu.  Nous recommandons toutefois d'utiliser plutôt des API comme `renderToPipeableStream` ou `renderToReadableStream`.
 * **`renderToStaticMarkup`** : cette méthode ne lèvera plus d'erreur lors d'une suspension côté serveur. Elle émettra plutôt le HTML de secours du périmètre `<Suspense>` parent le plus proche.
 
 ## Changelog {/*changelog*/}
