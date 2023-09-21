@@ -49,8 +49,10 @@ Comme nous l'avons annoncé dans le billet de sortie, React 18 introduit des fon
 </BlogCard>
 
 
-<BlogCard title="React Conf 2021 Recap" date="December 17, 2021" url="/blog/2021/12/17/react-conf-2021-recap">
-Last week we hosted our 6th React Conf.  In previous years, we’ve used the React Conf stage to deliver industry changing announcements such as React Native and React Hooks. This year, we shared our multi-platform vision for React, starting with the release of React 18 and gradual adoption of concurrent features...
+<BlogCard title="La React Conf 2021 en bref" date="17 décembre 2021" url="/blog/2021/12/17/react-conf-2021-recap">
+
+La semaine dernière nous avons hébergé notre 6e React Conf. Les années passées, nous avions utilisé la React Conf pour faire des annonces retentissantes telles que React Native ou les Hooks. Cette année, nous avons partagé notre vision multi-plateforme pour React, en commençant par la sortie de React 18 et l'adoption graduelle des fonctionnalités concurrentes…
+
 </BlogCard>
 
 <BlogCard title="The Plan for React 18" date="June 8, 2021" url="/blog/2021/06/08/the-plan-for-react-18">
