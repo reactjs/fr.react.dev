@@ -138,6 +138,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/blog/2022/03/08/react-18-upgrade-guide">Blog : Comment migrer sur React 18</a></li>
           <li><a href="https://fr.react.dev/blog/2021/12/17/react-conf-2021-recap">Blog : La React Conf 2021 en bref</a></li>
           <li><a href="https://fr.react.dev/blog/2021/06/08/the-plan-for-react-18">Blog : Nos plans pour React 18</a></li>
+          <li><a href="https://fr.react.dev/blog/2020/12/21/data-fetching-with-react-server-components">Blog : Découvrez les React Server Components qui n'impactent pas votre bundle</a></li>
           <li><a href="https://fr.react.dev/warnings/invalid-aria-prop">Avertissement : prop ARIA invalide</a></li>
           <li><a href="https://fr.react.dev/warnings/invalid-hook-call-warning">Avertissement : règles des Hooks</a></li>
           <li><a href="https://fr.react.dev/warnings/special-props">Avertissement : props à traitement spécial</a></li>
