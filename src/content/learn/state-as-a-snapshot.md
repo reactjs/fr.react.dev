@@ -77,15 +77,9 @@ Contrairement à une photo ou une image de film, « l'instantané » de l'UI q
 
 Lorsque React refait le rendu d'un composant :
 
-<<<<<<< HEAD
 1. React rappelle votre fonction.
 2. Votre fonction renvoie un nouvel instantané JSX.
-3. React met alors à jour l'écran pour refléter l'instantané que vous venez de renvoyer.
-=======
-1. React calls your function again.
-2. Your function returns a new JSX snapshot.
-3. React then updates the screen to match the snapshot your function returned.
->>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
+3. React met alors à jour l'écran pour refléter l'instantané que votre fonction vient de renvoyer.
 
 <IllustrationBlock sequential>
     <Illustration caption="React appelle la fonction" src="/images/docs/illustrations/i_render1.png" />
