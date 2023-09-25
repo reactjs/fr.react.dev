@@ -26,12 +26,17 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Dans a commencé à programmer lorsqu'il a découvert par hasard qu'il y avait Visual Basic dans Microsoft Powerpoint.  Il a découvert que sa véritable vocation consistait à transformer les tweets de [Sebastian](#sebastian-markbåge) en billets de blog interminables. Dan gagne parfois à Fortnite en se cachant dans un buisson jusqu'à la fin de la partie.
 </TeamMember>
 
+<<<<<<< HEAD
 <TeamMember name="Dave McCabe" permalink="dave-mccabe" photo="/images/team/dave-mccabe.jpg" github="davidmccabe" twitter="mcc_abe" title="Ingénieur chez Meta">
     Ingénieur de métier et homme d'extérieur par nature, David a longtemps innové dans le domaine de la programmation-en-bronzant. Lorsqu'il ne surprend pas ses collègues avec ses arrière-plans en pleine nature lors des visioconférences, il aime jouer de la guitare (dans des prairies ensoleillées, ça va de soi) et faire des arts martiaux (en intérieur pour le moment, il faut qu'il y travaille).
 </TeamMember>
 
 <TeamMember name="Eli White" permalink="eli-white" photo="/images/team/eli-white.jpg" github="TheSavior" twitter="Eli_White" title="Manager d’ingénieurs chez Meta">
     Eli a commencé la programmation après avoir été suspendu au collège pour piratage.  Il travaille sur React et React Native depuis 2017. Il aime manger des sucreries, en particulier les crèmes glacées et la tarte aux pommes. Vous le trouverez généralement en train d'essayer des trucs un peu fous comme le parkour, les simulateurs de chute libre ou la danse aérienne sur rubans de soie.
+=======
+<TeamMember name="Eli White" permalink="eli-white" photo="/images/team/eli-white.jpg" github="TheSavior" twitter="Eli_White" title="Engineering Manager at Meta">
+    Eli got into programming after he got suspended from middle school for hacking. He has been working on React and React Native since 2017. He enjoys eating treats, especially ice cream and apple pie. You can find Eli trying quirky activities like parkour, indoor skydiving, and aerial silks.
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 </TeamMember>
 
 <TeamMember name="Jason Bonta" permalink="jason-bonta" photo="/images/team/jasonbonta.jpg" title="Manager d’ingénieurs chez Meta">
@@ -54,24 +59,34 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     La carrière de développeuse de Lauren a atteint son sommet lorsqu'elle a découvert la balise `<marquee>`. Depuis, elle cherche à retrouver cette extase.  Lorsqu'elle n'est pas en train d'ajouter des bugs à React, elle aime balancer des mèmes audacieux dans les forums internes, jouer à beaucoup trop de jeux vidéos avec l'amour de sa vie, et son chien Zelda.
 </TeamMember>
 
+<<<<<<< HEAD
 <TeamMember name="Luna Ruan" permalink="luna-ruan" photo="/images/team/lunaruan.jpg" github="lunaruan" twitter="lunaruan" title="Ingénieure indépendante">
     Luna a appris à programmer pour faire des jeux vidéos. Au lieu de quoi elle s'est retrouvée à bosser sur l'appli web de Pinterest, et désormais sur React lui-même. Luna n'a plus envie de faire des jeux vidéos, mais elle compte faire de l'écriture créative si un jour elle s'ennuie.
 </TeamMember>
 
 <TeamMember name="Luna Wei" permalink="luna-wei" photo="/images/team/luna-wei.jpg" github="lunaleaps" twitter="lunaleaps" title="Ingénieure chez Meta">
     Luna a appris les bases de Python à 6 ans grâce à son père. Depuis plus rien ne l'arrête. Luna a bien l'intention d'être une Génération Z, et le chemin du succès passe par la défense de l'environnement, du jardinage urbain et beaucoup de temps précieux passé avec Voo-Doo (voir photo).
+=======
+<TeamMember name="Luna Wei" permalink="luna-wei" photo="/images/team/luna-wei.jpg" github="lunaleaps" twitter="lunaleaps" title="Engineer at Meta">
+    Luna first learnt the fundamentals of python at the age of 6 from her father. Since then, she has been unstoppable. Luna aspires to be a gen z, and the road to success is paved with environmental advocacy, urban gardening and lots of quality time with her Voo-Doo’d (as pictured). 
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 </TeamMember>
 
 <TeamMember name="Matt Carroll" permalink="matt-carroll" photo="/images/team/matt-carroll.png" github="mattcarrollcode" twitter="mattcarrollcode" title="Developer Advocate chez Meta">
     Matt est tombé par hasard dans le code, et depuis il adore créer grâce à des communautés des trucs qu'on ne peut pas créer tout seuls.  Avant React, il a travaillé sur YouTube, l'Assistant Google, Fuchsia, Google Cloud AI et Evernote.  Lorsqu'il n'est pas en train d'améliorer l'outillage des développeurs il aime la montagne, le jazz, et passer du temps en famille.
 </TeamMember>
 
+<<<<<<< HEAD
 <TeamMember name="Mengdi Chen" permalink="mengdi-chen" photo="/images/team/mengdi-chen.jpg" github="mondaychen" twitter="mengdi_en" title="Ingénieure chez Meta">
     Alors qu'elle bossait sur son diplôme en Arts Numériques, Mengdi la ramenait avec ses compétences front-end parce que ses CSS marchaient nickel même sur IE6.  Puis React a ouvert une nouvelle porte pour elle dans le monde de la programmation, et depuis elle rêvait d'intégrer l'équipe React. Hors du boulot, elle est généralement en train de courir après ses deux enfants ou de collectionner des recettes étranges.
 </TeamMember>
 
 <TeamMember name="Mofei Zhang" permalink="mofei-zhang" photo="/images/team/mofei-zhang.png" github="mofeiZ" title="Ingénieure chez Meta">
     Mofei a commencé à programmer dès qu'elle a réalisé que ça pouvait l'aider à tricher aux jeux vidéos.  Ses études se sont concentrées sur les systèmes d'exploitation (OS), mais elle aime aujourd'hui triturer React.  Hors du boulot, elle aime déboguer des problèmes d'escalade de bloc et planifier ses prochaines randonnées.
+=======
+<TeamMember name="Mofei Zhang" permalink="mofei-zhang" photo="/images/team/mofei-zhang.png" github="mofeiZ" title="Engineer at Meta">
+    Mofei started programming when she realized it can help her cheat in video games. She focused on operating systems in undergrad / grad school, but now finds herself happily tinkering on React. Outside of work, she enjoys debugging bouldering problems and planning her next backpacking trip(s).
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 </TeamMember>
 
 <TeamMember name="Rick Hanlon" permalink="rick-hanlon" photo="/images/team/rickhanlonii.jpg" github="rickhanlonii" twitter="rickhanlonii" personal="rickhanlon.codes" title="Ingénieur chez Meta">
@@ -86,12 +101,17 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Sathya a détesté le *Dragon Book* durant ses études, et pourtant a fini par consacrer sa carrière aux compilateurs. Lorsqu'il n'est pas en train de compiler des composants React, soit il boit du café soit il mange encore un Dosa.
 </TeamMember>
 
+<<<<<<< HEAD
 <TeamMember name="Sean Keegan" permalink="sean-keegan" photo="/images/team/sean-keegan.jpg" github="seanryankeegan" twitter="DevRelSean" title="Developer Advocate chez Meta">
     Après une première carrière comme prof de maths, Sean s'est souvenu de cette petite intro à l'informatique qu'il avait dû suivre en pré-requis et s'est dit « Eh, c'était pas mal ! ». Un bootcamp de code et quelques boulots techniques plus tard, Sean a découvert l'évangélisme développeurs *(developer advocacy, NdT)* et s'y consacre depuis lors.  Hors du boulot, Sean aime l'ultimate, les jeux vidéos, et chercher (mais rarement appliquer) comment mieux s'occuper de ses plantes domestiques.
 </TeamMember>
 
 <TeamMember name="Sebastian Markbåge" permalink="sebastian-markbåge" photo="/images/team/sebmarkbage.jpg" github="sebmarkbage" twitter="sebmarkbage" title="Ingénieur chez Vercel">
     Sébastien a étudié la psychologie. Il est généralement silencieux. Même lorsqu'il dit quelque chose, ça ne finit par avoir du sens pour le reste d'entre nous que quelques mois plus tard.  La véritable pronconciation de son nom de famille est « marc-bau-jai », mais il a fini par tolérer « marc-beige » par pur pragmatisme — une approche qu'il applique aussi à React.
+=======
+<TeamMember name="Sebastian Markbåge" permalink="sebastian-markbåge" photo="/images/team/sebmarkbage.jpg" github="sebmarkbage" twitter="sebmarkbage" title="Engineer at Vercel">
+    Sebastian majored in psychology. He's usually quiet. Even when he says something, it often doesn't make sense to the rest of us until a few months later. The correct way to pronounce his surname is "mark-boa-geh" but he settled for "mark-beige" out of pragmatism -- and that's how he approaches React.
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 </TeamMember>
 
 <TeamMember name="Sebastian Silbermann" permalink="sebastian-silbermann" photo="/images/team/sebsilbermann.jpg" github="eps1lon" twitter="sebsilbermann" title="Ingénieur indépendant">

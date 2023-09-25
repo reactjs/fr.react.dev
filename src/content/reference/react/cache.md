@@ -4,11 +4,17 @@ canary: true
 ---
 
 <Canary>
+<<<<<<< HEAD
 
 * `cache` n'est destinée qu'aux [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). Découvrez quels [frameworks](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) prennent en charge les Composants Serveur.
 
 * `cache` n'est disponible que dans les canaux de livraison [Canary](/community/versioning-policy#canary-channel) et [Expérimental](/community/versioning-policy#experimental-channel). Assurez-vous d'en comprendre les limitations avant d'utiliser `cache` en production. Apprenez-en davantage sur les [canaux de livraison React](/community/versioning-policy#all-release-channels).
 
+=======
+* `cache` is only for use with [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). See [frameworks](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) that support React Server Components.
+
+* `cache` is only available in React’s [Canary](/community/versioning-policy#canary-channel) and [experimental](/community/versioning-policy#experimental-channel) channels. Please ensure you understand the limitations before using `cache` in production. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 </Canary>
 
 <Intro>
@@ -67,10 +73,17 @@ L'optimisation qui consiste à mettre en cache les valeurs résultats sur base d
 
 [//]: # 'TODO: add links to Server/Client Component reference once https://github.com/reactjs/react.dev/pull/6177 is merged'
 
+<<<<<<< HEAD
 - React invalidera le cache de toutes les fonctions mémoïsées à chaque requête serveur.
 - Chaque appel à `cache` crée une nouvelle fonction. Ça signifie qu'appeler `cache` plusieurs fois avec la même fonction renverra plusieurs fonctions mémoïsées distinctes, avec chacune leur propre cache.
 - `cachedFn` mettra également les erreurs en cache. Si `fn` lève une exception pour certains arguments, ce sera mis en cache, et la même erreur sera levée lorsque `cachedFn` sera rappelée avec ces mêmes arguments.
 - `cache` est destinée uniquement aux [Composants Serveur](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
+=======
+- React will invalidate the cache for all memoized functions for each server request. 
+- Each call to `cache` creates a new function. This means that calling `cache` with the same function multiple times will return different memoized functions that do not share the same cache.
+- `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and the same error is re-thrown when `cachedFn` is called with those same arguments.
+- `cache` is for use in [Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) only.
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 
 ---
 

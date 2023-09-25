@@ -768,7 +768,11 @@ Ce n’est pas le rendu qui déclenche l’achat, c’est une interaction spéci
   }
 ```
 
+<<<<<<< HEAD
 **Ça illustre bien le fait que si le remontage casse la logique de votre application, il s’agit probablement d’un bug dans votre code.**  Du point de vue de l’utilisateur, visiter la page ne devrait en rien différer de la visiter, puis cliquer un lien, puis y revenir.  React vérifie que vos composants obéissent à ce principe en les remontant une fois lors du développement.
+=======
+**This illustrates that if remounting breaks the logic of your application, this usually uncovers existing bugs.** From a user's perspective, visiting a page shouldn't be different from visiting it, clicking a link, then pressing Back to view the page again. React verifies that your components abide by this principle by remounting them once in development.
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 
 ## Tous ensemble cette fois {/*putting-it-all-together*/}
 

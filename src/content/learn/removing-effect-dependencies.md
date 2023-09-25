@@ -927,7 +927,7 @@ function ChatRoom() {
 
   useEffect(() => {
     const options = createOptions();
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
   }, []); // ✅ Toutes les dépendances sont déclarées
@@ -1614,7 +1614,11 @@ label, button { display: block; margin-bottom: 5px; }
 
 Votre Effet est ré-exécuté parce qu'il dépend de l'objet `options`.  Les objets sont susceptibles d'être recréés par inadvertance, et vous devriez essayer autant que possible de les éviter comme dépendances pour vos Effets.
 
+<<<<<<< HEAD
 Le correctif le moins impactant consiste à lire `roomId` et `serverUrl` directement hors de l'Effet, et de faire que l'Effet dépende de ces valeurs primitives (qui ne peuvent pas changer par inadvertance).  Au sein de l'Effet, créez un objet et passez-le à  `createConnection` :
+=======
+The least invasive fix is to read `roomId` and `serverUrl` right outside the Effect, and then make the Effect depend on those primitive values (which can't change unintentionally). Inside the Effect, create an object and pass it to `createConnection`:
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 
 <Sandpack>
 

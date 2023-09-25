@@ -1486,8 +1486,6 @@ Voici une version corrigée qui utilise une variable `name` classique, déclaré
 <Sandpack>
 
 ```js
-import { useState } from 'react';
-
 export default function FeedbackForm() {
   function handleClick() {
     const name = prompt('Comment vous appelez-vous ?');

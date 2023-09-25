@@ -459,8 +459,13 @@ export default function Gallery() {
             (Prix Nobel de Physique, Prix Nobel de Chimie, Médaille Davy, Médaille Matteucci)
           </li>
           <li>
+<<<<<<< HEAD
             <b>A découvert : </b>
             le Polonium (élément)
+=======
+            <b>Discovered: </b>
+            polonium (chemical element)
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
           </li>
         </ul>
       </section>

@@ -60,7 +60,11 @@ function ChatRoom({ roomId }) {
 
 * Quand le mode strict est activé, React **appellera une fois de plus votre cycle mise en place + nettoyage, uniquement en développement**, avant la première mise en place réelle.  C'est une mise à l'épreuve pour vérifier que votre logique de nettoyage reflète bien votre logique de mise en place, et décommissionne ou défait toute la mise en place effectuée.  Si ça entraîne des problèmes, [écrivez une fonction de nettoyage](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development).
 
+<<<<<<< HEAD
 * Si certaines de vos dépendances sont des objets ou fonctions définies au sein de votre composant, il existe un risque qu'elles **entraînent des exécutions superflues de votre Effet**.  Pour corriger ça, retirez les dépendances superflues sur des [objets](#removing-unnecessary-object-dependencies) et [fonctions](#removing-unnecessary-function-dependencies).  Vous pouvez aussi [extraire les mises à jour d'état](#updating-state-based-on-previous-state-from-an-effect) et la [logique non réactive](#reading-the-latest-props-and-state-from-an-effect) hors de votre Effet.
+=======
+* If your Effect wasn't caused by an interaction (like a click), React will generally let the browser **paint the updated screen first before running your Effect.** If your Effect is doing something visual (for example, positioning a tooltip), and the delay is noticeable (for example, it flickers), replace `useEffect` with [`useLayoutEffect`.](/reference/react/useLayoutEffect)
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 
 * Si votre Effet ne découlait pas d'une interaction (telle qu'un clic), React laissera le navigateur **rafraîchir l'affichage à l'écran avant d'exécuter votre Effet**. Si votre Effet a des aspects visuels (par exemple, il positionne une infobulle) et que le retard est perceptible (par exemple, l'affichage vacille), remplacez `useEffect` par [`useLayoutEffect`](/reference/react/useLayoutEffect).
 
