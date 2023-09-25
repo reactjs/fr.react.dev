@@ -100,11 +100,11 @@ Ces props standard du DOM sont également prises en charge pour tous les composa
 * `onFocusCapture` : une version de `onFocus` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onGotPointerCapture`](https://developer.mozilla.org/fr/docs/Web/API/Element/gotpointercapture_event) : un [gestionnaire d'événement `PointerEvent`](#pointerevent-handler). Cet événement est déclenché lorsqu'un élément capture programmatiquement le pointeur.
 * `onGotPointerCaptureCapture` : une version de `onGotPointerCapture` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onKeyDown`](https://developer.mozilla.org/fr/docs/Web/API/Element/keydown_event) : un [gestionnaire d'événement `KeyboardEvent` handler](#pointerevent-handler). Cet événement est déclenché quand une touche est pressée.
+* [`onKeyDown`](https://developer.mozilla.org/fr/docs/Web/API/Element/keydown_event) : un [gestionnaire d'événement `KeyboardEvent` handler](#keyboardevent-handler). Cet événement est déclenché quand une touche est pressée.
 * `onKeyDownCapture` : une version de `onKeyDown` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onKeyPress`](https://developer.mozilla.org/fr/docs/Web/API/Element/keypress_event) : un [gestionnaire d'événement `KeyboardEvent`](#pointerevent-handler). Il est déprécié. Privilégiez `onKeyDown` ou `onBeforeInput`.
+* [`onKeyPress`](https://developer.mozilla.org/fr/docs/Web/API/Element/keypress_event) : un [gestionnaire d'événement `KeyboardEvent`](#keyboardevent-handler). Il est déprécié. Privilégiez `onKeyDown` ou `onBeforeInput`.
 * `onKeyPressCapture` : une version de `onKeyPress` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
-* [`onKeyUp`](https://developer.mozilla.org/fr/docs/Web/API/Element/keyup_event) : un [gestionnaire d'événement `KeyboardEvent`](#pointerevent-handler). Cet événement est déclenché quand une touche est relâchée.
+* [`onKeyUp`](https://developer.mozilla.org/fr/docs/Web/API/Element/keyup_event) : un [gestionnaire d'événement `KeyboardEvent`](#keyboardevent-handler). Cet événement est déclenché quand une touche est relâchée.
 * `onKeyUpCapture` : une version de `onKeyUp` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).
 * [`onLostPointerCapture`](https://developer.mozilla.org/docs/Web/API/Element/lostpointercapture_event) : un [gestionnaire d'événement `PointerEvent`](#pointerevent-handler). Cet événement est déclenché quand un élément cesse de capturer le pointeur.
 * `onLostPointerCaptureCapture` : une version de `onLostPointerCapture` qui se déclenche durant la [phase de capture](/learn/responding-to-events#capture-phase-events).

@@ -79,7 +79,7 @@ Lorsque React refait le rendu d'un composant :
 
 1. React rappelle votre fonction.
 2. Votre fonction renvoie un nouvel instantané JSX.
-3. React met alors à jour l'écran pour refléter l'instantané que vous venez de renvoyer.
+3. React met alors à jour l'écran pour refléter l'instantané que votre fonction vient de renvoyer.
 
 <IllustrationBlock sequential>
     <Illustration caption="React appelle la fonction" src="/images/docs/illustrations/i_render1.png" />

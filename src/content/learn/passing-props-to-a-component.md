@@ -460,7 +460,7 @@ export default function Gallery() {
           </li>
           <li>
             <b>A découvert : </b>
-            le Polonium (élément)
+            le Polonium (élément chimique)
           </li>
         </ul>
       </section>
