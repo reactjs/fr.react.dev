@@ -2081,7 +2081,17 @@ export default function Game() {
 }
 ```
 
-Vous pouvez voir le résultat ci-dessous. Notez que vous devriez voir une erreur dans la console des outils de développement, qui dit ``Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `Game`.`` *(« Avertissement : chaque enfant d'une liste devrait avoir une prop "key" unique. Vérifiez la méthode de rendu de `Game`. », NdT.)* Vous la corrigerez dans la prochaine section.
+Vous pouvez voir le résultat ci-dessous. Notez que vous devriez voir une erreur dans la console des outils de développement, qui dit :
+
+<ConsoleBlock level="warning">
+
+Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `Game`.
+
+</ConsoleBlock>
+
+*(« Avertissement : chaque enfant d'une liste devrait avoir une prop "key" unique. Vérifiez la méthode de rendu de `Game`. », NdT.)*
+
+Vous la corrigerez dans la prochaine section.
 
 <Sandpack>
 

@@ -58,7 +58,7 @@ function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime
 * `actualDuration` : la durée en millisecondes du rendu du `<Profiler>` et de ses enfants pour la mise à jour concernée. Ça indique à quel point vos descendants profitent de la mémoïsation (notamment [`memo`](/reference/react/memo) et [`useMemo`](/reference/react/useMemo)). Idéalement, cette valeur devrait décroître de façon significative après le montage initial car la plupart des descendants ne referont un rendu que si leurs props changent.
 * `baseDuration` : une estimation de la durée en millisecondes que prendrait un rendu complet du `<Profiler>` et de ses descendants, sans aucune optimisation. Elle est calculée en ajoutant les durées de rendu les plus récentes de chaque composant concerné. Cette valeur représente le coût maximal de rendu (c’est-à-dire le temps initial de montage sans mémoïsation). Comparez-la avec `actualDuration` pour déterminer si la mémoïsation fonctionne.
 * `startTime` : un horodatage numérique du début de la mise à jour par React.
-* `endTime` : un horodatage numérique de la fin de la mise à jour par React. Cette valeur est partagée par tous les profileurs d’une même phase de commit, ce qui permet si besoin de les grouper.
+* `commitTime` : un horodatage numérique de la fin de la mise à jour par React. Cette valeur est partagée par tous les profileurs d’une même phase de commit, ce qui permet si besoin de les grouper.
 
 ---
 

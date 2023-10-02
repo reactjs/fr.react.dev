@@ -1090,7 +1090,7 @@ Dans ce code, `<Recipe {...recipe} key={recipe.id} />` est un raccourci syntaxiq
 
 #### Liste avec séparateur {/*list-with-a-separator*/}
 
-Cet exemple affiche un célèbre haïku de Katsushika Hokusai, dont chaque ligne est enrobée par une balise `<p>`. Votre tâche consiste à insérer un séparateur `<hr />` entre chaque paragraphe.  La structure finale devrait ressembler à ceci :
+Cet exemple affiche un célèbre haïku de Tachibana Hokushi, dont chaque ligne est enrobée par une balise `<p>`. Votre tâche consiste à insérer un séparateur `<hr />` entre chaque paragraphe.  La structure finale devrait ressembler à ceci :
 
 ```js
 <article>

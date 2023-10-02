@@ -284,7 +284,7 @@ Vous n'avez pas non plus à vous préoccuper [d'éviter les mutations](/learn/up
 
 ## Les refs et le DOM {/*refs-and-the-dom*/}
 
-Vous pouvez faire pointer votre ref vers ce que vous voulez.  Ceci dit, le cas le plus courant pour une ref consiste à accéder à un élément du DOM. C'est par exemple bien pratique pour gérer le focus programmatiquement. Quand vous passez une ref à la prop `ref` d'un élément en JSX, comme dans `<div ref={myRef}>`, React référencera l'élément DOM correspondant dans `myRef.current`.  Vous pouvez en apprendre davantage dans [Manipuler le DOM avec des refs](/learn/manipulating-the-dom-with-refs).
+Vous pouvez faire pointer votre ref vers ce que vous voulez.  Ceci dit, le cas le plus courant pour une ref consiste à accéder à un élément du DOM. C'est par exemple bien pratique pour gérer le focus programmatiquement. Quand vous passez une ref à la prop `ref` d'un élément en JSX, comme dans `<div ref={myRef}>`, React référencera l'élément DOM correspondant dans `myRef.current`.  Lorsque l'élément sera retiré du DOM, React recalera `ref.current` à `null`. Vous pouvez en apprendre davantage dans [Manipuler le DOM avec des refs](/learn/manipulating-the-dom-with-refs).
 
 <Recap>
 
