@@ -650,7 +650,11 @@ Dans cet exemple, le composant `List` est **artificiellement ralenti** pour que 
 
 Le changement d'onglet semble lent parce qu'elle force le `List` ralenti à refaire son rendu.  On pouvait s'y attendre, puisque l'onglet a changé, vous devez donc refléter le nouveau choix de l'utilisateur à l'écran.
 
+<<<<<<< HEAD
 Essayez maintenant de basculer le thème. **Grâce à la combinaison de `useMemo` et [`memo`](/reference/react/memo), c'est rapide en dépit du ralenti artificiel !** `List` a évité un nouveau rendu parce que le tableau `visibleItems` n'a pas changé, dans la mesure où ni `todos` ni `tab` (les dépendances déclarées pour le `useMemo`) n'ont changé depuis le dernier rendu.
+=======
+Next, try toggling the theme. **Thanks to `useMemo` together with [`memo`](/reference/react/memo), it’s fast despite the artificial slowdown!** The `List` skipped re-rendering because the `visibleTodos` array has not changed since the last render. The `visibleTodos` array has not changed because both `todos` and `tab` (which you pass as dependencies to `useMemo`) haven't changed since the last render.
+>>>>>>> 68f417a600c7d7b8c4131e39f8a843a856ae3909
 
 <Sandpack>
 

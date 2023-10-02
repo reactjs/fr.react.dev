@@ -21,12 +21,16 @@ Si vous voulez créer une nouvelle appli ou un nouveau site web avec React, nous
 **[Next.js](https://nextjs.org/) est un framework React full-stack**. Il est flexible et vous permet de créer des applis React de toute taille--d’un blog essentiellement statique à une appli complexe et dynamique. Pour créer un nouveau projet avec Next.js, exécutez cette commande dans votre terminal :
 
 <TerminalBlock>
-npx create-next-app
+npx create-next-app@latest
 </TerminalBlock>
 
 Si Next.js est nouveau pour vous, consultez le [tutoriel de Next.js](https://nextjs.org/learn/foundations/about-nextjs).
 
+<<<<<<< HEAD
 Next.js est maintenu par [Vercel](https://vercel.com/). Vous pouvez  [déployer une appli Next.js](https://nextjs.org/docs/deployment) sur tout hébergement *serverless* ou Node.js, ou sur votre propre serveur. Les [applis Next.js pleinement statiques](https://nextjs.org/docs/advanced-features/static-html-export) peuvent être déployées sur tout hébergement statique.
+=======
+Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports a [static export](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports) which doesn't require a server.
+>>>>>>> 68f417a600c7d7b8c4131e39f8a843a856ae3909
 
 ### Remix {/*remix*/}
 
@@ -89,6 +93,7 @@ Ces fonctionnalités se rapprochent chaque jour un peu plus de la production, et
 
 ### Next.js (App Router) {/*nextjs-app-router*/}
 
+<<<<<<< HEAD
 **[L'*App Router* de Next.js](https://beta.nextjs.org/docs/getting-started) est une refonte intégrale des API de Next.js qui vise à concrétiser la vision d'architecture full-stack portée par l'équipe de React.** Il vous permet de charger des données dans des composants asynchrones qui s’exécutent sur le serveur ou pendant le *build*.
 
 Next.js est maintenu par [Vercel](https://vercel.com/). Vous pouvez [déployer une appli Next.js](https://nextjs.org/docs/deployment) sur tout hébergement Node.js ou *serverless*, ou sur votre propre serveur. Next.js également prend en charge [l’exportation statique](https://beta.nextjs.org/docs/configuring/static-export) qui ne requiert pas de serveur.
@@ -97,6 +102,11 @@ Next.js est maintenu par [Vercel](https://vercel.com/). Vous pouvez [déployer u
 L’App Router de Next.js est **actuellement en beta et n’est pas recommandé pour la production** (en mars 2023). Pour l’expérimenter dans un projet Next.js existant, [suivez ce guide de migration progressive](https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app).
 
 </Pitfall>
+=======
+**[Next.js's App Router](https://nextjs.org/docs) is a redesign of the Next.js APIs aiming to fulfill the React team’s full-stack architecture vision.** It lets you fetch data in asynchronous components that run on the server or even during the build.
+
+Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server.
+>>>>>>> 68f417a600c7d7b8c4131e39f8a843a856ae3909
 
 <DeepDive>
 

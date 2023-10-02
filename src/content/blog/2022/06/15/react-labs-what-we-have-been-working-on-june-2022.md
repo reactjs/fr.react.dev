@@ -8,7 +8,11 @@ Le 15 juin 2022 par [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](h
 
 <Intro>
 
+<<<<<<< HEAD
 [React 18](/blog/2022/03/29/react-v18) a pris des années, mais il était porteur de précieuses leçons pour l'équipe React.  Sa sortie était l'aboutissement de nombreuses années de recherche, en explorant de nouvelles voies.  Certaines de ces tentatives ont réussi ; mais bien davantage se sont révélées des impasses qui nous ont toutefois fourni de nouvelles pistes.  Une des leçons que nous en avons tirées, c'est qu'il est frustrant pour la communauté d'attendre la sortie de nouvelles fonctionnalités sans que nous communiquions sur nos travaux.
+=======
+[React 18](https://react.dev/blog/2022/03/29/react-v18) was years in the making, and with it brought valuable lessons for the React team. Its release was the result of many years of research and exploring many paths. Some of those paths were successful; many more were dead-ends that led to new insights. One lesson we’ve learned is that it’s frustrating for the community to wait for new features without having insight into these paths that we’re exploring.
+>>>>>>> 68f417a600c7d7b8c4131e39f8a843a856ae3909
 
 </Intro>
 
