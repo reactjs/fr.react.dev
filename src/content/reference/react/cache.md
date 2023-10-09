@@ -424,7 +424,11 @@ Voyez déjà les pièges signalés plus haut :
 * [Appeler des fonctions mémoïsées distinctes lira des caches distincts](#pitfall-different-memoized-functions)
 * [Appeler une fonction mémoïsée hors d'un composant n'utilisera pas le cache](#pitfall-memoized-call-outside-component)
 
+<<<<<<< HEAD
 Si rien de tout ça ne s'applique, le problème peut être lié à la façon dont React vérifie l'existence de quelque chose dans le cache.
+=======
+If your arguments are not [primitives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) (ex. objects, functions, arrays), ensure you're passing the same object reference.
+>>>>>>> 9aa84b19222838f38863ce4bd8f516dbfe193bbc
 
 Si vos arguments ne sont pas des [primitives](https://developer.mozilla.org/fr/docs/Glossary/Primitive) (ce sont par exemple des objets, des fonctions, des tableaux), assurez-vous de toujours passer la même référence d'objet.
 

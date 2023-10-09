@@ -288,8 +288,14 @@ Le streaming n'a pas besoin d'attendre que React lui-même soit chargé dans le 
 
 **Seules les sources de données compatibles Suspense activeront le composant Suspense.**  Elles comprennent :
 
+<<<<<<< HEAD
 - Le chargement de données fourni par des frameworks intégrant Suspense tels que [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) et [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Le chargement à la demande du code de composants avec [`lazy`](/reference/react/lazy)
+=======
+- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
+- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Reading the value of a Promise with [`use`](/reference/react/use)
+>>>>>>> 9aa84b19222838f38863ce4bd8f516dbfe193bbc
 
 Suspense **ne détecte pas** le chargement de données depuis un Effet ou un gestionnaire d'événement.
 
