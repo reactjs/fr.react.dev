@@ -290,6 +290,7 @@ Le streaming n'a pas besoin d'attendre que React lui-même soit chargé dans le 
 
 - Le chargement de données fourni par des frameworks intégrant Suspense tels que [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) et [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Le chargement à la demande du code de composants avec [`lazy`](/reference/react/lazy)
+- La lecture de la valeur d'une promesse avec [`use`](/reference/react/use)
 
 Suspense **ne détecte pas** le chargement de données depuis un Effet ou un gestionnaire d'événement.
 

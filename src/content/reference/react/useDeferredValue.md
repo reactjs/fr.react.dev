@@ -86,6 +86,7 @@ Cet exemple part du principe que vous utilisez une source de donnée compatible 
 
 - Le chargement de données fourni par des frameworks intégrant Suspense tels que [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) et [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Le chargement à la demande de composants avec [`lazy`](/reference/react/lazy)
+- La lecture de la valeur d'une promesse avec [`use`](/reference/react/use)
 
 [Apprenez-en davantage sur Suspense et ses limitations](/reference/react/Suspense).
 
