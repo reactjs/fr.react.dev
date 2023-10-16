@@ -68,7 +68,7 @@ experimental_taintObjectReference(
 
 <Pitfall>
 
-**Ne comptez pas sur le ternissement pour garantir la sécurité.** Ternir un objet n'empêche pas la fuite de toute donnée dérivée imaginable. Un clone de l'objet terni créera par exemple un objet intact. L'utilisation de données d'un objet terni (ex. `{secret: taintedObj.secret}`) crée une nouvelle valeur, ou un nouvel objet, qui ne sera pas terni·e. Le ternissement est une couche de protection, mais une appli sécurisée aura plusieurs couches de protection complémentaires, des API soigneusement conçues et des mécanismes d'isolation en place.
+**Ne comptez pas sur le ternissement pour garantir la sécurité.** Ternir un objet n'empêche pas la fuite de toute donnée dérivée imaginable. Un clone de l'objet terni créera par exemple un objet intact. L'utilisation de données d'un objet terni (ex. `{secret: taintedObj.secret}`) crée une nouvelle valeur, ou un nouvel objet, qui ne sera pas terni·e. Le ternissement est une couche de protection ; une appli sécurisée aura plusieurs couches de protection complémentaires, des API soigneusement conçues et des mécanismes d'isolation en place.
 
 </Pitfall>
 

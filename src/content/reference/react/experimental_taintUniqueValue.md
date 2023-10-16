@@ -128,7 +128,7 @@ Dans le code ci-dessus, la constante`password` est ternie. Puis `password` sert 
 
 On obtiendrait le même résultat avec d'autres façons de dériver de nouvelles valeurs à partir de valeurs ternies, telles que la concaténation de chaîne, leur encodage en Base 64 ou l'extraction d'une portion de la chaîne.
 
-Le ternissement ne vous protège que contre les bévues simples lorsqu'une valeur sensible est explicitement passée à un Composant Client. Des appels erronés de `taintUniqueValue`, comme le fait de recourir à un stockage global hors de React, sans l'objet de durée de vie associée, peuvent entraîner la perte du ternissement de la valeur. Le ternissement est une couche de protection, mais une appli sécurisée aura plusieurs couches de protection complémentaires, des API soigneusement conçues et des mécanismes d'isolation en place.
+Le ternissement ne vous protège que contre les bévues simples lorsqu'une valeur sensible est explicitement passée à un Composant Client. Des appels erronés de `taintUniqueValue`, comme le fait de recourir à un stockage global hors de React, sans l'objet de durée de vie associée, peuvent entraîner la perte du ternissement de la valeur. Le ternissement est une couche de protection ; une appli sécurisée aura plusieurs couches de protection complémentaires, des API soigneusement conçues et des mécanismes d'isolation en place.
 
 </Pitfall>
 

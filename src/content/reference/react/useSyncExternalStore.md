@@ -57,6 +57,26 @@ L'instantané actuel de la valeur issue de la source, que vous pouvez utiliser p
 
 * Si une fonction `subscribe` différente est passée lors d'un nouveau rendu, React se réabonnera à la source de données en utilisant cette nouvelle fonction `subscribe`.  Vous pouvez éviter ça en déclarant `subscribe` hors du composant.
 
+* Si la source est modifiée au sein d'une [transition non bloquante](/reference/react/useTransition), React se rabattra sur une application bloquante de la mise à jour. Plus spécifiquement, React rappellera `getSnapshot` juste avant d'appliquer les modifications au DOM. Si la valeur renvoyée diffère de celle produite par le premier appel, React redémarrera le processus de transition de zéro, en l'appliquant cette fois en tant que mise à jour bloquante, pour garantir que chaque composant à l'écran reflète bien la même version de la source.
+
+* Nous vous déconseillons de _suspendre_ un rendu basé sur une valeur de la source renvoyée par `useSyncExternalStore`. Ça vient de ce que les mutations de la source ne peuvent pas être [marquées comme des transitions non bloquantes](/reference/react/useTransition), et déclencheront donc le plus proche [affichage de secours `Suspense`](/reference/react/Suspense), remplaçant ainsi du contenu déjà affiché avec un écran montrant un indicateur de chargement, ce qui est généralement indésirable en termes d'UX.
+
+  À titre d'exemple, le code suivant est déconseillé :
+
+  ```js
+  const LazyProductDetailPage = lazy(() => import('./ProductDetailPage.js'));
+
+  function ShoppingApp() {
+    const selectedProductId = useSyncExternalStore(...);
+
+    // ❌ Appel de `use` avec une promesse dépendant de `selectedProductId`
+    const data = use(fetchItem(selectedProductId))
+
+    // ❌ Rendu conditionnel d'un composant chargé à la demande sur base de `selectedProductId`
+    return selectedProductId != null ? <LazyProductDetailPage /> : <FeaturedProducts />;
+  }
+  ```
+
 ---
 
 ## Utilisation {/*usage*/}
