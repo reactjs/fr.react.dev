@@ -10,32 +10,17 @@ L'état est isolé entre les composants. React garde en mémoire quel état appa
 
 <YouWillLearn>
 
-* Comment React « voit » les structures des composants
 * Quand React choisit de préserver ou de réinitialiser l'état
 * Comment forcer React à réinitialiser l'état d'un composant
 * Comment les clés et les types déterminent si l'état est préservé ou non
 
 </YouWillLearn>
 
-## L'arbre de l'UI {/*the-ui-tree*/}
-
-Les navigateurs utilisent différentes structures arborescentes pour modéliser l'UI. Le [DOM](https://developer.mozilla.org/fr/docs/Web/API/Document_Object_Model/Introduction) représente les éléments HTML, le [CSSOM](https://developer.mozilla.org/fr/docs/Web/API/CSS_Object_Model) fait la même chose pour le CSS. Il existe même un [arbre d'accessibilité](https://developer.mozilla.org/fr/docs/Glossary/Accessibility_tree) !
-
-React utilise également des structures arborescentes pour gérer et modéliser l'UI que vous réalisez. React crée des **arbres d'UI** à partir de votre JSX. Ensuite, React DOM met à jour les éléments DOM du navigateur pour qu'ils correspondent à cet arbre de l'UI (React Native retranscrit ces arbres en composants spécifiques aux plateformes mobiles).
-
-<DiagramGroup>
-
-<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagramme avec trois sections réparties horizontalement. Dans la première section, il y a trois rectangles empilés verticalement, appelés « Composant A », « Composant B » et « Composant C ». La transition vers le volet suivant est faite par une flèche avec le logo React au-dessus et appelée « React ». La section du milieu contient un arbre de composants dont la racine est appelée « A », avec deux enfants « B » et « C ». La section suivante est à nouveau atteinte en utilisant une flèche avec le logo « React » au-dessus. La troisième et dernière section est une représentation schématisée d'un navigateur contenant un arbre de 8 nœuds, dont seul un sous-ensemble est surligné (indiquant le sous-arbre de la section du milieu).">
-
-À partir des composants, React crée un arbre d'UI utilisé par React DOM pour le rendu du DOM.
-
-</Diagram>
-
-</DiagramGroup>
-
 ## L'état est lié à une position dans l'arbre {/*state-is-tied-to-a-position-in-the-tree*/}
 
-Lorsque vous donnez un état à un composant, vous pouvez penser que l'état « vit » à l'intérieur du composant. En réalité, l'état est conservé à l'intérieur de React. React associe chaque élément d'état qu'il conserve au composant correspondant en fonction de la place que celui-ci occupe dans l'arbre de l'UI.
+React construit un [arbre de rendu](/learn/understanding-your-ui-as-a-tree#the-render-tree) pour représenter la structure des composants de votre UI.
+
+Lorsque vous donnez un état à un composant, vous pouvez penser que l'état « vit » à l'intérieur du composant. En réalité, l'état est conservé à l'intérieur de React. React associe chaque élément d'état qu'il conserve au composant correspondant en fonction de la place que celui-ci occupe dans l'arbre de rendu.
 
 Ci-dessous, il n'y a qu'une seule balise `<Counter />`, pourtant elle est affichée à deux positions différentes :
 
@@ -189,7 +174,7 @@ Mise à jour de l’état
 </DiagramGroup>
 
 
-React conservera l'état tant que vous afficherez le même composant à la même position. Pour vous en rendre compte, incrémentez les deux compteurs, puis supprimez le deuxième composant en décochant « Afficher le deuxième compteur », et enfin remettez-le en cochant à nouveau la case :
+React conservera l'état tant que vous afficherez le même composant à la même position dans l'arbre. Pour vous en rendre compte, incrémentez les deux compteurs, puis supprimez le deuxième composant en décochant « Afficher le deuxième compteur », et enfin remettez-le en cochant à nouveau la case :
 
 <Sandpack>
 
