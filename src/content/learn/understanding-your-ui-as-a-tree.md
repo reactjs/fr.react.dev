@@ -256,43 +256,43 @@ Même si les arbres de rendu peuvent varier d'un rendu à l'autre, ces arbres re
 
 Il est utile de bien identifier ces catégories de composants pour comprendre le flux de données et les performances de votre appli.
 
-## The Module Dependency Tree {/*the-module-dependency-tree*/}
+## L'arbre de dépendances de modules {/*the-module-dependency-tree*/}
 
-Another relationship in a React app that can be modeled with a tree are an app's module dependencies. As we [break up our components](/learn/importing-and-exporting-components#exporting-and-importing-a-component) and logic into separate files, we create [JS modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) where we may export components, functions, or constants.
+Les arbres peuvent modéliser un autre type de relations dans une appli React : les dépendances entre modules de l'appli. Lorsque nous [découpons nos composants](/learn/importing-and-exporting-components#exporting-and-importing-a-component) et leur logique en fichiers distincts, nou créons des [modules JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) d'où nous pouvons exporter des composants, des fonctions ou encore des constantes.
 
-Each node in a module dependency tree is a module and each branch represents an `import` statement in that module.
+Chaque nœud dans un arbre de dépendances de modules représente un module, et chaque branche représente une instruction `import` dans ce module.
 
-If we take the previous Inspirations app, we can build a module dependency tree, or dependency tree for short.
+Si nous reprenons l'appli d'Inspirations précédente, nous pouvons construire un arbre de dépendances de modules (ou « arbre de dépendances », pour faire plus court).
 
-<Diagram name="module_dependency_tree" height={250} width={658} alt="A tree graph with seven nodes. Each node is labelled with a module name. The top level node of the tree is labelled 'App.js'. There are three arrows pointing to the modules 'InspirationGenerator.js', 'FancyText.js' and 'Copyright.js' and the arrows are labelled with 'imports'. From the 'InspirationGenerator.js' node, there are three arrows that extend to three modules: 'FancyText.js', 'Color.js', and 'inspirations.js'. The arrows are labelled with 'imports'.">
+<Diagram name="module_dependency_tree" height={250} width={658} alt="Un graphe d’arbre avec sept nœuds. Chaque nœud est libellé par un nom de module. Le nœud racine de l’arbre est libellé 'App.js', avec trois flèches qui en partent vers les modules 'InspirationGenerator.js', 'FancyText.js' et 'Copyright.js'. Les flèches portent le descripteur de relation « importe ». Le nœud 'InspirationGenerator.js' a aussi trois flèches qui en partent pour aller vers les modules 'FancyText.js', 'Color.js' et 'inspirations.js', toutes trois porteuses du descripteur « importe ».">
 
-The module dependency tree for the Inspirations app.
+L'arbre de dépendances de modules pour l'appli Inspirations.
 
 </Diagram>
 
-The root node of the tree is the root module, also known as the entrypoint file. It often is the module that contains the root component.
+Le nœud racine de l'arbre constitue le module racine, également appelé point d'entrée. C'est souvent lui qui contient le composant racine.
 
-Comparing to the render tree of the same app, there are similar structures but some notable differences:
+Si on compare avec l'arbre de rendu pour la même appli, on trouve des similitudes aussi bien que des différences significatives :
 
-* The nodes that make-up the tree represent modules, not components.
-* Non-component modules, like `inspirations.js`, are also represented in this tree. The render tree only encapsulates components.
-* `Copyright.js` appears under `App.js` but in the render tree, `Copyright`, the component, appears as a child of `InspirationGenerator`. This is because `InspirationGenerator` accepts JSX as [children props](/learn/passing-props-to-a-component#passing-jsx-as-children), so it renders `Copyright` as a child component but does not import the module.
+* Les nœuds qui constituent l'arbre représentent des modules, pas des composants.
+* Les modules sans composants, tels que `inspirations.js`, sont également visibles dans cet arbre. L'arbre de rendu ne représente que les composants.
+* `Copyright.js` apparaît sous `App.js` alors que dans l'arbre de rendu, le composant `Copyright` est un enfant de `InspirationGenerator`.  C'est parce qu'`InspirationGenerator` accepte du JSX comme [prop `children`](/learn/passing-props-to-a-component#passing-jsx-as-children), de sorte qu'il fait le rendu du composant enfant `Copyright` sans en importer le module.
 
-Dependency trees are useful to determine what modules are necessary to run your React app. When building a React app for production, there is typically a build step that will bundle all the necessary JavaScript to ship to the client. The tool responsible for this is called a [bundler](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview#the_modern_tooling_ecosystem), and bundlers will use the dependency tree to determine what modules should be included.
+Les arbres de dépendances sont utiles pour déterminer de quels modules votre appli React a besoin. Lorsque vous faites le *build* d'une appli React en mode production, vous utilisez généralement un outil dédié pour cela. Ce type d'outil est appelé [*bundler*](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview#the_modern_tooling_ecosystem), et les *bundlers* se basent sur l'arbre de dépendances pour déterminer quels modules inclure.
 
-As your app grows, often the bundle size does too. Large bundle sizes are expensive for a client to download and run. Large bundle sizes can delay the time for your UI to get drawn. Getting a sense of your app's dependency tree may help with debugging these issues.
+Au fil de la croissance de votre appli, la taille du *bundle* croît aussi. Les *bundles* massifs sont coûteux à télécharger et à exécuter pour le client. Ils peuvent retarder l'affichage de votre UI.  Avoir une bonne perception de l'arbre de dépendances de votre appli peut vous aider à déboguer ce type de problèmes.
 
 [comment]: <> (perhaps we should also deep dive on conditional imports)
 
 <Recap>
 
-* Trees are a common way to represent the relationship between entities. They are often used to model UI.
-* Render trees represent the nested relationship between React components across a single render.
-* With conditional rendering, the render tree may change across different renders. With different prop values, components may render different children components.
-* Render trees help identify what the top-level and leaf components are. Top-level components affect the rendering performance of all components beneath them and leaf components are often re-rendered frequently. Identifying them is useful for understanding and debugging rendering performance.
-* Dependency trees represent the module dependencies in a React app.
-* Dependency trees are used by build tools to bundle the necessary code to ship an app.
-* Dependency trees are useful for debugging large bundle sizes that slow time to paint and expose opportunities for optimizing what code is bundled.
+* Les arbres sont couramment utilisés pour représenter les relations entre des entités. On les utilise notamment pour modéliser les UI.
+* Les arbres de rendus représent les relations d'imbrication entre les composants React au sein d'un unique rendu.
+* Le recours au rendu conditionnel peut faire varier l'arbre de rendu d'un rendu à l'autre. Selon les valeurs des props reçues, les composants peuvent afficher divers composants enfants.
+* Les arbres de rendu aident à repérer les composants racine et feuilles. Les composants situés haut dans l'arbre peuvent impacter la performance de rendu de tous ceux situés en-dessous d'eux, et les composants feuilles refont fréquemment leur rendu. En les identifiant, on facilite la compréhension et le débogage de la performance de rendu.
+* Les arbres de dépendances représentent les dépendances entre modules d'une appli React.
+* Les arbres de dépendances sont utilisés par les outils de *build* pour inclure le code nécessaire au déploiement d'une appli.
+* Les arbres de dépendances aident à comprendre les raisons de bundles massifs, qui ralentissent l'affichage, et à percevoir des opportunités d'optimisation des éléments de code à inclure.
 
 </Recap>
 
