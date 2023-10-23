@@ -259,11 +259,7 @@ function Page({id}) {
 
 Lorsque `Page` fait son rendu, le composant appelle <CodeStep step={1}>`getUser`</CodeStep>, mais remarquez qu'il n'utilise pas les données renvoyées.  Cet appel anticipé à <CodeStep step={1}>`getUser`</CodeStep> déclenche la requête asynchrone à la base de données, qui s'exécute pendant que `Page` fait d'autres calculs puis déclenche le rendu de ses enfants.
 
-<<<<<<< HEAD
 Lorsque `Profile` fait son rendu, nous appelons à nouveau <CodeStep step={2}>`getUser`</CodeStep>. Si l'appel initial à <CodeStep step={1}>`getUser`</CodeStep> a fini son chargement et mis en cache les données utilisateur, lorsque `Profile` <CodeStep step={2}>demande ces données puis attend</CodeStep>, il n'a plus qu'à les lire du cache, sans relancer un appel réseau. Si la <CodeStep step={1}>requête de données initiale</CodeStep> n'est pas encore terminée, cette approche de préchargement réduit tout de même le délai d'obtention des données.
-=======
-When rendering `Profile`, we call <CodeStep step={2}>`getUser`</CodeStep> again. If the initial <CodeStep step={1}>`getUser`</CodeStep> call has already returned and cached the user data, when `Profile` <CodeStep step={2}>asks and waits for this data</CodeStep>, it can simply read from the cache without requiring another remote procedure call. If the <CodeStep step={1}> initial data request</CodeStep> hasn't been completed, preloading data in this pattern reduces delay in data-fetching.
->>>>>>> a0cacd7d3a89375e5689ccfba0461e293bfe9eeb
 
 <DeepDive>
 
