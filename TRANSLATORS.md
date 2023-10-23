@@ -70,16 +70,19 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/learn/conditional-rendering">Affichage conditionnel</a></li>
           <li><a href="https://fr.react.dev/learn/rendering-lists">Afficher des listes</a></li>
           <li><a href="https://fr.react.dev/learn/keeping-components-pure">Garder les composants purs</a></li>
+          <li><a href="https://fr.react.dev/learn/understanding-your-ui-as-a-tree">Votre UI vue comme un arbre</a></li>
           <li><a href="https://fr.react.dev/learn/state-a-components-memory">L’état : la mémoire d’un composant</a></li>
           <li><a href="https://fr.react.dev/learn/render-and-commit">Rendu et Commit</a></li>
           <li><a href="https://fr.react.dev/learn/state-as-a-snapshot">L’état est un instantané</a></li>
           <li><a href="https://fr.react.dev/learn/queueing-a-series-of-state-updates">Cumuler les mises à jour d’un même état</a></li>
+          <li><a href="https://fr.react.dev/learn/preserving-and-resetting-state">Préserver et réinitialiser l’état</a> (arbres UI)</li>
           <li><a href="https://fr.react.dev/learn/escape-hatches">Échappatoires</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/learn/referencing-values-with-refs">Référencer des valeurs avec les refs</a></li>
           <li><a href="https://fr.react.dev/learn/manipulating-the-dom-with-refs">Manipuler le DOM avec des refs</a></li>
           <li><a href="https://fr.react.dev/learn/synchronizing-with-effects">Synchroniser grâce aux Effets</a></li>
           <li><a href="https://fr.react.dev/learn/you-might-not-need-an-effect">Vous n’avez pas forcément besoin d’un Effet</a></li>
           <li><a href="https://fr.react.dev/learn/removing-effect-dependencies">Alléger les dépendances des Effets</a></li>
+          <li><a href="https://fr.react.dev/reference/react/use"><code>use</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useCallback"><code>useCallback</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useEffect"><code>useEffect</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useImperativeHandle"><code>useImperativeHandle</code></a></li>
@@ -91,6 +94,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react/useTransition"><code>useTransition</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/experimental_taintObjectReference"><code>experimental_taintObjectReference</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/experimental_taintUniqueValue"><code>experimental_taintUniqueValue</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/experimental_useEffectEvent"><code>experimental_useEffectEvent</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/Suspense"><code>&lt;Suspense&gt;</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/cache"><code>cache</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/forwardRef"><code>forwardRef</code></a></li>
@@ -98,6 +102,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react/directives">Directives</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/reference/react/use-client"><code>'use client'</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/use-server"><code>'use server'</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/hooks">react-dom : Hooks</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/reference/react-dom/components">react-dom : Composants</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/reference/react-dom/components/select"><code>&lt;select&gt;</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom">API React DOM intégrées</a></li>
@@ -208,8 +213,8 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td></td>
       <td>
         <ul>
-          <li><a href=https://fr.react.dev/learn/adding-interactivity">Ajouter de l'interactivité</a> (accueil chapitre)</li>
-          <li><a href=https://fr.react.dev/learn/reacting-to-input-with-state">Réagir à la saisie avec un état</a></li>
+          <li><a href="https://fr.react.dev/learn/adding-interactivity">Ajouter de l'interactivité</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/learn/reacting-to-input-with-state">Réagir à la saisie avec un état</a></li>
         </ul>
       </td>
     </tr>
@@ -218,8 +223,8 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td></td>
       <td>
         <ul>
-          <li><a href=https://fr.react.dev/learn/editor-setup">Configuration de l'éditeur</a></li>
-          <li><a href=https://fr.react.dev/reference/react-dom/components/option"><code>&lt;option&gt;</code></a></li>
+          <li><a href="https://fr.react.dev/learn/editor-setup">Configuration de l'éditeur</a></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/components/option"><code>&lt;option&gt;</code></a></li>
         </ul>
       </td>
     </tr>
@@ -228,18 +233,18 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
       <td></td>
       <td>
         <ul>
-          <li><a href=https://fr.react.dev/learn/sharing-state-between-components">Partager l’état entre des composants</a></li>
-          <li><a href=https://fr.react.dev/learn/preserving-and-resetting-state">Préserver et réinitialiser l’état</a></li>
-          <li><a href=https://fr.react.dev/learn/extracting-state-logic-into-a-reducer">Extraire la logique d’état dans un réducteur</a></li>
-          <li><a href=https://fr.react.dev/learn/passing-data-deeply-with-context">Transmettre des données en profondeur avec le contexte</a></li>
-          <li><a href=https://fr.react.dev/learn/scaling-up-with-reducer-and-context">Mise à l’échelle en combinant réducteur et contexte</a></li>
-          <li><a href=https://fr.react.dev/learn/lifecycle-of-reactive-effects">Cycle de vie des Effets réactifs</a></li>
-          <li><a href=https://fr.react.dev/learn/separating-events-from-effects">Séparer les événements des Effets</a></li>
-          <li><a href=https://fr.react.dev/learn/reusing-logic-with-custom-hooks">Réutiliser de la logique grâce aux Hooks personnalisés</a></li>
-          <li><a href=https://fr.react.dev/reference/react/useContext"><code>useContext</code></a></li>
-          <li><a href=https://fr.react.dev/reference/react/useReducer"><code>useReducer</code></a></li>
-          <li><a href=https://fr.react.dev/reference/react/StrictMode"><code>&lt;StrictMode&gt;</code></a></li>
-          <li><a href=https://fr.react.dev/reference/react-dom/components/common">Composants React-DOM communs</a></li>
+          <li><a href="https://fr.react.dev/learn/sharing-state-between-components">Partager l’état entre des composants</a></li>
+          <li><a href="https://fr.react.dev/learn/preserving-and-resetting-state">Préserver et réinitialiser l’état</a> (sauf arbres UI)</li>
+          <li><a href="https://fr.react.dev/learn/extracting-state-logic-into-a-reducer">Extraire la logique d’état dans un réducteur</a></li>
+          <li><a href="https://fr.react.dev/learn/passing-data-deeply-with-context">Transmettre des données en profondeur avec le contexte</a></li>
+          <li><a href="https://fr.react.dev/learn/scaling-up-with-reducer-and-context">Mise à l’échelle en combinant réducteur et contexte</a></li>
+          <li><a href="https://fr.react.dev/learn/lifecycle-of-reactive-effects">Cycle de vie des Effets réactifs</a></li>
+          <li><a href="https://fr.react.dev/learn/separating-events-from-effects">Séparer les événements des Effets</a></li>
+          <li><a href="https://fr.react.dev/learn/reusing-logic-with-custom-hooks">Réutiliser de la logique grâce aux Hooks personnalisés</a></li>
+          <li><a href="https://fr.react.dev/reference/react/useContext"><code>useContext</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/useReducer"><code>useReducer</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/StrictMode"><code>&lt;StrictMode&gt;</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/components/common">Composants React-DOM communs</a></li>
         </ul>
       </td>
     </tr>
