@@ -31,7 +31,7 @@ Tout comme les navigateurs et plateformes mobiles, React utilise des structures 
 
 ## L'arbre de rendu {/*the-render-tree*/}
 
-Un aspect fondamental des composants, c'est la composition : la capacité à construire des composants à partir d'autres composants. Lorsque nous [imbriquons des composants](/learn/your-first-component#nesting-and-organizing-components), nous manipulons les concepts de composants parent et enfants, sachant que chaque parent peut lui-même être un enfant d'un autre composant.
+Un aspect fondamental des composants, c'est la composition : la capacité à construire des composants à partir d'autres composants. Lorsque nous [imbriquons des composants](/learn/your-first-component#nesting-and-organizing-components), nous manipulons les concepts de composants parents et enfants, sachant que chaque parent peut lui-même être un enfant d'un autre composant.
 
 Lorsque nous faisons le rendu d'une appli React, nous pouvons modéliser ces relations sous forme d'un arbre, appelé l'arbre de rendu.
 
@@ -126,7 +126,7 @@ React crée un *arbre de rendu*, un arbre d'UI, constitué des composants dont o
 
 À partir de l'appli d'exemple, nous pouvons construire l'arbre de rendu ci-dessus.
 
-L'arbre est constitué de nœuds, chacun représentant un composant. `App`, `FancyText`, `Copyright`, pour ne nommer qu'eux, sont tous des nœuds de notre arbre.
+L'arbre est constitué de nœuds, chacun représentant un composant. `App`, `FancyText`, `Copyright`, pour ne citer qu'eux, sont tous des nœuds de notre arbre.
 
 Le nœud racine dans un arbre de rendu React constitue le [composant racine](/learn/importing-and-exporting-components#the-root-component-file) de l'appli. Dans notre cas, le composant racine est `App`, et c'est le premier composant dont React fera le rendu. Chaque flèche dans l'arbre pointe d'un composant parent vers un composant enfant.
 
@@ -134,7 +134,7 @@ Le nœud racine dans un arbre de rendu React constitue le [composant racine](/le
 
 #### Où sont les balises HTML dans l'arbre de rendu ? {/*where-are-the-html-elements-in-the-render-tree*/}
 
-Vous remarquerez que dans l'arbre de rendu ci-dessus, on ne trouve nulle part les balises HTML dont chaque composant fait le rendu. C'est parce que l'arbre de rendu n'est constitué que de [composants](learn/your-first-component#components-ui-building-blocks) React.
+Vous remarquerez que dans l'arbre de rendu ci-dessus, on ne trouve nulle part les balises HTML utilisées par les composants. C'est parce que l'arbre de rendu est constitué uniquement par les [composants](learn/your-first-component#components-ui-building-blocks) React.
 
 React, en tant que framework d'UI, est indépendant de la plateforme. Sur react.dev, nous mettons en avant des exemples qui font leur rendu sur le web, utilisant du balisage HTML pour leurs primitives d'UI. Mais une appli React pourrait tout aussi bien faire son rendu sur une plateforme mobile ou desktop, et recourir alors à d'autres primitives d'UI telles que [UIView](https://developer.apple.com/documentation/uikit/uiview) ou [FrameworkElement](https://learn.microsoft.com/fr-fr/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-7.0).
 
@@ -142,7 +142,7 @@ Ces primitives d'UI spécifiques à une plateforme ne font pas partie de React. 
 
 </DeepDive>
 
-Un arbre de rendu représente une unique passe de rendu d'une application React. Si vous utilisez du [rendu conditionnel](/learn/conditional-rendering), un composant parent pourrait varier les enfants dont il fait le rendu, en fonction des données qu'il reçoit.
+Un arbre de rendu représente une unique passe de rendu d'une application React. Si vous utilisez du [rendu conditionnel](/learn/conditional-rendering), un composant parent pourrait modifier les enfants qu'il utilise, selon les données qu'il reçoit.
 
 Nous pouvons mettre à jour l'appli pour qu'elle affiche de façon conditionnelle soit une citation, soit une couleur pour nous inspirer.
 
@@ -252,7 +252,7 @@ Avec le rendu conditionnel, d'un rendu à l'autre, l'arbre de rendu peut différ
 
 Dans cet exemple, selon la valeur de `inspiration.type`, nous pouvons afficher soit `<FancyText>` soit `<Color>`. L'arbre de rendu peut être différent d'une passe de rendu à l'autre.
 
-Même si les arbres de rendu peuvent varier d'un rendu à l'autre, ces arbres restent utiles pour identifier les composants racine et feuilles d'une appli React. Les composants de haut nivecau sont ceux les plus proches du composant racine, et peuvent impacter la performance de tous les composants en-dessous d'eux. Ce sont souvent eux qui ont la plus forte complexité. Les composants feuilles sont vers le bas de l'arbre, n'ont pas de composants enfants et refont souvent fréquemment leur rendu.
+Même si les arbres de rendu peuvent varier d'un rendu à l'autre, ces arbres restent utiles pour identifier les composants racine et feuilles d'une appli React. Les composants de haut niveau sont ceux les plus proches du composant racine, et peuvent impacter la performance de tous les composants en-dessous d'eux. Ce sont souvent eux qui ont la plus forte complexité. Les composants feuilles sont vers le bas de l'arbre, n'ont pas de composants enfants et refont fréquemment leur rendu.
 
 Il est utile de bien identifier ces catégories de composants pour comprendre le flux de données et les performances de votre appli.
 
@@ -287,7 +287,7 @@ Au fil de la croissance de votre appli, la taille du *bundle* croît aussi. Les 
 <Recap>
 
 * Les arbres sont couramment utilisés pour représenter les relations entre des entités. On les utilise notamment pour modéliser les UI.
-* Les arbres de rendus représent les relations d'imbrication entre les composants React au sein d'un unique rendu.
+* Les arbres de rendu représent les imbrications entre les composants React au sein d'un unique rendu.
 * Le recours au rendu conditionnel peut faire varier l'arbre de rendu d'un rendu à l'autre. Selon les valeurs des props reçues, les composants peuvent afficher divers composants enfants.
 * Les arbres de rendu aident à repérer les composants racine et feuilles. Les composants situés haut dans l'arbre peuvent impacter la performance de rendu de tous ceux situés en-dessous d'eux, et les composants feuilles refont fréquemment leur rendu. En les identifiant, on facilite la compréhension et le débogage de la performance de rendu.
 * Les arbres de dépendances représentent les dépendances entre modules d'une appli React.
