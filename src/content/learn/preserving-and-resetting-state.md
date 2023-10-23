@@ -10,6 +10,7 @@ L'état est isolé entre les composants. React garde en mémoire quel état appa
 
 <YouWillLearn>
 
+<<<<<<< HEAD
 * Comment React « voit » les structures des composants
 * Quand React choisit de préserver ou de réinitialiser l'état
 * Comment forcer React à réinitialiser l'état d'un composant
@@ -38,6 +39,21 @@ React utilise également des structures arborescentes pour gérer et modéliser 
 Lorsque vous donnez un état à un composant, vous pouvez penser que l'état « vit » à l'intérieur du composant. En réalité, l'état est conservé à l'intérieur de React. React associe chaque élément d'état qu'il conserve au composant correspondant en fonction de la place que celui-ci occupe dans l'arbre de l'UI.
 
 Ci-dessous, il n'y a qu'une seule balise `<Counter />`, pourtant elle est affichée à deux positions différentes :
+=======
+* When React chooses to preserve or reset the state
+* How to force React to reset component's state
+* How keys and types affect whether the state is preserved
+
+</YouWillLearn>
+
+## State is tied to a position in the render tree {/*state-is-tied-to-a-position-in-the-tree*/}
+
+React builds [render trees](learn/understanding-your-ui-as-a-tree#the-render-tree) for the component structure in your UI.
+
+When you give a component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct component by where that component sits in the render tree.
+
+Here, there is only one `<Counter />` JSX tag, but it's rendered at two different positions:
+>>>>>>> a0cacd7d3a89375e5689ccfba0461e293bfe9eeb
 
 <Sandpack>
 
@@ -189,7 +205,11 @@ Mise à jour de l’état
 </DiagramGroup>
 
 
+<<<<<<< HEAD
 React conservera l'état tant que vous afficherez le même composant à la même position. Pour vous en rendre compte, incrémentez les deux compteurs, puis supprimez le deuxième composant en décochant « Afficher le deuxième compteur », et enfin remettez-le en cochant à nouveau la case :
+=======
+React will keep the state around for as long as you render the same component at the same position in the tree. To see this, increment both counters, then remove the second component by unchecking "Render the second counter" checkbox, and then add it back by ticking it again:
+>>>>>>> a0cacd7d3a89375e5689ccfba0461e293bfe9eeb
 
 <Sandpack>
 

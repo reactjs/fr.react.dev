@@ -693,7 +693,7 @@ Un type de gestionnaire d'événement pour les événements `onWheel` (molette d
 
 ```js
 <div
-  onScroll={e => console.log('onScroll')}
+  onWheel={e => console.log('onWheel')}
 />
 ```
 
