@@ -11,7 +11,7 @@ Le Hook `useFormStatus` n'est actuellement disponible que sur les canaux de livr
 
 <Intro>
 
-`useFormStatus` est un Hook qui vous fournit des informations d'état sur le dernier envoi de formulaire.
+`useFormStatus` est un Hook qui vous fournit des informations d'état sur le dernier envoi de formulaire parent.
 
 ```js
 const { pending, data, method, action } = useFormStatus();
@@ -27,7 +27,7 @@ const { pending, data, method, action } = useFormStatus();
 
 ### `useFormStatus()` {/*use-form-status*/}
 
-Le Hook `useFormStatus` vous fournit des informations d'état sur le dernier envoi de formulaire.
+Le Hook `useFormStatus` vous fournit des informations d'état sur le dernier envoi de formulaire parent.
 
 ```js {5},[[1, 6, "status.pending"]]
 import { useFormStatus } from "react-dom";
@@ -47,9 +47,9 @@ export default App() {
 }
 ```
 
-Pour récupérer les informations d'état, le composant `Submit` doit faire sonrendu au sein d'un `<form>`. Le Hook renvoie des informations telles que la propriété <CodeStep step={1}>`pending`</CodeStep>, qui vous indique si le formulaire est en cours d'envoi.
+Pour récupérer les informations d'état, le composant `Submit` doit être utilisé au sein d'un `<form>`. Le Hook renvoie des informations telles que la propriété <CodeStep step={1}>`pending`</CodeStep>, qui vous indique si le formulaire est en cours d'envoi.
 
-Dans l'exemple ci-dessus, `Submit` utilise cette information pour désactiver le `<button>` pendant l'envoi du formulaire.
+Dans l'exemple ci-dessus, `Submit` utilise cette information pour désactiver l'interactivité du `<button>` pendant l'envoi du formulaire.
 
 [Voir plus d'exemples ci-dessous](#usage).
 
@@ -63,7 +63,7 @@ Un objet `status` doté des propriétés suivantes :
 
 * `pending` : un booléen. Vaut `true` si le `<form>` parent est en cours d'envoi, sinon `false`.
 
-* `data` : un objet qui implémente [l'interface `FormData`](https://developer.mozilla.org/docs/Web/API/FormData), contenant les données que le `<form>` parent est en train d'envoyer.  Si aucun envoi n'est en cours, ou qu'il n'y a pas de `<form>` parent, cette propriété vaut `null`.
+* `data` : un objet qui implémente [l'interface `FormData`](https://developer.mozilla.org/docs/Web/API/FormData), contenant les données que le `<form>` parent est en train d'envoyer.  Si aucun envoi n'est en cours, ou s'il n'y a pas de `<form>` parent, cette propriété vaut `null`.
 
 * `method` : une chaîne de caractères valant soit `'get'`, soit `'post'`, selon que le `<form>` parent est en train de faire un envoi avec une [méthode HTTP](https://developer.mozilla.org/docs/Web/HTTP/Methods) `GET` ou `POST`. Par défaut, un `<form>` utilisera la méthode `GET`, mais ça peut être spécifié par l'attribut [`method`](https://developer.mozilla.org/docs/Web/HTML/Element/form#method).
 
@@ -152,7 +152,7 @@ Appelez plutôt `useFormStatus` depuis un composant imbriqué dans `<form>`.
 
 ```js
 function Submit() {
-  // ✅ `pending` se basera sur le fomrulaire qui enrobe
+  // ✅ `pending` se basera sur le formulaire qui enrobe
   // le composant Submit
   const { pending } = useFormStatus();
   return <button disabled={pending}>...</button>;
@@ -172,9 +172,9 @@ function Form() {
 
 ### Lire les données en cours d'envoi {/*read-form-data-being-submitted*/}
 
-Vous pouvez utiliser la propriété `data` des informations d'état renvoyées par `useFormStatus` afin d'afficher les données que l'utilisateur est en train d'envoyer.
+Vous pouvez utiliser la propriété `data` des informations d'état renvoyées par `useFormStatus` pour afficher les données que l'utilisateur est en train d'envoyer.
 
-Dans l'exemple ci-dessous, nous avons un formulaire permettant à l'utilisateur de demander un identifiant. Nous pouvons y utiliser `useFormStatus` pour afficher un message temporaire confirmant l'identifiant demandé.
+Dans l'exemple ci-dessous, nous avons un formulaire permettant à l'utilisateur de réserver un identifiant. Nous pouvons y utiliser `useFormStatus` pour afficher un message temporaire confirmant l'identifiant demandé.
 
 <Sandpack>
 
@@ -206,7 +206,7 @@ export default function UsernameForm() {
 
   return (
     <>
-      <label>Demander l’identifiant : </label><br />
+      <label>Réserver l’identifiant : </label><br />
       <input type="text" name="username" />
       <button type="submit" disabled={pending}>
         {pending ? 'Envoi en cours...' : 'Envoyer'}

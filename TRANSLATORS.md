@@ -103,6 +103,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react/use-client"><code>'use client'</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/use-server"><code>'use server'</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/hooks">react-dom : Hooks</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/reference/react-dom/hooks/useFormStatus"><code>useFormStatus</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/components">react-dom : Composants</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/reference/react-dom/components/select"><code>&lt;select&gt;</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom">API React DOM intégrées</a></li>
