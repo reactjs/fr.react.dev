@@ -84,7 +84,7 @@ function submitForm(answer) {
   // Imaginez que ça fait une requête réseau
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (answer.toLowerCase() == 'istanbul') {
+      if (answer.toLowerCase() === 'istanbul') {
         resolve();
       } else {
         reject(new Error('Bonne idée, mais mauvaise réponse. Réessayez !'));

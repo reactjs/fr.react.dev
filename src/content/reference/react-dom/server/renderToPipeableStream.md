@@ -433,7 +433,11 @@ function ProfilePage() {
 }
 ```
 
+<<<<<<< HEAD
 Si une erreur survient au sein du composant `Posts` ou d'un de ses enfants, React [tentera automatiquement de retomber sur ses pieds](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content) :
+=======
+If an error happens in the `Posts` component or somewhere inside it, React will [try to recover from it:](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content)
+>>>>>>> 4bdb87b172a7723d56d03a5630c8a9870f6f03ec
 
 1. Il émettra le contenu de secours du périmètre `<Suspense>` le plus proche (`PostsGlimmer`) dans le HTML.
 2. Il « laissera tomber » le rendu côté serveur du contenu de `Posts`.
