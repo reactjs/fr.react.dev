@@ -252,11 +252,7 @@ Avec le rendu conditionnel, d'un rendu à l'autre, l'arbre de rendu peut différ
 
 Dans cet exemple, selon la valeur de `inspiration.type`, nous pouvons afficher soit `<FancyText>` soit `<Color>`. L'arbre de rendu peut être différent d'une passe de rendu à l'autre.
 
-<<<<<<< HEAD
-Même si les arbres de rendu peuvent varier d'un rendu à l'autre, ces arbres restent utiles pour identifier les composants racine et feuilles d'une appli React. Les composants de haut niveau sont ceux les plus proches du composant racine, et peuvent impacter la performance de tous les composants en-dessous d'eux. Ce sont souvent eux qui ont la plus forte complexité. Les composants feuilles sont vers le bas de l'arbre, n'ont pas de composants enfants et refont fréquemment leur rendu.
-=======
-Although render trees may differ across render passes, these trees are generally helpful for identifying what the *top-level* and *leaf components* are in a React app. Top-level components are the components nearest to the root component and affect the rendering performance of all the components beneath them and often contain the most complexity. Leaf components are near the bottom of the tree and have no child components and are often frequently re-rendered.
->>>>>>> 4bdb87b172a7723d56d03a5630c8a9870f6f03ec
+Même si les arbres de rendu peuvent varier d'un rendu à l'autre, ces arbres restent utiles pour identifier les composants *racines* et *feuilles* d'une appli React. Les composants de haut niveau sont ceux les plus proches du composant racine, et peuvent impacter la performance de tous les composants en-dessous d'eux. Ce sont souvent eux qui ont la plus forte complexité. Les composants feuilles sont vers le bas de l'arbre, n'ont pas de composants enfants et refont fréquemment leur rendu.
 
 Il est utile de bien identifier ces catégories de composants pour comprendre le flux de données et les performances de votre appli.
 

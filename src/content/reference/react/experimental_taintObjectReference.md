@@ -64,11 +64,7 @@ experimental_taintObjectReference(
 
 #### Limitations {/*caveats*/}
 
-<<<<<<< HEAD
 - Recréer ou cloner un objet terni produit un nouvel objet intact, susceptible de contenir des données sensibles. Si par exemple vous avez un objet `user` terni, `const userInfo = {name: user.name, ssn: user.ssn}` ou `{...user}` produiront de nouveaux objets qui ne seront, eux, pas ternis. `taintObjectReference` ne protège que contre les bévues simples lorsque l'objet est passé tel quel à un Composant Client.
-=======
-- Recreating or cloning a tainted object creates a new untained object which may contain sensitive data. For example, if you have a tainted `user` object, `const userInfo = {name: user.name, ssn: user.ssn}` or `{...user}` will create new objects which are not tainted. `taintObjectReference` only protects against simple mistakes when the object is passed through to a Client Component unchanged.
->>>>>>> 4bdb87b172a7723d56d03a5630c8a9870f6f03ec
 
 <Pitfall>
 
@@ -82,11 +78,7 @@ experimental_taintObjectReference(
 
 ### Empêcher des données utilisateur d'atteindre le client par inadvertance {/*prevent-user-data-from-unintentionally-reaching-the-client*/}
 
-<<<<<<< HEAD
 Un Composant Client ne devrait jamais accepter des objets comportant des données sensibles.  Dans l'idéal, les fonctions de chargement de données ne devraient pas exposer des données auxquelles l'utilisateur actif n'a pas accès.  Mais des erreurs peuvent survenir lors d'une refonte du code.  Pour se protéger contre des erreurs en aval nous pouvons « ternir » l'objet utilisateur dans notre API de données.
-=======
-A Client Component should never accept objects that carry sensitive data. Ideally, the data fetching functions should not expose data that the current user should not have access to. Sometimes mistakes happen during refactoring. To protect against these mistakes happening down the line we can "taint" the user object in our data API.
->>>>>>> 4bdb87b172a7723d56d03a5630c8a9870f6f03ec
 
 ```js
 import { experimental_taintObjectReference } from 'react';

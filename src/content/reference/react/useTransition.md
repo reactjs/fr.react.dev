@@ -1391,17 +1391,10 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-<<<<<<< HEAD
   return `Les Beatles étaient un groupe de rock anglais,
     formé à Liverpool en 1960, qui était composé de
     John Lennon, Paul McCartney, George Harrison
     et Ringo Starr.`;
-=======
-  return `The Beatles were an English rock band,
-    formed in Liverpool in 1960, that comprised
-    John Lennon, Paul McCartney, George Harrison
-    and Ringo Starr.`;
->>>>>>> 4bdb87b172a7723d56d03a5630c8a9870f6f03ec
 }
 
 async function getAlbums() {
@@ -1520,18 +1513,15 @@ Les routeurs [compatibles Suspense](/reference/react/Suspense) sont censés enro
 
 ---
 
-<<<<<<< HEAD
-## Dépannage {/*troubleshooting*/}
-=======
-### Displaying an error to users with a error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+### Afficher une erreur à l'utilisateur grâce à un périmètre d'erreur {/*displaying-an-error-to-users-with-error-boundary*/}
 
 <Canary>
 
-Error Boundary for useTransition is currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+Les périmètres d'erreurs pour `useTransition` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
-If a function passed to `startTransition` throws an error, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
+Si une fonction passée à `startTransition` lève une erreur, vous pouvez afficher l'erreur à votre utilisateur au moyen d'un [périmètre d'erreur](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). Pour utiliser un périmètre d'erreur, enrobez le composant qui appelle `useTransition` avec ce périmètre. Lorsque la fonction passée à `startTransition` lèvera une erreur, le contenu de secours du périmètre d'erreur sera affiché.
 
 <Sandpack>
 
@@ -1541,14 +1531,14 @@ import { ErrorBoundary } from "react-error-boundary";
 
 export function AddCommentContainer() {
   return (
-    <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
+    <ErrorBoundary fallback={<p>⚠️ Ça sent le pâté…</p>}>
         <AddCommentButton />
     </ErrorBoundary>
   );
 }
 
 function addComment(comment) {
-  // For demonstration purposes to show Error Boundary
+  // Pour les besoins de la démonstration uniquement
   if(comment == null){
     throw Error('Example error')
   }
@@ -1562,12 +1552,12 @@ function AddCommentButton() {
       disabled={pending}
       onClick={() => {
         startTransition(() => {
-          // Intentionally not passing a comment
-          // so error gets thrown
+          // On ne passe volontairement pas de commentaire
+          // afin d’entraîner une erreur.
           addComment();
         });
       }}>
-        Add comment
+        Ajouter un commentaire
       </button>
   );
 }
@@ -1582,16 +1572,14 @@ export default function App() {
 ```
 
 ```js index.js hidden
-// TODO: update to import from stable
-// react instead of canary once the `use`
-// Hook is in a stable release of React
+// TODO: mettre à jour l'import vers la version stable de React
+// une fois que le Hook `use` actuellement Canary y figurera
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
-// TODO: update this example to use
-// the Codesandbox Server Component
-// demo environment once it is created
+// TODO: mettre à jour cet exemple pour utiliser l'environnement
+// de démo Server Component de Codesandbox quand celui-ci sera disponible
 import App from './App';
 
 const root = createRoot(document.getElementById('root'));
@@ -1617,8 +1605,7 @@ root.render(
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
->>>>>>> 4bdb87b172a7723d56d03a5630c8a9870f6f03ec
+## Dépannage {/*troubleshooting*/}
 
 ### Mettre à jour un champ depuis une transition ne fonctionne pas {/*updating-an-input-in-a-transition-doesnt-work*/}
 
