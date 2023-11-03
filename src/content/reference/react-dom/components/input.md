@@ -38,7 +38,7 @@ Les extensions de React à la prop `formAction` ne sont actuellement disponibles
 
 </Canary>
 
-[`formAction`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formaction) : une chaîne de caractères ou une fonction. Cette prop a priorité sur le `<form action>` pour les champs de `type="submit"` ou `type="image"`. Lorsqu'une URL est passée à `action`, le formulaire se comporte comme un formulaire HTML classique. Mais si une fonction est passée à `formAction`, la fonction traitera l'envoi du formulaire. Allez voir [`<form action>`](/reference/react-dom/components/form#props).
+[`formAction`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formaction) : une chaîne de caractères ou une fonction. Cette prop a priorité sur le `<form action>` pour les champs de `type="submit"` ou `type="image"`. Lorsqu'une URL est passée à `formAction`, le formulaire se comporte comme un formulaire HTML classique. Mais si une fonction est passée à `formAction`, la fonction traitera l'envoi du formulaire. Allez voir [`<form action>`](/reference/react-dom/components/form#props).
 
 Un champ de saisie peut devenir un [champ contrôlé](#controlling-an-input-with-a-state-variable) en lui passant une de ces props :
 
