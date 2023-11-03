@@ -67,6 +67,7 @@ experimental_taintUniqueValue(
 #### Limitations {/*caveats*/}
 
 - La dérivation de valeurs à partir des valeurs ternies peut nuire à la protection par ternissement. Les nouvelles valeurs créées par exemple en changeant la casse de valeurs ternies, en concaténant des chaînes ternies vers une chaîne de caractères plus longue, en convertissant des valeurs ternies en Base 64, en extrayant des portions de chaînes ternies, ou toute autre transformation du même genre, ne constituent plus des valeurs ternies à moins que vous n'appeliez explicitement `taintUniqueValue` sur les nouvelles valeurs ainsi produites.
+- N'utilisez pas `taintUniqueValue` pour protéger des valeurs à basse entropie, telles que des codes PIN ou des numéros de téléphones. Si une valeur de requête est contrôlée par vos attaquants, ils peuvent alors déterminer la valeur ternie en énumérant toutes les valeurs possibles du secret.
 
 ---
 

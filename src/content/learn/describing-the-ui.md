@@ -529,13 +529,21 @@ React utilise des arbres pour modéliser les relations entre les composants ou l
 
 Un arbre de rendu React représente les relations parent-enfants entre les composants.
 
-<Diagram name="generic_render_tree" height={250} width={500} alt="Un graphe arborescent avec cinq nœuds, où chaque nœud représente un composant.  Le nœud racine est situé tout en haut du graphe et porte le libellé « Composant Racine ».  Deux flèches en partent pour atteindre plus bas deux nœuds libellés « Composant A » et « Composant C ». Chaque flèche porte le descripteur de relation « fait le rendu de ». Une flèche de rendu unique part du « Composant A » vers un nœud libellé « Composant B ». Une flèche de rendu unique part du « Composant C » vers un nœud libellé « Composant D ».">Un exemple d’arbre de rendu React.</Diagram>
+<Diagram name="generic_render_tree" height={250} width={500} alt="Un graphe arborescent avec cinq nœuds, où chaque nœud représente un composant.  Le nœud racine est situé tout en haut du graphe et porte le libellé « Composant Racine ».  Deux flèches en partent pour atteindre plus bas deux nœuds libellés « Composant A » et « Composant C ». Chaque flèche porte le descripteur de relation « fait le rendu de ». Une flèche de rendu unique part du « Composant A » vers un nœud libellé « Composant B ». Une flèche de rendu unique part du « Composant C » vers un nœud libellé « Composant D ».">
+
+Un exemple d’arbre de rendu React.
+
+</Diagram>
 
 Les composants proches du haut de l'arbre, près du composant racine, sont considérés comme des composants de haut niveau. Les composants qui n'ont pas de composants enfants sont qualifiés de composants feuilles. La catégorisation des composants aide à comprendre le flux de données et les performances de rendu.
 
 Une autre manière utile de percevoir votre application consiste à modéliser les relations entre les modules JavaScript. Nous parlons alors d'arbre de dépendances de modules.
 
-<Diagram name="generic_dependency_tree" height={250} width={500} alt="Un graphe arborescent avec cinq nœuds. Chaque nœud représente un module JavaScript. Le nœud tout en haut est libellé « RootModule.js ». Trois flèches en partent vers d’autres nœuds : « ModuleA.js », « ModuleB.js » et « ModuleC.js ». Chaque flèche porte le descripteur de relation « importe ». Un flèche d’import unique part de « ModuleC.js » vers un nœud libellé « ModuleD.js ».">Un exemple d’arbre de dépendances de modules.</Diagram>
+<Diagram name="generic_dependency_tree" height={250} width={500} alt="Un graphe arborescent avec cinq nœuds. Chaque nœud représente un module JavaScript. Le nœud tout en haut est libellé « RootModule.js ». Trois flèches en partent vers d’autres nœuds : « ModuleA.js », « ModuleB.js » et « ModuleC.js ». Chaque flèche porte le descripteur de relation « importe ». Un flèche d’import unique part de « ModuleC.js » vers un nœud libellé « ModuleD.js ».">
+
+Un exemple d’arbre de dépendances de modules.
+
+</Diagram>
 
 On utilise souvent un arbre de dépendances dans les outils de *build* pour *bundler* tout le code JavaScript que le client devra télécharger pour assurer le rendu. Un *bundle* massif nuira à l'expérience utilisateur des applis React. Comprendre l'arborescence des dépendances de modules aide à déboguer ces problèmes.
 

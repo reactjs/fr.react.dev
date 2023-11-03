@@ -1513,6 +1513,98 @@ Les routeurs [compatibles Suspense](/reference/react/Suspense) sont censés enro
 
 ---
 
+### Afficher une erreur à l'utilisateur grâce à un périmètre d'erreur {/*displaying-an-error-to-users-with-error-boundary*/}
+
+<Canary>
+
+Les périmètres d'erreurs pour `useTransition` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
+
+</Canary>
+
+Si une fonction passée à `startTransition` lève une erreur, vous pouvez afficher l'erreur à votre utilisateur au moyen d'un [périmètre d'erreur](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). Pour utiliser un périmètre d'erreur, enrobez le composant qui appelle `useTransition` avec ce périmètre. Lorsque la fonction passée à `startTransition` lèvera une erreur, le contenu de secours du périmètre d'erreur sera affiché.
+
+<Sandpack>
+
+```js AddCommentContainer.js active
+import { useTransition } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
+export function AddCommentContainer() {
+  return (
+    <ErrorBoundary fallback={<p>⚠️ Ça sent le pâté…</p>}>
+        <AddCommentButton />
+    </ErrorBoundary>
+  );
+}
+
+function addComment(comment) {
+  // Pour les besoins de la démonstration uniquement
+  if(comment == null){
+    throw Error('Example error')
+  }
+}
+
+function AddCommentButton() {
+  const [pending, startTransition] = useTransition();
+
+  return (
+    <button
+      disabled={pending}
+      onClick={() => {
+        startTransition(() => {
+          // On ne passe volontairement pas de commentaire
+          // afin d’entraîner une erreur.
+          addComment();
+        });
+      }}>
+        Ajouter un commentaire
+      </button>
+  );
+}
+```
+
+```js App.js hidden
+import { AddCommentContainer } from "./AddCommentContainer.js";
+
+export default function App() {
+  return <AddCommentContainer />;
+}
+```
+
+```js index.js hidden
+// TODO: mettre à jour l'import vers la version stable de React
+// une fois que le Hook `use` actuellement Canary y figurera
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './styles.css';
+
+// TODO: mettre à jour cet exemple pour utiliser l'environnement
+// de démo Server Component de Codesandbox quand celui-ci sera disponible
+import App from './App';
+
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0",
+    "react-error-boundary": "4.0.3"
+  },
+  "main": "/index.js"
+}
+```
+</Sandpack>
+
+---
+
 ## Dépannage {/*troubleshooting*/}
 
 ### Mettre à jour un champ depuis une transition ne fonctionne pas {/*updating-an-input-in-a-transition-doesnt-work*/}

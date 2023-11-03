@@ -1,5 +1,6 @@
 ---
 title: "'use server'"
+titleForTitleTag: "Directive 'use server'"
 canary: true
 ---
 

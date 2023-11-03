@@ -21,7 +21,7 @@ Les Hooks de formulaires ne sont actuellement disponibles que sur les canaux de 
 Les *formulaires* vous permettent de créer des contrôles interactifs pour envoyer des informations.  Pour gérer les formulaires dans vos composants, utilisez l'un des Hooks suivants :
 
 * [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) vous permet de mettre à jour l'UI sur base de l'état d'un formulaire.
-* `useFormState` vous permet de gérer l'état au sein d'un formulaire.
+* [`useFormState`](/reference/react-dom/hooks/useFormState) vous permet de gérer l'état au sein d'un formulaire.
 
 ```js
 function Form({ action }) {
