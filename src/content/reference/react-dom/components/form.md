@@ -5,19 +5,18 @@ canary: true
 
 <Canary>
 
-React's extensions to `<form>` are currently only available in React's canary and experimental channels. In stable releases of React `<form>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+Les extensions de React à `<form>` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `<form>` fonctionne comme [le composant HTML natif du navigateur](https://react.dev/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
-
 <Intro>
 
-The [built-in browser `<form>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) lets you create interactive controls for submitting information.
+Le [composant natif `<form>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/form) vous permet de créer des champs interactifs pour envoyer des informations.
 
 ```js
 <form action={search}>
     <input name="query" />
-    <button type="submit">Search</button>
+    <button type="submit">Rechercher</button>
 </form>
 ```
 
@@ -27,38 +26,38 @@ The [built-in browser `<form>` component](https://developer.mozilla.org/en-US/do
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `<form>` {/*form*/}
 
-To create interactive controls for submitting information, render the [built-in browser `<form>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form).
+Pour créer des formulaires interactifs, utilisez le [composant natif `<input>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/form).
 
 ```js
 <form action={search}>
     <input name="query" />
-    <button type="submit">Search</button>
+    <button type="submit">Rechercher</button>
 </form>
 ```
 
-[See more examples below.](#usage)
+[Voir d'autres exemples plus bas](#usage).
 
 #### Props {/*props*/}
 
-`<form>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<form>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
 
-[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): a URL or function. When a URL is passed to `action` the form will behave like the HTML form component. When a function is passed to `action` the function will handle the form submission. The function passed to `action` may be async and will be called with a single argument containing the [form data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) of the submitted form. The `action` prop can be overridden by a `formAction` attribute on a `<button>`, `<input type="submit">`, or `<input type="image">` component.
+[`action`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/form#action) : une URL ou une fonction. Lorsqu'une URL est passée à `action`, le formulaire se comporte comme un formulaire HTML classique. Mais si une fonction est passée à `action`, la fonction traitera l'envoi du formulaire. La fonction passée à `action` peut être asynchrone et sera appelée avec un unique argument contenant les [données envoyées par le formulaire](https://developer.mozilla.org/fr/docs/Web/API/FormData). La prop `action` peut céder la priorité à la prop `formAction` d'un composant `<button>`, `<input type="submit">`, ou `<input type="image">`.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
-* When a function is passed to `action` or `formAction` the HTTP method will be POST regardless of value of the `method` prop.
+* Lorsqu'une fonction est passée à `action` ou `formAction`, la méthode HTTP sera POST indépendamment de la valeur de la prop `method`.
 
 ---
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
-### Handle form submission on the client {/*handle-form-submission-on-the-client*/}
+### Gérer l'envoi de formulaire côté client {/*handle-form-submission-on-the-client*/}
 
-Pass a function to the `action` prop of form to run the function when the form is submitted. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) will be passed to the function as an argument so you can access the data submitted by the form. This differs from the conventional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts URLs.
+Passez une fonction à la prop `action` du formulaire pour exécuter cette fonction lors de l'envoi du formulaire. Les [`formData`](https://developer.mozilla.org/fr/docs/Web/API/FormData) lui seront passées en argument, afin que vous puissiez accéder aux données envoyées par le formulaire. C'est là une différence avec l'attribut [HTML `action`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/form#action), qui n'accepte que des URL.
 
 <Sandpack>
 
@@ -66,12 +65,12 @@ Pass a function to the `action` prop of form to run the function when the form i
 export default function Search() {
   function search(formData) {
     const query = formData.get("query");
-    alert(`You searched for '${query}'`);
+    alert(`Vous avez recherché « ${query} »`);
   }
   return (
     <form action={search}>
       <input name="query" />
-      <button type="submit">Search</button>
+      <button type="submit">Rechercher</button>
     </form>
   );
 }
@@ -91,13 +90,13 @@ export default function Search() {
 
 </Sandpack>
 
-### Handle form submission with a Server Action {/*handle-form-submission-with-a-server-action*/}
+### Gérer l'envoi de formulaire dans une action serveur {/*handle-form-submission-with-a-server-action*/}
 
-Render a `<form>` with an input and submit button. Pass a server action (a function marked with [`'use server'`](/reference/react/use-server)) to the `action` prop of form to run the function when the form is submitted.
+Affichez un `<form>` avec un champ de saisie et un bouton d'envoi, puis passez-lui une action serveur (une fonction dotée de la directive [`'use server'`](/reference/react/use-server)) *via* sa prop `action` pour exécuter cette fonction quand le formulaire sera envoyé.
 
-Passing a server action to `<form action>` allow users to submit forms without JavaScript enabled or before the code has loaded. This is beneficial to users who have a slow connection, device, or have JavaScript disabled and is similar to the way forms work when a URL is passed to the `action` prop.
+Passer une action serveur à `<form action>` permet aux utilisateurs d'envoyer le formulaire même sans JavaScript activé, ou avant que le code JavaScript ne soit chargé et exécuté.  C'est bien pratique pour les utilisateurs ne disposant que d'une connexion ou d'un appareil lents, ou qui ont JavaScript désactivé.  C'est d'ailleurs un comportement similaire à celui des formulaires dont la prop `action` contient une URL.
 
-You can use hidden form fields to provide data to the `<form>`'s action. The server action will be called with the hidden form field data as an instance of [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+Vous pouvez utiliser des champs cachés pour fournir des données à l'action du `<form>`.  L'action serveur récupèrera ces données de champs cachés au moyen d'une instance de [`FormData`](https://developer.mozilla.org/fr/docs/Web/API/FormData).
 
 ```jsx
 import { updateCart } from './lib.js';
@@ -111,14 +110,14 @@ function AddToCart({productId}) {
   return (
     <form action={addToCart}>
         <input type="hidden" name="productId" value={productId} />
-        <button type="submit">Add to Cart</button>
+        <button type="submit">Ajouter au panier</button>
     </form>
 
   );
 }
 ```
 
-In lieu of using hidden form fields to provide data to the `<form>`'s action, you can call the <CodeStep step={1}>`bind`</CodeStep> method to supply it with extra arguments. This will bind a new argument (<CodeStep step={2}>`productId`</CodeStep>) to the function in addition to the <CodeStep step={3}>`formData`</CodeStep> that is passed as a argument to the function.
+Plutôt que de fournir les données à l'action du `<form>` au moyen de champs cachés, vous pouvez recourir à la méthode <CodeStep step={1}>`bind`</CodeStep> pour pré-remplir ses arguments. Dans l'exemple qui suit, on pré-remplit un argument (<CodeStep step={2}>`productId`</CodeStep>) pour la fonction, en plus des <CodeStep step={3}>`formData`</CodeStep> qui lui sont passées par défaut.
 
 ```jsx [[1, 8, "bind"], [2,8, "productId"], [2,4, "productId"], [3,4, "formData"]]
 import { updateCart } from './lib.js';
@@ -131,18 +130,19 @@ function AddToCart({productId}) {
   const addProductToCart = addToCart.bind(null, productId);
   return (
     <form action={addProductToCart}>
-      <button type="submit">Add to Cart</button>
+      <button type="submit">Ajouter au panier</button>
     </form>
   );
 }
 ```
 
-When `<form>` is rendered by a [Server Component](/reference/react/use-client), and a [Server Action](/reference/react/use-server) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
+Lorsqu'un `<form>` fait son rendu au sein d'un [composant côté serveur](/reference/react/use-client), et qu'en prime une [action serveur](/reference/react/use-server) est passée à la prop `action` du `<form>`, le formulaire bénéficie d'une [amélioration progressive](https://developer.mozilla.org/fr/docs/Glossary/Progressive_Enhancement).
 
-### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
-To display a pending state when a form is being submitted, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
+### Afficher un état d'attente pendant l'envoi du formulaire {/*display-a-pending-state-during-form-submission*/}
 
-Here, we use the `pending` property to indicate the form is submitting.
+Pour afficher un état d'attente dans un formulaire pendant son envoi, vous pouvez utiliser le Hook `useFormStatus` dans un composant affiché au sein d'un `<form>`, et lire la propriété `pending` qu'il renvoie.
+
+Nous utilisons ci-dessous la propriété `pending` pour indiquer que le formulaire est en cours d'envoi.
 
 <Sandpack>
 
@@ -154,7 +154,7 @@ function Submit() {
   const { pending } = useFormStatus();
   return (
     <button type="submit" disabled={pending}>
-      {pending ? "Submitting..." : "Submit"}
+      {pending ? "Envoi en cours..." : "Envoyer"}
     </button>
   );
 }
@@ -191,15 +191,15 @@ export async function submitForm(query) {
 ```
 </Sandpack>
 
-To learn more about the `useFormStatus` Hook see the [reference documentation](/reference/react-dom/hooks/useFormStatus).
+Pour en apprendre davantage, consultez la [documentation de référence du Hook `useFormStatus`](/reference/react-dom/hooks/useFormStatus).
 
-### Optimistically updating form data {/*optimistically-updating-form-data*/}
-The `useOptimistic` Hook provides a way to optimistically update the user interface before a background operation, like a network request, completes. In the context of forms, this technique helps to make apps feel more responsive. When a user submits a form, instead of waiting for the server's response to reflect the changes, the interface is immediately updated with the expected outcome.
+### Mettre à jour les données de formulaire de façon optimiste {/*optimistically-updating-form-data*/}
 
-For example, when a user types a message into the form and hits the "Send" button, the `useOptimistic` Hook allows the message to immediately appear in the list with a "Sending..." label, even before the message is actually sent to a server. This "optimistic" approach gives the impression of speed and responsiveness. The form then attempts to truly send the message in the background. Once the server confirms the message has been received, the "Sending..." label is removed.
+Le Hook `useOptimistic` fournit un moyen de mettre à jour l'UI de façon optimiste le temps qu'une opération d'arrière-plan, telle qu'une requête réseau, aboutisse. Dans le contexte des formulaires, cette technique permet d'améliorer la fluidité perçue de l'appli.  Lorsqu'un utilisateur envoie un formulaire, plutôt que d'attendre la réponse du serveur avant de refléter les changements, l'interface peut être mise à jour immédiatement avec le résultat prévu.
+
+Lorsqu'un utilisateur saisit par exemple un message dans un formulaire puis clique sur le bouton « Envoyer », le Hook `useOptimistic` permet à ce message d'apparaître immédiatement dans la liste avec une étiquette « Envoi… », avant même que le message ne soit réellement envoyé au serveur. Cette approche « optimiste » donne une impression de vitesse et de réactivité.  Le formulaire tente ensuite de réellement envoyer le message en arrière-plan. Une fois que le serveur en a confirmé réception, l'étiquette « Envoi… » est retirée.
 
 <Sandpack>
-
 
 ```js App.js
 import { useOptimistic, useState, useRef } from "react";
@@ -228,12 +228,12 @@ function Thread({ messages, sendMessage }) {
       {optimisticMessages.map((message, index) => (
         <div key={index}>
           {message.text}
-          {!!message.sending && <small> (Sending...)</small>}
+          {!!message.sending && <small> (Envoi...)</small>}
         </div>
       ))}
       <form action={formAction} ref={formRef}>
-        <input type="text" name="message" placeholder="Hello!" />
-        <button type="submit">Send</button>
+        <input type="text" name="message" placeholder="(exemple : Salut !)" />
+        <button type="submit">Envoyer</button>
       </form>
     </>
   );
@@ -241,7 +241,7 @@ function Thread({ messages, sendMessage }) {
 
 export default function App() {
   const [messages, setMessages] = useState([
-    { text: "Hello there!", sending: false, key: 1 }
+    { text: "Coucou toi !", sending: false, key: 1 }
   ]);
   async function sendMessage(formData) {
     const sentMessage = await deliverMessage(formData.get("message"));
@@ -273,12 +273,11 @@ export async function deliverMessage(message) {
 
 </Sandpack>
 
-[//]: # 'Uncomment the next line, and delete this line after the `useOptimisitc` reference documentatino page is published'
-[//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/hooks/useOptimistic).'
+Pour en apprendre davantage, consultez la [documentation de référence du Hook `useOptimistic`](/reference/react/useOptimistic).
 
-### Handling form submission errors {/*handling-form-submission-errors*/}
+### Gérer les erreurs d'envoi du formulaire {/*handling-form-submission-errors*/}
 
-In some cases the function called by a `<form>`'s `action` prop throw an error. You can handle these errors by wrapping `<form>` in an Error Boundary. If the function called by a `<form>`'s `action` prop throws an error, the fallback for the error boundary will be displayed.
+Il peut arriver que la fonction appelée par la prop `action` de `<form>` lève une erreur. Vous pouvez traiter ces erreurs en enrobant `<form>` dans un périmètre d'erreur.  Si la fonction appelée par la prop `action` de `<form>` lève une erreur, le contenu de secours du périmètre d'erreur sera affiché.
 
 <Sandpack>
 
@@ -287,15 +286,18 @@ import { ErrorBoundary } from "react-error-boundary";
 
 export default function Search() {
   function search() {
-    throw new Error("search error");
+    // Pour les besoins de la démonstration uniquement
+    if(comment == null){
+      throw Error('Example error')
+    }
   }
   return (
     <ErrorBoundary
-      fallback={<p>There was an error while submitting the form</p>}
+      fallback={<p>Une erreur est survenue lors de l’envoi du formulaire</p>}
     >
       <form action={search}>
         <input name="query" />
-        <button type="submit">Search</button>
+        <button type="submit">Rechercher</button>
       </form>
     </ErrorBoundary>
   );
@@ -318,15 +320,15 @@ export default function Search() {
 
 </Sandpack>
 
-### Display a form submission error without JavaScript {/*display-a-form-submission-error-without-javascript*/}
+### Afficher une erreur d'envoi de formulaire sans JavaScript {/*display-a-form-submission-error-without-javascript*/}
 
-Displaying a form submission error message before the JavaScript bundle loads for progressive enhancement requires that:
+Afin d'afficher un message d'erreur d'envoi de formulaire avant même que le *bundle* JavaScript soit chargé et exécuté (à des fins d'amélioration progressive), plusieurs choses sont nécessaires :
 
-1. `<form>` be rendered by a [Server Component](/reference/react/use-client)
-1. the function passed to the `<form>`'s `action` prop be a [Server Action](/reference/react/use-server)
-1. the `useFormState` Hook be used to display the error message
+1. le `<form>` doit figurer dans un [composant côté serveur](/reference/react/use-client)
+2. la fonction passée à la prop `action` du `<form>` doit être une [action serveur](/reference/react/use-server)
+3. le Hook `useFormState` doit être utilisé pour produire le message d'erreur
 
-`useFormState` takes two parameters: a [Server Action](/reference/react/use-server) and an initial state. `useFormState` returns two values, a state variable and an action. The action returned by `useFormState` should be passed to the `action` prop of the form. The state variable returned by `useFormState` can be used to displayed an error message. The value returned by the [Server Action](/reference/react/use-server) passed to `useFormState` will be used to update the state variable.
+`useFormState` accepte deux arguments : une [action serveur](/reference/react/use-server) et un état initial. `useFormState` renvoie deux valeurs : une variable d'état et une action. L'action ainsi renvoyée par `useFormState` doit être passée à la prop `action` du formulaire. La variable d'état renvoyée par `useFormState` peut être utilisée pour afficher le message d'erreur. La valeur renvoyée par [l'action serveur](/reference/react/use-server) passée à `useFormState` sera utilisée pour mettre à jour la variable d'état.
 
 <Sandpack>
 
@@ -340,7 +342,7 @@ export default function Page() {
     const email = formData.get("email");
     try {
       await signUpNewUser(email);
-      alert(`Added "${email}"`);
+      alert(`Inscription de « ${email} » confirmée`);
     } catch (err) {
       return err.toString();
     }
@@ -348,12 +350,12 @@ export default function Page() {
   const [message, formAction] = useFormState(signup, null);
   return (
     <>
-      <h1>Signup for my newsletter</h1>
-      <p>Signup with the same email twice to see an error</p>
+      <h1>Inscris-toi à ma newsletter</h1>
+      <p>L’utilisation d’un e-mail déjà inscrit produira une erreur</p>
       <form action={formAction} id="signup-form">
-        <label htmlFor="email">Email: </label>
-        <input name="email" id="email" placeholder="react@example.com" />
-        <button>Sign up</button>
+        <label htmlFor="email">E-mail : </label>
+        <input name="email" id="email" placeholder="(exemple : react@example.com)" />
+        <button>Inscription</button>
         {!!message && <p>{message}</p>}
       </form>
     </>
@@ -366,7 +368,7 @@ let emails = [];
 
 export async function signUpNewUser(newEmail) {
   if (emails.includes(newEmail)) {
-    throw new Error("This email address has already been added");
+    throw new Error("Cette adresse e-mail est déjà inscrite");
   }
   emails.push(newEmail);
 }
@@ -386,13 +388,13 @@ export async function signUpNewUser(newEmail) {
 
 </Sandpack>
 
-Learn more about updating state from a form action with the [`useFormState`](/reference/react-dom/hooks/useFormState) docs
+Apprenez-en avantage sur la mise à jour de l'état depuis une action de formulaire dans la [documentation de référence du Hook `useFormState`](/reference/react-dom/hooks/useFormState).
 
-### Handling multiple submission types {/*handling-multiple-submission-types*/}
+### Gérer plusieurs types d'envois {/*handling-multiple-submission-types*/}
 
-Forms can be designed to handle multiple submission actions based on the button pressed by the user. Each button inside a form can be associated with a distinct action or behavior by setting the `formAction` prop.
+Il est possible de concevoir un formulaire pour qu'il gère plusieurs actions d'envoi selon le bouton pressé par l'utilisateur. Chaque bouton au sein du formulaire peut être associé à une action ou un comportement distincts au moyen de sa prop `formAction`.
 
-When a user taps a specific button, the form is submitted, and a corresponding action, defined by that button's attributes and action, is executed. For instance, a form might submit an article for review by default but have a separate button with `formAction` set to save the article as a draft.
+Lorsque l'utilisateur active un bouton précis, le formulaire est envoyé, et l'action correspondante (définie par les attributs et l'action du bouton) est exécutée. Un formulaire pourrait par exemple publier un article par défaut, mais disposer par ailleurs d'un bouton distinct avec sa propre `formAction` pour simplement le stocker comme brouillon.
 
 <Sandpack>
 
@@ -401,20 +403,20 @@ export default function Search() {
   function publish(formData) {
     const content = formData.get("content");
     const button = formData.get("button");
-    alert(`'${content}' was published with the '${button}' button`);
+    alert(`« ${content} » vient d’être publié avec le bouton « ${button} »`);
   }
 
   function save(formData) {
     const content = formData.get("content");
-    alert(`Your draft of '${content}' has been saved!`);
+    alert(`Votre brouillon de « ${content} » est sauvegardé !`);
   }
 
   return (
     <form action={publish}>
       <textarea name="content" rows={4} cols={40} />
       <br />
-      <button type="submit" name="button" value="submit">Publish</button>
-      <button formAction={save}>Save draft</button>
+      <button type="submit" name="button" value="submit">Publier</button>
+      <button formAction={save}>Enregistrer comme brouillon</button>
     </form>
   );
 }
