@@ -13,11 +13,7 @@ canary: true
 
 <Intro>
 
-<<<<<<< HEAD
-`'use client'` marque les fichiers sources dont les composants s'exécutent côté client.
-=======
-`'use client'` lets you mark what code runs on the client.
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
+`'use client'` vous permet d'indiquer quel code est exécuté côté client.
 
 </Intro>
 
@@ -29,10 +25,7 @@ canary: true
 
 ### `'use client'` {/*use-client*/}
 
-<<<<<<< HEAD
-Ajoutez `'use client';` tout en haut d'un fichier pour indiquer que ce fichier (ainsi que tout composant enfant qu'il utilise) s'exécute coté client, indépendamment des endroits qui l'importent.
-=======
-Add `'use client'` at the top of a file to mark the module and its transitive dependencies as client code.
+Ajoutez `'use client';` tout en haut d'un fichier pour indiquer que ce fichier (ainsi que tout composant enfant qu'il utilise) s'exécute coté client.
 
 ```js {1}
 'use client';
@@ -49,14 +42,14 @@ export default function RichTextEditor({ timestamp, text }) {
 }
 ```
 
-When a file marked with `'use client'` is imported from a Server Component, [compatible bundlers](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) will treat the module import as a boundary between server-run and client-run code.
+Lorsqu'un fichier marqué avec `'use client'` est importé par un composant côté serveur, [les *bundlers* compatibles](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) traiteront l'import comme un « point de césure » entre le code exclusivement côté serveur et le code côté client.
 
-As dependencies of `RichTextEditor`, `formatDate` and `Button` will also be evaluated on the client regardless of whether their modules contain a `'use client'` directive. Note that a single module may be evaluated on the server when imported from server code and on the client when imported from client code.
+En tant que dépendances de `RichTextEditor`, `formatDate` et `Button` seront également évalués côté client, indépendamment de la présence d'une directive `'use client'` dans le module qui les déclare.  Notez qu'un même module peut être évalué tant côté serveur lorsqu'il est importé par du code côté serveur, que côté client lorsqu'il est importé par du code côté client.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
 * `'use client'` must be at the very beginning of a file, above any imports or other code (comments are OK). They must be written with single or double quotes, but not backticks.
-* When a `'use client'` module is imported from another client-rendered module, the directive has no effect.
+* Lorsqu'un fichier `'use client'` est importé depuis un autre fichier côté client, la directive n'a aucun effet.
 * When a component module contains a `'use client'` directive, any usage of that component is guaranteed to be a Client Component. However, a component can still be evaluated on the client even if it does not have a `'use client'` directive.
 	* A component usage is considered a Client Component if it is defined in module with `'use client'` directive or when it is a transitive dependency of a module that contains a `'use client'` directive. Otherwise, it is a Server Component.
 * Code that is marked for client evaluation is not limited to components. All code that is a part of the client module sub-tree is sent to and run by the client.
@@ -175,6 +168,7 @@ We introduce the following definitions:
 Working through the example app, `App`, `FancyText` and `Copyright` are all server-rendered and considered Server Components. As `InspirationGenerator.js` and its transitive dependencies are marked as client code, the component `InspirationGenerator` and its child component `FancyText` are Client Components.
 
 <DeepDive>
+
 #### How is `FancyText` both a Server and a Client Component? {/*how-is-fancytext-both-a-server-and-a-client-component*/}
 
 By the above definitions, the component `FancyText` is both a Server and Client Component, how can that be?
@@ -182,7 +176,6 @@ By the above definitions, the component `FancyText` is both a Server and Client 
 First, let's clarify that the term "component" is not very precise. Here are just two ways "component" can be understood:
 
 1. A "component" can refer to a **component definition**. In most cases this will be a function.
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
 
 ```js
 // This is a definition of a component
@@ -314,34 +307,6 @@ export default function Counter({initialValue = 0}) {
 }
 ```
 
-<<<<<<< HEAD
-Lorsqu'un fichier marqué avec `'use client'` est importé par un composant côté serveur, [les *bundlers* compatibles](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) traiteront l'import comme un « point de césure » entre le code exclusivement côté serveur et le code côté client.  Les composants qui figurent dans ce module ou dans ses dépendances peuvent utiliser des fonctionnalités React réservées au côté client, telles que [`useState`](/reference/react/useState).
-
-#### Limitations {/*caveats*/}
-
-* Vous n'avez pas besoin d'ajouter `'use client'` à chaque fichier pour utiliser des fonctionnalités React réservées au côté client, il suffit de le faire pour les fichiers importés par des fichiers de composants côté serveur. `'use client'` dénote une *frontière* entre le code exclusivement côté serveur et le code client ; tout composant plus bas dans l'arbre sera automatiquement exécuté côté client.  Pour qu'ils puissent être exploités par des composants côté serveur, les composants exportés depuis des fichiers `'use client'` doivent avoir des props sérialisables.
-* Lorsqu'un fichier `'use client'` est importé depuis un fichier côté serveur, les valeurs importées peuvent être traitées comme un composant React ou passées comme props à un composant côté client.  Toute autre utilisation lèvera une exception.
-* Lorsqu'un fichier `'use client'` est importé depuis un autre fichier côté client, la directive n'a aucun effet. Ça permet d'écrire des composants côté client qui sont utilisables à la fois par des composants côté serveur et d'autres côté client.
-* Tout le code d'un fichier `'use client'`, ainsi que tous les modules qu'il importe (directement ou indirectement), feront partie du graphe de modules côté client et devront être envoyés pour exécution côté client afin d'être affichés par le navigateur.  Pour réduire la taille du *bundle* et tirer le meilleur parti du serveur, déplacez l'état (et les directives `'use client'`) plus bas dans l'arbre lorsque c'est possible, et passez les composants côté serveur [comme enfants](/learn/passing-props-to-a-component#passing-jsx-as-children) aux composants côté client.
-* Dans la mesure où les props sont sérialisées pour franchir la frontière serveur–client, vous comprendrez que l'emplacement de ces directives peut affecter la quantité de données envoyée au client. Évitez les structures de données inutilement lourdes.
-* Les composants tels que `<MarkdownRenderer>`, qui ne recourent à aucune fonctionnalité strictement côté serveur ou côté client, ne devraient généralement pas être marqués avec `'use client'`. Ainsi, ils peuvent faire leur rendu entièrement côté serveur lorsqu'ils sont utilisés par un composant côté serveur, mais aussi être ajoutés au *bundle* client lorsqu'ils sont utilisés par un composant côté client.
-* Les bibliothèques publiées sur npm devraient inclure `'use client'` dans les composants React qu'elles exportent dont les props sont sérialisables et qui utilisent des fonctionnalités React réservées au côté client, afin que ces composants puissent être importés et exploités par les composants côté serveur. Dans le cas contraire, leurs utilisateurs auraient besoin d'enrober les composants de la bibliothèque dans leurs propres fichiers `'use client'`, ce qui est fastidieux et empêche la bibliothèque de déplacer plus tard une partie de sa logique vers le côté serveur.  Pour la publication de fichier pré-*bundlés* sur npm, assurez-vous que les fichiers sources `'use client'` atterrissent dans un *bundle* marqué avec `'use client'`, distinct de tout *bundle* contenant des exports susceptibles d'être utilisés directement par le serveur.
-* Les composants côté client continueront à être exécutés dans le cadre du rendu côté serveur (SSR, *Server-Side Rendering, NdT*) ou de la génération de sites statiques lors du *build* (SSG, *Static Site Generation, NdT*), qui se comportent comme des clients pour transformer le rendu initial de composants React en HTML apte à être affiché avant que les *bundles* JavaScript ne soient téléchargés. Ils ne peuvent toutefois pas utiliser de fonctionnalités réservées au côté serveur, telles que la lecture en direct d'une base de données.
-* Les directives telles que `'use client'` doivent être placées au tout début du fichier, au-dessus de tout import et de quelque autre code que ce soit (à l'exception des commentaires, qui peuvent apparaître avant).  Elles doivent utiliser des apostrophes (`'`) ou guillemets (`"`), pas des apostrophes inverses (<code>\`</code>). (Le format de directive `'use xyz'` n'est pas sans rappeler la convention de nommage `useXyz()` des Hooks, mais c'est là une simple coïncidence.)
-
-## Utilisation {/*usage*/}
-
-<Wip>
-
-Cette section est en cours de rédaction.
-
-Cette API peut être utilisée par n'importe quel framework prenant en charge les React Server Components. Ces frameworks vous fourniront davantage de documentation.
-
-* [Documentation Next.js](https://nextjs.org/docs/getting-started/react-essentials)
-* D'autres arrivent prochainement
-
-</Wip>
-=======
 </Sandpack>
 
 As `Counter` requires both the `useState` hook and event handlers to increment or decrement the value, this component must be a Client Component and will require a `'use client'` directive at the top.
@@ -414,4 +379,3 @@ These libraries may rely on component Hooks or client APIs. Third-party componen
 If these libraries have been updated to be compatible with React Server Components, then they will already include `'use client'` markers of their own, allowing you to use them directly from your Server Components. If a library hasn't been updated, or if a component needs props like event handlers that can only be specified on the client, you may need to add your own Client Component file in between the third-party Client Component and your Server Component where you'd like to use it.
 
 [TODO]: <> (Troubleshooting - need use-cases)
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04

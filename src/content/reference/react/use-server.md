@@ -25,11 +25,7 @@ canary: true
 
 ### `'use server'` {/*use-server*/}
 
-<<<<<<< HEAD
-Ajoutez `'use server';` tout en haut d'une fonction asynchrone pour indiquer que cette fonction peut être appelée par du code côté client.
-=======
-Add `'use server'` at the top of an async function body to mark the function as callable by the client. We call these functions _server actions_.
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
+Ajoutez `'use server';` tout en haut d'une fonction asynchrone pour indiquer que cette fonction peut être appelée par du code côté client. Nous appelons ces fonctions des _actions serveur_.
 
 ```js {2}
 async function addToCart(data) {
@@ -38,23 +34,12 @@ async function addToCart(data) {
 }
 ```
 
-<<<<<<< HEAD
-Cette fonction peut être passée au client.  Lorsqu'elle est appelée par le client, elle fera un appel réseau au serveur en lui passant une copie sérialisée des arguments qu'elle a reçus.  Si la fonction serveur renvoie une valeur, celle-ci sera sérialisée et renvoyée au client.
-
-Vous pouvez aussi utiliser `'use server';` tout en haut d'un fichier pour indiquer que tous les exports de ce fichier sont des fonctions serveur asynchrones qui peuvent être utilisées depuis n'importe où, y compris par import dans des fichiers de composants côté client.
-
-#### Limitations {/*caveats*/}
-
-* Gardez à l'esprit que les paramètres des fonctions marquées par `'use server'` sont entièrement contrôlés par le client.  Pour une meilleure sécurité, traitez-les toujours commes des entrées non vérifiées, et assurez-vous de les valider et d'en échapper le contenu lorsque nécessaire.
-* Pour éviter toute confusion qui pourrait résulter du mélange entre codes côté client et côté serveur au sein d'un même fichier, `'use server'` ne peut être utilisée que dans des fichiers côté serveur. Les fonctions résultantes peuvent être passées à des composants côté client *via* leurs props.
-* Puisque les appels réseaux sous-jacents sont intrinsèquement asynchrones, `'use server'` ne peut être utilisée que pour des fonctions asynchrones.
-* Les directives telles que `'use server'` doivent être placées au tout début du fichier, au-dessus de tout import et de quelque autre code que ce soit (à l'exception des commentaires, qui peuvent apparaître avant).  Elles doivent utiliser des apostrophes (`'`) ou guillemets (`"`), pas des apostrophes inverses (<code>\`</code>). (Le format de directive `'use xyz'` n'est pas sans rappeler la convention de nommage `useXyz()` des Hooks, mais c'est là une simple coïncidence.)
-=======
 When calling a server action on the client, it will make a network request to the server that includes a serialized copy of any arguments passed. If the server action returns a value, that value will be serialized and returned to the client.
 
 Instead of individually marking functions with `'use server'`, you can add the directive to the top of a file to mark all exports within that file as server actions that can be used anywhere, including imported in client code.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
+
 * `'use server'` must be at the very beginning of their function or module; above any other code including imports (comments above directives are OK). They must be written with single or double quotes, not backticks.
 * `'use server'` can only be used in server-side files. The resulting server actions can be passed to Client Components through props. See supported [types for serialization](#serializable-parameters-and-return-values).
 * To import a server action from [client code](/reference/react/use-client), the directive must be used on a module level.
@@ -113,22 +98,8 @@ Notably, these are not supported:
 
 Supported serializable return values are the same as [serializable props](/reference/react/use-client#passing-props-from-server-to-client-components) for a boundary Client Component.
 
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
-
 ## Utilisation {/*usage*/}
 
-<<<<<<< HEAD
-<Wip>
-
-Cette section est en cours de rédaction.
-
-Cette API peut être utilisée par n'importe quel framework prenant en charge les React Server Components. Ces frameworks vous fourniront davantage de documentation.
-
-* [Documentation Next.js](https://nextjs.org/docs/getting-started/react-essentials)
-* D'autres arrivent prochainement
-
-</Wip>
-=======
 ### Server actions in forms {/*server-actions-in-forms*/}
 
 The most common use case of server actions will be calling server functions that mutate data. On the browser, the [HTML form element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) is the traditional approach for a user to submit a mutation. With React Server Components, React introduces first-class support for server actions in [forms](/reference/react-dom/components/form).
@@ -242,4 +213,3 @@ export default async incrementLike() {
 ```
 
 To read a server action return value, you'll need to `await` the promise returned.
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
