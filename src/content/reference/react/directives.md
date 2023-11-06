@@ -19,5 +19,5 @@ Les directives fournissent des instructions à destination des [*bundlers* compa
 
 ## Directives dans le code source {/*source-code-directives*/}
 
-* [`'use client'`](/reference/react/use-client) marque les fichiers sources dont les composants s'exécutent côté client.
+* [`'use client'`](/reference/react/use-client) vous permet d'indiquer quel code est exécuté côté client.
 * [`'use server'`](/reference/react/use-server) marque les fonctions côté serveur qui peuvent être appelées par du code côté client.

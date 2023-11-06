@@ -635,7 +635,7 @@ class Form extends Component {
     return (
       <>
         <input value={this.state.name} onChange={this.handleNameChange} />
-        <p>Salut {this.state.name}.
+        <p>Salut {this.state.name}.</p>
       </>
     );
   }
