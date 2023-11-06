@@ -34,77 +34,77 @@ async function addToCart(data) {
 }
 ```
 
-When calling a server action on the client, it will make a network request to the server that includes a serialized copy of any arguments passed. If the server action returns a value, that value will be serialized and returned to the client.
+Lorsque vous appelez une action serveur côté client, elle fera une requête réseau auprès du serveur en incluant une copie sérialisée des arguments que vous aurez passés. Si l'action serveur renvoie une valeur, cette valeur sera sérialisée puis renvoyée au client.
 
-Instead of individually marking functions with `'use server'`, you can add the directive to the top of a file to mark all exports within that file as server actions that can be used anywhere, including imported in client code.
+Plutôt que de marquer chaque fonction concernée avec `'use server'`, vous pouvez ajouter cette directive tout en haut d'un fichier afin d'en marquer tous les exports comme des actions serveur utilisables n'importe où, y compris au travers d'imports par du code client.
 
 #### Limitations {/*caveats*/}
 
-* `'use server'` must be at the very beginning of their function or module; above any other code including imports (comments above directives are OK). They must be written with single or double quotes, not backticks.
-* `'use server'` can only be used in server-side files. The resulting server actions can be passed to Client Components through props. See supported [types for serialization](#serializable-parameters-and-return-values).
-* To import a server action from [client code](/reference/react/use-client), the directive must be used on a module level.
-* Because the underlying network calls are always asynchronous, `'use server'` can only be used on async functions.
-* Always treat arguments to server actions as untrusted input and authorize any mutations. See [security considerations](#security).
-* Server actions should be called in a [transition](/reference/react/useTransition). Server actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
-* Server actions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing server actions typically process one action at a time and do not have a way to cache the return value.
+* `'use server'` doit être placé au tout début de la fonction ou du module concerné ; au-dessus notamment de tout code, y compris les imports (mais il peut y avoir des commentaires avant les directives).  Elles doivent utiliser des apostrophes (`'`) ou guillemets (`"`), mais pas des *backticks* (<code>`</code>).
+* `'use server'` ne peut être utilisé qu'au sein de fichiers côté serveur.  Les actions serveur résultantes peuvent être passées à des composants côté client au moyen des props. Consultez la liste des [types sérialisables](#serializable-parameters-and-return-values).
+* Pour importer une action serveur depuis du [code côté client](/reference/react/use-client), la directive doit être utilisée au niveau du module.
+* Dans la mesure où les appels réseau sous-jacents sont forcément asynchrones, `'use server'` n'est utilisable qu'au sein de fonctions asynchrones.
+* Considérez toujours les arguments de vos actions serveur comme des données non validées, et soumettez toute mutation à un processus d'autorisation. Allez voir les [considérations sécuritaires](#security).
+* Les actions serveur devraient toujours être appelées au sein d'une [transition](/reference/react/useTransition). Les actions serveur passées à [`<form action>`](/reference/react-dom/components/form#props) ou [`formAction`](/reference/react-dom/components/input#props) seront automatiquement enrobées par une transition.
+* Les actions serveur sont conçues pour des mutations qui mettent à jour l'état côté serveur ; il est déconseillé de s'en servir pour du simple chargement de données. Dans cet esprit, les frameworks qui implémentent les actions serveur traitent généralement une action à la fois et ne permettent pas la mise en cache de leur valeur renvoyée.
 
-### Security considerations {/*security*/}
+### Considérations sécuritaires {/*security*/}
 
-Arguments to server actions are fully client-controlled. For security, always treat them as untrusted input, and make sure to validate and escape arguments as appropriate.
+Les arguments passés au actions serveur sont entièrement contrôlés par le côté client. Pour des raisons de sécurité, traitez-les toujours comme des données non validées, et assurez-vous d'en vérifier la structure et le contenu, et de procéder à leur échappement lorsque c'est nécessaire.
 
-In any server action, make sure to validate that the logged-in user is allowed to perform that action.
+Quelle que soit l'action serveur, assurez-vous toujours que l'utilisateur authentifié a le droit d'effectuer cette action.
 
 <Wip>
 
-To prevent sending sensitive data from a server action, there are experimental taint APIs to prevent unique values and objects from being passed to client code.
+Pour éviter le renvoi de données sensibles par une action serveur, nous proposons des API expérimentales empêchant l'envoi vers du code côté client de valeurs et objets uniques « ternis ».
 
-See [experimental_taintUniqueValue](/reference/react/experimental_taintUniqueValue) and [experimental_taintObjectReference](/reference/react/experimental_taintObjectReference).
+Allez jeter un coup d'œil à [experimental_taintUniqueValue](/reference/react/experimental_taintUniqueValue) et [experimental_taintObjectReference](/reference/react/experimental_taintObjectReference).
 
 </Wip>
 
-### Serializable arguments and return values {/*serializable-parameters-and-return-values*/}
+### Arguments et valeurs renvoyées sérialisables {/*serializable-parameters-and-return-values*/}
 
-As client code calls the server action over the network, any arguments passed will need to be serializable.
+Lorsque du code côté client appelle l'action serveur au travers du réseau, tout argument passé devra être sérialisé.
 
-Here are supported types for server action arguments:
+Voici les types pris en charge pour les arguments d'une action serveur :
 
 * Primitives
-	* [string](https://developer.mozilla.org/en-US/docs/Glossary/String)
-	* [number](https://developer.mozilla.org/en-US/docs/Glossary/Number)
-	* [bigint](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
-	* [boolean](https://developer.mozilla.org/en-US/docs/Glossary/Boolean)
-	* [undefined](https://developer.mozilla.org/en-US/docs/Glossary/Undefined)
-	* [null](https://developer.mozilla.org/en-US/docs/Glossary/Null)
-	* [symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol), only symbols registered in the global Symbol registry via [`Symbol.for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for)
-* Iterables containing serializable values
-	* [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
-	* [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
-	* [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
-	* [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
-	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) and [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
-* [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
-* [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) instances
-* Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
-* Functions that are server actions
-* [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+	* [string](https://developer.mozilla.org/fr/docs/Glossary/String)
+	* [number](https://developer.mozilla.org/fr/docs/Glossary/Number)
+	* [bigint](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
+	* [boolean](https://developer.mozilla.org/fr/docs/Glossary/Boolean)
+	* [undefined](https://developer.mozilla.org/fr/docs/Glossary/Undefined)
+	* [null](https://developer.mozilla.org/fr/docs/Glossary/Null)
+	* [symbol](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Symbol), mais uniquement pour ceux inscrits auprès du référentiel global de symboles *via* [`Symbol.for`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for)
+* Les itérables contenant des valeurs sérialisables
+	* [String](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/String)
+	* [Array](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array)
+	* [Map](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Map)
+	* [Set](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set)
+	* [TypedArray](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) et [ArrayBuffer](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
+* [Date](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Date)
+* Les instances de [FormData](https://developer.mozilla.org/fr/docs/Web/API/FormData)
+* Les [objets](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object) bruts : ceux créés via des [initialiseurs d'objets](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Object_initializer), dont les propriétés sont sérialisables
+* Les fonctions qui sont des actions serveur
+* Les [promesses](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-Notably, these are not supported:
-* React elements, or [JSX](https://react.dev/learn/writing-markup-with-jsx)
-* Functions, including component functions or any other function that is not a server action
-* [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
-* Objects that are instances of any class (other than the built-ins mentioned) or objects with [a null prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
-* Symbols not registered globally, ex. `Symbol('my new symbol')`
+En particulier, les types suivants ne sont **pas** pris en charge :
 
+* Les éléments React, ainsi que [JSX](/learn/writing-markup-with-jsx)
+* Les fonctions, y compris les fonctions composants ou toute autre fonction qui ne serait pas une action serveur
+* Les [classes](https://developer.mozilla.org/fr/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
+* Les objets de quelque classe que ce soit (hormis les classes natives explicitement listées plus haut) ainsi que les objets avec [un prototype nul](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
+* Les symboles non inscrits au global, ex. `Symbol('my new symbol')`
 
-Supported serializable return values are the same as [serializable props](/reference/react/use-client#passing-props-from-server-to-client-components) for a boundary Client Component.
+Les valeurs renvoyées sérialisables sont les mêmes que pour les [props sérialisables](/reference/react/use-client#passing-props-from-server-to-client-components) d'un composant client faisant office de périmètre.
 
 ## Utilisation {/*usage*/}
 
-### Server actions in forms {/*server-actions-in-forms*/}
+### Les actions serveur dans les formulaires {/*server-actions-in-forms*/}
 
-The most common use case of server actions will be calling server functions that mutate data. On the browser, the [HTML form element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) is the traditional approach for a user to submit a mutation. With React Server Components, React introduces first-class support for server actions in [forms](/reference/react-dom/components/form).
+Le cas le plus courant d'actions serveur consiste à appeler des fonctions côté serveur pour modifier des données. Dans le navigateur, on utilise traditionnellement [l'élément HTML `form`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/form) pour que l'utilisateur demande une mutation.  Avec les React Server Components, React prend désormais pleinement en charge les actions serveur dans les [formulaires](/reference/react-dom/components/form).
 
-Here is a form that allows a user to request a username.
+Voici un formulaire qui permet à l'utilisateur de réserver un identifiant.
 
 ```js [[1, 3, "formData"]]
 // App.js
@@ -118,20 +118,20 @@ async function requestUsername(formData) {
 export default App() {
   <form action={requestUsername}>
     <input type="text" name="username" />
-    <button type="submit">Request</button>
+    <button type="submit">Réserver</button>
   </form>
 }
 ```
 
-In this example `requestUsername` is a server action passed to a `<form>`. When a user submits this form, there is a network request to the server function `requestUsername`. When calling a server action in a form, React will supply the form's <CodeStep step={1}>[FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)</CodeStep> as the first argument to the server action.
+Dans cet exemple, `requestUsername` est une action serveur passée à un `<form>`. Lorsque l'utilisateur envoie le formulaire, une requête réseau est faite à l'action serveur `requestUsername`. Puisque celle-ci est appelée au travers d'un formulaire, React fournit les <CodeStep step={1}>[FormData](https://developer.mozilla.org/fr/docs/Web/API/FormData)</CodeStep> du formulaire comme premier argument à l'action serveur.
 
-By passing a server action to the form `action`, React can [progressively enhance](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement) the form. This means that forms can be submitted before the JavaScript bundle is loaded.
+Grâce au passage d'une action serveur comme `action` du formulaire, React peut faire [l'amélioration progressive](https://developer.mozilla.org/fr/docs/Glossary/Progressive_Enhancement) du formulaire. Ça signifie que les formulaires peuvent être envoyés avant même que le *bundle* JavaScript ne soit chargé et exécuté.
 
-#### Handling return values in forms {/*handling-return-values*/}
+#### Gérer les valeurs renvoyées dans les formulaires {/*handling-return-values*/}
 
-In the username request form, there might be the chance that a username is not available. `requestUsername` should tell us if it fails or not.
+Pour revenir à notre formulaire de réservation d'identifiant, il peut arriver que l'identifiant ne soit plus disponible. `requestUsername` devrait nous indiquer si elle a réussi ou non sa réservation.
 
-To update the UI based on the result of a server action while supporting progressive enhancement, use [`useFormState`](/reference/react-dom/hooks/useFormState).
+Pour mettre à jour l'UI sur base du résultat d'une action serveur, tout en proposant une amélioration progressive, utilisez [`useFormState`](/reference/react-dom/hooks/useFormState).
 
 ```js
 // requestUsername.js
@@ -141,9 +141,9 @@ export default async function requestUsername(formData) {
   const username = formData.get('username');
   if (canRequest(username)) {
     // ...
-    return 'successful';
+    return 'réussie';
   }
-  return 'failed';
+  return 'échouée';
 }
 ```
 
@@ -155,27 +155,27 @@ import {useFormState} from 'react-dom';
 import requestUsername from './requestUsername';
 
 function UsernameForm() {
-  const [returnValue, action] = useFormState(requestUsername, 'n/a');
+  const [returnValue, action] = useFormState(requestUsername, 'n/d');
 
   return (
     <>
       <form action={action}>
         <input type="text" name="username" />
-        <button type="submit">Request</button>
+        <button type="submit">Réserver</button>
       </form>
-      <p>Last submission request returned: {returnValue}</p>
+      <p>Résultat de la dernière réservation : {returnValue}</p>
     </>
   );
 }
 ```
 
-Note that like most Hooks, `useFormState` can only be called in <CodeStep step={1}>[client code](/reference/react/use-client)</CodeStep>.
+Remarquez que `useFormState`, comme la plupart des Hooks, ne peut être appelé que depuis du <CodeStep step={1}>[code côté client](/reference/react/use-client)</CodeStep>.
 
-### Calling a server action outside of `<form>` {/*calling-a-server-action-outside-of-form*/}
+### Appeler une action serveur hors d'un `<form>` {/*calling-a-server-action-outside-of-form*/}
 
-Server actions are exposed server endpoints and can be called anywhere in client code.
+Les actions serveur exposent des points d'entrée serveur et peuvent être appelées n'importe où dans du code client.
 
-When using a server action outside of a [form](/reference/react-dom/components/form), call the server action in a [transition](/reference/react/useTransition), which allows you to display a loading indicator, show [optimistic state updates](/reference/react/useOptimistic), and handle unexpected errors. Forms will automatically wrap server actions in transitions.
+Pour utiliser une action serveur hors d'un [formulaire](/reference/react-dom/components/form), appelez l'action serveur au sein d'une [transition](/reference/react/useTransition), ce qui vous permettra d'afficher un indicateur de chargement et de réaliser des [mises à jour optimistes d'état](/reference/react/useOptimistic), tout en gérant les erreurs inattendues. Les formulaires enrobent automatiquement vos actions serveur dans une transition.
 
 ```js {9-12}
 import incrementLike from './actions';
@@ -194,7 +194,7 @@ function LikeButton() {
 
   return (
     <>
-      <p>Total Likes: {likeCount}</p>
+      <p>Total des Likes : {likeCount}</p>
       <button onClick={onClick} disabled={isPending}>Like</button>;
     </>
   );
@@ -206,10 +206,11 @@ function LikeButton() {
 'use server';
 
 let likeCount = 0;
+
 export default async incrementLike() {
   likeCount++;
   return likeCount;
 }
 ```
 
-To read a server action return value, you'll need to `await` the promise returned.
+Pour obtenir la valeur renvoyée par une action serveur, vous aurez besoin d'un `await` sur la promesse renvoyée.
