@@ -34,7 +34,7 @@ async function addToCart(data) {
 }
 ```
 
-Lorsque vous appelez une action serveur côté client, elle fera une requête réseau auprès du serveur en incluant une copie sérialisée des arguments que vous aurez passés. Si l'action serveur renvoie une valeur, cette valeur sera sérialisée puis renvoyée au client.
+Lorsque vous appelez une action serveur côté client, elle fait une requête réseau auprès du serveur en incluant une copie sérialisée des arguments que vous avez passés. Si l'action serveur renvoie une valeur, cette valeur sera sérialisée puis renvoyée au client.
 
 Plutôt que de marquer chaque fonction concernée avec `'use server'`, vous pouvez ajouter cette directive tout en haut d'un fichier afin d'en marquer tous les exports comme des actions serveur utilisables n'importe où, y compris au travers d'imports par du code client.
 
@@ -42,7 +42,7 @@ Plutôt que de marquer chaque fonction concernée avec `'use server'`, vous pouv
 
 * `'use server'` doit être placé au tout début de la fonction ou du module concerné ; au-dessus notamment de tout code, y compris les imports (mais il peut y avoir des commentaires avant les directives).  Elles doivent utiliser des apostrophes (`'`) ou guillemets (`"`), mais pas des *backticks* (<code>`</code>).
 * `'use server'` ne peut être utilisé qu'au sein de fichiers côté serveur.  Les actions serveur résultantes peuvent être passées à des composants côté client au moyen des props. Consultez la liste des [types sérialisables](#serializable-parameters-and-return-values).
-* Pour importer une action serveur depuis du [code côté client](/reference/react/use-client), la directive doit être utilisée au niveau du module.
+* Pour importer une action serveur depuis du [code côté client](/reference/react/use-client), la directive doit obligatoirement être utilisée au niveau du module.
 * Dans la mesure où les appels réseau sous-jacents sont forcément asynchrones, `'use server'` n'est utilisable qu'au sein de fonctions asynchrones.
 * Considérez toujours les arguments de vos actions serveur comme des données non validées, et soumettez toute mutation à un processus d'autorisation. Allez voir les [considérations sécuritaires](#security).
 * Les actions serveur devraient toujours être appelées au sein d'une [transition](/reference/react/useTransition). Les actions serveur passées à [`<form action>`](/reference/react-dom/components/form#props) ou [`formAction`](/reference/react-dom/components/input#props) seront automatiquement enrobées par une transition.
@@ -50,9 +50,9 @@ Plutôt que de marquer chaque fonction concernée avec `'use server'`, vous pouv
 
 ### Considérations sécuritaires {/*security*/}
 
-Les arguments passés au actions serveur sont entièrement contrôlés par le côté client. Pour des raisons de sécurité, traitez-les toujours comme des données non validées, et assurez-vous d'en vérifier la structure et le contenu, et de procéder à leur échappement lorsque c'est nécessaire.
+Les arguments passés aux actions serveur sont entièrement contrôlés par le côté client. Pour des raisons de sécurité, traitez-les toujours comme des données non validées, et assurez-vous d'en vérifier la structure et le contenu, et de procéder à leur échappement lorsque c'est nécessaire.
 
-Quelle que soit l'action serveur, assurez-vous toujours que l'utilisateur authentifié a le droit d'effectuer cette action.
+Par ailleurs, et quelle que soit l'action serveur, assurez-vous toujours que l'utilisateur authentifié a le droit d'effectuer cette action.
 
 <Wip>
 
@@ -64,11 +64,11 @@ Allez jeter un coup d'œil à [experimental_taintUniqueValue](/reference/react/e
 
 ### Arguments et valeurs renvoyées sérialisables {/*serializable-parameters-and-return-values*/}
 
-Lorsque du code côté client appelle l'action serveur au travers du réseau, tout argument passé devra être sérialisé.
+Lorsque du code côté client appelle l'action serveur au travers du réseau, tout argument passé aura besoin d'être sérialisé.
 
 Voici les types pris en charge pour les arguments d'une action serveur :
 
-* Primitives
+* Types primitifs
 	* [string](https://developer.mozilla.org/fr/docs/Glossary/String)
 	* [number](https://developer.mozilla.org/fr/docs/Glossary/Number)
 	* [bigint](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
@@ -91,18 +91,18 @@ Voici les types pris en charge pour les arguments d'une action serveur :
 En particulier, les types suivants ne sont **pas** pris en charge :
 
 * Les éléments React, ainsi que [JSX](/learn/writing-markup-with-jsx)
-* Les fonctions, y compris les fonctions composants ou toute autre fonction qui ne serait pas une action serveur
+* Les fonctions, y compris les fonctions composants, et de façon plus générale toute fonction qui ne serait pas une action serveur
 * Les [classes](https://developer.mozilla.org/fr/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
-* Les objets de quelque classe que ce soit (hormis les classes natives explicitement listées plus haut) ainsi que les objets avec [un prototype nul](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
+* Les objets de quelque classe que ce soit (hormis les classes natives explicitement listées plus haut) ainsi que les objets ayant [un prototype nul](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
 * Les symboles non inscrits au global, ex. `Symbol('my new symbol')`
 
-Les valeurs renvoyées sérialisables sont les mêmes que pour les [props sérialisables](/reference/react/use-client#passing-props-from-server-to-client-components) d'un composant client faisant office de périmètre.
+Les valeurs renvoyées sérialisables sont les mêmes que pour les [props sérialisables](/reference/react/use-client#passing-props-from-server-to-client-components) d'un composant client agissant comme frontière client / serveur.
 
 ## Utilisation {/*usage*/}
 
 ### Les actions serveur dans les formulaires {/*server-actions-in-forms*/}
 
-Le cas le plus courant d'actions serveur consiste à appeler des fonctions côté serveur pour modifier des données. Dans le navigateur, on utilise traditionnellement [l'élément HTML `form`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/form) pour que l'utilisateur demande une mutation.  Avec les React Server Components, React prend désormais pleinement en charge les actions serveur dans les [formulaires](/reference/react-dom/components/form).
+Le cas le plus courant d'actions serveur consiste à appeler des fonctions côté serveur pour modifier des données. Dans le navigateur, on utilise traditionnellement [l'élément HTML `form`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/form) pour permettre à l'utilisateur de demander une mutation de données.  Avec les React Server Components, React prend désormais pleinement en charge les actions serveur dans les [formulaires](/reference/react-dom/components/form).
 
 Voici un formulaire qui permet à l'utilisateur de réserver un identifiant.
 
@@ -147,7 +147,7 @@ export default async function requestUsername(formData) {
 }
 ```
 
-```js {4,8}, [[2, 2, "'use client'"]]
+```js {4,8}, [[1, 2, "'use client'"]]
 // UsernameForm.js
 'use client';
 
@@ -169,13 +169,13 @@ function UsernameForm() {
 }
 ```
 
-Remarquez que `useFormState`, comme la plupart des Hooks, ne peut être appelé que depuis du <CodeStep step={1}>[code côté client](/reference/react/use-client)</CodeStep>.
+Remarquez que `useFormState`, au même titre que la plupart des Hooks, ne peut être appelé que depuis du <CodeStep step={1}>[code côté client](/reference/react/use-client)</CodeStep>.
 
 ### Appeler une action serveur hors d'un `<form>` {/*calling-a-server-action-outside-of-form*/}
 
-Les actions serveur exposent des points d'entrée serveur et peuvent être appelées n'importe où dans du code client.
+Les actions serveur exposent en pratique des points d'entrée côté serveur, et peuvent être appelées n'importe où dans du code client.
 
-Pour utiliser une action serveur hors d'un [formulaire](/reference/react-dom/components/form), appelez l'action serveur au sein d'une [transition](/reference/react/useTransition), ce qui vous permettra d'afficher un indicateur de chargement et de réaliser des [mises à jour optimistes d'état](/reference/react/useOptimistic), tout en gérant les erreurs inattendues. Les formulaires enrobent automatiquement vos actions serveur dans une transition.
+Pour utiliser une action serveur hors d'un [formulaire](/reference/react-dom/components/form), appelez l'action serveur au sein d'une [transition](/reference/react/useTransition), ce qui vous permettra non seulement d'afficher un indicateur de chargement, mais aussi de réaliser des [mises à jour optimistes d'état](/reference/react/useOptimistic) et de gérer les éventuelles erreurs. Les formulaires enrobent automatiquement vos actions serveur dans une transition.
 
 ```js {9-12}
 import incrementLike from './actions';
