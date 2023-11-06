@@ -318,7 +318,11 @@ async function DemoProfile() {
 
 React ne fournit un accès au cache pour les fonctions mémoïsées qu'au sein d'un composant. Si vous appelez <CodeStep step={1}>`getUser`</CodeStep> hors d'un composant, il évaluera la fonction mais n'utilisera pas le cache (ni en lecture ni en écriture).
 
+<<<<<<< HEAD
 C'est parce que l'accès au cache est fourni via un [contexte](/learn/passing-data-deeply-with-context), et que les contextes ne sont accessibles que depuis les composants.
+=======
+This is because cache access is provided through a [context](/learn/passing-data-deeply-with-context) which is only accessible from a component. 
+>>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
 
 </Pitfall>
 

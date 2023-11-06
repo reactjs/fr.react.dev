@@ -273,7 +273,12 @@ export async function deliverMessage(message) {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Pour en apprendre davantage, consultez la [documentation de référence du Hook `useOptimistic`](/reference/react/useOptimistic).
+=======
+[//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentatino page is published'
+[//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/hooks/useOptimistic).'
+>>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
 
 ### Gérer les erreurs d'envoi du formulaire {/*handling-form-submission-errors*/}
 

@@ -983,9 +983,15 @@ export const places = [{
   description: 'Les maisons sont peintes selon un système de couleurs spécifique datant du XVIe siècle.',
   imageId: 'kxsph5C'
 }, {
+<<<<<<< HEAD
   id: 5,
   name: 'Chefchaouen, Maroc',
   description: "Plusieurs théories expliquent pourquoi les maisons sont peintes en bleu, notamment parce que cette couleur repousserait les moustiques ou qu'elle symboliserait le ciel et le paradis.",
+=======
+  id: 5, 
+  name: 'Chefchaouen, Marocco',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
+>>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
   imageId: 'rTqKo46'
 }, {
   id: 6,
@@ -1122,9 +1128,15 @@ export const places = [{
   description: 'Les maisons sont peintes selon un système de couleurs spécifique datant du XVIe siècle.',
   imageId: 'kxsph5C'
 }, {
+<<<<<<< HEAD
   id: 5,
   name: 'Chefchaouen, Maroc',
   description: "Plusieurs théories expliquent pourquoi les maisons sont peintes en bleu, notamment parce que cette couleur repousserait les moustiques ou qu'elle symboliserait le ciel et le paradis.",
+=======
+  id: 5, 
+  name: 'Chefchaouen, Marocco',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
+>>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
   imageId: 'rTqKo46'
 }, {
   id: 6,
