@@ -40,7 +40,7 @@ Plutôt que de marquer chaque fonction concernée avec `'use server'`, vous pouv
 
 #### Limitations {/*caveats*/}
 
-* `'use server'` doit être placé au tout début de la fonction ou du module concerné ; au-dessus notamment de tout code, y compris les imports (mais il peut y avoir des commentaires avant les directives).  Elles doivent utiliser des apostrophes (`'`) ou guillemets (`"`), mais pas des *backticks* (<code>`</code>).
+* `'use server'` doit être placé au tout début de la fonction ou du module concerné ; au-dessus notamment de tout code, y compris les imports (mais il peut y avoir des commentaires avant les directives).  La directive doit utiliser des apostrophes (`'`) ou guillemets (`"`), mais pas des *backticks* (<code>`</code>).
 * `'use server'` ne peut être utilisé qu'au sein de fichiers côté serveur.  Les actions serveur résultantes peuvent être passées à des composants côté client au moyen des props. Consultez la liste des [types sérialisables](#serializable-parameters-and-return-values).
 * Pour importer une action serveur depuis du [code côté client](/reference/react/use-client), la directive doit obligatoirement être utilisée au niveau du module.
 * Dans la mesure où les appels réseau sous-jacents sont forcément asynchrones, `'use server'` n'est utilisable qu'au sein de fonctions asynchrones.
@@ -96,7 +96,7 @@ En particulier, les types suivants ne sont **pas** pris en charge :
 * Les objets de quelque classe que ce soit (hormis les classes natives explicitement listées plus haut) ainsi que les objets ayant [un prototype nul](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
 * Les symboles non inscrits au global, ex. `Symbol('my new symbol')`
 
-Les valeurs renvoyées sérialisables sont les mêmes que pour les [props sérialisables](/reference/react/use-client#passing-props-from-server-to-client-components) d'un composant client agissant comme frontière client / serveur.
+Les valeurs renvoyées sérialisables sont les mêmes que pour les [props sérialisables](/reference/react/use-client#passing-props-from-server-to-client-components) d'un composant client agissant comme « point de césure » entre le code côté client et le code côté serveur.
 
 ## Utilisation {/*usage*/}
 
