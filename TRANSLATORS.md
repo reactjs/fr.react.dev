@@ -82,6 +82,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/learn/synchronizing-with-effects">Synchroniser grâce aux Effets</a></li>
           <li><a href="https://fr.react.dev/learn/you-might-not-need-an-effect">Vous n’avez pas forcément besoin d’un Effet</a></li>
           <li><a href="https://fr.react.dev/learn/removing-effect-dependencies">Alléger les dépendances des Effets</a></li>
+          <li><a href="https://fr.react.dev/reference/react/">Référence</a> (accueil chapitre)</li>
           <li><a href="https://fr.react.dev/reference/react/use"><code>use</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useCallback"><code>useCallback</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useEffect"><code>useEffect</code></a></li>
@@ -89,6 +90,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react/useInsertionEffect"><code>useInsertionEffect</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useLayoutEffect"><code>useLayoutEffect</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useMemo"><code>useMemo</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react/useOptimistic"><code>useOptimistic</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useRef"><code>useRef</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useSyncExternalStore"><code>useSyncExternalStore</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/useTransition"><code>useTransition</code></a></li>
@@ -103,8 +105,11 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react/use-client"><code>'use client'</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/use-server"><code>'use server'</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/hooks">react-dom : Hooks</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/reference/react-dom/hooks/useFormState"><code>useFormState</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/hooks/useFormStatus"><code>useFormStatus</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/components">react-dom : Composants</a> (accueil chapitre)</li>
+          <li><a href="https://fr.react.dev/reference/react-dom/components/form"><code>&lt;form&gt;</code></a></li>
+          <li><a href="https://fr.react.dev/reference/react-dom/components/progress"><code>&lt;progress&gt;</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/components/select"><code>&lt;select&gt;</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom">API React DOM intégrées</a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/flushSync"><code>flushSync</code></a></li>
