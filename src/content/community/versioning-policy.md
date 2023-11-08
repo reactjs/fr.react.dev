@@ -4,162 +4,163 @@ title: Politique de versions
 
 <Intro>
 
-All stable builds of React go through a high level of testing and follow semantic versioning (semver). React also offers unstable release channels to encourage early feedback on experimental features. This page describes what you can expect from React releases.
+Toutes les versions stables de React sont soumises à un niveau élevé de tests et utilisent un versionnement sémantique (*semver*). React propose également des canaux de publication de versions instables pour encourager les retours d'expérience sur des fonctionnalités expérimentales. Cette page décrit ce que vous pouvez attendre des différentes versions de React.
 
 </Intro>
 
-## Stable releases {/*stable-releases*/}
+## Versions stables {/*stable-releases*/}
 
-Stable React releases (also known as "Latest" release channel) follow [semantic versioning (semver)](https://semver.org/) principles.
+Les versions stables de React (fournies par le canal de distribution *“Latest”*) suivent les principes du [versionnement sémantique (*semver*)](https://semver.org/lang/fr/).
 
-That means that with a version number **x.y.z**:
+Ainsi, pour un numéro de version **x.y.z**, ça signifie que :
 
-* When releasing **critical bug fixes**, we make a **patch release** by changing the **z** number (ex: 15.6.2 to 15.6.3).
-* When releasing **new features** or **non-critical fixes**, we make a **minor release** by changing the **y** number (ex: 15.6.2 to 15.7.0).
-* When releasing **breaking changes**, we make a **major release** by changing the **x** number (ex: 15.6.2 to 16.0.0).
+* lorsque nous publions des **correctifs de bugs critiques**, nous faisons une **livraison de correctifs** en changeant le numéro **z** (par exemple de 15.6.2 à 15.6.3).
+* lorsque nous publions de **nouvelles fonctionnalités** ou **des correctifs non critiques**, nous faisons une **livraison mineure** en changeant le numéro **y** (par exemple de 15.6.2 à 15.7.0).
+* lorsque nous publions des **ruptures de compatibilité ascendante**, nous faisons une **livraison majeure** en changeant le numéro **x** (par exemple de 15.6.2 à 16.0.0).
 
-Major releases can also contain new features, and any release can include bug fixes.
+Les livraisons majeures peuvent également intégrer de nouvelles fonctionnalités, et les correctifs peuvent être intégrés dans n'importe quelle livraison.
 
-Minor releases are the most common type of release.
+Les livraisons mineures sont les plus fréquentes.
 
-### Breaking Changes {/*breaking-changes*/}
+### Ruptures de compatibilité ascendante {/*breaking-changes*/}
 
-Breaking changes are inconvenient for everyone, so we try to minimize the number of major releases – for example, React 15 was released in April 2016 and React 16 was released in September 2017, and React 17 was released in October 2020.
+Les ruptures de compatibilité ascendante sont gênantes pour tout le monde, aussi nous essayons de limiter le nombre de livraisons majeures — par exemple, React 15 a été publié en avril 2016, React 16 en septembre 2017 et React 17 en octobre 2020.
 
-Instead, we release new features in minor versions. That means that minor releases are often more interesting and compelling than majors, despite their unassuming name.
+Au lieu de ça, nous livrons de nouvelles fonctionnalités dans des versions mineures. Ça signifie que les livraisons mineures sont généralement plus intéressantes et engageantes que les versions majeures, malgré un nom somme toute modeste.
 
-### Commitment to stability {/*commitment-to-stability*/}
+### Engagement en faveur de la stabilité {/*commitment-to-stability*/}
 
-As we change React over time, we try to minimize the effort required to take advantage of new features. When possible, we'll keep an older API working, even if that means putting it in a separate package. For example, [mixins have been discouraged for years](https://legacy.reactjs.org/blog/2016/07/13/mixins-considered-harmful.html) but they're supported to this day [via create-react-class](https://legacy.reactjs.org/docs/react-without-es6.html#mixins) and many codebases continue to use them in stable, legacy code.
+Au fur et à mesure de l'évolution de React, nous essayons de réduire les efforts nécessaires pour bénéficier des nouvelles fonctionnalités. Lorsque c'est possible, nous conservons une API plus ancienne, même s'il faut pour ça la déplacer dans un module distinct. Ainsi, les [*mixins* sont déconseillés depuis des années](https://legacy.reactjs.org/blog/2016/07/13/mixins-considered-harmful.html) mais ils sont encore pris en charge aujourd'hui [au travers de `create-react-class`](https://legacy.reactjs.org/docs/react-without-es6.html#mixins) et de nombreuses bases de code continuent à les utiliser dans du code stable historique.
 
-Over a million developers use React, collectively maintaining millions of components. The Facebook codebase alone has over 50,000 React components. That means we need to make it as easy as possible to upgrade to new versions of React; if we make large changes without a migration path, people will be stuck on old versions. We test these upgrade paths on Facebook itself – if our team of less than 10 people can update 50,000+ components alone, we hope the upgrade will be manageable for anyone using React. In many cases, we write [automated scripts](https://github.com/reactjs/react-codemod) to upgrade component syntax, which we then include in the open-source release for everyone to use.
+Plus d'un million de développeurs utilisent React et maintiennent collectivement des millions de composants. La base de code de Facebook compte à elle seule plus de 50 000 composants React. Ça signifie que nous devons faciliter au maximum la mise à niveau vers les nouvelles versions de React ; si nous faisons de nombreux changements sans proposer un chemin de migration, les gens resteront bloqués sur d'anciennes versions. Nous testons ces chemins de migration directement sur Facebook — si notre équipe de moins de dix personnes peut mettre à jour à elle seule plus de 50 000 composants, nous espérons que ces mises à jour seront gérables par quiconque utilise React. Dans de nombreux cas, nous écrivons des [scripts automatisés](https://github.com/reactjs/react-codemod) pour mettre à jour la syntaxe des composants, que nous intégrons ensuite dans la version open-source afin que tout le monde puisse en bénéficier.
 
-### Gradual upgrades via warnings {/*gradual-upgrades-via-warnings*/}
+### Mises à jour progressives grâce aux avertissements {/*gradual-upgrades-via-warnings*/}
 
-Development builds of React include many helpful warnings. Whenever possible, we add warnings in preparation for future breaking changes. That way, if your app has no warnings on the latest release, it will be compatible with the next major release. This allows you to upgrade your apps one component at a time.
+Les versions de développement de React incluent de nombreux avertissements utiles. Dans la mesure du possible, nous ajoutons des avertissements pour les ruptures de compatibilité ascendante à venir. De cette façon, si votre appli n'a aucun avertissement avec la dernière version, alors elle sera compatible avec la prochaine version majeure. Ça vous permet de mettre à jour votre appli un composant à la fois.
 
-Development warnings won't affect the runtime behavior of your app. That way, you can feel confident that your app will behave the same way between the development and production builds -- the only differences are that the production build won't log the warnings and that it is more efficient. (If you ever notice otherwise, please file an issue.)
+Les avertissements de développement n'affectent pas le comportement de votre appli pendant son exécution. Ainsi, vous pouvez être sûr·e que votre appli se comportera de la même façon entre les *builds* de développement et de production — à ceci près que le *build* de production n'affichera pas les avertissements et qu'il sera plus performant (si vous constatez le contraire, merci de nous créer un ticket).
 
-### What counts as a breaking change? {/*what-counts-as-a-breaking-change*/}
+### Qu'est-ce qui constitue une rupture de compatibilité ascendante ? {/*what-counts-as-a-breaking-change*/}
 
-In general, we *don't* bump the major version number for changes to:
+En général, nous *ne changeons pas* le numéro de version majeure pour les raisons suivantes :
 
-* **Development warnings.** Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions. In fact, this is what allows us to reliably warn about upcoming breaking changes.
-* **APIs starting with `unstable_`.** These are provided as experimental features whose APIs we are not yet confident in. By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner.
-* **Alpha and canary versions of React.** We provide alpha versions of React as a way to test new features early, but we need the flexibility to make changes based on what we learn in the alpha period. If you use these versions, note that APIs may change before the stable release.
-* **Undocumented APIs and internal data structures.** If you access internal property names like `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` or `__reactInternalInstance$uk43rzhitjg`, there is no warranty.  You are on your own.
+* **Les avertissements de développement.** Puisqu'ils n'affectent pas le comportement de production, nous pouvons ajouter de nouveaux avertissements ou en modifier des existants entre deux versions majeures. C'est justement ce qui nous permet de communiquer de manière fiable sur les prochaines ruptures de compatibilité ascendante.
+* **Les API commençant par `unstable_`.** Il s'agit de fonctionnalités expérimentales dont les API ne sont pas encore stabilisées. En les livrant avec le préfixe `unstable_`, nous pouvons itérer plus rapidement et obtenir une API stable plus vite.
+* **Les versions Alpha et Canary de React.** Nous fournissons des versions alpha de React pour tester les nouvelles fonctionnalités en amont, mais nous avons besoin de la flexibilité nécessaire pour apporter les changements en fonction de ce que nous apprenons durant cette période. Si vous utilisez ces versions, n'oubliez pas que ces API peuvent changer avant la sortie de la version stable.
+* **Les API non documentées et les structures de données internes.** Il n'y a aucune garantie si vous utilisez des proriétés internes telle que `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` ou `__reactInternalInstance$uk43rzhitjg`. C'est à vos risques et périls.
 
-This policy is designed to be pragmatic: certainly, we don't want to cause headaches for you. If we bumped the major version for all of these changes, we would end up releasing more major versions and ultimately causing more versioning pain for the community. It would also mean that we can't make progress in improving React as fast as we'd like.
+Cette politique se veut pragmatique : il ne s'agit évidemment pas de vous donner la migraine. Si nous changions de version majeure pour toutes ces raisons, nous finirions par publier plus de versions majeures et par conséquent nous causerions de nombreux problèmes de versions à la communauté. Ça signifierait également que nous ne pourrions pas améliorer React aussi vite que nous le voudrions.
 
-That said, if we expect that a change on this list will cause broad problems in the community, we will still do our best to provide a gradual migration path.
+Ceci étant dit, si nous anticipons qu'un changement dans cette liste causera de nombreux problèmes à la communauté, nous ferons tout notre possible pour proposer des chemins de migration progressifs.
 
-### If a minor release includes no new features, why isn't it a patch? {/*if-a-minor-release-includes-no-new-features-why-isnt-it-a-patch*/}
+### Une version mineure sans nouvelles fonctionnalités ne devrait-elle pas être un correctif ? {/*if-a-minor-release-includes-no-new-features-why-isnt-it-a-patch*/}
 
-It's possible that a minor release will not include new features. [This is allowed by semver](https://semver.org/#spec-item-7), which states **"[a minor version] MAY be incremented if substantial new functionality or improvements are introduced within the private code. It MAY include patch level changes."**
+Il est possible qu'une livraison mineure n'inclue pas de nouvelles fonctionnalités. Le [*semver* l'autorise](https://semver.org/lang/fr/#spec-item-7) en stipulant notamment que **« [le numéro de version mineure] PEUT être incrémenté si de nouvelles fonctionnalités ou des améliorations substantielles sont introduites dans le code privé. Elle PEUT inclure dans le même temps des correctifs. »**
 
-However, it does raise the question of why these releases aren't versioned as patches instead.
+Ça n'explique cependant pas pourquoi ces livraisons ne sont pas considérées comme des versions de correctif.
 
-The answer is that any change to React (or other software) carries some risk of breaking in unexpected ways. Imagine a scenario where a patch release that fixes one bug accidentally introduces a different bug. This would not only be disruptive to developers, but also harm their confidence in future patch releases. It's especially regrettable if the original fix is for a bug that is rarely encountered in practice.
+La réponse tient à ce que toute modification apportée à React (comme pour tout logiciel) comporte des risques de rupture inattendue. Imaginez un scénario où une livraison de correctifs qui corrige un bug en introduit accidentellement un nouveau. Ce serait non seulement perturbant pour les développeurs, mais ça entamerait également leur confiance dans les prochaines versions de correctifs. C'est d'autant plus regrettable si le correctif d'origine concerne un bug rarement rencontré dans la pratique.
 
-We have a pretty good track record for keeping React releases free of bugs, but patch releases have an even higher bar for reliability because most developers assume they can be adopted without adverse consequences.
+Nous avons plutôt de bons antécédents en ce qui concerne l'absence de bugs dans les livraisons de React, mais les livraisons de correctifs ont un niveau de fiabilité encore plus élevé car la plupart des développeurs considèrent qu'ils peuvent les adopter sans risques.
 
-For these reasons, we reserve patch releases only for the most critical bugs and security vulnerabilities.
+Voilà pourquoi nous réservons les livraisons de correctifs aux bugs et aux vulnérabilités les plus critiques.
 
-If a release includes non-essential changes — such as internal refactors, changes to implementation details, performance improvements, or minor bugfixes — we will bump the minor version even when there are no new features.
+Si une livraison inclut des changements non essentiels — tels que des réécritures internes, des changements de détails d'implémentation, des améliorations de performances ou des correctifs de bugs mineurs — nous passerons alors sur une version mineure même s'il n'y a pas de nouvelles fonctionnalités.
 
-## All release channels {/*all-release-channels*/}
+## Tous les canaux de livraison {/*all-release-channels*/}
 
-React relies on a thriving open source community to file bug reports, open pull requests, and [submit RFCs](https://github.com/reactjs/rfcs). To encourage feedback we sometimes share special builds of React that include unreleased features.
+React s'appuie sur une communauté open-source enthousiaste pour signaler les bugs, ouvrir des *Pull Requests* et [soumettre des RFC](https://github.com/reactjs/rfcs) *(Request for Comments, documents décrivant les spécifications techniques d'évolution, NdT)*. Pour encourager les retours de la communauté, nous partageons parfois des versions spéciales de React qui incluent des fonctionnalités qui n'ont pas encore été livrées.
 
 <Note>
 
-This section will be most relevant to developers who work on frameworks, libraries, or developer tooling. Developers who use React primarily to build user-facing applications should not need to worry about our prerelease channels.
+Cette section s'adresse surtout aux développeurs·ses qui travaillent sur des frameworks, des bibliothèques ou des outils de développement. Les personnes qui utilisent React essentiellement pour construire des applications destinées aux utilisateurs finaux ne devraient pas avoir à se préoccuper de nos canaux de pré-version.
 
 </Note>
 
-Each of React's release channels is designed for a distinct use case:
+Chaque canal de livraison de React est conçu pour un cas d'utilisation précis :
 
-- [**Latest**](#latest-channel) is for stable, semver React releases. It's what you get when you install React from npm. This is the channel you're already using today. **User-facing applications that consume React directly use this channel.**
-- [**Canary**](#canary-channel) tracks the main branch of the React source code repository. Think of these as release candidates for the next semver release. **[Frameworks or other curated setups may choose to use this channel with a pinned version of React.](/blog/2023/05/03/react-canaries) You can also Canaries for integration testing between React and third party projects.**
-- [**Experimental**](#experimental-channel) includes experimental APIs and features that aren't available in the stable releases. These also track the main branch, but with additional feature flags turned on. Use this to try out upcoming features before they are released.
+- [**Latest**](#latest-channel) est dédié aux versions stables de React, basées sur *semver*. C'est ce que vous récupérez lorsque vous installez React avec npm. C'est le canal que vous utilisez déjà aujourd'hui. **Les applications basées sur React et destinées aux utilisateurs finaux utilisent ce canal**.
+- [**Canary**](#canary-channel) suit la branche principale du dépôt du code source de React. Voyez-les comme des versions candidates pour la prochaine version *semver*. **[Les frameworks et autres environnements choisis peuvent décider d'utiliser ce canal avec une version épinglée de React](/blog/2023/05/03/react-canaries). Vous pouvez aussi utiliser les versions Canary pour tester l'intégration de React avec des projets tiers.**
+- [**Expérimental**](#experimental-channel) inclut les API et fonctionnalités expérimentales qui ne sont pas disponibles dans les versions stables. Il suit lui aussi la branche principale, mais avec certains drapeaux de fonctionnalités supplémentaires activés. Vous pouvez l'utiliser pour tester en amont les prochaines fonctionnalités avant qu'elles ne soient livrées.
 
-All releases are published to npm, but only Latest uses semantic versioning. Prereleases (those in the Canary and Experimental channels) have versions generated from a hash of their contents and the commit date, e.g. `18.3.0-canary-388686f29-20230503` for Canary and `0.0.0-experimental-388686f29-20230503` for Experimental.
+Toutes ces livraisons sont publiées sur npm, mais seules les *Latest* utilisent le versionnement sémantique. Les pré-versions (celles des canaux Canary et Expérimental) ont des versions générées à partir d'une empreinte de leur contenu et de la date du commit, par exemple `18.3.0-canary-388686f29-20230503` pour Canary et `0.0.0-experimental-388686f29-20230503` pour Expérimental.
 
-**Both Latest and Canary channels are officially supported for user-facing applications, but with different expectations**:
+**Les canaux *Latest* et Canary sont tous deux officiellement pris en charge pour les applications à destination des utilisateurs, mais avec des attentes différentes :**
 
-* Latest releases follow the traditional semver model.
-* Canary releases [must be pinned](/blog/2023/05/03/react-canaries) and may include breaking changes. They exist for curated setups (like frameworks) that want to gradually release new React features and bugfixes on their own release schedule.
+* Les livraisons *Latest* suivent le modèle traditionnel *semver*.
+* Les livraisons Canary [doivent être épinglées](/blog/2023/05/03/react-canaries) et sont susceptibles d'inclure des ruptures de compatibilité ascendante. Elles existent pour faciliter la vie des environnements choisis (tels que les frameworks) qui veulent livrer progressivement de nouvelles fonctionnalités et des correctifs de React selon leur propre calendrier de publication.
 
-The Experimental releases are provided for testing purposes only, and we provide no guarantees that behavior won't change between releases. They do not follow the semver protocol that we use for releases from Latest.
+Les versions Expérimentales sont uniquement proposées à des fins de tests, et nous ne garantissons pas que leurs comportements ne changeront pas entre les versions. Elles ne suivent pas le protocole établi par *semver*, contrairement aux *Latest*.
 
-By publishing prereleases to the same registry that we use for stable releases, we are able to take advantage of the many tools that support the npm workflow, like [unpkg](https://unpkg.com) and [CodeSandbox](https://codesandbox.io).
+En publiant les pré-versions sur le même référentiel (à savoir npm) que celui que nous utilisons pour les livraisons stables, nous tirons profit des nombreux outils qui prennent en charge un workflow basé sur npm, tels que [unpkg](https://unpkg.com) ou [CodeSandbox](https://codesandbox.io).
 
-### Latest channel {/*latest-channel*/}
+### Canal *Latest* {/*latest-channel*/}
 
-Latest is the channel used for stable React releases. It corresponds to the `latest` tag on npm. It is the recommended channel for all React apps that are shipped to real users.
+Le canal *Latest* est utilisé pour les livraisons stables de React. Il correspond à l'étiquette `latest` de npm. C'est le canal recommandé pour toutes les applis React qui sont déployées auprès de véritables utilisateurs.
 
-**If you're not sure which channel you should use, it's Latest.** If you're using React directly, this is what you're already using. You can expect updates to Latest to be extremely stable. Versions follow the semantic versioning scheme, as [described earlier.](#stable-releases)
+**Si vous ne savez pas exactement quel canal utiliser, utilisez *Latest*.** Si vous utilisez React directement, c'est ce que vous utilisez déjà. Vous pouvez vous attendre à ce que les mises à jour de *Latest* soient extrêmement stables. Ces versions respectent le versionnement sémantique, comme [décrit précédemment](#stable-releases).
 
-### Canary channel {/*canary-channel*/}
+### Canal Canary {/*canary-channel*/}
 
-The Canary channel is a prerelease channel that tracks the main branch of the React repository. We use prereleases in the Canary channel as release candidates for the Latest channel. You can think of Canary as a superset of Latest that is updated more frequently.
+Le canal Canary est le canal pour les pré-versions qui suit la branche principale du dépôt de React. Nous utilisons des pré-versions dans le canal Canary comme candidates pour des versions du canal *Latest*. Vous pouvez voir les versions Canary comme un sur-ensemble de *Latest* qui est mis à jour plus fréquemment.
 
-The degree of change between the most recent Canary release and the most recent Latest release is approximately the same as you would find between two minor semver releases. However, **the Canary channel does not conform to semantic versioning.** You should expect occasional breaking changes between successive releases in the Canary channel.
+Le degré de changement entre la version Canary la plus récente et la version *Latest* la plus récente est à peu près le même que celui que vous pourriez retrouver entre deux versions mineures en *semver*. Cependant, **le canal Canary ne respecte pas le versionnement sémantique**. Vous devez vous attendre à des ruptures occasionnelles de compatibilité ascendante entre les versions successives du canal Canary.
 
-**Do not use prereleases in user-facing applications directly unless you're following the [Canary workflow](/blog/2023/05/03/react-canaries).**
+**N'utilisez pas les pré-versions dans les applications à destination des utilisateurs, à moins de suivre le [workflow Canary](/blog/2023/05/03/react-canaries)**.
 
-Releases in Canary are published with the `canary` tag on npm. Versions are generated from a hash of the build's contents and the commit date, e.g. `18.3.0-canary-388686f29-20230503`.
+Les livraisons Canary sont publiées sur npm avec l'étiquette `canary`. Les numéros de version sont générés à partir d'une empreinte du contenu du *build* et de la date du commit, par exemple `18.3.0-canary-388686f29-20230503`.
 
-#### Using the canary channel for integration testing {/*using-the-canary-channel-for-integration-testing*/}
+#### Utiliser le canal Canary pour les tests d'intégration {/*using-the-canary-channel-for-integration-testing*/}
 
-The Canary channel also supports integration testing between React and other projects.
+Le canal Canary permet également les tests d'intégration entre React et d'autres projets.
 
-All changes to React go through extensive internal testing before they are released to the public. However, there are a myriad of environments and configurations used throughout the React ecosystem, and it's not possible for us to test against every single one.
+Toutes les modifications apportés à React font l'objet de nombreux tests internes avant d'être rendues publiques. Il existe toutefois une myriade d'environnements et de configurations utilisés dans l'écosystème React, et il nous est impossible de tous les tester.
 
-If you're the author of a third party React framework, library, developer tool, or similar infrastructure-type project, you can help us keep React stable for your users and the entire React community by periodically running your test suite against the most recent changes. If you're interested, follow these steps:
+Si vous êtes l'auteur·e d'un framework React tiers, d'une bibliothèque, d'un outil de développement ou d'un projet d'infrastructure similaire, vous pouvez nous aider à maintenir la stabilité de React pour vos utilisateurs et pour toute la communauté React en exécutant périodiquement vos tests avec les changements les plus récents. Si vous êtes intéressé·e, suivez ces étapes :
 
-- Set up a cron job using your preferred continuous integration platform. Cron jobs are supported by both [CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) and [Travis CI](https://docs.travis-ci.com/user/cron-jobs/).
-- In the cron job, update your React packages to the most recent React release in the Canary channel, using `canary` tag on npm. Using the npm cli:
+- Définissez une tâche périodique en utilisant votre plateforme d'intégration continue favorie. Ces tâches sont prises en charge par [CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) et [Travis CI](https://docs.travis-ci.com/user/cron-jobs/).
+- Dans la tâche périodique, mettez à jour vos paquets React avec la version Canary de React la plus récente, en utilisant l'étiquette `canary` de npm. Avec la ligne de commandes npm :
 
   ```console
   npm update react@canary react-dom@canary
   ```
 
-  Or yarn:
+  Ou celle de yarn :
 
   ```console
   yarn upgrade react@canary react-dom@canary
   ```
-- Run your test suite against the updated packages.
-- If everything passes, great! You can expect that your project will work with the next minor React release.
-- If something breaks unexpectedly, please let us know by [filing an issue](https://github.com/facebook/react/issues).
 
-A project that uses this workflow is Next.js. You can refer to their [CircleCI configuration](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml) as an example.
+- Exécutez vos tests avec ces modules mis à jour.
+- Si tout va bien, c'est parfait ! Vous pouvez vous attendre à ce que votre projet fonctionne avec la prochaine version mineure de React.
+- Si quelque chose casse de manière inattendue, veuillez nous en informer en [créant un ticket](https://github.com/facebook/react/issues).
 
-### Experimental channel {/*experimental-channel*/}
+Nest.js est un projet utilisant un tel workflow. Vous pouvez vous inspirez de leur [configuration CircleCI](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml).
 
-Like Canary, the Experimental channel is a prerelease channel that tracks the main branch of the React repository. Unlike Canary, Experimental releases include additional features and APIs that are not ready for wider release.
+### Canal Expérimental {/*experimental-channel*/}
 
-Usually, an update to Canary is accompanied by a corresponding update to Experimental. They are based on the same source revision, but are built using a different set of feature flags.
+Tout comme le canal Canary, le canal Expérimental est un canal de pré-version qui suit la branche principale du dépôt de React. Contrairement aux versions Canary, celles du canal Expérimental incluent des fonctionnalités et des API supplémentaires qui ne sont pas encore prêtes pour une diffusion plus large.
 
-Experimental releases may be significantly different than releases to Canary and Latest. **Do not use Experimental releases in user-facing applications.** You should expect frequent breaking changes between releases in the Experimental channel.
+Habituellement, une mise à jour de Canary est accompagnée d'une mise à jour correspondante sur le canal Expérimental. Elles sont basées sur la même révision du code source, mais sont construites en activant un ensemble différent de drapeaux de fonctionnalités.
 
-Releases in Experimental are published with the `experimental` tag on npm. Versions are generated from a hash of the build's contents and the commit date, e.g. `0.0.0-experimental-68053d940-20210623`.
+Les versions Expérimentales peuvent être significativement différentes des Canary ou *Latest*. **N'utilisez pas les versions Expérimentales dans les applications destinées aux utilisateurs**. Vous devez vous attendre à des ruptures fréquentes de compatibilité ascendante entre les versions du canal Expérimental.
 
-#### What goes into an experimental release? {/*what-goes-into-an-experimental-release*/}
+Les versions Expérimentales sont publiées avec l'étiquette `experimental` sur npm. Les numéros de version sont générés à partir d'une empreinte du contenu du *build* et de la date du commit, par exemple `0.0.0-experimental-68053d940-20210623`.
 
-Experimental features are ones that are not ready to be released to the wider public, and may change drastically before they are finalized. Some experiments may never be finalized -- the reason we have experiments is to test the viability of proposed changes.
+#### Que contient une livraison Expérimentale ? {/*what-goes-into-an-experimental-release*/}
 
-For example, if the Experimental channel had existed when we announced Hooks, we would have released Hooks to the Experimental channel weeks before they were available in Latest.
+Les fonctionnalités Expérimentales sont celles qui ne sont pas encore prêtes à être diffusées à un large public, et peuvent changer radicalement avant d'être finalisées. Certaines expériences peuvent d'ailleurs ne jamais aboutir — nous expérimentons justement pour tester la viabilité des changements proposés.
 
-You may find it valuable to run integration tests against Experimental. This is up to you. However, be advised that Experimental is even less stable than Canary. **We do not guarantee any stability between Experimental releases.**
+Par exemple, si le canal Expérimental avait existé quand nous avons annoncé les Hooks, nous les aurions publiés sur le canal Expérimental des semaines avant qu'ils ne soient disponibles en *Latest*.
 
-#### How can I learn more about experimental features? {/*how-can-i-learn-more-about-experimental-features*/}
+Vous pouvez juger utile de lancer des tests d'intégration avec des versions Expérimentales. C'est à vous de voir. Cependant, sachez que les versions Expérimentales sont encore moins stables que les Canary. **Nous ne garantissons pas la stabilité entre les versions expérimentales.**
 
-Experimental features may or may not be documented. Usually, experiments aren't documented until they are close to shipping in Canary or Latest.
+#### Comment en savoir plus sur les fonctionnalités expérimentales ? {/*how-can-i-learn-more-about-experimental-features*/}
 
-If a feature is not documented, they may be accompanied by an [RFC](https://github.com/reactjs/rfcs).
+Les fonctionnalités expérimentales ne sont pas toujours documentées. Habituellement, les expériences ne sont pas documentées tant qu'elle ne sont pas sur le point d'être intégrées dans Canary ou *Latest*.
 
-We will post to the [React blog](/blog) when we're ready to announce new experiments, but that doesn't mean we will publicize every experiment.
+Quand bien même une fonctionnalité ne serait pas documentée, elle peut en revanche faire l'objet d'une [RFC](https://github.com/reactjs/rfcs) *(Request for Comments, NdT)*.
 
-You can always refer to our public GitHub repository's [history](https://github.com/facebook/react/commits/main) for a comprehensive list of changes.
+Dès que nous sommes prêts à annoncer de nouvelles expérimentations, nous publions un article sur le [blog React](/blog), mais ça ne signifie pas que nous parlerons publiquement de toutes nos expérimentations.
+
+Vous avez toujours la possibilité de vous référer à l'[historique](https://github.com/facebook/react/commits/main) de notre dépôt Github public pour une liste complète des changements.
