@@ -55,7 +55,7 @@ Ceci étant dit, si nous anticipons qu'un changement dans cette liste causera de
 
 ### Une version mineure sans nouvelles fonctionnalités ne devrait-elle pas être un correctif ? {/*if-a-minor-release-includes-no-new-features-why-isnt-it-a-patch*/}
 
-Il est possible qu'une livraison mineure n'inclue pas de nouvelles fonctionnalités. Le [*semver* l'autorise](https://semver.org/lang/fr/#spec-item-7) en stipulant que **« [le numéro de version mineure] PEUT être incrémenté si de nouvelles fonctionnalités ou des améliorations substantielles sont introduites dans le code privé. Elle PEUT inclure dans le même temps des correctifs. »**
+Il est possible qu'une livraison mineure n'inclue pas de nouvelles fonctionnalités. Le [*semver* l'autorise](https://semver.org/lang/fr/#spec-item-7) en stipulant notamment que **« [le numéro de version mineure] PEUT être incrémenté si de nouvelles fonctionnalités ou des améliorations substantielles sont introduites dans le code privé. Elle PEUT inclure dans le même temps des correctifs. »**
 
 Ça n'explique cependant pas pourquoi ces livraisons ne sont pas considérées comme des versions de correctif.
 
@@ -63,7 +63,7 @@ La réponse tient à ce que toute modification apportée à React (comme pour to
 
 Nous avons plutôt de bons antécédents en ce qui concerne l'absence de bugs dans les livraisons de React, mais les livraisons de correctifs ont un niveau de fiabilité encore plus élevé car la plupart des développeurs considèrent qu'ils peuvent les adopter sans risques.
 
-Voilà pourquoi nous réservons les livraisons de correctifs aux bugs et aux vulnérabilités les plus critiques. 
+Voilà pourquoi nous réservons les livraisons de correctifs aux bugs et aux vulnérabilités les plus critiques.
 
 Si une livraison inclut des changements non essentiels — tels que des réécritures internes, des changements de détails d'implémentation, des améliorations de performances ou des correctifs de bugs mineurs — nous passerons alors sur une version mineure même s'il n'y a pas de nouvelles fonctionnalités.
 
@@ -81,18 +81,18 @@ Chaque canal de livraison de React est conçu pour un cas d'utilisation précis�
 
 - [**Latest**](#latest-channel) est dédié aux versions stables de React, basées sur *semver*. C'est ce que vous récupérez lorsque vous installez React avec npm. C'est le canal que vous utilisez déjà aujourd'hui. **Les applications basées sur React et destinées aux utilisateurs finaux utilisent ce canal**.
 - [**Canary**](#canary-channel) suit la branche principale du dépôt du code source de React. Voyez-les comme des versions candidates pour la prochaine version *semver*. **[Les frameworks et autres environnements choisis peuvent décider d'utiliser ce canal avec une version épinglée de React](/blog/2023/05/03/react-canaries). Vous pouvez aussi utiliser les versions Canary pour tester l'intégration de React avec des projets tiers.**
-- [**Expérimental**](#experimental-channel) inclut les API et fonctionnalités expérimentales qui ne sont pas disponibles dans les versions stables. Il suit aussi la branche principale, mais avec certains drapeaux de fonctionnalités supplémentaires activés. Vous pouvez l'utiliser pour tester en amont les prochaines fonctionnalités avant qu'elles ne soient livrées.
+- [**Expérimental**](#experimental-channel) inclut les API et fonctionnalités expérimentales qui ne sont pas disponibles dans les versions stables. Il suit lui aussi la branche principale, mais avec certains drapeaux de fonctionnalités supplémentaires activés. Vous pouvez l'utiliser pour tester en amont les prochaines fonctionnalités avant qu'elles ne soient livrées.
 
 Toutes ces livraisons sont publiées sur npm, mais seules les *Latest* utilisent le versionnement sémantique. Les pré-versions (celles des canaux Canary et Expérimental) ont des versions générées à partir d'une empreinte de leur contenu et de la date du commit, par exemple `18.3.0-canary-388686f29-20230503` pour Canary et `0.0.0-experimental-388686f29-20230503` pour Expérimental.
 
 **Les canaux *Latest* et Canary sont tous deux officiellement pris en charge pour les applications à destination des utilisateurs, mais avec des attentes différentes :**
 
 * Les livraisons *Latest* suivent le modèle traditionnel *semver*.
-* Les livraisons Canary [doivent être épinglées](/blog/2023/05/03/react-canaries) et sont susceptibles d'inclure des ruptures de compatibilité ascendante. Elles existent pour des environnements choisis (tels que les frameworks) qui veulent livrer progressivement de nouvelles fonctionnalités et des correctifs de React selon leur propre calendrier de publication.
+* Les livraisons Canary [doivent être épinglées](/blog/2023/05/03/react-canaries) et sont susceptibles d'inclure des ruptures de compatibilité ascendante. Elles existent pour faciliter la vie des environnements choisis (tels que les frameworks) qui veulent livrer progressivement de nouvelles fonctionnalités et des correctifs de React selon leur propre calendrier de publication.
 
 Les versions Expérimentales sont uniquement proposées à des fins de tests, et nous ne garantissons pas que leurs comportements ne changeront pas entre les versions. Elles ne suivent pas le protocole établi par *semver*, contrairement aux *Latest*.
 
-En publiant les pré-versions sur le même référentiel que celui que nous utilisons pour les livraisons stables, nous tirons profit des nombreux outils qui prennent en charge un workflow basé sur npm, tels que [unpkg](https://unpkg.com) ou [CodeSandbox](https://codesandbox.io).
+En publiant les pré-versions sur le même référentiel (à savoir npm) que celui que nous utilisons pour les livraisons stables, nous tirons profit des nombreux outils qui prennent en charge un workflow basé sur npm, tels que [unpkg](https://unpkg.com) ou [CodeSandbox](https://codesandbox.io).
 
 ### Canal *Latest* {/*latest-channel*/}
 
@@ -104,7 +104,7 @@ Le canal *Latest* est utilisé pour les livraisons stables de React. Il correspo
 
 Le canal Canary est le canal pour les pré-versions qui suit la branche principale du dépôt de React. Nous utilisons des pré-versions dans le canal Canary comme candidates pour des versions du canal *Latest*. Vous pouvez voir les versions Canary comme un sur-ensemble de *Latest* qui est mis à jour plus fréquemment.
 
-Le degré de changement entre la version Canary la plus récente et la version *Latest* la plus récente est à peu près le même que celui que vous pourriez retrouver entre deux versions mineures en *semver*. Cependant, **le canal Canary ne respecte pas le versionnement sémantique**. Vous devez vous attendre à des ruptures occasionnelles de compatibilité ascendante entre les versions successives du canal Canary. 
+Le degré de changement entre la version Canary la plus récente et la version *Latest* la plus récente est à peu près le même que celui que vous pourriez retrouver entre deux versions mineures en *semver*. Cependant, **le canal Canary ne respecte pas le versionnement sémantique**. Vous devez vous attendre à des ruptures occasionnelles de compatibilité ascendante entre les versions successives du canal Canary.
 
 **N'utilisez pas les pré-versions dans les applications à destination des utilisateurs, à moins de suivre le [workflow Canary](/blog/2023/05/03/react-canaries)**.
 
@@ -149,7 +149,7 @@ Les versions Expérimentales sont publiées avec l'étiquette `experimental` sur
 
 #### Que contient une livraison Expérimentale ? {/*what-goes-into-an-experimental-release*/}
 
-Les fonctionnalités Expérimentales sont celles qui ne sont pas encore prêtes à être diffusées à un large public, et peuvent changer radicalement avant d'être finalisées. Certaines expériences peuvent ne jamais aboutir — nous expérimentons justement pour tester la viabilité des changements proposés.
+Les fonctionnalités Expérimentales sont celles qui ne sont pas encore prêtes à être diffusées à un large public, et peuvent changer radicalement avant d'être finalisées. Certaines expériences peuvent d'ailleurs ne jamais aboutir — nous expérimentons justement pour tester la viabilité des changements proposés.
 
 Par exemple, si le canal Expérimental avait existé quand nous avons annoncé les Hooks, nous les aurions publiés sur le canal Expérimental des semaines avant qu'ils ne soient disponibles en *Latest*.
 
@@ -159,8 +159,8 @@ Vous pouvez juger utile de lancer des tests d'intégration avec des versions Exp
 
 Les fonctionnalités expérimentales ne sont pas toujours documentées. Habituellement, les expériences ne sont pas documentées tant qu'elle ne sont pas sur le point d'être intégrées dans Canary ou *Latest*.
 
-Si une fonctionnalité n'est pas documentée, elle peut toutefois faire l'objet d'une [RFC](https://github.com/reactjs/rfcs) *(Request for Comments, NdT)*.
+Quand bien même une fonctionnalité ne serait pas documentée, elle peut en revanche faire l'objet d'une [RFC](https://github.com/reactjs/rfcs) *(Request for Comments, NdT)*.
 
 Dès que nous sommes prêts à annoncer de nouvelles expérimentations, nous publions un article sur le [blog React](/blog), mais ça ne signifie pas que nous parlerons publiquement de toutes nos expérimentations.
 
-Vous pouvez toujours vous référer à l'[historique](https://github.com/facebook/react/commits/main) de notre dépôt Github public pour une liste complète des changements.
+Vous avez toujours la possibilité de vous référer à l'[historique](https://github.com/facebook/react/commits/main) de notre dépôt Github public pour une liste complète des changements.
