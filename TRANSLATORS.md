@@ -251,6 +251,7 @@ Voici la liste par ordre alphabétique (prénom, nom). **🙏🏻 Mille mercis �
           <li><a href="https://fr.react.dev/reference/react/useReducer"><code>useReducer</code></a></li>
           <li><a href="https://fr.react.dev/reference/react/StrictMode"><code>&lt;StrictMode&gt;</code></a></li>
           <li><a href="https://fr.react.dev/reference/react-dom/components/common">Composants React-DOM communs</a></li>
+          <li><a href="https://fr.react.dev/community/versioning-policy">Politique de versions</a></li>
         </ul>
       </td>
     </tr>
