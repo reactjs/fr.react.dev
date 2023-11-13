@@ -48,18 +48,31 @@ En tant que dépendances de `RichTextEditor`, `formatDate` et `Button` seront é
 
 #### Limitations {/*caveats*/}
 
+<<<<<<< HEAD
 * `'use client'` doit être placé au tout début de la fonction ou du module concerné ; au-dessus notamment de tout code, y compris les imports (mais il peut y avoir des commentaires avant les directives).  La directive doit utiliser des apostrophes (`'`) ou guillemets (`"`), mais pas des *backticks* (<code>`</code>).
 * Lorsqu'un fichier `'use client'` est importé depuis un autre fichier côté client, la directive n'a aucun effet.
 * Lorsqu'un module de composant contient une directive `'use client'`, toute utilisation de ce composant produit de façon garantie un composant côté client. Ceci dit, un composant peut être évalué côté client même s'il n'utilise pas de directive `'use client'`.
   * L'utilisation d'un composant constitue un composant côté client si elle a lieu dans un module doté d'une directive `'use client'` ou si elle compte dans ses dépendances (directes ou indirectes) un module doté d'une directive `'use client'`.  Dans tous les autres cas, on considère que le composant est côté serveur.
 * Le code marqué comme exécutable côté client ne se limite pas aux composants. Tout code figurant dans l'arbre des dépendances d'un module côté client est envoyé vers le client pour y être exécuté.
 * Lorsqu'un module côté serveur importe les valeurs d'un module doté de la directive `'use client'`, les valeurs en question doivent être soit un composant React, soit une des [valeurs de prop sérialisables](#passing-props-from-server-to-client-components) prises en charge afin de pouvoir être passées au composant côté client par du code côté serveur. Tout autre cas de figure lève une exception.
+=======
+* `'use client'` must be at the very beginning of a file, above any imports or other code (comments are OK). They must be written with single or double quotes, but not backticks.
+* When a `'use client'` module is imported from another client-rendered module, the directive has no effect.
+* When a component module contains a `'use client'` directive, any usage of that component is guaranteed to be a Client Component. However, a component can still be evaluated on the client even if it does not have a `'use client'` directive.
+	* A component usage is considered a Client Component if it is defined in module with `'use client'` directive or when it is a transitive dependency of a module that contains a `'use client'` directive. Otherwise, it is a Server Component.
+* Code that is marked for client evaluation is not limited to components. All code that is a part of the Client module sub-tree is sent to and run by the client.
+* When a server evaluated module imports values from a `'use client'` module, the values must either be a React component or [supported serializable prop values](#passing-props-from-server-to-client-components) to be passed to a Client Component. Any other use case will throw an exception.
+>>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 ### Comment `'use client'` marque du code comme étant côté client {/*how-use-client-marks-client-code*/}
 
 Dans une appli React, les composants sont souvent répartis en plusieurs fichiers ou [modules](/learn/importing-and-exporting-components#exporting-and-importing-a-component).
 
+<<<<<<< HEAD
 Pour les applis ayant recours aux React Server Components, l'appli fait par défaut son rendu coté serveur. `'use client'` crée un « point de césure » entre les codes côté client et côté serveur au sein de [l'arbre de dépendances de modules](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree), produisant de fait une sous-arborescence de modules côté client.
+=======
+For apps that use React Server Components, the app is server-rendered by default. `'use client'` introduces a server-client boundary in the [module dependency tree](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree), effectively creating a subtree of Client modules.
+>>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 Afin de mieux illustrer cet aspect, considérons l'appli suivante basée sur les React Server Components.
 
@@ -146,7 +159,11 @@ export default [
 
 </Sandpack>
 
+<<<<<<< HEAD
 Dans l'arbre de dépendances de modules pour cette appli d'exemple, la directive `'use client'` dans `InspirationGenerator.js` marque ce module et toutes ses dépendances transitives comme des modules côté client.  La partie de l'arborescence qui démarre avec `InspirationGenerator.js` est désormais marquée comme des modules côté client.
+=======
+In the module dependency tree of this example app, the `'use client'` directive in `InspirationGenerator.js` marks that module and all of its transitive dependencies as Client modules. The subtree starting at `InspirationGenerator.js` is now marked as Client modules.
+>>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 <Diagram name="use_client_module_dependency" height={250} width={545} alt="Un graphe d’arborescence avec le nœud sommet représentant le module 'App.js'. 'App.js' a trois enfants : 'Copyright.js', 'FancyText.js' et 'InspirationGenerator.js'. 'InspirationGenerator.js' a deux enfants : 'FancyText.js' et 'inspirations.js'. Les nœuds à partir de 'InspirationGenerator.js' ont un arrière-plan jaune pour indiquer qu’il s’agit du sous-graphe exécuté côté client en raison de la directive 'use client' dans 'InspirationGenerator.js'.">
 
@@ -247,7 +264,13 @@ Avec `'use client'`, vous pouvez déterminer quand les composants sont des compo
 
 Par souci de simplicité, nous parlons ici des composants côté serveur, mais les mêmes principes s'appliquent à tout code de votre appli qui serait exécuté côté serveur.
 
+<<<<<<< HEAD
 #### Avantages des composants côté serveur {/*advantages*/}
+=======
+#### Advantages of Server Components {/*advantages*/}
+* Server Components can reduce the amount of code sent and run by the client. Only Client modules are bundled and evaluated by the client.
+* Server Components benefit from running on the server. They can access the local filesystem and may experience low latency for data fetches and network requests.
+>>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 * Les composants côté serveur aident à réduire la quantité de code envoyée et exécutée côté client. Seuls les modules client sont intégrés aux *bundles* et évalués côté client.
 * Les composants côté serveur tirent parti de leur exécution côté serveur : ils peuvent accéder à son système de fichiers local et bénéficient par ailleurs d'une faible latence pour leurs chargements de données et autres requêtes réseau.
@@ -261,7 +284,30 @@ Par souci de simplicité, nous parlons ici des composants côté serveur, mais l
 
 ### Types sérialisables renvoyés par les composants côté serveur {/*serializable-types*/}
 
+<<<<<<< HEAD
 Comme dans n'importe quelle appli React, les composants parents passent des données à leurs composants enfants.  Puisqu'ils sont ici rendus dans des environnements distincts, le passage de données d'un composant côté serveur à un composant côté client nécessite une attention particulière.
+=======
+Serializable props include:
+* Primitives
+	* [string](https://developer.mozilla.org/en-US/docs/Glossary/String)
+	* [number](https://developer.mozilla.org/en-US/docs/Glossary/Number)
+	* [bigint](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
+	* [boolean](https://developer.mozilla.org/en-US/docs/Glossary/Boolean)
+	* [undefined](https://developer.mozilla.org/en-US/docs/Glossary/Undefined)
+	* [null](https://developer.mozilla.org/en-US/docs/Glossary/Null)
+	* [symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol), only symbols registered in the global Symbol registry via [`Symbol.for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for)
+* Iterables containing serializable values
+	* [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+	* [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+	* [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+	* [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) and [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
+* [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+* Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
+* Functions that are [Server Actions](/reference/react/use-server)
+* Client or Server Component elements (JSX)
+* [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+>>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 Les valeurs de props passées à un composant côté client doivent être sérialisables.
 
@@ -321,7 +367,11 @@ export default function Counter({initialValue = 0}) {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Dans la mesure où `Counter` utilise aussi bien le Hook `useState` que des gestionnaires d'événements pour incrémenter et décrémenter la valeur, ce composant doit être un composant côté client et nécessitera donc une directive `'use client'` tout en haut de son fichier.
+=======
+As `Counter` requires both the `useState` Hook and event handlers to increment or decrement the value, this component must be a Client Component and will require a `'use client'` directive at the top.
+>>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 Par opposition, un composant qui fait le rendu d'une UI non interactive n'aura pas besoin d'être un composant côté client.
 

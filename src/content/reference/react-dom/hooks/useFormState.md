@@ -51,7 +51,11 @@ function StatefulForm({}) {
 
 L'état de formulaire est déterminé par la valeur renvoyée par l'action lors du dernier envoi en date du formulaire. Si le formulaire n'a pas encore été envoyé, il équivaut à l'état initial que vous avez fourni.
 
+<<<<<<< HEAD
 Lorsque vous l'utilisez dans une action serveur, `useFormState` permet d'afficher la réponse du serveur pour l'envoi du formulaire avant même que l'hydratation ne soit terminée.
+=======
+If used with a Server Action, `useFormState` allows the server's response from submitting the form to be shown even before hydration has completed.
+>>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 [Voir d'autres exemples plus bas](#usage).
 
@@ -117,7 +121,11 @@ function action(currentState, formData) {
 
 #### Afficher des erreurs de formulaire {/*display-form-errors*/}
 
+<<<<<<< HEAD
 Pour afficher des messages tels qu'un message d'erreur ou une notification renvoyés par une action serveur, enrobez l'action dans un appel à `useFormState`.
+=======
+To display messages such as an error message or toast that's returned by a Server Action, wrap the action in a call to `useFormState`.
+>>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 <Sandpack>
 
@@ -190,7 +198,11 @@ form button {
 
 #### Afficher des données structurées suite à l'envoi d'un formulaire {/*display-structured-information-after-submitting-a-form*/}
 
+<<<<<<< HEAD
 La valeur renvoyée par une action serveur peut être n'importe quelle valeur sérialisable. Il peut par exemple s'agir d'un objet avec un booléen indiquant si l'action a réussi, un message d'erreur, ou des informations mises à jour.
+=======
+The return value from a Server Action can be any serializable value. For example, it could be an object that includes a boolean indicating whether the action was successful, an error message, or updated information.
+>>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 <Sandpack>
 

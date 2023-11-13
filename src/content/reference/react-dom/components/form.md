@@ -92,11 +92,19 @@ export default function Search() {
 
 ### Gérer l'envoi de formulaire dans une action serveur {/*handle-form-submission-with-a-server-action*/}
 
+<<<<<<< HEAD
 Affichez un `<form>` avec un champ de saisie et un bouton d'envoi, puis passez-lui une action serveur (une fonction dotée de la directive [`'use server'`](/reference/react/use-server)) *via* sa prop `action` pour exécuter cette fonction quand le formulaire sera envoyé.
 
 Passer une action serveur à `<form action>` permet aux utilisateurs d'envoyer le formulaire même sans JavaScript activé, ou avant que le code JavaScript ne soit chargé et exécuté.  C'est bien pratique pour les utilisateurs ne disposant que d'une connexion ou d'un appareil lents, ou qui ont JavaScript désactivé.  C'est d'ailleurs un comportement similaire à celui des formulaires dont la prop `action` contient une URL.
 
 Vous pouvez utiliser des champs cachés pour fournir des données à l'action du `<form>`.  L'action serveur récupèrera ces données de champs cachés au moyen d'une instance de [`FormData`](https://developer.mozilla.org/fr/docs/Web/API/FormData).
+=======
+Render a `<form>` with an input and submit button. Pass a Server Action (a function marked with [`'use server'`](/reference/react/use-server)) to the `action` prop of form to run the function when the form is submitted.
+
+Passing a Server Action to `<form action>` allow users to submit forms without JavaScript enabled or before the code has loaded. This is beneficial to users who have a slow connection, device, or have JavaScript disabled and is similar to the way forms work when a URL is passed to the `action` prop.
+
+You can use hidden form fields to provide data to the `<form>`'s action. The Server Action will be called with the hidden form field data as an instance of [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+>>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 ```jsx
 import { updateCart } from './lib.js';
