@@ -143,12 +143,7 @@ Les mises à jour enrobées par `startTransition` sont traitées comme non urgen
 
 Les transitions activent le rendu concurrent, afin de permettre l'interruption des mises à jour. Si le contenu suspend à nouveau, les transitions diront à React de continuer à afficher le contenu existant tant que le rendu d'arrière-plan du contenu de transition est en cours (consultez la [RFC de Suspense](https://github.com/reactjs/rfcs/blob/main/text/0213-suspense-in-react-18.md) pour plus d'infos).
 
-<<<<<<< HEAD
 [En apprendre davantage sur les transitions](/reference/react/useTransition).
-=======
-* `useTransition`: a Hook to start transitions, including a value to track the pending state.
-* `startTransition`: a method to start transitions when the Hook cannot be used.
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 ### Nouvelles fonctionnalités de Suspense {/*new-suspense-features*/}
 
@@ -232,11 +227,7 @@ Avec le mode strict de React 18, React simule ensuite, en mode développement, l
 
 #### useId {/*useid*/}
 
-<<<<<<< HEAD
 `useId` est un nouveau Hook permettant de générer des identifiants uniques tant côté client que côté serveur, tout en évitant les écarts d'hydratation. Il est surtout utile pour les bibliothèques de composants s'intégrant avec des API d'accessibilité qui reposent sur des ID uniques.  Ça traite un besoin qui existait de longue date dans React, mais c'est d'autant plus important dans React 18 en raison de la façon dont le nouveau moteur de rendu streamé côté serveur peut livrer son HTML dans un ordre non linéaire. [Voir la documentation](/reference/react/useId).
-=======
-`useId` is a new Hook for generating unique IDs on both the client and server, while avoiding hydration mismatches. It is primarily useful for component libraries integrating with accessibility APIs that require unique IDs. This solves an issue that already exists in React 17 and below, but it's even more important in React 18 because of how the new streaming server renderer delivers HTML out-of-order. [See docs here](/reference/react/useId).
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 <Note>
 
@@ -254,11 +245,7 @@ Avec le mode strict de React 18, React simule ensuite, en mode développement, l
 
 #### useSyncExternalStore {/*usesyncexternalstore*/}
 
-<<<<<<< HEAD
 `useSyncExternalStore` est un nouveau Hook qui permet à des sources de données extérieures de prendre en charge des lectures concurrentes en forçant leurs mises à jour à être synchrones.  Il élimine le besoin de recourir à `useEffect` pour implémenter les abonnements à des sources de données extérieures, et il est recommandé pour toute bibliothèque qui s'intègre avec un état extérieur à React. [Voir la documentation](/reference/react/useSyncExternalStore).
-=======
-`useSyncExternalStore` is a new Hook that allows external stores to support concurrent reads by forcing updates to the store to be synchronous. It removes the need for useEffect when implementing subscriptions to external data sources, and is recommended for any library that integrates with state external to React. [See docs here](/reference/react/useSyncExternalStore).
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 <Note>
 
@@ -268,11 +255,7 @@ Avec le mode strict de React 18, React simule ensuite, en mode développement, l
 
 #### useInsertionEffect {/*useinsertioneffect*/}
 
-<<<<<<< HEAD
 `useInsertionEffect` est un nouveau Hook qui permet aux bibliothèques de CSS-en-JS de résoudre les problèmes de performances résultant de l'injection de styles lors du rendu. À moins que vous n'ayez déjà écrit une bibliothèque de CSS-en-JS, nous doutons que vous ayez à vous en servir un jour.  Ce Hook sera exécuté après que le DOM a été mis à jour, mais avant que les Effets de layout ne lisent la nouvelle mise en page.  Ça résout un problème de longue date dans React, mais c'est d'autant plus important dans React 18 parce que React cède le contrôle au navigateur lors du rendu concurrent, lui laissant ainsi une opportunité de recalculer la mise en page. [Voir la documentation](/reference/react/useInsertionEffect).
-=======
-`useInsertionEffect` is a new Hook that allows CSS-in-JS libraries to address performance issues of injecting styles in render. Unless you’ve already built a CSS-in-JS library we don’t expect you to ever use this. This Hook will run after the DOM is mutated, but before layout effects read the new layout. This solves an issue that already exists in React 17 and below, but is even more important in React 18 because React yields to the browser during concurrent rendering, giving it a chance to recalculate layout. [See docs here](/reference/react/useInsertionEffect).
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 <Note>
 

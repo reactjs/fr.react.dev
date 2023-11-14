@@ -11,17 +11,10 @@ TypeScript est une solution populaire d'ajout de définitions de types à des ba
 
 <YouWillLearn>
 
-<<<<<<< HEAD
 * [Comment utiliser TypeScript pour les composants React](/learn/typescript#typescript-with-react-components)
 * [Des exemples de typages avec les Hooks](/learn/typescript#example-hooks)
 * [Les types usuels de `@types/react`](/learn/typescript/#useful-types)
 * [Des ressources pour aller plus loin](/learn/typescript/#further-learning)
-=======
-* [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
-* [Examples of typing with Hooks](/learn/typescript#example-hooks)
-* [Common types from `@types/react`](/learn/typescript/#useful-types)
-* [Further learning locations](/learn/typescript/#further-learning)
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 </YouWillLearn>
 
@@ -130,7 +123,6 @@ Le type qui décrit les props de votre composant peut être aussi simple ou comp
 
 ## Exemples de typage avec les Hooks {/*example-hooks*/}
 
-<<<<<<< HEAD
 Les définitions de types dans `@types/react` incluent le typage des Hooks fournis par React, que vous pouvez donc utiliser sans configuration supplémentaire.  Ces types sont conçus pour s'appuyer sur le code que vous écrivez, vous bénéficierez donc la plupart du temps de [l'inférence de type](https://www.typescriptlang.org/docs/handbook/type-inference.html), de sorte que vous ne devriez pas avoir à leur fournir des types sur-mesure.
 
 Ceci étant dit, voyons quelques exemples de fourniture explicite de types à des Hooks.
@@ -138,15 +130,6 @@ Ceci étant dit, voyons quelques exemples de fourniture explicite de types à de
 ### `useState` {/*typing-usestate*/}
 
 Le [Hook `useState`](/reference/react/useState) réutilise la valeur initiale que vous lui passez pour déterminer le type attendu pour la variable d'état. Par exemple, le code suivant :
-=======
-The type definitions from `@types/react` include types for the built-in Hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types. 
-
-However, we can look at a few examples of how to provide types for Hooks.
-
-### `useState` {/*typing-usestate*/}
-
-The [`useState` Hook](/reference/react/useState) will re-use the value passed in as the initial state to determine what the type of the value should be. For example:
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 ```ts
 // Infère le type "boolean"
@@ -182,11 +165,7 @@ const [requestState, setRequestState] = useState<RequestState>({ status: 'idle' 
 
 ### `useReducer` {/*typing-usereducer*/}
 
-<<<<<<< HEAD
 Le [Hook `useReducer`](/reference/react/useReducer) est un Hook plus complexe qui prend une fonction de réduction et un état initial. Les types de la fonction de réduction sont inférés sur base de l'état initial.  Vous pouvez choisir de spécifier un paramètre de type à l'appel `useReducer` pour typer cet état, mais il est généralement préférable de typer l'état initial directement :
-=======
-The [`useReducer` Hook](/reference/react/useReducer) is a more complex Hook that takes a reducer function and an initial state. The types for the reducer function are inferred from the initial state. You can optionally provide a type argument to the `useReducer` call to provide a type for the state, but it is often better to set the type on the initial state instead:
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 <Sandpack>
 
@@ -261,11 +240,7 @@ export default function App() {
 
 ### `useContext` {/*typing-usecontext*/}
 
-<<<<<<< HEAD
 Le [Hook `useContext`](/reference/react/useContext) permet de diffuser des données à travers l'arbre de composants sans avoir à les faire percoler explicitement *via* chaque niveau intermédiaire.  On l'utilise pour créer un composant fournisseur, en définissant le plus souvent un Hook dédié pour en consommer la valeur dans un composant descendant.
-=======
-The [`useContext` Hook](/reference/react/useContext) is a technique for passing data down the component tree without having to pass props through components. It is used by creating a provider component and often by creating a Hook to consume the value in a child component.
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 Le type de la valeur fournie par le contexte est inféré à partir de la valeur passée à l'appel `createContext` :
 
@@ -309,11 +284,7 @@ export default App = AppTSX;
 
 Cette technique fonctionne lorsque vous avez une valeur par défaut pertinente — mais il arrive que ça ne soit pas le cas, et que vous utilisiez alors `null` comme valeur par défaut.  Le souci, c'est que pour satisfaire le système de typage, vous allez devoir explicitement passer à `createContext` un paramètre de type `ContextShape | null`.
 
-<<<<<<< HEAD
 Ça va complexifier votre code en vous forçant à éliminer le `| null` du type pour les consommateurs du contexte.  Nous vous conseillons d'incorporer un *type guard* au sein de votre Hook personnalisé pour vérifier que la valeur existe bien, et lever une exception dans le cas contraire :
-=======
-This causes the issue that you need to eliminate the `| null` in the type for context consumers. Our recommendation is to have the Hook do a runtime check for it's existence and throw an error when not present:
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 ```tsx {5, 16-20}
 import { createContext, useContext, useState, useMemo } from 'react';
@@ -327,11 +298,7 @@ type ComplexObject = {
 // la valeur par défaut.
 const Context = createContext<ComplexObject | null>(null);
 
-<<<<<<< HEAD
 // Le `| null` sera retiré grâce à une vérification au sein du Hook.
-=======
-// The `| null` will be removed via the check in the Hook.
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 const useGetComplexObject = () => {
   const object = useContext(Context);
   if (!object) { throw new Error("useGetComplexObject must be used within a Provider") }
@@ -361,11 +328,7 @@ function MyComponent() {
 
 ### `useMemo` {/*typing-usememo*/}
 
-<<<<<<< HEAD
 Le [Hook `useMemo`](/reference/react/useMemo) mémoïse les valeurs renvoyées par une fonction, pour ne re-exécuter celle-ci que si les dépendances passées en deuxième paramètre ont changé.  Le type du résultat de l'appel au Hook est inféré sur base de la valeur de retour de la fonction passée en premier argument.  Vous pouvez choisir de passer un paramètre de type explicitement.
-=======
-The [`useMemo`](/reference/react/useMemo) Hooks will create/re-access a memorized value from a function call, re-running the function only when dependencies passed as the 2nd parameter are changed. The result of calling the Hook is inferred from the return value from the function in the first parameter. You can be more explicit by providing a type argument to the Hook.
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 ```ts
 // Le type de `visibleTodos` est inféré à partir du type du résultat
@@ -376,11 +339,7 @@ const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
 
 ### `useCallback` {/*typing-usecallback*/}
 
-<<<<<<< HEAD
 Le [Hook `useCallback`](/reference/react/useCallback) fournit une référence stable à une fonction tant que les dépendances passées en deuxième argument ne changent pas. De façon similaire à `useMemo`, le type de la fonction est inféré sur base du type de la fonction passée en premier argument, et vous pouvez passer un paramètre de type explicite si vous le souhaitez.
-=======
-The [`useCallback`](/reference/react/useCallback) provide a stable reference to a function as long as the dependencies passed into the second parameter are the same. Like `useMemo`, the function's type is inferred from the return value of the function in the first parameter, and you can be more explicit by providing a type argument to the Hook.
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 
 ```ts

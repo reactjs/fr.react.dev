@@ -83,7 +83,7 @@ Si vous n’êtes toujours pas convaincu·e, ou si votre appli a des contraintes
 
 ## Frameworks React expérimentaux {/*bleeding-edge-react-frameworks*/}
 
-Alors que nous cherchions comment continuer à améliorer React, nous avons réalisé que l’intégration plus étroite de React avec les frameworks (en particulier avec la gestion de routes, le *bundling* et les traitements côté serveur) constitue notre plus grande opportunité d’aider les utilisateurs de React à construire de meilleures applis. L’équipe Next.js a accepté de collaborer avec nous sur la recherche, le développement, l’intégration et les tests de fonctionnalités React de pointe, indépendantes toutefois d'un framework spécifique, comme les [composants serveur React](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
+Alors que nous cherchions comment continuer à améliorer React, nous avons réalisé que l’intégration plus étroite de React avec les frameworks (en particulier avec la gestion de routes, le *bundling* et les traitements côté serveur) constitue notre plus grande opportunité d’aider les utilisateurs de React à construire de meilleures applis. L’équipe Next.js a accepté de collaborer avec nous sur la recherche, le développement, l’intégration et les tests de fonctionnalités React de pointe, indépendantes toutefois d'un framework spécifique, comme les [Composants Serveur React](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
 
 Ces fonctionnalités se rapprochent chaque jour un peu plus de la production, et nous discutons avec d’autres équipes de *bundlers* et de frameworks pour les intégrer. Nous espérons que d’ici un an ou deux, tous les frameworks listés sur cette page auront une prise en charge complète de ces fonctionnalités. (Si vous êtes en charge d'un framework et intéressé·e par un partenariat avec nous pour expérimenter ces fonctionnalités, n’hésitez pas à nous le faire savoir !)
 
@@ -97,9 +97,9 @@ Next.js est maintenu par [Vercel](https://vercel.com/). Vous pouvez [déployer u
 
 #### Quelles sont les fonctionnalités qui composent la vision d'architecture full-stack de l'équipe React ? {/*which-features-make-up-the-react-teams-full-stack-architecture-vision*/}
 
-Le *bundler* dans l'App Router de Next.js implémente entièrement la [spécification officielle des composants serveurs React](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). Ça vous permet de mélanger des composants exécutés au *build*, côté serveur et interactivement côté client dans une seule et même arborescence React.
+Le *bundler* dans l'App Router de Next.js implémente entièrement la [spécification officielle des Composants Serveurs React](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). Ça vous permet de mélanger des composants exécutés au *build*, côté serveur et interactivement côté client dans une seule et même arborescence React.
 
-Par example, vous pouvez écrire un composant serveur React en tant que fonction `async` qui lit à partir d’une base de données ou d’un fichier. Vous pouvez alors transmettre ces données aux composants interactifs côté client :
+Par example, vous pouvez écrire un Composant Serveur React en tant que fonction `async` qui lit à partir d’une base de données ou d’un fichier. Vous pouvez alors transmettre ces données aux composants interactifs côté client :
 
 ```js
 // Ce composant s’exécute *seulement* côté serveur (ou pendant le build).
@@ -125,6 +125,6 @@ L’App Router de Next.js intègre également [le chargement de données avec Su
 </Suspense>
 ```
 
-Les composants serveur et Suspense sont des fonctionnalités de React plutôt que de Next.js. Cependant, leur adoption au niveau du framework nécessite une adhésionet un travail d’implémentation significatif. Pour l’instant, l’App Router de Next.js en propose l’implémentation la plus complète. L’équipe React travaille avec les équipes de *bundlers* pour faciliter l’implémentation de ces fonctionnalités dans la prochaine génération de frameworks.
+Les Composants Serveur et Suspense sont des fonctionnalités de React plutôt que de Next.js. Cependant, leur adoption au niveau du framework nécessite une adhésionet un travail d’implémentation significatif. Pour l’instant, l’App Router de Next.js en propose l’implémentation la plus complète. L’équipe React travaille avec les équipes de *bundlers* pour faciliter l’implémentation de ces fonctionnalités dans la prochaine génération de frameworks.
 
 </DeepDive>

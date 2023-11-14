@@ -28,12 +28,7 @@ Nous collaborons avec Vercel et Shopify pour unifier la prise en charge de *bund
 
 ## Chargement de ressources {/*asset-loading*/}
 
-<<<<<<< HEAD
-À l'heure actuelle, les ressources telles que les scripts, styles externes, fontes et images sont généralement pré-chargées ou chargées au moyen de systèmes extérieurs. Ça peut s'avérer délicat à coordonner entre des environnements tels que le streaming, les composants serveur et d'autres encore.
-=======
-Currently, assets like scripts, external styles, fonts, and images are typically preloaded and loaded using external systems. This can make it tricky to coordinate across new environments like streaming, Server Components, and more.
-We’re looking at adding APIs to preload and load deduplicated external assets through React APIs that work in all React environments.
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
+À l'heure actuelle, les ressources telles que les scripts, styles externes, fontes et images sont généralement pré-chargées ou chargées au moyen de systèmes extérieurs. Ça peut s'avérer délicat à coordonner entre des environnements tels que le streaming, les Composants Serveur et d'autres encore.
 
 Nous explorons la possibilité d'ajouter des API pour précharger ou charger des ressources externes dédoublonnées au travers de React, pour fonctionner dans tous les environnements React.
 
@@ -45,11 +40,7 @@ La génération de site statique *(SSG pour Static Site Generation, NdT)* et la 
 
 ## Compilateur optimisant pour React {/*react-compiler*/}
 
-<<<<<<< HEAD
 Nous avons donné un [premier aperçu](https://www.youtube.com/watch?v=lGEMwh32soc) de React Forget à la React Conf 2021. C'est un compilateur qui génère automatiquement l'équivalent d'appels à `useMemo` et `useCallback` pour minimiser le coût des nouveaux rendus, tout en maintenant le modèle de programmation de React.
-=======
-Recently, we finished a rewrite of the compiler to make it more reliable and capable. This new architecture allows us to analyze and memoize more complex patterns such as the use of [local mutations](/learn/keeping-components-pure#local-mutation-your-components-little-secret), and opens up many new compile-time optimization opportunities beyond just being on par with memoization Hooks.
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 Nous avons récemment terminé une réécriture de ce compilateur afin qu'il soit plus fiable et plus malin.  Cette nouvelle architecture nous permet d'analyser et de mémoïser des motifs complexes tels que le recours à des [mutations locales](/learn/keeping-components-pure#local-mutation-your-components-little-secret), ce qui ouvre la voie à de nombreuses nouvelles opportunités d'optimisation en phase de compilation, bien au-delà de simplement équivaloir à des appels judicieux de Hooks de mémoïsation.
 

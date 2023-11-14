@@ -42,37 +42,24 @@ export default function RichTextEditor({ timestamp, text }) {
 }
 ```
 
-Lorsqu'un fichier marqué avec `'use client'` est importé par un composant côté serveur, [les *bundlers* compatibles](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) traiteront l'import comme un « point de césure » entre le code côté serveur et le code côté client.
+Lorsqu'un fichier marqué avec `'use client'` est importé par un Composant Serveur, [les *bundlers* compatibles](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) traiteront l'import comme un « point de césure » entre le code côté serveur et le code côté client.
 
 En tant que dépendances de `RichTextEditor`, `formatDate` et `Button` seront également évaluées côté client, indépendamment de la présence d'une directive `'use client'` dans le module qui les déclare.  Notez qu'un même module peut être évalué tant côté serveur lorsqu'il est importé par du code côté serveur, que côté client lorsqu'il est importé par du code côté client.
 
 #### Limitations {/*caveats*/}
 
-<<<<<<< HEAD
 * `'use client'` doit être placé au tout début de la fonction ou du module concerné ; au-dessus notamment de tout code, y compris les imports (mais il peut y avoir des commentaires avant les directives).  La directive doit utiliser des apostrophes (`'`) ou guillemets (`"`), mais pas des *backticks* (<code>`</code>).
 * Lorsqu'un fichier `'use client'` est importé depuis un autre fichier côté client, la directive n'a aucun effet.
-* Lorsqu'un module de composant contient une directive `'use client'`, toute utilisation de ce composant produit de façon garantie un composant côté client. Ceci dit, un composant peut être évalué côté client même s'il n'utilise pas de directive `'use client'`.
-  * L'utilisation d'un composant constitue un composant côté client si elle a lieu dans un module doté d'une directive `'use client'` ou si elle compte dans ses dépendances (directes ou indirectes) un module doté d'une directive `'use client'`.  Dans tous les autres cas, on considère que le composant est côté serveur.
-* Le code marqué comme exécutable côté client ne se limite pas aux composants. Tout code figurant dans l'arbre des dépendances d'un module côté client est envoyé vers le client pour y être exécuté.
-* Lorsqu'un module côté serveur importe les valeurs d'un module doté de la directive `'use client'`, les valeurs en question doivent être soit un composant React, soit une des [valeurs de prop sérialisables](#passing-props-from-server-to-client-components) prises en charge afin de pouvoir être passées au composant côté client par du code côté serveur. Tout autre cas de figure lève une exception.
-=======
-* `'use client'` must be at the very beginning of a file, above any imports or other code (comments are OK). They must be written with single or double quotes, but not backticks.
-* When a `'use client'` module is imported from another client-rendered module, the directive has no effect.
-* When a component module contains a `'use client'` directive, any usage of that component is guaranteed to be a Client Component. However, a component can still be evaluated on the client even if it does not have a `'use client'` directive.
-	* A component usage is considered a Client Component if it is defined in module with `'use client'` directive or when it is a transitive dependency of a module that contains a `'use client'` directive. Otherwise, it is a Server Component.
-* Code that is marked for client evaluation is not limited to components. All code that is a part of the Client module sub-tree is sent to and run by the client.
-* When a server evaluated module imports values from a `'use client'` module, the values must either be a React component or [supported serializable prop values](#passing-props-from-server-to-client-components) to be passed to a Client Component. Any other use case will throw an exception.
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
+* Lorsqu'un module de composant contient une directive `'use client'`, toute utilisation de ce composant produit de façon garantie un Composant Client. Ceci dit, un composant peut être évalué côté client même s'il n'utilise pas de directive `'use client'`.
+  * L'utilisation d'un composant constitue un Composant Client si elle a lieu dans un module doté d'une directive `'use client'` ou si elle compte dans ses dépendances (directes ou indirectes) un module doté d'une directive `'use client'`.  Dans tous les autres cas, on considère que le composant est côté serveur.
+* Le code marqué comme exécutable côté client ne se limite pas aux composants. Tout code figurant dans l'arbre des dépendances d'un Module Client est envoyé vers le client pour y être exécuté.
+* Lorsqu'un Module Serveur importe les valeurs d'un module doté de la directive `'use client'`, les valeurs en question doivent être soit un composant React, soit une des [valeurs de prop sérialisables](#passing-props-from-server-to-client-components) prises en charge afin de pouvoir être passées au Composant Client par du code côté serveur. Tout autre cas de figure lève une exception.
 
 ### Comment `'use client'` marque du code comme étant côté client {/*how-use-client-marks-client-code*/}
 
 Dans une appli React, les composants sont souvent répartis en plusieurs fichiers ou [modules](/learn/importing-and-exporting-components#exporting-and-importing-a-component).
 
-<<<<<<< HEAD
-Pour les applis ayant recours aux React Server Components, l'appli fait par défaut son rendu coté serveur. `'use client'` crée un « point de césure » entre les codes côté client et côté serveur au sein de [l'arbre de dépendances de modules](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree), produisant de fait une sous-arborescence de modules côté client.
-=======
-For apps that use React Server Components, the app is server-rendered by default. `'use client'` introduces a server-client boundary in the [module dependency tree](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree), effectively creating a subtree of Client modules.
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
+Pour les applis ayant recours aux React Server Components, l'appli fait par défaut son rendu coté serveur. `'use client'` crée un « point de césure » entre les codes côté client et côté serveur au sein de [l'arbre de dépendances de modules](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree), produisant de fait une sous-arborescence de Modules Client.
 
 Afin de mieux illustrer cet aspect, considérons l'appli suivante basée sur les React Server Components.
 
@@ -159,11 +146,7 @@ export default [
 
 </Sandpack>
 
-<<<<<<< HEAD
-Dans l'arbre de dépendances de modules pour cette appli d'exemple, la directive `'use client'` dans `InspirationGenerator.js` marque ce module et toutes ses dépendances transitives comme des modules côté client.  La partie de l'arborescence qui démarre avec `InspirationGenerator.js` est désormais marquée comme des modules côté client.
-=======
-In the module dependency tree of this example app, the `'use client'` directive in `InspirationGenerator.js` marks that module and all of its transitive dependencies as Client modules. The subtree starting at `InspirationGenerator.js` is now marked as Client modules.
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
+Dans l'arbre de dépendances de modules pour cette appli d'exemple, la directive `'use client'` dans `InspirationGenerator.js` marque ce module et toutes ses dépendances transitives comme des Modules Client.  La partie de l'arborescence qui démarre avec `InspirationGenerator.js` est désormais marquée comme des Modules Client.
 
 <Diagram name="use_client_module_dependency" height={250} width={545} alt="Un graphe d’arborescence avec le nœud sommet représentant le module 'App.js'. 'App.js' a trois enfants : 'Copyright.js', 'FancyText.js' et 'InspirationGenerator.js'. 'InspirationGenerator.js' a deux enfants : 'FancyText.js' et 'inspirations.js'. Les nœuds à partir de 'InspirationGenerator.js' ont un arrière-plan jaune pour indiquer qu’il s’agit du sous-graphe exécuté côté client en raison de la directive 'use client' dans 'InspirationGenerator.js'.">
 
@@ -177,22 +160,22 @@ La partie rendue côté serveur de l'arbre de rendu est alors envoyée côté cl
 
 <Diagram name="use_client_render_tree" height={250} width={500} alt="Un graphe d’arborescence où chaque nœud représente un composant et ses enfants comme composants enfants.  Le nœud sommet est étiquetté 'App' et a deux composants enfants : 'InspirationGenerator' et 'FancyText'. 'InspirationGenerator' a deux composants enfants, 'FancyText' et 'Copyright'. Aussi bien 'InspirationGenerator' que son composant enfant 'FancyText' sont marqués comme utilisant un rendu côté client.">
 
-L'arbre de rendu de l'appli utilisant les React Server Components. `InspirationGenerator` et son composant enfant `FancyText` sont des composants exportés par du code marqué comme côté client, et sont donc considérés comme des composants côté client.
+L'arbre de rendu de l'appli utilisant les React Server Components. `InspirationGenerator` et son composant enfant `FancyText` sont des composants exportés par du code marqué comme côté client, et sont donc considérés comme des Composants Client.
 
 </Diagram>
 
 On introduit ici les définitions suivantes :
 
-* Les **composants côté client** *(Client Components, NdT)* sont les composants dans l'arbre de rendu dont le rendu est fait côté client.
-* Les **composants côté serveur** *(Server Components, NdT)* sont les composants dans l'arbre de rendu dont le rendu est fait côté serveur.
+* Les **Composants Client** sont les composants dans l'arbre de rendu dont le rendu est fait côté client.
+* Les **Composants Serveur** sont les composants dans l'arbre de rendu dont le rendu est fait côté serveur.
 
-En parcourant l'appli d'exemple, `App`, `FancyText` et `Copyright` sont tous rendus côté serveur et donc considérés comme des composants côté serveur. Mais puisque `InspirationGenerator.js` et ses dépendances transitives sont marquées comme du code côté client, le composant `InspirationGenerator` et son composant enfant `FancyText` sont des composants côté client.
+En parcourant l'appli d'exemple, `App`, `FancyText` et `Copyright` sont tous rendus côté serveur et donc considérés comme des Composants Serveur. Mais puisque `InspirationGenerator.js` et ses dépendances transitives sont marquées comme du code côté client, le composant `InspirationGenerator` et son composant enfant `FancyText` sont des Composants Client.
 
 <DeepDive>
 
-#### Pourqoi `FancyText` est-il à la fois un composant serveur et un composant client ? {/*how-is-fancytext-both-a-server-and-a-client-component*/}
+#### Pourqoi `FancyText` est-il à la fois un Composant Serveur et un Composant Client ? {/*how-is-fancytext-both-a-server-and-a-client-component*/}
 
-À en croire les définitions ci-dessus, le composant `FancyText` est à la fois un composant côté serveur et côté client, comment est-ce possible ?
+À en croire les définitions ci-dessus, le composant `FancyText` est à la fois un Composant Serveur et côté client, comment est-ce possible ?
 
 Commençons par clarifier le terme « composant », qui n'est pas très précis.  Voici deux façons de comprendre « composant » :
 
@@ -217,10 +200,10 @@ function App() {
 
 Cette distinction est généralement superflue lorsqu'on explique des concepts, mais revêt ici une importance particulière.
 
-Lorsque nous parlons de composants côté serveur ou côté client, nous faisons spécifiquement référence à l'utilisation des composants.
+Lorsque nous parlons de Composants Serveur ou côté client, nous faisons spécifiquement référence à l'utilisation des composants.
 
-* Si le composant est défini dans un module porteur de la directive `'use client'`, ou s'il est importé et appelé dans un composant côté client, alors l'utilisation de ce composant constitue un composant côté client.
-* Dans les autres cas, l'utilisation de ce composant constitue un composant côté serveur.
+* Si le composant est défini dans un module porteur de la directive `'use client'`, ou s'il est importé et appelé dans un Composant Client, alors l'utilisation de ce composant constitue un Composant Client.
+* Dans les autres cas, l'utilisation de ce composant constitue un Composant Serveur.
 
 <Diagram name="use_client_render_tree" height={150} width={450} alt="Un graphe d’arborescence où chaque nœud représente un composant et ses enfants comme composants enfants.  Le nœud sommet est étiquetté 'App' et a deux composants enfants : 'InspirationGenerator' et 'FancyText'. 'InspirationGenerator' a deux composants enfants, 'FancyText' et 'Copyright'. Aussi bien 'InspirationGenerator' que son composant enfant 'FancyText' sont marqués comme utilisant un rendu côté client.">
 
@@ -230,17 +213,17 @@ Un arbre de rendu illustre les utilisations des composants.
 
 Pour en revenir à la question de `FancyText`, nous pouvons voir que la définition du composant *ne comporte pas* de directive `'use client'` et qu'elle est utilisée deux fois.
 
-L'utilisation de `FancyText` comme enfant de `App` marque cette utilisation comme un composant côté serveur. En revanche, l'import et l'appel de `FancyText` au sein de `InspirationGenerator` marque cette utilisation comme un composant côté client puisque `InspirationGenerator` est assujetti à une directive `'use client'`.
+L'utilisation de `FancyText` comme enfant de `App` marque cette utilisation comme un Composant Serveur. En revanche, l'import et l'appel de `FancyText` au sein de `InspirationGenerator` marque cette utilisation comme un Composant Client puisque `InspirationGenerator` est assujetti à une directive `'use client'`.
 
-Ça signifie que la définition du composant `FancyText` sera évaluée côté serveur mais aussi envoyée vers le client pour faire le rendu de son utilisation en tant que composant côté client.
+Ça signifie que la définition du composant `FancyText` sera évaluée côté serveur mais aussi envoyée vers le client pour faire le rendu de son utilisation en tant que Composant Client.
 
 </DeepDive>
 
 <DeepDive>
 
-#### Pourquoi `Copyright` est-il un composant côté serveur ? {/*why-is-copyright-a-server-component*/}
+#### Pourquoi `Copyright` est-il un Composant Serveur ? {/*why-is-copyright-a-server-component*/}
 
-Dans la mesure où `Copyright` figure comme composant enfant dans le rendu du composant côté client `InspirationGenerator`, vous êtes peut-être surpris·e qu'il soit considéré comme un composant côté serveur.
+Dans la mesure où `Copyright` figure comme composant enfant dans le rendu du Composant Client `InspirationGenerator`, vous êtes peut-être surpris·e qu'il soit considéré comme un Composant Serveur.
 
 Gardez à l'esprit que `'use client'` définit un « point de césure » entre les codes côté serveur et côté client dans *l'arbre de dépendances de modules*, pas dans l'arbre de rendu.
 
@@ -252,7 +235,7 @@ Gardez à l'esprit que `'use client'` définit un « point de césure » entre
 
 Dans l'arbre de dépendances de modules, nous voyons que `App.js` importe et appelle `Copyright` depuis le module `Copyright.js`. Puisque `Copyright.js` ne comporte pas de directive `'use client'`, cette utilisation du composant est rendue côté serveur. `App` est lui aussi rendu côté serveur puisqu'il s'agit du composant racine.
 
-Les composants côté client peuvent faire le rendu de composants côté serveur parce que vous pouvez passer du JSX comme props. Dans notre cas, `InspirationGenerator` reçoit `Copyright` comme [enfant](/learn/passing-props-to-a-component#passing-jsx-as-children). Cependant, le module `InspirationGenerator.js` n'importe jamais directement le module `Copyright.js`, c'est le module `App.js` qui s'en occupe. En fait, le composant `Copyright` est entièrement exécuté avant même qu'`InspirationGenerator` ne commence son rendu.
+Les Composants Client peuvent faire le rendu de Composants Serveur parce que vous pouvez passer du JSX comme props. Dans notre cas, `InspirationGenerator` reçoit `Copyright` comme [enfant](/learn/passing-props-to-a-component#passing-jsx-as-children). Cependant, le module `InspirationGenerator.js` n'importe jamais directement le module `Copyright.js`, c'est le module `App.js` qui s'en occupe. En fait, le composant `Copyright` est entièrement exécuté avant même qu'`InspirationGenerator` ne commence son rendu.
 
 Le point important à retenir, c'est que la relation de rendu parent-enfant ne garantit pas un environnement de rendu unique.
 
@@ -260,56 +243,27 @@ Le point important à retenir, c'est que la relation de rendu parent-enfant ne g
 
 ### Quand utiliser `'use client'` {/*when-to-use-use-client*/}
 
-Avec `'use client'`, vous pouvez déterminer quand les composants sont des composants côté client. Dans la mesure où les composants sont côté serveur par défaut, voici un survol rapide des avantages et limitations des composants côté serveur, pour vous aider à déterminer si vous avez besoin de marquer du code comme étant côté client.
+Avec `'use client'`, vous pouvez déterminer quand les composants sont des Composants Client. Dans la mesure où les composants sont côté serveur par défaut, voici un survol rapide des avantages et limitations des Composants Serveur, pour vous aider à déterminer si vous avez besoin de marquer du code comme étant côté client.
 
-Par souci de simplicité, nous parlons ici des composants côté serveur, mais les mêmes principes s'appliquent à tout code de votre appli qui serait exécuté côté serveur.
+Par souci de simplicité, nous parlons ici des Composants Serveur, mais les mêmes principes s'appliquent à tout code de votre appli qui serait exécuté côté serveur.
 
-<<<<<<< HEAD
-#### Avantages des composants côté serveur {/*advantages*/}
-=======
-#### Advantages of Server Components {/*advantages*/}
-* Server Components can reduce the amount of code sent and run by the client. Only Client modules are bundled and evaluated by the client.
-* Server Components benefit from running on the server. They can access the local filesystem and may experience low latency for data fetches and network requests.
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
+#### Avantages des Composants Serveur {/*advantages*/}
 
-* Les composants côté serveur aident à réduire la quantité de code envoyée et exécutée côté client. Seuls les modules client sont intégrés aux *bundles* et évalués côté client.
-* Les composants côté serveur tirent parti de leur exécution côté serveur : ils peuvent accéder à son système de fichiers local et bénéficient par ailleurs d'une faible latence pour leurs chargements de données et autres requêtes réseau.
+* Les Composants Serveur aident à réduire la quantité de code envoyée et exécutée côté client. Seuls les Modules Client sont intégrés aux *bundles* et évalués côté client.
+* Les Composants Serveur tirent parti de leur exécution côté serveur : ils peuvent accéder à son système de fichiers local et bénéficient par ailleurs d'une faible latence pour leurs chargements de données et autres requêtes réseau.
 
-#### Limitations des composants côté serveurs {/*limitations*/}
+#### Limitations des Composants Serveurs {/*limitations*/}
 
-* Les composants côté serveur ne peuvent pas gérer d'interactions, puisque les gestionnaires d'événements ne peuvent être inscrits et déclenchés que par le client.
-  * Des gestionnaires d'événements tels que `onClick` ne peuvent par exemple être définis que dans des composants côté client.
-* Les composants côté serveur ne peuvent pas utiliser la plupart des Hooks.
-  * Lorsque les composants côté serveur font leur rendu, le résultat se résume pour l'essentiel à une liste de composants dont le rendu doit être fait côté client. Les composants côté serveur ne persistent pas en mémoire une fois le rendu effectué, et ne peuvent donc pas avoir leur propre état.
+* Les Composants Serveur ne peuvent pas gérer d'interactions, puisque les gestionnaires d'événements ne peuvent être inscrits et déclenchés que par le client.
+  * Des gestionnaires d'événements tels que `onClick` ne peuvent par exemple être définis que dans des Composants Client.
+* Les Composants Serveur ne peuvent pas utiliser la plupart des Hooks.
+  * Lorsque les Composants Serveur font leur rendu, le résultat se résume pour l'essentiel à une liste de composants dont le rendu doit être fait côté client. Les Composants Serveur ne persistent pas en mémoire une fois le rendu effectué, et ne peuvent donc pas avoir leur propre état.
 
-### Types sérialisables renvoyés par les composants côté serveur {/*serializable-types*/}
+### Types sérialisables renvoyés par les Composants Serveur {/*serializable-types*/}
 
-<<<<<<< HEAD
-Comme dans n'importe quelle appli React, les composants parents passent des données à leurs composants enfants.  Puisqu'ils sont ici rendus dans des environnements distincts, le passage de données d'un composant côté serveur à un composant côté client nécessite une attention particulière.
-=======
-Serializable props include:
-* Primitives
-	* [string](https://developer.mozilla.org/en-US/docs/Glossary/String)
-	* [number](https://developer.mozilla.org/en-US/docs/Glossary/Number)
-	* [bigint](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
-	* [boolean](https://developer.mozilla.org/en-US/docs/Glossary/Boolean)
-	* [undefined](https://developer.mozilla.org/en-US/docs/Glossary/Undefined)
-	* [null](https://developer.mozilla.org/en-US/docs/Glossary/Null)
-	* [symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol), only symbols registered in the global Symbol registry via [`Symbol.for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for)
-* Iterables containing serializable values
-	* [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
-	* [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
-	* [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
-	* [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
-	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) and [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
-* [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
-* Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
-* Functions that are [Server Actions](/reference/react/use-server)
-* Client or Server Component elements (JSX)
-* [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
+Comme dans n'importe quelle appli React, les composants parents passent des données à leurs composants enfants.  Puisqu'ils sont ici rendus dans des environnements distincts, le passage de données d'un Composant Serveur à un Composant Client nécessite une attention particulière.
 
-Les valeurs de props passées à un composant côté client doivent être sérialisables.
+Les valeurs de props passées à un Composant Client doivent être sérialisables.
 
 Voici les types de props sérialisables :
 
@@ -329,8 +283,8 @@ Voici les types de props sérialisables :
 	* [TypedArray](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) et [ArrayBuffer](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 * [Date](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Date)
 * Les [objets](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object) bruts : ceux créés via des [initialiseurs d'objets](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Object_initializer), dont les propriétés sont sérialisables
-* Les fonctions qui sont des [actions serveur](/reference/react/use-server)
-* Les éléments basés sur des composants côté client ou côté serveur (JSX)
+* Les fonctions qui sont des [Actions Serveur](/reference/react/use-server)
+* Les éléments basés sur des Composants Client ou côté serveur (JSX)
 * Les [promesses](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 En particulier, les types suivants ne sont **pas** pris en charge :
@@ -367,13 +321,9 @@ export default function Counter({initialValue = 0}) {
 
 </Sandpack>
 
-<<<<<<< HEAD
-Dans la mesure où `Counter` utilise aussi bien le Hook `useState` que des gestionnaires d'événements pour incrémenter et décrémenter la valeur, ce composant doit être un composant côté client et nécessitera donc une directive `'use client'` tout en haut de son fichier.
-=======
-As `Counter` requires both the `useState` Hook and event handlers to increment or decrement the value, this component must be a Client Component and will require a `'use client'` directive at the top.
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
+Dans la mesure où `Counter` utilise aussi bien le Hook `useState` que des gestionnaires d'événements pour incrémenter et décrémenter la valeur, ce composant doit être un Composant Client et nécessitera donc une directive `'use client'` tout en haut de son fichier.
 
-Par opposition, un composant qui fait le rendu d'une UI non interactive n'aura pas besoin d'être un composant côté client.
+Par opposition, un composant qui fait le rendu d'une UI non interactive n'aura pas besoin d'être un Composant Client.
 
 ```js
 import { readFile } from 'node:fs/promises';
@@ -385,7 +335,7 @@ export default async function CounterContainer() {
 }
 ```
 
-Ici le composant parent de `Counter`, à savoir `CounterContainer`, ne requiert par exemple pas de directive `'use client'` puisqu'il n'est pas interactif et n'utilise aucun état.  Qui plus est, `CounterContainer` doit être un composant côté serveur puisqu'il lit le système de fichiers local du serveur, ce qui n'est possible que dans un composant côté serveur.
+Ici le composant parent de `Counter`, à savoir `CounterContainer`, ne requiert par exemple pas de directive `'use client'` puisqu'il n'est pas interactif et n'utilise aucun état.  Qui plus est, `CounterContainer` doit être un Composant Serveur puisqu'il lit le système de fichiers local du serveur, ce qui n'est possible que dans un Composant Serveur.
 
 On trouve aussi des composants qui n'utilisent aucun aspect exclusif aux côtés serveur ou client, et sont donc agnostiques quant à leur environnement de rendu. Dans notre exemple précédent, c'est notamment le cas du composant `FancyText`.
 
@@ -397,9 +347,9 @@ export default function FancyText({title, text}) {
 }
 ```
 
-On n'a ici pas besoin d'ajouter la directive `'use client'`, de sorte que c'est le *résultat* (et non le code source) de `FancyText` qui sera envoyé au navigateur lorsqu'il est utilisé comme composant côté serveur.  Comme l'appli d'exemple sur les citations inspirantes l'a montré, `FancyText` y est utilisé tant comme composant côté serveur que comme composant côté client, suivant les endroits qui l'importent et l'utilisent.
+On n'a ici pas besoin d'ajouter la directive `'use client'`, de sorte que c'est le *résultat* (et non le code source) de `FancyText` qui sera envoyé au navigateur lorsqu'il est utilisé comme Composant Serveur.  Comme l'appli d'exemple sur les citations inspirantes l'a montré, `FancyText` y est utilisé tant comme Composant Serveur que comme Composant Client, suivant les endroits qui l'importent et l'utilisent.
 
-Mais si le HTML produit par `FancyText` s'avérait nettement plus lourd que son code source (dépendances comprises), il pourrait être utile, du point de vue des performances, de le forcer à toujours être un composant côté client. Les composants qui renvoient un énorme descriptif de chemin SVG sont un cas classique où le forçage d'un composant comme étant côté client peut s'avérer bénéfique.
+Mais si le HTML produit par `FancyText` s'avérait nettement plus lourd que son code source (dépendances comprises), il pourrait être utile, du point de vue des performances, de le forcer à toujours être un Composant Client. Les composants qui renvoient un énorme descriptif de chemin SVG sont un cas classique où le forçage d'un composant comme étant côté client peut s'avérer bénéfique.
 
 ### Utiliser des API réservées au côté client {/*using-client-apis*/}
 
@@ -439,6 +389,6 @@ Ces bibliothèques sont susceptibles de recourir aux Hooks ou à des API réserv
 * [startTransition](/reference/react/startTransition)
 * Toute API réservée au côté client, telle que l'insertion DOM ou les vues natives de la plateforme
 
-Si ces bibliothèques ont été mises à jour pour être compatibles avec les React Server Components, elles inclueront alors d'emblée des marqueurs `'use client'` aux endroits pertinents, ce qui vous permettra de les utiliser directement depuis vos composants côté serveur.  Mais si une bibliothèque n'a pas été mise à jour, ou si un composant a besoin de props telles qu'un gestionnaire d'événement (qui ne peut être fourni que côté client), vous aurez peut-être besoin de créer votre propre fichier de composant côté client pour faire le lien entre les composants côté client tiers et les composants côté serveur au sein desquels vous aimeriez les utiliser.
+Si ces bibliothèques ont été mises à jour pour être compatibles avec les React Server Components, elles inclueront alors d'emblée des marqueurs `'use client'` aux endroits pertinents, ce qui vous permettra de les utiliser directement depuis vos Composants Serveur.  Mais si une bibliothèque n'a pas été mise à jour, ou si un composant a besoin de props telles qu'un gestionnaire d'événement (qui ne peut être fourni que côté client), vous aurez peut-être besoin de créer votre propre fichier de Composant Client pour faire le lien entre les Composants Client tiers et les Composants Serveur au sein desquels vous aimeriez les utiliser.
 
 [TODO]: <> (Troubleshooting - need use-cases)

@@ -335,11 +335,7 @@ Lorsque vous transmettez une promesse d'un Composant Serveur à un Composant Cli
 
 #### Dois-je accomplir une promesse dans un Composant Serveur ou Client ? {/*resolve-promise-in-server-or-client-component*/}
 
-<<<<<<< HEAD
 Une promesse peut être passée d'un Composant Serveur à un Composant Client, puis accomplie dans le Composant Client avec le Hook `use`. Vous pouvez également accomplir la promesse dans un Composant Serveur avec `await`, puis transmettre les données requises au Composant Client en tant que prop.
-=======
-A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component with the `use` Hook. You can also resolve the Promise in a Server Component with `await` and pass the required data to the Client Component as a prop.
->>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 ```js
 export default function App() {
