@@ -4,8 +4,7 @@ title: Référence API React
 
 <Intro>
 
-Cette section fournit une documentation de référence détaillée pour travailler avec React.
-Pour une introduction à React, consultez plutôt la section [Apprendre](/learn).
+Cette section fournit une documentation de référence détaillée pour travailler avec React. Pour une introduction à React, consultez plutôt la section [Apprendre](/learn).
 
 </Intro>
 

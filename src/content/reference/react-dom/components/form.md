@@ -90,13 +90,13 @@ export default function Search() {
 
 </Sandpack>
 
-### Gérer l'envoi de formulaire dans une action serveur {/*handle-form-submission-with-a-server-action*/}
+### Gérer l'envoi de formulaire dans une Action Serveur {/*handle-form-submission-with-a-server-action*/}
 
-Affichez un `<form>` avec un champ de saisie et un bouton d'envoi, puis passez-lui une action serveur (une fonction dotée de la directive [`'use server'`](/reference/react/use-server)) *via* sa prop `action` pour exécuter cette fonction quand le formulaire sera envoyé.
+Affichez un `<form>` avec un champ de saisie et un bouton d'envoi, puis passez-lui une Action Serveur (une fonction dotée de la directive [`'use server'`](/reference/react/use-server)) *via* sa prop `action` pour exécuter cette fonction quand le formulaire sera envoyé.
 
-Passer une action serveur à `<form action>` permet aux utilisateurs d'envoyer le formulaire même sans JavaScript activé, ou avant que le code JavaScript ne soit chargé et exécuté.  C'est bien pratique pour les utilisateurs ne disposant que d'une connexion ou d'un appareil lents, ou qui ont JavaScript désactivé.  C'est d'ailleurs un comportement similaire à celui des formulaires dont la prop `action` contient une URL.
+Passer une Action Serveur à `<form action>` permet aux utilisateurs d'envoyer le formulaire même sans JavaScript activé, ou avant que le code JavaScript ne soit chargé et exécuté.  C'est bien pratique pour les utilisateurs ne disposant que d'une connexion ou d'un appareil lents, ou qui ont JavaScript désactivé.  C'est d'ailleurs un comportement similaire à celui des formulaires dont la prop `action` contient une URL.
 
-Vous pouvez utiliser des champs cachés pour fournir des données à l'action du `<form>`.  L'action serveur récupèrera ces données de champs cachés au moyen d'une instance de [`FormData`](https://developer.mozilla.org/fr/docs/Web/API/FormData).
+Vous pouvez utiliser des champs cachés pour fournir des données à l'action du `<form>`.  L'Action Serveur récupèrera ces données de champs cachés au moyen d'une instance de [`FormData`](https://developer.mozilla.org/fr/docs/Web/API/FormData).
 
 ```jsx
 import { updateCart } from './lib.js';
@@ -136,7 +136,7 @@ function AddToCart({productId}) {
 }
 ```
 
-Lorsqu'un `<form>` fait son rendu au sein d'un [composant côté serveur](/reference/react/use-client), et qu'en prime une [action serveur](/reference/react/use-server) est passée à la prop `action` du `<form>`, le formulaire bénéficie d'une [amélioration progressive](https://developer.mozilla.org/fr/docs/Glossary/Progressive_Enhancement).
+Lorsqu'un `<form>` fait son rendu au sein d'un [Composant Serveur](/reference/react/use-client), et qu'en prime une [Action Serveur](/reference/react/use-server) est passée à la prop `action` du `<form>`, le formulaire bénéficie d'une [amélioration progressive](https://developer.mozilla.org/fr/docs/Glossary/Progressive_Enhancement).
 
 ### Afficher un état d'attente pendant l'envoi du formulaire {/*display-a-pending-state-during-form-submission*/}
 
@@ -324,11 +324,11 @@ export default function Search() {
 
 Afin d'afficher un message d'erreur d'envoi de formulaire avant même que le *bundle* JavaScript soit chargé et exécuté (à des fins d'amélioration progressive), plusieurs choses sont nécessaires :
 
-1. le `<form>` doit figurer dans un [composant côté serveur](/reference/react/use-client)
-2. la fonction passée à la prop `action` du `<form>` doit être une [action serveur](/reference/react/use-server)
+1. le `<form>` doit figurer dans un [Composant Serveur](/reference/react/use-client)
+2. la fonction passée à la prop `action` du `<form>` doit être une [Action Serveur](/reference/react/use-server)
 3. le Hook `useFormState` doit être utilisé pour produire le message d'erreur
 
-`useFormState` accepte deux arguments : une [action serveur](/reference/react/use-server) et un état initial. `useFormState` renvoie deux valeurs : une variable d'état et une action. L'action ainsi renvoyée par `useFormState` doit être passée à la prop `action` du formulaire. La variable d'état renvoyée par `useFormState` peut être utilisée pour afficher le message d'erreur. La valeur renvoyée par [l'action serveur](/reference/react/use-server) passée à `useFormState` sera utilisée pour mettre à jour la variable d'état.
+`useFormState` accepte deux arguments : une [Action Serveur](/reference/react/use-server) et un état initial. `useFormState` renvoie deux valeurs : une variable d'état et une action. L'action ainsi renvoyée par `useFormState` doit être passée à la prop `action` du formulaire. La variable d'état renvoyée par `useFormState` peut être utilisée pour afficher le message d'erreur. La valeur renvoyée par [l'Action Serveur](/reference/react/use-server) passée à `useFormState` sera utilisée pour mettre à jour la variable d'état.
 
 <Sandpack>
 

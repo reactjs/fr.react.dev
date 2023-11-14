@@ -51,7 +51,7 @@ function StatefulForm({}) {
 
 L'état de formulaire est déterminé par la valeur renvoyée par l'action lors du dernier envoi en date du formulaire. Si le formulaire n'a pas encore été envoyé, il équivaut à l'état initial que vous avez fourni.
 
-Lorsque vous l'utilisez dans une action serveur, `useFormState` permet d'afficher la réponse du serveur pour l'envoi du formulaire avant même que l'hydratation ne soit terminée.
+Lorsque vous l'utilisez dans une Action Serveur, `useFormState` permet d'afficher la réponse du serveur pour l'envoi du formulaire avant même que l'hydratation ne soit terminée.
 
 [Voir d'autres exemples plus bas](#usage).
 
@@ -117,7 +117,7 @@ function action(currentState, formData) {
 
 #### Afficher des erreurs de formulaire {/*display-form-errors*/}
 
-Pour afficher des messages tels qu'un message d'erreur ou une notification renvoyés par une action serveur, enrobez l'action dans un appel à `useFormState`.
+Pour afficher des messages tels qu'un message d'erreur ou une notification renvoyés par une Action Serveur, enrobez l'action dans un appel à `useFormState`.
 
 <Sandpack>
 
@@ -190,7 +190,7 @@ form button {
 
 #### Afficher des données structurées suite à l'envoi d'un formulaire {/*display-structured-information-after-submitting-a-form*/}
 
-La valeur renvoyée par une action serveur peut être n'importe quelle valeur sérialisable. Il peut par exemple s'agir d'un objet avec un booléen indiquant si l'action a réussi, un message d'erreur, ou des informations mises à jour.
+La valeur renvoyée par une Action Serveur peut être n'importe quelle valeur sérialisable. Il peut par exemple s'agir d'un objet avec un booléen indiquant si l'action a réussi, un message d'erreur, ou des informations mises à jour.
 
 <Sandpack>
 

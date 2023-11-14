@@ -28,7 +28,7 @@ Nous collaborons avec Vercel et Shopify pour unifier la prise en charge de *bund
 
 ## Chargement de ressources {/*asset-loading*/}
 
-À l'heure actuelle, les ressources telles que les scripts, styles externes, fontes et images sont généralement pré-chargées ou chargées au moyen de systèmes extérieurs. Ça peut s'avérer délicat à coordonner entre des environnements tels que le streaming, les composants serveur et d'autres encore.
+À l'heure actuelle, les ressources telles que les scripts, styles externes, fontes et images sont généralement pré-chargées ou chargées au moyen de systèmes extérieurs. Ça peut s'avérer délicat à coordonner entre des environnements tels que le streaming, les Composants Serveur et d'autres encore.
 
 Nous explorons la possibilité d'ajouter des API pour précharger ou charger des ressources externes dédoublonnées au travers de React, pour fonctionner dans tous les environnements React.
 
