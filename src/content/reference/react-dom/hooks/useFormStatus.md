@@ -5,7 +5,11 @@ canary: true
 
 <Canary>
 
+<<<<<<< HEAD
 Le Hook `useFormStatus` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
+=======
+The `useFormStatus` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+>>>>>>> 6570e6cd79a16ac3b1a2902632eddab7e6abb9ad
 
 </Canary>
 
@@ -38,7 +42,7 @@ function Submit() {
   return <button disabled={status.pending}>Envoyer</button>
 }
 
-export default App() {
+export default function App() {
   return (
     <form action={action}>
       <Submit />
