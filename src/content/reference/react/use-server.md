@@ -115,11 +115,21 @@ async function requestUsername(formData) {
   // ...
 }
 
+<<<<<<< HEAD
 export default App() {
   <form action={requestUsername}>
     <input type="text" name="username" />
     <button type="submit">Réserver</button>
   </form>
+=======
+export default function App() {
+  return (
+    <form action={requestUsername}>
+      <input type="text" name="username" />
+      <button type="submit">Request</button>
+    </form>
+  );
+>>>>>>> 943e3ce4e52be56bcd75b679448847302f557da1
 }
 ```
 

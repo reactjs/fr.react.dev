@@ -5,7 +5,11 @@ canary: true
 
 <Canary>
 
+<<<<<<< HEAD
 Le Hook `use` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
+=======
+The `use` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+>>>>>>> 943e3ce4e52be56bcd75b679448847302f557da1
 
 </Canary>
 

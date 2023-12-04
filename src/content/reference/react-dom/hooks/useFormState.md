@@ -5,7 +5,11 @@ canary: true
 
 <Canary>
 
+<<<<<<< HEAD
 Le Hook `useFormState` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels). Par ailleurs, vous aurez besoin d'utiliser un framework qui prenne en charge les [React Server Components](/reference/react/use-client) pour tirer pleinement parti de `useFormState`.
+=======
+The `useFormState` Hook is currently only available in React's Canary and experimental channels. Learn more about [release channels here](/community/versioning-policy#all-release-channels). In addition, you need to use a framework that supports [React Server Components](/reference/react/use-client) to get the full benefit of `useFormState`.
+>>>>>>> 943e3ce4e52be56bcd75b679448847302f557da1
 
 </Canary>
 
