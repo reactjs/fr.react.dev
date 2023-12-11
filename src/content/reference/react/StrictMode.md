@@ -95,7 +95,11 @@ Le mode strict active les vérifications suivantes en mode de développement :
 
 ---
 
+<<<<<<< HEAD
 ### Activer le mode strict sur une partie de l'appli {/*enabling-strict-mode-for-a-part-of-the-app*/}
+=======
+### Enabling Strict Mode for a part of the app {/*enabling-strict-mode-for-a-part-of-the-app*/}
+>>>>>>> af54fc873819892f6050340df236f33a18ba5fb8
 
 Vous pouvez également activer le mode strict sur n'importe quelle partie de votre application :
 

@@ -44,10 +44,17 @@ Les avertissements de développement n'affectent pas le comportement de votre ap
 
 En général, nous *ne changeons pas* le numéro de version majeure pour les raisons suivantes :
 
+<<<<<<< HEAD
 * **Les avertissements de développement.** Puisqu'ils n'affectent pas le comportement de production, nous pouvons ajouter de nouveaux avertissements ou en modifier des existants entre deux versions majeures. C'est justement ce qui nous permet de communiquer de manière fiable sur les prochaines ruptures de compatibilité ascendante.
 * **Les API commençant par `unstable_`.** Il s'agit de fonctionnalités expérimentales dont les API ne sont pas encore stabilisées. En les livrant avec le préfixe `unstable_`, nous pouvons itérer plus rapidement et obtenir une API stable plus vite.
 * **Les versions Alpha et Canary de React.** Nous fournissons des versions alpha de React pour tester les nouvelles fonctionnalités en amont, mais nous avons besoin de la flexibilité nécessaire pour apporter les changements en fonction de ce que nous apprenons durant cette période. Si vous utilisez ces versions, n'oubliez pas que ces API peuvent changer avant la sortie de la version stable.
 * **Les API non documentées et les structures de données internes.** Il n'y a aucune garantie si vous utilisez des proriétés internes telle que `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` ou `__reactInternalInstance$uk43rzhitjg`. C'est à vos risques et périls.
+=======
+* **Development warnings.** Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions. In fact, this is what allows us to reliably warn about upcoming breaking changes.
+* **APIs starting with `unstable_`.** These are provided as experimental features whose APIs we are not yet confident in. By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner.
+* **Alpha and Canary versions of React.** We provide alpha versions of React as a way to test new features early, but we need the flexibility to make changes based on what we learn in the alpha period. If you use these versions, note that APIs may change before the stable release.
+* **Undocumented APIs and internal data structures.** If you access internal property names like `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` or `__reactInternalInstance$uk43rzhitjg`, there is no warranty.  You are on your own.
+>>>>>>> af54fc873819892f6050340df236f33a18ba5fb8
 
 Cette politique se veut pragmatique : il ne s'agit évidemment pas de vous donner la migraine. Si nous changions de version majeure pour toutes ces raisons, nous finirions par publier plus de versions majeures et par conséquent nous causerions de nombreux problèmes de versions à la communauté. Ça signifierait également que nous ne pourrions pas améliorer React aussi vite que nous le voudrions.
 
