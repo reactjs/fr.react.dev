@@ -34,8 +34,12 @@ Pour afficher un champ de saisie, utilisez le [composant natif `<input>` du navi
 
 <Canary>
 
+<<<<<<< HEAD
 Les extensions de React à la prop `formAction` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `formAction` est limitée à son fonctionnement [du composant HTML natif du navigateur](https://react.dev/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
+=======
+React's extensions to the `formAction` prop are currently only available in React's Canary and experimental channels. In stable releases of React `formAction` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 </Canary>
 
 [`formAction`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formaction) : une chaîne de caractères ou une fonction. Cette prop a priorité sur le `<form action>` pour les champs de `type="submit"` ou `type="image"`. Lorsqu'une URL est passée à `formAction`, le formulaire se comporte comme un formulaire HTML classique. Mais si une fonction est passée à `formAction`, la fonction traitera l'envoi du formulaire. Allez voir [`<form action>`](/reference/react-dom/components/form#props).

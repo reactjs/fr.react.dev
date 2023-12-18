@@ -112,7 +112,7 @@ Dans cet exemple, le composant `SearchResults` [suspend](/reference/react/Suspen
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -132,7 +132,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Remarque : ce composant est écrit en utilisant une API expérimentale
@@ -186,10 +186,17 @@ function use(promise) {
 }
 ```
 
+<<<<<<< HEAD
 ```js data.js hidden
 // Remarque : la manière de récupérer les données dépend
 // du framework avec lequel vous utilisez Suspense.
 // En temps normal, la logique de cache est fournie par le framework.
+=======
+```js src/data.js hidden
+// Note: the way you would do data fetching depends on
+// the framework that you use together with Suspense.
+// Normally, the caching logic would be inside a framework.
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 
 let cache = new Map();
 
@@ -326,7 +333,7 @@ Tapez`"a"` dans l'exemple ci-dessous, attendez que les résultats soient chargé
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -347,7 +354,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Remarque : ce composant est écrit en utilisant une API expérimentale
@@ -401,10 +408,17 @@ function use(promise) {
 }
 ```
 
+<<<<<<< HEAD
 ```js data.js hidden
 // Remarque : la manière de récupérer les données dépend
 // du framework avec lequel vous utilisez Suspense.
 // En temps normal, la logique de cache est fournie par le framework.
+=======
+```js src/data.js hidden
+// Note: the way you would do data fetching depends on
+// the framework that you use together with Suspense.
+// Normally, the caching logic would be inside a framework.
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 
 let cache = new Map();
 
@@ -549,7 +563,7 @@ Avec ce changement, dès que vous commencerez à taper, l'ancienne liste de rés
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -576,7 +590,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Remarque : ce composant est écrit en utilisant une API expérimentale
@@ -630,10 +644,18 @@ function use(promise) {
 }
 ```
 
+<<<<<<< HEAD
 ```js data.js hidden
 // Remarque : la manière de récupérer les données dépend
 // du framework avec lequel vous utilisez Suspense.
 // En temps normal, la logique de cache est fournie par le framework.
+=======
+```js src/data.js hidden
+// Note: the way you would do data fetching depends on
+// the framework that you use together with Suspense.
+// Normally, the caching logic would be inside a framework.
+
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 let cache = new Map();
 
 export function fetchData(url) {
@@ -799,7 +821,7 @@ export default function App() {
 }
 ```
 
-```js SlowList.js
+```js src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -876,7 +898,7 @@ export default function App() {
 }
 ```
 
-```js SlowList.js
+```js src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {

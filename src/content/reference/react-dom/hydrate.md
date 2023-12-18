@@ -89,7 +89,7 @@ Dans des applis entièrement construites avec React, **vous n'aurez généraleme
 <div id="root"><h1>Salut tout le monde !</h1></div>
 ```
 
-```js index.js active
+```js src/index.js active
 import './styles.css';
 import { hydrate } from 'react-dom';
 import App from './App.js';
@@ -97,7 +97,7 @@ import App from './App.js';
 hydrate(<App />, document.getElementById('root'));
 ```
 
-```js App.js
+```js src/App.js
 export default function App() {
   return <h1>Salut tout le monde !</h1>;
 }
@@ -127,7 +127,7 @@ Pour éviter les avertissements d'hydratation sur un élément, ajoutez-lui `sup
 <div id="root"><h1>Nous sommes le 01/01/2020</h1></div>
 ```
 
-```js index.js
+```js src/index.js
 import './styles.css';
 import { hydrate } from 'react-dom';
 import App from './App.js';
@@ -135,7 +135,7 @@ import App from './App.js';
 hydrate(<App />, document.getElementById('root'));
 ```
 
-```js App.js active
+```js src/App.js active
 export default function App() {
   return (
     <h1 suppressHydrationWarning={true}>
@@ -165,7 +165,7 @@ Si vous cherchez explicitement à produire un contenu différent sur le serveur 
 <div id="root"><h1>Côté serveur</h1></div>
 ```
 
-```js index.js
+```js src/index.js
 import './styles.css';
 import { hydrate } from 'react-dom';
 import App from './App.js';
@@ -173,7 +173,7 @@ import App from './App.js';
 hydrate(<App />, document.getElementById('root'));
 ```
 
-```js App.js active
+```js src/App.js active
 import { useState, useEffect } from "react";
 
 export default function App() {

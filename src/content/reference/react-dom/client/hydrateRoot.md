@@ -140,7 +140,7 @@ Pour hydrater votre appli, React « attachera » la logique de vos composants 
 <div id="root"><h1>Salut tout le monde !</h1><button>Vous avez cliqué <!-- -->0<!-- --> fois</button></div>
 ```
 
-```js index.js active
+```js src/index.js active
 import './styles.css';
 import { hydrateRoot } from 'react-dom/client';
 import App from './App.js';
@@ -151,7 +151,7 @@ hydrateRoot(
 );
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -245,7 +245,7 @@ Pour éviter les avertissements d'hydratation sur un élément spécifique, ajou
 <div id="root"><h1>Date actuelle : <!-- -->01/01/2020</h1></div>
 ```
 
-```js index.js
+```js src/index.js
 import './styles.css';
 import { hydrateRoot } from 'react-dom/client';
 import App from './App.js';
@@ -253,7 +253,7 @@ import App from './App.js';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
-```js App.js active
+```js src/App.js active
 export default function App() {
   return (
     <h1 suppressHydrationWarning={true}>
@@ -283,7 +283,7 @@ Si vous différenciez volontairement l'affichage entre le côté serveur et le c
 <div id="root"><h1>Côté serveur</h1></div>
 ```
 
-```js index.js
+```js src/index.js
 import './styles.css';
 import { hydrateRoot } from 'react-dom/client';
 import App from './App.js';
@@ -291,7 +291,7 @@ import App from './App.js';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
-```js App.js active
+```js src/App.js active
 import { useState, useEffect } from "react";
 
 export default function App() {
@@ -337,7 +337,7 @@ Si vous appelez `root.render` après l'hydratation, et que la structure de l'arb
 <div id="root"><h1>Salut tout le monde ! <!-- -->0</h1><input placeholder="Tapez quelque chose ici"/></div>
 ```
 
-```js index.js active
+```js src/index.js active
 import { hydrateRoot } from 'react-dom/client';
 import './styles.css';
 import App from './App.js';
@@ -354,7 +354,7 @@ setInterval(() => {
 }, 1000);
 ```
 
-```js App.js
+```js src/App.js
 export default function App({counter}) {
   return (
     <>

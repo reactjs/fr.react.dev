@@ -5,7 +5,11 @@ canary: true
 
 <Canary>
 
+<<<<<<< HEAD
 Le Hook `useOptimistic` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
+=======
+The `useOptimistic` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 
 </Canary>
 
@@ -27,7 +31,11 @@ Le Hook `useOptimistic` n'est actuellement disponible que sur les canaux de livr
 
 ### `useOptimistic(state, updateFn)` {/*useoptimistic*/}
 
+<<<<<<< HEAD
 `useOptimistic` est un Hook React qui vous permet d'afficher un état distinct pendant qu'une action asynchrone est en cours.  Il accepte un argument d'état et renvoie une copie de cet état qui peut être différente pendant l'exécution de l'action asynchrone (par exemple une requête réseau). Vous fournissez une fonction qui accepte en arguments l'état courant et les données fournies à l'action, et renvoie l'état optimiste à utiliser pendant que l'action est en cours.
+=======
+`useOptimistic` is a React Hook that lets you show a different state while an async action is underway. It accepts some state as an argument and returns a copy of that state that can be different during the duration of an async action such as a network request. You provide a function that takes the current state and the input to the action, and returns the optimistic state to be used while the action is pending.
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 
 Cet état est qualifié « d'optimiste » parce qu'il est généralement utilisé pour immédiatement présenter à l'utilisateur le résultat de l'exécution de l'action, même si cette action met en réalité du temps à aboutir.
 
@@ -71,7 +79,7 @@ Lorsqu'un utilisateur saisit par exemple un message dans un formulaire puis cliq
 <Sandpack>
 
 
-```js App.js
+```js src/App.js
 import { useOptimistic, useState, useRef } from "react";
 import { deliverMessage } from "./actions.js";
 
@@ -121,7 +129,7 @@ export default function App() {
 }
 ```
 
-```js actions.js
+```js src/actions.js
 export async function deliverMessage(message) {
   await new Promise((res) => setTimeout(res, 1000));
   return message;

@@ -67,7 +67,7 @@ Ensuite, ajoutez ces lignes de code en haut de votre fichier JavaScript principa
 </html>
 ```
 
-```js index.js active
+```js src/index.js active
 import { createRoot } from 'react-dom/client';
 
 // Effacez le contenu HTML existant
@@ -131,7 +131,7 @@ Vous souhaitez probablement plutôt afficher vos composants React à des emplace
 </html>
 ```
 
-```js index.js active
+```js src/index.js active
 import { createRoot } from 'react-dom/client';
 
 function NavigationBar() {
