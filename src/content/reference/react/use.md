@@ -5,7 +5,11 @@ canary: true
 
 <Canary>
 
+<<<<<<< HEAD
 Le Hook `use` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
+=======
+The `use` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+>>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 
 </Canary>
 
@@ -248,7 +252,7 @@ Puisque <CodeStep step={2}>`Message`</CodeStep> est enrobé dans un <CodeStep st
 
 <Sandpack>
 
-```js message.js active
+```js src/message.js active
 "use client";
 
 import { use, Suspense } from "react";
@@ -267,7 +271,7 @@ export function MessageContainer({ messagePromise }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from "react";
 import { MessageContainer } from "./message.js";
 
@@ -291,10 +295,17 @@ export default function App() {
 }
 ```
 
+<<<<<<< HEAD
 ```js index.js hidden
 // TODO : remplacer l’import d’une version Canary
 // de React par une version stable, dès qu’elle
 // intégrera le Hook `use`
+=======
+```js src/index.js hidden
+// TODO: update to import from stable
+// react instead of canary once the `use`
+// Hook is in a stable release of React
+>>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -367,7 +378,7 @@ Si vous souhaitez afficher une erreur à vos utilisateurs quand une promesse a �
 
 <Sandpack>
 
-```js message.js active
+```js src/message.js active
 "use client";
 
 import { use, Suspense } from "react";
@@ -389,7 +400,7 @@ function Message({ messagePromise }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from "react";
 import { MessageContainer } from "./message.js";
 
@@ -413,10 +424,17 @@ export default function App() {
 }
 ```
 
+<<<<<<< HEAD
 ```js index.js hidden
 // TODO : remplacer l’import d’une version Canary
 // de React par une version stable, dès qu’elle
 // intégrera le Hook `use`
+=======
+```js src/index.js hidden
+// TODO: update to import from stable
+// react instead of canary once the `use`
+// Hook is in a stable release of React
+>>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';

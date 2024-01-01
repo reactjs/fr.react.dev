@@ -22,7 +22,11 @@ React, comme de nombreuses autres bibliothèques d'UI, modélise l'UI comme un a
 
 Les arbres sont un modèle relationnel entre des éléments, et l'UI est souvent représentée au moyen de structures arborescentes. Les navigateurs utilisent par exemple des arbres pour modéliser HTML (le [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) et CSS (le [CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Les plateformes mobiles utilisent aussi des arbres pour représenter leurs hiérarchies de vues.
 
+<<<<<<< HEAD
 <Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Un diagramme avec trois sections disposées horizontalement. Dans la première section, on trouve trois rectangles empilés verticalement, avec pour libellés « Composant A », « Composant B » et « Composant C ». Une flèche libellée « React », avec le logo React, fait la transition vers le panneau suivant. La section du milieu contient un arbre de composants, avec une racine libellée « A » et deux enfants libellés « B » et « C ». Une flèche libellée « React DOM », là encore avec le logo React, fait la transition vers le dernier panneau. Cette troisième section représente une maquette du navigateur contenant un arbre avec 8 nœuds, dont seul un sous-ensemble est mis en avant (qui représente l’arbre de la section du milieu).">
+=======
+<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram with three sections arranged horizontally. In the first section, there are three rectangles stacked vertically, with labels 'Component A', 'Component B', and 'Component C'. Transitioning to the next pane is an arrow with the React logo on top labeled 'React'. The middle section contains a tree of components, with the root labeled 'A' and two children labeled 'B' and 'C'. The next section is again transitioned using an arrow with the React logo on top labeled 'React DOM'. The third and final section is a wireframe of a browser, containing a tree of 8 nodes, which has only a subset highlighted (indicating the subtree from the middle section).">
+>>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 
 React crée un arbre de l’UI à partir de vos composants. Dans cet exemple, l’arbre d’UI est utilisé pour produire le DOM.
 </Diagram>
@@ -39,7 +43,7 @@ Voici une appli React qui affiche des citations inspirantes.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import FancyText from './FancyText';
 import InspirationGenerator from './InspirationGenerator';
 import Copyright from './Copyright';
@@ -57,7 +61,7 @@ export default function App() {
 
 ```
 
-```js FancyText.js
+```js src/FancyText.js
 export default function FancyText({title, text}) {
   return title
     ? <h1 className='fancy title'>{text}</h1>
@@ -65,7 +69,7 @@ export default function FancyText({title, text}) {
 }
 ```
 
-```js InspirationGenerator.js
+```js src/InspirationGenerator.js
 import * as React from 'react';
 import quotes from './quotes';
 import FancyText from './FancyText';
@@ -86,13 +90,13 @@ export default function InspirationGenerator({children}) {
 }
 ```
 
-```js Copyright.js
+```js src/Copyright.js
 export default function Copyright({year}) {
   return <p className='small'>©️ {year}</p>;
 }
 ```
 
-```js quotes.js
+```js src/quotes.js
 export default [
   "Ne laisse pas hier occuper trop d’aujourd’hui. — Will Rogers",
   "L’ambition, c’est poser une échelle contre le ciel.",
@@ -148,7 +152,7 @@ Nous pouvons mettre à jour l'appli pour qu'elle affiche de façon conditionnell
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import FancyText from './FancyText';
 import InspirationGenerator from './InspirationGenerator';
 import Copyright from './Copyright';
@@ -166,7 +170,7 @@ export default function App() {
 
 ```
 
-```js FancyText.js
+```js src/FancyText.js
 export default function FancyText({title, text}) {
   return title
     ? <h1 className='fancy title'>{text}</h1>
@@ -174,13 +178,13 @@ export default function FancyText({title, text}) {
 }
 ```
 
-```js Color.js
+```js src/Color.js
 export default function Color({value}) {
   return <div className="colorbox" style={{backgroundColor: value}} />
 }
 ```
 
-```js InspirationGenerator.js
+```js src/InspirationGenerator.js
 import * as React from 'react';
 import inspirations from './inspirations';
 import FancyText from './FancyText';
@@ -205,13 +209,13 @@ export default function InspirationGenerator({children}) {
 }
 ```
 
-```js Copyright.js
+```js src/Copyright.js
 export default function Copyright({year}) {
   return <p className='small'>©️ {year}</p>;
 }
 ```
 
-```js inspirations.js
+```js src/inspirations.js
 export default [
   {type: 'quote', value: "Ne laisse pas hier occuper trop d’aujourd’hui. — Will Rogers"},
   {type: 'color', value: "#B73636"},

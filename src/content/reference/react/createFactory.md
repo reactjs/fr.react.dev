@@ -76,7 +76,7 @@ En appelant cette fonction *factory*, vous obtiendrez des éléments React avec 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { createFactory } from 'react';
 
 const button = createFactory('button');
@@ -104,7 +104,7 @@ Si votre projet à de nombreux appels à `createFactory`, copiez cette implémen
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { createFactory } from './createFactory.js';
 
 const button = createFactory('button');
@@ -118,7 +118,7 @@ export default function App() {
 }
 ```
 
-```js createFactory.js
+```js src/createFactory.js
 import { createElement } from 'react';
 
 export function createFactory(type) {
@@ -169,7 +169,7 @@ Voici un exemple complet d'utilisation de React sans JSX :
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { createElement } from 'react';
 
 export default function App() {
@@ -191,7 +191,7 @@ Pour finir, vous pouvez utiliser JSX plutôt que `createFactory`. C'est la faço
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 export default function App() {
   return (
     <button onClick={() => {

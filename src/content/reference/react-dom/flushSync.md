@@ -82,7 +82,7 @@ Par exemple, l'API `onbeforeprint` du navigateur vous permet de modifier la page
 
 <Sandpack>
 
-```js App.js active
+```js src/App.js active
 import { useState, useEffect } from 'react';
 import { flushSync } from 'react-dom';
 

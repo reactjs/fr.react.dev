@@ -35,7 +35,7 @@ Dans cet exemple de programmation impérative de l'UI, le questionnaire est cons
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 async function handleFormSubmit(e) {
   e.preventDefault();
   disable(textarea);
@@ -246,7 +246,7 @@ Si un composant a beaucoup d'états visuels, il peut être pratique de tous les 
 
 <Sandpack>
 
-```js App.js active
+```js src/App.js active
 import Form from './Form.js';
 
 let statuses = [
@@ -271,7 +271,7 @@ export default function App() {
 }
 ```
 
-```js Form.js
+```js src/Form.js
 export default function Form({ status }) {
   if (status === 'success') {
     return <h1>C’est exact !</h1>
@@ -707,7 +707,7 @@ Voici un court questionnaire implémenté en JavaScript pur avec le DOM. Utilise
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
   if (editButton.textContent === 'Modifier le profil') {
@@ -909,7 +909,7 @@ Voici la sandbox originale du challenge précédent, écrite en style impératif
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
   if (editButton.textContent === 'Modifier le profil') {
@@ -1008,9 +1008,15 @@ Si vous avez du mal à savoir par où commencer, le code ci-dessous a déjà la 
 
 <Sandpack>
 
+<<<<<<< HEAD
 ```js index.js active
 let firstName = 'Jeanne';
 let lastName = 'Deroin';
+=======
+```js src/index.js active
+let firstName = 'Jane';
+let lastName = 'Jacobs';
+>>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 let isEditing = false;
 
 function handleFormSubmit(e) {
@@ -1115,9 +1121,15 @@ Les traitements manquants comprenaient le basculement de l’affichage des champ
 
 <Sandpack>
 
+<<<<<<< HEAD
 ```js index.js active
 let firstName = 'Jeanne';
 let lastName = 'Deroin';
+=======
+```js src/index.js active
+let firstName = 'Jane';
+let lastName = 'Jacobs';
+>>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 let isEditing = false;
 
 function handleFormSubmit(e) {

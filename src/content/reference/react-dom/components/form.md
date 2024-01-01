@@ -61,7 +61,7 @@ Passez une fonction à la prop `action` du formulaire pour exécuter cette fonct
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 export default function Search() {
   function search(formData) {
     const query = formData.get("query");
@@ -146,7 +146,7 @@ Nous utilisons ci-dessous la propriété `pending` pour indiquer que le formulai
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useFormStatus } from "react-dom";
 import { submitForm } from "./actions.js";
 
@@ -172,7 +172,7 @@ export default function App() {
 }
 ```
 
-```js actions.js hidden
+```js src/actions.js hidden
 export async function submitForm(query) {
     await new Promise((res) => setTimeout(res, 1000));
 }
@@ -201,7 +201,12 @@ Lorsqu'un utilisateur saisit par exemple un message dans un formulaire puis cliq
 
 <Sandpack>
 
+<<<<<<< HEAD
 ```js App.js
+=======
+
+```js src/App.js
+>>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 import { useOptimistic, useState, useRef } from "react";
 import { deliverMessage } from "./actions.js";
 
@@ -251,7 +256,7 @@ export default function App() {
 }
 ```
 
-```js actions.js
+```js src/actions.js
 export async function deliverMessage(message) {
   await new Promise((res) => setTimeout(res, 1000));
   return message;
@@ -281,7 +286,7 @@ Il peut arriver que la fonction appelée par la prop `action` de `<form>` lève 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { ErrorBoundary } from "react-error-boundary";
 
 export default function Search() {
@@ -332,7 +337,7 @@ Afin d'afficher un message d'erreur d'envoi de formulaire avant même que le *bu
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useFormState } from "react-dom";
 import { signUpNewUser } from "./api";
 
@@ -363,7 +368,7 @@ export default function Page() {
 }
 ```
 
-```js api.js hidden
+```js src/api.js hidden
 let emails = [];
 
 export async function signUpNewUser(newEmail) {
@@ -398,7 +403,7 @@ Lorsque l'utilisateur active un bouton précis, le formulaire est envoyé, et l'
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 export default function Search() {
   function publish(formData) {
     const content = formData.get("content");
