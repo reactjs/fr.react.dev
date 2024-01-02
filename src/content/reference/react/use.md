@@ -5,11 +5,7 @@ canary: true
 
 <Canary>
 
-<<<<<<< HEAD
 Le Hook `use` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
-=======
-The `use` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 
 </Canary>
 
@@ -295,17 +291,10 @@ export default function App() {
 }
 ```
 
-<<<<<<< HEAD
-```js index.js hidden
+```js src/index.js hidden
 // TODO : remplacer l’import d’une version Canary
 // de React par une version stable, dès qu’elle
 // intégrera le Hook `use`
-=======
-```js src/index.js hidden
-// TODO: update to import from stable
-// react instead of canary once the `use`
-// Hook is in a stable release of React
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -424,17 +413,10 @@ export default function App() {
 }
 ```
 
-<<<<<<< HEAD
-```js index.js hidden
+```js src/index.js hidden
 // TODO : remplacer l’import d’une version Canary
 // de React par une version stable, dès qu’elle
 // intégrera le Hook `use`
-=======
-```js src/index.js hidden
-// TODO: update to import from stable
-// react instead of canary once the `use`
-// Hook is in a stable release of React
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';

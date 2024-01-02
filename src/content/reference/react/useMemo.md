@@ -136,7 +136,7 @@ console.timeEnd('filtrage tableau');
 
 Gardez à l’esprit que votre machine est probablement plus rapide que celles de vos utilisateurs, il est donc recommandé de tester la performance au sein d’un ralentissement artificiel.  Par exemple, Chrome propose une option de [bridage processeur](https://developer.chrome.com/blog/new-in-devtools-61/#throttling) exprès pour ça.
 
-Remarquez aussi que mesurer la performance en développement ne vous donnera pas des résultats très précis. (Par exemple, quand le [mode strict](/reference/react/StrictMode) est actif, chaque composant fait deux rendus au lieu d’un.)  Pour améliorer la pertinence de vos mesures, construisez la version de production de votre appli et testez-la sur des appareils similaires à ceux de vos utilisateurs.
+Remarquez aussi que mesurer la performance en développement ne vous donnera pas des résultats très précis. (Par exemple, quand le [Mode Strict](/reference/react/StrictMode) est actif, chaque composant fait deux rendus au lieu d’un.)  Pour améliorer la pertinence de vos mesures, construisez la version de production de votre appli et testez-la sur des appareils similaires à ceux de vos utilisateurs.
 
 </DeepDive>
 
@@ -1163,7 +1163,7 @@ Ces deux exemples sont parfaitement équivalents.  Le seul avantage de `useCallb
 
 ### Mon calcul est exécuté deux fois par rendu {/*my-calculation-runs-twice-on-every-re-render*/}
 
-En [mode strict](/reference/react/StrictMode), React appellera certaines de vos fonctions deux fois plutôt qu'une :
+En [Mode Strict](/reference/react/StrictMode), React appellera certaines de vos fonctions deux fois plutôt qu'une :
 
 ```js {2,5,6}
 function TodoList({ todos, tab }) {

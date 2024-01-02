@@ -134,7 +134,7 @@ Le rendu doit toujours être un [calcul pur](/learn/keeping-components-pure) :
 - **Mêmes entrées, mêmes sorties.**  Pour les mêmes données en entrée, un composant devrait toujours produire le même JSX. (Lorsque vous commandez une salade de tomates, vous ne devriez pas voir arriver une salade de concombres !)
 - **On se mêle de ses affaires.**  Un composant ne devrait pas modifier des objets ou variables qui existaient avant le rendu. (Une commande donnée ne devrait pas changer la commande de quelqu'un d'autre.)
 
-En enfreignant ces règles, attendez-vous à des bugs déroutants et des comportements inattendus au fil de la croissance de votre base de code.  Lorsqu'on développe en « mode strict », React appelle deux fois la fonction de chaque composant, ce qui aide à repérer les erreurs dues à des fonctions « impures ».
+En enfreignant ces règles, attendez-vous à des bugs déroutants et des comportements inattendus au fil de la croissance de votre base de code.  Lorsqu'on développe en « Mode Strict », React appelle deux fois la fonction de chaque composant, ce qui aide à repérer les erreurs dues à des fonctions « impures ».
 
 </Pitfall>
 

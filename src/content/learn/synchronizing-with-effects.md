@@ -589,7 +589,7 @@ Vous voyez maintenant trois logs dans la console en mode développement :
 
 **C’est le comportement correct en développement.** En remontant votre composant, React vérifie que le quitter puis revenir ne crée pas de problèmes.  Se déconnecter puis se reconnecter est exactement ce qu’on souhaite !  Lorsque vous implémentez votre nettoyage correctement, il ne devrait y avoir aucune différence visible entre l’exécution unique de l’Effet et une séquence exécution-nettoyage-exécution.  Bien sûr, il y a une déconnexion / reconnexion supplémentaire parce que React titille votre code à la recherche de bugs pendant le développement.  Mais c’est normal--n’essayez pas d’éliminer ça !
 
-**En production, vous ne verriez `"✅ Connexion..."` qu’une fois.**  Le remontage des composants ne survient qu’en mode développement, pour vous aider à repérer les Effets qui nécessitent un nettoyage.  Vous pouvez désactiver le [mode strict](/reference/react/StrictMode) pour éviter ce comportement de développement, mais nous vous recommandons de le laisser actif.  Ça vous aidera à repérer de nombreux problèmes comme celui ci-avant.
+**En production, vous ne verriez `"✅ Connexion..."` qu’une fois.**  Le remontage des composants ne survient qu’en mode développement, pour vous aider à repérer les Effets qui nécessitent un nettoyage.  Vous pouvez désactiver le [Mode Strict](/reference/react/StrictMode) pour éviter ce comportement de développement, mais nous vous recommandons de le laisser actif.  Ça vous aidera à repérer de nombreux problèmes comme celui ci-avant.
 
 ## Comment gérer le double déclenchement de l’Effet en développement ? {/*how-to-handle-the-effect-firing-twice-in-development*/}
 
@@ -727,7 +727,7 @@ En développement, `logVisit` sera appelée deux fois pour chaque URL, ce qui in
 
 **En production, il n’y aura pas de doublon de visite.**
 
-Pour déboguer les événements analytiques que vous envoyez, vous pouvez déployer votre appli sur un environnement de recette (qui s’exécute en mode production), ou temporairement désactiver le [mode strict](/reference/react/StrictMode) et ses vérifications de montage en mode développement.  Vous pourriez aussi envoyer vos événements analytiques au sein de gestionnaires d’événements de changement de route plutôt que depuis les Effets.  Pour obtenir des analyses plus granulaires encore, les [observateurs d’intersection](https://developer.mozilla.org/fr/docs/Web/API/Intersection_Observer_API) peuvent vous aider à surveiller quels composants sont dans la zone visible de la page, et mesurer combien de temps ils y restent.
+Pour déboguer les événements analytiques que vous envoyez, vous pouvez déployer votre appli sur un environnement de recette (qui s’exécute en mode production), ou temporairement désactiver le [Mode Strict](/reference/react/StrictMode) et ses vérifications de montage en mode développement.  Vous pourriez aussi envoyer vos événements analytiques au sein de gestionnaires d’événements de changement de route plutôt que depuis les Effets.  Pour obtenir des analyses plus granulaires encore, les [observateurs d’intersection](https://developer.mozilla.org/fr/docs/Web/API/Intersection_Observer_API) peuvent vous aider à surveiller quels composants sont dans la zone visible de la page, et mesurer combien de temps ils y restent.
 
 ### Pas un Effet : initialiser l’application {/*not-an-effect-initializing-the-application*/}
 
@@ -944,7 +944,7 @@ Au bout du compte, notre utilisateur s’en va, et le composant `ChatRoom` est d
 
 #### Comportements spécifiques au développement {/*development-only-behaviors*/}
 
-Quand le [mode strict](/reference/react/StrictMode) est actif, React remonte chaque composant une fois après leur montage initial (leur état et le DOM sont préservés). Ça [vous aide à repérer les Effets qui ont besoin d’être nettoyés](#step-3-add-cleanup-if-needed) et permet la détection en amont de problèmes tels que les *race conditions*. React effectue aussi ce remontage lorsque vous sauvegardez vos fichiers en développement.  Dans les deux cas, ces comportements sont limités au développement.
+Quand le [Mode Strict](/reference/react/StrictMode) est actif, React remonte chaque composant une fois après leur montage initial (leur état et le DOM sont préservés). Ça [vous aide à repérer les Effets qui ont besoin d’être nettoyés](#step-3-add-cleanup-if-needed) et permet la détection en amont de problèmes tels que les *race conditions*. React effectue aussi ce remontage lorsque vous sauvegardez vos fichiers en développement.  Dans les deux cas, ces comportements sont limités au développement.
 
 </DeepDive>
 
@@ -956,7 +956,7 @@ Quand le [mode strict](/reference/react/StrictMode) est actif, React remonte cha
 - React sautera un Effet si toutes ses dépendances ont des valeurs identiques à celles du rendu précédent.
 - Vous ne pouvez pas « choisir » vos dépendances.  Elles sont déterminées par le code au sein de l’Effet.
 - Un tableau de dépendances vide (`[]`) correspond à une exécution seulement lors du « montage » du composant, c’est-à-dire son apparition à l’écran.
-- En mode strict, React monte les composants deux fois (seulement en développement !) pour éprouver la qualité d’implémentation des Effets.
+- En Mode Strict, React monte les composants deux fois (seulement en développement !) pour éprouver la qualité d’implémentation des Effets.
 - Si votre Effet casse en raison du remontage, vous devez implémenter sa fonction de nettoyage.
 - React appellera votre fonction de nettoyage avant l’exécution suivante de l’Effet, ainsi qu’au démontage.
 
@@ -1374,7 +1374,7 @@ body {
 
 <Solution>
 
-Quand le [mode strict](/reference/react/StrictMode) est actif (ce qui est le cas dans les bacs à sable de ce site), React remonte chaque composant une fois en développement.  Par conséquent, l’intervalle est mis en place deux fois, c’est pourquoi à chaque seconde le compteur est incrémenté deux fois.
+Quand le [Mode Strict](/reference/react/StrictMode) est actif (ce qui est le cas dans les bacs à sable de ce site), React remonte chaque composant une fois en développement.  Par conséquent, l’intervalle est mis en place deux fois, c’est pourquoi à chaque seconde le compteur est incrémenté deux fois.
 
 Cependant, ce comportement de React n’est pas la *cause* du bug : le bug existe déjà dans votre code.  Le comportement de React le rend simplement plus facile à remarquer.  La véritable cause, c’est que l’Effet démarre un processus sans fournir une façon de le nettoyer.
 

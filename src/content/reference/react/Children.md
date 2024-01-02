@@ -58,7 +58,7 @@ Le nombre de nœuds dans ces `children`.
 
 #### Limitations {/*children-count-caveats*/}
 
-- Les nœuds vides (`null`, `undefined` et les booléens), les chaînes de caractères, les nombres, les [éléments React](/reference/react/createElement) sont tous comptabilisés. Les tableaux ne comptent pas comme des nœuds individuels, mais leurs enfants si. **La traversée s'arrête aux éléments React** : leur rendu n'est pas effectué, et leurs enfants ne sont pas traversés. Les [fragments](/reference/react/Fragment) ne sont pas traversés non plus.
+- Les nœuds vides (`null`, `undefined` et les booléens), les chaînes de caractères, les nombres, les [éléments React](/reference/react/createElement) sont tous comptabilisés. Les tableaux ne comptent pas comme des nœuds individuels, mais leurs enfants si. **La traversée s'arrête aux éléments React** : leur rendu n'est pas effectué, et leurs enfants ne sont pas traversés. Les [Fragments](/reference/react/Fragment) ne sont pas traversés non plus.
 
 ---
 
@@ -92,7 +92,7 @@ function SeparatorList({ children }) {
 
 #### Limitations {/*children-foreach-caveats*/}
 
-- Les nœuds vides (`null`, `undefined` et les booléens), les chaînes de caractères, les nombres, les [éléments React](/reference/react/createElement) sont tous comptabilisés. Les tableaux ne comptent pas comme des nœuds individuels, mais leurs enfants si. **La traversée s'arrête aux éléments React** : leur rendu n'est pas effectué, et leurs enfants ne sont pas traversés. Les [fragments](/reference/react/Fragment) ne sont pas traversés non plus.
+- Les nœuds vides (`null`, `undefined` et les booléens), les chaînes de caractères, les nombres, les [éléments React](/reference/react/createElement) sont tous comptabilisés. Les tableaux ne comptent pas comme des nœuds individuels, mais leurs enfants si. **La traversée s'arrête aux éléments React** : leur rendu n'est pas effectué, et leurs enfants ne sont pas traversés. Les [Fragments](/reference/react/Fragment) ne sont pas traversés non plus.
 
 ---
 
@@ -132,7 +132,7 @@ Dans le cas contraire, renvoie un tableau plat constitué des nœuds que vous av
 
 #### Limitations {/*children-map-caveats*/}
 
-- Les nœuds vides (`null`, `undefined` et les booléens), les chaînes de caractères, les nombres, les [éléments React](/reference/react/createElement) sont tous comptabilisés. Les tableaux ne comptent pas comme des nœuds individuels, mais leurs enfants si. **La traversée s'arrête aux éléments React** : leur rendu n'est pas effectué, et leurs enfants ne sont pas traversés. Les [fragments](/reference/react/Fragment) ne sont pas traversés non plus.
+- Les nœuds vides (`null`, `undefined` et les booléens), les chaînes de caractères, les nombres, les [éléments React](/reference/react/createElement) sont tous comptabilisés. Les tableaux ne comptent pas comme des nœuds individuels, mais leurs enfants si. **La traversée s'arrête aux éléments React** : leur rendu n'est pas effectué, et leurs enfants ne sont pas traversés. Les [Fragments](/reference/react/Fragment) ne sont pas traversés non plus.
 
 - Si vous renvoyez un élément ou un tableau d'éléments avec des clés depuis `fn`, **les clés des éléments renvoyés seront automatiquement combinées avec la clé de l'élément correspondant dans `children`**.  Lorsque vous renvoyez plusieurs éléments depuis `fn` sous forme d'un tableau, leurs clés n'ont besoin d'être uniques qu'entre elles.
 

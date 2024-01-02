@@ -853,17 +853,10 @@ export default function ContactTab() {
 ```
 
 
-<<<<<<< HEAD
-```js data.js hidden
+```js src/data.js hidden
 // Note : la façon de charger vos données dépend du framework
 // que vous utilisez en complément de Suspense.
 // Normalement, la logique de cache serait fournie par le framework.
-=======
-```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 
 let cache = new Map();
 
@@ -1056,17 +1049,10 @@ export default function ContactTab() {
 ```
 
 
-<<<<<<< HEAD
-```js data.js hidden
+```js src/data.js hidden
 // Note : la façon de charger vos données dépend du framework
 // que vous utilisez en complément de Suspense.
 // Normalement, la logique de cache serait fournie par le framework.
-=======
-```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 
 let cache = new Map();
 
@@ -1375,17 +1361,10 @@ export default function Panel({ children }) {
 }
 ```
 
-<<<<<<< HEAD
-```js data.js hidden
+```js src/data.js hidden
 // Note : la façon de charger vos données dépend du framework
 // que vous utilisez en complément de Suspense.
 // Normalement, la logique de cache serait fournie par le framework.
-=======
-```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 
 let cache = new Map();
 
@@ -1552,27 +1531,16 @@ import { ErrorBoundary } from "react-error-boundary";
 
 export function AddCommentContainer() {
   return (
-<<<<<<< HEAD
     <ErrorBoundary fallback={<p>⚠️ Ça sent le pâté…</p>}>
-        <AddCommentButton />
-=======
-    <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
       <AddCommentButton />
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
     </ErrorBoundary>
   );
 }
 
 function addComment(comment) {
-<<<<<<< HEAD
   // Pour les besoins de la démonstration uniquement
-  if(comment == null){
-    throw Error('Example error')
-=======
-  // For demonstration purposes to show Error Boundary
-  if (comment == null) {
-    throw new Error("Example Error: An error thrown to trigger error boundary");
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
+  if(comment == null) {
+    throw Error('Example Error: An error thrown to trigger error boundary')
   }
 }
 
@@ -1588,16 +1556,10 @@ function AddCommentButton() {
           // afin d’entraîner une erreur.
           addComment();
         });
-<<<<<<< HEAD
-      }}>
-        Ajouter un commentaire
-      </button>
-=======
       }}
     >
-      Add comment
+      Ajouter un commentaire
     </button>
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
   );
 }
 ```
@@ -1610,16 +1572,9 @@ export default function App() {
 }
 ```
 
-<<<<<<< HEAD
-```js index.js hidden
+```js src/index.js hidden
 // TODO: mettre à jour l'import vers la version stable de React
 // une fois que le Hook `use` actuellement Canary y figurera
-=======
-```js src/index.js hidden
-// TODO: update to import from stable
-// react instead of canary once the `use`
-// Hook is in a stable release of React
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';

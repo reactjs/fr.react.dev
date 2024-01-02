@@ -368,13 +368,9 @@ export default function Square() {
 
 </ConsoleBlock>
 
-<<<<<<< HEAD
 *(« Des éléments JSX adjacents doivent être enrobés par une balise englobante. Vouliez-vous utiliser un Fragment JSX `<>...</>` ? », NdT.)*
 
 Les composants React doivent ne renvoyer qu'un unique élément JSX, et non plusieurs éléments JSX adjacents, comme nos deux boutons. Pour corriger ça, vous pouvez utiliser des *Fragments* (`<>` et `</>`) pour enrober plusieurs éléments JSX adjacents, comme ceci :
-=======
-React components need to return a single JSX element and not multiple adjacent JSX elements like two buttons. To fix this you can use *Fragments* (`<>` and `</>`) to wrap multiple adjacent JSX elements like this:
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 
 ```js {3-6}
 export default function Square() {

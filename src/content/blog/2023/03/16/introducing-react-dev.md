@@ -429,11 +429,7 @@ export default function PackingList() {
 
 Remarquez qu'il faut écrire `importance > 0 && ...` plutôt que juste `importance && ...` afin de nous assurer que si `importance` vaut `0`, `0` ne sera pas affiché comme résultat !
 
-<<<<<<< HEAD
-Dans cette solution, on utilise deux conditions distinctes pour insérer une espace entre le nom et le libellé d'importance.  On aurait aussi pu utiliser un fragment avec une espace au début : `importance > 0 && <> <i>...</i></>` ou ajouter l'espace immédiatement au début du `<i>` :  `importance > 0 && <i> ...</i>`.
-=======
-In this solution, two separate conditions are used to insert a space between then name and the importance label. Alternatively, you could use a Fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
+Dans cette solution, on utilise deux conditions distinctes pour insérer une espace entre le nom et le libellé d'importance.  On aurait aussi pu utiliser un Fragment avec une espace au début : `importance > 0 && <> <i>...</i></>` ou ajouter l'espace immédiatement au début du `<i>` :  `importance > 0 && <i> ...</i>`.
 
 </Solution>
 
@@ -444,7 +440,6 @@ Remarquez le bouton « Afficher la solution » dans le coin inférieur gauche.
 ### Bâtir votre intuition avec les diagrammes et illustrations {/*build-an-intuition-with-diagrams-and-illustrations*/}
 
 Lorsqu'on ne trouvait pas une bonne manière d'expliquer quelque chose juste avec du code et des mots, on a ajouté des diagrammes pour vous aider à bâtir votre intuition.  Voici par exemple un des diagrammes de [Préserver et réinitialiser l'état](/learn/preserving-and-resetting-state) :
-
 
 <Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagramme avec trois sections, avec une flèche allant d'une section à l'autre. La première section contient un composant React appelé « div » avec un seul enfant appelé « section », qui lui-même n'a qu'un seul enfant appelé « Counter », qui dispose d'une bulle d'état appelée « count » dont la valeur est à 3. La section du milieu a le même parent « div », mais les composants enfants ont maintenant été supprimés, indiqué par une image avec des étincelles. La troisième section a toujours le même parent « div », mais avec un nouvel enfant appelé « div » surligné en jaune, ainsi qu'un nouvel enfant appelé « Counter » contenant une bulle d'état appelée « count » avec une valeur à 0, le tout surligné en jaune.">
 
@@ -646,12 +641,6 @@ Merci à [Dan Lebowitz](https://twitter.com/lebo) pour la design du site et à [
 
 Côté développement, merci à  [Jared Palmer](https://twitter.com/jaredpalmer) pour avoir codé le prototype. Merci à [Dane Grant](https://twitter.com/danecando) et [Dustin Goodman](https://twitter.com/dustinsgoodman) de [ThisDotLabs](https://www.thisdot.co/) pour leur aide dans le développement de l'UI. Merci à [Ives van Hoorne](https://twitter.com/CompuIves), [Alex Moldovan](https://twitter.com/alexnmoldovan), [Jasper De Moor](https://twitter.com/JasperDeMoor) et [Danilo Woznica](https://twitter.com/danilowoz) de [CodeSandbox](https://codesandbox.io/) pour leur boulot sur l'intégration des bacs à sable. Merci à [Rick Hanlon](https://twitter.com/rickhanlonii) pour son travail de qualité sur le développement et le design, l'affinage des couleurs et d'autres subtilités. Merci à [Harish Kumar](https://www.strek.in/) et [Luna Ruan](https://twitter.com/lunaruan) pour avoir ajouté des nouvelles fonctionnalités au site et pour nous aider à le maintenir.
 
-<<<<<<< HEAD
 Un immense merci à celles et ceux qui ont donné de leur temps pour participer aux programmes de tests alpha et beta. Votre enthousiasme et vos retours précieux nous ont aidé à affiner ces docs. Un merci tout particulier à notre beta testeuse [Debbie O'Brien](https://twitter.com/debs_obrien), qui a présenté son expérience avec les docs React à la React Conf 2021.
 
 Enfin, merci à la communauté React de nous avoir inspirés dans cette entreprise.  Vous êtes la raison de tout cela, et nous espérons que ces nouvelles docs vous aideront à utiliser React pour construire toutes les interfaces utilisateurs que vous pourriez imaginer.
-=======
-Huge thanks to the folks who volunteered their time to participate in the alpha and beta testing program. Your enthusiasm and invaluable feedback helped us shape these docs. A special shout out to our beta tester, [Debbie O'Brien](https://twitter.com/debs_obrien), who gave a talk about her experience using the React docs at React Conf 2021.
-
-Finally, thanks to the React community for being the inspiration behind this effort. You are the reason we do this, and we hope that the new docs will help you use React to build any user interface that you want.
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954

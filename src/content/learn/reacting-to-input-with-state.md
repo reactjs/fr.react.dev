@@ -1008,15 +1008,9 @@ Si vous avez du mal à savoir par où commencer, le code ci-dessous a déjà la 
 
 <Sandpack>
 
-<<<<<<< HEAD
-```js index.js active
+```js src/index.js active
 let firstName = 'Jeanne';
 let lastName = 'Deroin';
-=======
-```js src/index.js active
-let firstName = 'Jane';
-let lastName = 'Jacobs';
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 let isEditing = false;
 
 function handleFormSubmit(e) {
@@ -1121,15 +1115,9 @@ Les traitements manquants comprenaient le basculement de l’affichage des champ
 
 <Sandpack>
 
-<<<<<<< HEAD
-```js index.js active
+```js src/index.js active
 let firstName = 'Jeanne';
 let lastName = 'Deroin';
-=======
-```js src/index.js active
-let firstName = 'Jane';
-let lastName = 'Jacobs';
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 let isEditing = false;
 
 function handleFormSubmit(e) {

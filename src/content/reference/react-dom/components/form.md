@@ -201,12 +201,7 @@ Lorsqu'un utilisateur saisit par exemple un message dans un formulaire puis cliq
 
 <Sandpack>
 
-<<<<<<< HEAD
-```js App.js
-=======
-
 ```js src/App.js
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 import { useOptimistic, useState, useRef } from "react";
 import { deliverMessage } from "./actions.js";
 

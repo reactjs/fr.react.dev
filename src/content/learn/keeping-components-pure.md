@@ -12,7 +12,7 @@ Certaines fonctions JavaScript sont *pures*. Les fonctions pures se contentent d
 
 - Ce qu'est la pureté d'une fonction, et en quoi elle vous aide à éviter les bugs
 - Comment garder vos composants purs en ne modifiant rien pendant la phase de rendu
-- Comment utiliser le mode strict pour détecter les erreurs dans vos composants
+- Comment utiliser le Mode Strict pour détecter les erreurs dans vos composants
 
 </YouWillLearn>
 
@@ -153,11 +153,11 @@ Même si vous ne les avez pas encore toutes utilisées à ce stade, sachez que d
 
 Lorsque vous souhaitez *modifier* quelque chose en réaction à une interaction utilisateur, vous devriez [mettre à jour l'état](/learn/state-a-components-memory) plutôt que d'écrire dans une variable.  Vous ne devriez jamais modifier des variables ou objets pré-existants lors du rendu de votre composant.
 
-React propose un « mode strict » dans lequel il appelle chaque fonction composant deux fois pendant le développement. **En appelant chaque fonction composant deux fois, le mode strict vous aide à repérer les composants qui enfreignent ces règles.**
+React propose un « Mode Strict » dans lequel il appelle chaque fonction composant deux fois pendant le développement. **En appelant chaque fonction composant deux fois, le Mode Strict vous aide à repérer les composants qui enfreignent ces règles.**
 
 Avez-vous remarqué que le premier exemple affichait « invité #2 », « invité #4 » et « invité #6 » au lieu de « invité #1 », « invité #2 » et « invité #3 » ?  La fonction d'origine était impure, de sorte que l'appeler deux fois cassait son fonctionnement.  Mais la fonction corrigée, qui est pure, fonctionne même si elle est systématiquement appelée deux fois. **Les fonctions pures font juste un calcul, aussi les appeler deux fois ne change rien**, tout comme appeler `double(2)` deux fois ne change pas son résultat, et résoudre <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> deux fois ne change pas la valeur de <MathI>y</MathI>. Mêmes entrées, même sorties. Toujours.
 
-Le mode strict n'a aucun effet en production, il ne ralentira donc pas votre appli pour vos utilisateurs.  Pour activer le mode strict, enrobez votre composant racine dans un `<React.StrictMode>`. Certains frameworks mettent ça en place par défaut.
+Le Mode Strict n'a aucun effet en production, il ne ralentira donc pas votre appli pour vos utilisateurs.  Pour activer le Mode Strict, enrobez votre composant racine dans un `<React.StrictMode>`. Certains frameworks mettent ça en place par défaut.
 
 </DeepDive>
 
@@ -674,7 +674,7 @@ li {
 
 <Solution>
 
-Remarquez que chaque fois que l'horloge change, « Créer une histoire » est ajoutée *deux fois*. C'est un indice que la mutation est dans notre rendu : le mode strict appelle les composants deux fois pour rendre ce type de soucis plus facile à remarquer.
+Remarquez que chaque fois que l'horloge change, « Créer une histoire » est ajoutée *deux fois*. C'est un indice que la mutation est dans notre rendu : le Mode Strict appelle les composants deux fois pour rendre ce type de soucis plus facile à remarquer.
 
 La fonction `StoryTray` n'est pas pure. En appelant `push` sur le tableau `stories` reçu (une prop !), elle modifie un objet créé *avant* que `StoryTray` ait commencé son rendu.  Ça donne un bug et un comportement imprévisible.
 

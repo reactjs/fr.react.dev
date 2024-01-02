@@ -247,7 +247,7 @@ En résumé, voici comment interpréter l'argument que vous passez à une foncti
 * **Une fonction de mise à jour** (ex. `n => n + 1`) est ajoutée à la file d'attente.
 * **N'importe quelle autre valeur** (ex. le nombre `5`) ajoute « remplacer par `5` » à la file d'attente, ce qui revient à ignorer les étapes précédentes de la file.
 
-Après que le gestionnaire d'événement a terminé, React déclenche un nouveau rendu.  Durant celui-ci, React traite la file d'attente. Les fonctions de mise à jour sont exécutées lors du rendu, ce qui implique que **les fonctions de mise à jour doivent être [pures](/learn/keeping-components-pure)** et se contenter de *renvoyer* leur résultat.  N'essayez pas de mettre à jour l'état depuis les fonctions de mise à jour, ou de déclencher quelque autre effet de bord que ce soit.  En mode strict, React exécutera chaque fonction de mise à jour deux fois (en ignorant le second résultat) pour vous aider à détecter des erreurs.
+Après que le gestionnaire d'événement a terminé, React déclenche un nouveau rendu.  Durant celui-ci, React traite la file d'attente. Les fonctions de mise à jour sont exécutées lors du rendu, ce qui implique que **les fonctions de mise à jour doivent être [pures](/learn/keeping-components-pure)** et se contenter de *renvoyer* leur résultat.  N'essayez pas de mettre à jour l'état depuis les fonctions de mise à jour, ou de déclencher quelque autre effet de bord que ce soit.  En Mode Strict, React exécutera chaque fonction de mise à jour deux fois (en ignorant le second résultat) pour vous aider à détecter des erreurs.
 
 ### Conventions de nommage {/*naming-conventions*/}
 

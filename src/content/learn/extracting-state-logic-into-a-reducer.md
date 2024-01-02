@@ -1856,7 +1856,7 @@ textarea {
 
 Le comportement visible reste identique. Cependant, gardez à l'esprit que les types d'action doivent idéalement décrire « ce qu'a fait l'utilisateur » plutôt que « la façon dont vous voulez que l'état change ». Respecter cette philosophie facilite l'ajout de fonctionnalités par la suite.
 
-Quelle que soit l'approche retenue, il est important que vous ne placiez _pas_ l'`alert` dans un réducteur. Le réducteur doit être une fonction pure : il doit se limiter au calcul du prochain état. Il ne doit rien « faire », y compris afficher des messages à l'utilisateur. Ça doit être fait dans le gestionnaire d'événement (pour détecter ce genre d'erreur, React en mode strict appellera vos réducteurs plusieurs fois. Du coup, si vous placez une alerte dans un réducteur, vous la verrez deux fois).
+Quelle que soit l'approche retenue, il est important que vous ne placiez _pas_ l'`alert` dans un réducteur. Le réducteur doit être une fonction pure : il doit se limiter au calcul du prochain état. Il ne doit rien « faire », y compris afficher des messages à l'utilisateur. Ça doit être fait dans le gestionnaire d'événement (pour détecter ce genre d'erreur, React en Mode Strict appellera vos réducteurs plusieurs fois. Du coup, si vous placez une alerte dans un réducteur, vous la verrez deux fois).
 
 </Solution>
 

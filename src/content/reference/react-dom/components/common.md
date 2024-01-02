@@ -981,13 +981,9 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 </Sandpack>
 
-<<<<<<< HEAD
-Pour comprendre pourquoi l'injection d'un contenu HTML quelconque est dangereuse, remplacez le code plus haut par celui-ci :
-=======
-The `{__html}` object should be created as close to where the HTML is generated as possible, like the above example does in the `renderMarkdownToHTML` function. This ensures that all raw HTML being used in your code is explicitly marked as such, and that only variables that you expect to contain HTML are passed to `dangerouslySetInnerHTML`. It is not recommended to create the object inline like `<div dangerouslySetInnerHTML={{__html: markup}} />`.
+L'objet `{__html}` est censé être produit le plus près possible de la génération effective du HTML, comme le fait l'exemple précédent dans la fonction `renderMarkdownToHTML`. Ça garantit que tous les morceaux de HTML brut dans votre code sont explicitement identifiés comme tels, et que seules les variables dans le contenu desquelles vous anticipez la présence de HTML sont passées à `dangerouslySetInnerHTML`. Nous vous déconseillons de créer ces objets à la volée comme dans `<div dangerouslySetInnerHTML={{__html: markup}} />`.
 
-To see why rendering arbitrary HTML is dangerous, replace the code above with this:
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
+Pour comprendre pourquoi l'injection d'un contenu HTML quelconque est dangereuse, remplacez le code plus haut par celui-ci :
 
 ```js {1-4,7,8}
 const post = {

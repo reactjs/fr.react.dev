@@ -80,99 +80,7 @@ Vous connaissez un meetup React.js local ? Ajoutez-le ! (Merci de conserver un
 * [Aalborg](https://www.meetup.com/Aalborg-React-React-Native-Meetup/)
 * [Aarhus](https://www.meetup.com/Aarhus-ReactJS-Meetup/)
 
-<<<<<<< HEAD
 ## Écosse (R.-U.) {/*scotland-uk*/}
-=======
-## Egypt {/*egypt*/}
-* [Cairo](https://www.meetup.com/react-cairo/)
-
-## England (UK) {/*england-uk*/}
-* [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
-* [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
-* [React London : Bring Your Own Project](https://www.meetup.com/React-London-Bring-Your-Own-Project/)
-
-## France {/*france*/}
-* [Nantes](https://www.meetup.com/React-Nantes/)
-* [Lille](https://www.meetup.com/ReactBeerLille/)
-* [Paris](https://www.meetup.com/ReactJS-Paris/)
-
-## Germany {/*germany*/}
-* [Cologne](https://www.meetup.com/React-Cologne/)
-* [Düsseldorf](https://www.meetup.com/de-DE/ReactJS-Meetup-Dusseldorf/)
-* [Hamburg](https://www.meetup.com/Hamburg-React-js-Meetup/)
-* [Karlsruhe](https://www.meetup.com/react_ka/)
-* [Kiel](https://www.meetup.com/Kiel-React-Native-Meetup/)
-* [Munich](https://www.meetup.com/ReactJS-Meetup-Munich/)
-* [React Berlin](https://www.meetup.com/React-Open-Source/)
-
-## Greece {/*greece*/}
-* [Athens](https://www.meetup.com/React-To-React-Athens-MeetUp/)
-* [Thessaloniki](https://www.meetup.com/Thessaloniki-ReactJS-Meetup/)
-
-## Hungary {/*hungary*/}
-* [Budapest](https://www.meetup.com/React-Budapest/)
-
-## India {/*india*/}
-* [Ahmedabad](https://www.meetup.com/react-ahmedabad/)
-* [Bangalore (React)](https://www.meetup.com/ReactJS-Bangalore/)
-* [Bangalore (React Native)](https://www.meetup.com/React-Native-Bangalore-Meetup)
-* [Chennai](https://www.meetup.com/React-Chennai/)
-* [Delhi NCR](https://www.meetup.com/React-Delhi-NCR/)
-* [Mumbai](https://reactmumbai.dev)
-* [Pune](https://www.meetup.com/ReactJS-and-Friends/)
-
-## Indonesia {/*indonesia*/}
-* [Indonesia](https://www.meetup.com/reactindonesia/)
-
-## Ireland {/*ireland*/}
-* [Dublin](https://www.meetup.com/ReactJS-Dublin/)
-
-## Israel {/*israel*/}
-* [Tel Aviv](https://www.meetup.com/ReactJS-Israel/)
-
-## Italy {/*italy*/}
-* [Milan](https://www.meetup.com/React-JS-Milano/)
-
-## Kenya {/*kenya*/}
-* [Nairobi - Reactdevske](https://kommunity.com/reactjs-developer-community-kenya-reactdevske)
-
-## Malaysia {/*malaysia*/}
-* [Kuala Lumpur](https://www.kl-react.com/)
-* [Penang](https://www.facebook.com/groups/reactpenang/)
-
-## Netherlands {/*netherlands*/}
-* [Amsterdam](https://www.meetup.com/React-Amsterdam/)
-
-## New Zealand {/*new-zealand*/}
-* [Wellington](https://www.meetup.com/React-Wellington/)
-
-## Norway {/*norway*/}
-* [Norway](https://reactjs-norway.webflow.io/)
-* [Oslo](https://www.meetup.com/ReactJS-Oslo-Meetup/)
-
-## Pakistan {/*pakistan*/}
-* [Karachi](https://www.facebook.com/groups/902678696597634/)
-* [Lahore](https://www.facebook.com/groups/ReactjsLahore/)
-
-## Panama {/*panama*/}
-* [Panama](https://www.meetup.com/React-Panama/)
-
-## Peru {/*peru*/}
-* [Lima](https://www.meetup.com/ReactJS-Peru/)
-
-## Philippines {/*philippines*/}
-* [Manila](https://www.meetup.com/reactjs-developers-manila/)
-* [Manila - ReactJS PH](https://www.meetup.com/ReactJS-Philippines/)
-
-## Poland {/*poland*/}
-* [Warsaw](https://www.meetup.com/React-js-Warsaw/)
-* [Wrocław](https://www.meetup.com/ReactJS-Wroclaw/)
-
-## Portugal {/*portugal*/}
-* [Lisbon](https://www.meetup.com/JavaScript-Lisbon/)
-
-## Scotland (UK) {/*scotland-uk*/}
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 * [Edinburgh](https://www.meetup.com/React-Scotland/)
 
 ## Égypte {/*egypt*/}
@@ -247,6 +155,7 @@ Vous connaissez un meetup React.js local ? Ajoutez-le ! (Merci de conserver un
 * [Bangalore (React Native)](https://www.meetup.com/React-Native-Bangalore-Meetup)
 * [Chennai](https://www.meetup.com/React-Chennai/)
 * [Delhi NCR](https://www.meetup.com/React-Delhi-NCR/)
+* [Mumbai](https://reactmumbai.dev)
 * [Pune](https://www.meetup.com/ReactJS-and-Friends/)
 
 ## Indonésie {/*indonesia*/}

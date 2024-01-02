@@ -27,7 +27,7 @@ Enrobez des éléments dans un `<Fragment>` pour les grouper dans des situations
 
 #### Props {/*props*/}
 
-- `key` **optionnel** : les fragments déclarés explicitement avec la syntaxe `<Fragment>` peuvent avoir une [keys](/learn/rendering-lists#keeping-list-items-in-order-with-key).
+- `key` **optionnel** : les Fragments déclarés explicitement avec la syntaxe `<Fragment>` peuvent avoir une [keys](/learn/rendering-lists#keeping-list-items-in-order-with-key).
 
 #### Limitations {/*caveats*/}
 

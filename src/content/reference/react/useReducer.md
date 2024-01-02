@@ -52,7 +52,7 @@ function MyComponent() {
 #### Limitations {/*caveats*/}
 
 * `useReducer` est un Hook, vous ne pouvez donc l'appeler **qu'au niveau racine de votre composant** ou dans vos propres Hooks. Vous ne pouvez pas l'appeler dans des boucles ou des conditions. Si vous avez besoin de le faire, extrayez un nouveau composant et déplacez-y l'état.
-* En mode strict, React **appellera deux fois votre réducteur et votre fonction d'initialisation** afin de [vous aider à détecter des impuretés accidentelles](#my-reducer-or-initializer-function-runs-twice). Ce comportement est limité au développement et n'affecte pas la production. Si votre réducteur et votre fonction d'initialisation sont pures (ce qui devrait être le cas), ça n'impactera pas votre logique. Le résultat de l'un des appels est ignoré.
+* En Mode Strict, React **appellera deux fois votre réducteur et votre fonction d'initialisation** afin de [vous aider à détecter des impuretés accidentelles](#my-reducer-or-initializer-function-runs-twice). Ce comportement est limité au développement et n'affecte pas la production. Si votre réducteur et votre fonction d'initialisation sont pures (ce qui devrait être le cas), ça n'impactera pas votre logique. Le résultat de l'un des appels est ignoré.
 
 ---
 
@@ -1083,7 +1083,7 @@ Si vous ne trouvez pas la cause de cette erreur, cliquez sur la flèche à côt�
 
 ### Mon réducteur ou ma fonction d'initialisation s'exécute deux fois {/*my-reducer-or-initializer-function-runs-twice*/}
 
-En [mode strict](/reference/react/StrictMode), React appellera votre réducteur et votre fonction d'initialisation deux fois. Ça ne devrait pas casser votre code.
+En [Mode Strict](/reference/react/StrictMode), React appellera votre réducteur et votre fonction d'initialisation deux fois. Ça ne devrait pas casser votre code.
 
 Ce comportement **spécifique au développement** vous aide à [garder les composants purs](/learn/keeping-components-pure). React utilise le résultat de l'un des appels et ignore l'autre. Tant que votre composant, votre fonction d'initialisation et votre réducteur sont purs, ça ne devrait pas affecter votre logique. Si toutefois ils sont malencontreusement impurs, ça vous permettra de détecter les erreurs.
 

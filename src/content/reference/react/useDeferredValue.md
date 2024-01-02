@@ -186,17 +186,10 @@ function use(promise) {
 }
 ```
 
-<<<<<<< HEAD
-```js data.js hidden
+```js src/data.js hidden
 // Remarque : la manière de récupérer les données dépend
 // du framework avec lequel vous utilisez Suspense.
 // En temps normal, la logique de cache est fournie par le framework.
-=======
-```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 
 let cache = new Map();
 
@@ -408,17 +401,10 @@ function use(promise) {
 }
 ```
 
-<<<<<<< HEAD
-```js data.js hidden
+```js src/data.js hidden
 // Remarque : la manière de récupérer les données dépend
 // du framework avec lequel vous utilisez Suspense.
 // En temps normal, la logique de cache est fournie par le framework.
-=======
-```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 
 let cache = new Map();
 
@@ -644,18 +630,10 @@ function use(promise) {
 }
 ```
 
-<<<<<<< HEAD
-```js data.js hidden
+```js src/data.js hidden
 // Remarque : la manière de récupérer les données dépend
 // du framework avec lequel vous utilisez Suspense.
 // En temps normal, la logique de cache est fournie par le framework.
-=======
-```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
-
->>>>>>> bbb08a5a04b0221137e5d60472fc979747af2954
 let cache = new Map();
 
 export function fetchData(url) {
