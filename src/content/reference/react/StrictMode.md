@@ -40,7 +40,7 @@ root.render(
 
 [Voir d'autres exemples plus bas](#usage).
 
-Les comportements suivants sont activés en développement par le mode strict :
+Les comportements suivants sont activés en développement par le Mode Strict :
 
 - Vos composants feront [un rendu supplémentaire](#fixing-bugs-found-by-double-rendering-in-development) afin de trouver les bugs causés par des rendus impurs.
 - Vos composants [exécuteront les Effets une fois supplémentaire](#fixing-bugs-found-by-re-running-effects-in-development) afin de détecter les bugs causés par l'absence de nettoyage d'Effet.
@@ -52,18 +52,18 @@ Les comportements suivants sont activés en développement par le mode strict :
 
 #### Limitations {/*caveats*/}
 
-* Il n'est pas possible de désactiver le mode strict au sein d'un arbre enrobé dans un `<StrictMode>`. Ça vous garantit que tous les composants à l'intérieur de `<StrictMode>` sont vérifiés. Si deux équipes travaillant sur un produit ne sont pas d'accord sur l'utilité de ces vérifications, elles doivent trouver un consensus ou déplacer le `<StrictMode>` plus bas dans l'arbre.
+* Il n'est pas possible de désactiver le Mode Strict au sein d'un arbre enrobé dans un `<StrictMode>`. Ça vous garantit que tous les composants à l'intérieur de `<StrictMode>` sont vérifiés. Si deux équipes travaillant sur un produit ne sont pas d'accord sur l'utilité de ces vérifications, elles doivent trouver un consensus ou déplacer le `<StrictMode>` plus bas dans l'arbre.
 
 ---
 
 ## Utilisation {/*usage*/}
 
-### Activer le mode strict pour toute l'appli {/*enabling-strict-mode-for-entire-app*/}
+### Activer le Mode Strict pour toute l'appli {/*enabling-strict-mode-for-entire-app*/}
 
-Le mode strict active des vérifications supplémentaires uniquement en mode de développement pour tout l'arbre des composants à l'intérieur du composant `<StrictMode>`. Ces vérifications vous aident à trouver des bugs courants dans vos composants dès le début de la phase de développement.
+Le Mode Strict active des vérifications supplémentaires uniquement en mode de développement pour tout l'arbre des composants à l'intérieur du composant `<StrictMode>`. Ces vérifications vous aident à trouver des bugs courants dans vos composants dès le début de la phase de développement.
 
 
-Pour activer le mode strict pour toute votre appli, enrobez votre composant racine avec `<StrictMode>` lorsque vous en faites le rendu :
+Pour activer le Mode Strict pour toute votre appli, enrobez votre composant racine avec `<StrictMode>` lorsque vous en faites le rendu :
 
 ```js {6,8}
 import { StrictMode } from 'react';
@@ -77,13 +77,13 @@ root.render(
 );
 ```
 
-Nous recommandons d'enrober toute votre appli dans le mode strict, en particulier pour les nouvelles applis. Si vous utilisez un framework qui appelle [`createRoot`](/reference/react-dom/client/createRoot) à votre place, consultez sa documentation pour savoir comment activer le mode strict.
+Nous recommandons d'enrober toute votre appli dans le Mode Strict, en particulier pour les nouvelles applis. Si vous utilisez un framework qui appelle [`createRoot`](/reference/react-dom/client/createRoot) à votre place, consultez sa documentation pour savoir comment activer le Mode Strict.
 
-Bien que les vérifications en mode strict **ne s'exécutent que durant le développement**, elles vous aident à trouver des bugs qui existent déjà dans votre code et qui peuvent être difficiles à reproduire de façon fiable en production. Le mode strict vous permet de corriger les bugs avant que vos utilisateurs ne les signalent.
+Bien que les vérifications en Mode Strict **ne s'exécutent que durant le développement**, elles vous aident à trouver des bugs qui existent déjà dans votre code et qui peuvent être difficiles à reproduire de façon fiable en production. Le Mode Strict vous permet de corriger les bugs avant que vos utilisateurs ne les signalent.
 
 <Note>
 
-Le mode strict active les vérifications suivantes en mode de développement :
+Le Mode Strict active les vérifications suivantes en mode de développement :
 
 - Vos composants feront [un rendu supplémentaire](#fixing-bugs-found-by-double-rendering-in-development) afin de trouver les bugs causés par des rendus impurs.
 - Vos composants [exécuteront les Effets une fois supplémentaire](#fixing-bugs-found-by-re-running-effects-in-development) afin de détecter les bugs causés par l'absence de nettoyage d'Effet.
@@ -95,9 +95,9 @@ Le mode strict active les vérifications suivantes en mode de développement :
 
 ---
 
-### Activer le mode strict sur une partie de l'appli {/*enabling-strict-mode-for-a-part-of-the-app*/}
+### Activer le Mode Strict sur une partie de l'appli {/*enabling-strict-mode-for-a-part-of-the-app*/}
 
-Vous pouvez également activer le mode strict sur n'importe quelle partie de votre application :
+Vous pouvez également activer le Mode Strict sur n'importe quelle partie de votre application :
 
 ```js {7,12}
 import { StrictMode } from 'react';
@@ -118,7 +118,7 @@ function App() {
 }
 ```
 
-Dans cet exemple, les vérifications du mode strict ne s'exécuteront pas sur les composants `Header` et `Footer`. Cependant, elles s'exécuteront sur `Sidebar` et `Content`, ainsi que sur tous les composants qu'ils contiennent, peu importe la profondeur à laquelle ils se trouvent.
+Dans cet exemple, les vérifications du Mode Strict ne s'exécuteront pas sur les composants `Header` et `Footer`. Cependant, elles s'exécuteront sur `Sidebar` et `Content`, ainsi que sur tous les composants qu'ils contiennent, peu importe la profondeur à laquelle ils se trouvent.
 
 ---
 
@@ -126,7 +126,7 @@ Dans cet exemple, les vérifications du mode strict ne s'exécuteront pas sur le
 
 [React part du principe que chaque composant que vous écrivez est une fonction pure](/learn/keeping-components-pure). Ça signifie que vos composants React doivent toujours renvoyer le même JSX pour les mêmes entrées (props, état et contexte).
 
-Les composants qui ne respectent pas cette règle peuvent se comporter de façon imprévisible et occasionner des bugs. Pour vous aider à trouver du code accidentellement impur, le mode strict appelle certaines de vos fonctions (seulement celles qui doivent être pures) **deux fois en développement**. Ça inclut :
+Les composants qui ne respectent pas cette règle peuvent se comporter de façon imprévisible et occasionner des bugs. Pour vous aider à trouver du code accidentellement impur, le Mode Strict appelle certaines de vos fonctions (seulement celles qui doivent être pures) **deux fois en développement**. Ça inclut :
 
 - Le corps de votre fonction composant (seulement la logique du niveau racine, ce qui exclut le code contenu dans les gestionnaires d'événements).
 - Les fonctions que vous passez à [`useState`](/reference/react/useState), aux [fonctions `set`](/reference/react/useState#setstate), à [`useMemo`](/reference/react/useMemo) ou à [`useReducer`](/reference/react/useReducer).
@@ -134,13 +134,13 @@ Les composants qui ne respectent pas cette règle peuvent se comporter de façon
 
 Si une fonction est pure, l'exécuter deux fois ne change pas son comportement, car une telle fonction produit le même résultat à chaque fois. Cependant, si une fonction est impure (elle modifie par exemple la donnée qu'elle reçoit), l'exécuter deux fois devrait se remarquer (c'est ce qui la rend impure !). Ça vous aide à détecter et corriger les bugs plus rapidement.
 
-**Voici un exemple qui illustre comment le double rendu en mode strict vous aide à détecter des bugs plus tôt.**
+**Voici un exemple qui illustre comment le double rendu en Mode Strict vous aide à détecter des bugs plus tôt.**
 
 Ce composant `StoryTray` prend un tableau de `stories` et ajoute à la fin un élément « Créer une histoire » :
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -150,7 +150,7 @@ const root = createRoot(document.getElementById("root"));
 root.render(<App />);
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -175,7 +175,7 @@ export default function App() {
 }
 ```
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
   const items = stories;
   items.push({ id: 'create', label: 'Créer une histoire' });
@@ -218,7 +218,7 @@ Cette erreur devient bien plus facile à remarquer lorsque le composant `StoryTr
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -228,7 +228,7 @@ const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -253,7 +253,7 @@ export default function App() {
 }
 ```
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 import { useState } from 'react';
 
 export default function StoryTray({ stories }) {
@@ -316,7 +316,7 @@ export default function StoryTray({ stories }) {
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -331,7 +331,7 @@ root.render(
 );
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -356,7 +356,7 @@ export default function App() {
 }
 ```
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
   const items = stories;
   items.push({ id: 'create', label: 'Créer une histoire' });
@@ -393,11 +393,11 @@ li {
 
 </Sandpack>
 
-**Le mode strict appelle *toujours* votre fonction de rendu deux fois, afin que vous puissiez voir le problème immédiatement** (« Créer une histoire » apparaît deux fois). Ça vous permet de détecter ce genre d'erreur plus tôt dans le processus de développement. Lorsque vous corrigez votre composant pour qu'il fasse des rendus corrects en mode strict, vous corrigez *également* de nombreux bugs potentiels en production, telle que la fonctionnalité de survol précédente :
+**Le Mode Strict appelle *toujours* votre fonction de rendu deux fois, afin que vous puissiez voir le problème immédiatement** (« Créer une histoire » apparaît deux fois). Ça vous permet de détecter ce genre d'erreur plus tôt dans le processus de développement. Lorsque vous corrigez votre composant pour qu'il fasse des rendus corrects en Mode Strict, vous corrigez *également* de nombreux bugs potentiels en production, telle que la fonctionnalité de survol précédente :
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -412,7 +412,7 @@ root.render(
 );
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -437,7 +437,7 @@ export default function App() {
 }
 ```
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 import { useState } from 'react';
 
 export default function StoryTray({ stories }) {
@@ -483,7 +483,7 @@ li {
 
 </Sandpack>
 
-Sans le mode strict, il était facile de passer à côté du bug jusqu'à ce que vous ajoutiez d'autres rendus. Le mode strict fait apparaître le même bug immédiatement. Ce mode vous aide à trouver les bugs avant que vous ne les poussiez à votre équipe et à vos utilisateurs.
+Sans le Mode Strict, il était facile de passer à côté du bug jusqu'à ce que vous ajoutiez d'autres rendus. Le Mode Strict fait apparaître le même bug immédiatement. Ce mode vous aide à trouver les bugs avant que vous ne les poussiez à votre équipe et à vos utilisateurs.
 
 [Apprenez-en davantage sur la façon de garder les composants purs](/learn/keeping-components-pure).
 
@@ -497,19 +497,19 @@ Si vous avez installé [les outils de développement React](/learn/react-develop
 
 ### Corriger les bugs trouvés en réexécutant les Effets en développement {/*fixing-bugs-found-by-re-running-effects-in-development*/}
 
-Le mode strict est également utile pour trouver des bugs dans les [Effets](/learn/synchronizing-with-effects).
+Le Mode Strict est également utile pour trouver des bugs dans les [Effets](/learn/synchronizing-with-effects).
 
 Chaque Effet a du code d'initialisation et peut avoir du code de nettoyage. Normalement, React appelle le code d'initialisation quand le composant *est monté* (quand il est ajouté à l'écran), et appelle le code de nettoyage quand le composant est *démonté* (il est enlevé de l'écran). React appelle ensuite le nettoyage et l'initialisation à nouveau si l'une des dépendances de l'Effet a changé depuis le dernier rendu.
 
-Quand le mode strict est activé, React exécutera **un cycle d'initialisation + nettoyage supplémentaire en développement pour chaque Effet**.  Ça peut surprendre, mais ça aide à détecter des bugs subtils qu'il est difficile de repérer manuellement.
+Quand le Mode Strict est activé, React exécutera **un cycle d'initialisation + nettoyage supplémentaire en développement pour chaque Effet**.  Ça peut surprendre, mais ça aide à détecter des bugs subtils qu'il est difficile de repérer manuellement.
 
-**Voici un exemple qui illustre comment la réexécution de l'Effet en mode strict vous aide à trouver des bugs plus rapidement.**
+**Voici un exemple qui illustre comment la réexécution de l'Effet en Mode Strict vous aide à trouver des bugs plus rapidement.**
 
 Prenez cet exemple qui connecte un composant à un salon de discussion :
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -535,7 +535,7 @@ export default function ChatRoom() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 let connections = 0;
 
 export function createConnection(serverUrl, roomId) {
@@ -568,7 +568,7 @@ Pour rendre le problème plus évident, ajoutons une fonctionnalité. Dans l'exe
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -619,7 +619,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 let connections = 0;
 
 export function createConnection(serverUrl, roomId) {
@@ -662,7 +662,7 @@ Maintenant que votre Effet « fait le nettoyage » et supprime les connexions 
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -693,7 +693,7 @@ export default function ChatRoom() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 let connections = 0;
 
 export function createConnection(serverUrl, roomId) {
@@ -720,13 +720,13 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-**Avec le mode strict, vous voyez immédiatement qu'il y a un problème** (le nombre de connexions actives monte à 2). Ce mode exécute le cycle initialisation - nettoyage une fois de plus pour chaque Effet. Cet Effet n'a pas de logique de nettoyage, il crée donc une connexion supplémentaire sans jamais la détruire. C'est un indice qu'il vous manque une fonction de nettoyage.
+**Avec le Mode Strict, vous voyez immédiatement qu'il y a un problème** (le nombre de connexions actives monte à 2). Ce mode exécute le cycle initialisation - nettoyage une fois de plus pour chaque Effet. Cet Effet n'a pas de logique de nettoyage, il crée donc une connexion supplémentaire sans jamais la détruire. C'est un indice qu'il vous manque une fonction de nettoyage.
 
-Le mode strict vous permet de détecter de telles erreurs tôt dans le process. Lorsque vous corrigez votre Effet en ajoutant une fonction de nettoyage dans le mode strict, vous corrigez *également* de nombreux bugs potentiels en production, telle que la liste déroulante vue précédemment :
+Le Mode Strict vous permet de détecter de telles erreurs tôt dans le process. Lorsque vous corrigez votre Effet en ajoutant une fonction de nettoyage dans le Mode Strict, vous corrigez *également* de nombreux bugs potentiels en production, telle que la liste déroulante vue précédemment :
 
 <Sandpack>
 
-```js index.js
+```js src/index.js
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -783,7 +783,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 let connections = 0;
 
 export function createConnection(serverUrl, roomId) {
@@ -812,13 +812,13 @@ button { margin-left: 10px; }
 
 Remarquez que le nombre de connexions actives dans la console cesse de grandir maintenant.
 
-Sans le mode strict, il était facile de passer à côté du fait que l'Effet nécessitait une fonction de nettoyage. En exécutant *initialisation → nettoyage → initialisation* plutôt que *initialisation* de votre Effet en développement, le mode strict a rendu l'absence de fonction de nettoyage plus visible.
+Sans le Mode Strict, il était facile de passer à côté du fait que l'Effet nécessitait une fonction de nettoyage. En exécutant *initialisation → nettoyage → initialisation* plutôt que *initialisation* de votre Effet en développement, le Mode Strict a rendu l'absence de fonction de nettoyage plus visible.
 
 [Apprenez-en davantage sur l'implémentation de fonction de nettoyage des Effets](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development).
 
 ---
 
-### Corriger les alertes de dépréciation activées par le mode strict {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
+### Corriger les alertes de dépréciation activées par le Mode Strict {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
 
 React alerte si certains composants quelque part à l'intérieur de l'arbre de `<StrictMode>` utilisent l'une de ces API dépréciées :
 

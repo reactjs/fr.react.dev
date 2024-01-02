@@ -58,7 +58,7 @@ function ChatRoom({ roomId }) {
 
 * Si vous **ne cherchez pas à synchroniser avec un système extérieur**, c'est que [vous n'avez probablement pas besoin d'un Effet](/learn/you-might-not-need-an-effect).
 
-* Quand le mode strict est activé, React **appellera une fois de plus votre cycle mise en place + nettoyage, uniquement en développement**, avant la première mise en place réelle.  C'est une mise à l'épreuve pour vérifier que votre logique de nettoyage reflète bien votre logique de mise en place, et décommissionne ou défait toute la mise en place effectuée.  Si ça entraîne des problèmes, [écrivez une fonction de nettoyage](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development).
+* Quand le Mode Strict est activé, React **appellera une fois de plus votre cycle mise en place + nettoyage, uniquement en développement**, avant la première mise en place réelle.  C'est une mise à l'épreuve pour vérifier que votre logique de nettoyage reflète bien votre logique de mise en place, et décommissionne ou défait toute la mise en place effectuée.  Si ça entraîne des problèmes, [écrivez une fonction de nettoyage](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development).
 
 * Si certaines de vos dépendances sont des objets ou fonctions définies au sein de votre composant, il existe un risque qu'elles **entraînent des exécutions superflues de votre Effet**.  Pour corriger ça, retirez les dépendances superflues sur des [objets](#removing-unnecessary-object-dependencies) et [fonctions](#removing-unnecessary-function-dependencies).  Vous pouvez aussi [extraire les mises à jour d'état](#updating-state-based-on-previous-state-from-an-effect) et la [logique non réactive](#reading-the-latest-props-and-state-from-an-effect) hors de votre Effet.
 
@@ -193,7 +193,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
@@ -317,7 +317,7 @@ export default function App() {
 }
 ```
 
-```js animation.js
+```js src/animation.js
 export class FadeInAnimation {
   constructor(node) {
     this.node = node;
@@ -393,7 +393,7 @@ export default function App() {
 }
 ```
 
-```js ModalDialog.js active
+```js src/ModalDialog.js active
 import { useEffect, useRef } from 'react';
 
 export default function ModalDialog({ isOpen, children }) {
@@ -454,7 +454,7 @@ function LongSection() {
 }
 ```
 
-```js Box.js active
+```js src/Box.js active
 import { useRef, useEffect } from 'react';
 
 export default function Box() {
@@ -597,7 +597,7 @@ export default function App() {
 }
 ```
 
-```js useChatRoom.js
+```js src/useChatRoom.js
 import { useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -612,7 +612,7 @@ export function useChatRoom({ serverUrl, roomId }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
@@ -669,7 +669,7 @@ export default function App() {
 }
 ```
 
-```js useWindowListener.js
+```js src/useWindowListener.js
 import { useState, useEffect } from 'react';
 
 export function useWindowListener(eventType, listener) {
@@ -722,7 +722,7 @@ function LongSection() {
 }
 ```
 
-```js Box.js active
+```js src/Box.js active
 import { useRef, useEffect } from 'react';
 import { useIntersectionObserver } from './useIntersectionObserver.js';
 
@@ -752,7 +752,7 @@ export default function Box() {
 }
 ```
 
-```js useIntersectionObserver.js
+```js src/useIntersectionObserver.js
 import { useState, useEffect } from 'react';
 
 export function useIntersectionObserver(ref) {
@@ -810,7 +810,7 @@ Imaginons par exemple que vous ayez un widget tiers de cartographie, ou un compo
 }
 ```
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Map from './Map.js';
 
@@ -828,7 +828,7 @@ export default function App() {
 }
 ```
 
-```js Map.js active
+```js src/Map.js active
 import { useRef, useEffect } from 'react';
 import { MapWidget } from './map-widget.js';
 
@@ -854,7 +854,7 @@ export default function Map({ zoomLevel }) {
 }
 ```
 
-```js map-widget.js
+```js src/map-widget.js
 import 'leaflet/dist/leaflet.css';
 import * as L from 'leaflet';
 
@@ -926,7 +926,7 @@ Remarquez la variable `ignore`, qui est initialisée à `false` mais mise à `tr
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -962,7 +962,7 @@ export default function Page() {
 }
 ```
 
-```js api.js hidden
+```js src/api.js hidden
 export async function fetchBio(person) {
   const delay = person === 'Bob' ? 2000 : 200;
   return new Promise(resolve => {
@@ -979,7 +979,7 @@ Vous pouvez aussi le réécrire en utilisant la syntaxe [`async` / `await`](http
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1018,7 +1018,7 @@ export default function Page() {
 }
 ```
 
-```js api.js hidden
+```js src/api.js hidden
 export async function fetchBio(person) {
   const delay = person === 'Bob' ? 2000 : 200;
   return new Promise(resolve => {
@@ -1214,7 +1214,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
@@ -1294,7 +1294,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
@@ -1387,7 +1387,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
@@ -1550,7 +1550,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
@@ -1661,7 +1661,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
@@ -1763,7 +1763,7 @@ N'abusez pas de cette astuce.  Gardez à l'esprit que les utilisateurs avec des 
 
 ### Mon Effet est exécuté deux fois au montage du composant {/*my-effect-runs-twice-when-the-component-mounts*/}
 
-Lorsque le mode strict est activé, en développement, React exécutera une première fois la mise en place et le nettoyage, avant la mise en place effective.
+Lorsque le Mode Strict est activé, en développement, React exécutera une première fois la mise en place et le nettoyage, avant la mise en place effective.
 
 C'est une mise à l'épreuve pour vérifier que la logique de votre Effet est implémentée correctement. Si ça entraîne des problèmes, c'est que votre code de nettoyage est manquant ou incomplet. La fonction de nettoyage devrait arrêter ou défaire ce que la fonction de mise en place a initié. La règle à suivre est simple : l'utilisateur ne devrait pas pouvoir faire la différence entre une exécution unique de la mise en place (comme en production) et une séquence *mise en place* → *nettoyage* → *mise en place* (comme en développement).
 

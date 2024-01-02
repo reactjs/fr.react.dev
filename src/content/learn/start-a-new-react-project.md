@@ -24,7 +24,7 @@ Si vous voulez créer une nouvelle appli ou un nouveau site web avec React, nous
 npx create-next-app@latest
 </TerminalBlock>
 
-Si Next.js est nouveau pour vous, consultez le [tutoriel de Next.js](https://nextjs.org/learn/foundations/about-nextjs).
+Si Next.js est nouveau pour vous, consultez le [cours officiel de Next.js](https://nextjs.org/learn).
 
 Next.js est maintenu par [Vercel](https://vercel.com/). Vous pouvez  [déployer une appli Next.js](https://nextjs.org/docs/app/building-your-application/deploying) sur tout hébergement *serverless* ou Node.js, ou sur votre propre serveur. Next.js permet également un [export statique](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports) qui ne nécessite pas de serveur.
 

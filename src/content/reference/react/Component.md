@@ -204,7 +204,7 @@ Un constructeur ne devrait contenir aucun effet de bord ni aucun abonnement.
 
 * Lorsque vous faites du [rendu côté serveur](/reference/react-dom/server), le constructeur sera exécuté côté serveur aussi, suivi de la méthode [`render`](#render). En revanche, les méthodes de cycle de vie telles que `componentDidMount` ou `componentWillUnmount` ne seront pas exécutées côté serveur.
 
-* En [mode strict](/reference/react/StrictMode), React appellera votre `constructor` deux fois en développement, puis jettera une des instances obtenues.  Ce comportement vous permet de repérer des effets de bord involontaires qui doivent être sortis du `constructor`.
+* En [Mode Strict](/reference/react/StrictMode), React appellera votre `constructor` deux fois en développement, puis jettera une des instances obtenues.  Ce comportement vous permet de repérer des effets de bord involontaires qui doivent être sortis du `constructor`.
 
 <Note>
 
@@ -292,7 +292,7 @@ class ChatRoom extends Component {
 
 #### Limitations {/*componentdidmount-caveats*/}
 
-- En [mode strict](/reference/react/StrictMode), en développement React appellera `componentDidMount`, puis appellera immédiatement [`componentWillUnmount`](#componentwillunmount) et rappellera `componentDidMount` une seconde fois. Ça vous aide à remarquer un oubli d'implémentation de `componentWillUnmount`, ou un « miroir » insuffisant dans celle-ci de la logique présente dans `componentDidMount`.
+- En [Mode Strict](/reference/react/StrictMode), en développement React appellera `componentDidMount`, puis appellera immédiatement [`componentWillUnmount`](#componentwillunmount) et rappellera `componentDidMount` une seconde fois. Ça vous aide à remarquer un oubli d'implémentation de `componentWillUnmount`, ou un « miroir » insuffisant dans celle-ci de la logique présente dans `componentDidMount`.
 
 - Même si vous pourriez appeler immédiatement [`setState`](#setstate) dans `componentDidMount`, il est préférable de l'éviter autant que possible.  Ça déclencherait un rendu supplémentaire, qui arriverait toutefois avant que le navigateur n'ait mis à jour l'affichage. Ça garantit que même si la méthode [`render`](#render) est bien appelée deux fois dans un tel cas, l'utilisateur ne verra pas l'état intermédiaire.  Utilisez cette approche avec précaution, parce qu'elle nuit aux performances.  La plupart du temps, vous devriez pouvoir plutôt définir l'état initial dans le [`constructor`](#constructor). Ça reste toutefois utile pour des cas comme les boîtes de dialogue modales et les infobulles, qui nécessitent une mesure de nœud DOM avant de pouvoir afficher quelque chose qui dépend de leur taille ou de leur position.
 
@@ -454,7 +454,7 @@ class ChatRoom extends Component {
 
 #### Limitations {/*componentwillunmount-caveats*/}
 
-- En [mode strict](/reference/react/StrictMode), en développement React appellera `componentDidMount`, puis appellera immédiatement [`componentWillUnmount`](#componentwillunmount) et rappellera `componentDidMount` une seconde fois. Ça vous aide à remarquer un oubli d'implémentation de `componentWillUnmount`, ou un « miroir » insuffisant dans celle-ci de la logique présente dans `componentDidMount`.
+- En [Mode Strict](/reference/react/StrictMode), en développement React appellera `componentDidMount`, puis appellera immédiatement [`componentWillUnmount`](#componentwillunmount) et rappellera `componentDidMount` une seconde fois. Ça vous aide à remarquer un oubli d'implémentation de `componentWillUnmount`, ou un « miroir » insuffisant dans celle-ci de la logique présente dans `componentDidMount`.
 
 <Note>
 
@@ -608,7 +608,7 @@ Vous devriez écrire la méthode `render` sous forme de fonction pure, c'est-à-
 
 - `render` ne sera pas appelée si [`shouldComponentUpdate`](#shouldcomponentupdate) est définie et renvoie `false`.
 
-* En [mode strict](/reference/react/StrictMode), React appellera `render` deux fois en développement et jettera un des résultats.  Ça vous permet de repérer des effets de bord involontaires qui doivent être sortis de `render`.
+* En [Mode Strict](/reference/react/StrictMode), React appellera `render` deux fois en développement et jettera un des résultats.  Ça vous permet de repérer des effets de bord involontaires qui doivent être sortis de `render`.
 
 - Il n'y a pas de correspondance directe entre l'appel à `render` et les appels ultérieurs à `componentDidMount` et `componentDidUpdate`.  Certains résultats d'appels à `render` sont susceptibles d'être ignorés par React lorsque ça présente un avantage.
 
@@ -1223,7 +1223,7 @@ Par exemple, ce composant `ChatRoom` conserve une connexion au salon de discussi
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -1253,7 +1253,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { Component } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1314,7 +1314,7 @@ export default class ChatRoom extends Component {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
@@ -1335,7 +1335,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Remarquez qu'en développement et lorsque le [mode strict](/reference/react/StrictMode) est actif, React appellera `componentDidMount`, puis appellera immédiatement `componentWillUnmount` et rappellera `componentDidMount` une seconde fois. Ça vous aide à remarquer un oubli d'implémentation de `componentWillUnmount`, ou un « miroir » insuffisant dans celle-ci de la logique de `componentDidMount`.
+Remarquez qu'en développement et lorsque le [Mode Strict](/reference/react/StrictMode) est actif, React appellera `componentDidMount`, puis appellera immédiatement `componentWillUnmount` et rappellera `componentDidMount` une seconde fois. Ça vous aide à remarquer un oubli d'implémentation de `componentWillUnmount`, ou un « miroir » insuffisant dans celle-ci de la logique de `componentDidMount`.
 
 <Pitfall>
 
@@ -1604,7 +1604,7 @@ Supposons que vous convertissiez ce composant à base de classe `ChatRoom`, dot�
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -1634,7 +1634,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { Component } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1695,7 +1695,7 @@ export default class ChatRoom extends Component {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {
@@ -1744,7 +1744,7 @@ Cet appel à [`useEffect`](/reference/react/useEffect) est équivalent à la log
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -1774,7 +1774,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1804,7 +1804,7 @@ export default function ChatRoom({ roomId }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // Une véritable implémentation se connecterait en vrai au serveur
   return {

@@ -35,6 +35,8 @@ Elle renverra le HTML non interactif de vos composants React.
 #### Paramètres {/*parameters*/}
 
 * `reactNode` : un nœud React dont vous voulez obtenir le HTML. Ça pourrait par exemple être un nœud JSX tel que `<Page />`.
+* `options` **optionnelles** : un objet avec des options pour le rendu côté serveur.
+  * `identifierPrefix` **optionnel** : un préfixe textuel utilisé pour les ID générés par [`useId`](/reference/react/useId). Pratique pour éviter les conflits entre les ID au sein de racines multiples sur une même page.
 
 #### Valeur renvoyée {/*returns*/}
 

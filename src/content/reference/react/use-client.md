@@ -65,7 +65,7 @@ Afin de mieux illustrer cet aspect, considérons l'appli suivante basée sur les
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import FancyText from './FancyText';
 import InspirationGenerator from './InspirationGenerator';
 import Copyright from './Copyright';
@@ -83,7 +83,7 @@ export default function App() {
 
 ```
 
-```js FancyText.js
+```js src/FancyText.js
 export default function FancyText({title, text}) {
   return title
     ? <h1 className='fancy title'>{text}</h1>
@@ -91,7 +91,7 @@ export default function FancyText({title, text}) {
 }
 ```
 
-```js InspirationGenerator.js
+```js src/InspirationGenerator.js
 'use client';
 
 import { useState } from 'react';
@@ -114,13 +114,13 @@ export default function InspirationGenerator({children}) {
 }
 ```
 
-```js Copyright.js
+```js src/Copyright.js
 export default function Copyright({year}) {
   return <p className='small'>©️ {year}</p>;
 }
 ```
 
-```js inspirations.js
+```js src/inspirations.js
 export default [
   "Ne laisse pas hier occuper trop d’aujourd’hui. — Will Rogers",
   "L’ambition, c’est poser une échelle contre le ciel.",
@@ -300,7 +300,7 @@ En particulier, les types suivants ne sont **pas** pris en charge :
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 'use client';
 
 import { useState } from 'react';

@@ -121,7 +121,7 @@ Pour afficher des messages tels qu'un message d'erreur ou une notification renvo
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from "react";
 import { useFormState } from "react-dom";
 import { addToCart } from "./actions.js";
@@ -148,7 +148,7 @@ export default function App() {
 }
 ```
 
-```js actions.js
+```js src/actions.js
 "use server";
 
 export async function addToCart(prevState, queryData) {
@@ -161,7 +161,7 @@ export async function addToCart(prevState, queryData) {
 }
 ```
 
-```css styles.css hidden
+```css src/styles.css hidden
 form {
   border: solid 1px black;
   margin-bottom: 24px;
@@ -194,7 +194,7 @@ La valeur renvoyée par une Action Serveur peut être n'importe quelle valeur s�
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from "react";
 import { useFormState } from "react-dom";
 import { addToCart } from "./actions.js";
@@ -230,7 +230,7 @@ export default function App() {
 }
 ```
 
-```js actions.js
+```js src/actions.js
 "use server";
 
 export async function addToCart(prevState, queryData) {
@@ -249,7 +249,7 @@ export async function addToCart(prevState, queryData) {
 }
 ```
 
-```css styles.css hidden
+```css src/styles.css hidden
 form {
   border: solid 1px black;
   margin-bottom: 24px;

@@ -269,7 +269,7 @@ export default function App() {
 }
 ```
 
-```js index.js active
+```js src/index.js active
 import { createRoot } from 'react-dom/client';
 import App from './App.js';
 import './styles.css';
@@ -302,3 +302,33 @@ input { margin: 5px; }
 ```
 
 </Sandpack>
+
+---
+
+### Utiliser le même préfixe d'identifiant côtés client et serveur {/*using-the-same-id-prefix-on-the-client-and-the-server*/}
+
+Si vous [injectez plusieurs applis React distinctes sur la même page](#specifying-a-shared-prefix-for-all-generated-ids) et que certaines de ces applis bénéficient d'un rendu côté serveur, assurez-vous que le `identifierPrefix` passé à [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) côté client est identique au `identifierPrefix` passé aux [API côté serveur](/reference/react-dom/server), telles que [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream).
+
+```js
+// Serveur
+import { renderToPipeableStream } from 'react-dom/server';
+
+const { pipe } = renderToPipeableStream(
+  <App />,
+  { identifierPrefix: 'react-app1' }
+);
+```
+
+```js
+// Client
+import { hydrateRoot } from 'react-dom/client';
+
+const domNode = document.getElementById('root');
+const root = hydrateRoot(
+  domNode,
+  reactNode,
+  { identifierPrefix: 'react-app1' }
+);
+```
+
+Vous n'avez besoin de passer un `identifierPrefix` que si vous avez plus d'une appli React sur la page.

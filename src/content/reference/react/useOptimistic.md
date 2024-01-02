@@ -71,7 +71,7 @@ Lorsqu'un utilisateur saisit par exemple un message dans un formulaire puis cliq
 <Sandpack>
 
 
-```js App.js
+```js src/App.js
 import { useOptimistic, useState, useRef } from "react";
 import { deliverMessage } from "./actions.js";
 
@@ -121,7 +121,7 @@ export default function App() {
 }
 ```
 
-```js actions.js
+```js src/actions.js
 export async function deliverMessage(message) {
   await new Promise((res) => setTimeout(res, 1000));
   return message;

@@ -12,7 +12,7 @@ Certaines fonctions JavaScript sont *pures*. Les fonctions pures se contentent d
 
 - Ce qu'est la pureté d'une fonction, et en quoi elle vous aide à éviter les bugs
 - Comment garder vos composants purs en ne modifiant rien pendant la phase de rendu
-- Comment utiliser le mode strict pour détecter les erreurs dans vos composants
+- Comment utiliser le Mode Strict pour détecter les erreurs dans vos composants
 
 </YouWillLearn>
 
@@ -49,7 +49,7 @@ React est fondé sur cette notion. **React suppose que chaque composant que vous
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 function Recipe({ drinkers }) {
   return (
     <ol>
@@ -153,11 +153,11 @@ Même si vous ne les avez pas encore toutes utilisées à ce stade, sachez que d
 
 Lorsque vous souhaitez *modifier* quelque chose en réaction à une interaction utilisateur, vous devriez [mettre à jour l'état](/learn/state-a-components-memory) plutôt que d'écrire dans une variable.  Vous ne devriez jamais modifier des variables ou objets pré-existants lors du rendu de votre composant.
 
-React propose un « mode strict » dans lequel il appelle chaque fonction composant deux fois pendant le développement. **En appelant chaque fonction composant deux fois, le mode strict vous aide à repérer les composants qui enfreignent ces règles.**
+React propose un « Mode Strict » dans lequel il appelle chaque fonction composant deux fois pendant le développement. **En appelant chaque fonction composant deux fois, le Mode Strict vous aide à repérer les composants qui enfreignent ces règles.**
 
 Avez-vous remarqué que le premier exemple affichait « invité #2 », « invité #4 » et « invité #6 » au lieu de « invité #1 », « invité #2 » et « invité #3 » ?  La fonction d'origine était impure, de sorte que l'appeler deux fois cassait son fonctionnement.  Mais la fonction corrigée, qui est pure, fonctionne même si elle est systématiquement appelée deux fois. **Les fonctions pures font juste un calcul, aussi les appeler deux fois ne change rien**, tout comme appeler `double(2)` deux fois ne change pas son résultat, et résoudre <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> deux fois ne change pas la valeur de <MathI>y</MathI>. Mêmes entrées, même sorties. Toujours.
 
-Le mode strict n'a aucun effet en production, il ne ralentira donc pas votre appli pour vos utilisateurs.  Pour activer le mode strict, enrobez votre composant racine dans un `<React.StrictMode>`. Certains frameworks mettent ça en place par défaut.
+Le Mode Strict n'a aucun effet en production, il ne ralentira donc pas votre appli pour vos utilisateurs.  Pour activer le Mode Strict, enrobez votre composant racine dans un `<React.StrictMode>`. Certains frameworks mettent ça en place par défaut.
 
 </DeepDive>
 
@@ -241,7 +241,7 @@ Le rendu est un *calcul*, il ne devrait pas essayer de « faire » des choses.
 
 <Sandpack>
 
-```js Clock.js active
+```js src/Clock.js active
 export default function Clock({ time }) {
   let hours = time.getHours();
   if (hours >= 0 && hours <= 6) {
@@ -257,7 +257,7 @@ export default function Clock({ time }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import Clock from './Clock.js';
 
@@ -303,7 +303,7 @@ Vous pouvez corriger ce composant en calculant le `className` puis en l'incluant
 
 <Sandpack>
 
-```js Clock.js active
+```js src/Clock.js active
 export default function Clock({ time }) {
   let hours = time.getHours();
   let className;
@@ -320,7 +320,7 @@ export default function Clock({ time }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import Clock from './Clock.js';
 
@@ -378,7 +378,7 @@ Le code problématique est dans `Profile.js`.  Assurez-vous de bien l'avoir comp
 
 <Sandpack>
 
-```js Profile.js
+```js src/Profile.js
 import Panel from './Panel.js';
 import { getImageUrl } from './utils.js';
 
@@ -411,7 +411,7 @@ function Avatar() {
 }
 ```
 
-```js Panel.js hidden
+```js src/Panel.js hidden
 import { useState } from 'react';
 
 export default function Panel({ children }) {
@@ -427,7 +427,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js App.js
+```js src/App.js
 import Profile from './Profile.js';
 
 export default function App() {
@@ -446,7 +446,7 @@ export default function App() {
 }
 ```
 
-```js utils.js hidden
+```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
     'https://i.imgur.com/' +
@@ -479,7 +479,7 @@ Pour corriger ce bug, supprimez la variable `currentPerson`.  Passez plutôt tou
 
 <Sandpack>
 
-```js Profile.js active
+```js src/Profile.js active
 import Panel from './Panel.js';
 import { getImageUrl } from './utils.js';
 
@@ -509,7 +509,7 @@ function Avatar({ person }) {
 }
 ```
 
-```js Panel.js hidden
+```js src/Panel.js hidden
 import { useState } from 'react';
 
 export default function Panel({ children }) {
@@ -525,7 +525,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js App.js
+```js src/App.js
 import Profile from './Profile.js';
 
 export default function App() {
@@ -544,7 +544,7 @@ export default function App() {
 }
 ```
 
-```js utils.js hidden
+```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
     'https://i.imgur.com/' +
@@ -581,7 +581,7 @@ Vous avez implémenté ce dernier en ajoutant une pseudo-histoire supplémentair
 
 <Sandpack>
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
   stories.push({
     id: 'create',
@@ -600,7 +600,7 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -674,7 +674,7 @@ li {
 
 <Solution>
 
-Remarquez que chaque fois que l'horloge change, « Créer une histoire » est ajoutée *deux fois*. C'est un indice que la mutation est dans notre rendu : le mode strict appelle les composants deux fois pour rendre ce type de soucis plus facile à remarquer.
+Remarquez que chaque fois que l'horloge change, « Créer une histoire » est ajoutée *deux fois*. C'est un indice que la mutation est dans notre rendu : le Mode Strict appelle les composants deux fois pour rendre ce type de soucis plus facile à remarquer.
 
 La fonction `StoryTray` n'est pas pure. En appelant `push` sur le tableau `stories` reçu (une prop !), elle modifie un objet créé *avant* que `StoryTray` ait commencé son rendu.  Ça donne un bug et un comportement imprévisible.
 
@@ -682,7 +682,7 @@ Le correctif le plus simple consiste à ne pas toucher au tableau du tout, et à
 
 <Sandpack>
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
   return (
     <ul>
@@ -697,7 +697,7 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
@@ -767,7 +767,7 @@ Une autre approche consisterait à créer un *nouveau* tableau (en partant de ce
 
 <Sandpack>
 
-```js StoryTray.js active
+```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
   // Copier le tableau !
   let storiesToDisplay = stories.slice();
@@ -790,7 +790,7 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 

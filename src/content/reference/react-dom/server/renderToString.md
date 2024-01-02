@@ -41,6 +41,8 @@ Côté client, appelez [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) 
 #### Paramètres {/*parameters*/}
 
 * `reactNode` : un nœud React dont vous souhaitez produire le HTML. Ça pourrait par exemple être un élément JSX tel que `<App />`.
+* `options` **optionnelles** : un objet avec des options pour le rendu côté serveur.
+  * `identifierPrefix` **optionnel** : un préfixe textuel utilisé pour les ID générés par [`useId`](/reference/react/useId). Pratique pour éviter les conflits entre les ID au sein de racines multiples sur une même page.
 
 #### Valeur renvoyée {/*returns*/}
 

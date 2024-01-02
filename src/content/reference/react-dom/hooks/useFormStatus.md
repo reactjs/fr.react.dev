@@ -38,7 +38,7 @@ function Submit() {
   return <button disabled={status.pending}>Envoyer</button>
 }
 
-export default App() {
+export default function App() {
   return (
     <form action={action}>
       <Submit />
@@ -87,7 +87,7 @@ Nous utilisons ci-dessous la propriété `pending` pour indiquer que le formulai
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useFormStatus } from "react-dom";
 import { submitForm } from "./actions.js";
 
@@ -113,7 +113,7 @@ export default function App() {
 }
 ```
 
-```js actions.js hidden
+```js src/actions.js hidden
 export async function submitForm(query) {
     await new Promise((res) => setTimeout(res, 1000));
 }
@@ -178,7 +178,7 @@ Dans l'exemple ci-dessous, nous avons un formulaire permettant à l'utilisateur 
 
 <Sandpack>
 
-```js UsernameForm.js active
+```js src/UsernameForm.js active
 import {useState, useMemo, useRef} from 'react';
 import {useFormStatus} from 'react-dom';
 
@@ -219,7 +219,7 @@ export default function UsernameForm() {
 }
 ```
 
-```js App.js
+```js src/App.js
 import UsernameForm from './UsernameForm';
 import { submitForm } from "./actions.js";
 
@@ -232,7 +232,7 @@ export default function App() {
 }
 ```
 
-```js actions.js hidden
+```js src/actions.js hidden
 export async function submitForm(query) {
     await new Promise((res) => setTimeout(res, 1000));
 }

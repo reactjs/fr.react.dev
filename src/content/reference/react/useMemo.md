@@ -136,7 +136,7 @@ console.timeEnd('filtrage tableau');
 
 Gardez à l’esprit que votre machine est probablement plus rapide que celles de vos utilisateurs, il est donc recommandé de tester la performance au sein d’un ralentissement artificiel.  Par exemple, Chrome propose une option de [bridage processeur](https://developer.chrome.com/blog/new-in-devtools-61/#throttling) exprès pour ça.
 
-Remarquez aussi que mesurer la performance en développement ne vous donnera pas des résultats très précis. (Par exemple, quand le [mode strict](/reference/react/StrictMode) est actif, chaque composant fait deux rendus au lieu d’un.)  Pour améliorer la pertinence de vos mesures, construisez la version de production de votre appli et testez-la sur des appareils similaires à ceux de vos utilisateurs.
+Remarquez aussi que mesurer la performance en développement ne vous donnera pas des résultats très précis. (Par exemple, quand le [Mode Strict](/reference/react/StrictMode) est actif, chaque composant fait deux rendus au lieu d’un.)  Pour améliorer la pertinence de vos mesures, construisez la version de production de votre appli et testez-la sur des appareils similaires à ceux de vos utilisateurs.
 
 </DeepDive>
 
@@ -180,7 +180,7 @@ Essayez maintenant de basculer le thème. **Grâce à `useMemo`, c'est rapide en
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -222,7 +222,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { useMemo } from 'react';
 import { filterTodos } from './utils.js'
 
@@ -249,7 +249,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -310,7 +310,7 @@ Contrairement à l'exemple précédent, la bascule du thème est désormais lent
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -352,7 +352,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { filterTodos } from './utils.js'
 
 export default function TodoList({ todos, theme, tab }) {
@@ -375,7 +375,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -430,7 +430,7 @@ Ceci dit, voici le même code **sans le ralentissement artificiel**. Est-ce que 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -472,7 +472,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { filterTodos } from './utils.js'
 
 export default function TodoList({ todos, theme, tab }) {
@@ -494,7 +494,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -654,7 +654,7 @@ Essayez maintenant de basculer le thème. **Grâce à la combinaison de `useMemo
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -695,7 +695,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { useMemo } from 'react';
 import List from './List.js';
 import { filterTodos } from './utils.js'
@@ -714,7 +714,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -741,7 +741,7 @@ const List = memo(function List({ items }) {
 export default List;
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -796,7 +796,7 @@ Contrairement à l'exemple précédent, la bascule du thème est désormais lent
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -837,7 +837,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import List from './List.js';
 import { filterTodos } from './utils.js'
 
@@ -852,7 +852,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -879,7 +879,7 @@ const List = memo(function List({ items }) {
 export default List;
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -928,7 +928,7 @@ Ceci dit, voici le même code **sans le ralentissement artificiel**. Est-ce que 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -969,7 +969,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import List from './List.js';
 import { filterTodos } from './utils.js'
 
@@ -983,7 +983,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 function List({ items }) {
@@ -1004,7 +1004,7 @@ function List({ items }) {
 export default memo(List);
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -1163,7 +1163,7 @@ Ces deux exemples sont parfaitement équivalents.  Le seul avantage de `useCallb
 
 ### Mon calcul est exécuté deux fois par rendu {/*my-calculation-runs-twice-on-every-re-render*/}
 
-En [mode strict](/reference/react/StrictMode), React appellera certaines de vos fonctions deux fois plutôt qu'une :
+En [Mode Strict](/reference/react/StrictMode), React appellera certaines de vos fonctions deux fois plutôt qu'une :
 
 ```js {2,5,6}
 function TodoList({ todos, tab }) {

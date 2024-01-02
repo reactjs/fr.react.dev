@@ -59,7 +59,7 @@ function Tooltip() {
 
 * `useLayoutEffect` est un Hook, vous pouvez donc uniquement l’appeler **à la racine de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l’appeler à l’intérieur de boucles ou de conditions. Si nécessaire, extrayez un nouveau composant et déplacez l'Effet dans celui-ci.
 
-* Quand le mode strict est activé, React **appellera une fois de plus votre cycle mise en place + nettoyage, uniquement en développement**, avant la première mise en place réelle.  C'est une mise à l'épreuve pour vérifier que votre logique de nettoyage reflète bien votre logique de mise en place, et décommissionne ou défait toute la mise en place effectuée.  Si ça entraîne des problèmes, [écrivez une fonction de nettoyage](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development).
+* Quand le Mode Strict est activé, React **appellera une fois de plus votre cycle mise en place + nettoyage, uniquement en développement**, avant la première mise en place réelle.  C'est une mise à l'épreuve pour vérifier que votre logique de nettoyage reflète bien votre logique de mise en place, et décommissionne ou défait toute la mise en place effectuée.  Si ça entraîne des problèmes, [écrivez une fonction de nettoyage](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development).
 
 * Si certaines de vos dépendances sont des objets ou fonctions définies au sein de votre composant, il existe un risque qu'elles **entraînent des exécutions superflues de votre Effet**.  Pour corriger ça, retirez les dépendances superflues sur des [objets](#removing-unnecessary-object-dependencies) et [fonctions](#removing-unnecessary-function-dependencies).  Vous pouvez aussi [extraire les mises à jour d'état](#updating-state-based-on-previous-state-from-an-effect) et la [logique non réactive](#reading-the-latest-props-and-state-from-an-effect) hors de votre Effet.
 
@@ -149,7 +149,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -185,7 +185,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -220,7 +220,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -299,7 +299,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -335,7 +335,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -369,7 +369,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -446,7 +446,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -482,7 +482,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -516,7 +516,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -589,7 +589,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -625,7 +625,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -665,7 +665,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div

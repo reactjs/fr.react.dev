@@ -58,7 +58,7 @@ Si vous aimez apprendre en pratiquant, nous vous recommandons de continuer avec 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -176,7 +176,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -429,7 +429,7 @@ export default function PackingList() {
 
 Remarquez qu'il faut écrire `importance > 0 && ...` plutôt que juste `importance && ...` afin de nous assurer que si `importance` vaut `0`, `0` ne sera pas affiché comme résultat !
 
-Dans cette solution, on utilise deux conditions distinctes pour insérer une espace entre le nom et le libellé d'importance.  On aurait aussi pu utiliser un fragment avec une espace au début : `importance > 0 && <> <i>...</i></>` ou ajouter l'espace immédiatement au début du `<i>` :  `importance > 0 && <i> ...</i>`.
+Dans cette solution, on utilise deux conditions distinctes pour insérer une espace entre le nom et le libellé d'importance.  On aurait aussi pu utiliser un Fragment avec une espace au début : `importance > 0 && <> <i>...</i></>` ou ajouter l'espace immédiatement au début du `<i>` :  `importance > 0 && <i> ...</i>`.
 
 </Solution>
 
@@ -440,7 +440,6 @@ Remarquez le bouton « Afficher la solution » dans le coin inférieur gauche.
 ### Bâtir votre intuition avec les diagrammes et illustrations {/*build-an-intuition-with-diagrams-and-illustrations*/}
 
 Lorsqu'on ne trouvait pas une bonne manière d'expliquer quelque chose juste avec du code et des mots, on a ajouté des diagrammes pour vous aider à bâtir votre intuition.  Voici par exemple un des diagrammes de [Préserver et réinitialiser l'état](/learn/preserving-and-resetting-state) :
-
 
 <Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagramme avec trois sections, avec une flèche allant d'une section à l'autre. La première section contient un composant React appelé « div » avec un seul enfant appelé « section », qui lui-même n'a qu'un seul enfant appelé « Counter », qui dispose d'une bulle d'état appelée « count » dont la valeur est à 3. La section du milieu a le même parent « div », mais les composants enfants ont maintenant été supprimés, indiqué par une image avec des étincelles. La troisième section a toujours le même parent « div », mais avec un nouvel enfant appelé « div » surligné en jaune, ainsi qu'un nouvel enfant appelé « Counter » contenant une bulle d'état appelée « count » avec une valeur à 0, le tout surligné en jaune.">
 

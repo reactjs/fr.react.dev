@@ -58,7 +58,7 @@ Techniquement, le rendu concurrent constitue une rupture de compatibilité ascen
 
 Pour nos tests, nous avons migré des milliers de composants sur React 18. Nous avons constaté que presque tous les composants existants continuent à marcher avec le rendu concurrent, sans rien avoir besoin d'y changer.  Cependant, certains d'entre eux risquent de nécessiter un effort supplémentaire de migration. Même si ces changements sont généralement mineurs, vous pourrez quand même les apporter à votre rythme. Le nouveau comportement de rendu de React 18 **n'est activé que dans les parties de votre appli qui utilisent les nouvelles fonctionnalités**.
 
-La stratégie générale de mise à jour consiste à faire tourner votre application avec React 18 sans casser le code existant. Vous pouvez alors commencer à ajouter graduellement des fonctionnalités concurrentes, à votre rythme. Vous pouvez utiliser [`<StrictMode>`](/reference/react/StrictMode) pour vous aider à faire émerger des bugs liés à la concurrence lors du développement. Le mode strict n'a aucun impact sur le comportement en production, mais lors du développement il affichera en console des avertissements supplémentaires, et fera des invocations doubles de fonctions censées être idempotentes (pures).  Ça n'attrapera pas tout, mais ça reste un moyen efficace d'éviter les principaux types d'erreurs.
+La stratégie générale de mise à jour consiste à faire tourner votre application avec React 18 sans casser le code existant. Vous pouvez alors commencer à ajouter graduellement des fonctionnalités concurrentes, à votre rythme. Vous pouvez utiliser [`<StrictMode>`](/reference/react/StrictMode) pour vous aider à faire émerger des bugs liés à la concurrence lors du développement. Le Mode Strict n'a aucun impact sur le comportement en production, mais lors du développement il affichera en console des avertissements supplémentaires, et fera des invocations doubles de fonctions censées être idempotentes (pures).  Ça n'attrapera pas tout, mais ça reste un moyen efficace d'éviter les principaux types d'erreurs.
 
 Après que vous aurez migré sur React 18, vous pourrez commencer à utiliser les fonctionnalités concurrentes immédiatement.  Vous pourrez par exemple utiliser `startTransition` pour naviguer entre les écrans sans bloquer la saisie utilisateur. Ou `useDeferredValue` pour minimiser le nombre de rendus coûteux.
 
@@ -191,13 +191,13 @@ La méthode `renderToString` existante reste disponible, mais elle est désormai
 
 [Consultez la documentation de React DOM côté serveur](/reference/react-dom/server).
 
-### Nouveaux comportements du mode strict {/*new-strict-mode-behaviors*/}
+### Nouveaux comportements du Mode Strict {/*new-strict-mode-behaviors*/}
 
 À l'avenir, nous aimerions ajouter une fonctionnalité permettant à React d'ajouter ou de retirer des sections de l'UI tout en en préservant l'état. Lorsqu'un utilisateur clique par exemple sur un nouvel onglet pour revenir ensuite sur celui qui était actif auparavant, React devrait pouvoir en restaurer l'état.  Pour y parvenir, React démonterait et remonterait ces arbres en utilisant le même état de composant.
 
 Cette fonctionnalité améliorerait d'office les performances des applis React, mais exigerait que les Effets des composants résistent bien à des cycles multiples de démontage + remontage. La plupart des Effets fonctionneront sans modification, mais il peut arriver que le code de certains Effets suppose qu'ils ne seront montés ou démontés qu'une seule fois.
 
-Pour vous aider à débusquer ces soucis, React 18 ajoute une nouvelle vérification en mode développement uniquement dans le mode strict. Elle démonte et remonte automatiquement chaque composant, lorsqu'un composant est monté pour la première fois, et restaure l'état précédent au second montage.
+Pour vous aider à débusquer ces soucis, React 18 ajoute une nouvelle vérification en mode développement uniquement dans le Mode Strict. Elle démonte et remonte automatiquement chaque composant, lorsqu'un composant est monté pour la première fois, et restaure l'état précédent au second montage.
 
 Avant cet ajustement, React montait le composant et instanciait ses Effets :
 
@@ -207,7 +207,7 @@ Avant cet ajustement, React montait le composant et instanciait ses Effets :
   * Les Effets sont créés.
 ```
 
-Avec le mode strict de React 18, React simule ensuite, en mode développement, le démontage et le remontage du composant :
+Avec le Mode Strict de React 18, React simule ensuite, en mode développement, le démontage et le remontage du composant :
 
 ```
 * React monte le composant.
@@ -221,7 +221,7 @@ Avec le mode strict de React 18, React simule ensuite, en mode développement, l
   * Les Effets sont créés.
 ```
 
-[En apprendre davantage sur ce comportement du mode strict](/reference/react/StrictMode#fixing-bugs-found-by-re-running-effects-in-development).
+[En apprendre davantage sur ce comportement du Mode Strict](/reference/react/StrictMode#fixing-bugs-found-by-re-running-effects-in-development).
 
 ### Nouveaux Hooks {/*new-hooks*/}
 

@@ -51,7 +51,7 @@ La convention est de nommer les variables d'états de cette manière : `[someth
 #### Limitations {/*caveats*/}
 
 * `useState` est un Hook, vous ne pouvez donc l’appeler qu'**à la racine de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l’appeler à l’intérieur de boucles ou de conditions. Si nécessaire, extrayez un nouveau composant et déplacez l'état dans celui-ci.
-* En mode strict, React **appellera votre fonction d'initialisation deux fois** afin de vous aider à [détecter des impuretés accidentelles](#my-initializer-or-updater-function-runs-twice). Ce comportement est uniquement présent en mode développement et n'affecte pas la production. Si votre fonction d'initialisation est pure (ce qui devrait être le cas), ça ne devrait pas affecter le comportement. Le résultat d'un des appels sera ignoré.
+* En Mode Strict, React **appellera votre fonction d'initialisation deux fois** afin de vous aider à [détecter des impuretés accidentelles](#my-initializer-or-updater-function-runs-twice). Ce comportement est uniquement présent en mode développement et n'affecte pas la production. Si votre fonction d'initialisation est pure (ce qui devrait être le cas), ça ne devrait pas affecter le comportement. Le résultat d'un des appels sera ignoré.
 
 ---
 
@@ -87,7 +87,7 @@ Les fonctions de mise à jour (celles renvoyées par `useState`) n'ont pas de va
 
 * Il est possible d'appeler la fonction de mise à jour *pendant le rendu*, mais uniquement au sein du composant en cours de rendu. React ignorera le JSX résultat pour refaire immédiatement un rendu avec le nouvel état. Cette approche est rarement nécessaire, mais vous pouvez l'utiliser pour **stocker des informations des précédents rendus**. [Voir un exemple ci-dessous](#storing-information-from-previous-renders).
 
-* En mode strict, React **appellera votre fonction d'initialisation deux fois** afin de vous aider à [détecter des impuretés accidentelles](#my-initializer-or-updater-function-runs-twice). Ce comportement est spécifique au mode développement et n'affecte pas la production. Si votre fonction de mise à jour est pure (ce qui devrait être le cas), ça ne devrait pas affecter le comportement. Le résultat d'un des appels sera ignoré.
+* En Mode Strict, React **appellera votre fonction d'initialisation deux fois** afin de vous aider à [détecter des impuretés accidentelles](#my-initializer-or-updater-function-runs-twice). Ce comportement est spécifique au mode développement et n'affecte pas la production. Si votre fonction de mise à jour est pure (ce qui devrait être le cas), ça ne devrait pas affecter le comportement. Le résultat d'un des appels sera ignoré.
 
 ---
 
@@ -630,7 +630,7 @@ Dans cet exemple, la variable d'état `todos` contient un tableau. Chaque gestio
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AddTodo from './AddTodo.js';
 import TaskList from './TaskList.js';
@@ -687,7 +687,7 @@ export default function TaskApp() {
 }
 ```
 
-```js AddTodo.js
+```js src/AddTodo.js
 import { useState } from 'react';
 
 export default function AddTodo({ onAddTodo }) {
@@ -708,7 +708,7 @@ export default function AddTodo({ onAddTodo }) {
 }
 ```
 
-```js TaskList.js
+```js src/TaskList.js
 import { useState } from 'react';
 
 export default function TaskList({
@@ -1028,7 +1028,7 @@ Consultez [Préserver et réinitialiser l'état](/learn/preserving-and-resetting
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1083,7 +1083,7 @@ Dans de rares autres cas, il existe une approche que vous pouvez utiliser pour m
 
 Voici un exemple. Ce composant `CountLabel` affiche une prop `count` qui lui est passée :
 
-```js CountLabel.js
+```js src/CountLabel.js
 export default function CountLabel({ count }) {
   return <h1>{count}</h1>
 }
@@ -1093,7 +1093,7 @@ Mettons que vous vouliez indiquer si le compteur a *augmenté ou diminué* depui
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import CountLabel from './CountLabel.js';
 
@@ -1113,7 +1113,7 @@ export default function App() {
 }
 ```
 
-```js CountLabel.js active
+```js src/CountLabel.js active
 import { useState } from 'react';
 
 export default function CountLabel({ count }) {
@@ -1219,7 +1219,7 @@ Si vous n'arrivez pas à trouver le cause de cette erreur, cliquez dans la conso
 
 ### Ma fonction d'initialisation (ou de mise à jour) est exécutée deux fois {/*my-initializer-or-updater-function-runs-twice*/}
 
-En [mode strict](/reference/react/StrictMode), React appellera certaines de vos fonctions plutôt deux fois qu'une :
+En [Mode Strict](/reference/react/StrictMode), React appellera certaines de vos fonctions plutôt deux fois qu'une :
 
 ```js {2,5-6,11-12}
 function TodoList() {

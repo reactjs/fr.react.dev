@@ -151,7 +151,7 @@ console.timeEnd('filtrage tableau');
 
 Gardez à l’esprit que votre machine est probablement plus rapide que celles de vos utilisateurs, il est donc recommandé de tester la performance au sein d’un ralentissement artificiel.  Par exemple, Chrome propose une option de [bridage processeur](https://developer.chrome.com/blog/new-in-devtools-61/#throttling) exprès pour ça.
 
-Remarquez aussi que mesurer la performance en développement ne vous donnera pas des résultats très précis. (Par exemple, quand le [mode strict](/reference/react/StrictMode) est actif, chaque composant fait deux rendus au lieu d’un.)  Pour améliorer la pertinence de vos mesures, construisez la version de production de votre appli et testez-la sur des appareils similaires à ceux de vos utilisateurs.
+Remarquez aussi que mesurer la performance en développement ne vous donnera pas des résultats très précis. (Par exemple, quand le [Mode Strict](/reference/react/StrictMode) est actif, chaque composant fait deux rendus au lieu d’un.)  Pour améliorer la pertinence de vos mesures, construisez la version de production de votre appli et testez-la sur des appareils similaires à ceux de vos utilisateurs.
 
 </DeepDive>
 
@@ -883,7 +883,7 @@ function NewTodo({ onAdd }) {
 }
 ```
 
-```js todos.js
+```js src/todos.js
 let nextId = 0;
 
 export function createTodo(text, completed = false) {
@@ -976,7 +976,7 @@ function NewTodo({ onAdd }) {
 }
 ```
 
-```js todos.js
+```js src/todos.js
 let nextId = 0;
 
 export function createTodo(text, completed = false) {
@@ -1062,7 +1062,7 @@ export default function TodoList() {
 }
 ```
 
-```js todos.js
+```js src/todos.js
 let nextId = 0;
 let calls = 0;
 
@@ -1145,7 +1145,7 @@ export default function TodoList() {
 }
 ```
 
-```js todos.js
+```js src/todos.js
 let nextId = 0;
 let calls = 0;
 
@@ -1234,7 +1234,7 @@ function NewTodo({ onAdd }) {
 }
 ```
 
-```js todos.js
+```js src/todos.js
 let nextId = 0;
 let calls = 0;
 
@@ -1279,7 +1279,7 @@ Lorsque vous sélectionnez un contact au moyen des boutons du haut, le formulair
 
 <Sandpack>
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ContactList from './ContactList.js';
 import EditContact from './EditContact.js';
@@ -1331,7 +1331,7 @@ const initialContacts = [
 ];
 ```
 
-```js ContactList.js hidden
+```js src/ContactList.js hidden
 export default function ContactList({
   contacts,
   selectedId,
@@ -1358,7 +1358,7 @@ export default function ContactList({
 }
 ```
 
-```js EditContact.js active
+```js src/EditContact.js active
 import { useState, useEffect } from 'react';
 
 export default function EditContact({ savedContact, onSave }) {
@@ -1443,7 +1443,7 @@ Découpez le composant `EditContact` en deux.  Déplacez tout l’état du formu
 
 <Sandpack>
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ContactList from './ContactList.js';
 import EditContact from './EditContact.js';
@@ -1495,7 +1495,7 @@ const initialContacts = [
 ];
 ```
 
-```js ContactList.js hidden
+```js src/ContactList.js hidden
 export default function ContactList({
   contacts,
   selectedId,
@@ -1522,7 +1522,7 @@ export default function ContactList({
 }
 ```
 
-```js EditContact.js active
+```js src/EditContact.js active
 import { useState } from 'react';
 
 export default function EditContact(props) {

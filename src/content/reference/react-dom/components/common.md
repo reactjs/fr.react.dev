@@ -769,7 +769,7 @@ Dans l'exemple ci-dessus, `style={{}}` n'est pas une syntaxe particulière, mais
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import Avatar from './Avatar.js';
 
 const user = {
@@ -783,7 +783,7 @@ export default function App() {
 }
 ```
 
-```js Avatar.js active
+```js src/Avatar.js active
 export default function Avatar({ user }) {
   return (
     <img
@@ -799,7 +799,7 @@ export default function Avatar({ user }) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 .avatar {
   border-radius: 50%;
 }
@@ -938,7 +938,7 @@ export default function MarkdownEditor() {
 }
 ```
 
-```js MarkdownPreview.js active
+```js src/MarkdownPreview.js active
 import { Remarkable } from 'remarkable';
 
 const md = new Remarkable();
@@ -980,6 +980,8 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 ```
 
 </Sandpack>
+
+L'objet `{__html}` est censé être produit le plus près possible de la génération effective du HTML, comme le fait l'exemple précédent dans la fonction `renderMarkdownToHTML`. Ça garantit que tous les morceaux de HTML brut dans votre code sont explicitement identifiés comme tels, et que seules les variables dans le contenu desquelles vous anticipez la présence de HTML sont passées à `dangerouslySetInnerHTML`. Nous vous déconseillons de créer ces objets à la volée comme dans `<div dangerouslySetInnerHTML={{__html: markup}} />`.
 
 Pour comprendre pourquoi l'injection d'un contenu HTML quelconque est dangereuse, remplacez le code plus haut par celui-ci :
 

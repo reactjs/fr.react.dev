@@ -31,7 +31,7 @@ Vous pouvez voir ci-dessous à quoi ça ressemblera une fois terminé :
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -149,7 +149,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -208,13 +208,13 @@ Dans l'éditeur de code interactif ci-dessous, cliquez sur **Fork** en haut à d
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 export default function Square() {
   return <button className="square">X</button>;
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -364,7 +364,7 @@ export default function Square() {
 
 <ConsoleBlock level="error">
 
-/src/App.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment `<>...</>`?
+/src/App.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX Fragment `<>...</>`?
 
 </ConsoleBlock>
 
@@ -459,7 +459,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -631,7 +631,7 @@ Votre code à jour devrait ressembler à ceci :
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 function Square({ value }) {
   return <button className="square">{value}</button>;
 }
@@ -659,7 +659,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -813,7 +813,7 @@ Après que vous aurez fait les modifications ci-dessus, votre code devrait resse
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square() {
@@ -856,7 +856,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -994,7 +994,7 @@ Et votre code devrait ressembler à ceci :
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value }) {
@@ -1025,7 +1025,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -1236,7 +1236,7 @@ Voici à quoi votre code devrait ressembler :
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -1278,7 +1278,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -1430,7 +1430,7 @@ Désormais, vous ne pouvez plus ajouter des `X` ou des `O` que sur les cases vid
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({value, onSquareClick}) {
@@ -1481,7 +1481,7 @@ export default function Board() {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -1532,7 +1532,7 @@ body {
 
 Maintenant que les joueurs peuvent participer tour à tour, vous allez vouloir déterminer à quel moment la partie est gagnée, ou s'il n'y a plus de tour à jouer.  Pour cela, ajoutez une petite fonction utilitaire nommée `calculateWinner` qui prend un tableau des 9 cases, vérifie s'il y a victoire et renvoie `'X'`, `'O'` ou `null` selon le cas.  Ne vous préocuppez pas trop du code de `calculateWinner`, il n'a rien de spécifique à React :
 
-```js App.js
+```js src/App.js
 export default function Board() {
   //...
 }
@@ -1602,7 +1602,7 @@ Félicitations ! Vous avez désormais un jeu fonctionnel de tic-tac-toe. Et vou
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({value, onSquareClick}) {
@@ -1682,7 +1682,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -1880,7 +1880,7 @@ Par exemple, si `history` vaut `[[null,null,null], ["X",null,null]]` et `nextSqu
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -1978,7 +1978,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -2095,7 +2095,7 @@ Vous la corrigerez dans la prochaine section.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -2211,7 +2211,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -2323,7 +2323,7 @@ const moves = history.map((squares, move) => {
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -2440,7 +2440,7 @@ function calculateWinner(squares) {
 
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -2544,7 +2544,7 @@ Si vous cliquez sur n'importe quelle étape de l'historique de la partie, le pla
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({value, onSquareClick}) {
@@ -2664,7 +2664,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }
@@ -2754,7 +2754,7 @@ Le résultat final est ici :
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -2872,7 +2872,7 @@ function calculateWinner(squares) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 * {
   box-sizing: border-box;
 }

@@ -248,7 +248,7 @@ Puisque <CodeStep step={2}>`Message`</CodeStep> est enrobé dans un <CodeStep st
 
 <Sandpack>
 
-```js message.js active
+```js src/message.js active
 "use client";
 
 import { use, Suspense } from "react";
@@ -267,7 +267,7 @@ export function MessageContainer({ messagePromise }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from "react";
 import { MessageContainer } from "./message.js";
 
@@ -291,7 +291,7 @@ export default function App() {
 }
 ```
 
-```js index.js hidden
+```js src/index.js hidden
 // TODO : remplacer l’import d’une version Canary
 // de React par une version stable, dès qu’elle
 // intégrera le Hook `use`
@@ -367,7 +367,7 @@ Si vous souhaitez afficher une erreur à vos utilisateurs quand une promesse a �
 
 <Sandpack>
 
-```js message.js active
+```js src/message.js active
 "use client";
 
 import { use, Suspense } from "react";
@@ -389,7 +389,7 @@ function Message({ messagePromise }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from "react";
 import { MessageContainer } from "./message.js";
 
@@ -413,7 +413,7 @@ export default function App() {
 }
 ```
 
-```js index.js hidden
+```js src/index.js hidden
 // TODO : remplacer l’import d’une version Canary
 // de React par une version stable, dès qu’elle
 // intégrera le Hook `use`

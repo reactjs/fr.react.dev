@@ -122,7 +122,7 @@ Pour en apprendre davantage, consultez [cette discussion du groupe de travail](h
 
 <Note>
 
-**Si votre appli ne fonctionne plus après la migration, vérifiez si elle est enrobée par `<StrictMode>`.** [Le mode strict est plus strict en React 18](#updates-to-strict-mode), et tous vos composants ne sont pas forcément conformes aux nouvelles vérifications qu'il effectue en mode développement.  Si le retrait du mode strict fait refonctionner votre appli, vous pouvez le retirer pendant la migration puis le rajouter à la fin (soit à la racine soit sur une partie de l'arbre), après que vous aurez corrigé les problèmes qu'il met en lumière.
+**Si votre appli ne fonctionne plus après la migration, vérifiez si elle est enrobée par `<StrictMode>`.** [Le Mode Strict est plus strict en React 18](#updates-to-strict-mode), et tous vos composants ne sont pas forcément conformes aux nouvelles vérifications qu'il effectue en mode développement.  Si le retrait du Mode Strict fait refonctionner votre appli, vous pouvez le retirer pendant la migration puis le rajouter à la fin (soit à la racine soit sur une partie de l'arbre), après que vous aurez corrigé les problèmes qu'il met en lumière.
 
 </Note>
 
@@ -236,13 +236,13 @@ Au sein du groupe de travail React 18, nous avons collaboré avec des mainteneur
 
 React 18 ajoute également de nouvelles API pour le rendu concurrent telles que `startTransition`, `useDeferredValue` et `useId`, dont nous parlons plus en détail dans le [billet annonçant la sortie](/blog/2022/03/29/react-v18).
 
-## Évolutions du mode strict {/*updates-to-strict-mode*/}
+## Évolutions du Mode Strict {/*updates-to-strict-mode*/}
 
 À l'avenir, nous aimerions ajouter une fonctionnalité permettant à React d'ajouter ou de retirer des sections de l'UI tout en en préservant l'état. Lorsqu'un utilisateur clique par exemple sur un nouvel onglet pour revenir ensuite sur celui qui était actif auparavant, React devrait pouvoir en restaurer l'état.  Pour y parvenir, React démonterait et remonterait ces arbres en utilisant le même état de composant.
 
 Cette fonctionnalité améliorerait d'office les performances des applis React, mais exigerait que les Effets des composants résistent bien à des cycles multiples de démontage + remontage. La plupart des Effets fonctionneront sans modification, mais il peut arriver que le code de certains Effets suppose qu'ils ne seront montés ou démontés qu'une seule fois.
 
-Pour vous aider à débusquer ces soucis, React 18 ajoute une nouvelle vérification en mode développement uniquement dans le mode strict. Elle démonte et remonte automatiquement chaque composant, lorsqu'un composant est monté pour la première fois, et restaure l'état précédent au second montage.
+Pour vous aider à débusquer ces soucis, React 18 ajoute une nouvelle vérification en mode développement uniquement dans le Mode Strict. Elle démonte et remonte automatiquement chaque composant, lorsqu'un composant est monté pour la première fois, et restaure l'état précédent au second montage.
 
 Avant cet ajustement, React montait le composant et instanciait ses Effets :
 
@@ -252,7 +252,7 @@ Avant cet ajustement, React montait le composant et instanciait ses Effets :
   * Les Effets sont créés.
 ```
 
-Avec le mode strict de React 18, React simule ensuite, en mode développement, le démontage et le remontage du composant :
+Avec le Mode Strict de React 18, React simule ensuite, en mode développement, le démontage et le remontage du composant :
 
 ```
 * React monte le composant.
@@ -266,7 +266,7 @@ Avec le mode strict de React 18, React simule ensuite, en mode développement, l
   * Les Effets sont créés.
 ```
 
-Pour en apprendre davantage, consultez les discussions du groupe de travail sur [l'ajout d'un état réutilisable au mode strict](https://github.com/reactwg/react-18/discussions/19) et [comment prendre en charge un état réutilisable dans les Effets](https://github.com/reactwg/react-18/discussions/18).
+Pour en apprendre davantage, consultez les discussions du groupe de travail sur [l'ajout d'un état réutilisable au Mode Strict](https://github.com/reactwg/react-18/discussions/19) et [comment prendre en charge un état réutilisable dans les Effets](https://github.com/reactwg/react-18/discussions/18).
 
 ## Configurer votre environnement de test {/*configuring-your-testing-environment*/}
 
@@ -324,7 +324,7 @@ Si vous devez encore prendre en charge Internet Explorer, nous vous conseillons 
 * **Les composants peuvent désormais produire `undefined`** : React ne vous avertira plus si vous renvoyez `undefined` depuis un composant. Ça apporte de la cohérence entre les valeurs renvoyées autorisées et celles permises au sein d'un arbre de composants.  Nous vous suggérons d'utiliser une règle d'analyse statique (*linter*) pour éviter d'oublier un `return` devant votre JSX.
 * **Les avertissements sur `act` dans les tests sont désormais optionnels** : si vous exécutez des tests de bout en bout *(end-to-end, NdT)*, les avertissements sur `act` sont superflus.  Nous avons ajouté un mécanisme d'activation [sur demande](https://github.com/reactwg/react-18/discussions/102) pour que vous puissiez ne les activer que dans des tests unitaires, pour lesquels ils sont effectivement utiles.
 * **Fin de l'avertissement sur `setState` dans les composants démontés** : jusqu'ici React vous avertissait de fuites de mémoire potentielles lorsque vous appeliez `setState` sur un composant démonté. Cet avertissement avait été ajouté par rapport aux abonnements, mais la plupart des gens le rencontraient plutôt dans des scénarios où la modification de l'état était acceptable, et les solutions de contournement ne faisaient qu'empirer les choses. Nous avons [retiré](https://github.com/facebook/react/pull/22114) cet avertissement.
-* **Arrêt de la censure des affichages en console** : lorsque vous utilisez le mode strict, React fait un double rendu de chaque composant pour vous aider à repérer des effets de bord inattendus. Dans React 17, nous censurions les affichages en console de l'un des deux rendus pour faciliter la lecture des journaux. Mais suite aux [retours de la communauté](https://github.com/facebook/react/issues/21783) sur la confusion que ça entraînait, nous avons cessé d'occulter ces messages. Si vous avez les outils de développement React installés, vous y verrez plutôt le deuxième jeu de messages apparaître grisé, et une option (inactive par défaut) permet de les retirer complètement.
+* **Arrêt de la censure des affichages en console** : lorsque vous utilisez le Mode Strict, React fait un double rendu de chaque composant pour vous aider à repérer des effets de bord inattendus. Dans React 17, nous censurions les affichages en console de l'un des deux rendus pour faciliter la lecture des journaux. Mais suite aux [retours de la communauté](https://github.com/facebook/react/issues/21783) sur la confusion que ça entraînait, nous avons cessé d'occulter ces messages. Si vous avez les outils de développement React installés, vous y verrez plutôt le deuxième jeu de messages apparaître grisé, et une option (inactive par défaut) permet de les retirer complètement.
 * **Consommation mémoire améliorée** : React nettoie désormais davantage de champs internes au démontage, réduisant ainsi l'impact de fuites de mémoires éventuelles dans votre application.
 
 ### React DOM (Côté serveur) {/*react-dom-server*/}
