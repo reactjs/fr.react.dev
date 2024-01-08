@@ -208,12 +208,7 @@ function LikeButton() {
 'use server';
 
 let likeCount = 0;
-<<<<<<< HEAD
-
-export default async incrementLike() {
-=======
 export default async function incrementLike() {
->>>>>>> 315cb7a38a1645623fc55501429285ab680b8a6a
   likeCount++;
   return likeCount;
 }
