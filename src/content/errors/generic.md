@@ -1,11 +1,11 @@
 <Intro>
 
-In the minified production build of React, we avoid sending down full error messages in order to reduce the number of bytes sent over the wire.
+Dans le *build* de production minifié de React, nous évitons d'inclure les messages d'erreur complets afin de réduire le nombre d'octets transmis sur le réseau.
 
 </Intro>
 
-We highly recommend using the development build locally when debugging your app since it tracks additional debug info and provides helpful warnings about potential problems in your apps, but if you encounter an exception while using the production build, this page will reassemble the original error message.
+Nous vous recommandons fortement d'utiliser le *build* de développement en local lorsque vous déboguez votre appli, dans la mesure où il fournit des informations de débogage supplémentaires et des avertissements utiles sur des problèmes potentiels dans vos applis, mais si vous rencontrez une exception en utilisant le *build* de production, cette page reconstruira le message d'erreur original.
 
-The full text of the error you just encountered is:
+Le texte complet de l'erreur que vous venez de rencontrer est le suivant :
 
 <ErrorDecoder />

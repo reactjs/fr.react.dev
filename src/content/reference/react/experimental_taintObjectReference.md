@@ -64,19 +64,11 @@ experimental_taintObjectReference(
 
 #### Limitations {/*caveats*/}
 
-<<<<<<< HEAD
 - Recréer ou cloner un objet terni produit un nouvel objet intact, susceptible de contenir des données sensibles. Si par exemple vous avez un objet `user` terni, `const userInfo = {name: user.name, ssn: user.ssn}` ou `{...user}` produiront de nouveaux objets qui ne seront, eux, pas ternis. `taintObjectReference` ne protège que contre les bévues simples lorsque l'objet est passé tel quel à un Composant Client.
 
 <Pitfall>
 
 **Ne comptez pas sur le ternissement pour garantir la sécurité.** Ternir un objet n'empêche pas la fuite de toute donnée dérivée imaginable. Un clone de l'objet terni créera par exemple un objet intact. L'utilisation de données d'un objet terni (ex. `{secret: taintedObj.secret}`) crée une nouvelle valeur, ou un nouvel objet, qui ne sera pas terni·e. Le ternissement est une couche de protection ; une appli sécurisée aura plusieurs couches de protection complémentaires, des API soigneusement conçues et des mécanismes d'isolation en place.
-=======
-- Recreating or cloning a tainted object creates a new untainted object which may contain sensitive data. For example, if you have a tainted `user` object, `const userInfo = {name: user.name, ssn: user.ssn}` or `{...user}` will create new objects which are not tainted. `taintObjectReference` only protects against simple mistakes when the object is passed through to a Client Component unchanged.
-
-<Pitfall>
-
-**Do not rely on just tainting for security.** Tainting an object doesn't prevent leaking of every possible derived value. For example, the clone of a tainted object will create a new untainted object. Using data from a tainted object (e.g. `{secret: taintedObj.secret}`) will create a new value or object that is not tainted. Tainting is a layer of protection; a secure app will have multiple layers of protection, well designed APIs, and isolation patterns.
->>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
 
 </Pitfall>
 

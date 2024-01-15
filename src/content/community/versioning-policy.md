@@ -79,15 +79,9 @@ Cette section s'adresse surtout aux développeurs·ses qui travaillent sur des f
 
 Chaque canal de livraison de React est conçu pour un cas d'utilisation précis :
 
-<<<<<<< HEAD
 - [**Latest**](#latest-channel) est dédié aux versions stables de React, basées sur *semver*. C'est ce que vous récupérez lorsque vous installez React avec npm. C'est le canal que vous utilisez déjà aujourd'hui. **Les applications basées sur React et destinées aux utilisateurs finaux utilisent ce canal**.
 - [**Canary**](#canary-channel) suit la branche principale du dépôt du code source de React. Voyez-les comme des versions candidates pour la prochaine version *semver*. **[Les frameworks et autres environnements choisis peuvent décider d'utiliser ce canal avec une version épinglée de React](/blog/2023/05/03/react-canaries). Vous pouvez aussi utiliser les versions Canary pour tester l'intégration de React avec des projets tiers.**
 - [**Expérimental**](#experimental-channel) inclut les API et fonctionnalités expérimentales qui ne sont pas disponibles dans les versions stables. Il suit lui aussi la branche principale, mais avec certains drapeaux de fonctionnalités supplémentaires activés. Vous pouvez l'utiliser pour tester en amont les prochaines fonctionnalités avant qu'elles ne soient livrées.
-=======
-- [**Latest**](#latest-channel) is for stable, semver React releases. It's what you get when you install React from npm. This is the channel you're already using today. **User-facing applications that consume React directly use this channel.**
-- [**Canary**](#canary-channel) tracks the main branch of the React source code repository. Think of these as release candidates for the next semver release. **[Frameworks or other curated setups may choose to use this channel with a pinned version of React.](/blog/2023/05/03/react-canaries) You can also use Canaries for integration testing between React and third party projects.**
-- [**Experimental**](#experimental-channel) includes experimental APIs and features that aren't available in the stable releases. These also track the main branch, but with additional feature flags turned on. Use this to try out upcoming features before they are released.
->>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
 
 Toutes ces livraisons sont publiées sur npm, mais seules les *Latest* utilisent le versionnement sémantique. Les pré-versions (celles des canaux Canary et Expérimental) ont des versions générées à partir d'une empreinte de leur contenu et de la date du commit, par exemple `18.3.0-canary-388686f29-20230503` pour Canary et `0.0.0-experimental-388686f29-20230503` pour Expérimental.
 

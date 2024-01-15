@@ -31,8 +31,8 @@ export default function ErrorDecoderPage({
         toc={[]}
         meta={{
           title: errorCode
-            ? `Minified React error #${errorCode}`
-            : 'Minified Error Decoder',
+            ? `Erreur React minifiée n°${errorCode}`
+            : 'Décodeur d’Erreur Minifiée',
         }}
         routeTree={sidebarLearn as RouteItem}
         section="unknown">
@@ -67,7 +67,7 @@ function reviveNodeOnClient(key: unknown, val: any) {
       type = MDXComponents[type as keyof typeof MDXComponents];
     }
     if (!type) {
-      console.error('Unknown type: ' + type);
+      console.error('Type inconnu : ' + type);
       type = Fragment;
     }
     return {

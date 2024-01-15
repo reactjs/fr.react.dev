@@ -41,15 +41,9 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 `forwardRef` renvoie un composant React qui peut figurer dans un rendu JSX. Contrairement aux composants React définis par des fonctions classiques, un composant renvoyé par `forwardRef` pourra en prime accepter une prop `ref`.
 
-<<<<<<< HEAD
 #### Limitations {/*caveats*/}
-=======
-#### Caveats {/*caveats*/}
 
-* In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
->>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
-
-* En Mode Strict, React **appellera votre fonction composant deux fois** afin de [vous aider à repérer des impuretés accidentelles](#my-initializer-or-updater-function-runs-twice).  Ce comportement est limité au développement et n'affecte pas la production.  Une des valeurs renvoyées sera ignorée.  Si votre fonction composant est pure (ce qui devrait être le cas), ça n'affectera en rien son comportement.
+* En Mode Strict, React **appellera votre fonction composant deux fois** afin de [vous aider à repérer des impuretés accidentelles](/reference/react/useState#my-initializer-or-updater-function-runs-twice).  Ce comportement est limité au développement et n'affecte pas la production.  Une des valeurs renvoyées sera ignorée.  Si votre fonction composant est pure (ce qui devrait être le cas), ça n'affectera en rien son comportement.
 
 ---
 
