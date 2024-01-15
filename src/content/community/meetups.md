@@ -18,12 +18,13 @@ Vous connaissez un meetup React.js local ? Ajoutez-le ! (Merci de conserver un
 * [Karlsruhe](https://www.meetup.com/react_ka/)
 * [Kiel](https://www.meetup.com/Kiel-React-Native-Meetup/)
 * [Munich](https://www.meetup.com/ReactJS-Meetup-Munich/)
-* [React Berlin](https://www.meetup.com/React-Open-Source/)
+* [React Berlin](https://guild.host/react-berlin)
 
 ## Angleterre (R.-U.) {/*england-uk*/}
 * [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
 * [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
-* [React London : Bring Your Own Project](https://www.meetup.com/React-London-Bring-Your-Own-Project/)
+* [React Advanced London](https://guild.host/react-advanced-london)
+* [React Native London](https://guild.host/RNLDN)
 
 ## Argentine {/*argentina*/}
 * [Buenos Aires](https://www.meetup.com/es/React-en-Buenos-Aires)
@@ -117,6 +118,7 @@ Vous connaissez un meetup React.js local ? Ajoutez-le ! (Merci de conserver un
 * [New York, NY - React Ladies](https://www.meetup.com/React-Ladies/)
 * [New York, NY - React Native](https://www.meetup.com/React-Native-NYC/)
 * [New York, NY - useReactNYC](https://www.meetup.com/useReactNYC/)
+* [New York, NY - React.NYC](https://guild.host/react-nyc)
 * [Omaha, NE - ReactJS/React Native](https://www.meetup.com/omaha-react-meetup-group/)
 * [Palo Alto, CA - React Native](https://www.meetup.com/React-Native-Silicon-Valley/)
 * [Philadelphia, PA - ReactJS](https://www.meetup.com/Reactadelphia/)
@@ -162,7 +164,7 @@ Vous connaissez un meetup React.js local ? Ajoutez-le ! (Merci de conserver un
 * [Indonesia](https://www.meetup.com/reactindonesia/)
 
 ## Irlande {/*ireland*/}
-* [Dublin](https://www.meetup.com/ReactJS-Dublin/)
+* [Dublin](https://guild.host/reactjs-dublin)
 
 ## Israël {/*israel*/}
 * [Tel Aviv](https://www.meetup.com/ReactJS-Israel/)
@@ -192,7 +194,7 @@ Vous connaissez un meetup React.js local ? Ajoutez-le ! (Merci de conserver un
 * [Panama](https://www.meetup.com/React-Panama/)
 
 ## Pays-Bas {/*netherlands*/}
-* [Amsterdam](https://www.meetup.com/React-Amsterdam/)
+* [Amsterdam](https://guild.host/react-amsterdam)
 
 ## Pérou {/*peru*/}
 * [Lima](https://www.meetup.com/ReactJS-Peru/)

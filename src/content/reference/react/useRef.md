@@ -50,7 +50,7 @@ Lors des rendus ultérieurs, `useRef` renverra le même objet.
 * Vous pouvez modifier la propriété `ref.current`.  Contrairement à l'état, elle est modifiable. En revanche, si vous y stockez un objet nécessaire au rendu (par exemple un morceau de votre état), vous ne devriez pas modifier cet objet.
 * Lorsque vous modifiez la propriété `ref.current`, React ne refait pas de rendu de votre composant. React n'est pas au courant de vos modifications parce qu'une ref est un objet JavaScript brut.
 * Évitez d'écrire _ou même de lire_ `ref.current`  lors du rendu, sauf pour [l'initialiser](#avoiding-recreating-the-ref-contents).  Ça rendrait le comportement de votre composant imprévisible.
-* En Mode Strict, React **appellera votre fonction composant deux fois** afin de [vous aider à repérer des impuretés accidentelles](#my-initializer-or-updater-function-runs-twice).  Ce comportement est limité au développement et n'affecte pas la production.  Chaque objet ref sera créé deux fois, mais une de ses versions sera ignorée.  Si votre fonction composant est pure (ce qui devrait être le cas), ça n'affectera en rien son comportement.
+* En Mode Strict, React **appellera votre fonction composant deux fois** afin de [vous aider à repérer des impuretés accidentelles](/reference/react/useState#my-initializer-or-updater-function-runs-twice).  Ce comportement est limité au développement et n'affecte pas la production.  Chaque objet ref sera créé deux fois, mais une de ses versions sera ignorée.  Si votre fonction composant est pure (ce qui devrait être le cas), ça n'affectera en rien son comportement.
 
 ---
 
