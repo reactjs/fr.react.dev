@@ -47,10 +47,17 @@ Lors des rendus ultérieurs, `useRef` renverra le même objet.
 
 #### Limitations {/*caveats*/}
 
+<<<<<<< HEAD
 * Vous pouvez modifier la propriété `ref.current`.  Contrairement à l'état, elle est modifiable. En revanche, si vous y stockez un objet nécessaire au rendu (par exemple un morceau de votre état), vous ne devriez pas modifier cet objet.
 * Lorsque vous modifiez la propriété `ref.current`, React ne refait pas de rendu de votre composant. React n'est pas au courant de vos modifications parce qu'une ref est un objet JavaScript brut.
 * Évitez d'écrire _ou même de lire_ `ref.current`  lors du rendu, sauf pour [l'initialiser](#avoiding-recreating-the-ref-contents).  Ça rendrait le comportement de votre composant imprévisible.
 * En Mode Strict, React **appellera votre fonction composant deux fois** afin de [vous aider à repérer des impuretés accidentelles](#my-initializer-or-updater-function-runs-twice).  Ce comportement est limité au développement et n'affecte pas la production.  Chaque objet ref sera créé deux fois, mais une de ses versions sera ignorée.  Si votre fonction composant est pure (ce qui devrait être le cas), ça n'affectera en rien son comportement.
+=======
+* You can mutate the `ref.current` property. Unlike state, it is mutable. However, if it holds an object that is used for rendering (for example, a piece of your state), then you shouldn't mutate that object.
+* When you change the `ref.current` property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
+* Do not write _or read_ `ref.current` during rendering, except for [initialization.](#avoiding-recreating-the-ref-contents) This makes your component's behavior unpredictable.
+* In Strict Mode, React will **call your component function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. Each ref object will be created twice, but one of the versions will be discarded. If your component function is pure (as it should be), this should not affect the behavior.
+>>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
 
 ---
 

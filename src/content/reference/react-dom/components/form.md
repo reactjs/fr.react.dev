@@ -5,7 +5,11 @@ canary: true
 
 <Canary>
 
+<<<<<<< HEAD
 Les extensions de React à `<form>` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `<form>` fonctionne comme [le composant HTML natif du navigateur](https://react.dev/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
+=======
+React's extensions to `<form>` are currently only available in React's canary and experimental channels. In stable releases of React, `<form>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+>>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
 
 </Canary>
 
@@ -117,7 +121,11 @@ function AddToCart({productId}) {
 }
 ```
 
+<<<<<<< HEAD
 Plutôt que de fournir les données à l'action du `<form>` au moyen de champs cachés, vous pouvez recourir à la méthode <CodeStep step={1}>`bind`</CodeStep> pour pré-remplir ses arguments. Dans l'exemple qui suit, on pré-remplit un argument (<CodeStep step={2}>`productId`</CodeStep>) pour la fonction, en plus des <CodeStep step={3}>`formData`</CodeStep> qui lui sont passées par défaut.
+=======
+In lieu of using hidden form fields to provide data to the `<form>`'s action, you can call the <CodeStep step={1}>`bind`</CodeStep> method to supply it with extra arguments. This will bind a new argument (<CodeStep step={2}>`productId`</CodeStep>) to the function in addition to the <CodeStep step={3}>`formData`</CodeStep> that is passed as an argument to the function.
+>>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
 
 ```jsx [[1, 8, "bind"], [2,8, "productId"], [2,4, "productId"], [3,4, "formData"]]
 import { updateCart } from './lib.js';
@@ -277,7 +285,11 @@ Pour en apprendre davantage, consultez la [documentation de référence du Hook 
 
 ### Gérer les erreurs d'envoi du formulaire {/*handling-form-submission-errors*/}
 
+<<<<<<< HEAD
 Il peut arriver que la fonction appelée par la prop `action` de `<form>` lève une erreur. Vous pouvez traiter ces erreurs en enrobant `<form>` dans un périmètre d'erreur.  Si la fonction appelée par la prop `action` de `<form>` lève une erreur, le contenu de secours du périmètre d'erreur sera affiché.
+=======
+In some cases the function called by a `<form>`'s `action` prop throws an error. You can handle these errors by wrapping `<form>` in an Error Boundary. If the function called by a `<form>`'s `action` prop throws an error, the fallback for the error boundary will be displayed.
+>>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
 
 <Sandpack>
 
