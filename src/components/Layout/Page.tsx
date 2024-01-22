@@ -2,25 +2,26 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Suspense} from 'react';
 import * as React from 'react';
-import {useRouter} from 'next/router';
-import {SidebarNav} from './SidebarNav';
-import {Footer} from './Footer';
-import {Toc} from './Toc';
-import SocialBanner from '../SocialBanner';
-import {DocsPageFooter} from 'components/DocsFooter';
-import {Seo} from 'components/Seo';
+
 import ButtonLink from 'components/ButtonLink';
+import {DocsPageFooter} from 'components/DocsFooter';
+import {Footer} from './Footer';
+import {HomeContent} from './HomeContent';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import PageHeading from 'components/PageHeading';
-import {getRouteMeta} from './getRouteMeta';
+import type {RouteItem} from 'components/Layout/getRouteMeta';
+import {Seo} from 'components/Seo';
+import {SidebarNav} from './SidebarNav';
+import SocialBanner from '../SocialBanner';
+import {Suspense} from 'react';
+import {Toc} from './Toc';
 import {TocContext} from '../MDX/TocContext';
 import type {TocItem} from 'components/MDX/TocContext';
-import type {RouteItem} from 'components/Layout/getRouteMeta';
-import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
+import {getRouteMeta} from './getRouteMeta';
+import {useRouter} from 'next/router';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
@@ -159,15 +160,9 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
                   }
                   {showSurvey && (
                     <>
-<<<<<<< HEAD
-                      <div className="flex flex-col items-center m-4 p-4">
-                        <p className="font-bold text-primary dark:text-primary-dark text-lg mb-4">
-                          Comment trouvez-vous ces docs ?
-=======
                       <div className="flex flex-col items-center p-4 m-4">
                         <p className="mb-4 text-lg font-bold text-primary dark:text-primary-dark">
-                          How do you like these docs?
->>>>>>> 3563d95efe8719bdae8bbd258e6ab4134753348b
+                          Comment trouvez-vous ces docs ?
                         </p>
                         <div>
                           <ButtonLink

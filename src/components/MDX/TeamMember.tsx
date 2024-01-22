@@ -3,13 +3,14 @@
  */
 
 import * as React from 'react';
-import Image from 'next/image';
-import {IconTwitter} from '../Icon/IconTwitter';
-import {IconThreads} from '../Icon/IconThreads';
-import {IconGitHub} from '../Icon/IconGitHub';
+
 import {ExternalLink} from '../ExternalLink';
 import {H3} from './Heading';
+import {IconGitHub} from '../Icon/IconGitHub';
 import {IconLink} from 'components/Icon/IconLink';
+import {IconThreads} from '../Icon/IconThreads';
+import {IconTwitter} from '../Icon/IconTwitter';
+import Image from 'next/image';
 
 interface TeamMemberProps {
   name: string;
@@ -66,7 +67,7 @@ export function TeamMember({
             {twitter && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label="React on Twitter"
+                  aria-label="Réagissez sur Twitter"
                   href={`https://twitter.com/${twitter}`}
                   className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
                   <IconTwitter className="pe-1" />
@@ -77,7 +78,7 @@ export function TeamMember({
             {threads && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label="React on Threads"
+                  aria-label="Réagissez sur Threads"
                   href={`https://threads.net/${threads}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconThreads className="pe-1" />
@@ -88,7 +89,7 @@ export function TeamMember({
             {github && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label="GitHub Profile"
+                  aria-label="Profil GitHub"
                   href={`https://github.com/${github}`}
                   className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
                   <IconGitHub className="pe-1" /> {github}
@@ -97,7 +98,7 @@ export function TeamMember({
             )}
             {personal && (
               <ExternalLink
-                aria-label="Personal Site"
+                aria-label="Site personnel"
                 href={`https://${personal}`}
                 className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
                 <IconLink className="pe-1" /> {personal}

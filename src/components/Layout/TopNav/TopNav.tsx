@@ -4,7 +4,6 @@
 
 import * as React from 'react';
 
-import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 import {
   Suspense,
   startTransition,
@@ -13,18 +12,19 @@ import {
   useRef,
   useState,
 } from 'react';
+import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 
-import cn from 'classnames';
+import {Feedback} from '../Feedback';
 import {IconClose} from 'components/Icon/IconClose';
 import {IconHamburger} from 'components/Icon/IconHamburger';
 import {IconSearch} from 'components/Icon/IconSearch';
-import {Search} from 'components/Search';
-import NextLink from 'next/link';
-import {useRouter} from 'next/router';
 import {Logo} from '../../Logo';
-import {Feedback} from '../Feedback';
-import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
+import NextLink from 'next/link';
 import type {RouteItem} from '../getRouteMeta';
+import {Search} from 'components/Search';
+import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
+import cn from 'classnames';
+import {useRouter} from 'next/router';
 
 declare global {
   interface Window {
@@ -268,15 +268,9 @@ export default function TopNav({
                   'flex 3xl:w-[56rem] 3xl:mx-0 relative ps-4 pe-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-start w-full text-gray-30 rounded-full align-middle text-base'
                 )}
                 onClick={onOpenSearch}>
-<<<<<<< HEAD
-                <IconSearch className="me-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
-                Recherche
-                <span className="ms-auto hidden sm:flex item-center me-1">
-=======
                 <IconSearch className="align-middle me-3 text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
-                Search
+                Recherche
                 <span className="hidden ms-auto sm:flex item-center me-1">
->>>>>>> 3563d95efe8719bdae8bbd258e6ab4134753348b
                   <Kbd data-platform="mac">⌘</Kbd>
                   <Kbd data-platform="win" wide>
                     Ctrl
