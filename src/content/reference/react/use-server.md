@@ -88,7 +88,16 @@ Voici les types pris en charge pour les arguments d'une Action Serveur :
 * Les fonctions qui sont des Actions Serveur
 * Les [promesses](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
+<<<<<<< HEAD
 En particulier, les types suivants ne sont **pas** pris en charge :
+=======
+Notably, these are not supported:
+* React elements, or [JSX](/learn/writing-markup-with-jsx)
+* Functions, including component functions or any other function that is not a Server Action
+* [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
+* Objects that are instances of any class (other than the built-ins mentioned) or objects with [a null prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
+* Symbols not registered globally, ex. `Symbol('my new symbol')`
+>>>>>>> 3563d95efe8719bdae8bbd258e6ab4134753348b
 
 * Les éléments React, ainsi que [JSX](/learn/writing-markup-with-jsx)
 * Les fonctions, y compris les fonctions composants, et de façon plus générale toute fonction qui ne serait pas une Action Serveur

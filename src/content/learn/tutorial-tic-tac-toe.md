@@ -339,7 +339,11 @@ import './styles.css';
 import App from './App';
 ```
 
+<<<<<<< HEAD
 Les lignes 1 à 5 rassemblent toutes les pièces du puzzle :
+=======
+Lines 1-5 bring all the necessary pieces together: 
+>>>>>>> 3563d95efe8719bdae8bbd258e6ab4134753348b
 
 * React
 * La bibliothèque React qui parle aux navigateurs web (React DOM)
