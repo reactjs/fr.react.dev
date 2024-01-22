@@ -338,7 +338,7 @@ Lorsque vous transmettez une promesse d'un Composant Serveur à un Composant Cli
 Une promesse peut être passée d'un Composant Serveur à un Composant Client, puis accomplie dans le Composant Client avec le Hook `use`. Vous pouvez également accomplir la promesse dans un Composant Serveur avec `await`, puis transmettre les données requises au Composant Client en tant que prop.
 
 ```js
-export default function App() {
+export default async function App() {
   const messageContent = await fetchMessage();
   return <Message messageContent={messageContent} />
 }

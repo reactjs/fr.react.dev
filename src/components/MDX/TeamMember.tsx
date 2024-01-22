@@ -3,12 +3,14 @@
  */
 
 import * as React from 'react';
-import Image from 'next/image';
-import {IconTwitter} from '../Icon/IconTwitter';
-import {IconGitHub} from '../Icon/IconGitHub';
+
 import {ExternalLink} from '../ExternalLink';
 import {H3} from './Heading';
+import {IconGitHub} from '../Icon/IconGitHub';
 import {IconLink} from 'components/Icon/IconLink';
+import {IconThreads} from '../Icon/IconThreads';
+import {IconTwitter} from '../Icon/IconTwitter';
+import Image from 'next/image';
 
 interface TeamMemberProps {
   name: string;
@@ -17,6 +19,7 @@ interface TeamMemberProps {
   children: React.ReactNode;
   photo: string;
   twitter?: string;
+  threads?: string;
   github?: string;
   personal?: string;
 }
@@ -30,6 +33,7 @@ export function TeamMember({
   photo,
   github,
   twitter,
+  threads,
   personal,
 }: TeamMemberProps) {
   if (name == null || title == null || permalink == null || children == null) {
@@ -59,34 +63,45 @@ export function TeamMember({
           </H3>
           {title && <div>{title}</div>}
           {children}
-          <div className="sm:flex sm:flex-row">
+          <div className="sm:flex sm:flex-row flex-wrap">
             {twitter && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label="React on Twitter"
+                  aria-label="Réagissez sur Twitter"
                   href={`https://twitter.com/${twitter}`}
                   className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
-                  <IconTwitter className="pe-2" />
+                  <IconTwitter className="pe-1" />
                   {twitter}
+                </ExternalLink>
+              </div>
+            )}
+            {threads && (
+              <div className="me-4">
+                <ExternalLink
+                  aria-label="Réagissez sur Threads"
+                  href={`https://threads.net/${threads}`}
+                  className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
+                  <IconThreads className="pe-1" />
+                  {threads}
                 </ExternalLink>
               </div>
             )}
             {github && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label="GitHub Profile"
+                  aria-label="Profil GitHub"
                   href={`https://github.com/${github}`}
                   className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
-                  <IconGitHub className="pe-2" /> {github}
+                  <IconGitHub className="pe-1" /> {github}
                 </ExternalLink>
               </div>
             )}
             {personal && (
               <ExternalLink
-                aria-label="Personal Site"
+                aria-label="Site personnel"
                 href={`https://${personal}`}
                 className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
-                <IconLink className="pe-2" /> {personal}
+                <IconLink className="pe-1" /> {personal}
               </ExternalLink>
             )}
           </div>

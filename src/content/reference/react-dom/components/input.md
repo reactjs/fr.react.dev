@@ -34,7 +34,7 @@ Pour afficher un champ de saisie, utilisez le [composant natif `<input>` du navi
 
 <Canary>
 
-Les extensions de React à la prop `formAction` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `formAction` est limitée à son fonctionnement [du composant HTML natif du navigateur](https://react.dev/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
+Les extensions de React à la prop `formAction` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `formAction` est limitée à son fonctionnement [du composant HTML natif du navigateur](/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
