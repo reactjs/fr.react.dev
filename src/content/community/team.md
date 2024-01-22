@@ -74,7 +74,7 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Sathya a détesté le *Dragon Book* durant ses études, et pourtant a fini par consacrer sa carrière aux compilateurs. Lorsqu'il n'est pas en train de compiler des composants React, soit il boit du café soit il mange encore un Dosa.
 </TeamMember>
 
-<TeamMember name="Sebastian Markbåge" permalink="sebastian-markbåge" photo="/images/team/sebmarkbage.jpg" github="sebmarkbage" twitter="sebmarkbage" threads="sebmarkbage title="Ingénieur chez Vercel">
+<TeamMember name="Sebastian Markbåge" permalink="sebastian-markbåge" photo="/images/team/sebmarkbage.jpg" github="sebmarkbage" twitter="sebmarkbage" threads="sebmarkbage" title="Ingénieur chez Vercel">
     Sébastien a étudié la psychologie. Il est généralement silencieux. Même lorsqu'il dit quelque chose, ça ne finit par avoir du sens pour le reste d'entre nous que quelques mois plus tard.  La véritable pronconciation de son nom de famille est « marc-bau-jai », mais il a fini par tolérer « marc-beige » par pur pragmatisme — une approche qu'il applique aussi à React.
 </TeamMember>
 
