@@ -14,7 +14,7 @@ Le Hook `useFormState` n'est actuellement disponible que sur les canaux de livra
 `useFormState` est un Hook qui vous permet de mettre à jour l'état sur base du résultat d'une action de formulaire.
 
 ```js
-const [state, formAction] = useFormState(fn, initialState);
+const [state, formAction] = useFormState(fn, initialState, permalink?);
 ```
 
 </Intro>
@@ -25,7 +25,7 @@ const [state, formAction] = useFormState(fn, initialState);
 
 ## Référence {/*reference*/}
 
-### `useFormState(action, initialState)` {/*useformstate*/}
+### `useFormState(action, initialState, permalink?)` {/*useformstate*/}
 
 {/* TODO T164397693: link to actions documentation once it exists */}
 
@@ -57,8 +57,14 @@ Lorsque vous l'utilisez dans une Action Serveur, `useFormState` permet d'affiche
 
 #### Paramètres {/*parameters*/}
 
+<<<<<<< HEAD
 * `fn` : la fonction à appeler lorsque le formulaire est envoyé.  Lorsque la fonction est appelée, elle reçoit comme premier argument l'état précédent du formulaire (le `initialState` que vous avez fourni pour le premier appel, puis, pour les appels ultérieurs, la valeur précédemment renvoyée), suivi par les arguments normalement acceptés par une fonction d'action de formulaire.
 * `initialState` : la valeur initiale que vous souhaitez pour votre état.  Il peut s'agir de n'importe quelle valeur sérialisable.  Cet argument est ignoré après l'appel initial de l'action.
+=======
+* `fn`: The function to be called when the form is submitted or button pressed. When the function is called, it will receive the previous state of the form (initially the `initialState` that you pass, subsequently its previous return value) as its initial argument, followed by the arguments that a form action normally receives.
+* `initialState`: The value you want the state to be initially. It can be any serializable value. This argument is ignored after the action is first invoked.
+* **optional** `permalink`: A string containing the unique page URL that this form modifies. For use on pages with dynamic content (eg: feeds) in conjunction with progressive enhancement: if `fn` is a [server action](/reference/react/use-server) and the form is submitted before the JavaScript bundle loads, the browser will navigate to the specified permalink URL, rather than the current page's URL. Ensure that the same form component is rendered on the destination page (including the same action `fn` and `permalink`) so that React knows how to pass the state through. Once the form has been hydrated, this parameter has no effect.
+>>>>>>> 5d2f7105bd6374e465b8bdce8efceaeb8f01c937
 
 {/* TODO T164397693: link to serializable values docs once it exists */}
 

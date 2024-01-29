@@ -485,12 +485,35 @@ function FilterableProductTable({ products }) {
 
 Au sein de `SearchBar`, ajoutez des gestionnaires d'événements `onChange` à vos champs et utilisez-les pour modifier l'état du parent :
 
+<<<<<<< HEAD
 ```js {5}
 <input
   type="text"
   value={filterText}
   placeholder="Recherche..."
   onChange={(e) => onFilterTextChange(e.target.value)} />
+=======
+```js {4,5,13,19}
+function SearchBar({
+  filterText,
+  inStockOnly,
+  onFilterTextChange,
+  onInStockOnlyChange
+}) {
+  return (
+    <form>
+      <input
+        type="text"
+        value={filterText}
+        placeholder="Search..."
+        onChange={(e) => onFilterTextChange(e.target.value)}
+      />
+      <label>
+        <input
+          type="checkbox"
+          checked={inStockOnly}
+          onChange={(e) => onInStockOnlyChange(e.target.checked)}
+>>>>>>> 5d2f7105bd6374e465b8bdce8efceaeb8f01c937
 ```
 
 À présent votre application fonctionne complètement !
