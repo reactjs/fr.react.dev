@@ -42,10 +42,6 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Josh a étudié les Mathématiques et découvert la programmation pendant ses études.  Son premier boulot de développeur professionnel consistait à calculer des taux d'assurance dans Microsoft Excel, ce parangon de Programmation Réactive, ce qui explique probablement pourquoi il bosse désormais sur React. Entre les deux Josh a été contributeur, manager voire directeur dans quelques startups.  Hors du boulot, il aime se lancer des défis de cuisine.
 </TeamMember>
 
-<TeamMember name="Kathryn Middleton" permalink="kathryn-middleton" photo="/images/team/kathryn-middleton.jpg" github="kmiddleton14" twitter="kmiddleton14" title="Manager d’ingénieurs chez Meta">
-    Kathryn a d'abord découvert le développement web parce qu'elle voulait que sa page myspace ait l'air cool.  Elle s'est retrouvée à faire des études d'informatique pour ensuite rapidement devenir fan de React en ajoutant des fonctionnalités au sein de l'équipe d'Instagram.com.  Hors du boulot elle adore le ping-pong, enseigner le vélo de fitness intensif *(spinning, NdT)* et acheter des plantes.
-</TeamMember>
-
 <TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" personal="no.lol" title="Ingénieure chez Meta">
     La carrière de développeuse de Lauren a atteint son sommet lorsqu'elle a découvert la balise `<marquee>`. Depuis, elle cherche à retrouver cette extase.  Lorsqu'elle n'est pas en train d'ajouter des bugs à React, elle aime balancer des mèmes audacieux dans les forums internes, jouer à beaucoup trop de jeux vidéos avec l'amour de sa vie, et son chien Zelda.
 </TeamMember>
@@ -62,12 +58,12 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Mofei a commencé à programmer dès qu'elle a réalisé que ça pouvait l'aider à tricher aux jeux vidéos.  Ses études se sont concentrées sur les systèmes d'exploitation (OS), mais elle aime aujourd'hui triturer React.  Hors du boulot, elle aime déboguer des problèmes d'escalade de bloc et planifier ses prochaines randonnées.
 </TeamMember>
 
-<TeamMember name="Rick Hanlon" permalink="rick-hanlon" photo="/images/team/rickhanlonii.jpg" github="rickhanlonii" twitter="rickhanlonii" threads="rickhanlonii" personal="rickhanlon.codes" title="Ingénieur chez Meta">
-    Ricky a étudié les maths théoriques puis s'est retrouvé on ne sait comment dans l'équipe React Native quelques années avant de rejoindre l'équipe React. Lorsqu'il n'est pas en train de coder, vous le trouverez à faire du snowboard, du vélo, de l'escalade, du golf, ou à fermer les tickets GitHub qui violent le gabarit demandé.
+<TeamMember name="Noah Lemen" permalink="noah-lemen" photo="/images/team/noahlemen.jpg" github="noahlemen" twitter="noahlemen" threads="noahlemen" personal="noahle.men" title="Ingénieur chez Meta">
+    Noah a commencé à s'intéresser à la programmation d'UI lors de ses études en technologies musicales à NYU. Chez Meta, il a travaillé sur des outils internes, des navigateurs, la performance web, et se concentre actuellement sur React.  Quand il n'est pas au boulot, Noah est généralement en train de triturer des synthétiseurs ou de passer du temps avec son chat.
 </TeamMember>
 
-<TeamMember name="Samuel Susla" permalink="samuel-susla" photo="/images/team/sam.jpg" github="sammy-SC" twitter="SamuelSusla" threads="samuelsusla" title="Ingénieur chez Meta">
-    Samuel a commencé à s'intéresser à la programmation avec le film Matrix. Encore aujourd'hui, Matrix est son économiseur d'écran. Avant de travailler sur React, il se concentrait sur l'écriture d'applis iOS.  Quand il ne bosse pas, Samuel aime faire du beach volley, du squash, du badminton, et passer du temps en famille.
+<TeamMember name="Rick Hanlon" permalink="rick-hanlon" photo="/images/team/rickhanlonii.jpg" github="rickhanlonii" twitter="rickhanlonii" threads="rickhanlonii" personal="rickhanlon.codes" title="Ingénieur chez Meta">
+    Ricky a étudié les maths théoriques puis s'est retrouvé on ne sait comment dans l'équipe React Native quelques années avant de rejoindre l'équipe React. Lorsqu'il n'est pas en train de coder, vous le trouverez à faire du snowboard, du vélo, de l'escalade, du golf, ou à fermer les tickets GitHub qui violent le gabarit demandé.
 </TeamMember>
 
 <TeamMember name="Sathya Gunasekaran " permalink="sathya-gunasekaran" photo="/images/team/sathya.jpg" github="gsathya" twitter="_gsathya" threads="gsathya.03" title="Ingénieur chez Meta">

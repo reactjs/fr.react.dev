@@ -645,7 +645,6 @@ Les tableaux sont un autre type d’objet modifiable en JavaScript que vous pouv
 ```js
 import { useState } from 'react';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },
@@ -713,7 +712,6 @@ Si la copie de tableaux dans le code devient fastidieuse, vous pouvez utiliser u
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },

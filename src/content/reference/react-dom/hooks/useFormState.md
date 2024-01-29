@@ -14,7 +14,7 @@ Le Hook `useFormState` n'est actuellement disponible que sur les canaux de livra
 `useFormState` est un Hook qui vous permet de mettre à jour l'état sur base du résultat d'une action de formulaire.
 
 ```js
-const [state, formAction] = useFormState(fn, initialState);
+const [state, formAction] = useFormState(fn, initialState, permalink?);
 ```
 
 </Intro>
@@ -25,7 +25,7 @@ const [state, formAction] = useFormState(fn, initialState);
 
 ## Référence {/*reference*/}
 
-### `useFormState(action, initialState)` {/*useformstate*/}
+### `useFormState(action, initialState, permalink?)` {/*useformstate*/}
 
 {/* TODO T164397693: link to actions documentation once it exists */}
 
@@ -59,6 +59,7 @@ Lorsque vous l'utilisez dans une Action Serveur, `useFormState` permet d'affiche
 
 * `fn` : la fonction à appeler lorsque le formulaire est envoyé.  Lorsque la fonction est appelée, elle reçoit comme premier argument l'état précédent du formulaire (le `initialState` que vous avez fourni pour le premier appel, puis, pour les appels ultérieurs, la valeur précédemment renvoyée), suivi par les arguments normalement acceptés par une fonction d'action de formulaire.
 * `initialState` : la valeur initiale que vous souhaitez pour votre état.  Il peut s'agir de n'importe quelle valeur sérialisable.  Cet argument est ignoré après l'appel initial de l'action.
+* `permalink` **optionnel** : une chaîne de caractères contenant l'URL unique de la page que ce formulaire modifie. Conçu pour une utilisation sur des pages à contenu dynamique (telles que des flux) pour permettre une amélioration progressive : si `fn` est une [Action Serveur](/reference/react/use-server) et que le formulaire est soumis avant que le *bundle* JavaScript n'ait fini son chargement, le navigateur ira sur l'URL de permalien fournie, plutôt que sur l'URL de la page courante. Ça permet de garantir que le même composant de formulaire sera produit sur la page destinataire (y compris les infos `fn` et `permalink`), afin que React sache comment lui passer l'état.  Une fois le formulaire hydraté, ce paramètre n'a plus d'effet.
 
 {/* TODO T164397693: link to serializable values docs once it exists */}
 
