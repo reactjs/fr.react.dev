@@ -15,7 +15,7 @@ export default function ShowRenderedHTML({children}) {
   );
   return (
     <>
-      <h1>Rendered HTML:</h1>
+      <h1>HTML produit :</h1>
       <pre>
         {formatHTML(markup)}
       </pre>
@@ -27,9 +27,9 @@ const formatHTML = `
 import format from 'html-format';
 
 export default function formatHTML(markup) {
-  // Cheap tricks to format the HTML readably -- haven't been able to
-  // find a package that runs in browser and prettifies the HTML if it
-  // lacks line-breaks.
+  // Bidouilles pour formatter lisiblement le HTML -- je n'ai pas
+  // réussi à trouver un module tournant côté navigateur qui nettoie
+  // le HTML s'il n'a pas de retours-chariot.
   return format(markup
     .replace('<html>', '<html>\\n')
     .replace('<head>', '<head>\\n')

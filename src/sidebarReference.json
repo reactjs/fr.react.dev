@@ -204,22 +204,6 @@
           "path": "/reference/react-dom/components/input"
         },
         {
-          "title": "<option>",
-          "path": "/reference/react-dom/components/option"
-        },
-        {
-          "title": "<progress>",
-          "path": "/reference/react-dom/components/progress"
-        },
-        {
-          "title": "<select>",
-          "path": "/reference/react-dom/components/select"
-        },
-        {
-          "title": "<textarea>",
-          "path": "/reference/react-dom/components/textarea"
-        },
-        {
           "title": "<link>",
           "path": "/reference/react-dom/components/link",
           "canary": true
@@ -230,14 +214,30 @@
           "canary": true
         },
         {
+          "title": "<option>",
+          "path": "/reference/react-dom/components/option"
+        },
+        {
+          "title": "<progress>",
+          "path": "/reference/react-dom/components/progress"
+        },
+        {
           "title": "<script>",
           "path": "/reference/react-dom/components/script",
           "canary": true
         },
         {
+          "title": "<select>",
+          "path": "/reference/react-dom/components/select"
+        },
+        {
           "title": "<style>",
           "path": "/reference/react-dom/components/style",
           "canary": true
+        },
+        {
+          "title": "<textarea>",
+          "path": "/reference/react-dom/components/textarea"
         },
         {
           "title": "<title>",

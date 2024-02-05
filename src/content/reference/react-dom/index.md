@@ -17,18 +17,18 @@ Ces API peuvent être importées depuis vos composants.  On les utilise rarement
 * [`createPortal`](/reference/react-dom/createPortal) vous permet d'afficher des composants enfants dans une autre partie de l'arbre du DOM.
 * [`flushSync`](/reference/react-dom/flushSync) vous permet de forcer React à traiter les mises à jour d'état en attente, puis à mettre à jour le DOM de façon synchrone.
 
-## Resource Preloading APIs {/*resource-preloading-apis*/}
+## API de préchargement de ressources {/*resource-preloading-apis*/}
 
-These APIs can be used to make apps faster by pre-loading resources such as scripts, stylesheets, and fonts as soon as you know you need them, for example before navigating to another page where the resources will be used.
+Ces API peuvent être utilisées pour accélérer vos applis en préchargeant des ressources telles que les scripts, feuilles de style et fontes dès que vous savez que vous en aurez besoin, par exemple avant de naviguer sur une autre page qui utilisera ces ressources.
 
-[React-based frameworks](/learn/start-a-new-react-project) frequently handle resource loading for you, so you might not have to call these APIs yourself. Consult your framework's documentation for details.
+[Les frameworks basés sur React](/learn/start-a-new-react-project) s'occupent fréquemment pour vous du chargement des ressources, de sorte que vous n'aurez peut-être pas besoin d'appeler ces API vous-même.  Consultez la documentation de votre framework pour en savoir plus à ce sujet.
 
-* [`prefetchDNS`](/reference/react-dom/prefetchDNS) lets you prefetch the IP address of a DNS domain name that you expect to connect to.
-* [`preconnect`](/reference/react-dom/preconnect) lets you connect to a server you expect to request resources from, even if you don't know what resources you'll need yet.
-* [`preload`](/reference/react-dom/preload) lets you fetch a stylesheet, font, image, or external script that you expect to use.
-* [`preloadModule`](/reference/react-dom/preloadModule) lets you fetch an ESM module that you expect to use.
-* [`preinit`](/reference/react-dom/preinit) lets you fetch and evaluate an external script or fetch and insert a stylesheet.
-* [`preinitModule`](/reference/react-dom/preinitModule) lets you fetch and evaluate an ESM module.
+* [`prefetchDNS`](/reference/react-dom/prefetchDNS) vous permet de précharger l'adresse IP d'un nom de domaine DNS auquel vous anticipez une connexion.
+* [`preconnect`](/reference/react-dom/preconnect) vous permet de vous connecter à un serveur en vue d'y charger des ressources par la suite, même si vous ne savez pas encore exactement lesquelles.
+* [`preload`](/reference/react-dom/preload) vous permet de charger une feuille de styles, une fonte, une image ou un script externe dont vous anticipez l'utilisation.
+* [`preloadModule`](/reference/react-dom/preloadModule) vous permet de charger un module ESM en vue de son utilisation imminente.
+* [`preinit`](/reference/react-dom/preinit) vous permet de charger et d'évaluer un script tiers ou de charger et insérer une feuille de style.
+* [`preinitModule`](/reference/react-dom/preinitModule) vous permet de charget et évaluer un module ESM.
 
 ---
 
