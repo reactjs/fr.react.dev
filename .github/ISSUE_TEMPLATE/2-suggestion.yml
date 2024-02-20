@@ -1,0 +1,34 @@
+name: "💡 Suggestions"
+description: "Suggère une nouvelle page, section ou mise à jour d'une page existante."
+title: "[Suggestion]: "
+labels: ["type: documentation"]
+body:
+  - type: textarea
+    attributes:
+      label: Résumé
+      description: |
+        Un résumé clair et concis de ce que nous devrions ajouter.
+      placeholder: |
+        Exemple :
+        Ajouter une page décrivant l'utilisation de React avec TypeScript.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Page
+      description: |
+        De quelle page s'agit-il ?
+      placeholder: |
+        https://fr.react.dev/
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Détails
+      description: |
+        Veuillez nous expliquer ce que vous suggérez.
+      placeholder: |
+        Exemple :
+        Je pense qu'il serait utile d'avoir une page expliquant comment utiliser React avec TypeScript. Elle pourrait inclure un exemple simple de composant écrit en TypeScript, et faire les liens adéquats vers la documentation de TypeScript.
+    validations:
+      required: true

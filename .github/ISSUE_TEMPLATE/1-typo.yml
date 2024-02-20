@@ -1,0 +1,34 @@
+name: "🤦 Typo ou erreur"
+description: "Signale une typo ou une erreur dans les docs."
+title: "[Typo]: "
+labels: ["type: typos"]
+body:
+  - type: textarea
+    attributes:
+      label: Résumé
+      description: |
+        Un résumé clair et concis du bug.
+      placeholder: |
+        Exemple :
+        L'exemple de code sur la page "useReducer" comporte une variable `nextId` inutilisée.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Page
+      description: |
+        Sur quelle page avez-vous constaté la typo ?
+      placeholder: |
+        https://fr.react.dev/
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Détails
+      description: |
+        Veuillez fournir tout détail complémentaire utile pour comprendre la nature de l'erreur.
+      placeholder: |
+        Exemple d'erreur :
+        Dans la section « useReducer » de la page « Référence de l'API », l'exemple de code pour la partie « Écrire la fonction de réduction » comporte une variable `nextId` qui devrait être retirée.
+    validations:
+      required: false

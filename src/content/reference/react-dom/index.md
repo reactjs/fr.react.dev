@@ -17,6 +17,19 @@ Ces API peuvent être importées depuis vos composants.  On les utilise rarement
 * [`createPortal`](/reference/react-dom/createPortal) vous permet d'afficher des composants enfants dans une autre partie de l'arbre du DOM.
 * [`flushSync`](/reference/react-dom/flushSync) vous permet de forcer React à traiter les mises à jour d'état en attente, puis à mettre à jour le DOM de façon synchrone.
 
+## API de préchargement de ressources {/*resource-preloading-apis*/}
+
+Ces API peuvent être utilisées pour accélérer vos applis en préchargeant des ressources telles que les scripts, feuilles de style et fontes dès que vous savez que vous en aurez besoin, par exemple avant de naviguer sur une autre page qui utilisera ces ressources.
+
+[Les frameworks basés sur React](/learn/start-a-new-react-project) s'occupent fréquemment pour vous du chargement des ressources, de sorte que vous n'aurez peut-être pas besoin d'appeler ces API vous-même.  Consultez la documentation de votre framework pour en savoir plus à ce sujet.
+
+* [`prefetchDNS`](/reference/react-dom/prefetchDNS) vous permet de précharger l'adresse IP d'un nom de domaine DNS auquel vous anticipez une connexion.
+* [`preconnect`](/reference/react-dom/preconnect) vous permet de vous connecter à un serveur en vue d'y charger des ressources par la suite, même si vous ne savez pas encore exactement lesquelles.
+* [`preload`](/reference/react-dom/preload) vous permet de charger une feuille de styles, une fonte, une image ou un script externe dont vous anticipez l'utilisation.
+* [`preloadModule`](/reference/react-dom/preloadModule) vous permet de charger un module ESM en vue de son utilisation imminente.
+* [`preinit`](/reference/react-dom/preinit) vous permet de charger et d'évaluer un script tiers ou de charger et insérer une feuille de style.
+* [`preinitModule`](/reference/react-dom/preinitModule) vous permet de charget et évaluer un module ESM.
+
 ---
 
 ## Points d'entrée {/*entry-points*/}

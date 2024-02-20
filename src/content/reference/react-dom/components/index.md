@@ -32,6 +32,20 @@ React leur réserve un traitement particulier parce que leur passer la prop `val
 
 ---
 
+## Composants de ressources et métadonnées {/*resource-and-metadata-components*/}
+
+Ces composants natifs du navigateur vous permettent de charger des ressources externes ou d'annoter le document avec des métadonnées :
+
+* [`<link>`](/reference/react-dom/components/link)
+* [`<meta>`](/reference/react-dom/components/meta)
+* [`<script>`](/reference/react-dom/components/script)
+* [`<style>`](/reference/react-dom/components/style)
+* [`<title>`](/reference/react-dom/components/title)
+
+Ils font l'objet d'un traitement particulier par React car celui-ci va les restituer directement dans l'en-tête du document, suspendre pendant le chargement des ressources, puis exécuter les autres comportements décrits dans les pages de référence pour chacun de ces composants.
+
+---
+
 ## Tous les composants HTML {/*all-html-components*/}
 
 React prend en charge tous les composants HTML natifs du navigateur, ce qui inclut :
