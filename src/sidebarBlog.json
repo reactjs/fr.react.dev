@@ -12,6 +12,13 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "React Labs : ce sur quoi nous bossons – février 2024",
+          "titleForHomepage": "React Labs : février 2024",
+          "icon": "labs",
+          "date": "15 février 2024",
+          "path": "/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024"
+        },
+        {
           "title": "React Canaries : livraison incrémentale de fonctionnalités hors de Meta",
           "titleForHomepage": "React Canaries",
           "icon": "blog",

@@ -266,7 +266,7 @@ body {
 Vous pouvez aussi suivre ce tutoriel dans votre environnement de développement local.  Pour cela, suivez ces étapes :
 
 1. Installez [Node.js](https://nodejs.org/fr/)
-2. Dans l'onglet CodeSandbox ouvert plus tôt, appuyez sur le bouton en haut à gauche pour ouvrir le menu, puis choisissez **Télécharger la sandbox** dans ce menu pour télécharger localement une archive des fichiers du projet
+2. Dans l'onglet CodeSandbox ouvert plus tôt, appuyez sur le bouton en haut à gauche pour ouvrir le menu, puis choisissez **Télécharger la Sandbox** dans ce menu pour télécharger localement une archive des fichiers du projet
 3. Décompressez le fichier d'archive puis ouvrez un terminal et faites un `cd` dans le dossier que vous venez de décompresser
 4. Installez les dépendances avec `npm install`
 5. Lancer `npm start` pour démarrer un serveur local et suivez les invites affichées pour voir le code s'exécuter dans le navigateur.

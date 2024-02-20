@@ -1513,7 +1513,7 @@ Les routeurs [compatibles Suspense](/reference/react/Suspense) sont censés enro
 
 ---
 
-### Afficher une erreur à l'utilisateur grâce à un périmètre d'erreur {/*displaying-an-error-to-users-with-error-boundary*/}
+### Afficher une erreur à l'utilisateur avec un périmètre d'erreur {/*displaying-an-error-to-users-with-error-boundary*/}
 
 <Canary>
 

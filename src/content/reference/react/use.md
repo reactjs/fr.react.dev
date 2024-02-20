@@ -361,7 +361,7 @@ Dans certains cas, une promesse passée à `use` peut être rejetée. Vous pouve
 
 </Pitfall>
 
-#### Afficher une erreur aux utilisateurs dans un périmètre d'erreur {/*displaying-an-error-to-users-with-error-boundary*/}
+#### Afficher une erreur aux utilisateurs avec un périmètre d'erreur {/*displaying-an-error-to-users-with-error-boundary*/}
 
 Si vous souhaitez afficher une erreur à vos utilisateurs quand une promesse a été rejetée, vous pouvez utiliser un [périmètre d'erreur](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). Pour l'utiliser, enrobez le composant d'où vous appelez le Hook `use` dans le périmètre d'erreur. Si la promesse transmise à `use` est rejetée, alors l'UI de secours de ce périmètre d'erreur sera affichée.
 

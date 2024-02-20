@@ -8,7 +8,7 @@ Si vous voulez créer une nouvelle appli ou un nouveau site web avec React, nous
 
 </Intro>
 
-Vous pouvez utiliser React sans framework, ceci dit nous avons constaté que la grande majorité des applis et site finissent par implémenter des solutions à des problématiques courantes telles que la découpe de code, le routage, le chargement de données ou la génération de HTML. Ces problématiques se retrouvent dans toutes les bibliothèques d'interface utilisateur, pas seulement dans React.
+Vous pouvez utiliser React sans framework, mais nous avons constaté que la plupart des applis et sites finissent par avoir besoin de solutions à des problématiques courantes telles que la découpe de code, la gestion des routes, le chargement de données et la génération du code HTML. Ces problématiques existent dans toutes les bibliothèques UI, pas seulement React.
 
 En commençant avec un framework, vous pouvez démarrer plus vite avec React et vous épargner ce qui revient à construire votre propre framework par la suite.
 
@@ -26,18 +26,16 @@ Même si, au départ, vous n’avez pas besoin d’un gestionnaire de routes ou 
 
 **Les frameworks React présentés sur cette page résolvent les problèmes de ce type par défaut, sans travail supplémentaire de votre part.** Ils vous permettent de commencer de manière très légère et de faire évoluer votre appli en fonction de vos besoins. Chaque framework React dispose d’une communauté, ce qui facilite la recherche de réponses aux questions et la mise à jour des outils. Les frameworks donnent également une structure à votre code, ce qui vous aide, vous et les autres, à conserver le contexte et vos compétences d'un projet à l'autre. Inversement, avec votre propre système, il est plus facile de rester bloqués sur des dépendances obsolètes, et vous finirez essentiellement par créer votre propre framework--mais un framework sans communauté ni processus de mise à niveau (et s’il ressemble à ceux que nous avons construits par le passé, il est conçu de manière plus aléatoire).
 
-
-Si votre appli a des contraintes inhabituelles qui ne sont pas bien traitées par ces frameworks, ou si vous préférer répondre à ces problématiques vous-mêmes, vous pouvez mettre en place votre propre configuration personnalisée autour de React. Prenez `react` et `react-dom` sur npm, mettez en place votre processus de *build* sur-mesure avec un bundler comme [Vite](https://vitejs.dev/) ou [Parcel](https://parceljs.org/), et ajoutez d’autres outils lorsque vous en aurez besoin pour la gestion des routes, l’exportation statique ou le rendu côté serveur, et plus encore.
-
+Si vous n’êtes toujours pas convaincu·e, ou si votre appli a des contraintes inhabituelles qui ne sont pas bien traitées par ces frameworks et que vous souhaitez mettre en place votre propre configuration personnalisée, nous ne pouvons pas vous arrêter : allez-y ! Prenez `react` et `react-dom` sur npm, mettez en place votre processus de *build* sur-mesure avec un bundler comme [Vite](https://vitejs.dev/) ou [Parcel](https://parceljs.org/), et ajoutez d’autres outils lorsque vous en aurez besoin pour la gestion des routes, l’exportation statique ou le rendu côté serveur, et plus encore.
 </DeepDive>
 
 ## Frameworks React de qualité reconnue {/*production-grade-react-frameworks*/}
 
-Ces frameworks prennent en charge toutes les fonctionnalités dont vous aurez besoin pour déployer et faire monter à l'échelle votre application en production, tout en travaillant à s'aligner sur notre [vision d'une architecture full-stack](#which-features-make-up-the-react-teams-full-stack-architecture-vision). Tous les frameworks que nous recommandons sont _open source_, on des communautés actives pour vous aider, et peuvent être déployées sur votre propre serveur ou chez un hébergeur.  Si vous êtes l'auteur·e d'un framework qui voudrait faire partie de cette liste[faites-nous signe](https://github.com/reactjs/fr.react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+).
+Ces frameworks prennent en charge toutes les fonctionnalités dont vous aurez besoin pour déployer et faire monter à l’échelle votre application en production, tout en travaillant à s’aligner sur notre [vision d’une architecture full-stack](#which-features-make-up-the-react-teams-full-stack-architecture-vision). Tous les frameworks que nous recommandons sont open source, on des communautés actives pour vous aider, et peuvent être déployées sur votre propre serveur ou chez un hébergeur.  Si vous êtes l’auteur·e d’un framework qui voudrait faire partie de cette liste, [faites-nous signe](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+).
 
 ### Next.js {/*nextjs-pages-router*/}
 
-**[Next.js (Pages Router)](https://nextjs.org/) est un framework React full-stack**. Il est flexible et vous permet de créer des applis React de toute taille--d’un blog essentiellement statique à une appli complexe et dynamique. Pour créer un nouveau projet avec Next.js, exécutez cette commande dans votre terminal :
+**[Next.js (Pages Router)](https://nextjs.org/) est un framework React full-stack**. Il est flexible et vous permet de créer des applis React de toute taille—d’un blog essentiellement statique à une appli complexe et dynamique. Pour créer un nouveau projet avec Next.js, exécutez cette commande dans votre terminal :
 
 <TerminalBlock>
 npx create-next-app@latest
@@ -83,7 +81,7 @@ Si Expo est nouveau pour vous, consultez le [tutoriel d’Expo](https://docs.exp
 
 Expo est maintenu par [Expo (la société)](https://expo.dev/about). Construire des applis avec Expo est gratuit, et vous pouvez les publier sur les plateformes Google Play et Apple Store sans restrictions. Expo propose des services cloud optionnels payants.
 
-## Frameworks React expérimentaux {/*bleeding-edge-react-frameworks*/}
+## Frameworks Reaxt expérimentaux {/*bleeding-edge-react-frameworks*/}
 
 Alors que nous cherchions comment continuer à améliorer React, nous avons réalisé que l’intégration plus étroite de React avec les frameworks (en particulier avec la gestion de routes, le *bundling* et les traitements côté serveur) constitue notre plus grande opportunité d’aider les utilisateurs de React à construire de meilleures applis. L’équipe Next.js a accepté de collaborer avec nous sur la recherche, le développement, l’intégration et les tests de fonctionnalités React de pointe, indépendantes toutefois d'un framework spécifique, comme les [Composants Serveur React](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
 
