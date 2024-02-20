@@ -352,13 +352,8 @@ Toutefois, l'utilisation d'`await` dans un [Composant Serveur](/reference/react/
 
 Dans certains cas, une promesse passée à `use` peut être rejetée. Vous pouvez gérer les promesses rejetées en utilisant l'une ou l'autre de ces méthodes :
 
-<<<<<<< HEAD
 1. [afficher une erreur aux utilisateurs avec un périmètre d'erreur](#displaying-an-error-to-users-with-error-boundary)
 2. [fournir une valeur alternative avec `Promise.catch`](#providing-an-alternative-value-with-promise-catch)
-=======
-1. [Displaying an error to users with an error boundary.](#displaying-an-error-to-users-with-error-boundary)
-2. [Providing an alternative value with `Promise.catch`](#providing-an-alternative-value-with-promise-catch)
->>>>>>> 35530eea4bb8ba2567c1f57f1ccf730cc89b76de
 
 <Pitfall>
 
@@ -366,11 +361,7 @@ Dans certains cas, une promesse passée à `use` peut être rejetée. Vous pouve
 
 </Pitfall>
 
-<<<<<<< HEAD
-#### Afficher une erreur aux utilisateurs dans un périmètre d'erreur {/*displaying-an-error-to-users-with-error-boundary*/}
-=======
-#### Displaying an error to users with an error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
->>>>>>> 35530eea4bb8ba2567c1f57f1ccf730cc89b76de
+#### Afficher une erreur aux utilisateurs avec un périmètre d'erreur {/*displaying-an-error-to-users-with-error-boundary*/}
 
 Si vous souhaitez afficher une erreur à vos utilisateurs quand une promesse a été rejetée, vous pouvez utiliser un [périmètre d'erreur](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). Pour l'utiliser, enrobez le composant d'où vous appelez le Hook `use` dans le périmètre d'erreur. Si la promesse transmise à `use` est rejetée, alors l'UI de secours de ce périmètre d'erreur sera affichée.
 

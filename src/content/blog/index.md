@@ -10,17 +10,13 @@ Ce blog est la source officielle des mises à jour par l'équipe React.  Toute a
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<<<<<<< HEAD
-<BlogCard title="React Canaries : livraison incrémentale de fonctionnalités hors de Meta" date="3 mai 2023" url="/blog/2023/05/03/react-canaries">
-=======
-<BlogCard title="React Labs: What We've Been Working On – February 2024" date="February 15, 2024" url="/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024">
+<BlogCard title="React Labs : ce sur quoi nous bossons – février 2024" date="15 février 2024" url="/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024">
 
-In React Labs posts, we write about projects in active research and development. Since our last update, we've made significant progress on React Compiler, new features, and React 19, and we'd like to share what we learned.
+Dans les billets React Labs, nous vous parlons de nos projets de recherche et développement actifs.  Depuis notre dernier bulletin, nous avons fait des progrès significatifs sur le React Compiler et React 19, et nous aimerions partager ce que nous avons appris.
 
 </BlogCard>
 
-<BlogCard title="React Canaries: Incremental Feature Rollout Outside Meta" date="May 3, 2023" url="/blog/2023/05/03/react-canaries">
->>>>>>> 35530eea4bb8ba2567c1f57f1ccf730cc89b76de
+<BlogCard title="React Canaries : livraison incrémentale de fonctionnalités hors de Meta" date="3 mai 2023" url="/blog/2023/05/03/react-canaries">
 
 Traditionnellement, les nouveautés de React n'étaient d'abord disponibles qu'au sein de Meta, pour arriver plus tard dans les livraisons *open source*.  Nous aimerions offrir à la communauté React un moyen d'adopter individuellement des fonctionnalités plus en amont, alors que leur conception est quasi finalisée —  un peu comme l'utilisation que Meta fait de React en interne.  Nous présentons donc un nouveau canal de livraison officiel appelé Canary.  Il permet à des environnements choisis tels que les frameworks de découpler leur adoption de fonctionnalités React individuelles du calendrier officiel de sortie de React.
 

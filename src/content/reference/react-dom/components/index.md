@@ -32,12 +32,9 @@ React leur réserve un traitement particulier parce que leur passer la prop `val
 
 ---
 
-<<<<<<< HEAD
-## Tous les composants HTML {/*all-html-components*/}
-=======
-## Resource and Metadata Components {/*resource-and-metadata-components*/}
+## Composants de ressources et métadonnées {/*resource-and-metadata-components*/}
 
-These bulit-in browser components let you load external resources or annotate the document with metadata:
+Ces composants natifs du navigateur vous permettent de charger des ressources externes ou d'annoter le document avec des métadonnées :
 
 * [`<link>`](/reference/react-dom/components/link)
 * [`<meta>`](/reference/react-dom/components/meta)
@@ -45,12 +42,11 @@ These bulit-in browser components let you load external resources or annotate th
 * [`<style>`](/reference/react-dom/components/style)
 * [`<title>`](/reference/react-dom/components/title)
 
-They are special in React because React can render them into the document head, suspend while resources are loading, and enact other behaviors that are described on the reference page for each specific component.
+Ils font l'objet d'un traitement particulier par React car celui-ci va les restituer directement dans l'en-tête du document, suspendre pendant le chargement des ressources, puis exécuter les autres comportements décrits dans les pages de référence pour chacun de ces composants.
 
 ---
 
-## All HTML components {/*all-html-components*/}
->>>>>>> 35530eea4bb8ba2567c1f57f1ccf730cc89b76de
+## Tous les composants HTML {/*all-html-components*/}
 
 React prend en charge tous les composants HTML natifs du navigateur, ce qui inclut :
 
