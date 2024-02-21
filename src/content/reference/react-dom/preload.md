@@ -73,7 +73,7 @@ La fonction `preload` suggère au navigateur de commencer à télécharger une r
 * Plusieurs appels équivalents à `preload` ont le même effet qu'un unique appel. Des appels à `preload` sont considérés équivalents selon les règles que voici :
   * Deux appels sont équivalents s'ils ont le même `href`, sauf si :
   * L'option `as` vaut `image`, auquel cas les deux appels sont équivalents s'ils ont les mêmes `href`, `imageSrcSet` et `imageSizes`.
-* Côté client, vous pouvez appeler `preinit` n'importe où : lors du rendu d'un composant, dans un Effet, dans un gestionnaire d'événement, etc.
+* Côté client, vous pouvez appeler `preload` n'importe où : lors du rendu d'un composant, dans un Effet, dans un gestionnaire d'événement, etc.
 * Lors d'un rendu côté serveur ou du rendu de Composants Serveur, `preload` n'a d'effet que si vous l'appelez lors du rendu d'un composant ou dans une fonction asynchrone issue du rendu d'un composant.  Tout autre appel sera ignoré.
 
 ---
