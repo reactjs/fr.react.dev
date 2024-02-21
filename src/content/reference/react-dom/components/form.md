@@ -30,7 +30,7 @@ Le [composant natif `<form>` du navigateur](https://developer.mozilla.org/fr/doc
 
 ### `<form>` {/*form*/}
 
-Pour créer des formulaires interactifs, utilisez le [composant natif `<input>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/form).
+Pour créer des formulaires interactifs, utilisez le [composant natif `<form>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/form).
 
 ```js
 <form action={search}>
