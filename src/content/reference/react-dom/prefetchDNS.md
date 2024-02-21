@@ -64,7 +64,7 @@ La fonction `prefetchDNS` suggère au navigateur de récupérer l'adresse IP du 
 
 ## Utilisation {/*usage*/}
 
-### Résolution DNS anticipée lors du rendu {/*preconnecting-when-rendering*/}
+### Résolution DNS anticipée lors du rendu {/*prefetching-dns-when-rendering*/}
 
 Appelez `prefetchDNS` lors du rendu d'un composant si vous savez que ses enfants auront besoin de charger des ressources extérieures depuis un hôte donné.
 

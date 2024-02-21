@@ -74,7 +74,7 @@ La fonction `preinit` suggère au navigateur de commencer à télécharger puis 
 
 ## Utilisation {/*usage*/}
 
-### Préinitialisation lors du rendu {/*preconnecting-when-rendering*/}
+### Préinitialisation lors du rendu {/*preiniting-when-rendering*/}
 
 Appelez `preinit` lors du rendu d'un composant si vous savez que ses enfants auront besoin de charger une ressource spécifique, et que vous acceptez d'évaluer cette ressource dès son chargement (ce qui l'appliquera automatiquement).
 
@@ -114,7 +114,7 @@ Si vous souhaitez que le navigateur télécharge mais n'insère pas la feuille d
 
 </Recipes>
 
-### Préinitialisation dans un gestionnaire d'événement {/*preconnecting-in-an-event-handler*/}
+### Préinitialisation dans un gestionnaire d'événement {/*preiniting-in-an-event-handler*/}
 
 Appelez `preinit` depuis un gestionnaire d'événement avant de passer à une page ou un état qui auront besoin de ressources extérieures.  Ça permet de déclencher le processus plus tôt que si vous l'appeliez au sein de la nouvelle page ou suite au nouvel état.
 

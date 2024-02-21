@@ -72,7 +72,7 @@ La fonction `preinitModule` suggère au navigateur de commencer à télécharger
 
 ## Utilisation {/*usage*/}
 
-### Préinitialisation lors du rendu {/*preconnecting-when-rendering*/}
+### Préinitialisation lors du rendu {/*preiniting-when-rendering*/}
 
 Appelez `preinitModule` lors du rendu d'un composant si vous savez que ses enfants auront besoin de charger un module spécifique, et que vous acceptez d'évaluer ce module immédiatement après son chargement.
 
@@ -87,7 +87,7 @@ function AppRoot() {
 
 Si vous souhaitez que le navigateur télécharge mais n'évalue pas le module immédiatement, utilisez plutôt [`preload`](/reference/react-dom/preload). Si vous souhaitez charger et évaluer un script qui n'est pas un module ESM, utilisez [`preinit`](/reference/react-dom/preinitModule).
 
-### Préinitialisation dans un gestionnaire d'événement {/*preconnecting-in-an-event-handler*/}
+### Préinitialisation dans un gestionnaire d'événement {/*preiniting-in-an-event-handler*/}
 
 Appelez `preinitModule` depuis un gestionnaire d'événement avant de passer à une page ou un état qui auront besoin de modules.  Ça permet de déclencher le processus plus tôt que si vous l'appeliez au sein de la nouvelle page ou suite au nouvel état.
 

@@ -5,22 +5,22 @@ canary: true
 
 <Canary>
 
-The `preload` function is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+La fonction `preload` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Note>
 
-[React-based frameworks](/learn/start-a-new-react-project) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+[Les frameworks basés sur React](/learn/start-a-new-react-project) s'occupent fréquemment pour vous du chargement des ressources, de sorte que vous n'aurez peut-être pas besoin d'appeler ces API vous-même.  Consultez la documentation de votre framework pour en savoir plus à ce sujet.
 
 </Note>
 
 <Intro>
 
-`preload` lets you eagerly fetch a resource such as a stylesheet, font, or external script that you expect to use.
+`preload` vous permet de charger en avance une ressource telle qu'une feuille de styles, une fonte ou un script extérieurs que vous avez l'intention d'utiliser.
 
 ```js
-preload("https://example.com/font.woff2", {as: "font"});
+preload("https://example.com/font.woff2", { as: "font" });
 ```
 
 </Intro>
@@ -29,109 +29,110 @@ preload("https://example.com/font.woff2", {as: "font"});
 
 ---
 
-## Reference {/*reference*/}
+## Référence {/*reference*/}
 
 ### `preload(href, options)` {/*preload*/}
 
-To preload a resource, call the `preload` function from `react-dom`.
+Pour précharger une ressource, appelez la fonction `preload` de `react-dom`.
 
 ```js
 import { preload } from 'react-dom';
 
 function AppRoot() {
-  preload("https://example.com/font.woff2", {as: "font"});
+  preload("https://example.com/font.woff2", { as: "font" });
   // ...
 }
 
 ```
 
-[See more examples below.](#usage)
+[Voir d'autres exemples plus bas](#usage).
 
-The `preload` function provides the browser with a hint that it should start downloading the given resource, which can save time.
+La fonction `preload` suggère au navigateur de commencer à télécharger une ressource donnée, ce qui peut faire gagner du temps.
 
-#### Parameters {/*parameters*/}
+#### Paramètres {/*parameters*/}
 
-* `href`: a string. The URL of the resource you want to download.
-* `options`: an object. It contains the following properties:
-  *  `as`: a required string. The type of resource. Its [possible values](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#as) are `audio`, `document`, `embed`, `fetch`, `font`, `image`, `object`, `script`, `style`, `track`, `video`, `worker`.
-  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`. It is required when `as` is set to `"fetch"`.
-  *  `referrerPolicy`: a string. The [Referrer header](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#referrerpolicy) to send when fetching. Its possible values are `no-referrer-when-downgrade` (the default), `no-referrer`, `origin`, `origin-when-cross-origin`, and `unsafe-url`.
-  *  `integrity`: a string. A cryptographic hash of the resource, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
-  *  `type`: a string. The MIME type of the resource.
-  *  `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy. 
-  *  `fetchPriority`: a string. Suggests a relative priority for fetching the resource. The possible values are `auto` (the default), `high`, and `low`.
-  *  `imageSrcSet`: a string. For use only with `as: "image"`. Specifies the [source set of the image](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
-  *  `imageSizes`: a string. For use only with `as: "image"`. Specifies the [sizes of the image](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+* `href` : une chaîne de caractères. L'URL de la ressource que vous souhaitez télécharger.
+* `options` : un objet. Il contient les propriétés suivantes :
+  *  `as` : une chaîne de caractères obligatoire. Le type de la ressource. Les [valeurs possibles](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#as) sont `audio`, `document`, `embed`, `fetch`, `font`, `image`, `object`, `script`, `style`, `track`, `video` et `worker`.
+  * `precedence` : une chaîne de caractères. Indique à React où placer le nœud DOM `<style>` par rapport aux autres présents dans le `<head>` du document, ce qui détermine quelle feuille de styles a priorité sur quelle autre. La valeur peut être (par ordre de précédence) `"reset"`, `"low"`, `"medium"` ou `"high"`.
+  *  `crossOrigin` : une chaîne de caractères. La [politique CORS](https://developer.mozilla.org/fr/docs/Web/HTML/Attributes/crossorigin) à utiliser. Les valeurs possibles sont `anonymous` et `use-credentials`.  Elle est obligatoire lorsque `as` vaut `"fetch"`.
+  *  `referrerPolicy` : une chaîne de caractères. [L'en-tête Referrer](https://developer.mozilla.org/fr/docs/Web/HTML/Element/link#referrerpolicy) à envoyer lors du chargement. Les valeurs possibles sont `no-referrer-when-downgrade` (par défaut), `no-referrer`, `origin`, `origin-when-cross-origin` ou `unsafe-url`.
+  * `integrity` : une chaîne de caractères. Une empreinte cryptographique de la ressource afin de [vérifier son authenticité](https://developer.mozilla.org/fr/docs/Web/Security/Subresource_Integrity).
+  * `type` : une chaîne de caractères. Le type MIME de la ressource liée.
+  * `nonce` : une chaîne de caractères. Un [nonce cryptographique autorisant la ressource](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/nonce) dans le cadre d'une Politique de Sécurité de Contenu (CSP) stricte.
+  * `fetchPriority` : une chaîne de caractères. Suggère une priorité relative pour le chargement de la ressource. Les valeurs possibles sont `auto` (par défaut), `high` ou `low`.
+  *  `imageSrcSet` : une chaîne de caractères. À n'utiliser que pour `as: "image"`. Indique le [jeu de sources de l'image](https://developer.mozilla.org/fr/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+  *  `imageSizes` : une chaîne de caractères. À n'utiliser que pour `as: "image"`. Indique les [tailles de l'image](https://developer.mozilla.org/fr/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
 
-#### Returns {/*returns*/}
+#### Valeur renvoyée {/*returns*/}
 
-`preload` returns nothing.
+`preload` ne renvoie rien.
 
-#### Caveats {/*caveats*/}
+#### Limitations {/*caveats*/}
 
-* Multiple equivalent calls to `preload` have the same effect as a single call. Calls to `preload` are considered equivalent according to the following rules:
-  * Two calls are equivalent if they have the same `href`, except:
-  * If `as` is set to `image`, two calls are equivalent if they have the same `href`, `imageSrcSet`, and `imageSizes`.
-* In the browser, you can call `preload` in any situation: while rendering a component, in an effect, in an event handler, and so on.
-* In server-side rendering or when rendering Server Components, `preload` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
+* Plusieurs appels équivalents à `preload` ont le même effet qu'un unique appel. Des appels à `preload` sont considérés équivalents selon les règles que voici :
+  * Deux appels sont équivalents s'ils ont le même `href`, sauf si :
+  * L'option `as` vaut `image`, auquel cas les deux appels sont équivalents s'ils ont les mêmes `href`, `imageSrcSet` et `imageSizes`.
+* Côté client, vous pouvez appeler `preinit` n'importe où : lors du rendu d'un composant, dans un Effet, dans un gestionnaire d'événement, etc.
+* Lors d'un rendu côté serveur ou du rendu de Composants Serveur, `preload` n'a d'effet que si vous l'appelez lors du rendu d'un composant ou dans une fonction asynchrone issue du rendu d'un composant.  Tout autre appel sera ignoré.
 
 ---
 
-## Usage {/*usage*/}
+## Utilisation {/*usage*/}
 
-### Preloading when rendering {/*preloading-when-rendering*/}
+### Précharger lors du rendu {/*preloading-when-rendering*/}
 
-Call `preload` when rendering a component if you know that it or its children will use a specific resource.
+Appelez `preload` lors du rendu d'un composant si vous savez que ses enfants auront besoin de charger une ressource spécifique.
 
-<Recipes titleText="Examples of preloading">
+<Recipes titleText="Exemples de préchargement">
 
-#### Preloading an external script {/*preloading-an-external-script*/}
-
-```js
-import { preload } from 'react-dom';
-
-function AppRoot() {
-  preload("https://example.com/script.js", {as: "script"});
-  return ...;
-}
-```
-
-If you want the browser to start executing the script immediately (rather than just downloading it), use [`preinit`](/reference/react-dom/preinit) instead. If you want to load an ESM module, use [`preloadModule`](/reference/react-dom/preloadModule).
-
-<Solution />
-
-#### Preloading a stylesheet {/*preloading-a-stylesheet*/}
+#### Précharger un script {/*preloading-an-external-script*/}
 
 ```js
 import { preload } from 'react-dom';
 
 function AppRoot() {
-  preload("https://example.com/style.css", {as: "style"});
+  preload("https://example.com/script.js", { as: "script" });
   return ...;
 }
 ```
 
-If you want the stylesheet to be inserted into the document immediately (which means the browser will start parsing it immediately rather than just downloading it), use [`preinit`](/reference/react-dom/preinit) instead.
+Si vous souhaitez que le navigateur évalue la ressource immédiatement après chargement (plutôt que simplement le charger), utilisez plutôt [`preinit`](/reference/react-dom/preinit). Si vous souhaitez charger un module ESM, utilisez [`preloadModule`](/reference/react-dom/preloadModule).
 
 <Solution />
 
-#### Preloading a font {/*preloading-a-font*/}
+#### Précharger une feuille de styles {/*preloading-a-stylesheet*/}
 
 ```js
 import { preload } from 'react-dom';
 
 function AppRoot() {
-  preload("https://example.com/style.css", {as: "style"});
-  preload("https://example.com/font.woff2", {as: "font"});
+  preload("https://example.com/style.css", { as: "style" });
   return ...;
 }
 ```
 
-If you preload a stylesheet, it's smart to also preload any fonts that the stylesheet refers to. That way, the browser can start downloading the font before it's downloaded and parsed the stylesheet.
+Si vous souhaitez que le navigateur insère la feuille de styles immédiatement après chargement (c'est-à-dire qu'il la parse et l'applique aussi), utilisez plutôt [`preinit`](/reference/react-dom/preinit).
 
 <Solution />
 
-#### Preloading an image {/*preloading-an-image*/}
+#### Précharger une fonte {/*preloading-a-font*/}
+
+```js
+import { preload } from 'react-dom';
+
+function AppRoot() {
+  preload("https://example.com/style.css", { as: "style" });
+  preload("https://example.com/font.woff2", { as: "font" });
+  return ...;
+}
+```
+
+Si vous préchargez une feuille de styles, il est souhaitable de précharger toute fonte que cette feuille de styles référence.  Ainsi, le navigateur pourra commencer à télécharger les fontes avant d'avoir chargé et parsé la feuille de styles.
+
+<Solution />
+
+#### Précharger une image {/*preloading-an-image*/}
 
 ```js
 import { preload } from 'react-dom';
@@ -146,26 +147,26 @@ function AppRoot() {
 }
 ```
 
-When preloading an image, the `imageSrcSet` and `imageSizes` options help the browser [fetch the correctly sized image for the size of the screen](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+Lorsque vous préchargez une image, les options `imageSrcSet` et `imageSizes` aide le navigateur à [charger l'image de la meilleure taille pour ses dimensions d'affichage à l'écran](https://developer.mozilla.org/fr/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
 
 <Solution />
 
 </Recipes>
 
-### Preloading in an event handler {/*preloading-in-an-event-handler*/}
+### Précharger dans un gestionnaire d'événement {/*preloading-in-an-event-handler*/}
 
-Call `preload` in an event handler before transitioning to a page or state where external resources will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.
+Appelez `preload` depuis un gestionnaire d'événement avant de passer à une page ou un état qui auront besoin de ressources extérieures.  Ça permet de déclencher le processus plus tôt que si vous l'appeliez au sein de la nouvelle page ou suite au nouvel état.
 
 ```js
 import { preload } from 'react-dom';
 
 function CallToAction() {
   const onClick = () => {
-    preload("https://example.com/wizardStyles.css", {as: "style"});
+    preload("https://example.com/wizardStyles.css", { as: "style" });
     startWizard();
   }
   return (
-    <button onClick={onClick}>Start Wizard</button>
+    <button onClick={onClick}>Démarrer l’assistant</button>
   );
 }
 ```
