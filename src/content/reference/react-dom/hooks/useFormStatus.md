@@ -186,28 +186,15 @@ export default function UsernameForm() {
   const {pending, data} = useFormStatus();
 
   return (
-<<<<<<< HEAD
-    <>
-      <label>Réserver l’identifiant : </label><br />
-      <input type="text" name="username" />
-      <button type="submit" disabled={pending}>
-        {pending ? 'Envoi en cours...' : 'Envoyer'}
-      </button>
-      {showSubmitted ? (
-        <p>Demande en cours pour l’identifiant : {submittedUsername.current}</p>
-      ) : null}
-    </>
-=======
     <div>
-      <h3>Request a Username: </h3>
-      <input type="text" name="username" disabled={pending}/>
+      <h3>Réserver l’identifiant : </h3><br />
+      <input type="text" name="username" disabled={pending} />
       <button type="submit" disabled={pending}>
-        Submit
+        Envoyer'}
       </button>
       <br />
-      <p>{data ? `Requesting ${data?.get("username")}...`: ''}</p>
+      <p>{data ? `Récupération de ${data?.get('username')}...` : ''}</p>
     </div>
->>>>>>> 081d1008dd1eebffb9550a3ff623860a7d977acf
   );
 }
 ```
@@ -215,7 +202,7 @@ export default function UsernameForm() {
 ```js src/App.js
 import UsernameForm from './UsernameForm';
 import { submitForm } from "./actions.js";
-import {useRef} from 'react';
+import { useRef } from 'react';
 
 export default function App() {
   const ref = useRef(null);
