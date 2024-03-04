@@ -40,7 +40,11 @@ function SearchPage() {
 
 #### Valeur renvoyée {/*returns*/}
 
+<<<<<<< HEAD
 Durant le rendu initial, la valeur différée renvoyée sera celle que vous avez fournie. Lors des mises à jour, React tentera d'abord un rendu avec l'ancienne valeur (il va donc renvoyer l'ancienne valeur), et ensuite essayer en arrière-plan un rendu avec la nouvelle valeur (il va donc renvoyer la valeur à jour).
+=======
+During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value). 
+>>>>>>> 265fa26e3b39739f06c956140d9acf618c6b4e6b
 
 #### Limitations {/*caveats*/}
 
@@ -76,7 +80,11 @@ function SearchPage() {
 
 Lors du rendu initial, la <CodeStep step={2}>valeur différée</CodeStep> sera la même que la <CodeStep step={1}>valeur</CodeStep> que vous avez fournie.
 
+<<<<<<< HEAD
 Lors des mises à jour, la <CodeStep step={2}>valeur différée</CodeStep> sera « en retard » par rapport à la dernière <CodeStep step={1}>valeur</CodeStep>. Plus particulièrement, React fera d'abord un rendu *sans* mettre à jour la valeur différée, puis tentera un rendu supplémentaire en arrière-plan avec la nouvelle valeur reçue.
+=======
+During updates, the <CodeStep step={2}>deferred value</CodeStep> will "lag behind" the latest <CodeStep step={1}>value</CodeStep>. In particular, React will first re-render *without* updating the deferred value, and then try to re-render with the newly received value in the background.
+>>>>>>> 265fa26e3b39739f06c956140d9acf618c6b4e6b
 
 **Parcourons un exemple afin de comprendre l'utilité de ce Hook.**
 
@@ -508,7 +516,11 @@ Imaginez un déroulement en deux étapes :
 
 1. **Pour commencer, React refait un rendu avec la nouvelle `query` (`"ab"`) mais avec l'ancienne `deferredQuery` (toujours `"a")`.** La valeur `deferredQuery`, que vous passez à la liste de résultats, est *différée* : elle est « en retard » par rapport à la valeur `query`.
 
+<<<<<<< HEAD
 2. **En arrière-plan, React tente alors un autre rendu avec `query` et `deferredQuery` valant *toutes les deux* `"ab"`.** Si ce rendu aboutit, React l'affichera à l'écran. Cependant, s'il suspend (les résultats pour `"ab"` ne sont pas encore chargés), React abandonnera cet essai de rendu, et essaiera à nouveau une fois les données chargées. L'utilisateur continuera à voir l'ancienne valeur différée jusqu'à ce que les données soient prêtes.
+=======
+2. **In the background, React tries to re-render with *both* `query` and `deferredQuery` updated to `"ab"`.** If this re-render completes, React will show it on the screen. However, if it suspends (the results for `"ab"` have not loaded yet), React will abandon this rendering attempt, and retry this re-render again after the data has loaded. The user will keep seeing the stale deferred value until the data is ready.
+>>>>>>> 265fa26e3b39739f06c956140d9acf618c6b4e6b
 
 Le rendu différé « d'arrière-plan » est susceptible d'être interrompu. Par exemple, si vous tapez à nouveau dans le champ de saisie, React l'abandonnera et recommencera avec la nouvelle valeur. React utilisera toujours la dernière valeur fournie.
 
@@ -951,7 +963,11 @@ Mêmes si ces techniques sont utiles dans certains cas, `useDeferredValue` est p
 
 Contrairement au *debouncing* et au *throttling*, il ne nécessite pas de choisir un délai fixe. Si l'appareil de l'utilisateur est rapide (par exemple un ordinateur puissant), le rendu différé serait quasiment immédiat, le rendant imperceptible pour l'utilisateur. Si l'appareil est lent, la liste serait « en retard » par rapport au champ de saisie, proportionnellement à la lenteur de l'appareil.
 
+<<<<<<< HEAD
 De plus, les rendus différés planifiés par `useDeferredValue` sont par défaut susceptibles d'être interrompus, ce qui n'est pas le cas du *debouncing* ou du *throttling*. Ça signifie que si React est en plein milieu du rendu d'une vaste liste, et que l'utilisateur ajuste sa saisie, React abandonnera ce rendu, traitera la frappe, et recommencera le rendu en arrière-plan. Par opposition, le *debouncing* et le *throttling* donneraient ici toujours une expérience saccadée car ils sont *bloquants* : ils diffèrent simplement le moment auquel le rendu bloque la frappe.
+=======
+Also, unlike with debouncing or throttling, deferred re-renders done by `useDeferredValue` are interruptible by default. This means that if React is in the middle of re-rendering a large list, but the user makes another keystroke, React will abandon that re-render, handle the keystroke, and then start rendering in the background again. By contrast, debouncing and throttling still produce a janky experience because they're *blocking:* they merely postpone the moment when rendering blocks the keystroke.
+>>>>>>> 265fa26e3b39739f06c956140d9acf618c6b4e6b
 
 Si vous souhaitez optimiser des traitements hors du rendu, le *debouncing* et le *throttling* restent utiles. Par exemple, ils peuvent vous permettre de lancer moins de de requêtes réseau. Vous pouvez parfaitement combiner ces techniques.
 
