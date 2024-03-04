@@ -22,13 +22,8 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Andrey a commencé sa carrière comme designer pour progressivement passer au développement web.  Après avoir rejoint l'équipe React Data chez Meta, il a travaillé à ajouter un compilateur incrémental JavaScript dans Relay… pour finir par le retirer plus tard.  Hors du boulot, Andrey aime jouer de la musique et faire divers types de sports.
 </TeamMember>
 
-<<<<<<< HEAD
-<TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" twitter="dan_abramov" title="Ingénieur indépendant">
+<TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" twitter="dan_abramov2" title="Ingénieur indépendant">
     Dan a commencé à programmer lorsqu'il a découvert par hasard qu'il y avait Visual Basic dans Microsoft Powerpoint.  Il a découvert que sa véritable vocation consistait à transformer les tweets de [Sebastian](#sebastian-markbåge) en billets de blog interminables. Dan gagne parfois à Fortnite en se cachant dans un buisson jusqu'à la fin de la partie.
-=======
-<TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" twitter="dan_abramov2" title="Independent Engineer">
-    Dan got into programming after he accidentally discovered Visual Basic inside Microsoft PowerPoint. He has found his true calling in turning [Sebastian](#sebastian-markbåge)'s tweets into long-form blog posts. Dan occasionally wins at Fortnite by hiding in a bush until the game ends.
->>>>>>> 265fa26e3b39739f06c956140d9acf618c6b4e6b
 </TeamMember>
 
 <TeamMember name="Eli White" permalink="eli-white" photo="/images/team/eli-white.jpg" github="TheSavior" twitter="Eli_White" threads="elicwhite" title="Manager d’ingénieurs chez Meta">

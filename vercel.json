@@ -77,52 +77,52 @@
     },
     {
       "source": "/link/event-pooling",
-      "destination": "https://legacy.reactjs.org/docs/legacy-event-pooling.html",
+      "destination": "https://fr.legacy.reactjs.org/docs/legacy-event-pooling.html",
       "permanent": false
     },
     {
       "source": "/link/legacy-context",
-      "destination": "https://legacy.reactjs.org/docs/legacy-context.html",
+      "destination": "https://fr.legacy.reactjs.org/docs/legacy-context.html",
       "permanent": false
     },
     {
       "source": "/link/crossorigin-error",
-      "destination": "https://legacy.reactjs.org/docs/cross-origin-errors.html",
+      "destination": "https://fr.legacy.reactjs.org/docs/cross-origin-errors.html",
       "permanent": false
     },
     {
       "source": "/link/react-polyfills",
-      "destination": "https://legacy.reactjs.org/docs/javascript-environment-requirements.html",
+      "destination": "https://fr.legacy.reactjs.org/docs/javascript-environment-requirements.html",
       "permanent": false
     },
     {
       "source": "/link/wrap-tests-with-act",
-      "destination": "https://legacy.reactjs.org/docs/test-utils.html#act",
+      "destination": "https://fr.legacy.reactjs.org/docs/test-utils.html#act",
       "permanent": false
     },
     {
       "source": "/link/refs-must-have-owner",
-      "destination": "https://legacy.reactjs.org/warnings/refs-must-have-owner.html",
+      "destination": "https://fr.legacy.reactjs.org/warnings/refs-must-have-owner.html",
       "permanent": false
     },
     {
       "source": "/link/derived-state",
-      "destination": "https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html",
+      "destination": "https://fr.legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html",
       "permanent": false
     },
     {
       "source": "/link/strict-mode-string-ref",
-      "destination": "https://legacy.reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs",
+      "destination": "https://fr.legacy.reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs",
       "permanent": false
     },
     {
       "source": "/link/perf-use-production-build",
-      "destination": "https://legacy.reactjs.org/docs/optimizing-performance.html#use-the-production-build",
+      "destination": "https://fr.legacy.reactjs.org/docs/optimizing-performance.html#use-the-production-build",
       "permanent": false
     },
     {
       "source": "/link/unsafe-component-lifecycles",
-      "destination": "https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html",
+      "destination": "https://fr.legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html",
       "permanent": false
     },
     {
@@ -132,7 +132,7 @@
     },
     {
       "source": "/link/attribute-behavior",
-      "destination": "https://legacy.reactjs.org/blog/2017/09/08/dom-attributes-in-react-16.html#changes-in-detail",
+      "destination": "https://fr.legacy.reactjs.org/blog/2017/09/08/dom-attributes-in-react-16.html#changes-in-detail",
       "permanent": false
     },
     {
