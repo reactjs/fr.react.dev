@@ -33,7 +33,7 @@ Enrobez un arbre de composants dans un `<Profiler>` afin de mesurer ses performa
 #### Props {/*props*/}
 
 * `id` : une chaîne de caractères identifiant la portion de l’UI que vous souhaitez mesurer.
-* `onRender` : une [fonction de rappel `onRender`](#onrender-callback) appelée à chaque nouveau rendu d’un composant situé dans l’arbre profilé. Elle reçoit des informations indiquant ce qui a fait l’objet ɗ un rendu et quel temps ça a pris.
+* `onRender` : une [fonction de rappel `onRender`](#onrender-callback) appelée à chaque nouveau rendu d’un composant situé dans l’arbre profilé. Elle reçoit des informations indiquant ce qui a fait l’objet d'un rendu et quel temps ça a pris.
 
 #### Limitations {/*caveats*/}
 
