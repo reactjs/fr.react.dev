@@ -732,7 +732,7 @@ En général, les composants qui reposent sur des infos de mise en page n'ont de
 
 Quoi qu'il en soit, si vous rencontrez ce problème, vous avez quelques options :
 
-- Remplacez `useLayoutEffec` par [`useEffect`](/reference/react/useEffect).  Ça dit à React qu'il peut afficher le rendu initial sans bloquer le rafraîchissement (puisque le HTML d'origine deviendra visible avant que votre Effet ne soit exécuté).
+- Remplacez `useLayoutEffect` par [`useEffect`](/reference/react/useEffect).  Ça dit à React qu'il peut afficher le rendu initial sans bloquer le rafraîchissement (puisque le HTML d'origine deviendra visible avant que votre Effet ne soit exécuté).
 
 - Vous pouvez aussi [indiquer que votre composant est réservé au côté client](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content).  Ça indique à React qu'il faudra en remplacer le contenu jusqu'au périmètre [`<Suspense>`](/reference/react/Suspense) le plus proche par un contenu de secours (par exemple un *spinner* ou un squelette structurel) pendant le rendu côté serveur.
 
