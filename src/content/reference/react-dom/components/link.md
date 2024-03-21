@@ -79,7 +79,11 @@ Ces props sont **déconseillées** pour une utilisation avec React :
 
 #### Comportement spécifique de rendu {/*special-rendering-behavior*/}
 
+<<<<<<< HEAD
 React placera toujours l'élément DOM correspondant au composant `<link>` dans le `<head>` du document, peu importe où il figure dans l'arborescence React. Le `<head>` est le seul endroit valide pour un `<link>` dans le DOM, mais il est plus confortable, et préférable en termes de composition, qu'un composant représentant une page donnée puisse produire les composants `<link>` lui-même.
+=======
+React will always place the DOM element corresponding to the `<link>` component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<link>` to exist within the DOM, yet it’s convenient and keeps things composable if a component representing a specific page can render `<link>` components itself.
+>>>>>>> f55d9487c6648570fc80f1421d7dca0a3b9b94b6
 
 Il y a toutefois quelques exceptions :
 
@@ -91,8 +95,13 @@ Il y a toutefois quelques exceptions :
 
 Qui plus est, si le `<link>` est une feuille de styles (en d'autres termes, ses props comportent `rel="stylesheet"`), React ajoutera le comportement spécifique que voici :
 
+<<<<<<< HEAD
 * Le composant qui utilise `<link>` [suspendra](/reference/react/Suspense) pendant le chargement de la feuille de styles.
 * Si plusieurs composants produisent des liens vers la même feuille de styles, React les dédoublonnera et ne placera qu'un lien dans le DOM. Deux liens sont considérés identiques s'ils ont la même valeur de prop `href`.
+=======
+* The component that renders `<link>` will [suspend](/reference/react/Suspense) while the stylesheet is loading.
+* If multiple components render links to the same stylesheet, React will de-duplicate them and only put a single link into the DOM. Two links are considered the same if they have the same `href` prop.
+>>>>>>> f55d9487c6648570fc80f1421d7dca0a3b9b94b6
 
 Ce comportement connaît toutefois deux exceptions :
 
@@ -133,7 +142,11 @@ export default function BlogPage() {
 
 ### Lier une feuille de styles {/*linking-to-a-stylesheet*/}
 
+<<<<<<< HEAD
 Si un composant dépend d'une certaine feuille de styles pour s'afficher correctement, vous pouvez produire un lien vers cette feuille de styles depuis le composant. Votre composant [suspendra](/reference/react/Suspense) le temps que la feuille de styles se charge. Vous pouvez fournir une prop `precedence` qui indiquera à React où injecter la feuille par rapport aux autres — les feuilles de styles avec une précédence plus forte pourront surcharger celles avec une précédence plus faible.
+=======
+If a component depends on a certain stylesheet in order to be displayed correctly, you can render a link to that stylesheet within the component. Your component will [suspend](/reference/react/Suspense) while the stylesheet is loading. You must supply the `precedence` prop, which tells React where to place this stylesheet relative to others — stylesheets with higher precedence can override those with lower precedence.
+>>>>>>> f55d9487c6648570fc80f1421d7dca0a3b9b94b6
 
 <Note>
 
@@ -219,7 +232,11 @@ function Component() {
 
 ### Annoter des éléments spécifiques du document avec des liens {/*annotating-specific-items-within-the-document-with-links*/}
 
+<<<<<<< HEAD
 Vous pouvez utiliser le composant `<link>` avec la prop `itemProp` pour annoter des éléments spécifiques du document avec des liens vers des ressources associées. Dans ce cas, React, n'injectera *pas* ces annotations dans le `<head>` du document, mais les placera comme n'importe quel autre composant React.
+=======
+You can use the `<link>` component with the `itemProp` prop to annotate specific items within the document with links to related resources. In this case, React will *not* place these annotations within the document `<head>` but will place them like any other React component.
+>>>>>>> f55d9487c6648570fc80f1421d7dca0a3b9b94b6
 
 ```js
 <section itemScope>
