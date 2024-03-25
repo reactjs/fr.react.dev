@@ -52,7 +52,11 @@ Ces props sont **déconseillées** pour une utilisation avec React :
 
 #### Comportement spécifique de rendu {/*special-rendering-behavior*/}
 
+<<<<<<< HEAD
 React peut déplacer les composants `<style>` dans le `<head>` du document, dédoublonner les feuilles de styles identiques et [suspendre](/reference/react/Suspense) pendant le chargement de la feuille de styles.
+=======
+React can move `<style>` components to the document's `<head>`, de-duplicate identical stylesheets, and [suspend](/reference/react/Suspense) while the stylesheet is loading.
+>>>>>>> 7bdbab144e09d4edf793ff5128080eb1dba79be4
 
 Pour activer ces comportements, fournissez les props `href` et `precedence`.  React dédoublonnera les feuilles de styles qui ont le même `href`.  La précédence indique à React où placer le nœud DOM `<style>` par rapport aux autres dans le `<head>` du document, ce qui détermine quelle feuille de styles peut surcharger quelle autre.
 
