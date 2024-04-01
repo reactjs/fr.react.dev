@@ -153,7 +153,11 @@ export default function App() {
 
 ### Gérer des contenus client et serveur différents {/*handling-different-client-and-server-content*/}
 
+<<<<<<< HEAD
 Si vous cherchez explicitement à produire un contenu différent sur le serveur et sur le client, vous pouvez faire un rendu en deux temps.  Les composants qui ont un rendu différent côté client peuvent consulter une [variable d'état](/reference/react/useState) telle que `isClient`, que vous définirez à `true` dans un [Effet](/reference/react/useEffect) :
+=======
+If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a [state variable](/reference/react/useState) like `isClient`, which you can set to `true` in an [Effect](/reference/react/useEffect):
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 <Sandpack>
 

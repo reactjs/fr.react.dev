@@ -38,7 +38,18 @@ Lorsque vous appelez une Action Serveur côté client, elle fait une requête r�
 
 Plutôt que de marquer chaque fonction concernée avec `'use server'`, vous pouvez ajouter cette directive tout en haut d'un fichier afin d'en marquer tous les exports comme des Actions Serveur utilisables n'importe où, y compris au travers d'imports par du code client.
 
+<<<<<<< HEAD
 #### Limitations {/*caveats*/}
+=======
+#### Caveats {/*caveats*/}
+* `'use server'` must be at the very beginning of their function or module; above any other code including imports (comments above directives are OK). They must be written with single or double quotes, not backticks.
+* `'use server'` can only be used in server-side files. The resulting Server Actions can be passed to Client Components through props. See supported [types for serialization](#serializable-parameters-and-return-values).
+* To import a Server Action from [client code](/reference/react/use-client), the directive must be used on a module level.
+* Because the underlying network calls are always asynchronous, `'use server'` can only be used on async functions.
+* Always treat arguments to Server Actions as untrusted input and authorize any mutations. See [security considerations](#security).
+* Server Actions should be called in a [Transition](/reference/react/useTransition). Server Actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
+* Server Actions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing Server Actions typically process one action at a time and do not have a way to cache the return value.
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 * `'use server'` doit être placé au tout début de la fonction ou du module concerné ; au-dessus notamment de tout code, y compris les imports (mais il peut y avoir des commentaires avant les directives).  La directive doit utiliser des apostrophes (`'`) ou guillemets (`"`), mais pas des *backticks* (<code>`</code>).
 * `'use server'` ne peut être utilisé qu'au sein de fichiers côté serveur.  Les Actions Serveur résultantes peuvent être passées à des Composants Client au moyen des props. Consultez la liste des [types sérialisables](#serializable-parameters-and-return-values).
@@ -177,7 +188,11 @@ Remarquez que `useFormState`, au même titre que la plupart des Hooks, ne peut �
 
 Les Actions Serveur exposent en pratique des points d'entrée côté serveur, et peuvent être appelées n'importe où dans du code client.
 
+<<<<<<< HEAD
 Pour utiliser une Action Serveur hors d'un [formulaire](/reference/react-dom/components/form), appelez l'Action Serveur au sein d'une [transition](/reference/react/useTransition), ce qui vous permettra non seulement d'afficher un indicateur de chargement, mais aussi de réaliser des [mises à jour optimistes d'état](/reference/react/useOptimistic) et de gérer les éventuelles erreurs. Les formulaires enrobent automatiquement vos Actions Serveur dans une transition.
+=======
+When using a Server Action outside of a [form](/reference/react-dom/components/form), call the Server Action in a [Transition](/reference/react/useTransition), which allows you to display a loading indicator, show [optimistic state updates](/reference/react/useOptimistic), and handle unexpected errors. Forms will automatically wrap Server Actions in transitions.
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 ```js {9-12}
 import incrementLike from './actions';

@@ -57,9 +57,15 @@ L'instantané actuel de la valeur issue de la source, que vous pouvez utiliser p
 
 * Si une fonction `subscribe` différente est passée lors d'un nouveau rendu, React se réabonnera à la source de données en utilisant cette nouvelle fonction `subscribe`.  Vous pouvez éviter ça en déclarant `subscribe` hors du composant.
 
+<<<<<<< HEAD
 * Si la source est modifiée au sein d'une [transition non bloquante](/reference/react/useTransition), React se rabattra sur une application bloquante de la mise à jour. Plus spécifiquement, pour chaque mise à jour au sein de la transition, React rappellera `getSnapshot` juste avant d'appliquer les modifications au DOM. Si la valeur renvoyée diffère de celle produite par le premier appel, React redémarrera le processus de transition de zéro, en l'appliquant cette fois en tant que mise à jour bloquante, pour garantir que chaque composant à l'écran reflète bien la même version de la source.
 
 * Nous vous déconseillons de _suspendre_ un rendu basé sur une valeur de la source renvoyée par `useSyncExternalStore`. Ça vient de ce que les mutations de la source ne peuvent pas être marquées comme des [transitions non bloquantes](/reference/react/useTransition), et déclencheront donc le plus proche [affichage de secours `Suspense`](/reference/react/Suspense), remplaçant ainsi du contenu déjà affiché avec un écran montrant un indicateur de chargement, ce qui est généralement indésirable en termes d'UX.
+=======
+* If the store is mutated during a [non-blocking Transition update](/reference/react/useTransition), React will fall back to performing that update as blocking. Specifically, for every Transition update, React will call `getSnapshot` a second time just before applying changes to the DOM. If it returns a different value than when it was called originally, React will restart the update from scratch, this time applying it as a blocking update, to ensure that every component on screen is reflecting the same version of the store.
+
+* It's not recommended to _suspend_ a render based on a store value returned by `useSyncExternalStore`. The reason is that mutations to the external store cannot be marked as [non-blocking Transition updates](/reference/react/useTransition), so they will trigger the nearest [`Suspense` fallback](/reference/react/Suspense), replacing already-rendered content on screen with a loading spinner, which typically makes a poor UX.
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
   À titre d'exemple, le code suivant est déconseillé :
 

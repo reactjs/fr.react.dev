@@ -66,9 +66,15 @@ La fonction `preinit` suggère au navigateur de commencer à télécharger puis 
 
 #### Limitations {/*caveats*/}
 
+<<<<<<< HEAD
 * Plusieurs appels à `preinit` avec le même `href` ont le même effet qu'un unique appel.
 * Côté client, vous pouvez appeler `preinit` n'importe où : lors du rendu d'un composant, dans un Effet, dans un gestionnaire d'événement, etc.
 * Lors d'un rendu côté serveur ou du rendu de Composants Serveur, `preinit` n'a d'effet que si vous l'appelez lors du rendu d'un composant ou dans une fonction asynchrone issue du rendu d'un composant.  Tout autre appel sera ignoré.
+=======
+* Multiple calls to `preinit` with the same `href` have the same effect as a single call.
+* In the browser, you can call `preinit` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
+* In server-side rendering or when rendering Server Components, `preinit` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 ---
 

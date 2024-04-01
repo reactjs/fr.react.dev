@@ -333,7 +333,11 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 <Pitfall>
 
+<<<<<<< HEAD
 **Si vous passez `value` sans `onChange`, il sera impossible de réaliser une saisie dans la zone de texte.** Lorsque vous contrôlez une zone de texte en passant une `value`, vous *forcez* la zone de texte à toujours avoir la valeur que vous avez passée. Donc, si vous passez une variable d'état comme `value` mais oubliez de mettre à jour cette variable d'état de manière synchrone au sein du gestionnaire d'événement `onChange`, React réinitialisera la zone de texte, après chaque frappe, à la `value` que vous avez spécifiée.
+=======
+**If you pass `value` without `onChange`, it will be impossible to type into the text area.** When you control a text area by passing some `value` to it, you *force* it to always have the value you passed. So if you pass a state variable as a `value` but forget to update that state variable synchronously during the `onChange` event handler, React will revert the text area after every keystroke back to the `value` that you specified.
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 </Pitfall>
 
