@@ -1362,7 +1362,7 @@ input { margin: 10px; }
 
 <Note>
 
-Les valeurs différées ainsi que les [transitions](#preventing-already-revealed-content-from-hiding) vous permettent d'éviter d'afficher le contenu de secours Suspense en lui préférant une indication de chargement.  Les transitions marquent l'ensemble de leur mise à jour comme non urgente, elles sont donc généralement utilisées par les frameworks et les bibliothèques de routage pour la navigation.  Les valeurs différées sont elles surtout utiles dans du code applicatif lorsque vous souhaitez indiquer qu'une partie de l'UI est non urgente, pour lui permettre d'être temporairement « en retard » sur le reste de l'UI.
+Les valeurs différées ainsi que les [Transitions](#preventing-already-revealed-content-from-hiding) vous permettent d'éviter d'afficher le contenu de secours Suspense en lui préférant une indication de chargement.  Les transitions marquent l'ensemble de leur mise à jour comme non urgente, elles sont donc généralement utilisées par les frameworks et les bibliothèques de routage pour la navigation.  Les valeurs différées sont elles surtout utiles dans du code applicatif lorsque vous souhaitez indiquer qu'une partie de l'UI est non urgente, pour lui permettre d'être temporairement « en retard » sur le reste de l'UI.
 
 </Note>
 
@@ -1745,7 +1745,7 @@ main {
 
 Quand vous avez appuyé sur le bouton, le composant `Router` a affiché `ArtistPage` au lieu de `IndexPage`. Un composant au sein d'`ArtistPage` a suspendu, du coup le plus proche périmètre Suspense a basculé sur son contenu de secours. Comme ce périmètre était proche de la racine, la mise en page complète du site a été remplacée par `BigSpinner`.
 
-Pour éviter ça, vous pouvez indiquer que la mise à jour de l'état de navigation est une *transition*, en utilisant [`startTransition`](/reference/react/startTransition) :
+Pour éviter ça, vous pouvez indiquer que la mise à jour de l'état de navigation est une *Transition*, en utilisant [`startTransition`](/reference/react/startTransition) :
 
 ```js {5,7}
 function Router() {
@@ -1759,7 +1759,7 @@ function Router() {
   // ...
 ```
 
-Ça dit à React que cette transition d'état n'est pas urgente, et qu'il est préférable de continuer à afficher la page précédente plutôt que de masquer du contenu déjà révélé.  À présent cliquer sur le bouton « attend » que `Biography` soit chargé :
+Ça dit à React que cette Transition d'état n'est pas urgente, et qu'il est préférable de continuer à afficher la page précédente plutôt que de masquer du contenu déjà révélé.  À présent cliquer sur le bouton « attend » que `Biography` soit chargé :
 
 <Sandpack>
 
@@ -2134,19 +2134,19 @@ main {
 
 </Sandpack>
 
-Une transition n'attend pas que *tout* le contenu soit chargé. Elle attend seulement assez longtemps pour éviter d'avoir à masquer du contenu déjà révélé. Par exemple, le `Layout` du site était déjà révélé, ce serait donc dommage de le masquer derrière un *spinner* de chargement.  En revanche, le périmètre `Suspense` imbriqué autour d'`Albums` est nouveau, la transition ne l'attend donc pas.
+Une Transition n'attend pas que *tout* le contenu soit chargé. Elle attend seulement assez longtemps pour éviter d'avoir à masquer du contenu déjà révélé. Par exemple, le `Layout` du site était déjà révélé, ce serait donc dommage de le masquer derrière un *spinner* de chargement.  En revanche, le périmètre `Suspense` imbriqué autour d'`Albums` est nouveau, la Transition ne l'attend donc pas.
 
 <Note>
 
-Les routeurs compatibles Suspense sont censés enrober par défaut leurs navigations dans des transitions.
+Les routeurs compatibles Suspense sont censés enrober par défaut leurs navigations dans des Transitions.
 
 </Note>
 
 ---
 
-### Indiquer qu'une transition est en cours {/*indicating-that-a-transition-is-happening*/}
+### Indiquer qu'une Transition est en cours {/*indicating-that-a-transition-is-happening*/}
 
-Dans l'exemple précédent, une fois que vous avez cliqué sur le bouton, aucune indication visuelle ne vous informe qu'une navigation est en cours. Pour ajouter une indication, vous pouvez remplacer [`startTransition`](/reference/react/startTransition) par [`useTransition`](/reference/react/useTransition), qui vous donne une valeur booléenne `isPending`. Dans l'exemple qui suit, on l'utilise pour modifier le style de l'en-tête du site pendant qu'une transition est en cours :
+Dans l'exemple précédent, une fois que vous avez cliqué sur le bouton, aucune indication visuelle ne vous informe qu'une navigation est en cours. Pour ajouter une indication, vous pouvez remplacer [`startTransition`](/reference/react/startTransition) par [`useTransition`](/reference/react/useTransition), qui vous donne une valeur booléenne `isPending`. Dans l'exemple qui suit, on l'utilise pour modifier le style de l'en-tête du site pendant qu'une Transition est en cours :
 
 <Sandpack>
 
@@ -2527,13 +2527,13 @@ main {
 
 ### Réinitialiser les périmètres Suspense à la navigation {/*resetting-suspense-boundaries-on-navigation*/}
 
-Pendant une transition, React évitera de masquer du contenu déjà révélé. Ceci dit, lorsque vous naviguez vers une route aux paramètres différents, vous voudrez peut-être indiquer à React que le contenu est *différent*.  Vous pouvez exprimer ça avec une `key` :
+Pendant une Transition, React évitera de masquer du contenu déjà révélé. Ceci dit, lorsque vous naviguez vers une route aux paramètres différents, vous voudrez peut-être indiquer à React que le contenu est *différent*.  Vous pouvez exprimer ça avec une `key` :
 
 ```js
 <ProfilePage key={queryParams.id} />
 ```
 
-Imaginez que vous naviguiez au sein d'une page de profil utilisateur, et que quelque chose suspende.  Si cette mise à jour est enrobée dans une transition, elle ne déclenchera pas de contenu de secours pour le contenu déjà visible.  C'est bien le comportement attendu.
+Imaginez que vous naviguiez au sein d'une page de profil utilisateur, et que quelque chose suspende.  Si cette mise à jour est enrobée dans une Transition, elle ne déclenchera pas de contenu de secours pour le contenu déjà visible.  C'est bien le comportement attendu.
 
 En revanche, imaginez maintenant que vous naviguiez entre deux profils utilisateurs différents.  Dans ce cas, afficher le contenu de secours aurait du sens. Par exemple, le fil des publications d'un utilisateur constitue un *contenu différent* de celui d'un autre utilisateur.  En spécifiant une `key`, vous garantissez que React traitera les fils de publications d'utilisateurs différents comme des composants différents, et réinitialisera les périmètres Suspense lors de la navigation.  Les routeurs compatibles Suspense sont censés le faire automatiquement.
 
@@ -2570,7 +2570,7 @@ Le HTML produit par le serveur incluera l'indicateur de chargement. Il sera ensu
 
 Le remplacement d'une UI visible par un contenu de secours produit une expérience utilisateur désagréable.  Ça peut arriver lorsqu'une mise à jour entraîne la suspension d'un composant, et que le périmètre Suspense le plus proche affiche déjà du contenu à l'utilisateur.
 
-Pour empêcher ça, [indiquez que la mise à jour est non urgente grâce à `startTransition`](#preventing-already-revealed-content-from-hiding). Pendant la transition, React attendra jusqu'à ce qu'assez de données aient été chargées, afin d'éviter l'affichage d'un contenu de secours indésirable :
+Pour empêcher ça, [indiquez que la mise à jour est non urgente grâce à `startTransition`](#preventing-already-revealed-content-from-hiding). Pendant la Transition, React attendra jusqu'à ce qu'assez de données aient été chargées, afin d'éviter l'affichage d'un contenu de secours indésirable :
 
 ```js {2-3,5}
 function handleNextPageClick() {

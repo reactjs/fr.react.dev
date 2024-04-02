@@ -29,6 +29,14 @@ React-DOM comprend les fonctionnalités qui ne sont prises en charge que pour le
 * [Fonctions côté client](/reference/react-dom/client) - L'API dans `react-dom/client` vous permet d'effectuer le rendu de composants React côté client (dans le navigateur).
 * [Fonctions côté serveur](/reference/react-dom/server) - L'API dans `react-dom/server` vous permet d'effectuer le rendu de composants React côté serveur, vers du HTML.
 
+## Les règles de React {/*rules-of-react*/}
+
+React repose sur des idiomes — ou règles — visant à exprimer vos approches de façon facile à comprendre, et à même de produire des applications de grande qualité :
+
+* [Les composants et les Hooks doivent être purs](/reference/rules/components-and-hooks-must-be-pure) – Cette pureté facilite la compréhension de votre code ainsi que son débogage, et permet à React d'optimiser automatiquement et correctement vos composants et Hooks.
+* [React appelle les composants et les Hooks](/reference/rules/react-calls-components-and-hooks) – React est responsable du rendu des composants et des Hooks de façon à optimiser l'expérience utilisateur.
+* [Les règles des Hooks](/reference/rules/rules-of-hooks) – Les Hooks reposent sur de simples fonctions JavaScript, mais ils représentent un type spécifique de logique UI réutilisable, et ne peuvent être appelés que dans des circonstances bien précises.
+
 ## API React historique {/*legacy-apis*/}
 
 * [API React historique](/reference/react/legacy) - Ces fonctions sont présentes dans le module `react`, mais leur utilisation est découragée pour tout nouveau code.

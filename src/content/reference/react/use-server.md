@@ -45,7 +45,7 @@ Plutôt que de marquer chaque fonction concernée avec `'use server'`, vous pouv
 * Pour importer une Action Serveur depuis du [code côté client](/reference/react/use-client), la directive doit obligatoirement être utilisée au niveau du module.
 * Dans la mesure où les appels réseau sous-jacents sont forcément asynchrones, `'use server'` n'est utilisable qu'au sein de fonctions asynchrones.
 * Considérez toujours les arguments de vos Actions Serveur comme des données non validées, et soumettez toute mutation à un processus d'autorisation. Allez voir les [considérations sécuritaires](#security).
-* Les Actions Serveur devraient toujours être appelées au sein d'une [transition](/reference/react/useTransition). Les Actions Serveur passées à [`<form action>`](/reference/react-dom/components/form#props) ou [`formAction`](/reference/react-dom/components/input#props) seront automatiquement enrobées par une transition.
+* Les Actions Serveur devraient toujours être appelées au sein d'une [Transition](/reference/react/useTransition). Les Actions Serveur passées à [`<form action>`](/reference/react-dom/components/form#props) ou [`formAction`](/reference/react-dom/components/input#props) seront automatiquement enrobées par une transition.
 * Les Actions Serveur sont conçues pour des mutations qui mettent à jour l'état côté serveur ; il est déconseillé de s'en servir pour du simple chargement de données. Dans cet esprit, les frameworks qui implémentent les Actions Serveur traitent généralement une action à la fois et ne permettent pas la mise en cache de leur valeur renvoyée.
 
 ### Considérations sécuritaires {/*security*/}
@@ -177,7 +177,7 @@ Remarquez que `useFormState`, au même titre que la plupart des Hooks, ne peut �
 
 Les Actions Serveur exposent en pratique des points d'entrée côté serveur, et peuvent être appelées n'importe où dans du code client.
 
-Pour utiliser une Action Serveur hors d'un [formulaire](/reference/react-dom/components/form), appelez l'Action Serveur au sein d'une [transition](/reference/react/useTransition), ce qui vous permettra non seulement d'afficher un indicateur de chargement, mais aussi de réaliser des [mises à jour optimistes d'état](/reference/react/useOptimistic) et de gérer les éventuelles erreurs. Les formulaires enrobent automatiquement vos Actions Serveur dans une transition.
+Pour utiliser une Action Serveur hors d'un [formulaire](/reference/react-dom/components/form), appelez l'Action Serveur au sein d'une [Transition](/reference/react/useTransition), ce qui vous permettra non seulement d'afficher un indicateur de chargement, mais aussi de réaliser des [mises à jour optimistes d'état](/reference/react/useOptimistic) et de gérer les éventuelles erreurs. Les formulaires enrobent automatiquement vos Actions Serveur dans une transition.
 
 ```js {9-12}
 import incrementLike from './actions';

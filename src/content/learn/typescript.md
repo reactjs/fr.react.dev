@@ -453,7 +453,7 @@ Nous vous conseillons les ressources suivantes *(toutes en anglais, NdT)* :
 
  - [Le handbook TypeScript](https://www.typescriptlang.org/docs/handbook/) est la documentation officielle du langage et couvre tous les aspects importants.
 
- - [Les notes de versions de TypeScript](https://devblogs.microsoft.com/typescript/) présentent chaque nouvelle fonctionnalité en détails.
+ - [Les notes de versions de TypeScript](https://devblogs.microsoft.com/typescript/) présentent les nouvelles fonctionnalités en détails.
 
  - [L'antisèche React TypeScript](https://react-typescript-cheatsheet.netlify.app/) est une antisèche synthétique maintenue par la communauté pour utiliser TypeScript avec React, qui couvre pas mal de cas à la marge et aborde plus de sujets que cette page.
 

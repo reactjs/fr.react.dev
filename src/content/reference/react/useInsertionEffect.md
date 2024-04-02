@@ -10,7 +10,7 @@ title: useInsertionEffect
 
 <Intro>
 
-`useInsertionEffect` permet l'insertion d'éléments dans le DOM avant que les effets de mise en page ne soient déclenchés.
+`useInsertionEffect` permet l'insertion d'éléments dans le DOM avant que les Effets de mise en page ne soient déclenchés.
 
 ```js
 useInsertionEffect(setup, dependencies?)
@@ -26,7 +26,7 @@ useInsertionEffect(setup, dependencies?)
 
 ### `useInsertionEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-Appelez `useInsertionEffect` pour insérer des styles avant que des effets ayant besoin de consulter la mise en page soient déclenchés :
+Appelez `useInsertionEffect` pour insérer des styles avant que des Effets ayant besoin de consulter la mise en page soient déclenchés :
 
 ```js
 import { useInsertionEffect } from 'react';
@@ -44,7 +44,7 @@ function useCSS(rule) {
 
 #### Paramètres {/*parameters*/}
 
-* `setup` : la fonction contenant la logique de votre Effet.  Votre fonction de mise en place peut par ailleurs renvoyer une fonction de *nettoyage*.  Quand votre composant sera ajouté au DOM, mais avant le déclenchement des effets de mise en page, React exécutera votre fonction de mise en place.  Après chaque nouveau rendu dont les dépendances ont changé, React commencera par exécuter votre fonction de nettoyage (si vous en avez fourni une) avec les anciennes valeurs, puis exécutera votre fonction de mise en place avec les nouvelles valeurs.  Une fois votre composant retiré du DOM, React exécutera votre fonction de nettoyage une dernière fois.
+* `setup` : la fonction contenant la logique de votre Effet.  Votre fonction de mise en place peut par ailleurs renvoyer une fonction de *nettoyage*.  Quand votre composant sera ajouté au DOM, mais avant le déclenchement des Effets de mise en page, React exécutera votre fonction de mise en place.  Après chaque nouveau rendu dont les dépendances ont changé, React commencera par exécuter votre fonction de nettoyage (si vous en avez fourni une) avec les anciennes valeurs, puis exécutera votre fonction de mise en place avec les nouvelles valeurs.  Une fois votre composant retiré du DOM, React exécutera votre fonction de nettoyage une dernière fois.
 
 * `dependencies` **optionnelles** : la liste des valeurs réactives référencées par le code de `setup`.  Les valeurs réactives comprennent les props, les variables d'état et toutes les variables et fonctions déclarées localement dans le corps de votre composant.  Si votre *linter* est [configuré pour React](/learn/editor-setup#linting), il vérifiera que chaque valeur réactive concernée est bien spécifiée comme dépendance.  La liste des dépendances doit avoir un nombre constant d'éléments et utiliser un littéral défini à la volée, du genre `[dep1, dep2, dep3]`. React comparera chaque dépendance à sa valeur précédente au moyen de la comparaison [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is).  Si vous omettez cet argument, votre Effet sera re-exécuté après chaque rendu du composant.
 
@@ -89,7 +89,7 @@ Si vous utilisez du CSS-en-JS, nous vous recommandons de combiner les deux premi
 
 Le premier problème est incontournable, mais `useInsertionEffect` vous aide à résoudre le second.
 
-Appelez `useInsertionEffect` pour insérer des styles avant que les effets de mise en page soient déclenchés :
+Appelez `useInsertionEffect` pour insérer des styles avant que les Effets de mise en page soient déclenchés :
 
 ```js {4-11}
 // Dans votre bibliothèque de CSS-en-JS

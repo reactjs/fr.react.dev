@@ -352,6 +352,26 @@
     },
     {
       "hasSectionHeader": true,
+      "sectionHeader": "Les règles de React"
+    },
+    {
+      "title": "Aperçu",
+      "path": "/reference/rules"
+    },
+    {
+      "title": "Les composants et les Hooks doivent être purs",
+      "path": "/reference/rules/components-and-hooks-must-be-pure"
+    },
+    {
+      "title": "React appelle les composants et les Hooks",
+      "path": "/reference/rules/react-calls-components-and-hooks"
+    },
+    {
+      "title": "Les règles des Hooks",
+      "path": "/reference/rules/rules-of-hooks"
+    },
+    {
+      "hasSectionHeader": true,
       "sectionHeader": "API historique"
     },
     {

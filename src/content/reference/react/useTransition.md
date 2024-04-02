@@ -20,7 +20,7 @@ const [isPending, startTransition] = useTransition()
 
 ### `useTransition()` {/*usetransition*/}
 
-Appelez `useTransition` au niveau racine de votre composant pour marquer certaines mises à jour d'état comme étant des transitions.
+Appelez `useTransition` au niveau racine de votre composant pour marquer certaines mises à jour d'état comme étant des Transitions.
 
 ```js
 import { useTransition } from 'react';
@@ -41,14 +41,14 @@ function TabContainer() {
 
 `useTransition` renvoie un tableau avec exactement deux éléments :
 
-1. Le drapeau `isPending` qui vous indique si la transition est en cours.
-2. La [fonction `startTransition`](#starttransition) qui vous permet de marquer une mise à jour d'état comme transition.
+1. Le drapeau `isPending` qui vous indique si la Transition est en cours.
+2. La [fonction `startTransition`](#starttransition) qui vous permet de marquer une mise à jour d'état comme Transition.
 
 ---
 
 ### La fonction `startTransition` {/*starttransition*/}
 
-La fonction `startTransition` renvoyée par `useTransition` vous permet de marquer une mise à jour d'état comme étant une transition.
+La fonction `startTransition` renvoyée par `useTransition` vous permet de marquer une mise à jour d'état comme étant une Transition.
 
 ```js {6,8}
 function TabContainer() {
@@ -66,7 +66,7 @@ function TabContainer() {
 
 #### Paramètres {/*starttransition-parameters*/}
 
-* `scope` : une fonction qui met à jour l'état en appelant au moins une [fonction `set`](/reference/react/useState#setstate).  React appelle immédiatement `scope` sans argument et marque toutes les mises à jour d'état demandées durant l'exécution synchrone de `scope` comme des transitions.  Elles seront [non bloquantes](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) et [n'afficheront pas d'indicateurs de chargement indésirables](/reference/react/useTransition#preventing-unwanted-loading-indicators).
+* `scope` : une fonction qui met à jour l'état en appelant au moins une [fonction `set`](/reference/react/useState#setstate).  React appelle immédiatement `scope` sans argument et marque toutes les mises à jour d'état demandées durant l'exécution synchrone de `scope` comme des Transitions.  Elles seront [non bloquantes](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) et [n'afficheront pas d'indicateurs de chargement indésirables](/reference/react/useTransition#preventing-unwanted-loading-indicators).
 
 #### Valeur renvoyée {/*starttransition-returns*/}
 
@@ -74,25 +74,25 @@ function TabContainer() {
 
 #### Limitations {/*starttransition-caveats*/}
 
-* `useTransition` est un Hook, il ne peut donc être appelé qu'au sein de composants ou de Hooks personnalisés.  Si vous avez besoin de démarrer une transition à un autre endroit (par exemple, depuis une bibliothèque de gestion de données), utilisez plutôt la fonction autonome [`startTransition`](/reference/react/startTransition).
+* `useTransition` est un Hook, il ne peut donc être appelé qu'au sein de composants ou de Hooks personnalisés.  Si vous avez besoin de démarrer une Transition à un autre endroit (par exemple, depuis une bibliothèque de gestion de données), utilisez plutôt la fonction autonome [`startTransition`](/reference/react/startTransition).
 
-* Vous pouvez enrober une mise à jour dans une transition uniquement si vous avez accès à la fonction `set` de l'état en question.  Si vous souhaitez démarrer une transition en réaction à une prop ou à la valeur renvoyée par un Hook personnalisé, utilisez plutôt [`useDeferredValue`](/reference/react/useDeferredValue).
+* Vous pouvez enrober une mise à jour dans une Transition uniquement si vous avez accès à la fonction `set` de l'état en question.  Si vous souhaitez démarrer une Transition en réaction à une prop ou à la valeur renvoyée par un Hook personnalisé, utilisez plutôt [`useDeferredValue`](/reference/react/useDeferredValue).
 
-* La fonction que vous passez à `startTransition` doit être synchrone.  React exécute cette fonction immédiatement, et marque toutes les mises à jour demandées lors de son exécution comme des transitions.  Si vous essayez de faire des mises à jour d'état plus tard (par exemple avec un timer), elles ne seront pas marquées comme des transitions.
+* La fonction que vous passez à `startTransition` doit être synchrone.  React exécute cette fonction immédiatement, et marque toutes les mises à jour demandées lors de son exécution comme des Transitions.  Si vous essayez de faire des mises à jour d'état plus tard (par exemple avec un timer), elles ne seront pas marquées comme des Transitions.
 
-* Une mise à jour d'état marquée comme une transition pourra être interrompue par d'autres mises à jour d'état.  Par exemple, si vous mettez à jour un composant de graphe au sein d'une transition, mais commencez alors une saisie dans un champ texte tandis que le graphe est en train de refaire son rendu, React redémarrera le rendu du composant graphe après avoir traité la mise à jour d'état du champ.
+* Une mise à jour d'état marquée comme une Transition pourra être interrompue par d'autres mises à jour d'état.  Par exemple, si vous mettez à jour un composant de graphe au sein d'une Transition, mais commencez alors une saisie dans un champ texte tandis que le graphe est en train de refaire son rendu, React redémarrera le rendu du composant graphe après avoir traité la mise à jour d'état du champ.
 
-* Les mises à jour en transition ne peuvent pas être utilisées pour contrôler des champs textuels.
+* Les mises à jour en Transition ne peuvent pas être utilisées pour contrôler des champs textuels.
 
-* Si plusieurs transitions sont en cours, React les regroupe pour le moment.  Cette limitation sera sans doute levée dans une future version.
+* Si plusieurs Transitions sont en cours, React les regroupe pour le moment.  Cette limitation sera sans doute levée dans une future version.
 
 ---
 
 ## Utilisation {/*usage*/}
 
-### Marquer une mise à jour d'état comme étant une transition non bloquante {/*marking-a-state-update-as-a-non-blocking-transition*/}
+### Marquer une mise à jour d'état comme étant une Transition non bloquante {/*marking-a-state-update-as-a-non-blocking-transition*/}
 
-Appelez `useTransition` au niveau racine de votre composant pour marquer des mises à jour d'état comme étant des *transitions* non bloquantes.
+Appelez `useTransition` au niveau racine de votre composant pour marquer des mises à jour d'état comme étant des *Transitions* non bloquantes.
 
 ```js [[1, 4, "isPending"], [2, 4, "startTransition"]]
 import { useState, useTransition } from 'react';
@@ -105,10 +105,10 @@ function TabContainer() {
 
 `useTransition` renvoie un tableau avec exactement deux éléments :
 
-1. Le <CodeStep step={1}>drapeau `isPending`</CodeStep> qui vous indique si la transition est en cours.
-2. La <CodeStep step={2}>fonction `startTransition`</CodeStep> qui vous permet de marquer une mise à jour d'état comme transition.
+1. Le <CodeStep step={1}>drapeau `isPending`</CodeStep> qui vous indique si la Transition est en cours.
+2. La <CodeStep step={2}>fonction `startTransition`</CodeStep> qui vous permet de marquer une mise à jour d'état comme Transition.
 
-Vous pouvez marquer une mise à jour d'état comme étant une transition de la façon suivante :
+Vous pouvez marquer une mise à jour d'état comme étant une Transition de la façon suivante :
 
 ```js {6,8}
 function TabContainer() {
@@ -124,17 +124,17 @@ function TabContainer() {
 }
 ```
 
-Les transitions vous permettent de conserver la réactivité des mises à jour d'interface utilisateur, même sur des appareils lents.
+Les Transitions vous permettent de conserver la réactivité des mises à jour d'interface utilisateur, même sur des appareils lents.
 
-Avec une transition, votre UI reste réactive pendant le rendu. Par exemple, si l'utilisateur clique sur un onglet mais ensuite change d'avis et va sur un autre onglet, il peut le faire sans devoir d'abord attendre que le premier onglet ait fini son rendu.
+Avec une Transition, votre UI reste réactive pendant le rendu. Par exemple, si l'utilisateur clique sur un onglet mais ensuite change d'avis et va sur un autre onglet, il peut le faire sans devoir d'abord attendre que le premier onglet ait fini son rendu.
 
 <Recipes titleText="La différence entre useTransition et des mises à jour d’état classiques" titleId="examples">
 
-#### Changer l'onglet actif au sein d'une transition {/*updating-the-current-tab-in-a-transition*/}
+#### Changer l'onglet actif au sein d'une Transition {/*updating-the-current-tab-in-a-transition*/}
 
 Dans cet exemple, l'onglet « Articles » est **artificiellement ralenti** pour que son rendu prenne au moins une seconde.
 
-Cliquez sur « Articles » puis cliquez immédiatement sur « Contact ». Remarquez que ça interrompt le rendu lent d'« Articles ». L'onglet « Contact » est affiché immédiatement.  Puisque la mise à jour d'état est marquée comme une transition, un rendu lent ne gèle pas pour autant l'interface utilisateur.
+Cliquez sur « Articles » puis cliquez immédiatement sur « Contact ». Remarquez que ça interrompt le rendu lent d'« Articles ». L'onglet « Contact » est affiché immédiatement.  Puisque la mise à jour d'état est marquée comme une Transition, un rendu lent ne gèle pas pour autant l'interface utilisateur.
 
 <Sandpack>
 
@@ -270,11 +270,11 @@ b { display: inline-block; margin-right: 10px; }
 
 <Solution />
 
-#### Changer l'onglet actif sans transitions {/*updating-the-current-tab-without-a-transition*/}
+#### Changer l'onglet actif sans Transitions {/*updating-the-current-tab-without-a-transition*/}
 
-Dans cet exemple, l'onglet « Articles » est toujours **artificiellement ralenti** pour que son rendu prenne au moins une seconde. Mais contrairement à l'exemple précédent, la mise à jour d'état ne figure **pas dans une transition**.
+Dans cet exemple, l'onglet « Articles » est toujours **artificiellement ralenti** pour que son rendu prenne au moins une seconde. Mais contrairement à l'exemple précédent, la mise à jour d'état ne figure **pas dans une Transition**.
 
-Cliquez sur « Articles » puis cliquez immédiatement sur « Contact ». Remarquez que l'appli gèle pendant le rendu de l'onglet lent, et que l'UI ne répond plus. La mise à jour d'état ne figure pas dans une transition, de sorte que le rendu lent gèle l'interface utilisateur.
+Cliquez sur « Articles » puis cliquez immédiatement sur « Contact ». Remarquez que l'appli gèle pendant le rendu de l'onglet lent, et que l'UI ne répond plus. La mise à jour d'état ne figure pas dans une Transition, de sorte que le rendu lent gèle l'interface utilisateur.
 
 <Sandpack>
 
@@ -411,9 +411,9 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-### Mettre à jour le composant parent dans une transition {/*updating-the-parent-component-in-a-transition*/}
+### Mettre à jour le composant parent dans une Transition {/*updating-the-parent-component-in-a-transition*/}
 
-Vous pouvez tout aussi bien mettre à jour l'état du composant parent depuis un appel à `useTransition`.  Par exemple, le composant `TabButton` enrobe la logique de son `onClick` avec une transition :
+Vous pouvez tout aussi bien mettre à jour l'état du composant parent depuis un appel à `useTransition`.  Par exemple, le composant `TabButton` enrobe la logique de son `onClick` avec une Transition :
 
 ```js {8-10}
 export default function TabButton({ children, isActive, onClick }) {
@@ -433,7 +433,7 @@ export default function TabButton({ children, isActive, onClick }) {
 }
 ```
 
-Puisque le composant parent met à jour son état au sein du gestionnaire d'événement `onClick`, cette mise à jour d'état sera marquée comme étant une transition.  C'est pourquoi, comme dans l'exemple précédent, vous pouvez cliquer sur « Articles » puis immédiatement sur « Contact ».  Le changement d'onglet est marqué comme étant une transition : il ne bloque donc pas les interactions utilisateur.
+Puisque le composant parent met à jour son état au sein du gestionnaire d'événement `onClick`, cette mise à jour d'état sera marquée comme étant une Transition.  C'est pourquoi, comme dans l'exemple précédent, vous pouvez cliquer sur « Articles » puis immédiatement sur « Contact ».  Le changement d'onglet est marqué comme étant une Transition : il ne bloque donc pas les interactions utilisateur.
 
 <Sandpack>
 
@@ -563,9 +563,9 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-### Afficher une indication visuelle pendant la transition {/*displaying-a-pending-visual-state-during-the-transition*/}
+### Afficher une indication visuelle pendant la Transition {/*displaying-a-pending-visual-state-during-the-transition*/}
 
-Vous pouvez utiliser la valeur booléenne `isPending` renvoyée par `useTransition` pour indiquer à l'utilisateur qu'une transition est en cours.  Par exemple, le bouton d'onglet peut avoir un état visuel spécial « en cours » :
+Vous pouvez utiliser la valeur booléenne `isPending` renvoyée par `useTransition` pour indiquer à l'utilisateur qu'une Transition est en cours.  Par exemple, le bouton d'onglet peut avoir un état visuel spécial « en cours » :
 
 ```js {4-6}
 function TabButton({ children, isActive, onClick }) {
@@ -1095,11 +1095,11 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-[Apprenez-en davantage sur l'utilisation des transitions avec Suspense](/reference/react/Suspense#preventing-already-revealed-content-from-hiding).
+[Apprenez-en davantage sur l'utilisation des Transitions avec Suspense](/reference/react/Suspense#preventing-already-revealed-content-from-hiding).
 
 <Note>
 
-Les transitions « n'attendront » que le temps nécessaire pour éviter de masquer du contenu *déjà révélé* (comme le conteneur d'onglets).  Si l'onglet Articles avait un [périmètre `<Suspense>` imbriqué](/reference/react/Suspense#revealing-nested-content-as-it-loads), la transition « n'attendrait » pas ce dernier.
+Les Transitions « n'attendront » que le temps nécessaire pour éviter de masquer du contenu *déjà révélé* (comme le conteneur d'onglets).  Si l'onglet Articles avait un [périmètre `<Suspense>` imbriqué](/reference/react/Suspense#revealing-nested-content-as-it-loads), la Transition « n'attendrait » pas ce dernier.
 
 </Note>
 
@@ -1107,7 +1107,7 @@ Les transitions « n'attendront » que le temps nécessaire pour éviter de ma
 
 ### Construire un routeur compatible Suspense {/*building-a-suspense-enabled-router*/}
 
-Si vous construisez un framework React ou un routeur, nous vous recommandons de marquer toutes les navigations de pages comme étant des transitions.
+Si vous construisez un framework React ou un routeur, nous vous recommandons de marquer toutes les navigations de pages comme étant des Transitions.
 
 ```js {3,6,8}
 function Router() {
@@ -1124,10 +1124,10 @@ function Router() {
 
 Nous recommandons ça pour deux raisons :
 
-- [Les transitions sont interruptibles](#marking-a-state-update-as-a-non-blocking-transition), ce qui permet à l'utilisateur de cliquer pour aller ailleurs sans devoir attendre la fin du rendu de son premier choix.
-- [Les transitions évitent les indicateurs de chargement indésirables](#preventing-unwanted-loading-indicators), ce qui vous évite de produire des « clignotements » désagréables lors de la navigation.
+- [Les Transitions sont interruptibles](#marking-a-state-update-as-a-non-blocking-transition), ce qui permet à l'utilisateur de cliquer pour aller ailleurs sans devoir attendre la fin du rendu de son premier choix.
+- [Les Transitions évitent les indicateurs de chargement indésirables](#preventing-unwanted-loading-indicators), ce qui vous évite de produire des « clignotements » désagréables lors de la navigation.
 
-Voici un petit exemple de routeur très simplifié utilisant les transitions pour ses navigations.
+Voici un petit exemple de routeur très simplifié utilisant les Transitions pour ses navigations.
 
 <Sandpack>
 
@@ -1507,7 +1507,7 @@ main {
 
 <Note>
 
-Les routeurs [compatibles Suspense](/reference/react/Suspense) sont censés enrober par défaut leurs mises à jour de navigation dans des transitions.
+Les routeurs [compatibles Suspense](/reference/react/Suspense) sont censés enrober par défaut leurs mises à jour de navigation dans des Transitions.
 
 </Note>
 
@@ -1608,15 +1608,15 @@ root.render(
 
 ## Dépannage {/*troubleshooting*/}
 
-### Mettre à jour un champ depuis une transition ne fonctionne pas {/*updating-an-input-in-a-transition-doesnt-work*/}
+### Mettre à jour un champ depuis une Transition ne fonctionne pas {/*updating-an-input-in-a-transition-doesnt-work*/}
 
-Vous ne pouvez pas utiliser une transition pour mettre à jour une variable d'état qui contrôle un champ :
+Vous ne pouvez pas utiliser une Transition pour mettre à jour une variable d'état qui contrôle un champ :
 
 ```js {4,10}
 const [text, setText] = useState('');
 // ...
 function handleChange(e) {
-  // ❌ Les transitions ne peuvent enrober des mises à jour d'état qui contrôlent des champs
+  // ❌ Les Transitions ne peuvent enrober des mises à jour d'état qui contrôlent des champs
   startTransition(() => {
     setText(e.target.value);
   });
@@ -1625,16 +1625,16 @@ function handleChange(e) {
 return <input value={text} onChange={handleChange} />;
 ```
 
-C'est parce que les transitions sont non bloquantes, alors que la mise à jour d'un champ en réaction à un événement de modification doit survenir de façon synchrone.  Si vous souhaitez exécuter une transition en réponse à une saisie, vous avez deux options :
+C'est parce que les Transitions sont non bloquantes, alors que la mise à jour d'un champ en réaction à un événement de modification doit survenir de façon synchrone.  Si vous souhaitez exécuter une Transition en réponse à une saisie, vous avez deux options :
 
-1. Vous pouvez déclarer deux variables d'état distinctes : une pour l'état du champ (qui sera toujours mise à jour de façon synchrone), et une que vous mettrez à jour au sein d'une transition.  Ça vous permet de contrôler le champ avec l'état synchrone, tout en passant la variable d'état en transition (qui est susceptible de « retarder » par rapport à la saisie) au reste de votre logique de rendu.
+1. Vous pouvez déclarer deux variables d'état distinctes : une pour l'état du champ (qui sera toujours mise à jour de façon synchrone), et une que vous mettrez à jour au sein d'une Transition.  Ça vous permet de contrôler le champ avec l'état synchrone, tout en passant la variable d'état en Transition (qui est susceptible de « retarder » par rapport à la saisie) au reste de votre logique de rendu.
 2. Sinon, vous pouvez n'avoir qu'une variable d'état et utiliser [`useDeferredValue`](/reference/react/useDeferredValue) qui vous permettra d'être « en retard » sur la véritable valeur.  Ça déclenchera automatiquement des rendus non bloquants pour « rattraper » la nouvelle valeur.
 
 ---
 
-### React ne traite pas ma mise à jour d'état comme étant une transition {/*react-doesnt-treat-my-state-update-as-a-transition*/}
+### React ne traite pas ma mise à jour d'état comme étant une Transition {/*react-doesnt-treat-my-state-update-as-a-transition*/}
 
-Lorsque vous enrobez une mise à jour d'état dans une transition, assurez-vous qu'elle survient effectivement *pendant* l'appel à `startTransition` :
+Lorsque vous enrobez une mise à jour d'état dans une Transition, assurez-vous qu'elle survient effectivement *pendant* l'appel à `startTransition` :
 
 ```js
 startTransition(() => {
@@ -1645,7 +1645,7 @@ startTransition(() => {
 
 La fonction que vous passez à `startTransition` doit être synchrone.
 
-Vous ne pouvez pas marquer une mise à jour comme étant une transition avec ce genre de code :
+Vous ne pouvez pas marquer une mise à jour comme étant une Transition avec ce genre de code :
 
 ```js
 startTransition(() => {
@@ -1667,7 +1667,7 @@ setTimeout(() => {
 }, 1000);
 ```
 
-Dans le même esprit, vous ne pouvez pas marquer une mise à jour comme étant une transition avec du code ressemblant à ça :
+Dans le même esprit, vous ne pouvez pas marquer une mise à jour comme étant une Transition avec du code ressemblant à ça :
 
 ```js
 startTransition(async () => {
@@ -1708,7 +1708,7 @@ startTransition(() => {
 console.log(3);
 ```
 
-**C'est censé afficher 1, 2, 3.**  La fonction que vous passez à `startTransition` ne doit pas être différée.  Contrairement au `setTimeout` du navigateur, la fonction de rappel n'est pas appelée plus tard.  React exécute votre fonction immédiatement, mais les mises à jour d'état que vous y demandez *pendant son exécution* sont marquées comme étant des transitions.  Vous pouvez vous imaginer le fonctionnement suivant :
+**C'est censé afficher 1, 2, 3.**  La fonction que vous passez à `startTransition` ne doit pas être différée.  Contrairement au `setTimeout` du navigateur, la fonction de rappel n'est pas appelée plus tard.  React exécute votre fonction immédiatement, mais les mises à jour d'état que vous y demandez *pendant son exécution* sont marquées comme étant des Transitions.  Vous pouvez vous imaginer le fonctionnement suivant :
 
 ```js
 // Version simplifiée du fonctionnement de React
@@ -1723,7 +1723,7 @@ function startTransition(scope) {
 
 function setState() {
   if (isInsideTransition) {
-    // ... planifie une mise à jour d’état en tant que transition ...
+    // ... planifie une mise à jour d’état en tant que Transition ...
   } else {
     // ... planifie une mise à jour d’état urgente ...
   }
