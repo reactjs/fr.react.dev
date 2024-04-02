@@ -1,74 +1,74 @@
 ---
-title: react-dom/test-utils Deprecation Warnings
+title: Avertissement de dépréciation react-dom/test-utils
 ---
 
-## ReactDOMTestUtils.act() warning {/*reactdomtestutilsact-warning*/}
+## Avertissement sur ReactDOMTestUtils.act() {/*reactdomtestutilsact-warning*/}
 
-`act` from `react-dom/test-utils` has been deprecated in favor of `act` from `react`.
+La fonction `act` de `react-dom/test-utils` est dépréciée au profit de la fonction `act` de `react`.
 
-Before:
-
-```js
-import {act} from 'react-dom/test-utils';
-```
-
-After:
+Avant :
 
 ```js
-import {act} from 'react';
+import { act } from 'react-dom/test-utils';
 ```
 
-## Rest of ReactDOMTestUtils APIS {/*rest-of-reactdomtestutils-apis*/}
+Après :
 
-All APIs except `act` have been removed.
+```js
+import { act } from 'react';
+```
 
-The React Team recommends migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) for a modern and well supported testing experience.
+## Reste des API ReactDOMTestUtils {/*rest-of-reactdomtestutils-apis*/}
+
+Toutes les API excepté `act` ont été retirées.
+
+L'équipe React vous conseille de migrer vos tests vers [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) afin de profiter d'une expérience de test moderne et bien maintenue.
 
 ### ReactDOMTestUtils.renderIntoDocument {/*reactdomtestutilsrenderintodocument*/}
 
-`renderIntoDocument` can be replaced with `render` from `@testing-library/react`.
+`renderIntoDocument` peut être remplacée par la fonction `render` de `@testing-library/react`.
 
-Before:
+Avant :
 
 ```js
-import {renderIntoDocument} from 'react-dom/test-utils';
+import { renderIntoDocument } from 'react-dom/test-utils';
 
 renderIntoDocument(<Component />);
 ```
 
-After:
+Après :
 
 ```js
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 render(<Component />);
 ```
 
 ### ReactDOMTestUtils.Simulate {/*reactdomtestutilssimulate*/}
 
-`Simulate` can be replaced with `fireEvent` from `@testing-library/react`.
+`Simulate` peut être remplacée par la fonction `fireEvent` de `@testing-library/react`.
 
-Before:
+Avant :
 
 ```js
-import {Simulate} from 'react-dom/test-utils';
+import { Simulate } from 'react-dom/test-utils';
 
 const element = document.querySelector('button');
 Simulate.click(element);
 ```
 
-After:
+Après :
 
 ```js
-import {fireEvent} from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 
 const element = document.querySelector('button');
 fireEvent.click(element);
 ```
 
-Be aware that `fireEvent` dispatches an actual event on the element and doesn't just synthetically call the event handler.
+Sachez toutefois que `fireEvent` déclenche un véritable événement sur l'élément, plutôt que d'appeler de façon synthétique le gestionnaire d'événement.
 
-### List of all removed APIs {/*list-of-all-removed-apis-list-of-all-removed-apis*/}
+### Liste des API retirées {/*list-of-all-removed-apis-list-of-all-removed-apis*/}
 
 - `mockComponent()`
 - `isElement()`

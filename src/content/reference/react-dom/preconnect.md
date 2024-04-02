@@ -54,19 +54,11 @@ La fonction `preconnect` suggère au navigateur d'ouvrir une connection vers le 
 
 #### Limitations {/*caveats*/}
 
-<<<<<<< HEAD
 * Plusieurs appels à `preconnect` vers le même serveur ont le même effet qu'un unique appel.
 * Côté client, vous pouvez appeler `preconnect` n'importe où : lors du rendu d'un composant, dans un Effet, dans un gestionnaire d'événement, etc.
 * Lors d'un rendu côté serveur ou du rendu de Composants Serveur, `preconnect` n'a d'effet que si vous l'appelez lors du rendu d'un composant ou dans une fonction asynchrone issue du rendu d'un composant.  Tout autre appel sera ignoré.
 * Si vous connaissez à l'avance les ressources précises dont vous aurez besoin, vous pouvez appeler [d'autres fonctions](/reference/react-dom/#resource-preloading-apis) plutôt que celle-ci, qui initieront directement le chargement des ressources.
 * Il n'y a aucun intérêt à se préconnecter au même serveur que celui qui sert la page web elle-même, car la connexion est déjà établie lorsque la suggestion est reçue.
-=======
-* Multiple calls to `preconnect` with the same server have the same effect as a single call.
-* In the browser, you can call `preconnect` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
-* In server-side rendering or when rendering Server Components, `preconnect` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
-* If you know the specific resources you'll need, you can call [other functions](/reference/react-dom/#resource-preloading-apis) instead that will start loading the resources right away.
-* There is no benefit to preconnecting to the same server the webpage itself is hosted from because it's already been connected to by the time the hint would be given.
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 ---
 

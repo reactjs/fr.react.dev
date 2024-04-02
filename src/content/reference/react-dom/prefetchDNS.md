@@ -53,21 +53,12 @@ La fonction `prefetchDNS` suggère au navigateur de récupérer l'adresse IP du 
 
 #### Limitations {/*caveats*/}
 
-<<<<<<< HEAD
 * Plusieurs appels à `prefetchDNS` vers le même serveur ont le même effet qu'un unique appel.
 * Côté client, vous pouvez appeler `prefetchDNS` n'importe où : lors du rendu d'un composant, dans un Effet, dans un gestionnaire d'événement, etc.
 * Lors d'un rendu côté serveur ou du rendu de Composants Serveur, `prefetchDNS` n'a d'effet que si vous l'appelez lors du rendu d'un composant ou dans une fonction asynchrone issue du rendu d'un composant.  Tout autre appel sera ignoré.
 * Si vous connaissez à l'avance les ressources précises dont vous aurez besoin, vous pouvez appeler [d'autres fonctions](/reference/react-dom/#resource-preloading-apis) plutôt que celle-ci, qui initieront directement le chargement des ressources.
 * Il n'y a aucun intérêt à récupérer l'IP du serveur qui sert la page web elle-même, car cette adresse est déjà connue lorsque la suggestion est reçue.
 * Comparée à [`preconnect`](/reference/react-dom/preconnect), `prefetchDNS` est peut-être plus intéressante si vous anticipez des connexions à une grande quantité de domaines, auquel cas des préconnexions effectives ont un coût relatif trop élevé.
-=======
-* Multiple calls to `prefetchDNS` with the same server have the same effect as a single call.
-* In the browser, you can call `prefetchDNS` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
-* In server-side rendering or when rendering Server Components, `prefetchDNS` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
-* If you know the specific resources you'll need, you can call [other functions](/reference/react-dom/#resource-preloading-apis) instead that will start loading the resources right away.
-* There is no benefit to prefetching the same server the webpage itself is hosted from because it's already been looked up by the time the hint would be given.
-* Compared with [`preconnect`](/reference/react-dom/preconnect), `prefetchDNS` may be better if you are speculatively connecting to a large number of domains, in which case the overhead of preconnections might outweigh the benefit.
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 ---
 

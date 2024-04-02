@@ -495,11 +495,7 @@ En général, vous [ne voulez pas](/learn/referencing-values-with-refs#best-prac
 
 React met à jour `ref.current` lors de la phase de commit.  Avant de mettre à jour le DOM, React recale les valeurs `ref.current` à `null`.  Après que le DOM a été mis à jour, React recale immédiatement les références vers les nœuds DOM correspondants.
 
-<<<<<<< HEAD
 **En général, vous accéderez aux refs depuis des gestionnaires d'événements.** Si vous voulez faire quelque chose avec une ref, mais qu'aucun événement particulier ne s'y prête, vous aurez peut-être besoin d'un Effet. Nous explorerons les Effets en détail dans les prochaines pages de ce chapitre.
-=======
-**Usually, you will access refs from event handlers.** If you want to do something with a ref, but there is no particular event to do it in, you might need an Effect. We will discuss Effects on the next pages.
->>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 <DeepDive>
 
