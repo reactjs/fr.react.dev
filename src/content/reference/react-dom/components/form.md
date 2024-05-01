@@ -92,7 +92,11 @@ export default function Search() {
 
 ### Gérer l'envoi de formulaire dans une Action Serveur {/*handle-form-submission-with-a-server-action*/}
 
+<<<<<<< HEAD
 Affichez un `<form>` avec un champ de saisie et un bouton d'envoi, puis passez-lui une Action Serveur (une fonction dotée de la directive [`'use server'`](/reference/react/use-server)) *via* sa prop `action` pour exécuter cette fonction quand le formulaire sera envoyé.
+=======
+Render a `<form>` with an input and submit button. Pass a Server Action (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.
+>>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 Passer une Action Serveur à `<form action>` permet aux utilisateurs d'envoyer le formulaire même sans JavaScript activé, ou avant que le code JavaScript ne soit chargé et exécuté.  C'est bien pratique pour les utilisateurs ne disposant que d'une connexion ou d'un appareil lents, ou qui ont JavaScript désactivé.  C'est d'ailleurs un comportement similaire à celui des formulaires dont la prop `action` contient une URL.
 
@@ -136,7 +140,11 @@ function AddToCart({productId}) {
 }
 ```
 
+<<<<<<< HEAD
 Lorsqu'un `<form>` fait son rendu au sein d'un [Composant Serveur](/reference/react/use-client), et qu'en prime une [Action Serveur](/reference/react/use-server) est passée à la prop `action` du `<form>`, le formulaire bénéficie d'une [amélioration progressive](https://developer.mozilla.org/fr/docs/Glossary/Progressive_Enhancement).
+=======
+When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Action](/reference/rsc/use-server) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
+>>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 ### Afficher un état d'attente pendant l'envoi du formulaire {/*display-a-pending-state-during-form-submission*/}
 
@@ -324,16 +332,24 @@ export default function Search() {
 
 Afin d'afficher un message d'erreur d'envoi de formulaire avant même que le *bundle* JavaScript soit chargé et exécuté (à des fins d'amélioration progressive), plusieurs choses sont nécessaires :
 
+<<<<<<< HEAD
 1. le `<form>` doit figurer dans un [Composant Serveur](/reference/react/use-client)
 2. la fonction passée à la prop `action` du `<form>` doit être une [Action Serveur](/reference/react/use-server)
 3. le Hook `useFormState` doit être utilisé pour produire le message d'erreur
 
 `useFormState` accepte deux arguments : une [Action Serveur](/reference/react/use-server) et un état initial. `useFormState` renvoie deux valeurs : une variable d'état et une action. L'action ainsi renvoyée par `useFormState` doit être passée à la prop `action` du formulaire. La variable d'état renvoyée par `useFormState` peut être utilisée pour afficher le message d'erreur. La valeur renvoyée par [l'Action Serveur](/reference/react/use-server) passée à `useFormState` sera utilisée pour mettre à jour la variable d'état.
+=======
+1. `<form>` be rendered by a [Server Component](/reference/rsc/use-client)
+1. the function passed to the `<form>`'s `action` prop be a [Server Action](/reference/rsc/use-server)
+1. the `useActionState` Hook be used to display the error message
+
+`useActionState` takes two parameters: a [Server Action](/reference/rsc/use-server) and an initial state. `useActionState` returns two values, a state variable and an action. The action returned by `useActionState` should be passed to the `action` prop of the form. The state variable returned by `useActionState` can be used to displayed an error message. The value returned by the [Server Action](/reference/rsc/use-server) passed to `useActionState` will be used to update the state variable.
+>>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 <Sandpack>
 
 ```js src/App.js
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 import { signUpNewUser } from "./api";
 
 export default function Page() {
@@ -347,15 +363,24 @@ export default function Page() {
       return err.toString();
     }
   }
-  const [message, formAction] = useFormState(signup, null);
+  const [message, signupAction] = useActionState(signup, null);
   return (
     <>
+<<<<<<< HEAD
       <h1>Inscris-toi à ma newsletter</h1>
       <p>L’utilisation d’un e-mail déjà inscrit produira une erreur</p>
       <form action={formAction} id="signup-form">
         <label htmlFor="email">E-mail : </label>
         <input name="email" id="email" placeholder="(exemple : react@example.com)" />
         <button>Inscription</button>
+=======
+      <h1>Signup for my newsletter</h1>
+      <p>Signup with the same email twice to see an error</p>
+      <form action={signupAction} id="signup-form">
+        <label htmlFor="email">Email: </label>
+        <input name="email" id="email" placeholder="react@example.com" />
+        <button>Sign up</button>
+>>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
         {!!message && <p>{message}</p>}
       </form>
     </>
@@ -388,7 +413,11 @@ export async function signUpNewUser(newEmail) {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Apprenez-en avantage sur la mise à jour de l'état depuis une action de formulaire dans la [documentation de référence du Hook `useFormState`](/reference/react-dom/hooks/useFormState).
+=======
+Learn more about updating state from a form action with the [`useActionState`](/reference/react/hooks/useActionState) docs
+>>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 ### Gérer plusieurs types d'envois {/*handling-multiple-submission-types*/}
 

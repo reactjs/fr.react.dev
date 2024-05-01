@@ -37,6 +37,11 @@ yarn-error.log*
 # external fonts
 public/fonts/**/Optimistic_*.woff2
 
+<<<<<<< HEAD
 # contributors likely have their own workspace settings and shouldn't
 # version them (e.g. markdownlint tweaks, etc.)
 .vscode/settings.json
+=======
+# rss
+public/rss.xml
+>>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
