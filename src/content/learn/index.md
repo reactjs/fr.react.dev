@@ -533,6 +533,6 @@ button {
 
 ## Et maintenant ? {/*next-steps*/}
 
-Bravo, vous connaissez désormais les bas de l’écriture de code React !
+Bravo, vous connaissez désormais les bases de l’écriture de code React !
 
 Allez donc découvrir notre [tutoriel](/learn/tutorial-tic-tac-toe) pour mettre tout ça en pratique et construire votre première petite appli avec React.
