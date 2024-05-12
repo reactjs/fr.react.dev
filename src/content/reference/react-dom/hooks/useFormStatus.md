@@ -190,7 +190,7 @@ export default function UsernameForm() {
       <h3>Réserver l’identifiant : </h3><br />
       <input type="text" name="username" disabled={pending} />
       <button type="submit" disabled={pending}>
-        Envoyer'}
+        Envoyer
       </button>
       <br />
       <p>{data ? `Récupération de ${data?.get('username')}...` : ''}</p>
