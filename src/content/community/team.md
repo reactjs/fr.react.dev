@@ -42,12 +42,21 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Josh a étudié les Mathématiques et découvert la programmation pendant ses études.  Son premier boulot de développeur professionnel consistait à calculer des taux d'assurance dans Microsoft Excel, ce parangon de Programmation Réactive, ce qui explique probablement pourquoi il bosse désormais sur React. Entre les deux Josh a été contributeur, manager voire directeur dans quelques startups.  Hors du boulot, il aime se lancer des défis de cuisine.
 </TeamMember>
 
+<<<<<<< HEAD
 <TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" personal="no.lol" title="Ingénieure chez Meta">
     La carrière de développeuse de Lauren a atteint son sommet lorsqu'elle a découvert la balise `<marquee>`. Depuis, elle cherche à retrouver cette extase.  Lorsqu'elle n'est pas en train d'ajouter des bugs à React, elle aime balancer des mèmes audacieux dans les forums internes, jouer à beaucoup trop de jeux vidéos avec l'amour de sa vie, et son chien Zelda.
 </TeamMember>
 
 <TeamMember name="Luna Wei" permalink="luna-wei" photo="/images/team/luna-wei.jpg" github="lunaleaps" twitter="lunaleaps" threads="lunaleaps" title="Ingénieure chez Meta">
     Luna a appris les bases de Python à 6 ans grâce à son père. Depuis plus rien ne l'arrête. Luna a bien l'intention d'être une Génération Z, et le chemin du succès passe par la défense de l'environnement, du jardinage urbain et beaucoup de temps précieux passé avec Voo-Doo (voir photo).
+=======
+<TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" personal="no.lol" title="Engineer at Meta">
+    Lauren's programming career peaked when she first discovered the `<marquee>` tag. She’s been chasing that high ever since. She studied Finance instead of CS in college, so she learned to code using Excel instead of Java. Lauren enjoys dropping cheeky memes in chat, playing video games with her partner, and petting her dog Zelda.
+</TeamMember>
+
+<TeamMember name="Luna Wei" permalink="luna-wei" photo="/images/team/luna-wei.jpg" github="lunaleaps" twitter="lunaleaps" threads="lunaleaps" title="Engineer at Meta">
+    Luna first learnt the fundamentals of python at the age of 6 from her father. Since then, she has been unstoppable. Luna aspires to be a gen z, and the road to success is paved with environmental advocacy, urban gardening and lots of quality time with her Voo-Doo’d (as pictured).
+>>>>>>> b7bf6c16fb3152626a71c115b3242df6eb93bc6e
 </TeamMember>
 
 <TeamMember name="Matt Carroll" permalink="matt-carroll" photo="/images/team/matt-carroll.png" github="mattcarrollcode" twitter="mattcarrollcode" threads="mattcarrollcode" title="Developer Advocate chez Meta">
@@ -66,8 +75,17 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Ricky a étudié les maths théoriques puis s'est retrouvé on ne sait comment dans l'équipe React Native quelques années avant de rejoindre l'équipe React. Lorsqu'il n'est pas en train de coder, vous le trouverez à faire du snowboard, du vélo, de l'escalade, du golf, ou à fermer les tickets GitHub qui violent le gabarit demandé.
 </TeamMember>
 
+<<<<<<< HEAD
 <TeamMember name="Sathya Gunasekaran " permalink="sathya-gunasekaran" photo="/images/team/sathya.jpg" github="gsathya" twitter="_gsathya" threads="gsathya.03" title="Ingénieur chez Meta">
     Sathya a détesté le *Dragon Book* durant ses études, et pourtant a fini par consacrer sa carrière aux compilateurs. Lorsqu'il n'est pas en train de compiler des composants React, soit il boit du café soit il mange encore un Dosa.
+=======
+<TeamMember name="Ruslan Lesiutin" permalink="ruslan-lesiutin" photo="/images/team/lesiutin.jpg" github="hoxyq" twitter="ruslanlesiutin" threads="lesiutin" title="Engineer at Meta">
+    Ruslan's introduction to UI programming started when he was a kid by manually editing HTML templates for his custom gaming forums. Somehow, he ended up majoring in Computer Science. He enjoys music, games, and memes. Mostly memes.
+</TeamMember>
+
+<TeamMember name="Sathya Gunasekaran " permalink="sathya-gunasekaran" photo="/images/team/sathya.jpg" github="gsathya" twitter="_gsathya" threads="gsathya.03" title="Engineer at Meta">
+    Sathya hated the Dragon Book in school but somehow ended up working on compilers all his career. When he's not compiling React components, he's either drinking coffee or eating yet another Dosa.
+>>>>>>> b7bf6c16fb3152626a71c115b3242df6eb93bc6e
 </TeamMember>
 
 <TeamMember name="Sebastian Markbåge" permalink="sebastian-markbåge" photo="/images/team/sebmarkbage.jpg" github="sebmarkbage" twitter="sebmarkbage" threads="sebmarkbage" title="Ingénieur chez Vercel">

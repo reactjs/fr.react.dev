@@ -48,7 +48,13 @@ Pour écrire un Effet, suivez ces trois étapes :
 2. **Spécifiez les dépendances de l’Effet.** La plupart des Effets ne devraient se ré-exécuter *que si besoin* plutôt qu’après chaque rendu. Par exemple, une animation de fondu entrant ne devrait se déclencher que pour l’apparition initiale.  La connexion et la déconnexion à un forum de discussion ne devraient survenir que quand le composant apparaît, disparaît, ou change de canal.  Vous apprendrez à contrôler cet aspect en spécifiant des *dépendances*.
 3. **Ajoutez du code de nettoyage si besoin.**  Certains Effets ont besoin de décrire comment les arrêter, les annuler, ou nettoyer après eux de façon générale. Par exemple, une connexion implique une déconnexion, un abonnement suppose un désabonnement, et un chargement réseau aura besoin de pouvoir être annulé ou ignoré. Vous apprendrez comment décrire ça en renvoyant une *fonction de nettoyage*.
 
+<<<<<<< HEAD
 Explorons maintenant chaque étape en détail.
+=======
+1. **Declare an Effect.** By default, your Effect will run after every [commit](/learn/render-and-commit).
+2. **Specify the Effect dependencies.** Most Effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
+3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
+>>>>>>> b7bf6c16fb3152626a71c115b3242df6eb93bc6e
 
 ### Étape 1 : déclarez un Effet {/*step-1-declare-an-effect*/}
 
@@ -599,7 +605,38 @@ En général, la réponse consiste à implémenter une fonction de nettoyage. La
 
 La plupart des Effets que vous aurez à écrire correspondront à un des scénarios courants ci-après.
 
+<<<<<<< HEAD
 ### Contrôler des widgets non-React {/*controlling-non-react-widgets*/}
+=======
+<Pitfall>
+
+#### Don't use refs to prevent Effects from firing {/*dont-use-refs-to-prevent-effects-from-firing*/}
+
+A common pitfall for preventing Effects firing twice in development is to use a `ref` to prevent the Effect from running more than once. For example, you could "fix" the above bug with a `useRef`:
+
+```js {1,3-4}
+  const connectionRef = useRef(null);
+  useEffect(() => {
+    // 🚩 This wont fix the bug!!!
+    if (!connectionRef.current) {
+      connectionRef.current = createConnection();
+      connectionRef.current.connect();
+    }
+  }, []);
+```
+
+This makes it so you only see `"✅ Connecting..."` once in development, but it doesn't fix the bug.
+
+When the user navigates away, the connection still isn't closed and when they navigate back, a new connection is created. As the user navigates across the app, the connections would keep piling up, the same as it would before the "fix". 
+
+To fix the bug, it is not enough to just make the Effect run once. The effect needs to work after re-mounting, which means the connection needs to be cleaned up like in the solution above.
+
+See the examples below for how to handle common patterns.
+
+</Pitfall>
+
+### Controlling non-React widgets {/*controlling-non-react-widgets*/}
+>>>>>>> b7bf6c16fb3152626a71c115b3242df6eb93bc6e
 
 Vous aurez parfois besoin d'ajouter des widgets d’UI qui ne sont pas écrits en React. Par exemple, imaginons que vous souhaitiez ajouter un composant carte à votre page.  Il dispose d’une méthode `setZoomLevel()` et vous aimeriez synchroniser son niveau de zoom avec une variable d’état `zoomLevel` dans votre code React. L’Effet pour y parvenir ressemblerait à ceci :
 
