@@ -32,7 +32,15 @@
           "path": "/community/docs-contributors"
         },
         {
+<<<<<<< HEAD
           "title": "Remerciements",
+=======
+          "title": "Translations",
+          "path": "/community/translations"
+        },
+        {
+          "title": "Acknowledgements",
+>>>>>>> 9967ded394d85af74e0ecdbf00feeb7921a28142
           "path": "/community/acknowledgements"
         },
         {
