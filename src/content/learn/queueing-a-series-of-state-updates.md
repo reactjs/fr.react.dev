@@ -47,7 +47,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Pourtant, comme vous vous en souvenez peut-être après avoir lu la page précédente, [les valeurs d'état de chaque rendu son figées](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time), de sorte que la valeur de `number` au sein du gestionnaire d'événement du rendu initial sera toujours `0`, peu importe le nombre de fois que vous appelez `setNumber(1)` :
+Pourtant, comme vous vous en souvenez peut-être après avoir lu la page précédente, [les valeurs d'état de chaque rendu sont figées](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time), de sorte que la valeur de `number` au sein du gestionnaire d'événement du rendu initial sera toujours `0`, peu importe le nombre de fois que vous appelez `setNumber(1)` :
 
 ```js
 setNumber(0 + 1);
