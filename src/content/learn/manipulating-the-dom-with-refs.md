@@ -218,18 +218,19 @@ L'exemple qui suit utilise cette approche pour défiler vers un nœud quelconque
 <Sandpack>
 
 ```js
-import { useRef } from 'react';
+import { useRef, useState } from "react";
 
 export default function CatFriends() {
   const itemsRef = useRef(null);
+  const [catList, setCatList] = useState(setupCatList);
 
-  function scrollToId(itemId) {
+  function scrollToCat(cat) {
     const map = getMap();
-    const node = map.get(itemId);
+    const node = map.get(cat);
     node.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
     });
   }
 
@@ -244,34 +245,32 @@ export default function CatFriends() {
   return (
     <>
       <nav>
-        <button onClick={() => scrollToId(0)}>
-          Tom
-        </button>
-        <button onClick={() => scrollToId(5)}>
-          Maru
-        </button>
-        <button onClick={() => scrollToId(9)}>
-          Jellylorum
-        </button>
+        <button onClick={() => scrollToCat(catList[0])}>Tom</button>
+        <button onClick={() => scrollToCat(catList[5])}>Maru</button>
+        <button onClick={() => scrollToCat(catList[9])}>Jellylorum</button>
       </nav>
       <div>
         <ul>
-          {catList.map(cat => (
+          {catList.map((cat) => (
             <li
-              key={cat.id}
+              key={cat}
               ref={(node) => {
                 const map = getMap();
                 if (node) {
-                  map.set(cat.id, node);
+                  map.set(cat, node);
                 } else {
-                  map.delete(cat.id);
+                  map.delete(cat);
                 }
               }}
             >
+<<<<<<< HEAD
               <img
                 src={cat.imageUrl}
                 alt={'Chat #' + cat.id}
               />
+=======
+              <img src={cat} />
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
             </li>
           ))}
         </ul>
@@ -280,12 +279,13 @@ export default function CatFriends() {
   );
 }
 
-const catList = [];
-for (let i = 0; i < 10; i++) {
-  catList.push({
-    id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
-  });
+function setupCatList() {
+  const catList = [];
+  for (let i = 0; i < 10; i++) {
+    catList.push("https://loremflickr.com/320/240/cat?lock=" + i);
+  }
+
+  return catList;
 }
 
 ```
@@ -316,6 +316,16 @@ li {
 }
 ```
 
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0"
+  }
+}
+```
+
 </Sandpack>
 
 Dans cet exemple, `itemRef` ne référence pas un unique nœud DOM.  Il contient plutôt une [Map](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Map) associant chaque ID d'élément à un nœud DOM. ([Les refs peuvent stocker n'importe quelle valeur !](/learn/referencing-values-with-refs)) La [fonction de rappel `ref`](/reference/react-dom/components/common#ref-callback) sur chaque élément de la liste s'occupe de mettre à jour les correspondances :
@@ -326,17 +336,47 @@ Dans cet exemple, `itemRef` ne référence pas un unique nœud DOM.  Il contient
   ref={node => {
     const map = getMap();
     if (node) {
+<<<<<<< HEAD
       // Ajoute à la Map
       map.set(cat.id, node);
     } else {
       // Retire de la Map
       map.delete(cat.id);
+=======
+      // Add to the Map
+      map.set(cat, node);
+    } else {
+      // Remove from the Map
+      map.delete(cat);
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
     }
   }}
 >
 ```
 
 Ça vous permet de retrouver les nœuds DOM individuels plus tard, sur base de la `Map`.
+
+<Canary>
+
+This example shows another approach for managing the Map with a `ref` callback cleanup function.
+
+```js
+<li
+  key={cat.id}
+  ref={node => {
+    const map = getMap();
+    // Add to the Map
+    map.set(cat, node);
+
+    return () => {
+      // Remove from the Map
+      map.delete(cat);
+    };
+  }}
+>
+```
+
+</Canary>
 
 </DeepDive>
 

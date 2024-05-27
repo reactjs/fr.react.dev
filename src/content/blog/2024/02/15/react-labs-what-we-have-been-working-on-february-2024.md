@@ -1,5 +1,12 @@
 ---
+<<<<<<< HEAD
 title: "React Labs : ce sur quoi nous bossons – février 2024"
+=======
+title: "React Labs: What We've Been Working On – February 2024"
+author: Joseph Savona, Ricky Hanlon, Andrew Clark, Matt Carroll, and Dan Abramov
+date: 2024/02/15
+description: In React Labs posts, we write about projects in active research and development. We’ve made significant progress since our last update, and we’d like to share our progress.
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 ---
 
 Le 15 février 2024 par [Joseph Savona](https://twitter.com/en_JS), [Ricky Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode) et [Dan Abramov](https://twitter.com/dan_abramov).
@@ -51,7 +58,11 @@ Nous appelons cette collection plus large de fonctionnalités simplement « Act
 </form>
 ```
 
+<<<<<<< HEAD
 La fonction `action` peut être synchrone ou asynchrone. Vous pouvez la définir côté client avec du JavaScript classique, ou côté serveur avec la directive [`'use server'`](/reference/react/use-server). Lorsque vous utilisez une Action, React gère le cycle de vie de l'envoi de données pour vous, en fournissant des Hooks tels que [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) et [`useFormState`](/reference/react-dom/hooks/useFormState) pour accéder à l'état courant et la réponse à l'action du formulaire.
+=======
+The `action` function can operate synchronously or asynchronously. You can define them on the client side using standard JavaScript or on the server with the  [`'use server'`](/reference/rsc/use-server) directive. When using an action, React will manage the life cycle of the data submission for you, providing hooks like [`useFormStatus`](/reference/react-dom/hooks/useFormStatus), and [`useActionState`](/reference/react/useActionState) to access the current state and response of the form action.
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 Par défaut, les Actions sont exécutées au sein d'une [transition](/reference/react/useTransition), ce qui permet de conserver une page interactive pendant leur traitement. Dans la mesure où les Actions autorisent les fonctions asynchrones, nous avons ajouté la possibilité d'utiliser `async/await` dans les transitions. Ça vous permet d'afficher une UI avec l'état `isPending` d'une transition lorsqu'une requête asynchrone telle que `fetch` démarre, et de maintenir cette UI d'attente tout le temps de la mise à jour.
 
@@ -71,13 +82,21 @@ Les Canaries changent la façon dont nous développons React. Par le passé, cha
 
 Les Composants Serveur, le Chargement de ressources, les Métadonnées de documents et les Actions sont autant de fonctionnalités disponibles dans React Canary, et nous avons ajouté de la documentation pour ces fonctionnalités sur fr.react.dev :
 
+<<<<<<< HEAD
 - **Directives** : [`"use client"`](/reference/react/use-client) et [`"use server"`](/reference/react/use-server) sont des marqueurs de *bundling* conçus pour les frameworks React full-stack.  Ils indiquent des « points de césure » entre deux environnements : `"use client"` indique au *bundler* de générer une balise `<script>` (comme les [îles Astro](https://docs.astro.build/fr/concepts/islands/#creating-an-island)), tandis que `"use server"` indique au *bundler* de générer un point d'entrée HTTP POST (comme les [mutations tRPC](https://trpc.io/docs/concepts)). Ensemble, elles vous permettent d'écrire des composants réutilisables qui composent l'interactivité du côté client avec la logique associée côté serveur.
+=======
+- **Directives**: [`"use client"`](/reference/rsc/use-client) and [`"use server"`](/reference/rsc/use-server) are bundler features designed for full-stack React frameworks. They mark the "split points" between the two environments: `"use client"` instructs the bundler to generate a `<script>` tag (like [Astro Islands](https://docs.astro.build/en/concepts/islands/#creating-an-island)), while `"use server"` tells the bundler to generate a POST endpoint (like [tRPC Mutations](https://trpc.io/docs/concepts)). Together, they let you write reusable components that compose client-side interactivity with the related server-side logic.
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 - **Métadonnées de documents** : nous avons ajouté une prise en charge native des balises [`<title>`](/reference/react-dom/components/title), [`<meta>`](/reference/react-dom/components/meta) et [`<link>`](/reference/react-dom/components/link) n'importe où dans l'arbre des composants. Ils fonctionnent de la même façon dans tous les environnements, qu'il s'agisse de code entièrement côté client, de SSR ou de RSC. Ils fournissent une fonctionnalité native auparavant proposée par des bibliothèques telles que [React Helmet](https://github.com/nfl/react-helmet).
 
 - **Chargement de ressources** : nous avons intégré Suspense avec le cycle de vie du chargement des ressources telles que des feuilles de styles, des fontes et des scripts, de façon à ce que React les prenne en compte pour déterminer si le contenu d'éléments comme [`<style>`](/reference/react-dom/components/style), [`<link>`](/reference/react-dom/components/link) et [`<script>`](/reference/react-dom/components/script) est prêt à être utilisé.  Nous avons ajouté de nouvelles [API de préchargement de ressources](/reference/react-dom#resource-preloading-apis) comme `preload` et `preinit` pour vous donner un contrôle fin sur les moments de chargement et d'initialisation de ces ressources.
 
+<<<<<<< HEAD
 - **Actions** : comme vu plus haut, nous avons ajouté les Actions pour gérer l'envoi de données du client vers le serveur. Vous pouvez ajouter `action` à des éléments tels que [`<form/>`](/reference/react-dom/components/form), accéder à l'état d'envoi avec [`useFormStatus`](/reference/react-dom/hooks/useFormStatus), traiter le résultat avec [`useFormState`](/reference/react-dom/hooks/useFormState) et mettre à jour l'UI de façon optimiste avec [`useOptimistic`](/reference/react/useOptimistic).
+=======
+- **Actions**: As shared above, we've added Actions to manage sending data from the client to the server. You can add `action` to elements like [`<form/>`](/reference/react-dom/components/form), access the status with [`useFormStatus`](/reference/react-dom/hooks/useFormStatus), handle the result with [`useActionState`](/reference/react/useActionState), and optimistically update the UI with [`useOptimistic`](/reference/react/useOptimistic).
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 Dans la mesure où toutes ces fonctionnalités travaillent ensemble, il serait délicat de les publier sur le canal Stable de façon indépendante.  Livrer les Actions sans les Hooks complémentaire d'accès aux états de formulaire en limiterait l'utilité pratique.  Dévoiler les Composants Serveur sans intégrer les Actions Serveur compliquerait la modification de données côté serveur.
 
