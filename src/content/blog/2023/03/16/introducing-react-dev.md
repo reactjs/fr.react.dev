@@ -1,5 +1,12 @@
 ---
+<<<<<<< HEAD
 title: "Découvrez react.dev"
+=======
+title: "Introducing react.dev"
+author: Dan Abramov and Rachel Nabors
+date: 2023/03/16
+description: Today we are thrilled to launch react.dev, the new home for React and its documentation. In this post, we would like to give you a tour of the new site.
+>>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
 ---
 
 Le 16 mars 2023 par [Dan Abramov](https://twitter.com/dan_abramov) et [Rachel Nabors](https://twitter.com/rachelnabors)
@@ -611,7 +618,11 @@ Nous espérons que cette approche rendra la référence API utile non seulement 
 
 ## Et maintenant ? {/*whats-next*/}
 
+<<<<<<< HEAD
 Voilà qui conclut notre visite guidée ! Baladez-vous sur le nouveau site, voyez ce que vous aimez ou pas, et n'hésitez pas à nous faire part de vos retours *via* le [sondage anonyme](https://www.surveymonkey.co.uk/r/PYRPF3X) ou dans notre [gestion de tickets](https://github.com/reactjs/react.dev/issues).
+=======
+That's a wrap for our little tour! Have a look around the new website, see what you like or don't like, and keep the feedback coming in our [issue tracker](https://github.com/reactjs/react.dev/issues).
+>>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
 
 Nous sommes conscients que ce projet a mis longtemps à voir le jour. Nous voulions mettre très haut la barre de la qualité, car nous estimons que la communauté React le mérite.  Durant l'écriture de ces docs et la création de tous les exemples, nous avons repéré des erreurs dans nos propres explications, des bugs dans React, et même des trous dans la conception de React que nous travaillons désormais à régler.  Nous espérons que cette documentation nous aidera à garder la barre très haut pour React à l'avenir.
 

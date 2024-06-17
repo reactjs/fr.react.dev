@@ -107,6 +107,7 @@ Pour établir des priorités de rendu, utilisez un de ces Hooks :
 
 ---
 
+<<<<<<< HEAD
 ## Les Hooks de gestion de ressources {/*resource-hooks*/}
 
 Un composant peut accéder à des *ressources* sans qu'elles fassent partie de son état. Un composant peut par exemple lire un message depuis une promesse, ou lire des informations de styles depuis un contexte.
@@ -126,12 +127,22 @@ function MessageComponent({ messagePromise }) {
 ---
 
 ## Autres Hooks {/*other-hooks*/}
+=======
+## Other Hooks {/*other-hooks*/}
+>>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
 
 Ces Hooks sont majoritairement utiles aux auteur·e·s de bibliothèque et ne sont pas couramment utilisés dans du code applicatif.
 
+<<<<<<< HEAD
 * [`useDebugValue`](/reference/react/useDebugValue) vous permet de personnaliser le libellé que les outils de développement React affichent pour votre propre Hook.
 * [`useId`](/reference/react/useId) permet à un composant de s’associer un ID unique. Généralement utilisé avec les API d’accessibilité.
 * [`useSyncExternalStore`](/reference/react/useSyncExternalStore) permet à un composant de s’abonner à une source de données extérieure.
+=======
+- [`useDebugValue`](/reference/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
+- [`useId`](/reference/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
+- [`useSyncExternalStore`](/reference/react/useSyncExternalStore) lets a component subscribe to an external store.
+* [`useActionState`](/reference/react/useActionState) allows you to manage state of actions.
+>>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
 
 ---
 
