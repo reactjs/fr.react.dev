@@ -39,12 +39,21 @@ Pour ajouter une feuille de styles définie à la volée dans votre document, ut
 
 `<style>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
 
+<<<<<<< HEAD
 * `children` : une chaîne de caractères, obligatoire. Le code source de la feuille de styles définie à la volée.
 * `precedence` : une chaîne de caractères. Indique à React où placer le nœud DOM `<style>` par rapport aux autres présents dans le `<head>` du document, ce qui détermine quelle feuille de styles a priorité sur quelle autre. La valeur peut être (par ordre de précédence) `"reset"`, `"low"`, `"medium"` ou `"high"`. Les feuilles de styles de même précédence sont regroupées, qu'il s'agisse de balises `<link>` ou `<style>`, y compris si elles sont chargées *via* les fonctions [`preload`](/reference/react-dom/preload) ou [`preinit`](/reference/react-dom/preinit).
 * `href` : une chaîne de caractères. Permet à React de [dédoublonner les styles](#special-rendering-behavior) qui auraient le même `href`.
 * `media` : une chaîne de caractères. Restreint la feuille de styles à une [media query](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_media_queries/Using_media_queries) spécifique.
 * `nonce` : une chaîne de caractères. Un [nonce cryptographique autorisant la ressource](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/nonce) dans le cadre d'une Politique de Sécurité de Contenu (CSP) stricte.
 * `title` : une chaîne de caractères. Indique le nom d'une [feuille de styles alternative](https://developer.mozilla.org/fr/docs/Web/CSS/Alternative_style_sheets).
+=======
+* `children`: a string, required. The contents of the stylesheet.
+* `precedence`: a string. Tells React where to rank the `<style>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher". Many style systems can work fine using a single precedence value because style rules are atomic. Stylesheets with the same precedence go together whether they are `<link>` or inline `<style>` tags or loaded using [`preinit`](/reference/react-dom/preinit) functions.
+* `href`: a string. Allows React to [de-duplicate styles](#special-rendering-behavior) that have the same `href`.
+* `media`: a string. Restricts the stylesheet to a certain [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries).
+* `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
+* `title`: a string. Specifies the name of an [alternative stylesheet](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets).
+>>>>>>> 53fbed3f676013508fb9cce22a3fc8664b1dc5a1
 
 Ces props sont **déconseillées** pour une utilisation avec React :
 
