@@ -43,15 +43,27 @@ Pour établir un lien vers des ressources externes telles que des feuilles de st
 
 Ces props sont disponibles lorsque `rel="stylesheet"` :
 
+<<<<<<< HEAD
 * `precedence` : une chaîne de caractères. Indique à React où placer le nœud DOM `<link>` par rapport aux autres présents dans le `<head>` du document, ce qui détermine quelle feuille de styles a priorité sur quelle autre. La valeur peut être (par ordre de précédence) `"reset"`, `"low"`, `"medium"` ou `"high"`. Les feuilles de style de même précédence sont regroupées, qu'il s'agisse de balises `<link>` ou `<style>`, y compris si elles sont chargées *via* les fonctions [`preload`](/reference/react-dom/preload) ou [`preinit`](/reference/react-dom/preinit).
 * `media` : une chaîne de caractères. Restreint la feuille de styles à une [media query](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_media_queries/Using_media_queries) spécifique.
 * `title` : une chaîne de caractères. Indique le nom d'une [feuille de styles alternative](https://developer.mozilla.org/fr/docs/Web/CSS/Alternative_style_sheets).
+=======
+* `precedence`: a string. Tells React where to rank the `<link>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher". Many style systems can work fine using a single precedence value because style rules are atomic. Stylesheets with the same precedence go together whether they are `<link>` or inline `<style>` tags or loaded using [`preinit`](/reference/react-dom/preinit) functions.
+* `media`: a string. Restricts the stylesheet to a certain [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries).
+* `title`: a string. Specifies the name of an [alternative stylesheet](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets).
+>>>>>>> 2a2e02f1d88f4d2828728ce352626e84ed8abda0
 
 Ces props sont disponibles lorsque `rel="stylesheet"` mais elles désactivent le [traitement spécial des feuilles de style](#special-rendering-behavior) par React :
 
+<<<<<<< HEAD
 * `disabled` : un booléen. Désactive la feuille de styles.
 * `onError` : une fonction. Appelée lorsque le chargement de la feuille de styles échoue.
 * `onLoad` : une fonction. Appelée lorsque le chargement de la feuille de styles est terminé.
+=======
+* `disabled`: a boolean. Disables the stylesheet.
+* `onError`: a function. Called when the stylesheet fails to load.
+* `onLoad`: a function. Called when the stylesheet finishes being loaded.
+>>>>>>> 2a2e02f1d88f4d2828728ce352626e84ed8abda0
 
 Ces props sont disponibles lorsque `rel="preload"` ou `rel="modulepreload"` :
 

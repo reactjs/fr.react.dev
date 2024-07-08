@@ -20,7 +20,11 @@ La fonction `preinit` n'est actuellement disponible que sur les canaux de livrai
 `preinit` vous permet de charger et d'évaluer en avance une feuille de styles ou un script extérieurs.
 
 ```js
+<<<<<<< HEAD
 preinit("https://example.com/script.js", { as: "script" });
+=======
+preinit("https://example.com/script.js", {as: "script"});
+>>>>>>> 2a2e02f1d88f4d2828728ce352626e84ed8abda0
 ```
 
 </Intro>

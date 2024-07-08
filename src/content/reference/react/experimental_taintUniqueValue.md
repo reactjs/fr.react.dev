@@ -14,7 +14,11 @@ Vous pouvez l'essayer en mettant à jour vos modules React afin d'utiliser la ve
 
 Les versions expérimentales de React sont susceptibles de contenir des bugs. Veillez donc à ne pas les utiliser en production.
 
+<<<<<<< HEAD
 Cette API n'est disponible qu'au sein des [React Server Components](/reference/react/use-client).
+=======
+This API is only available inside [React Server Components](/reference/rsc/use-client).
+>>>>>>> 2a2e02f1d88f4d2828728ce352626e84ed8abda0
 
 </Wip>
 
