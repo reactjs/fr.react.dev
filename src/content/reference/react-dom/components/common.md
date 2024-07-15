@@ -257,11 +257,40 @@ React appellera aussi votre fonction `ref` à chaque fois que vous passez une fo
 
 #### Paramètres {/*ref-callback-parameters*/}
 
+<<<<<<< HEAD
 * `node` : un nœud DOM ou `null`. React vous donnera le nœud DOM lorsque la ref sera attachée, et `null` lorsqu'elle sera détachée. À moins de passer la même référence de fonction `ref` à chaque rendu, la fonction de rappel sera détachée et réattachée à chaque rendu du composant.
+=======
+* `node`: A DOM node or `null`. React will pass you the DOM node when the ref gets attached, and `null` when the `ref` gets detached. Unless you pass the same function reference for the `ref` callback on every render, the callback will get temporarily detached and re-attached during every re-render of the component.
+
+<Canary>
+>>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
 
 #### Valeur renvoyée {/*returns*/}
 
+<<<<<<< HEAD
 La fonction `ref` ne renvoie rien.
+=======
+*  **optional** `cleanup function`: When the `ref` is detached, React will call the cleanup function. If a function is not returned by the `ref` callback, React will call the callback again with `null` as the argument when the `ref` gets detached.
+
+```js
+
+<div ref={(node) => {
+  console.log(node);
+
+  return () => {
+    console.log('Clean up', node)
+  }
+}}>
+
+```
+
+#### Caveats {/*caveats*/}
+
+* When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, implement the cleanup function.
+* When you pass a *different* `ref` callback, React will call the *previous* callback's cleanup function if provided. If not cleanup function is defined, the `ref` callback will be called with `null` as the argument. The *next* function will be called with the DOM node.
+
+</Canary>
+>>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
 
 ---
 

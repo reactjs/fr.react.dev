@@ -1,5 +1,8 @@
 ---
 title: "React v18.0"
+author: The React Team
+date: 2022/03/08
+description: React 18 is now available on npm! In our last post, we shared step-by-step instructions for upgrading your app to React 18. In this post, we'll give an overview of what's new in React 18, and what it means for the future.
 ---
 
 Le 29 mars 2022 par [l'équipe React](/community/team)
@@ -237,7 +240,11 @@ Avec le Mode Strict de React 18, React simule ensuite, en mode développement, l
 
 #### useTransition {/*usetransition*/}
 
+<<<<<<< HEAD
 `useTransition` et `startTransition` vous permettent d'indiquer que certaines mises à jour d'état ne sont pas urgentes.  Les autres mises à jour d'état sont considérées comme urgentes par défaut.  React permettra aux mises à jour d'état urgentes (par exemple la mise à jour d'un champ de saisie) d'interrompre les mises à jour d'état non urgentes (par exemple le rendu d'une liste de résultats de recherche). [Voir la documentation](/reference/react/useTransition).
+=======
+`useTransition` and `startTransition` let you mark some state updates as not urgent. Other state updates are considered urgent by default. React will allow urgent state updates (for example, updating a text input) to interrupt non-urgent state updates (for example, rendering a list of search results). [See docs here](/reference/react/useTransition).
+>>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
 
 #### useDeferredValue {/*usedeferredvalue*/}
 

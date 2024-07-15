@@ -37,7 +37,11 @@ export default function App() {
 
 Vous pouvez le modifier directement ou l'ouvrir dans un nouvel onglet en appuyant sur le bouton *“Fork”* dans le coin supérieur droit.
 
+<<<<<<< HEAD
 La plupart des pages de la documentation de React contiennent des bacs à sable comme celui-ci. Hors de la documentation de React, il existe de nombreux bacs à sable qui prennent en charge React, par exemple [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react) ou encore [CodePen](https://codepen.io/pen?&editors=0010&layout=left&prefill_data_id=3f4569d1-1b11-4bce-bd46-89090eed5ddb).
+=======
+Most pages in the React documentation contain sandboxes like this. Outside of the React documentation, there are many online sandboxes that support React: for example, [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react), or [CodePen.](https://codepen.io/pen?template=QWYVwWN)
+>>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
 
 ### Essayer React sur votre machine {/*try-react-locally*/}
 
