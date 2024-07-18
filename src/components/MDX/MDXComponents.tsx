@@ -107,7 +107,7 @@ const CanaryBadge = ({title}: {title: string}) => (
       size="s"
       className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
     />
-    Canary only
+    Canary uniquement
   </span>
 );
 
