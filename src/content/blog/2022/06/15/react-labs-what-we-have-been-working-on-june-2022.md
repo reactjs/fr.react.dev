@@ -1,5 +1,9 @@
 ---
-title: "React Labs: What We've Been Working On – June 2022"
+title: "React Labs : ce sur quoi nous bossons – juin 2022"
+author:  Andrew Clark, Dan Abramov, Jan Kassens, Joseph Savona, Josh Story, Lauren Tan, Luna Ruan, Mengdi Chen, Rick Hanlon, Robert Zhang, Sathya Gunasekaran, Sebastian Markbage et Xuan Huang
+date: 2022/06/15
+description: React 18 a pris des années, mais il était porteur de précieuses leçons pour l'équipe React.  Sa sortie était l'aboutissement de nombreuses années de recherche, en explorant de nouvelles voies.  Certaines de ces tentatives ont réussi ; mais bien davantage se sont révélées des impasses qui nous ont toutefois fourni de nouvelles pistes.  Une des leçons que nous en avons tirées, c'est qu'il est frustrant pour la communauté d'attendre la sortie de nouvelles fonctionnalités sans que nous communiquions sur nos travaux.
+
 ---
 
 Le 15 juin 2022 par [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://twitter.com/dan_abramov), [Jan Kassens](https://twitter.com/kassens), [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Luna Ruan](https://twitter.com/lunaruan), [Mengdi Chen](https://twitter.com/mengdi_en), [Rick Hanlon](https://twitter.com/rickhanlonii), [Robert Zhang](https://twitter.com/jiaxuanzhang01), [Sathya Gunasekaran](https://twitter.com/_gsathya), [Sebastian Markbåge](https://twitter.com/sebmarkbage) et [Xuan Huang](https://twitter.com/Huxpro)
@@ -72,8 +76,6 @@ Nous avions déjà essayé de répondre à ce besoin en ajoutant une [API de pis
 Nous travaillons sur une nouvelle version de l'API de pistage d'interactions (appelée pour le moment *Transition Tracing* parce qu'elle est déclenchée par `startTransition`) qui résout ces problèmes.
 
 ## Nouvelles docs React {/*new-react-docs*/}
-
-Nous avons annoncé l'année dernière une version beta du nouveau site web de documentation de React ([finalement livrée en tant que react.dev](/blog/2023/03/16/introducing-react-dev)). Ces nouveaux contenus pédagogiques sont basés sur les Hooks et comprennent de nouveaux diagrammes et illustrations, ainsi que de nombreux exemples et défis interactifs.  Nous avons mis ce chantier en pause le temps de nous concentrer sur la sortie de React 18, mais maintenant que celui-ci est sorti, nous avons repris le travail pour boucler et sortir la nouvelle documentation.
 
 Nous sommes en train d'écrire une section très détaillée sur les Effets, puisque vous nous avez souvent dit que c'était un des sujets les plus délicats à maîtriser pour les utilisateurs de React tant novices que chevronnés. La première page de la série s'appelle [Synchroniser grâce aux Effets](/learn/synchronizing-with-effects), et vous en verrez d'autres dans les prochaines semaines.  Lorsque nous avons commencé cette section sur les Effets, nous avons réalisé que de nombreuses approches usuelles utilisant les Effets peuvent être simplifiées en ajoutant une nouvelle primitive à React. Nous avons partagé nos premières réflexions à ce sujet dans la [RFC pour useEvent](https://github.com/reactjs/rfcs/pull/220). Elle en est aux premiers stades de la recherche, et nous itérons sur le concept. Nous apprécions les commentaires de la communauté dans la RFC jusqu'ici, ainsi que les [retours](https://github.com/reactjs/reactjs.org/issues/3308) et contributions sur le chantier en cours de la nouvelle documentation.  Nous aimerions notamment remercier [Harish Kumar](https://github.com/harish-sethuraman) pour avoir envoyé ou revu de nombreuses améliorations à l'implémentation du nouveau site web.
 

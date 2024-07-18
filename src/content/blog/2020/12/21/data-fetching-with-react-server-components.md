@@ -1,5 +1,9 @@
 ---
 title: "Découvrez les React Server Components qui n'impactent pas votre bundle"
+author: Dan Abramov, Lauren Tan, Joseph Savona et Sebastian Markbage
+date: 2020/12/21
+description: 2020, c'était long.  Alors que l'année se termine, nous voulions vous partager une sorte de Bulletin Spécial Fêtes sur nos recherches liées aux React Server Components, qui n'occupent pas un seul octet dans vos bundles.
+
 ---
 
 Le 21 décembre 2020 par [Dan Abramov](https://twitter.com/dan_abramov), [Lauren Tan](https://twitter.com/potetotes), [Joseph Savona](https://twitter.com/en_JS) et [Sebastian Markbåge](https://twitter.com/sebmarkbage)

@@ -1,5 +1,8 @@
 ---
 title: "React Labs : ce sur quoi nous bossons – mars 2023"
+author: Joseph Savona, Josh Story, Lauren Tan, Mengdi Chen, Samuel Susla, Sathya Gunasekaran, Sebastian Markbage et Andrew Clark
+date: 2023/03/22
+description: Dans les billets React Labs, nous vous parlons de nos projets de recherche et développement actifs.  Depuis notre dernier bulletin, nous avons fait des progrès significatifs et nous aimerions partager ce que nous avons appris.
 ---
 
 Le 22 mars 2023 par [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Mengdi Chen](https://twitter.com/mengdi_en), [Samuel Susla](https://twitter.com/SamuelSusla), [Sathya Gunasekaran](https://twitter.com/_gsathya), [Sebastian Markbåge](https://twitter.com/sebmarkbage) et [Andrew Clark](https://twitter.com/acdlite).

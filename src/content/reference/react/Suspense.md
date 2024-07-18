@@ -1759,7 +1759,7 @@ function Router() {
   // ...
 ```
 
-Ça dit à React que cette Transition d'état n'est pas urgente, et qu'il est préférable de continuer à afficher la page précédente plutôt que de masquer du contenu déjà révélé.  À présent cliquer sur le bouton « attend » que `Biography` soit chargé :
+Ça dit à React que cette Transition d'état n'est pas urgente, et qu'il est préférable de continuer à afficher la page précédente plutôt que de masquer du contenu déjà révélé.  À présent cliquer sur le bouton « attend » que `Biography` soit chargé :
 
 <Sandpack>
 

@@ -261,13 +261,9 @@ Par souci de simplicité, nous parlons ici des Composants Serveur, mais les mêm
 
 ### Types sérialisables renvoyés par les Composants Serveur {/*serializable-types*/}
 
-Comme dans n'importe quelle appli React, les composants parents passent des données à leurs composants enfants.  Puisqu'ils sont ici rendus dans des environnements distincts, le passage de données d'un Composant Serveur à un Composant Client nécessite une attention particulière.
+Les types de props sérialisables comprennent :
 
-Les valeurs de props passées à un Composant Client doivent être sérialisables.
-
-Voici les types de props sérialisables :
-
-* Types primitifs
+* Les types primitifs
 	* [string](https://developer.mozilla.org/fr/docs/Glossary/String)
 	* [number](https://developer.mozilla.org/fr/docs/Glossary/Number)
 	* [bigint](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/BigInt)

@@ -44,11 +44,9 @@ Dans cette page, le terme « Effet » avec une initiale majuscule fait référ
 
 Pour écrire un Effet, suivez ces trois étapes :
 
-1. **Déclarez un Effet.** Par défaut, votre Effet s’exécutera après chaque rendu.
+1. **Déclarez un Effet.** Par défaut, votre Effet s’exécutera après chaque [commit](/learn/render-and-commit).
 2. **Spécifiez les dépendances de l’Effet.** La plupart des Effets ne devraient se ré-exécuter *que si besoin* plutôt qu’après chaque rendu. Par exemple, une animation de fondu entrant ne devrait se déclencher que pour l’apparition initiale.  La connexion et la déconnexion à un forum de discussion ne devraient survenir que quand le composant apparaît, disparaît, ou change de canal.  Vous apprendrez à contrôler cet aspect en spécifiant des *dépendances*.
 3. **Ajoutez du code de nettoyage si besoin.**  Certains Effets ont besoin de décrire comment les arrêter, les annuler, ou nettoyer après eux de façon générale. Par exemple, une connexion implique une déconnexion, un abonnement suppose un désabonnement, et un chargement réseau aura besoin de pouvoir être annulé ou ignoré. Vous apprendrez comment décrire ça en renvoyant une *fonction de nettoyage*.
-
-Explorons maintenant chaque étape en détail.
 
 ### Étape 1 : déclarez un Effet {/*step-1-declare-an-effect*/}
 
@@ -598,6 +596,35 @@ React remonte volontairement vos composants en développement pour trouver des b
 En général, la réponse consiste à implémenter une fonction de nettoyage. La fonction de nettoyage devrait arrêter ou défaire ce que l’Effet avait commencé. La règle générale veut que l’utilisateur ne puisse pas faire la distinction entre un Effet exécuté une seule fois (comme en production) et une séquence *mise en place → nettoyage → mise en place* (comme en développement).
 
 La plupart des Effets que vous aurez à écrire correspondront à un des scénarios courants ci-après.
+
+<Pitfall>
+
+{/* FIXME:L10N */}
+
+#### Don't use refs to prevent Effects from firing {/*dont-use-refs-to-prevent-effects-from-firing*/}
+
+A common pitfall for preventing Effects firing twice in development is to use a `ref` to prevent the Effect from running more than once. For example, you could "fix" the above bug with a `useRef`:
+
+```js {1,3-4}
+  const connectionRef = useRef(null);
+  useEffect(() => {
+    // 🚩 This wont fix the bug!!!
+    if (!connectionRef.current) {
+      connectionRef.current = createConnection();
+      connectionRef.current.connect();
+    }
+  }, []);
+```
+
+This makes it so you only see `"✅ Connecting..."` once in development, but it doesn't fix the bug.
+
+When the user navigates away, the connection still isn't closed and when they navigate back, a new connection is created. As the user navigates across the app, the connections would keep piling up, the same as it would before the "fix". 
+
+To fix the bug, it is not enough to just make the Effect run once. The effect needs to work after re-mounting, which means the connection needs to be cleaned up like in the solution above.
+
+See the examples below for how to handle common patterns.
+
+</Pitfall>
 
 ### Contrôler des widgets non-React {/*controlling-non-react-widgets*/}
 
@@ -1573,7 +1600,7 @@ Chaque Effet a sa propre variable `ignore`.  Au départ, la variable `ignore` es
 - Le chargement de `'Bob'` se termine
 - L’Effet issu du rendu `'Bob'` **ne fait rien parce que son drapeau `ignore` est à `true`**
 
-En plus d’ignorer le résultat d’un appel API périmé, vous pouvez aussi utiliser [`AbortController`](https://developer.mozilla.org/fr/docs/Web/API/AbortController) pour annuler les requêtes devenues superflues.  Toutefois, cette seule approche ne suffit pas à vous protéger contre les *race conditions*.  Plusieurs étapes asynchrones peuvent être associées à la fin du chargement, de sorte que recourir à un drapeau `ignore` constitue la façon la plus fiable de corriger ce type de soucis.
+En plus d’ignorer le résultat d’un appel API périmé, vous pouvez aussi utiliser [`AbortController`](https://developer.mozilla.org/fr/docs/Web/API/AbortController) pour annuler les requêtes devenues superflues.  Toutefois, cette seule approche ne suffit pas à vous protéger contre les *race conditions*.  D'autres étapes asynchrones pourraient être ajoutées après la fin du chargement, de sorte que recourir à un drapeau `ignore` constitue la façon la plus fiable de corriger ce type de soucis.
 
 </Solution>
 

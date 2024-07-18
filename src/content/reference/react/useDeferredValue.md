@@ -18,7 +18,7 @@ const deferredValue = useDeferredValue(value)
 
 ## Référence {/*reference*/}
 
-### `useDeferredValue(value)` {/*usedeferredvalue*/}
+### `useDeferredValue(value, initialValue?)` {/*usedeferredvalue*/}
 
 Appelez `useDeferredValue` à la racine de votre composant pour recevoir une version différée de cette valeur.
 
@@ -36,13 +36,29 @@ function SearchPage() {
 
 #### Paramètres {/*parameters*/}
 
+{/* FIXME:L10N */}
+
 * `value` : la valeur que vous souhaitez différer. Elle peut être de n'importe quel type.
+* <CanaryBadge title="This feature is only available in the Canary channel" /> **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
 
 #### Valeur renvoyée {/*returns*/}
 
-Durant le rendu initial, la valeur différée renvoyée sera celle que vous avez fournie. Lors des mises à jour, React tentera d'abord un rendu avec l'ancienne valeur (il va donc renvoyer l'ancienne valeur), et ensuite essayer en arrière-plan un rendu avec la nouvelle valeur (il va donc renvoyer la valeur à jour).
+- `currentValue` : durant le rendu initial, la valeur différée renvoyée sera celle que vous avez fournie. Lors des mises à jour, React tentera d'abord un rendu avec l'ancienne valeur (il va donc renvoyer l'ancienne valeur), et ensuite essayer en arrière-plan un rendu avec la nouvelle valeur (il va donc renvoyer la valeur à jour).
+
+
+<Canary>
+
+{/* FIXME:L10N */}
+
+In the latest React Canary versions, `useDeferredValue` returns the `initialValue` on initial render, and schedules a re-render in the background with the `value` returned.
+
+</Canary>
 
 #### Limitations {/*caveats*/}
+
+{/* FIXME:L10N */}
+
+- When an update is inside a Transition, `useDeferredValue` always returns the new `value` and does not spawn a deferred render, since the update is already deferred.
 
 - Les valeurs que vous passez à `useDeferredValue` doivent être soit des valeurs primitives (comme des chaînes de caractères ou des nombres), soit des objets créés en-dehors du rendu. Si vous créez un nouvel objet pendant le rendu et que vous le passez immédiatement à `useDeferredValue`, il sera différent à chaque rendu, entraînant des rendus inutiles en arrière-plan.
 

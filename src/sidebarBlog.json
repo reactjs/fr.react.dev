@@ -12,6 +12,27 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "La React Conf 2024 en bref",
+          "titleForHomepage": "La React Conf 2024 en bref",
+          "icon": "blog",
+          "date": "22 mai 2024",
+          "path": "/blog/2024/05/22/react-conf-2024-recap"
+        },
+        {
+          "title": "React 19 RC",
+          "titleForHomepage": "React 19 RC",
+          "icon": "blog",
+          "date": "25 avril 2024",
+          "path": "/blog/2024/04/25/react-19"
+        },
+        {
+          "title": "React 19 RC : guide de migration",
+          "titleForHomepage": "React 19 RC : guide de migration",
+          "icon": "blog",
+          "date": "25 avril 2024",
+          "path": "/blog/2024/04/25/react-19-upgrade-guide"
+        },
+        {
           "title": "React Labs : ce sur quoi nous bossons – février 2024",
           "titleForHomepage": "React Labs : février 2024",
           "icon": "labs",
@@ -61,8 +82,8 @@
           "path": "/blog/2022/03/08/react-18-upgrade-guide"
         },
         {
-          "title": "React Conf 2021 Recap",
-          "titleForHomepage": "React Conf 2021 Recap",
+          "title": "La React Conf 2021 en bref",
+          "titleForHomepage": "La React Conf 2021 en bref",
           "icon": "blog",
           "date": "17 décembre 2021",
           "path": "/blog/2021/12/17/react-conf-2021-recap"

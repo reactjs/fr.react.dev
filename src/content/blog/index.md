@@ -10,6 +10,30 @@ Ce blog est la source officielle des mises à jour par l'équipe React.  Toute a
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<BlogCard title="React Conf 2024 Recap" date="22 mai 2024" url="/blog/2024/05/22/react-conf-2024-recap">
+
+{/* FIXME:L10N */}
+
+Last week we hosted React Conf 2024, a two-day conference in Henderson, Nevada where 700+ attendees gathered in-person to discuss the latest in UI engineering. This was our first in-person conference since 2019, and we were thrilled to be able to bring the community together again ...
+
+</BlogCard>
+
+<BlogCard title="React 19 RC " date="25 avril 2024" url="/blog/2024/04/25/react-19">
+
+{/* FIXME:L10N */}
+
+In the React 19 RC Upgrade Guide, we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them ...
+
+</BlogCard>
+
+<BlogCard title="React 19 RC : guide de migration" date="25 avril 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
+
+{/* FIXME:L10N */}
+
+The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading libraries to React 19 ...
+
+</BlogCard>
+
 <BlogCard title="React Labs : ce sur quoi nous bossons – février 2024" date="15 février 2024" url="/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024">
 
 Dans les billets React Labs, nous vous parlons de nos projets de recherche et développement actifs.  Depuis notre dernier bulletin, nous avons fait des progrès significatifs sur le React Compiler et React 19, et nous aimerions partager ce que nous avons appris.

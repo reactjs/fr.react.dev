@@ -1,5 +1,9 @@
 ---
 title: "React v18.0"
+author: L’équipe React
+date: 2022/03/29
+description: React 18 est désormais disponible sur npm ! Dans notre dernier billet, nous vous donnions des instructions pas à pas pour mettre à jour votre appli sur React 18. Dans celui-ci, nous faisons un tour d'horizon des nouveautés de cette version, et de ce qu'elles impliquent pour l'avenir…
+
 ---
 
 Le 29 mars 2022 par [l'équipe React](/community/team)

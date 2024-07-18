@@ -32,6 +32,10 @@
           "path": "/community/docs-contributors"
         },
         {
+          "title": "Traductions",
+          "path": "/community/translations"
+        },
+        {
           "title": "Remerciements",
           "path": "/community/acknowledgements"
         },

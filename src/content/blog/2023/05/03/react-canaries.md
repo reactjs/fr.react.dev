@@ -1,5 +1,9 @@
 ---
 title: "React Canaries : livraison incrémentale de fonctionnalités hors de Meta"
+author: Dan Abramov, Sophie Alpert, Rick Hanlon, Sebastian Markbage et Andrew Clark
+date: 2023/05/03
+description: Nous aimerions offrir à la communauté React un moyen d'adopter individuellement des fonctionnalités dès que leur conception est quasi finalisée —  un peu comme l'utilisation que Meta fait de React en interne depuis longtemps déjà. Nous présentons donc un nouveau [canal de livraison officiel appelé Canary](/community/versioning-policy#canary-channel). Il permet à des environnements choisis tels que les frameworks de découpler leur adoption de fonctionnalités React individuelles du calendrier officiel de sortie de React.
+
 ---
 
 Le 3 mai 2023 par [Dan Abramov](https://twitter.com/dan_abramov), [Sophie Alpert](https://twitter.com/sophiebits), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage) et [Andrew Clark](https://twitter.com/acdlite)

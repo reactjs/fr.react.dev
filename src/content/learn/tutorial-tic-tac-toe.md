@@ -2927,4 +2927,4 @@ Si vous avez un peu plus de temps ou souhaitez pratiquer vos compétences React 
 4. Lorsqu'un joueur gagne, mettez en exergue les trois cases qui constituent sa victoire (et si personne ne gagne, affichez un message indiquant un match nul).
 5. Affichez l'emplacement de chaque coup (ligne, colonne) dans l'historique des coups joués.
 
-Au cours de ce tutoriel, vous avez abordé des concepts React tels que les éléments, les composants, les props et l'état. À présent que vous avez pu les voir en action dans le cadre de la construction de ce jeu, allez donc lire [Penser en React](/learn/thinking-in-react) pour explorer ces mêmes concepts dans le cadre de la construction de l'UI d'une appli.
+Au cours de ce tutoriel, vous avez abordé des concepts React tels que les éléments, les composants, les props et l'état. À présent que vous avez pu les voir en action dans le cadre de la construction de ce jeu, allez donc lire [Penser en React](/learn/thinking-in-react) pour explorer ces mêmes concepts React dans le cadre de la construction de l'UI d'une appli.
