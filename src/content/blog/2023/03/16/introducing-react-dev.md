@@ -1,12 +1,8 @@
 ---
-<<<<<<< HEAD
 title: "Découvrez react.dev"
-=======
-title: "Introducing react.dev"
-author: Dan Abramov and Rachel Nabors
+author: Dan Abramov et Rachel Nabors
 date: 2023/03/16
-description: Today we are thrilled to launch react.dev, the new home for React and its documentation. In this post, we would like to give you a tour of the new site.
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+description: Nous sommes enchantés d'annoncer aujourd'hui la sortie de react.dev, le nouveau site officiel de React et de sa documentation.  Dans ce billet, nous aimerions vous faire faire un tour du nouveau site.
 ---
 
 Le 16 mars 2023 par [Dan Abramov](https://twitter.com/dan_abramov) et [Rachel Nabors](https://twitter.com/rachelnabors)
@@ -618,11 +614,7 @@ Nous espérons que cette approche rendra la référence API utile non seulement 
 
 ## Et maintenant ? {/*whats-next*/}
 
-<<<<<<< HEAD
-Voilà qui conclut notre visite guidée ! Baladez-vous sur le nouveau site, voyez ce que vous aimez ou pas, et n'hésitez pas à nous faire part de vos retours *via* le [sondage anonyme](https://www.surveymonkey.co.uk/r/PYRPF3X) ou dans notre [gestion de tickets](https://github.com/reactjs/react.dev/issues).
-=======
-That's a wrap for our little tour! Have a look around the new website, see what you like or don't like, and keep the feedback coming in our [issue tracker](https://github.com/reactjs/react.dev/issues).
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+Voilà qui conclut notre visite guidée ! Baladez-vous sur le nouveau site, voyez ce que vous aimez ou pas, et n'hésitez pas à nous faire part de vos retours dans notre [gestion de tickets](https://github.com/reactjs/react.dev/issues).
 
 Nous sommes conscients que ce projet a mis longtemps à voir le jour. Nous voulions mettre très haut la barre de la qualité, car nous estimons que la communauté React le mérite.  Durant l'écriture de ces docs et la création de tous les exemples, nous avons repéré des erreurs dans nos propres explications, des bugs dans React, et même des trous dans la conception de React que nous travaillons désormais à régler.  Nous espérons que cette documentation nous aidera à garder la barre très haut pour React à l'avenir.
 

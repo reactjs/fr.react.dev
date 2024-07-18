@@ -30,13 +30,8 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Peut après avoir découvert AutoHotkey, Jack écrivait des scripts pour automatiser tout ce à quoi il pouvait penser.  Lorsqu'il a atteint les limites de l'exercice, il s'est plongé dans le développement web et n'a jamais regardé en arrière.  Dernièrement, Jack a travaillé sur la plateforme web d'Instagram, avant de migrer vers React.  Son langage de programmation préféré est JSX.
 </TeamMember>
 
-<<<<<<< HEAD
 <TeamMember name="Jason Bonta" permalink="jason-bonta" photo="/images/team/jasonbonta.jpg" threads="someextent" title="Manager d’ingénieurs chez Meta">
-    Jason aime faire livrer des tonnes de paquets Amazon au boulot pour pouvoir se construire des forts. Bien qu'il se soit parfois littéralement cloisonné de son équipe, et même s'il ne comprend pas comment fonctionne une boucle for-of, on l'aime pour les qualités uniques qu'il met dans son travail.
-=======
-<TeamMember name="Jason Bonta" permalink="jason-bonta" photo="/images/team/jasonbonta.jpg" threads="someextent" title="Engineering Manager at Meta">
-    Jason abandoned embedded C for a career in front-end engineering and never looked back. Armed with esoteric CSS knowledge and a passion for beautiful UI, Jason joined Facebook in 2010, where he now feels privileged to have seen JavaScript development come of age. Though he may not understand how `for...of` loops work, he loves getting to work with brilliant people on projects that enable amazing UX.
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+    Jason a abandonné une carrière dans le C embarqué pour se consacrer à l'ingénierie front-end et n'a jamais regretté ce choix.  Armé d'une connaissance ésotérique de CSS et d'une passion pour les belles interfaces utilisateur, Jason a rejoint Facebook en 2010, et se sent privilégié d'y avoir vu JavaScript prendre une place de premier plan. Même s'il ne comprend pas comment fonctionne une boucle for-of, il adore bosser avec des gens brillants sur des projets rendant possible une UX époustouflante.
 </TeamMember>
 
 <TeamMember name="Joe Savona" permalink="joe-savona" photo="/images/team/joe.jpg" github="josephsavona" twitter="en_JS" threads="joesavona" title="Ingénieur chez Meta">
@@ -47,21 +42,12 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Josh a étudié les Mathématiques et découvert la programmation pendant ses études.  Son premier boulot de développeur professionnel consistait à calculer des taux d'assurance dans Microsoft Excel, ce parangon de Programmation Réactive, ce qui explique probablement pourquoi il bosse désormais sur React. Entre les deux Josh a été contributeur, manager voire directeur dans quelques startups.  Hors du boulot, il aime se lancer des défis de cuisine.
 </TeamMember>
 
-<<<<<<< HEAD
 <TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" personal="no.lol" title="Ingénieure chez Meta">
-    La carrière de développeuse de Lauren a atteint son sommet lorsqu'elle a découvert la balise `<marquee>`. Depuis, elle cherche à retrouver cette extase.  Lorsqu'elle n'est pas en train d'ajouter des bugs à React, elle aime balancer des mèmes audacieux dans les forums internes, jouer à beaucoup trop de jeux vidéos avec l'amour de sa vie, et son chien Zelda.
+    La carrière de développeuse de Lauren a atteint son sommet lorsqu'elle a découvert la balise `<marquee>`. Depuis, elle cherche à retrouver cette extase.  Elle a étudié la finance à la fac plutôt que l'informatique, de sorte qu'elle a paris à coder avec Excel plutôt que Java. Lauren aime balancer des mèmes audacieux dans les forums internes, jouer à des jeux vidéos avec l'amour de sa vie, et poutouter son chien Zelda.
 </TeamMember>
 
 <TeamMember name="Luna Wei" permalink="luna-wei" photo="/images/team/luna-wei.jpg" github="lunaleaps" twitter="lunaleaps" threads="lunaleaps" title="Ingénieure chez Meta">
     Luna a appris les bases de Python à 6 ans grâce à son père. Depuis plus rien ne l'arrête. Luna a bien l'intention d'être une Génération Z, et le chemin du succès passe par la défense de l'environnement, du jardinage urbain et beaucoup de temps précieux passé avec Voo-Doo (voir photo).
-=======
-<TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" personal="no.lol" title="Engineer at Meta">
-    Lauren's programming career peaked when she first discovered the `<marquee>` tag. She’s been chasing that high ever since. She studied Finance instead of CS in college, so she learned to code using Excel instead of Java. Lauren enjoys dropping cheeky memes in chat, playing video games with her partner, and petting her dog Zelda.
-</TeamMember>
-
-<TeamMember name="Luna Wei" permalink="luna-wei" photo="/images/team/luna-wei.jpg" github="lunaleaps" twitter="lunaleaps" threads="lunaleaps" title="Engineer at Meta">
-    Luna first learnt the fundamentals of python at the age of 6 from her father. Since then, she has been unstoppable. Luna aspires to be a gen z, and the road to success is paved with environmental advocacy, urban gardening and lots of quality time with her Voo-Doo’d (as pictured).
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
 </TeamMember>
 
 <TeamMember name="Matt Carroll" permalink="matt-carroll" photo="/images/team/matt-carroll.png" github="mattcarrollcode" twitter="mattcarrollcode" threads="mattcarrollcode" title="Developer Advocate chez Meta">
@@ -80,17 +66,13 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Ricky a étudié les maths théoriques puis s'est retrouvé on ne sait comment dans l'équipe React Native quelques années avant de rejoindre l'équipe React. Lorsqu'il n'est pas en train de coder, vous le trouverez à faire du snowboard, du vélo, de l'escalade, du golf, ou à fermer les tickets GitHub qui violent le gabarit demandé.
 </TeamMember>
 
-<<<<<<< HEAD
-<TeamMember name="Sathya Gunasekaran " permalink="sathya-gunasekaran" photo="/images/team/sathya.jpg" github="gsathya" twitter="_gsathya" threads="gsathya.03" title="Ingénieur chez Meta">
-    Sathya a détesté le *Dragon Book* durant ses études, et pourtant a fini par consacrer sa carrière aux compilateurs. Lorsqu'il n'est pas en train de compiler des composants React, soit il boit du café soit il mange encore un Dosa.
-=======
 <TeamMember name="Ruslan Lesiutin" permalink="ruslan-lesiutin" photo="/images/team/lesiutin.jpg" github="hoxyq" twitter="ruslanlesiutin" threads="lesiutin" title="Engineer at Meta">
+    {/* FIXME:L10N */}
     Ruslan's introduction to UI programming started when he was a kid by manually editing HTML templates for his custom gaming forums. Somehow, he ended up majoring in Computer Science. He enjoys music, games, and memes. Mostly memes.
 </TeamMember>
 
-<TeamMember name="Sathya Gunasekaran " permalink="sathya-gunasekaran" photo="/images/team/sathya.jpg" github="gsathya" twitter="_gsathya" threads="gsathya.03" title="Engineer at Meta">
-    Sathya hated the Dragon Book in school but somehow ended up working on compilers all his career. When he's not compiling React components, he's either drinking coffee or eating yet another Dosa.
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+<TeamMember name="Sathya Gunasekaran " permalink="sathya-gunasekaran" photo="/images/team/sathya.jpg" github="gsathya" twitter="_gsathya" threads="gsathya.03" title="Ingénieur chez Meta">
+    Sathya a détesté le *Dragon Book* durant ses études, et pourtant a fini par consacrer sa carrière aux compilateurs. Lorsqu'il n'est pas en train de compiler des composants React, soit il boit du café soit il mange encore un Dosa.
 </TeamMember>
 
 <TeamMember name="Sebastian Markbåge" permalink="sebastian-markbåge" photo="/images/team/sebmarkbage.jpg" github="sebmarkbage" twitter="sebmarkbage" threads="sebmarkbage" title="Ingénieur chez Vercel">

@@ -3,6 +3,8 @@ title: Server Actions
 canary: true
 ---
 
+{/* FIXME:L10N */}
+
 <Intro>
 
 Server Actions allow Client Components to call async functions executed on the server.

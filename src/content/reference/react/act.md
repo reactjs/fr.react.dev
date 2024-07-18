@@ -2,6 +2,8 @@
 title: act
 ---
 
+{/* FIXME:L10N */}
+
 <Intro>
 
 `act` is a test helper to apply pending React updates before making assertions.

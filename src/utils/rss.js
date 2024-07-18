@@ -24,6 +24,7 @@ const getAllFiles = function (dirPath, arrayOfFiles) {
 
 exports.generateRssFeed = function () {
   const feed = new Feed({
+    // FIXME:L10N
     title: 'React Blog',
     description:
       'This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first.',

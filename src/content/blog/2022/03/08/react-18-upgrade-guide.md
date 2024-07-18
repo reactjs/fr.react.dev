@@ -1,12 +1,9 @@
 ---
-<<<<<<< HEAD
 title: "Comment migrer sur React 18"
-=======
-title: "How to Upgrade to React 18"
 author: Rick Hanlon
 date: 2022/03/08
-description: As we shared in the release post, React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18.
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+description: Comme nous l'avons annoncé dans le billet de sortie, React 18 introduit des fonctionnalités basées sur notre nouveau moteur de rendu concurrent, avec une statégie d'adoption graduelle pour les applications existantes. Dans ce billet, nous vous guidons étape par étape dans votre migration sur React 18.
+
 ---
 
 Le 8 mars 2022 par [Rick Hanlon](https://twitter.com/rickhanlonii)

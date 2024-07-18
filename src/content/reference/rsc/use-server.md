@@ -38,22 +38,11 @@ Lorsque vous appelez une Action Serveur côté client, elle fait une requête r�
 
 Plutôt que de marquer chaque fonction concernée avec `'use server'`, vous pouvez ajouter cette directive tout en haut d'un fichier afin d'en marquer tous les exports comme des Actions Serveur utilisables n'importe où, y compris au travers d'imports par du code client.
 
-<<<<<<< HEAD:src/content/reference/react/use-server.md
 #### Limitations {/*caveats*/}
-=======
-#### Caveats {/*caveats*/}
-* `'use server'` must be at the very beginning of their function or module; above any other code including imports (comments above directives are OK). They must be written with single or double quotes, not backticks.
-* `'use server'` can only be used in server-side files. The resulting Server Actions can be passed to Client Components through props. See supported [types for serialization](#serializable-parameters-and-return-values).
-* To import a Server Action from [client code](/reference/rsc/use-client), the directive must be used on a module level.
-* Because the underlying network calls are always asynchronous, `'use server'` can only be used on async functions.
-* Always treat arguments to Server Actions as untrusted input and authorize any mutations. See [security considerations](#security).
-* Server Actions should be called in a [Transition](/reference/react/useTransition). Server Actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
-* Server Actions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing Server Actions typically process one action at a time and do not have a way to cache the return value.
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a:src/content/reference/rsc/use-server.md
 
 * `'use server'` doit être placé au tout début de la fonction ou du module concerné ; au-dessus notamment de tout code, y compris les imports (mais il peut y avoir des commentaires avant les directives).  La directive doit utiliser des apostrophes (`'`) ou guillemets (`"`), mais pas des *backticks* (<code>`</code>).
 * `'use server'` ne peut être utilisé qu'au sein de fichiers côté serveur.  Les Actions Serveur résultantes peuvent être passées à des Composants Client au moyen des props. Consultez la liste des [types sérialisables](#serializable-parameters-and-return-values).
-* Pour importer une Action Serveur depuis du [code côté client](/reference/react/use-client), la directive doit obligatoirement être utilisée au niveau du module.
+* Pour importer une Action Serveur depuis du [code côté client](/reference/rsc/use-client), la directive doit obligatoirement être utilisée au niveau du module.
 * Dans la mesure où les appels réseau sous-jacents sont forcément asynchrones, `'use server'` n'est utilisable qu'au sein de fonctions asynchrones.
 * Considérez toujours les arguments de vos Actions Serveur comme des données non validées, et soumettez toute mutation à un processus d'autorisation. Allez voir les [considérations sécuritaires](#security).
 * Les Actions Serveur devraient toujours être appelées au sein d'une [Transition](/reference/react/useTransition). Les Actions Serveur passées à [`<form action>`](/reference/react-dom/components/form#props) ou [`formAction`](/reference/react-dom/components/input#props) seront automatiquement enrobées par une transition.
@@ -107,11 +96,7 @@ En particulier, les types suivants ne sont **pas** pris en charge :
 * Les objets de quelque classe que ce soit (hormis les classes natives explicitement listées plus haut) ainsi que les objets ayant [un prototype nul](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
 * Les symboles non inscrits au global, ex. `Symbol('my new symbol')`
 
-<<<<<<< HEAD:src/content/reference/react/use-server.md
-Les valeurs renvoyées sérialisables sont les mêmes que pour les [props sérialisables](/reference/react/use-client#passing-props-from-server-to-client-components) d'un Composant Client agissant comme « point de césure » entre le code côté client et le code côté serveur.
-=======
-Supported serializable return values are the same as [serializable props](/reference/rsc/use-client#passing-props-from-server-to-client-components) for a boundary Client Component.
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a:src/content/reference/rsc/use-server.md
+Les valeurs renvoyées sérialisables sont les mêmes que pour les [props sérialisables](/reference/rsc/use-client#passing-props-from-server-to-client-components) d'un Composant Client agissant comme « point de césure » entre le code côté client et le code côté serveur.
 
 ## Utilisation {/*usage*/}
 
@@ -148,11 +133,7 @@ Grâce au passage d'une Action Serveur comme `action` du formulaire, React peut 
 
 Pour revenir à notre formulaire de réservation d'identifiant, il peut arriver que l'identifiant ne soit plus disponible. `requestUsername` devrait nous indiquer si elle a réussi ou non sa réservation.
 
-<<<<<<< HEAD:src/content/reference/react/use-server.md
-Pour mettre à jour l'UI sur base du résultat d'une Action Serveur, tout en proposant une amélioration progressive, utilisez [`useFormState`](/reference/react-dom/hooks/useFormState).
-=======
-To update the UI based on the result of a Server Action while supporting progressive enhancement, use [`useActionState`](/reference/react/useActionState).
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a:src/content/reference/rsc/use-server.md
+Pour mettre à jour l'UI sur base du résultat d'une Action Serveur, tout en proposant une amélioration progressive, utilisez [`useActionState`](/reference/react/useActionState).
 
 ```js
 // requestUsername.js
@@ -176,11 +157,7 @@ import { useActionState } from 'react';
 import requestUsername from './requestUsername';
 
 function UsernameForm() {
-<<<<<<< HEAD:src/content/reference/react/use-server.md
-  const [returnValue, action] = useFormState(requestUsername, 'n/d');
-=======
-  const [state, action] = useActionState(requestUsername, null, 'n/a');
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a:src/content/reference/rsc/use-server.md
+  const [state, action] = useActionState(requestUsername, null, 'n/d');
 
   return (
     <>
@@ -188,21 +165,13 @@ function UsernameForm() {
         <input type="text" name="username" />
         <button type="submit">Réserver</button>
       </form>
-<<<<<<< HEAD:src/content/reference/react/use-server.md
-      <p>Résultat de la dernière réservation : {returnValue}</p>
-=======
-      <p>Last submission request returned: {state}</p>
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a:src/content/reference/rsc/use-server.md
+      <p>Résultat de la dernière réservation : {state}</p>
     </>
   );
 }
 ```
 
-<<<<<<< HEAD:src/content/reference/react/use-server.md
-Remarquez que `useFormState`, au même titre que la plupart des Hooks, ne peut être appelé que depuis du <CodeStep step={1}>[code côté client](/reference/react/use-client)</CodeStep>.
-=======
-Note that like most Hooks, `useActionState` can only be called in <CodeStep step={1}>[client code](/reference/rsc/use-client)</CodeStep>.
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a:src/content/reference/rsc/use-server.md
+Remarquez que `useActionState`, au même titre que la plupart des Hooks, ne peut être appelé que depuis du <CodeStep step={1}>[code côté client](/reference/rsc/use-client)</CodeStep>.
 
 ### Appeler une Action Serveur hors d'un `<form>` {/*calling-a-server-action-outside-of-form*/}
 

@@ -44,17 +44,9 @@ Dans cette page, le terme « Effet » avec une initiale majuscule fait référ
 
 Pour écrire un Effet, suivez ces trois étapes :
 
-1. **Déclarez un Effet.** Par défaut, votre Effet s’exécutera après chaque rendu.
+1. **Déclarez un Effet.** Par défaut, votre Effet s’exécutera après chaque [commit](/learn/render-and-commit).
 2. **Spécifiez les dépendances de l’Effet.** La plupart des Effets ne devraient se ré-exécuter *que si besoin* plutôt qu’après chaque rendu. Par exemple, une animation de fondu entrant ne devrait se déclencher que pour l’apparition initiale.  La connexion et la déconnexion à un forum de discussion ne devraient survenir que quand le composant apparaît, disparaît, ou change de canal.  Vous apprendrez à contrôler cet aspect en spécifiant des *dépendances*.
 3. **Ajoutez du code de nettoyage si besoin.**  Certains Effets ont besoin de décrire comment les arrêter, les annuler, ou nettoyer après eux de façon générale. Par exemple, une connexion implique une déconnexion, un abonnement suppose un désabonnement, et un chargement réseau aura besoin de pouvoir être annulé ou ignoré. Vous apprendrez comment décrire ça en renvoyant une *fonction de nettoyage*.
-
-<<<<<<< HEAD
-Explorons maintenant chaque étape en détail.
-=======
-1. **Declare an Effect.** By default, your Effect will run after every [commit](/learn/render-and-commit).
-2. **Specify the Effect dependencies.** Most Effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
-3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
 
 ### Étape 1 : déclarez un Effet {/*step-1-declare-an-effect*/}
 
@@ -605,10 +597,9 @@ En général, la réponse consiste à implémenter une fonction de nettoyage. La
 
 La plupart des Effets que vous aurez à écrire correspondront à un des scénarios courants ci-après.
 
-<<<<<<< HEAD
-### Contrôler des widgets non-React {/*controlling-non-react-widgets*/}
-=======
 <Pitfall>
+
+{/* FIXME:L10N */}
 
 #### Don't use refs to prevent Effects from firing {/*dont-use-refs-to-prevent-effects-from-firing*/}
 
@@ -635,8 +626,7 @@ See the examples below for how to handle common patterns.
 
 </Pitfall>
 
-### Controlling non-React widgets {/*controlling-non-react-widgets*/}
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+### Contrôler des widgets non-React {/*controlling-non-react-widgets*/}
 
 Vous aurez parfois besoin d'ajouter des widgets d’UI qui ne sont pas écrits en React. Par exemple, imaginons que vous souhaitiez ajouter un composant carte à votre page.  Il dispose d’une méthode `setZoomLevel()` et vous aimeriez synchroniser son niveau de zoom avec une variable d’état `zoomLevel` dans votre code React. L’Effet pour y parvenir ressemblerait à ceci :
 
@@ -1610,11 +1600,7 @@ Chaque Effet a sa propre variable `ignore`.  Au départ, la variable `ignore` es
 - Le chargement de `'Bob'` se termine
 - L’Effet issu du rendu `'Bob'` **ne fait rien parce que son drapeau `ignore` est à `true`**
 
-<<<<<<< HEAD
-En plus d’ignorer le résultat d’un appel API périmé, vous pouvez aussi utiliser [`AbortController`](https://developer.mozilla.org/fr/docs/Web/API/AbortController) pour annuler les requêtes devenues superflues.  Toutefois, cette seule approche ne suffit pas à vous protéger contre les *race conditions*.  Plusieurs étapes asynchrones peuvent être associées à la fin du chargement, de sorte que recourir à un drapeau `ignore` constitue la façon la plus fiable de corriger ce type de soucis.
-=======
-In addition to ignoring the result of an outdated API call, you can also use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel the requests that are no longer needed. However, by itself this is not enough to protect against race conditions. More asynchronous steps could be chained after the fetch, so using an explicit flag like `ignore` is the most reliable way to fix this type of problem.
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+En plus d’ignorer le résultat d’un appel API périmé, vous pouvez aussi utiliser [`AbortController`](https://developer.mozilla.org/fr/docs/Web/API/AbortController) pour annuler les requêtes devenues superflues.  Toutefois, cette seule approche ne suffit pas à vous protéger contre les *race conditions*.  D'autres étapes asynchrones pourraient être ajoutées après la fin du chargement, de sorte que recourir à un drapeau `ignore` constitue la façon la plus fiable de corriger ce type de soucis.
 
 </Solution>
 

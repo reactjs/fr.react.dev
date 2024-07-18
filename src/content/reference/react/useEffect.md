@@ -62,15 +62,9 @@ function ChatRoom({ roomId }) {
 
 * Si certaines de vos dépendances sont des objets ou fonctions définies au sein de votre composant, il existe un risque qu'elles **entraînent des exécutions superflues de votre Effet**.  Pour corriger ça, retirez les dépendances superflues sur des [objets](#removing-unnecessary-object-dependencies) et [fonctions](#removing-unnecessary-function-dependencies).  Vous pouvez aussi [extraire les mises à jour d'état](#updating-state-based-on-previous-state-from-an-effect) et la [logique non réactive](#reading-the-latest-props-and-state-from-an-effect) hors de votre Effet.
 
-<<<<<<< HEAD
-* Si votre Effet ne découlait pas d'une interaction (telle qu'un clic), React laissera généralement le navigateur **rafraîchir l'affichage à l'écran avant d'exécuter votre Effet**. Si votre Effet a des aspects visuels (par exemple, il positionne une infobulle) et que le retard est perceptible (par exemple, l'affichage vacille), remplacez `useEffect` par [`useLayoutEffect`](/reference/react/useLayoutEffect).
-=======
-* If your Effect is caused by an interaction (like a click), **React may run your Effect before the browser paints the updated screen**. This ensures that the result of the Effect can be observed by the event system. Usually, this works as expected. However, if you must defer the work until after paint, such as an `alert()`, you can use `setTimeout`. See [reactwg/react-18/128](https://github.com/reactwg/react-18/discussions/128) for more information.
+* Si votre Effet est déclenché par une interaction (telle qu'un clic), **React est susceptible d'exécuter votre Effet avant que le navigateur rafraîchisse l'affichage à l'écran**. Ça garantit que le résultat de l'Effet peut être traité par le système d'événements. Le comportement final est généralement celui souhaité. Cependant, si vous souhaitez différer le travail pour prioriser le rafraîchissement, par exemple s'il contient un appel à `alert()`, vous pouvez utiliser `setTimeout`. Consultez [reactwg/react-18/128](https://github.com/reactwg/react-18/discussions/128) pour en apprendre davantage.
 
-* Even if your Effect was caused by an interaction (like a click), **React may allow the browser to repaint the screen before processing the state updates inside your Effect.** Usually, this works as expected. However, if you must block the browser from repainting the screen, you need to replace `useEffect` with [`useLayoutEffect`.](/reference/react/useLayoutEffect)
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
-
-* Même si votre Effet est déclenché par une interaction (telle qu'un clic), **le navigateur est susceptible de rafraîchir l'affichage avant d'avoir traité les mises à jour d'état au sein de votre Effet**.  C'est généralement ce que vous souhaitez.  Cependant, si vous devez empêcher le navigateur de rafraîchir l'affichage tout de suite, remplacez `useEffect` par [`useLayoutEffect`](/reference/react/useLayoutEffect).
+* Même si votre Effet est déclenché par une interaction (telle qu'un clic), **le navigateur est susceptible de rafraîchir l'affichage avant d'avoir traité les mises à jour d'état au sein de votre Effet**.  Le comportement final est généralement celui souhaité.  Cependant, si vous devez empêcher le navigateur de rafraîchir l'affichage tout de suite, remplacez `useEffect` par [`useLayoutEffect`](/reference/react/useLayoutEffect).
 
 * Les Effets **ne sont exécutés que côté client**.  Ils sont ignorés lors du rendu côté serveur.
 

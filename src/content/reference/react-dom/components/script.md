@@ -68,21 +68,11 @@ Ces props sont **déconseillées** pour une utilisation avec React :
 
 #### Comportement spécifique de rendu {/*special-rendering-behavior*/}
 
-<<<<<<< HEAD
-React peut déplacer les composants `<script>` dans le `<head>` du document, dédoublonner les scripts identiques et [suspendre](/reference/react/Suspense) pendant le chargement d'un script.
-=======
-React can move `<script>` components to the document's `<head>` and de-duplicate identical scripts.
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+React peut déplacer les composants `<script>` dans le `<head>` du document et dédoublonner les scripts identiques.
 
 Pour activer ces comportements, fournissez les props `src` et `async={true}`.  React dédoublonnera les scripts qui ont le même `src`.  La prop `async` doit être active pour permettre aux scripts d'être déplacés sans risque.
 
-<<<<<<< HEAD
-Si vous fournissez au moins une des props `onLoad` ou `onError`, aucun comportement spécifique n'est mis en place puisque vous gérez manuellement le chargement du script au sein de votre composant React.
-
-Pour finir, ce comportement a deux limitations :
-=======
-This special treatment comes with two caveats:
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+Ce comportement a deux limitations :
 
 * React ignorera les changements à ces props après le rendu du script. (React produira un avertissement en développement si ce cas survient.)
 * React est susceptible de laisser le script dans le DOM même après le démontage du composant qui l'a produit. (Ça n'a toutefois aucun impact dans la mesure où les scripts ne sont exécutés qu'une fois : au moment de leur insertion dans le DOM.)
@@ -93,17 +83,9 @@ This special treatment comes with two caveats:
 
 ### Exécuter un script extérieur {/*rendering-an-external-script*/}
 
-<<<<<<< HEAD
-Si un composant dépend de certains scripts pour pouvoir fonctionner correctement, vous pouvez utiliser `<script>` au sein de ce composant.
+Si un composant dépend de certains scripts pour pouvoir fonctionner correctement, vous pouvez utiliser `<script>` au sein de ce composant. Cependant, le composant pourrait finaliser son commit avant que le script ait terminé son chargement. Vous pouvez démarrer un traitement une fois le script chargé en écoutant son événement `load`, par exemple au moyen de sa prop `onLoad`.
 
-Si vous fournissez les props `src` et `async`,  votre composant suspendra le temps du chargement du script.  React dédoublonnera les scripts ayant le même `src`, et n'insèrera que l'un d'entre eux dans le DOM même si plusieurs composants utilisent ce script.
-=======
-If a component depends on certain scripts in order to be displayed correctly, you can render a `<script>` within the component.
-However, the component might be committed before the script has finished loading.
-You can start depending on the script content once the `load` event is fired e.g. by using the `onLoad` prop.
-
-React will de-duplicate scripts that have the same `src`, inserting only one of them into the DOM even if multiple components render it.
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+React dédoublonnera les scripts ayant le même `src`, et n'insèrera que l'un d'entre eux dans le DOM même si plusieurs composants utilisent ce script.
 
 <SandpackWithHTMLOutput>
 
@@ -138,11 +120,7 @@ Lorsque vous souhaitez utiliser un script, il peut être avantageux d'appeler la
 
 ### Exécuter un script défini à la volée {/*rendering-an-inline-script*/}
 
-<<<<<<< HEAD
-Pour exécuter un script défini à la volée, utilisez le composant `<script>` avec le code source à l'intérieur. Les scripts définis à la volée ne sont pas dédoublonnés ou déplacés dans le `<head>` du document, et puisqu'ils ne chargent pas de ressources tierces, ils ne suspendront pas votre composant.
-=======
-To include an inline script, render the `<script>` component with the script source code as its children. Inline scripts are not de-duplicated or moved to the document `<head>`.
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+Pour exécuter un script défini à la volée, utilisez le composant `<script>` avec le code source à l'intérieur. Les scripts définis à la volée ne sont pas dédoublonnés ou déplacés dans le `<head>` du document.
 
 <SandpackWithHTMLOutput>
 

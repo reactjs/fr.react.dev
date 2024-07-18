@@ -10,59 +10,6 @@ Vous connaissez une conférence React.js locale ? Ajoutez-la ! (Merci de conse
 
 ## Conférences à venir {/*upcoming-conferences*/}
 
-<<<<<<< HEAD
-### React Paris 2024 {/*react-paris-2024*/}
-March 22, 2024. In-person in Paris, France + Remote (hybrid)
-
-[Site web](https://react.paris/) - [Twitter](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/)
-
-### Epic Web Conf 2024 {/*epic-web-2024*/}
-April 10 - 11, 2024. In-person in Park City, UT, USA
-
-[Site web](https://www.epicweb.dev/conf) - [YouTube](https://www.youtube.com/@EpicWebDev)
-
-### React Miami 2024 {/*react-miami-2024*/}
-April 19 - 20, 2024. In-person in Miami, FL, USA
-
-[Site web](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
-
-### React Connection 2024 {/*react-connection-2024*/}
-April 22, 2024. In-person in Paris, France 
-
-[Site web](https://reactconnection.io/) - [Twitter](https://twitter.com/ReactConn)
-
-### React Native Connection 2024 {/*react-native-connection-2024*/}
-April 23, 2024. In-person in Paris, France 
-
-[Site web](https://reactnativeconnection.io/) - [Twitter](https://twitter.com/ReactNativeConn)
-
-### React Conf 2024 {/*react-conf-2024*/}
-May 15 - 16, 2024. In-person in Henderson, NV, USA + remote
-
-[Site web](https://conf.react.dev) - [Twitter](https://twitter.com/reactjs)
-
-### App.js Conf 2024 {/*appjs-conf-2024*/}
-May 22 - 24, 2024. In-person in Kraków, Poland + remote
-
-[Site web](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
-
-### React Summit 2024 {/*react-summit-2024*/}
-June 14 & 18, 2024. In-person in Amsterdam, Netherlands + remote (hybrid event)
-
-[Site web](https://reactsummit.com/) - [Twitter](https://twitter.com/reactsummit) - [Vidéos](https://portal.gitnation.org/)
-
-### Render(ATL) 2024 🍑 {/*renderatl-2024-*/}
-June 12 - June 14, 2024. Atlanta, GA, USA
-
-[Site web](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
-
-### React Norway 2024 {/*react-norway-2024*/}
-June 14, 2024. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
-
-[Site web](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
-
-=======
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
 ### React Nexus 2024 {/*react-nexus-2024*/}
 July 04 & 05, 2024. Bangalore, India (In-person event)
 
@@ -81,7 +28,7 @@ July 25, 2024. In-person in Berlin, Germany + remote (hybrid event)
 ### React Rally 2024 🐙 {/*react-rally-2024*/}
 August 12-13, 2024. Park City, UT, USA
 
-[Website](https://reactrally.com) - [Twitter](https://twitter.com/ReactRally) - [YouTube](https://www.youtube.com/channel/UCXBhQ05nu3L1abBUGeQ0ahw)
+[Site web](https://reactrally.com) - [Twitter](https://twitter.com/ReactRally) - [YouTube](https://www.youtube.com/channel/UCXBhQ05nu3L1abBUGeQ0ahw)
 
 ### React Universe Conf 2024 {/*react-universe-conf-2024*/}
 September 5-6, 2024. Wrocław, Poland.
@@ -99,71 +46,67 @@ October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - re
 
 [Site web](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
-<<<<<<< HEAD
-## Conférences passées {/*past-conferences*/}
-=======
 ### React Brussels 2024 {/*react-brussels-2024*/}
 October 18, 2024. In-person in Brussels, Belgium (hybrid event)
 
-[Website](https://www.react.brussels/) - [Twitter](https://x.com/BrusselsReact)
+[Site web](https://www.react.brussels/) - [Twitter](https://x.com/BrusselsReact)
 
 ### React Africa 2024 {/*react-africa-2024*/}
 November 29, 2024. In-person in Casablanca, Morocco (hybrid event)
 
-[Website](https://react-africa.com/) - [Twitter](https://x.com/BeJS_)
+[Site web](https://react-africa.com/) - [Twitter](https://x.com/BeJS_)
 
-## Past Conferences {/*past-conferences*/}
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+## Conférences passées {/*past-conferences*/}
 
 ### React Summit 2024 {/*react-summit-2024*/}
 June 14 & 18, 2024. In-person in Amsterdam, Netherlands + remote (hybrid event)
 
-[Website](https://reactsummit.com/) - [Twitter](https://twitter.com/reactsummit) - [Videos](https://portal.gitnation.org/)
+[Site web](https://reactsummit.com/) - [Twitter](https://twitter.com/reactsummit) - [Vidéos](https://portal.gitnation.org/)
 
 ### React Norway 2024 {/*react-norway-2024*/}
 June 14, 2024. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
 
-[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
+[Site web](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
 
 ### Render(ATL) 2024 🍑 {/*renderatl-2024-*/}
 June 12 - June 14, 2024. Atlanta, GA, USA
 
-[Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
+[Site web](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
 
 ### Frontend Nation 2024 {/*frontend-nation-2024*/}
 June 4 - 7, 2024. Online
 
-[Website](https://frontendnation.com/) - [Twitter](https://twitter.com/frontendnation)
+[Site web](https://frontendnation.com/) - [Twitter](https://twitter.com/frontendnation)
 
 ### App.js Conf 2024 {/*appjs-conf-2024*/}
 May 22 - 24, 2024. In-person in Kraków, Poland + remote
 
-[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+[Site web](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
 ### React Conf 2024 {/*react-conf-2024*/}
 May 15 - 16, 2024. In-person in Henderson, NV, USA + remote
 
-[Website](https://conf.react.dev) - [Twitter](https://twitter.com/reactjs)
+[Site web](https://conf.react.dev) - [Twitter](https://twitter.com/reactjs)
 
 ### React Native Connection 2024 {/*react-native-connection-2024*/}
 April 23, 2024. In-person in Paris, France 
 
-[Website](https://reactnativeconnection.io/) - [Twitter](https://twitter.com/ReactNativeConn)
+[Site web](https://reactnativeconnection.io/) - [Twitter](https://twitter.com/ReactNativeConn)
 
 ### React Miami 2024 {/*react-miami-2024*/}
 April 19 - 20, 2024. In-person in Miami, FL, USA
 
-[Website](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
+[Site web](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
 
 ### Epic Web Conf 2024 {/*epic-web-2024*/}
 April 10 - 11, 2024. In-person in Park City, UT, USA
 
-[Website](https://www.epicweb.dev/conf) - [YouTube](https://www.youtube.com/@EpicWebDev)
+[Site web](https://www.epicweb.dev/conf) - [YouTube](https://www.youtube.com/@EpicWebDev)
 
 ### React Paris 2024 {/*react-paris-2024*/}
 March 22, 2024. In-person in Paris, France + Remote (hybrid)
 
-[Website](https://react.paris/) - [Twitter](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/) - [Videos](https://www.youtube.com/playlist?list=PL53Z0yyYnpWhUzgvr2Nys3kZBBLcY0TA7)
+[Site web](https://react.paris/) - [Twitter](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/) - [Vidéos](https://www.youtube.com/playlist?list=PL53Z0yyYnpWhUzgvr2Nys3kZBBLcY0TA7)
 
 ### React Day Berlin 2023 {/*react-day-berlin-2023*/}
 December 8 & 12, 2023. In-person in Berlin, Germany + remote first interactivity (hybrid event)

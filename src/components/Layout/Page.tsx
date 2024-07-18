@@ -3,40 +3,23 @@
  */
 
 import * as React from 'react';
-<<<<<<< HEAD
-
-import ButtonLink from 'components/ButtonLink';
-import {DocsPageFooter} from 'components/DocsFooter';
 import {Footer} from './Footer';
 import {HomeContent} from './HomeContent';
-import {IconNavArrow} from 'components/Icon/IconNavArrow';
-=======
-import {useRouter} from 'next/router';
-import {SidebarNav} from './SidebarNav';
-import {Footer} from './Footer';
-import {Toc} from './Toc';
-// import SocialBanner from '../SocialBanner';
-import {DocsPageFooter} from 'components/DocsFooter';
-import {Seo} from 'components/Seo';
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
-import PageHeading from 'components/PageHeading';
-import type {RouteItem} from 'components/Layout/getRouteMeta';
-import {Seo} from 'components/Seo';
-import {SidebarNav} from './SidebarNav';
-import SocialBanner from '../SocialBanner';
-import {Suspense} from 'react';
-import {Toc} from './Toc';
-import {TocContext} from '../MDX/TocContext';
-import {Languages, LanguagesContext} from '../MDX/LanguagesContext';
-import type {TocItem} from 'components/MDX/TocContext';
-import {TopNav} from './TopNav';
 import cn from 'classnames';
-<<<<<<< HEAD
-import {getRouteMeta} from './getRouteMeta';
-import {useRouter} from 'next/router';
-=======
+import {DocsPageFooter} from 'components/DocsFooter';
+import type {RouteItem} from 'components/Layout/getRouteMeta';
+import type {TocItem} from 'components/MDX/TocContext';
+import PageHeading from 'components/PageHeading';
+import {Seo} from 'components/Seo';
 import Head from 'next/head';
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+import {useRouter} from 'next/router';
+import {Suspense} from 'react';
+import {Languages, LanguagesContext} from '../MDX/LanguagesContext';
+import {TocContext} from '../MDX/TocContext';
+import {getRouteMeta} from './getRouteMeta';
+import {SidebarNav} from './SidebarNav';
+import {Toc} from './Toc';
+import {TopNav} from './TopNav';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
@@ -190,37 +173,7 @@ export function Page({
               )}>
               {!isHomePage && (
                 <div className="w-full px-5 pt-10 mx-auto sm:px-12 md:px-12 md:pt-12 lg:pt-10">
-<<<<<<< HEAD
-                  {
-                    <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
-                  }
-                  {showSurvey && (
-                    <>
-                      <div className="flex flex-col items-center p-4 m-4">
-                        <p className="mb-4 text-lg font-bold text-primary dark:text-primary-dark">
-                          Comment trouvez-vous ces docs ?
-                        </p>
-                        <div>
-                          <ButtonLink
-                            href="https://www.surveymonkey.co.uk/r/PYRPF3X"
-                            className="mt-1"
-                            type="primary"
-                            size="md"
-                            target="_blank">
-                            Dites-nous tout !
-                            <IconNavArrow
-                              displayDirection="end"
-                              className="inline ms-1"
-                            />
-                          </ButtonLink>
-                        </div>
-                      </div>
-                      <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
-                    </>
-                  )}
-=======
                   <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
                 </div>
               )}
               <div

@@ -3,6 +3,8 @@ title: React Server Components
 canary: true
 ---
 
+{/* FIXME:L10N */}
+
 <Intro>
 
 Server Components are a new type of Component that renders ahead of time, before bundling, in an environment separate from your client app or SSR server.

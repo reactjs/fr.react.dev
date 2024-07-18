@@ -136,9 +136,7 @@
     {
       "title": "Gérer l’état",
       "path": "/learn/managing-state",
-      "tags": [
-        "intermediate"
-      ],
+      "tags": ["intermediate"],
       "routes": [
         {
           "title": "Réagir à la saisie avec un état",
@@ -173,9 +171,7 @@
     {
       "title": "Échappatoires",
       "path": "/learn/escape-hatches",
-      "tags": [
-        "advanced"
-      ],
+      "tags": ["advanced"],
       "routes": [
         {
           "title": "Référencer des valeurs avec les refs",
@@ -202,11 +198,7 @@
           "path": "/learn/separating-events-from-effects"
         },
         {
-<<<<<<< HEAD
           "title": "Alléger les dépendances des Effets",
-=======
-          "title": "Removing Effect Dependencies",
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
           "path": "/learn/removing-effect-dependencies"
         },
         {

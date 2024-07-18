@@ -2,6 +2,8 @@
 title: React Versions
 ---
 
+{/* FIXME:L10N */}
+
 <Intro>
 
 The React docs at [react.dev](https://react.dev) provide documentation for the latest version of React.

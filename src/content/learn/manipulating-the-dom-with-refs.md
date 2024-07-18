@@ -263,14 +263,10 @@ export default function CatFriends() {
                 }
               }}
             >
-<<<<<<< HEAD
               <img
-                src={cat.imageUrl}
+                src={cat}
                 alt={'Chat #' + cat.id}
               />
-=======
-              <img src={cat} />
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
             </li>
           ))}
         </ul>
@@ -336,19 +332,11 @@ Dans cet exemple, `itemRef` ne référence pas un unique nœud DOM.  Il contient
   ref={node => {
     const map = getMap();
     if (node) {
-<<<<<<< HEAD
       // Ajoute à la Map
-      map.set(cat.id, node);
-    } else {
-      // Retire de la Map
-      map.delete(cat.id);
-=======
-      // Add to the Map
       map.set(cat, node);
     } else {
-      // Remove from the Map
+      // Retire de la Map
       map.delete(cat);
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
     }
   }}
 >

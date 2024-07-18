@@ -2,6 +2,8 @@
 title: Translations
 ---
 
+{/* FIXME:L10N */}
+
 <Intro>
 
 React docs are translated by the global community into many languages all over the world.

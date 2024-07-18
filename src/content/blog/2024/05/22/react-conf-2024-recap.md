@@ -1,9 +1,11 @@
 ---
-title: "React Conf 2024 Recap"
+title: "La React Conf 2024 en bref"
 author: Ricky Hanlon
 date: 2024/05/22
 description: Last week we hosted React Conf 2024, a two-day conference in Henderson, Nevada where 700+ attendees gathered in-person to discuss the latest in UI engineering. In this post, we'll summarize the talks and announcements from the event.
 ---
+
+{/* FIXME:L10N */}
 
 May 22, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii).
 

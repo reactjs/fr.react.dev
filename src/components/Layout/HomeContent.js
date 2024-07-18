@@ -23,14 +23,11 @@ import BlogCard from 'components/MDX/BlogCard';
 import CodeBlock from 'components/MDX/CodeBlock';
 import Link from 'components/MDX/Link';
 import NextLink from 'next/link';
-import sidebarBlog from '../../sidebarBlog.json';
-<<<<<<< HEAD
-import ButtonLink from '../ButtonLink';
-import {IconRestart} from '../Icon/IconRestart';
-=======
 import * as React from 'react';
 import Image from 'next/image';
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+import sidebarBlog from '../../sidebarBlog.json';
+import ButtonLink from '../ButtonLink';
+import {IconRestart} from '../Icon/IconRestart';
 
 function Section({children, background = null}) {
   return (

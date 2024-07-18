@@ -8,13 +8,9 @@ Toutes les versions stables de React sont soumises à un niveau élevé de tests
 
 </Intro>
 
-<<<<<<< HEAD
-## Versions stables {/*stable-releases*/}
-=======
-For a list of previous releases, see the [Versions](/versions) page.
+Pour une liste des versions antérieures, consultez la page [Versions](/versions).
 
-## Stable releases {/*stable-releases*/}
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+## Versions stables {/*stable-releases*/}
 
 Les versions stables de React (fournies par le canal de distribution *“Latest”*) suivent les principes du [versionnement sémantique (*semver*)](https://semver.org/lang/fr/).
 

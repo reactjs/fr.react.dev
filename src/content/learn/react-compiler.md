@@ -2,6 +2,8 @@
 title: React Compiler
 ---
 
+{/* FIXME:L10N */}
+
 <Intro>
 This page will give you an introduction to the new experimental React Compiler and how to try it out successfully.
 </Intro>

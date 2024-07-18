@@ -50,7 +50,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
           sideOffset={0}
           align="end">
           <ContextMenu.Label className="ps-4 pt-2 text-base text-tertiary dark:text-tertiary-dark">
-            Dark Mode
+            Mode sombre
           </ContextMenu.Label>
           <DownloadMenuItem
             fileName="react_logo_dark.svg"
@@ -58,7 +58,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
             <span className="w-8">
               <IconDownload />
             </span>
-            <span>Logo SVG</span>
+            <span>SVG du logo</span>
           </DownloadMenuItem>
           <DownloadMenuItem
             fileName="react_wordmark_dark.svg"
@@ -66,7 +66,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
             <span className="w-8">
               <IconDownload />
             </span>
-            <span>Wordmark SVG</span>
+            <span>SVG de la marque</span>
           </DownloadMenuItem>
           <MenuItem
             onSelect={async () => {
@@ -75,10 +75,10 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
             <span className="w-8">
               <IconCopy />
             </span>
-            <span>Copy dark mode color</span>
+            <span>Copier la couleur du mode sombre</span>
           </MenuItem>
           <ContextMenu.Label className="ps-4 text-base text-tertiary dark:text-tertiary-dark">
-            Light Mode
+            Mode clair
           </ContextMenu.Label>
           <DownloadMenuItem
             fileName="react_logo_light.svg"
@@ -86,7 +86,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
             <span className="w-8">
               <IconDownload />
             </span>
-            <span>Logo SVG</span>
+            <span>SVG du logo</span>
           </DownloadMenuItem>
           <DownloadMenuItem
             fileName="react_wordmark_light.svg"
@@ -94,7 +94,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
             <span className="w-8">
               <IconDownload />
             </span>
-            <span>Wordmark SVG</span>
+            <span>SVG de la marque</span>
           </DownloadMenuItem>
           <MenuItem
             onSelect={async () => {
@@ -103,7 +103,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
             <span className="w-8">
               <IconCopy />
             </span>
-            <span>Copy light mode color</span>
+            <span>Copier la couleur du mode clair</span>
           </MenuItem>
           <div className="uwu-visible flex flex-col">
             <ContextMenu.Separator className="" />
@@ -118,13 +118,13 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
               <span className="w-8">
                 <IconClose />
               </span>
-              <span>Turn off</span>
+              <span>Désactiver</span>
             </MenuItem>
             <DownloadMenuItem fileName="react_uwu_png" href="/images/uwu.png">
               <span className="w-8">
                 <IconDownload />
               </span>
-              <span>Logo PNG</span>
+              <span>PNG du logo</span>
             </DownloadMenuItem>
 
             <ExternalLink
@@ -134,7 +134,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
                 <span className="w-8">
                   <IconNewPage />
                 </span>
-                <span>Logo by @sawaratsuki1004</span>
+                <span>Logo par @sawaratsuki1004</span>
               </MenuItem>
             </ExternalLink>
           </div>

@@ -1,12 +1,9 @@
 ---
-<<<<<<< HEAD
 title: "Découvrez les React Server Components qui n'impactent pas votre bundle"
-=======
-title: "Introducing Zero-Bundle-Size React Server Components"
-author: Dan Abramov, Lauren Tan, Joseph Savona, and Sebastian Markbage
+author: Dan Abramov, Lauren Tan, Joseph Savona et Sebastian Markbage
 date: 2020/12/21
-description: 2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size React Server Components.
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
+description: 2020, c'était long.  Alors que l'année se termine, nous voulions vous partager une sorte de Bulletin Spécial Fêtes sur nos recherches liées aux React Server Components, qui n'occupent pas un seul octet dans vos bundles.
+
 ---
 
 Le 21 décembre 2020 par [Dan Abramov](https://twitter.com/dan_abramov), [Lauren Tan](https://twitter.com/potetotes), [Joseph Savona](https://twitter.com/en_JS) et [Sebastian Markbåge](https://twitter.com/sebmarkbage)

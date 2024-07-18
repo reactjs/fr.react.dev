@@ -4,6 +4,11 @@
 
 import * as React from 'react';
 
+import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
+import cn from 'classnames';
+import Image from 'next/image';
+import NextLink from 'next/link';
+import {useRouter} from 'next/router';
 import {
   Suspense,
   startTransition,
@@ -12,32 +17,17 @@ import {
   useRef,
   useState,
 } from 'react';
-<<<<<<< HEAD
-=======
-import Image from 'next/image';
-import * as React from 'react';
-import cn from 'classnames';
-import NextLink from 'next/link';
-import {useRouter} from 'next/router';
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
-import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 
-import {Feedback} from '../Feedback';
 import {IconClose} from 'components/Icon/IconClose';
 import {IconHamburger} from 'components/Icon/IconHamburger';
 import {IconSearch} from 'components/Icon/IconSearch';
-import {Logo} from '../../Logo';
-import NextLink from 'next/link';
-import type {RouteItem} from '../getRouteMeta';
-<<<<<<< HEAD
 import {Search} from 'components/Search';
-import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
-import cn from 'classnames';
-import {useRouter} from 'next/router';
-=======
 import {siteConfig} from 'siteConfig';
+import {Logo} from '../../Logo';
+import {Feedback} from '../Feedback';
+import type {RouteItem} from '../getRouteMeta';
+import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import BrandMenu from './BrandMenu';
->>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
 
 declare global {
   interface Window {
