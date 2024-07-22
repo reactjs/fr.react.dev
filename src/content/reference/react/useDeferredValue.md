@@ -36,10 +36,8 @@ function SearchPage() {
 
 #### Paramètres {/*parameters*/}
 
-{/* FIXME:L10N */}
-
 * `value` : la valeur que vous souhaitez différer. Elle peut être de n'importe quel type.
-* <CanaryBadge title="This feature is only available in the Canary channel" /> **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
+* <CanaryBadge title="Cette fonctionnalité n’est disponible que sur le canal de version Canary" /> `initialValue` **optionnelle** : une valeur à utiliser lors du rendu initial d'un composant. Si cette option est manquante, `useDeferredValue` ne différera pas lors du rendu initial, faute d'une version précédente de `value` à lui substituer lors du rendu.
 
 #### Valeur renvoyée {/*returns*/}
 
@@ -48,17 +46,13 @@ function SearchPage() {
 
 <Canary>
 
-{/* FIXME:L10N */}
-
-In the latest React Canary versions, `useDeferredValue` returns the `initialValue` on initial render, and schedules a re-render in the background with the `value` returned.
+Dans les dernières versions React Canary, `useDeferredValue` renvoie la `initialValue` lors du rendu initial, puis planifie un nouceau rendu en arrière-plan avec la `value` renvoyée.
 
 </Canary>
 
 #### Limitations {/*caveats*/}
 
-{/* FIXME:L10N */}
-
-- When an update is inside a Transition, `useDeferredValue` always returns the new `value` and does not spawn a deferred render, since the update is already deferred.
+- Lors d'une mise à jour au sein d'une Transition, `useDeferredValue` renverra toujours la nouvelle `value` et ne déclenchera pas un rendu différé, puisque la mise à jour est déjà différée.
 
 - Les valeurs que vous passez à `useDeferredValue` doivent être soit des valeurs primitives (comme des chaînes de caractères ou des nombres), soit des objets créés en-dehors du rendu. Si vous créez un nouvel objet pendant le rendu et que vous le passez immédiatement à `useDeferredValue`, il sera différent à chaque rendu, entraînant des rendus inutiles en arrière-plan.
 

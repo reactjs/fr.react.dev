@@ -40,9 +40,3 @@ La documentation de React est écrite et maintenue par [l'équipe React](/commun
 * [Luna Ruan](https://twitter.com/lunaruan) : améliorations des bacs à sable
 
 Nous aimerions aussi remercier les innombrables testeurs de la première heure et membres de la communautés qui nous ont fourni des retours tout au long de notre travail.
-
-## Traduction {/*translation*/}
-
-Si vous bénéficiez d’une traduction française de qualité et à jour de la documentation officielle React, c’est grâce au travail bénévole d’un nombre significatif de traducteur·rice·s, qui dans certains cas ont fait là leur premier travail de traduction, voire leur première contribution sur GitHub.
-
-[Christophe Porteneuve](https://twitter.com/porteneuve) pilote l’effort de traduction française ; vous pourrez trouver tout le détail des personnes ayant contribué à la traduction et de leurs travaux respectifs dans [ce document](https://github.com/reactjs/fr.react.dev/blob/main/TRANSLATORS.md). Mille merci à elles !

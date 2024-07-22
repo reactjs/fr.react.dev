@@ -2,18 +2,18 @@
 title: "La React Conf 2024 en bref"
 author: Ricky Hanlon
 date: 2024/05/22
-description: Last week we hosted React Conf 2024, a two-day conference in Henderson, Nevada where 700+ attendees gathered in-person to discuss the latest in UI engineering. In this post, we'll summarize the talks and announcements from the event.
+description: La semaine dernière nous avons organisé React Conf 2024, une conférence de deux jours à Henderson, Nevada qui a réuni plus de 700 participant·es sur place pour discuter des dernières nouveautés dans l'ingénierie d'interface utilisateur (UI). Dans cet article nous récapitulons les présentations et annonces de cet événement.
 ---
 
 {/* FIXME:L10N */}
 
-May 22, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii).
+Le 22 mai 2024 par [Ricky Hanlon](https://twitter.com/rickhanlonii).
 
 ---
 
 <Intro>
 
-Last week we hosted React Conf 2024, a two-day conference in Henderson, Nevada where 700+ attendees gathered in-person to discuss the latest in UI engineering. This was our first in-person conference since 2019, and we were thrilled to be able to bring the community together again.
+La semaine dernière nous avons organisé React Conf 2024, une conférence de deux jours à Henderson, Nevada qui a réuni plus de 700 participant·es sur place pour discuter des dernières nouveautés dans l'ingénierie d'interface utilisateur (UI).  C'était notre première conférence physique depuis 2019, et nous étions enchantés de pouvoir amener à nouveau la communauté à se rencontrer ainsi.
 
 </Intro>
 

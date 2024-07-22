@@ -67,8 +67,7 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
 </TeamMember>
 
 <TeamMember name="Ruslan Lesiutin" permalink="ruslan-lesiutin" photo="/images/team/lesiutin.jpg" github="hoxyq" twitter="ruslanlesiutin" threads="lesiutin" title="Engineer at Meta">
-    {/* FIXME:L10N */}
-    Ruslan's introduction to UI programming started when he was a kid by manually editing HTML templates for his custom gaming forums. Somehow, he ended up majoring in Computer Science. He enjoys music, games, and memes. Mostly memes.
+    Ruslan a commencé enfant à programmer des UI en modifiant des gabarits HTML pour ses forums personnalisés de jeux.  Sans trop savoir comment, il a fini par spécialiser ses études en informatique.  Il aime la musique, les jeux, et les mèmes.  Surtout les mèmes.
 </TeamMember>
 
 <TeamMember name="Sathya Gunasekaran " permalink="sathya-gunasekaran" photo="/images/team/sathya.jpg" github="gsathya" twitter="_gsathya" threads="gsathya.03" title="Ingénieur chez Meta">

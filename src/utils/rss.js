@@ -24,14 +24,13 @@ const getAllFiles = function (dirPath, arrayOfFiles) {
 
 exports.generateRssFeed = function () {
   const feed = new Feed({
-    // FIXME:L10N
-    title: 'React Blog',
+    title: 'Blog React',
     description:
-      'This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first.',
-    feed_url: 'https://react.dev/rss.xml',
-    site_url: 'https://react.dev/',
-    language: 'en',
-    favicon: 'https://react.dev/favicon.ico',
+      'Ce blog est la source officielle des mises à jour par l’équipe React.  Toute annonce importante, y compris les notes de versions et les avertissements de dépréciation, sera faite ici en premier.',
+    feed_url: 'https://fr.react.dev/rss.xml',
+    site_url: 'https://fr.react.dev/',
+    language: 'fr',
+    favicon: 'https://fr.react.dev/favicon.ico',
     pubDate: new Date(),
     generator: 'react.dev rss module',
   });
@@ -73,7 +72,7 @@ exports.generateRssFeed = function () {
         title: data.title,
         author: data.author || '',
         date: new Date(data.date),
-        url: `https://react.dev/blog/${slug}`,
+        url: `https://fr.react.dev/blog/${slug}`,
         description: data.description,
       });
     }

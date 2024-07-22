@@ -599,16 +599,14 @@ La plupart des Effets que vous aurez à écrire correspondront à un des scénar
 
 <Pitfall>
 
-{/* FIXME:L10N */}
+#### N'utilisez pas des refs pour empêcher le déclenchement d'un Effet {/*dont-use-refs-to-prevent-effects-from-firing*/}
 
-#### Don't use refs to prevent Effects from firing {/*dont-use-refs-to-prevent-effects-from-firing*/}
-
-A common pitfall for preventing Effects firing twice in development is to use a `ref` to prevent the Effect from running more than once. For example, you could "fix" the above bug with a `useRef`:
+Une mauvaise pratique fréquente afin d'empêcher le double-déclenchement d'un Effet en développement consiste à utiliser une `ref` pour empêcher son exécution multiple.  Vous pourriez par exemple « corriger » le bug ci-dessus avec un `useRef` :
 
 ```js {1,3-4}
   const connectionRef = useRef(null);
   useEffect(() => {
-    // 🚩 This wont fix the bug!!!
+    // 🚩 Ça ne corrigera pas le bug !!!
     if (!connectionRef.current) {
       connectionRef.current = createConnection();
       connectionRef.current.connect();
@@ -616,13 +614,13 @@ A common pitfall for preventing Effects firing twice in development is to use a 
   }, []);
 ```
 
-This makes it so you only see `"✅ Connecting..."` once in development, but it doesn't fix the bug.
+Ainsi, vous ne voyez `"✅ Connexion..."` qu'une fois en développement, mais ça n'a pas corrigé le bug pour autant.
 
-When the user navigates away, the connection still isn't closed and when they navigate back, a new connection is created. As the user navigates across the app, the connections would keep piling up, the same as it would before the "fix". 
+Lorsque l'utilisateur navigue ailleurs, la connexion ne sera toujours pas fermée, et lorsqu'il reviendra, une nouvelle connexion sera créée. Au fil de la navigation, les connexions continueront à s'empiler, tout comme avant votre « correctif ».
 
-To fix the bug, it is not enough to just make the Effect run once. The effect needs to work after re-mounting, which means the connection needs to be cleaned up like in the solution above.
+Pour corriger le bug, il ne suffit pas de faire que l'Effet ne s'exécute qu'une fois. L'Effet doit pouvoir fonctionner après un remontage, ce qui signifie que la connexion doit être nettoyée comme dans la solution vue plus haut.
 
-See the examples below for how to handle common patterns.
+Parcourez les exemples ci-dessous pour découvrir comment gérer les cas les plus courants.
 
 </Pitfall>
 
