@@ -265,11 +265,7 @@ setCount(count + 1); // Entraînera un nouveau rendu avec la valeur 1
 console.log(count);  // Toujours 0 !
 ```
 
-<<<<<<< HEAD
 Ce comportement vous aide à éviter des bugs subtils. Voici une petite appli de discussion. Essayez de deviner ce qui se passe si vous appuyez sur « Envoyer » d’abord, *et ensuite* changez le destinataire pour Bob. Quel nom apparaîtra dans le `alert` cinq secondes plus tard ?
-=======
-This behavior helps you avoid subtle bugs. Here is a little chat app. Try to guess what happens if you press "Send" first and *then* change the recipient to Bob. Whose name will appear in the `alert` five seconds later?
->>>>>>> 6274d4faf5afcef74357871d06191558050e23d3
 
 <Sandpack>
 
