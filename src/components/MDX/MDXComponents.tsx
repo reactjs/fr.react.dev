@@ -384,8 +384,18 @@ function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
 
 type TranslationProgress = 'complete' | 'in-progress';
 
+const frNamer = new Intl.DisplayNames('fr-FR', {type: 'language'});
+
 function LanguageList({progress}: {progress: TranslationProgress}) {
   const allLanguages = React.useContext(LanguagesContext) ?? [];
+
+  // Ensure translation (and later sorting) of language names in this fork's locale.
+  for (const lang of allLanguages) {
+    lang.enName =
+      frNamer.of(lang.code)?.replace(/^\w/, (s) => s.toUpperCase()) ??
+      lang.enName;
+  }
+
   const languages = allLanguages
     .filter(
       ({code}) =>
@@ -405,7 +415,7 @@ function LanguageList({progress}: {progress: TranslationProgress}) {
             </Link>{' '}
             &mdash;{' '}
             <Link href={`https://github.com/reactjs/${code}.react.dev`}>
-              Contribute
+              Contribuez
             </Link>
           </LI>
         );

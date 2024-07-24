@@ -1,19 +1,19 @@
 ---
 title: "React 19 RC"
-author: The React Team
+author: L'équipe React
 date: 2024/04/25
-description: React 19 RC is now available on npm! In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+description: React 19 RC est désormais disponible sur npm ! Dans cet article, nous vous donnons un aperçu des nouveautés de React 19 et de la façon de les adopter.
 ---
 
 {/* FIXME:L10N */}
 
-April 25, 2024 by [The React Team](/community/team)
+Le 25 avril 2024 par [l'équipe React](/community/team)
 
 ---
 
 <Intro>
 
-React 19 RC is now available on npm!
+React 19 RC est désormais disponible sur npm !
 
 </Intro>
 

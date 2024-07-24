@@ -1,20 +1,20 @@
 ---
-title: "React 19 RC Upgrade Guide"
+title: "React 19 RC : guide de migration"
 author: Ricky Hanlon
 date: 2024/04/25
-description: The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading apps and libraries to React 19.
+description: Les améliorations apportées par React 19 RC nécessitent quelques ruptures de compatibilité, mais nous avons travaillé dur pour faciliter la mise à jour le plus possible, et nous ne nous attendons pas à ce que ces changements impactent la majorité des applications. Dans cet article, nous vous guidons étape par étape pour mettre à jour vos applis et bibliothèques vers React 19.
 ---
 
 {/* FIXME:L10N */}
 
-April 25, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
+Le 25 avril 2024 par [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 ---
 
 
 <Intro>
 
-The improvements added to React 19 RC require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps.
+Les améliorations apportées par React 19 RC nécessitent quelques ruptures de compatibilité, mais nous avons travaillé dur pour faciliter la mise à jour le plus possible, et nous ne nous attendons pas à ce que ces changements impactent la majorité des applications.
 
 </Intro>
 

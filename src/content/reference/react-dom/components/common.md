@@ -263,9 +263,7 @@ React appellera aussi votre fonction `ref` à chaque fois que vous passez une fo
 
 #### Valeur renvoyée {/*returns*/}
 
-{/* FIXME:L10N */}
-
-*  **optional** `cleanup function`: When the `ref` is detached, React will call the cleanup function. If a function is not returned by the `ref` callback, React will call the callback again with `null` as the argument when the `ref` gets detached.
+* fonction `cleanup` **optionnelle** : lorsque la `ref` est détachée, React appellera cette fonction de nettoyage.  Si la fonction de rappel `ref` ne renvoie pas de fonction, React rappellera la fonction de rappel avec un argument `null` lorsque la `ref` sera détachée.
 
 ```js
 
@@ -273,7 +271,7 @@ React appellera aussi votre fonction `ref` à chaque fois que vous passez une fo
   console.log(node);
 
   return () => {
-    console.log('Clean up', node)
+    console.log('Nettoyage', node)
   }
 }}>
 
@@ -281,10 +279,8 @@ React appellera aussi votre fonction `ref` à chaque fois que vous passez une fo
 
 #### Limitations {/*caveats*/}
 
-{/* FIXME:L10N */}
-
-* When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, implement the cleanup function.
-* When you pass a *different* `ref` callback, React will call the *previous* callback's cleanup function if provided. If not cleanup function is defined, the `ref` callback will be called with `null` as the argument. The *next* function will be called with the DOM node.
+* Quand le Mode Strict est activé, React **appellera une fois de plus votre cycle mise en place + nettoyage, uniquement en développement**, avant la première mise en place réelle.  C'est une mise à l'épreuve pour vérifier que votre logique de nettoyage reflète bien votre logique de mise en place, et décommissionne ou défait toute la mise en place effectuée.  Si ça entraîne des problèmes, écrivez une fonction de nettoyage.
+* Si vous passez une fonction de rappel `ref` *différente*, React appellera la fonction de nettoyage renvoyée par la fonction de rappel *précédente*, si celle-ci en avait renvoyé une. Dans le cas contraire, la fonction de rappel `ref` précédente sera appelée avec un argument `null`.  La fonction de rappel *suivante* sera alors appelée avec le nœud DOM.
 
 </Canary>
 

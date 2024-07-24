@@ -10,27 +10,20 @@ Ce blog est la source officielle des mises à jour par l'équipe React.  Toute a
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<BlogCard title="React Conf 2024 Recap" date="22 mai 2024" url="/blog/2024/05/22/react-conf-2024-recap">
+<BlogCard title="La React Conf 2024 en bref" date="22 mai 2024" url="/blog/2024/05/22/react-conf-2024-recap">
 
-{/* FIXME:L10N */}
-
-Last week we hosted React Conf 2024, a two-day conference in Henderson, Nevada where 700+ attendees gathered in-person to discuss the latest in UI engineering. This was our first in-person conference since 2019, and we were thrilled to be able to bring the community together again ...
-
+La semaine dernière nous avons organisé React Conf 2024, une conférence de deux jours à Henderson, Nevada qui a réuni plus de 700 participant·es sur place pour discuter des dernières nouveautés dans l'ingénierie d'interface utilisateur (UI).  C'était notre première conférence physique depuis 2019, et nous étions enchantés de pouvoir amener à nouveau la communauté à se rencontrer ainsi…
 </BlogCard>
 
 <BlogCard title="React 19 RC " date="25 avril 2024" url="/blog/2024/04/25/react-19">
 
-{/* FIXME:L10N */}
-
-In the React 19 RC Upgrade Guide, we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them ...
+Dans le guide de migration vers React 19 RC, nous vous donnions des instructions étape par étape pour mettre à jour votre application vers React 19. Dans cet article, nous vous donnons un aperçu des nouveautés de React 19 et de la façon de les adopter…
 
 </BlogCard>
 
 <BlogCard title="React 19 RC : guide de migration" date="25 avril 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
 
-{/* FIXME:L10N */}
-
-The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading libraries to React 19 ...
+Les améliorations apportées par React 19 RC nécessitent quelques ruptures de compatibilité, mais nous avons travaillé dur pour faciliter la mise à jour le plus possible, et nous ne nous attendons pas à ce que ces changements impactent la majorité des applications. Dans cet article, nous vous guidons étape par étape pour mettre à jour vos applis et bibliothèques vers React 19…
 
 </BlogCard>
 
@@ -113,6 +106,6 @@ Toute les versions de React ne méritent pas forcément leur propre billet de bl
 
 ### Billets plus anciens {/*older-posts*/}
 
-Consultez les [anciens billets](https://legacy.reactjs.org/blog/all.html/).
+Consultez les [anciens billets](https://fr.legacy.reactjs.org/blog/all.html/).
 
 <div className="h-12"></div>
