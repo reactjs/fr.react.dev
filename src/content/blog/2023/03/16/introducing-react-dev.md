@@ -270,7 +270,7 @@ Utilisez l'opérateur conditionnel (`cond ? a : b`) pour afficher ❌ si `isPack
 function Item({ name, isPacked }) {
   return (
     <li className="item">
-      {name} {isPacked && '✔'}
+      {name} {isPacked && '✅'}
     </li>
   );
 }
@@ -308,7 +308,7 @@ export default function PackingList() {
 function Item({ name, isPacked }) {
   return (
     <li className="item">
-      {name} {isPacked ? '✔' : '❌'}
+      {name} {isPacked ? '✅' : '❌'}
     </li>
   );
 }

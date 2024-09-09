@@ -326,7 +326,7 @@ Dans cet exemple, on utilise l'opérateur JavaScript `&&` pour afficher conditio
 function Item({ name, isPacked }) {
   return (
     <li className="item">
-      {name} {isPacked && '✔'}
+      {name} {isPacked && '✅'}
     </li>
   );
 }
