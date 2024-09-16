@@ -233,7 +233,7 @@ En mettant en cache un chargement de données qui prendrait du temps, vous pouve
 ```jsx [[2, 6, "await getUser(id)"], [1, 17, "getUser(id)"]]
 const getUser = cache(async (id) => {
   return await db.user.query(id);
-})
+});
 
 async function Profile({id}) {
   const user = await getUser(id);
@@ -336,7 +336,7 @@ Vous devriez généralement utiliser [`useMemo`](/reference/react/useMemo) pour 
 'use client';
 
 function WeatherReport({record}) {
-  const avgTemp = useMemo(() => calculateAvg(record)), record);
+  const avgTemp = useMemo(() => calculateAvg(record), record);
   // ...
 }
 
