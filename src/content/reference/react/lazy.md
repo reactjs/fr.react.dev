@@ -78,7 +78,7 @@ Maintenant que le code de votre composant se charge à la demande, vous aurez be
 <Suspense fallback={<Loading />}>
   <h2>Aperçu</h2>
   <MarkdownPreview />
- </Suspense>
+</Suspense>
 ```
 
 Dans cet exemple, le code de `MarkdownPreview` ne sera pas chargé jusqu'à ce que vous essayiez de l'afficher. Si `MarkdownPreview` n'est pas encore chargé, `Loading` sera affiché à sa place. Essayez de cocher la case :
