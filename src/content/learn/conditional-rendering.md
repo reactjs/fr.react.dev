@@ -52,13 +52,17 @@ export default function PackingList() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Remarquez que certains composants `Item` ont leur prop `isPacked` à `true` plutôt qu'à `false`.  Vous souhaitez ajouter une coche (✔) aux objets pour lesquels `isPacked={true}`.
+=======
+Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✅) to packed items if `isPacked={true}`.
+>>>>>>> fe37c42e0b51167d7f3c98593f50de997d666266
 
 Vous pourriez écrire ça sous forme [d'instruction `if`/`else`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/if...else), comme ceci :
 
 ```js
 if (isPacked) {
-  return <li className="item">{name} ✔</li>;
+  return <li className="item">{name} ✅</li>;
 }
 return <li className="item">{name}</li>;
 ```
@@ -70,7 +74,7 @@ Si la prop `isPacked` vaut `true`, ce code **renverra un arbre JSX différent**.
 ```js
 function Item({ name, isPacked }) {
   if (isPacked) {
-    return <li className="item">{name} ✔</li>;
+    return <li className="item">{name} ✅</li>;
   }
   return <li className="item">{name}</li>;
 }
@@ -159,7 +163,7 @@ En pratique, les composants ne renvoient pas souvent `null` parce que ça peut s
 Dans l'exemple précédent, vous contrôliez quel arbre JSX renvoyer (si tant est qu'il y en ait un !) depuis le composant.  Vous avez peut-être remarqué une légère duplication dans l'affichage produit. Ce JSX :
 
 ```js
-<li className="item">{name} ✔</li>
+<li className="item">{name} ✅</li>
 ```
 
 est très similaire à
@@ -172,7 +176,7 @@ Les deux branches conditionnelles renvoient `<li className="item">...</li>` :
 
 ```js
 if (isPacked) {
-  return <li className="item">{name} ✔</li>;
+  return <li className="item">{name} ✅</li>;
 }
 return <li className="item">{name}</li>;
 ```
@@ -187,7 +191,7 @@ Au lieu de ceci :
 
 ```js
 if (isPacked) {
-  return <li className="item">{name} ✔</li>;
+  return <li className="item">{name} ✅</li>;
 }
 return <li className="item">{name}</li>;
 ```
@@ -197,12 +201,16 @@ Vous pouvez plutôt écrire ceci :
 ```js
 return (
   <li className="item">
-    {isPacked ? name + ' ✔' : name}
+    {isPacked ? name + ' ✅' : name}
   </li>
 );
 ```
 
+<<<<<<< HEAD
 Vous pouvez le lire comme suit : *« si `isPacked` est vrai, alors (`?`) affiche `name + ' ✔'`, sinon (`:`) affiche `name` »*.
+=======
+You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✅'`, otherwise (`:`) render `name`"*.
+>>>>>>> fe37c42e0b51167d7f3c98593f50de997d666266
 
 <DeepDive>
 
@@ -222,7 +230,7 @@ function Item({ name, isPacked }) {
     <li className="item">
       {isPacked ? (
         <del>
-          {name + ' ✔'}
+          {name + ' ✅'}
         </del>
       ) : (
         name
@@ -265,7 +273,7 @@ Un autre raccourci que vous rencontrerez souvent utilise [l'opérateur ET logiqu
 ```js
 return (
   <li className="item">
-    {name} {isPacked && '✔'}
+    {name} {isPacked && '✅'}
   </li>
 );
 ```
@@ -280,7 +288,7 @@ Le voici en action :
 function Item({ name, isPacked }) {
   return (
     <li className="item">
-      {name} {isPacked && '✔'}
+      {name} {isPacked && '✅'}
     </li>
   );
 }
@@ -337,7 +345,7 @@ Utilisez une instruction `if` pour réaffecter une expression JSX à `itemConten
 
 ```js
 if (isPacked) {
-  itemContent = name + " ✔";
+  itemContent = name + " ✅";
 }
 ```
 
@@ -357,7 +365,7 @@ Ce style est certes le plus verbeux, mais au final le plus flexible.  Le voici e
 function Item({ name, isPacked }) {
   let itemContent = name;
   if (isPacked) {
-    itemContent = name + " ✔";
+    itemContent = name + " ✅";
   }
   return (
     <li className="item">
@@ -401,7 +409,7 @@ function Item({ name, isPacked }) {
   if (isPacked) {
     itemContent = (
       <del>
-        {name + " ✔"}
+        {name + " ✅"}
       </del>
     );
   }
@@ -462,7 +470,7 @@ Utilisez l'opérateur conditionnel (`cond ? a : b`) pour afficher ❌ si `isPack
 function Item({ name, isPacked }) {
   return (
     <li className="item">
-      {name} {isPacked && '✔'}
+      {name} {isPacked && '✅'}
     </li>
   );
 }
@@ -500,7 +508,7 @@ export default function PackingList() {
 function Item({ name, isPacked }) {
   return (
     <li className="item">
-      {name} {isPacked ? '✔' : '❌'}
+      {name} {isPacked ? '✅' : '❌'}
     </li>
   );
 }
