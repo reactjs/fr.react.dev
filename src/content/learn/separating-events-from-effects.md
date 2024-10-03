@@ -586,7 +586,7 @@ Cette section décrit une **API expérimentale : elle n’a donc pas encore ét
 
 Les Événements d’Effets vous permettent de corriger de nombreuses situations où vous seriez tenté·e de réduire le *linter* de dépendances au silence.
 
-Par exemple, disons que vous avec un Effet qui enregistre les visites de la page :
+Par exemple, disons que vous avez un Effet qui enregistre les visites de la page :
 
 ```js
 function Page() {
