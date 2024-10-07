@@ -57,6 +57,7 @@ Cet exemple utilise un objet dans l’état pour représenter la position actuel
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
@@ -127,6 +128,7 @@ Voyez comme le point rouge suit désormais votre pointeur lorsque vous le touche
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
@@ -377,7 +379,11 @@ Notez que la syntaxe de *spread* `...` est « superficielle » : elle ne réa
 
 #### Utiliser un seul gestionnaire d’événement pour plusieurs champs {/*using-a-single-event-handler-for-multiple-fields*/}
 
+<<<<<<< HEAD
 Vous pouvez également utiliser les crochets `[` et `]` à l’intérieur de la définition de votre objet pour spécifier une propriété avec un nom dynamique. Voici le même exemple, mais avec un seul gestionnaire d’événement au lieu de trois différents :
+=======
+You can also use the `[` and `]` braces inside your object definition to specify a property with a dynamic name. Here is the same example, but with a single event handler instead of three different ones:
+>>>>>>> 1697ae89a3bbafd76998dd7496754e5358bc1e9a
 
 <Sandpack>
 

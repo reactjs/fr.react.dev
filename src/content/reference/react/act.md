@@ -92,7 +92,7 @@ To test the render output of a component, wrap the render inside `act()`:
 
 ```js  {10,12}
 import {act} from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOMClient from 'react-dom/client';
 import Counter from './Counter';
 
 it('can render and update a counter', async () => {
@@ -101,7 +101,7 @@ it('can render and update a counter', async () => {
   
   // ✅ Render the component inside act().
   await act(() => {
-    ReactDOM.createRoot(container).render(<Counter />);
+    ReactDOMClient.createRoot(container).render(<Counter />);
   });
   
   const button = container.querySelector('button');
@@ -121,7 +121,7 @@ To test events, wrap the event dispatch inside `act()`:
 
 ```js {14,16}
 import {act} from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOMClient from 'react-dom/client';
 import Counter from './Counter';
 
 it.only('can render and update a counter', async () => {
