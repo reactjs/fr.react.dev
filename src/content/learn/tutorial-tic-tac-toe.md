@@ -1139,7 +1139,11 @@ On appelle alors la fonction `setSquares` pour avertir React que l'état du comp
 
 <Note>
 
+<<<<<<< HEAD
 JavaScript utilise des [fermetures lexicales](https://developer.mozilla.org/docs/Web/JavaScript/Closures), ce qui signifie qu'une fonction imbriquée (ex. `handleClick`) a accès aux variables et fonctions définies dans une fonction englobante (ex. `Board`). La fonction `handleClick` peut lire l'état `squares` et appeler la fonction `setSquares` parce que les deux sont définis dans la fonction`Board`.
+=======
+JavaScript supports [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) which means an inner function (e.g. `handleClick`) has access to variables and functions defined in an outer function (e.g. `Board`). The `handleClick` function can read the `squares` state and call the `setSquares` method because they are both defined inside of the `Board` function.
+>>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
 
 </Note>
 

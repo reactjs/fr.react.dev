@@ -409,9 +409,15 @@ function Game() {
 
 Ce code pose deux problèmes.
 
+<<<<<<< HEAD
 Le premier problème est qu’il est très inefficace : le composant (et ses enfants) doivent refaire un rendu entre chaque appel `set` de la chaîne.  Dans l’exemple ci-dessus, dans le pire des cas (`setCard` → rendu → `setGoldCardCount` → rendu → `setRound` → rendu → `setIsGameOver` → rendu) on a pas moins de trois rendus superflus de l’arbre au sein du composant.
 
 Même si ce n’était pas lent, au fil de l’évolution de votre code, vous tomberez sur des cas où la « chaîne » que vous avez construite ne correspond plus aux nouvelles spécifications.  Imaginez que vous ajoutiez une étape au sein de l’historique des mouvements de la partie.  Pour ce faire, vous devriez mettre à jour chaque variable d’état sur base d’une valeur passée.  Seulement voilà, redéfinir `card` à une valeur passée déclencherait à nouveau la chaîne d’Effets et modifierait la donnée affichée.  Ce genre de code est rigide et fragile.
+=======
+The first problem is that it is very inefficient: the component (and its children) have to re-render between each `set` call in the chain. In the example above, in the worst case (`setCard` → render → `setGoldCardCount` → render → `setRound` → render → `setIsGameOver` → render) there are three unnecessary re-renders of the tree below.
+
+The second problem is that even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each state variable to a value from the past. However, setting the `card` state to a value from the past would trigger the Effect chain again and change the data you're showing. Such code is often rigid and fragile.
+>>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
 
 Dans un tel cas, il vaut largement mieux calculer tout ce qu’on peut pendant le rendu, et ajuster l’état au sein d’un gestionnaire d’événement :
 

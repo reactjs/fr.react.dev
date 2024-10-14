@@ -59,7 +59,11 @@ Nous aimerions remercier particulièrement certaines personnes ayant effectué d
 
 Cette liste n'est pas exhaustive.
 
+<<<<<<< HEAD
 Nous aimerions remercier tout particulièrement [Tom Occhino](https://github.com/tomocchino) et [Adam Wolff](https://github.com/wolffiex) pour leur encadrement et leur soutien au fil des ans. Nous sommes aussi reconnaissants à tou·te·s les bénévoles qui [traduisent React dans d'autres langues](https://translations.react.dev/) (vous trouverez le [détail pour le français ici](https://github.com/reactjs/fr.react.dev/blob/main/TRANSLATORS.md)).
+=======
+We'd like to give special thanks to [Tom Occhino](https://github.com/tomocchino) and [Adam Wolff](https://github.com/wolffiex) for their guidance and support over the years. We are also thankful to all the volunteers who [translated React into other languages.](https://translations.react.dev/)
+>>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
 
 ## Encore quelques mercis {/*additional-thanks*/}
 
