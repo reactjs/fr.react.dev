@@ -2,7 +2,7 @@
 title: React appelle les composants et les Hooks
 ---
 
-{/* TODO: L10N */}
+{/* FIXME:L10N */}
 
 <Intro>
 React is responsible for rendering components and Hooks when necessary to optimize the user experience. It is declarative: you tell React what to render in your component’s logic, and React will figure out how best to display it to your user.
