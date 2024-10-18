@@ -20,7 +20,7 @@ In earlier React Canary versions, this API was part of React DOM and called `use
 `useActionState` est un Hook qui vous permet de mettre à jour l'état sur base du résultat d'une action de formulaire.
 
 ```js
-const [state, formAction] = useActionState(fn, initialState, permalink?);
+const [state, formAction, isPending] = useActionState(fn, initialState, permalink?);
 ```
 
 </Intro>
@@ -35,7 +35,7 @@ const [state, formAction] = useActionState(fn, initialState, permalink?);
 
 {/* TODO T164397693: link to actions documentation once it exists */}
 
-Appelez `useActionState` au niveau racine de votre composant pour créer un état de composant qui sera mis à jour [lorsqu'une action de formulaire sera invoquée](/reference/react-dom/components/form). Vous passez à `useActionState` une fonction d'action de formulaire existante ainsi qu'un état initial, et il renvoie une nouvelle action que vous pouvez utiliser dans votre formulaire, ainsi que le dernier état en date pour ce formulaire.  Cet état sera également passé à la fonction que vous avez fournie.
+Appelez `useActionState` au niveau racine de votre composant pour créer un état de composant qui sera mis à jour [lorsqu'une action de formulaire sera invoquée](/reference/react-dom/components/form). Vous passez à `useActionState` une fonction d'action de formulaire existante ainsi qu'un état initial, et elle renvoie une nouvelle action que vous pouvez utiliser dans votre formulaire, ainsi que le dernier état en date pour ce formulaire.  Cet état sera également passé à la fonction que vous avez fournie.
 
 ```js
 import { useActionState } from "react";
@@ -71,10 +71,11 @@ Lorsque vous l'utilisez dans une Action Serveur, `useActionState` permet d'affic
 
 #### Valeur renvoyée {/*returns*/}
 
-`useActionState` renvoie un tableau avec exactement deux valeurs :
+`useActionState` renvoie un tableau avec exactement trois valeurs :
 
 1. L'état courant.  Lors du rendu initial, il s'agira du `initialState` que vous avez passé. Après que l'action aura été invoquée, il correspondra à la valeur renvoyée par l'action.
 2. Une nouvelle action que vous pouvez passer comme prop `action` à votre composant `form`, ou comme prop `formAction` à tout composant `button` au sein du formulaire.
+3. Le drapeau `isPending` qui vous indique si une Transition est en cours.
 
 #### Limitations {/*caveats*/}
 
@@ -104,10 +105,11 @@ function MyComponent() {
 }
 ```
 
-`useActionState` renvoie un tableau avec exactement deux valeurs :
+`useActionState` renvoie un tableau avec exactement trois valeurs :
 
-1. <CodeStep step={1}>L'état courant</CodeStep> du formulaire, qui sera au départ <CodeStep step={4}>l'état initial</CodeStep> que vous aurez fourni, puis une fois le formulaire envoyé, vaudra la valeur de retour de <CodeStep step={3}>l'action</CodeStep> que vous aurez passée.
+1. <CodeStep step={1}>L'état courant</CodeStep> du formulaire, qui sera au départ <CodeStep step={4}>l'état initial</CodeStep> que vous aurez fourni, puis une fois le formulaire envoyé, aura la valeur de retour de <CodeStep step={3}>l'action</CodeStep> que vous aurez passée.
 2. Une <CodeStep step={2}>nouvelle action</CodeStep> que vous pouvez passer comme prop `action` à votre `form`.
+3. Un <CodeStep step={1}>état d'attente</CodeStep> que vous pouvez utiliser tandis que l'action est en cours de traitement.
 
 Lorsque le formulaire sera envoyé, la fonction <CodeStep step={3}>d'action</CodeStep> que vous aurez fournie sera appelée.  Sa valeur de retour deviendra le nouvel <CodeStep step={1}>état courant</CodeStep> du formulaire.
 
@@ -133,13 +135,13 @@ import { useActionState, useState } from "react";
 import { addToCart } from "./actions.js";
 
 function AddToCartForm({itemID, itemTitle}) {
-  const [message, formAction] = useActionState(addToCart, null);
+  const [message, formAction, isPending] = useActionState(addToCart, null);
   return (
     <form action={formAction}>
       <h2>{itemTitle}</h2>
       <input type="hidden" name="itemID" value={itemID} />
       <button type="submit">Ajouter au panier</button>
-      {message}
+      {isPending ? "Chargement en cours..." : message}
     </form>
   );
 }
@@ -162,6 +164,10 @@ export async function addToCart(prevState, queryData) {
   if (itemID === "1") {
     return "Ajouté au panier";
   } else {
+    // Ajoute un faux délai pour qu’on puisse remarquer l’attente.
+    await new Promise(resolve => {
+      setTimeout(resolve, 2000);
+    });
     return "Impossible d’ajouter au panier : ce titre est épuisé.";
   }
 }

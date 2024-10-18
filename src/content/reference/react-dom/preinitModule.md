@@ -53,7 +53,7 @@ La fonction `preinitModule` suggère au navigateur de commencer à télécharger
 
 * `href` : une chaîne de caractères. L'URL du module que vous souhaitez télécharger et évaluer.
 * `options` : un objet. Il contient les propriétés suivantes :
-  *  `as` : une chaîne de caractères obligatoire. Le type de la ressource. La seule valeur autorisée est `script`.
+  *  `as` : une chaîne de caractères obligatoire. La seule valeur autorisée est `script`.
   * `crossOrigin` : une chaîne de caractères. La [politique CORS](https://developer.mozilla.org/fr/docs/Web/HTML/Attributes/crossorigin) à utiliser. Les valeurs possibles sont `anonymous` et `use-credentials`.
   * `integrity` : une chaîne de caractères. Une empreinte cryptographique de la ressource afin de [vérifier son authenticité](https://developer.mozilla.org/fr/docs/Web/Security/Subresource_Integrity).
   * `nonce` : une chaîne de caractères. Un [nonce cryptographique autorisant la ressource](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/nonce) dans le cadre d'une Politique de Sécurité de Contenu (CSP) stricte.

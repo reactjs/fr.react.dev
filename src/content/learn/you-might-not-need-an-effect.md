@@ -411,7 +411,7 @@ Ce code pose deux problèmes.
 
 Le premier problème est qu’il est très inefficace : le composant (et ses enfants) doivent refaire un rendu entre chaque appel `set` de la chaîne.  Dans l’exemple ci-dessus, dans le pire des cas (`setCard` → rendu → `setGoldCardCount` → rendu → `setRound` → rendu → `setIsGameOver` → rendu) on a pas moins de trois rendus superflus de l’arbre au sein du composant.
 
-Même si ce n’était pas lent, au fil de l’évolution de votre code, vous tomberez sur des cas où la « chaîne » que vous avez construite ne correspond plus aux nouvelles spécifications.  Imaginez que vous ajoutiez une étape au sein de l’historique des mouvements de la partie.  Pour ce faire, vous devriez mettre à jour chaque variable d’état sur base d’une valeur passée.  Seulement voilà, redéfinir `card` à une valeur passée déclencherait à nouveau la chaîne d’Effets et modifierait la donnée affichée.  Ce genre de code est rigide et fragile.
+Le second problème vient du fait que même si ce n’était pas lent, au fil de l’évolution de votre code, vous tomberez sur des cas où la « chaîne » que vous avez construite ne correspond plus aux nouvelles spécifications.  Imaginez que vous ajoutiez un moyen de naviguer au sein de l’historique des mouvements de la partie.  Pour ce faire, vous devriez mettre à jour chaque variable d’état sur base d’une valeur passée.  Seulement voilà, redéfinir `card` à une valeur passée déclencherait à nouveau la chaîne d’Effets et modifierait la donnée affichée.  Ce genre de code est souvent rigide et fragile.
 
 Dans un tel cas, il vaut largement mieux calculer tout ce qu’on peut pendant le rendu, et ajuster l’état au sein d’un gestionnaire d’événement :
 

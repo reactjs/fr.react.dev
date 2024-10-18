@@ -57,6 +57,7 @@ Cet exemple utilise un objet dans l’état pour représenter la position actuel
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
@@ -127,6 +128,7 @@ Voyez comme le point rouge suit désormais votre pointeur lorsque vous le touche
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,

@@ -41,7 +41,7 @@ Il renvoie un instantané de cette donnée issue de la source.  Vous aurez besoi
 
 #### Paramètres {/*parameters*/}
 
-* `subscribe` : une fonction acceptant un unique argument `callback` qui s'abonne à la source de données. Lorsque la source évolue, elle est censée invoquer `callback`.  Ça permettra au composant de refaire un rendu. La fonction `subscribe` est censée renvoyer une fonction qui procède au désabonnement associé.
+* `subscribe` : une fonction acceptant un unique argument `callback` et l'abonne à la source de données. Lorsque la source évolue, elle est censée invoquer `callback`, ce qui fera que React rappellera `getSnapshot` et (si besoin) refera le rendu du composant. La fonction `subscribe` est censée renvoyer une fonction qui procède au désabonnement associé.
 
 * `getSnapshot` : une fonction qui renvoie un instantané de la donnée requise par le composant au sein de la source.  Tant que la source n'évolue pas, des appels répétés à `getSnapshot` sont censés renvoyer la même valeur. Si la source évolue et que la valeur renvoyée diffère soudain (en comparant à l'aide de [`Object.is`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React refait un rendu du composant.
 
