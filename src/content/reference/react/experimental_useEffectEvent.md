@@ -19,7 +19,7 @@ Les versions expérimentales de React sont susceptibles de contenir des bugs. Ve
 
 <Intro>
 
-`useEffectEvent` est un Hook React qui vous permet d'extraire de la logique non réactie dans un [Événement d'Effet](/learn/separating-events-from-effects#declaring-an-effect-event).
+`useEffectEvent` est un Hook React qui vous permet d'extraire de la logique non réactive dans un [Événement d'Effet](/learn/separating-events-from-effects#declaring-an-effect-event).
 
 ```js
 const onSomething = useEffectEvent(callback)
