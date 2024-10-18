@@ -1059,7 +1059,7 @@ Gardez à l'esprit qu'il vous faut exécuter React en mode production, désactiv
 
 ---
 
-{/* TODO:L10N */}
+{/* FIXME:L10N */}
 
 ### Preventing an Effect from firing too often {/*preventing-an-effect-from-firing-too-often*/}
 

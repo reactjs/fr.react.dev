@@ -74,7 +74,7 @@ function TabContainer() {
 
 #### Limitations et points à noter {/*starttransition-caveats*/}
 
-{/* TODO:L10N (4th item) */}
+{/* FIXME:L10N (4th item) */}
 
 * `useTransition` est un Hook, il ne peut donc être appelé qu'au sein de composants ou de Hooks personnalisés.  Si vous avez besoin de démarrer une Transition à un autre endroit (par exemple, depuis une bibliothèque de gestion de données), utilisez plutôt la fonction autonome [`startTransition`](/reference/react/startTransition).
 

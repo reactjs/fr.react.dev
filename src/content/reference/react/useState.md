@@ -79,7 +79,7 @@ Les fonctions de mise à jour (celles renvoyées par `useState`) n'ont pas de va
 
 #### Limitations et points à noter {/*setstate-caveats*/}
 
-{/* TODO:L10N (4th item) */}
+{/* FIXME:L10N (4th item) */}
 
 * La fonction de mise à jour **ne met à jour que les variables d'état pour le *prochain* rendu**. Si vous lisez la variable d'état après avoir appelé la fonction de mise à jour, [vous obtiendrez la même ancienne valeur](#ive-updated-the-state-but-logging-gives-me-the-old-value) qui était sur votre écran avant l'appel.
 

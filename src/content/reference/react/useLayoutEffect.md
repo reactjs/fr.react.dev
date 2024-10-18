@@ -67,7 +67,7 @@ function Tooltip() {
 
 * Le code dans `useLayoutEffect` et toutes les mises à jour d'état qui y sont demandées **empêchent le navigateur de rafraîchir l'affichage à l'écran**. Si vous l'utilisez trop, ça ralentira votre appli.  Autant que possible, préférez [`useEffect`](/reference/react/useEffect).
 
-* If you trigger a state update inside `useLayoutEffect`, React will execute all remaining Effects immediately including `useEffect`.
+* Si vous déclenchez une mise à jour d'état au sein d'un `useLayoutEffect`, React exécutera immédiatement tous les Effets restants, y compris les `useEffect`.
 
 ---
 

@@ -51,7 +51,7 @@ function MyComponent() {
 
 #### Limitations et points à noter {/*caveats*/}
 
-{/* TODO:L10N (2nd item) */}
+{/* FIXME:L10N (2nd item) */}
 
 * `useReducer` est un Hook, vous ne pouvez donc l'appeler **qu'au niveau racine de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l'appeler dans des boucles ou des conditions. Si vous avez besoin de le faire, extrayez un nouveau composant et déplacez-y l'état.
 
