@@ -1059,9 +1059,8 @@ Gardez à l'esprit qu'il vous faut exécuter React en mode production, désactiv
 
 ---
 
-<<<<<<< HEAD
-### Mémoïser une dépendance d'un autre Hook {/*memoizing-a-dependency-of-another-hook*/}
-=======
+{/* TODO:L10N */}
+
 ### Preventing an Effect from firing too often {/*preventing-an-effect-from-firing-too-often*/}
 
 Sometimes, you might want to use a value inside an [Effect:](/learn/synchronizing-with-effects)
@@ -1138,9 +1137,7 @@ function ChatRoom({ roomId }) {
 
 Now your code is simpler and doesn't need `useMemo`. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 
-
-### Memoizing a dependency of another Hook {/*memoizing-a-dependency-of-another-hook*/}
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
+### Mémoïser une dépendance d'un autre Hook {/*memoizing-a-dependency-of-another-hook*/}
 
 Supposons que vous ayez un calcul qui dépende d'un objet créé directement au sein du composant :
 

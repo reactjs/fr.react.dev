@@ -35,11 +35,7 @@ const [state, formAction, isPending] = useActionState(fn, initialState, permalin
 
 {/* TODO T164397693: link to actions documentation once it exists */}
 
-<<<<<<< HEAD
-Appelez `useActionState` au niveau racine de votre composant pour créer un état de composant qui sera mis à jour [lorsqu'une action de formulaire sera invoquée](/reference/react-dom/components/form). Vous passez à `useActionState` une fonction d'action de formulaire existante ainsi qu'un état initial, et il renvoie une nouvelle action que vous pouvez utiliser dans votre formulaire, ainsi que le dernier état en date pour ce formulaire.  Cet état sera également passé à la fonction que vous avez fournie.
-=======
-Call `useActionState` at the top level of your component to create component state that is updated [when a form action is invoked](/reference/react-dom/components/form). You pass `useActionState` an existing form action function as well as an initial state, and it returns a new action that you use in your form, along with the latest form state and whether the Action is still pending. The latest form state is also passed to the function that you provided.
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
+Appelez `useActionState` au niveau racine de votre composant pour créer un état de composant qui sera mis à jour [lorsqu'une action de formulaire sera invoquée](/reference/react-dom/components/form). Vous passez à `useActionState` une fonction d'action de formulaire existante ainsi qu'un état initial, et elle renvoie une nouvelle action que vous pouvez utiliser dans votre formulaire, ainsi que le dernier état en date pour ce formulaire.  Cet état sera également passé à la fonction que vous avez fournie.
 
 ```js
 import { useActionState } from "react";
@@ -75,18 +71,11 @@ Lorsque vous l'utilisez dans une Action Serveur, `useActionState` permet d'affic
 
 #### Valeur renvoyée {/*returns*/}
 
-<<<<<<< HEAD
-`useActionState` renvoie un tableau avec exactement deux valeurs :
+`useActionState` renvoie un tableau avec exactement trois valeurs :
 
 1. L'état courant.  Lors du rendu initial, il s'agira du `initialState` que vous avez passé. Après que l'action aura été invoquée, il correspondra à la valeur renvoyée par l'action.
 2. Une nouvelle action que vous pouvez passer comme prop `action` à votre composant `form`, ou comme prop `formAction` à tout composant `button` au sein du formulaire.
-=======
-`useActionState` returns an array with the following values:
-
-1. The current state. During the first render, it will match the `initialState` you have passed. After the action is invoked, it will match the value returned by the action.
-2. A new action that you can pass as the `action` prop to your `form` component or `formAction` prop to any `button` component within the form.
-3. The `isPending` flag that tells you whether there is a pending Transition.
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
+3. Le drapeau `isPending` qui vous indique si une Transition est en cours.
 
 #### Limitations {/*caveats*/}
 
@@ -116,18 +105,11 @@ function MyComponent() {
 }
 ```
 
-<<<<<<< HEAD
-`useActionState` renvoie un tableau avec exactement deux valeurs :
+`useActionState` renvoie un tableau avec exactement trois valeurs :
 
-1. <CodeStep step={1}>L'état courant</CodeStep> du formulaire, qui sera au départ <CodeStep step={4}>l'état initial</CodeStep> que vous aurez fourni, puis une fois le formulaire envoyé, vaudra la valeur de retour de <CodeStep step={3}>l'action</CodeStep> que vous aurez passée.
+1. <CodeStep step={1}>L'état courant</CodeStep> du formulaire, qui sera au départ <CodeStep step={4}>l'état initial</CodeStep> que vous aurez fourni, puis une fois le formulaire envoyé, aura la valeur de retour de <CodeStep step={3}>l'action</CodeStep> que vous aurez passée.
 2. Une <CodeStep step={2}>nouvelle action</CodeStep> que vous pouvez passer comme prop `action` à votre `form`.
-=======
-`useActionState` returns an array with the following items:
-
-1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={4}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={3}>action</CodeStep> you provided.
-2. A <CodeStep step={2}>new action</CodeStep> that you pass to `<form>` as its `action` prop.
-3. A <CodeStep step={1}>pending state</CodeStep> that you can utilise whilst your action is processing.
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
+3. Un <CodeStep step={1}>état d'attente</CodeStep> que vous pouvez utiliser tandis que l'action est en cours de traitement.
 
 Lorsque le formulaire sera envoyé, la fonction <CodeStep step={3}>d'action</CodeStep> que vous aurez fournie sera appelée.  Sa valeur de retour deviendra le nouvel <CodeStep step={1}>état courant</CodeStep> du formulaire.
 
@@ -158,13 +140,8 @@ function AddToCartForm({itemID, itemTitle}) {
     <form action={formAction}>
       <h2>{itemTitle}</h2>
       <input type="hidden" name="itemID" value={itemID} />
-<<<<<<< HEAD
       <button type="submit">Ajouter au panier</button>
-      {message}
-=======
-      <button type="submit">Add to Cart</button>
-      {isPending ? "Loading..." : message}
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
+      {isPending ? "Chargement en cours..." : message}
     </form>
   );
 }
@@ -187,15 +164,11 @@ export async function addToCart(prevState, queryData) {
   if (itemID === "1") {
     return "Ajouté au panier";
   } else {
-<<<<<<< HEAD
-    return "Impossible d’ajouter au panier : ce titre est épuisé.";
-=======
-    // Add a fake delay to make waiting noticeable.
+    // Ajoute un faux délai pour qu’on puisse remarquer l’attente.
     await new Promise(resolve => {
       setTimeout(resolve, 2000);
     });
-    return "Couldn't add to cart: the item is sold out.";
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
+    return "Impossible d’ajouter au panier : ce titre est épuisé.";
   }
 }
 ```

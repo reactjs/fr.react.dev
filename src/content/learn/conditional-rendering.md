@@ -52,11 +52,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-<<<<<<< HEAD
-Remarquez que certains composants `Item` ont leur prop `isPacked` à `true` plutôt qu'à `false`.  Vous souhaitez ajouter une coche (✔) aux objets pour lesquels `isPacked={true}`.
-=======
-Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✅) to packed items if `isPacked={true}`.
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
+Remarquez que certains composants `Item` ont leur prop `isPacked` à `true` plutôt qu'à `false`.  Vous souhaitez ajouter une coche (✅) aux objets pour lesquels `isPacked={true}`.
 
 Vous pourriez écrire ça sous forme [d'instruction `if`/`else`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/if...else), comme ceci :
 
@@ -206,11 +202,7 @@ return (
 );
 ```
 
-<<<<<<< HEAD
-Vous pouvez le lire comme suit : *« si `isPacked` est vrai, alors (`?`) affiche `name + ' ✔'`, sinon (`:`) affiche `name` »*.
-=======
-You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✅'`, otherwise (`:`) render `name`"*.
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
+Vous pouvez le lire comme suit : *« si `isPacked` est vrai, alors (`?`) affiche `name + ' ✅'`, sinon (`:`) affiche `name` »*.
 
 <DeepDive>
 

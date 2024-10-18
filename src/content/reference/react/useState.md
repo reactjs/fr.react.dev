@@ -77,7 +77,9 @@ function handleClick() {
 
 Les fonctions de mise à jour (celles renvoyées par `useState`) n'ont pas de valeur de retour.
 
-#### Limitations {/*setstate-caveats*/}
+#### Limitations et points à noter {/*setstate-caveats*/}
+
+{/* TODO:L10N (4th item) */}
 
 * La fonction de mise à jour **ne met à jour que les variables d'état pour le *prochain* rendu**. Si vous lisez la variable d'état après avoir appelé la fonction de mise à jour, [vous obtiendrez la même ancienne valeur](#ive-updated-the-state-but-logging-gives-me-the-old-value) qui était sur votre écran avant l'appel.
 
@@ -85,13 +87,9 @@ Les fonctions de mise à jour (celles renvoyées par `useState`) n'ont pas de va
 
 * React [met à jour les états par lots](/learn/queueing-a-series-of-state-updates). Il met à jour l'écran **après que tous les gestionnaires d'événements ont été lancés** et qu'ils auront appelé leurs fonctions de mise à jour. Ça évite des rendus inutiles suite à un unique événement. Dans les rares cas où vous auriez besoin de forcer React à mettre à jour l'écran plus tôt, par exemple pour accéder au DOM, vous pouvez utiliser [`flushSync`](/reference/react-dom/flushSync).
 
-<<<<<<< HEAD
-* Il est possible d'appeler la fonction de mise à jour *pendant le rendu*, mais uniquement au sein du composant en cours de rendu. React ignorera le JSX résultat pour refaire immédiatement un rendu avec le nouvel état. Cette approche est rarement nécessaire, mais vous pouvez l'utiliser pour **stocker des informations des précédents rendus**. [Voir un exemple ci-dessous](#storing-information-from-previous-renders).
-=======
 * The `set` function has a stable identity, so you will often see it omitted from effect dependencies, but including it will not cause the effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 
-* Calling the `set` function *during rendering* is only allowed from within the currently rendering component. React will discard its output and immediately attempt to render it again with the new state. This pattern is rarely needed, but you can use it to **store information from the previous renders**. [See an example below.](#storing-information-from-previous-renders)
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
+* Il est possible d'appeler la fonction de mise à jour *pendant le rendu*, mais uniquement au sein du composant en cours de rendu. React ignorera le JSX résultat pour refaire immédiatement un rendu avec le nouvel état. Cette approche est rarement nécessaire, mais vous pouvez l'utiliser pour **stocker des informations des précédents rendus**. [Voir un exemple ci-dessous](#storing-information-from-previous-renders).
 
 * En Mode Strict, React **appellera votre fonction d'initialisation deux fois** afin de vous aider à [détecter des impuretés accidentelles](#my-initializer-or-updater-function-runs-twice). Ce comportement est spécifique au mode développement et n'affecte pas la production. Si votre fonction de mise à jour est pure (ce qui devrait être le cas), ça ne devrait pas affecter le comportement. Le résultat d'un des appels sera ignoré.
 
