@@ -2,7 +2,7 @@
 title: Les règles des Hooks
 ---
 
-{/* TODO: L10N */}
+{/* FIXME:L10N */}
 
 <Intro>
 Hooks are defined using JavaScript functions, but they represent a special type of reusable UI logic with restrictions on where they can be called.

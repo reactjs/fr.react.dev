@@ -2,7 +2,7 @@
 title: Les composants et les Hooks doivent être purs
 ---
 
-{/* TODO: L10N */}
+{/* FIXME:L10N */}
 
 <Intro>
 Pure functions only perform a calculation and nothing more. It makes your code easier to understand, debug, and allows React to automatically optimize your components and Hooks correctly.
