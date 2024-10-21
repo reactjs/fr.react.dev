@@ -51,17 +51,9 @@ function MyComponent() {
 
 #### Limitations et points à noter {/*caveats*/}
 
-<<<<<<< HEAD
 * `useReducer` est un Hook, vous ne pouvez donc l'appeler **qu'au niveau racine de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l'appeler dans des boucles ou des conditions. Si vous avez besoin de le faire, extrayez un nouveau composant et déplacez-y l'état.
-
 * La fonction `dispatch` a une identité stable, elle ne figure donc généralement pas dans les dépendances des Effets, mais l'inclure n'entraînera pas un déclenchement d'Effet superflu.  Si le *linter* vous permet de l'omettre sans erreurs, c'est que cette omission est sans danger. [Apprenez-en davantage sur l'allègement des dépendances d'Effets](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
-
 * En Mode Strict, React **appellera deux fois votre réducteur et votre fonction d'initialisation** afin de [vous aider à détecter des impuretés accidentelles](#my-reducer-or-initializer-function-runs-twice). Ce comportement est limité au développement et n'affecte pas la production. Si votre réducteur et votre fonction d'initialisation sont pures (ce qui devrait être le cas), ça n'impactera pas votre logique. Le résultat de l'un des appels est ignoré.
-=======
-* `useReducer` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* The `dispatch` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
-* In Strict Mode, React will **call your reducer and initializer twice** in order to [help you find accidental impurities.](#my-reducer-or-initializer-function-runs-twice) This is development-only behavior and does not affect production. If your reducer and initializer are pure (as they should be), this should not affect your logic. The result from one of the calls is ignored.
->>>>>>> 9467bc58868e66c53ca9385c8531dcf7b02178c2
 
 ---
 
