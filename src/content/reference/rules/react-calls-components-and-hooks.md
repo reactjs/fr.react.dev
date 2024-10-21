@@ -2,87 +2,88 @@
 title: React appelle les composants et les Hooks
 ---
 
-{/* FIXME:L10N */}
-
 <Intro>
-React is responsible for rendering components and Hooks when necessary to optimize the user experience. It is declarative: you tell React what to render in your component’s logic, and React will figure out how best to display it to your user.
+
+React s'occupe de réaliser le rendu des composants et des Hooks lorsque c'est nécessaire, afin d'optimiser l'expérience utilisateur. C'est une approche déclarative : vous dites à React quel rendu effectuer dans la logique de votre composant, et React déterminera comment réaliser au mieux l'affichage pour l'utilisateur.
+
 </Intro>
 
 <InlineToc />
 
 ---
 
-## Never call component functions directly {/*never-call-component-functions-directly*/}
-Components should only be used in JSX. Don't call them as regular functions. React should call it.
+## N'appelez jamais les fonctions composants directement {/*never-call-component-functions-directly*/}
 
-React must decide when your component function is called [during rendering](/reference/rules/components-and-hooks-must-be-pure#how-does-react-run-your-code). In React, you do this using JSX.
+Les composants ne devraient être utilisés que dans du JSX. Ne les appelez pas en tant que fonctions classiques. C'est à React de les appeler.
+
+C'est à React de décider quand appeler votre fonction composant [lors du rendu](/reference/rules/components-and-hooks-must-be-pure#how-does-react-run-your-code). En React, vous utilisez pour ça la syntaxe JSX.
 
 ```js {2}
 function BlogPost() {
-  return <Layout><Article /></Layout>; // ✅ Good: Only use components in JSX
+  return <Layout><Article /></Layout>; // ✅ Correct : composants utilisés seulement par JSX
 }
 ```
 
 ```js {2}
 function BlogPost() {
-  return <Layout>{Article()}</Layout>; // 🔴 Bad: Never call them directly
+  return <Layout>{Article()}</Layout>; // 🔴 Incorrect : ne les appelez jamais directement
 }
 ```
 
-If a component contains Hooks, it's easy to violate the [Rules of Hooks](/reference/rules/rules-of-hooks) when components are called directly in a loop or conditionally.
+Si un composant contient des Hooks, il est aisé d'enfreindre les [Règles des Hooks](/reference/rules/rules-of-hooks) lorsque les composants sont appelés directement au sein de boucles ou de conditions.
 
-Letting React orchestrate rendering also allows a number of benefits:
+Le fait de laisser React orchestrer le rendu offre de nombreux avantages :
 
-* **Components become more than functions.** React can augment them with features like _local state_ through Hooks that are tied to the component's identity in the tree.
-* **Component types participate in reconciliation.** By letting React call your components, you also tell it more about the conceptual structure of your tree. For example, when you move from rendering `<Feed>` to the `<Profile>` page, React won’t attempt to re-use them.
-* **React can enhance your user experience.** For example, it can let the browser do some work between component calls so that re-rendering a large component tree doesn’t block the main thread.
-* **A better debugging story.** If components are first-class citizens that the library is aware of, we can build rich developer tools for introspection in development.
-* **More efficient reconciliation.** React can decide exactly which components in the tree need re-rendering and skip over the ones that don't. That makes your app faster and more snappy.
+* **Les composants deviennent plus que de simples fonctions.** React peut leur ajouter des fonctionnalités telles que _l'état local_ au moyen de Hooks associés à l'identité du composant dans l'arbre.
+* **Les types des composants participent à la réconciliation.** En laissant React appeler vos composants, vous lui en dites plus sur la structure sémantique de votre arbre. Par exemple, lorsque vous passez du rendu d'un `<Feed>` à celui d'une page `<Profile>`, React ne risque pas de mélanger leurs données sous-jacentes.
+* **React peut améliorer l'expérience utilisateur.** Il peut par exemple laisser le navigateur traiter certaines tâches entre les appels des composants, afin que le rendu d'un énorme arbre de composants ne bloque pas le *thread* principal.
+* **Le débogage est facilité.** Si les composants sont des citoyens de plein droit connus de la bibliothèque, nous pouvons construire un outillage développeur·ses avancé pour les examiner lors du développement.
+* **La réconciliation est plus efficace.** React peut déterminer précisément quels composants dans l'arbre ont besoin d'un nouveau rendu, ainsi que ceux qui peuvent être laissés tels quels. Ça aide à rendre votre appli plus rapide et réactive.
 
 ---
 
-## Never pass around Hooks as regular values {/*never-pass-around-hooks-as-regular-values*/}
+## Ne passez jamais des Hooks comme des valeurs classiques {/*never-pass-around-hooks-as-regular-values*/}
 
-Hooks should only be called inside of components or Hooks. Never pass it around as a regular value.
+Les Hooks ne devraient être appelés qu'au sein de composants. Évitez de les manipuler ou transmettre comme des valeurs classiques.
 
-Hooks allow you to augment a component with React features. They should always be called as a function, and never passed around as a regular value. This enables _local reasoning_, or the ability for developers to understand everything a component can do by looking at that component in isolation.
+Les Hooks vous permettent d'ajouter des fonctionnalités React à un composant.  Ils devraient toujours être appelés en tant que fonctions, jamais traités comme des valeurs à transmettre. Ça permet un _raisonnement local_, c'est-à-dire que ça offre la possibilité pour les développeur·ses de comprendre l'entièreté d'un composant grâce à son seul code source.
 
-Breaking this rule will cause React to not automatically optimize your component.
+Enfreindre cette règle empêchera React d'optimiser automatiquement votre composant.
 
-### Don't dynamically mutate a Hook {/*dont-dynamically-mutate-a-hook*/}
+### Ne modifiez pas dynamiquement un Hook {/*dont-dynamically-mutate-a-hook*/}
 
-Hooks should be as "static" as possible. This means you shouldn't dynamically mutate them. For example, this means you shouldn't write higher order Hooks:
+Les Hooks devraient être aussi « statiques » que possible.  Ça signifie que vous ne devriez pas les modifier dynamiquement.  Vous devriez par exemple éviter d'écrire des Hooks d'ordre supérieur :
 
 ```js {2}
 function ChatInput() {
-  const useDataWithLogging = withLogging(useData); // 🔴 Bad: don't write higher order Hooks
+  const useDataWithLogging = withLogging(useData); // 🔴 Déconseillé : évitez les Hooks d’ordre supérieur
   const data = useDataWithLogging();
 }
 ```
 
-Hooks should be immutable and not be mutated. Instead of mutating a Hook dynamically, create a static version of the Hook with the desired functionality.
+Les Hooks devraient être immuables, et donc non modifiés.  Plutôt que de modifier dynamiquement un Hook, créez une version statique du Hook avec la fonctionnalité voulue.
 
 ```js {2,6}
 function ChatInput() {
-  const data = useDataWithLogging(); // ✅ Good: Create a new version of the Hook
+  const data = useDataWithLogging(); // ✅ Correct : utilise une nouvelle version du Hook
 }
 
 function useDataWithLogging() {
-  // ... Create a new version of the Hook and inline the logic here
+  // ... Crée une nouvelle version du Hook en intégrant directement la logique ici
 }
 ```
 
-### Don't dynamically use Hooks {/*dont-dynamically-use-hooks*/}
+### N'utilisez pas dynamiquement les Hooks {/*dont-dynamically-use-hooks*/}
 
-Hooks should also not be dynamically used: for example, instead of doing dependency injection in a component by passing a Hook as a value:
+Les Hooks ne devraient par ailluers pas être utilisés dynamique.  Disons par exemple que vous recouriez à l'injection de dépendance en passant un Hook à un composant sous forme de valeur :
 
 ```js {2}
 function ChatInput() {
-  return <Button useData={useDataWithLogging} /> // 🔴 Bad: don't pass Hooks as props
+  return <Button useData={useDataWithLogging} /> // 🔴 Incorrect : ne passez pas les Hooks en props
 }
 ```
 
-You should always inline the call of the Hook into that component and handle any logic in there.
+Vous devriez toujours intégrer directement l'appel au Hook dans votre composant, et y traiter la logique associée.
 
 ```js {6}
 function ChatInput() {
@@ -90,14 +91,13 @@ function ChatInput() {
 }
 
 function Button() {
-  const data = useDataWithLogging(); // ✅ Good: Use the Hook directly
+  const data = useDataWithLogging(); // ✅ Correct : utilise le Hook directement
 }
 
 function useDataWithLogging() {
-  // If there's any conditional logic to change the Hook's behavior, it should be inlined into
-  // the Hook
+  // Si une logique conditionnelle modifie le comportement du Hook, elle devrait être intégrée
+  // directement dans le Hook.
 }
 ```
 
-This way, `<Button />` is much easier to understand and debug. When Hooks are used in dynamic ways, it increases the complexity of your app greatly and inhibits local reasoning, making your team less productive in the long term. It also makes it easier to accidentally break the [Rules of Hooks](/reference/rules/rules-of-hooks) that Hooks should not be called conditionally. If you find yourself needing to mock components for tests, it's better to mock the server instead to respond with canned data. If possible, it's also usually more effective to test your app with end-to-end tests.
-
+De cette façon, il est bien plus facile de comprendre et déboguer `<Button />`.  Lorsque les Hooks sont utilisés de façon dynamique, ça augmente significativement la complexité de votre appli et empêche le raisonnement local, ce qui réduit sur le long terme la productivité de votre équipe.  Ça augmente aussi le risque d'enfreindre par inadvertance les [Règles des Hooks](/reference/rules/rules-of-hooks), qui dictent qu'un Hook ne doit jamais être appelé conditionnellement. Si vous vous retrouvez à devoir *mocker* des composants pour vos tests, il vaut mieux *mocker* le serveur pour qu'il réponde avec des données prédéfinies.  Lorsque c'est possible, il est généralement plus efficace de tester votre appli au moyen de tests *end-to-end* (E2E).
