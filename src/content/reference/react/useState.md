@@ -85,7 +85,11 @@ Les fonctions de mise à jour (celles renvoyées par `useState`) n'ont pas de va
 
 * React [met à jour les états par lots](/learn/queueing-a-series-of-state-updates). Il met à jour l'écran **après que tous les gestionnaires d'événements ont été lancés** et qu'ils auront appelé leurs fonctions de mise à jour. Ça évite des rendus inutiles suite à un unique événement. Dans les rares cas où vous auriez besoin de forcer React à mettre à jour l'écran plus tôt, par exemple pour accéder au DOM, vous pouvez utiliser [`flushSync`](/reference/react-dom/flushSync).
 
+<<<<<<< HEAD
 * La fonction de mise à jour a une identité stable, elle ne figure donc généralement pas dans les dépendances des Effets, mais l'inclure n'entraînera pas un déclenchement d'Effet superflu.  Si le *linter* vous permet de l'omettre sans erreurs, c'est que cette omission est sans danger. [Apprenez-en davantage sur l'allègement des dépendances d'Effets](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+=======
+* The `set` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+>>>>>>> 9467bc58868e66c53ca9385c8531dcf7b02178c2
 
 * Il est possible d'appeler la fonction de mise à jour *pendant le rendu*, mais uniquement au sein du composant en cours de rendu. React ignorera le JSX résultat pour refaire immédiatement un rendu avec le nouvel état. Cette approche est rarement nécessaire, mais vous pouvez l'utiliser pour **stocker des informations des précédents rendus**. [Voir un exemple ci-dessous](#storing-information-from-previous-renders).
 
