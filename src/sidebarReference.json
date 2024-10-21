@@ -346,7 +346,7 @@
       "path": "/reference/rules",
       "routes": [
         {
-          "title": "Les composants et les Hooks doivent être purs",
+          "title": "Les composants et les Hooks doivent être des fonctions pures",
           "path": "/reference/rules/components-and-hooks-must-be-pure"
         },
         {

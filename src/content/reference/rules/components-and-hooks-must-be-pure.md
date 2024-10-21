@@ -1,5 +1,5 @@
 ---
-title: Les composants et les Hooks doivent être purs
+title: Les composants et les Hooks doivent être des fonctions pures
 ---
 
 {/* FIXME:L10N */}
