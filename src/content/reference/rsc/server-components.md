@@ -98,8 +98,6 @@ Vous en saurez plus dans [Composants asynchrones et Composants Serveur](#async-c
 
 ### Composants Serveur… avec un serveur {/*server-components-with-a-server*/}
 
-{/* FIXME:L10N */}
-
 Les Composants Serveur peuvent aussi être exécutés dans un serveur web lors du traitement d'une requête pour une page, ce qui vous permet d'accéder à votre couche de données sans avoir besoin de construire une API.  Le rendu est fait avant le *bundling* de l'appli, et peut passer des données et du JSX à des Composants Client.
 
 Sans Composants Serveur, on a généralement recours à un Effet pour charger des données côté client :

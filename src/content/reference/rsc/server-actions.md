@@ -3,8 +3,6 @@ title: Actions Serveur
 canary: true
 ---
 
-{/* FIXME:L10N */}
-
 <Intro>
 
 Les Actions Serveur permettent aux Composants Client d'appeler des fonctions asynchrones exécutées côté serveur.
