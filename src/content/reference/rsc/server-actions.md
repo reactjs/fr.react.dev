@@ -1,13 +1,11 @@
 ---
-title: Server Actions
+title: Actions Serveur
 canary: true
 ---
 
-{/* FIXME:L10N */}
-
 <Intro>
 
-Server Actions allow Client Components to call async functions executed on the server.
+Les Actions Serveur permettent aux Composants Client d'appeler des fonctions asynchrones exécutées côté serveur.
 
 </Intro>
 
@@ -15,29 +13,29 @@ Server Actions allow Client Components to call async functions executed on the s
 
 <Note>
 
-#### How do I build support for Server Actions? {/*how-do-i-build-support-for-server-actions*/}
+#### Comment prendre en charge les Actions Serveur ? {/*how-do-i-build-support-for-server-actions*/}
 
-While Server Actions in React 19 are stable and will not break between major versions, the underlying APIs used to implement Server Actions in a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
+Même si les Actions Serveur dans React 19 sont stables et ne casseront pas la compatibilité entre les versions majeures, les API sous-jacentes utilisées pour implémenter les Actions Serveur au sein d'un *bundler* ou framework compatible avec les React Server Components ne suivent pas, elles, le versionnage sémantique et sont susceptibles de casser la compatibilité entre les versions mineures de React 19.x.
 
-To support Server Actions as a bundler or framework, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stabilize the APIs used to implement Server Actions in the future.
+Pour prendre en charge les Actions Serveur dans un *bundler* ou framework, nous vous conseillons de figer React sur une version spécifique, ou d'utiliser une version Canari.  Nous allons continuer à collaborer avec les *bundlers* et frameworks pour stabiliser les API utilisées pour implémenter les Actions Serveur à l'avenir.
 
 </Note>
 
-When a Server Action is defined with the `"use server"` directive, your framework will automatically create a reference to the server function, and pass that reference to the Client Component. When that function is called on the client, React will send a request to the server to execute the function, and return the result.
+Lorsqu'une Action Serveur est définie au moyen d'une directive `"use server"`, votre framework crée automatiquement une référence à la fonction serveur, et la passe au Composant Client.  Lorsque cette fonction sera appelée côté client, React réagira en envoyant une requête au serveur pour exécuter cette fonction, et en renvoyant le résultat.
 
-Server Actions can be created in Server Components and passed as props to Client Components, or they can be imported and used in Client Components.
+Les Actions Serveur peuvent être créées dans les Composants Serveur et passées comme props à des Composants Client, ou peuvent être directement importées et utilisées dans des Composants Client.
 
-### Creating a Server Action from a Server Component {/*creating-a-server-action-from-a-server-component*/}
+### Créer une Action Serveur à partir d'un Composant Serveur {/*creating-a-server-action-from-a-server-component*/}
 
-Server Components can define Server Actions with the `"use server"` directive:
+Les Composants Serveur peuvent définir des Actions Serveur au moyen de la directive `"use server"` :
 
 ```js [[2, 7, "'use server'"], [1, 5, "createNoteAction"], [1, 12, "createNoteAction"]]
-// Server Component
+// Composant Serveur
 import Button from './Button';
 
 function EmptyNote () {
   async function createNoteAction() {
-    // Server Action
+    // Action Serveur
     'use server';
     
     await db.notes.create();
@@ -47,7 +45,7 @@ function EmptyNote () {
 }
 ```
 
-When React renders the `EmptyNote` Server Component, it will create a reference to the `createNoteAction` function, and pass that reference to the `Button` Client Component. When the button is clicked, React will send a request to the server to execute the `createNoteAction` function with the reference provided:
+Lorsque React affichera le Composant Serveur `EmptyNote`, il créera une référence à la fonction `createNoteAction` et passera cette référence au Composant Client `Button`. Lorsqu'on cliquera sur le bouton, React enverra la requête au serveur pour exécuter la fonction `createNoteAction` avec la référence fournie :
 
 ```js {5}
 "use client";
@@ -55,16 +53,16 @@ When React renders the `EmptyNote` Server Component, it will create a reference 
 export default function Button({onClick}) { 
   console.log(onClick); 
   // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
-  return <button onClick={() => onClick()}>Create Empty Note</button>
+  return <button onClick={() => onClick()}>Créer une note vide</button>
 }
 ```
 
-For more, see the docs for [`"use server"`](/reference/rsc/use-server).
+Pour en savoir plus, consultez la documentation de [`"use server"`](/reference/rsc/use-server).
 
 
-### Importing Server Actions from Client Components {/*importing-server-actions-from-client-components*/}
+### Importer des Actions Serveur depuis des Composants Client {/*importing-server-actions-from-client-components*/}
 
-Client Components can import Server Actions from files that use the `"use server"` directive:
+Les Composants Client peuvent importer des Actions Serveur depuis des modules utilisant la directive `"use server"` :
 
 ```js [[1, 3, "createNoteAction"]]
 "use server";
@@ -75,7 +73,7 @@ export async function createNoteAction() {
 
 ```
 
-When the bundler builds the `EmptyNote` Client Component, it will create a reference to the `createNoteAction` function in the bundle. When the `button` is clicked, React will send a request to the server to execute the `createNoteAction` function using the reference provided:
+Lorsque le *bundler* construit le Composant Client `EmptyNote`, il injecte dans le *bundle* une référence à la fonction `createNoteAction`. Lorsqu'on cliquera sur le `button`, React enverra une requête au serveur pour exécuter la fonction `createNoteAction` au moyen de la référence fournie :
 
 ```js [[1, 2, "createNoteAction"], [1, 5, "createNoteAction"], [1, 7, "createNoteAction"]]
 "use client";
@@ -88,18 +86,18 @@ function EmptyNote() {
 }
 ```
 
-For more, see the docs for [`"use server"`](/reference/rsc/use-server).
+Pour en savoir plus, consultez la documentation de [`"use server"`](/reference/rsc/use-server).
 
-### Composing Server Actions with Actions {/*composing-server-actions-with-actions*/}
+### Composer les Actions Serveur au moyen des Actions {/*composing-server-actions-with-actions*/}
 
-Server Actions can be composed with Actions on the client:
+Les Actions Serveur peuvent être composées avec des Actions côté client :
 
 ```js [[1, 3, "updateName"]]
 "use server";
 
 export async function updateName(name) {
   if (!name) {
-    return {error: 'Name is required'};
+    return {error: 'Le nom est requis'};
   }
   await db.users.updateName(name);
 }
@@ -130,21 +128,21 @@ function UpdateName() {
   return (
     <form action={submitAction}>
       <input type="text" name="name" disabled={isPending}/>
-      {state.error && <span>Failed: {state.error}</span>}
+      {state.error && <span>Échec : {state.error}</span>}
     </form>
   )
 }
 ```
 
-This allows you to access the `isPending` state of the Server Action by wrapping it in an Action on the client.
+Ça vous permet d'accéder à l'état `isPending` de l'Action Serveur en l'enrobant dans une Action côté client.
 
-For more, see the docs for [Calling a Server Action outside of `<form>`](/reference/rsc/use-server#calling-a-server-action-outside-of-form)
+Pour en savoir plus, allez lire [Appeler une Action Serveur hors d'un `<form>`](/reference/rsc/use-server#calling-a-server-action-outside-of-form).
 
-### Form Actions with Server Actions {/*form-actions-with-server-actions*/}
+### Actions de formulaire et Actions Serveur {/*form-actions-with-server-actions*/}
 
-Server Actions work with the new Form features in React 19.
+Les Actions Serveur peuvent interagir avec des fonctionnalités de formulaire de React 19.
 
-You can pass a Server Action to a Form to automatically submit the form to the server:
+Vous pouvez passer une Action Serveur à un formulaire pour envoyer automatiquement le formulaire au serveur :
 
 
 ```js [[1, 3, "updateName"], [1, 7, "updateName"]]
@@ -161,13 +159,13 @@ function UpdateName() {
 }
 ```
 
-When the Form submission succeeds, React will automatically reset the form. You can add `useActionState` to access the pending state, last response, or to support progressive enhancement.
+Lorsque l'envoi du formulaire aura réussi, React réinitialisera automatiquement le formulaire. Vous pouvez ajouter `useActionState` pour accéder à l'état d'attente, consulter la dernière réponse connue, ou prendre en charge l'amélioration progressive.
 
-For more, see the docs for [Server Actions in Forms](/reference/rsc/use-server#server-actions-in-forms).
+Pour en savoir plus, allez lire [Les Actions Serveur dans les formulaires](/reference/rsc/use-server#server-actions-in-forms).
 
-### Server Actions with `useActionState` {/*server-actions-with-use-action-state*/}
+### Actions Serveur et `useActionState` {/*server-actions-with-use-action-state*/}
 
-You can compose Server Actions with `useActionState` for the common case where you just need access to the action pending state and last returned response:
+Vous pouvez composer des Actions Serveur avec `useActionState` pour le cas classique où vous avez juste besoin d'accéder à l'état en attente de l'action et à sa dernière réponse connue :
 
 ```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "submitAction"], [2, 9, "submitAction"]]
 "use client";
@@ -180,19 +178,19 @@ function UpdateName() {
   return (
     <form action={submitAction}>
       <input type="text" name="name" disabled={isPending}/>
-      {state.error && <span>Failed: {state.error}</span>}
+      {state.error && <span>Échec : {state.error}</span>}
     </form>
   );
 }
 ```
 
-When using `useActionState` with Server Actions, React will also automatically replay form submissions entered before hydration finishes. This means users can interact with your app even before the app has hydrated.
+Lorsque vous utilisez `useActionState` avec des Actions Serveur, React rejoue automatiquement les envois de formulaire réalisés avant la fin de l'hydratation.  Ça signifie que les utilisateurs peuvent interagir avec votre appli avant même qu'elle soit hydratée.
 
-For more, see the docs for [`useActionState`](/reference/react-dom/hooks/useFormState).
+Pour en savoir plus, consultez la documentation de [`useActionState`](/reference/react-dom/hooks/useFormState).
 
-### Progressive enhancement with `useActionState` {/*progressive-enhancement-with-useactionstate*/}
+### Amélioration progressive avec `useActionState` {/*progressive-enhancement-with-useactionstate*/}
 
-Server Actions also support progressive enhancement with the third argument of `useActionState`.
+Les Actions Serveur prennent aussi en charge l'amélioration progressive grâce au troisième argument de `useActionState`.
 
 ```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "/name/update"], [3, 6, "submitAction"], [3, 9, "submitAction"]]
 "use client";
@@ -210,6 +208,6 @@ function UpdateName() {
 }
 ```
 
-When the <CodeStep step={2}>permalink</CodeStep> is provided to `useActionState`, React will redirect to the provided URL if the form is submitted before the JavaScript bundle loads.
+Lorsqu'un <CodeStep step={2}>permalien</CodeStep> est fourni à `useActionState`, React redirigera sur l'URL fournie si le formulaire est envoyé avant que le *bundle* JavaScript soit chargé.
 
-For more, see the docs for [`useActionState`](/reference/react-dom/hooks/useFormState).
+Apprenez-en davantage dans la documentation de [`useActionState`](/reference/react-dom/hooks/useFormState).

@@ -1,34 +1,34 @@
 ---
-title: React Server Components
+title: Composants Serveur
 canary: true
 ---
 
-{/* FIXME:L10N */}
-
 <Intro>
 
-Server Components are a new type of Component that renders ahead of time, before bundling, in an environment separate from your client app or SSR server.
+Les Composants Serveur *(React Server Components, ou RSC — NdT)* sont un nouveau type de Composant qui font un rendu anticipé, avant le *bundling*, dans un environnement distinct de votre appli client et d'un serveur SSR.
 
 </Intro>
 
-This separate environment is the "server" in React Server Components. Server Components can run once at build time on your CI server, or they can be run for each request using a web server.
+Cet environnement séparé est le « serveur » des Composants Serveur. Les Composants Serveur peuvent n'être exécutés qu'une seule fois au moment du build sur votre serveur de CI, ou peuvent l'être à chaque requête au sein d'un serveur web.
 
 <InlineToc />
 
 <Note>
 
-#### How do I build support for Server Components? {/*how-do-i-build-support-for-server-components*/}
+#### Comment prendre en charge les Composants Serveur ? {/*how-do-i-build-support-for-server-components*/}
 
-While React Server Components in React 19 are stable and will not break between major versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
+Même si les Composants Serveur dans React 19 sont stables et ne casseront pas la compatibilité entre les versions majeures, les API sous-jacentes utilisées pour implémenter les Composants Serveur au sein d'un *bundler* ou framework ne suivent pas, elles, le versionnage sémantique et sont susceptibles de casser la compatibilité entre les versions mineures de React 19.x.
 
-To support React Server Components as a bundler or framework, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stabilize the APIs used to implement React Server Components in the future.
+Pour prendre en charge les Composants Serveur dans un *bundler* ou framework, nous vous conseillons de figer React sur une version spécifique, ou d'utiliser une version Canari.  Nous allons continuer à collaborer avec les *bundlers* et frameworks pour stabiliser les API utilisées pour implémenter les Composants Serveur à l'avenir.
 
 </Note>
 
-### Server Components without a Server {/*server-components-without-a-server*/}
-Server components can run at build time to read from the filesystem or fetch static content, so a web server is not required. For example, you may want to read static data from a content management system.
+### Composants Serveur… sans serveur {/*server-components-without-a-server*/}
 
-Without Server Components, it's common to fetch static data on the client with an Effect:
+Les Composants Serveur peuvent être exécutés au moment du build pour lire des données du système de fichiers ou charger du contenu statique, de sorte qu'un serveur web n'est alors pas nécessaire.  Vous pourriez par exemple vouloir lire des données statiques issues d'un système de gestion de contenu (CMS).
+
+Sans les Composants Serveur, on aurait classiquement recours à un chargement des données statiques depuis le client, au sein d'un Effet :
+
 ```js
 // bundle.js
 import marked from 'marked'; // 35.9K (11.2K gzipped)
@@ -36,16 +36,17 @@ import sanitizeHtml from 'sanitize-html'; // 206K (63.3K gzipped)
 
 function Page({page}) {
   const [content, setContent] = useState('');
-  // NOTE: loads *after* first page render.
+  // NOTE : charge *après* le rendu initial de la page.
   useEffect(() => {
     fetch(`/api/content/${page}`).then((data) => {
       setContent(data.content);
     });
   }, [page]);
-  
+
   return <div>{sanitizeHtml(marked(content))}</div>;
 }
 ```
+
 ```js
 // api.js
 app.get(`/api/content/:page`, async (req, res) => {
@@ -55,33 +56,33 @@ app.get(`/api/content/:page`, async (req, res) => {
 });
 ```
 
-This pattern means users need to download and parse an additional 75K (gzipped) of libraries, and wait for a second request to fetch the data after the page loads, just to render static content that will not change for the lifetime of the page.
+Cette approche implique que les utilisateurs aient besoin de télécharger et parser 75 Ko (compressés) complémentaires de bibliothèques, pour ensuite attendre qu'une seconde requête de chargement aboutisse après le chargement initial de la page, tout ça pour simplement afficher du contenu statique qui ne changera plus une fois la page affichée.
 
-With Server Components, you can render these components once at build time:
+Avec les Composants Serveur, vous pouvez faire le rendu de ces composants une seule fois, lors du build :
 
 ```js
-import marked from 'marked'; // Not included in bundle
-import sanitizeHtml from 'sanitize-html'; // Not included in bundle
+import marked from 'marked'; // Non inclus dans le bundle
+import sanitizeHtml from 'sanitize-html'; // Non inclus dans le bundle
 
 async function Page({page}) {
-  // NOTE: loads *during* render, when the app is built.
+  // NOTE : charge *pendant* le rendu, durant le build de l'appli.
   const content = await file.readFile(`${page}.md`);
-  
+
   return <div>{sanitizeHtml(marked(content))}</div>;
 }
 ```
 
-The rendered output can then be server-side rendered (SSR) to HTML and uploaded to a CDN. When the app loads, the client will not see the original `Page` component, or the expensive libraries for rendering the markdown. The client will only see the rendered output:
+Le résultat peut alors être rendu côté serveur (SSR) en HTML et téléversé sur un CDN.  Lorsque l'appli charge, le client ne verra pas le composant `Page` d'origine, ni les lourdes bibliothèques nécessaires au rendu du Markdown. Le client ne verra que le résultat final :
 
 ```js
-<div><!-- html for markdown --></div>
+<div><!-- HTML issu du Markdown --></div>
 ```
 
-This means the content is visible during first page load, and the bundle does not include the expensive libraries needed to render the static content.
+Ça signifie que le contenu est visible dès le chargement initial de la page, et que le bundle n'inclut pas les lourdes bibliothèques nécessaires à la production du contenu statique.
 
 <Note>
 
-You may notice that the Server Component above is an async function:
+Vous avez peut-être remarqué que le Composant Serveur ci-dessus est une fonction asynchrone :
 
 ```js
 async function Page({page}) {
@@ -89,28 +90,29 @@ async function Page({page}) {
 }
 ```
 
-Async Components are a new feature of Server Components that allow you to `await` in render.
+Les composants asynchrones sont une nouvelle possibilité offerte par les Composants Serveur, qui vous permet de recourir à `await` lors du rendu.
 
-See [Async components with Server Components](#async-components-with-server-components) below.
+Vous en saurez plus dans [Composants asynchrones et Composants Serveur](#async-components-with-server-components) plus loin dans cette page.
 
 </Note>
 
-### Server Components with a Server {/*server-components-with-a-server*/}
-Server Components can also run on a web server during a request for a page, letting you access your data layer without having to build an API. They are rendered before your application is bundled, and can pass data and JSX as props to Client Components.
+### Composants Serveur… avec un serveur {/*server-components-with-a-server*/}
 
-Without Server Components, it's common to fetch dynamic data on the client in an Effect:
+Les Composants Serveur peuvent aussi être exécutés dans un serveur web lors du traitement d'une requête pour une page, ce qui vous permet d'accéder à votre couche de données sans avoir besoin de construire une API.  Le rendu est fait avant le *bundling* de l'appli, et peut passer des données et du JSX à des Composants Client.
+
+Sans Composants Serveur, on a généralement recours à un Effet pour charger des données côté client :
 
 ```js
 // bundle.js
 function Note({id}) {
   const [note, setNote] = useState('');
-  // NOTE: loads *after* first render.
+  // NOTE : charge *après* le rendu initial de la page.
   useEffect(() => {
     fetch(`/api/notes/${id}`).then(data => {
       setNote(data.note);
     });
   }, [id]);
-  
+
   return (
     <div>
       <Author id={note.authorId} />
@@ -121,15 +123,15 @@ function Note({id}) {
 
 function Author({id}) {
   const [author, setAuthor] = useState('');
-  // NOTE: loads *after* Note renders.
-  // Causing an expensive client-server waterfall.
+  // NOTE : charge *après* le rendu de `Note`.
+  // Ça entraîne une cascade client-serveur coûteuse.
   useEffect(() => {
     fetch(`/api/authors/${id}`).then(data => {
       setAuthor(data.author);
     });
   }, [id]);
 
-  return <span>By: {author.name}</span>;
+  return <span>Par : {author.name}</span>;
 }
 ```
 ```js
@@ -147,13 +149,13 @@ app.get(`/api/authors/:id`, async (req, res) => {
 });
 ```
 
-With Server Components, you can read the data and render it in the component:
+Avec les Composants Serveur, vous pouvez lire les données et les afficher au sein du composant :
 
 ```js
 import db from './database';
 
 async function Note({id}) {
-  // NOTE: loads *during* render.
+  // NOTE : charge *pendant* le rendu.
   const note = await db.notes.get(id);
   return (
     <div>
@@ -164,42 +166,41 @@ async function Note({id}) {
 }
 
 async function Author({id}) {
-  // NOTE: loads *after* Note,
-  // but is fast if data is co-located.
+  // NOTE : charge *après* `Note`, mais c'est rapide si les données sont co-localisées.
   const author = await db.authors.get(id);
-  return <span>By: {author.name}</span>;
+  return <span>Par : {author.name}</span>;
 }
 ```
 
-The bundler then combines the data, rendered Server Components and dynamic Client Components into a bundle. Optionally, that bundle can then be server-side rendered (SSR) to create the initial HTML for the page. When the page loads, the browser does not see the original `Note` and `Author` components; only the rendered output is sent to the client:
+Le *bundler* produit ensuite un bundle à partir des données, des Composants Serveur dont le rendu est donc déjà fait, et des Composants Client dynamiques.  Ce bundle peut, optionnellement, faire l'objet d'un rendu côté client (SSR) pour produire le HTML initial de la page. Lorsque la page est chargée, le navigateur ne voit pas les composants `Note` et `Author` d'origine ; seul le résultat du rendu est envoyé au client :
 
 ```js
 <div>
-  <span>By: The React Team</span>
-  <p>React 19 is...</p>
+  <span>Par : L'équipe React</span>
+  <p>React 19 est...</p>
 </div>
 ```
 
-Server Components can be made dynamic by re-fetching them from a server, where they can access the data and render again. This new application architecture combines the simple “request/response” mental model of server-centric Multi-Page Apps with the seamless interactivity of client-centric Single-Page Apps, giving you the best of both worlds.
+Les Composants Serveur peuvent devenir dynamiques en les rechargeant depuis le serveur, au sein duquel ils sont libres d'accéder aux données pour refaire leur rendu.  Cette nouvelle architecture d'application combine le modèle mental simple « requête / réponse » des applis multi-page (MPA, *Multi-Page Apps*), centrées sur le serveur, avec l'interactivité fluide des applis mono-page (SPA, *Single-Page Apps*), centrées elles sur le client. Vous obtenez ainsi le meilleur des deux mondes.
 
-### Adding interactivity to Server Components {/*adding-interactivity-to-server-components*/}
+### Ajouter de l'interactivité aux Composants Serveur {/*adding-interactivity-to-server-components*/}
 
-Server Components are not sent to the browser, so they cannot use interactive APIs like `useState`. To add interactivity to Server Components, you can compose them with Client Component using the `"use client"` directive.
+Les Composants Serveur ne sont pas envoyés au navigateur, ils ne peuvent donc pas utiliser des API interactives telles que `useState`.  Pour ajouter de l'interactivité aux Composants Serveur, vous pouvez les composer avec des Composants Client en utilisant la directive `"use client"`.
 
 <Note>
 
-#### There is no directive for Server Components. {/*there-is-no-directive-for-server-components*/}
+#### Les Composants Serveur n'ont pas de directive. {/*there-is-no-directive-for-server-components*/}
 
-A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Actions.
+Une erreur de perception courante veut que les Composants Serveur soient identifié par `"use server"`, mais les Composants Serveur n'ont en fait pas de directive dédiée. La directive `"use server"` est là pour les Actions Serveur.
 
-For more info, see the docs for [Directives](/reference/rsc/directives).
+Pour en savoir plus, lisez la documentation des [directives](/reference/rsc/directives).
 
 </Note>
 
+Dans l'exemple qui suit, le Composant Serveur `Notes` importe le Composant Client `Expandable`, lequel utilise un état pour basculer son statut `expanded` :
 
-In the following example, the `Notes` Server Component imports an `Expandable` Client Component that uses state to toggle its `expanded` state:
 ```js
-// Server Component
+// Composant Serveur
 import Expandable from './Expandable';
 
 async function Notes() {
@@ -208,7 +209,7 @@ async function Notes() {
     <div>
       {notes.map(note => (
         <Expandable key={note.id}>
-          <p note={note} />
+          <p>{note}</p>
         </Expandable>
       ))}
     </div>
@@ -216,7 +217,7 @@ async function Notes() {
 }
 ```
 ```js
-// Client Component
+// Composant Client
 "use client"
 
 export default function Expandable({children}) {
@@ -226,7 +227,7 @@ export default function Expandable({children}) {
       <button
         onClick={() => setExpanded(!expanded)}
       >
-        Toggle
+        Basculer
       </button>
       {expanded && children}
     </div>
@@ -234,46 +235,46 @@ export default function Expandable({children}) {
 }
 ```
 
-This works by first rendering `Notes` as a Server Component, and then instructing the bundler to create a bundle for the Client Component `Expandable`. In the browser, the Client Components will see output of the Server Components passed as props:
+Ça fonctionne en faisant d'abord le rendu de `Notes` en tant que Composant Serveur, puis en indiquant au *bundler* de créer un bundle avec le Composant Client `Expandable`.  Dans le navigateur, ces Composants Client verront le résultat du rendu des Composants Serveur au travers de leurs props :
 
 ```js
 <head>
-  <!-- the bundle for Client Components -->
+  <!-- le bundle pour les Composants Client -->
   <script src="bundle.js" />
 </head>
 <body>
   <div>
     <Expandable key={1}>
-      <p>this is the first note</p>
+      <p>Voici la première note</p>
     </Expandable>
     <Expandable key={2}>
-      <p>this is the second note</p>
+      <p>Voici la deuxième note</p>
     </Expandable>
     <!--...-->
-  </div> 
+  </div>
 </body>
 ```
 
-### Async components with Server Components {/*async-components-with-server-components*/}
+### Composants asynchrones et Composants Serveur {/*async-components-with-server-components*/}
 
-Server Components introduce a new way to write Components using async/await. When you `await` in an async component, React will suspend and wait for the promise to resolve before resuming rendering. This works across server/client boundaries with streaming support for Suspense.
+Les Composants Serveur apportent une nouvelle façon d'écrire les composants en tirant parti de `async`/`await`.  Lorsque vous utilisez `await` au sein d'un composant asynchrone, React le suspend et attend l'accomplissement de la promesse pour reprendre son rendu.  Ça peut traverser la frontière client/serveur grâce à la prise en charge du streaming par Suspense.
 
-You can even create a promise on the server, and await it on the client:
+Vous pouvez même créer une promesse sur le serveur, et l'attendre côté client :
 
 ```js
-// Server Component
+// Composant Serveur
 import db from './database';
 
 async function Page({id}) {
-  // Will suspend the Server Component.
+  // Suspendra le Composant Serveur
   const note = await db.notes.get(id);
-  
-  // NOTE: not awaited, will start here and await on the client. 
+
+  // NOTE : on n’attend pas, on démarre juste.  On attendra côté client.
   const commentsPromise = db.comments.get(note.id);
   return (
     <div>
       {note}
-      <Suspense fallback={<p>Loading Comments...</p>}>
+      <Suspense fallback={<p>Chargement des commentaires...</p>}>
         <Comments commentsPromise={commentsPromise} />
       </Suspense>
     </div>
@@ -282,18 +283,18 @@ async function Page({id}) {
 ```
 
 ```js
-// Client Component
+// Composant Client
 "use client";
 import {use} from 'react';
 
 function Comments({commentsPromise}) {
-  // NOTE: this will resume the promise from the server.
-  // It will suspend until the data is available.
+  // NOTE : on reprend la promesse issue du serveur.
+  // Le composant suspendra le temps que les données deviennent disponibles.
   const comments = use(commentsPromise);
   return comments.map(commment => <p>{comment}</p>);
 }
 ```
 
-The `note` content is important data for the page to render, so we `await` it on the server. The comments are below the fold and lower-priority, so we start the promise on the server, and wait for it on the client with the `use` API. This will Suspend on the client, without blocking the `note` content from rendering.
+Le contenu `note` constitue une donnée important pour le rendu de la page, de sorte qu'on l'attend côté serveur. Mais les commentaires sont sous le *fold* (la limite basse de la fenêtre initiale de visualisation) et sont donc moins prioritaire, de sorte qu'on se contente de démarrer leur chargement côté serveur, pour n'en attendre l'aboutissement que côté client grâce à l'API `use`.  Ça suspendra côté client, sans bloquer le rendu initial du contenu `note`.
 
-Since async components are [not supported on the client](#why-cant-i-use-async-components-on-the-client), we await the promise with `use`.
+Dans la mesure où les composants asynchrones ne sont pas pris en charge côté client, on attend leur promesse avec `use`.

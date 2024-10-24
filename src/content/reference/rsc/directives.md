@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-Ces directives ne sont utiles que si vous [utilisez React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) ou créez une bibliothèque compatible avec eux.
+Ces directives ne sont utiles que si vous [utilisez les Composants Serveur](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) ou créez une bibliothèque compatible avec eux.
 
 </Canary>
 
 <Intro>
 
-Les directives fournissent des instructions à destination des [*bundlers* compatibles avec React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+Les directives fournissent des instructions à destination des [*bundlers* compatibles avec les Composants Serveur](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
 
 </Intro>
 
