@@ -60,7 +60,7 @@ function CodeStep({children, step}: {children: any; step: number}) {
 }
 
 const P = (p: JSX.IntrinsicElements['p']) => (
-  <p className="whitespace-pre-wrap my-4" {...p} />
+  <p className="whitespace-pre-wrap my-4 text-pretty" {...p} />
 );
 
 const Strong = (strong: JSX.IntrinsicElements['strong']) => (
@@ -71,7 +71,7 @@ const OL = (p: JSX.IntrinsicElements['ol']) => (
   <ol className="ms-6 my-3 list-decimal" {...p} />
 );
 const LI = (p: JSX.IntrinsicElements['li']) => (
-  <li className="leading-relaxed mb-1" {...p} />
+  <li className="leading-relaxed mb-1 text-pretty" {...p} />
 );
 const UL = (p: JSX.IntrinsicElements['ul']) => (
   <ul className="ms-6 my-3 list-disc" {...p} />
