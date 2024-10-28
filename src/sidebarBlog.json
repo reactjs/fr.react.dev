@@ -12,20 +12,15 @@
       "skipBreadcrumb": true,
       "routes": [
         {
-<<<<<<< HEAD
-          "title": "La React Conf 2024 en bref",
-          "titleForHomepage": "La React Conf 2024 en bref",
-=======
-          "title": "React Compiler Beta Release and Roadmap",
-          "titleForHomepage": "React Compiler Beta Release and Roadmap",
+          "title": "React Compiler : beta et feuille de route",
+          "titleForHomepage": "React Compiler : beta et feuille de route",
           "icon": "blog",
-          "date": "October 21, 2024",
+          "date": "21 octobre 2024",
           "path": "/blog/2024/10/21/react-compiler-beta-release"
         },
         {
-          "title": "React Conf 2024 Recap",
-          "titleForHomepage": "React Conf 2024 Recap",
->>>>>>> eb174dd932613fb0784a78ee2d9360554538cc08
+          "title": "La React Conf 2024 en bref",
+          "titleForHomepage": "La React Conf 2024 en bref",
           "icon": "blog",
           "date": "22 mai 2024",
           "path": "/blog/2024/05/22/react-conf-2024-recap"

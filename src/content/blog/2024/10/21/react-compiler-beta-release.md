@@ -1,10 +1,12 @@
 ---
-title: "React Compiler Beta Release"
+title: "React Compiler : beta et feuille de route"
 author: Lauren Tan
 date: 2024/10/21
 description: At React Conf 2024, we announced the experimental release of React Compiler, a build-time tool that optimizes your React app through automatic memoization. In this post, we want to share what's next for open source, and our progress on the compiler.
 
 ---
+
+{/* FIXME:L10N */}
 
 October 21, 2024 by [Lauren Tan](https://twitter.com/potetotes).
 

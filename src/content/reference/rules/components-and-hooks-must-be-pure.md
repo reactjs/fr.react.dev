@@ -201,11 +201,7 @@ function ProductDetailPage({ product }) {
 }
 ```
 
-<<<<<<< HEAD
-Une façon d'obtenir le résultat souhaité, à savoir mettre à jour `window.title` hors du rendu, consiste à [synchroniser le composant avec `window`](/learn/synchronizing-with-effects).
-=======
-One way to achieve the desired result of updating `document.title` outside of render is to [synchronize the component with `document`](/learn/synchronizing-with-effects).
->>>>>>> eb174dd932613fb0784a78ee2d9360554538cc08
+Une façon d'obtenir le résultat souhaité, à savoir mettre à jour `document.title` hors du rendu, consiste à [synchroniser le composant avec `document`](/learn/synchronizing-with-effects).
 
 Tant que des appels multiples du composant restent fiables et n'affectent pas le rendu d'autres composants, React n'exige pas que le composant soit 100% pur au sens strict de la programmation fonctionnelle.  Il est plus important que les [composants soient idempotents](/reference/rules/components-and-hooks-must-be-pure).
 

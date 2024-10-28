@@ -10,17 +10,15 @@ Ce blog est la source officielle des mises à jour par l'équipe React.  Toute a
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<<<<<<< HEAD
-<BlogCard title="La React Conf 2024 en bref" date="22 mai 2024" url="/blog/2024/05/22/react-conf-2024-recap">
-=======
-<BlogCard title="React Compiler Beta Release" date="October 21, 2024" url="/blog/2024/10/21/react-compiler-beta-release">
+<BlogCard title="React Compiler : beta et feuille de route" date="21 octobre 2024" url="/blog/2024/10/21/react-compiler-beta-release">
+
+{/* FIXME:L10N */}
 
 We announced an experimental release of React Compiler at React Conf 2024. We've made a lot of progress since then, and in this post we want to share what's next for React Compiler ...
 
 </BlogCard>
 
-<BlogCard title="React Conf 2024 Recap" date="May 22, 2024" url="/blog/2024/05/22/react-conf-2024-recap">
->>>>>>> eb174dd932613fb0784a78ee2d9360554538cc08
+<BlogCard title="La React Conf 2024 en bref" date="22 mai 2024" url="/blog/2024/05/22/react-conf-2024-recap">
 
 La semaine dernière nous avons organisé React Conf 2024, une conférence de deux jours à Henderson, Nevada qui a réuni plus de 700 participant·es sur place pour discuter des dernières nouveautés dans l'ingénierie d'interface utilisateur (UI).  C'était notre première conférence physique depuis 2019, et nous étions enchantés de pouvoir amener à nouveau la communauté à se rencontrer ainsi…
 </BlogCard>
