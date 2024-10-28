@@ -12,6 +12,13 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "React Compiler : beta et feuille de route",
+          "titleForHomepage": "React Compiler : beta et feuille de route",
+          "icon": "blog",
+          "date": "21 octobre 2024",
+          "path": "/blog/2024/10/21/react-compiler-beta-release"
+        },
+        {
           "title": "La React Conf 2024 en bref",
           "titleForHomepage": "La React Conf 2024 en bref",
           "icon": "blog",
