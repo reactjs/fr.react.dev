@@ -5,8 +5,6 @@ date: 2024/04/25
 description: Les améliorations apportées par React 19 RC nécessitent quelques ruptures de compatibilité, mais nous avons travaillé dur pour faciliter la mise à jour le plus possible, et nous ne nous attendons pas à ce que ces changements impactent la majorité des applications. Dans cet article, nous vous guidons étape par étape pour mettre à jour vos applis et bibliothèques vers React 19.
 ---
 
-{/* FIXME:L10N */}
-
 Le 25 avril 2024 par [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 ---
@@ -20,38 +18,38 @@ Les améliorations apportées par React 19 RC nécessitent quelques ruptures de 
 
 <Note>
 
-#### React 18.3 has also been published {/*react-18-3*/}
+#### React 18.3 est également sorti {/*react-18-3*/}
 
-To help make the upgrade to React 19 easier, we've published a `react@18.3` release that is identical to 18.2 but adds warnings for deprecated APIs and other changes that are needed for React 19. 
+Pour vous aider à migrer vers Reaxct 19, nous avons publié une version `react@18.3` identique à la 18.2 mais avec des avertissements sur les API dépréciées et d'autres changements nécessaires pour React 19. 
 
-We recommend upgrading to React 18.3 first to help identify any issues before upgrading to React 19.
+Nous vous conseillons de mettre à jour vers React 18.3 d'abord pour vous aider à identifier tout problème avant de passer à React 19.
 
-For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+Pour une liste détaillées des modifications de la 18.3, consultez ses [notes de publication](https://github.com/facebook/react/blob/main/CHANGELOG.md).
 
 </Note>
 
-In this post, we will guide you through the steps for upgrading to React 19:
+Dans cet article, nous vous guidons à travers les étapes nécessaires à une migration vers React 19 :
 
-- [Installing](#installing)
+- [Installation](#installing)
 - [Codemods](#codemods)
-- [Breaking changes](#breaking-changes)
-- [New deprecations](#new-deprecations)
-- [Notable changes](#notable-changes)
-- [TypeScript changes](#typescript-changes)
+- [Ruptures de compatibilité ascendante](#breaking-changes)
+- [Nouvelles dépréciations](#new-deprecations)
+- [Changements notables](#notable-changes)
+- [Changements liés à TypeScript](#typescript-changes)
 - [Changelog](#changelog)
 
-If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19, see the [React 19 release post](/blog/2024/04/25/react-19).
+Si vous aimeriez nous aider à tester React 19, suivez les étapes de ce guide de migration et [signalez-nous tout problème](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) que vous rencontreriez. Pour une liste des nouveautés de React 19, consultez [l’annonce de sortie de React 19](/blog/2024/04/25/react-19).
 
 ---
-## Installing {/*installing*/}
+## Installation {/*installing*/}
 
 <Note>
 
-#### New JSX Transform is now required {/*new-jsx-transform-is-now-required*/}
+#### La transformation JSX moderne est désormais obligatoire {/*new-jsx-transform-is-now-required*/}
 
-We introduced a [new JSX transform](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) in 2020 to improve bundle size and use JSX without importing React. In React 19, we're adding additional improvements like using ref as a prop and JSX speed improvements that require the new transform.
+Nous avons sorti la [nouvelle transformation JSX](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) en 2020 pour améliorer la taille des bundles et utiliser JSX sans avoir à importer React.  Avec React 19, nous y ajoutons diverses améliorations telles que le traitement des refs comme des props simples ou des améliorations à la performance de JSX, qui exigent le recours à cette nouvelle transformation.
 
-If the new transform is not enabled, you will see this warning:
+Si la nouvelle transformation n'est pas activée, vous verrez l'avertissement suivant :
 
 <ConsoleBlockMulti>
 
@@ -63,25 +61,25 @@ Your app (or one of its dependencies) is using an outdated JSX transform. Update
 
 </ConsoleBlockMulti>
 
+*(« Votre appli (ou l'une de ses dépendances) utilise une version obsolète de la transformation JSX.  Passez à une transformation JSX moderne pour de meilleures performances »)*
 
-We expect most apps will not be affected since the transform is enabled in most environments already. For manual instructions on how to upgrade, please see the [announcement post](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html).
+Nous estimons que la plupart des applis ne seront pas affectées par ça, dans la mesure où la transformation moderne est déjà activée dans la plupart des environnements.  Pour des instructions sur une mise à jour manuelle, consultez son [article d'annonce](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html).
 
 </Note>
 
-
-To install the latest version of React and React DOM:
+Pour installer la dernière version de React et React DOM :
 
 ```bash
 npm install --save-exact react@rc react-dom@rc
 ```
 
-Or, if you're using Yarn:
+Ou si vous utilisez Yarn :
 
 ```bash
 yarn add --exact react@rc react-dom@rc
 ```
 
-If you're using TypeScript, you also need to update the types. Once React 19 is released as stable, you can install the types as usual from `@types/react` and `@types/react-dom`.  Until the stable release, the types are available in different packages which need to be enforced in your `package.json`:
+Si vous utilisez TypeScript, vous aurez aussi besoin de mettre à jour les types.  Une fois que React 19 sortira en version stable, vous pourrez installer les types au travers des paquets habituels `@types/react` et `@types/react-dom`.  D'ici là, ces types sont mis à disposition par des paquets distincts que vous devrez forcer dans votre `package.json` :
 
 ```json
 {
@@ -96,78 +94,77 @@ If you're using TypeScript, you also need to update the types. Once React 19 is 
 }
 ```
 
-We're also including a codemod for the most common replacements. See [TypeScript changes](#typescript-changes) below.
+Nous fournissons par ailleurs un codemod pour les remplacements les plus courants.  Consultez par exemple la section [Changements liés à TypeScript](#typescript-changes) plus loin.
 
 ## Codemods {/*codemods*/}
 
-To help with the upgrade, we've worked with the team at [codemod.com](https://codemod.com) to publish codemods that will automatically update your code to many of the new APIs and patterns in React 19.
+Pour vous aider à migrer, nous avons travaillé avec l'équipe de [codemod.com](https://codemod.com) pour publier des codemods qui vont automatiquement mettre à jour votre code vers la plupart des nouvelles API et approches à jour de React 19.
 
-All codemods are available in the [`react-codemod` repo](https://github.com/reactjs/react-codemod) and the Codemod team have joined in helping maintain the codemods. To run these codemods, we recommend using the `codemod` command instead of the `react-codemod` because it runs faster, handles more complex code migrations, and provides better support for TypeScript.
-
+Tous ces codemods sont disponibles au travers du [dépôt `react-codemod`](https://github.com/reactjs/react-codemod) et l'équipe de Codemod nous aide à les maintenir.  Pour les exécuter, nous vous conseillons la commande `codemod` plutôt que `react-codemod` parce qu'elle est plus rapide, permet des migrations plus complexes, et fournit une meilleure gestion de TypeScript.
 
 <Note>
 
-#### Run all React 19 codemods {/*run-all-react-19-codemods*/}
+#### Lancer tous les codemods React 19 {/*run-all-react-19-codemods*/}
 
-Run all codemods listed in this guide with the React 19 `codemod` recipe:
+Pour lancer tous les codemods listés dans ce guide, vous disposez de la recette React 19 de `codemod` :
 
 ```bash
 npx codemod@latest react/19/migration-recipe
 ```
 
-This will run the following codemods from `react-codemod`:
-- [`replace-reactdom-render`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-reactdom-render) 
+Elle exploitera les codemods suivants du dépôt `react-codemod` :
+- [`replace-reactdom-render`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-reactdom-render)
 - [`replace-string-ref`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-string-ref)
 - [`replace-act-import`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-act-import)
-- [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state) 
+- [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state)
 - [`prop-types-typescript`](TODO)
 
-This does not include the TypeScript changes. See [TypeScript changes](#typescript-changes) below.
+Ça n'inclut pas les changements liés à TypeScript.  Consultez la section [Changements liés à TypeScript](#typescript-changes) plus loin.
 
 </Note>
 
-Changes that include a codemod include the command below. 
+Les changements proposant un codemod indiquent la commande à employer.
 
-For a list of all available codemods, see the [`react-codemod` repo](https://github.com/reactjs/react-codemod).
+Pour une liste complète des codemods disponibles, consultez le [dépôt `react-codemod`](https://github.com/reactjs/react-codemod).
 
-## Breaking changes {/*breaking-changes*/}
+## Ruptures de compatibilité ascendante {/*breaking-changes*/}
 
-### Errors in render are not re-thrown {/*errors-in-render-are-not-re-thrown*/}
+### Les erreurs lors du rendu ne sont pas propagées {/*errors-in-render-are-not-re-thrown*/}
 
-In previous versions of React, errors thrown during render were caught and rethrown. In DEV, we would also log to `console.error`, resulting in duplicate error logs. 
+Dans les versions précédentes de React, les erreurs survenant lors du rendu étaient attrapées puis relancées.  En mode développement, nous les affichions également avec `console.Error`, ce qui pouvait entraîner des doublons dans les journaux d'erreurs.
 
-In React 19, we've [improved how errors are handled](/blog/2024/04/25/react-19#error-handling) to reduce duplication by not re-throwing:
+Avec React 19, nous avons [amélioré la gestion des erreurs](/blog/2024/04/25/react-19#error-handling) pour réduire cette duplication en évitant de propager ces erreurs :
 
-- **Uncaught Errors**: Errors that are not caught by an Error Boundary are reported to `window.reportError`.
-- **Caught Errors**: Errors that are caught by an Error Boundary are reported to `console.error`.
+- **Erreurs non interceptées** : les erreurs non interceptées par un Périmètre d'Erreurs sont signalées par `window.reportError`.
+- **Erreurs interceptées** : les erreurs interceptées par un Périmètre d'Erreurs sont signalées par `console.error`.
 
-This change should not impact most apps, but if your production error reporting relies on errors being re-thrown, you may need to update your error handling. To support this, we've added new methods to `createRoot` and `hydrateRoot` for custom error handling:
+Ce changement ne devrait pas impacter la majorité des applis, mais si votre signalement d'erreur en production dépend de la propagation des erreurs, vous aurez peut-être besoin de le mettre à jour. Pour permettre ça, nous avons ajouté des méthodes à `createRoot` et `hydrateRoot` qui permettent de personnaliser la gestion des erreurs :
 
 ```js [[1, 2, "onUncaughtError"], [2, 5, "onCaughtError"]]
 const root = createRoot(container, {
   onUncaughtError: (error, errorInfo) => {
-    // ... log error report
+    // ... faire un rapport d’erreur
   },
   onCaughtError: (error, errorInfo) => {
-    // ... log error report
+    // ... faire un rapport d’erreur
   }
 });
 ```
 
-For more info, see the docs for [`createRoot`](https://react.dev/reference/react-dom/client/createRoot) and [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot).
+Pour en savoir plus, consultez les documentations de [`createRoot`](https://react.dev/reference/react-dom/client/createRoot) et [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot).
 
+### Retrait d'API React dépréciées {/*removed-deprecated-react-apis*/}
 
-### Removed deprecated React APIs {/*removed-deprecated-react-apis*/}
+#### Retirés : `propTypes` et `defaultProps` sur les fonctions {/*removed-proptypes-and-defaultprops*/}
 
-#### Removed: `propTypes` and `defaultProps` for functions {/*removed-proptypes-and-defaultprops*/}
-`PropTypes` were deprecated in [April 2017 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings).
+Les `PropTypes` étaient dépréciées depuis [avril 2017 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings).
 
-In React 19, we're removing the `propType` checks from the React package, and using them will be silently ignored. If you're using `propTypes`, we recommend migrating to TypeScript or another type-checking solution.
+Avec React 19, nous retirons la vérification de `propTypes` du paquet React, et son utilisation sera silencieusement ignorée.  Si vous utilisez encore `propTypes`; nous vous conseillons de passer à TypeScript ou une autre solution de vérification de types.
 
-We're also removing `defaultProps` from function components in place of ES6 default parameters. Class components will continue to support `defaultProps` since there is no ES6 alternative.
+Nous retirons également la gestion de `defaultProps` pour les fonctions composants, au profit des valeurs par défaut de paramètres fournies par ES6.  Les composants à base de classes continuent à prendre en charge `defaultProps`, puisqu'il n'y a pas de syntaxe ES6 équivalente.
 
 ```js
-// Before
+// Avant
 import PropTypes from 'prop-types';
 
 function Heading({text}) {
@@ -177,22 +174,22 @@ Heading.propTypes = {
   text: PropTypes.string,
 };
 Heading.defaultProps = {
-  text: 'Hello, world!',
+  text: 'Salut tout le monde !',
 };
 ```
 ```ts
-// After
+// Après
 interface Props {
   text?: string;
 }
-function Heading({text = 'Hello, world!'}: Props) {
+function Heading({text = 'Salut tout le monde !'}: Props) {
   return <h1>{text}</h1>;
 }
 ```
 
 <Note>
 
-Codemod `propTypes` to TypeScript with:
+Migrez de `propTypes` à TypeScript avec Codemod :
 
 ```bash
 npx codemod@latest react/prop-types-typescript
@@ -200,16 +197,16 @@ npx codemod@latest react/prop-types-typescript
 
 </Note>
 
-#### Removed: Legacy Context using `contextTypes` and `getChildContext` {/*removed-removing-legacy-context*/}
+#### Retirés : les contextes historiques basés sur `contextTypes` et `getChildContext` {/*removed-removing-legacy-context*/}
 
-Legacy Context was deprecated in [October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html).
+La gestion historique des contextes était dépréciée depuis [octobre 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html).
 
-Legacy Context was only available in class components using the APIs `contextTypes` and `getChildContext`, and was replaced with `contextType` due to subtle bugs that were easy to miss. In React 19, we're removing Legacy Context to make React slightly smaller and faster.
+La gestion historique des contextes n'était disponible que pour les composants à base de classes au travers des API `contextTypes` et `getChildContext`, et a été remplacée par `contextType` en raison de bugs subtils difficiles à repérer. Avec React 19, nous retirons la gestion historique des contextes pour rendre React légèrement plus léger et rapide.
 
-If you're still using Legacy Context in class components, you'll need to migrate to the new `contextType` API:
+Si vous utilisiez encore les contextes historiques dans des composants à base de classes, vous devrez migrer vers l'API `contextType` qui les remplace :
 
 ```js {5-11,19-21}
-// Before
+// Avant
 import PropTypes from 'prop-types';
 
 class Parent extends React.Component {
@@ -238,7 +235,7 @@ class Child extends React.Component {
 ```
 
 ```js {2,7,9,15}
-// After
+// Après
 const FooContext = React.createContext();
 
 class Parent extends React.Component {
@@ -260,15 +257,16 @@ class Child extends React.Component {
 }
 ```
 
-#### Removed: string refs {/*removed-string-refs*/}
-String refs were deprecated in [March, 2018 (v16.3.0)](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html).
+#### Retirées: les refs textuelles {/*removed-string-refs*/}
 
-Class components supported string refs before being replaced by ref callbacks due to [multiple downsides](https://github.com/facebook/react/issues/1373). In React 19, we're removing string refs to make React simpler and easier to understand.
+Les refs textuelles (à base de `string`) étaient dépréciées depuis [mars 2018 (v16.3.0)](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html).
 
-If you're still using string refs in class components, you'll need to migrate to ref callbacks:
+Les composants à base de classes permettaient des refs textuelles avant que celles-ci soient dépréciées au profit de refs par fonction de rappel, en raison de leurs [nombreux inconvénients](https://github.com/facebook/react/issues/1373). Avec React 19, nous retirons les refs textuelles pour rendre React plus simple et plus facile à comprendre.
+
+Si vous utilisez encore des refs textuelles dans les composants à base de classes, vous devrez migrer vers des refs par fonction de rappel :
 
 ```js {4,8}
-// Before
+// Avant
 class MyComponent extends React.Component {
   componentDidMount() {
     this.refs.input.focus();
@@ -281,7 +279,7 @@ class MyComponent extends React.Component {
 ```
 
 ```js {4,8}
-// After
+// Après
 class MyComponent extends React.Component {
   componentDidMount() {
     this.input.focus();
@@ -295,7 +293,7 @@ class MyComponent extends React.Component {
 
 <Note>
 
-Codemod string refs with `ref` callbacks:
+Migrez des refs textuelles vers des refs par fonction de rappel avec Codemod :
 
 ```bash
 npx codemod@latest react/19/replace-string-ref
@@ -303,49 +301,52 @@ npx codemod@latest react/19/replace-string-ref
 
 </Note>
 
-#### Removed: Module pattern factories {/*removed-module-pattern-factories*/}
-Module pattern factories were deprecated in [August 2019 (v16.9.0)](https://legacy.reactjs.org/blog/2019/08/08/react-v16.9.0.html#deprecating-module-pattern-factories).
+#### Retirées: les fabriques par motif de module {/*removed-module-pattern-factories*/}
 
-This pattern was rarely used and supporting it causes React to be slightly larger and slower than necessary. In React 19, we're removing support for module pattern factories, and you'll need to migrate to regular functions:
+Les fabriques par motif de module *(Module pattern factories — NdT)* étaient dépréciées depuis [août 2019 (v16.9.0)](https://legacy.reactjs.org/blog/2019/08/08/react-v16.9.0.html#deprecating-module-pattern-factories).
+
+Cette approche était rarement utilisée, et sa prise en charge alourdissait inutilement React.  Avec React 19, nous retirons la prise en charge des fabriques par motif de module, qu'il vous faudrait migrer vers des fonctions classiques :
 
 ```js
-// Before
+// Acant
 function FactoryComponent() {
   return { render() { return <div />; } }
 }
 ```
 
 ```js
-// After
+// Après
 function FactoryComponent() {
   return <div />;
 }
 ```
 
-#### Removed: `React.createFactory` {/*removed-createfactory*/}
-`createFactory` was deprecated in [February 2020 (v16.13.0)](https://legacy.reactjs.org/blog/2020/02/26/react-v16.13.0.html#deprecating-createfactory).
+#### Retirée : `React.createFactory` {/*removed-createfactory*/}
 
-Using `createFactory` was common before broad support for JSX, but it's rarely used today and can be replaced with JSX. In React 19, we're removing `createFactory` and you'll need to migrate to JSX:
+`createFactory` était dépréciée depuis [février 2020 (v16.13.0)](https://legacy.reactjs.org/blog/2020/02/26/react-v16.13.0.html#deprecating-createfactory).
+
+Il était courant de recourir à `createFactory` avant que JSX devienne suffisamment répandu, mais elle est très rarement utilisée de nos jours, et peut être remplacée par JSX.  Avec React 19, nous retirons `createFactory` que vous devriez migrer vers JSX :
 
 ```js
-// Before
+// Avant
 import { createFactory } from 'react';
 
 const button = createFactory('button');
 ```
 
 ```js
-// After
+// Après
 const button = <button />;
 ```
 
-#### Removed: `react-test-renderer/shallow` {/*removed-react-test-renderer-shallow*/}
+#### Retiré : `react-test-renderer/shallow` {/*removed-react-test-renderer-shallow*/}
 
-In React 18, we updated `react-test-renderer/shallow` to re-export [react-shallow-renderer](https://github.com/enzymejs/react-shallow-renderer). In React 19, we're removing `react-test-render/shallow` to prefer installing the package directly:
+Dans React 18, nous avions mis à jour `react-test-renderer/shallow` pour re-exporter [react-shallow-renderer](https://github.com/enzymejs/react-shallow-renderer). Avec React 19, nous retirons `react-test-render/shallow` au profit d'une installation directe du bon paquet :
 
 ```bash
 npm install react-shallow-renderer --save-dev
 ```
+
 ```diff
 - import ShallowRenderer from 'react-test-renderer/shallow';
 + import ShallowRenderer from 'react-shallow-renderer';
@@ -353,17 +354,17 @@ npm install react-shallow-renderer --save-dev
 
 <Note>
 
-##### Please reconsider shallow rendering {/*please-reconsider-shallow-rendering*/}
+##### Le rendu superficiel, une fausse bonne idée {/*please-reconsider-shallow-rendering*/}
 
-Shallow rendering depends on React internals and can block you from future upgrades. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://testing-library.com/docs/react-native-testing-library/intro). 
+Le rendu superficiel dépend des détails d'implémentation de React et peut vous empêcher de faire de futures mises à jour.  Nous vous conseillons de migrer vos tests vers [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) ou [@testing-library/react-native](https://testing-library.com/docs/react-native-testing-library/intro). 
 
 </Note>
 
-### Removed deprecated React DOM APIs {/*removed-deprecated-react-dom-apis*/}
+### Retrait d'API React DOM dépréciées {/*removed-deprecated-react-dom-apis*/}
 
-#### Removed: `react-dom/test-utils` {/*removed-react-dom-test-utils*/}
+#### Retiré : `react-dom/test-utils` {/*removed-react-dom-test-utils*/}
 
-We've moved `act` from `react-dom/test-utils` to the `react` package:
+Nous avons déplacé `act` de `react-dom/test-utils` vers le paquet `react` :
 
 <ConsoleBlockMulti>
 
@@ -375,20 +376,22 @@ We've moved `act` from `react-dom/test-utils` to the `react` package:
 
 </ConsoleBlockMulti>
 
-To fix this warning, you can import `act` from `react`:
+*(« `ReactDOMTestUtils.act` est dépréciée en faveur de `React.act`. Importez `act` depuis `react` plutôt que `react-dom/test-utils`. Consultez https://react.dev/warnings/react-dom-test-utils pour davantage d’informations. » — NdT)*
+
+Pour corriger cet avertissement, importez `act` depuis `react` :
 
 ```diff
 - import {act} from 'react-dom/test-utils'
 + import {act} from 'react';
 ```
 
-All other `test-utils` functions have been removed. These utilities were uncommon, and made it too easy to depend on low level implementation details of your components and React. In React 19, these functions will error when called and their exports will be removed in a future version.
+Toutes les autres fonctions de `test-utils` ont été retirées.  Ces utilitaires étaient rarement employés, et encourageaient à tort une dépendance à des détails d'implémentation de bas niveau de vos composants et de React.  Avec React 19, ces fonctions lèveront une erreur lors de l'appel, et leurs exports seront retirés lors d'une future version.
 
-See the [warning page](https://react.dev/warnings/react-dom-test-utils) for alternatives.
+Consultez la [page d'avertissement](https://react.dev/warnings/react-dom-test-utils) pour les alternatives possibles.
 
 <Note>
 
-Codemod `ReactDOMTestUtils.act` to `React.act`:
+Migrez de `ReactDOMTestUtils.act` à `React.act` avec Codemod :
 
 ```bash
 npx codemod@latest react/19/replace-act-import
@@ -396,16 +399,16 @@ npx codemod@latest react/19/replace-act-import
 
 </Note>
 
-#### Removed: `ReactDOM.render` {/*removed-reactdom-render*/}
+#### Retirée : `ReactDOM.render` {/*removed-reactdom-render*/}
 
-`ReactDOM.render` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, we're removing `ReactDOM.render` and you'll need to migrate to using [`ReactDOM.createRoot`](https://react.dev/reference/react-dom/client/createRoot):
+`ReactDOM.render` était dépréciée depuis [mars 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). Avec React 19, nous retirons `ReactDOM.render`, qu'il vous faudrait migrer vers [`ReactDOM.createRoot`](https://react.dev/reference/react-dom/client/createRoot) :
 
 ```js
-// Before
+// Avant
 import {render} from 'react-dom';
 render(<App />, document.getElementById('root'));
 
-// After
+// Après
 import {createRoot} from 'react-dom/client';
 const root = createRoot(document.getElementById('root'));
 root.render(<App />);
@@ -413,7 +416,7 @@ root.render(<App />);
 
 <Note>
 
-Codemod `ReactDOM.render` to `ReactDOMClient.createRoot`:
+Migrez de `ReactDOM.render` à `ReactDOMClient.createRoot` avec Codemod :
 
 ```bash
 npx codemod@latest react/19/replace-reactdom-render
@@ -421,23 +424,23 @@ npx codemod@latest react/19/replace-reactdom-render
 
 </Note>
 
-#### Removed: `ReactDOM.hydrate` {/*removed-reactdom-hydrate*/}
+#### Retirée : `ReactDOM.hydrate` {/*removed-reactdom-hydrate*/}
 
-`ReactDOM.hydrate` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, we're removing `ReactDOM.hydrate` you'll need to migrate to using [`ReactDOM.hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot),
+`ReactDOM.hydrate` était dépréciée depuis [mars 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). Avec React 19, nous retirons `ReactDOM.hydrate` qu'il vous faudrait migrer vers [`ReactDOM.hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot) :
 
 ```js
-// Before
+// Avcant
 import {hydrate} from 'react-dom';
 hydrate(<App />, document.getElementById('root'));
 
-// After
+// Après
 import {hydrateRoot} from 'react-dom/client';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
 <Note>
 
-Codemod `ReactDOM.hydrate` to `ReactDOMClient.hydrateRoot`:
+Migrez de `ReactDOM.hydrate` à `ReactDOMClient.hydrateRoot` avec Codemod :
 
 ```bash
 npx codemod@latest react/19/replace-reactdom-render
@@ -445,24 +448,24 @@ npx codemod@latest react/19/replace-reactdom-render
 
 </Note>
 
-#### Removed: `unmountComponentAtNode` {/*removed-unmountcomponentatnode*/}
+#### Retirée : `unmountComponentAtNode` {/*removed-unmountcomponentatnode*/}
 
-`ReactDOM.unmountComponentAtNode` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, you'll need to migrate to using `root.unmount()`.
+`ReactDOM.unmountComponentAtNode` était dépréciée depuis [mars 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). Avec React 19, vous devrez utiliser plutôt `root.unmount()`.
 
 
 ```js
-// Before
+// Avant
 unmountComponentAtNode(document.getElementById('root'));
 
-// After
+// Après
 root.unmount();
 ```
 
-For more see `root.unmount()` for [`createRoot`](https://react.dev/reference/react-dom/client/createRoot#root-unmount) and [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot#root-unmount).
+Pour en apprendre davantage, allez voir les sections sur `root.unmount()` dans les documentations de [`createRoot`](/reference/react-dom/client/createRoot#root-unmount) et [`hydrateRoot`](/reference/react-dom/client/hydrateRoot#root-unmount).
 
 <Note>
 
-Codemod `unmountComponentAtNode` to `root.unmount`:
+Migrez de `unmountComponentAtNode` à `root.unmount` avec Codemod :
 
 ```bash
 npx codemod@latest react/19/replace-reactdom-render
@@ -470,14 +473,14 @@ npx codemod@latest react/19/replace-reactdom-render
 
 </Note>
 
-#### Removed: `ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
+#### Retirée : `ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
 
-`ReactDOM.findDOMNode` was [deprecated in October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode). 
+`ReactDOM.findDOMNode` était dépréciéee depuis [octobre 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode).
 
-We're removing `findDOMNode` because it was a legacy escape hatch that was slow to execute, fragile to refactoring, only returned the first child, and broke abstraction levels (see more [here](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)). You can replace `ReactDOM.findDOMNode` with [DOM refs](/learn/manipulating-the-dom-with-refs):
+Nous retirons `findDOMNode` parce qu'il s'agit d'un échappatoire historique particulièrement lent à exécuter, fragile à refactorer, ne renvoyant que le premier enfant, et qui mélangeait les niveaux d'abstraction (apprenez-en davantage [ici](https://fr.legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)). Vous pouvez remplacer `ReactDOM.findDOMNode` par des [refs DOM](/learn/manipulating-the-dom-with-refs) :
 
 ```js
-// Before
+// Avant
 import {findDOMNode} from 'react-dom';
 
 function AutoselectingInput() {
@@ -486,29 +489,29 @@ function AutoselectingInput() {
     input.select()
   }, []);
 
-  return <input defaultValue="Hello" />;
+  return <input defaultValue="Salut" />;
 }
 ```
 
 ```js
-// After
+// Après
 function AutoselectingInput() {
   const ref = useRef(null);
   useEffect(() => {
     ref.current.select();
   }, []);
 
-  return <input ref={ref} defaultValue="Hello" />
+  return <input ref={ref} defaultValue="Salut" />
 }
 ```
 
-## New deprecations {/*new-deprecations*/}
+## Nouvelles dépréciations {/*new-deprecations*/}
 
-### Deprecated: `element.ref` {/*deprecated-element-ref*/}
+### Déprécié : `element.ref` {/*deprecated-element-ref*/}
 
-React 19 supports [`ref` as a prop](/blog/2024/04/25/react-19#ref-as-a-prop), so we're deprecating the `element.ref` in place of `element.props.ref`.
+React 19 considère [`ref` comme une prop](/blog/2024/04/25/react-19#ref-as-a-prop), de sorte que nous déprécions `element.ref` au profit de `element.props.ref`.
 
-Accessing `element.ref` will warn:
+Si vous accédez à `element.ref`, vous obtiendrez un avertissement :
 
 <ConsoleBlockMulti>
 
@@ -520,29 +523,31 @@ Accessing element.ref is no longer supported. ref is now a regular prop. It will
 
 </ConsoleBlockMulti>
 
-### Deprecated: `react-test-renderer` {/*deprecated-react-test-renderer*/}
+*(« L'accès à element.ref n'est plus pris en charge. Les refs sont désormais des props classiques. La ref sera retirée du type élément JSX dans une prochaine version. » — NdT)*
 
-We are deprecating `react-test-renderer` because it implements its own renderer environment that doesn't match the environment users use, promotes testing implementation details, and relies on introspection of React's internals.
+### Déprécié : `react-test-renderer` {/*deprecated-react-test-renderer*/}
 
-The test renderer was created before there were more viable testing strategies available like [React Testing Library](https://testing-library.com), and we now recommend using a modern testing library instead.
+Nous déprécions `react-test-renderer` parce qu'il implémente son propre environnement de rendu, qui ne correspond pas aux environnements des utilisateurs, encourage la dépendance à des détails d'implémentation, et s'appuie sur l'introspection de structures internes à React.
 
-In React 19, `react-test-renderer` logs a deprecation warning, and has switched to concurrent rendering. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://testing-library.com/docs/react-native-testing-library/intro) for a modern and well supported testing experience.
+Ce moteur de rendu de test a été créé avant que des stratégies de test viables soient disponibles, telles que [React Testing Library](https://testing-library.com), et nous conseillons désormais d'utiliser plutôt une bibliothèque de test moderne.
 
-## Notable changes {/*notable-changes*/}
+Avec React 19, `react-test-renderer` affiche un avertissement de dépréciation, et recourt désormais à du rendu concurrent. Nous vous conseillons de migrer vos tests vers [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) ou [@testing-library/react-native](https://testing-library.com/docs/react-native-testing-library/intro) pour une expérience de test plus moderne et mieux maintenue.
 
-### StrictMode changes {/*strict-mode-improvements*/}
+## Changements notables {/*notable-changes*/}
 
-React 19 includes several fixes and improvements to Strict Mode.
+### Modifications du mode strict {/*strict-mode-improvements*/}
 
-When double rendering in Strict Mode in development, `useMemo` and `useCallback` will reuse the memoized results from the first render during the second render. Components that are already Strict Mode compatible should not notice a difference in behavior.
+React 19 apporte plusieurs correctifs et améliorations au mode strict.
 
-As with all Strict Mode behaviors, these features are designed to proactively surface bugs in your components during development so you can fix them before they are shipped to production. For example, during development, Strict Mode will double-invoke ref callback functions on initial mount, to simulate what happens when a mounted component is replaced by a Suspense fallback.
+Lors du double rendu du mode strict en développement, `useMemo` et `useCallback` réutiliseront le résultat mémoïsé du premier rendu lors du deuxième rendu. Les composants qui étaient déjà compatibles avec le mode strict ne devraient constater aucun changement de comportement.
 
-### UMD builds removed {/*umd-builds-removed*/}
+Comme pour tous les comportements du mode strict, il s'agit de faire proactivement émerger des bugs dans vos composants lors du développement, de façon à ce que vous puissiez les corriger avant qu'ils n'atteignent la production.  En développement, le mode strict fait par exemple deux appels aux fonctions de rappel des refs lors du montage initial, pour simuler ce qui se passe lorsqu'un composant monté est remplacé par un affichage Suspense de secours.
 
-UMD was widely used in the past as a convenient way to load React without a build step. Now, there are modern alternatives for loading modules as scripts in HTML documents. Starting with React 19, React will no longer produce UMD builds to reduce the complexity of its testing and release process. 
+### Builds UMD retirés {/*umd-builds-removed*/}
 
-To load React 19 with a script tag, we recommend using an ESM-based CDN such as [esm.sh](https://esm.sh/).
+UMD était largement utilisé par le passé, en tant que moyen pratique d'utiliser React sans étape de build.  Il existe aujourd'hui des façons modernes de charger des modules en tant que scripts dans des documents HTML.  À partir de React 19, React ne fournira plus de builds UMD afin de réduire la complexité de ses processus de tests et de livraison.
+
+Pour charger React 19 ay moyen d'une balise script, nous vous conseillons un CDN compatible ESM, tel qu'[esm.sh](https://esm.sh/).
 
 ```html
 <script type="module">
@@ -552,32 +557,30 @@ To load React 19 with a script tag, we recommend using an ESM-based CDN such as 
 </script>
 ```
 
-### Libraries depending on React internals may block upgrades {/*libraries-depending-on-react-internals-may-block-upgrades*/}
+### Les bibliothèques basées sur des détails d'implémentation de React risquent d'être bloquantes {/*libraries-depending-on-react-internals-may-block-upgrades*/}
 
-This release includes changes to React internals that may impact libraries that ignore our pleas to not use internals like `SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED`. These changes are necessary to land improvements in React 19, and will not break libraries that follow our guidelines.
+Cette version inclut des changements à la mécanique interne de React qui sont susceptibles d'impacter des bibliothèques qui auraient persisté à ignorer nos demandes implorantes de ne pas en dépendre, des éléments tels que `SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED`. Ces modifications sont nécessaires pour permettre l'arrivée de certaines améliorations dans React 19, et ne casseront aucune bibliothèque qui suivrait nos recommandations.
 
-Based on our [Versioning Policy](https://react.dev/community/versioning-policy#what-counts-as-a-breaking-change), these updates are not listed as breaking changes, and we are not including docs for how to upgrade them. The recommendation is to remove any code that depends on internals.
+Au regard de notre [politique de versions](/community/versioning-policy#what-counts-as-a-breaking-change), ces mises à jour ne sont pas listées comme des ruptures de compatibilité ascendante, et nous ne fournissons pas de documentation liée à leur migration.  Notre recommandation reste de retirer tout code basé sur ces détails internes.
 
-To reflect the impact of using internals, we have renamed the `SECRET_INTERNALS` suffix to: 
+Pour refléter l'impact du recours à ces détails internes, nous avons renommé le suffixe `SECRET_INTERNALS` vers `_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE`.
 
-`_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE`
+À l'avenir, nous bloquerons de façon plus agressive l'accès aux détails internes de React pour en décourager l'utilisation et nous assurer que les utilisateurs ne seront pas bloqués sur leurs chemins de migration.
 
-In the future we will more aggressively block accessing internals from React to discourage usage and ensure users are not blocked from upgrading.
+## Changements liés à TypeScript {/*typescript-changes*/}
 
-## TypeScript changes {/*typescript-changes*/}
+### Retrait de types TypeScript dépréciés {/*removed-deprecated-typescript-types*/}
 
-### Removed deprecated TypeScript types {/*removed-deprecated-typescript-types*/}
-
-We've cleaned up the TypeScript types based on the removed APIs in React 19. Some of the removed have types been moved to more relevant packages, and others are no longer needed to describe React's behavior.
+Nous avons retiré les types TypeScript basés sur des API retirées de React 19. Certains des types retirés ont été déplacés vers des paquets plus appropriés, et d'autres ne sont tout simplement plus nécessaires pour décrire le comportement de React.
 
 <Note>
-We've published [`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) to migrate most type related breaking changes:
+Nous avons publié [`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) qui permet de migrer l'essentiel des ruptures de compatibilité liés aux types :
 
 ```bash
 npx types-react-codemod@latest preset-19 ./path-to-app
 ```
 
-If you have a lot of unsound access to `element.props`, you can run this additional codemod:
+Si vous avez de nombreux accès fragiles à `element.props`, vous pouvez exécuter le codemod complémentaire suivant :
 
 ```bash
 npx types-react-codemod@latest react-element-default-any-props ./path-to-your-react-ts-files
@@ -585,50 +588,48 @@ npx types-react-codemod@latest react-element-default-any-props ./path-to-your-re
 
 </Note>
 
-Check out [`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) for a list of supported replacements. If you feel a codemod is missing, it can be tracked in the [list of missing React 19 codemods](https://github.com/eps1lon/types-react-codemod/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22React+19%22+label%3Aenhancement).
+Consultez [`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) pour une liste des remplacements pris en charge. Si vous estimez qu'un codemod est manquant, vous pouvez suivre la [liste des codemods React 19 manquants](https://github.com/eps1lon/types-react-codemod/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22React+19%22+label%3Aenhancement).
 
+### Les fonctions de nettoyage de `ref` deviennent vérifiées {/*ref-cleanup-required*/}
 
-### `ref` cleanups required {/*ref-cleanup-required*/}
+_Cette modification fait partie du codemod `react-19` sous le nom [`no-implicit-ref-callback-return`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return)._
 
-_This change is included in the `react-19` codemod preset as [`no-implicit-ref-callback-return
-`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return)._
-
-Due to the introduction of ref cleanup functions, returning anything else from a ref callback will now be rejected by TypeScript. The fix is usually to stop using implicit returns:
+Suite à l'introduction des fonctions de nettoyage de ref, TypeScript refusera désormais que vous renvoyiez quoi que ce soit d'autres depuis une fonction de rappel de ref.  Le correctif consiste en général à éviter les renvois implicites :
 
 ```diff [[1, 1, "("], [1, 1, ")"], [2, 2, "{", 15], [2, 2, "}", 1]]
 - <div ref={current => (instance = current)} />
 + <div ref={current => {instance = current}} />
 ```
 
-The original code returned the instance of the `HTMLDivElement` and TypeScript wouldn't know if this was supposed to be a cleanup function or not.
+Le code original rencoyait l'instant de `HTMLDivElement` et TypeScript ne pouvait savoir si vous visiez ou non une fonction de nettoyage.
 
-### `useRef` requires an argument {/*useref-requires-argument*/}
+### `useRef` nécessite un argument {/*useref-requires-argument*/}
 
-_This change is included in the `react-19` codemod preset as [`refobject-defaults`](https://github.com/eps1lon/types-react-codemod/#refobject-defaults)._
+_Cette modification fait partie du codemod `react-19` sous le nom [`refobject-defaults`](https://github.com/eps1lon/types-react-codemod/#refobject-defaults)._
 
-A long-time complaint of how TypeScript and React work has been `useRef`. We've changed the types so that `useRef` now requires an argument. This significantly simplifies its type signature. It'll now behave more like `createContext`.
+Un des anciens reproches liés à TypeScript et Reaxct concernait `useRef`. Nous avons ajusté nos types de façon à ce que`useRef` exige désormais un argument. Ça simplifie considérablement sa signature de type. Elle se comporte désormais davantage comme `createContext`.
 
 ```ts
-// @ts-expect-error: Expected 1 argument but saw none
+// @ts-expect-error: attendait un argument mais n’en a aucun
 useRef();
-// Passes
+// Passe le typage
 useRef(undefined);
-// @ts-expect-error: Expected 1 argument but saw none
+// @ts-expect-error: attendait un argument mais n’en a aucun
 createContext();
-// Passes
+// Passe le typage
 createContext(undefined);
 ```
 
-This now also means that all refs are mutable. You'll no longer hit the issue where you can't mutate a ref because you initialised it with `null`:
+Ça signifie aussi que toutes les refs sont désormais mutables.  Vous ne rencontrerez plus le problème où vous ne pouviez pas muter une ref parce que vous l'aviez initialisée avec `null` :
 
 ```ts
 const ref = useRef<number>(null);
 
-// Cannot assign to 'current' because it is a read-only property
+// Impossible d’assigner à `current` parce qu’elle est perçue comme en lecture seule
 ref.current = 1;
 ```
 
-`MutableRef` is now deprecated in favor of a single `RefObject` type which `useRef` will always return:
+`MutableRef` est désormais déprécié au profit d'un unique type `RefObject` que `useRef` renverra toujours :
 
 ```ts
 interface RefObject<T> {
@@ -638,36 +639,37 @@ interface RefObject<T> {
 declare function useRef<T>: RefObject<T>
 ```
 
-`useRef` still has a convenience overload for `useRef<T>(null)` that automatically returns `RefObject<T | null>`. To ease migration due to the required argument for `useRef`, a convenience overload for `useRef(undefined)` was added that automatically returns `RefObject<T | undefined>`.
+`useRef` a toujours une surcharge de confort pour `useRef<T>(null)` qui renvoie automatiquement `RefObject<T | null>`. Pour faciliter la migration liée à l'exigence d'un argument à `useRef`, une surcharge de confort pour `useRef(undefined)` a été ajoutée qui renvoie automatiquement `RefObject<T | undefined>`.
 
-Check out [[RFC] Make all refs mutable](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/64772) for prior discussions about this change.
+Consultez la [[RFC] Rendre toutes les refs mutables](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/64772) (en anglais) pour les discussions qui ont mené à ce changement.
 
-### Changes to the `ReactElement` TypeScript type {/*changes-to-the-reactelement-typescript-type*/}
+### Changements au type TypeScript `ReactElement` {/*changes-to-the-reactelement-typescript-type*/}
 
-_This change is included in the [`react-element-default-any-props`](https://github.com/eps1lon/types-react-codemod#react-element-default-any-props) codemod._
+_Cette modification fait partie du codemod [`react-element-default-any-props`](https://github.com/eps1lon/types-react-codemod#react-element-default-any-props)._
 
-The `props` of React elements now default to `unknown` instead of `any` if the element is typed as `ReactElement`. This does not affect you if you pass a type argument to `ReactElement`:
+Les `props` des éléments React ont désormais comme type par défaut `unknown` plutôt que `any` si l'élément est typé comme `ReactElement`. Ça ne vous impacte pas si vous passiez un argument de type à `ReactElement` :
 
 ```ts
 type Example2 = ReactElement<{ id: string }>["props"];
 //   ^? { id: string }
 ```
 
-But if you relied on the default, you now have to handle `unknown`:
+Mais si vous vous basiez sur les types par défauts, il vous faut maintenant gérer `unknown` :
 
 ```ts
 type Example = ReactElement["props"];
-//   ^? Before, was 'any', now 'unknown'
+//   ^? Avant, c’était typé 'any', mais maintenant 'unknown'
 ```
 
-You should only need it if you have a lot of legacy code relying on unsound access of element props. Element introspection only exists as an escape hatch, and you should make it explicit that your props access is unsound via an explicit `any`.
+Vous ne devriez en avoir besoin que si vous avez beaucoup de code historique basé sur un accès fragile aux props de l'élément.  L'introspection d'élément n'existe qu'au titre d'échappatoire et vous devriez toujours être explicite sur la fragilité de votre accès aux props en utilisant par exemple un `any` explicite.
 
-### The JSX namespace in TypeScript {/*the-jsx-namespace-in-typescript*/}
-This change is included in the `react-19` codemod preset as [`scoped-jsx`](https://github.com/eps1lon/types-react-codemod#scoped-jsx)
+### L'espace de noms JSX en TypeScript {/*the-jsx-namespace-in-typescript*/}
 
-A long-time request is to remove the global `JSX` namespace from our types in favor of `React.JSX`. This helps prevent pollution of global types which prevents conflicts between different UI libraries that leverage JSX.
+Cette modification fait partie du codemod `react-19` sous le nom [`scoped-jsx`](https://github.com/eps1lon/types-react-codemod#scoped-jsx).
 
-You'll now need to wrap module augmentation of the JSX namespace in `declare module "....":
+On nous demandait de longue date de retirer l'espace de noms global `JSX` de nos types, au profit de `React.JSX`.  L'idée était d'éviter une pollution des types globaux, réduisant par là les conflits entre diverses bibliothèques d'UI utilisant JSX.
+
+Vous aurez désormais besoin d'enrober vos augmentations de modules pour l'espace de noms JSX avec un `declare module "..."` :
 
 ```diff
 // global.d.ts
@@ -682,34 +684,40 @@ You'll now need to wrap module augmentation of the JSX namespace in `declare mod
 + }
 ```
 
-The exact module specifier depends on the JSX runtime you specified in the `compilerOptions` of your `tsconfig.json`:
+La spécification exacte du module dépendra du moteur JSX que vous avez indiqué dans les `compilerOptions` de votre  `tsconfig.json` :
 
-- For `"jsx": "react-jsx"` it would be `react/jsx-runtime`.
-- For `"jsx": "react-jsxdev"` it would be `react/jsx-dev-runtime`.
-- For `"jsx": "react"` and `"jsx": "preserve"` it would be `react`.
+- Pour `"jsx": "react-jsx"` ça sera `react/jsx-runtime`.
+- Pour `"jsx": "react-jsxdev"` ça sera `react/jsx-dev-runtime`.
+- Pour `"jsx": "react"` et `"jsx": "preserve"` ça sera `react`.
 
-### Better `useReducer` typings {/*better-usereducer-typings*/}
+### Meilleur typage de `useReducer` {/*better-usereducer-typings*/}
 
-`useReducer` now has improved type inference thanks to [@mfp22](https://github.com/mfp22).
+`useReducer` améliore son inférence de type grâce à [@mfp22](https://github.com/mfp22).
 
-However, this required a breaking change where `useReducer` doesn't accept the full reducer type as a type parameter but instead either needs none (and rely on contextual typing) or needs both the state and action type.
+Cependant, ça nécessitait une rupture de compatibilité ascendante car `useReducer` n'accepte pas le type complet du réducteur comme paramètre de type, mais plutôt n'en nécessite soit aucun (et repose sur l'inférence), soit nécessite les types de l'état et de l'action.
 
-The new best practice is _not_ to pass type arguments to `useReducer`.
+La nouvelle meilleure pratique consiste à _ne pas_ passer de paramètres de type à `useReducer`.
+
 ```diff
 - useReducer<React.Reducer<State, Action>>(reducer)
 + useReducer(reducer)
 ```
-This may not work in edge cases where you can explicitly type the state and action, by passing in the `Action` in a tuple:
+
+Ça pourrait ne pas fonctionner pour des cas à la marge où il vous faudra passer explicitement les types de l'état et de l'action, en passant `Action` dans un tuple :
+
 ```diff
 - useReducer<React.Reducer<State, Action>>(reducer)
 + useReducer<State, [Action]>(reducer)
 ```
-If you define the reducer inline, we encourage to annotate the function parameters instead:
+
+Si vous définissez le réducteur à la volée, nous vous conseillons d'annoter plutôt les paramètres de la fonction :
+
 ```diff
 - useReducer<React.Reducer<State, Action>>((state, action) => state)
 + useReducer((state: State, action: Action) => state)
 ```
-This is also what you'd also have to do if you move the reducer outside of the `useReducer` call:
+
+C'est également ce que vous feriez si vous deviez extraire le réducteur de l'appel à `useReducer` :
 
 ```ts
 const reducer = (state: State, action: Action) => state;
@@ -717,27 +725,27 @@ const reducer = (state: State, action: Action) => state;
 
 ## Changelog {/*changelog*/}
 
-### Other breaking changes {/*other-breaking-changes*/}
+### Autres ruptures de compatibilité ascendante {/*other-breaking-changes*/}
 
-- **react-dom**: Error for javascript URLs in src/href [#26507](https://github.com/facebook/react/pull/26507)
-- **react-dom**: Remove `errorInfo.digest` from `onRecoverableError` [#28222](https://github.com/facebook/react/pull/28222)
-- **react-dom**: Remove `unstable_flushControlled` [#26397](https://github.com/facebook/react/pull/26397)
-- **react-dom**: Remove `unstable_createEventHandle` [#28271](https://github.com/facebook/react/pull/28271)
-- **react-dom**: Remove `unstable_renderSubtreeIntoContainer` [#28271](https://github.com/facebook/react/pull/28271)
-- **react-dom**: Remove `unstable_runWithPrioirty` [#28271](https://github.com/facebook/react/pull/28271)
-- **react-is**: Remove deprecated methods from `react-is` [28224](https://github.com/facebook/react/pull/28224)
+- **react-dom**: Erreur sur URL JavaScript dans src/href [#26507](https://github.com/facebook/react/pull/26507)
+- **react-dom**: Retrait de `errorInfo.digest` dans `onRecoverableError` [#28222](https://github.com/facebook/react/pull/28222)
+- **react-dom**: Retrait de `unstable_flushControlled` [#26397](https://github.com/facebook/react/pull/26397)
+- **react-dom**: Retrait de `unstable_createEventHandle` [#28271](https://github.com/facebook/react/pull/28271)
+- **react-dom**: Retrait de `unstable_renderSubtreeIntoContainer` [#28271](https://github.com/facebook/react/pull/28271)
+- **react-dom**: Retrait de `unstable_runWithPrioirty` [#28271](https://github.com/facebook/react/pull/28271)
+- **react-is**: Retrait de méthodes dépréciées dans `react-is` [28224](https://github.com/facebook/react/pull/28224)
 
-### Other notable changes {/*other-notable-changes*/}
+### Autres changements notables {/*other-notable-changes*/}
 
-- **react**: Batch sync, default and continuous lanes [#25700](https://github.com/facebook/react/pull/25700)
-- **react**: Don't prerender siblings of suspended component [#26380](https://github.com/facebook/react/pull/26380)
-- **react**: Detect infinite update loops caused by render phase updates [#26625](https://github.com/facebook/react/pull/26625)
-- **react-dom**: Transitions in popstate are now synchronous [#26025](https://github.com/facebook/react/pull/26025)
-- **react-dom**: Remove layout effect warning during SSR [#26395](https://github.com/facebook/react/pull/26395)
-- **react-dom**: Warn and don’t set empty string for src/href (except anchor tags) [#28124](https://github.com/facebook/react/pull/28124)
+- **react**: Traitement par lot des files sync, default et continuous [#25700](https://github.com/facebook/react/pull/25700)
+- **react**: Pas de prérendu des adelphes d'un composant suspendu [#26380](https://github.com/facebook/react/pull/26380)
+- **react**: Détecte les boucles infinies dues à des mises à jour en phase de rendu [#26625](https://github.com/facebook/react/pull/26625)
+- **react-dom**: Les Transitions en popstate sont désormais synchrones [#26025](https://github.com/facebook/react/pull/26025)
+- **react-dom**: Retirer l'avertissement des Effets de layout lors du SSR [#26395](https://github.com/facebook/react/pull/26395)
+- **react-dom**: Avertit et évite les chaînes vides pour src/href (sauf sur balises d'ancres) [#28124](https://github.com/facebook/react/pull/28124)
 
-We'll publish the full changelog with the stable release of React 19.
+Nous publierons un changelog complet avec la version stable de React 19.
 
 ---
 
-Thanks to [Andrew Clark](https://twitter.com/acdlite), [Eli White](https://twitter.com/Eli_White), [Jack Pope](https://github.com/jackpope), [Jan Kassens](https://github.com/kassens), [Josh Story](https://twitter.com/joshcstory), [Matt Carroll](https://twitter.com/mattcarrollcode), [Noah Lemen](https://twitter.com/noahlemen), [Sophie Alpert](https://twitter.com/sophiebits), and [Sebastian Silbermann](https://twitter.com/sebsilbermann) for reviewing and editing this post.
+Merci à [Andrew Clark](https://twitter.com/acdlite), [Eli White](https://twitter.com/Eli_White), [Jack Pope](https://github.com/jackpope), [Jan Kassens](https://github.com/kassens), [Josh Story](https://twitter.com/joshcstory), [Matt Carroll](https://twitter.com/mattcarrollcode), [Noah Lemen](https://twitter.com/noahlemen), [Sophie Alpert](https://twitter.com/sophiebits) et [Sebastian Silbermann](https://twitter.com/sebsilbermann) pour avoir révisé et mis à jour cet article.
