@@ -15,7 +15,7 @@ React 19 RC est désormais disponible sur npm !
 
 </Intro>
 
-Dans notre [guide de migration pour React 19 RC](/blog/2024/04/25/react-19-upgrade-guide), nous avons fourni des instructions pas à pas pour mettre à jour votre appli vers React 19.  Dans cet article, nous allons passer en revue les nouveautés de React 19, et comment vous pouvez les adopter.
+Dans notre [guide de migration pour React 19 RC](/blog/2024/04/25/react-19-upgrade-guide), nous avons fourni des instructions pas à pas pour mettre à jour votre appli vers React 19.  Dans cet article, nous allons passer en revue les nouveautés de React 19, et voir comment vous pouvez les adopter.
 
 - [Quoi de neuf dans React 19](#whats-new-in-react-19)
 - [React Server Components](#react-server-components)
@@ -25,7 +25,7 @@ Dans notre [guide de migration pour React 19 RC](/blog/2024/04/25/react-19-upgra
 Pour une liste des ruptures de compatibilité ascendante, consultez le [guide de migration](/blog/2024/04/25/react-19-upgrade-guide).
 
 ---
-`
+
 ## Quoi de neuf dans React 19 {/*whats-new-in-react-19*/}
 
 ### Actions {/*actions*/}
@@ -108,14 +108,14 @@ Les Actions gèrent automatiquement l'envoi de données pour vous :
 
 - **L'état en attente** : les Actions fournissent un état en attente qui démarre au début de la requête et se réinitialise automatiquement lorsque la dernière mise à jour d'état est finalisée.
 - **Mises à jour optimistes** : les Actions prennent en charge le nouveau Hook [`useOptimistic`](#new-hook-optimistic-updates) pour pouvoir fournir un retour instantané à l'utilisateur pendant le traitement des requêtes.
-- **Gestion d'erreur** : les Actions fournissent une gestion d'erreur afin que vous puissiez afficher des Périmètres d'Erreurs si la requête échoue, et annuler automatiquement des mises à jour optimistes pour revenir à leur valeur antérieure.
+- **Gestion d'erreurs** : les Actions fournissent une gestion d'erreurs afin que vous puissiez afficher des Périmètres d'Erreurs si la requête échoue, et annuler automatiquement des mises à jour optimistes pour revenir à leurs valeurs antérieures.
 - **Formulaires** : les éléments `<form>` autorisent désormais des fonctions comme valeur pour leurs props `action` et `formAction`. Le passage de fonctions à ces props utilise par défaut des Actions et réinitialise automatiquement le formulaire après envoi.
 
 </Note>
 
 En s'appuyant sur les Actions, React 19 apporte [`useOptimistic`](#new-hook-optimistic-updates) pour gérer les mises à jour optimistes, ainsi qu'un nouveau Hook [`useActionState`](#new-hook-useactionstate) pour traiter des cas courants liés aux Actions. Nous ajoutons par ailleurs à `react-dom` les [Actions de formulaires](#form-actions) pour gérer automatiquement les formulaires et [`useFormStatus`](#new-hook-useformstatus) pour prendre en charge des cas courants liés aux Actions de formulaires.
 
-Avec React 19, l'exemple ci-dessus peut être simplifié comme ceci :
+Avec React 19, l'exemple de tout à l'heure peut être simplifié comme ceci :
 
 ```js
 // En utilisant des Actions de formulaire et useActionState
@@ -165,11 +165,11 @@ const [error, submitAction, isPending] = useActionState(
 );
 ```
 
-`useActionState` accepte une fonction (« l'Action ») et renvoye une Action enrobée à appeler. Ça fonctionne puisque les Actions peuvent être composées.  Lorsque l'Action enrobée est appelée, `useActionState` ernverra le dernier résultat connu de l'Action en tant que `data`, et l'état en attente de l'Action en tant que `pending`.
+`useActionState` accepte une fonction (« l'Action ») et renvoie une Action enrobée à appeler. Ça fonctionne car les Actions peuvent être composées.  Lorsque l'Action enrobée est appelée, `useActionState` ernverra le dernier résultat connu de l'Action en tant que `data`, et l'état en attente de l'Action en tant que `pending`.
 
 <Note>
 
-`React.useActionState` était auparavant exposée via `ReactDOM.useFormState` dans les versions Canari, mais nous l'avons renommée et déprécié `useFormState`.
+`React.useActionState` était auparavant exposée via `ReactDOM.useFormState` dans les versions Canari, mais nous l'avons renommée et avons déprécié `useFormState`.
 
 Allez voir [#28491](https://github.com/facebook/react/pull/28491) pour plus de détails à ce sujet.
 
@@ -191,7 +191,7 @@ Pour en apprendre davantage, consultez la documentation de `react-dom` pour [`<f
 
 ### React DOM : nouveau Hook : `useFormStatus` {/*new-hook-useformstatus*/}
 
-Dans un Design System, il est courant d'écrire des composants qui ont besoin d'accéder à des informations sur le `<form>` qui les contient, sans avoir à faire percoler des props jusqu'au composant.  On peut y arriver avec un Contexte, mais pour faciliter les cas courant nous avons ajouté un nouveau Hook `useFormStatus` :
+Dans un Design System, il est courant d'écrire des composants qui ont besoin d'accéder à des informations sur le `<form>` qui les contient, sans avoir à faire percoler des props jusqu'au composant.  On peut y arriver avec un Contexte, mais pour faciliter les cas courants nous avons ajouté un nouveau Hook `useFormStatus` :
 
 ```js [[1, 4, "pending"], [1, 5, "pending"]]
 import {useFormStatus} from 'react-dom';
@@ -237,7 +237,7 @@ function ChangeName({currentName, onUpdateName}) {
 }
 ```
 
-Le Hook `useOptimistic` produira immédiatement le `optimisticName` pour le rendu, pendant que la requête `updateName` est en cours. Lorsque la mise à jour se termine ou produit une erreur, React rebasculera automatiquement sur la valeur de `currentName`.
+Le Hook `useOptimistic` produira immédiatement le `optimisticName` pour le rendu, pendant que la requête `updateName` est en cours. Lorsque la mise à jour se termine ou produit une erreur, React rebascule automatiquement sur la valeur de `currentName`.
 
 Pour en apprendre davantage, consultez la documentation de [`useOptimistic`](/reference/react/useOptimistic).
 
@@ -251,13 +251,13 @@ Vous pouvez par exemple consommer une promesse avec `use`, et React suspendra le
 import {use} from 'react';
 
 function Comments({commentsPromise}) {
-  // `use` suspendra le composant le temps que la promesse s‘établisse
+  // `use` suspendra le composant le temps que la promesse s’établisse
   const comments = use(commentsPromise);
   return comments.map(comment => <p key={comment.id}>{comment}</p>);
 }
 
 function Page({commentsPromise}) {
-  // Lorsque `use` suspend Comments,
+  // Lorsque `use` suspendra Comments,
   // ce périmètre Suspense affichera le rendu de secours.
   return (
     <Suspense fallback={<div>Chargement...</div>}>
@@ -269,7 +269,7 @@ function Page({commentsPromise}) {
 
 <Note>
 
-#### `use` n'accepte pas des promesses créées lors du rendu. {/*use-does-not-support-promises-created-in-render*/}
+#### `use` n'accepte pas les promesses créées lors du rendu. {/*use-does-not-support-promises-created-in-render*/}
 
 Si vous essayez de passer à `use` une promesse créée lors du rendu, React vous avertira :
 
@@ -475,8 +475,8 @@ Nous permettons désormais le renvoi d'une fonction de nettoyage depuis les fonc
   ref={(ref) => {
     // ref créée
 
-    // NOUVEAU : renvoi d'une fonction de nettoyage pour
-    // réinitialiser la ref quand l'élément quitte le DOM
+    // NOUVEAU : renvoi d’une fonction de nettoyage pour
+    // réinitialiser la ref quand l’élément quitte le DOM
     return () => {
       // nettoyage de la ref
     };
@@ -488,7 +488,7 @@ Lorsque le composant est démonté, React appellera la fonction de nettoyage ren
 
 <Note>
 
-Auparavant, React appelait les fonctions de `ref` avec `null` lors du démontage d'un composant.  Si votre `ref` renvoie une fonctino de nettoyage, React sautera désormais cette étape.
+Auparavant, React appelait les fonctions de `ref` avec `null` lors du démontage d'un composant.  Si votre `ref` renvoie une fonction de nettoyage, React sautera désormais cette étape.
 
 Une future version dépréciera l'appel de refs avec `null` au démontage de composants.
 
@@ -507,7 +507,7 @@ Vous pouvez corriger ce motif de code avec le codemod [`no-implicit-ref-callback
 
 ### `useDeferredValue` accepte une valeur initiale {/*use-deferred-value-initial-value*/}
 
-Nous avons ajouté un `initialValue` optionnel à `useDeferredValue` :
+Nous avons ajouté une `initialValue` optionnelle à `useDeferredValue` :
 
 ```js [[1, 1, "deferredValue"], [1, 4, "deferredValue"], [2, 4, "''"]]
 function Search({deferredValue}) {
@@ -527,7 +527,7 @@ Pour en apprendre davantage, consultez la documentation de [`useDeferredValue`](
 
 ### Prise en charge des métadonnées du document {/*support-for-metadata-tags*/}
 
-En HTML, les balises de métadonnées du document telles que `<title>`, `<link>` et `<meta>` ne peuvent être placées que dans la section `<head>` du document. Avec React, le compsoant qui décide de quelles métadonnées sont pertinentes pour l'appli est généralement bien éloigné de l'endroit où vous définissez `<head>`. Par le passé, ces éléments auraient nécessité une insertion manuelle dans un Effet, ou au travers de bibliothèques telles que [`react-helmet`](https://github.com/nfl/react-helmet), et auraient nécessité quelques précautions lors du rendu côté serveur d'une application React. 
+En HTML, les balises de métadonnées du document telles que `<title>`, `<link>` et `<meta>` ne peuvent être placées que dans la section `<head>` du document. Avec React, le composant qui décide de quelles métadonnées sont pertinentes pour l'appli est généralement bien éloigné de l'endroit où vous définissez `<head>`. Par le passé, ces éléments auraient nécessité une insertion manuelle dans un Effet, ou au travers de bibliothèques telles que [`react-helmet`](https://github.com/nfl/react-helmet), et auraient nécessité quelques précautions lors du rendu côté serveur d'une application React. 
 
 React 19 prend désormais nativement en charge le rendu de métadonnées du document depuis vos composants :
 
@@ -552,7 +552,7 @@ Lorsque React fait le rendu de ce composant, il voit les balises `<title>`, `<li
 
 <Note>
 
-#### Vous aurez peut-être toujours besoin d'une bibliothèque de métadonnées {/*you-may-still-want-a-metadata-library*/}
+#### Vous aurez peut-être encore besoin d'une bibliothèque de métadonnées {/*you-may-still-want-a-metadata-library*/}
 
 Pour les cas simples, effectuer le rendu des métadonnées du document sous forme de balises est certes acceptable, mais les bibliothèques peuvent offrir des fonctionnalités plus avancées telles que la surcharge de métadonnées génériques par des valeurs spécifiques basées sur la route active. Ce que nous fournissons nativement facilite l'implémentation de frameworks et bibliothèques tels que [`react-helmet`](https://github.com/nfl/react-helmet), sans pour autant les remplacer.
 
@@ -562,7 +562,7 @@ Pour en apprendre davantage, consultez les documentations de [`<title>`](/refere
 
 ### Prise en charge des feuilles de styles {/*support-for-stylesheets*/}
 
-Les feuilles de styles, tant en variante externe (`<link rel="stylesheet" href="...">`) qu'intégrée (`<style>...</style>`), requièrent un emplacement adéquat dans le DOM en raison des règles de précédence de styles.  Il n'est pas aisé de construire une capacité de feuilles de styles permettant la composabilité au sein des composants, de sorte que les utilisateurs se retrouvent souvent à charger tous leurs styles séparément des composants susceptibles d'en dépendre, ou à recourir à une bibliothèque de styles qui masque cette complexité.
+Les feuilles de styles, tant en variante externe (`<link rel="stylesheet" href="...">`) qu'intégrée (`<style>...</style>`), requièrent un emplacement adéquat dans le DOM en raison des règles de précédence de styles.  Il n'est pas aisé de construire une gestion de feuilles de styles permettant la composabilité au sein des composants, de sorte que les utilisateurs se retrouvent souvent à charger tous leurs styles séparément des composants susceptibles d'en dépendre, ou à recourir à une bibliothèque de styles qui masque cette complexité.
 
 Avec React 19, nous gérons cette complexité et proposons une intégration plus étroite encore avec le Rendu Concurrent côté client, et les flux de rendu côté serveur, grâce à une prise en charge native des feuilles de styles.  Si vous indiquez à React la `precedence` de votre feuille de styles, il gèrera son ordre d'insertion dans le DOM et s'assurera que la feuille de styles (si elle est externe) est bien chargée avant d'afficher du contenu qui dépende des règles de style ainsi obtenues.
 
@@ -589,21 +589,21 @@ function ComponentTwo() {
 }
 ```
 
-Lors du rendu côté serveur *(SSR, Server-Side Rendering — NdT)*, React incluera la feuille de styles dans le `<head>`, ce qui garantira que le navigateur n'affichera rien jusqu'à son chargement. Si la feuille de styles est découverte tardivement après le début du flux de réponse, React s'assurera que la feuille de styles est insérée dans le `<head>` du client avant de révéler le contenu du périmètre Suspense qui dépend de cette feuille de styles.
+Lors du rendu côté serveur *(SSR, Server-Side Rendering — NdT)*, React inclura la feuille de styles dans le `<head>`, ce qui garantira que le navigateur n'affichera rien jusqu'à son chargement. Si la feuille de styles est découverte tardivement après le début du flux de réponse, React s'assurera que la feuille de styles est insérée dans le `<head>` du client avant de révéler le contenu du périmètre Suspense qui dépend de cette feuille de styles.
 
-Lors du rendu côté client, React attendra que les feuilles de styles nouvellement injectées soient chargées avant de finaliser le rendu (phase de commit).  Si vous affichez ce composant à de multiples endroits dans votre application, React n'incluera la feuille de styles qu'une seule fois dans le document :
+Lors du rendu côté client, React attendra que les feuilles de styles nouvellement injectées soient chargées avant de finaliser le rendu (phase de commit).  Si vous affichez ce composant à de multiples endroits dans votre application, React n'inclura la feuille de styles qu'une seule fois dans le document :
 
 ```js {5}
 function App() {
   return <>
     <ComponentOne />
     ...
-    <ComponentOne /> // n’entraînera pas d'élément `link` dupliqué dans le DOM
+    <ComponentOne /> // n’entraînera pas d’élément `link` dupliqué dans le DOM
   </>
 }
 ```
 
-Pour les utilisateurs habitués à charger leurs feuilles de styles manuellement, c'est l'occasion de placer ces feuilles de styles à côté des composants qui en dépendent, ce qui facilite un raisonnement local et permet de ne charger que les feuilles de styles dont vous avez effectivement besoin.
+Si vous êtes habitué·e à charger vos feuilles de styles manuellement, c'est l'occasion de placer ces feuilles de styles à côté des composants qui en dépendent, ce qui facilite un raisonnement local et permet de ne charger que les feuilles de styles dont vous avez effectivement besoin.
 
 Les bibliothèques de styles et les intégrations de styles par les *bundlers* peuvent aussi s'appuyer sur cette nouvelle fonctionnalité, de sorte que même si vous ne réalisez pas directement le rendu de vos feuilles de styles, vous pourriez en bénéficier une fois l'outillage mis à jour pour en tirer parti.
 
@@ -613,7 +613,7 @@ Pour en apprendre davantage, consultez les documentations de [`<link>`](/referen
 
 En HTML, les scripts normaux (`<script src="...">`) et différés (`<script defer="" src="...">`) sont chargés dans l'ordre du document, ce qui rend délicate leur injection dynamique au sein de votre arbre de composants. Les scripts asynchrones (`<script async="" src="...">`) sont en revanche chargés dans un ordre quelconque.
 
-Avec React 19, nous avons ajouté une meilleure prise en charge des scripts asynchrones en vous permettant de faire leur rendu à n'importe quel endroit de l'arbre de composants, au sein des composants qui se servent effectivement du script, sans avoir à gérer leur déplacement ni leur déduplication.
+Avec React 19, nous avons ajouté une meilleure prise en charge des scripts asynchrones en vous permettant de faire leur rendu à n'importe quel endroit de l'arbre de composants, au sein des composants qui se servent effectivement du script, sans avoir à gérer leur déplacement ni leur dédoublonnement.
 
 ```js {4,15}
 function MyComponent() {
@@ -630,7 +630,7 @@ function App() {
     <body>
       <MyComponent>
       ...
-      <MyComponent> // n’entraînera pas d'élément `script` dupliqué dans le DOM
+      <MyComponent> // n’entraînera pas d’élément `script` dupliqué dans le DOM
     </body>
   </html>
 }
@@ -684,7 +684,7 @@ Pour en apprendre davantage, consultez [API de préchargement de ressources](/re
 
 Nous avons amélioré l'hydratation pour tenir compte des scripts et extensions de navigateur tiers.
 
-Lors de l'hydratation, si un élément rendu côté client ne correspond pas à celui trouvé dans le HTML fourni par le serveur, React force un nouveau rendu client pour corriger le contenu.  Auparavant, si un élément était injecté par des scripts ou extensions tiers, ça déclenchait une telle discordance et donc un nouveau rendu client.
+Lors de l'hydratation, si un élément rendu côté client ne correspond pas à celui trouvé dans le HTML fourni par le serveur, React force un nouveau rendu client pour corriger le contenu.  Auparavant, si un élément était injecté par des scripts ou extensions tiers, ça constituait une telle discordance et entraînait donc un nouveau rendu client.
 
 Avec React 19, les balises inattendues dans `<head>` et `<body>` sont ignorées, ce qui évite des discordances.  Si React a besoin de refaire le rendu du document entier en raison d'une autre discordance d'hydratation, il laissera en place les feuilles de styles injectées par les scripts et extensions tiers.
 
@@ -758,14 +758,14 @@ Pour en apprendre davantage et voir d'autres exemples, consultez les documentati
 
 ### Prise en charge des *Custom Elements* {/*support-for-custom-elements*/}
 
-React 19 prend désormais pleinement en charge les *custom elements* *(nécessaires aux Web Components natifs, NdT)* et passe tous les tests de [Custom Elements Everywhere](https://custom-elements-everywhere.com/).
+React 19 prend désormais pleinement en charge les éléments personnalisés *(Custom Elements, nécessaires aux Web Components natifs, NdT)* et passe tous les tests de [Custom Elements Everywhere](https://custom-elements-everywhere.com/).
 
-Dans les précédentes versions, utiliser des *Custom Elements* dans React s'avérait difficile parce que React traitait les props non reconnues comme des attributs plutôt que comme des props.  Avec React 19, nous avons ajouté une prise en charge des props qui fonctionne côté client et lors du SSR selon la stratégie suivante :
+Dans les précédentes versions, utiliser des éléments personnalisés dans React s'avérait difficile parce que React traitait les props non reconnues comme des attributs plutôt que comme des props.  Avec React 19, nous avons ajouté une prise en charge des props qui fonctionne côté client et lors du SSR selon la stratégie suivante :
 
-- **Côté serveur** : les props passées à un *Custom Element* produisent des attributs si leur type est primitif (ex. `string`, `number`) ou si la valeur est `true`. Les props de type non primitif tels qu’`object`, `symbol`, `function` ainsi que la valeur `false` sont ignorés.
-- **Côté client** : les props qui correspondent à une propriété de l'instance du *Custom Element* sont affectées à ces propriétés, à défaut de quoi elles produisent des attributs.
+- **Côté serveur** : les props passées à un élément personnalisé produisent des attributs si leur type est primitif (ex. `string`, `number`) ou si la valeur est `true`. Les props de type non primitif tels qu’`object`, `symbol`, `function` ainsi que la valeur `false` sont ignorés.
+- **Côté client** : les props qui correspondent à une propriété de l'instance de l'élément personnalisé sont affectées à ces propriétés, à défaut de quoi elles produisent des attributs.
 
-Merci à [Joey Arhar](https://github.com/josepharhar) pour avoir piloté la conception et l'implémentation de la prise en charge des *Custom Elements* dans React.
+Merci à [Joey Arhar](https://github.com/josepharhar) pour avoir piloté la conception et l'implémentation de la prise en charge des éléments personnalisés dans React.
 
 ## Comment mettre à jour {/*how-to-upgrade*/}
 
