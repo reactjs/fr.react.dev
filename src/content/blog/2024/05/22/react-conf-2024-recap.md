@@ -83,7 +83,7 @@ Regardez le flux intégral du jour 2 ici :
 
 ## Q&R {/*q-and-a*/}
 
-Les équipes React et Reaxct Native ont conclu chaque journée par une session de questions-réponses :
+Les équipes React et React Native ont conclu chaque journée par une session de questions-réponses :
 
 - [React Q&A](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=27518s) modérée par [Michael Chan](https://twitter.com/chantastic)
 - [React Native Q&A](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=27935s) modérée par [Jamon Holmgren](https://twitter.com/jamonholmgren)
