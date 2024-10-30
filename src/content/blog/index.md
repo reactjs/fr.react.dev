@@ -12,9 +12,7 @@ Ce blog est la source officielle des mises à jour par l'équipe React.  Toute a
 
 <BlogCard title="React Compiler : beta et feuille de route" date="21 octobre 2024" url="/blog/2024/10/21/react-compiler-beta-release">
 
-{/* FIXME:L10N */}
-
-We announced an experimental release of React Compiler at React Conf 2024. We've made a lot of progress since then, and in this post we want to share what's next for React Compiler ...
+Nous avions annoncé la sortie expérimentale de React Compiler lors de la React Conf 2024. Nous avons beaucoup avancé depuis, et dans cet article nous aimerions partager avec vous la suite de nos travaux sur ce compilateur…
 
 </BlogCard>
 
