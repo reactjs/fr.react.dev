@@ -52,7 +52,7 @@ Si vous n'utilisez pas encore React 19, merci de consulter [cette section](#usin
 
 Pour optimiser les applications, React Compiler mémoïse automatiquement votre code.  Vous avez peut-être déjà l'habitude de mémoïser au travers de fonctions telles que `useMemo`, `useCallback` et `React.memo`. Ces fonctions vous permettent d'indiquer à React que certaines parties de votre appli n'ont pas besoin d'être recalculées si leurs entrées n'ont pas changé, ce qui réduit la charge des mises à jour.  Même si elles sont puissantes, il reste trop facile d'oublier de mémoïser, ou de mal s'y prendre.  Ça peut entraîner des mises à jour inefficaces lorsque React doit examiner des parties de votre UI qui n'ont pas reçu de changements _signifiants_.
 
-Le compilateur utilise sa connaissance de JavaScript et des règles de React pour mémoïser automatiquement des valeurs et groupes de valeurs au sein de vos composants et Hooks.  S'il détecte des infractions aux règles, il sautera automatiquement les composants et Hooks concernés, et continuera à compiler de façon fiable le reste du code.
+Le compilateur utilise sa connaissance de JavaScript et des règles de React pour mémoïser automatiquement des valeurs et groupes de valeurs au sein de vos composants et Hooks.  S'il détecte des infractions aux règles, il évitera automatiquement de compiler les composants et Hooks concernés, et continuera à compiler de façon fiable le reste du code.
 
 <Note>
 
@@ -60,7 +60,7 @@ React Compiler peut détecter statiquement les infractions aux Règles de React,
 
 </Note>
 
-Si votre base code est déjà très bien mémoïsée, vous ne verrez sans doute pas d'amélioration significative des performances grâce au compilateur.  Ceci dit, en pratique mémoïser correctement les dépendances qui sont à l'origine des soucis de performances n'est pas chose aisée à réaliser manuellement.
+Si votre base de code est déjà très bien mémoïsée, vous ne verrez sans doute pas d'amélioration significative des performances grâce au compilateur.  Ceci dit, en pratique mémoïser correctement les dépendances qui sont à l'origine des soucis de performances n'est pas chose aisée à réaliser manuellement.
 
 <DeepDive>
 
@@ -75,7 +75,7 @@ La version initiale de React Compiler se concentre principalement sur **l'améli
 
 #### Optimiser les re-rendus {/*optimizing-re-renders*/}
 
-React vous permet d'exprimer votre UI sous forme d'une fonction de votre état courant (plus concrètement : les props, l'état et le Contexte).  Dans son implémentation actuelle, lorsque l'état local d'un composant change, React refait le rendu de ce composant _et de tous ses enfants_ — à moins que vous n'ayez appliqué une forme de mémoïsation manuelle avec `useMemo()`, `useCallback()` ouo `React.memo()`. Dans l'exemple qui suit, `<MessageButton>` fera un nouveau rendu chaque fois que l'état local de `<FriendList>` changera :
+React vous permet d'exprimer votre UI sous forme d'une fonction de votre état courant (plus concrètement : les props, l'état et le Contexte).  Dans son implémentation actuelle, lorsque l'état local d'un composant change, React refait le rendu de ce composant _et de tous ses enfants_ — à moins que vous n'ayez appliqué une forme de mémoïsation manuelle avec `useMemo()`, `useCallback()` ou `React.memo()`. Dans l'exemple qui suit, `<MessageButton>` fera un nouveau rendu chaque fois que l'état local de `<FriendList>` changera :
 
 ```javascript
 function FriendList({ friends }) {
@@ -96,7 +96,7 @@ function FriendList({ friends }) {
 ```
 [_Examiner cet exemple dans le bac à sable de React Compiler_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
 
-React Compiler applique automatiquement l'équivalent des mémoïsations manuelles, pour garantir que seules les parties pertinentes de l'appli refont leur rendu àc haque changement d'état, ce qu'on appelle parfois la « réactivité granulaire ».  Dans l'exemple qui précède, React Compiler détermine que la valeur renvoyée par `<FriendListCard />` peut être réutilisée même si `friends` change, et qu'on peut éviter de recréer ce JSX _et_ éviter de refaire le rendu de `<MessageButton>` quand le compteur change.
+React Compiler applique automatiquement l'équivalent des mémoïsations manuelles, pour garantir que seules les parties pertinentes de l'appli refont leur rendu à chaque changement d'état, ce qu'on appelle parfois de la « réactivité granulaire ».  Dans l'exemple qui précède, React Compiler détermine que la valeur renvoyée par `<FriendListCard />` peut être réutilisée même si `friends` change, et qu'on peut éviter de recréer ce JSX _et_ éviter de refaire le rendu de `<MessageButton>` quand le compteur change.
 
 #### Les calculs coûteux sont aussi mémoïsés {/*expensive-calculations-also-get-memoized*/}
 
@@ -128,7 +128,7 @@ Du coup, si `expensivelyProcessAReallyLargeArrayOfObjects` était utilisée par 
 
 Veuillez noter que le compilateur est encore en beta et qu'il reste de nombreuses choses à affiner. Même s'il est déjà utilisé en production dans des sociétés telles que Meta, déployer le compilateur en production pour votre appli dépend de l'état de santé de votre base de code et de la rigueur avec laquelle vous respectez les [Règles de React](/reference/rules).
 
-**Vous n'avez pas à vour précipiter pour utiliser le compilateur dès maintenant.  Vous pouvez parfaitement attendre qu'il atteigne sa version stable avant de l'adopter.**  Ceci dit, nous apprécions les essais à échelle réduite dans vos applis qui vous permettent de nous [faire des retours](#reporting-issues) afin de nous aider à améliorer le compilateur.
+**Vous n'avez pas à vous précipiter pour utiliser le compilateur dès maintenant.  Vous pouvez parfaitement attendre qu'il atteigne sa version stable avant de l'adopter.**  Ceci dit, nous apprécions les essais à échelle réduite dans vos applis, qui vous permettent de nous [faire des retours](#reporting-issues) afin de nous aider à améliorer le compilateur.
 
 ## Démarrage {/*getting-started*/}
 
@@ -159,7 +159,7 @@ export default [
 ]
 ```
 
-Ou si vous utilisez encore le formation déprécié de fichier de configuration :
+Ou si vous utilisez encore la forme dépréciée de son fichier de configuration :
 
 ```js
 module.exports = {
@@ -187,7 +187,7 @@ Le plugin ESLint affichera toute violation des règles de React dans votre édit
 
 Le compilateur est conçu pour compiler les fonctions composants et Hooks qui respectent les [Règles de React](/reference/rules). Il peut aussi gérer du code qui enfreint ces règles en évitant d'optimiser ces composants ou Hooks.  Ceci dit, en raison de la nature flexible de JavaScript, le compilateur ne peut pas repérer toutes les violations imaginables et risque de compiler avec des faux négatifs ; c'est à dire qu'il pourrait accidentellement compiler un composant ou Hook qui enfreint les Règles de React, ce qui entraînera un comportement non défini.
 
-Pour cette raison, afin d'adopter avec succès le compilateur sur des projets existants, nous vous conseillons de l'exécuter d'abord sur une petite partie de votre code produit.  Pour cela, vous pouvez configurer le compilateur afin qu'il ne s'exécuter que sur un sous-ensemble de vos dossiers :
+Pour cette raison, afin d'adopter avec succès le compilateur sur des projets existants, nous vous conseillons de l'exécuter d'abord sur une petite partie de votre code produit.  Pour cela, vous pouvez configurer le compilateur afin qu'il ne s'exécute que sur un sous-ensemble de vos dossiers :
 
 ```js {3}
 const ReactCompilerConfig = {
@@ -197,11 +197,11 @@ const ReactCompilerConfig = {
 };
 ```
 
-Lorsque vous gagnez en confiance avec votre déploiement du compilateur, vous pouvez étendre son périmètre à d'autres dossier, pour progressivement le déployer sur toute votre appli.
+Lorsque vous gagnez en confiance sur votre déploiement du compilateur, vous pouvez étendre son champ d'action à d'autres dossiers, pour progressivement le déployer sur toute votre appli.
 
 #### Nouveaux projets {/*new-projects*/}
 
-Si vous démarrez un nouveau projet, vous pouvez activer le compilateur sur la base de code entière, ce qui est son comportement par défaut.
+Si vous démarrez un nouveau projet, vous pouvez activer le compilateur sur la base de code entière, ce qu'il fait par défaut.
 
 ### Utiliser React Compiler avec React 17 ou 18 {/*using-react-compiler-with-react-17-or-18*/}
 
@@ -234,7 +234,7 @@ React Compiler peut aussi être utilisé pour compiler des bibliothèques. Dans 
 
 Puisque votre code est pré-compilé, les utilisateur·rices de votre bibliothèque n'auront pas besoin d'activer le compilateur pour bénéficier de la mémoïsation automatique appliquée à votre bibliothèque.  Si celle-ci s'adresse à des applications pas forcément encore sur React 19, pensez à [préciser une `target` et à ajouter `react-compiler-runtime` comme dépendance explicite](#using-react-compiler-with-react-17-or-18) de production.  Ce module d'exécution utilisera une implémentation correcte des API selon la version de React de l'application, et émulera les API manquantes lorsque c'est nécessaire.
 
-Le code de bibliothèque est souvent plus complexe et à même de requérir à certaines échappatoires.  Pour cette raison, nous vous conseillons de tester suffisamment votre code pour identifier tout problème qui pourrait résulter de l'utilisation du compilateur sur votre bibliothèque.  Si vous repérez quelque problème que ce soit, vous pouvez toujours retirer les composants ou Hooks concernés du processus grâce à la [directive `'use no memo'`](#something-is-not-working-after-compilation).
+Le code de bibliothèque est souvent plus complexe et tend à exploiter certaines échappatoires.  Pour cette raison, nous vous conseillons de tester suffisamment votre code pour identifier tout problème qui pourrait résulter de l'utilisation du compilateur sur votre bibliothèque.  Si vous repérez quelque problème que ce soit, vous pouvez toujours retirer les composants ou Hooks concernés du processus grâce à la [directive `'use no memo'`](#something-is-not-working-after-compilation).
 
 Comme pour les applis, il n'est pas nécessaire de compiler 100% de vos composants et Hooks pour que votre bibliothèque profite de la compilation.  Un bon point de départ consiste à identifier les parties de votre bibliothèque les plus critiques en termes de performances, et à vous assurer qu'elles n'enfreignent pas les [Règles de React](/reference/rules), ce que `eslint-plugin-react-compiler` peut vous aider à vérifier.
 
@@ -264,7 +264,7 @@ module.exports = function () {
 };
 ```
 
-`babel-plugin-react-compiler` devrait être exécuté d'abord, avant tout autre plugin Babel, car le compilateur a besoin des information du code source d'origine pour effectuer une analyse fiable.
+`babel-plugin-react-compiler` doit être exécuté d'abord, avant tout autre plugin Babel, car le compilateur a besoin des informations du code source d'origine pour effectuer une analyse fiable.
 
 ### Vite {/*usage-with-vite*/}
 
@@ -346,7 +346,7 @@ Veuillez consulter la [documentation de Rsbuild](https://rsbuild.dev/guide/frame
 
 ## Dépannage {/*troubleshooting*/}
 
-Pour nous signaler tout problème, façonnez d'abord une reproduction minimaliste sur le [bac à sable React Compiler](https://playground.react.dev/) et ajoutz-la à votre ticket. Vous pouvez ouvrir des tickets sur le dépôt [facebook/react](https://github.com/facebook/react/issues).
+Pour nous signaler tout problème, façonnez d'abord une reproduction minimaliste sur le [bac à sable React Compiler](https://playground.react.dev/) et ajoutez-la à votre ticket. Vous pouvez ouvrir des tickets sur le dépôt [facebook/react](https://github.com/facebook/react/issues).
 
 Vous pouvez aussi faire des retours au groupe de travail React Compiler en demandant à en devenir membre.  Merci de [lire le README pour savoir comment devenir membre](https://github.com/reactwg/react-compiler).
 
@@ -354,9 +354,9 @@ Vous pouvez aussi faire des retours au groupe de travail React Compiler en deman
 
 React Compiler suppose que votre code :
 
-1. est du JavaScript valide et sémantique.
-2. Teste que les valeurs et propriétés pouvant être nulles ou optionnelles sont bien définies avant d'y accéder (en activant par exemple [`strictNullChecks`](https://www.typescriptlang.org/tsconfig/#strictNullChecks) si vous utilisez TypeScript), avec par exemple un test du genre `if (object.nullableProperty) { object.nullableProperty.foo }` ou un chaînage optionnel `object.nullableProperty?.foo`.
-3. Respecte les [Règles de React](/reference/rules).
+1. …est du JavaScript valide et sémantique.
+2. …teste que les valeurs et propriétés pouvant être nulles ou optionnelles sont bien définies avant d'y accéder (en activant par exemple [`strictNullChecks`](https://www.typescriptlang.org/tsconfig/#strictNullChecks) si vous utilisez TypeScript), avec par exemple un test du genre `if (object.nullableProperty) { object.nullableProperty.foo }` ou un chaînage optionnel `object.nullableProperty?.foo`.
+3. …respecte les [Règles de React](/reference/rules).
 
 React Compiler peut vérifier statiquement la plupart des Règles de React, et évitera par sécurité de compiler lorsqu'il détecte une infraction.  Pour voir celles-ci, nous vous conseillons d'installer [eslint-plugin-react-compiler](https://www.npmjs.com/package/eslint-plugin-react-compiler).
 
@@ -383,7 +383,7 @@ function SuspiciousComponent() {
 
 #### `"use no memo"` {/*use-no-memo*/}
 
-`"use no memo"` est une échappatoire _temporaire_ qui vous permet de sortir des composants et Hooks du champ d'action de React Compiler.  Cette directive n'a pas vocation à être pérennisée, contrairement par excemple à [`"use client"`](/reference/rsc/use-client).
+`"use no memo"` est une échappatoire _temporaire_ qui vous permet de sortir des composants et Hooks du champ d'action de React Compiler.  Cette directive n'a pas vocation à être pérennisée, contrairement par exemple à [`"use client"`](/reference/rsc/use-client).
 
 Nous déconseillons de recourir à cette directive dans la mesure où elle n'est pas à strictement parler nécessaire.  Une fois que vous avez sorti un composant ou Hook du champ d'action, il en reste exclu tant que la directive n'est pas retirée.  Ça signifie que même si vous corrigez le code, le compilateur continuera à éviter de le compiler tant que vous n'aurez pas retiré la directive.
 
