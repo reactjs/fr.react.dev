@@ -18,13 +18,8 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Andrew a commencé le développement web en faisant des sites avec Wordpress, puis il a fini par se persuader de faire du JavaScript.  Son passe-temps favori est le karaoké.  Selon son humeur du jour, Andrew est soit un méchant Disney, soit une princesse Disney.
 </TeamMember>
 
-<<<<<<< HEAD
-<TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" twitter="dan_abramov2" title="Ingénieur indépendant">
+<TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" bsky="danabra.mov" title="Ingénieur indépendant">
     Dan a commencé à programmer lorsqu'il a découvert par hasard qu'il y avait Visual Basic dans Microsoft Powerpoint.  Il a découvert que sa véritable vocation consistait à transformer les tweets de [Sebastian](#sebastian-markbåge) en billets de blog interminables. Dan gagne parfois à Fortnite en se cachant dans un buisson jusqu'à la fin de la partie.
-=======
-<TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" bsky="danabra.mov" title="Independent Engineer">
-    Dan got into programming after he accidentally discovered Visual Basic inside Microsoft PowerPoint. He has found his true calling in turning [Sebastian](#sebastian-markbåge)'s tweets into long-form blog posts. Dan occasionally wins at Fortnite by hiding in a bush until the game ends.
->>>>>>> 8201e7e9203321bd1648c3ab0b76ef943c9ec3ad
 </TeamMember>
 
 <TeamMember name="Eli White" permalink="eli-white" photo="/images/team/eli-white.jpg" github="TheSavior" twitter="Eli_White" threads="elicwhite" title="Manager d’ingénieurs chez Meta">
@@ -47,13 +42,8 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Josh a étudié les Mathématiques et découvert la programmation pendant ses études.  Son premier boulot de développeur professionnel consistait à calculer des taux d'assurance dans Microsoft Excel, ce parangon de Programmation Réactive, ce qui explique probablement pourquoi il bosse désormais sur React. Entre les deux Josh a été contributeur, manager voire directeur dans quelques startups.  Hors du boulot, il aime se lancer des défis de cuisine.
 </TeamMember>
 
-<<<<<<< HEAD
-<TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" personal="no.lol" title="Ingénieure chez Meta">
+<TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" bsky="no.lol" title="Ingénieure chez Meta">
     La carrière de développeuse de Lauren a atteint son sommet lorsqu'elle a découvert la balise `<marquee>`. Depuis, elle cherche à retrouver cette extase.  Elle a étudié la finance à la fac plutôt que l'informatique, de sorte qu'elle a paris à coder avec Excel plutôt que Java. Lauren aime balancer des mèmes audacieux dans les forums internes, jouer à des jeux vidéos avec l'amour de sa vie, et poutouter son chien Zelda.
-=======
-<TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" bsky="no.lol" title="Engineer at Meta">
-    Lauren's programming career peaked when she first discovered the `<marquee>` tag. She’s been chasing that high ever since. She studied Finance instead of CS in college, so she learned to code using Excel instead of Java. Lauren enjoys dropping cheeky memes in chat, playing video games with her partner, and petting her dog Zelda.
->>>>>>> 8201e7e9203321bd1648c3ab0b76ef943c9ec3ad
 </TeamMember>
 
 <TeamMember name="Luna Wei" permalink="luna-wei" photo="/images/team/luna-wei.jpg" github="lunaleaps" twitter="lunaleaps" threads="lunaleaps" title="Ingénieure chez Meta">
@@ -72,13 +62,8 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Noah a commencé à s'intéresser à la programmation d'UI lors de ses études en technologies musicales à NYU. Chez Meta, il a travaillé sur des outils internes, des navigateurs, la performance web, et se concentre actuellement sur React.  Quand il n'est pas au boulot, Noah est généralement en train de triturer des synthétiseurs ou de passer du temps avec son chat.
 </TeamMember>
 
-<<<<<<< HEAD
-<TeamMember name="Rick Hanlon" permalink="rick-hanlon" photo="/images/team/rickhanlonii.jpg" github="rickhanlonii" twitter="rickhanlonii" threads="rickhanlonii" personal="rickhanlon.codes" title="Ingénieur chez Meta">
+<TeamMember name="Rick Hanlon" permalink="rick-hanlon" photo="/images/team/rickhanlonii.jpg" github="rickhanlonii" twitter="rickhanlonii" threads="rickhanlonii" bsky="ricky.fm" title="Ingénieur chez Meta">
     Ricky a étudié les maths théoriques puis s'est retrouvé on ne sait comment dans l'équipe React Native quelques années avant de rejoindre l'équipe React. Lorsqu'il n'est pas en train de coder, vous le trouverez à faire du snowboard, du vélo, de l'escalade, du golf, ou à fermer les tickets GitHub qui violent le gabarit demandé.
-=======
-<TeamMember name="Rick Hanlon" permalink="rick-hanlon" photo="/images/team/rickhanlonii.jpg" github="rickhanlonii" twitter="rickhanlonii" threads="rickhanlonii" bsky="ricky.fm" title="Engineer at Meta">
-    Ricky majored in theoretical math and somehow found himself on the React Native team for a couple years before joining the React team. When he's not programming you can find him snowboarding, biking, climbing, golfing, or closing GitHub issues that do not match the issue template.
->>>>>>> 8201e7e9203321bd1648c3ab0b76ef943c9ec3ad
 </TeamMember>
 
 <TeamMember name="Ruslan Lesiutin" permalink="ruslan-lesiutin" photo="/images/team/lesiutin.jpg" github="hoxyq" twitter="ruslanlesiutin" threads="lesiutin" title="Engineer at Meta">
