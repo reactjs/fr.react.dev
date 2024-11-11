@@ -218,7 +218,7 @@ Toutes les nouvelles fonctionnalités de React que nous sommes en train de const
 - Un composant doit être pur, ce qui signifie que :
   - **Il s'occupe de ses affaires.** Il ne modifie aucun objet ou variable qui existaient avant son rendu.
   - **Pour les mêmes entrées, il produit la même sortie.** Pour un jeu d'entrées données, un composant renverra toujours le même JSX.
-- Le rendu peut survenir à tout moment, aussi les composants ne doivent pas dépendre de leurs positions respectives dans la séquence de rendu.
+- Le rendu peut survenir à tout moment, c'est pourquoi les composants ne doivent pas dépendre de leurs positions respectives dans la séquence de rendu.
 - Vous ne devriez pas modifier les entrées utilisées par vos composants pour leur rendu. Ça concerne les props, l'état et le contexte. Pour mettre à jour l'affichage, [mettez à jour l'état](/learn/state-a-components-memory) plutôt que de modifier des objets pré-existants.
 - Faites le maximum pour exprimer la logique de votre composant dans le JSX que vous renvoyez.  Lorsque vous devez absolument « modifier un truc », vous voudrez généralement le faire au sein d'un gestionnaire d'événement. En dernier recours, vous pouvez utiliser `useEffect`.
 - Écrire des fonctions pures nécessite un peu de pratique, mais ça permet d'exploiter la pleine puissance du paradigme de React.
