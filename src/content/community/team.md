@@ -38,7 +38,7 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Joe pensait axer ses études sur les maths et la philosophie, mais s'est retrouvé en informatique après avoir écrit des simulations de physique dans Matlab.  Avant React, il travaillait sur Relay, RSocket.js et le langage de programmation Skip.  Lorsqu'il n'est pas en train de pondre un système réactif il aime courir, apprendre le japonais, et passer du temps en famille.
 </TeamMember>
 
-<TeamMember name="Josh Story" permalink="josh-story" photo="/images/team/josh.jpg" github="gnoff" twitter="joshcstory" title="Ingénieur chez Vercel">
+<TeamMember name="Josh Story" permalink="josh-story" photo="/images/team/josh.jpg" github="gnoff" bsky="gnoff.bsky.social" title="Ingénieur chez Vercel">
     Josh a étudié les Mathématiques et découvert la programmation pendant ses études.  Son premier boulot de développeur professionnel consistait à calculer des taux d'assurance dans Microsoft Excel, ce parangon de Programmation Réactive, ce qui explique probablement pourquoi il bosse désormais sur React. Entre les deux Josh a été contributeur, manager voire directeur dans quelques startups.  Hors du boulot, il aime se lancer des défis de cuisine.
 </TeamMember>
 
