@@ -544,6 +544,24 @@ Lors du double rendu du mode strict en développement, `useMemo` et `useCallback
 
 Comme pour tous les comportements du mode strict, il s'agit de faire proactivement émerger des bugs dans vos composants lors du développement, de façon à ce que vous puissiez les corriger avant qu'ils n'atteignent la production.  En développement, le mode strict fait par exemple deux appels aux fonctions de rappel des refs lors du montage initial, pour simuler ce qui se passe lorsqu'un composant monté est remplacé par un affichage Suspense de secours.
 
+### Améliorations de Suspense {/*improvements-to-suspense*/}
+
+Avec React 19, lorsqu'un composant suspend, React committera immédiatement le rendu de secours du périmètre Suspense le plus proche, sans attendre que l'arbre de composants concerné fasse un rendu intégral.  Une fois le commit du rendu de secours terminé, React planifie un nouveau rendu des composants suspendus pour « préchauffer » les requêtes paresseuses du reste de l'arbre :
+
+<Diagram name="prerender" height={162} width={1270} alt="Diagramme de trois étapes, avec un composant parent constituant un périmètre Suspense, et un composant fils qui suspend.  La deuxième étape voit un deuxième composant fils faire son rendu, et la troisième étape remplace l’ensemble par le contenu de secours.">
+
+Auparavant, lorsqu'un composant suspendait, ses adelphes suspendus faisaient leur rendu avant que le commit du contenu de secours.
+
+</Diagram>
+
+<Diagram name="prewarm" height={162} width={1270} alt="Diagramme avec les mêmes étapes que précédemment, sauf que le commit du contenu de secours survient en deuxième étape, et le rendu du deuxième composant dans le périmètre suspendu intervient en troisième étape.">
+
+Avec React 19, lorsqu'un composant suspend, le contenu de secours est committé et seulement ensuite les adelphes suspendus font leur rendu.
+
+</Diagram>
+
+Grâce à ce changement, les contenus de secours Suspense sont affichés plus tôt, et les requêtes paresseuses sont préchauffées au sein de l'arbre suspendu.
+
 ### Builds UMD retirés {/*umd-builds-removed*/}
 
 UMD était largement utilisé par le passé, en tant que moyen pratique d'utiliser React sans étape de build.  Il existe aujourd'hui des façons modernes de charger des modules en tant que scripts dans des documents HTML.  À partir de React 19, React ne fournira plus de builds UMD afin de réduire la complexité de ses processus de tests et de livraison.
