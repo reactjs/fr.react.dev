@@ -625,7 +625,7 @@ export default function LightSwitch() {
 
 #### Connecter les événements {/*wire-up-the-events*/}
 
-Ce composant `ColorSwitch` affiche un bouton. Il est censé changer la couleur de la page. Connectez-le à la prop `onChangeColor` de gestionnaire d'événement qu'il reçoit de son composant parent, de sorte que la couleur change losqu'on clique sur le bouton.
+Ce composant `ColorSwitch` affiche un bouton. Il est censé changer la couleur de la page. Connectez-le à la prop `onChangeColor` de gestionnaire d'événement qu'il reçoit de son composant parent, de sorte que la couleur change lorsqu'on clique sur le bouton.
 
 Après avoir effectué cette modification, vous remarquerez que le clic du bouton incrémente également le compteur de clics de la page. Votre collègue, qui a écrit le composant parent, vous certifie que `onChangeColor` n’incrémente aucun compteur. Que pourrait-il se passer d’autre ? Corrigez ça afin qu'un clic sur le bouton change uniquement la couleur, mais n’incrémente _pas_ le compteur.
 
