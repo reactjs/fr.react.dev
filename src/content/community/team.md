@@ -38,8 +38,13 @@ Les membres actuels de l'équipe React sont listés ci-dessous par ordre alphab�
     Joe pensait axer ses études sur les maths et la philosophie, mais s'est retrouvé en informatique après avoir écrit des simulations de physique dans Matlab.  Avant React, il travaillait sur Relay, RSocket.js et le langage de programmation Skip.  Lorsqu'il n'est pas en train de pondre un système réactif il aime courir, apprendre le japonais, et passer du temps en famille.
 </TeamMember>
 
+<<<<<<< HEAD
 <TeamMember name="Josh Story" permalink="josh-story" photo="/images/team/josh.jpg" github="gnoff" bsky="gnoff.bsky.social" title="Ingénieur chez Vercel">
     Josh a étudié les Mathématiques et découvert la programmation pendant ses études.  Son premier boulot de développeur professionnel consistait à calculer des taux d'assurance dans Microsoft Excel, ce parangon de Programmation Réactive, ce qui explique probablement pourquoi il bosse désormais sur React. Entre les deux Josh a été contributeur, manager voire directeur dans quelques startups.  Hors du boulot, il aime se lancer des défis de cuisine.
+=======
+<TeamMember name="Josh Story" permalink="josh-story" photo="/images/team/josh.jpg" github="gnoff" bsky="storyhb.com" title="Engineer at Vercel">
+    Josh majored in Mathematics and discovered programming while in college. His first professional developer job was to program insurance rate calculations in Microsoft Excel, the paragon of Reactive Programming which must be why he now works on React. In between that time Josh has been an IC, Manager, and Executive at a few startups. outside of work he likes to push his limits with cooking.
+>>>>>>> 84f29eb20af17e9c154b9ad71c21af4c9171e4a2
 </TeamMember>
 
 <TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" bsky="no.lol" title="Ingénieure chez Meta">

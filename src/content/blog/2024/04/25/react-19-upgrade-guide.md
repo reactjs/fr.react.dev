@@ -542,7 +542,29 @@ React 19 apporte plusieurs correctifs et améliorations au mode strict.
 
 Lors du double rendu du mode strict en développement, `useMemo` et `useCallback` réutiliseront le résultat mémoïsé du premier rendu lors du second rendu. Les composants qui étaient déjà compatibles avec le mode strict ne devraient constater aucun changement de comportement.
 
+<<<<<<< HEAD
 Comme pour tous les comportements du mode strict, il s'agit de faire proactivement émerger des bugs dans vos composants lors du développement, de façon à ce que vous puissiez les corriger avant qu'ils n'atteignent la production.  En développement, le mode strict fait par exemple deux appels aux fonctions de rappel des refs lors du montage initial, pour simuler ce qui se passe lorsqu'un composant monté est remplacé par un affichage Suspense de secours.
+=======
+### Improvements to Suspense {/*improvements-to-suspense*/}
+
+In React 19, when a component suspends, React will immediately commit the fallback of the nearest Suspense boundary without waiting for the entire sibling tree to render. After the fallback commits, React schedules another render for the suspended siblings to "pre-warm" lazy requests in the rest of the tree:
+
+<Diagram name="prerender" height={162} width={1270} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
+
+Previously, when a component suspended, the suspended siblings were rendered and then the fallback was committed.
+
+</Diagram>
+
+<Diagram name="prewarm" height={162} width={1270} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
+
+In React 19, when a component suspends, the fallback is committed and then the suspended siblings are rendered.
+
+</Diagram>
+
+This change means Suspense fallbacks display faster, while still warming lazy requests in the suspended tree.
+
+### UMD builds removed {/*umd-builds-removed*/}
+>>>>>>> 84f29eb20af17e9c154b9ad71c21af4c9171e4a2
 
 ### Builds UMD retirés {/*umd-builds-removed*/}
 
