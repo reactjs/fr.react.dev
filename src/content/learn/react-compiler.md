@@ -292,11 +292,7 @@ export default defineConfig(() => {
 
 ### Next.js {/*usage-with-nextjs*/}
 
-<<<<<<< HEAD
-Merci de consulter la [documentation de Next.js](https://nextjs.org/docs/canary/app/api-reference/next-config-js/reactCompiler) pour les détails de mise en œuvre.
-=======
-Please refer to the [Next.js docs](https://nextjs.org/docs/app/api-reference/next-config-js/reactCompiler) for more information.
->>>>>>> 84f29eb20af17e9c154b9ad71c21af4c9171e4a2
+Merci de consulter la [documentation de Next.js](https://nextjs.org/docs/app/api-reference/next-config-js/reactCompiler) pour les détails de mise en œuvre.
 
 ### Remix {/*usage-with-remix*/}
 
@@ -334,11 +330,7 @@ Un chargeur Webpack maintenu par la communauté est [désormais disponible ici](
 
 ### Expo {/*usage-with-expo*/}
 
-<<<<<<< HEAD
-Veuillez consulter la [documentation d'Expo](https://docs.expo.dev/preview/react-compiler/) pour activer et utiliser React Compiler dans les applis Expo.
-=======
-Please refer to [Expo's docs](https://docs.expo.dev/guides/react-compiler/) to enable and use the React Compiler in Expo apps.
->>>>>>> 84f29eb20af17e9c154b9ad71c21af4c9171e4a2
+Veuillez consulter la [documentation d'Expo](https://docs.expo.dev/guides/react-compiler/) pour activer et utiliser React Compiler dans les applis Expo.
 
 ### Metro (React Native) {/*usage-with-react-native-metro*/}
 
