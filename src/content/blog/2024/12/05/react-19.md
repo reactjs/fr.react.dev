@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 title: "React 19 RC"
 author: L'équipe React
 date: 2024/04/25
@@ -6,16 +7,45 @@ description: React 19 RC est désormais disponible sur npm ! Dans cet article, 
 ---
 
 Le 25 avril 2024 par [l'équipe React](/community/team)
+=======
+title: "React v19"
+author: The React Team
+date: 2024/12/05
+description: React 19 is now available on npm! In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+---
+
+December 05, 2024 by [The React Team](/community/team)
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e:src/content/blog/2024/12/05/react-19.md
 
 ---
+<Note>
+
+### React 19 is now stable! {/*react-19-is-now-stable*/}
+
+Additions since this post was originally shared with the React 19 RC in April:
+
+- **Pre-warming for suspended trees**: see [Improvements to Suspense](/blog/2024/04/25/react-19-upgrade-guide#improvements-to-suspense).
+- **React DOM static APIs**: see [New React DOM Static APIs](#new-react-dom-static-apis).
+
+_The date for this post has been update to reflect the stable release date._
+
+</Note>
 
 <Intro>
 
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 React 19 RC est désormais disponible sur npm !
 
 </Intro>
 
 Dans notre [guide de migration pour React 19 RC](/blog/2024/04/25/react-19-upgrade-guide), nous avons fourni des instructions pas à pas pour mettre à jour votre appli vers React 19.  Dans cet article, nous allons passer en revue les nouveautés de React 19, et voir comment vous pouvez les adopter.
+=======
+React v19 is now available on npm!
+
+</Intro>
+
+In our [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e:src/content/blog/2024/12/05/react-19.md
 
 - [Quoi de neuf dans React 19](#whats-new-in-react-19)
 - [React Server Components](#react-server-components)
@@ -313,7 +343,34 @@ function Heading({children}) {
 
 La fonction `use` ne peut être appelée qu'au sein du rendu, comme pour les Hooks. Mais contrairement aux Hooks, `use` peut être appelée conditionnellement.  Nous prévoyons d'ajouter à l'avenir des modes supplémentaires de consommation de ressources lors du rendu grâce à `use`.
 
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 Pour en apprendre davantage, consultez la documentation de [`use`](/reference/react/use).
+=======
+## New React DOM Static APIs {/*new-react-dom-static-apis*/}
+
+We've added two new APIs to `react-dom/static` for static site generation:
+- [`prerender`](/reference/react-dom/static/prerender)
+- [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream)
+
+These new APIs improve on `renderToString` by waiting for data to load for static HTML generation. They are designed to work with streaming environments like Node.js Streams and Web Streams. For example, in a Web Stream environment, you can prerender a React tree to static HTML with `prerender`: 
+
+```js
+import { prerender } from 'react-dom/static';
+
+async function handler(request) {
+  const {prelude} = await prerender(<App />, {
+    bootstrapScripts: ['/main.js']
+  });
+  return new Response(prelude, {
+    headers: { 'content-type': 'text/html' },
+  });
+}
+```
+
+Prerender APIs will wait for all data to load before returning the static HTML stream. Streams can be converted to strings, or sent with a streaming response. They do not support streaming content as it loads, which is supported by the existing [React DOM server rendering APIs](/reference/react-dom/server).
+
+For more information, see [React DOM Static APIs](/reference/react-dom/static).
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e:src/content/blog/2024/12/05/react-19.md
 
 ## React Server Components {/*react-server-components*/}
 
@@ -765,8 +822,12 @@ Dans les précédentes versions, utiliser des éléments personnalisés dans Rea
 - **Côté serveur** : les props passées à un élément personnalisé produisent des attributs si leur type est primitif (ex. `string`, `number`) ou si la valeur est `true`. Les props de type non primitif tels qu’`object`, `symbol`, `function` ainsi que la valeur `false` sont ignorés.
 - **Côté client** : les props qui correspondent à une propriété de l'instance de l'élément personnalisé sont affectées à ces propriétés, à défaut de quoi elles produisent des attributs.
 
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 Merci à [Joey Arhar](https://github.com/josepharhar) pour avoir piloté la conception et l'implémentation de la prise en charge des éléments personnalisés dans React.
 
 ## Comment mettre à jour {/*how-to-upgrade*/}
 
 Consultez le [guide de migration React 19](/blog/2024/04/25/react-19-upgrade-guide) pour des instructions pas à pas et la liste complète des ruptures de compatibilité ascendante et des changements notables.
+=======
+_Note: this post was originally published 04/25/2024 and has been updated to 12/05/2024 with the stable release._
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e:src/content/blog/2024/12/05/react-19.md
