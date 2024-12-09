@@ -86,9 +86,15 @@ app.use('/', (request, response) => {
 
 ## Alternatives {/*alternatives*/}
 
+<<<<<<< HEAD
 ### Migrer de `renderToString` vers une méthode de *streaming* côté serveur {/*migrating-from-rendertostring-to-a-streaming-method-on-the-server*/}
 
 `renderToString` renvoie immédiatement un texte, elle ne prend donc en charge ni le *streaming* ni la suspension pour chargement de données.
+=======
+### Migrating from `renderToString` to a streaming render on the server {/*migrating-from-rendertostring-to-a-streaming-method-on-the-server*/}
+
+`renderToString` returns a string immediately, so it does not support streaming content as it loads.
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 Autant que possible nous conseillons d'utiliser plutôt une de ces alternatives plus capables :
 
@@ -99,7 +105,24 @@ Vous pouvez continuer avec `renderToString` si votre environnement serveur ne pr
 
 ---
 
+<<<<<<< HEAD
 ### Retirer `renderToString` du code côté client {/*removing-rendertostring-from-the-client-code*/}
+=======
+### Migrating from `renderToString` to a static prerender on the server {/*migrating-from-rendertostring-to-a-static-prerender-on-the-server*/}
+
+`renderToString` returns a string immediately, so it does not support waiting for data to load for static HTML generation.
+
+We recommend using these fully-featured alternatives:
+
+* If you use Node.js, use [`prerenderToNodeStream`.](/reference/react-dom/static/prerenderToNodeStream)
+* If you use Deno or a modern edge runtime with [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), use [`prerender`.](/reference/react-dom/static/prerender)
+
+You can continue using `renderToString` if your static site generation environment does not support streams.
+
+---
+
+### Removing `renderToString` from the client code {/*removing-rendertostring-from-the-client-code*/}
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 Il arrive que `renderToString` soit utilisée côté client pour convertir un composant en HTML.
 
@@ -135,6 +158,12 @@ L'appel à [`flushSync`](/reference/react-dom/flushSync) est nécessaire pour qu
 
 `renderToString` ne prend pas pleinement en charge Suspense.
 
+<<<<<<< HEAD
 Si un composant suspend (il est par exemple défini *via* [`lazy`](/reference/react/lazy) ou charge des données), `renderToString` n'attendra pas l'aboutissement du traitement. `renderToString` cherchera plutôt le périmètre [`<Suspense>`](/reference/react/Suspense) parent le plus proche et affichera le HTML de sa prop `fallback`. Le contenu n'apparaîtra pas jusqu'à ce que le code client soit chargé.
+=======
+If some component suspends (for example, because it's defined with [`lazy`](/reference/react/lazy) or fetches data), `renderToString` will not wait for its content to resolve. Instead, `renderToString` will find the closest [`<Suspense>`](/reference/react/Suspense) boundary above it and render its `fallback` prop in the HTML. The content will not appear until the client code loads.
+
+To solve this, use one of the [recommended streaming solutions.](#alternatives) For server side rendering, they can stream content in chunks as it resolves on the server so that the user sees the page being progressively filled in before the client code loads. For static site generation, they can wait for all the content to resolve before generating the static HTML.
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 Pour résoudre ça, utilisez une de nos [solutions recommandées de *streaming*](#migrating-from-rendertostring-to-a-streaming-method-on-the-server).  Elles peuvent *streamer* le contenu par morceaux au fil de l'aboutissement des traitements côté serveur, afin que l'utilisateur puisse bénéficier d'un chargement progressif de la page avant même que le code client ne soit chargé.

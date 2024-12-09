@@ -256,11 +256,11 @@ export default function CatFriends() {
               key={cat}
               ref={(node) => {
                 const map = getMap();
-                if (node) {
-                  map.set(cat, node);
-                } else {
+                map.set(cat, node);
+
+                return () => {
                   map.delete(cat);
-                }
+                };
               }}
             >
               <img
@@ -312,16 +312,6 @@ li {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  }
-}
-```
-
 </Sandpack>
 
 Dans cet exemple, `itemRef` ne référence pas un unique nœud DOM.  Il contient plutôt une [Map](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Map) associant chaque ID d'élément à un nœud DOM. ([Les refs peuvent stocker n'importe quelle valeur !](/learn/referencing-values-with-refs)) La [fonction de rappel `ref`](/reference/react-dom/components/common#ref-callback) sur chaque élément de la liste s'occupe de mettre à jour les correspondances :
@@ -331,6 +321,7 @@ Dans cet exemple, `itemRef` ne référence pas un unique nœud DOM.  Il contient
   key={cat.id}
   ref={node => {
     const map = getMap();
+<<<<<<< HEAD
     if (node) {
       // Ajoute à la Map
       map.set(cat, node);
@@ -353,6 +344,8 @@ This example shows another approach for managing the Map with a `ref` callback c
   key={cat.id}
   ref={node => {
     const map = getMap();
+=======
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
     // Add to the Map
     map.set(cat, node);
 
@@ -364,7 +357,15 @@ This example shows another approach for managing the Map with a `ref` callback c
 >
 ```
 
-</Canary>
+This lets you read individual DOM nodes from the Map later.
+
+<Note>
+
+When Strict Mode is enabled, ref callbacks will run twice in development.
+
+Read more about [how this helps find bugs](/reference/react/StrictMode#fixing-bugs-found-by-re-running-ref-callbacks-in-development) in callback refs.
+
+</Note>
 
 </DeepDive>
 
