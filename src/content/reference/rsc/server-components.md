@@ -1,7 +1,17 @@
 ---
+<<<<<<< HEAD
 title: Composants Serveur
 canary: true
+=======
+title: Server Components
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 ---
+
+<RSC>
+
+Sever Components are for use in [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+
+</RSC>
 
 <Intro>
 
@@ -191,7 +201,11 @@ Les Composants Serveur ne sont pas envoyés au navigateur, ils ne peuvent donc p
 
 #### Les Composants Serveur n'ont pas de directive. {/*there-is-no-directive-for-server-components*/}
 
+<<<<<<< HEAD
 Une erreur de perception courante veut que les Composants Serveur soient identifié par `"use server"`, mais les Composants Serveur n'ont en fait pas de directive dédiée. La directive `"use server"` est là pour les Actions Serveur.
+=======
+A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Functions.
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 Pour en savoir plus, lisez la documentation des [directives](/reference/rsc/directives).
 

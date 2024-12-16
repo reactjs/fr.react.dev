@@ -189,7 +189,11 @@ experimental_taintUniqueValue(
 );
 ```
 
+<<<<<<< HEAD
 À présent, dès que quiconque essaierait de passer ce mot de passe à un Composant Client, ou enverrait le mot de passe à un Composant Client *via* une *Server Action*, une erreur serait levée avec le message défini lors de l'appel à `taintUniqueValue`.
+=======
+Now whenever anyone tries to pass this password to a Client Component, or send the password to a Client Component with a Server Function, an error will be thrown with message you defined when you called `taintUniqueValue`.
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 </DeepDive>
 
