@@ -1,14 +1,16 @@
 ---
 title: use
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 L'API `use` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 <Intro>
 
 `use` est une API React qui vous permet de lire la valeur d'une ressource telle qu'une [promesse](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise) ou un [contexte](/learn/passing-data-deeply-with-context).
@@ -54,9 +56,15 @@ L'API `use` renvoie la valeur lue depuis la ressource, telle que la valeur accom
 
 #### Limitations {/*caveats*/}
 
+<<<<<<< HEAD
 * L'API `use` doit être appelée à l'intérieur d'un composant ou d'un Hook.
 * Lorsque vous récupérez des données dans un [Composant Serveur](/reference/rsc/use-server), privilégiez `async` et `await` plutôt que `use`. `async` et `await` reprennent le rendu à partir du point où `await` avait été invoqué, alors que `use` refait un rendu du composant une fois la donnée obtenue.
 * Privilégiez la création de promesses dans les [Composants Serveur](/reference/rsc/use-server) et leur passage aux [Composants Client](/reference/rsc/use-client), plutôt que de créer des promesses dans les Composants Client. Les promesses créées dans les Composants Client sont recréées à chaque rendu. Les promesses transmises d'un Composant Serveur à un Component Client ne changent pas d'un rendu à l'autre. [Consultez cet exemple](#streaming-data-from-server-to-client).
+=======
+* The `use` API must be called inside a Component or a Hook.
+* When fetching data in a [Server Component](/reference/rsc/server-components), prefer `async` and `await` over `use`. `async` and `await` pick up rendering from the point where `await` was invoked, whereas `use` re-renders the component after the data is resolved.
+* Prefer creating Promises in [Server Components](/reference/rsc/server-components) and passing them to [Client Components](/reference/rsc/use-client) over creating Promises in Client Components. Promises created in Client Components are recreated on every render. Promises passed from a Server Component to a Client Component are stable across re-renders. [See this example](#streaming-data-from-server-to-client).
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 ---
 
@@ -199,17 +207,6 @@ function Button({ show, children }) {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js"
-}
-```
-
 </Sandpack>
 
 ### Diffuser en continu des données du serveur au client {/*streaming-data-from-server-to-client*/}
@@ -292,9 +289,12 @@ export default function App() {
 ```
 
 ```js src/index.js hidden
+<<<<<<< HEAD
 // TODO : remplacer l’import d’une version Canary
 // de React par une version stable, dès qu’elle
 // intégrera l’API `use`
+=======
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -312,16 +312,6 @@ root.render(
 );
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js"
-}
-```
 </Sandpack>
 
 <Note>
@@ -414,9 +404,12 @@ export default function App() {
 ```
 
 ```js src/index.js hidden
+<<<<<<< HEAD
 // TODO : remplacer l’import d’une version Canary
 // de React par une version stable, dès qu’elle
 // intégrera l’API `use`
+=======
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -434,17 +427,6 @@ root.render(
 );
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0",
-    "react-error-boundary": "4.0.3"
-  },
-  "main": "/index.js"
-}
-```
 </Sandpack>
 
 #### Fournir une valeur alternative avec `Promise.catch` {/*providing-an-alternative-value-with-promise-catch*/}
