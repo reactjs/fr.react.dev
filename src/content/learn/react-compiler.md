@@ -362,7 +362,11 @@ React Compiler peut vérifier statiquement la plupart des Règles de React, et �
 
 ### Comment savoir si mes composants ont été optimisés ? {/*how-do-i-know-my-components-have-been-optimized*/}
 
+<<<<<<< HEAD
 [React Devtools](/learn/react-developer-tools) (v5.0+) prend nativement en charge React Compiler et affichera un badge « Memo ✨ » à côté des composants qui ont été optimisés par le compilateur.
+=======
+[React DevTools](/learn/react-developer-tools) (v5.0+) and [React Native DevTools](https://reactnative.dev/docs/react-native-devtools) have built-in support for React Compiler and will display a "Memo ✨" badge next to components that have been optimized by the compiler.
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 ### Quelque chose ne fonctionne plus après la compilation {/*something-is-not-working-after-compilation*/}
 

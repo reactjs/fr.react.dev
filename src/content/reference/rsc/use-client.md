@@ -1,14 +1,24 @@
 ---
 title: "'use client'"
+<<<<<<< HEAD
 titleForTitleTag: "Directive 'use client'"
 canary: true
+=======
+titleForTitleTag: "'use client' directive"
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 ---
 
-<Canary>
+<RSC>
 
+<<<<<<< HEAD
 `'use client'` n'est utile que si vous [utilisez React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) ou créez une bibliothèque compatible avec eux.
 
 </Canary>
+=======
+`'use client'` is for use with [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+
+</RSC>
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 
 <Intro>
@@ -261,7 +271,30 @@ Par souci de simplicité, nous parlons ici des Composants Serveur, mais les mêm
 
 ### Types sérialisables renvoyés par les Composants Serveur {/*serializable-types*/}
 
+<<<<<<< HEAD
 Les types de props sérialisables comprennent :
+=======
+Serializable props include:
+* Primitives
+	* [string](https://developer.mozilla.org/en-US/docs/Glossary/String)
+	* [number](https://developer.mozilla.org/en-US/docs/Glossary/Number)
+	* [bigint](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
+	* [boolean](https://developer.mozilla.org/en-US/docs/Glossary/Boolean)
+	* [undefined](https://developer.mozilla.org/en-US/docs/Glossary/Undefined)
+	* [null](https://developer.mozilla.org/en-US/docs/Glossary/Null)
+	* [symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol), only symbols registered in the global Symbol registry via [`Symbol.for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for)
+* Iterables containing serializable values
+	* [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+	* [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+	* [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+	* [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) and [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
+* [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+* Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
+* Functions that are [Server Functions](/reference/rsc/server-functions)
+* Client or Server Component elements (JSX)
+* [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 * Les types primitifs
 	* [string](https://developer.mozilla.org/fr/docs/Glossary/String)
