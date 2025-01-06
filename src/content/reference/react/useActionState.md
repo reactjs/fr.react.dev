@@ -1,8 +1,8 @@
 ---
 title: useActionState
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Le Hook `useActionState` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels). Par ailleurs, vous aurez besoin d'utiliser un framework qui prenne en charge les [Composants Serveur](/reference/rsc/use-client) pour tirer pleinement parti de `useActionState`.
@@ -15,6 +15,8 @@ In earlier React Canary versions, this API was part of React DOM and called `use
 
 </Note>
 
+=======
+>>>>>>> b1a249d597016c6584e4c186daa28b180cc9aafc
 <Intro>
 
 `useActionState` est un Hook qui vous permet de mettre à jour l'état sur base du résultat d'une action de formulaire.
@@ -24,6 +26,13 @@ const [state, formAction, isPending] = useActionState(fn, initialState, permalin
 ```
 
 </Intro>
+
+<Note>
+
+In earlier React Canary versions, this API was part of React DOM and called `useFormState`.
+
+</Note>
+
 
 <InlineToc />
 
@@ -57,15 +66,25 @@ function StatefulForm({}) {
 
 L'état de formulaire est déterminé par la valeur renvoyée par l'action lors du dernier envoi en date du formulaire. Si le formulaire n'a pas encore été envoyé, il équivaut à l'état initial que vous avez fourni.
 
+<<<<<<< HEAD
 Lorsque vous l'utilisez dans une Action Serveur, `useActionState` permet d'afficher la réponse du serveur pour l'envoi du formulaire avant même que l'hydratation ne soit terminée.
+=======
+If used with a Server Function, `useActionState` allows the server's response from submitting the form to be shown even before hydration has completed.
+>>>>>>> b1a249d597016c6584e4c186daa28b180cc9aafc
 
 [Voir d'autres exemples plus bas](#usage).
 
 #### Paramètres {/*parameters*/}
 
+<<<<<<< HEAD
 * `fn` : la fonction à appeler lorsque le formulaire est envoyé.  Lorsque la fonction est appelée, elle reçoit comme premier argument l'état précédent du formulaire (le `initialState` que vous avez fourni pour le premier appel, puis, pour les appels ultérieurs, la valeur précédemment renvoyée), suivi par les arguments normalement acceptés par une fonction d'action de formulaire.
 * `initialState` : la valeur initiale que vous souhaitez pour votre état.  Il peut s'agir de n'importe quelle valeur sérialisable.  Cet argument est ignoré après l'appel initial de l'action.
 * `permalink` **optionnel** : une chaîne de caractères contenant l'URL unique de la page que ce formulaire modifie. Conçu pour une utilisation sur des pages à contenu dynamique (telles que des flux) pour permettre une amélioration progressive : si `fn` est une [Action Serveur](/reference/rsc/use-server) et que le formulaire est soumis avant que le *bundle* JavaScript n'ait fini son chargement, le navigateur ira sur l'URL de permalien fournie, plutôt que sur l'URL de la page courante. Ça permet de garantir que le même composant de formulaire sera produit sur la page destinataire (y compris les infos `fn` et `permalink`), afin que React sache comment lui passer l'état.  Une fois le formulaire hydraté, ce paramètre n'a plus d'effet.
+=======
+* `fn`: The function to be called when the form is submitted or button pressed. When the function is called, it will receive the previous state of the form (initially the `initialState` that you pass, subsequently its previous return value) as its initial argument, followed by the arguments that a form action normally receives.
+* `initialState`: The value you want the state to be initially. It can be any serializable value. This argument is ignored after the action is first invoked.
+* **optional** `permalink`: A string containing the unique page URL that this form modifies. For use on pages with dynamic content (eg: feeds) in conjunction with progressive enhancement: if `fn` is a [server function](/reference/rsc/server-functions) and the form is submitted before the JavaScript bundle loads, the browser will navigate to the specified permalink URL, rather than the current page's URL. Ensure that the same form component is rendered on the destination page (including the same action `fn` and `permalink`) so that React knows how to pass the state through. Once the form has been hydrated, this parameter has no effect.
+>>>>>>> b1a249d597016c6584e4c186daa28b180cc9aafc
 
 {/* TODO T164397693: link to serializable values docs once it exists */}
 
@@ -126,7 +145,11 @@ function action(currentState, formData) {
 
 #### Afficher des erreurs de formulaire {/*display-form-errors*/}
 
+<<<<<<< HEAD
 Pour afficher des messages tels qu'un message d'erreur ou une notification renvoyés par une Action Serveur, enrobez l'action dans un appel à `useActionState`.
+=======
+To display messages such as an error message or toast that's returned by a Server Function, wrap the action in a call to `useActionState`.
+>>>>>>> b1a249d597016c6584e4c186daa28b180cc9aafc
 
 <Sandpack>
 
@@ -184,25 +207,17 @@ form button {
   margin-right: 12px;
 }
 ```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 </Sandpack>
 
 <Solution />
 
 #### Afficher des données structurées suite à l'envoi d'un formulaire {/*display-structured-information-after-submitting-a-form*/}
 
+<<<<<<< HEAD
 La valeur renvoyée par une Action Serveur peut être n'importe quelle valeur sérialisable. Il peut par exemple s'agir d'un objet avec un booléen indiquant si l'action a réussi, un message d'erreur, ou des informations mises à jour.
+=======
+The return value from a Server Function can be any serializable value. For example, it could be an object that includes a boolean indicating whether the action was successful, an error message, or updated information.
+>>>>>>> b1a249d597016c6584e4c186daa28b180cc9aafc
 
 <Sandpack>
 
@@ -269,18 +284,6 @@ form {
 
 form button {
   margin-right: 12px;
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
 }
 ```
 </Sandpack>

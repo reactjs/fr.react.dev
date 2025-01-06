@@ -1,14 +1,16 @@
 ---
 title: preinit
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 La fonction `preinit` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> b1a249d597016c6584e4c186daa28b180cc9aafc
 <Note>
 
 [Les frameworks basés sur React](/learn/start-a-new-react-project) s'occupent fréquemment pour vous du chargement des ressources, de sorte que vous n'aurez peut-être pas besoin d'appeler ces API vous-même.  Consultez la documentation de votre framework pour en savoir plus à ce sujet.

@@ -10,7 +10,17 @@ Ce blog est la source officielle des mises à jour par l'équipe React.  Toute a
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<<<<<<< HEAD
 <BlogCard title="React Compiler : beta et feuille de route" date="21 octobre 2024" url="/blog/2024/10/21/react-compiler-beta-release">
+=======
+<BlogCard title="React v19 " date="December 5, 2024" url="/blog/2024/12/05/react-19">
+
+In the React 19 Upgrade Guide, we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them ...
+
+</BlogCard>
+
+<BlogCard title="React Compiler Beta Release" date="October 21, 2024" url="/blog/2024/10/21/react-compiler-beta-release">
+>>>>>>> b1a249d597016c6584e4c186daa28b180cc9aafc
 
 Nous avions annoncé la sortie expérimentale de React Compiler lors de la React Conf 2024. Nous avons beaucoup avancé depuis, et dans cet article nous aimerions partager avec vous la suite de nos travaux sur ce compilateur…
 
@@ -27,6 +37,7 @@ Dans le guide de migration vers React 19 RC, nous vous donnions des instructions
 
 </BlogCard>
 
+<<<<<<< HEAD
 <BlogCard title="React 19 RC : guide de migration" date="25 avril 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
 
 Les améliorations apportées par React 19 RC nécessitent quelques ruptures de compatibilité, mais nous avons travaillé dur pour faciliter la mise à jour le plus possible, et nous ne nous attendons pas à ce que ces changements impactent la majorité des applications. Dans cet article, nous vous guidons étape par étape pour mettre à jour vos applis et bibliothèques vers React 19…
@@ -34,6 +45,9 @@ Les améliorations apportées par React 19 RC nécessitent quelques ruptures de 
 </BlogCard>
 
 <BlogCard title="React Labs : ce sur quoi nous bossons – février 2024" date="15 février 2024" url="/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024">
+=======
+<BlogCard title="React 19 Upgrade Guide" date="April 25, 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
+>>>>>>> b1a249d597016c6584e4c186daa28b180cc9aafc
 
 Dans les billets React Labs, nous vous parlons de nos projets de recherche et développement actifs.  Depuis notre dernier bulletin, nous avons fait des progrès significatifs sur le React Compiler et React 19, et nous aimerions partager ce que nous avons appris.
 
