@@ -1,14 +1,16 @@
 ---
 title: useFormStatus
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Le Hook `useFormStatus` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 9000e6e003854846c4ce5027703b5ce6f81aad80
 <Intro>
 
 `useFormStatus` est un Hook qui vous fournit des informations d'état sur le dernier envoi de formulaire parent.
@@ -118,6 +120,7 @@ export async function submitForm(query) {
     await new Promise((res) => setTimeout(res, 1000));
 }
 ```
+<<<<<<< HEAD
 
 ```json package.json hidden
 {
@@ -131,6 +134,9 @@ export async function submitForm(query) {
 }
 ```
 </Sandpack>
+=======
+</Sandpack>  
+>>>>>>> 9000e6e003854846c4ce5027703b5ce6f81aad80
 
 <Pitfall>
 
@@ -237,6 +243,7 @@ button {
 
 ```
 
+<<<<<<< HEAD
 ```json package.json hidden
 {
   "dependencies": {
@@ -249,6 +256,9 @@ button {
 }
 ```
 </Sandpack>
+=======
+</Sandpack>  
+>>>>>>> 9000e6e003854846c4ce5027703b5ce6f81aad80
 
 ---
 

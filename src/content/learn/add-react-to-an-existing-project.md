@@ -20,9 +20,15 @@ Supposons que vous ayez une application web existante sur `example.com` dévelop
 
 Voici comment nous vous recommandons de procéder :
 
+<<<<<<< HEAD
 1. **Construisez la partie React de votre appli** en utilisant l'un des [frameworks basés sur React](/learn/start-a-new-react-project).
 2. **Indiquez `/some-app` comme *chemin de base*** dans la configuration de votre framework (voici comment faire avec [Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath) ou [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
 3. **Configurez votre serveur ou un proxy** de manière à ce que toutes les requêtes sous `/some-app/` soient traitées par votre application React.
+=======
+1. **Build the React part of your app** using one of the [React-based frameworks](/learn/start-a-new-react-project).
+2. **Specify `/some-app` as the *base path*** in your framework's configuration (here's how: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
+3. **Configure your server or a proxy** so that all requests under `/some-app/` are handled by your React app.
+>>>>>>> 9000e6e003854846c4ce5027703b5ce6f81aad80
 
 Ça garantit que la partie React de votre application peut [bénéficier de tout un tas de bonnes pratiques](/learn/start-a-new-react-project#can-i-use-react-without-a-framework) intégrées à ces frameworks.
 
