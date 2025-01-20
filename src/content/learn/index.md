@@ -4,7 +4,11 @@ title: Démarrage rapide
 
 <Intro>
 
+<<<<<<< HEAD
 Bienvenue dans la documentation React !  Dans cette page, vous allez découvrir les 80% de concepts React que vous utiliserez sans doute au quotidien.
+=======
+Welcome to the React documentation! This page will give you an introduction to 80% of the React concepts that you will use on a daily basis.
+>>>>>>> b22cbc3fed310b39c99fdd0f01621ac1903d1e8e
 
 </Intro>
 

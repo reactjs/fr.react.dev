@@ -1,14 +1,16 @@
 ---
 script: "<script>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Les extensions de React à `<script>` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `<script>` fonctionne comme [le composant HTML natif du navigateur](/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> b22cbc3fed310b39c99fdd0f01621ac1903d1e8e
 <Intro>
 
 Le [composant natif `<script>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/script) vous permet d'ajouter un script à votre document.

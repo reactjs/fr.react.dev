@@ -1,14 +1,16 @@
 ---
 title: useOptimistic
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Le Hook `useOptimistic` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> b22cbc3fed310b39c99fdd0f01621ac1903d1e8e
 <Intro>
 
 `useOptimistic` est un Hook React qui vous permet de mettre à jour l'interface utilisateur (UI) de façon optimiste.
@@ -128,17 +130,5 @@ export async function deliverMessage(message) {
 }
 ```
 
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 
 </Sandpack>

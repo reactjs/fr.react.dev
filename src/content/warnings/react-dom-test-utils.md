@@ -2,7 +2,13 @@
 title: Avertissement de dépréciation react-dom/test-utils
 ---
 
+<<<<<<< HEAD
 ## Avertissement sur ReactDOMTestUtils.act() {/*reactdomtestutilsact-warning*/}
+=======
+TODO: update for 19?
+
+## ReactDOMTestUtils.act() warning {/*reactdomtestutilsact-warning*/}
+>>>>>>> b22cbc3fed310b39c99fdd0f01621ac1903d1e8e
 
 La fonction `act` de `react-dom/test-utils` est dépréciée au profit de la fonction `act` de `react`.
 

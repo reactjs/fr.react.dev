@@ -84,7 +84,13 @@ function Button() {
   );
 }
 ```
+<<<<<<< HEAD
 Bien que cette ancienne méthode fonctionne toujours, **privilégiez la lecture d'un contexte à l'aide de [`useContext()`](/reference/react/useContext) dans du nouveau code :**
+=======
+
+Although this older way still works, **newly written code should read context with [`useContext()`](/reference/react/useContext) instead:**
+
+>>>>>>> b22cbc3fed310b39c99fdd0f01621ac1903d1e8e
 ```js
 function Button() {
   // ✅ Méthode recommandée
