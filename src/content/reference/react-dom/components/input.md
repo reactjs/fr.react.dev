@@ -32,6 +32,7 @@ Pour afficher un champ de saisie, utilisez le [composant natif `<input>` du navi
 
 `<input>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
 
+<<<<<<< HEAD
 <Canary>
 
 Les extensions de React à la prop `formAction` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `formAction` est limitée à son fonctionnement [du composant HTML natif du navigateur](/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
@@ -39,6 +40,9 @@ Les extensions de React à la prop `formAction` ne sont actuellement disponibles
 </Canary>
 
 [`formAction`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formaction) : une chaîne de caractères ou une fonction. Cette prop a priorité sur le `<form action>` pour les champs de `type="submit"` ou `type="image"`. Lorsqu'une URL est passée à `formAction`, le formulaire se comporte comme un formulaire HTML classique. Mais si une fonction est passée à `formAction`, la fonction traitera l'envoi du formulaire. Allez voir [`<form action>`](/reference/react-dom/components/form#props).
+=======
+- [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): A string or function. Overrides the parent `<form action>` for `type="submit"` and `type="image"`. When a URL is passed to `action` the form will behave like a standard HTML form. When a function is passed to `formAction` the function will handle the form submission. See [`<form action>`](/reference/react-dom/components/form#props).
+>>>>>>> b22cbc3fed310b39c99fdd0f01621ac1903d1e8e
 
 Un champ de saisie peut devenir un [champ contrôlé](#controlling-an-input-with-a-state-variable) en lui passant une de ces props :
 

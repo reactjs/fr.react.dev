@@ -12,8 +12,20 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+<<<<<<< HEAD
           "title": "React Compiler : beta et feuille de route",
           "titleForHomepage": "React Compiler : beta et feuille de route",
+=======
+          "title": "React 19",
+          "titleForHomepage": "React 19",
+          "icon": "blog",
+          "date": "December 05, 2024",
+          "path": "/blog/2024/12/05/react-19"
+        },
+        {
+          "title": "React Compiler Beta Release and Roadmap",
+          "titleForHomepage": "React Compiler Beta Release and Roadmap",
+>>>>>>> b22cbc3fed310b39c99fdd0f01621ac1903d1e8e
           "icon": "blog",
           "date": "21 octobre 2024",
           "path": "/blog/2024/10/21/react-compiler-beta-release"
