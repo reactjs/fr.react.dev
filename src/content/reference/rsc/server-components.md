@@ -1,7 +1,17 @@
 ---
+<<<<<<< HEAD
 title: Composants Serveur
 canary: true
+=======
+title: Server Components
+>>>>>>> a5aad0d5e92872ef715b462b1dd6dcbeb45cf781
 ---
+
+<RSC>
+
+Server Components are for use in [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+
+</RSC>
 
 <Intro>
 
@@ -17,7 +27,11 @@ Cet environnement séparé est le « serveur » des Composants Serveur. Les Co
 
 #### Comment prendre en charge les Composants Serveur ? {/*how-do-i-build-support-for-server-components*/}
 
+<<<<<<< HEAD
 Même si les Composants Serveur dans React 19 sont stables et ne casseront pas la compatibilité entre les versions majeures, les API sous-jacentes utilisées pour implémenter les Composants Serveur au sein d'un *bundler* ou framework ne suivent pas, elles, le versionnage sémantique et sont susceptibles de casser la compatibilité entre les versions mineures de React 19.x.
+=======
+While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
+>>>>>>> a5aad0d5e92872ef715b462b1dd6dcbeb45cf781
 
 Pour prendre en charge les Composants Serveur dans un *bundler* ou framework, nous vous conseillons de figer React sur une version spécifique, ou d'utiliser une version Canari.  Nous allons continuer à collaborer avec les *bundlers* et frameworks pour stabiliser les API utilisées pour implémenter les Composants Serveur à l'avenir.
 
@@ -191,7 +205,11 @@ Les Composants Serveur ne sont pas envoyés au navigateur, ils ne peuvent donc p
 
 #### Les Composants Serveur n'ont pas de directive. {/*there-is-no-directive-for-server-components*/}
 
+<<<<<<< HEAD
 Une erreur de perception courante veut que les Composants Serveur soient identifié par `"use server"`, mais les Composants Serveur n'ont en fait pas de directive dédiée. La directive `"use server"` est là pour les Actions Serveur.
+=======
+A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Functions.
+>>>>>>> a5aad0d5e92872ef715b462b1dd6dcbeb45cf781
 
 Pour en savoir plus, lisez la documentation des [directives](/reference/rsc/directives).
 
