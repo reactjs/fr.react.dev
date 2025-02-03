@@ -12,6 +12,7 @@ Le module `react-dom` contient les Hooks qui ne sont pris en charge que dans des
 
 ## Hooks de formulaires {/*form-hooks*/}
 
+<<<<<<< HEAD
 <Canary>
 
 Les Hooks de formulaires ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
@@ -19,6 +20,9 @@ Les Hooks de formulaires ne sont actuellement disponibles que sur les canaux de 
 </Canary>
 
 Les *formulaires* vous permettent de créer des contrôles interactifs pour envoyer des informations.  Pour gérer les formulaires dans vos composants, utilisez l'un des Hooks suivants :
+=======
+*Forms* let you create interactive controls for submitting information.  To manage forms in your components, use one of these Hooks:
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 * [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) vous permet de mettre à jour l'UI sur base de l'état d'un formulaire.
 

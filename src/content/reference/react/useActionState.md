@@ -1,8 +1,8 @@
 ---
 title: useActionState
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Le Hook `useActionState` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels). Par ailleurs, vous aurez besoin d'utiliser un framework qui prenne en charge les [Composants Serveur](/reference/rsc/use-client) pour tirer pleinement parti de `useActionState`.
@@ -15,6 +15,8 @@ In earlier React Canary versions, this API was part of React DOM and called `use
 
 </Note>
 
+=======
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 <Intro>
 
 `useActionState` est un Hook qui vous permet de mettre à jour l'état sur base du résultat d'une action de formulaire.
@@ -24,6 +26,13 @@ const [state, formAction, isPending] = useActionState(fn, initialState, permalin
 ```
 
 </Intro>
+
+<Note>
+
+In earlier React Canary versions, this API was part of React DOM and called `useFormState`.
+
+</Note>
+
 
 <InlineToc />
 
@@ -57,15 +66,25 @@ function StatefulForm({}) {
 
 L'état de formulaire est déterminé par la valeur renvoyée par l'action lors du dernier envoi en date du formulaire. Si le formulaire n'a pas encore été envoyé, il équivaut à l'état initial que vous avez fourni.
 
+<<<<<<< HEAD
 Lorsque vous l'utilisez dans une Action Serveur, `useActionState` permet d'afficher la réponse du serveur pour l'envoi du formulaire avant même que l'hydratation ne soit terminée.
+=======
+If used with a Server Function, `useActionState` allows the server's response from submitting the form to be shown even before hydration has completed.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 [Voir d'autres exemples plus bas](#usage).
 
 #### Paramètres {/*parameters*/}
 
+<<<<<<< HEAD
 * `fn` : la fonction à appeler lorsque le formulaire est envoyé.  Lorsque la fonction est appelée, elle reçoit comme premier argument l'état précédent du formulaire (le `initialState` que vous avez fourni pour le premier appel, puis, pour les appels ultérieurs, la valeur précédemment renvoyée), suivi par les arguments normalement acceptés par une fonction d'action de formulaire.
 * `initialState` : la valeur initiale que vous souhaitez pour votre état.  Il peut s'agir de n'importe quelle valeur sérialisable.  Cet argument est ignoré après l'appel initial de l'action.
 * `permalink` **optionnel** : une chaîne de caractères contenant l'URL unique de la page que ce formulaire modifie. Conçu pour une utilisation sur des pages à contenu dynamique (telles que des flux) pour permettre une amélioration progressive : si `fn` est une [Action Serveur](/reference/rsc/use-server) et que le formulaire est soumis avant que le *bundle* JavaScript n'ait fini son chargement, le navigateur ira sur l'URL de permalien fournie, plutôt que sur l'URL de la page courante. Ça permet de garantir que le même composant de formulaire sera produit sur la page destinataire (y compris les infos `fn` et `permalink`), afin que React sache comment lui passer l'état.  Une fois le formulaire hydraté, ce paramètre n'a plus d'effet.
+=======
+* `fn`: The function to be called when the form is submitted or button pressed. When the function is called, it will receive the previous state of the form (initially the `initialState` that you pass, subsequently its previous return value) as its initial argument, followed by the arguments that a form action normally receives.
+* `initialState`: The value you want the state to be initially. It can be any serializable value. This argument is ignored after the action is first invoked.
+* **optional** `permalink`: A string containing the unique page URL that this form modifies. For use on pages with dynamic content (eg: feeds) in conjunction with progressive enhancement: if `fn` is a [server function](/reference/rsc/server-functions) and the form is submitted before the JavaScript bundle loads, the browser will navigate to the specified permalink URL, rather than the current page's URL. Ensure that the same form component is rendered on the destination page (including the same action `fn` and `permalink`) so that React knows how to pass the state through. Once the form has been hydrated, this parameter has no effect.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 {/* TODO T164397693: link to serializable values docs once it exists */}
 
@@ -73,9 +92,15 @@ Lorsque vous l'utilisez dans une Action Serveur, `useActionState` permet d'affic
 
 `useActionState` renvoie un tableau avec exactement trois valeurs :
 
+<<<<<<< HEAD
 1. L'état courant.  Lors du rendu initial, il s'agira du `initialState` que vous avez passé. Après que l'action aura été invoquée, il correspondra à la valeur renvoyée par l'action.
 2. Une nouvelle action que vous pouvez passer comme prop `action` à votre composant `form`, ou comme prop `formAction` à tout composant `button` au sein du formulaire.
 3. Le drapeau `isPending` qui vous indique si une Transition est en cours.
+=======
+1. The current state. During the first render, it will match the `initialState` you have passed. After the action is invoked, it will match the value returned by the action.
+2. A new action that you can pass as the `action` prop to your `form` component or `formAction` prop to any `button` component within the form. The action can also be called manually within [`startTransition`](/reference/react/startTransition).
+3. The `isPending` flag that tells you whether there is a pending Transition.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 #### Limitations {/*caveats*/}
 
@@ -107,9 +132,15 @@ function MyComponent() {
 
 `useActionState` renvoie un tableau avec exactement trois valeurs :
 
+<<<<<<< HEAD
 1. <CodeStep step={1}>L'état courant</CodeStep> du formulaire, qui sera au départ <CodeStep step={4}>l'état initial</CodeStep> que vous aurez fourni, puis une fois le formulaire envoyé, aura la valeur de retour de <CodeStep step={3}>l'action</CodeStep> que vous aurez passée.
 2. Une <CodeStep step={2}>nouvelle action</CodeStep> que vous pouvez passer comme prop `action` à votre `form`.
 3. Un <CodeStep step={1}>état d'attente</CodeStep> que vous pouvez utiliser tandis que l'action est en cours de traitement.
+=======
+1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={4}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={3}>action</CodeStep> you provided.
+2. A <CodeStep step={2}>new action</CodeStep> that you pass to `<form>` as its `action` prop or call manually within `startTransition`.
+3. A <CodeStep step={1}>pending state</CodeStep> that you can utilise while your action is processing.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 Lorsque le formulaire sera envoyé, la fonction <CodeStep step={3}>d'action</CodeStep> que vous aurez fournie sera appelée.  Sa valeur de retour deviendra le nouvel <CodeStep step={1}>état courant</CodeStep> du formulaire.
 
@@ -126,7 +157,11 @@ function action(currentState, formData) {
 
 #### Afficher des erreurs de formulaire {/*display-form-errors*/}
 
+<<<<<<< HEAD
 Pour afficher des messages tels qu'un message d'erreur ou une notification renvoyés par une Action Serveur, enrobez l'action dans un appel à `useActionState`.
+=======
+To display messages such as an error message or toast that's returned by a Server Function, wrap the action in a call to `useActionState`.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 <Sandpack>
 
@@ -184,25 +219,17 @@ form button {
   margin-right: 12px;
 }
 ```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 </Sandpack>
 
 <Solution />
 
 #### Afficher des données structurées suite à l'envoi d'un formulaire {/*display-structured-information-after-submitting-a-form*/}
 
+<<<<<<< HEAD
 La valeur renvoyée par une Action Serveur peut être n'importe quelle valeur sérialisable. Il peut par exemple s'agir d'un objet avec un booléen indiquant si l'action a réussi, un message d'erreur, ou des informations mises à jour.
+=======
+The return value from a Server Function can be any serializable value. For example, it could be an object that includes a boolean indicating whether the action was successful, an error message, or updated information.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 <Sandpack>
 
@@ -269,18 +296,6 @@ form {
 
 form button {
   margin-right: 12px;
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
 }
 ```
 </Sandpack>
