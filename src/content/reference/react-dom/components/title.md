@@ -1,8 +1,8 @@
 ---
 title: "<title>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Les extensions de React à `<title>` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `<title>` fonctionne comme [le composant HTML natif du navigateur](/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
@@ -10,6 +10,8 @@ Les extensions de React à `<title>` ne sont actuellement disponibles que sur le
 </Canary>
 
 
+=======
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 <Intro>
 
 Le [composant natif `<title>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/title) vous permet de préciser le titre de votre document.

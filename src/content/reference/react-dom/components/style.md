@@ -1,14 +1,16 @@
 ---
 style: "<style>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Les extensions de React à `<style>` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `<style>` fonctionne comme [le composant HTML natif du navigateur](/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 <Intro>
 
 Le [composant natif `<style>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/style) vous permet d'ajouter des feuilles de styles définies à la volée dans votre document.
@@ -69,7 +71,15 @@ Pour finir, ce comportement a deux limitations :
 
 Si un composant dépend de certains styles CSS pour pouvoir fonctionner correctement, vous pouvez injecter une feuille de styles définie à la volée au sein de ce composant.
 
+<<<<<<< HEAD
 Si vous fournissez les props `href` et `precedence`,  votre composant suspendra le temps du chargement de la feuille de styles. (Même pour des feuilles définies à la volée, il peut y avoir un temps de chargement en raison de ressources extérieures référencées par les styles, telles que des fontes ou images.)  La prop `href` devrait identifier la feuille de styles de façon unique, car React dédoublonnera les feuilles de styles de même `href`.
+=======
+The `href` prop should uniquely identify the stylesheet, because React will de-duplicate stylesheets that have the same `href`.
+If you supply a `precedence` prop, React will reorder inline stylesheets based on the order these values appear in the component tree.
+
+Inline stylesheets will not trigger Suspense boundaries while they're loading.
+Even if they load async resources like fonts or images.
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 
 <SandpackWithHTMLOutput>
 
