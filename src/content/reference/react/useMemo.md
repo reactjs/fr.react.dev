@@ -1104,11 +1104,14 @@ function ChatRoom({ roomId }) {
   }, [roomId]); // ✅ Ne change que si `roomId` change
 
   useEffect(() => {
-    const options = createOptions();
     const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
+<<<<<<< HEAD
   }, [options]); // ✅ Ne change que si `options` change
+=======
+  }, [options]); // ✅ Only changes when options changes
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
   // ...
 ```
 
