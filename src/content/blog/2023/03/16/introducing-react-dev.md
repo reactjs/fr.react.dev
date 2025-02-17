@@ -5,7 +5,11 @@ date: 2023/03/16
 description: Nous sommes enchantés d'annoncer aujourd'hui la sortie de react.dev, le nouveau site officiel de React et de sa documentation.  Dans ce billet, nous aimerions vous faire faire un tour du nouveau site.
 ---
 
+<<<<<<< HEAD
 Le 16 mars 2023 par [Dan Abramov](https://twitter.com/dan_abramov) et [Rachel Nabors](https://twitter.com/rachelnabors)
+=======
+March 16, 2023 by [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Rachel Nabors](https://twitter.com/rachelnabors)
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 
 ---
 
@@ -632,7 +636,11 @@ Nous pensons qu'il n'y a jamais eu de meilleur moment pour apprendre React.
 
 ## Qui a travaillé sur tout ça ? {/*who-worked-on-this*/}
 
+<<<<<<< HEAD
 Dans l'équipe React, [Rachel Nabors](https://twitter.com/rachelnabors/) a piloté le projet (et fourni les illustrations) et [Dan Abramov](https://twitter.com/dan_abramov) a conçu le cursus. Ils ont par ailleurs co-écrit ensemble la majorité du contenu.
+=======
+On the React team, [Rachel Nabors](https://twitter.com/rachelnabors/) led the project (and provided the illustrations), and [Dan Abramov](https://bsky.app/profile/danabra.mov) designed the curriculum. They co-authored most of the content together as well.
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 
 Naturellement, un projet de cette taille ne se fait pas avec une petite équipe dans son coin !  Nous avons beaucoup de monde à remercier !
 

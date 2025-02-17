@@ -36,19 +36,28 @@ function SearchPage() {
 
 #### Paramètres {/*parameters*/}
 
+<<<<<<< HEAD
 * `value` : la valeur que vous souhaitez différer. Elle peut être de n'importe quel type.
 * <CanaryBadge title="Cette fonctionnalité n’est disponible que sur le canal de version Canary" /> `initialValue` **optionnelle** : une valeur à utiliser lors du rendu initial d'un composant. Si cette option est manquante, `useDeferredValue` ne différera pas lors du rendu initial, faute d'une version précédente de `value` à lui substituer lors du rendu.
+=======
+* `value`: The value you want to defer. It can have any type.
+* **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 
 #### Valeur renvoyée {/*returns*/}
 
 - `currentValue` : durant le rendu initial, la valeur différée renvoyée sera celle que vous avez fournie. Lors des mises à jour, React tentera d'abord un rendu avec l'ancienne valeur (il va donc renvoyer l'ancienne valeur), et ensuite essayer en arrière-plan un rendu avec la nouvelle valeur (il va donc renvoyer la valeur à jour).
 
+<<<<<<< HEAD
 
 <Canary>
 
 Dans les dernières versions React Canary, `useDeferredValue` renvoie la `initialValue` lors du rendu initial, puis planifie un nouceau rendu en arrière-plan avec la `value` renvoyée.
 
 </Canary>
+=======
+- `currentValue`: During the initial render, the returned deferred value will be the `initialValue`, or the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value).
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 
 #### Limitations {/*caveats*/}
 
@@ -107,21 +116,6 @@ Dans cet exemple, le composant `SearchResults` [suspend](/reference/react/Suspen
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState } from 'react';
 import SearchResults from './SearchResults.js';
@@ -142,15 +136,19 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js hidden
+```js src/SearchResults.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Remarque : ce composant est écrit en utilisant une API expérimentale
 // qui n'est pas encore disponible dans les versions stables de React.
 
 // Si vous souhaitez suivre cet exemple avec une version stable,
 // essayez un framework intégrant Suspense, comme Relay ou Next.js.
 
+=======
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 export default function SearchResults({ query }) {
   if (query === '') {
     return null;
@@ -169,6 +167,7 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Astuce de contournement d'un bug afin d'exécuter la démo.
 // TODO: remplacer avec la véritable implémentation quand le bug sera corrigé.
@@ -194,6 +193,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 ```
 
 ```js src/data.js hidden
@@ -221,7 +222,7 @@ async function getData(url) {
 async function getSearchResults(query) {
     // Ajoute un faux délai pour que le temps d'attente soit remarqué par l'utilisateur.
   await new Promise(resolve => {
-    setTimeout(resolve, 500);
+    setTimeout(resolve, 1000);
   });
 
   const allAlbums = [{
@@ -321,21 +322,6 @@ Tapez`"a"` dans l'exemple ci-dessous, attendez que les résultats soient chargé
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
@@ -357,15 +343,19 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js hidden
+```js src/SearchResults.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Remarque : ce composant est écrit en utilisant une API expérimentale
 // qui n'est pas encore disponible dans les versions stables de React.
 
 // Si vous souhaitez suivre cet exemple avec une version stable,
 // essayez un framework intégrant Suspense, comme Relay ou Next.js.
 
+=======
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 export default function SearchResults({ query }) {
   if (query === '') {
     return null;
@@ -384,6 +374,7 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Astuce de contournement d'un bug afin d'exécuter la démo.
 // TODO: remplacer avec la véritable implémentation quand le bug sera corrigé.
@@ -409,6 +400,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 ```
 
 ```js src/data.js hidden
@@ -436,7 +429,7 @@ async function getData(url) {
 async function getSearchResults(query) {
     // Ajoute un faux délai pour que le temps d'attente soit remarqué par l'utilisateur.
   await new Promise(resolve => {
-    setTimeout(resolve, 500);
+    setTimeout(resolve, 1000);
   });
 
   const allAlbums = [{
@@ -544,21 +537,6 @@ Avec ce changement, dès que vous commencerez à taper, l'ancienne liste de rés
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
@@ -586,15 +564,19 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js hidden
+```js src/SearchResults.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Remarque : ce composant est écrit en utilisant une API expérimentale
 // qui n'est pas encore disponible dans les versions stables de React.
 
 // Si vous souhaitez suivre cet exemple avec une version stable,
 // essayez un framework intégrant Suspense, comme Relay ou Next.js.
 
+=======
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 export default function SearchResults({ query }) {
   if (query === '') {
     return null;
@@ -613,6 +595,7 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Astuce de contournement d'un bug afin d'exécuter la démo.
 // TODO: remplacer avec la véritable implémentation quand le bug sera corrigé.
@@ -638,6 +621,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 ```
 
 ```js src/data.js hidden
@@ -664,7 +649,7 @@ async function getData(url) {
 async function getSearchResults(query) {
     // Ajoute un faux délai pour que le temps d'attente soit remarqué par l'utilisateur.
   await new Promise(resolve => {
-    setTimeout(resolve, 500);
+    setTimeout(resolve, 1000);
   });
 
   const allAlbums = [{
