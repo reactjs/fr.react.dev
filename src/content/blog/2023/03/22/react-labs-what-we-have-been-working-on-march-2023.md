@@ -96,9 +96,16 @@ Depuis notre dernier bulletin, nous avons testé une version expérimentale du p
 
 L'API de pistage des transitions vous permet de détecter que des [transitions React](/reference/react/useTransition) ralentissent, et d'enquêter sur les causes du ralentissement. Depuis notre dernier bulletin, nous avons terminé la conception initiale de l'API et publié une [RFC](https://github.com/reactjs/rfcs/pull/238). Les capacités de base ont été implémentées.  Le projet est actuellement en suspens.  Nous sommes à l'écoute de vos retours sur la RFC et espérons reprendre le développement pour fournir de meilleurs outils de mesure de la performance pour React.  Ça sera particulièrement utile pour les routeurs basés sur les transitions React, tels que [l'*App Router* de Next.js](/learn/start-a-new-react-project#nextjs-app-router).
 
+<<<<<<< HEAD
 ---
 
 En complément de ce bulletin, notre équipe est récemment apparue dans des podcasts communautaires et des *livestreams* pour parler de notre travail et répondre à vos questions.
+=======
+* [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Joe Savona](https://twitter.com/en_JS) were interviewed by [Kent C. Dodds on his YouTube channel](https://www.youtube.com/watch?v=h7tur48JSaw), where they discussed concerns around React Server Components.
+* [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Joe Savona](https://twitter.com/en_JS) were guests on the [JSParty podcast](https://jsparty.fm/267) and shared their thoughts about the future of React.
+
+Thanks to [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Dave McCabe](https://twitter.com/mcc_abe), [Luna Wei](https://twitter.com/lunaleaps), [Matt Carroll](https://twitter.com/mattcarrollcode), [Sean Keegan](https://twitter.com/DevRelSean), [Sebastian Silbermann](https://twitter.com/sebsilbermann), [Seth Webster](https://twitter.com/sethwebster), and [Sophie Alpert](https://twitter.com/sophiebits) for reviewing this post.
+>>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 * [Dan Abramov](https://twitter.com/dan_abramov) et [Joe Savona](https://twitter.com/en_JS) étaient interviewés par [Kent C. Dodds sur sa chaîne YouTube](https://www.youtube.com/watch?v=h7tur48JSaw), pour parler de leurs préoccupations sur les React Server Components.
 * [Dan Abramov](https://twitter.com/dan_abramov) et [Joe Savona](https://twitter.com/en_JS) étaient les invités du [podcast JSParty](https://jsparty.fm/267) pour parler de leurd visions respectives de l'avenir de React.

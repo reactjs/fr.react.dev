@@ -17,7 +17,11 @@ La semaine dernière nous avons organisé React Conf 2024, une conférence de de
 
 ---
 
+<<<<<<< HEAD
 Lors de la React Conf 2024, nous avons annoncé [React 19 RC](/blog/2024/04/25/react-19), la [beta de la nouvelle architecture React Native](https://github.com/reactwg/react-native-new-architecture/discussions/189), et une sortie expérimentale du [React Compiler](/learn/react-compiler). La communauté est également montée sur scène pour annoncer [React Router v7](https://remix.run/blog/merging-remix-and-react-router), les [Composants Serveur universels](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=20765s) dans Expo Router, les Composants Serveur dans [RedwoodJS](https://redwoodjs.com/blog/rsc-now-in-redwoodjs), et bien plus encore.
+=======
+At React Conf 2024, we announced the [React 19 RC](/blog/2024/12/05/react-19), the [React Native New Architecture Beta](https://github.com/reactwg/react-native-new-architecture/discussions/189), and an experimental release of the [React Compiler](/learn/react-compiler). The community also took the stage to announce [React Router v7](https://remix.run/blog/merging-remix-and-react-router), [Universal Server Components](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=20765s) in Expo Router, React Server Components in [RedwoodJS](https://redwoodjs.com/blog/rsc-now-in-redwoodjs), and much more.
+>>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 L'intégralité des flux pour le [jour 1](https://www.youtube.com/watch?v=T8TZQ6k4SLE) et le [jour 2](https://www.youtube.com/watch?v=0ckOUBiuxVY) est disponible en ligne. Dans cet article, nous récapitulons les présentations et annonces de l'événement.
 
@@ -36,6 +40,7 @@ Pour en apprendre davantage, allez voir ces présentations de la communauté plu
 - [RedwoodJS, now with React Server Components](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=26815s) par [Amy Dutton](https://twitter.com/selfteachme)
 - [Introducing Universal React Server Components in Expo Router](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=20765s) par [Evan Bacon](https://twitter.com/Baconbrix)
 
+<<<<<<< HEAD
 Pour la suite de la plénière, [Josh Story](https://twitter.com/joshcstory) et [Andrew Clark](https://twitter.com/acdlite) ont présenté de nouvelles fonctionnalités à venir dans React 19, et annoncé que React 19 RC était prête pour être testée en production.  Découvrez toutes ces nouveautés dans [l'annonce de sortie de React 19](/blog/2024/04/25/react-19) et allez voir ces présentations qui explorent en détail les nouvelles fonctionnalités :
 
 - [What's new in React 19](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=8880s) par [Lydia Hallie](https://twitter.com/lydiahallie)
@@ -44,6 +49,16 @@ Pour la suite de la plénière, [Josh Story](https://twitter.com/joshcstory) et 
 - [Enhancing Forms with React Server Components](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=25280s) par [Aurora Walberg Scharff](https://twitter.com/aurorascharff)
 - [React for Two Computers](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=18825s) par [Dan Abramov](https://twitter.com/dan_abramov2)
 - [And Now You Understand React Server Components](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=11256s) par [Kent C. Dodds](https://twitter.com/kentcdodds)
+=======
+Next in the keynote, [Josh Story](https://twitter.com/joshcstory) and [Andrew Clark](https://twitter.com/acdlite) shared new features coming in React 19, and announced the React 19 RC which is ready for testing in production. Check out all the features in the [React 19 release post](/blog/2024/12/05/react-19), and see these talks for deep dives on the new features:
+
+- [What's new in React 19](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=8880s) by [Lydia Hallie](https://twitter.com/lydiahallie)
+- [React Unpacked: A Roadmap to React 19](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=10112s) by [Sam Selikoff](https://twitter.com/samselikoff)
+- [React 19 Deep Dive: Coordinating HTML](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=24916s) by [Josh Story](https://twitter.com/joshcstory)
+- [Enhancing Forms with React Server Components](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=25280s) by [Aurora Walberg Scharff](https://twitter.com/aurorascharff)
+- [React for Two Computers](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=18825s) by [Dan Abramov](https://bsky.app/profile/danabra.mov)
+- [And Now You Understand React Server Components](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=11256s) by [Kent C. Dodds](https://twitter.com/kentcdodds)
+>>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 Nous avons conclu la plénière avec [Joe Savona](https://twitter.com/en_JS), [Sathya Gunasekaran](https://twitter.com/_gsathya) et [Mofei Zhang](https://twitter.com/zmofei) qui ont annoncé que le React Compiler était désormais [*open source*](https://github.com/facebook/react/pull/29061) et ont mis à disposition une version expérimentale du React Compiler pour que chacun·e puisse l'essayer.
 
