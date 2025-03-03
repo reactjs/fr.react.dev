@@ -23,7 +23,7 @@ useEffect(setup, dependencies?)
 Appelez `useEffect` à la racine de votre composant pour déclarer un Effet :
 
 ```js
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 function ChatRoom({ roomId }) {
@@ -79,7 +79,7 @@ Certains composants ont besoin de rester connectés au réseau, ou à des API du
 Afin de [connecter votre composant à un système extérieur](/learn/synchronizing-with-effects), appelez `useEffect` au niveau racine de votre fonction composant :
 
 ```js [[1, 8, "const connection = createConnection(serverUrl, roomId);"], [1, 9, "connection.connect();"], [2, 11, "connection.disconnect();"], [3, 13, "[serverUrl, roomId]"]]
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 function ChatRoom({ roomId }) {

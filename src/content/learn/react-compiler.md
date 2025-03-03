@@ -326,7 +326,11 @@ export default defineConfig({
 
 ### Webpack {/*usage-with-webpack*/}
 
+<<<<<<< HEAD
 Un chargeur Webpack maintenu par la communauté est [désormais disponible ici](https://github.com/SukkaW/react-compiler-webpack).
+=======
+A community webpack loader is [now available here](https://github.com/SukkaW/react-compiler-webpack).
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669
 
 ### Expo {/*usage-with-expo*/}
 
@@ -362,7 +366,11 @@ React Compiler peut vérifier statiquement la plupart des Règles de React, et �
 
 ### Comment savoir si mes composants ont été optimisés ? {/*how-do-i-know-my-components-have-been-optimized*/}
 
+<<<<<<< HEAD
 [React Devtools](/learn/react-developer-tools) (v5.0+) prend nativement en charge React Compiler et affichera un badge « Memo ✨ » à côté des composants qui ont été optimisés par le compilateur.
+=======
+[React DevTools](/learn/react-developer-tools) (v5.0+) and [React Native DevTools](https://reactnative.dev/docs/react-native-devtools) have built-in support for React Compiler and will display a "Memo ✨" badge next to components that have been optimized by the compiler.
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669
 
 ### Quelque chose ne fonctionne plus après la compilation {/*something-is-not-working-after-compilation*/}
 
