@@ -216,7 +216,7 @@ export function HomeContent() {
             </Header>
             <Para>
               Les composants React reçoivent des données et renvoient ce qui
-              devrait appraître à l’écran. Vous pouvez leur passer de nouvelles
+              devrait apparaître à l’écran. Vous pouvez leur passer de nouvelles
               données en réaction à des interactions, comme une saisie
               utilisateur dans un champ. React mettra alors à jour l’écran pour
               refléter les nouvelles données.
