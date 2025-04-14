@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 title: "React 19 RC : guide de migration"
+=======
+title: "React 19 Upgrade Guide"
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 author: Ricky Hanlon
 date: 2024/04/25
 description: Les améliorations apportées par React 19 RC nécessitent quelques ruptures de compatibilité, mais nous avons travaillé dur pour faciliter la mise à jour le plus possible, et nous ne nous attendons pas à ce que ces changements impactent la majorité des applications. Dans cet article, nous vous guidons étape par étape pour mettre à jour vos applis et bibliothèques vers React 19.
@@ -12,7 +16,11 @@ Le 25 avril 2024 par [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 <Intro>
 
+<<<<<<< HEAD
 Les améliorations apportées par React 19 RC nécessitent quelques ruptures de compatibilité, mais nous avons travaillé dur pour faciliter la mise à jour le plus possible, et nous ne nous attendons pas à ce que ces changements impactent la majorité des applications.
+=======
+The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps.
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 
 </Intro>
 
@@ -24,7 +32,11 @@ Pour vous aider à migrer vers React 19, nous avons publié une version `react@1
 
 Nous vous conseillons de d'abord mettre à jour vers React 18.3 pour vous aider à identifier tout problème avant de passer à React 19.
 
+<<<<<<< HEAD
 Pour une liste détaillées des modifications de la 18.3, consultez ses [notes de publication](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+=======
+For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md#1830-april-25-2024).
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 
 </Note>
 
@@ -38,7 +50,11 @@ Dans cet article, nous vous guidons à travers les étapes nécessaires à une m
 - [Changements liés à TypeScript](#typescript-changes)
 - [Changelog](#changelog)
 
+<<<<<<< HEAD
 Si vous aimeriez nous aider à tester React 19, suivez les étapes de ce guide de migration et [signalez-nous tout problème](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) que vous rencontreriez. Pour une liste des nouveautés de React 19, consultez [l’annonce de sortie de React 19](/blog/2024/04/25/react-19).
+=======
+If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19, see the [React 19 release post](/blog/2024/12/05/react-19).
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 
 ---
 
@@ -71,28 +87,27 @@ Nous estimons que la plupart des applis ne seront pas affectées par ça, dans l
 Pour installer la dernière version de React et React DOM :
 
 ```bash
-npm install --save-exact react@rc react-dom@rc
+npm install --save-exact react@^19.0.0 react-dom@^19.0.0
 ```
 
 Ou si vous utilisez Yarn :
 
 ```bash
-yarn add --exact react@rc react-dom@rc
+yarn add --exact react@^19.0.0 react-dom@^19.0.0
 ```
 
+<<<<<<< HEAD
 Si vous utilisez TypeScript, vous aurez aussi besoin de mettre à jour les types.  Une fois que React 19 sortira en version stable, vous pourrez installer les types au travers des paquets habituels `@types/react` et `@types/react-dom`.  D'ici là, ces types sont mis à disposition par des paquets distincts que vous devrez forcer dans votre `package.json` :
+=======
+If you're using TypeScript, you also need to update the types.
+```bash
+npm install --save-exact @types/react@^19.0.0 @types/react-dom@^19.0.0
+```
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 
-```json
-{
-  "dependencies": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
-  }
-}
+Or, if you're using Yarn:
+```bash
+yarn add --exact @types/react@^19.0.0 @types/react-dom@^19.0.0
 ```
 
 Nous fournissons par ailleurs un codemod pour les remplacements les plus courants.  Consultez par exemple la section [Changements liés à TypeScript](#typescript-changes) plus loin.
@@ -117,8 +132,13 @@ Elle exploitera les codemods suivants du dépôt `react-codemod` :
 - [`replace-reactdom-render`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-reactdom-render)
 - [`replace-string-ref`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-string-ref)
 - [`replace-act-import`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-act-import)
+<<<<<<< HEAD
 - [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state)
 - [`prop-types-typescript`](TODO)
+=======
+- [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state) 
+- [`prop-types-typescript`](https://github.com/reactjs/react-codemod#react-proptypes-to-prop-types)
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 
 Ça n'inclut toutefois pas les changements liés à TypeScript.  Consultez la section [Changements liés à TypeScript](#typescript-changes) plus loin.
 
@@ -746,6 +766,7 @@ const reducer = (state: State, action: Action) => state;
 
 ### Autres ruptures de compatibilité ascendante {/*other-breaking-changes*/}
 
+<<<<<<< HEAD
 - **react-dom**: Erreur sur URL JavaScript dans src/href [#26507](https://github.com/facebook/react/pull/26507)
 - **react-dom**: Retrait de `errorInfo.digest` dans `onRecoverableError` [#28222](https://github.com/facebook/react/pull/28222)
 - **react-dom**: Retrait de `unstable_flushControlled` [#26397](https://github.com/facebook/react/pull/26397)
@@ -753,6 +774,15 @@ const reducer = (state: State, action: Action) => state;
 - **react-dom**: Retrait de `unstable_renderSubtreeIntoContainer` [#28271](https://github.com/facebook/react/pull/28271)
 - **react-dom**: Retrait de `unstable_runWithPriority` [#28271](https://github.com/facebook/react/pull/28271)
 - **react-is**: Retrait de méthodes dépréciées dans `react-is` [28224](https://github.com/facebook/react/pull/28224)
+=======
+- **react-dom**: Error for javascript URLs in `src` and `href` [#26507](https://github.com/facebook/react/pull/26507)
+- **react-dom**: Remove `errorInfo.digest` from `onRecoverableError` [#28222](https://github.com/facebook/react/pull/28222)
+- **react-dom**: Remove `unstable_flushControlled` [#26397](https://github.com/facebook/react/pull/26397)
+- **react-dom**: Remove `unstable_createEventHandle` [#28271](https://github.com/facebook/react/pull/28271)
+- **react-dom**: Remove `unstable_renderSubtreeIntoContainer` [#28271](https://github.com/facebook/react/pull/28271)
+- **react-dom**: Remove `unstable_runWithPriority` [#28271](https://github.com/facebook/react/pull/28271)
+- **react-is**: Remove deprecated methods from `react-is` [28224](https://github.com/facebook/react/pull/28224)
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 
 ### Autres changements notables {/*other-notable-changes*/}
 
@@ -763,7 +793,11 @@ const reducer = (state: State, action: Action) => state;
 - **react-dom**: Retire l'avertissement des Effets de layout lors du SSR [#26395](https://github.com/facebook/react/pull/26395)
 - **react-dom**: Avertit et évite les chaînes vides pour src/href (sauf sur balises d'ancres) [#28124](https://github.com/facebook/react/pull/28124)
 
+<<<<<<< HEAD
 Nous publierons un changelog complet avec la version stable de React 19.
+=======
+For a full list of changes, please see the [Changelog](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024).
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 
 ---
 
