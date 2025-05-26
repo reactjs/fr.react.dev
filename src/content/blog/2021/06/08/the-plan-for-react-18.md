@@ -5,7 +5,11 @@ date: 2021/06/08
 description: L'équipe React est ravie de vous donner quelques nouvelles. Nous avons commencé à travailler sur React 18, qui sera notre prochaine version majeure. Nous avons créé un groupe de travail pour préparer la communauté à l'adoption graduelle des nouvelles fonctionnalités de React 18. Nous avons publié une React 18 Alpha pour que les mainteneurs de bibliothèques puissent l'essayer et nous faire leurs retours…
 ---
 
+<<<<<<< HEAD
 Le 8 juin 2021 par [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](https://github.com/bvaughn), [Christine Abernathy](https://twitter.com/abernathyca), [Dan Abramov](https://twitter.com/dan_abramov), [Rachel Nabors](https://twitter.com/rachelnabors), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage) et [Seth Webster](https://twitter.com/sethwebster)
+=======
+June 8, 2021 by [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](https://github.com/bvaughn), [Christine Abernathy](https://twitter.com/abernathyca), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Rachel Nabors](https://twitter.com/rachelnabors), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Seth Webster](https://twitter.com/sethwebster)
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 ---
 
