@@ -4,13 +4,47 @@ title: Blog React
 
 <Intro>
 
+<<<<<<< HEAD
 Ce blog est la source officielle des mises à jour par l'équipe React.  Toute annonce importante, y compris les notes de versions et les avertissements de dépréciation, sera faite ici en premier.  Vous pouvez aussi suivre le compte [@reactjs](https://twitter.com/reactjs) sur Twitter, mais vous êtes sûr·e de ne rien rater d'important si vous ne lisez que ce blog.
+=======
+This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first.
+
+You can also follow the [@react.dev](https://bsky.app/profile/react.dev) account on Bluesky, or [@reactjs](https://twitter.com/reactjs) account on Twitter, but you won’t miss anything essential if you only read this blog.
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 </Intro>
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<<<<<<< HEAD
 <BlogCard title="React Compiler : beta et feuille de route" date="21 octobre 2024" url="/blog/2024/10/21/react-compiler-beta-release">
+=======
+<BlogCard title="React Labs: View Transitions, Activity, and more" date="April 23, 2025" url="/blog/2025/04/23/react-labs-view-transitions-activity-and-more">
+
+In React Labs posts, we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and sharing other areas we're working on now ...
+
+</BlogCard>
+
+<BlogCard title="React Compiler RC" date="April 21, 2025" url="/blog/2025/04/21/react-compiler-rc">
+
+We are releasing the compiler's first Release Candidate (RC) today.
+
+</BlogCard>
+
+<BlogCard title="Sunsetting Create React App" date="February 14, 2025" url="/blog/2025/02/14/sunsetting-create-react-app">
+
+Today, we’re deprecating Create React App for new apps, and encouraging existing apps to migrate to a framework, or to migrate to a build tool like Vite, Parcel, or RSBuild. We’re also providing docs for when a framework isn’t a good fit for your project, you want to build your own framework, or you just want to learn how React works by building a React app from scratch ...
+
+</BlogCard>
+
+<BlogCard title="React v19 " date="December 5, 2024" url="/blog/2024/12/05/react-19">
+
+In the React 19 Upgrade Guide, we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them ...
+
+</BlogCard>
+
+<BlogCard title="React Compiler Beta Release" date="October 21, 2024" url="/blog/2024/10/21/react-compiler-beta-release">
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 Nous avions annoncé la sortie expérimentale de React Compiler lors de la React Conf 2024. Nous avons beaucoup avancé depuis, et dans cet article nous aimerions partager avec vous la suite de nos travaux sur ce compilateur…
 
@@ -27,6 +61,7 @@ Dans le guide de migration vers React 19 RC, nous vous donnions des instructions
 
 </BlogCard>
 
+<<<<<<< HEAD
 <BlogCard title="React 19 RC : guide de migration" date="25 avril 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
 
 Les améliorations apportées par React 19 RC nécessitent quelques ruptures de compatibilité, mais nous avons travaillé dur pour faciliter la mise à jour le plus possible, et nous ne nous attendons pas à ce que ces changements impactent la majorité des applications. Dans cet article, nous vous guidons étape par étape pour mettre à jour vos applis et bibliothèques vers React 19…
@@ -34,6 +69,9 @@ Les améliorations apportées par React 19 RC nécessitent quelques ruptures de 
 </BlogCard>
 
 <BlogCard title="React Labs : ce sur quoi nous bossons – février 2024" date="15 février 2024" url="/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024">
+=======
+<BlogCard title="React 19 Upgrade Guide" date="April 25, 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 Dans les billets React Labs, nous vous parlons de nos projets de recherche et développement actifs.  Depuis notre dernier bulletin, nous avons fait des progrès significatifs sur le React Compiler et React 19, et nous aimerions partager ce que nous avons appris.
 

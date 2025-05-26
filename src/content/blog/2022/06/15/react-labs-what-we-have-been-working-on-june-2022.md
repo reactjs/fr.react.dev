@@ -6,7 +6,11 @@ description: React 18 a pris des années, mais il était porteur de précieuses 
 
 ---
 
+<<<<<<< HEAD
 Le 15 juin 2022 par [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://twitter.com/dan_abramov), [Jan Kassens](https://twitter.com/kassens), [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Luna Ruan](https://twitter.com/lunaruan), [Mengdi Chen](https://twitter.com/mengdi_en), [Rick Hanlon](https://twitter.com/rickhanlonii), [Robert Zhang](https://twitter.com/jiaxuanzhang01), [Sathya Gunasekaran](https://twitter.com/_gsathya), [Sebastian Markbåge](https://twitter.com/sebmarkbage) et [Xuan Huang](https://twitter.com/Huxpro)
+=======
+June 15, 2022 by [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Jan Kassens](https://twitter.com/kassens), [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Luna Ruan](https://twitter.com/lunaruan), [Mengdi Chen](https://twitter.com/mengdi_en), [Rick Hanlon](https://twitter.com/rickhanlonii), [Robert Zhang](https://twitter.com/jiaxuanzhang01), [Sathya Gunasekaran](https://twitter.com/_gsathya), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Xuan Huang](https://twitter.com/Huxpro)
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 ---
 
@@ -28,7 +32,11 @@ Nous avons annoncé une [démo expérimentale des React Server Components](/blog
 
 Nous avons notamment abandonné l'idée de versions dédiées de bibliothèques d'E/S (ex. react-fetch), pour plutôt adopter un modèle à base d'async/await pour une meilleure compatibilité. Ça ne bloque pas en soit la sortie des RSC parce que vous pouvez aussi utiliser des routeurs pour le chargement de données.  Autre évolution : nous avons délaissé l'approche à base d'extension de fichiers au profit [d'annotations](https://github.com/reactjs/rfcs/pull/189#issuecomment-1116482278).
 
+<<<<<<< HEAD
 Nous collaborons avec Vercel et Shopify pour unifier la prise en charge de *bundlers* pour viser une sémantique partagée avec Webpack et Vite. D'ici la sortie, nous souhaitons nous assurer que la sémantique des RSC sera la même à travers tout l'écosystème de React.  C'est le principal point bloquant pour arriver à une version stable.
+=======
+We’re working together with Vercel and Shopify to unify bundler support for shared semantics in both webpack and Vite. Before launch, we want to make sure that the semantics of RSCs are the same across the whole React ecosystem. This is the major blocker for reaching stable.
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 ## Chargement de ressources {/*asset-loading*/}
 
