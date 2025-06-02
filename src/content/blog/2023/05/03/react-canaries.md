@@ -6,7 +6,11 @@ description: Nous aimerions offrir à la communauté React un moyen d'adopter in
 
 ---
 
+<<<<<<< HEAD
 Le 3 mai 2023 par [Dan Abramov](https://twitter.com/dan_abramov), [Sophie Alpert](https://twitter.com/sophiebits), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage) et [Andrew Clark](https://twitter.com/acdlite)
+=======
+May 3, 2023 by [Dan Abramov](https://bsky.app/profile/danabra.mov), [Sophie Alpert](https://twitter.com/sophiebits), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Andrew Clark](https://twitter.com/acdlite)
+>>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 
 ---
 

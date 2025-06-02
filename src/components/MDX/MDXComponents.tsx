@@ -5,6 +5,7 @@
 import {Children, useContext, useMemo} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
+import type {HTMLAttributes} from 'react';
 
 import CodeBlock from './CodeBlock';
 import {CodeDiagram} from './CodeDiagram';
@@ -59,21 +60,31 @@ function CodeStep({children, step}: {children: any; step: number}) {
   );
 }
 
+<<<<<<< HEAD
 const P = (p: JSX.IntrinsicElements['p']) => (
   <p className="whitespace-pre-wrap my-4 text-pretty" {...p} />
+=======
+const P = (p: HTMLAttributes<HTMLParagraphElement>) => (
+  <p className="whitespace-pre-wrap my-4" {...p} />
+>>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 );
 
-const Strong = (strong: JSX.IntrinsicElements['strong']) => (
+const Strong = (strong: HTMLAttributes<HTMLElement>) => (
   <strong className="font-bold" {...strong} />
 );
 
-const OL = (p: JSX.IntrinsicElements['ol']) => (
+const OL = (p: HTMLAttributes<HTMLOListElement>) => (
   <ol className="ms-6 my-3 list-decimal" {...p} />
 );
+<<<<<<< HEAD
 const LI = (p: JSX.IntrinsicElements['li']) => (
   <li className="leading-relaxed mb-1 text-pretty" {...p} />
+=======
+const LI = (p: HTMLAttributes<HTMLLIElement>) => (
+  <li className="leading-relaxed mb-1" {...p} />
+>>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 );
-const UL = (p: JSX.IntrinsicElements['ul']) => (
+const UL = (p: HTMLAttributes<HTMLUListElement>) => (
   <ul className="ms-6 my-3 list-disc" {...p} />
 );
 
@@ -97,6 +108,18 @@ const Canary = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="canary">{children}</ExpandableCallout>
 );
 
+const Experimental = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="experimental">{children}</ExpandableCallout>
+);
+
+const NextMajor = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="major">{children}</ExpandableCallout>
+);
+
+const RSC = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="rsc">{children}</ExpandableCallout>
+);
+
 const CanaryBadge = ({title}: {title: string}) => (
   <span
     title={title}
@@ -111,10 +134,41 @@ const CanaryBadge = ({title}: {title: string}) => (
   </span>
 );
 
-const Blockquote = ({
-  children,
-  ...props
-}: JSX.IntrinsicElements['blockquote']) => {
+const ExperimentalBadge = ({title}: {title: string}) => (
+  <span
+    title={title}
+    className={
+      'text-base font-display px-1 py-0.5 font-bold bg-gray-10 dark:bg-gray-60 text-gray-60 dark:text-gray-10 rounded'
+    }>
+    <IconCanary
+      size="s"
+      className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
+    />
+    Experimental only
+  </span>
+);
+
+const NextMajorBadge = ({title}: {title: string}) => (
+  <span
+    title={title}
+    className={
+      'text-base font-display px-2 py-0.5 font-bold bg-blue-10 dark:bg-blue-60 text-gray-60 dark:text-gray-10 rounded'
+    }>
+    React 19
+  </span>
+);
+
+const RSCBadge = ({title}: {title: string}) => (
+  <span
+    title={title}
+    className={
+      'text-base font-display px-2 py-0.5 font-bold bg-blue-10 dark:bg-blue-50 text-gray-60 dark:text-gray-10 rounded'
+    }>
+    RSC
+  </span>
+);
+
+const Blockquote = ({children, ...props}: HTMLAttributes<HTMLQuoteElement>) => {
   return (
     <blockquote
       className="mdx-blockquote py-4 px-8 my-8 shadow-inner-border dark:shadow-inner-border-dark bg-highlight dark:bg-highlight-dark bg-opacity-50 rounded-2xl leading-6 flex relative"
@@ -492,7 +546,13 @@ export const MDXComponents = {
   MathI,
   Note,
   Canary,
+  Experimental,
+  ExperimentalBadge,
   CanaryBadge,
+  NextMajor,
+  NextMajorBadge,
+  RSC,
+  RSCBadge,
   PackageImport,
   ReadBlogPost,
   Recap,
