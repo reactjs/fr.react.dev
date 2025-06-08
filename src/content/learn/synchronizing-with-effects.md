@@ -865,7 +865,7 @@ Au bout de trois secondes, vous devriez voir une séquence de messages (`a`, `ab
 
 <DeepDive>
 
-#### Chaque rendu à ses propres Effets {/*each-render-has-its-own-effects*/}
+#### Chaque rendu a ses propres Effets {/*each-render-has-its-own-effects*/}
 
 Vous pouvez considérer que `useEffect` « attache » un morceau de comportement au résultat du rendu.  Prenez cet Effet :
 
