@@ -1,8 +1,8 @@
 ---
 meta: "<meta>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Les extensions de React à `<meta>` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `<meta>` fonctionne comme [le composant HTML natif du navigateur](/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
@@ -10,6 +10,8 @@ Les extensions de React à `<meta>` ne sont actuellement disponibles que sur les
 </Canary>
 
 
+=======
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 <Intro>
 
 Le [composant natif `<meta>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/meta) vous permet d'ajouter des métadonnées au document ou à des éléments spécifiques.
