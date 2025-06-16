@@ -239,7 +239,11 @@ export default function ModalContent({ onClose }) {
 
 Il est important de s'assurer que votre application est accessible lors de l'utilisation de portails. Par exemple, vous devrez peut-être gérer le focus du clavier afin que l'utilisateur puisse déplacer le focus dans et hors du portail de manière naturelle.
 
+<<<<<<< HEAD
 Suivez les [bonnes pratiques WAI-ARIA de création de modales](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) lors de la création de modales. Si vous utilisez un module communautaire, assurez-vous qu'il est accessible et qu'il suit ces directives.
+=======
+Follow the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal) when creating modals. If you use a community package, ensure that it is accessible and follows these guidelines.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 </Pitfall>
 
@@ -251,7 +255,7 @@ Les portails peuvent vous être utiles si votre racine React n'est qu'une partie
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>Mon appli</title></head>
