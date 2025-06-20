@@ -1450,7 +1450,11 @@ Si votre *linter* est [configuré pour React](/learn/editor-setup#linting), vous
 
 #### Retirer l'état superflu {/*remove-unnecessary-state*/}
 
+<<<<<<< HEAD
 Dans cet exemple, cliquer sur le bouton devrait demander à l'utilisateur son nom et le saluer dans une alerte.  Vous avez essayé de recourir à un état pour vous souvenir du nom, mais pour une raison ou une autre ça affiche toujours « Bonjour ! ».
+=======
+When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason the first time it shows "Hello, !", and then "Hello, [name]!" with the previous input every time after.
+>>>>>>> f6d762cbbf958ca45bb8d1d011b31e5289e43a3d
 
 Pour corriger ce code, retirez la variable d'état superflue. (Nous explorerons les [raisons de ce problème](/learn/state-as-a-snapshot) prochainement.)
 

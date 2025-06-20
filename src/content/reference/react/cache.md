@@ -3,6 +3,7 @@ title: cache
 canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 * `cache` n'est destinée qu'aux [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). Découvrez quels [frameworks](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) prennent en charge les Composants Serveur.
@@ -10,6 +11,13 @@ canary: true
 * `cache` n'est disponible que dans les canaux de livraison [Canary](/community/versioning-policy#canary-channel) et [Expérimental](/community/versioning-policy#experimental-channel). Assurez-vous d'en comprendre les limitations avant d'utiliser `cache` en production. Apprenez-en davantage sur les [canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
+=======
+<RSC>
+
+`cache` is only for use with [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
+
+</RSC>
+>>>>>>> f6d762cbbf958ca45bb8d1d011b31e5289e43a3d
 
 <Intro>
 
