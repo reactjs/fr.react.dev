@@ -10,4 +10,10 @@ L'équipe React vous conseille de migrer vos tests vers [@testing-library/react]
 
 ## Nouvel avertissements sur ShallowRenderer() {/*new-shallowrenderer-warning*/}
 
+<<<<<<< HEAD
 Le module react-test-renderer n'exporte plus de moteur de rendu superficiel *via* `react-test-renderer/shallow`. Il s'agissait d'un simple enrobage d'un module précédemment extrait : `react-shallow-renderer`. Vous pouvez donc continuer à utiliser le moteur de rendu superficiel en l'installant directement. Consultez [Github](https://github.com/enzymejs/react-shallow-renderer) / [NPM](https://www.npmjs.com/package/react-shallow-renderer).
+=======
+## new ShallowRenderer() warning {/*new-shallowrenderer-warning*/}
+
+The react-test-renderer package no longer exports a shallow renderer at `react-test-renderer/shallow`. This was simply a repackaging of a previously extracted separate package: `react-shallow-renderer`. Therefore you can continue using the shallow renderer in the same way by installing it directly. See [Github](https://github.com/enzymejs/react-shallow-renderer) / [NPM](https://www.npmjs.com/package/react-shallow-renderer).
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
