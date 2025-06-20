@@ -10,6 +10,7 @@ La documentation de React est écrite et maintenue par [l'équipe React](/commun
 
 ## Contenu {/*content*/}
 
+<<<<<<< HEAD
 * [Rachel Nabors](https://twitter.com/RachelNabors) : révisions, rédaction, illustrations
 * [Dan Abramov](https://twitter.com/dan_abramov) : rédaction, conception du curriculum
 * [Sylwia Vargas](https://twitter.com/SylwiaVargas) : codes d'exemple
@@ -21,6 +22,19 @@ La documentation de React est écrite et maintenue par [l'équipe React](/commun
 * [Matt Carroll](https://twitter.com/mattcarrollcode) : révisions, rédaction
 * [Natalia Tepluhina](https://twitter.com/n_tepluhina) : révisions, avis
 * [Sebastian Markbåge](https://twitter.com/sebmarkbage) : retours
+=======
+* [Rachel Nabors](https://twitter.com/RachelNabors): editing, writing, illustrating
+* [Dan Abramov](https://bsky.app/profile/danabra.mov): writing, curriculum design
+* [Sylwia Vargas](https://twitter.com/SylwiaVargas): example code
+* [Rick Hanlon](https://twitter.com/rickhanlonii): writing
+* [David McCabe](https://twitter.com/mcc_abe): writing
+* [Sophie Alpert](https://twitter.com/sophiebits): writing
+* [Pete Hunt](https://twitter.com/floydophone): writing
+* [Andrew Clark](https://twitter.com/acdlite): writing
+* [Matt Carroll](https://twitter.com/mattcarrollcode): editing, writing
+* [Natalia Tepluhina](https://twitter.com/n_tepluhina): reviews, advice
+* [Sebastian Markbåge](https://twitter.com/sebmarkbage): feedback
+>>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
 
 ## Design {/*design*/}
 
@@ -31,6 +45,7 @@ La documentation de React est écrite et maintenue par [l'équipe React](/commun
 
 ## Développement {/*development*/}
 
+<<<<<<< HEAD
 * [Jared Palmer](https://twitter.com/jaredpalmer) : développement du site
 * [ThisDotLabs](https://www.thisdot.co/) ([Dane Grant](https://twitter.com/danecando) et [Dustin Goodman](https://twitter.com/dustinsgoodman)) : développement du site
 * [CodeSandbox](https://codesandbox.io/) ([Ives van Hoorne](https://twitter.com/CompuIves), [Alex Moldovan](https://twitter.com/alexnmoldovan), [Jasper De Moor](https://twitter.com/JasperDeMoor) et [Danilo Woznica](https://twitter.com/danilowoz)) : intégration des bacs à sable
@@ -38,5 +53,14 @@ La documentation de React est écrite et maintenue par [l'équipe React](/commun
 * [Rick Hanlon](https://twitter.com/rickhanlonii) : développement du site
 * [Harish Kumar](https://www.strek.in/) : development et maintenance
 * [Luna Ruan](https://twitter.com/lunaruan) : améliorations des bacs à sable
+=======
+* [Jared Palmer](https://twitter.com/jaredpalmer): site development
+* [ThisDotLabs](https://www.thisdot.co/) ([Dane Grant](https://twitter.com/danecando), [Dustin Goodman](https://twitter.com/dustinsgoodman)): site development
+* [CodeSandbox](https://codesandbox.io/) ([Ives van Hoorne](https://twitter.com/CompuIves), [Alex Moldovan](https://twitter.com/alexnmoldovan), [Jasper De Moor](https://twitter.com/JasperDeMoor), [Danilo Woznica](https://twitter.com/danilowoz)): sandbox integration
+* [Dan Abramov](https://bsky.app/profile/danabra.mov): site development
+* [Rick Hanlon](https://twitter.com/rickhanlonii): site development
+* [Harish Kumar](https://www.strek.in/): development and maintenance
+* [Luna Ruan](https://twitter.com/lunaruan): sandbox improvements
+>>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
 
 Nous aimerions aussi remercier les innombrables testeurs de la première heure et membres de la communautés qui nous ont fourni des retours tout au long de notre travail.

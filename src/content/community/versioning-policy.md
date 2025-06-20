@@ -8,7 +8,11 @@ Toutes les versions stables de React sont soumises à un niveau élevé de tests
 
 </Intro>
 
+<<<<<<< HEAD
 Pour une liste des versions antérieures, consultez la page [Versions](/versions).
+=======
+This versioning policy describes our approach to version numbers for packages such as `react` and `react-dom`. For a list of previous releases, see the [Versions](/versions) page.
+>>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
 
 ## Versions stables {/*stable-releases*/}
 
@@ -24,7 +28,13 @@ Les livraisons majeures peuvent également intégrer de nouvelles fonctionnalit�
 
 Les livraisons mineures sont les plus fréquentes.
 
+<<<<<<< HEAD
 ### Ruptures de compatibilité ascendante {/*breaking-changes*/}
+=======
+We know our users continue to use old versions of React in production. If we learn of a security vulnerability in React, we release a backported fix for all major versions that are affected by the vulnerability.
+
+### Breaking changes {/*breaking-changes*/}
+>>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
 
 Les ruptures de compatibilité ascendante sont gênantes pour tout le monde, aussi nous essayons de limiter le nombre de livraisons majeures — par exemple, React 15 a été publié en avril 2016, React 16 en septembre 2017 et React 17 en octobre 2020.
 
