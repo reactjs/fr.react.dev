@@ -4,6 +4,19 @@
 
 import * as React from 'react';
 import {Footer} from './Footer';
+<<<<<<< HEAD
+=======
+import {Toc} from './Toc';
+import SocialBanner from '../SocialBanner';
+import {DocsPageFooter} from 'components/DocsFooter';
+import {Seo} from 'components/Seo';
+import PageHeading from 'components/PageHeading';
+import {getRouteMeta} from './getRouteMeta';
+import {TocContext} from '../MDX/TocContext';
+import {Languages, LanguagesContext} from '../MDX/LanguagesContext';
+import type {TocItem} from 'components/MDX/TocContext';
+import type {RouteItem} from 'components/Layout/getRouteMeta';
+>>>>>>> 55986965fbf69c2584040039c9586a01bd54eba7
 import {HomeContent} from './HomeContent';
 import cn from 'classnames';
 import {DocsPageFooter} from 'components/DocsFooter';
@@ -136,7 +149,7 @@ export function Page({
           />
         </Head>
       )}
-      {/*<SocialBanner />*/}
+      <SocialBanner />
       <TopNav
         section={section}
         routeTree={routeTree}
