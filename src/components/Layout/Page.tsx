@@ -4,6 +4,19 @@
 
 import * as React from 'react';
 import {Footer} from './Footer';
+<<<<<<< HEAD
+=======
+import {Toc} from './Toc';
+import SocialBanner from '../SocialBanner';
+import {DocsPageFooter} from 'components/DocsFooter';
+import {Seo} from 'components/Seo';
+import PageHeading from 'components/PageHeading';
+import {getRouteMeta} from './getRouteMeta';
+import {TocContext} from '../MDX/TocContext';
+import {Languages, LanguagesContext} from '../MDX/LanguagesContext';
+import type {TocItem} from 'components/MDX/TocContext';
+import type {RouteItem} from 'components/Layout/getRouteMeta';
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 import {HomeContent} from './HomeContent';
 import cn from 'classnames';
 import {DocsPageFooter} from 'components/DocsFooter';
@@ -30,7 +43,7 @@ interface PageProps {
   meta: {
     title?: string;
     titleForTitleTag?: string;
-    canary?: boolean;
+    version?: 'experimental' | 'canary';
     description?: string;
   };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
@@ -52,7 +65,7 @@ export function Page({
     routeTree
   );
   const title = meta.title || route?.title || '';
-  const canary = meta.canary || false;
+  const version = meta.version;
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
@@ -69,7 +82,7 @@ export function Page({
           )}>
           <PageHeading
             title={title}
-            canary={canary}
+            version={version}
             description={description}
             tags={route?.tags}
             breadcrumbs={breadcrumbs}
@@ -81,11 +94,9 @@ export function Page({
               'max-w-7xl mx-auto',
               section === 'blog' && 'lg:flex lg:flex-col lg:items-center'
             )}>
-            <TocContext.Provider value={toc}>
-              <LanguagesContext.Provider value={languages}>
-                {children}
-              </LanguagesContext.Provider>
-            </TocContext.Provider>
+            <TocContext value={toc}>
+              <LanguagesContext value={languages}>{children}</LanguagesContext>
+            </TocContext>
           </div>
           {!isBlogIndex && (
             <DocsPageFooter
@@ -136,7 +147,7 @@ export function Page({
           />
         </Head>
       )}
-      {/*<SocialBanner />*/}
+      <SocialBanner />
       <TopNav
         section={section}
         routeTree={routeTree}

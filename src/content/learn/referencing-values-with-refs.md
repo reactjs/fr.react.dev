@@ -462,7 +462,11 @@ export default function Toggle() {
 
 #### Corriger le *debouncing* {/*fix-debouncing*/}
 
+<<<<<<< HEAD
 Dans l'exemple qui suit, tous les gestionnaires de clic des boutons sont *["debounced"](https://redd.one/blog/debounce-vs-throttle)*.  Pour saisir ce que ça signifie, pressez l'un des boutons.  Remarquez que le message apparaît une seconde plus tard.  Si vous pressez le bouton pendant que vous attendez le message, le timer sera réinitialisé.  Du coup, si vous cliquez en rafale sur le même bouton, le message n'apparaîtra qu'une seconde *après* que vous aurez arrêté de cliquer.  Le *debouncing* permet de retarder une action jusqu'à ce que l'utilisateur « termine ce qu'il est en train de faire ».
+=======
+In this example, all button click handlers are ["debounced".](https://kettanaito.com/blog/debounce-vs-throttle) To see what this means, press one of the buttons. Notice how the message appears a second later. If you press the button while waiting for the message, the timer will reset. So if you keep clicking the same button fast many times, the message won't appear until a second *after* you stop clicking. Debouncing lets you delay some action until the user "stops doing things".
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 Cet exemple fonctionne, mais pas tout à fait comme prévu.  Les boutons ne sont pas indépendants.  Pour comprendre le problème, cliquez sur l'un des boutons, puis cliquez immédiatement sur un autre bouton.  Vous vous attendriez à ce qu'une fois le délai écoulé, vous obteniez les messages des deux boutons.  Mais seul le message du dernier bouton apparaît. Celui du premier bouton est perdu.
 
