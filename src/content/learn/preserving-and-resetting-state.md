@@ -672,7 +672,11 @@ label {
 
 </Sandpack>
 
+<<<<<<< HEAD
 L'état du compteur se réinitialise quand vous cliquez sur la case. Bien que vous affichiez un `Counter`, le premier enfant du `div` passe d'un `div` à une `section`. Lorsque l'enfant `div` a été retiré du DOM, tout l'arbre en dessous de lui (ce qui inclut le `Counter` et son état) a également été détruit.
+=======
+The counter state gets reset when you click the checkbox. Although you render a `Counter`, the first child of the `div` changes from a `section` to a `div`. When the child `section` was removed from the DOM, the whole tree below it (including the `Counter` and its state) was destroyed as well.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 <DiagramGroup>
 
@@ -2011,7 +2015,7 @@ export default function ContactList() {
       <label>
         <input
           type="checkbox"
-          value={reverse}
+          checked={reverse}
           onChange={e => {
             setReverse(e.target.checked)
           }}
@@ -2110,7 +2114,7 @@ export default function ContactList() {
       <label>
         <input
           type="checkbox"
-          value={reverse}
+          checked={reverse}
           onChange={e => {
             setReverse(e.target.checked)
           }}
