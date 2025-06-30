@@ -213,9 +213,14 @@ Les props et l'état d'un composant sont des [instantanés](learn/state-as-a-sna
 
 Vous pouvez considérer les props et les valeurs d'état local comme des instantanés qui sont mis à jour après le rendu.  C'est pourquoi vous ne modifiez pas directement les props et variables d'état : vous passez plutôt de nouvelles props, et utilisez les fonctions de mise à jour fournies pour indiquer à React que l'état a besoin d'être mis à jour en vue du prochain rendu du composant.
 
+<<<<<<< HEAD
 ### Ne modifiez pas directement les props {/*props*/}
 
 Les props sont immuables parce que si vous les mutiez, l'application produirait un résultat incohérent qui serait difficile à déboguer, dans la mesure où il pourrait marcher ou non suivant les circonstances.
+=======
+### Don't mutate Props {/*props*/}
+Props are immutable because if you mutate them, the application will produce inconsistent output, which can be hard to debug as it may or may not work depending on the circumstances.
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 
 ```js {2}
 function Post({ item }) {
@@ -316,7 +321,11 @@ function useIconStyle(icon) {
 }
 ```
 
+<<<<<<< HEAD
 Si vous mutiez les arguments des Hooks, la mémoïsation du Hook personnalisé s'effrondrerait, il est donc important d'éviter ça.
+=======
+If you were to mutate the Hook's arguments, the custom hook's memoization will become incorrect,  so it's important to avoid doing that.
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 
 ```js {4}
 style = useIconStyle(icon);         // `style` est mémoïsé sur base de `icon`
@@ -336,7 +345,11 @@ Pour les mêmes raisons, il est important de ne pas modifier les valeurs renvoy�
 
 ## Les valeurs sont immuables une fois passées à JSX {/*values-are-immutable-after-being-passed-to-jsx*/}
 
+<<<<<<< HEAD
 Ne mutez pas les valeurs que vous avez passées à JSX.  Déplacez la mutation en amont de la création du JSX.
+=======
+Don't mutate values after they've been used in JSX. Move the mutation to before the JSX is created.
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 
 Lorsque vous utilisez du JSX dans une expression, React évalue le JSX avant que le composant ne termine son rendu.  Ça signifie que la mutation ultérieure de valeurs, après qu'elles ont été exploitées par JSX, peut produire des UI obsolètes, et React ne saura pas qu'il doit mettre à jour le résultat du composant.
 

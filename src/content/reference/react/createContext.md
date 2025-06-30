@@ -39,14 +39,22 @@ const ThemeContext = createContext('light');
 
 `createContext` renvoie un objet représentant le contexte.
 
+<<<<<<< HEAD
 **L'objet contexte lui-même ne contient aucune information.** Il représente _quel_ contexte les autres composants lisent ou fournissent. Vous utiliserez habituellement [`SomeContext.Provider`](#provider) dans les composants au-dessus afin de spécifier la valeur du contexte, et vous appellerez [`useContext(SomeContext)`](/reference/react/useContext) dans les composants en-dessous afin de lire cette valeur. L'objet contexte a quelques propriétés :
 
 * `SomeContext.Provider` vous permet de fournir la valeur du contexte aux composants enfants.
 * `SomeContext.Consumer` est une façon alternative rarement utilisée de lire la valeur du contexte.
+=======
+**The context object itself does not hold any information.** It represents _which_ context other components read or provide. Typically, you will use [`SomeContext`](#provider) in components above to specify the context value, and call [`useContext(SomeContext)`](/reference/react/useContext) in components below to read it. The context object has a few properties:
+
+* `SomeContext` lets you provide the context value to components.
+* `SomeContext.Consumer` is an alternative and rarely used way to read the context value.
+* `SomeContext.Provider` is a legacy way to provide the context value before React 19.
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 
 ---
 
-### `SomeContext.Provider` {/*provider*/}
+### `SomeContext` Provider {/*provider*/}
 
 Enveloppez vos composants dans un fournisseur de contexte afin de définir la valeur de ce contexte pour tous les composants enveloppés :
 
@@ -55,12 +63,20 @@ function App() {
   const [theme, setTheme] = useState('light');
   // ...
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext value={theme}>
       <Page />
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 ```
+
+<Note>
+
+Starting in React 19, you can render `<SomeContext>` as a provider. 
+
+In older versions of React, use `<SomeContext.Provider>`.
+
+</Note>
 
 #### Props {/*provider-props*/}
 
@@ -84,7 +100,13 @@ function Button() {
   );
 }
 ```
+<<<<<<< HEAD
 Bien que cette ancienne méthode fonctionne toujours, **privilégiez la lecture d'un contexte à l'aide de [`useContext()`](/reference/react/useContext) dans du nouveau code :**
+=======
+
+Although this older way still works, **newly written code should read context with [`useContext()`](/reference/react/useContext) instead:**
+
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 ```js
 function Button() {
   // ✅ Méthode recommandée
@@ -145,11 +167,11 @@ function App() {
   // ...
 
   return (
-    <ThemeContext.Provider value={theme}>
-      <AuthContext.Provider value={currentUser}>
+    <ThemeContext value={theme}>
+      <AuthContext value={currentUser}>
         <Page />
-      </AuthContext.Provider>
-    </ThemeContext.Provider>
+      </AuthContext>
+    </ThemeContext>
   );
 }
 ```
@@ -192,11 +214,11 @@ import { ThemeContext, AuthContext } from './Contexts.js';
 function App() {
   // ...
   return (
-    <ThemeContext.Provider value={theme}>
-      <AuthContext.Provider value={currentUser}>
+    <ThemeContext value={theme}>
+      <AuthContext value={currentUser}>
         <Page />
-      </AuthContext.Provider>
-    </ThemeContext.Provider>
+      </AuthContext>
+    </ThemeContext>
   );
 }
 ```
@@ -215,6 +237,12 @@ Un code comme celui-ci spécifie la *valeur par défaut* du contexte :
 const ThemeContext = createContext('light');
 ```
 
+<<<<<<< HEAD
 Cette valeur ne change jamais. React utilise cette valeur uniquement comme une valeur de secours si aucun fournisseur correspondant n'est trouvé au-dessus du composant lecteur.
 
 Pour mettre à jour le contexte au fil du temps, [intégrez un état local et enveloppez vos composants avec un fournisseur de contexte](/reference/react/useContext#updating-data-passed-via-context).
+=======
+This value never changes. React only uses this value as a fallback if it can't find a matching provider above.
+
+To make context change over time, [add state and wrap components in a context provider.](/reference/react/useContext#updating-data-passed-via-context)
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619

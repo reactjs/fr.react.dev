@@ -1,14 +1,24 @@
 ---
 title: "'use client'"
+<<<<<<< HEAD
 titleForTitleTag: "Directive 'use client'"
 canary: true
+=======
+titleForTitleTag: "'use client' directive"
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 ---
 
-<Canary>
+<RSC>
 
+<<<<<<< HEAD
 `'use client'` n'est utile que si vous [utilisez React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) ou créez une bibliothèque compatible avec eux.
 
 </Canary>
+=======
+`'use client'` is for use with [React Server Components](/reference/rsc/server-components).
+
+</RSC>
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 
 
 <Intro>
@@ -42,7 +52,11 @@ export default function RichTextEditor({ timestamp, text }) {
 }
 ```
 
+<<<<<<< HEAD
 Lorsqu'un fichier marqué avec `'use client'` est importé par un Composant Serveur, [les *bundlers* compatibles](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) traiteront l'import comme un « point de césure » entre le code côté serveur et le code côté client.
+=======
+When a file marked with `'use client'` is imported from a Server Component, [compatible bundlers](/learn/start-a-new-react-project#full-stack-frameworks) will treat the module import as a boundary between server-run and client-run code.
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 
 En tant que dépendances de `RichTextEditor`, `formatDate` et `Button` seront également évaluées côté client, indépendamment de la présence d'une directive `'use client'` dans le module qui les déclare.  Notez qu'un même module peut être évalué tant côté serveur lorsqu'il est importé par du code côté serveur, que côté client lorsqu'il est importé par du code côté client.
 
@@ -261,7 +275,30 @@ Par souci de simplicité, nous parlons ici des Composants Serveur, mais les mêm
 
 ### Types sérialisables renvoyés par les Composants Serveur {/*serializable-types*/}
 
+<<<<<<< HEAD
 Les types de props sérialisables comprennent :
+=======
+Serializable props include:
+* Primitives
+	* [string](https://developer.mozilla.org/en-US/docs/Glossary/String)
+	* [number](https://developer.mozilla.org/en-US/docs/Glossary/Number)
+	* [bigint](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
+	* [boolean](https://developer.mozilla.org/en-US/docs/Glossary/Boolean)
+	* [undefined](https://developer.mozilla.org/en-US/docs/Glossary/Undefined)
+	* [null](https://developer.mozilla.org/en-US/docs/Glossary/Null)
+	* [symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol), only symbols registered in the global Symbol registry via [`Symbol.for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for)
+* Iterables containing serializable values
+	* [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+	* [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+	* [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+	* [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) and [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
+* [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+* Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
+* Functions that are [Server Functions](/reference/rsc/server-functions)
+* Client or Server Component elements (JSX)
+* [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 
 * Les types primitifs
 	* [string](https://developer.mozilla.org/fr/docs/Glossary/String)
