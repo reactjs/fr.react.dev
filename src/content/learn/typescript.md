@@ -11,16 +11,27 @@ TypeScript est une solution populaire d'ajout de définitions de types à des ba
 
 <YouWillLearn>
 
+<<<<<<< HEAD
 * [Comment utiliser TypeScript pour les composants React](/learn/typescript#typescript-with-react-components)
 * [Des exemples de typages avec les Hooks](/learn/typescript#example-hooks)
 * [Les types usuels de `@types/react`](/learn/typescript/#useful-types)
 * [Des ressources pour aller plus loin](/learn/typescript/#further-learning)
+=======
+* [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
+* [Examples of typing with Hooks](/learn/typescript#example-hooks)
+* [Common types from `@types/react`](/learn/typescript#useful-types)
+* [Further learning locations](/learn/typescript#further-learning)
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 </YouWillLearn>
 
 ## Installation {/*installation*/}
 
+<<<<<<< HEAD
 Tous les [frameworks React de qualité reconnue](/learn/start-a-new-react-project#production-grade-react-frameworks) prennent en charge TypeScript. Suivez le guide spécifique à votre framework pour l'installation :
+=======
+All [production-grade React frameworks](/learn/creating-a-react-app#full-stack-frameworks) offer support for using TypeScript. Follow the framework specific guide for installation:
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 - [Next.js](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)
@@ -258,9 +269,9 @@ export default function MyApp() {
   const [theme, setTheme] = useState<Theme>('light');
 
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext value={theme}>
       <MyComponent />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 
@@ -309,9 +320,9 @@ export default function MyApp() {
   const object = useMemo(() => ({ kind: "complex" }), []);
 
   return (
-    <Context.Provider value={object}>
+    <Context value={object}>
       <MyComponent />
-    </Context.Provider>
+    </Context>
   )
 }
 
