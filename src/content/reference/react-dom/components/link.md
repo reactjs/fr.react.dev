@@ -1,14 +1,16 @@
 ---
 link: "<link>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Les extensions de React à `<link>` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `<link>` fonctionne comme [le composant HTML natif du navigateur](/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> e9a7cb1b6ca1659b42d81555ecef0cd554b7a983
 <Intro>
 
 Le [composant natif `<link>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/link) vous permet d'utiliser des ressources externes telles que des feuilles de styles, ou d'annoter le document avec des métadonnées de type lien.
@@ -37,7 +39,11 @@ Pour établir un lien vers des ressources externes telles que des feuilles de st
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<link>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
+=======
+`<link>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> e9a7cb1b6ca1659b42d81555ecef0cd554b7a983
 
 * `rel` : une chaîne de caractères obligatoire. Spécifie la [relation à la ressource](https://developer.mozilla.org/fr/docs/Web/HTML/Attributes/rel). React [traite les liens avec `rel="stylesheet"` différemment](#special-rendering-behavior) des autres liens.
 
@@ -160,9 +166,13 @@ export default function SiteMapPage() {
 
 ### Contrôler la priorisation des feuilles de styles {/*controlling-stylesheet-precedence*/}
 
+<<<<<<< HEAD
 Les feuilles de styles peuvent entrer en conflit, et lorsque c'est le cas, le navigateur favorise celle listée le plus tard dans le document. React vous permet de contrôler l'ordre de vos feuilles de styles avec la prop `precedence`.  Dans cet exemple, deux composants injectent des feuilles de styles, et celle avec la plus forte précédence est injectée plus tard dans le document, même si le composant qui la produit est situé plus tôt.
 
 {/*FIXME: this doesn't appear to actually work -- I guess precedence isn't implemented yet?*/}
+=======
+Stylesheets can conflict with each other, and when they do, the browser goes with the one that comes later in the document. React lets you control the order of stylesheets with the `precedence` prop. In this example, three components render stylesheets, and the ones with the same precedence are grouped together in the `<head>`. 
+>>>>>>> e9a7cb1b6ca1659b42d81555ecef0cd554b7a983
 
 <SandpackWithHTMLOutput>
 
@@ -174,24 +184,35 @@ export default function HomePage() {
     <ShowRenderedHTML>
       <FirstComponent />
       <SecondComponent />
+      <ThirdComponent/>
       ...
     </ShowRenderedHTML>
   );
 }
 
 function FirstComponent() {
-  return <link rel="stylesheet" href="first.css" precedence="high" />;
+  return <link rel="stylesheet" href="first.css" precedence="first" />;
 }
 
 function SecondComponent() {
-  return <link rel="stylesheet" href="second.css" precedence="low" />;
+  return <link rel="stylesheet" href="second.css" precedence="second" />;
+}
+
+function ThirdComponent() {
+  return <link rel="stylesheet" href="third.css" precedence="first" />;
 }
 
 ```
 
 </SandpackWithHTMLOutput>
 
+<<<<<<< HEAD
 ### Dédoublonnement des feuilles de styles {/*deduplicated-stylesheet-rendering*/}
+=======
+Note the `precedence` values themselves are arbitrary and their naming is up to you. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher".
+
+### Deduplicated stylesheet rendering {/*deduplicated-stylesheet-rendering*/}
+>>>>>>> e9a7cb1b6ca1659b42d81555ecef0cd554b7a983
 
 Si vous injectez la même feuille de styles depuis plusieurs composants, React n'injectera qu'un seul `<link>` dans l'en-tête du document.
 

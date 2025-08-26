@@ -72,14 +72,24 @@ function Counter() {
   }
 
   useEffect(() => {
+<<<<<<< HEAD
     document.title = `Vous avez cliqué ${this.state.count} fois`;
+=======
+    document.title = `You clicked ${count} times`;
+>>>>>>> e9a7cb1b6ca1659b42d81555ecef0cd554b7a983
   }, [count]);
 
   return (
     <div>
+<<<<<<< HEAD
       <p>Vous avez cliqué {this.state.count} fois</p>
       <button onClick={this.handleClick}>
         Cliquez ici
+=======
+      <p>You clicked {count} times</p>
+      <button onClick={handleClick}>
+        Click me
+>>>>>>> e9a7cb1b6ca1659b42d81555ecef0cd554b7a983
       </button>
     </div>
   )
