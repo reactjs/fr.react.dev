@@ -8,12 +8,15 @@ Cette page fournit une introduction à React Compiler et explique comment l'essa
 
 </Intro>
 
+<<<<<<< HEAD
 <Wip>
 
 Cette documentation est un travail en cours.  Davantage de documentation est disponible sur le [dépôt du groupe de travail React Compiler](https://github.com/reactwg/react-compiler/discussions) et sera reportée ici lorsqu'elle se stabilisera.
 
 </Wip>
 
+=======
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 <YouWillLearn>
 
 * Comment commencer à utiliser le compilateur
@@ -23,6 +26,7 @@ Cette documentation est un travail en cours.  Davantage de documentation est dis
 </YouWillLearn>
 
 <Note>
+<<<<<<< HEAD
 
 React Compiler est un nouveau compilateur actuellement en beta, qui a été ouvert au public pour obtenir des retours rapides de la communauté. Même s'il est utilisé en production dans des sociétés comme Meta, déployer le compilateur en production pour votre appli dépendra de la santé de votre base de code et de la rigueur avec laquelle vous respectez les [Règles de React](/reference/rules).
 
@@ -38,12 +42,31 @@ Le compilateur est actuellement disponible *via* l'étiquette `beta`, et vous po
 
 <TerminalBlock>
 npm install --save-dev babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta
+=======
+React Compiler is a new compiler currently in RC, that we've open sourced to get feedback from the community. We now recommend everyone to try the compiler and provide feedback.
+
+The latest RC release can be found with the `@rc` tag, and daily experimental releases with `@experimental`.
+</Note>
+
+React Compiler is a new compiler that we've open sourced to get feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
+
+eslint-plugin-react-hooks also includes an [ESLint rule](#installing-eslint-plugin-react-compiler) that surfaces the analysis from the compiler right in your editor. **We strongly recommend everyone use the linter today.** The linter does not require that you have the compiler installed, so you can use it even if you are not ready to try out the compiler.
+
+The compiler is currently released as `rc`, and is available to try out on React 17+ apps and libraries. To install the RC:
+
+<TerminalBlock>
+{`npm install -D babel-plugin-react-compiler@rc eslint-plugin-react-hooks@^6.0.0-rc.1`}
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 </TerminalBlock>
 
 Ou si vous utilisez Yarn :
 
 <TerminalBlock>
+<<<<<<< HEAD
 yarn add --dev babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta
+=======
+{`yarn add -D babel-plugin-react-compiler@rc eslint-plugin-react-hooks@^6.0.0-rc.1`}
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 </TerminalBlock>
 
 Si vous n'utilisez pas encore React 19, merci de consulter [cette section](#using-react-compiler-with-react-17-or-18) pour des instructions complémentaires.
@@ -126,7 +149,11 @@ Du coup, si `expensivelyProcessAReallyLargeArrayOfObjects` était utilisée par 
 
 ### Devrais-je essayer le compilateur ? {/*should-i-try-out-the-compiler*/}
 
+<<<<<<< HEAD
 Veuillez noter que le compilateur est encore en beta et qu'il reste de nombreuses choses à affiner. Même s'il est déjà utilisé en production dans des sociétés telles que Meta, déployer le compilateur en production pour votre appli dépend de l'état de santé de votre base de code et de la rigueur avec laquelle vous respectez les [Règles de React](/reference/rules).
+=======
+The compiler is now in RC and has been tested extensively in production. While it has been used in production at companies like Meta, rolling out the compiler to production for your app will depend on the health of your codebase and how well you've followed the [Rules of React](/reference/rules).
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 
 **Vous n'avez pas à vous précipiter pour utiliser le compilateur dès maintenant.  Vous pouvez parfaitement attendre qu'il atteigne sa version stable avant de l'adopter.**  Ceci dit, nous apprécions les essais à échelle réduite dans vos applis, qui vous permettent de nous [faire des retours](#reporting-issues) afin de nous aider à améliorer le compilateur.
 
@@ -134,6 +161,7 @@ Veuillez noter que le compilateur est encore en beta et qu'il reste de nombreuse
 
 En complément de cette documentation, nous vous conseillons de garder un œil sur le [groupe de travail React Compiler](https://github.com/reactwg/react-compiler) pour y trouver davantage d'informations et des discussions autour du compilateur.
 
+<<<<<<< HEAD
 ### Installer eslint-plugin-react-compiler {/*installing-eslint-plugin-react-compiler*/}
 
 React Compiler alimente également un plugin ESLint.  Le plugin ESLint peut être utilisé **indépendamment** du compilateur, ce qui signifie que vous pouvez tirer parti du plugin ESLint même si vous n'utilisez pas le compilateur.
@@ -171,6 +199,17 @@ module.exports = {
   },
 }
 ```
+=======
+### Installing eslint-plugin-react-hooks {/*installing-eslint-plugin-react-compiler*/}
+
+React Compiler also powers an ESLint plugin. You can try it out by installing eslint-plugin-react-hooks@^6.0.0-rc.1.
+
+<TerminalBlock>
+{`npm install -D eslint-plugin-react-hooks@^6.0.0-rc.1`}
+</TerminalBlock>
+
+See our [editor setup](/learn/editor-setup#linting) guide for more details.
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 
 Le plugin ESLint affichera toute violation des règles de React dans votre éditeur.  Lorsqu'il le fait, ça signifie que le compilateur a évité d'optimiser ce composant ou Hook.  Ça ne pose aucun problème, et le compilateur peut retomber sur ses pieds et continuer à optimiser d'autres composants dans votre base de code.
 
@@ -208,7 +247,7 @@ Si vous démarrez un nouveau projet, vous pouvez activer le compilateur sur la b
 React Compiler donne ses meilleurs résultats avec React 19 RC. Si vous ne pouvez pas migrer vers cette version, vous pouvez installer le paquet complémentaire `react-compiler-runtime` qui permet au code compilé de tourner sur des versions antérieures à la 19.  Gardez toutefois à l'esprit que la version minimale est la 17.
 
 <TerminalBlock>
-npm install react-compiler-runtime@beta
+{`npm install react-compiler-runtime@rc`}
 </TerminalBlock>
 
 Vous aurez également besoin d'ajouter la `target` idoine à votre configuration du compilateur, en utilisant la version majeure de React que vous ciblez :
@@ -243,7 +282,11 @@ Comme pour les applis, il n'est pas nécessaire de compiler 100% de vos composan
 ### Babel {/*usage-with-babel*/}
 
 <TerminalBlock>
+<<<<<<< HEAD
 npm install --save-dev babel-plugin-react-compiler@beta
+=======
+{`npm install babel-plugin-react-compiler@rc`}
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 </TerminalBlock>
 
 Le compilateur inclut un plugin Babel que vous pouvez utiliser dans votre chaîne de build pour exécuter le compilateur.
@@ -299,7 +342,11 @@ Merci de consulter la [documentation de Next.js](https://nextjs.org/docs/app/api
 Installez `vite-plugin-babel` et ajoutez-lui le plugin Babel du compilateur :
 
 <TerminalBlock>
+<<<<<<< HEAD
 npm install --save-dev vite-plugin-babel
+=======
+{`npm install vite-plugin-babel`}
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 </TerminalBlock>
 
 ```js {2,14}
@@ -326,7 +373,11 @@ export default defineConfig({
 
 ### Webpack {/*usage-with-webpack*/}
 
+<<<<<<< HEAD
 Un chargeur Webpack maintenu par la communauté est [désormais disponible ici](https://github.com/SukkaW/react-compiler-webpack).
+=======
+A community webpack loader is [now available here](https://github.com/SukkaW/react-compiler-webpack).
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 
 ### Expo {/*usage-with-expo*/}
 
@@ -362,7 +413,11 @@ React Compiler peut vérifier statiquement la plupart des Règles de React, et �
 
 ### Comment savoir si mes composants ont été optimisés ? {/*how-do-i-know-my-components-have-been-optimized*/}
 
+<<<<<<< HEAD
 [React Devtools](/learn/react-developer-tools) (v5.0+) prend nativement en charge React Compiler et affichera un badge « Memo ✨ » à côté des composants qui ont été optimisés par le compilateur.
+=======
+[React DevTools](/learn/react-developer-tools) (v5.0+) and [React Native DevTools](https://reactnative.dev/docs/react-native-devtools) have built-in support for React Compiler and will display a "Memo ✨" badge next to components that have been optimized by the compiler.
+>>>>>>> c0c955ed1d1c4fe3bf3e18c06a8d121902a01619
 
 ### Quelque chose ne fonctionne plus après la compilation {/*something-is-not-working-after-compilation*/}
 
