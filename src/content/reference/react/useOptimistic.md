@@ -1,14 +1,16 @@
 ---
 title: useOptimistic
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Le Hook `useOptimistic` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
 <Intro>
 
 `useOptimistic` est un Hook React qui vous permet de mettre à jour l'interface utilisateur (UI) de façon optimiste.
@@ -72,39 +74,49 @@ Lorsqu'un utilisateur saisit par exemple un message dans un formulaire puis cliq
 
 
 ```js src/App.js
-import { useOptimistic, useState, useRef } from "react";
+import { useOptimistic, useState, useRef, startTransition } from "react";
 import { deliverMessage } from "./actions.js";
 
-function Thread({ messages, sendMessage }) {
+function Thread({ messages, sendMessageAction }) {
   const formRef = useRef();
-  async function formAction(formData) {
+  function formAction(formData) {
     addOptimisticMessage(formData.get("message"));
     formRef.current.reset();
-    await sendMessage(formData);
+    startTransition(async () => {
+      await sendMessageAction(formData);
+    });
   }
   const [optimisticMessages, addOptimisticMessage] = useOptimistic(
     messages,
     (state, newMessage) => [
-      ...state,
       {
         text: newMessage,
         sending: true
-      }
+      },
+      ...state,
     ]
   );
 
   return (
     <>
+      <form action={formAction} ref={formRef}>
+        <input type="text" name="message" placeholder="Hello!" />
+        <button type="submit">Send</button>
+      </form>
       {optimisticMessages.map((message, index) => (
         <div key={index}>
           {message.text}
           {!!message.sending && <small> (Envoi...)</small>}
         </div>
       ))}
+<<<<<<< HEAD
       <form action={formAction} ref={formRef}>
         <input type="text" name="message" placeholder="(exemple : Salut !)" />
         <button type="submit">Envoyer</button>
       </form>
+=======
+      
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
     </>
   );
 }
@@ -113,11 +125,13 @@ export default function App() {
   const [messages, setMessages] = useState([
     { text: "Coucou toi !", sending: false, key: 1 }
   ]);
-  async function sendMessage(formData) {
+  async function sendMessageAction(formData) {
     const sentMessage = await deliverMessage(formData.get("message"));
-    setMessages((messages) => [...messages, { text: sentMessage }]);
+    startTransition(() => {
+      setMessages((messages) => [{ text: sentMessage }, ...messages]);
+    })
   }
-  return <Thread messages={messages} sendMessage={sendMessage} />;
+  return <Thread messages={messages} sendMessageAction={sendMessageAction} />;
 }
 ```
 
@@ -128,17 +142,5 @@ export async function deliverMessage(message) {
 }
 ```
 
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 
 </Sandpack>
