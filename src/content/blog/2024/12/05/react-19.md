@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 title: "React 19 RC"
 author: L'équipe React
 date: 2024/04/25
@@ -6,16 +7,45 @@ description: React 19 RC est désormais disponible sur npm ! Dans cet article, 
 ---
 
 Le 25 avril 2024 par [l'équipe React](/community/team)
+=======
+title: "React v19"
+author: The React Team
+date: 2024/12/05
+description: React 19 is now available on npm! In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+---
+
+December 05, 2024 by [The React Team](/community/team)
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73:src/content/blog/2024/12/05/react-19.md
 
 ---
+<Note>
+
+### React 19 is now stable! {/*react-19-is-now-stable*/}
+
+Additions since this post was originally shared with the React 19 RC in April:
+
+- **Pre-warming for suspended trees**: see [Improvements to Suspense](/blog/2024/04/25/react-19-upgrade-guide#improvements-to-suspense).
+- **React DOM static APIs**: see [New React DOM Static APIs](#new-react-dom-static-apis).
+
+_The date for this post has been updated to reflect the stable release date._
+
+</Note>
 
 <Intro>
 
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 React 19 RC est désormais disponible sur npm !
 
 </Intro>
 
 Dans notre [guide de migration pour React 19 RC](/blog/2024/04/25/react-19-upgrade-guide), nous avons fourni des instructions pas à pas pour mettre à jour votre appli vers React 19.  Dans cet article, nous allons passer en revue les nouveautés de React 19, et voir comment vous pouvez les adopter.
+=======
+React v19 is now available on npm!
+
+</Intro>
+
+In our [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73:src/content/blog/2024/12/05/react-19.md
 
 - [Quoi de neuf dans React 19](#whats-new-in-react-19)
 - [React Server Components](#react-server-components)
@@ -283,9 +313,13 @@ A component was suspended by an uncached promise. Creating promises inside a Cli
 
 </ConsoleBlockMulti>
 
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 *(« Un composant est suspendu sur une promesse absente du cache.  Nous ne prenons pas encore en charge les promesses créées dans un Composant Client ou dans un Hook, sauf au travers de bibliothèques ou frameworks compatibles avec Suspense. » — NdT)*
 
 Pour corriger ça, vous devez passer une promesse issue d'une bibliothèque ou d'un framework prenant en charge la mise en cache de promesses à destination de Suspense.  Nous prévoyons de livrer à l'avenir des fonctionnalités qui faciliteront la mise en cache de promesses au sein du rendu.
+=======
+To fix, you need to pass a promise from a Suspense powered library or framework that supports caching for promises. In the future we plan to ship features to make it easier to cache promises in render.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73:src/content/blog/2024/12/05/react-19.md
 
 </Note>
 
@@ -313,13 +347,46 @@ function Heading({children}) {
 
 La fonction `use` ne peut être appelée qu'au sein du rendu, comme pour les Hooks. Mais contrairement aux Hooks, `use` peut être appelée conditionnellement.  Nous prévoyons d'ajouter à l'avenir des modes supplémentaires de consommation de ressources lors du rendu grâce à `use`.
 
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 Pour en apprendre davantage, consultez la documentation de [`use`](/reference/react/use).
+=======
+## New React DOM Static APIs {/*new-react-dom-static-apis*/}
+
+We've added two new APIs to `react-dom/static` for static site generation:
+- [`prerender`](/reference/react-dom/static/prerender)
+- [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream)
+
+These new APIs improve on `renderToString` by waiting for data to load for static HTML generation. They are designed to work with streaming environments like Node.js Streams and Web Streams. For example, in a Web Stream environment, you can prerender a React tree to static HTML with `prerender`: 
+
+```js
+import { prerender } from 'react-dom/static';
+
+async function handler(request) {
+  const {prelude} = await prerender(<App />, {
+    bootstrapScripts: ['/main.js']
+  });
+  return new Response(prelude, {
+    headers: { 'content-type': 'text/html' },
+  });
+}
+```
+
+Prerender APIs will wait for all data to load before returning the static HTML stream. Streams can be converted to strings, or sent with a streaming response. They do not support streaming content as it loads, which is supported by the existing [React DOM server rendering APIs](/reference/react-dom/server).
+
+For more information, see [React DOM Static APIs](/reference/react-dom/static).
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73:src/content/blog/2024/12/05/react-19.md
 
 ## React Server Components {/*react-server-components*/}
 
 ### Composants Serveur {/*server-components*/}
 
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 Les Composants Serveur *(React Server Components, ou RSC — NdT)* sont un nouveau type de Composant qui font un rendu anticipé, avant le *bundling*, dans un environnement distinct de votre appli client et d'un serveur SSR. Cet environnement séparé est le « serveur » des Composants Serveur. Les Composants Serveur peuvent n'être exécutés qu'une seule fois au moment du build sur votre serveur de CI, ou peuvent l'être à chaque requête au sein d'un serveur web.
+=======
+Server Components are a new option that allows rendering components ahead of time, before bundling, in an environment separate from your client application or SSR server. This separate environment is the "server" in React Server Components. Server Components can run once at build time on your CI server, or they can be run for each request using a web server.
+
+React 19 includes all of the React Server Components features included from the Canary channel. This means libraries that ship with Server Components can now target React 19 as a peer dependency with a `react-server` [export condition](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#react-server-conditional-exports) for use in frameworks that support the [Full-stack React Architecture](/learn/creating-a-react-app#which-features-make-up-the-react-teams-full-stack-architecture-vision). 
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73:src/content/blog/2024/12/05/react-19.md
 
 React 19 inclut toutes les fonctionnalités de Composants Serveur issues du canal Canari.  Ça signifie que les bibliothèques qui utilisent les Composants Serveur peuvent désormais cibler React 19 comme dépendance de pair avec une [condition d'export](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#react-server-conditional-exports) `react-server` afin d'être utilisables par des frameworks qui prennent en charge [l'architecture Full-stack React](/learn/start-a-new-react-project#which-features-make-up-the-react-teams-full-stack-architecture-vision).
 
@@ -327,7 +394,11 @@ React 19 inclut toutes les fonctionnalités de Composants Serveur issues du cana
 
 #### Comment prendre en charge les Composants Serveur ? {/*how-do-i-build-support-for-server-components*/}
 
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 Même si les Composants Serveur dans React 19 sont stables et ne casseront pas la compatibilité entre les versions majeures, les API sous-jacentes utilisées pour implémenter les Composants Serveur au sein d'un *bundler* ou framework ne suivent pas, elles, le versionnage sémantique et sont susceptibles de casser la compatibilité entre les versions mineures de React 19.x.
+=======
+While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73:src/content/blog/2024/12/05/react-19.md
 
 Pour prendre en charge les Composants Serveur dans un *bundler* ou framework, nous vous conseillons de figer React sur une version spécifique, ou d'utiliser une version Canari.  Nous allons continuer à collaborer avec les *bundlers* et frameworks pour stabiliser les API utilisées pour implémenter les Composants Serveur à l'avenir.
 
@@ -353,7 +424,11 @@ Pour en savoir plus, lisez la documentation des [directives](/reference/rsc/dire
 
 Les Actions Serveur peuvent être créées dans les Composants Serveur et passées comme props à des Composants Client, ou peuvent être directement importées et utilisées dans des Composants Client.
 
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 Pour en apprendre davantage, consultez la documentation des [Actions Serveur](/reference/rsc/server-actions).
+=======
+For more, see the docs for [React Server Actions](/reference/rsc/server-functions).
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73:src/content/blog/2024/12/05/react-19.md
 
 ## Les améliorations de React 19 {/*improvements-in-react-19*/}
 
@@ -374,7 +449,11 @@ Les nouvelles fonctions composants n'ont plus besoin de `forwardRef`, et nous pu
 
 <Note>
 
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 Les `refs` passées aux classes ne sont pas passées comme props puisqu'elles référencent l'instance du composant.
+=======
+`ref`s passed to classes are not passed as props since they reference the component instance.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73:src/content/blog/2024/12/05/react-19.md
 
 </Note>
 
@@ -765,8 +844,12 @@ Dans les précédentes versions, utiliser des éléments personnalisés dans Rea
 - **Côté serveur** : les props passées à un élément personnalisé produisent des attributs si leur type est primitif (ex. `string`, `number`) ou si la valeur est `true`. Les props de type non primitif tels qu’`object`, `symbol`, `function` ainsi que la valeur `false` sont ignorés.
 - **Côté client** : les props qui correspondent à une propriété de l'instance de l'élément personnalisé sont affectées à ces propriétés, à défaut de quoi elles produisent des attributs.
 
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 Merci à [Joey Arhar](https://github.com/josepharhar) pour avoir piloté la conception et l'implémentation de la prise en charge des éléments personnalisés dans React.
 
 ## Comment mettre à jour {/*how-to-upgrade*/}
 
 Consultez le [guide de migration React 19](/blog/2024/04/25/react-19-upgrade-guide) pour des instructions pas à pas et la liste complète des ruptures de compatibilité ascendante et des changements notables.
+=======
+_Note: this post was originally published 04/25/2024 and has been updated to 12/05/2024 with the stable release._
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73:src/content/blog/2024/12/05/react-19.md
