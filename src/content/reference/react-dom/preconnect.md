@@ -1,14 +1,16 @@
 ---
 title: preconnect
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 La fonction `preconnect` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 <Intro>
 
 `preconnect` vous permet de vous connecter en avance à un serveur depuis lequel vous avez l'intention de charger des ressources.
