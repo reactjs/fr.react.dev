@@ -48,10 +48,17 @@ function Greeting({ name }) {
 
 `createElement` renvoie un objet élément React avec quelques propriétés :
 
+<<<<<<< HEAD
 * `type` : le `type` que vous avez passé.
 * `props` : les `props` que vous avez passées, sauf `ref` et `key`. Si le `type` est un composant doté de la propriété historique `type.defaultProps`, alors toute prop manquante ou `undefined` dans `props` prendra sa valeur depuis `type.defaultProps`.
 * `ref` : la `ref` que vous avez passée. Considérée `null` si manquante.
 * `key` : la `key` que vous avez passée, convertie en chaîne de caractères. Considérée `null` si manquante.
+=======
+* `type`: The `type` you have passed.
+* `props`: The `props` you have passed except for `ref` and `key`.
+* `ref`: The `ref` you have passed. If missing, `null`.
+* `key`: The `key` you have passed, coerced to a string. If missing, `null`.
+>>>>>>> f6d762cbbf958ca45bb8d1d011b31e5289e43a3d
 
 En général, vous renverrez l'élément depuis votre composant, ou en ferez l'enfant d'un autre élément. Même si vous pourriez lire les propriétés de l'élément, il vaut mieux traiter tout objet élément comme une boîte noire après sa création, et vous contenter de l'afficher.
 

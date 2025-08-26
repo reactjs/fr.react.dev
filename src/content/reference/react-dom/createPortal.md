@@ -251,7 +251,7 @@ Les portails peuvent vous être utiles si votre racine React n'est qu'une partie
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>Mon appli</title></head>

@@ -52,6 +52,7 @@ Pour finir, rafraîchissez votre page dans le navigateur pour l'afficher dans le
 
 ![React Developer Tools en mode autonome](/images/docs/react-devtools-standalone.png)
 
+<<<<<<< HEAD
 ## Mobile natif (React Native) {/*mobile-react-native*/}
 Les outils de développement React peuvent également être utilisés pour inspecter les applis construites avec [React Native](https://reactnative.dev/).
 
@@ -59,11 +60,15 @@ La façon la plus simple d'utiliser les outils de développement React consiste 
 ```bash
 # Yarn
 yarn global add react-devtools
+=======
+## Mobile (React Native) {/*mobile-react-native*/}
 
-# Npm
-npm install -g react-devtools
-```
+To inspect apps built with [React Native](https://reactnative.dev/), you can use [React Native DevTools](https://reactnative.dev/docs/react-native-devtools), the built-in debugger that deeply integrates React Developer Tools. All features work identically to the browser extension, including native element highlighting and selection.
+>>>>>>> f6d762cbbf958ca45bb8d1d011b31e5289e43a3d
 
+[Learn more about debugging in React Native.](https://reactnative.dev/docs/debugging)
+
+<<<<<<< HEAD
 Ouvrez alors les outils de développement depuis le terminal :
 ```bash
 react-devtools
@@ -74,3 +79,6 @@ react-devtools
 > Essayez de relancer l'appli si les outils de développement ne se connectent toujours pas au bout de quelques secondes.
 
 [En apprendre plus sur le débogage de React Native](https://reactnative.dev/docs/debugging).
+=======
+> For versions of React Native earlier than 0.76, please use the standalone build of React DevTools by following the [Safari and other browsers](#safari-and-other-browsers) guide above.
+>>>>>>> f6d762cbbf958ca45bb8d1d011b31e5289e43a3d
