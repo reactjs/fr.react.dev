@@ -1,8 +1,8 @@
 ---
 meta: "<meta>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Les extensions de React à `<meta>` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `<meta>` fonctionne comme [le composant HTML natif du navigateur](/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
@@ -10,6 +10,8 @@ Les extensions de React à `<meta>` ne sont actuellement disponibles que sur les
 </Canary>
 
 
+=======
+>>>>>>> 2774ddfa0c39b8c2f0563b987dcb90a01ee723cf
 <Intro>
 
 Le [composant natif `<meta>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/meta) vous permet d'ajouter des métadonnées au document ou à des éléments spécifiques.
@@ -38,7 +40,11 @@ Pour ajouter des métadonnées au document, utilisez le [composant natif `<meta>
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<meta>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
+=======
+`<meta>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> 2774ddfa0c39b8c2f0563b987dcb90a01ee723cf
 
 Il est censé utiliser *une et une seule* des props suivantes : `name`, `httpEquiv`, `charset` ou `itemProp`. Le composant `<meta>` a un comportement distinct selon la prop que vous utilisez.
 
