@@ -29,7 +29,19 @@ React-DOM comprend les fonctionnalités qui ne sont prises en charge que pour le
 * [Fonctions côté client](/reference/react-dom/client) - L'API dans `react-dom/client` vous permet d'effectuer le rendu de composants React côté client (dans le navigateur).
 * [Fonctions côté serveur](/reference/react-dom/server) - L'API dans `react-dom/server` vous permet d'effectuer le rendu de composants React côté serveur, vers du HTML.
 
+<<<<<<< HEAD
 ## Les règles de React {/*rules-of-react*/}
+=======
+## React Compiler {/*react-compiler*/}
+
+The React Compiler is a build-time optimization tool that automatically memoizes your React components and values:
+
+* [Configuration](/reference/react-compiler/configuration) - Configuration options for React Compiler.
+* [Directives](/reference/react-compiler/directives) - Function-level directives to control compilation.
+* [Compiling Libraries](/reference/react-compiler/compiling-libraries) - Guide for shipping pre-compiled library code.
+
+## Rules of React {/*rules-of-react*/}
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 React repose sur des idiomes — ou règles — visant à exprimer vos approches de façon facile à comprendre, et à même de produire des applications de grande qualité :
 

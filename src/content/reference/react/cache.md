@@ -3,6 +3,7 @@ title: cache
 canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 * `cache` n'est destinée qu'aux [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). Découvrez quels [frameworks](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) prennent en charge les Composants Serveur.
@@ -10,6 +11,13 @@ canary: true
 * `cache` n'est disponible que dans les canaux de livraison [Canary](/community/versioning-policy#canary-channel) et [Expérimental](/community/versioning-policy#experimental-channel). Assurez-vous d'en comprendre les limitations avant d'utiliser `cache` en production. Apprenez-en davantage sur les [canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
+=======
+<RSC>
+
+`cache` is only for use with [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
+
+</RSC>
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 <Intro>
 
@@ -330,7 +338,11 @@ Toutes ces API proposent de la mémoïsation, mais diffèrent sur ce que vous ch
 
 #### `useMemo` {/*deep-dive-use-memo*/}
 
+<<<<<<< HEAD
 Vous devriez généralement utiliser [`useMemo`](/reference/react/useMemo) pour mettre en cache d'un rendu à l'autre un calcul coûteux dans un Composant Client.  Ça pourrait par exemple mémoïser une transformation de données dans un composant.
+=======
+In general, you should use [`useMemo`](/reference/react/useMemo) for caching an expensive computation in a Client Component across renders. As an example, to memoize a transformation of data within a component.
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 ```jsx {4}
 'use client';
