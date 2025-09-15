@@ -26,7 +26,11 @@ Il y a deux scénarios principaux pour lesquels vous n’avez pas besoin d’Eff
 - **Vous n’avez pas besoin d’Effets pour transformer des données utilisées par le rendu.**  Disons par exemple que vous souhaitez filtrer une liste avant de l’afficher.  Vous pourriez etre tenté·e d’écrire un Effet qui mette à jour une variable d’état lorsque la liste change.  C’est pourtant inefficace.  Lorsque vous mettez à jour l’état, React va d’abord appeler vos fonctions composants pour calculer ce qu’il doit afficher à l’écran.  Puis React va [retranscrire](/learn/render-and-commit) ces modifications auprès du DOM (_phase de “commit”, NdT)_, ce qui mettra l’écran à jour. Ensuite React exécutera vos Effets. Si votre Effet met immédiatement l’état à jour *lui aussi*, ça va tout refaire du début !  Pour éviter des passes de rendu superflues, transformez les données à la racine de vos composants.  Ce code sera automatiquement ré-exécuté dès que vos props ou votre état changera.
 - **Vous n’avez pas besoin d’Effets pour gérer les événements utilisateurs.**  Supposons que vous souhaitez envoyer une requête POST à `/api/buy` et afficher une notification lorsque l’utilisateur achète un produit.  Dans le gestionnaire d’événement clic du bouton Acheter, vous savez précisément pourquoi vous êtes là.  Alors qu’au moment où l’Effet s’exécutera, vous ne saurez pas *ce qu’a fait* l’utilisateur (par exemple, quel bouton il a cliqué).  C’est pourquoi vous traiterez généralement les événements utilisateurs directement au sein des gestionnaires d’événements concernés.
 
+<<<<<<< HEAD
 En revanche, *vous avez besoin* d’Effets pour [synchroniser](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) votre composant avec des systèmes extérieurs.  Par exemple, vous pouvez écrire un Effet qui synchronise un widget basé jQuery avec votre état React.  Vous pouvez aussi charger des données avec les Effets, par exemple pour synchroniser des résultats de recherche avec la requête à jour. Gardez toutefois à l’esprit que les [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) modernes vous fournissent de base des mécanismes de chargement de données plus efficaces que si vous l’écrivez directement dans vos Effets.
+=======
+You *do* need Effects to [synchronize](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) with external systems. For example, you can write an Effect that keeps a jQuery widget synchronized with the React state. You can also fetch data with Effects: for example, you can synchronize the search results with the current search query. Keep in mind that modern [frameworks](/learn/start-a-new-react-project#full-stack-frameworks) provide more efficient built-in data fetching mechanisms than writing Effects directly in your components.
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 Pour vous aider à affiner votre intuition sur ce sujet, examinons ensemble plusieurs cas concrets courants !
 
@@ -94,6 +98,12 @@ function TodoList({ todos, filter }) {
 En général, ça ira très bien comme ça !  Mais peut-être que `getFilteredTodos()` est un peu lente, ou que vous avez *beaucoup* de tâches à filtrer.  Dans un tel cas, vous ne voudrez sans doute pas recalculer `getFilteredTodos()` lorsqu’une autre variable d’état telle que `newTodo` change.
 
 Vous pouvez alors mettre en cache (ou [« mémoïser »](https://fr.wikipedia.org/wiki/M%C3%A9mo%C3%AFsation)) un calcul coûteux en l’enrobant dans un Hook [`useMemo`](/reference/react/useMemo) :
+
+<Note>
+
+[React Compiler](/learn/react-compiler) can automatically memoize expensive calculations for you, eliminating the need for manual `useMemo` in many cases.
+
+</Note>
 
 ```js {5-8}
 import { useMemo, useState } from 'react';
@@ -752,7 +762,11 @@ function SearchResults({ query }) {
 
 La gestion des *race conditions* n’est d’ailleurs pas la seule difficulté lorsqu’on implémente un chargement de données.  Vous aurez peut-être à vous préoccuper de la mise en cache des données (afin qu’en naviguant en arrière vos utilisateurs retrouvent instantanément l’écran précédent), de leur chargement côté serveur (pour que le HTML initial fourni par le serveur contienne déjà les données plutôt qu’un indicateur de chargement), et d’éviter les cascades réseau (afin qu’un composant enfant puisse charger ses données sans devoir attendre que chaque parent ait fini ses chargements).
 
+<<<<<<< HEAD
 **Ces problématiques existent dans toutes les bibliothèques d’UI, pas seulement dans React.  Leur résolution n’est pas chose aisée, c’est pourquoi les [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) modernes fournissent des mécanismes intégrés de chargement de données plus efficaces que du chargement manuel au sein d’Effets.**
+=======
+**These issues apply to any UI library, not just React. Solving them is not trivial, which is why modern [frameworks](/learn/start-a-new-react-project#full-stack-frameworks) provide more efficient built-in data fetching mechanisms than fetching data in Effects.**
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 Si vous n’utilisez pas de framework (et ne voulez pas créer le vôtre) mais aimeriez quand même améliorer l’ergonomie du chargement de données depuis des Effets, envisagez d’extraire votre logique de chargement dans un Hook personnalisé, comme dans l’exemple que voici :
 

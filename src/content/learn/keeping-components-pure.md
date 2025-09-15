@@ -175,7 +175,7 @@ function Cup({ guest }) {
 }
 
 export default function TeaGathering() {
-  let cups = [];
+  const cups = [];
   for (let i = 1; i <= 12; i++) {
     cups.push(<Cup key={i} guest={i} />);
   }
@@ -243,7 +243,7 @@ Le rendu est un *calcul*, il ne devrait pas essayer de « faire » des choses.
 
 ```js src/Clock.js active
 export default function Clock({ time }) {
-  let hours = time.getHours();
+  const hours = time.getHours();
   if (hours >= 0 && hours <= 6) {
     document.getElementById('time').className = 'night';
   } else {
@@ -305,7 +305,7 @@ Vous pouvez corriger ce composant en calculant le `className` puis en l'incluant
 
 ```js src/Clock.js active
 export default function Clock({ time }) {
-  let hours = time.getHours();
+  const hours = time.getHours();
   let className;
   if (hours >= 0 && hours <= 6) {
     className = 'night';
@@ -604,14 +604,20 @@ export default function StoryTray({ stories }) {
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
+<<<<<<< HEAD
 let initialStories = [
   {id: 0, label: "L’histoire d’Ankit" },
   {id: 1, label: "L’histoire de Clara" },
+=======
+const initialStories = [
+  {id: 0, label: "Ankit's Story" },
+  {id: 1, label: "Taylor's Story" },
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 ];
 
 export default function App() {
-  let [stories, setStories] = useState([...initialStories])
-  let time = useTime();
+  const [stories, setStories] = useState([...initialStories])
+  const time = useTime();
 
   // HACK: évite à la mémoire d'être trop phagocytée pendant
   // que vous lisez les docs.  On enfreint ici nos propres
@@ -701,14 +707,20 @@ export default function StoryTray({ stories }) {
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
+<<<<<<< HEAD
 let initialStories = [
   {id: 0, label: "L’histoire d’Ankit" },
   {id: 1, label: "L’histoire de Clara" },
+=======
+const initialStories = [
+  {id: 0, label: "Ankit's Story" },
+  {id: 1, label: "Taylor's Story" },
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 ];
 
 export default function App() {
-  let [stories, setStories] = useState([...initialStories])
-  let time = useTime();
+  const [stories, setStories] = useState([...initialStories])
+  const time = useTime();
 
   // HACK: évite à la mémoire d'être trop phagocytée pendant
   // que vous lisez les docs.  On enfreint ici nos propres
@@ -769,8 +781,13 @@ Une autre approche consisterait à créer un *nouveau* tableau (en partant de ce
 
 ```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
+<<<<<<< HEAD
   // Copier le tableau !
   let storiesToDisplay = stories.slice();
+=======
+  // Copy the array!
+  const storiesToDisplay = stories.slice();
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
   // N'affecte plus le tableau d'origine :
   storiesToDisplay.push({
@@ -794,14 +811,20 @@ export default function StoryTray({ stories }) {
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
+<<<<<<< HEAD
 let initialStories = [
   {id: 0, label: "L’histoire d’Ankit" },
   {id: 1, label: "L’histoire de Clara" },
+=======
+const initialStories = [
+  {id: 0, label: "Ankit's Story" },
+  {id: 1, label: "Taylor's Story" },
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 ];
 
 export default function App() {
-  let [stories, setStories] = useState([...initialStories])
-  let time = useTime();
+  const [stories, setStories] = useState([...initialStories])
+  const time = useTime();
 
   // HACK: évite à la mémoire d'être trop phagocytée pendant
   // que vous lisez les docs.  On enfreint ici nos propres
