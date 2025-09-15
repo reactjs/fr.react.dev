@@ -461,11 +461,11 @@ export default function TaskApp() {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
   // ...
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         ...
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 ```
@@ -509,9 +509,15 @@ export default function TaskApp() {
   }
 
   return (
+<<<<<<< HEAD
     <TasksContext.Provider value={tasks}>
       <TasksDispatchContext.Provider value={dispatch}>
         <h1>Jour de repos à Kyoto</h1>
+=======
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
+        <h1>Day off in Kyoto</h1>
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
         <AddTask
           onAddTask={handleAddTask}
         />
@@ -520,8 +526,8 @@ export default function TaskApp() {
           onChangeTask={handleChangeTask}
           onDeleteTask={handleDeleteTask}
         />
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -676,16 +682,26 @@ Vous cesserez d'utiliser les props dans la prochaine étape.
 Vous n'avez désormais plus besoin de passer la liste de tâches ou les gestionnaires d'événements à travers l'arbre à coups de props :
 
 ```js {4-5}
+<<<<<<< HEAD
 <TasksContext.Provider value={tasks}>
   <TasksDispatchContext.Provider value={dispatch}>
     <h1>Jour de repos à Kyoto</h1>
+=======
+<TasksContext value={tasks}>
+  <TasksDispatchContext value={dispatch}>
+    <h1>Day off in Kyoto</h1>
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
     <AddTask />
     <TaskList />
-  </TasksDispatchContext.Provider>
-</TasksContext.Provider>
+  </TasksDispatchContext>
+</TasksContext>
 ```
 
+<<<<<<< HEAD
 Au lieu de ça, un composant qui a besoin de la liste de tâches peut la lire depuis le `TaskContext` :
+=======
+Instead, any component that needs the task list can read it from the `TasksContext`:
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 ```js {2}
 export default function TaskList() {
@@ -730,13 +746,19 @@ export default function TaskApp() {
   );
 
   return (
+<<<<<<< HEAD
     <TasksContext.Provider value={tasks}>
       <TasksDispatchContext.Provider value={dispatch}>
         <h1>Jour de repos à Kyoto</h1>
+=======
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
+        <h1>Day off in Kyoto</h1>
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
         <AddTask />
         <TaskList />
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -921,11 +943,11 @@ export function TasksProvider({ children }) {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         {children}
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 ```
@@ -963,11 +985,11 @@ export function TasksProvider({ children }) {
   );
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         {children}
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -1174,11 +1196,11 @@ export function TasksProvider({ children }) {
   );
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         {children}
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
