@@ -23,7 +23,7 @@ Voici un composant qui affiche une image de sculpture. Cliquer sur le bouton «�
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [7]}}
 import { sculptureList } from './data.js';
 
 export default function Gallery() {
@@ -1227,7 +1227,7 @@ Lorsque vous tapez au clavier quelque chose dans les champs de saisie, rien n'y 
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [6]}}
 export default function Form() {
   let firstName = '';
   let lastName = '';
@@ -1335,7 +1335,7 @@ Y'a-t-il des limitations sur les *endroits* où un Hook peut être appelé ? Ce
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [9]}}
 import { useState } from 'react';
 
 export default function FeedbackForm() {
@@ -1450,7 +1450,11 @@ Si votre *linter* est [configuré pour React](/learn/editor-setup#linting), vous
 
 #### Retirer l'état superflu {/*remove-unnecessary-state*/}
 
+<<<<<<< HEAD
 Dans cet exemple, cliquer sur le bouton devrait demander à l'utilisateur son nom et le saluer dans une alerte.  Vous avez essayé de recourir à un état pour vous souvenir du nom, mais pour une raison ou une autre ça affiche toujours « Bonjour ! ».
+=======
+When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason the first time it shows "Hello, !", and then "Hello, [name]!" with the previous input every time after.
+>>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
 
 Pour corriger ce code, retirez la variable d'état superflue. (Nous explorerons les [raisons de ce problème](/learn/state-as-a-snapshot) prochainement.)
 

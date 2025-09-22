@@ -202,7 +202,7 @@ Il y a deux scénarios principaux pour lesquels vous n’avez pas besoin d’Eff
 
 Par exemple, vous n’avez pas besoin d’un Effet pour ajuster un état sur la base d’un autre état :
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Clara');
   const [lastName, setLastName] = useState('Luciani');
