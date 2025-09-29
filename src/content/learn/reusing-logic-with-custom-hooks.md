@@ -821,7 +821,11 @@ export default function ChatRoom({ roomId }) {
   // ...
 ```
 
+<<<<<<< HEAD
 puis la transmettez à un autre Hook :
+=======
+and passing it as an input to another Hook:
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 ```js {6}
 export default function ChatRoom({ roomId }) {
@@ -838,11 +842,17 @@ Chaque fois que votre composant `ChatRoom` refait un rendu, il passe les derniè
 
 ### Transmettre des gestionnaires d’événements à des Hooks personnalisés {/*passing-event-handlers-to-custom-hooks*/}
 
-<Wip>
+<Canary>
 
+<<<<<<< HEAD
 Cette section décrit une **API expérimentale qui n’a pas encore été livrée** dans une version stable de React.
+=======
+**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
-</Wip>
+[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
+
+</Canary>
 
 Lorsque vous commencerez à utiliser `useChatRoom` dans davantage de composants, vous souhaiterez peut-être que ces derniers puissent personnaliser son comportement. Par exemple, pour l’instant la logique de traitement quand un message arrive est codée en dur à l’intérieur du Hook :
 
@@ -986,7 +996,7 @@ export default function ChatRoom({ roomId }) {
 
 ```js src/useChatRoom.js
 import { useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { createConnection } from './chat.js';
 
 export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
@@ -1071,8 +1081,8 @@ export function showNotification(message, theme = 'dark') {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1334,7 +1344,11 @@ export function useOnlineStatus() {
 
 Dans l’exemple ci-dessus, `useOnlineStatus` est implémenté avec le duo [`useState`](/reference/react/useState) et [`useEffect`](/reference/react/useEffect). Cependant, ce n’est pas la meilleure solution possible. Elle ne tient pas compte d’un certain nombre de cas limites. Par exemple, elle suppose que lorsque le composant est monté, `isOnline` est déjà à `true`, mais ça peut être faux si le réseau est d’entrée de jeu hors-ligne. Vous pouvez utiliser l’API du navigateur [`navigator.onLine`](https://developer.mozilla.org/fr/docs/Web/API/Navigator/onLine) pour vérifier ça, mais l’utiliser directement ne marchera pas sur le serveur pour générer le HTML initial. En bref, ce code peut être amélioré.
 
+<<<<<<< HEAD
 Heureusement, React 18 inclut une API dédiée appelée [`useSyncExternalStore`](/reference/react/useSyncExternalStore) qui se charge de tous ces problèmes pour vous. Voici votre Hook personnalisé `useOnlineStatus` réécrit pour en tirer avantage :
+=======
+React includes a dedicated API called [`useSyncExternalStore`](/reference/react/useSyncExternalStore) which takes care of all of these problems for you. Here is your `useOnlineStatus` Hook, rewritten to take advantage of this new API:
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 <Sandpack>
 
@@ -1420,10 +1434,36 @@ C’est une raison pour laquelle il est souvent utile d’enrober des effets dan
 
 #### React fournira-t-il une solution intégrée pour le chargement de données ? {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
 
+<<<<<<< HEAD
 Nous travaillons encore sur les détails, mais nous pensons qu’à l’avenir, vous pourrez charger des données comme ceci :
 
 ```js {1,4,6}
 import { use } from 'react'; // Pas encore disponible !
+=======
+Today, with the [`use`](/reference/react/use#streaming-data-from-server-to-client) API, data can be read in render by passing a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to `use`:
+
+```js {1,4,11}
+import { use, Suspense } from "react";
+
+function Message({ messagePromise }) {
+  const messageContent = use(messagePromise);
+  return <p>Here is the message: {messageContent}</p>;
+}
+
+export function MessageContainer({ messagePromise }) {
+  return (
+    <Suspense fallback={<p>⌛Downloading message...</p>}>
+      <Message messagePromise={messagePromise} />
+    </Suspense>
+  );
+}
+```
+
+We're still working out the details, but we expect that in the future, you'll write data fetching like this:
+
+```js {1,4,6}
+import { use } from 'react';
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 function ShippingForm({ country }) {
   const cities = use(fetch(`/api/cities?country=${country}`));
@@ -1648,7 +1688,7 @@ export default function App() {
 
 ```js src/useFadeIn.js active
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export function useFadeIn(ref, duration) {
   const [isRunning, setIsRunning] = useState(true);
@@ -1701,8 +1741,8 @@ html, body { min-height: 300px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -2082,7 +2122,6 @@ export function useCounter(delay) {
 <Sandpack>
 
 ```js
-import { useState } from 'react';
 import { useCounter } from './useCounter.js';
 
 export default function Counter() {
@@ -2191,8 +2230,8 @@ Il semble que votre Hook `useInterval` accepte un écouteur d’événements com
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -2235,7 +2274,7 @@ export function useCounter(delay) {
 
 ```js src/useInterval.js
 import { useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export function useInterval(onTick, delay) {
   useEffect(() => {
@@ -2262,8 +2301,8 @@ Avec ce changement, les deux intervalles fonctionnent comme attendu et n’inter
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -2307,7 +2346,7 @@ export function useCounter(delay) {
 
 ```js src/useInterval.js active
 import { useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export function useInterval(callback, delay) {
   const onTick = useEffectEvent(callback);

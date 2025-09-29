@@ -202,7 +202,7 @@ Il y a deux scénarios principaux pour lesquels vous n’avez pas besoin d’Eff
 
 Par exemple, vous n’avez pas besoin d’un Effet pour ajuster un état sur la base d’un autre état :
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Clara');
   const [lastName, setLastName] = useState('Luciani');
@@ -456,8 +456,8 @@ Ce n’est pas idéal.  Vous voulez vous reconnecter au serveur de discussion se
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -472,7 +472,7 @@ Ce n’est pas idéal.  Vous voulez vous reconnecter au serveur de discussion se
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 

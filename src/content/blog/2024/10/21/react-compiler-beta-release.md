@@ -10,6 +10,14 @@ Le 21 octobre 2024 par [Lauren Tan](https://twitter.com/potetotes).
 
 ---
 
+<Note>
+
+### React Compiler is now in RC! {/*react-compiler-is-now-in-rc*/}
+
+Please see the [RC blog post](/blog/2025/04/21/react-compiler-rc) for details.
+
+</Note>
+
 <Intro>
 
 L'équipe React est heureuse de partager avec vous les annonces suivantes :
@@ -64,11 +72,19 @@ Ou si vous utilisez Yarn :
 yarn add -D eslint-plugin-react-compiler@beta
 </TerminalBlock>
 
+<<<<<<< HEAD
 Après l'installation vous pouvez activer le *linter* en [l'ajoutant à votre configuration ESLint](/learn/react-compiler#installing-eslint-plugin-react-compiler). Utiliser ce *linter* vous aidera à identifier les infractions aux Règles de React, ce qui facilitera l'adoption du compilateur lorsqu'il sera officiellement prêt.
+=======
+After installation you can enable the linter by [adding it to your ESLint config](/learn/react-compiler/installation#eslint-integration). Using the linter helps identify Rules of React breakages, making it easier to adopt the compiler when it's fully released.
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 ## Rétrocompatibilité {/*backwards-compatibility*/}
 
+<<<<<<< HEAD
 React Compiler produit du code qui s'appuie sur des API à l'exécution apparues avec React 19, mais le compilateur prend désormais également en charge les projets utilisant React 17 et 18.  Si vous n'êtes pas encore sur React 19, la version beta vous permet d'essayer néanmoins React Compiler en spécifiant une `target` minimum dans votre configuration de compilation, et en ajoutant `react-compiler-runtime` comme dépendance. [Vous trouverez la documentation associée ici](/learn/react-compiler#using-react-compiler-with-react-17-or-18).
+=======
+React Compiler produces code that depends on runtime APIs added in React 19, but we've since added support for the compiler to also work with React 17 and 18. If you are not on React 19 yet, in the Beta release you can now try out React Compiler by specifying a minimum `target` in your compiler config, and adding `react-compiler-runtime` as a dependency. [You can find docs on this here](/reference/react-compiler/configuration#react-17-18).
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 ## Utiliser React Compiler dans des bibliothèques {/*using-react-compiler-in-libraries*/}
 
@@ -78,7 +94,11 @@ React Compiler peut donc être utilisé pour compiler des bibliothèques. Dans l
 
 Puisque votre code est pré-compilé, les utilisateur·rices de votre bibliothèque n'auront pas besoin d'activer le compilateur pour bénéficier de la mémoïsation automatique appliquée à votre bibliothèque.  Si celle-ci s'adresse à des applications pas forcément encore sur React 19, pensez à préciser une `target` minimum et à ajouter `react-compiler-runtime` comme dépendance explicite de production.  Ce module d'exécution utilisera une implémentation correcte des API selon la version de React de l'application, et émulera les API manquantes lorsque c'est nécessaire.
 
+<<<<<<< HEAD
 [Vous trouverez la documentation associée ici](/learn/react-compiler#using-the-compiler-on-libraries).
+=======
+[You can find more docs on this here.](/reference/react-compiler/compiling-libraries)
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 ## Ouverture du groupe de travail React Compiler au public {/*opening-up-react-compiler-working-group-to-everyone*/}
 
