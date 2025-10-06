@@ -407,14 +407,20 @@ Si les données de votre source sont modifiables, votre fonction `getSnapshot` d
 
 La fonction `subscribe` est définie *au sein* du composant, du coup elle diffère à chaque rendu :
 
-```js {4-7}
+```js {2-5}
 function ChatIndicator() {
+<<<<<<< HEAD
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // 🚩 Toujours une fonction différente, donc React se réabonne à chaque rendu
+=======
+  // 🚩 Always a different function, so React will resubscribe on every re-render
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
   function subscribe() {
     // ...
   }
+  
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
 }
@@ -422,28 +428,39 @@ function ChatIndicator() {
 
 React se réabonnera à votre source de données dès que vous passez une fonction `subscribe` différente d'un rendu à l'autre.  Si ça nuit aux performances et que vous souhaitez éviter un réabonnement, sortez la fonction `subscribe` du composant :
 
-```js {6-9}
-function ChatIndicator() {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
+```js {1-4}
+// ✅ Always the same function, so React won't need to resubscribe
+function subscribe() {
   // ...
 }
 
+<<<<<<< HEAD
 // ✅ Toujours la même fonction, donc React ne se réabonne pas
 function subscribe() {
+=======
+function ChatIndicator() {
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
   // ...
 }
 ```
 
 Vous pouvez aussi enrober `subscribe` dans un appel à [`useCallback`](/reference/react/useCallback) pour ne vous réabonner que lorsqu'une dépendance change :
 
-```js {4-8}
+```js {2-5}
 function ChatIndicator({ userId }) {
+<<<<<<< HEAD
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ✅ Même fonction tant que userId ne change pas
+=======
+  // ✅ Same function as long as userId doesn't change
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
   const subscribe = useCallback(() => {
     // ...
   }, [userId]);
+  
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
 }

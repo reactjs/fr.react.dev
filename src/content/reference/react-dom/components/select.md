@@ -36,7 +36,11 @@ Pour afficher une liste de sélection, utilisez le [composant natif `<select>` d
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<select>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
+=======
+`<select>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 
 Une liste de sélection peut devenir un [champ contrôlé](#controlling-a-select-box-with-a-state-variable) en lui passant une prop `value` :
 
