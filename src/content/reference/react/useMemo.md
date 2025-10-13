@@ -12,6 +12,12 @@ const cachedValue = useMemo(calculateValue, dependencies)
 
 </Intro>
 
+<Note>
+
+[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useMemo` calls. You can use the compiler to handle memoization automatically.
+
+</Note>
+
 <InlineToc />
 
 ---
@@ -144,7 +150,11 @@ Remarquez aussi que mesurer la performance en développement ne vous donnera pas
 
 #### Devriez-vous mettre des `useMemo` partout ? {/*should-you-add-usememo-everywhere*/}
 
+<<<<<<< HEAD
 Si votre appli est comme ce site, l'essentiel des interactions ont un impact assez large (genre remplacer une page ou une section entière), de sorte que la mémoïsation est rarement nécessaire.  En revanche, si votre appli est plus comme un éditeur de dessin, et que la plupart des interactions sont granulaires (comme déplacer des formes), alors la mémoïsation est susceptible de beaucoup vous aider.
+=======
+If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
+>>>>>>> 0d05d9b6ef0f115ec0b96a2726ab0699a9ebafe1
 
 Optimiser avec `useMemo` n'est utile que dans trois grands cas de figure :
 
@@ -714,7 +724,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js src/List.js
+```js {expectedErrors: {'react-compiler': [5, 6]}} src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -852,7 +862,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js src/List.js
+```js {expectedErrors: {'react-compiler': [5, 6]}} src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -1104,11 +1114,14 @@ function ChatRoom({ roomId }) {
   }, [roomId]); // ✅ Ne change que si `roomId` change
 
   useEffect(() => {
-    const options = createOptions();
     const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
+<<<<<<< HEAD
   }, [options]); // ✅ Ne change que si `options` change
+=======
+  }, [options]); // ✅ Only changes when options changes
+>>>>>>> 0d05d9b6ef0f115ec0b96a2726ab0699a9ebafe1
   // ...
 ```
 
@@ -1125,7 +1138,7 @@ function ChatRoom({ roomId }) {
       serverUrl: 'https://localhost:1234',
       roomId: roomId
     }
-    
+
     const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
@@ -1366,7 +1379,7 @@ Lorsque vous aurez repéré la dépendance qui casse la mémoïsation, vous pouv
 
 Imaginez que le composant `Chart` utilisé ci-dessous soit enrobé par [`memo`](/reference/react/memo).  Vous souhaitez éviter des rendus superflus de chaque `Chart` dans la liste lorsque le composant `ReportList` refait son rendu.  Cependant, vous ne pouvez pas appeler `useMemo` au sein de la boucle :
 
-```js {5-11}
+```js {expectedErrors: {'react-compiler': [6]}} {5-11}
 function ReportList({ items }) {
   return (
     <article>

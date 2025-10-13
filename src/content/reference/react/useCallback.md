@@ -12,6 +12,12 @@ const cachedFn = useCallback(fn, dependencies)
 
 </Intro>
 
+<Note>
+
+[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useCallback` calls. You can use the compiler to handle memoization automatically.
+
+</Note>
+
 <InlineToc />
 
 ---
@@ -46,7 +52,11 @@ export default function ProductPage({ productId, referrer, theme }) {
 
 Lors du rendu initial, `useCallback` renvoie la fonction `fn` que vous venez de lui passer.
 
+<<<<<<< HEAD
 Lors des rendus ultérieurs, il vous renverra soit la fonction `fn` mise en cache jusqu'ici (si les dépendances n'ont pas changé), soit la fonction `fn` que vous venez de lui passer pour le rendu courant.
+=======
+During subsequent renders, it will either return an already stored `fn` function from the last render (if the dependencies haven't changed), or return the `fn` function you have passed during this render.
+>>>>>>> 0d05d9b6ef0f115ec0b96a2726ab0699a9ebafe1
 
 #### Limitations {/*caveats*/}
 
@@ -203,8 +213,13 @@ La différence réside dans *la valeur* qu'ils vous permettent de mettre en cach
 
 Si vous êtes déjà à l'aise avec [`useMemo`](/reference/react/useMemo), vous trouverez peut-être pratique de penser à `useCallback` comme un équivalent du code suivant :
 
+<<<<<<< HEAD
 ```js
 // Implémentation simplifiée (code interne de React)
+=======
+```js {expectedErrors: {'react-compiler': [3]}}
+// Simplified implementation (inside React)
+>>>>>>> 0d05d9b6ef0f115ec0b96a2726ab0699a9ebafe1
 function useCallback(fn, dependencies) {
   return useMemo(() => fn, dependencies);
 }
@@ -218,9 +233,15 @@ function useCallback(fn, dependencies) {
 
 #### Devriez-vous mettre des `useCallback` partout ? {/*should-you-add-usecallback-everywhere*/}
 
+<<<<<<< HEAD
 Si votre appli est comme ce site, l'essentiel des interactions ont un impact assez large (genre remplacer une page ou une section entière), de sorte que la mémoïsation est rarement nécessaire.  En revanche, si votre appli est plus comme un éditeur de dessin, et que la plupart des interactions sont granulaires (comme déplacer des formes), alors la mémoïsation est susceptible de beaucoup vous aider.
 
 Mettre en cache une fonction avec `useCallback` n'est utile que dans deux grands cas de figure :
+=======
+If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
+
+Caching a function with `useCallback` is only valuable in a few cases:
+>>>>>>> 0d05d9b6ef0f115ec0b96a2726ab0699a9ebafe1
 
 - Vous la passez comme prop à un composant enrobé avec [`memo`](/reference/react/memo).  Vous voulez qu'il puisse éviter de refaire son rendu si la valeur n'a pas changé.  En mémoïsant la fonction, vous limitez ses nouveaux rendus aux cas où les dépendances de votre fonction ont en effet changé.
 - La fonction que vous passez est utilisée plus loin comme dépendance par un Hook.  Par exemple, une autre fonction enrobée par `useCallback` en dépend, ou vous en dépendez pour un [`useEffect`](/reference/react/useEffect).
@@ -306,7 +327,7 @@ function post(url, data) {
 }
 ```
 
-```js src/ShippingForm.js
+```js {expectedErrors: {'react-compiler': [7, 8]}} src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -445,7 +466,7 @@ function post(url, data) {
 }
 ```
 
-```js src/ShippingForm.js
+```js {expectedErrors: {'react-compiler': [7, 8]}} src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -862,7 +883,7 @@ Lorsque vous aurez repéré la dépendance qui casse la mémoïsation, vous pouv
 
 Imaginez que le composant `Chart` utilisé ci-dessous soit enrobé par [`memo`](/reference/react/memo).  Vous souhaitez éviter des rendus superflus de chaque `Chart` dans la liste lorsque le composant `ReportList` refait son rendu.  Cependant, vous ne pouvez pas appeler `useCallback` au sein de la boucle :
 
-```js {5-14}
+```js {expectedErrors: {'react-compiler': [6]}} {5-14}
 function ReportList({ items }) {
   return (
     <article>
