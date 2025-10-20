@@ -26,7 +26,11 @@ Il y a deux scénarios principaux pour lesquels vous n’avez pas besoin d’Eff
 - **Vous n’avez pas besoin d’Effets pour transformer des données utilisées par le rendu.**  Disons par exemple que vous souhaitez filtrer une liste avant de l’afficher.  Vous pourriez etre tenté·e d’écrire un Effet qui mette à jour une variable d’état lorsque la liste change.  C’est pourtant inefficace.  Lorsque vous mettez à jour l’état, React va d’abord appeler vos fonctions composants pour calculer ce qu’il doit afficher à l’écran.  Puis React va [retranscrire](/learn/render-and-commit) ces modifications auprès du DOM (_phase de “commit”, NdT)_, ce qui mettra l’écran à jour. Ensuite React exécutera vos Effets. Si votre Effet met immédiatement l’état à jour *lui aussi*, ça va tout refaire du début !  Pour éviter des passes de rendu superflues, transformez les données à la racine de vos composants.  Ce code sera automatiquement ré-exécuté dès que vos props ou votre état changera.
 - **Vous n’avez pas besoin d’Effets pour gérer les événements utilisateurs.**  Supposons que vous souhaitez envoyer une requête POST à `/api/buy` et afficher une notification lorsque l’utilisateur achète un produit.  Dans le gestionnaire d’événement clic du bouton Acheter, vous savez précisément pourquoi vous êtes là.  Alors qu’au moment où l’Effet s’exécutera, vous ne saurez pas *ce qu’a fait* l’utilisateur (par exemple, quel bouton il a cliqué).  C’est pourquoi vous traiterez généralement les événements utilisateurs directement au sein des gestionnaires d’événements concernés.
 
+<<<<<<< HEAD
 En revanche, *vous avez besoin* d’Effets pour [synchroniser](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) votre composant avec des systèmes extérieurs.  Par exemple, vous pouvez écrire un Effet qui synchronise un widget basé jQuery avec votre état React.  Vous pouvez aussi charger des données avec les Effets, par exemple pour synchroniser des résultats de recherche avec la requête à jour. Gardez toutefois à l’esprit que les [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) modernes vous fournissent de base des mécanismes de chargement de données plus efficaces que si vous l’écrivez directement dans vos Effets.
+=======
+You *do* need Effects to [synchronize](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) with external systems. For example, you can write an Effect that keeps a jQuery widget synchronized with the React state. You can also fetch data with Effects: for example, you can synchronize the search results with the current search query. Keep in mind that modern [frameworks](/learn/start-a-new-react-project#full-stack-frameworks) provide more efficient built-in data fetching mechanisms than writing Effects directly in your components.
+>>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 Pour vous aider à affiner votre intuition sur ce sujet, examinons ensemble plusieurs cas concrets courants !
 
@@ -34,7 +38,7 @@ Pour vous aider à affiner votre intuition sur ce sujet, examinons ensemble plus
 
 Supposons que vous ayez un composant avec deux variables d’état : `firstName` et `lastName`.  Vous souhaitez calculer `fullName` en les concaténant.  Par ailleurs, vous aimeriez que `fullName` soit mis à jour dès que `firstName` ou `lastName` change.  Votre première pensée serait peut-être d’ajouter une variable d’état `fullName` et de la mettre à jour dans un Effet :
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Clara');
   const [lastName, setLastName] = useState('Luciani');
@@ -66,7 +70,7 @@ function Form() {
 
 Le composant ci-après calcule `visibleTodos` en partant de sa prop `todos` et en la filtrant selon sa prop `filter`.  Vous pourriez être tenté·e de stocker le résultat dans l’état et de le mettre à jour depuis un Effet :
 
-```js {4-8}
+```js {expectedErrors: {'react-compiler': [7]}} {4-8}
 function TodoList({ todos, filter }) {
   const [newTodo, setNewTodo] = useState('');
 
@@ -94,6 +98,12 @@ function TodoList({ todos, filter }) {
 En général, ça ira très bien comme ça !  Mais peut-être que `getFilteredTodos()` est un peu lente, ou que vous avez *beaucoup* de tâches à filtrer.  Dans un tel cas, vous ne voudrez sans doute pas recalculer `getFilteredTodos()` lorsqu’une autre variable d’état telle que `newTodo` change.
 
 Vous pouvez alors mettre en cache (ou [« mémoïser »](https://fr.wikipedia.org/wiki/M%C3%A9mo%C3%AFsation)) un calcul coûteux en l’enrobant dans un Hook [`useMemo`](/reference/react/useMemo) :
+
+<Note>
+
+[React Compiler](/learn/react-compiler) can automatically memoize expensive calculations for you, eliminating the need for manual `useMemo` in many cases.
+
+</Note>
 
 ```js {5-8}
 import { useMemo, useState } from 'react';
@@ -159,7 +169,7 @@ Remarquez aussi que mesurer la performance en développement ne vous donnera pas
 
 Le composant `ProfilePage` ci-dessous reçoit une prop `userId`.  La page contient un champ de commentaire, et vous utilisez la variable d’état `comment` pour en stocker la valeur.  Un beau jour, vous remarquez un problème : quand vous passez d’un profil à l’autre, l’état `comment` n’est pas réinitialisé.  Du coup, il n’est que trop facile d’envoyer par accident un commentaire au mauvais profil utilisateur.  Pour corriger ça, vous essayez de vider la variable d’état `comment` chaque fois que `userId` change :
 
-```js {4-7}
+```js {expectedErrors: {'react-compiler': [6]}} {4-7}
 export default function ProfilePage({ userId }) {
   const [comment, setComment] = useState('');
 
@@ -203,7 +213,7 @@ Il arrive que vous souhaitiez ne réinitialiser, ou ajuster, qu’une partie de 
 
 Le composant `List` ci-après reçoit une liste d’éléments *via* sa prop `items`, et garde l’élément sélectionné dans sa variable d’état `selection`.  Vous souhaitez ramener `selection` à `null` chaque fois que `items` reçoit un nouveau tableau :
 
-```js {5-8}
+```js {expectedErrors: {'react-compiler': [7]}} {5-8}
 function List({ items }) {
   const [isReverse, setIsReverse] = useState(false);
   const [selection, setSelection] = useState(null);
@@ -752,7 +762,11 @@ function SearchResults({ query }) {
 
 La gestion des *race conditions* n’est d’ailleurs pas la seule difficulté lorsqu’on implémente un chargement de données.  Vous aurez peut-être à vous préoccuper de la mise en cache des données (afin qu’en naviguant en arrière vos utilisateurs retrouvent instantanément l’écran précédent), de leur chargement côté serveur (pour que le HTML initial fourni par le serveur contienne déjà les données plutôt qu’un indicateur de chargement), et d’éviter les cascades réseau (afin qu’un composant enfant puisse charger ses données sans devoir attendre que chaque parent ait fini ses chargements).
 
+<<<<<<< HEAD
 **Ces problématiques existent dans toutes les bibliothèques d’UI, pas seulement dans React.  Leur résolution n’est pas chose aisée, c’est pourquoi les [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) modernes fournissent des mécanismes intégrés de chargement de données plus efficaces que du chargement manuel au sein d’Effets.**
+=======
+**These issues apply to any UI library, not just React. Solving them is not trivial, which is why modern [frameworks](/learn/start-a-new-react-project#full-stack-frameworks) provide more efficient built-in data fetching mechanisms than fetching data in Effects.**
+>>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 Si vous n’utilisez pas de framework (et ne voulez pas créer le vôtre) mais aimeriez quand même améliorer l’ergonomie du chargement de données depuis des Effets, envisagez d’extraire votre logique de chargement dans un Hook personnalisé, comme dans l’exemple que voici :
 
@@ -814,7 +828,7 @@ Simplifiez ce composant en retirant les variables d'état et Effets superflus.
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [12, 16, 20]}}
 import { useState, useEffect } from 'react';
 import { initialTodos, createTodo } from './todos.js';
 
@@ -1017,7 +1031,7 @@ Une solution serait d’ajouter un `useMemo` pour mettre en cache les tâches vi
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState, useEffect } from 'react';
 import { initialTodos, createTodo, getVisibleTodos } from './todos.js';
 
@@ -1358,7 +1372,7 @@ export default function ContactList({
 }
 ```
 
-```js src/EditContact.js active
+```js {expectedErrors: {'react-compiler': [8, 9]}} src/EditContact.js active
 import { useState, useEffect } from 'react';
 
 export default function EditContact({ savedContact, onSave }) {
