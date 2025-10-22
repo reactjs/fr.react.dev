@@ -3,7 +3,7 @@
  */
 
 exports.siteConfig = {
-  version: '18.3.1',
+  version: '19.2',
   // --------------------------------------
   // Translations should replace these lines:
   languageCode: 'fr',
