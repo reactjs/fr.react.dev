@@ -23,7 +23,7 @@ useEffect(setup, dependencies?)
 Appelez `useEffect` à la racine de votre composant pour déclarer un Effet :
 
 ```js
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 function ChatRoom({ roomId }) {
@@ -79,7 +79,7 @@ Certains composants ont besoin de rester connectés au réseau, ou à des API du
 Afin de [connecter votre composant à un système extérieur](/learn/synchronizing-with-effects), appelez `useEffect` au niveau racine de votre fonction composant :
 
 ```js [[1, 8, "const connection = createConnection(serverUrl, roomId);"], [1, 9, "connection.connect();"], [2, 11, "connection.disconnect();"], [3, 13, "[serverUrl, roomId]"]]
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 function ChatRoom({ roomId }) {
@@ -894,7 +894,11 @@ Dans cet exemple, nous n'avons pas besoin d'une fonction de nettoyage parce que 
 
 ### Charger des données avec les Effets {/*fetching-data-with-effects*/}
 
+<<<<<<< HEAD
 Vous pouvez utiliser un Effet pour charger des données pour votre composant.  Remarquez que [si vous utilisez un framework](/learn/start-a-new-react-project#production-grade-react-frameworks), il sera nettement préférable d'utiliser les mécanismes de chargement de données de votre framework plutôt que le faire manuellement dans des Effets, notamment pour des questions de performances.
+=======
+You can use an Effect to fetch data for your component. Note that [if you use a framework,](/learn/start-a-new-react-project#full-stack-frameworks) using your framework's data fetching mechanism will be a lot more efficient than writing Effects manually.
+>>>>>>> 2c7798dcc51fbd07ebe41f49e5ded4839a029f72
 
 Si vous souhaitez charger des données manuellement depuis votre Effet, votre code ressemblera à ceci :
 
@@ -926,7 +930,8 @@ Remarquez la variable `ignore`, qui est initialisée à `false` mais mise à `tr
 
 <Sandpack>
 
-```js src/App.js
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1046,8 +1051,13 @@ Implémenter le chargement de données directement dans les Effets devient vite 
 
 Cette liste d’inconvénients n’est d’ailleurs pas spécifique à React.  Elle s’applique au chargement de données lors du montage quelle que soit la bibliothèque.  Comme pour le routage, bien orchestrer son chargement de données est un exercice délicat, c’est pourquoi nous vous recommandons plutôt les approches suivantes :
 
+<<<<<<< HEAD
 - **Si vous utilisez un [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), utilisez son mécanisme intégré de chargement de données.** Les frameworks React modernes ont intégré le chargement de données de façon efficace afin d’éviter ce type d’ornières.
 - **Dans le cas contraire, envisagez l’utilisation ou la construction d’un cache côté client.**  Les solutions open-source les plus populaires incluent  [React Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), et [React Router 6.4+](https://beta.reactrouter.com/en/main/start/overview). Vous pouvez aussi construire votre propre solution, auquel cas vous utiliseriez sans doute les Effets sous le capot, mais ajouteriez la logique nécessaire au dédoublonnement de requêtes, à la mise en cache des réponses, et à l’optimisation des cascades réseau (en préchargeant les données ou en consolidant vers le haut les besoins de données des routes).
+=======
+- **If you use a [framework](/learn/start-a-new-react-project#full-stack-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
+- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [React Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood but also add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+>>>>>>> 2c7798dcc51fbd07ebe41f49e5ded4839a029f72
 
 Vous pouvez continuer à charger les données directement dans les Effets si aucune de ces approches ne vous convient.
 
@@ -1690,6 +1700,7 @@ Grâce à ce correctif, modifier la saisie ne reconnecte pas la discussion.  Con
 
 ### Lire les dernières props et états à jour depuis un Effet {/*reading-the-latest-props-and-state-from-an-effect*/}
 
+<<<<<<< HEAD
 <Wip>
 
 Cette section décrit une **API expérimentale : elle n’a donc pas encore été livrée** dans une version stable de React.
@@ -1697,6 +1708,9 @@ Cette section décrit une **API expérimentale : elle n’a donc pas encore ét
 </Wip>
 
 Par défaut, lorsque vous lisez une valeur réactive depuis un Effet, vous devez l'ajouter comme dépendance. Ça garantit que votre Effet « réagit » à chaque modification de cette valeur.  Pour la plupart des dépendances, c'est bien le comportement que vous souhaitez.
+=======
+By default, when you read a reactive value from an Effect, you have to add it as a dependency. This ensures that your Effect "reacts" to every change of that value. For most dependencies, that's the behavior you want.
+>>>>>>> 2c7798dcc51fbd07ebe41f49e5ded4839a029f72
 
 **Toutefois, il peut arriver que vous souhaitiez lire les *dernières* valeurs à jour de props ou d'états depuis un Effet, sans pour autant y « réagir ».**  Imaginons par exemple que vous souhaitiez afficher en console le nombre d'éléments dans le panier d'achats à chaque visite de la page :
 
@@ -1709,7 +1723,11 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
+<<<<<<< HEAD
 **Et si vous vouliez afficher une visite de page après chaque modification de `url`, mais *pas* lorsque seul `shoppingCart` change ?**  Vous ne pouvez pas exclure `shoppingCart` de vos dépendances sans enfreindre les [règles de la réactivité](#specifying-reactive-dependencies).  En revanche, vous pouvez exprimer que vous *ne souhaitez pas* qu'un bout de votre code « réagisse » aux changements, même s'il est appelé depuis un Effet. [Déclarez un *Événement d'Effet*](/learn/separating-events-from-effects#declaring-an-effect-event) avec le Hook [`useEffectEvent`](/reference/react/experimental_useEffectEvent), et déplacez le code qui consulte `shoppingCart` à l'intérieur :
+=======
+**What if you want to log a new page visit after every `url` change, but *not* if only the `shoppingCart` changes?** You can't exclude `shoppingCart` from dependencies without breaking the [reactivity rules.](#specifying-reactive-dependencies) However, you can express that you *don't want* a piece of code to "react" to changes even though it is called from inside an Effect. [Declare an *Effect Event*](/learn/separating-events-from-effects#declaring-an-effect-event) with the [`useEffectEvent`](/reference/react/useEffectEvent) Hook, and move the code reading `shoppingCart` inside of it:
+>>>>>>> 2c7798dcc51fbd07ebe41f49e5ded4839a029f72
 
 ```js {2-4,7,8}
 function Page({ url, shoppingCart }) {
@@ -1733,11 +1751,17 @@ function Page({ url, shoppingCart }) {
 
 ### Afficher un contenu différent côté serveur et côté client {/*displaying-different-content-on-the-server-and-the-client*/}
 
+<<<<<<< HEAD
 Si votre appli utilise du rendu côté serveur (que ce soit [en direct](/reference/react-dom/server) ou *via* un [framework](/learn/start-a-new-react-project#production-grade-react-frameworks)), votre composant fera son rendu dans deux environnements différents. Côté serveur, son rendu produira le HTML initial. Côté client, React exécutera à nouveau le code de rendu pour pouvoir inscrire les gestionnaires d'événements à ce HTML. C'est pourquoi, afin que [l'hydratation](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) puisse fonctionner, votre résultat de rendu initial doit être identique côté client et côté serveur.
+=======
+If your app uses server rendering (either [directly](/reference/react-dom/server) or via a [framework](/learn/start-a-new-react-project#full-stack-frameworks)), your component will render in two different environments. On the server, it will render to produce the initial HTML. On the client, React will run the rendering code again so that it can attach your event handlers to that HTML. This is why, for [hydration](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) to work, your initial render output must be identical on the client and the server.
+>>>>>>> 2c7798dcc51fbd07ebe41f49e5ded4839a029f72
 
 Dans de rares cas, vous pourriez avoir besoin de produire des contenus distincts côté client. Disons par exemple que votre appli lit certaines données depuis [`localStorage`](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage), il ne peut clairement pas faire ça côté serveur.  Voici comment vous implémenteriez ça :
 
-```js
+
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [5]}}
 function MyComponent() {
   const [didMount, setDidMount] = useState(false);
 

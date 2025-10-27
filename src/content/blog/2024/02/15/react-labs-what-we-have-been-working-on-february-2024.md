@@ -5,7 +5,11 @@ date: 2024/02/15
 description: Dans les billets React Labs, nous vous parlons de nos projets de recherche et développement actifs.  Depuis notre dernier bulletin, nous avons fait des progrès significatifs et nous aimerions partager ce que nous avons appris.
 ---
 
+<<<<<<< HEAD
 Le 15 février 2024 par [Joseph Savona](https://twitter.com/en_JS), [Ricky Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode) et [Dan Abramov](https://twitter.com/dan_abramov).
+=======
+February 15, 2024 by [Joseph Savona](https://twitter.com/en_JS), [Ricky Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode), and [Dan Abramov](https://bsky.app/profile/danabra.mov).
+>>>>>>> 2c7798dcc51fbd07ebe41f49e5ded4839a029f72
 
 ---
 
@@ -15,6 +19,7 @@ Dans les billets React Labs, nous vous parlons de nos projets de recherche et d�
 
 </Intro>
 
+<<<<<<< HEAD
 <Note>
 
 La React Conf 2024 est prévue pour les 15–16 mai à Henderson, Nevada ! Si vous avez l'intention de participer à la React Conf en personne, vous pouvez [participer à un tirage au sort](https://forms.reform.app/bLaLeE/react-conf-2024-ticket-lottery/1aRQLK) jusqu’au 28 février.
@@ -23,6 +28,8 @@ Pour en savoir plus sur les billets, la diffusion gratuite en ligne, les partena
 
 </Note>
 
+=======
+>>>>>>> 2c7798dcc51fbd07ebe41f49e5ded4839a029f72
 ---
 
 ## React Compiler {/*react-compiler*/}
@@ -106,7 +113,11 @@ Activité est toujours en phase de recherche, et nous devons encore finaliser le
 
 En complément de ce bulletin, notre équipe est intervenue en conférences ou dans des podcasts pour en dire davantage sur nos travaux et répondre à vos questions.
 
+<<<<<<< HEAD
 - [Sathya Gunasekaran](/community/team#sathya-gunasekaran) a parlé de React Compiler lors de la conférence [React India](https://www.youtube.com/watch?v=kjOacmVsLSE)
+=======
+- [Sathya Gunasekaran](https://github.com/gsathya) spoke about the React Compiler at the [React India](https://www.youtube.com/watch?v=kjOacmVsLSE) conference
+>>>>>>> 2c7798dcc51fbd07ebe41f49e5ded4839a029f72
 
 - [Dan Abramov](/community/team#dan-abramov) a donné une présentation à [RemixConf](https://www.youtube.com/watch?v=zMf_xeGPn6s) intitulée « React dans une autre dimension », qui explorait une histoire alternative de la création des React Server Components et des Actions.
 

@@ -473,7 +473,7 @@ En écrivant rigoureusement vos composants comme des fonctions pures, vous évit
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5]}}
 let guest = 0;
 
 function Cup() {
