@@ -20,7 +20,11 @@ React, comme de nombreuses autres bibliothèques d'UI, modélise l'UI comme un a
 
 ## Votre UI vue comme un arbre {/*your-ui-as-a-tree*/}
 
+<<<<<<< HEAD
 Les arbres sont un modèle relationnel entre des éléments, et l'UI est souvent représentée au moyen de structures arborescentes. Les navigateurs utilisent par exemple des arbres pour modéliser HTML (le [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) et CSS (le [CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Les plateformes mobiles utilisent aussi des arbres pour représenter leurs hiérarchies de vues.
+=======
+Trees are a relationship model between items. The UI is often represented using tree structures. For example, browsers use tree structures to model HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) and CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Mobile platforms also use trees to represent their view hierarchy.
+>>>>>>> 2c7798dcc51fbd07ebe41f49e5ded4839a029f72
 
 <Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Un diagramme avec trois sections disposées horizontalement. Dans la première section, on trouve trois rectangles empilés verticalement, avec pour libellés « Composant A », « Composant B » et « Composant C ». Une flèche libellée « React », avec le logo React, fait la transition vers le panneau suivant. La section du milieu contient un arbre de composants, avec une racine libellée « A » et deux enfants libellés « B » et « C ». Une flèche libellée « React DOM », là encore avec le logo React, fait la transition vers le dernier panneau. Cette troisième section représente une maquette du navigateur contenant un arbre avec 8 nœuds, dont seul un sous-ensemble est mis en avant (qui représente l’arbre de la section du milieu).">
 
