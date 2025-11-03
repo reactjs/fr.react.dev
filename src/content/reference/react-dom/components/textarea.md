@@ -30,7 +30,11 @@ Pour afficher une zone de texte, utilisez le [composant natif `<textarea>` du na
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<textarea>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
+=======
+`<textarea>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> f9e2c1396769bb5da87db60f9ff03683d18711e2
 
 Une zone de texte peut devenir un [champ contrôlé](#controlling-a-text-area-with-a-state-variable) en lui passant une prop `value` :
 
