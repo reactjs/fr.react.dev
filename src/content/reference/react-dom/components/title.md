@@ -1,8 +1,8 @@
 ---
 title: "<title>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Les extensions de React à `<title>` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `<title>` fonctionne comme [le composant HTML natif du navigateur](/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
@@ -10,6 +10,8 @@ Les extensions de React à `<title>` ne sont actuellement disponibles que sur le
 </Canary>
 
 
+=======
+>>>>>>> d271a7ac11d2bf0d6e95ebdfacaf1038421f9be0
 <Intro>
 
 Le [composant natif `<title>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/title) vous permet de préciser le titre de votre document.
@@ -38,7 +40,11 @@ Pour définir le titre de votre document, utilisez le [composant natif `<title>`
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<title>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
+=======
+`<title>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> d271a7ac11d2bf0d6e95ebdfacaf1038421f9be0
 
 * `children` : `<title>` accepte uniquement du texte comme enfant. Ce texte devient le titre du document. Vous pouvez également passer vos propres composants, du moment que leur rendu aboutit à du texte.
 
