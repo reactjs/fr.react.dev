@@ -6,7 +6,11 @@ description: 2020, c'était long.  Alors que l'année se termine, nous voulions 
 
 ---
 
+<<<<<<< HEAD
 Le 21 décembre 2020 par [Dan Abramov](https://twitter.com/dan_abramov), [Lauren Tan](https://twitter.com/potetotes), [Joseph Savona](https://twitter.com/en_JS) et [Sebastian Markbåge](https://twitter.com/sebmarkbage)
+=======
+December 21, 2020 by [Dan Abramov](https://bsky.app/profile/danabra.mov), [Lauren Tan](https://twitter.com/potetotes), [Joseph Savona](https://twitter.com/en_JS), and [Sebastian Markbåge](https://twitter.com/sebmarkbage)
+>>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
 
 ---
 
