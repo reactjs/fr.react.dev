@@ -1,14 +1,16 @@
 ---
 title: use
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 L'API `use` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 2da4f7fbd90ddc09835c9f85d61fd5644a271abc
 <Intro>
 
 `use` est une API React qui vous permet de lire la valeur d'une ressource telle qu'une [promesse](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise) ou un [contexte](/learn/passing-data-deeply-with-context).
@@ -40,7 +42,11 @@ function MessageComponent({ messagePromise }) {
 
 Contrairement aux Hooks React, `use` peut être appelée au sein de boucles ou d'instructions conditionnelles telles que `if`. En revanche, comme pour les Hooks React, toute fonction appelant `use` doit être un composant ou un Hook.
 
+<<<<<<< HEAD
 Lorsqu'elle est appelée avec une promesse, l'API `use` s'intègre avec [`Suspense`](/reference/react/Suspense) et les [périmètres d'erreurs](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). Le composant appelant *suspend* tant que la promesse passée à `use` est en attente. Si le composant qui appelle `use` est enrobé dans un périmètre Suspense, l'UI de secours est affichée. Une fois la promesse accomplie, cette UI est remplacée par le rendu des composants en utilisant les données renvoyées par le Hook `use`. Si la promesse renvoyée par `use` est rejetée, l'UI de secours du périmètre d'erreur le plus proche est affichée.
+=======
+When called with a Promise, the `use` API integrates with [`Suspense`](/reference/react/Suspense) and [Error Boundaries](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). The component calling `use` *suspends* while the Promise passed to `use` is pending. If the component that calls `use` is wrapped in a Suspense boundary, the fallback will be displayed.  Once the Promise is resolved, the Suspense fallback is replaced by the rendered components using the data returned by the `use` API. If the Promise passed to `use` is rejected, the fallback of the nearest Error Boundary will be displayed.
+>>>>>>> 2da4f7fbd90ddc09835c9f85d61fd5644a271abc
 
 [Voir d'autres exemples plus bas](#usage).
 
@@ -54,9 +60,15 @@ L'API `use` renvoie la valeur lue depuis la ressource, telle que la valeur accom
 
 #### Limitations {/*caveats*/}
 
+<<<<<<< HEAD
 * L'API `use` doit être appelée à l'intérieur d'un composant ou d'un Hook.
 * Lorsque vous récupérez des données dans un [Composant Serveur](/reference/rsc/use-server), privilégiez `async` et `await` plutôt que `use`. `async` et `await` reprennent le rendu à partir du point où `await` avait été invoqué, alors que `use` refait un rendu du composant une fois la donnée obtenue.
 * Privilégiez la création de promesses dans les [Composants Serveur](/reference/rsc/use-server) et leur passage aux [Composants Client](/reference/rsc/use-client), plutôt que de créer des promesses dans les Composants Client. Les promesses créées dans les Composants Client sont recréées à chaque rendu. Les promesses transmises d'un Composant Serveur à un Component Client ne changent pas d'un rendu à l'autre. [Consultez cet exemple](#streaming-data-from-server-to-client).
+=======
+* The `use` API must be called inside a Component or a Hook.
+* When fetching data in a [Server Component](/reference/rsc/server-components), prefer `async` and `await` over `use`. `async` and `await` pick up rendering from the point where `await` was invoked, whereas `use` re-renders the component after the data is resolved.
+* Prefer creating Promises in [Server Components](/reference/rsc/server-components) and passing them to [Client Components](/reference/rsc/use-client) over creating Promises in Client Components. Promises created in Client Components are recreated on every render. Promises passed from a Server Component to a Client Component are stable across re-renders. [See this example](#streaming-data-from-server-to-client).
+>>>>>>> 2da4f7fbd90ddc09835c9f85d61fd5644a271abc
 
 ---
 
@@ -81,9 +93,9 @@ Pour transmettre un contexte à un `Button`, enrobez ce bouton ou l'un de ses pa
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 
@@ -123,9 +135,9 @@ const ThemeContext = createContext(null);
 
 export default function MyApp() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 
@@ -196,17 +208,6 @@ function Button({ show, children }) {
 .button-light {
   background: #fff;
   color: #222;
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js"
 }
 ```
 
@@ -292,9 +293,12 @@ export default function App() {
 ```
 
 ```js src/index.js hidden
+<<<<<<< HEAD
 // TODO : remplacer l’import d’une version Canary
 // de React par une version stable, dès qu’elle
 // intégrera l’API `use`
+=======
+>>>>>>> 2da4f7fbd90ddc09835c9f85d61fd5644a271abc
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -312,16 +316,6 @@ root.render(
 );
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js"
-}
-```
 </Sandpack>
 
 <Note>
@@ -344,7 +338,11 @@ export default async function App() {
 }
 ```
 
+<<<<<<< HEAD
 Toutefois, l'utilisation d'`await` dans un [Composant Serveur](/reference/react/components#server-components) bloquera son rendu jusqu'à ce que l'instruction `await` ait terminé. Le passage d'une promesse d'un Composant Serveur à un Composant Client permet à la promesse de ne pas bloquer le rendu du Composant Serveur.
+=======
+But using `await` in a [Server Component](/reference/rsc/server-components) will block its rendering until the `await` statement is finished. Passing a Promise from a Server Component to a Client Component prevents the Promise from blocking the rendering of the Server Component.
+>>>>>>> 2da4f7fbd90ddc09835c9f85d61fd5644a271abc
 
 </DeepDive>
 
@@ -352,8 +350,13 @@ Toutefois, l'utilisation d'`await` dans un [Composant Serveur](/reference/react/
 
 Dans certains cas, une promesse passée à `use` peut être rejetée. Vous pouvez gérer les promesses rejetées en utilisant l'une ou l'autre de ces méthodes :
 
+<<<<<<< HEAD
 1. [afficher une erreur aux utilisateurs avec un périmètre d'erreur](#displaying-an-error-to-users-with-error-boundary)
 2. [fournir une valeur alternative avec `Promise.catch`](#providing-an-alternative-value-with-promise-catch)
+=======
+1. [Displaying an error to users with an Error Boundary.](#displaying-an-error-to-users-with-error-boundary)
+2. [Providing an alternative value with `Promise.catch`](#providing-an-alternative-value-with-promise-catch)
+>>>>>>> 2da4f7fbd90ddc09835c9f85d61fd5644a271abc
 
 <Pitfall>
 
@@ -361,9 +364,15 @@ Dans certains cas, une promesse passée à `use` peut être rejetée. Vous pouve
 
 </Pitfall>
 
+<<<<<<< HEAD
 #### Afficher une erreur aux utilisateurs avec un périmètre d'erreur {/*displaying-an-error-to-users-with-error-boundary*/}
 
 Si vous souhaitez afficher une erreur à vos utilisateurs quand une promesse a été rejetée, vous pouvez utiliser un [périmètre d'erreur](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). Pour l'utiliser, enrobez le composant d'où vous appelez l'API `use` dans le périmètre d'erreur. Si la promesse transmise à `use` est rejetée, alors l'UI de secours de ce périmètre d'erreur sera affichée.
+=======
+#### Displaying an error to users with an Error Boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+
+If you'd like to display an error to your users when a Promise is rejected, you can use an [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an Error Boundary, wrap the component where you are calling the `use` API in an Error Boundary. If the Promise passed to `use` is rejected the fallback for the Error Boundary will be displayed.
+>>>>>>> 2da4f7fbd90ddc09835c9f85d61fd5644a271abc
 
 <Sandpack>
 
@@ -414,9 +423,12 @@ export default function App() {
 ```
 
 ```js src/index.js hidden
+<<<<<<< HEAD
 // TODO : remplacer l’import d’une version Canary
 // de React par une version stable, dès qu’elle
 // intégrera l’API `use`
+=======
+>>>>>>> 2da4f7fbd90ddc09835c9f85d61fd5644a271abc
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -437,8 +449,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "react-scripts": "^5.0.0",
     "react-error-boundary": "4.0.3"
   },
@@ -477,7 +489,11 @@ Pour utiliser la méthode <CodeStep step={1}>`catch`</CodeStep> de la promesse, 
 
 ### *"Suspense Exception: This is not a real error!"* {/*suspense-exception-error*/}
 
+<<<<<<< HEAD
 *(« Exception Suspense : ce n'est pas une véritable erreur ! », NdT)*
+=======
+You are either calling `use` outside of a React Component or Hook function, or calling `use` in a try–catch block. If you are calling `use` inside a try–catch block, wrap your component in an Error Boundary, or call the Promise's `catch` to catch the error and resolve the Promise with another value. [See these examples](#dealing-with-rejected-promises).
+>>>>>>> 2da4f7fbd90ddc09835c9f85d61fd5644a271abc
 
 Vous appelez probablement `use` soit en-dehors d'un composant React ou d'une fonction de Hook, soit dans un bloc try-catch. Pour corriger ce dernier cas, enrobez votre composant dans un périmètre d'erreur ou appelez la fonction `catch` de la promesse pour attraper l'erreur et résoudre la promesse avec une valeur différente. [Consultez ces exemples](#dealing-with-rejected-promises).
 
