@@ -31,8 +31,12 @@ Le plus gros changement survenu tient à l'introduction de [`async` / `await`](h
 
 À présent que nous avons suffisamment débroussaillé le sujet du chargement de données, nous explorons l'autre direction : l'envoi de données du client vers le serveur, afin que vous puissiez exécuter des modifications de base de données et implémenter des formulaires.  Nous vous permettons pour cela de passer des fonctions d'Actions Serveur à travers la frontière serveur/client, fonctions que le code client peut alors appeler, ce qui fournit une sorte de RPC *(Remote Procedure Call, NdT)* transparent. Les Actions Serveur vous permettent aussi de proposer des formulaires en amélioration progressive pendant le chargement de JavaScript.
 
+<<<<<<< HEAD
 Une implémentation des React Server Components a été livrée au travers de [l'*App Router* de Next.js](/learn/start-a-new-react-project#nextjs-app-router).
 C'est un bon exemple d'une intégration profonde d'un routeur qui traite les RSC comme une primitive importante, mais ce n'est pas la seule façon de construire un routeur ou un framework compatibles RSC.  Il existe une distinction claire entre les fonctionnalités que permet la spec des RSC, et leur implémentation. Les React Server Components sont pensés comme une spec de composants qui puisse être prise en charge par n'importe quel framework React compatible.
+=======
+React Server Components has shipped in [Next.js App Router](/learn/creating-a-react-app#nextjs-app-router). This showcases a deep integration of a router that really buys into RSC as a primitive, but it's not the only way to build a RSC-compatible router and framework. There's a clear separation for features provided by the RSC spec and implementation. React Server Components is meant as a spec for components that work across compatible React frameworks.
+>>>>>>> 38b52cfdf059b2efc5ee3223a758efe00319fcc7
 
 Nous vous conseillons généralement d'utiliser un framework existant, mais si vous devez construire votre propre framework, c'est possible.  Créer votre propre framework compatible RSC n'est pas aussi aisé que nous le voudrions, principalement en raison d'une exigence d'intégration profonde avec votre *bundler*.  La génération actuelle de *bundlers* est super pour un usage centré sur le client, mais ils n'ont pas été conçus avec une prise en charge de premier plan pour la découpe d'un graphe de modules selon un axe client / serveur.  C'est pourquoi nous avons un partenariat en cours avec les développeurs de *bundlers* afin d'intégrer dans leurs outils les primitives nécessaires à RSC.
 
@@ -92,13 +96,24 @@ L'idée, c'est que vous devriez pouvoir faire le rendu d'un arbre React hors-éc
 
 Depuis notre dernier bulletin, nous avons testé une version expérimentale du prérendu en interne chez Meta dans nos applis React Native sur Android et iOS, avec des résultats de performance encourageants.  Nous avons aussi amélioré la collaboration du rendu hors-écran avec Suspense — suspendre au sein d'un arbre hors-écran ne déclenchera pas les rendus de secours de Suspense.  Il nous reste à finaliser les primitives qui seront exposées aux développeurs de bibliothèques.  Nous prévoyons de publier une RFC plus tard cette année, accompagnée d'une API expérimentale pour vos tests et retours d'expérience.
 
+<<<<<<< HEAD
 ## Pistage des transitions {/*transition-tracing*/}
+=======
+The Transition Tracing API lets you detect when [React Transitions](/reference/react/useTransition) become slower and investigate why they may be slow. Following our last update, we have completed the initial design of the API and published an [RFC](https://github.com/reactjs/rfcs/pull/238). The basic capabilities have also been implemented. The project is currently on hold. We welcome feedback on the RFC and look forward to resuming its development to provide a better performance measurement tool for React. This will be particularly useful with routers built on top of React Transitions, like the [Next.js App Router](/learn/creating-a-react-app#nextjs-app-router).
+>>>>>>> 38b52cfdf059b2efc5ee3223a758efe00319fcc7
 
 L'API de pistage des transitions vous permet de détecter que des [transitions React](/reference/react/useTransition) ralentissent, et d'enquêter sur les causes du ralentissement. Depuis notre dernier bulletin, nous avons terminé la conception initiale de l'API et publié une [RFC](https://github.com/reactjs/rfcs/pull/238). Les capacités de base ont été implémentées.  Le projet est actuellement en suspens.  Nous sommes à l'écoute de vos retours sur la RFC et espérons reprendre le développement pour fournir de meilleurs outils de mesure de la performance pour React.  Ça sera particulièrement utile pour les routeurs basés sur les transitions React, tels que [l'*App Router* de Next.js](/learn/start-a-new-react-project#nextjs-app-router).
 
+<<<<<<< HEAD
 ---
 
 En complément de ce bulletin, notre équipe est récemment apparue dans des podcasts communautaires et des *livestreams* pour parler de notre travail et répondre à vos questions.
+=======
+* [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Joe Savona](https://twitter.com/en_JS) were interviewed by [Kent C. Dodds on his YouTube channel](https://www.youtube.com/watch?v=h7tur48JSaw), where they discussed concerns around React Server Components.
+* [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Joe Savona](https://twitter.com/en_JS) were guests on the [JSParty podcast](https://jsparty.fm/267) and shared their thoughts about the future of React.
+
+Thanks to [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Dave McCabe](https://twitter.com/mcc_abe), [Luna Wei](https://twitter.com/lunaleaps), [Matt Carroll](https://twitter.com/mattcarrollcode), [Sean Keegan](https://twitter.com/DevRelSean), [Sebastian Silbermann](https://twitter.com/sebsilbermann), [Seth Webster](https://twitter.com/sethwebster), and [Sophie Alpert](https://twitter.com/sophiebits) for reviewing this post.
+>>>>>>> 38b52cfdf059b2efc5ee3223a758efe00319fcc7
 
 * [Dan Abramov](https://twitter.com/dan_abramov) et [Joe Savona](https://twitter.com/en_JS) étaient interviewés par [Kent C. Dodds sur sa chaîne YouTube](https://www.youtube.com/watch?v=h7tur48JSaw), pour parler de leurs préoccupations sur les React Server Components.
 * [Dan Abramov](https://twitter.com/dan_abramov) et [Joe Savona](https://twitter.com/en_JS) étaient les invités du [podcast JSParty](https://jsparty.fm/267) pour parler de leurd visions respectives de l'avenir de React.

@@ -72,14 +72,24 @@ function Counter() {
   }
 
   useEffect(() => {
+<<<<<<< HEAD
     document.title = `Vous avez cliqué ${this.state.count} fois`;
+=======
+    document.title = `You clicked ${count} times`;
+>>>>>>> 38b52cfdf059b2efc5ee3223a758efe00319fcc7
   }, [count]);
 
   return (
     <div>
+<<<<<<< HEAD
       <p>Vous avez cliqué {this.state.count} fois</p>
       <button onClick={this.handleClick}>
         Cliquez ici
+=======
+      <p>You clicked {count} times</p>
+      <button onClick={handleClick}>
+        Click me
+>>>>>>> 38b52cfdf059b2efc5ee3223a758efe00319fcc7
       </button>
     </div>
   )
@@ -154,7 +164,11 @@ N'oubliez pas que le déclenchement d'événements DOM ne fonctionne que si le c
 
 ## Dépannage {/*troubleshooting*/}
 
+<<<<<<< HEAD
 ### J'ai une erreur : "The current testing environment is not configured to support act"(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
+=======
+### I'm getting an error: "The current testing environment is not configured to support act(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
+>>>>>>> 38b52cfdf059b2efc5ee3223a758efe00319fcc7
 
 Le recours à `act` nécessite un réglage `global.IS_REACT_ACT_ENVIRONMENT=true` dans votre environnement de test.  Ça permet de garantir que `act` n'est utilisé que dans un environnement adapté.
 
