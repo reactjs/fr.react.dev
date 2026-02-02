@@ -1,14 +1,16 @@
 ---
 title: prefetchDNS
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 La fonction `prefetchDNS` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 38b52cfdf059b2efc5ee3223a758efe00319fcc7
 <Intro>
 
 `prefetchDNS` vous permet de récupérer en avance l'IP d'un serveur depuis lequel vous avez l'intention de charger des ressources.
