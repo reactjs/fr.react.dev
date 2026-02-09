@@ -215,7 +215,11 @@ Votre application React commence avec un composant « racine ».  En général
 
 La plupart des applis React utilisent des composants « jusqu'au bout ». Ça signifie que vous utiliserez des composants non seulement pour des éléments réutilisables tels que des boutons, mais aussi pour des blocs plus importants tels que des barres latérales, des listes, et au final des pages complètes !  Les composants sont un moyen pratique d'organiser le code et le balisage de l'UI, même si certains ne seront utilisés qu'une fois.
 
+<<<<<<< HEAD
 [Les frameworks basés sur React](/learn/start-a-new-react-project) poussent cette logique plus loin. Plutôt que d'utiliser un fichier HTML vide et de laisser React « prendre la main » pour gérer la page avec JavaScript, ils génèrent *aussi* automatiquement le HTML de vos composants React. Ça permet à votre appli d'afficher du contenu avant même que le JavaScript ne soit chargé.
+=======
+[React-based frameworks](/learn/creating-a-react-app) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+>>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 Ceci dit, de nombreux sites web utilisent uniquement React pour [ajouter de l'interactivité à des pages HTML existantes](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page).  Ils ont plusieurs composants racines au lieu d'un seul pour la page entière.  Vous pouvez utiliser React aussi largement — ou légèrement – que vous le souhaitez.
 
