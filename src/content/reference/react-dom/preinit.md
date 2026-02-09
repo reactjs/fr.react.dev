@@ -1,8 +1,8 @@
 ---
 title: preinit
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 La fonction `preinit` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
@@ -12,6 +12,11 @@ La fonction `preinit` n'est actuellement disponible que sur les canaux de livrai
 <Note>
 
 [Les frameworks basés sur React](/learn/start-a-new-react-project) s'occupent fréquemment pour vous du chargement des ressources, de sorte que vous n'aurez peut-être pas besoin d'appeler ces API vous-même.  Consultez la documentation de votre framework pour en savoir plus à ce sujet.
+=======
+<Note>
+
+[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+>>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 </Note>
 
@@ -51,6 +56,7 @@ La fonction `preinit` suggère au navigateur de commencer à télécharger puis 
 
 #### Paramètres {/*parameters*/}
 
+<<<<<<< HEAD
 * `href` : une chaîne de caractères. L'URL de la ressource que vous souhaitez télécharger et évaluer.
 * `options` : un objet. Il contient les propriétés suivantes :
   *  `as` : une chaîne de caractères obligatoire. Le type de la ressource. Les valeurs autorisées sont `script` et `style`.
@@ -59,6 +65,16 @@ La fonction `preinit` suggère au navigateur de commencer à télécharger puis 
   * `integrity` : une chaîne de caractères. Une empreinte cryptographique de la ressource afin de [vérifier son authenticité](https://developer.mozilla.org/fr/docs/Web/Security/Subresource_Integrity).
   * `nonce` : une chaîne de caractères. Un [nonce cryptographique autorisant la ressource](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/nonce) dans le cadre d'une Politique de Sécurité de Contenu (CSP) stricte.
   * `fetchPriority` : une chaîne de caractères. Suggère une priorité relative pour le chargement de la ressource. Les valeurs possibles sont `auto` (par défaut), `high` ou `low`.
+=======
+* `href`: a string. The URL of the resource you want to download and execute.
+* `options`: an object. It contains the following properties:
+  *  `as`: a required string. The type of resource. Its possible values are `script` and `style`.
+  * `precedence`: a string. Required with stylesheets. Says where to insert the stylesheet relative to others. Stylesheets with higher precedence can override those with lower precedence. The possible values are `reset`, `low`, `medium`, `high`. 
+  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
+  *  `integrity`: a string. A cryptographic hash of the resource, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+  *  `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy. 
+  *  `fetchPriority`: a string. Suggests a relative priority for fetching the resource. The possible values are `auto` (the default), `high`, and `low`.
+>>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 #### Valeur renvoyée {/*returns*/}
 
