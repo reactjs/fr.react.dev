@@ -303,7 +303,7 @@ Mettre le *linter* en sourdine entraîne des bugs surprenants qui sont difficile
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [14]}}
 import { useState, useEffect } from 'react';
 
 export default function Timer() {
@@ -609,6 +609,7 @@ function ChatRoom({ roomId }) {
 
 ### Voulez-vous lire une valeur sans « réagir » à ses changements ? {/*do-you-want-to-read-a-value-without-reacting-to-its-changes*/}
 
+<<<<<<< HEAD
 <Wip>
 
 Cette section décrit une **API expérimentale : elle n’a donc pas encore été livrée** dans une version stable de React.
@@ -616,6 +617,9 @@ Cette section décrit une **API expérimentale : elle n’a donc pas encore ét
 </Wip>
 
 Disons que vous souhaitez jouer un son lorsque l'utilisateur reçoit un nouveau message, à moins que `isMuted` ne soit à `true` :
+=======
+Suppose that you want to play a sound when the user receives a new message unless `isMuted` is `true`:
+>>>>>>> 55a317d40781a0054a05a9f6c443ae0bd71f7d7e
 
 ```js {3,10-12}
 function ChatRoom({ roomId }) {
@@ -794,7 +798,7 @@ C'est important de déclarer cet objet comme dépendance ! Ça garantit par exe
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [10]}}
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1242,7 +1246,11 @@ export default function Timer() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Au lieu de lire `count` au sein de l'Effet, passez à React la fonction `c => c + 1` (« incrémente ce nombre ! »). React l'appliquera pour le prochain rendu.  Et comme vous n'avez plus besoin de lire la valeur de `count` depuis votre Effet, vous pouvez ramener ses dépendances à un tableau vide (`[]`). Ça évite que votre Effet ne recrée l'intervalle à chaque fois.
+=======
+Instead of reading `count` inside the Effect, you pass a `c => c + 1` instruction ("increment this number!") to React. React will apply it on the next render. And since you don't need to read the value of `count` inside your Effect anymore, you can keep your Effect's dependencies empty (`[]`). This prevents your Effect from re-creating the interval on every tick.
+>>>>>>> 55a317d40781a0054a05a9f6c443ae0bd71f7d7e
 
 </Solution>
 
@@ -1260,25 +1268,9 @@ Y'a-t-il une ligne de code dans votre Effet qui ne devrait pas être réactive 
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js
 import { useState, useEffect, useRef } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { FadeInAnimation } from './animation.js';
 
 function Welcome({ duration }) {
@@ -1387,26 +1379,10 @@ Votre Effet a besoin de lire la dernière valeur à jour de `duration`, mais vou
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js
 import { useState, useEffect, useRef } from 'react';
 import { FadeInAnimation } from './animation.js';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 function Welcome({ duration }) {
   const ref = useRef(null);
@@ -1826,8 +1802,8 @@ Une autre fonction n'existe que pour passer des données issues de l'état à un
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1908,7 +1884,7 @@ export default function App() {
 
 ```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export default function ChatRoom({ roomId, createConnection, onMessage }) {
   useEffect(() => {
@@ -2121,8 +2097,8 @@ Par conséquent, la reconnexion au serveur n'a lieu que lorsqu'une modification 
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -2190,7 +2166,7 @@ export default function App() {
 
 ```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import {
   createEncryptedConnection,
   createUnencryptedConnection,

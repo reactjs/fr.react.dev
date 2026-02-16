@@ -36,7 +36,11 @@ Le [composant natif `<option>`](https://developer.mozilla.org/fr/docs/Web/HTML/E
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<option>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
+=======
+`<option>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> 55a317d40781a0054a05a9f6c443ae0bd71f7d7e
 
 `<option>` prend également en charge les props suivantes :
 
