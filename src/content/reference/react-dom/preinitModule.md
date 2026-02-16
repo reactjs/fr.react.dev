@@ -1,8 +1,8 @@
 ---
 title: preinitModule
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 La fonction `preinitModule` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
@@ -12,6 +12,11 @@ La fonction `preinitModule` n'est actuellement disponible que sur les canaux de 
 <Note>
 
 [Les frameworks basés sur React](/learn/start-a-new-react-project) s'occupent fréquemment pour vous du chargement des ressources, de sorte que vous n'aurez peut-être pas besoin d'appeler ces API vous-même.  Consultez la documentation de votre framework pour en savoir plus à ce sujet.
+=======
+<Note>
+
+[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+>>>>>>> 55a317d40781a0054a05a9f6c443ae0bd71f7d7e
 
 </Note>
 

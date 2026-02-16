@@ -135,7 +135,11 @@ function useCSS(rule) {
 
 #### En quoi est-ce préférable à l'injection de styles durant le rendu ou à `useLayoutEffect` ? {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
 
+<<<<<<< HEAD
 Si vous insérez des styles pendant le rendu et que React traite une [mise à jour non bloquante](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition), le navigateur recalculera les styles à chaque étape du rendu de l'arborescence de composants, ce qui peut être **extrêmement lent**.
+=======
+If you insert styles during rendering and React is processing a [non-blocking update,](/reference/react/useTransition#perform-non-blocking-updates-with-actions) the browser will recalculate the styles every single frame while rendering a component tree, which can be **extremely slow.**
+>>>>>>> 55a317d40781a0054a05a9f6c443ae0bd71f7d7e
 
 `useInsertionEffect` est préférable à l'insertion de styles dans [`useLayoutEffect`](/reference/react/useLayoutEffect) ou [`useEffect`](/reference/react/useEffect) parce qu'il garantit qu'au moment de l'exécution des autres Effets de vos composants, les balises `<style>`  auront déjà été insérées.  Faute de ça, les calculs de mise en page au sein d'Effets classiques seraient erronés en raison de styles obsolètes.
 
