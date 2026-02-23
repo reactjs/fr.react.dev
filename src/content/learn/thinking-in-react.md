@@ -37,9 +37,15 @@ Commencez par dessiner des boîtes autour de chaque composant et sous-composant 
 
 En fonction de votre propre vécu, vous pouvez aborder la découpe du design en composants selon divers axes :
 
+<<<<<<< HEAD
 - **Programmatique** : utilisez les mêmes techniques d'arbitrage que si vous deviez créer une nouvelle fonction ou un nouvel objet.  Une de ces techniques réside dans le [principe de responsabilité unique](https://fr.wikipedia.org/wiki/Principe_de_responsabilit%C3%A9_unique), qui veut qu'un composant ne doive idéalement faire qu'une seule chose. S'il se retrouve à grandir, il devrait sans doute être décomposé en sous-composants plus simples.
 - **CSS** : réfléchissez aux endroits pour lesquels vous définiriez un sélecteur de classe. (Ceci dit, les composants sont un peu moins granulaires.)
 - **Design** : imaginez comment vous organiseriez les couches du design.
+=======
+* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns), that is, a component should ideally only be concerned with one thing. If it ends up growing, it should be decomposed into smaller subcomponents. 
+* **CSS**--consider what you would make class selectors for. (However, components are a bit less granular.)
+* **Design**--consider how you would organize the design's layers.
+>>>>>>> a1cc2ab4bf06b530f86a7049923c402baf86aca1
 
 Si votre JSON est bien structuré, vous constaterez souvent qu'il a une sorte de correspondance naturelle à la structure des composants de votre UI. C'est parce que l'UI et les modèles de données ont souvent la même architecture d'information — la même forme, en somme.  Découpez votre UI en composants, avec chaque composant qui correspond à une partie de votre modèle de données.
 

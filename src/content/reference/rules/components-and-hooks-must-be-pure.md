@@ -32,7 +32,11 @@ Concrètement, ça signifie que la logique de rendu peut être exécutée plusie
 
 React est déclaratif : vous dites à React de _quoi_ faire le rendu, et React déterminera _comment_ afficher ça au mieux à l'utilisateur.  Pour y parvenir, React a plusieurs phases d'exécution de votre code.  Vous n'avez pas besoin de tout savoir sur ces phases pour bien utiliser React.  Mais vous devriez avoir au moins une compréhension de surface des parties du code qui tournent lors du _rendu_, et de celles qui tournent en-dehors.
 
+<<<<<<< HEAD
 Le _rendu_, c'est le calcul de la prochaine version de l'apparence de votre UI.  Après le rendu, les [Effets](/reference/react/useEffect) sont _traités_ (c'est-à-dire qu'ils sont exécutés jusqu'à ce qu'il n'en reste plus en attente) *(flushed, NdT)* et sont susceptibles de mettre à jour le calcul, si certains Effets ont un impact sur la mise en page. React récupère ce nouveau calcul et le compare à celui utilisé pour la version précédente de l'UI, puis il _commite_ le strict minimum de modifications nécessaires vers le [DOM](https://developer.mozilla.org/fr/docs/Web/API/Document_Object_Model) (ce que l'utilisateur voit en réalité) pour le synchroniser sur cette dernière version.
+=======
+_Rendering_ refers to calculating what the next version of your UI should look like. After rendering, React takes this new calculation and compares it to the calculation used to create the previous version of your UI. Then React commits just the minimum changes needed to the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (what your user actually sees) to apply the changes. Finally, [Effects](/learn/synchronizing-with-effects) are flushed (meaning they are run until there are no more left). For more detailed information see the docs for [Render](/learn/render-and-commit) and [Commit and Effect Hooks](/reference/react/hooks#effect-hooks).
+>>>>>>> a1cc2ab4bf06b530f86a7049923c402baf86aca1
 
 <DeepDive>
 
@@ -213,11 +217,16 @@ Les props et l'état d'un composant sont des [instantanés](learn/state-as-a-sna
 
 Vous pouvez considérer les props et les valeurs d'état local comme des instantanés qui sont mis à jour après le rendu.  C'est pourquoi vous ne modifiez pas directement les props et variables d'état : vous passez plutôt de nouvelles props, et utilisez les fonctions de mise à jour fournies pour indiquer à React que l'état a besoin d'être mis à jour en vue du prochain rendu du composant.
 
+<<<<<<< HEAD
 ### Ne modifiez pas directement les props {/*props*/}
 
 Les props sont immuables parce que si vous les mutiez, l'application produirait un résultat incohérent qui serait difficile à déboguer, dans la mesure où il pourrait marcher ou non suivant les circonstances.
+=======
+### Don't mutate Props {/*props*/}
+Props are immutable because if you mutate them, the application will produce inconsistent output, which can be hard to debug as it may or may not work depending on the circumstances.
+>>>>>>> a1cc2ab4bf06b530f86a7049923c402baf86aca1
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function Post({ item }) {
   item.url = new Url(item.url, base); // 🔴 Erroné : ne mutez jamais directement les props
   return <Link url={item.url}>{item.title}</Link>;
@@ -241,7 +250,7 @@ const [stateVariable, setter] = useState(0);
 
 Plutôt que de modifier directement la variable d'état, nous devons appeler la fonction de mise à jour renvoyée par son `useState`.  Modifier la valeur de la variable d'état n'entraîne pas de mise à jour du composant, laissant vos utilisateurs face à une UI obsolète.  Recourir aux fonctions de mise à jour permet d'informer React que l'état va changer, et qu'il doit planifier un nouveau rendu pour mettre à jour l'UI.
 
-```js {5}
+```js {expectedErrors: {'react-compiler': [2, 5]}} {5}
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -279,7 +288,7 @@ function Counter() {
 
 Une fois que vous avez passé des valeurs à un Hook, vous ne devriez plus les modifier.  Tout comme les props en JSX, ces valeurs deviennent immuables une fois passées à un Hook.
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function useIconStyle(icon) {
   const theme = useContext(ThemeContext);
   if (icon.enabled) {
@@ -316,7 +325,11 @@ function useIconStyle(icon) {
 }
 ```
 
+<<<<<<< HEAD
 Si vous mutiez les arguments des Hooks, la mémoïsation du Hook personnalisé s'effrondrerait, il est donc important d'éviter ça.
+=======
+If you were to mutate the Hook's arguments, the custom hook's memoization will become incorrect,  so it's important to avoid doing that.
+>>>>>>> a1cc2ab4bf06b530f86a7049923c402baf86aca1
 
 ```js {4}
 style = useIconStyle(icon);         // `style` est mémoïsé sur base de `icon`
@@ -336,11 +349,15 @@ Pour les mêmes raisons, il est important de ne pas modifier les valeurs renvoy�
 
 ## Les valeurs sont immuables une fois passées à JSX {/*values-are-immutable-after-being-passed-to-jsx*/}
 
+<<<<<<< HEAD
 Ne mutez pas les valeurs que vous avez passées à JSX.  Déplacez la mutation en amont de la création du JSX.
+=======
+Don't mutate values after they've been used in JSX. Move the mutation to before the JSX is created.
+>>>>>>> a1cc2ab4bf06b530f86a7049923c402baf86aca1
 
 Lorsque vous utilisez du JSX dans une expression, React évalue le JSX avant que le composant ne termine son rendu.  Ça signifie que la mutation ultérieure de valeurs, après qu'elles ont été exploitées par JSX, peut produire des UI obsolètes, et React ne saura pas qu'il doit mettre à jour le résultat du composant.
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function Page({ colour }) {
   const styles = { colour, size: "large" };
   const header = <Header styles={styles} />;
