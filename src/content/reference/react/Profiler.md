@@ -37,7 +37,11 @@ Enrobez un arbre de composants dans un `<Profiler>` afin de mesurer ses performa
 
 #### Limitations {/*caveats*/}
 
+<<<<<<< HEAD
 * Le profilage alourdit un peu le moteur, il est donc **désactivé par défaut dans les *builds* de production**. Pour activer le profilage en production, vous devez utiliser un [*build* spécifique avec profilage activé](https://fb.me/react-profiling).
+=======
+* Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
+>>>>>>> 427f24d694674be458f0fe7cb97ab1c8fe736586
 
 ---
 
@@ -81,13 +85,20 @@ Deux props sont nécessaires : une chaîne de caractères `id` et une fonction d
 
 <Pitfall>
 
+<<<<<<< HEAD
 Le profilage alourdit un peu le moteur, il est donc **désactivé par défaut dans les *builds* de production**. Pour activer le profilage en production, vous devez utiliser un [*build* spécifique avec profilage activé](https://fb.me/react-profiling).
+=======
+Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
+>>>>>>> 427f24d694674be458f0fe7cb97ab1c8fe736586
 
 </Pitfall>
 
 <Note>
 
 `<Profiler>` vous permet de mesurer les performances depuis votre propre code. Si vous cherchez un outil interactif, essayez l’onglet Profiler des [outils de développement](/learn/react-developer-tools). Cette extension de votre navigateur propose des fonctionnalités similaires.
+
+Components wrapped in `<Profiler>` will also be marked in the [Component tracks](/reference/dev-tools/react-performance-tracks#components) of React Performance tracks even in profiling builds.
+In development builds, all components are marked in the Components track regardless of whether they're wrapped in `<Profiler>`.
 
 </Note>
 
