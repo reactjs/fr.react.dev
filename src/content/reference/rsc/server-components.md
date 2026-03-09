@@ -1,6 +1,10 @@
 ---
+<<<<<<< HEAD
 title: Composants Serveur
 canary: true
+=======
+title: Server Components
+>>>>>>> 7c90c6eb4bb93a5eacb9cb4ad4ca496c32984636
 ---
 
 <Intro>
@@ -17,7 +21,11 @@ Cet environnement séparé est le « serveur » des Composants Serveur. Les Co
 
 #### Comment prendre en charge les Composants Serveur ? {/*how-do-i-build-support-for-server-components*/}
 
+<<<<<<< HEAD
 Même si les Composants Serveur dans React 19 sont stables et ne casseront pas la compatibilité entre les versions majeures, les API sous-jacentes utilisées pour implémenter les Composants Serveur au sein d'un *bundler* ou framework ne suivent pas, elles, le versionnage sémantique et sont susceptibles de casser la compatibilité entre les versions mineures de React 19.x.
+=======
+While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x.
+>>>>>>> 7c90c6eb4bb93a5eacb9cb4ad4ca496c32984636
 
 Pour prendre en charge les Composants Serveur dans un *bundler* ou framework, nous vous conseillons de figer React sur une version spécifique, ou d'utiliser une version Canari.  Nous allons continuer à collaborer avec les *bundlers* et frameworks pour stabiliser les API utilisées pour implémenter les Composants Serveur à l'avenir.
 
@@ -191,7 +199,11 @@ Les Composants Serveur ne sont pas envoyés au navigateur, ils ne peuvent donc p
 
 #### Les Composants Serveur n'ont pas de directive. {/*there-is-no-directive-for-server-components*/}
 
+<<<<<<< HEAD
 Une erreur de perception courante veut que les Composants Serveur soient identifié par `"use server"`, mais les Composants Serveur n'ont en fait pas de directive dédiée. La directive `"use server"` est là pour les Actions Serveur.
+=======
+A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Functions.
+>>>>>>> 7c90c6eb4bb93a5eacb9cb4ad4ca496c32984636
 
 Pour en savoir plus, lisez la documentation des [directives](/reference/rsc/directives).
 
@@ -269,7 +281,11 @@ async function Page({id}) {
   // Suspendra le Composant Serveur
   const note = await db.notes.get(id);
 
+<<<<<<< HEAD
   // NOTE : on n’attend pas, on démarre juste.  On attendra côté client.
+=======
+  // NOTE: not awaited, will start here and await on the client.
+>>>>>>> 7c90c6eb4bb93a5eacb9cb4ad4ca496c32984636
   const commentsPromise = db.comments.get(note.id);
   return (
     <div>
@@ -291,10 +307,14 @@ function Comments({commentsPromise}) {
   // NOTE : on reprend la promesse issue du serveur.
   // Le composant suspendra le temps que les données deviennent disponibles.
   const comments = use(commentsPromise);
-  return comments.map(commment => <p>{comment}</p>);
+  return comments.map(comment => <p>{comment}</p>);
 }
 ```
 
 Le contenu `note` constitue une donnée important pour le rendu de la page, de sorte qu'on l'attend côté serveur. Mais les commentaires sont sous le *fold* (la limite basse de la fenêtre initiale de visualisation) et sont donc moins prioritaire, de sorte qu'on se contente de démarrer leur chargement côté serveur, pour n'en attendre l'aboutissement que côté client grâce à l'API `use`.  Ça suspendra côté client, sans bloquer le rendu initial du contenu `note`.
 
+<<<<<<< HEAD
 Dans la mesure où les composants asynchrones ne sont pas pris en charge côté client, on attend leur promesse avec `use`.
+=======
+Since async components are not supported on the client, we await the promise with `use`.
+>>>>>>> 7c90c6eb4bb93a5eacb9cb4ad4ca496c32984636

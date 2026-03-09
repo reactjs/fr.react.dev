@@ -55,7 +55,7 @@ Cet exemple utilise un objet dans l’état pour représenter la position actuel
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState } from 'react';
 
 export default function MovingDot() {
@@ -209,7 +209,7 @@ Ces champs de saisie ne fonctionnent pas car les gestionnaires `onChange` modifi
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11, 15, 19]}}
 import { useState } from 'react';
 
 export default function Form() {
@@ -830,7 +830,7 @@ Votre tâche consiste à corriger tous ces bugs. En les corrigeant, expliquez po
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState } from 'react';
 
 export default function Scoreboard() {
@@ -986,7 +986,7 @@ S’il y a un changement inattendu, il y a une mutation. Trouvez la mutation dan
 
 <Sandpack>
 
-```js src/App.js
+```js {expectedErrors: {'react-compiler': [17]}} src/App.js
 import { useState } from 'react';
 import Background from './Background.js';
 import Box from './Box.js';
@@ -1291,7 +1291,7 @@ Il s’agit du même exemple défectueux que dans l’exercice précédent. Cett
 
 <Sandpack>
 
-```js src/App.js
+```js {expectedErrors: {'react-compiler': [18]}} src/App.js
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 import Background from './Background.js';
