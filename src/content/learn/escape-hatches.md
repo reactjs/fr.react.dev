@@ -202,7 +202,7 @@ Il y a deux scénarios principaux pour lesquels vous n’avez pas besoin d’Eff
 
 Par exemple, vous n’avez pas besoin d’un Effet pour ajuster un état sur la base d’un autre état :
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Clara');
   const [lastName, setLastName] = useState('Luciani');
@@ -313,6 +313,7 @@ Lisez **[Cycle de vie des Effets réactifs](/learn/lifecycle-of-reactive-effects
 
 ## Séparer les événements des Effets {/*separating-events-from-effects*/}
 
+<<<<<<< HEAD
 <Wip>
 
 Cette section décrit une **API expérimentale : elle n’a donc pas encore été livrée** dans une version stable de React.
@@ -320,6 +321,9 @@ Cette section décrit une **API expérimentale : elle n’a donc pas encore ét
 </Wip>
 
 Les gestionnaires d’événements ne sont ré-exécutés que lorsque vous répétez l’interaction qui les concerne.  Contrairement aux gestionnaires d’événements, les Effets se resynchronisent si au moins une des valeurs qu’ils lisent (telles que des props ou variables d’état) diffère depuis le rendu précédent.  Vous aurez parfois besoin d’une comportement hybride : un Effet qui s’exécute à nouveau en réaction à certains changements de valeurs, mais pas tous.
+=======
+Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
+>>>>>>> 7c90c6eb4bb93a5eacb9cb4ad4ca496c32984636
 
 Tout le code au sein d’un Effet est *réactif*. Il sera exécuté à nouveau si une des valeurs réactives qu’il lit a changé lors du dernier rendu.  Par exemple, l’Effet que voici se reconnecte au serveur de discussion si `roomId` ou `theme` changent :
 
@@ -456,8 +460,8 @@ Ce n’est pas idéal.  Vous voulez vous reconnecter au serveur de discussion se
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -472,7 +476,7 @@ Ce n’est pas idéal.  Vous voulez vous reconnecter au serveur de discussion se
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
