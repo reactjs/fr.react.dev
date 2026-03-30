@@ -4,7 +4,11 @@ title: "Hooks fournis par React DOM"
 
 <Intro>
 
+<<<<<<< HEAD
 Le module `react-dom` contient les Hooks qui ne sont pris en charge que dans des applications web (qui ne tournent que dans un environnement DOM navigateur). Ces Hooks ne sont pas pris en charge dans des environnements hors-navigateur tels que les applications iOS, Android ou Windows. Si vous cherchez les Hooks pris en charge dans les navigateurs *et les autres environnements*, consultez la [page des Hooks React](/reference/react). La page où vous vous trouvez liste quant à elle tous les Hooks du module `react-dom`.
+=======
+The `react-dom` package contains Hooks that are only supported for web applications (which run in the browser DOM environment). These Hooks are not supported in non-browser environments like iOS, Android, or Windows applications. If you are looking for Hooks that are supported in web browsers *and other environments* see [the React Hooks page](/reference/react/hooks). This page lists all the Hooks in the `react-dom` package.
+>>>>>>> 40ea071c846b3ab1232391bab15d31f508913bf4
 
 </Intro>
 
@@ -12,6 +16,7 @@ Le module `react-dom` contient les Hooks qui ne sont pris en charge que dans des
 
 ## Hooks de formulaires {/*form-hooks*/}
 
+<<<<<<< HEAD
 <Canary>
 
 Les Hooks de formulaires ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
@@ -21,6 +26,11 @@ Les Hooks de formulaires ne sont actuellement disponibles que sur les canaux de 
 Les *formulaires* vous permettent de créer des contrôles interactifs pour envoyer des informations.  Pour gérer les formulaires dans vos composants, utilisez l'un des Hooks suivants :
 
 * [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) vous permet de mettre à jour l'UI sur base de l'état d'un formulaire.
+=======
+*Forms* let you create interactive controls for submitting information.  To manage forms in your components, use one of these Hooks:
+
+* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) allows you to make updates to the UI based on the status of a form.
+>>>>>>> 40ea071c846b3ab1232391bab15d31f508913bf4
 
 ```js
 function Form({ action }) {
