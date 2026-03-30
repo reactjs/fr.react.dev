@@ -49,7 +49,11 @@ Un portail ne change que l'emplacement physique du nœud DOM. Pour tous les autr
 
 * `domNode`: un nœud DOM, comme ceux retournés par `document.getElementById()`. Le nœud doit déjà exister. Passer un nœud DOM différent lors d'une mise à jour entraînera la recréation du contenu du portail.
 
+<<<<<<< HEAD
 * `key` **optionnelle** : une chaîne de caractères ou un nombre, unique, à utiliser comme [clé](/learn/rendering-lists/#keeping-list-items-in-order-with-key) du portail.
+=======
+* **optional** `key`: A unique string or number to be used as the portal's [key.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+>>>>>>> 40ea071c846b3ab1232391bab15d31f508913bf4
 
 #### Valeur renvoyée {/*returns*/}
 
@@ -239,7 +243,11 @@ export default function ModalContent({ onClose }) {
 
 Il est important de s'assurer que votre application est accessible lors de l'utilisation de portails. Par exemple, vous devrez peut-être gérer le focus du clavier afin que l'utilisateur puisse déplacer le focus dans et hors du portail de manière naturelle.
 
+<<<<<<< HEAD
 Suivez les [bonnes pratiques WAI-ARIA de création de modales](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) lors de la création de modales. Si vous utilisez un module communautaire, assurez-vous qu'il est accessible et qu'il suit ces directives.
+=======
+Follow the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal) when creating modals. If you use a community package, ensure that it is accessible and follows these guidelines.
+>>>>>>> 40ea071c846b3ab1232391bab15d31f508913bf4
 
 </Pitfall>
 
@@ -251,7 +259,7 @@ Les portails peuvent vous être utiles si votre racine React n'est qu'une partie
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>Mon appli</title></head>
