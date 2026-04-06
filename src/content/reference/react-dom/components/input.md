@@ -30,6 +30,7 @@ Pour afficher un champ de saisie, utilisez le [composant natif `<input>` du navi
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<input>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
 
 <Canary>
@@ -39,6 +40,11 @@ Les extensions de React à la prop `formAction` ne sont actuellement disponibles
 </Canary>
 
 [`formAction`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input#formaction) : une chaîne de caractères ou une fonction. Cette prop a priorité sur le `<form action>` pour les champs de `type="submit"` ou `type="image"`. Lorsqu'une URL est passée à `formAction`, le formulaire se comporte comme un formulaire HTML classique. Mais si une fonction est passée à `formAction`, la fonction traitera l'envoi du formulaire. Allez voir [`<form action>`](/reference/react-dom/components/form#props).
+=======
+`<input>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+
+- [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): A string or function. Overrides the parent `<form action>` for `type="submit"` and `type="image"`. When a URL is passed to `action` the form will behave like a standard HTML form. When a function is passed to `formAction` the function will handle the form submission. See [`<form action>`](/reference/react-dom/components/form#props).
+>>>>>>> 1207ee36e1c7e3f2737d8f1022015473ffa99adf
 
 Un champ de saisie peut devenir un [champ contrôlé](#controlling-an-input-with-a-state-variable) en lui passant une de ces props :
 
@@ -306,7 +312,11 @@ Donnez un `name` à votre `<input>`, par exemple `<input name="firstName" defaul
 
 <Pitfall>
 
+<<<<<<< HEAD
 Par défaut, *n'importe quel* `<button>` à l'intérieur d'un `<form>` va le soumettre. Cela peut être surprenant ! Si vous avez votre propre composant React `Button`, envisagez de renvoyer [`<button type="button">`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input/button) au lieu de `<button>`. Ensuite, pour être explicite, utilisez `<button type="submit">` pour les boutons qui *sont* censés soumettre le formulaire.
+=======
+By default, a `<button>` inside a `<form>` without a `type` attribute will submit it. This can be surprising! If you have your own custom `Button` React component, consider using [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<button>` (with no type). Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
+>>>>>>> 1207ee36e1c7e3f2737d8f1022015473ffa99adf
 
 </Pitfall>
 
