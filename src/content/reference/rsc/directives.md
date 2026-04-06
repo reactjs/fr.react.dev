@@ -1,17 +1,24 @@
 ---
-title: "Directives"
-canary: true
+title: Directives
 ---
 
-<Canary>
+<RSC>
 
+<<<<<<< HEAD
 Ces directives ne sont utiles que si vous [utilisez les Composants Serveur](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) ou créez une bibliothèque compatible avec eux.
+=======
+Directives are for use in [React Server Components](/reference/rsc/server-components).
+>>>>>>> 1207ee36e1c7e3f2737d8f1022015473ffa99adf
 
-</Canary>
+</RSC>
 
 <Intro>
 
+<<<<<<< HEAD
 Les directives fournissent des instructions à destination des [*bundlers* compatibles avec les Composants Serveur](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+=======
+Directives provide instructions to [bundlers compatible with React Server Components](/learn/creating-a-react-app#full-stack-frameworks).
+>>>>>>> 1207ee36e1c7e3f2737d8f1022015473ffa99adf
 
 </Intro>
 
