@@ -44,7 +44,15 @@ function PasswordField() {
 
 * `useId` est un Hook, vous pouvez donc uniquement l’appeler **à la racine de votre composant** ou de vos propres Hooks. Vous ne pouvez pas l’appeler à l’intérieur de boucles ou de conditions. Si nécessaire, extrayez un nouveau composant et déplacez l'état dans celui-ci.
 
+<<<<<<< HEAD
 * `useId` ne doit pas être utilisé pour générer des clés dans une liste. [Les clés devraient toujours être basées sur vos données.](/learn/rendering-lists#where-to-get-your-key)
+=======
+* `useId` **should not be used to generate cache keys** for [use()](/reference/react/use). The ID is stable when a component is mounted but may change during rendering. Cache keys should be generated from your data.
+
+* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+
+* `useId` currently cannot be used in [async Server Components](/reference/rsc/server-components#async-components-with-server-components).
 
 ---
 
@@ -189,7 +197,11 @@ Dans React, `useId` est généré à partir du « chemin de parents » du compos
 
 ### Générer des identifiants pour plusieurs éléments liés {/*generating-ids-for-several-related-elements*/}
 
+<<<<<<< HEAD
 Si vous devez attribuer des identifiants à plusieurs éléments liés, vous pouvez appeler `useId` pour leur attribuer un préfixe commun :
+=======
+If you need to give IDs to multiple related elements, you can call `useId` to generate a shared prefix for them:
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Sandpack>
 
@@ -226,7 +238,7 @@ Si vous affichez plusieurs applications React indépendantes sur une même page,
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>Mon appli</title></head>
