@@ -50,7 +50,11 @@ Seule la méthode `render` est requise, les autres méthodes sont optionnelles.
 
 ### `context` {/*context*/}
 
+<<<<<<< HEAD
 Le [contexte](/learn/passing-data-deeply-with-context) d'un composant à base de classe est mis à disposition dans `this.context`.  Il n'est disponible que si vous précisez *quel* contexte vous souhaitez récupérer en utilisant [`static contextType`](#static-contexttype) (approche plus récente) ou [`static contextTypes`](#static-contexttypes) (approche dépréciée).
+=======
+The [context](/learn/passing-data-deeply-with-context) of a class component is available as `this.context`. It is only available if you specify *which* context you want to receive using [`static contextType`](#static-contexttype).
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Un composant à base de classe ne peut lire qu'un contexte à la fois.
 
@@ -105,6 +109,7 @@ La lecture de `this.props` dans des composants à base de classes est équivalen
 
 ---
 
+<<<<<<< HEAD
 ### `refs` {/*refs*/}
 
 <Deprecated>
@@ -117,6 +122,8 @@ Vous permet d'accéder à des [refs textuelles historiques](https://legacy.react
 
 ---
 
+=======
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 ### `state` {/*state*/}
 
 L'état d'un composant à base de classe est mis à disposition dans `this.state`. La champ `state` doit être un objet. Ne modifiez pas l'état directement.  Si vous souhaitez modifier l'état, appelez `setState` avec un objet d'état en argument.
@@ -218,7 +225,11 @@ Il n'y a pas d'équivalent réel du `constructor` dans les fonctions composants.
 
 Si vous définissez `componentDidCatch`, React l'appellera lorsqu'un composant descendant lèvera une erreur lors du rendu.  Ça vous permettra de signaler l'erreur à un service de supervision en production.
 
+<<<<<<< HEAD
 Elle est en général utilisée conjointement avec [`static getDerivedStateFromError`](#static-getderivedstatefromerror), qui vous permet de mettre à jour l'état en réaction à une erreur afin d'afficher un message d'erreur à l'utilisateur.  Un composant doté de ces méthodes est ce qu'on appelle un *périmètre d'erreur*.
+=======
+Typically, it is used together with [`static getDerivedStateFromError`](#static-getderivedstatefromerror) which lets you update state in response to an error and display an error message to the user. A component with these methods is called an *Error Boundary*.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 [Voir un exemple](#catching-rendering-errors-with-an-error-boundary).
 
@@ -494,6 +505,7 @@ Là où les composants à base de classes lisent une source de données extérie
 
 ---
 
+<<<<<<< HEAD
 ### `getChildContext()` {/*getchildcontext*/}
 
 <Deprecated>
@@ -506,6 +518,8 @@ Vous permet de spécifier les valeurs fournies par le composant pour les [contex
 
 ---
 
+=======
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 ### `getSnapshotBeforeUpdate(prevProps, prevState)` {/*getsnapshotbeforeupdate*/}
 
 Si vous implémentez `getSnapshotBeforeUpdate`, React l'appellera juste avant de mettre à jour le DOM.  Ça permet à votre composant de capturer certaines informations issues du DOM (telles que la position de défilement) avant qu'elles risquent d'évoluer.  Toute valeur renvoyée par cette méthode de cycle de vie sera passée en paramètre à [`componentDidUpdate`](#componentdidupdate).
@@ -739,9 +753,15 @@ React appelle `shouldComponentUpdate` avant de refaire le rendu lorsque des nouv
 
 #### Paramètres {/*shouldcomponentupdate-parameters*/}
 
+<<<<<<< HEAD
 * `nextProps` : les prochaines props pour le rendu à venir. Comparez `nextProps` à [`this.props`](#props) pour déterminer ce qui a changé.
 * `nextState` : le prochain état pour le rendu à venir. Comparez `nextState` à [`this.state`](#state) pour déterminer ce qui a changé.
 * `nextContext` : le prochain contexte pour le rendu à venir. Comparez `nextContext` à [`this.context`](#state) pour déterminer ce qui a changé. N'est disponible que si vous avez spécifié [`static contextType`](#static-contexttype) (approche plus récente) ou [`static contextTypes`](#static-contexttypes) (approche dépréciée).
+=======
+- `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
+- `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#props) to determine what changed.
+- `nextContext`: The next context that the component is about to render with. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype).
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 #### Valeur renvoyée {/*shouldcomponentupdate-returns*/}
 
@@ -751,7 +771,11 @@ Renvoie `false` pour indiquer à React de sauter le recalcul du rendu.
 
 #### Limitations {/*shouldcomponentupdate-caveats*/}
 
+<<<<<<< HEAD
 - Cette méthode existe *seulement* comme une optimisation des performances. Si votre composant ne fonctionne pas sans elle, corrigez-le d'abord.
+=======
+- This method *only* exists as a performance optimization. If your component breaks without it, fix that first.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 - Envisagez de recourir à [`PureComponent`](/reference/react/PureComponent) plutôt que d'écrire `shouldComponentUpdate` à la main. `PureComponent` fait une comparaison superficielle des props et de l'état, et réduit le risque de sauter une mise à jour utile.
 
@@ -815,8 +839,13 @@ Si vous définissez `UNSAFE_componentWillReceiveProps`, React l'appellera lorsqu
 
 #### Paramètres {/*unsafe_componentwillreceiveprops-parameters*/}
 
+<<<<<<< HEAD
 * `nextProps` : les prochaines props que le composant va recevoir de son composant parent. Comparez `nextProps` à [`this.props`](#props) pour déterminer ce qui a changé.
 * `nextContext` : le prochain contexte que le composant va recevoir de son plus proche fournisseur de contexte. Comparez `nextContext` à [`this.context`](#state) pour déterminer ce qui a changé. N'est disponible que si vous avez par ailleurs spécifié [`static contextType`](#static-contexttype) (approche plus récente) ou [`static contextTypes`](#static-contexttypes) (approche dépréciée).
+=======
+- `nextProps`: The next props that the component is about to receive from its parent component. Compare `nextProps` to [`this.props`](#props) to determine what changed.
+- `nextContext`: The next context that the component is about to receive from the closest provider. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype).
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 #### Valeur renvoyée {/*unsafe_componentwillreceiveprops-returns*/}
 
@@ -880,6 +909,7 @@ Il n'y a pas d'équivalent direct à `UNSAFE_componentWillUpdate` dans les fonct
 
 ---
 
+<<<<<<< HEAD
 ### `static childContextTypes` {/*static-childcontexttypes*/}
 
 <Deprecated>
@@ -904,6 +934,8 @@ Vous permet de spécifier quel [contexte historique](https://legacy.reactjs.org/
 
 ---
 
+=======
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 ### `static contextType` {/*static-contexttype*/}
 
 Si vous souhaitez lire [`this.context`](#context-instance-field) dans votre composant à base de classe, vous devez spécifier le contexte que vous souhaitez lire.  Le contexte que vous spécifiez comme `static contextType` doit être une valeur créée auparavant par[`createContext`](/reference/react/createContext).
@@ -978,6 +1010,7 @@ La définition de `defaultProps` dans les composants à base de classes est équ
 
 ---
 
+<<<<<<< HEAD
 ### `static propTypes` {/*static-proptypes*/}
 
 Vous pouvez définir `static propTypes` en utilisant le module[`prop-types`](https://www.npmjs.com/package/prop-types) pour déclarer les types des props acceptées par votre composant.  Ces types seront vérifiés lors du rendu en développement uniquement.
@@ -1006,11 +1039,17 @@ Nous vous conseillons d'utiliser [TypeScript](/learn/typescript) plutôt que de 
 
 ---
 
+=======
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 ### `static getDerivedStateFromError(error)` {/*static-getderivedstatefromerror*/}
 
 Si vous définissez `static getDerivedStateFromError`, React l'appellera lorsqu'un composant descendant lèvera une erreur pendant le rendu.  Ça vous permet d'afficher un message d'erreur plutôt que d'aboutir à une UI vide.
 
+<<<<<<< HEAD
 Elle est en général utilisée conjointement avec [`componentDidCatch`](#componentdidcatch), qui vous permet par exemple d'envoyer un rapport d'erreur à un service de supervision.  Un composant doté de ces méthodes est ce qu'on appelle un *périmètre d'erreur*.
+=======
+Typically, it is used together with [`componentDidCatch`](#componentdidcatch) which lets you send the error report to some analytics service. A component with these methods is called an *Error Boundary*.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 [Voir un exemple](#catching-rendering-errors-with-an-error-boundary).
 
@@ -1345,6 +1384,7 @@ Nous vous conseillons de définir vos composants au moyen de fonctions plutôt q
 
 ---
 
+<<<<<<< HEAD
 ### Capturer les erreurs de rendu avec un périmètre d'erreur {/*catching-rendering-errors-with-an-error-boundary*/}
 
 Par défaut, si votre application lève une erreur lors du rendu, React retirera son UI de l'écran.  Pour éviter ça, vous pouvez enrober tout ou partie de votre UI dans un *périmètre d'erreur*. Un périmètre d'erreur est un composant spécial qui vous permet d'afficher une UI de secours plutôt que la partie plantée : un message d'erreur par exemple.
@@ -1352,6 +1392,29 @@ Par défaut, si votre application lève une erreur lors du rendu, React retirera
 Pour implémenter un composant de périmètre d'erreur, vous devez fournir [`static getDerivedStateFromError`](#static-getderivedstatefromerror) qui vous permet de mettre à jour votre état en réaction à une erreur afin d'afficher un message à l'utilisateur. Vous pouvez aussi, optionnellement, implémenter [`componentDidCatch`](#componentdidcatch) pour ajouter de la logique supplémentaire, comme par exemple un signalement de l'erreur à un service de supervision.
 
 ```js {7-11,13-20}
+=======
+### Catching rendering errors with an Error Boundary {/*catching-rendering-errors-with-an-error-boundary*/}
+
+By default, if your application throws an error during rendering, React will remove its UI from the screen. To prevent this, you can wrap a part of your UI into an *Error Boundary*. An Error Boundary is a special component that lets you display some fallback UI instead of the part that crashed--for example, an error message.
+
+<Note>
+Error boundaries do not catch errors for:
+
+- Event handlers [(learn more)](/learn/responding-to-events)
+- [Server side rendering](/reference/react-dom/server)
+- Errors thrown in the error boundary itself (rather than its children)
+- Asynchronous code (e.g. `setTimeout` or `requestAnimationFrame` callbacks); an exception is the usage of the [`startTransition`](/reference/react/useTransition#starttransition) function returned by the [`useTransition`](/reference/react/useTransition) Hook. Errors thrown inside the transition function are caught by error boundaries [(learn more)](/reference/react/useTransition#displaying-an-error-to-users-with-error-boundary)
+
+</Note>
+
+To implement an Error Boundary component, you need to provide [`static getDerivedStateFromError`](#static-getderivedstatefromerror) which lets you update state in response to an error and display an error message to the user. You can also optionally implement [`componentDidCatch`](#componentdidcatch) to add some extra logic, for example, to log the error to an analytics service.
+
+With [`captureOwnerStack`](/reference/react/captureOwnerStack) you can include the Owner Stack during development.
+
+```js {9-12,14-27}
+import * as React from 'react';
+
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -1365,12 +1428,26 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
+<<<<<<< HEAD
     // Exemple de "componentStack" :
     //   in ComponentThatThrows (created by App)
     //   in ErrorBoundary (created by App)
     //   in div (created by App)
     //   in App
     logErrorToMyService(error, info.componentStack);
+=======
+    logErrorToMyService(
+      error,
+      // Example "componentStack":
+      //   in ComponentThatThrows (created by App)
+      //   in ErrorBoundary (created by App)
+      //   in div (created by App)
+      //   in App
+      info.componentStack,
+      // Warning: `captureOwnerStack` is not available in production.
+      React.captureOwnerStack(),
+    );
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   }
 
   render() {
@@ -1394,11 +1471,19 @@ Vous pouvez alors enrober une partie de votre arbre de composants avec le périm
 
 Si `Profile` ou un de ses composants descendants lève une erreur, `ErrorBoundary` « attrapera » cette erreur, affichera une UI de secours avec le message d'erreur fourni, et enverra un signalement de l'erreur de production à votre service de supervision.
 
+<<<<<<< HEAD
 Vous n'avez pas besoin d'enrober chaque composant dans son propre périmètre d'erreur.  Lorsque vous réfléchissez à la [granularité de vos périmètres d'erreurs](https://www.brandondail.com/posts/fault-tolerance-react), pensez aux emplacements logiques pour des messages d'erreurs.  Dans une appli de messagerie par exemple, un périmètre d'erreur naturel se situerait autour de la liste des conversations.  Il serait également envisageable de placer un périmètre autour de chaque message individuel.  En revanche, ça ne servirait à rien d'en placer un autour de chaque avatar.
 
 <Note>
 
 Il n'existe pour le moment pas de moyen d'écrire un périmètre d'erreur sous forme de fonction composant.  Ceci dit, vous n'avez pas à écrire votre classe de périmètre d'erreur vous-même. Vous pouvez par exemple utiliser plutôt le module [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary).
+=======
+You don't need to wrap every component into a separate Error Boundary. When you think about the [granularity of Error Boundaries,](https://www.brandondail.com/posts/fault-tolerance-react) consider where it makes sense to display an error message. For example, in a messaging app, it makes sense to place an Error Boundary around the list of conversations. It also makes sense to place one around every individual message. However, it wouldn't make sense to place a boundary around every avatar.
+
+<Note>
+
+There is currently no way to write an Error Boundary as a function component. However, you don't have to write the Error Boundary class yourself. For example, you can use [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) instead.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 </Note>
 
@@ -1884,9 +1969,9 @@ function Form() {
 
 export default function MyApp() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 ```
@@ -1970,9 +2055,9 @@ function Form() {
 
 export default function MyApp() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 ```

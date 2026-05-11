@@ -107,7 +107,11 @@ Elle renvoie un <CodeStep step={3}>instantané</CodeStep> de la donnée issue de
 
 React utilisera ces fonctions pour garder votre composant abonné à la source et refaire un rendu lorsque la donnée change.
 
+<<<<<<< HEAD
 Par exemple, dans le bac à sable ci-dessous, `todosStore` est implementé *via* une source de données extérieure, dont l'état est stocké hors de React. Le composant `TodosApp` se connecte à cette source extérieure avec le Hook `useSyncExternalStore`.
+=======
+For example, in the sandbox below, `todosStore` is implemented as an external store that stores data outside of React. The `TodosApp` component connects to that external store with the `useSyncExternalStore` Hook.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Sandpack>
 
@@ -407,43 +411,64 @@ Si les données de votre source sont modifiables, votre fonction `getSnapshot` d
 
 La fonction `subscribe` est définie *au sein* du composant, du coup elle diffère à chaque rendu :
 
-```js {4-7}
+```js {2-5}
 function ChatIndicator() {
+<<<<<<< HEAD
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // 🚩 Toujours une fonction différente, donc React se réabonne à chaque rendu
+=======
+  // 🚩 Always a different function, so React will resubscribe on every re-render
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   function subscribe() {
     // ...
   }
+
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
 }
 ```
 
+<<<<<<< HEAD
 React se réabonnera à votre source de données dès que vous passez une fonction `subscribe` différente d'un rendu à l'autre.  Si ça nuit aux performances et que vous souhaitez éviter un réabonnement, sortez la fonction `subscribe` du composant :
+=======
+React will resubscribe to your store if you pass a different `subscribe` function between re-renders. If this causes performance issues and you'd like to avoid resubscribing, move the `subscribe` function outside:
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
-```js {6-9}
-function ChatIndicator() {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
+```js {1-4}
+// ✅ Always the same function, so React won't need to resubscribe
+function subscribe() {
   // ...
 }
 
+<<<<<<< HEAD
 // ✅ Toujours la même fonction, donc React ne se réabonne pas
 function subscribe() {
+=======
+function ChatIndicator() {
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   // ...
 }
 ```
 
 Vous pouvez aussi enrober `subscribe` dans un appel à [`useCallback`](/reference/react/useCallback) pour ne vous réabonner que lorsqu'une dépendance change :
 
-```js {4-8}
+```js {2-5}
 function ChatIndicator({ userId }) {
+<<<<<<< HEAD
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ✅ Même fonction tant que userId ne change pas
+=======
+  // ✅ Same function as long as userId doesn't change
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   const subscribe = useCallback(() => {
     // ...
   }, [userId]);
+
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
 }

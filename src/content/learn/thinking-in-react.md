@@ -37,9 +37,15 @@ Commencez par dessiner des boîtes autour de chaque composant et sous-composant 
 
 En fonction de votre propre vécu, vous pouvez aborder la découpe du design en composants selon divers axes :
 
+<<<<<<< HEAD
 - **Programmatique** : utilisez les mêmes techniques d'arbitrage que si vous deviez créer une nouvelle fonction ou un nouvel objet.  Une de ces techniques réside dans le [principe de responsabilité unique](https://fr.wikipedia.org/wiki/Principe_de_responsabilit%C3%A9_unique), qui veut qu'un composant ne doive idéalement faire qu'une seule chose. S'il se retrouve à grandir, il devrait sans doute être décomposé en sous-composants plus simples.
 - **CSS** : réfléchissez aux endroits pour lesquels vous définiriez un sélecteur de classe. (Ceci dit, les composants sont un peu moins granulaires.)
 - **Design** : imaginez comment vous organiseriez les couches du design.
+=======
+* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns), that is, a component should ideally only be concerned with one thing. If it ends up growing, it should be decomposed into smaller subcomponents.
+* **CSS**--consider what you would make class selectors for. (However, components are a bit less granular.)
+* **Design**--consider how you would organize the design's layers.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Si votre JSON est bien structuré, vous constaterez souvent qu'il a une sorte de correspondance naturelle à la structure des composants de votre UI. C'est parce que l'UI et les modèles de données ont souvent la même architecture d'information — la même forme, en somme.  Découpez votre UI en composants, avec chaque composant qui correspond à une partie de votre modèle de données.
 
@@ -228,10 +234,17 @@ Ce qui reste est sans doute de l'état.
 
 Refaisons ça pour chaque donnée :
 
+<<<<<<< HEAD
 1. La liste originale des produits nous est **passée dans les props, donc ce n'est pas de l'état**.
 2. Le texte de la recherche semble être de l'état car il change au fil du temps et ne peut être calculé sur aucune autre base.
 3. L'état de la case à cocher semble être de l'état car il change au fil du temps et ne peut etre calculé sur aucune autre base.
 4. La liste filtrée des produits **n'est pas de l'état car elle peut être calculée** en prenant la liste originale des produits pour la filtrer selon le texte de la rechercher et l'état de la case à cocher.
+=======
+1. The original list of products is **passed in as props, so it's not state.**
+2. The search text seems to be state since it changes over time and can't be computed from anything.
+3. The value of the checkbox seems to be state since it changes over time and can't be computed from anything.
+4. The filtered list of products **isn't state because it can be computed** by taking the original list of products and filtering it according to the search text and value of the checkbox.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Au bout du compte, seuls le texte de la recherche et l'état de la case à cocher sont de l'état ! Bien joué !
 
@@ -265,6 +278,7 @@ Lors de l'étape précédente, vous avez trouvé deux éléments d'état pour ce
 
 Déroulons notre stratégie pour eux :
 
+<<<<<<< HEAD
 1. **Identifier les composants qui utilisent l'état** :
     - `ProductTable` a besoin de filtrer la liste des produits sur base de cet état (texte de la recherche et état de la case à cocher).
     - `SearchBar` a besoin d'afficher cet état (texte de la recherche et état de la case à cocher).
@@ -272,6 +286,15 @@ Déroulons notre stratégie pour eux :
 3. **Décider où l'état devrait vivre** : nous stockerons le texte de la recherche et l'état de la case à cocher dans `FilterableProductTable`.
 
 Ainsi, les valeurs d'état vivront dans `FilterableProductTable`.
+=======
+1. **Identify components that use state:**
+    * `ProductTable` needs to filter the product list based on that state (search text and checkbox value).
+    * `SearchBar` needs to display that state (search text and checkbox value).
+2. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
+3. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
+
+So the state values will live in `FilterableProductTable`.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Ajoutez l'état au composant à l'aide du [Hook `useState()`](/reference/react/useState). Les Hooks sont des fonctions spéciales qui vous permettent de « vous accrocher » à React. Ajoutez deux variables d'état à la racine de `FilterableProductTable` et donnez-leur des valeurs initiales :
 
@@ -392,7 +415,11 @@ function SearchBar({ filterText, inStockOnly }) {
       <input
         type="text"
         value={filterText}
+<<<<<<< HEAD
         placeholder="Recherche..."/>
+=======
+        placeholder="Search..."/>
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
       <label>
         <input
           type="checkbox"
@@ -456,7 +483,11 @@ function SearchBar({ filterText, inStockOnly }) {
       <input
         type="text"
         value={filterText}
+<<<<<<< HEAD
         placeholder="Recherche..."/>
+=======
+        placeholder="Search..."/>
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 ```
 
 Cependant, vous n'avez pas encore ajouté de code pour réagir aux actions de l'utilisateur, comme la saisie.  Ce sera notre dernière étape.
@@ -465,7 +496,11 @@ Cependant, vous n'avez pas encore ajouté de code pour réagir aux actions de l'
 
 Pour le moment, votre appli s'affiche correctement avec les props et l'état qui circulent le long de son arborescence.  Mais pour modifier l'état suite à des saisies utilisateur, vous allez devoir permettre un flux de données dans l'autre sens : les composants de formulaire enfouis dans l'arbre vont avoir besoin de mettre à jour l'état de `FilterableProductTable`.
 
+<<<<<<< HEAD
 React impose que ce flux de données soit explicite, ce qui nécessite un peu plus de code qu'avec des liaisons de données bidirectionnelles.  Si vous essayez de saisir quelque chose dans la recherche, ou de cocher la case dans l'exemple ci-dessus, vous verrez que React ignore vos saisies. C'est voulu. En écrivant `<input value={filterText} />`, vous avez calé la prop `value` de l'`input` pour qu'elle reflète toujours l'état `filterText` passé depuis `FilterableProductTable`. Puisque l'état `filterText` n'est jamais modifié, le champ ne change jamais de valeur.
+=======
+Currently your app renders correctly with props and state flowing down the hierarchy. But to change the state according to user input, you will need to support data flowing the other way: the form components deep in the hierarchy need to update the state in `FilterableProductTable`.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Vous souhaitez que chaque fois que l'utilisateur modifie les champs du formulaire, l'état soit mis à jour pour refléter ces changements. L'état appartient à `FilterableProductTable`, de sorte que seul ce composant peut appeler `setFilterText` et `setInStockOnly`. Pour permettre à `SearchBar` de mettre à jour l'état de `FilterableProductTable`, vous allez devoir passer des fonctions à `SearchBar` :
 
@@ -610,7 +645,11 @@ function SearchBar({
     <form>
       <input
         type="text"
+<<<<<<< HEAD
         value={filterText} placeholder="Recherche..."
+=======
+        value={filterText} placeholder="Search..."
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
         onChange={(e) => onFilterTextChange(e.target.value)} />
       <label>
         <input
