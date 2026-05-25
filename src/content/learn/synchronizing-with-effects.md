@@ -92,7 +92,7 @@ Vous pourriez être tenté·e d’appeler directement `play()` ou `pause()` au s
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [7, 9]}}
 import { useState, useRef, useEffect } from 'react';
 
 function VideoPlayer({ src, isPlaying }) {
@@ -616,7 +616,11 @@ Une mauvaise pratique fréquente afin d'empêcher le double-déclenchement d'un 
 
 Ainsi, vous ne voyez `"✅ Connexion..."` qu'une fois en développement, mais ça n'a pas corrigé le bug pour autant.
 
+<<<<<<< HEAD
 Lorsque l'utilisateur navigue ailleurs, la connexion ne sera toujours pas fermée, et lorsqu'il reviendra, une nouvelle connexion sera créée. Au fil de la navigation, les connexions continueront à s'empiler, tout comme avant votre « correctif ».
+=======
+When the user navigates away, the connection still isn't closed and when they navigate back, a new connection is created. As the user navigates across the app, the connections would keep piling up, the same as it would before the "fix".
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 Pour corriger le bug, il ne suffit pas de faire que l'Effet ne s'exécute qu'une fois. L'Effet doit pouvoir fonctionner après un remontage, ce qui signifie que la connexion doit être nettoyée comme dans la solution vue plus haut.
 
@@ -731,8 +735,13 @@ Non seulement ça améliorera l’expérience de développement (DX), mais l’a
 
 Cette liste d’inconvénients n’est d’ailleurs pas spécifique à React.  Elle s’applique au chargement de données lors du montage quelle que soit la bibliothèque.  Comme pour le routage, bien orchestrer son chargement de données est un exercice délicat, c’est pourquoi nous vous recommandons plutôt les approches suivantes :
 
+<<<<<<< HEAD
 - **Si vous utilisez un [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), utilisez son mécanisme intégré de chargement de données.** Les frameworks React modernes ont intégré le chargement de données de façon efficace afin d’éviter ce type d’ornières.
 - **Dans le cas contraire, envisagez l’utilisation ou la construction d’un cache côté client.**  Les solutions open-source les plus populaires incluent  [React Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), et [React Router 6.4+](https://beta.reactrouter.com/en/main/start/overview). Vous pouvez aussi construire votre propre solution, auquel cas vous utiliseriez sans doute les Effets sous le capot, mais ajouteriez la logique nécessaire au dédoublonnement de requêtes, à la mise en cache des réponses, et à l’optimisation des cascades réseau (en préchargeant les données ou en consolidant vers le haut les besoins de données des routes).
+=======
+- **If you use a [framework](/learn/creating-a-react-app#full-stack-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
+- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [TanStack Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood, but add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 Vous pouvez continuer à charger les données directement dans les Effets si aucune de ces approches ne vous convient.
 
@@ -1003,7 +1012,11 @@ import { useEffect, useRef } from 'react';
 export default function MyInput({ value, onChange }) {
   const ref = useRef(null);
 
+<<<<<<< HEAD
   // TODO: Ça ne marche pas tout à fait, corrigez ça.
+=======
+  // TODO: This doesn't quite work. Fix it.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
   // ref.current.focus()
 
   return (
@@ -1467,7 +1480,8 @@ Ce composant affiche la biographie de la personne sélectionnée.  Il charge cet
 
 <Sandpack>
 
-```js src/App.js
+{/* not the most efficient, but this validation is enabled in the linter only, so it's fine to ignore it here since we know what we're doing */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1539,7 +1553,8 @@ Pour corriger cette *race condition*, ajoutez une fonction de nettoyage.
 
 <Sandpack>
 
-```js src/App.js
+{/* not the most efficient, but this validation is enabled in the linter only, so it's fine to ignore it here since we know what we're doing */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
