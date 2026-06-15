@@ -8,6 +8,7 @@ body:
       value: |
         ## Candidature pour l'inclusion d'un framework React recommandé
 
+<<<<<<< HEAD
         _Ce formulaire s'adresse aux auteur·es de framework qui souhaitent candidater pour qu'il fasse partie de la liste des [frameworks React](https://react.dev/learn/start-a-new-react-project) recommandés. Si vous n'êtes pas l'auteur·e du framework, contactez ses auteur·es pour leur suggérer de candidater._
 
         Lorsque nous recommandons un framework, nous le faisons afin que les développeur·ses puissent démarrer avec un projet React qui s'occupe d'entrée de jeu de sujets récurrents tels que la découpe de code, le chargement de données, le routage et la génération du HTML, sans avoir à fournir un travail complémentaire. Nous estimons que ça permettra aux gens de démarrer plus vite avec React, et de faire monter leur application à l'échelle en production.
@@ -27,6 +28,27 @@ body:
         - **Compatible avec notre vision de l'avenir de React**. React évolue avec le temps, et les frameworks qui ne s'alignent pas avec la direction que prend React risquent au fil du temps d'isoler leurs utilisateurs de l'écosystème React principal.  Pour vous inclure sur cette page, nous devons être confiants dans la capacité du framework à placer ses utilisateurs durablement sur le chemin du succès avec React.
 
         Notez bien que nous avons déjà passé en revue la plupart des frameworks populaires disponibles pour le moment, il est donc peu probable que nous n'ayons pas encore examiné votre framework. Mais si vous pensez que nous avons loupé quelque chose, veuillez remplir le formulaire ci-dessous.
+=======
+        _This form is for framework authors to apply to be included as a recommended [React framework](https://react.dev/learn/creating-a-react-app). If you are not a framework author, please contact the authors before submitting._
+        
+        Our goal when recommending a framework is to start developers with a React project that solves common problems like code splitting, data fetching, routing, and HTML generation without any extra work later. We believe this will allow users to get started quickly with React, and scale their app to production.
+        
+        While we understand that many frameworks may want to be featured, this page is not a place to advertise every possible React framework or all frameworks that you can add React to. There are many great frameworks that offer support for React that are not listed in our guides. The frameworks we recommend have invested significantly in the React ecosystem, and collaborated with the React team to be compatible with our [full-stack React architecture vision](https://react.dev/learn/creating-a-react-app#which-features-make-up-the-react-teams-full-stack-architecture-vision).
+        
+        To be included, frameworks must meet the following criteria:
+        
+        - **Free & open-source**: must be open source and free to use.
+        - **Well maintained**. must be actively maintained, providing bug fixes and improvements.
+        - **Active community**: must have a sufficiently large and active community to support users.
+        - **Clear onboarding**: must have clear install steps to install the React version of the framework.
+        - **Ecosystem compatibility**: must support using the full range of libraries and tools in the React ecosystem.
+        - **Self-hosting option**: must support an option to self-host applications without losing access to features.
+        - **Developer experience**. must allow developers to be productive by supporting features like Fast Refresh.
+        - **User experience**. must provide built-in support for common problems like routing and data-fetching.
+        - **Compatible with our future vision for React**. React evolves over time, and frameworks that do not align with React’s direction risk isolating their users from the main React ecosystem over time. To be included on this page we must feel confident that the framework is setting its users up for success with React over time.
+        
+        Please note, we have reviewed most of the popular frameworks available today, so it is unlikely we have not considered your framework already. But if you think we missed something, please complete the application below.
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
   - type: input
     attributes:
       label: Nom
