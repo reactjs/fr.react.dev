@@ -5,7 +5,11 @@ date: 2024/02/15
 description: Dans les billets React Labs, nous vous parlons de nos projets de recherche et développement actifs.  Depuis notre dernier bulletin, nous avons fait des progrès significatifs et nous aimerions partager ce que nous avons appris.
 ---
 
+<<<<<<< HEAD
 Le 15 février 2024 par [Joseph Savona](https://twitter.com/en_JS), [Ricky Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode) et [Dan Abramov](https://twitter.com/dan_abramov).
+=======
+February 15, 2024 by [Joseph Savona](https://twitter.com/en_JS), [Ricky Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode), and [Dan Abramov](https://bsky.app/profile/danabra.mov).
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 ---
 
@@ -15,6 +19,7 @@ Dans les billets React Labs, nous vous parlons de nos projets de recherche et d�
 
 </Intro>
 
+<<<<<<< HEAD
 <Note>
 
 La React Conf 2024 est prévue pour les 15–16 mai à Henderson, Nevada ! Si vous avez l'intention de participer à la React Conf en personne, vous pouvez [participer à un tirage au sort](https://forms.reform.app/bLaLeE/react-conf-2024-ticket-lottery/1aRQLK) jusqu’au 28 février.
@@ -23,6 +28,8 @@ Pour en savoir plus sur les billets, la diffusion gratuite en ligne, les partena
 
 </Note>
 
+=======
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 ---
 
 ## React Compiler {/*react-compiler*/}
@@ -56,19 +63,31 @@ Nous appelons cette collection plus large de fonctionnalités simplement « Act
 
 La fonction `action` peut être synchrone ou asynchrone. Vous pouvez la définir côté client avec du JavaScript classique, ou côté serveur avec la directive [`'use server'`](/reference/rsc/use-server). Lorsque vous utilisez une Action, React gère le cycle de vie de l'envoi de données pour vous, en fournissant des Hooks tels que [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) et [`useActionState`](/reference/react/hooks/useActionState) pour accéder à l'état courant et la réponse à l'action du formulaire.
 
+<<<<<<< HEAD
 Par défaut, les Actions sont exécutées au sein d'une [transition](/reference/react/useTransition), ce qui permet de conserver une page interactive pendant leur traitement. Dans la mesure où les Actions autorisent les fonctions asynchrones, nous avons ajouté la possibilité d'utiliser `async/await` dans les transitions. Ça vous permet d'afficher une UI avec l'état `isPending` d'une transition lorsqu'une requête asynchrone telle que `fetch` démarre, et de maintenir cette UI d'attente tout le temps de la mise à jour.
+=======
+By default, Actions are submitted within a [transition](/reference/react/useTransition), keeping the current page interactive while the action is processing. Since Actions support async functions, we've also added the ability to use `async/await` in transitions. This allows you to show pending UI with the `isPending` state of a transition when an async request like `fetch` starts, and show the pending UI all the way through the update being applied.
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 En complément des Actions, nous dévoilons une fonctionnalité appelée [`useOptimistic`](/reference/react/useOptimistic) pour gérer les mises à jour optimistes d'état. Avec ce Hook, vous pouvez appliquer des mises à jour temporaires qui sont automatiquement ajustées lorsque l'état final est ancré.  Pour les Actions, ça vous permet de mettre le client dans son état final de façon optimiste, en supposant donc que l'envoi aura réussi, mais de vous recaler à terme sur la donnée renvoyée par le serveur.  Ça fonctionne avec du `async`/`await` classique, de sorte que le comportement est identique que vous utilisiez `fetch` côté client ou des Actions Serveur depuis le serveur.
 
 Les auteur·es de bibliothèques peuvent implémenter leurs propres props `action={fn}` dans leurs composants, en combinaison avec `useTransition`. Nous souhaitons que les bibliothèques puissent adopter cette approche à base d'Actions lorsqu'elles conçoivent l'API de leurs composants, afin de fournir une expérience cohérente aux développeur·ses React. Si par exemple votre bibliothèque fournit un composant `<Calendar onSelect={eventHandler}>`, envisagez de proposer aussi une API `<Calendar selectAction={action}>`.
 
+<<<<<<< HEAD
 Même si nous nous sommes d'abord concentrés sur les Actions Serveur pour le transfert de données entre client et serveur, notre philosophie pour React consiste à fournir un modèle de programmation unifié pour toutes les plateformes et tous les environnements.  Chaque fois que posssible, si nous ajoutons une fonctionnalité côté client nous essayons de la faire fonctionner également côté serveur, et réciproquement.  Cette philosophie nous permet de créer un jeu unique d'API qui fonctionnent où que votre appli s'exécute, ce qui facilite sa migration ultérieure vers d'autres environnements.
+=======
+While we initially focused on Server Actions for client-server data transfer, our philosophy for React is to provide the same programming model across all platforms and environments. When possible, if we introduce a feature on the client, we aim to make it also work on the server, and vice versa. This philosophy allows us to create a single set of APIs that work no matter where your app runs, making it easier to upgrade to different environments later.
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 Les Actions sont désormais disponibles sur le canal de livraison Canary, et feront partie de la prochaine version stable de React.
 
 ## Nouvelles fonctionnalités dans React Canary {/*new-features-in-react-canary*/}
 
+<<<<<<< HEAD
 Nous avons proposé les [React Canaries](/blog/2023/05/03/react-canaries) comme une option pour adopter de nouvelles fonctionnalités stables au cas par cas, dès que leur conception est quasi-bouclée, sans avoir besoin d'attendre qu'elles apparaissent dans une version stable.
+=======
+We introduced [React Canaries](/blog/2023/05/03/react-canaries) as an option to adopt individual new stable features as soon as their design is close to final, before they’re released in a stable semver version.
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 Les Canaries changent la façon dont nous développons React. Par le passé, chaque fonctionnalité était conçue, testée et construite en privé chez Meta, de sorte que nos utilistaurs ne voyaient que le produit final, peaufiné, dans une version du canal Stable.  Avec les Canaries, nous construisons davantage en public, avec l'aide de la communauté, pour finaliser des fonctionnalités que nous partageons au travers de la série de bulletins React Labs.  Vous entendez ainsi parler des nouvelles fonctionnalités plus tôt, au fil de leur finalisation plutôt qu'une fois qu'elles sont totalement terminées.
 
@@ -82,7 +101,11 @@ Les Composants Serveur, le Chargement de ressources, les Métadonnées de docume
 
 - **Actions** : comme vu plus haut, nous avons ajouté les Actions pour gérer l'envoi de données du client vers le serveur. Vous pouvez ajouter `action` à des éléments tels que [`<form/>`](/reference/react-dom/components/form), accéder à l'état d'envoi avec [`useFormStatus`](/reference/react-dom/hooks/useFormStatus), traiter le résultat avec [`useActionState`](/reference/react/hooks/useActionState) et mettre à jour l'UI de façon optimiste avec [`useOptimistic`](/reference/react/useOptimistic).
 
+<<<<<<< HEAD
 Dans la mesure où toutes ces fonctionnalités travaillent ensemble, il serait délicat de les publier sur le canal Stable de façon indépendante.  Livrer les Actions sans les Hooks complémentaire d'accès aux états de formulaire en limiterait l'utilité pratique.  Dévoiler les Composants Serveur sans intégrer les Actions Serveur compliquerait la modification de données côté serveur.
+=======
+Since all of these features work together, it’s difficult to release them in the Stable channel individually. Releasing Actions without the complementary hooks for accessing form states would limit the practical usability of Actions. Introducing React Server Components without integrating Server Actions would complicate modifying data on the server.
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 Avant de pouvoir publier un jeu de fonctionnalités sur le canal Stable, nous avons besoin de nous assurer qu'elles forment un tout cohérent, et que les développeur·ses ont tout ce qu'il leur faut pour les utiliser en production. Les React Canaries nous permettent de développer ces fonctionnalités indépendamment, et de livrer les API stables de façon incrémentale tant que le jeu complet de fonctionnalités n'est pas encore prêt.
 
@@ -106,7 +129,11 @@ Activité est toujours en phase de recherche, et nous devons encore finaliser le
 
 En complément de ce bulletin, notre équipe est intervenue en conférences ou dans des podcasts pour en dire davantage sur nos travaux et répondre à vos questions.
 
+<<<<<<< HEAD
 - [Sathya Gunasekaran](/community/team#sathya-gunasekaran) a parlé de React Compiler lors de la conférence [React India](https://www.youtube.com/watch?v=kjOacmVsLSE)
+=======
+- [Sathya Gunasekaran](https://github.com/gsathya) spoke about the React Compiler at the [React India](https://www.youtube.com/watch?v=kjOacmVsLSE) conference
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 - [Dan Abramov](/community/team#dan-abramov) a donné une présentation à [RemixConf](https://www.youtube.com/watch?v=zMf_xeGPn6s) intitulée « React dans une autre dimension », qui explorait une histoire alternative de la création des React Server Components et des Actions.
 

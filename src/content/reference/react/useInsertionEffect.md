@@ -44,7 +44,13 @@ function useCSS(rule) {
 
 #### Paramètres {/*parameters*/}
 
+<<<<<<< HEAD
 * `setup` : la fonction contenant la logique de votre Effet.  Votre fonction de mise en place peut par ailleurs renvoyer une fonction de *nettoyage*.  Quand votre composant sera ajouté au DOM, mais avant le déclenchement des Effets de mise en page, React exécutera votre fonction de mise en place.  Après chaque nouveau rendu dont les dépendances ont changé, React commencera par exécuter votre fonction de nettoyage (si vous en avez fourni une) avec les anciennes valeurs, puis exécutera votre fonction de mise en place avec les nouvelles valeurs.  Une fois votre composant retiré du DOM, React exécutera votre fonction de nettoyage une dernière fois.
+=======
+* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. When your component is added to the DOM, but before any layout Effects fire, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. When your component is removed from the DOM, React will run your cleanup function.
+
+* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm. If you don't specify the dependencies at all, your Effect will re-run after every re-render of the component.
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 * `dependencies` **optionnelles** : la liste des valeurs réactives référencées par le code de `setup`.  Les valeurs réactives comprennent les props, les variables d'état et toutes les variables et fonctions déclarées localement dans le corps de votre composant.  Si votre *linter* est [configuré pour React](/learn/editor-setup#linting), il vérifiera que chaque valeur réactive concernée est bien spécifiée comme dépendance.  La liste des dépendances doit avoir un nombre constant d'éléments et utiliser un littéral défini à la volée, du genre `[dep1, dep2, dep3]`. React comparera chaque dépendance à sa valeur précédente au moyen de la comparaison [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is).  Si vous omettez cet argument, votre Effet sera re-exécuté après chaque rendu du composant.
 
@@ -135,7 +141,11 @@ function useCSS(rule) {
 
 #### En quoi est-ce préférable à l'injection de styles durant le rendu ou à `useLayoutEffect` ? {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
 
+<<<<<<< HEAD
 Si vous insérez des styles pendant le rendu et que React traite une [mise à jour non bloquante](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition), le navigateur recalculera les styles à chaque étape du rendu de l'arborescence de composants, ce qui peut être **extrêmement lent**.
+=======
+If you insert styles during rendering and React is processing a [non-blocking update,](/reference/react/useTransition#perform-non-blocking-updates-with-actions) the browser will recalculate the styles every single frame while rendering a component tree, which can be **extremely slow.**
+>>>>>>> 6ec61348646040795fdaa9de14a9bec603260f87
 
 `useInsertionEffect` est préférable à l'insertion de styles dans [`useLayoutEffect`](/reference/react/useLayoutEffect) ou [`useEffect`](/reference/react/useEffect) parce qu'il garantit qu'au moment de l'exécution des autres Effets de vos composants, les balises `<style>`  auront déjà été insérées.  Faute de ça, les calculs de mise en page au sein d'Effets classiques seraient erronés en raison de styles obsolètes.
 
