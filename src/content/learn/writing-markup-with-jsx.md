@@ -69,9 +69,15 @@ JSX et React sont techniquement séparés. On les utilise souvent ensemble, mais
 Supposons que vous ayez du HTML (parfaitement valide) :
 
 ```html
+<<<<<<< HEAD
 <h1>Liste de tâches de Hedy Lamarr</h1>
 <img
   src="https://i.imgur.com/yXOvdOSs.jpg"
+=======
+<h1>Hedy Lamarr's Todos</h1>
+<img
+  src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
   alt="Hedy Lamarr"
   class="photo"
 >
@@ -100,10 +106,17 @@ Si vous le copiez-collez tel quel, ça ne marchera pas :
 ```js
 export default function TodoList() {
   return (
+<<<<<<< HEAD
     // Ça ne marche pas tout à fait !
     <h1>Liste de tâches de Hedy Lamarr</h1>
     <img
       src="https://i.imgur.com/yXOvdOSs.jpg"
+=======
+    // This doesn't quite work!
+    <h1>Hedy Lamarr's Todos</h1>
+    <img
+      src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
       alt="Hedy Lamarr"
       class="photo"
     >
@@ -140,9 +153,15 @@ Par exemple, vous pouvez utiliser une `<div>` :
 
 ```js {1,11}
 <div>
+<<<<<<< HEAD
   <h1>Liste de tâches de Hedy Lamarr</h1>
   <img
     src="https://i.imgur.com/yXOvdOSs.jpg"
+=======
+  <h1>Hedy Lamarr's Todos</h1>
+  <img
+    src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
     alt="Hedy Lamarr"
     class="photo"
   >
@@ -156,9 +175,15 @@ Si vous ne voulez pas ajouter une `<div>` superflue à votre balisage, vous pouv
 
 ```js {1,11}
 <>
+<<<<<<< HEAD
   <h1>Liste de tâches de Hedy Lamarr</h1>
   <img
     src="https://i.imgur.com/yXOvdOSs.jpg"
+=======
+  <h1>Hedy Lamarr's Todos</h1>
+  <img
+    src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
     alt="Hedy Lamarr"
     class="photo"
   >
@@ -187,7 +212,11 @@ Voici à quoi ressemblent l'image et les tâches de Hedy Lamarr une fois correct
 ```js {2-6,8-10}
 <>
   <img
+<<<<<<< HEAD
     src="https://i.imgur.com/yXOvdOSs.jpg"
+=======
+    src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
     alt="Hedy Lamarr"
     class="photo"
    />
@@ -207,7 +236,11 @@ C'est pourquoi, en React, de nombreux attributs HTML et SVG sont écrits en cass
 
 ```js {4}
 <img
+<<<<<<< HEAD
   src="https://i.imgur.com/yXOvdOSs.jpg"
+=======
+  src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
   alt="Hedy Lamarr"
   className="photo"
 />
@@ -233,9 +266,15 @@ Voici notre résultat final :
 export default function TodoList() {
   return (
     <>
+<<<<<<< HEAD
       <h1>Liste de tâches de Hedy Lamarr</h1>
       <img
         src="https://i.imgur.com/yXOvdOSs.jpg"
+=======
+      <h1>Hedy Lamarr's Todos</h1>
+      <img
+        src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
         alt="Hedy Lamarr"
         className="photo"
       />

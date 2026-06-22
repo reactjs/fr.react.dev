@@ -296,7 +296,11 @@ Suspense **ne détecte pas** le chargement de données depuis un Effet ou un ges
 
 Les modalités exactes de votre chargement de données dans le composant `Posts` ci-dessus dépenderont de votre framework.  Si vous utilisez un framework intégrant Suspense, vous trouverez tous les détails dans sa documentation sur le chargement de données.
 
+<<<<<<< HEAD
 Le chargement de données compatible avec Suspense sans recourir à un framework spécifique n'est pas encore pris en charge.  Les spécifications d'implémentation d'une source de données intégrant Suspense sont encore instables et non documentées.  Une API officielle pour intégrer les sources de données avec Suspense sera publiée dans une future version de React.
+=======
+Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
 
 </Note>
 
