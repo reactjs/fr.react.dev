@@ -468,15 +468,19 @@ import { LevelContext } from './LevelContext.js';
 export default function Section({ level, children }) {
   return (
     <section className="section">
-      <LevelContext.Provider value={level}>
+      <LevelContext value={level}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
 ```
 
+<<<<<<< HEAD
 React le comprend ainsi : « si un composant à l'intérieur de `<Section>` demande `LevelContext`, alors donne-lui ce `level` ». Le composant utilisera la valeur du `<LevelContext.Provider>` le plus proche dans l'arbre au-dessus de lui.
+=======
+This tells React: "if any component inside this `<Section>` asks for `LevelContext`, give them this `level`." The component will use the value of the nearest `<LevelContext>` in the UI tree above it.
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
 
 <Sandpack>
 
@@ -514,9 +518,9 @@ import { LevelContext } from './LevelContext.js';
 export default function Section({ level, children }) {
   return (
     <section className="section">
-      <LevelContext.Provider value={level}>
+      <LevelContext value={level}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -566,9 +570,15 @@ export const LevelContext = createContext(1);
 
 Le résultat est le même qu'avec le code d'origine, mais vous n'avez plus besoin de transmettre la prop `level` à chaque composant `Heading`. Au lieu de ça, il « détermine » son niveau d'en-tête en interrogeant la `Section` la plus proche :
 
+<<<<<<< HEAD
 1. Vous passez une prop `level` à la `<Section>`.
 2. `Section` enrobe ses enfants dans un `<LevelContext.Provider value={level}>`.
 3. `Heading` demande la valeur la plus proche de `LevelContext` avec `useContext(LevelContext)`.
+=======
+1. You pass a `level` prop to the `<Section>`.
+2. `Section` wraps its children into `<LevelContext value={level}>`.
+3. `Heading` asks the closest value of `LevelContext` above with `useContext(LevelContext)`.
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
 
 ## Utiliser et fournir le contexte depuis le même composant {/*using-and-providing-context-from-the-same-component*/}
 
@@ -595,9 +605,9 @@ export default function Section({ children }) {
   const level = useContext(LevelContext);
   return (
     <section className="section">
-      <LevelContext.Provider value={level + 1}>
+      <LevelContext value={level + 1}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -643,9 +653,9 @@ export default function Section({ children }) {
   const level = useContext(LevelContext);
   return (
     <section className="section">
-      <LevelContext.Provider value={level + 1}>
+      <LevelContext value={level + 1}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -776,9 +786,9 @@ export default function Section({ children, isFancy }) {
       'section ' +
       (isFancy ? 'fancy' : '')
     }>
-      <LevelContext.Provider value={level + 1}>
+      <LevelContext value={level + 1}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -853,10 +863,19 @@ Si aucune de ces approches ne vous convient, envisagez un contexte.
 
 ## Cas d'utilisation des contextes {/*use-cases-for-context*/}
 
+<<<<<<< HEAD
 * **Thème :** si votre appli permet à l'utilisateur d'en changer l'apparence (comme le mode sombre), vous pouvez mettre un fournisseur de contexte tout en haut de votre appli et utiliser ce contexte dans les composants qui ont besoin d'ajuster leur aspect.
 * **Compte utilisateur :** de nombreux composants peuvent avoir besoin de connaître l'utilisateur actuellement connecté. Le fait de le placer dans le contexte en facilite la lecture depuis n'importe quel endroit de l'arbre. Certaines applis vous permettent d'utiliser plusieurs comptes simultanément (par exemple pour laisser un commentaire avec un utilisateur différent). Dans ce cas, il peut être pratique d'enrober une partie de l'interface utilisateur dans un fournisseur avec un compte utilisateur différent.
 * **Routage :** la plupart des solutions de routage utilise un contexte en interne pour conserver la route actuelle. C'est ainsi que chaque lien « sait » s'il est actif ou non. Si vous construisez votre propre routeur, vous serez peut-être tenté·e de faire de même.
 * **Gestion d'état :** au fur et à mesure que votre appli grandit, vous pouvez vous retrouver avec de nombreux états proches de la racine de votre appli. De nombreux composants distants pourraient vouloir les changer. Il est courant [d'utiliser un réducteur avec un contexte](/learn/scaling-up-with-reducer-and-context) pour gérer des états complexes et les transmettre à des composants distants sans trop galérer.
+=======
+* **Theming:** If your app lets the user change its appearance (e.g. dark mode), you can put a context provider at the top of your app, and use that context in components that need to adjust their visual look.
+* **Current account:** Many components might need to know the currently logged in user. Putting it in context makes it convenient to read it anywhere in the tree. Some apps also let you operate multiple accounts at the same time (e.g. to leave a comment as a different user). In those cases, it can be convenient to wrap a part of the UI into a nested provider with a different current account value.
+* **Routing:** Most routing solutions use context internally to hold the current route. This is how every link "knows" whether it's active or not. If you build your own router, you might want to do it too.
+* **Managing state:** As your app grows, you might end up with a lot of state closer to the top of your app. Many distant components below may want to change it. It is common to [use a reducer together with context](/learn/scaling-up-with-reducer-and-context) to manage complex state and pass it down to distant components without too much hassle.
+
+Context is not limited to static values. If you pass a different value on the next render, React will update all the components reading it below! This is why context is often used in combination with state.
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
 
 Le contexte ne se limite pas aux valeurs statiques. Si vous passez une valeur différente au prochain rendu, React mettra à jour tous les composants descendants qui le lisent ! C'est pourquoi le contexte est souvent utilisé en combinaison avec l'état.
 
@@ -864,6 +883,7 @@ D'une manière générale, si certaines informations sont nécessaires pour des 
 
 <Recap>
 
+<<<<<<< HEAD
 * Le contexte permet à un composant de fournir certaines informations à l'ensemble de l'arbre situé en dessous de lui.
 * Pour transmettre un contexte :
   1. Créez-le et exportez-le avec `export const MyContext = createContext(defaultValue)`.
@@ -872,6 +892,16 @@ D'une manière générale, si certaines informations sont nécessaires pour des 
 * Le contexte traverse tous les composants intermédiaires.
 * Le contexte vous permet d'écrire des composants qui « s'adaptent à leur environnement ».
 * Avant d'utiliser un contexte, essayez de passer par les props ou en mettant du JSX dans les `children`.
+=======
+* Context lets a component provide some information to the entire tree below it.
+* To pass context:
+  1. Create and export it with `export const MyContext = createContext(defaultValue)`.
+  2. Pass it to the `useContext(MyContext)` Hook to read it in any child component, no matter how deep.
+  3. Wrap children into `<MyContext value={...}>` to provide it from a parent.
+* Context passes through any components in the middle.
+* Context lets you write components that "adapt to their surroundings".
+* Before you use context, try passing props or passing JSX as `children`.
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
 
 </Recap>
 
@@ -964,6 +994,7 @@ export const places = [{
   imageId: 'K9HVAGH'
 }, {
   id: 1,
+<<<<<<< HEAD
   name: 'Rainbow Village à Taichung, Taiwan',
   description: "Pour sauver les maisons de la démolition, Huang Yung-Fu, un résident de la région, a peint l'ensemble des 1 200 maisons en 1924.",
   imageId: '9EAYZrt'
@@ -986,6 +1017,30 @@ export const places = [{
   id: 5,
   name: 'Chefchaouen, Maroc',
   description: "Plusieurs théories expliquent pourquoi les maisons sont peintes en bleu, notamment parce que cette couleur repousserait les moustiques ou qu'elle symboliserait le ciel et le paradis.",
+=======
+  name: 'Rainbow Village in Taichung, Taiwan',
+  description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
+  imageId: '9EAYZrt'
+}, {
+  id: 2,
+  name: 'Macromural de Pachuca, Mexico',
+  description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
+  imageId: 'DgXHVwu'
+}, {
+  id: 3,
+  name: 'Selarón Staircase in Rio de Janeiro, Brazil',
+  description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people."',
+  imageId: 'aeO3rpI'
+}, {
+  id: 4,
+  name: 'Burano, Italy',
+  description: 'The houses are painted following a specific color system dating back to 16th century.',
+  imageId: 'kxsph5C'
+}, {
+  id: 5,
+  name: 'Chefchaouen, Marocco',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
   imageId: 'rTqKo46'
 }, {
   id: 6,
@@ -998,7 +1053,7 @@ export const places = [{
 ```js src/utils.js
 export function getImageUrl(place) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     place.imageId +
     'l.jpg'
   );
@@ -1022,7 +1077,11 @@ li {
 
 Retirez la prop `imageSize` de tous les composants.
 
+<<<<<<< HEAD
 Créez et exportez `ImageSizeContext` depuis `Context.js`. Ensuite, enrobez la `List` dans `<ImageSizeContext.Provider value={imageSize}>` pour propager la valeur vers le bas, puis `useContext(ImageSizeContext)` pour la lire dans `PlaceImage` :
+=======
+Create and export `ImageSizeContext` from `Context.js`. Then wrap the List into `<ImageSizeContext value={imageSize}>` to pass the value down, and `useContext(ImageSizeContext)` to read it in the `PlaceImage`:
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
 
 <Sandpack>
 
@@ -1036,7 +1095,7 @@ export default function App() {
   const [isLarge, setIsLarge] = useState(false);
   const imageSize = isLarge ? 150 : 100;
   return (
-    <ImageSizeContext.Provider
+    <ImageSizeContext
       value={imageSize}
     >
       <label>
@@ -1051,7 +1110,7 @@ export default function App() {
       </label>
       <hr />
       <List />
-    </ImageSizeContext.Provider>
+    </ImageSizeContext>
   )
 }
 
@@ -1103,6 +1162,7 @@ export const places = [{
   imageId: 'K9HVAGH'
 }, {
   id: 1,
+<<<<<<< HEAD
   name: 'Rainbow Village à Taichung, Taiwan',
   description: "Pour sauver les maisons de la démolition, Huang Yung-Fu, un résident de la région, a peint l'ensemble des 1 200 maisons en 1924.",
   imageId: '9EAYZrt'
@@ -1125,6 +1185,30 @@ export const places = [{
   id: 5,
   name: 'Chefchaouen, Maroc',
   description: "Plusieurs théories expliquent pourquoi les maisons sont peintes en bleu, notamment parce que cette couleur repousserait les moustiques ou qu'elle symboliserait le ciel et le paradis.",
+=======
+  name: 'Rainbow Village in Taichung, Taiwan',
+  description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
+  imageId: '9EAYZrt'
+}, {
+  id: 2,
+  name: 'Macromural de Pachuca, Mexico',
+  description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
+  imageId: 'DgXHVwu'
+}, {
+  id: 3,
+  name: 'Selarón Staircase in Rio de Janeiro, Brazil',
+  description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people".',
+  imageId: 'aeO3rpI'
+}, {
+  id: 4,
+  name: 'Burano, Italy',
+  description: 'The houses are painted following a specific color system dating back to 16th century.',
+  imageId: 'kxsph5C'
+}, {
+  id: 5,
+  name: 'Chefchaouen, Marocco',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
   imageId: 'rTqKo46'
 }, {
   id: 6,
@@ -1137,7 +1221,7 @@ export const places = [{
 ```js src/utils.js
 export function getImageUrl(place) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     place.imageId +
     'l.jpg'
   );
