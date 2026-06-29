@@ -55,21 +55,6 @@ Dans l'exemple ci-dessous, le composant `Albums` *suspend* pendant qu'il charge 
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js hidden
 import { useState } from 'react';
 import ArtistPage from './ArtistPage.js';
@@ -115,15 +100,19 @@ function Loading() {
 }
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Note : ce composant est écrit au moyen d'une API expérimentale
 // qui n'est pas encore disponible dans une version stable de React.
 
 // Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
 // essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -136,6 +125,7 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ceci est une solution de contournement pour permettre à la
 // démo de fonctionner.
@@ -163,6 +153,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 ```
 
 ```js src/data.js hidden
@@ -255,15 +247,25 @@ async function getAlbums() {
 
 **Seules les sources de données compatibles Suspense activeront le composant Suspense.** Ces sources de données comprennent :
 
+<<<<<<< HEAD
 - Le chargement de données fourni par des frameworks intégrant Suspense tels que [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) et [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Le chargement à la demande du code de composants avec [`lazy`](/reference/react/lazy)
 - La lecture de la valeur d'une promesse avec [`use`](/reference/react/use)
+=======
+- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
+- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Reading the value of a cached Promise with [`use`](/reference/react/use)
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 Suspense **ne détecte pas** le chargement de données depuis un Effet ou un gestionnaire d'événement.
 
 Les modalités exactes de votre chargement de données dans le composant `Albums` ci-dessus dépenderont de votre framework.  Si vous utilisez un framework intégrant Suspense, vous trouverez tous les détails dans sa documentation sur le chargement de données.
 
+<<<<<<< HEAD
 Le chargement de données compatible avec Suspense sans recourir à un framework spécifique n'est pas encore pris en charge.  Les spécifications d'implémentation d'une source de données intégrant Suspense sont encore instables et non documentées.  Une API officielle pour intégrer les sources de données avec Suspense sera publiée dans une future version de React.
+=======
+Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 </Note>
 
@@ -287,21 +289,6 @@ Ensuite, une fois que tous les composants sont prêts à être affichés, ils ap
 Dans l'exemple ci-dessous, les composants `Biography` et `Albums` chargent des données.  Cependant, puisqu'ils appartiennent à un même périmètre Suspense, ces composants « apparaissent » toujours en même temps, d'un bloc.
 
 <Sandpack>
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
 
 ```js src/App.js hidden
 import { useState } from 'react';
@@ -363,15 +350,19 @@ export default function Panel({ children }) {
 }
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Note : ce composant est écrit au moyen d'une API expérimentale
 // qui n'est pas encore disponible dans une version stable de React.
 
 // Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
 // essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -380,6 +371,7 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
+<<<<<<< HEAD
 
 // Ceci est une solution de contournement pour permettre à la
 // démo de fonctionner.
@@ -407,17 +399,23 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Note : ce composant est écrit au moyen d'une API expérimentale
 // qui n'est pas encore disponible dans une version stable de React.
 
 // Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
 // essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -430,6 +428,7 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ceci est une solution de contournement pour permettre à la
 // démo de fonctionner.
@@ -457,6 +456,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 ```
 
 ```js src/data.js hidden
@@ -489,10 +490,17 @@ async function getBio() {
     setTimeout(resolve, 1500);
   });
 
+<<<<<<< HEAD
   return `Les Beatles étaient un groupe de rock anglais,
     formé à Liverpool en 1960, qui était composé de
     John Lennon, Paul McCartney, George Harrison
     et Ringo Starr.`;
+=======
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
+    and Ringo Starr.`;
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 }
 
 async function getAlbums() {
@@ -610,27 +618,19 @@ Avec ce changement, l'affichage de `Biography` n'a plus besoin « d'attendre �
 
 La séquence sera :
 
+<<<<<<< HEAD
 1. Si `Biography` n'est pas encore chargé, `BigSpinner` est affiché à la place de l'intégralité du contenu.
 2. Une fois que `Biography` est chargé, `BigSpinner` est remplacé par le contenu.
 3. Si `Albums` n'est pas encore chargé, `AlbumsGlimmer` est affiché à la place d'`Albums` et de son parent `Panel`.
 4. Pour finir, une fois `Albums` chargé, il remplace `AlbumsGlimmer`.
+=======
+1. If `Biography` hasn't loaded yet, `BigSpinner` is shown in place of the entire content area.
+2. Once `Biography` finishes loading, `BigSpinner` is replaced by the content.
+3. If `Albums` hasn't loaded yet, `AlbumsGlimmer` is shown in place of `Albums` and its parent `Panel`.
+4. Finally, once `Albums` finishes loading, it replaces `AlbumsGlimmer`.
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 <Sandpack>
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
 
 ```js src/App.js hidden
 import { useState } from 'react';
@@ -704,15 +704,19 @@ export default function Panel({ children }) {
 }
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Note : ce composant est écrit au moyen d'une API expérimentale
 // qui n'est pas encore disponible dans une version stable de React.
 
 // Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
 // essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -721,6 +725,7 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
+<<<<<<< HEAD
 
 // Ceci est une solution de contournement pour permettre à la
 // démo de fonctionner.
@@ -748,17 +753,23 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Note : ce composant est écrit au moyen d'une API expérimentale
 // qui n'est pas encore disponible dans une version stable de React.
 
 // Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
 // essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -771,6 +782,7 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ceci est une solution de contournement pour permettre à la
 // démo de fonctionner.
@@ -798,6 +810,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 ```
 
 ```js src/data.js hidden
@@ -830,10 +844,17 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
+<<<<<<< HEAD
   return `Les Beatles étaient un groupe de rock anglais,
     formé à Liverpool en 1960, qui était composé de
     John Lennon, Paul McCartney, George Harrison
     et Ringo Starr.`;
+=======
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
+    and Ringo Starr.`;
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 }
 
 async function getAlbums() {
@@ -940,21 +961,6 @@ Dans cet exemple, le composant `SearchResults` suspend pendant le chargement des
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState } from 'react';
 import SearchResults from './SearchResults.js';
@@ -975,15 +981,19 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js hidden
+```js src/SearchResults.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Note : ce composant est écrit au moyen d'une API expérimentale
 // qui n'est pas encore disponible dans une version stable de React.
 
 // Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
 // essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 export default function SearchResults({ query }) {
   if (query === '') {
     return null;
@@ -1002,6 +1012,7 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ceci est une solution de contournement pour permettre à la
 // démo de fonctionner.
@@ -1029,6 +1040,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 ```
 
 ```js src/data.js hidden
@@ -1130,7 +1143,11 @@ input { margin: 10px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 Une approche visuelle alternative courante consisterait à *différer* la mise à jour de la liste et continuer à afficher les résultats précédents jusqu'à ce que les nouveaux résultats soient disponibles. Le Hook [`useDeferredValue`](/reference/react/useDeferredValue) vous permet de passer une version différée de la requête aux enfants :
+=======
+A common alternative UI pattern is to *defer* updating the list and to keep showing the previous results until the new results are ready. The [`useDeferredValue`](/reference/react/useDeferredValue) Hook lets you pass a deferred version of the query down:
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 ```js {3,11}
 export default function App() {
@@ -1166,21 +1183,6 @@ Tapez `"a"` dans l'exemple ci-dessous, attendez les résultats, puis modifiez vo
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
@@ -1206,14 +1208,18 @@ export default function App() {
 ```
 
 ```js src/SearchResults.js hidden
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Note : ce composant est écrit au moyen d'une API expérimentale
 // qui n'est pas encore disponible dans une version stable de React.
 
 // Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
 // essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 export default function SearchResults({ query }) {
   if (query === '') {
     return null;
@@ -1232,6 +1238,7 @@ export default function SearchResults({ query }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ceci est une solution de contournement pour permettre à la
 // démo de fonctionner.
@@ -1259,6 +1266,8 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 ```
 
 ```js src/data.js hidden
@@ -1374,21 +1383,6 @@ Lorsqu'un composant suspend, le périmètre Suspense parent le plus proche bascu
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState } from 'react';
 import IndexPage from './IndexPage.js';
@@ -1493,15 +1487,19 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Note : ce composant est écrit au moyen d'une API expérimentale
 // qui n'est pas encore disponible dans une version stable de React.
 
 // Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
 // essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -1514,6 +1512,7 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ceci est une solution de contournement pour permettre à la
 // démo de fonctionner.
@@ -1541,17 +1540,23 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Note : ce composant est écrit au moyen d'une API expérimentale
 // qui n'est pas encore disponible dans une version stable de React.
 
 // Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
 // essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -1560,6 +1565,7 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
+<<<<<<< HEAD
 
 // Ceci est une solution de contournement pour permettre à la
 // démo de fonctionner.
@@ -1587,9 +1593,11 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 ```
 
-```js src/Panel.js hidden
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -1629,10 +1637,17 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
+<<<<<<< HEAD
   return `Les Beatles étaient un groupe de rock anglais,
     formé à Liverpool en 1960, qui était composé de
     John Lennon, Paul McCartney, George Harrison
     et Ringo Starr.`;
+=======
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
+    and Ringo Starr.`;
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 }
 
 async function getAlbums() {
@@ -1763,21 +1778,6 @@ function Router() {
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, startTransition, useState } from 'react';
 import IndexPage from './IndexPage.js';
@@ -1884,15 +1884,19 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Note : ce composant est écrit au moyen d'une API expérimentale
 // qui n'est pas encore disponible dans une version stable de React.
 
 // Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
 // essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -1905,6 +1909,7 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ceci est une solution de contournement pour permettre à la
 // démo de fonctionner.
@@ -1932,17 +1937,23 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Note : ce composant est écrit au moyen d'une API expérimentale
 // qui n'est pas encore disponible dans une version stable de React.
 
 // Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
 // essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -1951,6 +1962,7 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
+<<<<<<< HEAD
 
 // Ceci est une solution de contournement pour permettre à la
 // démo de fonctionner.
@@ -1978,9 +1990,11 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 ```
 
-```js src/Panel.js hidden
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -2020,10 +2034,17 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
+<<<<<<< HEAD
   return `Les Beatles étaient un groupe de rock anglais,
     formé à Liverpool en 1960, qui était composé de
     John Lennon, Paul McCartney, George Harrison
     et Ringo Starr.`;
+=======
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
+    and Ringo Starr.`;
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 }
 
 async function getAlbums() {
@@ -2150,21 +2171,6 @@ Dans l'exemple précédent, une fois que vous avez cliqué sur le bouton, aucune
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState, useTransition } from 'react';
 import IndexPage from './IndexPage.js';
@@ -2274,15 +2280,19 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Note : ce composant est écrit au moyen d'une API expérimentale
 // qui n'est pas encore disponible dans une version stable de React.
 
 // Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
 // essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
   return (
@@ -2295,6 +2305,7 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+<<<<<<< HEAD
 
 // Ceci est une solution de contournement pour permettre à la
 // démo de fonctionner.
@@ -2322,17 +2333,23 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
 
+<<<<<<< HEAD
 // Note : ce composant est écrit au moyen d'une API expérimentale
 // qui n'est pas encore disponible dans une version stable de React.
 
 // Pour un exemple réaliste que vous pouvez suivre dès aujourd'hui,
 // essayez un framework intégrant Suspense, tel que Relay ou Next.js.
 
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
   return (
@@ -2341,6 +2358,7 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
+<<<<<<< HEAD
 
 // Ceci est une solution de contournement pour permettre à la
 // démo de fonctionner.
@@ -2368,9 +2386,11 @@ function use(promise) {
     throw promise;
   }
 }
+=======
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 ```
 
-```js src/Panel.js hidden
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -2543,7 +2563,11 @@ En revanche, imaginez maintenant que vous naviguiez entre deux profils utilisate
 
 Si vous utilisez une des [API de rendu serveur streamé](/reference/react-dom/server) (ou un framework qui repose dessus), React capitalisera sur vos périmètres `<Suspense>` pour le traitement des erreurs survenant côté serveur.  Si un composant lève une erreur côté serveur, React n'abandonnera pas le rendu serveur. Il cherchera plutôt le composant parent `<Suspense>` le plus proche et incluera son contenu de secours (tel qu'un *spinner*) dans le HTML généré par le serveur.  L'utilisateur verra le *spinner* pour commencer.
 
+<<<<<<< HEAD
 Côté client, React tentera de refaire le rendu de ce composant. Si le client rencontre également des erreurs, React lèvera une erreur et affichera le [périmètre d'erreur](/reference/react/Component#static-getderivedstatefromerror) le plus proche.  En revanche, si le rendu côté client fonctionne, React n'affichera aucune erreur à l'utilisateur, puisqu'au final le contenu aura bien pu être affiché.
+=======
+On the client, React will attempt to render the same component again. If it errors on the client too, React will throw the error and display the closest [Error Boundary.](/reference/react/Component#static-getderivedstatefromerror) However, if it does not error on the client, React will not display the error to the user since the content was eventually displayed successfully.
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 Vous pouvez tirer parti de ça pour exclure certains composants du rendu serveur.  Il vous suffit de lever une erreur lorsque vous faites le rendu côté serveur, et de les enrober dans un périmètre `<Suspense>` pour remplacer leur HTML par un contenu de secours :
 

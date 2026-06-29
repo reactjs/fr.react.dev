@@ -10,13 +10,19 @@ La documentation React sur [fr.react.dev](https://fr.react.dev) décrit la derni
 
 Nous cherchons à tenir la documentation à jour au niveau des versions majeures, et ne publions pas des versions de la documentation pour chaque version mineure voire corrective.  Lorsqu'une nouvelle version majeure est publiée, nous archivons la documentation de la version précédente sur `x.react.dev`.  Consultez notre [politique de versions](/community/versioning-policy) pour en apprendre davantage.
 
+<<<<<<< HEAD
 Vous trouverez ci-dessous une archive de nos précédentes versions majeures.
 
 *(NdT : pour le moment, les traductions ne semblent pas être inclues dans cet effort d'archivage.)*
 
 ## Versions à venir {/*future-versions*/}
+=======
+You can find an archive of previous major versions below.
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
-- [19.react.dev](https://19.react.dev) {/*docs-19*/}
+## Latest version: 19.2 {/*latest-version*/}
+
+- [react.dev](https://react.dev) {/*docs-19*/}
 
 ## Versions précédentes {/*previous-versions*/}
 
@@ -36,6 +42,36 @@ Pour les versions antérieures à React 15, allez voir [15.react.dev](https://15
 </Note>
 
 ## Changelog {/*changelog*/}
+
+### React 19 {/*react-19*/}
+
+**Blog Posts**
+- [React v19](/blog/2024/12/05/react-19)
+- [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide)
+- [React Compiler Beta Release](/blog/2024/10/21/react-compiler-beta-release)
+- [React Compiler v1.0](/blog/2025/10/07/react-compiler-1)
+- [React 19.2](/blog/2025/10/01/react-19-2)
+
+**Talks**
+- [React 19 Keynote](https://www.youtube.com/watch?v=lyEKhv8-3n0)
+- [A Roadmap to React 19](https://www.youtube.com/watch?v=R0B2HsSM78s)
+- [What's new in React 19](https://www.youtube.com/watch?v=AJOGzVygGcY)
+- [React for Two Computers](https://www.youtube.com/watch?v=ozI4V_29fj4)
+- [React Compiler Deep Dive](https://www.youtube.com/watch?v=uA_PVyZP7AI)
+- [React Compiler Case Studies](https://www.youtube.com/watch?v=lvhPq5chokM)
+- [React 19 Deep Dive: Coordinating HTML](https://www.youtube.com/watch?v=IBBN-s77YSI)
+
+**Releases**
+- [v19.2.1 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1922-dec-11-2025)
+- [v19.2.1 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1921-dec-3-2025)
+- [v19.2.0 (October, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1920-october-1st-2025)
+- [v19.1.3 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1913-dec-11-2025)
+- [v19.1.2 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1912-dec-3-2025)
+- [v19.1.1 (July, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1911-july-28-2025)
+- [v19.1.0 (March, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1910-march-28-2025)
+- [v19.0.2 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1902-dec-11-2025)
+- [v19.0.1 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1901-dec-3-2025)
+- [v19.0.0 (December, 2024)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024)
 
 ### React 18 {/*react-18*/}
 
@@ -244,6 +280,7 @@ Pour les versions antérieures à React 15, allez voir [15.react.dev](https://15
 
 ### React 0.10 and below {/*react-10-and-below*/}
 
+<<<<<<< HEAD
 **Billets de blog**
 - [React v0.10](https://fr.legacy.reactjs.org/blog/2014/03/21/react-v0.10.html)
 - [React v0.10 RC](https://fr.legacy.reactjs.org/blog/2014/03/19/react-v0.10-rc1.html)
@@ -273,12 +310,47 @@ Pour les versions antérieures à React 15, allez voir [15.react.dev](https://15
 - [v0.3.2 (mai 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#032-may-31-2013)
 - [v0.3.1 (mai 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
 - [v0.3.0 (mai 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
+=======
+**Blog Posts**
+- [React v0.10](https://legacy.reactjs.org/blog/2014/03/21/react-v0.10.html)
+- [React v0.10 RC](https://legacy.reactjs.org/blog/2014/03/19/react-v0.10-rc1.html)
+- [React v0.9](https://legacy.reactjs.org/blog/2014/02/20/react-v0.9.html)
+- [React v0.9 RC](https://legacy.reactjs.org/blog/2014/02/16/react-v0.9-rc1.html)
+- [React Chrome Developer Tools](https://legacy.reactjs.org/blog/2014/01/02/react-chrome-developer-tools.html)
+- [React v0.8](https://legacy.reactjs.org/blog/2013/12/19/react-v0.8.0.html)
+- [React v0.5.2, v0.4.2](https://legacy.reactjs.org/blog/2013/12/18/react-v0.5.2-v0.4.2.html)
+- [React v0.5.1](https://legacy.reactjs.org/blog/2013/10/29/react-v0-5-1.html)
+- [React v0.5](https://legacy.reactjs.org/blog/2013/10/16/react-v0.5.0.html)
+- [React v0.4.1](https://legacy.reactjs.org/blog/2013/07/26/react-v0-4-1.html)
+- [React v0.4.0](https://legacy.reactjs.org/blog/2013/07/17/react-v0-4-0.html)
+- [New in React v0.4: Prop Validation and Default Values](https://legacy.reactjs.org/blog/2013/07/11/react-v0-4-prop-validation-and-default-values.html)
+- [New in React v0.4: Autobind by Default](https://legacy.reactjs.org/blog/2013/07/02/react-v0-4-autobind-by-default.html)
+- [React v0.3.3](https://legacy.reactjs.org/blog/2013/06/21/react-v0-3-3.html)
+
+**Releases**
+- [v0.10.0 (March 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0100-march-21-2014)
+- [v0.9.0 (February 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#090-february-20-2014)
+- [v0.8.0 (December 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#080-december-19-2013)
+- [v0.5.2 (December 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#052-042-december-18-2013)
+- [v0.5.1 (October 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#051-october-29-2013)
+- [v0.5.0 (October 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#050-october-16-2013)
+- [v0.4.1 (July 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#041-july-26-2013)
+- [v0.4.0 (July 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#040-july-17-2013)
+- [v0.3.3 (June 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#033-june-20-2013)
+- [v0.3.2 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#032-may-31-2013)
+- [v0.3.1 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
+- [v0.3.0 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#030-may-29-2013)
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 ### Commit initial {/*initial-commit*/}
 
 React est devenu *open source* le 29 mai 2013. Le commit initial était : [`75897c`: Initial public release](https://github.com/facebook/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
 
+<<<<<<< HEAD
 Retrouvez le premier billet de blog : [Why did we build React?](https://fr.legacy.reactjs.org/blog/2013/06/05/why-react.html) *(« Pourquoi avons-nous créé React ? », NdT)*
+=======
+See the first blog post: [Why did we build React?](https://legacy.reactjs.org/blog/2013/06/05/why-react.html)
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 React est devenu *open source* à Facebook Seattle en 2013 :
 
