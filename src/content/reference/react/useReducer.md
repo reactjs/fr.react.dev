@@ -38,9 +38,15 @@ function MyComponent() {
 
 #### Paramètres {/*parameters*/}
 
+<<<<<<< HEAD
 * `reducer` : la fonction de réduction qui spécifie comment votre état est mis à jour. Elle doit être pure, prendre l'état et l'action en paramètres et renvoyer le prochain état. L'état et l'action peuvent être de n'importe quels types.
 * `initialArg` : la valeur à partir de laquelle l'état est calculé. Elle peut être de n'importe quel type. La façon dont l'état initial est calculé dépend du paramètre `init` qui suit.
 * `init` **optionnelle** : la fonction d'initialisation qui doit renvoyer l'état initial. Si elle n'est pas spécifiée, l'état initial est défini avec `initialArg`. Autrement, il est défini en appelant `init(initialArg)`.
+=======
+* `reducer`: The reducer function that specifies how the state gets updated. It must be pure, should take the state and action as arguments, and should return the next state. State and action can be of any types.
+* `initialArg`: The value from which the initial state is calculated. It can be a value of any type. How the initial state is calculated from it depends on the next `init` argument.
+* **optional** `init`: The initializer function that should return the initial state. If it's not specified, the initial state is set to `initialArg`. Otherwise, the initial state is set to the result of calling `init(initialArg)`.
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 #### Valeur renvoyée {/*returns*/}
 
@@ -198,7 +204,11 @@ Les actions peuvent prendre n'importe quelle forme. Par convention, il est coura
 
 ```js {5,9-12}
 function Form() {
+<<<<<<< HEAD
   const [state, dispatch] = useReducer(reducer, { name: 'Clara', age: 42 });
+=======
+  const [state, dispatch] = useReducer(reducer, { name: 'Taylor', age: 42 });
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
   function handleButtonClick() {
     dispatch({ type: 'incremented_age' });

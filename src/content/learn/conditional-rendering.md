@@ -34,6 +34,7 @@ export default function PackingList() {
       <ul>
         <Item
           isPacked={true}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -43,6 +44,17 @@ export default function PackingList() {
         <Item
           isPacked={false}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
         />
       </ul>
     </section>
@@ -82,6 +94,7 @@ export default function PackingList() {
       <ul>
         <Item
           isPacked={true}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -91,6 +104,17 @@ export default function PackingList() {
         <Item
           isPacked={false}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
         />
       </ul>
     </section>
@@ -134,6 +158,7 @@ export default function PackingList() {
       <ul>
         <Item
           isPacked={true}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -143,6 +168,17 @@ export default function PackingList() {
         <Item
           isPacked={false}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
         />
       </ul>
     </section>
@@ -238,6 +274,7 @@ export default function PackingList() {
       <ul>
         <Item
           isPacked={true}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -247,6 +284,17 @@ export default function PackingList() {
         <Item
           isPacked={false}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
         />
       </ul>
     </section>
@@ -292,6 +340,7 @@ export default function PackingList() {
       <ul>
         <Item
           isPacked={true}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -301,6 +350,17 @@ export default function PackingList() {
         <Item
           isPacked={false}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
         />
       </ul>
     </section>
@@ -373,6 +433,7 @@ export default function PackingList() {
       <ul>
         <Item
           isPacked={true}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -382,6 +443,17 @@ export default function PackingList() {
         <Item
           isPacked={false}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
         />
       </ul>
     </section>
@@ -419,6 +491,7 @@ export default function PackingList() {
       <ul>
         <Item
           isPacked={true}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -428,6 +501,17 @@ export default function PackingList() {
         <Item
           isPacked={false}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
         />
       </ul>
     </section>
@@ -474,6 +558,7 @@ export default function PackingList() {
       <ul>
         <Item
           isPacked={true}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -483,6 +568,17 @@ export default function PackingList() {
         <Item
           isPacked={false}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
         />
       </ul>
     </section>
@@ -512,6 +608,7 @@ export default function PackingList() {
       <ul>
         <Item
           isPacked={true}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -521,6 +618,17 @@ export default function PackingList() {
         <Item
           isPacked={false}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
         />
       </ul>
     </section>
@@ -560,6 +668,7 @@ export default function PackingList() {
       <ul>
         <Item
           importance={9}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -569,6 +678,17 @@ export default function PackingList() {
         <Item
           importance={6}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          importance={0}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          importance={6}
+          name="Photo of Tam"
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
         />
       </ul>
     </section>
@@ -604,6 +724,7 @@ export default function PackingList() {
       <ul>
         <Item
           importance={9}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -613,6 +734,17 @@ export default function PackingList() {
         <Item
           importance={6}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          importance={0}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          importance={6}
+          name="Photo of Tam"
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
         />
       </ul>
     </section>
