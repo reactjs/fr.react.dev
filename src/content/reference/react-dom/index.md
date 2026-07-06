@@ -21,7 +21,11 @@ Ces API peuvent être importées depuis vos composants.  On les utilise rarement
 
 Ces API peuvent être utilisées pour accélérer vos applis en préchargeant des ressources telles que les scripts, feuilles de style et fontes dès que vous savez que vous en aurez besoin, par exemple avant de naviguer sur une autre page qui utilisera ces ressources.
 
+<<<<<<< HEAD
 [Les frameworks basés sur React](/learn/start-a-new-react-project) s'occupent fréquemment pour vous du chargement des ressources, de sorte que vous n'aurez peut-être pas besoin d'appeler ces API vous-même.  Consultez la documentation de votre framework pour en savoir plus à ce sujet.
+=======
+[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call these APIs yourself. Consult your framework's documentation for details.
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 * [`prefetchDNS`](/reference/react-dom/prefetchDNS) vous permet de précharger l'adresse IP d'un nom de domaine DNS auquel vous anticipez une connexion.
 * [`preconnect`](/reference/react-dom/preconnect) vous permet de vous connecter à un serveur en vue d'y charger des ressources par la suite, même si vous ne savez pas encore exactement lesquelles.
@@ -41,6 +45,7 @@ Le module `react-dom` fournit deux points d'entrée supplémentaires :
 
 ---
 
+<<<<<<< HEAD
 ## API dépréciées {/*deprecated-apis*/}
 
 <Deprecated>
@@ -53,3 +58,15 @@ Ces API seront retirées d'une future version majeure de React.
 * [`hydrate`](/reference/react-dom/hydrate) monte une arborescence dans le DOM créé à partir du HTML serveur.  Elle est remplacée par la plus récente [`hydrateRoot`](/reference/react-dom/client/hydrateRoot).
 * [`render`](/reference/react-dom/render) monte une arborescence dans le DOM. Elle est remplacée par [`createRoot`](/reference/react-dom/client/createRoot).
 * [`unmountComponentAtNode`](/reference/react-dom/unmountComponentAtNode) démonte une arborescence du DOM. Elle est remplacée par [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount).
+=======
+## Removed APIs {/*removed-apis*/}
+
+These APIs were removed in React 19:
+
+* [`findDOMNode`](https://18.react.dev/reference/react-dom/findDOMNode): see [alternatives](https://18.react.dev/reference/react-dom/findDOMNode#alternatives).
+* [`hydrate`](https://18.react.dev/reference/react-dom/hydrate): use [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) instead.
+* [`render`](https://18.react.dev/reference/react-dom/render): use [`createRoot`](/reference/react-dom/client/createRoot) instead.
+* [`unmountComponentAtNode`](/reference/react-dom/unmountComponentAtNode): use [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount) instead.
+* [`renderToNodeStream`](https://18.react.dev/reference/react-dom/server/renderToNodeStream): use [`react-dom/server`](/reference/react-dom/server) APIs instead.
+* [`renderToStaticNodeStream`](https://18.react.dev/reference/react-dom/server/renderToStaticNodeStream): use [`react-dom/server`](/reference/react-dom/server) APIs instead.
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd

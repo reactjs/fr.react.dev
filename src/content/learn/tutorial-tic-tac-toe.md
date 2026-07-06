@@ -285,9 +285,15 @@ Dans CodeSandbox vous trouverez trois sections principales :
 
 ![CodeSandbox avec le code de démarrage](../images/tutorial/react-starter-code-codesandbox.png)
 
+<<<<<<< HEAD
 1. La section _Files_ contient une liste des fichiers du projet tels que `App.js`, `index.js`, `styles.css` et un dossier nommé `public`
 2. Le _code editor_ affiche le code source du fichier sélectionné
 3. Le _browser_ affiche le résultat du code que vous avez écrit
+=======
+1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` in `src` folder and a folder called `public`
+1. The _code editor_ where you'll see the source code of your selected file
+1. The _browser_ section where you'll see how the code you've written will be displayed
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 Le fichier `App.js` devrait être sélectionné dans la section _Files_. Le contenu de ce fichier dans le _code editor_ devrait être le suivant :
 
@@ -297,7 +303,11 @@ export default function Square() {
 }
 ```
 
+<<<<<<< HEAD
 La section _browser_ devrait afficher un carré avec un X à l'intérieur, comme ceci :
+=======
+The _browser_ section should be displaying a square with an X in it like this:
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 ![Carré avec un X à l’intérieur](../images/tutorial/x-filled-square.png)
 
@@ -339,7 +349,11 @@ import './styles.css';
 import App from './App';
 ```
 
+<<<<<<< HEAD
 Les lignes 1 à 5 rassemblent toutes les pièces du puzzle :
+=======
+Lines 1-5 bring all the necessary pieces together:
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 * React
 * La bibliothèque React qui parle aux navigateurs web (React DOM)
@@ -555,7 +569,11 @@ export default function Board() {
 }
 ```
 
+<<<<<<< HEAD
 Remarquez que contrairement aux `div` du navigateur, vos propres composants `Board` et `Square` doivent avoir un nom qui démarre par une lettre majuscule.
+=======
+Note how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter.
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 Voyons un peu le résultat :
 
@@ -905,6 +923,7 @@ body {
 
 ### Outils de développement React {/*react-developer-tools*/}
 
+<<<<<<< HEAD
 Les outils de développement React *(React DevTools, NdT)* vous permettent d'examiner les props et l'état de vos composants React. Vous les trouverez dans l'onglet *React DevTools* en bas de la section _Browser_ de CodeSandbox :
 
 ![Les React DevTools dans CodeSandbox](../images/tutorial/codesandbox-devtools.png)
@@ -912,12 +931,26 @@ Les outils de développement React *(React DevTools, NdT)* vous permettent d'exa
 Pour examiner un composant spécifique à l'écran, utilisez le bouton en haut à gauche des outils de développement React :
 
 ![Sélection de composants sur la page dans les outils de développement React](../images/tutorial/devtools-select.gif)
+=======
+React Developer Tools let you check the props and the state of your React components. It is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension.
 
-<Note>
+After you install it, a new *Components* tab will appear in your browser Developer Tools for sites using React. If you're following along in CodeSandbox, you'd need to first open your sandbox preview in a new tab:
 
+![opening in new tab](../images/tutorial/sandbox-new-tab.png)
+
+Then, on the preview page, open your browser's DevTools and find the *Components* tab:
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
+
+![components tab](../images/tutorial/components-tab.png)
+
+<<<<<<< HEAD
 Pour le développement local, les outils de développement React sont disponibles sous forme d'extension navigateur pour [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) et [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil). Installez-les, après quoi l'onglet *Composants* apparaîtra dans les outils de développement de votre navigateur sur les sites utilisant React.
+=======
+To inspect a particular component on the screen, use the button in the top left corner of the Components tab:
 
-</Note>
+![inspecting with devtools](../images/tutorial/devtools-inspect.gif)
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
+
 
 ## Finaliser le jeu {/*completing-the-game*/}
 
@@ -1100,7 +1133,11 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
+<<<<<<< HEAD
 Vous allez maintenant connecter la prop `onSquareClick` à une fonction du composant `Board` que vous nommerez `handleClick`.  Pour connecter `onSquareClick` à `handleClick`, vous passerez la fonction à la prop `onSquareClick` du premier composant `Square` :
+=======
+Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component:
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 ```js {7}
 export default function Board() {
@@ -1333,7 +1370,11 @@ Récapitulons ce qui se passe techniquement lorsque l'utilisateur clique sur la 
 2. `handleClick` utilise son argument (`0`) pour mettre à jour le premier élément du tableau `squares`, le faisant passer de `null` à `X`.
 3. L'état `squares` du composant `Board` est mis à jour, du coup `Board` et tous ses enfants refont leur rendu. Ça modifie la prop `value` du composant `Square` d'index `0` pour la passer de `null` à `X`.
 
+<<<<<<< HEAD
 Au final l'utilisateur voit que la case supérieure gauche a changé après qu'il a cliqué dessus : elle est passée du vide à un `X`.
+=======
+In the end the user sees that the upper left square has changed from empty to having an `X` after clicking it.
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 <Note>
 
@@ -1414,7 +1455,11 @@ Mais attendez une minute, il y a un problème : essayez de cliquer plusieurs fo
 
 Le `X` est écrasé par un `O` ! Même si ça pourrait constituer une variante intéressante du jeu, nous allons nous en tenir aux règles conventionnelles.
 
+<<<<<<< HEAD
 Lorsque vous marquez une case avec un `X` ou un `O`, vous ne vérifiez pas d'abord si la case a déjà une valeur `X` ou `O`.  Vous pouvez corriger ça en faisant un *retour anticipé*.  Vérifiez si la case a déjà un `X` ou un `O`. Si la case est déjà remplie, faites un `return` tôt dans la fonction `handleClick`, avant qu'elle ne tente de mettre à jour l'état du plateau.
+=======
+When you mark a square with an `X` or an `O` you aren't first checking to see if the square already has an `X` or `O` value. You can fix this by *returning early*. You'll check to see if the square already has an `X` or an `O`. If the square is already filled, you will `return` in the `handleClick` function early--before it tries to update the board state.
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 ```js {2,3,4}
 function handleClick(i) {
@@ -1564,7 +1609,11 @@ Peu importe que vous définissiez `calculateWinner` avant ou après `Board`.  Me
 
 </Note>
 
+<<<<<<< HEAD
 Vous appellerez `calculateWinner(squares)` dans la fonction `handleClick` du composant `Board` pour vérifier si un joueur a gagné.  Vous pouvez effectuer cette vérification au même endroit que celle pour une case déjà remplie.  Dans les deux cas, nous souhaitons un retour anticipé :
+=======
+You will call `calculateWinner(squares)` in the `Board` component's `handleClick` function to check if a player has won. You can perform this check at the same time you check if a user has clicked a square that already has an `X` or an `O`. We'd like to return early in both cases:
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 ```js {2}
 function handleClick(i) {
@@ -2081,7 +2130,11 @@ export default function Game() {
 }
 ```
 
+<<<<<<< HEAD
 Vous pouvez voir le résultat ci-dessous. Notez que vous devriez voir une erreur dans la console des outils de développement, qui dit :
+=======
+You can see what your code should look like below. Note that you should see an error in the developer tools console that says:
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 <ConsoleBlock level="warning">
 
@@ -2089,9 +2142,13 @@ Warning: Each child in an array or iterator should have a unique "key" prop. Che
 
 </ConsoleBlock>
 
+<<<<<<< HEAD
 *(« Avertissement : chaque enfant d'une liste devrait avoir une prop "key" unique. Vérifiez la méthode de rendu de `Game`. », NdT.)*
 
 Vous la corrigerez dans la prochaine section.
+=======
+You'll fix this error in the next section.
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 <Sandpack>
 
@@ -2259,7 +2316,11 @@ body {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Lorsque vous itérez sur le tableau `history` au sein de la fonction que vous avez passée à `map`, l'argument `squares` vaut tour à tour chaque élément de `history`, et l'argument `move` vaut tour à tour chaque index de l'historique : `0`, `1`, `2`, etc. (Dans la plupart des cas, vous auriez besoin des données elles-mêmes, mais pour notre liste de coups nous n'avons besoin que des indices.)
+=======
+As you iterate through the `history` array inside the function you passed to `map`, the `squares` argument goes through each element of `history`, and the `move` argument goes through each array index: `0`, `1`, `2`, …. (In most cases, you'd need the actual array elements, but to render a list of moves you will only need indexes.)
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 Pour chaque coup de l'historique de notre partie de tic-tac-toe, vous créez un élément de liste `<li>` qui contient un bouton `<button>`. Le bouton a un gestionnaire `onClick` qui appelle une fonction nommée `jumpTo` (que vous n'avez pas encore écrite).
 

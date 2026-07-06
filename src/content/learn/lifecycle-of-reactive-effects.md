@@ -294,7 +294,11 @@ Vous vous demandez peut-être comment React a su que votre Effet devait se resyn
 ```js {1,3,8}
 function ChatRoom({ roomId }) { // La prop roomId peut changer au cours du temps
   useEffect(() => {
+<<<<<<< HEAD
     const connection = createConnection(serverUrl, roomId); // Cet Effet lit roomId
+=======
+    const connection = createConnection(serverUrl, roomId); // This Effect reads roomId
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
     connection.connect();
     return () => {
       connection.disconnect();
@@ -1132,7 +1136,7 @@ Si vous constatez qu'une règle du *linter* est ignorée, réactivez-la ! C'est
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [16]}}
 import { useState, useEffect } from 'react';
 
 export default function App() {
@@ -1375,7 +1379,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js {expectedErrors: {'react-compiler': [8]}} src/ChatRoom.js active
 import { useState, useEffect } from 'react';
 
 export default function ChatRoom({ roomId, createConnection }) {
@@ -1736,7 +1740,11 @@ async function fetchPlaces(planetId) {
           name: 'Espagne'
         }, {
           id: 'vietnam',
+<<<<<<< HEAD
           name: 'Viêt Nam'
+=======
+          name: 'Vietnam'
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
         }]);
       } else if (planetId === 'venus') {
         resolve([{
@@ -1904,7 +1912,11 @@ async function fetchPlaces(planetId) {
           name: 'Espagne'
         }, {
           id: 'vietnam',
+<<<<<<< HEAD
           name: 'Viêt Nam'
+=======
+          name: 'Vietnam'
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
         }]);
       } else if (planetId === 'venus') {
         resolve([{
@@ -2067,7 +2079,11 @@ async function fetchPlaces(planetId) {
           name: 'Espagne'
         }, {
           id: 'vietnam',
+<<<<<<< HEAD
           name: 'Viêt Nam'
+=======
+          name: 'Vietnam'
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
         }]);
       } else if (planetId === 'venus') {
         resolve([{

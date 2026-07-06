@@ -5,7 +5,11 @@ date: 2023/03/16
 description: Nous sommes enchantés d'annoncer aujourd'hui la sortie de react.dev, le nouveau site officiel de React et de sa documentation.  Dans ce billet, nous aimerions vous faire faire un tour du nouveau site.
 ---
 
+<<<<<<< HEAD
 Le 16 mars 2023 par [Dan Abramov](https://twitter.com/dan_abramov) et [Rachel Nabors](https://twitter.com/rachelnabors)
+=======
+March 16, 2023 by [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Rachel Nabors](https://twitter.com/rachelnabors)
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 ---
 
@@ -282,6 +286,7 @@ export default function PackingList() {
       <ul>
         <Item
           isPacked={true}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -291,6 +296,17 @@ export default function PackingList() {
         <Item
           isPacked={false}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
         />
       </ul>
     </section>
@@ -320,6 +336,7 @@ export default function PackingList() {
       <ul>
         <Item
           isPacked={true}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -329,6 +346,17 @@ export default function PackingList() {
         <Item
           isPacked={false}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
         />
       </ul>
     </section>
@@ -368,6 +396,7 @@ export default function PackingList() {
       <ul>
         <Item
           importance={9}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -377,6 +406,17 @@ export default function PackingList() {
         <Item
           importance={6}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          importance={0}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          importance={6}
+          name="Photo of Tam"
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
         />
       </ul>
     </section>
@@ -412,6 +452,7 @@ export default function PackingList() {
       <ul>
         <Item
           importance={9}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -421,6 +462,17 @@ export default function PackingList() {
         <Item
           importance={6}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          importance={0}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          importance={6}
+          name="Photo of Tam"
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
         />
       </ul>
     </section>
@@ -632,7 +684,11 @@ Nous pensons qu'il n'y a jamais eu de meilleur moment pour apprendre React.
 
 ## Qui a travaillé sur tout ça ? {/*who-worked-on-this*/}
 
+<<<<<<< HEAD
 Dans l'équipe React, [Rachel Nabors](https://twitter.com/rachelnabors/) a piloté le projet (et fourni les illustrations) et [Dan Abramov](https://twitter.com/dan_abramov) a conçu le cursus. Ils ont par ailleurs co-écrit ensemble la majorité du contenu.
+=======
+On the React team, [Rachel Nabors](https://twitter.com/rachelnabors/) led the project (and provided the illustrations), and [Dan Abramov](https://bsky.app/profile/danabra.mov) designed the curriculum. They co-authored most of the content together as well.
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 Naturellement, un projet de cette taille ne se fait pas avec une petite équipe dans son coin !  Nous avons beaucoup de monde à remercier !
 
