@@ -492,7 +492,11 @@ Comme mentionné plus haut, il n'y a aucun moyen d'obtenir le résultat du rendu
 
 ### Convertir les enfants en tableau {/*converting-children-to-an-array*/}
 
+<<<<<<< HEAD
 Appelez `Children.toArray(children)` pour transformer la structure de données `children` en un véritable tableau JavaScript. Ça vous permet de le manipuler avec les méthodes natives des tableaux telles que [`filter`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [`sort`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) ou [`reverse`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse).
+=======
+Call `Children.toArray(children)` to turn the `children` data structure into a regular JavaScript array. This lets you manipulate the array with built-in array methods like [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [`sort`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), or [`reverse`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 <Sandpack>
 
@@ -860,7 +864,11 @@ export default function App() {
       renderRow={(id, index) => {
         return (
           <Row isHighlighted={index % 2 === 0}>
+<<<<<<< HEAD
             <p>Voici le {id} élément</p>
+=======
+            <p>This is the {id} item.</p>
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
           </Row>
         );
       }}
