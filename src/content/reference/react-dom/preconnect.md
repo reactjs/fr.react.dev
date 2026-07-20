@@ -1,14 +1,16 @@
 ---
 title: preconnect
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 La fonction `preconnect` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 <Intro>
 
 `preconnect` vous permet de vous connecter en avance à un serveur depuis lequel vous avez l'intention de charger des ressources.
@@ -41,7 +43,11 @@ function AppRoot() {
 
 [Voir d'autres exemples plus bas](#usage).
 
+<<<<<<< HEAD
 La fonction `preconnect` suggère au navigateur d'ouvrir une connection vers le serveur en question.  Si le navigateur décide de le faire, ça accélèrera le chargement ultérieur de ressources depuis ce serveur.
+=======
+The `preconnect` function provides the browser with a hint that it should open a connection to the given server. If the browser chooses to do so, this can speed up the loading of resources from that server.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 #### Paramètres {/*parameters*/}
 

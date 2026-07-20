@@ -8,7 +8,11 @@ Toutes les versions stables de React sont soumises à un niveau élevé de tests
 
 </Intro>
 
+<<<<<<< HEAD
 Pour une liste des versions antérieures, consultez la page [Versions](/versions).
+=======
+This versioning policy describes our approach to version numbers for packages such as `react` and `react-dom`. For a list of previous releases, see the [Versions](/versions) page.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 ## Versions stables {/*stable-releases*/}
 
@@ -24,7 +28,13 @@ Les livraisons majeures peuvent également intégrer de nouvelles fonctionnalit�
 
 Les livraisons mineures sont les plus fréquentes.
 
+<<<<<<< HEAD
 ### Ruptures de compatibilité ascendante {/*breaking-changes*/}
+=======
+We know our users continue to use old versions of React in production. If we learn of a security vulnerability in React, we release a backported fix for all major versions that are affected by the vulnerability.
+
+### Breaking changes {/*breaking-changes*/}
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 Les ruptures de compatibilité ascendante sont gênantes pour tout le monde, aussi nous essayons de limiter le nombre de livraisons majeures — par exemple, React 15 a été publié en avril 2016, React 16 en septembre 2017 et React 17 en octobre 2020.
 
@@ -132,6 +142,12 @@ Si vous êtes l'auteur·e d'un framework React tiers, d'une bibliothèque, d'un 
   ```console
   yarn upgrade react@canary react-dom@canary
   ```
+<<<<<<< HEAD
+=======
+- Run your test suite against the updated packages.
+- If everything passes, great! You can expect that your project will work with the next minor React release.
+- If something breaks unexpectedly, please let us know by [filing an issue](https://github.com/react/react/issues).
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 - Exécutez vos tests avec ces modules mis à jour.
 - Si tout va bien, c'est parfait ! Vous pouvez vous attendre à ce que votre projet fonctionne avec la prochaine version mineure de React.
@@ -163,6 +179,10 @@ Les fonctionnalités expérimentales ne sont pas toujours documentées. Habituel
 
 Quand bien même une fonctionnalité ne serait pas documentée, elle peut en revanche faire l'objet d'une [RFC](https://github.com/reactjs/rfcs) *(Request for Comments, NdT)*.
 
+<<<<<<< HEAD
 Dès que nous sommes prêts à annoncer de nouvelles expérimentations, nous publions un article sur le [blog React](/blog), mais ça ne signifie pas que nous parlerons publiquement de toutes nos expérimentations.
 
 Vous avez toujours la possibilité de vous référer à l'[historique](https://github.com/facebook/react/commits/main) de notre dépôt Github public pour une liste complète des changements.
+=======
+You can always refer to our public GitHub repository's [history](https://github.com/react/react/commits/main) for a comprehensive list of changes.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca

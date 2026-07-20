@@ -1,14 +1,16 @@
 ---
 script: "<script>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 Les extensions de React à `<script>` ne sont actuellement disponibles que sur les canaux de livraison Canary et Expérimental de React. Dans les versions stables de React, `<script>` fonctionne comme [le composant HTML natif du navigateur](/reference/react-dom/components#all-html-components). Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
+=======
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 <Intro>
 
 Le [composant natif `<script>` du navigateur](https://developer.mozilla.org/fr/docs/Web/HTML/Element/script) vous permet d'ajouter un script à votre document.
@@ -38,7 +40,11 @@ Pour ajouter un script défini à la volée ou extérieur à votre document, uti
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<script>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
+=======
+`<script>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 Il est censé utiliser *l'une ou l'autre* des props `chilren` ou `src`.
 
@@ -47,6 +53,7 @@ Il est censé utiliser *l'une ou l'autre* des props `chilren` ou `src`.
 
 L'élément prend en charge d'autres props :
 
+<<<<<<< HEAD
 * `async` : un booléen. Permet au navigateur de différer l'exécution du script jusqu'à ce que le reste du document ait été traité — c'est le comportement à favoriser pour des raisons de performances.
 *  `crossOrigin` : une chaîne de caractères. La [politique CORS](https://developer.mozilla.org/docs/Web/HTML/Attributes/crossorigin) à utiliser. Les valeurs possibles sont `anonymous` et `use-credentials`.
 * `fetchPriority` : une chaîne de caractères. Suggère une priorité relative pour le chargement lorsque plusieurs scripts sont chargés en parallèle. Les valeurs possibles sont `auto` (par défaut), `high` ou `low`.
@@ -55,6 +62,16 @@ L'élément prend en charge d'autres props :
 * `nonce` : une chaîne de caractères. Un [nonce cryptographique autorisant la ressource](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/nonce) dans le cadre d'une Politique de Sécurité de Contenu (CSP) stricte.
 * `referrer` : une chaîne de caractères. Indique [l'en-tête Referer à envoyer](https://developer.mozilla.org/docs/Web/HTML/Element/script#referrerpolicy) lors du chargement du script et de toutes ressources que le script chargerait à son tour.
 * `type` : une chaîne de caractères. Indique si le script est un [script classique, un module ES ou une *import map*](https://developer.mozilla.org/fr/docs/Web/HTML/Element/script/type).
+=======
+* `async`: a boolean. Allows the browser to defer execution of the script until the rest of the document has been processed — the preferred behavior for performance.
+*  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
+* `fetchPriority`: a string. Lets the browser rank scripts in priority when fetching multiple scripts at the same time. Can be `"high"`, `"low"`, or `"auto"` (the default).
+* `integrity`: a string. A cryptographic hash of the script, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+* `noModule`: a boolean. Disables the script in browsers that support ES modules — allowing for a fallback script for browsers that do not.
+* `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
+* `referrer`: a string. Says [what Referer header to send](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#referrerpolicy) when fetching the script and any resources that the script fetches in turn.
+* `type`: a string. Says whether the script is a [classic script, ES module, or import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type).
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 Ces props désactivement le [traitement spécial des scripts](#special-rendering-behavior) de React :
 
