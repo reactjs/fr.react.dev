@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 title: "React 19 RC : guide de migration"
+=======
+title: "React 19 Upgrade Guide"
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 author: Ricky Hanlon
 date: 2024/04/25
 description: Les améliorations apportées par React 19 RC nécessitent quelques ruptures de compatibilité, mais nous avons travaillé dur pour faciliter la mise à jour le plus possible, et nous ne nous attendons pas à ce que ces changements impactent la majorité des applications. Dans cet article, nous vous guidons étape par étape pour mettre à jour vos applis et bibliothèques vers React 19.
@@ -12,7 +16,11 @@ Le 25 avril 2024 par [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 <Intro>
 
+<<<<<<< HEAD
 Les améliorations apportées par React 19 RC nécessitent quelques ruptures de compatibilité, mais nous avons travaillé dur pour faciliter la mise à jour le plus possible, et nous ne nous attendons pas à ce que ces changements impactent la majorité des applications.
+=======
+The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 </Intro>
 
@@ -20,11 +28,19 @@ Les améliorations apportées par React 19 RC nécessitent quelques ruptures de 
 
 #### React 18.3 est également sorti {/*react-18-3*/}
 
+<<<<<<< HEAD
 Pour vous aider à migrer vers React 19, nous avons publié une version `react@18.3` identique à la 18.2 mais avec des avertissements sur les API dépréciées et d'autres changements nécessaires pour React 19. 
+=======
+To help make the upgrade to React 19 easier, we've published a `react@18.3` release that is identical to 18.2 but adds warnings for deprecated APIs and other changes that are needed for React 19.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 Nous vous conseillons de d'abord mettre à jour vers React 18.3 pour vous aider à identifier tout problème avant de passer à React 19.
 
+<<<<<<< HEAD
 Pour une liste détaillées des modifications de la 18.3, consultez ses [notes de publication](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+=======
+For a list of changes in 18.3 see the [Release Notes](https://github.com/react/react/blob/main/CHANGELOG.md#1830-april-25-2024).
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 </Note>
 
@@ -38,7 +54,11 @@ Dans cet article, nous vous guidons à travers les étapes nécessaires à une m
 - [Changements liés à TypeScript](#typescript-changes)
 - [Changelog](#changelog)
 
+<<<<<<< HEAD
 Si vous aimeriez nous aider à tester React 19, suivez les étapes de ce guide de migration et [signalez-nous tout problème](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) que vous rencontreriez. Pour une liste des nouveautés de React 19, consultez [l’annonce de sortie de React 19](/blog/2024/04/25/react-19).
+=======
+If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/react/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19, see the [React 19 release post](/blog/2024/12/05/react-19).
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 ---
 
@@ -71,28 +91,27 @@ Nous estimons que la plupart des applis ne seront pas affectées par ça, dans l
 Pour installer la dernière version de React et React DOM :
 
 ```bash
-npm install --save-exact react@rc react-dom@rc
+npm install --save-exact react@^19.0.0 react-dom@^19.0.0
 ```
 
 Ou si vous utilisez Yarn :
 
 ```bash
-yarn add --exact react@rc react-dom@rc
+yarn add --exact react@^19.0.0 react-dom@^19.0.0
 ```
 
+<<<<<<< HEAD
 Si vous utilisez TypeScript, vous aurez aussi besoin de mettre à jour les types.  Une fois que React 19 sortira en version stable, vous pourrez installer les types au travers des paquets habituels `@types/react` et `@types/react-dom`.  D'ici là, ces types sont mis à disposition par des paquets distincts que vous devrez forcer dans votre `package.json` :
+=======
+If you're using TypeScript, you also need to update the types.
+```bash
+npm install --save-exact @types/react@^19.0.0 @types/react-dom@^19.0.0
+```
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
-```json
-{
-  "dependencies": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
-  }
-}
+Or, if you're using Yarn:
+```bash
+yarn add --exact @types/react@^19.0.0 @types/react-dom@^19.0.0
 ```
 
 Nous fournissons par ailleurs un codemod pour les remplacements les plus courants.  Consultez par exemple la section [Changements liés à TypeScript](#typescript-changes) plus loin.
@@ -113,18 +132,30 @@ Pour lancer tous les codemods listés dans ce guide, vous disposez de la recette
 npx codemod@latest react/19/migration-recipe
 ```
 
+<<<<<<< HEAD
 Elle exploitera les codemods suivants du dépôt `react-codemod` :
+=======
+This will run the following codemods from `react-codemod`:
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 - [`replace-reactdom-render`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-reactdom-render)
 - [`replace-string-ref`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-string-ref)
 - [`replace-act-import`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-act-import)
 - [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state)
+<<<<<<< HEAD
 - [`prop-types-typescript`](TODO)
+=======
+- [`prop-types-typescript`](https://github.com/reactjs/react-codemod#react-proptypes-to-prop-types)
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 Ça n'inclut toutefois pas les changements liés à TypeScript.  Consultez la section [Changements liés à TypeScript](#typescript-changes) plus loin.
 
 </Note>
 
+<<<<<<< HEAD
 Dans le reste de cet article, les changements proposant un codemod indiquent la commande à employer.
+=======
+Changes that include a codemod include the command below.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 Pour une liste complète des codemods disponibles, consultez le [dépôt `react-codemod`](https://github.com/reactjs/react-codemod).
 
@@ -132,7 +163,11 @@ Pour une liste complète des codemods disponibles, consultez le [dépôt `react-
 
 ### Les erreurs lors du rendu ne sont pas propagées {/*errors-in-render-are-not-re-thrown*/}
 
+<<<<<<< HEAD
 Dans les versions précédentes de React, les erreurs survenant lors du rendu étaient interceptées puis relancées.  En mode développement, nous les affichions également avec `console.error`, ce qui pouvait entraîner des doublons dans les journaux d'erreurs.
+=======
+In previous versions of React, errors thrown during render were caught and rethrown. In DEV, we would also log to `console.error`, resulting in duplicate error logs.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 Avec React 19, nous avons [amélioré la gestion des erreurs](/blog/2024/04/25/react-19#error-handling) pour réduire cette duplication en évitant de propager ces erreurs :
 
@@ -260,7 +295,11 @@ class Child extends React.Component {
 
 #### Retirées: les refs textuelles {/*removed-string-refs*/}
 
+<<<<<<< HEAD
 Les refs textuelles (à base de `string`) étaient dépréciées depuis [mars 2018 (v16.3.0)](https://fr.legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html).
+=======
+Class components supported string refs before being replaced by ref callbacks due to [multiple downsides](https://github.com/react/react/issues/1373). In React 19, we're removing string refs to make React simpler and easier to understand.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 Les composants à base de classes permettaient des refs textuelles avant que celles-ci soient dépréciées au profit de refs par fonction de rappel, en raison de leurs [nombreux inconvénients](https://github.com/facebook/react/issues/1373). Avec React 19, nous retirons les refs textuelles pour rendre React plus simple et plus facile à comprendre.
 
@@ -357,7 +396,11 @@ npm install react-shallow-renderer --save-dev
 
 ##### Le rendu superficiel, une fausse bonne idée {/*please-reconsider-shallow-rendering*/}
 
+<<<<<<< HEAD
 Le rendu superficiel dépend des détails d'implémentation de React et peut vous empêcher de faire de futures mises à jour.  Nous vous conseillons de migrer vos tests vers [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) ou [@testing-library/react-native](https://testing-library.com/docs/react-native-testing-library/intro). 
+=======
+Shallow rendering depends on React internals and can block you from future upgrades. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://testing-library.com/docs/react-native-testing-library/intro).
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 </Note>
 
@@ -476,7 +519,11 @@ npx codemod@latest react/19/replace-reactdom-render
 
 #### Retirée : `ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
 
+<<<<<<< HEAD
 `ReactDOM.findDOMNode` était dépréciéee depuis [octobre 2018 (v16.6.0)](https://fr.legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode).
+=======
+`ReactDOM.findDOMNode` was [deprecated in October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode).
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 Nous retirons `findDOMNode` parce qu'il s'agit d'un échappatoire historique particulièrement lent à exécuter, fragile à refactorer, ne renvoyant que le premier enfant, et qui mélangeait les niveaux d'abstraction (apprenez-en davantage [ici](https://fr.legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)). Vous pouvez remplacer `ReactDOM.findDOMNode` par des [refs DOM](/learn/manipulating-the-dom-with-refs) :
 
@@ -564,7 +611,11 @@ Grâce à ce changement, les contenus de secours Suspense sont affichés plus t�
 
 ### Builds UMD retirés {/*umd-builds-removed*/}
 
+<<<<<<< HEAD
 UMD était largement utilisé par le passé, en tant que moyen pratique d'utiliser React sans étape de build.  Il existe aujourd'hui des façons modernes de charger des modules en tant que scripts dans des documents HTML.  À partir de React 19, React ne fournira plus de builds UMD afin de réduire la complexité de ses processus de tests et de livraison.
+=======
+UMD was widely used in the past as a convenient way to load React without a build step. Now, there are modern alternatives for loading modules as scripts in HTML documents. Starting with React 19, React will no longer produce UMD builds to reduce the complexity of its testing and release process.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 Pour charger React 19 ay moyen d'une balise script, nous vous conseillons un CDN compatible ESM, tel qu'[esm.sh](https://esm.sh/).
 
@@ -582,7 +633,11 @@ Cette version inclut des changements à la mécanique interne de React qui sont 
 
 Au regard de notre [politique de versions](/community/versioning-policy#what-counts-as-a-breaking-change), ces mises à jour ne sont pas listées comme des ruptures de compatibilité ascendante, et nous ne fournissons pas de documentation liée à leur migration.  Notre recommandation reste de retirer tout code basé sur ces détails internes.
 
+<<<<<<< HEAD
 Pour refléter l'impact du recours à ces détails internes, nous avons renommé le suffixe `SECRET_INTERNALS` vers `_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE`.
+=======
+To reflect the impact of using internals, we have renamed the `SECRET_INTERNALS` suffix to:
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 À l'avenir, nous bloquerons de façon plus agressive l'accès aux détails internes de React pour en décourager l'utilisation et nous assurer que les utilisateurs ne seront pas bloqués sur leurs chemins de migration.
 
@@ -746,6 +801,7 @@ const reducer = (state: State, action: Action) => state;
 
 ### Autres ruptures de compatibilité ascendante {/*other-breaking-changes*/}
 
+<<<<<<< HEAD
 - **react-dom**: Erreur sur URL JavaScript dans src/href [#26507](https://github.com/facebook/react/pull/26507)
 - **react-dom**: Retrait de `errorInfo.digest` dans `onRecoverableError` [#28222](https://github.com/facebook/react/pull/28222)
 - **react-dom**: Retrait de `unstable_flushControlled` [#26397](https://github.com/facebook/react/pull/26397)
@@ -753,9 +809,19 @@ const reducer = (state: State, action: Action) => state;
 - **react-dom**: Retrait de `unstable_renderSubtreeIntoContainer` [#28271](https://github.com/facebook/react/pull/28271)
 - **react-dom**: Retrait de `unstable_runWithPriority` [#28271](https://github.com/facebook/react/pull/28271)
 - **react-is**: Retrait de méthodes dépréciées dans `react-is` [28224](https://github.com/facebook/react/pull/28224)
+=======
+- **react-dom**: Error for javascript URLs in `src` and `href` [#26507](https://github.com/react/react/pull/26507)
+- **react-dom**: Remove `errorInfo.digest` from `onRecoverableError` [#28222](https://github.com/react/react/pull/28222)
+- **react-dom**: Remove `unstable_flushControlled` [#26397](https://github.com/react/react/pull/26397)
+- **react-dom**: Remove `unstable_createEventHandle` [#28271](https://github.com/react/react/pull/28271)
+- **react-dom**: Remove `unstable_renderSubtreeIntoContainer` [#28271](https://github.com/react/react/pull/28271)
+- **react-dom**: Remove `unstable_runWithPriority` [#28271](https://github.com/react/react/pull/28271)
+- **react-is**: Remove deprecated methods from `react-is` [28224](https://github.com/react/react/pull/28224)
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 ### Autres changements notables {/*other-notable-changes*/}
 
+<<<<<<< HEAD
 - **react**: Traitement par lot des files sync, default et continuous [#25700](https://github.com/facebook/react/pull/25700)
 - **react**: Pas de prérendu des adelphes d'un composant suspendu [#26380](https://github.com/facebook/react/pull/26380)
 - **react**: Détecte les boucles infinies dues à des mises à jour en phase de rendu [#26625](https://github.com/facebook/react/pull/26625)
@@ -764,6 +830,16 @@ const reducer = (state: State, action: Action) => state;
 - **react-dom**: Avertit et évite les chaînes vides pour src/href (sauf sur balises d'ancres) [#28124](https://github.com/facebook/react/pull/28124)
 
 Nous publierons un changelog complet avec la version stable de React 19.
+=======
+- **react**: Batch sync, default and continuous lanes [#25700](https://github.com/react/react/pull/25700)
+- **react**: Don't prerender siblings of suspended component [#26380](https://github.com/react/react/pull/26380)
+- **react**: Detect infinite update loops caused by render phase updates [#26625](https://github.com/react/react/pull/26625)
+- **react-dom**: Transitions in popstate are now synchronous [#26025](https://github.com/react/react/pull/26025)
+- **react-dom**: Remove layout effect warning during SSR [#26395](https://github.com/react/react/pull/26395)
+- **react-dom**: Warn and don’t set empty string for src/href (except anchor tags) [#28124](https://github.com/react/react/pull/28124)
+
+For a full list of changes, please see the [Changelog](https://github.com/react/react/blob/main/CHANGELOG.md#1900-december-5-2024).
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 ---
 

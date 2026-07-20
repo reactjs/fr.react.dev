@@ -47,7 +47,13 @@ function Tooltip() {
 
 #### Paramètres {/*parameters*/}
 
+<<<<<<< HEAD
 * `setup` : la fonction contenant la logique de votre Effet.  Votre fonction de mise en place peut par ailleurs renvoyer une fonction de *nettoyage*.  Quand votre composant sera ajouté au DOM, React exécutera votre fonction de mise en place.  Après chaque nouveau rendu dont les dépendances ont changé, React commencera par exécuter votre fonction de nettoyage (si vous en avez fourni une) avec les anciennes valeurs, puis exécutera votre fonction de mise en place avec les nouvelles valeurs.  Une fois votre composant retiré du DOM, React exécutera votre fonction de nettoyage une dernière fois.
+=======
+* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. After your [component commits](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom) to the DOM and before the browser repaints the screen, React will run your setup function. After every commit with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. Before your component is removed from the DOM, React will run your cleanup function.
+
+* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If you omit this argument, your Effect will re-run after every commit of the component.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 * `dependencies` **optionnelles** : la liste des valeurs réactives référencées par le code de `setup`.  Les valeurs réactives comprennent les props, les variables d'état et toutes les variables et fonctions déclarées localement dans le corps de votre composant.  Si votre *linter* est [configuré pour React](/learn/editor-setup#linting), il vérifiera que chaque valeur réactive concernée est bien spécifiée comme dépendance.  La liste des dépendances doit avoir un nombre constant d'éléments et utiliser un littéral défini à la volée, du genre `[dep1, dep2, dep3]`. React comparera chaque dépendance à sa valeur précédente au moyen de la comparaison [`Object.is`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object/is).  Si vous omettez cet argument, votre Effet sera re-exécuté après chaque rendu du composant.
 
@@ -627,7 +633,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js src/Tooltip.js active
+```js {expectedErrors: {'react-compiler': [10, 11]}} src/Tooltip.js active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
