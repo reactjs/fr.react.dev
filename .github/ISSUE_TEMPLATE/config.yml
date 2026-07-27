@@ -1,7 +1,16 @@
 contact_links:
+<<<<<<< HEAD
   - name: 📃 Bugs dans React
     url: https://github.com/facebook/react/issues/new/choose
     about: Ce suivi de tickets ne sert pas aux bugs dans React. Déposez vos tickets React plutôt là-bas.
   - name: 🤔 Questions et Aide
     url: https://react.dev/community
     about: Ce suivi de tickets ne sert pas au support technique.  Consultez plutôt l'aide communautaire de React et les forums de discussion.
+=======
+  - name: 📃 Bugs in React
+    url: https://github.com/react/react/issues/new/choose
+    about: This issue tracker is not for bugs in React. Please file React issues here.
+  - name: 🤔 Questions and Help
+    url: https://reactjs.org/community/support.html
+    about: This issue tracker is not for support questions. Please refer to the React community's help and discussion forums.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698

@@ -54,8 +54,13 @@ root.render(<Image />);
 export default function Image() {
   return (
     <img
+<<<<<<< HEAD
       src="https://i.imgur.com/ZF6s192.jpg"
       alt="'Floralis Genérica' par Eduardo Catalano : une sculpture de fleur métallique gigantesque avec des pétales réfléchissants."
+=======
+      src="https://react.dev/images/docs/scientists/ZF6s192.jpg"
+      alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
     />
   );
 }
@@ -70,9 +75,15 @@ Essayez de commenter l'appel à `root.render()` pour voir votre composant dispar
 Une fois que le composant a fait son rendu initial, vous pouvez déclencher des rendus supplémentaires en mettant à jour son état au moyen d'une [fonction `set`](/reference/react/useState#setstate). Mettre à jour l'état local d'un composant met automatiquement un rendu en file d'attente. (C'est un peu comme le convive d'un restaurant qui commanderait du thé, un dessert et plein d'autres choses après avoir passé sa commande initiale, en fonction de l'état de sa faim et de sa soif.)
 
 <IllustrationBlock sequential>
+<<<<<<< HEAD
   <Illustration caption="Une mise à jour d'état…" alt="React est le serveur d’un restaurant, qui sert une UI Card à l'utilisateur, représenté par une convive avec un curseur en guise de tête.  La cliente indique alors qu'elle veut une carte rose, pas une carte noire !" src="/images/docs/illustrations/i_rerender1.png" />
   <Illustration caption="…déclenche…" alt="React retourne dans la Cuisine des Composants et indique au Chef des Cards qu'il a besoin d'une Card rose." src="/images/docs/illustrations/i_rerender2.png" />
   <Illustration caption="…un rendu !" alt="Le Chef des Cards donne une Card rose à React." src="/images/docs/illustrations/i_rerender3.png" />
+=======
+  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. The patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
+  <Illustration caption="...triggers..." alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card." src="/images/docs/illustrations/i_rerender2.png" />
+  <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 </IllustrationBlock>
 
 ## Étape 2 : rendu des composants par React {/*step-2-react-renders-your-components*/}
@@ -84,7 +95,11 @@ Après que vous avez déclenché un rendu, React appelle vos composants pour dé
 
 Ce processus est récursif : si le composant mis à jour renvoie un autre composant, React fera le rendu de *ce* composant-là ensuite, et si ce dernier renvoie à son tour un autre composant, il fera le rendu de *ce* composant-là, et ainsi de suite.  Le processus continue jusqu'à ce qu'il ne reste plus de composants imbriqués à traiter, pour que React sache exactement ce qu'il doit afficher à l'écran.
 
+<<<<<<< HEAD
 Dans l'exemple qui suit, React appellera `Gallery()`, puis plusieurs fois `Image()` :
+=======
+In the following example, React will call `Gallery()` and `Image()` several times:
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 <Sandpack>
 
@@ -103,8 +118,13 @@ export default function Gallery() {
 function Image() {
   return (
     <img
+<<<<<<< HEAD
       src="https://i.imgur.com/ZF6s192.jpg"
       alt="Floralis Genérica' par Eduardo Catalano : une sculpture de fleur métallique gigantesque avec des pétales réfléchissants."
+=======
+      src="https://react.dev/images/docs/scientists/ZF6s192.jpg"
+      alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
     />
   );
 }
@@ -124,8 +144,13 @@ img { margin: 0 10px 10px 0; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 - **Lors du rendu initial**, React [créera les nœuds DOM](https://developer.mozilla.org/fr/docs/Web/API/Document/createElement) pour les balises `<section>`, `<h1>` et les trois `<img>`.
 - **Lors des rendus ultérieurs**, React déterminera si certaines de leurs propriétés ont changé depuis le rendu précédent. Il gardera cette information au chaud jusqu'à l'étape suivante : la phase de commit.
+=======
+* **During the initial render,** React will [create the DOM nodes](https://developer.mozilla.org/docs/Web/API/Document/createElement) for `<section>`, `<h1>`, and three `<img>` tags.
+* **During a re-render,** React will calculate which of their properties, if any, have changed since the previous render. It won't do anything with that information until the next step, the commit phase.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 <Pitfall>
 
@@ -148,10 +173,17 @@ Le comportement par défaut, qui fait le rendu de tous les composants enveloppé
 
 ## Étape 3 : commit dans le DOM par React {/*step-3-react-commits-changes-to-the-dom*/}
 
+<<<<<<< HEAD
 Après avoir fait le rendu de vos composants (c'est-à-dire après avoir appelé leurs fonctions), React devra mettre à jour le DOM.
 
 - **Lors du rendu initial**, React utilisera l'API DOM [`appendChild()`](https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild) pour retranscrire à l'écran tous les nœuds DOM qu'il a créés.
 - **Lors des rendus ultérieurs**, React s'attachera à effectuer le strict minimum d'opérations nécessaires (qu'il aura déterminées lors de la phase de rendu !) pour mettre le DOM en correspondance avec le résultat du dernier rendu en date.
+=======
+After rendering (calling) your components, React will modify the DOM.
+
+* **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen.
+* **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 **React ne modifie les nœuds DOM que s'il y a un écart d'un rendu à l'autre.**  Par exemple, voici un composant qui refait son rendu avec des props différentes passées depuis son parent à chaque seconde.  Remarquez que vous pouvez ajouter du texte dans l'`<input>`, modifier sa `value`, mais le texte ne disparaît pas quand le composant refait son rendu :
 

@@ -461,7 +461,11 @@ export default function Menu() {
 
   return (
     <>
+<<<<<<< HEAD
       <h2>Quel est votre goûter de voyage ?</h2>
+=======
+      <h2>What's your travel snack?</h2>
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
       <ul>
         {items.map((item, index) => (
           <li key={item.id}>
@@ -924,7 +928,11 @@ export const initialTravelPlan = {
   },
   10: {
     id: 10,
+<<<<<<< HEAD
     title: 'Amerique',
+=======
+    title: 'Americas',
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],
   },
   11: {
@@ -969,7 +977,11 @@ export const initialTravelPlan = {
   },
   19: {
     id: 19,
+<<<<<<< HEAD
     title: 'Asie',
+=======
+    title: 'Asia',
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
     childIds: [20, 21, 22, 23, 24, 25],
   },
   20: {
@@ -1044,7 +1056,11 @@ export const initialTravelPlan = {
   },
   34: {
     id: 34,
+<<<<<<< HEAD
     title: 'Océanie',
+=======
+    title: 'Oceania',
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
     childIds: [35, 36, 37, 38, 39, 40, 41],
   },
   35: {
@@ -1260,7 +1276,11 @@ export const initialTravelPlan = {
   },
   10: {
     id: 10,
+<<<<<<< HEAD
     title: 'Amérique',
+=======
+    title: 'Americas',
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],
   },
   11: {
@@ -1305,7 +1325,11 @@ export const initialTravelPlan = {
   },
   19: {
     id: 19,
+<<<<<<< HEAD
     title: 'Asie',
+=======
+    title: 'Asia',
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
     childIds: [20, 21, 22, 23, 24, 25],
   },
   20: {
@@ -1380,7 +1404,11 @@ export const initialTravelPlan = {
   },
   34: {
     id: 34,
+<<<<<<< HEAD
     title: 'Océanie',
+=======
+    title: 'Oceania',
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
     childIds: [35, 36, 37, 38, 39, 40, 41],
   },
   35: {
@@ -1599,7 +1627,11 @@ export const initialTravelPlan = {
   },
   10: {
     id: 10,
+<<<<<<< HEAD
     title: 'Amérique',
+=======
+    title: 'Americas',
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],
   },
   11: {
@@ -1644,7 +1676,11 @@ export const initialTravelPlan = {
   },
   19: {
     id: 19,
+<<<<<<< HEAD
     title: 'Asie',
+=======
+    title: 'Asia',
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
     childIds: [20, 21, 22, 23, 24, 25,],
   },
   20: {
@@ -1719,8 +1755,13 @@ export const initialTravelPlan = {
   },
   34: {
     id: 34,
+<<<<<<< HEAD
     title: 'Océanie',
     childIds: [35, 36, 37, 38, 39, 40,, 41],
+=======
+    title: 'Oceania',
+    childIds: [35, 36, 37, 38, 39, 40, 41],
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
   },
   35: {
     id: 35,
@@ -1825,6 +1866,7 @@ Parfois, vous pouvez aussi réduire l’imbrication des états en déplaçant un
 
 <Recap>
 
+<<<<<<< HEAD
 * Si deux variables d’état sont toujours mises à jour ensemble, envisagez de les fusionner en une seule.
 * Choisissez soigneusement vos variables d’état pour éviter de créer des états « impossibles ».
 * Structurez votre état de manière à réduire les risques d’erreur lors de sa mise à jour.
@@ -1832,6 +1874,15 @@ Parfois, vous pouvez aussi réduire l’imbrication des états en déplaçant un
 * Ne mettez pas de props *dans* un état à moins que vous ne vouliez spécifiquement empêcher les mises à jour.
 * Pour les interactions telles que la sélection d'élément, conservez l’ID ou l’index dans l’état au lieu de référencer l’objet lui-même.
 * Si la mise à jour d’un état profondément imbriqué est compliquée, essayez de l’aplatir.
+=======
+* If two state variables always update together, consider merging them into one.
+* Choose your state variables carefully to avoid creating "impossible" states.
+* Structure your state in a way that reduces the chances that you'll make a mistake updating it.
+* Avoid redundant and duplicate state so that you don't need to keep it in sync.
+* Don't put props *into* state unless you specifically want to prevent updates.
+* For UI patterns like selection, keep ID or index in state instead of the object itself.
+* If updating deeply nested state is complicated, try flattening it.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 </Recap>
 

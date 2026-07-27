@@ -1,8 +1,8 @@
 ---
 title: cache
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 * `cache` n'est destinée qu'aux [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). Découvrez quels [frameworks](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) prennent en charge les Composants Serveur.
@@ -10,6 +10,13 @@ canary: true
 * `cache` n'est disponible que dans les canaux de livraison [Canary](/community/versioning-policy#canary-channel) et [Expérimental](/community/versioning-policy#experimental-channel). Assurez-vous d'en comprendre les limitations avant d'utiliser `cache` en production. Apprenez-en davantage sur les [canaux de livraison React](/community/versioning-policy#all-release-channels).
 
 </Canary>
+=======
+<RSC>
+
+`cache` is only for use with [React Server Components](/reference/rsc/server-components).
+
+</RSC>
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 <Intro>
 
@@ -65,12 +72,19 @@ L'optimisation qui consiste à mettre en cache les valeurs résultats sur base d
 
 #### Limitations {/*caveats*/}
 
+<<<<<<< HEAD
 [//]: # 'TODO: add links to Server/Client Component reference once https://github.com/reactjs/react.dev/pull/6177 is merged'
 
 - React invalidera le cache de toutes les fonctions mémoïsées à chaque requête serveur.
 - Chaque appel à `cache` crée une nouvelle fonction. Ça signifie qu'appeler `cache` plusieurs fois avec la même fonction renverra plusieurs fonctions mémoïsées distinctes, avec chacune leur propre cache.
 - `cachedFn` mettra également les erreurs en cache. Si `fn` lève une exception pour certains arguments, ce sera mis en cache, et la même erreur sera levée lorsque `cachedFn` sera rappelée avec ces mêmes arguments.
 - `cache` est destinée uniquement aux [Composants Serveur](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
+=======
+- React will invalidate the cache for all memoized functions for each server request.
+- Each call to `cache` creates a new function. This means that calling `cache` with the same function multiple times will return different memoized functions that do not share the same cache.
+- `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and the same error is re-thrown when `cachedFn` is called with those same arguments.
+- `cache` is for use in [Server Components](/reference/rsc/server-components) only.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 ---
 
@@ -100,11 +114,19 @@ function TeamReport({users}) {
 }
 ```
 
+<<<<<<< HEAD
 Si le même objet `user` est affiché dans `Profile` et `TeamReport`, les deux composants peuvent mutualiser le travail et n'appeler `calculateUserMetrics` qu'une fois pour ce `user`.
 
 Supposons que `Profile` fasse son rendu en premier. Il appellera <CodeStep step={1}>`getUserMetrics`</CodeStep>, qui vérifiera si un résultat existe en cache.  Comme il s'agit du premier appel de `getUserMetrics` pour ce `user`, elle ne trouvera aucune correspondance. `getUserMetrics` appellera alors effectivement `calculateUserMetrics` avec ce `user` puis mettra le résultat en cache.
+=======
+If the same `user` object is rendered in both `Profile` and `TeamReport`, the two components can share work and only call `calculateUserMetrics` once for that `user`.
+
+Assume `Profile` is rendered first. It will call <CodeStep step={1}>`getUserMetrics`</CodeStep>, and check if there is a cached result. Since it is the first time `getUserMetrics` is called with that `user`, there will be a cache miss. `getUserMetrics` will then call `calculateUserMetrics` with that `user` and write the result to cache.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 Lorsque `TeamReport` affichera sa liste de `users` et atteindra le même objet `user`, il appellera <CodeStep step={2}>`getUserMetrics`</CodeStep> qui lira le résultat depuis son cache.
+
+If `calculateUserMetrics` can be aborted by passing an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal), you can use [`cacheSignal()`](/reference/react/cacheSignal) to cancel the expensive computation if React has finished rendering. `calculateUserMetrics` may already handle cancellation internally by using `cacheSignal` directly.
 
 <Pitfall>
 
@@ -174,14 +196,22 @@ export default function Precipitation({cityData}) {
   // ...
 }
 ```
+<<<<<<< HEAD
 
 Désormais les deux composants appellent la <CodeStep step={3}>même fonction mémoïsée</CodeStep>, exportée depuis `./getWeekReport.js`, afin de lire et d'écrire dans le même cache.
 
+=======
+Here, both components call the <CodeStep step={3}>same memoized function</CodeStep> exported from `./getWeekReport.js` to read and write to the same cache.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 </Pitfall>
 
 ### Partager un instantané de données {/*take-and-share-snapshot-of-data*/}
 
+<<<<<<< HEAD
 Pour partager un instantané de données d'un composant à l'autre, appelez `cache` sur une fonction de chargement de données telle que `fetch`.  Lorsque plusieurs composants feront le même chargement de données, seule une requête sera faite, et ses données résultantes mises en cache et partagées à travers plusieurs composants.  Tous les composants utiliseront le même instantané de ces données au sein du rendu côté serveur.
+=======
+To share a snapshot of data between components, call `cache` with a data-fetching function like `fetch`. When multiple components make the same data fetch, only one request is made and the data returned is cached and shared across components. All components refer to the same snapshot of data across the server render.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 ```js [[1, 4, "city"], [1, 5, "fetchTemperature(city)"], [2, 4, "getTemperature"], [2, 9, "getTemperature"], [1, 9, "city"], [2, 14, "getTemperature"], [1, 14, "city"]]
 import {cache} from 'react';
@@ -202,7 +232,11 @@ async function MinimalWeatherCard({city}) {
 }
 ```
 
+<<<<<<< HEAD
 Si `AnimatedWeatherCard` et `MinimalWeatherCard` s'affichent tous deux avec la même <CodeStep step={1}>city</CodeStep>, ils recevront le même instantané de données depuis la <CodeStep step={2}>fonction mémoïsée</CodeStep>.
+=======
+If `AnimatedWeatherCard` and `MinimalWeatherCard` both render for the same <CodeStep step={1}>city</CodeStep>, they will receive the same snapshot of data from the <CodeStep step={2}>memoized function</CodeStep>.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 Si `AnimatedWeatherCard` et `MinimalWeatherCard` fournissent un argument <CodeStep step={1}>city</CodeStep> différent à <CodeStep step={2}>`getTemperature`</CodeStep>, alors `fetchTemperature` sera appelée deux fois, et chaque point d'appel recevra ses données spécifiques.
 
@@ -210,9 +244,13 @@ La <CodeStep step={1}>city</CodeStep> agit comme une clé de cache.
 
 <Note>
 
+<<<<<<< HEAD
 [//]: # 'TODO: add links to Server Components when merged.'
 
 <CodeStep step={3}>Le rendu asynchrone</CodeStep> n'est possible que dans les Composants Serveur.
+=======
+<CodeStep step={3}>Asynchronous rendering</CodeStep> is only supported for Server Components.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 ```js [[3, 1, "async"], [3, 2, "await"]]
 async function AnimatedWeatherCard({city}) {
@@ -221,8 +259,12 @@ async function AnimatedWeatherCard({city}) {
 }
 ```
 
+<<<<<<< HEAD
 [//]: # 'TODO: add link and mention to use documentation when merged'
 [//]: # 'To render components that use asynchronous data in Client Components, see `use` documentation.'
+=======
+To render components that use asynchronous data in Client Components, see [`use()` documentation](/reference/react/use).
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 </Note>
 
@@ -267,7 +309,11 @@ Lorsque `Profile` fait son rendu, nous appelons à nouveau <CodeStep step={2}>`g
 
 Lorsque vous évaluez une [fonction asynchrone](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/async_function), vous recevez une [Promise](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise) représentant le traitement. La promesse maintient un état pour le traitement (*en attente*, *accompli* ou *rejeté*) ainsi que l'aboutissement du traitement à terme.
 
+<<<<<<< HEAD
 Dans cet exemple, la fonction asynchrone <CodeStep step={1}>`fetchData`</CodeStep> renvoie une promesse pour le résultat de notre appel à `fetch`.
+=======
+In this example, the asynchronous function <CodeStep step={1}>`fetchData`</CodeStep> returns a promise that is awaiting the `fetch`.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 ```js [[1, 1, "fetchData()"], [2, 8, "getData()"], [3, 10, "getData()"]]
 async function fetchData() {
@@ -278,7 +324,11 @@ const getData = cache(fetchData);
 
 async function MyComponent() {
   getData();
+<<<<<<< HEAD
   // ... des calculs ici
+=======
+  // ... some computational work
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
   await getData();
   // ...
 }
@@ -288,9 +338,13 @@ En appelant <CodeStep step={2}>`getData`</CodeStep> pour la première fois, la p
 
 Remarquez que le premier appel à <CodeStep step={2}>`getData`</CodeStep> n'appelle pas `await`, alors que le <CodeStep step={3}>second</CodeStep> le fait. [`await`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/await) est un opérateur JavaScript qui attend l'établissement de la promesse et renvoie son résultat accompli (ou lève son erreur de rejet). Le premier appel à <CodeStep step={2}>`getData`</CodeStep> lance simplement le chargement (`fetch`) pour mettre la promesse en cache, afin que le deuxième <CodeStep step={3}>`getData`</CodeStep> la trouve déjà en cours d'exécution.
 
+<<<<<<< HEAD
 Si lors du <CodeStep step={3}>deuxième appel</CodeStep> la promesse est toujours _en attente_, alors `await`  attendra son résultat. L'optimisation tient à ce que, pendant le `fetch` issu du premier appel, React peut continuer son travail de calcul, ce qui réduit l'attente pour le <CodeStep step={3}>deuxième appel</CodeStep>.
 
 Si la promesse est déjà établie à ce moment-là, `await` renverra immédiatement la valeur accomplie (ou lèvera immédiatement l'erreur de rejet).  Dans les deux cas, on améliore la performance perçue.
+=======
+If by the <CodeStep step={3}>second call</CodeStep> the promise is still _pending_, then `await` will pause for the result. The optimization is that while we wait on the `fetch`, React can continue with computational work, thus reducing the wait time for the <CodeStep step={3}>second call</CodeStep>.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 </DeepDive>
 
@@ -318,7 +372,11 @@ async function DemoProfile() {
 
 React ne fournit un accès au cache pour les fonctions mémoïsées qu'au sein d'un composant. Si vous appelez <CodeStep step={1}>`getUser`</CodeStep> hors d'un composant, il évaluera la fonction mais n'utilisera pas le cache (ni en lecture ni en écriture).
 
+<<<<<<< HEAD
 C'est parce que l'accès au cache est fourni via un [contexte](/learn/passing-data-deeply-with-context), et que les contextes ne sont accessibles que depuis les composants.
+=======
+This is because cache access is provided through a [context](/learn/passing-data-deeply-with-context) which is only accessible from a component.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 </Pitfall>
 
@@ -330,9 +388,13 @@ Toutes ces API proposent de la mémoïsation, mais diffèrent sur ce que vous ch
 
 #### `useMemo` {/*deep-dive-use-memo*/}
 
+<<<<<<< HEAD
 Vous devriez généralement utiliser [`useMemo`](/reference/react/useMemo) pour mettre en cache d'un rendu à l'autre un calcul coûteux dans un Composant Client.  Ça pourrait par exemple mémoïser une transformation de données dans un composant.
+=======
+In general, you should use [`useMemo`](/reference/react/useMemo) for caching an expensive computation in a Client Component across renders. As an example, to memoize a transformation of data within a component.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
-```jsx {4}
+```jsx {expectedErrors: {'react-compiler': [4]}} {4}
 'use client';
 
 function WeatherReport({record}) {
@@ -351,9 +413,13 @@ function App() {
 }
 ```
 
+<<<<<<< HEAD
 Dans cet exemple, `App` affiche deux `WeatherReport` avec le même enregistrement. Même si les deux composants font le même travail, ils ne peuvent pas partager des traitements. Le cache de `useMemo` est local à chaque composant.
 
 En revanche, `useMemo` s'assure bien que si `App` refait un rendu et que l'objet `record` n'a pas changé, chaque instance du composant évitera son calcul et utilisera plutôt sa valeur `avgTemp` mémoïsée. `useMemo` mettra le dernier calcul d'`avgTemp` en cache sur base des dépendances qu'on lui fournit.
+=======
+However, `useMemo` does ensure that if `App` re-renders and the `record` object doesn't change, each component instance would skip work and use the memoized value of `avgTemp`. `useMemo` will only cache the last computation of `avgTemp` with the given dependencies.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 #### `cache` {/*deep-dive-cache*/}
 
@@ -407,7 +473,11 @@ function App() {
 }
 ```
 
+<<<<<<< HEAD
 Dans cet exemple, les deux composants `MemoWeatherReport` appelleront `calculateAvg` lors de leur premier rendu. Cependant, si `App` refait son rendu, sans pour autant changer `record`, aucune des props n'aura changé et `MemoWeatherReport` ne refera pas son rendu.
+=======
+In this example, both `MemoWeatherReport` components will call `calculateAvg` when first rendered. However, if `App` re-renders, with no changes to `record`, none of the props have changed and `MemoWeatherReport` will not re-render.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 Comparé à `useMemo`, `memo` mémoïse le rendu du composant sur base de ses props, au lieu de mémoïser des calculs spécifiques. Un peu comme avec `useMemo`, le composant mémoïsé ne met en cache que le dernier rendu, avec les dernières valeurs de props. Dès que les props changent, le cache est invalidé et le composant refait son rendu.
 
