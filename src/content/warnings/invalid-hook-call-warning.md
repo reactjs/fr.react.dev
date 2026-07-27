@@ -145,7 +145,11 @@ window.React2 = require('react');
 console.log(window.React1 === window.React2);
 ```
 
+<<<<<<< HEAD
 Si ça affiche `false` alors vous avez probablement deux Reacts et devez en déterminer la cause. [Ce ticket](https://github.com/facebook/react/issues/13991) détaille quelques raisons rencontrées par la communauté.
+=======
+If it prints `false` then you might have two Reacts and need to figure out why that happened. [This issue](https://github.com/react/react/issues/13991) includes some common reasons encountered by the community.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 Ce problème peut aussi survenir lorsque vous utilisez `npm link` ou un équivalent. Dans un tel cas, votre *bundler* pourrait « voir » deux Reacts — un dans votre dossier applicatif et un dans votre dossier de bibliothèque.  En supposant que `myapp` et `mylib` sont des dossiers de même niveau, un correctif possible consiste à exécuter `npm link ../myapp/node_modules/react` depuis `mylib`. Ça devrait faire en sorte que la bibliothèque utilise bien la copie de React du dossier applicatif.
 
@@ -157,4 +161,8 @@ En général, React prend en charge plusieurs copies indépendantes sur une mêm
 
 ## Autres causes {/*other-causes*/}
 
+<<<<<<< HEAD
 Si rien de tout ça n'a résolu le souci, merci d'ajouter un commentaire à [ce ticket](https://github.com/facebook/react/issues/13991), nous essaierons de vous aider. Essayez de créer un cas minimal reproductible pour appuyer votre demande — vous pourriez d'ailleurs trouver l'origine du problème à cette occasion.
+=======
+If none of this worked, please comment in [this issue](https://github.com/react/react/issues/13991) and we'll try to help. Try to create a small reproducing example — you might discover the problem as you're doing it.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
