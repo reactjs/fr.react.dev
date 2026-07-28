@@ -735,7 +735,7 @@ export default function MyComponent() {
 </Sandpack>
 
 
-Chaque fois que vous appuyez sur le bouton, l'état du champ de saisie disparaît ! C'est parce qu'une fonction `MyTextField` *différente* est créée à chaque rendu de `MyComponent`. Puisque vous affichez composant *différent* à la même position, React réinitialise tout l'état en dessous. Ça cause des bugs et des problèmes de performances. Pour éviter ce problème, **déclarez toujours les fonctions de composants au niveau racine, et n'imbriquez pas leurs définitions**.
+Chaque fois que vous appuyez sur le bouton, l'état du champ de saisie disparaît ! C'est parce qu'une fonction `MyTextField` *différente* est créée à chaque rendu de `MyComponent`. Puisque vous affichez un composant *différent* à la même position, React réinitialise tout l'état en dessous. Ça cause des bugs et des problèmes de performances. Pour éviter ce problème, **déclarez toujours les fonctions de composants au niveau racine, et n'imbriquez pas leurs définitions**.
 
 </Pitfall>
 
