@@ -123,6 +123,7 @@ En clonant ses enfants, la `List` peut passer des infos supplémentaires à chaq
 ```js {4,8,12}
 <List>
   <Row
+<<<<<<< HEAD
     title="Chou"
     isHighlighted={true}
   />
@@ -132,6 +133,17 @@ En clonant ses enfants, la `List` peut passer des infos supplémentaires à chaq
   />
   <Row
     title="Pomme"
+=======
+    title="Cabbage"
+    isHighlighted={true}
+  />
+  <Row
+    title="Garlic"
+    isHighlighted={false}
+  />
+  <Row
+    title="Apple"
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
     isHighlighted={false}
   />
 </List>
@@ -246,7 +258,11 @@ Le clonage des nœuds enfants complexifie le flux de données dans votre appli 
 
 ### Passer des données *via* une prop de rendu {/*passing-data-with-a-render-prop*/}
 
+<<<<<<< HEAD
 Plutôt que d'utiliser `cloneElement`, envisagez d'accepter une *prop de rendu* *(render prop, NdT)* du genre `renderItem`. Ci-dessous, `List` reçoit une prop `renderItem`. `List` appelle `renderItem` pour chaque élément et lui passe `isHighlighted` comme argument :
+=======
+Instead of using `cloneElement`, consider accepting a *render prop* like `renderItem`. Here, `List` receives `renderItem` as a prop. `List` calls `renderItem` for every item and passes `isHighlighted` as an argument:
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
 
 ```js {1,7}
 export default function List({ items, renderItem }) {
@@ -279,6 +295,7 @@ Le résultat final est identique à la version basée sur `cloneElement` :
 ```js {4,8,12}
 <List>
   <Row
+<<<<<<< HEAD
     title="Chou"
     isHighlighted={true}
   />
@@ -288,6 +305,17 @@ Le résultat final est identique à la version basée sur `cloneElement` :
   />
   <Row
     title="Pomme"
+=======
+    title="Cabbage"
+    isHighlighted={true}
+  />
+  <Row
+    title="Garlic"
+    isHighlighted={false}
+  />
+  <Row
+    title="Apple"
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
     isHighlighted={false}
   />
 </List>
@@ -413,9 +441,9 @@ export default function List({ items, renderItem }) {
       {items.map((item, index) => {
         const isHighlighted = index === selectedIndex;
         return (
-          <HighlightContext.Provider key={item.id} value={isHighlighted}>
+          <HighlightContext key={item.id} value={isHighlighted}>
             {renderItem(item)}
-          </HighlightContext.Provider>
+          </HighlightContext>
         );
       })}
 ```
@@ -471,12 +499,12 @@ export default function List({ items, renderItem }) {
       {items.map((item, index) => {
         const isHighlighted = index === selectedIndex;
         return (
-          <HighlightContext.Provider
+          <HighlightContext
             key={item.id}
             value={isHighlighted}
           >
             {renderItem(item)}
-          </HighlightContext.Provider>
+          </HighlightContext>
         );
       })}
       <hr />

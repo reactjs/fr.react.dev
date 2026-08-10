@@ -117,7 +117,11 @@ const people = [{
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
+<<<<<<< HEAD
   profession: 'chimiste',
+=======
+  profession: 'chemist',
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
@@ -225,7 +229,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     's.jpg'
   );
@@ -357,7 +361,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     's.jpg'
   );
@@ -516,7 +520,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     's.jpg'
   );
@@ -631,7 +635,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     's.jpg'
   );
@@ -745,7 +749,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     's.jpg'
   );
@@ -863,7 +867,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     's.jpg'
   );
