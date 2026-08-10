@@ -72,14 +72,24 @@ function Counter() {
   }
 
   useEffect(() => {
+<<<<<<< HEAD
     document.title = `Vous avez cliqué ${this.state.count} fois`;
+=======
+    document.title = `You clicked ${count} times`;
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
   }, [count]);
 
   return (
     <div>
+<<<<<<< HEAD
       <p>Vous avez cliqué {this.state.count} fois</p>
       <button onClick={this.handleClick}>
         Cliquez ici
+=======
+      <p>You clicked {count} times</p>
+      <button onClick={handleClick}>
+        Click me
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
       </button>
     </div>
   )
@@ -99,7 +109,11 @@ it('can render and update a counter', async () => {
   container = document.createElement('div');
   document.body.appendChild(container);
 
+<<<<<<< HEAD
   // ✅ Fait le rendu du composant au sein d'un `act()`.
+=======
+  // ✅ Render the component inside act().
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
   await act(() => {
     ReactDOMClient.createRoot(container).render(<Counter />);
   });
@@ -127,12 +141,17 @@ import Counter from './Counter';
 it.only('can render and update a counter', async () => {
   const container = document.createElement('div');
   document.body.appendChild(container);
-  
+
   await act( async () => {
     ReactDOMClient.createRoot(container).render(<Counter />);
   });
+<<<<<<< HEAD
   
   // ✅ Déclenchement d'événement dans `act()`.
+=======
+
+  // ✅ Dispatch the event inside act().
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
   await act(async () => {
     button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
   });
@@ -154,7 +173,11 @@ N'oubliez pas que le déclenchement d'événements DOM ne fonctionne que si le c
 
 ## Dépannage {/*troubleshooting*/}
 
+<<<<<<< HEAD
 ### J'ai une erreur : "The current testing environment is not configured to support act"(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
+=======
+### I'm getting an error: "The current testing environment is not configured to support act(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
 
 Le recours à `act` nécessite un réglage `global.IS_REACT_ACT_ENVIRONMENT=true` dans votre environnement de test.  Ça permet de garantir que `act` n'est utilisé que dans un environnement adapté.
 

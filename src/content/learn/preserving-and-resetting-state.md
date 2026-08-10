@@ -86,7 +86,11 @@ label {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Voici comment les visualiser sous forme d'arbre :
+=======
+Here's how these look as a tree:
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
 
 <DiagramGroup>
 
@@ -496,7 +500,11 @@ export default function App() {
   return (
     <div>
       {isPaused ? (
+<<<<<<< HEAD
         <p>À bientôt !</p>
+=======
+        <p>See you later!</p>
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
       ) : (
         <Counter />
       )}
@@ -672,7 +680,11 @@ label {
 
 </Sandpack>
 
+<<<<<<< HEAD
 L'état du compteur se réinitialise quand vous cliquez sur la case. Bien que vous affichiez un `Counter`, le premier enfant du `div` passe d'un `div` à une `section`. Lorsque l'enfant `div` a été retiré du DOM, tout l'arbre en dessous de lui (ce qui inclut le `Counter` et son état) a également été détruit.
+=======
+The counter state gets reset when you click the checkbox. Although you render a `Counter`, the first child of the `div` changes from a `section` to a `div`. When the child `section` was removed from the DOM, the whole tree below it (including the `Counter` and its state) was destroyed as well.
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
 
 <DiagramGroup>
 
@@ -704,7 +716,7 @@ Ici, la fonction du composant `MyTextField` est définie à *l'intérieur de* `M
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [7]}}
 import { useState } from 'react';
 
 export default function MyComponent() {
@@ -1431,16 +1443,26 @@ export default function App() {
   if (reverse) {
     return (
       <>
+<<<<<<< HEAD
         <Field label="Nom" />
         <Field label="Prénom" />
+=======
+        <Field label="Last name" />
+        <Field label="First name" />
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
         {checkbox}
       </>
     );
   } else {
     return (
       <>
+<<<<<<< HEAD
         <Field label="Prénom" />
         <Field label="Nom" />
+=======
+        <Field label="First name" />
+        <Field label="Last name" />
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
         {checkbox}
       </>
     );
@@ -1493,16 +1515,26 @@ export default function App() {
   if (reverse) {
     return (
       <>
+<<<<<<< HEAD
         <Field key="lastName" label="Nom" />
         <Field key="firstName" label="Prénom" />
+=======
+        <Field key="lastName" label="Last name" />
+        <Field key="firstName" label="First name" />
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
         {checkbox}
       </>
     );
   } else {
     return (
       <>
+<<<<<<< HEAD
         <Field key="firstName" label="Prénom" />
         <Field key="lastName" label="Nom" />
+=======
+        <Field key="firstName" label="First name" />
+        <Field key="lastName" label="Last name" />
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
         {checkbox}
       </>
     );
@@ -1887,6 +1919,7 @@ export default function Gallery() {
 }
 
 let images = [{
+<<<<<<< HEAD
   place: 'Penang, Malaisie',
   src: 'https://i.imgur.com/FJeJR8M.jpg'
 }, {
@@ -1907,6 +1940,28 @@ let images = [{
 }, {
   place: 'Ljubljana, Slovénie',
   src: 'https://i.imgur.com/3aIiwfm.jpg'
+=======
+  place: 'Penang, Malaysia',
+  src: 'https://react.dev/images/docs/scientists/FJeJR8M.jpg'
+}, {
+  place: 'Lisbon, Portugal',
+  src: 'https://react.dev/images/docs/scientists/dB2LRbj.jpg'
+}, {
+  place: 'Bilbao, Spain',
+  src: 'https://react.dev/images/docs/scientists/z08o2TS.jpg'
+}, {
+  place: 'Valparaíso, Chile',
+  src: 'https://react.dev/images/docs/scientists/Y3utgTi.jpg'
+}, {
+  place: 'Schwyz, Switzerland',
+  src: 'https://react.dev/images/docs/scientists/JBbMpWY.jpg'
+}, {
+  place: 'Prague, Czechia',
+  src: 'https://react.dev/images/docs/scientists/QwUKKmF.jpg'
+}, {
+  place: 'Ljubljana, Slovenia',
+  src: 'https://react.dev/images/docs/scientists/3aIiwfm.jpg'
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
 }];
 ```
 
@@ -1955,6 +2010,7 @@ export default function Gallery() {
 }
 
 let images = [{
+<<<<<<< HEAD
   place: 'Penang, Malaisie',
   src: 'https://i.imgur.com/FJeJR8M.jpg'
 }, {
@@ -1975,6 +2031,28 @@ let images = [{
 }, {
   place: 'Ljubljana, Slovénie',
   src: 'https://i.imgur.com/3aIiwfm.jpg'
+=======
+  place: 'Penang, Malaysia',
+  src: 'https://react.dev/images/docs/scientists/FJeJR8M.jpg'
+}, {
+  place: 'Lisbon, Portugal',
+  src: 'https://react.dev/images/docs/scientists/dB2LRbj.jpg'
+}, {
+  place: 'Bilbao, Spain',
+  src: 'https://react.dev/images/docs/scientists/z08o2TS.jpg'
+}, {
+  place: 'Valparaíso, Chile',
+  src: 'https://react.dev/images/docs/scientists/Y3utgTi.jpg'
+}, {
+  place: 'Schwyz, Switzerland',
+  src: 'https://react.dev/images/docs/scientists/JBbMpWY.jpg'
+}, {
+  place: 'Prague, Czechia',
+  src: 'https://react.dev/images/docs/scientists/QwUKKmF.jpg'
+}, {
+  place: 'Ljubljana, Slovenia',
+  src: 'https://react.dev/images/docs/scientists/3aIiwfm.jpg'
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
 }];
 ```
 
@@ -2011,7 +2089,7 @@ export default function ContactList() {
       <label>
         <input
           type="checkbox"
-          value={reverse}
+          checked={reverse}
           onChange={e => {
             setReverse(e.target.checked)
           }}
@@ -2110,7 +2188,7 @@ export default function ContactList() {
       <label>
         <input
           type="checkbox"
-          value={reverse}
+          checked={reverse}
           onChange={e => {
             setReverse(e.target.checked)
           }}
