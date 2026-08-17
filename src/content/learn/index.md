@@ -4,7 +4,11 @@ title: Démarrage rapide
 
 <Intro>
 
+<<<<<<< HEAD
 Bienvenue dans la documentation React !  Dans cette page, vous allez découvrir les 80% de concepts React que vous utiliserez sans doute au quotidien.
+=======
+Welcome to the React documentation! This page will give you an introduction to 80% of the React concepts that you will use on a daily basis.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 </Intro>
 
@@ -143,7 +147,7 @@ Vous pouvez utiliser des expressions plus complexes au sein des accolades JSX, p
 ```js
 const user = {
   name: 'Hedy Lamarr',
-  imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+  imageUrl: 'https://react.dev/images/docs/scientists/yXOvdOSs.jpg',
   imageSize: 90,
 };
 

@@ -10,7 +10,11 @@ La communauté React compte des millions de développeur·se·s. Sur cette page,
 
 ## Code de Conduite {/*code-of-conduct*/}
 
+<<<<<<< HEAD
 Avant de participer aux communautés React, [merci de lire notre Code de Conduite](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md). Nous avons adopté le [Contributor Covenant](https://www.contributor-covenant.org/) et attendons de tous les membres de nos communautés qu’ils·elles respectent les règles et recommandations qui y figurent.
+=======
+Before participating in React's communities, [please read our Code of Conduct.](https://github.com/react/react/blob/main/CODE_OF_CONDUCT.md) We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) and we expect that all community members adhere to the guidelines within.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 ## Stack Overflow {/*stack-overflow*/}
 
@@ -29,4 +33,8 @@ Chaque communauté est composée de plusieurs milliers d'utilisateurs de React.
 
 ## Actualités {/*news*/}
 
+<<<<<<< HEAD
 Pour les dernières nouvelles sur React, [suivez **@reactjs** sur Twitter](https://twitter.com/reactjs) et le [blog officiel de React](/blog/) sur ce site.
+=======
+For the latest news about React, [follow **@reactjs** on Twitter](https://twitter.com/reactjs), [**@react.dev** on Bluesky](https://bsky.app/profile/react.dev) and the [official React blog](/blog/) on this website.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a

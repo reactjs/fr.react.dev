@@ -29,7 +29,7 @@ function Avatar() {
   return (
     <img
       className="avatar"
-      src="https://i.imgur.com/1bX5QH6.jpg"
+      src="https://react.dev/images/docs/scientists/1bX5QH6.jpg"
       alt="Lin Lanying"
       width={100}
       height={100}
@@ -153,7 +153,7 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -320,7 +320,7 @@ export default function Avatar({ person, size }) {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -451,12 +451,21 @@ export default function Gallery() {
         />
         <ul>
           <li>
+<<<<<<< HEAD
             <b>Profession : </b>
             physicienne et chimiste
           </li>
           <li>
             <b>Récompenses : 4 </b>
             (Prix Nobel de Physique, Prix Nobel de Chimie, Médaille Davy, Médaille Matteucci)
+=======
+            <b>Profession: </b>
+            physicist and chemist
+          </li>
+          <li>
+            <b>Awards: 4 </b>
+            (Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal, Matteucci Medal)
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
           </li>
           <li>
             <b>A découvert : </b>
@@ -475,12 +484,21 @@ export default function Gallery() {
         />
         <ul>
           <li>
+<<<<<<< HEAD
             <b>Profession : </b>
             géochimiste
           </li>
           <li>
             <b>Récompenses : 2 </b>
             (Prix Miyake de géochimie, Prix Tanaka)
+=======
+            <b>Profession: </b>
+            geochemist
+          </li>
+          <li>
+            <b>Awards: 2 </b>
+            (Miyake Prize for geochemistry, Tanaka Prize)
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
           </li>
           <li>
             <b>A découvert : </b>
@@ -496,7 +514,7 @@ export default function Gallery() {
 ```js src/utils.js
 export function getImageUrl(imageId, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     imageId +
     size +
     '.jpg'
@@ -604,7 +622,7 @@ export default function Gallery() {
 ```js src/utils.js
 export function getImageUrl(imageId, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     imageId +
     size +
     '.jpg'
@@ -701,7 +719,7 @@ export default function Gallery() {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -768,7 +786,7 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -832,7 +850,7 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -903,7 +921,7 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -936,7 +954,7 @@ export default function Profile() {
           <h1>Photo</h1>
           <img
             className="avatar"
-            src="https://i.imgur.com/OKS67lhm.jpg"
+            src="https://react.dev/images/docs/scientists/OKS67lhm.jpg"
             alt="Aklilu Lemma"
             width={70}
             height={70}
@@ -1009,7 +1027,7 @@ export default function Profile() {
         <h1>Photo</h1>
         <img
           className="avatar"
-          src="https://i.imgur.com/OKS67lhm.jpg"
+          src="https://react.dev/images/docs/scientists/OKS67lhm.jpg"
           alt="Aklilu Lemma"
           width={100}
           height={100}
@@ -1071,7 +1089,7 @@ export default function Profile() {
       <Card title="Photo">
         <img
           className="avatar"
-          src="https://i.imgur.com/OKS67lhm.jpg"
+          src="https://react.dev/images/docs/scientists/OKS67lhm.jpg"
           alt="Aklilu Lemma"
           width={100}
           height={100}
