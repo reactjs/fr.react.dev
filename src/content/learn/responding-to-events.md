@@ -171,7 +171,11 @@ button { margin-right: 10px; }
 
 ### Passer des gestionnaires d’événements en tant que props {/*passing-event-handlers-as-props*/}
 
+<<<<<<< HEAD
 Souvent, vous souhaiterez que le composant parent spécifie le gestionnaire d’événement d’un composant enfant. Prenons l’exemple des boutons : en fonction de l’endroit où vous utilisez un composant `Button`, vous voudrez peut-être exécuter une fonction différente, par exemple voir un film ou téléverser une image.
+=======
+Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 Pour ça, vous devez passer une prop reçue du composant parent en tant que gestionnaire d’événement, comme ceci :
 
@@ -314,11 +318,19 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 Remarquez que le composant `App` n’a pas besoin de savoir *ce que fera* `Toolbar` avec `onPlayMovie` ou `onUploadImage`. C’est un détail d’implémentation de `Toolbar`. Ici, `Toolbar` les transmet en tant que gestionnaires `onClick` à ses `Button`s, mais il pourrait également les déclencher ultérieurement avec un raccourci clavier. Nommer les props d’après des interactions spécifiques à l’application telles que `onPlayMovie` vous donne de la flexibilité pour modifier leur utilisation ultérieurement.
 
 <Note>
 
 Assurez-vous d’utiliser les balises HTML appropriées pour vos gestionnaires d’événements. Par exemple, utilisez [`<button onClick={handleClick}>`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/button) au lieu de `<div onClick={handleClick}>` pour gérer les clics. Utiliser un composant `<button>` natif permet de bénéficier des comportements natifs du navigateur, tels que la navigation au clavier. Si vous n’aimez pas le style par défaut d’un bouton natif et que vous souhaitez le faire ressembler davantage à un lien ou à un autre élément d’UI, vous pouvez faire ça en CSS. [Apprenez-en davantage sur l'écriture de balisage accessible](https://developer.mozilla.org/fr/docs/Learn/Accessibility/HTML).
+=======
+Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
+
+<Note>
+
+Make sure that you use the appropriate HTML tags for your event handlers. For example, to handle clicks, use [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<div onClick={handleClick}>`. Using a real browser `<button>` enables built-in browser behaviors like keyboard navigation. If you don't like the default browser styling of a button and want to make it look more like a link or a different UI element, you can achieve it with CSS. [Learn more about writing accessible markup.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 </Note>
 
@@ -413,12 +425,21 @@ button { margin: 5px; }
 
 Quand vous cliquez sur un bouton :
 
+<<<<<<< HEAD
 1. React appelle le gestionnaire `onClick` passé au `<button>` natif.
 2. Ce gestionnaire, défini dans `Button`, effectue les actions suivantes :
    * Appelle `e.stopPropagation()`, ce qui interrompt la propagation de l’événement.
    * Appelle la fonction `onClick`, qui est une prop transmise depuis le composant `Toolbar`.
 3. Cette fonction, définie dans le composant `Toolbar`, affiche l’`alert` spécifique au bouton.
 4. Étant donné que la propagation a été arrêtée, le gestionnaire `onClick` de l’élément parent `<div>` *ne s’exécute pas*.
+=======
+1. React calls the `onClick` handler passed to `<button>`.
+2. That handler, defined in `Button`, does the following:
+   * Calls `e.stopPropagation()`, preventing the event from bubbling further.
+   * Calls the `onClick` function, which is a prop passed from the `Toolbar` component.
+3. That function, defined in the `Toolbar` component, displays the button's own alert.
+4. Since the propagation was stopped, the parent `<div>`'s `onClick` handler does *not* run.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 L’appel à `e.stopPropagation()` fait que cliquer sur les boutons n’affiche désormais qu’une seule `alert` (du `<button>`) au lieu de deux (du `<button>` et de l’élément parent `<div>` de la barre d’outils). Cliquer sur un bouton ne revient pas à cliquer sur la barre d’outils qui l’enrobe. Il est donc logique d’arrêter la propagation dans cette UI.
 
@@ -435,11 +456,19 @@ Dans de rares cas, vous pourriez avoir besoin de capturer tous les événements 
 </div>
 ```
 
+<<<<<<< HEAD
 Chaque événement se propage en trois phases :
 
 1. Il descend depuis la racine, appelant tous les gestionnaires `onClickCapture`.
 2. Il exécute le gestionnaire `onClick` de l’élément cliqué.
 3. Il remonte, appelant tous les gestionnaires `onClick`.
+=======
+Each event propagates in three phases:
+
+1. It travels down, calling all `onClickCapture` handlers.
+2. It runs the clicked element's `onClick` handler.
+3. It travels upwards, calling all `onClick` handlers.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 Les événements de capture sont utiles pour du code tel que les systèmes de routage ou les outils d’analyse, mais vous ne les utiliserez probablement pas dans du code applicatif.
 
@@ -548,7 +577,7 @@ Cliquer sur ce bouton est censé alterner la couleur de l’arrière-plan de la 
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5, 7]}}
 export default function LightSwitch() {
   function handleClick() {
     let bodyStyle = document.body.style;

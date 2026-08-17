@@ -1,8 +1,8 @@
 ---
 title: preload
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 La fonction `preload` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
@@ -12,6 +12,11 @@ La fonction `preload` n'est actuellement disponible que sur les canaux de livrai
 <Note>
 
 [Les frameworks basés sur React](/learn/start-a-new-react-project) s'occupent fréquemment pour vous du chargement des ressources, de sorte que vous n'aurez peut-être pas besoin d'appeler ces API vous-même.  Consultez la documentation de votre framework pour en savoir plus à ce sujet.
+=======
+<Note>
+
+[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 </Note>
 
@@ -51,6 +56,7 @@ La fonction `preload` suggère au navigateur de commencer à télécharger une r
 
 #### Paramètres {/*parameters*/}
 
+<<<<<<< HEAD
 * `href` : une chaîne de caractères. L'URL de la ressource que vous souhaitez télécharger.
 * `options` : un objet. Il contient les propriétés suivantes :
   *  `as` : une chaîne de caractères obligatoire. Le type de la ressource. Les [valeurs possibles](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#as) sont `audio`, `document`, `embed`, `fetch`, `font`, `image`, `object`, `script`, `style`, `track`, `video` et `worker`.
@@ -63,6 +69,19 @@ La fonction `preload` suggère au navigateur de commencer à télécharger une r
   * `fetchPriority` : une chaîne de caractères. Suggère une priorité relative pour le chargement de la ressource. Les valeurs possibles sont `auto` (par défaut), `high` ou `low`.
   *  `imageSrcSet` : une chaîne de caractères. À n'utiliser que pour `as: "image"`. Indique le [jeu de sources de l'image](https://developer.mozilla.org/fr/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
   *  `imageSizes` : une chaîne de caractères. À n'utiliser que pour `as: "image"`. Indique les [tailles de l'image](https://developer.mozilla.org/fr/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+=======
+* `href`: a string. The URL of the resource you want to download.
+* `options`: an object. It contains the following properties:
+  *  `as`: a required string. The type of resource. Its [possible values](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#as) are `audio`, `document`, `embed`, `fetch`, `font`, `image`, `object`, `script`, `style`, `track`, `video`, `worker`.
+  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`. It is required when `as` is set to `"fetch"`.
+  *  `referrerPolicy`: a string. The [Referrer header](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#referrerpolicy) to send when fetching. Its possible values are `no-referrer-when-downgrade` (the default), `no-referrer`, `origin`, `origin-when-cross-origin`, and `unsafe-url`.
+  *  `integrity`: a string. A cryptographic hash of the resource, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+  *  `type`: a string. The MIME type of the resource.
+  *  `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
+  *  `fetchPriority`: a string. Suggests a relative priority for fetching the resource. The possible values are `auto` (the default), `high`, and `low`.
+  *  `imageSrcSet`: a string. For use only with `as: "image"`. Specifies the [source set of the image](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+  *  `imageSizes`: a string. For use only with `as: "image"`. Specifies the [sizes of the image](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 #### Valeur renvoyée {/*returns*/}
 

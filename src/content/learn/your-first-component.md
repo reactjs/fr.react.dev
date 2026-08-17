@@ -63,7 +63,7 @@ Traditionnellement, lorsqu'ils créent des pages web, les développeurs web écr
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3Am.jpg"
+      src="https://react.dev/images/docs/scientists/MK3eW3Am.jpg"
       alt="Katherine Johnson"
     />
   )
@@ -99,7 +99,7 @@ Le composant renvoie une balise `<img />` avec des attributs `src` et `alt`. `<i
 Vous pouvez écrire votre renvoi de valeur en une seule ligne, comme dans ce composant :
 
 ```js
-return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
+return <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
 Mais si votre balisage n'est pas entièrement sur la même ligne que le mot-clé `return`, vous aurez intérêt à l'enrober de parenthèses :
@@ -107,7 +107,7 @@ Mais si votre balisage n'est pas entièrement sur la même ligne que le mot-clé
 ```js
 return (
   <div>
-    <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
+    <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />
   </div>
 );
 ```
@@ -128,7 +128,7 @@ Sans ces parenthèses, tout code qui suit un `return` seul sur sa ligne [serait 
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3As.jpg"
+      src="https://react.dev/images/docs/scientists/MK3eW3As.jpg"
       alt="Katherine Johnson"
     />
   );
@@ -163,10 +163,17 @@ Et `Profile` contient lui-même du HTML : `<img />`.  Au final, voici ce que vo
 
 ```html
 <section>
+<<<<<<< HEAD
   <h1>Scientifiques de renom</h1>
   <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
   <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
   <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
+=======
+  <h1>Amazing scientists</h1>
+  <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />
+  <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />
+  <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 </section>
 ```
 
@@ -215,7 +222,11 @@ Votre application React commence avec un composant « racine ».  En général
 
 La plupart des applis React utilisent des composants « jusqu'au bout ». Ça signifie que vous utiliserez des composants non seulement pour des éléments réutilisables tels que des boutons, mais aussi pour des blocs plus importants tels que des barres latérales, des listes, et au final des pages complètes !  Les composants sont un moyen pratique d'organiser le code et le balisage de l'UI, même si certains ne seront utilisés qu'une fois.
 
+<<<<<<< HEAD
 [Les frameworks basés sur React](/learn/start-a-new-react-project) poussent cette logique plus loin. Plutôt que d'utiliser un fichier HTML vide et de laisser React « prendre la main » pour gérer la page avec JavaScript, ils génèrent *aussi* automatiquement le HTML de vos composants React. Ça permet à votre appli d'afficher du contenu avant même que le JavaScript ne soit chargé.
+=======
+[React-based frameworks](/learn/creating-a-react-app) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 Ceci dit, de nombreux sites web utilisent uniquement React pour [ajouter de l'interactivité à des pages HTML existantes](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page).  Ils ont plusieurs composants racines au lieu d'un seul pour la page entière.  Vous pouvez utiliser React aussi largement — ou légèrement – que vous le souhaitez.
 
@@ -246,7 +257,7 @@ Ce bac à sable ne fonctionne pas, parce que le composant racine n'est pas expor
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/lICfvbD.jpg"
+      src="https://react.dev/images/docs/scientists/lICfvbD.jpg"
       alt="Aklilu Lemma"
     />
   );
@@ -271,7 +282,7 @@ Ajoutez `export default` avant la définition de la fonction, comme ceci :
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/lICfvbD.jpg"
+      src="https://react.dev/images/docs/scientists/lICfvbD.jpg"
       alt="Aklilu Lemma"
     />
   );
@@ -303,7 +314,7 @@ Vous aurez peut-être une erreur *“Unexpected token”* en tentant de corriger
 ```js
 export default function Profile() {
   return
-    <img src="https://i.imgur.com/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
+    <img src="https://react.dev/images/docs/scientists/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
 }
 ```
 
@@ -321,7 +332,7 @@ Vous pouvez corriger ce composant en ramenant l'instruction `return` sur une seu
 
 ```js
 export default function Profile() {
-  return <img src="https://i.imgur.com/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
+  return <img src="https://react.dev/images/docs/scientists/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
 }
 ```
 
@@ -339,7 +350,11 @@ Ou alors, enrobez le JSX renvoyé par des parenthèses qui s'ouvrent immédiatem
 export default function Profile() {
   return (
     <img
+<<<<<<< HEAD
       src="https://i.imgur.com/jA8hHMpm.jpg"
+=======
+      src="https://react.dev/images/docs/scientists/jA8hHMpm.jpg"
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
       alt="Katsuko Saruhashi"
     />
   );
@@ -364,7 +379,7 @@ Il y a un souci dans la façon dont le composant `Profile` est déclaré et util
 function profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/docs/scientists/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -400,7 +415,7 @@ Changez `function profile()` en `function Profile()`, et changez chaque `<profil
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/docs/scientists/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );

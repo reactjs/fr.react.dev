@@ -8,4 +8,8 @@ Cet avertissement est déclenché lorsque vous tentez d'afficher un élément DO
 
 2. Si vous avez écrit `aria-role`, vous pensiez probablement à `role`.
 
+<<<<<<< HEAD
 3. Pour les autres cas, si vous êtes sur la dernière version de React DOM et avez vérifié que vous utilisiez bien un nom de propriété valide listé dans la spécification ARIA, merci de nous [signaler le bug](https://github.com/facebook/react/issues/new/choose).
+=======
+3. Otherwise, if you're on the latest version of React DOM and verified that you're using a valid property name listed in the ARIA specification, please [report a bug](https://github.com/react/react/issues/new/choose).
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a

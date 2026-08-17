@@ -6,7 +6,11 @@ description: React 18 a pris des années, mais il était porteur de précieuses 
 
 ---
 
+<<<<<<< HEAD
 Le 15 juin 2022 par [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://twitter.com/dan_abramov), [Jan Kassens](https://twitter.com/kassens), [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Luna Ruan](https://twitter.com/lunaruan), [Mengdi Chen](https://twitter.com/mengdi_en), [Rick Hanlon](https://twitter.com/rickhanlonii), [Robert Zhang](https://twitter.com/jiaxuanzhang01), [Sathya Gunasekaran](https://twitter.com/_gsathya), [Sebastian Markbåge](https://twitter.com/sebmarkbage) et [Xuan Huang](https://twitter.com/Huxpro)
+=======
+June 15, 2022 by [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Jan Kassens](https://twitter.com/kassens), [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Luna Ruan](https://twitter.com/lunaruan), [Mengdi Chen](https://twitter.com/mengdi_en), [Rick Hanlon](https://twitter.com/rickhanlonii), [Robert Zhang](https://twitter.com/jiaxuanzhang01), [Sathya Gunasekaran](https://twitter.com/_gsathya), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Xuan Huang](https://twitter.com/Huxpro)
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 ---
 
@@ -28,7 +32,11 @@ Nous avons annoncé une [démo expérimentale des React Server Components](/blog
 
 Nous avons notamment abandonné l'idée de versions dédiées de bibliothèques d'E/S (ex. react-fetch), pour plutôt adopter un modèle à base d'async/await pour une meilleure compatibilité. Ça ne bloque pas en soit la sortie des RSC parce que vous pouvez aussi utiliser des routeurs pour le chargement de données.  Autre évolution : nous avons délaissé l'approche à base d'extension de fichiers au profit [d'annotations](https://github.com/reactjs/rfcs/pull/189#issuecomment-1116482278).
 
+<<<<<<< HEAD
 Nous collaborons avec Vercel et Shopify pour unifier la prise en charge de *bundlers* pour viser une sémantique partagée avec Webpack et Vite. D'ici la sortie, nous souhaitons nous assurer que la sémantique des RSC sera la même à travers tout l'écosystème de React.  C'est le principal point bloquant pour arriver à une version stable.
+=======
+We’re working together with Vercel and Shopify to unify bundler support for shared semantics in both webpack and Vite. Before launch, we want to make sure that the semantics of RSCs are the same across the whole React ecosystem. This is the major blocker for reaching stable.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 ## Chargement de ressources {/*asset-loading*/}
 
@@ -69,7 +77,11 @@ Le hors-écran est une capacité de bas niveau qui ouvre la voie à plusieurs fo
 
 React propose actuellement deux outils de profilage. Le [profileur d'origine](https://fr.legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) affiche un résumé de tous les commits durant la session de profilage. Pour chaque commit, il affiche également tous les composants qui ont fait un rendu, et le temps que ça leur a pris. Nous avons aussi une version beta d'un [Timeline Profiler](https://github.com/reactwg/react-18/discussions/76) arrivé dans React 18 qui indique quand les composants planifient des mises à jour et quand React les traite. Ces deux outils aident les développeurs à identifier l'origine des problèmes de performances dans leur code.
 
+<<<<<<< HEAD
 Nous avons réalisé que pour les développeurs, simplement savoir quels commits ou composants sont lents, sans davantage de contexte, n'est pas très utile. Ils préfèreraient savoir quelle est la véritable cause des commits lents. Les développeurs veulent également pouvoir pister le travail résultant d'interactions spécifiques (ex. un clic sur un bouton, le chargement initial ou une navigation) pour repérer les régressions de performances éventuelles et comprendre pourquoi l'interaction est lente et comment y remédier.
+=======
+We previously tried to solve this issue by creating an [Interaction Tracing API](https://gist.github.com/bvaughn/8de925562903afd2e7a12554adcdda16), but it had some fundamental design flaws that reduced the accuracy of tracking why an interaction was slow and sometimes resulted in interactions never ending. We ended up [removing this API](https://github.com/react/react/pull/20037) because of these issues.
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 Nous avions déjà essayé de répondre à ce besoin en ajoutant une [API de pistage d'interaction](https://gist.github.com/bvaughn/8de925562903afd2e7a12554adcdda16), mais sa conception avait des problèmes de fond qui en réduisaient la précision et pouvaient même rater la fin d'une interaction. En conséquence, nous avons finalement [retiré cette API](https://github.com/facebook/react/pull/20037).
 
