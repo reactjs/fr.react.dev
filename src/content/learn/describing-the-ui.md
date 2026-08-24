@@ -32,7 +32,7 @@ Les applications React sont construites à base de morceaux isolés de l'UI appe
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3As.jpg"
+      src="https://react.dev/images/docs/scientists/MK3eW3As.jpg"
       alt="Katherine Johnson"
     />
   );
@@ -97,7 +97,7 @@ export default function Gallery() {
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/docs/scientists/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -130,7 +130,7 @@ export default function TodoList() {
     // This doesn't quite work!
     <h1>Liste de tâches de Hedy Lamarr</h1>
     <img
-      src="https://i.imgur.com/yXOvdOSs.jpg"
+      src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
       alt="Hedy Lamarr"
       class="photo"
     >
@@ -159,7 +159,7 @@ export default function TodoList() {
     <>
       <h1>Liste de tâches de Hedy Lamarr</h1>
       <img
-        src="https://i.imgur.com/yXOvdOSs.jpg"
+        src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
         alt="Hedy Lamarr"
         className="photo"
       />
@@ -206,7 +206,7 @@ export default function TodoList() {
       <h1>Liste de tâches de {person.name}</h1>
       <img
         className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
+        src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
@@ -281,7 +281,7 @@ function Card({ children }) {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -434,7 +434,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     's.jpg'
   );
@@ -473,7 +473,7 @@ En écrivant rigoureusement vos composants comme des fonctions pures, vous évit
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5]}}
 let guest = 0;
 
 function Cup() {
@@ -525,9 +525,15 @@ Lisez **[Garder les composants purs](/learn/keeping-components-pure)** pour appr
 
 ## Votre UI vue comme un arbre {/*your-ui-as-a-tree*/}
 
+<<<<<<< HEAD
 React utilise des arbres pour modéliser les relations entre les composants ou les modules.
 
 Un arbre de rendu React représente les relations parent-enfants entre les composants.
+=======
+React uses trees to model the relationships between components and modules.
+
+A React render tree is a representation of the parent and child relationship between components.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 <Diagram name="generic_render_tree" height={250} width={500} alt="Un graphe arborescent avec cinq nœuds, où chaque nœud représente un composant.  Le nœud racine est situé tout en haut du graphe et porte le libellé « Composant Racine ».  Deux flèches en partent pour atteindre plus bas deux nœuds libellés « Composant A » et « Composant C ». Chaque flèche porte le descripteur de relation « fait le rendu de ». Une flèche de rendu unique part du « Composant A » vers un nœud libellé « Composant B ». Une flèche de rendu unique part du « Composant C » vers un nœud libellé « Composant D ».">
 
@@ -537,7 +543,11 @@ Un exemple d’arbre de rendu React.
 
 Les composants proches du haut de l'arbre, près du composant racine, sont considérés comme des composants de haut niveau. Les composants qui n'ont pas de composants enfants sont qualifiés de composants feuilles. La catégorisation des composants aide à comprendre le flux de données et les performances de rendu.
 
+<<<<<<< HEAD
 Une autre manière utile de percevoir votre application consiste à modéliser les relations entre les modules JavaScript. Nous parlons alors d'arbre de dépendances de modules.
+=======
+Modelling the relationship between JavaScript modules is another useful way to understand your app. We refer to it as a module dependency tree.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 <Diagram name="generic_dependency_tree" height={250} width={500} alt="Un graphe arborescent avec cinq nœuds. Chaque nœud représente un module JavaScript. Le nœud tout en haut est libellé « RootModule.js ». Trois flèches en partent vers d’autres nœuds : « ModuleA.js », « ModuleB.js » et « ModuleC.js ». Chaque flèche porte le descripteur de relation « importe ». Un flèche d’import unique part de « ModuleC.js » vers un nœud libellé « ModuleD.js ».">
 
@@ -545,7 +555,11 @@ Un exemple d’arbre de dépendances de modules.
 
 </Diagram>
 
+<<<<<<< HEAD
 On utilise souvent un arbre de dépendances dans les outils de *build* pour *bundler* tout le code JavaScript que le client devra télécharger pour assurer le rendu. Un *bundle* massif nuira à l'expérience utilisateur des applis React. Comprendre l'arborescence des dépendances de modules aide à déboguer ces problèmes.
+=======
+A dependency tree is often used by build tools to bundle all the relevant JavaScript code for the client to download and render. A large bundle size regresses user experience for React apps. Understanding the module dependency tree is helpful to debug such issues.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 <LearnMore path="/learn/understanding-your-ui-as-a-tree">
 

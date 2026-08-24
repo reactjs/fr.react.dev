@@ -14,7 +14,11 @@ Le 8 mars 2022 par [Rick Hanlon](https://twitter.com/rickhanlonii)
 
 Comme nous l'avons annoncé dans le [billet de sortie](/blog/2022/03/29/react-v18), React 18 introduit des fonctionnalités basées sur notre nouveau moteur de rendu concurrent, avec une statégie d'adoption graduelle pour les applications existantes. Dans ce billet, nous vous guidons étape par étape dans votre migration sur React 18.
 
+<<<<<<< HEAD
 Merci de nous [signaler tout problème](https://github.com/facebook/react/issues/new/choose) que vous rencontreriez en migrant sur React 18.
+=======
+Please [report any issues](https://github.com/react/react/issues/new/choose) you encounter while upgrading to React 18.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 </Intro>
 
@@ -325,11 +329,19 @@ Si vous devez encore prendre en charge Internet Explorer, nous vous conseillons 
 
 ### React {/*react*/}
 
+<<<<<<< HEAD
 * **Les composants peuvent désormais produire `undefined`** : React ne vous avertira plus si vous renvoyez `undefined` depuis un composant. Ça apporte de la cohérence entre les valeurs renvoyées autorisées et celles permises au sein d'un arbre de composants.  Nous vous suggérons d'utiliser une règle d'analyse statique (*linter*) pour éviter d'oublier un `return` devant votre JSX.
 * **Les avertissements sur `act` dans les tests sont désormais optionnels** : si vous exécutez des tests de bout en bout *(end-to-end, NdT)*, les avertissements sur `act` sont superflus.  Nous avons ajouté un mécanisme d'activation [sur demande](https://github.com/reactwg/react-18/discussions/102) pour que vous puissiez ne les activer que dans des tests unitaires, pour lesquels ils sont effectivement utiles.
 * **Fin de l'avertissement sur `setState` dans les composants démontés** : jusqu'ici React vous avertissait de fuites de mémoire potentielles lorsque vous appeliez `setState` sur un composant démonté. Cet avertissement avait été ajouté par rapport aux abonnements, mais la plupart des gens le rencontraient plutôt dans des scénarios où la modification de l'état était acceptable, et les solutions de contournement ne faisaient qu'empirer les choses. Nous avons [retiré](https://github.com/facebook/react/pull/22114) cet avertissement.
 * **Arrêt de la censure des affichages en console** : lorsque vous utilisez le Mode Strict, React fait un double rendu de chaque composant pour vous aider à repérer des effets de bord inattendus. Dans React 17, nous censurions les affichages en console de l'un des deux rendus pour faciliter la lecture des journaux. Mais suite aux [retours de la communauté](https://github.com/facebook/react/issues/21783) sur la confusion que ça entraînait, nous avons cessé d'occulter ces messages. Si vous avez les outils de développement React installés, vous y verrez plutôt le deuxième jeu de messages apparaître grisé, et une option (inactive par défaut) permet de les retirer complètement.
 * **Consommation mémoire améliorée** : React nettoie désormais davantage de champs internes au démontage, réduisant ainsi l'impact de fuites de mémoires éventuelles dans votre application.
+=======
+* **Components can now render `undefined`:** React no longer warns if you return `undefined` from a component. This makes the allowed component return values consistent with values that are allowed in the middle of a component tree. We suggest to use a linter to prevent mistakes like forgetting a `return` statement before JSX.
+* **In tests, `act` warnings are now opt-in:** If you're running end-to-end tests, the `act` warnings are unnecessary. We've introduced an [opt-in](https://github.com/reactwg/react-18/discussions/102) mechanism so you can enable them only for unit tests where they are useful and beneficial.
+* **No warning about `setState` on unmounted components:** Previously, React warned about memory leaks when you call `setState` on an unmounted component. This warning was added for subscriptions, but people primarily run into it in scenarios where setting state is fine, and workarounds make the code worse. We've [removed](https://github.com/react/react/pull/22114) this warning.
+* **No suppression of console logs:** When you use Strict Mode, React renders each component twice to help you find unexpected side effects. In React 17, we've suppressed console logs for one of the two renders to make the logs easier to read. In response to [community feedback](https://github.com/react/react/issues/21783) about this being confusing, we've removed the suppression. Instead, if you have React DevTools installed, the second log's renders will be displayed in grey, and there will be an option (off by default) to suppress them completely.
+* **Improved memory usage:** React now cleans up more internal fields on unmount, making the impact from unfixed memory leaks that may exist in your application code less severe.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 ### React DOM (Côté serveur) {/*react-dom-server*/}
 
@@ -338,4 +350,8 @@ Si vous devez encore prendre en charge Internet Explorer, nous vous conseillons 
 
 ## Changelog {/*changelog*/}
 
+<<<<<<< HEAD
 Vous pouvez consulter le [changelog complet ici](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+=======
+You can view the [full changelog here](https://github.com/react/react/blob/main/CHANGELOG.md).
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
