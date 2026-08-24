@@ -1,8 +1,8 @@
 ---
 title: preinitModule
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 La fonction `preinitModule` n'est actuellement disponible que sur les canaux de livraison Canary et Expérimental de React. Apprenez-en davantage sur [les canaux de livraison React](/community/versioning-policy#all-release-channels).
@@ -12,6 +12,11 @@ La fonction `preinitModule` n'est actuellement disponible que sur les canaux de 
 <Note>
 
 [Les frameworks basés sur React](/learn/start-a-new-react-project) s'occupent fréquemment pour vous du chargement des ressources, de sorte que vous n'aurez peut-être pas besoin d'appeler ces API vous-même.  Consultez la documentation de votre framework pour en savoir plus à ce sujet.
+=======
+<Note>
+
+[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 </Note>
 
@@ -51,12 +56,21 @@ La fonction `preinitModule` suggère au navigateur de commencer à télécharger
 
 #### Parameters {/*parameters*/}
 
+<<<<<<< HEAD
 * `href` : une chaîne de caractères. L'URL du module que vous souhaitez télécharger et évaluer.
 * `options` : un objet. Il contient les propriétés suivantes :
   *  `as` : une chaîne de caractères obligatoire. La seule valeur autorisée est `script`.
   * `crossOrigin` : une chaîne de caractères. La [politique CORS](https://developer.mozilla.org/fr/docs/Web/HTML/Attributes/crossorigin) à utiliser. Les valeurs possibles sont `anonymous` et `use-credentials`.
   * `integrity` : une chaîne de caractères. Une empreinte cryptographique de la ressource afin de [vérifier son authenticité](https://developer.mozilla.org/fr/docs/Web/Security/Subresource_Integrity).
   * `nonce` : une chaîne de caractères. Un [nonce cryptographique autorisant la ressource](https://developer.mozilla.org/fr/docs/Web/HTML/Global_attributes/nonce) dans le cadre d'une Politique de Sécurité de Contenu (CSP) stricte.
+=======
+* `href`: a string. The URL of the module you want to download and execute.
+* `options`: an object. It contains the following properties:
+  *  `as`: a required string. It must be `'script'`.
+  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
+  *  `integrity`: a string. A cryptographic hash of the module, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+  *  `nonce`: a string. A cryptographic [nonce to allow the module](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 #### Valeur renvoyée {/*returns*/}
 

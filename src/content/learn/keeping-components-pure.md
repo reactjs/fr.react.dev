@@ -27,6 +27,7 @@ Vous avez peut-être déjà l'habitude d'une catégorie de fonctions pures : le
 
 Prenons la formule suivante : <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
 
+<<<<<<< HEAD
 Si <Math><MathI>x</MathI> = 2</Math> alors <Math><MathI>y</MathI> = 4</Math>. Toujours.
 
 Si <Math><MathI>x</MathI> = 3</Math> alors <Math><MathI>y</MathI> = 6</Math>. Toujours.
@@ -34,6 +35,15 @@ Si <Math><MathI>x</MathI> = 3</Math> alors <Math><MathI>y</MathI> = 6</Math>. To
 Si <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> ne vaudra pas parfois <Math>9</Math>, parfois <Math>–1</Math> ou parfois <Math>2,5</Math> en fonction du moment de la journée ou de l'état du marché boursier.
 
 Si <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> et <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> vaudra *toujours* <Math>6</Math>.
+=======
+If <Math><MathI>x</MathI> = 2</Math> then <Math><MathI>y</MathI> = 4</Math>. Always.
+
+If <Math><MathI>x</MathI> = 3</Math> then <Math><MathI>y</MathI> = 6</Math>. Always.
+
+If <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> won't sometimes be <Math>9</Math> or <Math>–1</Math> or <Math>2.5</Math> depending on the time of day or the state of the stock market.
+
+If <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> and <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> will _always_ be <Math>6</Math>.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 Si nous en faisions une fonction JavaScript, elle ressemblerait à ça :
 
@@ -53,9 +63,15 @@ React est fondé sur cette notion. **React suppose que chaque composant que vous
 function Recipe({ drinkers }) {
   return (
     <ol>
+<<<<<<< HEAD
       <li>Faire bouillir {drinkers} tasses d’eau.</li>
       <li>Ajouter {drinkers} cuillers de thé et {0.5 * drinkers} cuillers d’épices.</li>
       <li>Ajouter {0.5 * drinkers} tasses de lait jusqu’à ébullition, et du sucre selon les goûts de chacun.</li>
+=======
+      <li>Boil {drinkers} cups of water.</li>
+      <li>Add {drinkers} spoons of tea and {0.5 * drinkers} spoons of spice.</li>
+      <li>Add {0.5 * drinkers} cups of milk to boil and sugar to taste.</li>
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
     </ol>
   );
 }
@@ -75,11 +91,19 @@ export default function App() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Lorsque vous passez `drinkers={2}` à `Recipe`, il renverra du JSX avec `2 tasses d’eau`. Toujours.
+=======
+When you pass `drinkers={2}` to `Recipe`, it will return JSX containing `2 cups of water`. Always.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 Si vous passez `drinkers={4}`, il renverra du JSX avec `4 tasses d’eau`. Toujours.
 
+<<<<<<< HEAD
 Comme une formule de maths.
+=======
+Just like a math formula.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 Vous pourriez voir vos composants comme des recettes : si vous les suivez et n'introduisez pas de nouveaux ingrédients lors du processus de confection, vous obtiendrez le même plat à chaque fois. Ce « plat » est le JSX que le composant sert à React pour le [rendu](/learn/render-and-commit).
 
@@ -93,7 +117,7 @@ Voici un composant qui enfreint cette règle :
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5]}}
 let guest = 0;
 
 function Cup() {
@@ -175,7 +199,7 @@ function Cup({ guest }) {
 }
 
 export default function TeaGathering() {
-  let cups = [];
+  const cups = [];
   for (let i = 1; i <= 12; i++) {
     cups.push(<Cup key={i} guest={i} />);
   }
@@ -215,6 +239,7 @@ Toutes les nouvelles fonctionnalités de React que nous sommes en train de const
 
 <Recap>
 
+<<<<<<< HEAD
 - Un composant doit être pur, ce qui signifie que :
   - **Il s'occupe de ses affaires.** Il ne modifie aucun objet ou variable qui existaient avant son rendu.
   - **Pour les mêmes entrées, il produit la même sortie.** Pour un jeu d'entrées données, un composant renverra toujours le même JSX.
@@ -225,6 +250,20 @@ Toutes les nouvelles fonctionnalités de React que nous sommes en train de const
 
 </Recap>
 
+=======
+* A component must be pure, meaning:
+  * **It minds its own business.** It should not change any objects or variables that existed before rendering.
+  * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX.
+* Rendering can happen at any time, so components should not depend on each others' rendering sequence.
+* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
+* Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
+* Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
+
+</Recap>
+
+
+
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 <Challenges>
 
 #### Réparer une horloge {/*fix-a-broken-clock*/}
@@ -243,7 +282,7 @@ Le rendu est un *calcul*, il ne devrait pas essayer de « faire » des choses.
 
 ```js src/Clock.js active
 export default function Clock({ time }) {
-  let hours = time.getHours();
+  const hours = time.getHours();
   if (hours >= 0 && hours <= 6) {
     document.getElementById('time').className = 'night';
   } else {
@@ -305,7 +344,7 @@ Vous pouvez corriger ce composant en calculant le `className` puis en l'incluant
 
 ```js src/Clock.js active
 export default function Clock({ time }) {
-  let hours = time.getHours();
+  const hours = time.getHours();
   let className;
   if (hours >= 0 && hours <= 6) {
     className = 'night';
@@ -378,7 +417,7 @@ Le code problématique est dans `Profile.js`.  Assurez-vous de bien l'avoir comp
 
 <Sandpack>
 
-```js src/Profile.js
+```js {expectedErrors: {'react-compiler': [7]}} src/Profile.js
 import Panel from './Panel.js';
 import { getImageUrl } from './utils.js';
 
@@ -449,7 +488,7 @@ export default function App() {
 ```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -547,7 +586,7 @@ export default function App() {
 ```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -600,18 +639,24 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js src/App.js hidden
+```js {expectedErrors: {'react-compiler': [16]}} src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
+<<<<<<< HEAD
 let initialStories = [
   {id: 0, label: "L’histoire d’Ankit" },
   {id: 1, label: "L’histoire de Clara" },
+=======
+const initialStories = [
+  {id: 0, label: "Ankit's Story" },
+  {id: 1, label: "Taylor's Story" },
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 ];
 
 export default function App() {
-  let [stories, setStories] = useState([...initialStories])
-  let time = useTime();
+  const [stories, setStories] = useState([...initialStories])
+  const time = useTime();
 
   // HACK: évite à la mémoire d'être trop phagocytée pendant
   // que vous lisez les docs.  On enfreint ici nos propres
@@ -697,18 +742,24 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js src/App.js hidden
+```js {expectedErrors: {'react-compiler': [16]}} src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
+<<<<<<< HEAD
 let initialStories = [
   {id: 0, label: "L’histoire d’Ankit" },
   {id: 1, label: "L’histoire de Clara" },
+=======
+const initialStories = [
+  {id: 0, label: "Ankit's Story" },
+  {id: 1, label: "Taylor's Story" },
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 ];
 
 export default function App() {
-  let [stories, setStories] = useState([...initialStories])
-  let time = useTime();
+  const [stories, setStories] = useState([...initialStories])
+  const time = useTime();
 
   // HACK: évite à la mémoire d'être trop phagocytée pendant
   // que vous lisez les docs.  On enfreint ici nos propres
@@ -769,8 +820,13 @@ Une autre approche consisterait à créer un *nouveau* tableau (en partant de ce
 
 ```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
+<<<<<<< HEAD
   // Copier le tableau !
   let storiesToDisplay = stories.slice();
+=======
+  // Copy the array!
+  const storiesToDisplay = stories.slice();
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
   // N'affecte plus le tableau d'origine :
   storiesToDisplay.push({
@@ -790,18 +846,24 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js src/App.js hidden
+```js {expectedErrors: {'react-compiler': [16]}} src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
+<<<<<<< HEAD
 let initialStories = [
   {id: 0, label: "L’histoire d’Ankit" },
   {id: 1, label: "L’histoire de Clara" },
+=======
+const initialStories = [
+  {id: 0, label: "Ankit's Story" },
+  {id: 1, label: "Taylor's Story" },
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 ];
 
 export default function App() {
-  let [stories, setStories] = useState([...initialStories])
-  let time = useTime();
+  const [stories, setStories] = useState([...initialStories])
+  const time = useTime();
 
   // HACK: évite à la mémoire d'être trop phagocytée pendant
   // que vous lisez les docs.  On enfreint ici nos propres

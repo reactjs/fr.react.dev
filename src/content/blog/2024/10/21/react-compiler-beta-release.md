@@ -10,6 +10,14 @@ Le 21 octobre 2024 par [Lauren Tan](https://twitter.com/potetotes).
 
 ---
 
+<Note>
+
+### React Compiler is now stable! {/*react-compiler-is-now-in-rc*/}
+
+Please see the [stable release blog post](/blog/2025/10/07/react-compiler-1) for details.
+
+</Note>
+
 <Intro>
 
 L'équipe React est heureuse de partager avec vous les annonces suivantes :
@@ -64,11 +72,19 @@ Ou si vous utilisez Yarn :
 yarn add -D eslint-plugin-react-compiler@beta
 </TerminalBlock>
 
+<<<<<<< HEAD
 Après l'installation vous pouvez activer le *linter* en [l'ajoutant à votre configuration ESLint](/learn/react-compiler#installing-eslint-plugin-react-compiler). Utiliser ce *linter* vous aidera à identifier les infractions aux Règles de React, ce qui facilitera l'adoption du compilateur lorsqu'il sera officiellement prêt.
+=======
+After installation you can enable the linter by [adding it to your ESLint config](/learn/react-compiler/installation#eslint-integration). Using the linter helps identify Rules of React breakages, making it easier to adopt the compiler when it's fully released.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 ## Rétrocompatibilité {/*backwards-compatibility*/}
 
+<<<<<<< HEAD
 React Compiler produit du code qui s'appuie sur des API à l'exécution apparues avec React 19, mais le compilateur prend désormais également en charge les projets utilisant React 17 et 18.  Si vous n'êtes pas encore sur React 19, la version beta vous permet d'essayer néanmoins React Compiler en spécifiant une `target` minimum dans votre configuration de compilation, et en ajoutant `react-compiler-runtime` comme dépendance. [Vous trouverez la documentation associée ici](/learn/react-compiler#using-react-compiler-with-react-17-or-18).
+=======
+React Compiler produces code that depends on runtime APIs added in React 19, but we've since added support for the compiler to also work with React 17 and 18. If you are not on React 19 yet, in the Beta release you can now try out React Compiler by specifying a minimum `target` in your compiler config, and adding `react-compiler-runtime` as a dependency. [You can find docs on this here](/reference/react-compiler/configuration#react-17-18).
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 ## Utiliser React Compiler dans des bibliothèques {/*using-react-compiler-in-libraries*/}
 
@@ -78,13 +94,21 @@ React Compiler peut donc être utilisé pour compiler des bibliothèques. Dans l
 
 Puisque votre code est pré-compilé, les utilisateur·rices de votre bibliothèque n'auront pas besoin d'activer le compilateur pour bénéficier de la mémoïsation automatique appliquée à votre bibliothèque.  Si celle-ci s'adresse à des applications pas forcément encore sur React 19, pensez à préciser une `target` minimum et à ajouter `react-compiler-runtime` comme dépendance explicite de production.  Ce module d'exécution utilisera une implémentation correcte des API selon la version de React de l'application, et émulera les API manquantes lorsque c'est nécessaire.
 
+<<<<<<< HEAD
 [Vous trouverez la documentation associée ici](/learn/react-compiler#using-the-compiler-on-libraries).
+=======
+[You can find more docs on this here.](/reference/react-compiler/compiling-libraries)
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 ## Ouverture du groupe de travail React Compiler au public {/*opening-up-react-compiler-working-group-to-everyone*/}
 
 Nous avions annoncé à React Conf le [groupe de travail React Compiler](https://github.com/reactwg/react-compiler), sur invitations uniquement, pour nous fournir des retours, poser des questions, et contribuer à la sortie expérimentale du compilateur.
 
+<<<<<<< HEAD
 À compter d'aujourd'hui, de concert avec la sortie beta de React Compiler, nous ouvrons le groupe de travail à tout le monde.  Le groupe de travail React Compiler a pour objectif de préparer l'écosystème pour une adoption graduelle, en douceur, de React Compiler dans les applications et bibliothèques existantes.  Merci de continuer à nous soumettre des tickets de bugs sur le [dépôt React](https://github.com/facebook/react), mais réservez les retours, questions et échanges d'idées pour le [forum de discussion du groupe de travail](https://github.com/reactwg/react-compiler/discussions).
+=======
+From today, together with the Beta release of React Compiler, we are opening up Working Group membership to everyone. The goal of the React Compiler Working Group is to prepare the ecosystem for a smooth, gradual adoption of React Compiler by existing applications and libraries. Please continue to file bug reports in the [React repo](https://github.com/react/react), but please leave feedback, ask questions, or share ideas in the [Working Group discussion forum](https://github.com/reactwg/react-compiler/discussions).
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 L'équipe noyau utilisera par ailleurs ce dépôt de discussion pour partager les résultats de nos recherches.  Alors que la version stable se rapprochera, toute information importante sera également publiée sur ce forum.
 
@@ -119,7 +143,11 @@ Merci à [Sathya Gunasekaran](https://twitter.com/_gsathya), [Joe Savona](https:
 
 ---
 
+<<<<<<< HEAD
 [^1]: Merci à [@nikeee](https://github.com/facebook/react/pulls?q=is%3Apr+author%3Anikeee), [@henryqdineen](https://github.com/facebook/react/pulls?q=is%3Apr+author%3Ahenryqdineen), [@TrickyPi](https://github.com/facebook/react/pulls?q=is%3Apr+author%3ATrickyPi) et plusieurs autres pour leurs contributions au compilateur.
+=======
+[^1]: Thanks [@nikeee](https://github.com/react/react/pulls?q=is%3Apr+author%3Anikeee), [@henryqdineen](https://github.com/react/react/pulls?q=is%3Apr+author%3Ahenryqdineen), [@TrickyPi](https://github.com/react/react/pulls?q=is%3Apr+author%3ATrickyPi), and several others for their contributions to the compiler.
+>>>>>>> 12d692da47e77cdc558b928fcfbaf4e71c6d0cec
 
 [^2]: Merci à [Vaishali Garg](https://www.linkedin.com/in/vaishaligarg09) pour avoir piloté cette étude sur React Compiler à Meta, et pour avoir révisé cet article.
 
