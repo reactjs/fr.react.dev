@@ -211,7 +211,11 @@ C'est parce que **les Hooks ne doivent être appelés qu'à la racine de votre c
 
 Un premier contournement possible consisterait à n'obtenir une ref que vers leur élément parent, puis à utiliser des méthodes de manipulation du DOM du genre [`querySelectorAll`](https://developer.mozilla.org/fr/docs/Web/API/Document/querySelectorAll) pour « retrouver » les nœuds enfants individuels à partir de là. C'est toutefois une approche fragile, qui peut dérailler si la structure de votre DOM change.
 
+<<<<<<< HEAD
 Une autre solution serait de **passer une fonction à la prop `ref`**.  On parle alors de [fonction de rappel `ref`](/reference/react-dom/components/common#ref-callback) *(ref callback, NdT)*.  React appellera votre fonction de rappel ref en lui passant le nœud DOM lorsqu'il sera temps de définir la ref, et avec `null` quand il sera temps de la nettoyer.  Ça vous permettra de tenir à jour votre propre tableau ou [Map](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Map) et d'accéder aux refs par leur position ou par une sorte de clé de correspondance.
+=======
+Another solution is to **pass a function to the `ref` attribute.** This is called a [`ref` callback.](/reference/react-dom/components/common#ref-callback) React will call your ref callback with the DOM node when it's time to set the ref, and call the cleanup function returned from the callback when it's time to clear it. This lets you maintain your own array or a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), and access any ref by its index or some kind of ID.
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 L'exemple qui suit utilise cette approche pour défiler vers un nœud quelconque dans une longue liste :
 
@@ -247,26 +251,30 @@ export default function CatFriends() {
       <nav>
         <button onClick={() => scrollToCat(catList[0])}>Neo</button>
         <button onClick={() => scrollToCat(catList[5])}>Millie</button>
-        <button onClick={() => scrollToCat(catList[9])}>Bella</button>
+        <button onClick={() => scrollToCat(catList[8])}>Bella</button>
       </nav>
       <div>
         <ul>
           {catList.map((cat) => (
             <li
-              key={cat}
+              key={cat.id}
               ref={(node) => {
                 const map = getMap();
-                if (node) {
-                  map.set(cat, node);
-                } else {
+                map.set(cat, node);
+
+                return () => {
                   map.delete(cat);
-                }
+                };
               }}
             >
+<<<<<<< HEAD
               <img
                 src={cat}
                 alt={'Chat #' + cat.id}
               />
+=======
+              <img src={cat.imageUrl} />
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
             </li>
           ))}
         </ul>
@@ -276,11 +284,22 @@ export default function CatFriends() {
 }
 
 function setupCatList() {
-  const catList = [];
-  for (let i = 0; i < 10; i++) {
-    catList.push("https://loremflickr.com/320/240/cat?lock=" + i);
+  const catCount = 10;
+  const catList = new Array(catCount)
+  for (let i = 0; i < catCount; i++) {
+    let imageUrl = '';
+    if (i < 5) {
+      imageUrl = "https://placecats.com/neo/320/240";
+    } else if (i < 8) {
+      imageUrl = "https://placecats.com/millie/320/240";
+    } else {
+      imageUrl = "https://placecats.com/bella/320/240";
+    }
+    catList[i] = {
+      id: i,
+      imageUrl,
+    };
   }
-
   return catList;
 }
 
@@ -312,16 +331,6 @@ li {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  }
-}
-```
-
 </Sandpack>
 
 Dans cet exemple, `itemRef` ne référence pas un unique nœud DOM.  Il contient plutôt une [Map](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Map) associant chaque ID d'élément à un nœud DOM. ([Les refs peuvent stocker n'importe quelle valeur !](/learn/referencing-values-with-refs)) La [fonction de rappel `ref`](/reference/react-dom/components/common#ref-callback) sur chaque élément de la liste s'occupe de mettre à jour les correspondances :
@@ -331,6 +340,7 @@ Dans cet exemple, `itemRef` ne référence pas un unique nœud DOM.  Il contient
   key={cat.id}
   ref={node => {
     const map = getMap();
+<<<<<<< HEAD
     if (node) {
       // Ajoute à la Map
       map.set(cat, node);
@@ -353,6 +363,8 @@ This example shows another approach for managing the Map with a `ref` callback c
   key={cat.id}
   ref={node => {
     const map = getMap();
+=======
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
     // Add to the Map
     map.set(cat, node);
 
@@ -364,23 +376,56 @@ This example shows another approach for managing the Map with a `ref` callback c
 >
 ```
 
-</Canary>
+This lets you read individual DOM nodes from the Map later.
+
+<Note>
+
+When Strict Mode is enabled, ref callbacks will run twice in development.
+
+Read more about [how this helps find bugs](/reference/react/StrictMode#fixing-bugs-found-by-re-running-ref-callbacks-in-development) in callback refs.
+
+</Note>
 
 </DeepDive>
 
 ## Accéder aux nœuds DOM d'un autre composant {/*accessing-another-components-dom-nodes*/}
 
+<<<<<<< HEAD
 Quand vous posez une ref sur un composant natif qui produit un élément navigateur tel que `<input />`, React place une référence vers le nœud DOM correspondant (le véritable élément `<input />` du navigateur) dans la propriété `current` de cette ref.
 
 En revanche, si vous essayez d'obtenir une ref vers **votre propre** composant, tel que `<MyInput />`, vous obtiendrez par défaut `null`.  Voici un exemple qui illustre ça : voyez comme les clics sur le bouton **ne donnent pas** le focus au champ de saisie :
+=======
+<Pitfall>
+Refs are an escape hatch. Manually manipulating _another_ component's DOM nodes can make your code fragile.
+</Pitfall>
+
+You can pass refs from parent component to child components [just like any other prop](/learn/passing-props-to-a-component).
+
+```js {3-4,9}
+import { useRef } from 'react';
+
+function MyInput({ ref }) {
+  return <input ref={ref} />;
+}
+
+function MyForm() {
+  const inputRef = useRef(null);
+  return <MyInput ref={inputRef} />
+}
+```
+
+In the above example, a ref is created in the parent component, `MyForm`, and is passed to the child component, `MyInput`. `MyInput` then passes the ref to `<input>`. Because `<input>` is a [built-in component](/reference/react-dom/components/common) React sets the `.current` property of the ref to the `<input>` DOM element.
+
+The `inputRef` created in `MyForm` now points to the `<input>` DOM element returned by `MyInput`. A click handler created in `MyForm` can access `inputRef` and call `focus()` to set the focus on `<input>`.
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 <Sandpack>
 
 ```js
 import { useRef } from 'react';
 
-function MyInput(props) {
-  return <input {...props} />;
+function MyInput({ ref }) {
+  return <input ref={ref} />;
 }
 
 export default function MyForm() {
@@ -403,6 +448,7 @@ export default function MyForm() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Pour vous aider à repérer le problème, React affichera aussi une erreur dans la console :
 
 <ConsoleBlock level="error">
@@ -462,22 +508,32 @@ export default function Form() {
 
 Dans les Design Systems, il est courant pour les composants de bas niveau tels que les boutons, champs, etc. de transmettre leurs refs à leurs nœuds DOM.  À l'inverse, les composants de haut niveau tels que les formulaires, listes ou sections de page n'exposent généralement pas leurs nœuds DOM pour éviter d'introduire des dépendances indésirables envers la structure de leur DOM.
 
+=======
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 <DeepDive>
 
 #### Exposer une partie de votre API grâce à un point d'accès impératif {/*exposing-a-subset-of-the-api-with-an-imperative-handle*/}
 
+<<<<<<< HEAD
 Dans l'exemple qui précède, `MyInput` expose l'élément DOM original du champ de saisie.   Ça permet au composant parent d'en appeler la méthode `focus()`.  Hélas, ça permet aussi au composant parent de faire d'autres choses avec, par exemple modifier ses styles CSS.  Dans certains cas rares, vous voudrez restreindre les fonctionnalités natives accessibles.  Utilisez alors `useImperativeHandle` :
+=======
+In the above example, the ref passed to `MyInput` is passed on to the original DOM input element. This lets the parent component call `focus()` on it. However, this also lets the parent component do something else--for example, change its CSS styles. In uncommon cases, you may want to restrict the exposed functionality. You can do that with [`useImperativeHandle`](/reference/react/useImperativeHandle):
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 <Sandpack>
 
 ```js
+<<<<<<< HEAD
 import {
   forwardRef,
   useRef,
   useImperativeHandle
 } from 'react';
+=======
+import { useRef, useImperativeHandle } from "react";
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
-const MyInput = forwardRef((props, ref) => {
+function MyInput({ ref }) {
   const realInputRef = useRef(null);
   useImperativeHandle(ref, () => ({
     // N'expose que la méthode `focus()`, rien de plus
@@ -485,8 +541,8 @@ const MyInput = forwardRef((props, ref) => {
       realInputRef.current.focus();
     },
   }));
-  return <input {...props} ref={realInputRef} />;
-});
+  return <input ref={realInputRef} />;
+};
 
 export default function Form() {
   const inputRef = useRef(null);
@@ -498,9 +554,13 @@ export default function Form() {
   return (
     <>
       <MyInput ref={inputRef} />
+<<<<<<< HEAD
       <button onClick={handleClick}>
         Activer le champ
       </button>
+=======
+      <button onClick={handleClick}>Focus the input</button>
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
     </>
   );
 }
@@ -508,7 +568,11 @@ export default function Form() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Ici, `realInputRef` dans `MyInput` référence le nœud DOM effectif du champ de saisie. En revanche, `useImperativeHandle` indique à React de fournir votre propre objet sur-mesure comme valeur de la ref pour le composant parent. Ainsi `inputRef.current` dans le composant `Form` ne verra que la méthode`focus`. Au final, le « point d'accès » de la ref n'est pas le nœud DOM, mais l'objet dédié que vous avez créé dans l'appel à `useImperativeHandle`.
+=======
+Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, [`useImperativeHandle`](/reference/react/useImperativeHandle) instructs React to provide your own special object as the value of a ref to the parent component. So `inputRef.current` inside the `Form` component will only have the `focus` method. In this case, the ref "handle" is not the DOM node, but the custom object you create inside [`useImperativeHandle`](/reference/react/useImperativeHandle) call.
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 </DeepDive>
 
@@ -717,11 +781,20 @@ Ceci étant dit, ça ne signifie pas que l'interdiction est absolue.  Il faut ju
 
 <Recap>
 
+<<<<<<< HEAD
 - Les Refs sont un concept générique, mais sont généralement utilisées pour référencer des nœuds DOM.
 - Pour indiquer à React de placer une référence à un nœud DOM dans `myRef.current`, utilisez la prop `ref`, comme dans `<div ref={myRef}>`.
 - En général, vous utiliserez les refs pour des actions non destructrices telles que la gestion du focus, le défilement ou la mesure des dimensions et positions d'éléments du DOM.
 - Un composant n'expose pas, par défaut, ses nœuds DOM.  Vous pouvez choisir d'en exposer un en utilisant `forwardRef` et en passant le second argument `ref` de la fonction de rappel au nœud désiré.
 - Évitez de modifier les nœuds DOM gérés par React. Si vous devez absolument le faire, limitez-vous aux parties que React n'a aucune raison de mettre à jour.
+=======
+- Refs are a generic concept, but most often you'll use them to hold DOM elements.
+- You instruct React to put a DOM node into `myRef.current` by passing `<div ref={myRef}>`.
+- Usually, you will use refs for non-destructive actions like focusing, scrolling, or measuring DOM elements.
+- A component doesn't expose its DOM nodes by default. You can opt into exposing a DOM node by using the `ref` prop.
+- Avoid changing DOM nodes managed by React.
+- If you do modify DOM nodes managed by React, modify parts that React has no reason to update.
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 </Recap>
 
@@ -946,12 +1019,30 @@ export default function CatFriends() {
   );
 }
 
-const catList = [];
-for (let i = 0; i < 10; i++) {
-  catList.push({
+const catCount = 10;
+const catList = new Array(catCount);
+for (let i = 0; i < catCount; i++) {
+  const bucket = Math.floor(Math.random() * catCount) % 2;
+  let imageUrl = '';
+  switch (bucket) {
+    case 0: {
+      imageUrl = "https://placecats.com/neo/250/200";
+      break;
+    }
+    case 1: {
+      imageUrl = "https://placecats.com/millie/250/200";
+      break;
+    }
+    case 2:
+    default: {
+      imageUrl = "https://placecats.com/bella/250/200";
+      break;
+    }
+  }
+  catList[i] = {
     id: i,
-    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
-  });
+    imageUrl,
+  };
 }
 
 ```
@@ -1063,12 +1154,30 @@ export default function CatFriends() {
   );
 }
 
-const catList = [];
-for (let i = 0; i < 10; i++) {
-  catList.push({
+const catCount = 10;
+const catList = new Array(catCount);
+for (let i = 0; i < catCount; i++) {
+  const bucket = Math.floor(Math.random() * catCount) % 2;
+  let imageUrl = '';
+  switch (bucket) {
+    case 0: {
+      imageUrl = "https://placecats.com/neo/250/200";
+      break;
+    }
+    case 1: {
+      imageUrl = "https://placecats.com/millie/250/200";
+      break;
+    }
+    case 2:
+    default: {
+      imageUrl = "https://placecats.com/bella/250/200";
+      break;
+    }
+  }
+  catList[i] = {
     id: i,
-    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
-  });
+    imageUrl,
+  };
 }
 
 ```
@@ -1119,7 +1228,11 @@ Faites en sorte qu'un clic sur le bouton « Recherche » donne le focus au cha
 
 <Hint>
 
+<<<<<<< HEAD
 Vous aurez besoin de `forwardRef` pour choisir d'exposer un nœud DOM pour votre propre composant `SearchInput`.
+=======
+You'll need to pass `ref` as a prop to opt into exposing a DOM node from your own component like `SearchInput`.
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 </Hint>
 
@@ -1204,6 +1317,7 @@ export default function SearchButton({ onClick }) {
 ```
 
 ```js src/SearchInput.js
+<<<<<<< HEAD
 import { forwardRef } from 'react';
 
 export default forwardRef(
@@ -1216,6 +1330,16 @@ export default forwardRef(
     );
   }
 );
+=======
+export default function SearchInput({ ref }) {
+  return (
+    <input
+      ref={ref}
+      placeholder="Looking for something?"
+    />
+  );
+}
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 ```
 
 ```css
