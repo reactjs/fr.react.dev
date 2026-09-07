@@ -5,7 +5,11 @@ date: 2021/06/08
 description: L'équipe React est ravie de vous donner quelques nouvelles. Nous avons commencé à travailler sur React 18, qui sera notre prochaine version majeure. Nous avons créé un groupe de travail pour préparer la communauté à l'adoption graduelle des nouvelles fonctionnalités de React 18. Nous avons publié une React 18 Alpha pour que les mainteneurs de bibliothèques puissent l'essayer et nous faire leurs retours…
 ---
 
+<<<<<<< HEAD
 Le 8 juin 2021 par [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](https://github.com/bvaughn), [Christine Abernathy](https://twitter.com/abernathyca), [Dan Abramov](https://twitter.com/dan_abramov), [Rachel Nabors](https://twitter.com/rachelnabors), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage) et [Seth Webster](https://twitter.com/sethwebster)
+=======
+June 8, 2021 by [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](https://github.com/bvaughn), [Christine Abernathy](https://twitter.com/abernathyca), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Rachel Nabors](https://twitter.com/rachelnabors), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Seth Webster](https://twitter.com/sethwebster)
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ---
 
@@ -51,7 +55,11 @@ Tout le monde peut lire les discussions du [dépôt du groupe de travail React 1
 
 Dans la mesure où nous nous attendons à un pic initial d'intérêt pour le groupe de travail, seuls les membres invités seront autorisés à créer des discussions ou à les commenter. Ceci dit, les fils de discussion sont pleinement accessibles en lecture au public, afin que tout le monde ait accès à la même information.  Nous pensons qu'il s'agit d'un bon compromis entre la création d'un environnement productif pour les membres du groupe de travail d'une part, et le maintien d'une transparence vis-à-vis de la communauté dans son ensemble d'autre part.
 
+<<<<<<< HEAD
 Comme toujours, vous pouvez soumettre des rapports de bug, des questions et des retours en général *via* notre [gestion de tickets](https://github.com/facebook/react/issues).
+=======
+As always, you can submit bug reports, questions, and general feedback to our [issue tracker](https://github.com/react/react/issues).
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ## Comment essayer React 18 Alpha dès aujourd'hui {/*how-to-try-react-18-alpha-today*/}
 
