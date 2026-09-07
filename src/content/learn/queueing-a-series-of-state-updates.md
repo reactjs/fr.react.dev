@@ -178,7 +178,11 @@ Lors du prochain rendu, React traite la file dans l'ordre :
 | « remplacer par `5` » | `0` (ignoré) | `5` |
 | `n => n + 1` | `5` | `5 + 1 = 6` |
 
+<<<<<<< HEAD
 React stocke `6` comme résultat final et le renvoie depuis `useState`.
+=======
+React stores `6` as the final result and returns it from `useState`.
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 <Note>
 
@@ -304,7 +308,11 @@ export default function RequestTracker() {
         Finalisé : {completed}
       </h3>
       <button onClick={handleClick}>
+<<<<<<< HEAD
         Acheter
+=======
+        Buy
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
       </button>
     </>
   );
@@ -348,7 +356,11 @@ export default function RequestTracker() {
         Finalisé : {completed}
       </h3>
       <button onClick={handleClick}>
+<<<<<<< HEAD
         Acheter
+=======
+        Buy
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
       </button>
     </>
   );

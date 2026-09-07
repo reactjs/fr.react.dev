@@ -31,7 +31,11 @@ Certains éditeurs incluent ces fonctionnalités d'entrée de jeu, mais d'autres
 
 ### Linting {/*linting*/}
 
+<<<<<<< HEAD
 Les *linters* (analyseurs statiques) de code trouvent les problèmes dans votre code au moment où vous l'écrivez, ce qui vous aide à les corriger au plus tôt. [ESLint](https://eslint.org/) est un *linter* populaire en logiciel libre pour JavaScript.
+=======
+Code linters find problems in your code as you write, helping you fix them early. [ESLint](https://eslint.org/) is a popular, open source linter for JavaScript.
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 * [Installez ESLint avec la configuration recommandée pour React](https://www.npmjs.com/package/eslint-config-react-app) (assurez-vous d'avoir [installé Node](https://nodejs.org/fr/download/current/) !)
 * [Intégrez ESLint dans VSCode avec l'extension officielle](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)

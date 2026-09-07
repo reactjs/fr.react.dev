@@ -324,7 +324,11 @@ Pour voir ce que ça donne en pratique avec quelques composants supplémentaires
 
 #### Saisies synchronisées {/*synced-inputs*/}
 
+<<<<<<< HEAD
 Ces deux champs de saisie sont indépendants. Faites en sorte qu'ils soient synchronisés : modifier l'un des champs doit également mettre à jour l'autre champ avec le même texte, et vice-versa.
+=======
+These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa.
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 <Hint>
 

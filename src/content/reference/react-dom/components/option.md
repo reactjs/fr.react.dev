@@ -36,7 +36,11 @@ Le [composant natif `<option>`](https://developer.mozilla.org/fr/docs/Web/HTML/E
 
 #### Props {/*props*/}
 
+<<<<<<< HEAD
 `<option>` prend en charge toutes les [props communes aux éléments](/reference/react-dom/components/common#props).
+=======
+`<option>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 `<option>` prend également en charge les props suivantes :
 
@@ -80,3 +84,7 @@ select { margin: 5px; }
 ```
 
 </Sandpack>
+<<<<<<< HEAD
+=======
+
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
