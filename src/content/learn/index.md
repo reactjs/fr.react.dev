@@ -385,7 +385,7 @@ Voyez comme chaque bouton « se souvient » de son propre état `count` et n�
 
 Les fonctions dont le nom commence par `use` sont appelées *Hooks*. `useState` est un Hook fourni directement par React.  Vous pouvez trouver les autres Hooks fournis dans la [référence de l’API](/reference/react).  Vous pouvez aussi créer vos propres Hooks en combinant ceux existants.
 
-Les Hooks sont plus contraignants que les autres fonctions.  Vous pouvez seulement appeler les Hooks *au début* du code vos composants (ou d’autres Hooks).  Si vous voulez utiliser `useState` dans une condition ou une boucle, extrayez un composant dédié au besoin et mettez le Hook à l’intérieur.
+Les Hooks sont plus contraignants que les autres fonctions.  Vous pouvez seulement appeler les Hooks *au début* du code de vos composants (ou d’autres Hooks).  Si vous voulez utiliser `useState` dans une condition ou une boucle, extrayez un composant dédié au besoin et mettez le Hook à l’intérieur.
 
 ## Partager des données entre composants {/*sharing-data-between-components*/}
 
