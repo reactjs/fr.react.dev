@@ -80,6 +80,9 @@ Il existe deux variantes rarement utilisées de `useEffect` avec des différence
 * [`useLayoutEffect`](/reference/react/useLayoutEffect) se déclenche avant que le navigateur ne repeigne l’écran. Vous pouvez y mesurer la mise en page, notamment les dimensions.
 * [`useInsertionEffect`](/reference/react/useInsertionEffect) se déclenche avant que React ne fasse des changements dans le DOM. Les bibliothèques peuvent y insérer des CSS dynamiques.
 
+You can also separate events from Effects:
+
+- [`useEffectEvent`](/reference/react/useEffectEvent) creates a non-reactive event to fire from any Effect hook.
 ---
 
 ## Les Hooks de performance {/*performance-hooks*/}
