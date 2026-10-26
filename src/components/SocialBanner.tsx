@@ -1,14 +1,20 @@
 /**
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 
 import {useEffect, useRef} from 'react';
 
+<<<<<<< HEAD
 import {ExternalLink} from './ExternalLink';
 import cn from 'classnames';
 
 const bannerText = 'Rejoignez-nous à la React Conf les 15-16 mai.';
+=======
+const bannerText = 'Join us for React Conf on Oct 7-8.';
+>>>>>>> ae5e48074d4f73f1e349eda2a66841f9a959023e
 const bannerLink = 'https://conf.react.dev/';
 const bannerLinkText = 'En savoir plus';
 
