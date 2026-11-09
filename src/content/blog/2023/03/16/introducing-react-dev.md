@@ -5,7 +5,11 @@ date: 2023/03/16
 description: Nous sommes enchantés d'annoncer aujourd'hui la sortie de react.dev, le nouveau site officiel de React et de sa documentation.  Dans ce billet, nous aimerions vous faire faire un tour du nouveau site.
 ---
 
+<<<<<<< HEAD
 Le 16 mars 2023 par [Dan Abramov](https://twitter.com/dan_abramov) et [Rachel Nabors](https://twitter.com/rachelnabors)
+=======
+March 16, 2023 by [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Rachel Nabors](https://twitter.com/rachelnabors)
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ---
 
@@ -40,7 +44,12 @@ Si vous n'avez pas encore vu la nouvelle page d'accueil, allez donc y jeter un c
 Lorsque nous avons sorti les Hooks React en 2018, la documentation des Hooks supposait que les lecteurs étaient habitués aux composants à base de classes.  Ça a permis à la communauté d'adopter rapidement les Hooks, mais au bout d'un moment les anciennes docs ont échoué à bien accompagner les nouveaux utilisateurs.  Ils devaient apprendre React deux fois : d'abord pour les composants à base de classes, et à nouveau pour les Hooks.
 
 
+<<<<<<< HEAD
 **Les nouvelles docs enseignent React avec les Hooks dès le départ.**  Les docs sont découpées en deux grandes sections principales :
+=======
+* **[Learn React](/learn)** is a self-paced course that teaches React from scratch.
+* **[API Reference](/reference/react)** provides the details and usage examples for every React API.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 * **[Apprendre React](/learn)** est un cours complet, à suivre à votre rythme, qui enseigne React à partir de zéro.
 * **[La Référence API](/reference)** fournit tous les détails et exemples d'utilisation pour chaque API de React.
@@ -282,6 +291,7 @@ export default function PackingList() {
       <ul>
         <Item
           isPacked={true}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -291,6 +301,17 @@ export default function PackingList() {
         <Item
           isPacked={false}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
         />
       </ul>
     </section>
@@ -320,6 +341,7 @@ export default function PackingList() {
       <ul>
         <Item
           isPacked={true}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -329,6 +351,17 @@ export default function PackingList() {
         <Item
           isPacked={false}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
         />
       </ul>
     </section>
@@ -368,6 +401,7 @@ export default function PackingList() {
       <ul>
         <Item
           importance={9}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -377,6 +411,17 @@ export default function PackingList() {
         <Item
           importance={6}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          importance={0}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          importance={6}
+          name="Photo of Tam"
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
         />
       </ul>
     </section>
@@ -412,6 +457,7 @@ export default function PackingList() {
       <ul>
         <Item
           importance={9}
+<<<<<<< HEAD
           name="Combinaison spatiale"
         />
         <Item
@@ -421,6 +467,17 @@ export default function PackingList() {
         <Item
           importance={6}
           name="Photo de Tam"
+=======
+          name="Space suit"
+        />
+        <Item
+          importance={0}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          importance={6}
+          name="Photo of Tam"
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
         />
       </ul>
     </section>
@@ -460,11 +517,19 @@ Nous avons eu confirmation par les éditeurs de navigateurs que cette représent
 
 Dans la [référence API](/reference/react), chaque API de React dispose de sa propre page.  Ça inclut tous types d'API :
 
+<<<<<<< HEAD
 - Les Hooks fournis tels que [`useState`](/reference/react/useState).
 - Les composants fournis tels que [`<Suspense>`](/reference/react/Suspense).
 - Les composants natifs tels qu'[`<input>`](/reference/react-dom/components/input).
 - Des API orientées frameworks comme [`renderToPipeableStream`](/reference/react-dom/server/renderToReadableStream).
 - D'autres API React telles que [`memo`](/reference/react/memo).
+=======
+- Built-in Hooks like [`useState`](/reference/react/useState).
+- Built-in components like [`<Suspense>`](/reference/react/Suspense).
+- Built-in browser components like [`<input>`](/reference/react-dom/components/input).
+- Framework-oriented APIs like [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream).
+- Other React APIs like [`memo`](/reference/react/memo).
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 Vous verrez que chaque page d'API est découpée en au moins deux parties : *Référence* et *Utilisation*.
 
@@ -608,7 +673,11 @@ button { display: block; margin-top: 10px; }
 
 </Recipes>
 
+<<<<<<< HEAD
 Certaines pages d'API comprennent aussi des parties [Dépannage](/reference/react/useEffect#troubleshooting) (pour les bugs courants) et [Alternatives](/reference/react-dom/findDOMNode#alternatives) (lorsque l'API est dépréciée).
+=======
+Some API pages also include [Troubleshooting](/reference/react/useEffect#troubleshooting) (for common problems) and [Alternatives](https://18.react.dev/reference/react-dom/findDOMNode#alternatives) (for deprecated APIs).
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 Nous espérons que cette approche rendra la référence API utile non seulement pour retrouver rapidement la définition d'un argument, mais aussi pour explorer tout ce qu'on peut faire avec une API donnée — et comment la combiner à d'autres.
 
@@ -632,7 +701,11 @@ Nous pensons qu'il n'y a jamais eu de meilleur moment pour apprendre React.
 
 ## Qui a travaillé sur tout ça ? {/*who-worked-on-this*/}
 
+<<<<<<< HEAD
 Dans l'équipe React, [Rachel Nabors](https://twitter.com/rachelnabors/) a piloté le projet (et fourni les illustrations) et [Dan Abramov](https://twitter.com/dan_abramov) a conçu le cursus. Ils ont par ailleurs co-écrit ensemble la majorité du contenu.
+=======
+On the React team, [Rachel Nabors](https://twitter.com/rachelnabors/) led the project (and provided the illustrations), and [Dan Abramov](https://bsky.app/profile/danabra.mov) designed the curriculum. They co-authored most of the content together as well.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 Naturellement, un projet de cette taille ne se fait pas avec une petite équipe dans son coin !  Nous avons beaucoup de monde à remercier !
 

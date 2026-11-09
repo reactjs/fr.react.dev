@@ -4,7 +4,11 @@ title: Démarrage rapide
 
 <Intro>
 
+<<<<<<< HEAD
 Bienvenue dans la documentation React !  Dans cette page, vous allez découvrir les 80% de concepts React que vous utiliserez sans doute au quotidien.
+=======
+Welcome to the React documentation! This page will give you an introduction to 80% of the React concepts that you will use on a daily basis.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 </Intro>
 
@@ -143,7 +147,7 @@ Vous pouvez utiliser des expressions plus complexes au sein des accolades JSX, p
 ```js
 const user = {
   name: 'Hedy Lamarr',
-  imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+  imageUrl: 'https://react.dev/images/docs/scientists/yXOvdOSs.jpg',
   imageSize: 90,
 };
 
@@ -336,7 +340,11 @@ function MyButton() {
 }
 ```
 
+<<<<<<< HEAD
 React appellera à nouveau la fonction de votre composant. Cette fois, `count` vaudra `1`.  La fois suivante, ce sera `2`.  Et ainsi de suite.
+=======
+Calling `setCount` tells React to call your component function again. This is called a *re-render*. This time, `count` will be `1`. Then it will be `2`. And so on.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 Si vous affichez le même composant plusieurs fois, chacun a son propre état.  Cliquez les différents boutons séparément :
 

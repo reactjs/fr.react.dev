@@ -874,7 +874,11 @@ Les réducteurs ne sont pas sans inconvénients ! Voici quelques éléments de 
 - **Tests** : un réducteur est une fonction pure qui ne dépend pas de votre composant. Ça signifie que vous pouvez l'exporter et la tester en isolation. Bien qu'il soit généralement préférable de tester des composants dans un environnement plus réaliste, pour une logique de mise à jour d'état plus complexe, il peut être utile de vérifier que votre réducteur renvoie un état spécifique pour un état initial et une action particuliers.
 - **Préférence personnelle** : certaines personnes aiment les réducteurs, d'autres non. Ce n'est pas grave. C'est une question de préférence. Vous pouvez toujours convertir un `useState` en un `useReducer` et inversement : ils sont équivalents !
 
+<<<<<<< HEAD
 Nous recommandons d'utiliser un réducteur si vous rencontrez souvent des bugs à cause de mauvaises mises à jour d'état dans un composant et que vous souhaitez introduire plus de structure dans son code. Vous n'êtes pas obligé·e d'utiliser les réducteurs pour tout : n'hésitez pas à mélanger les approches ! Vous pouvez aussi utiliser `useState` et `useReducer` dans le même composant.
+=======
+We recommend using a reducer if you often encounter bugs due to incorrect state updates in some component, and want to introduce more structure to its code. You don't have to use reducers for everything: feel free to mix and match! You can even use `useState` and `useReducer` in the same component.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ## Écrire les réducteurs correctement {/*writing-reducers-well*/}
 

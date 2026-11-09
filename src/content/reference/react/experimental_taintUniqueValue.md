@@ -1,8 +1,9 @@
 ---
 title: experimental_taintUniqueValue
+version: experimental
 ---
 
-<Wip>
+<Experimental>
 
 **Cette API est expérimentale : elle n’a donc pas encore été livrée dans une version stable de React.**
 
@@ -16,7 +17,7 @@ Les versions expérimentales de React sont susceptibles de contenir des bugs. Ve
 
 Cette API n'est disponible qu'au sein des [Composants Serveur](/reference/rsc/use-client).
 
-</Wip>
+</Experimental>
 
 <Intro>
 
@@ -75,7 +76,11 @@ experimental_taintUniqueValue(
 
 ### Empêcher le passage d'un jeton à un Composant Client {/*prevent-a-token-from-being-passed-to-client-components*/}
 
+<<<<<<< HEAD
 Pour vous assurer que des données sensibles telles que des mots de passe, jetons de sessions et autres valeurs uniques ne soient pas passées par inadvertance à des Composants Clients, la fonction `taintUniqueValue` vous offre une couche de protection. Lorsqu'une valeur est ternie, toute tentative de la passer à un Composant Client lèvera une erreur.
+=======
+To ensure that sensitive information such as passwords, session tokens, or other unique values do not inadvertently get passed to Client Components, the `taintUniqueValue` function provides a layer of protection. When a value is tainted, any attempt to pass it to a Client Component will result in an error.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 L'argument `lifetime` définit la durée du ternissement pour cette valeur. Si vous souhaitez un ternissement définitif, utilisez pour l'argument `lifetime` des objets tels que [`globalThis`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/globalThis) ou `process`. Ces objets ont une durée de vie qui couvre toute l'exécution de votre appli.
 
@@ -89,7 +94,11 @@ experimental_taintUniqueValue(
 );
 ```
 
+<<<<<<< HEAD
 Si la durée de vie de la valeur ternie est liée à un objet, définissez `lifetime` à l'objet qui encapsule cette valeur. Ça garantit que la valeur ternie restera protégée pendant toute la durée de vie de l'objet qui la contient.
+=======
+If the tainted value's lifespan is tied to an object, the `lifetime` should be the object that encapsulates the value. This ensures the tainted value remains protected for the lifetime of the encapsulating object.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ```js
 import { experimental_taintUniqueValue } from 'react';
@@ -127,7 +136,11 @@ const uppercasePassword = password.toUpperCase() // `uppercasePassword` n’est 
 
 Dans le code ci-dessus, la constante`password` est ternie. Puis `password` sert de base à la nouvelle valeur `uppercasePassword`, créée en appelant la méthode `toUpperCase` de `password`. Cette nouvelle valeur `uppercasePassword` n'est pas ternie.
 
+<<<<<<< HEAD
 On obtiendrait le même résultat avec d'autres façons de dériver de nouvelles valeurs à partir de valeurs ternies, telles que la concaténation de chaîne, leur encodage en Base 64 ou l'extraction d'une portion de la chaîne.
+=======
+Other similar ways of deriving new values from tainted values like concatenating it into a larger string, converting it to base64, or returning a substring create untainted values.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 Le ternissement ne vous protège que contre les bévues simples lorsqu'une valeur sensible est explicitement passée à un Composant Client. Des appels erronés de `taintUniqueValue`, comme le fait de recourir à un stockage global hors de React, sans l'objet de durée de vie associée, peuvent entraîner la perte du ternissement de la valeur. Le ternissement est une couche de protection ; une appli sécurisée aura plusieurs couches de protection complémentaires, des API soigneusement conçues et des mécanismes d'isolation en place.
 
@@ -175,7 +188,12 @@ export function fetchAPI(url) {
 }
 ```
 
+<<<<<<< HEAD
 Lors d'une refonte, des erreurs peuvent survenir car l'ensemble de votre équipe ne sera peut-être pas attentive à ce point de sécurité. Pour vous éviter des erreurs en aval vous pouvez « ternir » le mot de passe effectif :
+=======
+Sometimes mistakes happen during refactoring and not all of your colleagues might know about this.
+To protect against this mistakes happening down the line we can "taint" the actual password:
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ```js
 import "server-only";
@@ -189,7 +207,11 @@ experimental_taintUniqueValue(
 );
 ```
 
+<<<<<<< HEAD
 À présent, dès que quiconque essaierait de passer ce mot de passe à un Composant Client, ou enverrait le mot de passe à un Composant Client *via* une *Server Action*, une erreur serait levée avec le message défini lors de l'appel à `taintUniqueValue`.
+=======
+Now whenever anyone tries to pass this password to a Client Component, or send the password to a Client Component with a Server Function, an error will be thrown with message you defined when you called `taintUniqueValue`.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 </DeepDive>
 

@@ -72,14 +72,24 @@ function Counter() {
   }
 
   useEffect(() => {
+<<<<<<< HEAD
     document.title = `Vous avez cliqué ${this.state.count} fois`;
+=======
+    document.title = `You clicked ${count} times`;
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
   }, [count]);
 
   return (
     <div>
+<<<<<<< HEAD
       <p>Vous avez cliqué {this.state.count} fois</p>
       <button onClick={this.handleClick}>
         Cliquez ici
+=======
+      <p>You clicked {count} times</p>
+      <button onClick={handleClick}>
+        Click me
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
       </button>
     </div>
   )
@@ -99,7 +109,11 @@ it('can render and update a counter', async () => {
   container = document.createElement('div');
   document.body.appendChild(container);
 
+<<<<<<< HEAD
   // ✅ Fait le rendu du composant au sein d'un `act()`.
+=======
+  // ✅ Render the component inside act().
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
   await act(() => {
     ReactDOMClient.createRoot(container).render(<Counter />);
   });
@@ -119,28 +133,41 @@ Le recours à `act()` garantit que toute mise à jour a bien été appliquée av
 
 Pour tester les événements, enrobez leur déclenchement dans `act()` :
 
-```js {14,16}
+```js {17-19}
 import {act} from 'react';
 import ReactDOMClient from 'react-dom/client';
 import Counter from './Counter';
 
-it.only('can render and update a counter', async () => {
+it('can render and update a counter', async () => {
   const container = document.createElement('div');
   document.body.appendChild(container);
-  
-  await act( async () => {
+
+  await act(async () => {
     ReactDOMClient.createRoot(container).render(<Counter />);
   });
+<<<<<<< HEAD
   
   // ✅ Déclenchement d'événement dans `act()`.
+=======
+
+  const button = container.querySelector('button');
+  const label = container.querySelector('p');
+
+  // ✅ Dispatch the event inside act().
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
   await act(async () => {
     button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
   });
 
+<<<<<<< HEAD
   const button = container.querySelector('button');
   const label = container.querySelector('p');
   expect(label.textContent).toBe('Vous avez cliqué 1 fois');
   expect(document.title).toBe('Vous avez cliqué 1 fois');
+=======
+  expect(label.textContent).toBe('You clicked 1 times');
+  expect(document.title).toBe('You clicked 1 times');
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 });
 ```
 
@@ -154,7 +181,11 @@ N'oubliez pas que le déclenchement d'événements DOM ne fonctionne que si le c
 
 ## Dépannage {/*troubleshooting*/}
 
+<<<<<<< HEAD
 ### J'ai une erreur : "The current testing environment is not configured to support act"(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
+=======
+### I'm getting an error: "The current testing environment is not configured to support act(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 Le recours à `act` nécessite un réglage `global.IS_REACT_ACT_ENVIRONMENT=true` dans votre environnement de test.  Ça permet de garantir que `act` n'est utilisé que dans un environnement adapté.
 
