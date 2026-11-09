@@ -16,8 +16,14 @@ Les *Hooks* vous permettent d’utiliser différentes fonctionnalités de React 
 
 Pour ajouter un état local à un composant, utilisez un de ces Hooks :
 
+<<<<<<< HEAD
 * [`useState`](/reference/react/useState) déclare un état local que vous pouvez mettre à jour directement.
 * [`useReducer`](/reference/react/useReducer) déclare un état local dont la logique de mise à jour réside dans une [fonction réducteur](/learn/extracting-state-logic-into-a-reducer).
+=======
+* [`useState`](/reference/react/useState) declares a state variable that you can update directly.
+* [`useReducer`](/reference/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
+* [`useOptimistic`](/reference/react/useOptimistic) lets you show a different state while an async action is pending.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ```js
 function ImageGallery() {
@@ -80,6 +86,9 @@ Il existe deux variantes rarement utilisées de `useEffect` avec des différence
 * [`useLayoutEffect`](/reference/react/useLayoutEffect) se déclenche avant que le navigateur ne repeigne l’écran. Vous pouvez y mesurer la mise en page, notamment les dimensions.
 * [`useInsertionEffect`](/reference/react/useInsertionEffect) se déclenche avant que React ne fasse des changements dans le DOM. Les bibliothèques peuvent y insérer des CSS dynamiques.
 
+You can also separate events from Effects:
+
+- [`useEffectEvent`](/reference/react/useEffectEvent) creates a non-reactive event to fire from any Effect hook.
 ---
 
 ## Les Hooks de performance {/*performance-hooks*/}

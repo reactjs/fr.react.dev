@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -335,8 +342,13 @@ export function Footer() {
           <FooterLink href="/community" isHeader={true}>
             Communauté
           </FooterLink>
+<<<<<<< HEAD
           <FooterLink href="https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md">
             Code de conduite
+=======
+          <FooterLink href="https://github.com/react/react/blob/main/CODE_OF_CONDUCT.md">
+            Code of Conduct
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
           </FooterLink>
           <FooterLink href="/community/team">L’équipe</FooterLink>
           <FooterLink href="/community/docs-contributors">
@@ -376,8 +388,13 @@ export function Footer() {
               <IconBsky />
             </ExternalLink>
             <ExternalLink
+<<<<<<< HEAD
               aria-label="React sur Github"
               href="https://github.com/facebook/react"
+=======
+              aria-label="React on Github"
+              href="https://github.com/react/react"
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
               className={socialLinkClasses}>
               <IconGitHub />
             </ExternalLink>

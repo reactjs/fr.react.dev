@@ -294,7 +294,11 @@ Vous vous demandez peut-être comment React a su que votre Effet devait se resyn
 ```js {1,3,8}
 function ChatRoom({ roomId }) { // La prop roomId peut changer au cours du temps
   useEffect(() => {
+<<<<<<< HEAD
     const connection = createConnection(serverUrl, roomId); // Cet Effet lit roomId
+=======
+    const connection = createConnection(serverUrl, roomId); // This Effect reads roomId
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
     connection.connect();
     return () => {
       connection.disconnect();
@@ -1132,7 +1136,7 @@ Si vous constatez qu'une règle du *linter* est ignorée, réactivez-la ! C'est
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [16]}}
 import { useState, useEffect } from 'react';
 
 export default function App() {
@@ -1375,8 +1379,8 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
-import { useState, useEffect } from 'react';
+```js {expectedErrors: {'react-compiler': [8]}} src/ChatRoom.js active
+import { useEffect } from 'react';
 
 export default function ChatRoom({ roomId, createConnection }) {
   useEffect(() => {
@@ -1474,7 +1478,7 @@ export default function App() {
 ```
 
 ```js src/ChatRoom.js active
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 export default function ChatRoom({ roomId, createConnection }) {
   useEffect(() => {
@@ -1562,7 +1566,7 @@ export default function App() {
 ```
 
 ```js src/ChatRoom.js active
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import {
   createEncryptedConnection,
   createUnencryptedConnection,
@@ -1736,7 +1740,11 @@ async function fetchPlaces(planetId) {
           name: 'Espagne'
         }, {
           id: 'vietnam',
+<<<<<<< HEAD
           name: 'Viêt Nam'
+=======
+          name: 'Vietnam'
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
         }]);
       } else if (planetId === 'venus') {
         resolve([{
@@ -1904,7 +1912,11 @@ async function fetchPlaces(planetId) {
           name: 'Espagne'
         }, {
           id: 'vietnam',
+<<<<<<< HEAD
           name: 'Viêt Nam'
+=======
+          name: 'Vietnam'
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
         }]);
       } else if (planetId === 'venus') {
         resolve([{
@@ -2067,7 +2079,11 @@ async function fetchPlaces(planetId) {
           name: 'Espagne'
         }, {
           id: 'vietnam',
+<<<<<<< HEAD
           name: 'Viêt Nam'
+=======
+          name: 'Vietnam'
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
         }]);
       } else if (planetId === 'venus') {
         resolve([{
