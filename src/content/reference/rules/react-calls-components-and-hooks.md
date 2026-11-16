@@ -24,7 +24,7 @@ function BlogPost() {
 }
 ```
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function BlogPost() {
   return <Layout>{Article()}</Layout>; // 🔴 Incorrect : ne les appelez jamais directement
 }
@@ -54,7 +54,7 @@ Enfreindre cette règle empêchera React d'optimiser automatiquement votre compo
 
 Les Hooks devraient être aussi « statiques » que possible.  Ça signifie que vous ne devriez pas les modifier dynamiquement.  Vous devriez par exemple éviter d'écrire des Hooks d'ordre supérieur :
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2, 3]}} {2}
 function ChatInput() {
   const useDataWithLogging = withLogging(useData); // 🔴 Déconseillé : évitez les Hooks d’ordre supérieur
   const data = useDataWithLogging();
@@ -77,7 +77,7 @@ function useDataWithLogging() {
 
 Les Hooks ne devraient par ailluers pas être utilisés dynamique.  Disons par exemple que vous recouriez à l'injection de dépendance en passant un Hook à un composant sous forme de valeur :
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function ChatInput() {
   return <Button useData={useDataWithLogging} /> // 🔴 Incorrect : ne passez pas les Hooks en props
 }
