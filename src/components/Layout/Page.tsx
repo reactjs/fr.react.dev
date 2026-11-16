@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -30,7 +37,7 @@ interface PageProps {
   meta: {
     title?: string;
     titleForTitleTag?: string;
-    canary?: boolean;
+    version?: 'experimental' | 'canary';
     description?: string;
   };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
@@ -52,7 +59,7 @@ export function Page({
     routeTree
   );
   const title = meta.title || route?.title || '';
-  const canary = meta.canary || false;
+  const version = meta.version;
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
@@ -69,7 +76,7 @@ export function Page({
           )}>
           <PageHeading
             title={title}
-            canary={canary}
+            version={version}
             description={description}
             tags={route?.tags}
             breadcrumbs={breadcrumbs}
@@ -81,11 +88,9 @@ export function Page({
               'max-w-7xl mx-auto',
               section === 'blog' && 'lg:flex lg:flex-col lg:items-center'
             )}>
-            <TocContext.Provider value={toc}>
-              <LanguagesContext.Provider value={languages}>
-                {children}
-              </LanguagesContext.Provider>
-            </TocContext.Provider>
+            <TocContext value={toc}>
+              <LanguagesContext value={languages}>{children}</LanguagesContext>
+            </TocContext>
           </div>
           {!isBlogIndex && (
             <DocsPageFooter
@@ -123,7 +128,18 @@ export function Page({
         title={title}
         titleForTitleTag={meta.titleForTitleTag}
         isHomePage={isHomePage}
-        image={`/images/og-` + section + '.png'}
+        image={
+          // OG images are generated per page at build time by
+          // scripts/generateOgImages.mjs. Pages without a generated
+          // card (home, errors, 404, 500) use the static section image.
+          isHomePage ||
+          !title ||
+          cleanedPath.startsWith('/errors') ||
+          cleanedPath === '/404' ||
+          cleanedPath === '/500'
+            ? `/images/og-${section ?? 'unknown'}.png`
+            : `/images/og/${cleanedPath.slice(1).replace(/\//g, '-')}.png`
+        }
         searchOrder={searchOrder}
       />
       {(isHomePage || isBlogIndex) && (
@@ -136,7 +152,7 @@ export function Page({
           />
         </Head>
       )}
-      {/*<SocialBanner />*/}
+      {/* <SocialBanner /> */}
       <TopNav
         section={section}
         routeTree={routeTree}
